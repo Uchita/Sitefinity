@@ -16,6 +16,18 @@
         var isSalaryExists = false;
         var isSlarySelected = false;
         var salary = { TargetValue: 'Salary', LowerRange: 15000, UpperRange: 200000 };
+        var modelSalary = JSON.parse('@Html.Raw(Json.Encode(ViewBag.Salary))');
+    
+        if (modelSalary != null && modelSalary != 'undefined') {
+            $('.SalaryRangeSelect').val(modelSalary.TargetValue);
+            $('#' + modelSalary.TargetValue).removeClass('visible-hidden');
+
+            var salarySliderEle = $('#' + modelSalary.TargetValue).parent().find('.nstSlider');
+            if (salarySliderEle != null) {
+                $(salarySliderEle).data("cur_min", modelSalary.LowerRange);
+                $(salarySliderEle).data("cur_max", modelSalary.UpperRange);
+            }
+        }
                
 
         $('.SalaryRangeSelect').on('change', function () {
@@ -195,6 +207,7 @@
                 }
 
                 filterModel.Keywords = $("#selectedkeywordsfilter").val();
+                //filterModel.SortBy = $("#sortOrder").val();// We need to persist the sort order selected in job search results
                 var data = { filterModel: filterModel }
                 var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
                 var queryStringData = makeQueryString(filterModel, "", false);

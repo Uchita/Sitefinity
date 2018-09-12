@@ -316,6 +316,9 @@
                         color: #fff;
                         text-decoration: none;
                     }
+                    .saved::before{
+                        color: $brightColor;
+                    }
                 }
             }
         }
@@ -347,7 +350,12 @@
     font-size: 1.4rem;
 }
 .saved{
-    cursor: default;
+    &::before{
+        content: "\f005";
+        font: 700 12px/1 'Font Awesome 5 Free';
+        margin-right: 4px;
+        color: $highlighted-headings-color;
+    }
 }
 
 

@@ -9,16 +9,20 @@
                 <th>Job ID</th>
                 <th>Job Title</th>
                 <th>Date Added</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach(MemberSavedJobDisplayItem item in Model )
             {
-                <tr>
-                    <td>@item.JobId</td>
-                    <td><a href="@ViewBag.JobDetailsPageUrl?JobId=@item.JobId">@item.DisplayTitle</a></td>
-                    <td>@String.Format("{0:dd MMM-yyyy}", item.DateAdded)</td>
-                </tr>
+            <tr>
+                <td>@item.JobId</td>
+                <td><a href="@ViewBag.JobDetailsPageUrl?JobId=@item.JobId">@item.DisplayTitle</a></td>
+                <td>@String.Format("{0:dd MMM-yyyy}", item.DateAdded)</td>
+                <td>
+                    @Html.ActionLink("Remove", "Index", "MemberSavedJobs", new { savedJobId = item.JobId }, new { @class = "btn btn-sm btn-tag" })
+                </td>
+            </tr>
             }
 
         </tbody>

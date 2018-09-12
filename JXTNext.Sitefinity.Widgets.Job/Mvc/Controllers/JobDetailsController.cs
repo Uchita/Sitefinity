@@ -14,6 +14,7 @@ using System.ComponentModel;
 using System.Collections.Specialized;
 using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -146,6 +147,28 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return Content("No job has been selected");
         }
 
+        [HttpPost]
+        public JsonResult SaveJob(int JobId)
+        {
+            JXTNext_MemberSaveJobRequest request = new JXTNext_MemberSaveJobRequest() { JobId = JobId };
+            JXTNext_MemberSaveJobResponse response = _BLConnector.MemberSaveJob(request) as JXTNext_MemberSaveJobResponse;
+
+            return new JsonResult { Data = response };
+        }
+
+        [HttpPost]
+        public JsonResult RemoveSavedJob(int JobId)
+        {
+            JXTNext_MemberSaveJobResponse response = _BLConnector.MemberDeleteSavedJob(JobId) as JXTNext_MemberSaveJobResponse;
+            return new JsonResult { Data = response };
+        }
+
+        [HttpPost]
+        public JsonResult GetAllSavedJobs()
+        {
+            JXTNext_MemberGetSavedJobResponse response = _BLConnector.MemberGetSavedJobs() as JXTNext_MemberGetSavedJobResponse;
+            return new JsonResult { Data = response };
+        }
         protected override void HandleUnknownAction(string actionName)
         {
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");

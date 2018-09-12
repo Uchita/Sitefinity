@@ -233,33 +233,15 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             else
                 return new JXTNext_MemberSaveJobResponse { Success = false, Errors = new List<string> { response.Response } };
         }
-
-        public IMemberCreateJobAlertResponse MemberCreateJobAlert(IMemberCreateJobAlertRequest jobAlert)
+        
+        public IMemberUpsertJobAlertResponse MemberUpsertJobAlert(IMemberUpsertJobAlertRequest jobAlert)
         {
-            JXTNext_MemberCreateJobAlertRequest createJobAlert = jobAlert as JXTNext_MemberCreateJobAlertRequest;
+            JXTNext_MemberUpsertJobAlertRequest createJobAlert = jobAlert as JXTNext_MemberUpsertJobAlertRequest;
 
-            ConnectorPostRequest connectorRequest = new ConnectorPostRequest(HTTP_Requests_MaxWaitTime)
-            {
-                HeaderValues = base.HTTP_Request_HeaderValues,
-                Data = createJobAlert,
-                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/member/jobalert")
-            };
-            ConnectorResponse response = JXTNext.Common.API.Connector.Post(connectorRequest);
-
-            //parse the response
-            bool actionSuccessful = response.Success;
-
-            if (actionSuccessful)
-            {
-                dynamic responseObj = JObject.Parse(response.Response);
-
-                if (responseObj["status"] == 200)
-                    return new JXTNext_MemberCreateJobAlertResponse { Success = true, MemberJobAlertId = (int?)responseObj["id"] };
-                else
-                    return new JXTNext_MemberCreateJobAlertResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };
-            }
+            if (createJobAlert.MemberJobAlertId.HasValue)
+                return MemberUpdateJobAlert(createJobAlert);
             else
-                return new JXTNext_MemberCreateJobAlertResponse { Success = false, Errors = new List<string> { response.Response } };
+                return MemberCreateJobAlert(createJobAlert);
         }
 
         public IMemberJobAlertsResponse MemberJobAlertsGet()
@@ -458,6 +440,58 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
                 return new JXTNext_SearchJobsResponse { Success = false, Errors = new List<string> { response.Response } };
         }
 
+        #region Private Methods
+
+        private IMemberUpsertJobAlertResponse MemberUpdateJobAlert(JXTNext_MemberUpsertJobAlertRequest jobAlert)
+        {
+            ConnectorPutRequest connectorRequest = new ConnectorPutRequest(HTTP_Requests_MaxWaitTime)
+            {
+                HeaderValues = base.HTTP_Request_HeaderValues,
+                Data = jobAlert,
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/member/jobalert/{jobAlert.MemberJobAlertId}")
+            };
+            ConnectorResponse response = JXTNext.Common.API.Connector.Put(connectorRequest);
+
+            return ProcessJobAlertResponse(response);
+        }
+
+        private IMemberUpsertJobAlertResponse MemberCreateJobAlert(JXTNext_MemberUpsertJobAlertRequest jobAlert)
+        {
+            ConnectorPostRequest connectorRequest = new ConnectorPostRequest(HTTP_Requests_MaxWaitTime)
+            {
+                HeaderValues = base.HTTP_Request_HeaderValues,
+                Data = jobAlert,
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/member/jobalert")
+            };
+            ConnectorResponse response = JXTNext.Common.API.Connector.Post(connectorRequest);
+
+            return ProcessJobAlertResponse(response);
+        }
+
+        /// <summary>
+        /// Potentially you should modify this to use generic types and process standrad responses for all connector requests
+        /// Because as you can see currently there are a lot of duplicated code
+        /// </summary>
+        /// <returns></returns>
+        private JXTNext_MemberUpsertJobAlertResponse ProcessJobAlertResponse(ConnectorResponse response)
+        {
+            //parse the response
+            bool actionSuccessful = response.Success;
+
+            if (actionSuccessful)
+            {
+                dynamic responseObj = JObject.Parse(response.Response);
+
+                if (responseObj["status"] == 200)
+                    return new JXTNext_MemberUpsertJobAlertResponse { Success = true, MemberJobAlertId = (int?)responseObj["id"] };
+                else
+                    return new JXTNext_MemberUpsertJobAlertResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };
+            }
+            else
+                return new JXTNext_MemberUpsertJobAlertResponse { Success = false, Errors = new List<string> { response.Response } };
+        }
+
+        #endregion
 
     }
 }

@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member
 {
-    public interface IMemberCreateJobAlertRequest : IBaseRequest
+    public interface IMemberUpsertJobAlertRequest : IBaseRequest
     {
+        int? MemberJobAlertId { get; set; }
         int MemberId { get; set; }
         string Name { get; set; }
         int? Status { get; set; }
@@ -16,7 +17,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member
         string Data { get; set; }
     }
 
-    public interface IMemberCreateJobAlertResponse : IBaseResponse
+    public interface IMemberUpsertJobAlertResponse : IBaseResponse
     {
         int? MemberJobAlertId { get; set; }
     }

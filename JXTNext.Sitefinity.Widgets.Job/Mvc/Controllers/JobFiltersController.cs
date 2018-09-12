@@ -81,6 +81,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
      
             ViewBag.FilterModel = JsonConvert.SerializeObject(filterModel);
             ViewBag.Keywords = filterModel.Keywords;
+            ViewBag.Salary = filterModel.Salary;
 
             var jobFilterComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
 

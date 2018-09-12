@@ -93,6 +93,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ViewBag.UserEmail = userEmail;
             ViewBag.UserFirstName = userFirstName;
             ViewBag.RegisterPageUrl = SitefinityHelper.GetPageUrl(this.RegisterPageId);
+            ViewBag.PostBackMessage = TempData["PostBackMessage"];
 
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
             return View(fullTemplateName, jobApplicationViewModel);
@@ -108,6 +109,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             var ovverideEmail = applyJobModel.Email;
             // Create user if the user does not exists
             MembershipCreateStatus membershipCreateStatus;
+            ViewBag.PostBackMessage = null;
+            ViewBag.IsUserLoggedIn = false;
 
             if (SitefinityHelper.IsUserLoggedIn()) // User already logged in
             {
@@ -187,6 +190,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
 
+            ViewBag.IsUserLoggedIn = true;
             JobApplicationAttachmentSource sourceResume = GetAttachmentSourceType(applyJobModel.ResumeSelectedType);
             JobApplicationAttachmentSource sourceCoverLetter = GetAttachmentSourceType(applyJobModel.CoverLetterSelectedType);
 
@@ -239,7 +243,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 if (hasFailedUpload)
                 {
                     //prompt error message for contact
-                    jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Technical_Issue, "Unable to attach files to application");
+                    //jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Technical_Issue, "Unable to attach files to application");
+                    TempData["PostBackMessage"] = "Unable to attach files to application";
+                    return Redirect(Request.UrlReferrer.PathAndQuery);
                 }
                 else
                 {
@@ -250,12 +256,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
             else
             {
-                jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAvailable, response.Errors.First());
+                TempData["PostBackMessage"] = response.Errors.First();
+                return Redirect(Request.UrlReferrer.PathAndQuery);
             }
 
             #region Redirect to thank you page on success
             // When the job appliction is success we need to redirect to thank you page
-            if (isJobApplicationSuccess)
+            if (isJobApplicationSuccess && !this.JobApplicationSuccessPageId.IsNullOrEmpty())
             {
                 var successPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationSuccessPageId);
                 return Redirect(successPageUrl);

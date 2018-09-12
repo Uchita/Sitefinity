@@ -193,7 +193,7 @@
         isUserMember = '@ViewBag.IsMemberUser';
     
         if (isUserMember == false || isUserMember == 'False' ) {
-           $('#create-job-alert-submit-btn').addClass('disabled');
+             $('#create-job-alert-submit-btn').prop('disabled', true);
         }
         
 

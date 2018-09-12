@@ -32,6 +32,12 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Logics
             return true;
         }
 
+        public bool Delete(int savedJobId)
+        {
+            JXTNext_MemberSaveJobResponse deleteResponse = _BLConnector.MemberDeleteSavedJob(savedJobId) as JXTNext_MemberSaveJobResponse;
+            return deleteResponse.Success;
+        }
+
         private List<MemberSavedJobDisplayItem> ConvertToDisplayItem(List<MemberSavedJob> items)
         {
             if (items == null)

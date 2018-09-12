@@ -57,6 +57,22 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
             return null;
         }
 
+        [HttpDelete]
+        public ActionResult Index(int savedJobId)
+        {
+            bool deleteSuccess = _memberSavedJobBC.Delete(savedJobId);
+
+            string message;
+            if (deleteSuccess)
+                message = "Saved job successfully deleted";
+            else
+                message = "Unable to process your previous request, please try again.";
+
+            return Index();
+        }
+
+
+
         protected override void HandleUnknownAction(string actionName)
         {
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");

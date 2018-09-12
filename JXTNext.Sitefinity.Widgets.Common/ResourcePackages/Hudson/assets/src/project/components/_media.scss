@@ -662,16 +662,17 @@
             background: #007077;
             background: rgba(0,112,119,.8);
         }
+        .brand-logo {
+            height: 40px;
+            width: 150px;
+            display: block;
+            margin: 10px auto;
+           
+        }
         .navbar-fixed-top{
             .brand-logo {
                 height: 40px;
-                display: block;
-                margin: 10px auto;
                 text-align: center;
-                width: 150px;
-                img {
-                    height: 60px;
-                }
             }
             .main-nav{
                 top: 15px;

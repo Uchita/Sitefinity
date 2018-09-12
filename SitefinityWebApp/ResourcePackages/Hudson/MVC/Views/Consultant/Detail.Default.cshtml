@@ -39,27 +39,24 @@
 		<div>@Html.HtmlSanitize((string)Model.Item.Fields.Bio)
         </div>
 		
-		@if(!string.IsNullOrWhiteSpace(@Model.Item.Fields.Email)
-			&& !string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber)
-			&& !string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
-		{	
-			<div class="contact-consultant-contacts">
-				@if(!string.IsNullOrWhiteSpace(@Model.Item.Fields.Email))
-				{
-					<em class="far fa-envelope"></em><a href="mailto:@Model.Item.Fields.Email">@Model.Item.Fields.Email</a><br />
-				}
+			
+		<div class="contact-consultant-contacts">
+			@if(!string.IsNullOrWhiteSpace(@Model.Item.Fields.Email))
+			{
+				<em class="far fa-envelope"></em><a href="mailto:@Model.Item.Fields.Email">@Model.Item.Fields.Email</a><br />
+			}
 				
-				@if(!string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber))
-				{
-					<em class="fas fa-phone"></em>@Model.Item.Fields.PhoneNumber<br />
-				}
+			@if(!string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber))
+			{
+				<em class="fas fa-phone"></em>@Model.Item.Fields.PhoneNumber<br />
+			}
 				
-				@if(!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
-				{
-					<a href="@Model.Item.Fields.LinkedInProfileUrl"><em class="fab fa-linkedin-in"></em>@Model.Item.Fields.LinkedInProfileName</a>
-				}
-		   </div>
-		}
+			@if(!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
+			{
+				<a href="@Model.Item.Fields.LinkedInProfileUrl"><em class="fab fa-linkedin-in"></em>@Model.Item.Fields.LinkedInProfileName</a>
+			}
+		</div>
+		
     </div>
 </div>
 <div class="row">

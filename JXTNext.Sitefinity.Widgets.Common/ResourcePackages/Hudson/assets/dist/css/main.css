@@ -7672,7 +7672,8 @@ blockquote {
   .page-wrapper .display-table-row {
     display: table-row; }
   .page-wrapper .full-width {
-    width: 100%; }
+    width: 100%;
+    margin-bottom: 15px; }
   .page-wrapper label {
     text-transform: uppercase;
     color: #01a3a4;
@@ -8049,7 +8050,7 @@ header {
 /*#region Main */
 /*temp*/
 .main-content {
-  min-height: 100vh; }
+  min-height: 70vh; }
 
 main {
   /*padding-top: 100px;*/ }
@@ -10641,14 +10642,14 @@ ul.breadcrumb {
     height: 100%;
     background: #007077;
     background: rgba(0, 112, 119, 0.8); }
+  header .brand-logo {
+    height: 40px;
+    width: 150px;
+    display: block;
+    margin: 10px auto; }
   header .navbar-fixed-top .brand-logo {
     height: 40px;
-    display: block;
-    margin: 10px auto;
-    text-align: center;
-    width: 150px; }
-    header .navbar-fixed-top .brand-logo img {
-      height: 60px; }
+    text-align: center; }
   header .navbar-fixed-top .main-nav {
     top: 15px; }
   header .main-nav {

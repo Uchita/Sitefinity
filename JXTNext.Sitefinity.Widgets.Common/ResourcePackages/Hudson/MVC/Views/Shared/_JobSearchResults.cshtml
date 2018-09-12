@@ -300,6 +300,9 @@
 
                     //removing the loader in the job result widget
                     jobContainer.removeClass('loading');
+                    $('html,body').animate({
+                        scrollTop: 0
+                    }, 500);
                     //removing the loader in the search keyword - job filter widget
                     $("#selectedkeywordsfilter").parent().removeClass('loader');
                     //removing the loading in the filter widget itself

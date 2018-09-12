@@ -172,6 +172,20 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return new JsonResult { Data = response };
         }
 
+        [HttpPost]
+        public JsonResult RemoveSavedJob(int JobId)
+        {
+            JXTNext_MemberSaveJobResponse response = _BLConnector.MemberDeleteSavedJob(JobId) as JXTNext_MemberSaveJobResponse;
+            return new JsonResult { Data = response };
+        }
+
+        [HttpPost]
+        public JsonResult GetAllSavedJobs()
+        {
+            JXTNext_MemberGetSavedJobResponse response = _BLConnector.MemberGetSavedJobs() as JXTNext_MemberGetSavedJobResponse;
+           return new JsonResult { Data = response };
+        }
+
         /// <summary>
         /// Renders appropriate list view depending on the <see cref="DetailTemplateName"/>
         /// </summary>

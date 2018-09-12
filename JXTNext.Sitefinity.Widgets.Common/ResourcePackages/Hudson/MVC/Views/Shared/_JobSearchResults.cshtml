@@ -84,11 +84,19 @@
       }
 
     $(document).ready(function () {
-        $('.save-job').click(function (e) {
+        $(document).on('click', '.save-job', function (e) {
             e.preventDefault();
+            var unSaveJob = false;
+            var ajaxActionName = "/SaveJob";
             var jobid = $(this).data('jobid');
+            if ($(this).hasClass('saved')) {
+                unSaveJob = true;
+                ajaxActionName = "/RemoveSavedJob";
+                jobid = $(this).data('savedjobid');
+            }
+           
             var parm = { JobId: jobid };
-            var urlPath = $(location).attr('pathname') + "/SaveJob";
+            var urlPath = $(location).attr('pathname') + ajaxActionName;
             var self = $(this);
             $.ajax({
                 type: 'POST',
@@ -97,12 +105,19 @@
                 data: parm,
                 dataType: 'Json',
                 success: function (response) {
+    
                     if (response.Success == true) { // Job Saved
-                        self.addClass("saved");
-                        self.text("Job saved");
+                        if (unSaveJob) {
+                            self.removeClass("saved");
+                            self.text("Save job");
+                        }
+                        else {
+                            self.addClass("saved");
+                            self.text("Job saved");
+                        }
                     }
                     else { // Job failed to save
-                        if (response.Errors[0].indexOf("(401)") || response.Errors[0].indexOf("(403)"))
+                        if ((response.Errors[0].indexOf("(401)") > -1) || (response.Errors[0].indexOf("(403)") > -1))
                             alert("Please login as a member to save a job.");
                         else
                             alert(response.Errors[0]);
@@ -112,6 +127,7 @@
                 }
             });
         });
+
     });
 
 
@@ -131,6 +147,47 @@
         $("#sortOrder").val('@ViewBag.SortOrder');
         bindJobsPages(PageNumber);
         bindJobs(PageNumber);
+
+        function processSavedJobs() {
+            var parm = { };
+            var urlPath = $(location).attr('pathname') + "/GetAllSavedJobs";
+            var self = $(this);
+            $.ajax({
+                type: 'POST',
+                cache: false,
+                url: urlPath,
+                data: parm,
+                dataType: 'Json',
+                success: function (response) {
+      
+                    if (response.Success == true) { // Getting the all saved jobs
+                        $('.save-job').each(function () {
+                            var jobid = $(this).data('jobid');
+                            var selfJob = $(this);
+
+                            $.each(response.SavedJobs, function (index, saveJobInfo) {
+                   
+                                if (saveJobInfo.JobId == jobid) {
+            
+                                    $(selfJob).addClass("saved");
+                                    $(selfJob).text("Job saved");
+                                    $(selfJob).attr('data-savedjobid', saveJobInfo.SavedJobId);
+                                }
+                            });
+                        });
+                    }
+                    else { 
+           
+                    }
+                },
+                error: function (response) { // Error
+                }
+            });
+
+           
+        };
+
+       
 
         $("#sortOrder").change(function () {
             bindJobs(PageNumber);
@@ -278,6 +335,8 @@
                             template: kendo.template($("#template").html()),
 
                         });
+
+                        processSavedJobs();
                     } else {
 
                         $(".info-block").removeClass('hidden');

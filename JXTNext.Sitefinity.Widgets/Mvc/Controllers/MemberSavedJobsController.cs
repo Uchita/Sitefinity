@@ -57,8 +57,8 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
             return null;
         }
 
-        [HttpDelete]
-        public ActionResult Index(int savedJobId)
+        [HttpGet]
+        public ActionResult DeleteSavedJob(int savedJobId)
         {
             bool deleteSuccess = _memberSavedJobBC.Delete(savedJobId);
 
@@ -68,7 +68,11 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
             else
                 message = "Unable to process your previous request, please try again.";
 
-            return Index();
+            // Why action name is empty?
+            // Here we need to call Index action, if we are providing action name as Index here
+            // It is appending in the URL, but we dont want to show that in URL. So, sending it as empty
+            // Will definity call defaut action i,.e Index
+            return RedirectToAction("");
         }
 
 

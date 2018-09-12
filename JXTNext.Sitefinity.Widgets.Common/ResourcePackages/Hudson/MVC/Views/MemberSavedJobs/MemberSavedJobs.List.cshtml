@@ -9,19 +9,23 @@
 <div class="tbl-wrapper">
      <table class="table table-bordered">
 
-        <tr>
-            <th>Job ID</th>
-            <th>Job Title</th>
-            <th>Date Added</th>
-        </tr>
+         <tr>
+             <th>Job ID</th>
+             <th>Job Title</th>
+             <th>Date Added</th>
+             <th>Actions</th>
+         </tr>
 
         @foreach (MemberSavedJobDisplayItem item in Model)
         {
-            <tr>
-                <td>@item.JobId</td>
-                <td><a href="@ViewBag.JobDetailsPageUrl?JobId=@item.JobId">@item.DisplayTitle</a></td>
-                <td>@String.Format("{0:dd MMM-yyyy}", item.DateAdded)</td>
-            </tr>
+         <tr>
+             <td>@item.JobId</td>
+             <td><a href="@ViewBag.JobDetailsPageUrl?JobId=@item.JobId">@item.DisplayTitle</a></td>
+             <td>@String.Format("{0:dd MMM-yyyy}", item.DateAdded)</td>
+             <td>
+                 @Html.ActionLink("Remove", "DeleteSavedJob", "MemberSavedJobs", new { savedJobId = item.Id }, new { @class = "btn btn-sm btn-tag" })
+             </td>
+         </tr>
         }
 
     </table>

@@ -673,6 +673,9 @@
                     height: 60px;
                 }
             }
+            .main-nav{
+                top: 15px;
+            }
         }
 
         .main-nav {
@@ -812,16 +815,16 @@
             & + li {
                 margin-top: 0 !important;
 
-                &:before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    right: 10%;
-                    display: block;
-                    border-top: 2px solid #ebebeb;
-                    width: 80%;
-                    z-index: 1;
-                }
+                // &:before {
+                //     content: '';
+                //     position: absolute;
+                //     top: 0;
+                //     right: 10%;
+                //     display: block;
+                //     border-top: 2px solid #ebebeb;
+                //     width: 80%;
+                //     z-index: 1;
+                // }
             }
 
             &:first-child {
@@ -856,6 +859,9 @@
 
     .risk-measurement .risk-wrapper {
         width: 100%;
+        .risk img{
+            bottom: 0;
+        }
     }
 
     .white-box-list .white-box {

@@ -189,7 +189,7 @@
 
 
             //checking if there are matched items
-            if ($('.contact-consultant[data-filtersector*="' + sectorFilter + '"]').length < 1 && $('.contact-consultant[data-filterlocation*="' + locationFilter + '"]').length < 1) {
+            if ($('.contact-consultant:not(.hidden)').length == 0) {
                 $('.alert').removeClass('hidden');
             } else {
                 $('.alert').addClass('hidden');

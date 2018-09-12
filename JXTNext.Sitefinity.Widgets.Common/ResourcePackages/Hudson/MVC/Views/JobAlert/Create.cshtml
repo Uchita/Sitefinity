@@ -14,8 +14,8 @@
 
 @if (Model != null)
 {
-    <h1>Create job Alert</h1>
-    <h2>Alert Details</h2>
+    <h1>Create job alert</h1>
+    <h2>Alert details</h2>
     <form method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();">
         @{
             int counter = 0;
@@ -48,7 +48,19 @@
                 {
                     <div class="row form-group">
                         <div class="col-md-4 text-right">
-                            <label>@item.Name</label>
+                            @{
+                                var displayTitle = item.Name;
+                                if (displayTitle == "CountryLocationArea") {
+                                    displayTitle = "Location";
+                                }
+                                else if (displayTitle == "WorkType") {
+                                    displayTitle = "Work Type";
+                                }
+                                else if (displayTitle == "CompanyName") {
+                                    displayTitle = "Company Name";
+                                }
+                            }
+                            <label>@displayTitle</label>
                         </div>
                         <div class="col-md-8">
                             <input type="hidden" name="Filters[@counter].RootId" value='@item.Name' />

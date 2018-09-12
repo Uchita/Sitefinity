@@ -27,15 +27,15 @@
 {
     if (node.ChildNodes.Count > 0)
     {
-            <a href="@node.Url" target="@node.LinkTarget">@node.Title</a>
+        <a href="@node.Url" target="@node.LinkTarget">@node.Title</a>
 
-            <ul class="nav navbar-nav">
-                @RenderSubLevelsRecursive(node)
-            </ul>
+        <ul class="nav navbar-nav">
+            @RenderSubLevelsRecursive(node)
+        </ul>
     }
     else
     {
-            <a href="@node.Url" target="@node.LinkTarget">@node.Title</a>
+        <a href="@node.Url" target="@node.LinkTarget">@node.Title</a>
     }
 }
 
@@ -46,21 +46,21 @@
     {
         if (childNode.ChildNodes.Count > 0)
         {
-                <li class="dropdown dropdown-first-level dropdown-@GetClass(childNode)">
-                    <a href="@childNode.Url" target="@childNode.LinkTarget">
-                        @childNode.Title
-                    </a>
-                    <span class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown"></span>
-                    <ul class="dropdown-menu">
-                        @RenderSubSubLevelsRecursive(childNode)
-                    </ul>
-                </li>
+            <li class="dropdown dropdown-first-level dropdown-@GetClass(childNode)">
+                <a href="@childNode.Url" target="@childNode.LinkTarget">
+                    @childNode.Title
+                </a>
+                <span class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown"></span>
+                <ul class="dropdown-menu">
+                    @RenderSubSubLevelsRecursive(childNode)
+                </ul>
+            </li>
         }
         else
         {
-                <li class="@GetClass(childNode)">
-                    <a href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
-                </li>
+            <li class="@GetClass(childNode)">
+                <a href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
+            </li>
         }
     }
 }
@@ -72,21 +72,21 @@
     {
         if (childNode.ChildNodes.Count > 0)
         {
-                <li class="dropdown dropdown-submenu-level dropdown-@GetClass(childNode)">
-                    <a href="@childNode.Url" target="@childNode.LinkTarget">
-                        @childNode.Title
-                    </a>
-                    <span class="fas fa-angle-down submenu-toggle"></span>
-                    <ul class="dropdown-menu">
-                        @RenderSubSubLevelsRecursive(childNode)
-                    </ul>
-                </li>
+            <li class="dropdown dropdown-submenu-level dropdown-@GetClass(childNode)">
+                <a href="@childNode.Url" target="@childNode.LinkTarget">
+                    @childNode.Title
+                </a>
+                <span class="fas fa-angle-down submenu-toggle"></span>
+                <ul class="dropdown-menu">
+                    @RenderSubSubLevelsRecursive(childNode)
+                </ul>
+            </li>
         }
         else
         {
-                <li class="@GetClass(childNode)">
-                    <a href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
-                </li>
+            <li class="@GetClass(childNode)">
+                <a href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
+            </li>
         }
     }
 }
@@ -95,13 +95,15 @@
 @helper GetClass(NodeViewModel node)
 {
 
-if (node.IsCurrentlyOpened)
-{
-        //@Html.Raw("active");
-    }
-    if (node.HasChildOpen)
+    if (node.IsCurrentlyOpened)
     {
         //@Html.Raw("active");
+        @Html.Raw("current")
+}
+if (node.HasChildOpen)
+{
+    //@Html.Raw("active");
+        @Html.Raw("current");
     }
 }
 @Html.Script(Url.WidgetContent("MVC/Scripts/Navigation/leftSidebar.js"), "bottom")

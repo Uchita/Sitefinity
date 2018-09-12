@@ -7387,7 +7387,7 @@ blockquote {
         color: #fff; }
     .page-wrapper .btn.btn-tag {
       font-size: 1.12rem;
-      padding: 2px 8px; }
+      padding: 2px 7px; }
     .page-wrapper .btn.btn-danger {
       color: #fff;
       background: #f55;
@@ -7672,12 +7672,18 @@ blockquote {
   .page-wrapper .display-table-row {
     display: table-row; }
   .page-wrapper .full-width {
-    width: 100%; }
+    width: 100%;
+    margin-bottom: 15px; }
   .page-wrapper label {
     text-transform: uppercase;
     color: #01a3a4;
     font-family: AkzidGroProMed, sans-serif;
-    font-weight: normal; }
+    font-weight: normal;
+    padding-top: 10px; }
+    .page-wrapper label.lbl {
+      text-transform: none;
+      font-family: AkzidGroProReg, sans-serif;
+      color: #000; }
   .page-wrapper .btn-near-labels {
     margin-top: 27px; }
   .page-wrapper .box-shadow {
@@ -7697,7 +7703,16 @@ blockquote {
   content: "\f0d5"; }
 
 img, iframe {
-  max-width: 100%; }
+  max-width: 100%;
+  border: none; }
+
+.modal-dialog {
+  max-width: 90%;
+  width: 650px; }
+
+.modal-body .button.close {
+  position: relative;
+  top: -5px; }
 
 .dropdown.open > a .fa-angle-down:before {
   content: "\f106"; }
@@ -8035,7 +8050,7 @@ header {
 /*#region Main */
 /*temp*/
 .main-content {
-  min-height: 100vh; }
+  min-height: 70vh; }
 
 main {
   /*padding-top: 100px;*/ }
@@ -8185,6 +8200,8 @@ main {
         .left-sidebar .container-fluid .nav li > span:hover, .left-sidebar .container-fluid .nav li > span:focus, .left-sidebar .navbar-collapse .nav li > span:hover, .left-sidebar .navbar-collapse .nav li > span:focus {
           color: #01a3a4;
           cursor: pointer; }
+      .left-sidebar .container-fluid .nav li.dropdown-current > a, .left-sidebar .navbar-collapse .nav li.dropdown-current > a {
+        color: #01a3a4; }
     .left-sidebar .container-fluid .nav .dropdown-menu, .left-sidebar .navbar-collapse .nav .dropdown-menu {
       position: relative;
       -webkit-box-shadow: none;
@@ -8203,6 +8220,8 @@ main {
           white-space: normal; }
           .left-sidebar .container-fluid .nav .dropdown-menu li a:hover, .left-sidebar .container-fluid .nav .dropdown-menu li a:focus, .left-sidebar .navbar-collapse .nav .dropdown-menu li a:hover, .left-sidebar .navbar-collapse .nav .dropdown-menu li a:focus {
             color: #01a3a4; }
+        .left-sidebar .container-fluid .nav .dropdown-menu li.current a, .left-sidebar .navbar-collapse .nav .dropdown-menu li.current a {
+          color: #01a3a4; }
       .left-sidebar .container-fluid .nav .dropdown-menu > li > a:focus, .left-sidebar .container-fluid .nav .dropdown-menu > li > a:hover, .left-sidebar .navbar-collapse .nav .dropdown-menu > li > a:focus, .left-sidebar .navbar-collapse .nav .dropdown-menu > li > a:hover {
         background-color: transparent; }
     .left-sidebar .container-fluid .nav > li > a, .left-sidebar .navbar-collapse .nav > li > a {
@@ -8904,7 +8923,7 @@ ul.breadcrumb {
   .thumbnail.card-basic .caption {
     position: relative;
     padding: 25px;
-    min-height: 210px;
+    min-height: 216px;
     font-size: 1.4rem;
     line-height: 1.3; }
     .thumbnail.card-basic .caption h3 {
@@ -10623,14 +10642,16 @@ ul.breadcrumb {
     height: 100%;
     background: #007077;
     background: rgba(0, 112, 119, 0.8); }
+  header .brand-logo {
+    height: 40px;
+    width: 150px;
+    display: block;
+    margin: 10px auto; }
   header .navbar-fixed-top .brand-logo {
     height: 40px;
-    display: block;
-    margin: 10px auto;
-    text-align: center;
-    width: 150px; }
-    header .navbar-fixed-top .brand-logo img {
-      height: 60px; }
+    text-align: center; }
+  header .navbar-fixed-top .main-nav {
+    top: 15px; }
   header .main-nav {
     position: absolute;
     top: 15px;
@@ -10709,15 +10730,6 @@ ul.breadcrumb {
     max-width: 400px; }
     .list-featured-articles li + li {
       margin-top: 0 !important; }
-      .list-featured-articles li + li:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 10%;
-        display: block;
-        border-top: 2px solid #ebebeb;
-        width: 80%;
-        z-index: 1; }
     .list-featured-articles li:first-child {
       padding-top: 230px; }
       .list-featured-articles li:first-child .featured-article-image {
@@ -10737,6 +10749,8 @@ ul.breadcrumb {
       width: 90%; }
   .risk-measurement .risk-wrapper {
     width: 100%; }
+    .risk-measurement .risk-wrapper .risk img {
+      bottom: 0; }
   .white-box-list .white-box {
     height: auto !important;
     min-height: 0;

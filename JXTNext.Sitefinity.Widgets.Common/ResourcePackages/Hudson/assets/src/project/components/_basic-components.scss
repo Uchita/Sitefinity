@@ -195,7 +195,7 @@ blockquote{
 
         &.btn-tag{
             font-size: 1.12rem;
-            padding: 2px 8px;
+            padding: 2px 7px;
         }
         &.btn-danger{
             color: $brightColor;
@@ -595,6 +595,7 @@ blockquote{
 
     .full-width {
         width: 100%;
+        margin-bottom: 15px;
     }
 
     label {
@@ -602,6 +603,12 @@ blockquote{
         color: $global-highlight-color;
         font-family: $font-family-medium;
         font-weight: normal;
+        padding-top: 10px;
+        &.lbl{
+            text-transform: none;
+            font-family: $font-family-regular;
+            color: $global-text-color;
+        }
     }
 
     .btn-near-labels {
@@ -627,8 +634,18 @@ blockquote{
 
 img, iframe {
     max-width: 100%;
+    border: none;
 }
-
+.modal-dialog{
+    max-width: 90%;
+    width: 650px;
+}
+.modal-body{
+    .button.close{
+        position: relative;
+        top: -5px;
+    }
+}
 .dropdown.open > a .fa-angle-down:before {
     content: "\f106";
 }
@@ -1141,7 +1158,7 @@ header {
 
 /*temp*/
 .main-content {
-    min-height: 100vh;
+    min-height: 70vh;
 }
 
 main {
@@ -1362,6 +1379,9 @@ main {
                     cursor: pointer;
                 }
             }
+            &.dropdown-current > a{
+                color: $sidebar-link-color;
+            }
         }
 
         .dropdown-menu {
@@ -1386,6 +1406,9 @@ main {
                     &:hover, &:focus {
                         color: $sidebar-link-color;
                     }
+                }
+                &.current a{
+                    color: $sidebar-link-color;
                 }
             }
 

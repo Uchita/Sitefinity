@@ -48,17 +48,16 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Logics
             return null;
         }
 
-        public IMemberCreateJobAlertResponse MemberJobAlertCreate(JobAlertViewModel jobAlertData)
+        public IMemberUpsertJobAlertResponse MemberJobAlertUpsert(JobAlertViewModel jobAlertData)
         {
-
-            IMemberCreateJobAlertRequest request = new JXTNext_MemberCreateJobAlertRequest
+            IMemberUpsertJobAlertRequest request = new JXTNext_MemberUpsertJobAlertRequest
             {
                 Name = jobAlertData.Name,
                 DateCreated = jobAlertData.LastModifiedTime,
                 Data = ConvertToSerializeData(jobAlertData),
                 Status = 1
             };
-            IMemberCreateJobAlertResponse response = _BLconnector.MemberCreateJobAlert(request);
+            IMemberUpsertJobAlertResponse response = _BLconnector.MemberUpsertJobAlert(request);
 
             return response;
         }

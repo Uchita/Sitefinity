@@ -7,8 +7,9 @@ using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common;
 
 namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member
 {
-    public class JXTNext_MemberCreateJobAlertRequest : ConnectorBaseRequest, IMemberCreateJobAlertRequest
+    public class JXTNext_MemberUpsertJobAlertRequest : ConnectorBaseRequest, IMemberUpsertJobAlertRequest
     {
+        public int? MemberJobAlertId { get; set; }
         public int MemberId { get; set; }
         public string Name { get; set; }
         public int? Status { get; set; }
@@ -16,7 +17,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member
         public string Data { get; set; }
     }
 
-    public class JXTNext_MemberCreateJobAlertResponse : ConnectorBaseResponse, IMemberCreateJobAlertResponse
+    public class JXTNext_MemberUpsertJobAlertResponse : ConnectorBaseResponse, IMemberUpsertJobAlertResponse
     {
         public int? MemberJobAlertId { get; set; }
     }

@@ -97,7 +97,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             var stausMessage = "A Job Alert has been created successfully.";
             var alertStatus = JobAlertStatus.SUCCESS;
-            var response = _jobAlertsBC.MemberJobAlertCreate(model);
+            var response = _jobAlertsBC.MemberJobAlertUpsert(model);
             if (!response.Success)
             {
                 stausMessage = response.Errors.First();

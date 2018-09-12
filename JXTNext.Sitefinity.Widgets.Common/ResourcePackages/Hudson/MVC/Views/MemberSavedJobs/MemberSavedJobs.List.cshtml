@@ -1,37 +1,62 @@
 ﻿@using JXTNext.Sitefinity.Widgets.User.Mvc.Models.MemberSavedJob
 @model List<MemberSavedJobDisplayItem>
+@using JXTNext.Sitefinity.Widgets.User.Mvc.Models
 
+
+@if (ViewBag.DeleteMessage != null)
+{
+    if (ViewBag.Status == MemberSavedJobStatus.SUCCESS)
+    {
+        <div class="alert alert-success">@ViewBag.DeleteMessage</div>
+    }
+    else
+    {
+        <div class="alert alert-danger">@ViewBag.DeleteMessage</div>
+    }
+}
 
 <h2>Saved jobs</h2>
 @if (Model != null && Model.Count > 0)
 {
 
-<div class="tbl-wrapper">
-     <table class="table table-bordered">
+    <div class="tbl-wrapper">
+        <table class="table table-bordered">
 
-         <tr>
-             <th>Job ID</th>
-             <th>Job Title</th>
-             <th>Date Added</th>
-             <th>Actions</th>
-         </tr>
+            <tr>
+                <th>Job ID</th>
+                <th>Job Title</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
 
-        @foreach (MemberSavedJobDisplayItem item in Model)
-        {
-         <tr>
-             <td>@item.JobId</td>
-             <td><a href="@ViewBag.JobDetailsPageUrl?JobId=@item.JobId">@item.DisplayTitle</a></td>
-             <td>@String.Format("{0:dd MMM-yyyy}", item.DateAdded)</td>
-             <td>
-                 @Html.ActionLink("Remove", "DeleteSavedJob", "MemberSavedJobs", new { savedJobId = item.Id }, new { @class = "btn btn-sm btn-tag" })
-             </td>
-         </tr>
-        }
+            @foreach (MemberSavedJobDisplayItem item in Model)
+            {
+                <tr>
+                    <td>@item.JobId</td>
+                    <td><a href="@ViewBag.JobDetailsPageUrl?JobId=@item.JobId">@item.DisplayTitle</a></td>
+                    <td>@String.Format("{0:dd MMM-yyyy}", item.DateAdded)</td>
+                    <td>
+                        @Html.ActionLink("Remove", "DeleteSavedJob", "MemberSavedJobs", new { savedJobId = item.Id }, new { onclick = "return confirmDelete();", @class = "btn btn-sm btn-tag btn-danger" })
+                    </td>
+                </tr>
+            }
 
-    </table>
-</div>
+        </table>
+    </div>
 }
-else 
+else
 {
     <div class="alert alert-info">You currently don't have any saved jobs</div>
 }
+
+
+<script type="text/javascript">
+    function confirmDelete() {
+          if (confirm("Are you sure you want to delete this record?")) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+</script>

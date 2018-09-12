@@ -146,38 +146,125 @@
     @Html.Raw(ViewBag.GoogleForJobs)
 </div>
 
-    <div class="col-md-4 mb-30 jobdetail-sidebar">
+<div class="col-md-4 mb-30 jobdetail-sidebar">
 
-        <div class="button-wrapper hidden-sm hidden-xs mb-30">
-            <a class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl?jobid=@Model.JobDetails.JobID">APPLY NOW</a>
-        </div>
-
-        <div class="map-placeholder hidden" style="width: 100%; height: 250px;">
-            <span data-address="@Model.JobDetails.Address" data-addresslat="@Model.JobDetails.AddressLatitude" data-addresslng="@Model.JobDetails.AddressLongtitude"></span>
-        </div>
-
-
-        @{
-            var shareUrl = SocialShareButtons.ShareUrl;
-            var unencodedPageTitle = Model.JobDetails.Title;
-            var pageTitle = HttpUtility.UrlEncode(unencodedPageTitle);
-        }
-        <h4>Interested in this job?</h4>
-        <ul class="list-unstyled job-offer-actions">
-            @*<li><a href="#"><em class="far fa-save"></em>Save this job</a></li>*@
-            <li><a href="javascript:window.print();"><em class="fas fa-print"></em>Print this job</a></li>
-            <li>
-                <a href="mailto:?body=@shareUrl&subject=@unencodedPageTitle" title="Tell a friend">
-                    <em class="fas fa-envelope"></em>Email this job
-                </a>
-            </li>
-
-        </ul>
-
+    <div class="button-wrapper hidden-sm hidden-xs mb-30">
+        <a class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl?jobid=@Model.JobDetails.JobID">APPLY NOW</a>
     </div>
+
+    <div class="map-placeholder hidden" style="width: 100%; height: 250px;">
+        <span data-address="@Model.JobDetails.Address" data-addresslat="@Model.JobDetails.AddressLatitude" data-addresslng="@Model.JobDetails.AddressLongtitude"></span>
+    </div>
+
+
+    @{
+        var shareUrl = SocialShareButtons.ShareUrl;
+        var unencodedPageTitle = Model.JobDetails.Title;
+        var pageTitle = HttpUtility.UrlEncode(unencodedPageTitle);
+    }
+    <h4>Interested in this job?</h4>
+    <ul class="list-unstyled job-offer-actions">
+        <li><a href="#" class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="far fa-save"></em>Save this job</a></li>
+        <li><a href="javascript:window.print();"><em class="fas fa-print"></em>Print this job</a></li>
+        <li>
+            <a href="mailto:?body=@shareUrl&subject=@unencodedPageTitle" title="Tell a friend">
+                <em class="fas fa-envelope"></em>Email this job
+            </a>
+        </li>
+
+        @*<li><span class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="fas fa-save"></em>Save this job</span></li>*@
+    </ul>
+    
+</div>
 }
 <script type="text/javascript">
     $(document).ready(function () {
+        processSavedJobs();
+
+        function processSavedJobs() {
+            var parm = {};
+            var urlPath = $(location).attr('pathname') + "/GetAllSavedJobs";
+            var self = $(this);
+            $.ajax({
+                type: 'POST',
+                cache: false,
+                url: urlPath,
+                data: parm,
+                dataType: 'Json',
+                success: function (response) {
+
+                    if (response.Success == true) { // Getting the all saved jobs
+                        $('.save-job').each(function () {
+                            var jobid = $(this).data('jobid');
+                            var selfJob = $(this);
+
+                            $.each(response.SavedJobs, function (index, saveJobInfo) {
+
+                                if (saveJobInfo.JobId == jobid) {
+      
+                                    $(selfJob).addClass("saved");
+                                    $(selfJob).text("Job saved");
+                                    $(selfJob).attr('data-savedjobid', saveJobInfo.SavedJobId);
+                                }
+                            });
+                        });
+                    }
+                    else { // Job failed to save
+
+                    }
+                },
+                error: function (response) { // Error
+                }
+            });
+
+
+        };
+
+
+        $(document).on('click', '.save-job', function (e) {
+            e.preventDefault();
+            var unSaveJob = false;
+            var ajaxActionName = "/SaveJob";
+            var jobid = $(this).data('jobid');
+            if ($(this).hasClass('saved')) {
+                unSaveJob = true;
+                ajaxActionName = "/RemoveSavedJob";
+                jobid = $(this).data('savedjobid');
+            }
+            
+            var parm = { JobId: jobid };
+            var urlPath = $(location).attr('pathname') + ajaxActionName;
+            var self = $(this);
+            $.ajax({
+                type: 'POST',
+                cache: false,
+                url: urlPath,
+                data: parm,
+                dataType: 'Json',
+                success: function (response) {
+    
+                    if (response.Success == true) { // Job Saved or unsaved
+                        if (unSaveJob) { // Unsave job
+                            self.removeClass("saved");
+                            self.text("Save job");
+                        }
+                        else { // Save job
+                            self.addClass("saved");
+                            self.text("Job saved");
+                        }
+                    }
+                    else { // Job failed to save or unsave
+                        if ((response.Errors[0].indexOf("(401)") > -1) || (response.Errors[0].indexOf("(403)") > -1))
+                            alert("Please login as a member to save a job.");
+                        else
+                            alert(response.Errors[0]);
+                    }
+                },
+                error: function (response) { // Error
+                }
+            });
+        });
+
         var previousUrl = new URL(document.referrer);
         var urlPath = previousUrl.pathname + previousUrl.search
         $("#back-to-results").attr("href", urlPath);

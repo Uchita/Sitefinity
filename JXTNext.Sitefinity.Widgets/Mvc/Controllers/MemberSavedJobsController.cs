@@ -47,6 +47,8 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
         {
             bool GetListSuccess = _memberSavedJobBC.GetList(out List<MemberSavedJobDisplayItem> displayItems);
             ViewBag.JobDetailsPageUrl = SitefinityHelper.GetPageUrl(this.JobDetailsPageId);
+            ViewBag.DeleteMessage = TempData["DeleteMessage"];
+            ViewBag.Status = TempData["Status"];
 
             if (GetListSuccess)
             {
@@ -61,12 +63,15 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
         public ActionResult DeleteSavedJob(int savedJobId)
         {
             bool deleteSuccess = _memberSavedJobBC.Delete(savedJobId);
+            var savedStatus = MemberSavedJobStatus.SUCCESS;
+            TempData["DeleteMessage"] = "Saved job successfully deleted.";
 
-            string message;
-            if (deleteSuccess)
-                message = "Saved job successfully deleted";
-            else
-                message = "Unable to process your previous request, please try again.";
+            if (!deleteSuccess)
+            {
+                TempData["DeleteMessage"] = "Unable to process your previous request, please try again.";
+                savedStatus = MemberSavedJobStatus.DELETE_FAILED;
+            }
+            TempData["Status"] = savedStatus;
 
             // Why action name is empty?
             // Here we need to call Index action, if we are providing action name as Index here

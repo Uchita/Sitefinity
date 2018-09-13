@@ -29,11 +29,17 @@
 @*Recursive function to get the classification "Article" list as a Filter*@
 @helper ProcessCategories(HierarchicalTaxon taxon)
 {
-    if (taxon != null)
+if (taxon != null)
+{
+    var title = taxon.Title;
+    var hierarchicalParentTaxon = taxon.Parent as HierarchicalTaxon;
+    var parentUrlName = "";
+    if(hierarchicalParentTaxon != null)
     {
-        var title = taxon.Title;
+        parentUrlName = hierarchicalParentTaxon.UrlName.ToString();
+    }
 
-        <li><a href="/insights/articles/@taxon.UrlName.ToString()" data-filter="@taxon.Title">@taxon.Title</a></li>
+        <li><a href="/insights/articles/@parentUrlName/@taxon.UrlName.ToString()" data-filter="@taxon.Title">@taxon.Title</a></li>
 
         if (taxon.Subtaxa != null && taxon.Subtaxa.Count > 0)
         {

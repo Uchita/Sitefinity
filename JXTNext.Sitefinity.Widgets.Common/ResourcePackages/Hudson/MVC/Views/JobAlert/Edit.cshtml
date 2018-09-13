@@ -1,9 +1,12 @@
-﻿@model JobAlertEditViewModel
+﻿@model dynamic
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 @using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Models
 
 @Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
 @Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.js"), "bottom")
+
+@Html.Script(Url.WidgetContent("/Mvc/Scripts/jquery.nstSlider.js"))
+@Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/rangeSlider.css"))
 
 <h2>Edit Job Alert</h2>
 
@@ -11,35 +14,84 @@
 
 @if (Model != null)
 {
-    <form method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();">
-        @{
-            int counter = 0;
-        }
+    <form method="post" action="@Url.Action("Edit","JobAlert")" onsubmit="return preventSubmit();">
+    @{
+        int counter = 0;
+    }
 
-        <label>Name<span style="color:red">*</span></label><br />
-        <input type="text" name="Name" required value="@Model.Name" /><br />
-        <input type="checkbox" name="EmailAlerts" value="true" checked="@Model.EmailAlerts" /> <label>Send Email Alerts</label> <br />
+    <input type="hidden" name="Id" value="@Model.Id" /><br />
+    <label>Name<span style="color:red">*</span></label><br />
+    <input type="text" name="Name" required value="@Model.Name" /><br />
+    <input type="checkbox" name="EmailAlerts" value="true" checked="@Model.EmailAlerts" /> <label>Send Email Alerts</label> <br />
 
-        <label>Keywords</label><br />
-        <input type="text" name="Keywords" value="@Model.Keywords" /> <br /><br />
+    <label>Keywords</label><br />
+    <input type="text" name="Keywords" value="@Model.Keywords" /> <br /><br />
 
-        @foreach (var item in Model.Data)
+    @foreach (var item in Model.Data)
+    {
+        if (item.Name != "Salary")
         {
-            <input type="hidden" name="Filters[@counter].RootId" value='@item.ID' />
-            <select id=@string.Format("selected-{0}", item.ID) name="Filters[@counter].Values" style="display:none" multiple></select>
-            <div class="dropdown dropdown-tree" id=@item.ID></div> <br />
+            <input type="hidden" name="Filters[@counter].RootId" value='@item.Name' />
+            <select id=@string.Format("selected-{0}", item.Name) name="Filters[@counter].Values" style="display:none" multiple></select>
+            <div class="dropdown dropdown-tree" id=@item.Name></div> <br />
             counter++;
         }
+        else if (item.Name == "Salary")
+        {
+            <div class="row form-group">
+                <div class="col-md-4 text-right">
+                    <label>@item.Name</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden" />
+                    <select class="SalaryRangeSelect form-control">
+                        <option value="-1" selected>Choose Salary</option>
+                        @foreach (var salaryItem in item.Filters)
+                        {
+                            <option value="@salaryItem.ID">@salaryItem.Label</option>
+                        }
+                    </select>
+                    @foreach (var salaryItem in item.Filters)
+                    {
+                        var lower = 15000;
+                        var upper = 200000;
+                        if (salaryItem.Label == "Hourly Salary")
+                        {
+                            lower = 18;
+                            upper = 200;
+                        }
+                        <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
 
-        <input type="submit" value="SAVE" class="btn btn-primary" />
-        @Html.ActionLink("SEARCH", "ViewResults", "JobAlert", new { id = Model.Id }, null)
-        @Html.ActionLink("DELETE", "Delete", "JobAlert", new { id = Model.Id }, new { onclick = "return confirmDelete();" })
-    </form>
+                            <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
+                                 data-cur_min="@lower" data-cur_max="@upper">
+
+                                <div class="bar"></div>
+                                <div class="leftGrip"></div>
+                                <div class="rightGrip"></div>
+                            </div>
+                            <div class="leftLabel">$<span>@lower</span></div>
+                            <div class="rightLabel">$<span>@upper</span></div>
+
+                        </div>
+
+                    }
+                </div>
+            </div>
+        }
+    }
+
+    <input type="submit" value="SAVE" class="btn btn-primary" />
+    @*@Html.ActionLink("SEARCH", "ViewResults", "JobAlert", new { id = Model.Id }, null)
+    @Html.ActionLink("DELETE", "Delete", "JobAlert", new { id = Model.Id }, new { onclick = "return confirmDelete();" })*@
+</form>
 }
 
 
 <script type="text/javascript">
     var optionsArray = {};
+    var isSalaryExists = false;
+    var isSlarySelected = false;
+    var salary = { RootName: 'Salary', TargetValue: '', LowerRange: 15000, UpperRange: 200000 };
 
     function preventSubmit() {
         $.each(optionsArray, function (id, item) {
@@ -47,6 +99,10 @@
                 $("#selected-" + id).append('<option value="' + value + '" selected="true">' + value + '</option>')
             });
         });
+
+        if (isSlarySelected) {
+            $('#salary-model-bind-hidden').val(JSON.stringify(salary));
+        }
 
         return true;
     };
@@ -60,6 +116,8 @@
         }
     };
 
+    
+
     $(document).ready(function () {
           @{
                 var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
@@ -67,11 +125,68 @@
           }
 
         var model = @Html.Raw(json);
+        var modelSalary = model.Salary;
+        
+        if (modelSalary != null && modelSalary != 'undefined') {
+            salary = modelSalary;
+            isSlarySelected = true;
+            $('.SalaryRangeSelect').val(modelSalary.TargetValue);
+            $('#' + modelSalary.TargetValue).removeClass('visible-hidden');
+
+            var salarySliderEle = $('#' + modelSalary.TargetValue).parent().find('.nstSlider');
+            if (salarySliderEle != null) {
+                $(salarySliderEle).data("cur_min", modelSalary.LowerRange);
+                $(salarySliderEle).data("cur_max", modelSalary.UpperRange);
+            }
+        }
+
+        $('select').on('change', function () {
+            isSlarySelected = false;
+            $('.salaryrangewrapper').each(function (i, obj) {
+                $(this).addClass('visible-hidden');
+            });
+            if (this.value != -1) {
+                $(this).addClass('changed');
+                isSlarySelected = true;
+                $('#' + this.value).removeClass('visible-hidden');
+                salary.TargetValue = this.value;
+                salary.LowerRange = $(this).parent().find('.leftLabel span').text();
+                salary.UpperRange = $(this).parent().find('.rightLabel span').text();
+            } else if ($(this).hasClass('changed') && this.value == -1) {
+                isSlarySelected = false;
+            }
+
+        });
+
+        $('.nstSlider').each(function (i, obj) {
+            $(this).nstSlider({
+                "rounding": {
+                    "1": "600",
+                    "1000": "200000"
+                },
+                "crossable_handles": false,
+                "left_grip_selector": ".leftGrip",
+                "right_grip_selector": ".rightGrip",
+                "value_bar_selector": ".bar",
+                "user_mouseup_callback": function (leftValue, rightValue, isLeftGripMoved) {
+                    salary.LowerRange = leftValue;
+                    salary.UpperRange = rightValue;
+                    $(this).parent().find('.leftLabel span').text(leftValue);
+                    $(this).parent().find('.rightLabel span').text(rightValue);
+                },
+                "value_changed_callback": function (cause, leftValue, rightValue) {
+                    $(this).parent().find('.leftLabel span').text(leftValue);
+                    $(this).parent().find('.rightLabel span').text(rightValue);
+                }
+            });
+        });
+
+        
         if (model != null && model != "undefined") {
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
 
             for (var item of filterData.Data) {
-                optionsArray[item.ID] = {
+                optionsArray[item.Name] = {
                     title: item.Name,
                     data: item.Filters,
                     maxHeight: 500,
@@ -80,8 +195,10 @@
                     multiSelect: true,
                     selectChildren: true,
                     expandChildren: true,
+                    enableSearch: false,
+                    prefixIdText: ''
                 };
-                $("#" + item.ID).DropDownTree(optionsArray[item.ID]);
+                $("#" + item.Name).DropDownTree(optionsArray[item.Name]);
             }
         }
     });

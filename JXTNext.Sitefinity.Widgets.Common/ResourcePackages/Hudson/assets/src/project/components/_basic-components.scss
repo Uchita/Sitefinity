@@ -1158,7 +1158,7 @@ header {
 
 /*temp*/
 .main-content {
-    min-height: 70vh;
+    min-height: 50vh;
 }
 
 main {
@@ -1295,6 +1295,9 @@ main {
     .form-group{
         margin-bottom: 20px;
     }
+    label{
+        padding-top: 0;
+    }
     .keywordfilter{
         label{
             margin-bottom: 0.9rem;
@@ -1379,7 +1382,7 @@ main {
                     cursor: pointer;
                 }
             }
-            &.dropdown-current > a{
+            &.dropdown-current > a, &.current > a{
                 color: $sidebar-link-color;
             }
         }
@@ -1871,6 +1874,12 @@ ul.vertical-ul {
 }
 /*#endregion Footer*/
 
+
+.sf-Gallery-thumbs-container{
+    .owl-contact-gallery{
+        margin-bottom: 0;
+    }
+}
 
 .loading {
     position: relative;

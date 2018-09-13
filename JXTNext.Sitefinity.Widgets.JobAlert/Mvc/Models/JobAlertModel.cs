@@ -58,7 +58,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Models
         public int LowerRange { get; set; }
     }
 
-    public enum JobAlertStatus
+    public enum JobAlertStatus 
     {
         AVAILABLE = 0,
         SUCCESS = 1,

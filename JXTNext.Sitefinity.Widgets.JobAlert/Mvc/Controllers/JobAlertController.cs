@@ -35,9 +35,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             List<JobAlertViewModel> jobAlertData = _jobAlertsBC.MemberJobAlertsGet();
 
             ViewBag.CssClass = this.CssClass;
-            ViewBag.Status = TempData["Status"];
+            ViewBag.Status = TempData["StatusCode"];
             ViewBag.StatusMessage = TempData["StatusMessage"];
-
+            
             return View("Simple", jobAlertData);
         }
 
@@ -45,6 +45,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public ActionResult Create()
         {
             TempData["StatusMessage"] = null;
+            TempData["StatusCode"] = JobAlertStatus.SUCCESS;
             dynamic dynamicFilterResponse = null;
             JXTNext_GetJobFiltersRequest request = new JXTNext_GetJobFiltersRequest();
             IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(request);
@@ -78,7 +79,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 alertStatus = JobAlertStatus.CREATE_FAILED;
             }
 
-            TempData["Status"] = alertStatus;
+            TempData["StatusCode"] = alertStatus;
             TempData["StatusMessage"] = stausMessage;
 
             // Why action name is empty?
@@ -92,6 +93,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public ActionResult Edit(int id)
         {
             TempData["StatusMessage"] = null;
+            TempData["StatusCode"] = JobAlertStatus.SUCCESS;
             JobAlertViewModel jobAlertDetails = _jobAlertsBC.MemberJobAlertGet(id);
             JXTNext_GetJobFiltersRequest request = new JXTNext_GetJobFiltersRequest();
             IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(request);
@@ -153,7 +155,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
             TempData["StatusMessage"] = statusMessage;
-            TempData["Status"] = alertStatus;
+            TempData["StatusCode"] = alertStatus;
 
             // Why action name is empty?
             // Here we need to call Index action, if we are providing action name as Index here
@@ -187,8 +189,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
             TempData["StatusMessage"] = statusMessage;
-            TempData["Status"] = alertStatus;
-
+            TempData["StatusCode"] = alertStatus;
+                       
             // Why action name is empty?
             // Here we need to call Index action, if we are providing action name as Index here
             // It is appending in the URL, but we dont want to show that in URL. So, sending it as empty

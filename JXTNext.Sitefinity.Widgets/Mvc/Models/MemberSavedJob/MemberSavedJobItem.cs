@@ -13,4 +13,13 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Models.MemberSavedJob
         public string DisplayTitle { get; set; }
         public DateTime DateAdded { get; set; }
     }
+
+    public enum MemberSavedJobStatus
+    {
+        AVAILABLE = 0,
+        SUCCESS = 1,
+        CREATE_FAILED = 2,
+        UPATED_FAILED = 3,
+        DELETE_FAILED = 4
+    }
 }

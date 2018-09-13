@@ -29,7 +29,7 @@
 
     @foreach (var item in Model.Data)
     {
-        if (item.Name != "Salary")
+        if (item.Name != "Salary" && item.Name != "CompanyName")
         {
             <input type="hidden" name="Filters[@counter].RootId" value='@item.Name' />
             <select id=@string.Format("selected-{0}", item.Name) name="Filters[@counter].Values" style="display:none" multiple></select>
@@ -132,6 +132,7 @@
             isSlarySelected = true;
             $('.SalaryRangeSelect').val(modelSalary.TargetValue);
             $('#' + modelSalary.TargetValue).removeClass('visible-hidden');
+            $('.SalaryRangeSelect').addClass('changed');
 
             var salarySliderEle = $('#' + modelSalary.TargetValue).parent().find('.nstSlider');
             if (salarySliderEle != null) {

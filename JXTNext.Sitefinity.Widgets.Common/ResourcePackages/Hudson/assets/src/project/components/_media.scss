@@ -860,6 +860,9 @@
 
     .risk-measurement .risk-wrapper {
         width: 100%;
+        max-width: 300px;
+        margin: 10px auto 20px;
+        float: none;
         .risk img{
             bottom: 0;
         }

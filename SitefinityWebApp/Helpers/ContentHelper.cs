@@ -37,7 +37,7 @@ namespace SitefinityWebApp.Helpers
         public static string GetBestArticleUrl(IDataItem article)
         {
             var locationService = SystemManager.GetContentLocationService();
-            var articleCategories = new ItemViewModel(article).GetHierarchicalTaxons(JXTNext.Sitefinity.Common.Constants.DynamicTypeConstants.Article.Fields.Category);
+            var articleCategories = new ItemViewModel(article).GetHierarchicalTaxons(JXTNext.Sitefinity.Common.Constants.DynamicTypeConstants.Article.Fields.Articles);
             var category = articleCategories.FirstOrDefault();
 
             if (category == null)
@@ -62,7 +62,7 @@ namespace SitefinityWebApp.Helpers
             var taxonomy = TaxonomyManager.GetManager().GetTaxonomies<FlatTaxonomy>()
                 .FirstOrDefault(t => t.Name == classificationName);
 
-            var taxon = taxonomy.Taxa.FirstOrDefault(t => t.Name == taxonName.ToLower());
+            var taxon = taxonomy.Taxa.FirstOrDefault(t => t.Name.ToLower() == taxonName.ToLower());
             return taxon == null ? 
                 instance : instance.Where(item => item.GetValue<TrackedList<Guid>>(fieldName).Contains(taxon.Id)); // TODO;
         }

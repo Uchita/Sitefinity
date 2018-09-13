@@ -240,6 +240,24 @@
             font-size: 3.2rem;
             margin-top: 2.35rem;
         }
+        img{
+            max-width: 200px;
+            box-shadow: 1px 1px 1px rgba(0,0,0,.2);
+        }
+    }
+    .user-profile-dash{
+        border-bottom: 1px solid $global-text-color;
+        padding-bottom: 50px;
+        margin-bottom: 30px;
+        img{
+           width: 100%; 
+           height: auto;
+        }
+    }
+    .dash-tbl-wrap{
+        h2{
+            margin-bottom: 20px;
+        }
     }
     .sign-in-with {
         clear: both;

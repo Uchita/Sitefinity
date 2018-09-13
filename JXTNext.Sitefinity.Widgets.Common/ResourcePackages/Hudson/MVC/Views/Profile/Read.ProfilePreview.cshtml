@@ -2,24 +2,27 @@
 
 @using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Profile;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
-
-<div class="@Model.CssClass">
-    <div class="media sf-profile">
-        <div class="media-left sf-pr-xl">
-          <div class="media-object">
-              <img src="@Model.AvatarImageUrl" alt="@Model.UserName"  width="100" height="100"/>
-          </div>
+@if (Model != null)
+{
+<div class="@Model.CssClass user-profile-dash">
+    <h1>Welcome back</h1>
+    <div class="sf-profile row">
+        <div class="col-xs-3 col-md-2">
+            <div class="image-placeholder">
+                <img src="@Model.AvatarImageUrl" alt="@Model.UserName" />
+            </div>
         </div>
 
-        <div class="media-body">
-           <h2 class="sf-mt-xxs">Welcome back @Model.DisplayName <small>(@Model.Nickname)</small></h2>
-           <p>@Model.Email</p>
-           <p>@Model.About</p>
+        <div class="col-xs-9 col-md-9">
+            <h2>@Model.DisplayName</h2>
+            <p>@Model.Email</p>
+            <p>@Model.About</p>
 
             @if (Model.CanEdit && ViewBag.Mode == ViewMode.Both)
             {
-                @Html.ActionLink(Html.Resource("EditProfileLink"), "EditProfile");
+                @Html.ActionLink(Html.Resource("EditProfileLink"), "EditProfile",null,null, new { @class = "btn" });
             }
         </div>
     </div>
 </div>
+}

@@ -1,13 +1,13 @@
 @using JXTNext.Sitefinity.Widgets.User.Mvc.Models.MemberAppliedJob
 @model List<MemberAppliedJobItem>
 
-<h2>Applied jobs</h2>
+<h2><span class="applied-icon"></span>Applied jobs</h2>
 @if (Model != null && Model.Count > 0)
 {
 
     <div class="tbl-wrapper">
 
-        <table class="table table-bordered">
+        <table class="table">
             <tr>
                 <th>Job ID</th>
                 <th>Job Title</th>

@@ -21,6 +21,7 @@
         if (modelSalary != null && modelSalary != 'undefined') {
             $('.SalaryRangeSelect').val(modelSalary.TargetValue);
             $('#' + modelSalary.TargetValue).removeClass('visible-hidden');
+            $('.SalaryRangeSelect').addClass('changed');
 
             var salarySliderEle = $('#' + modelSalary.TargetValue).parent().find('.nstSlider');
             if (salarySliderEle != null) {

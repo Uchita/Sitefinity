@@ -90,6 +90,9 @@
     <Content Include="ResourcePackages\Hudson\assets\dist\fonts\sf-icon-font.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\applied-jobs.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Hudson\assets\dist\images\indeed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -112,6 +115,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Hudson\assets\dist\images\owl\owl.video.play.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\saved-jobs.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Hudson\assets\dist\images\seek-white.png">

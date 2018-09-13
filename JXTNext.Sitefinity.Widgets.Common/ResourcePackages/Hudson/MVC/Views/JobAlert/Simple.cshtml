@@ -2,27 +2,15 @@
 @using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Models
 
 
-@if (ViewBag.CreateMessage != null)
+@if (ViewBag.StatusMessage != null)
 {
     if (ViewBag.Status == JobAlertStatus.SUCCESS)
     {
-        <div class="alert alert-success">@ViewBag.CreateMessage</div>
+        <div class="alert alert-success">@ViewBag.StatusMessage</div>
     }
     else
     {
-        <div class="alert alert-danger">@ViewBag.CreateMessage</div>
-    }
-}
-
-@if (ViewBag.DeleteMessage != null)
-{
-    if (ViewBag.Status == JobAlertStatus.SUCCESS)
-    {
-        <div class="alert alert-success">@ViewBag.DeleteMessage</div>
-    }
-    else
-    {
-        <div class="alert alert-danger">@ViewBag.DeleteMessage</div>
+        <div class="alert alert-danger">@ViewBag.StatusMessage</div>
     }
 }
 
@@ -62,7 +50,7 @@
                 </td>
                 @*<td id="@item.Id"></td>*@
                 <td>
-                    @*@Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, new { @class="btn btn-sm btn-tag" }, null)*@
+                    @Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, new { @class="btn btn-sm btn-tag" })
                     @Html.ActionLink("Search", "ViewResults", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
                     @Html.ActionLink("Delete", "Delete", "JobAlert", new { id = item.Id }, new { onclick = "return confirmDelete();", @class = "btn btn-sm btn-tag btn-danger" })
                 </td>

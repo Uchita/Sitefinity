@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,6 +15,79 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
         public Consultant ConsultantSearch { get; set; }
         public int Page { get; set; }
         public JobSearchSalaryFilterReceiver Salary { get; set; }
+        public string SortBy { get; set; }
+
+
+        public static SearchSortBy GetSortEnumFromString(string sort)
+        {
+            SearchSortBy sortBy = SearchSortBy.Recent;
+
+            switch (sort)
+            {
+                case "Old":
+                    sortBy = SearchSortBy.Oldest;
+                    break;
+
+                case "A-Z":
+                    sortBy = SearchSortBy.A_to_Z;
+                    break;
+
+                case "Z-A":
+                    sortBy = SearchSortBy.Z_to_A;
+                    break;
+
+                case "SalaryHighToLow":
+                    sortBy = SearchSortBy.Salary_High_to_Low;
+                    break;
+
+                case "SalaryLowToHigh":
+                    sortBy = SearchSortBy.Salary_Low_to_High;
+                    break;
+
+                default:
+                    sortBy = SearchSortBy.Recent;
+                    break;
+
+            }
+
+            return sortBy;
+        }
+
+        public static string GetSortStringFromEnum(SearchSortBy sort)
+        {
+            string sortBy = String.Empty;
+
+            switch (sort)
+            {
+                case SearchSortBy.Oldest:
+                    sortBy = "Old";
+                    break;
+
+                case SearchSortBy.A_to_Z:
+                    sortBy = "A-Z";
+                    break;
+
+                case SearchSortBy.Z_to_A:
+                    sortBy = "Z-A";
+                    break;
+
+                case SearchSortBy.Salary_High_to_Low:
+                    sortBy = "SalaryHighToLow";
+                    break;
+
+                case SearchSortBy.Salary_Low_to_High:
+                    sortBy = "SalaryLowToHigh";
+                    break;
+
+                default:
+                    sortBy = "Recent";
+                    break;
+
+            }
+
+            return sortBy;
+        }
+
     }
 
     public class JobSearchFilterReceiver
@@ -63,6 +137,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
             int page = 1;
             if (request.Params["Page"] != null)
                 page = Int32.Parse(request.Params["Page"]);
+
+            string sortBy = request.Params["SortBy"];
 
             JobSearchSalaryFilterReceiver salray = null;
             if(request.Params["Salary.TargetValue"] != null && request.Params["Salary.LowerRange"] != null && request.Params["Salary.UpperRange"] != null)
@@ -126,7 +202,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
              */
 
             //process tracker into target model
-            JobSearchResultsFilterModel targetModel = new JobSearchResultsFilterModel() { Keywords = keywords, Page = page, Filters = new List<JobSearchFilterReceiver>(), Salary = salray };
+            JobSearchResultsFilterModel targetModel = new JobSearchResultsFilterModel() { Keywords = keywords, Page = page, Filters = new List<JobSearchFilterReceiver>(), Salary = salray, SortBy = sortBy };
 
             foreach(string trackerKey in tracker.Keys)
             {

@@ -863,7 +863,7 @@
         max-width: 300px;
         margin: 10px auto 20px;
         float: none;
-        .risk img{
+        .risk img, .risk:hover img{
             bottom: 0;
         }
     }

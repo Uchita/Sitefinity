@@ -6,7 +6,6 @@
 @using Telerik.Sitefinity;
 @using Telerik.Sitefinity.Data.ContentLinks;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
-@using Telerik.Sitefinity.Libraries.Model;
 @using Telerik.Sitefinity.Localization;
 @using Telerik.Sitefinity.Model;
 @using Telerik.Sitefinity.Model.ContentLinks;
@@ -32,92 +31,128 @@
 @using Telerik.Sitefinity.RelatedData;
 @using Telerik.Sitefinity.Libraries.Model;
 
-
-
-
+@*Common JXT build functions*@
+@using JXTNext.Sitefinity.Common.Helpers
 
 @{
     List<string> filterValues = new List<string>();
-var articleIds = Model.Item.Fields.articles;
-foreach (var taxonItem in articleIds)
-{
-    Guid articleID = new Guid(taxonItem.ToString());
-    var taxonManager = TaxonomyManager.GetManager();
-    var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
-    filterValues.Add(taxon.Title);
+    var articleIds = Model.Item.Fields.articles;
+    foreach (var taxonItem in articleIds)
+    {
+        Guid articleID = new Guid(taxonItem.ToString());
+        var taxonManager = TaxonomyManager.GetManager();
+        var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
+        filterValues.Add(taxon.Title);
+    }
+
 }
-<ul>
-    @{
-        var relatedArticles = ContentHelper.GetRelatedDynamicContentItemsByHierarchicalTaxonomy(articleIds, Model.Item.Fields.Id, "articles", "Telerik.Sitefinity.DynamicTypes.Model.Articles.Article");
-        foreach (DynamicContent articleItem in relatedArticles)
+<div class="article-details">
+    <div class="@Model.CssClass article-container" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
+        <p class="article-detail-category text-center">@(string.Join(", ", filterValues))</p>
+        <h1 class="article-detail-title text-center" @Html.InlineEditingFieldAttributes("Title", "ShortText")>
+            @Model.Item.Fields.Title
+        </h1>
+        <p class="article-detail-author text-center">by Hudson</p> <!-- TODO -->
+        @*Start HeaderImage field*@
+        @if (Model.Item.Fields.HeaderImage != null)
         {
-            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(articleItem, new Guid(SiteMapBase.GetCurrentProvider().CurrentNode.Key));
-            var image = articleItem.GetRelatedItems<Image>("HeaderImage").FirstOrDefault();
-            var thumbnailUrl = "";
-            var imageTitle = "";
-            var articleTitle = articleItem.GetValue("Title");
-            var articleSummary = articleItem.GetValue("Summary");
-            var articleTaxonIds = articleItem.GetValue<TrackedList<Guid>>("articles");
-            List<string> articleTaxonValues = new List<string>();
-            foreach (var taxonItem in articleTaxonIds)
-            {
-                Guid articleID = new Guid(taxonItem.ToString());
-                var taxonManager = TaxonomyManager.GetManager();
-                var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
-                articleTaxonValues.Add(taxon.Title);
-            }
-            <li>
-                @if (image != null)
+            <img data-displaymode="Original" style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 50px; margin-top: 50px; width:100%;" src='@Model.Item.Fields.HeaderImage.Fields.MediaUrl' alt='@Model.Item.Fields.HeaderImage.Fields.AlternativeText' title='@Model.Item.Fields.HeaderImage.Fields.Title' />
+        }
+        <div>
+            @{
+                if (Model.EnableSocialSharing)
                 {
-                thumbnailUrl = MediaContentExtensions.ResolveThumbnailUrl(image, "thumbartic");
-                imageTitle = image.Title;
-                <a href="@navigateUrl" class="img-wrap" title="@imageTitle"><img alt="@imageTitle" src="@thumbnailUrl" /></a>
+                    var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
+                    @Html.SocialShareOptions(item);
+                }
+            }
+
+            <div class="article-description" @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
+
+            @{
+                if (Model.EnableSocialSharing)
+                {
+                    var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
+                    @Html.SocialShareOptions(item);
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@{
+    var relatedArticles = ContentHelper.GetRelatedDynamicContentItemsByHierarchicalTaxonomy(articleIds, Model.Item.Fields.Id, "articles", "Telerik.Sitefinity.DynamicTypes.Model.Articles.Article");
+
+    if (relatedArticles.Count > 0)
+    {
+        
+<div class="related-articles">
+    <div class="text-center">
+        <h2>Related articles</h2>
+    </div>
+
+    <div class="row long-card-basic-list flex justify-content-md-center">
+
+        @for (int i = 0; i < 3; i++)
+        {
+            if (relatedArticles.Count > i)
+            {
+                DynamicContent articleItem = relatedArticles[i];
+
+                var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(articleItem, new Guid(SiteMapBase.GetCurrentProvider().CurrentNode.Key));
+                var image = articleItem.GetRelatedItems<Image>
+                    ("HeaderImage").FirstOrDefault();
+                var thumbnailUrl = "";
+                var imageTitle = "";
+                var articleTitle = articleItem.GetValue("Title");
+                var articleSummary = articleItem.GetValue<Lstring>("Summary").ToString();
+                var articleTaxonIds = articleItem.GetValue<TrackedList<Guid>>("articles");
+                List<string> articleTaxonValues = new List<string>();
+                
+                foreach (var taxonItem in articleTaxonIds)
+                {
+                    Guid articleID = new Guid(taxonItem.ToString());
+                    var taxonManager = TaxonomyManager.GetManager();
+                    var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
+                    articleTaxonValues.Add(taxon.Title);
 
                 }
 
+                <div class="col-md-4">
+                    <div class="thumbnail card-basic small-caption">
+                        @if (image != null)
+                        {
+                            thumbnailUrl = MediaContentExtensions.ResolveThumbnailUrl(image, "thumbartic");
+                            imageTitle = image.Title;
+                            <a href="@navigateUrl" class="img-wrap" title="@imageTitle"><img alt="@imageTitle" src="@thumbnailUrl" /></a>
 
-                <h3>
-                    <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">
-                        @articleTitle
-                    </a>
-                </h3>
-            </li>
-        }
+                        }
 
+                        <div class="caption">
+                            <p class="color-light text-uppercase font-medium "><small>@(string.Join(", ", articleTaxonValues))</small></p>
+                            <h4 @Html.InlineEditingFieldAttributes("Title", "ShortText")>@articleTitle</h4>
+                            @{
+                                string trimSummary = GeneralHelper.TrimStringContent(articleSummary, 120);
+                                
+                            }
+                            <p>@trimSummary</p>
+                            <a class="btn btn-more" href="@navigateUrl"></a>
+                        </div>
 
-    }
-</ul>
-
-}
-
-<div class="@Model.CssClass article-container" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
-    <p class="article-detail-category text-center">@(string.Join(", ", filterValues))</p>
-    <h1 class="article-detail-title text-center" @Html.InlineEditingFieldAttributes("Title", "ShortText")>
-        @Model.Item.Fields.Title
-    </h1>
-    <p class="article-detail-author text-center">by Hudson</p> <!-- TODO -->
-    @*Start HeaderImage field*@
-    @if (Model.Item.Fields.HeaderImage != null)
-    {
-        <img data-displaymode="Original" style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 50px; margin-top: 50px; width:100%;" src='@Model.Item.Fields.HeaderImage.Fields.MediaUrl' alt='@Model.Item.Fields.HeaderImage.Fields.AlternativeText' title='@Model.Item.Fields.HeaderImage.Fields.Title' />
-    }
-    <div>
-        @{
-            if (Model.EnableSocialSharing)
-            {
-                var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
-                @Html.SocialShareOptions(item);
-            }
-        }
-
-        <div class="article-description" @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
-
-        @{
-            if (Model.EnableSocialSharing)
-            {
-                var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
-                @Html.SocialShareOptions(item);
+                    </div>
+                </div>
             }
         }
     </div>
+
+    @if (relatedArticles.Count > 3)
+    {
+    <div class="text-center">
+        <a href="/insights/articles" class="btn btn-default" title="View more related articles">View more</a>
+    </div>
+    }
+
 </div>
+    }
+
+}

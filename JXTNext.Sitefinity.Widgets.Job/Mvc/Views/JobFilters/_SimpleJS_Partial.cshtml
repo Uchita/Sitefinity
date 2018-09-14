@@ -139,12 +139,12 @@
         if (model != null && model != "undefined") {
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
             prefixIdText = @Html.Raw(Json.Encode(ViewBag.PrefixIdsText));
-            
-            for (var item of filterData) {
+
+            $.each(filterData, function (index, item) {
                 if (item.Name == 'Salary') {
                     isSalaryExists = true;
                 }
-  
+
                 var displayTitle = item.Name;
                 if (displayTitle == 'CountryLocationArea')
                     displayTitle = 'Location';
@@ -153,7 +153,7 @@
                 else if (displayTitle == 'CompanyName')
                     displayTitle = 'Company Name';
 
-                optionsArray[prefixIdText+item.Name] = {
+                optionsArray[prefixIdText + item.Name] = {
                     title: displayTitle,
                     data: item.Filters,
                     maxHeight: 'none',
@@ -173,8 +173,9 @@
                         eachClickFilter();
                     }
                 };
-                $("#" + prefixIdText + item.Name).DropDownTree(optionsArray[prefixIdText+item.Name]);
-            }
+                $("#" + prefixIdText + item.Name).DropDownTree(optionsArray[prefixIdText + item.Name]);
+            });
+            
 
             function eachClickFilter() {
                 var filterModel = {};
@@ -188,13 +189,15 @@
                     var trimmedId = id.slice(prefixIdText.length);
                     if (filterModel.Filters.length > 0) {
                         let flag = false;
-                        for (var item of filterModel.Filters) {
-                            if (item.rootId == trimmedId) {
-                                item.values = $("#" + id).GetSelectedElementIds();
+
+                        $.each(filterModel.Filters, function (index, filterModelItem) {
+                            if (filterModelItem.rootId == trimmedId) {
+                                filterModelItem.values = $("#" + id).GetSelectedElementIds();
                                 flag = true;
-                                break;
+                                return false;
                             }
-                        }
+                        });
+                        
                         if (flag == false && selectedIdsCount > 0)
                             filterModel.Filters.push({ rootId: trimmedId, values: $("#" + id).GetSelectedElementIds() });
                     }

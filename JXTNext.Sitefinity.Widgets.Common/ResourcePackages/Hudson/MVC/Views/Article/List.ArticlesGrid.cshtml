@@ -29,15 +29,15 @@
 @*Recursive function to get the classification "Article" list as a Filter*@
 @helper ProcessCategories(HierarchicalTaxon taxon)
 {
-if (taxon != null)
-{
-    var title = taxon.Title;
-    var hierarchicalParentTaxon = taxon.Parent as HierarchicalTaxon;
-    var parentUrlName = "";
-    if(hierarchicalParentTaxon != null)
+    if (taxon != null)
     {
-        parentUrlName = hierarchicalParentTaxon.UrlName.ToString();
-    }
+        var title = taxon.Title;
+        var hierarchicalParentTaxon = taxon.Parent as HierarchicalTaxon;
+        var parentUrlName = "";
+        if (hierarchicalParentTaxon != null)
+        {
+            parentUrlName = hierarchicalParentTaxon.UrlName.ToString();
+        }
 
         <li><a href="/insights/articles/@parentUrlName/@taxon.UrlName.ToString()" data-filter="@taxon.Title">@taxon.Title</a></li>
 
@@ -52,90 +52,68 @@ if (taxon != null)
     }
 }
 
-        <div class="@Model.CssClass">
-            @{ 
-                string currCategory = "";
-            }
-            @{
-                List<string> filterValues1 = new List<string>();
-                foreach (var item in Model.Items)
-                {
-                    var articleIds = item.Fields.articles;
-                    foreach (var taxonItem in articleIds)
+<div class="@Model.CssClass">
+
+    <div class="articles-top">
+        <div class="press-release-filter">
+            <ul class="list-unstyled clearfix">
+
+                @{
+                    var managerArticle = TaxonomyManager.GetManager();
+                    var articleTaxonomy = managerArticle.GetTaxonomies<HierarchicalTaxonomy>().Where(t => t.Name == "Articles").SingleOrDefault();
+                    List<Taxon> topLovelTaxa = new List<Taxon>();
+
+                    if (articleTaxonomy != null)
                     {
-                        Guid articleID = new Guid(taxonItem.ToString());
-                        var taxonManager = TaxonomyManager.GetManager();
-                        var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
-                        filterValues1.Add(taxon.Id.ToString());
-                    }
-                }
-
-                currCategory = filterValues1.GroupBy(s => s)
-                             .OrderByDescending(s => s.Count())
-                             .First().Key;
-            }
-
-            <div class="articles-top">
-                <div class="press-release-filter">
-                    <ul class="list-unstyled clearfix">
-
-                        @{
-                            var managerArticle = TaxonomyManager.GetManager();
-                            var articleTaxonomy = managerArticle.GetTaxonomies<HierarchicalTaxonomy>().Where(t => t.Name == "Articles").SingleOrDefault();
-                            List<Taxon> topLovelTaxa = new List<Taxon>();
-
-                            if (articleTaxonomy != null)
+                        foreach (var taxon in articleTaxonomy.Taxa)
+                        {
+                            if (taxon.Parent == null)
                             {
-                                foreach (var taxon in articleTaxonomy.Taxa)
-                                {
-                                    if (taxon.Parent == null)
-                                    {
-                                        topLovelTaxa.Add(taxon);
-                                    }
-                                }
-
-                                foreach (var taxon in topLovelTaxa)
-                                {
-
-                                    var hierarchicalTaxon = taxon as HierarchicalTaxon;
-
-                                    var dropCls = "";
-                                    if (hierarchicalTaxon.Subtaxa != null && hierarchicalTaxon.Subtaxa.Count > 0)
-                                    {
-                                        dropCls = "dropdown";
-                                    }
-                                    var curCls = "";
-                                    if (taxon.Id.ToString() == currCategory)
-                                    {
-                                        curCls = " filter-active";
-                                    }
-                                    <li class="@dropCls @curCls" data-itemid="@taxon.Id.ToString()" data-curid="@currCategory">
-                                        <a href="/insights/articles/@taxon.UrlName.ToString()" data-filter="@taxon.Title">@taxon.Title</a>
-
-                                        @if (hierarchicalTaxon != null)
-                                        {
-                                            if (hierarchicalTaxon.Subtaxa != null && hierarchicalTaxon.Subtaxa.Count > 0)
-                                            {
-                                                <ul class="dropdown-menu">
-                                                    @foreach (var childTaxon in hierarchicalTaxon.Subtaxa)
-                                                    {
-                                                        @ProcessCategories(childTaxon)
-                                                    }
-
-                                                </ul>
-                                            }
-                                        }
-                                    </li>
-                                }
+                                topLovelTaxa.Add(taxon);
                             }
                         }
 
-                        <li><a href="@SiteMapBase.GetActualCurrentNode().Url.ToString().Substring(1)/">show all</a></li>
-                    </ul>
-                </div>
-            </div>
+                        foreach (var taxon in topLovelTaxa)
+                        {
 
+                            var hierarchicalTaxon = taxon as HierarchicalTaxon;
 
+                            var dropCls = "";
+                            if (hierarchicalTaxon.Subtaxa != null && hierarchicalTaxon.Subtaxa.Count > 0)
+                            {
+                                dropCls = "dropdown";
+                            }
+
+                            <li class="@dropCls" data-itemid="@taxon.Id.ToString()">
+                                <a href="/insights/articles/@taxon.UrlName.ToString()" data-filter="@taxon.Title">@taxon.Title</a>
+
+                                @if (hierarchicalTaxon != null)
+                                {
+                                    if (hierarchicalTaxon.Subtaxa != null && hierarchicalTaxon.Subtaxa.Count > 0)
+                                    {
+                                        <ul class="dropdown-menu">
+                                            @foreach (var childTaxon in hierarchicalTaxon.Subtaxa)
+                                            {
+                                                @ProcessCategories(childTaxon)
+                                            }
+
+                                        </ul>
+                                    }
+                                }
+                            </li>
+                        }
+                    }
+                }
+
+                <li><a href="@SiteMapBase.GetActualCurrentNode().Url.ToString().Substring(1)/">show all</a></li>
+            </ul>
+        </div>
+    </div>
+
+    @if (Model != null)
+    {
+        if (Model.Items.Count() > 0)
+        {
             <div class="row long-card-basic-list flex">
                 @foreach (var item in Model.Items)
                 {
@@ -147,7 +125,7 @@ if (taxon != null)
                             {
                                 <a href="@navigateUrl" class="img-wrap" title="@item.Fields.HeaderImage.Fields.Title"><img alt="@item.Fields.HeaderImage.Fields.Title" src="@MediaContentExtensions.ResolveThumbnailUrl(item.Fields.HeaderImage.DataItem, "thumbartic")" /></a>
                             }
-                            @*@MediaContentExtensions.ResolveThumbnailUrl(item.Fields.Pic.DataItem, "thumbcrop4")*@
+
 
                             <div class="caption">
                                 <p class="color-light text-uppercase font-medium ">
@@ -178,15 +156,44 @@ if (taxon != null)
                         </div>
                     </div>
                 }
-
             </div>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                <small>There are no articles posted for this category yet!</small>
+            </div>
+        }
+    }
+    @if (Model.ShowPager)
+    {
+        @Html.Action("Index", "ContentPager", new { currentPage = Model.CurrentPage,
+                        totalPagesCount = Model.TotalPagesCount.Value,
+                        redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate })
+    }
 
-            @if (Model.ShowPager)
-            {
-                @Html.Action("Index", "ContentPager", new { currentPage = Model.CurrentPage,
-                                totalPagesCount = Model.TotalPagesCount.Value,
-                                redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate })
+
+</div>
+
+<script>
+jQuery(function ($) {
+    if ($('.press-release-filter').length) {
+        var pagePath = window.location.pathname;
+        var stripPath = pagePath.split('/');
+        var curTaxonName = '';
+        var parentTaxon = '';
+        if (stripPath.length) {
+            curTaxonName = stripPath[stripPath.length - 1];
+            //console.log(curTaxonName);
+            if (stripPath.length > 2 && stripPath[stripPath.length - 2] == "career-advice") {
+                parentTaxon = stripPath[stripPath.length - 2];
+                $('.press-release-filter > ul > li > a[href*="' + parentTaxon + '"]').first().parent('li').addClass('filter-active');
+                $('.press-release-filter li a[href*="' + curTaxonName + '"]').first().parent('li').addClass('filter-active');
+            } else {
+                $('.press-release-filter > ul > li > a[href*="'+ curTaxonName + '"]').first().parent('li').addClass('filter-active');
             }
-
-
-        </div>
+        }
+        
+    }
+});
+</script>

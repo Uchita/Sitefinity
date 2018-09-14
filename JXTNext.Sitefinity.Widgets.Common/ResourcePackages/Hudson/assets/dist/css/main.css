@@ -9353,9 +9353,9 @@ ul.breadcrumb {
     margin-bottom: 2rem; }
   .page-wrapper .sf-profile h2 {
     font-size: 3.2rem;
-    margin-top: 2.35rem; }
+    margin-top: 2.0rem; }
   .page-wrapper .sf-profile img {
-    max-width: 200px;
+    max-width: 150px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); }
   .page-wrapper .user-profile-dash {
     border-bottom: 1px solid #000;
@@ -9887,6 +9887,20 @@ ul.breadcrumb {
   font-size: 14px;
   font-size: 1.4rem;
   margin-right: 15px; }
+
+.related-articles {
+  border-top: 1px solid #000;
+  padding: 20px 0;
+  margin-top: 50px; }
+  .related-articles .long-card-basic-list {
+    margin-bottom: 30px; }
+    .related-articles .long-card-basic-list .thumbnail {
+      margin-top: 20px; }
+
+.justify-content-md-center {
+  -webkit-box-pack: center !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important; }
 
 /*#endregion Articles/Insights */
 /*#region Board members*/
@@ -10811,7 +10825,7 @@ ul.breadcrumb {
     max-width: 300px;
     margin: 10px auto 20px;
     float: none; }
-    .risk-measurement .risk-wrapper .risk img {
+    .risk-measurement .risk-wrapper .risk img, .risk-measurement .risk-wrapper .risk:hover img {
       bottom: 0; }
   .white-box-list .white-box {
     height: auto !important;

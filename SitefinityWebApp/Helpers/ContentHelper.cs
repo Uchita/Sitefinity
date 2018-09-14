@@ -11,6 +11,8 @@ using Telerik.Sitefinity.Taxonomies.Model;
 using Telerik.OpenAccess;
 using Telerik.Sitefinity.ContentLocations;
 using Telerik.Sitefinity.Services;
+using Telerik.Sitefinity.GenericContent.Model;
+using Telerik.Sitefinity.Utilities.TypeConverters;
 
 namespace SitefinityWebApp.Helpers
 {
@@ -65,6 +67,28 @@ namespace SitefinityWebApp.Helpers
             var taxon = taxonomy.Taxa.FirstOrDefault(t => t.Name.ToLower() == taxonName.ToLower());
             return taxon == null ? 
                 instance : instance.Where(item => item.GetValue<TrackedList<Guid>>(fieldName).Contains(taxon.Id)); // TODO;
+        }
+
+        public static List<DynamicContent> GetRelatedDynamicContentItemsByHierarchicalTaxonomy(TrackedList<Guid> detailsPageItemTaxonIds, Guid detailPageItemId, string fieldName, string dynamicContentType)
+        {
+            DynamicModuleManager dynamicModuleManager = DynamicModuleManager.GetManager();
+            Type contentType = TypeResolutionService.ResolveType(dynamicContentType);
+            var allItems = dynamicModuleManager.GetDataItems(contentType).Where(h => h.Status == ContentLifecycleStatus.Live && h.Visible && h.ApprovalWorkflowState == "Published").ToList();
+            List<DynamicContent> relatedItems = new List<DynamicContent>();
+            foreach (var item in allItems)
+            {
+                var articleTaxonIds = item.GetValue<TrackedList<Guid>>(fieldName);
+                if (articleTaxonIds.Any(x => detailsPageItemTaxonIds.Contains(x)))
+                {
+                    // Skip the current loaded item in the details page
+                    if (item.Id != detailPageItemId)
+                    {
+                        relatedItems.Add(item);
+                    }
+                }
+            }
+
+            return relatedItems;
         }
     }
 }

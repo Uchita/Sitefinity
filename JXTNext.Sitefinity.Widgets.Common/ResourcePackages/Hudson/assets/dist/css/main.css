@@ -10028,6 +10028,8 @@ ul.breadcrumb {
         margin-left: 0;
         border-left: 0;
         padding-left: 0; }
+      .press-release-filter li .dropdown-menu li.filter-active a, .press-release-filter li.dropdown .dropdown-menu li.filter-active a {
+        color: #01a3a4; }
   .press-release-filter li.open > a, .press-release-filter li.dropdown.open > a {
     color: #01a3a4; }
   .press-release-filter li:hover .dropdown-menu {

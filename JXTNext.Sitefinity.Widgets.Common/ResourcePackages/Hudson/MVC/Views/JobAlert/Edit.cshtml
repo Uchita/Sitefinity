@@ -8,32 +8,72 @@
 @Html.Script(Url.WidgetContent("/Mvc/Scripts/jquery.nstSlider.js"))
 @Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/rangeSlider.css"))
 
-<h2>Edit Job Alert</h2>
+<h1>Edit job alert</h1>
 
-<h3>Alert Details</h3>
+<h2>Alert details</h2>
 
 @if (Model != null)
 {
-    <form method="post" action="@Url.Action("Edit","JobAlert")" onsubmit="return preventSubmit();">
+<form method="post" action="@Url.Action("Edit","JobAlert")" onsubmit="return preventSubmit();">
     @{
         int counter = 0;
     }
 
-    <input type="hidden" name="Id" value="@Model.Id" /><br />
-    <label>Name<span style="color:red">*</span></label><br />
-    <input type="text" name="Name" required value="@Model.Name" /><br />
-    <input type="checkbox" name="EmailAlerts" value="true" checked="@Model.EmailAlerts" /> <label>Send Email Alerts</label> <br />
+    <div class="field-wrapper">
+        <div class="row form-group">
+            <div class="col-md-4 text-right">
+                <label for="name">Name*</label>
+            </div>
+            <div class="col-md-8">
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <input type="text" name="Name" id="name" required value="@Model.Name" class="form-control" />
 
-    <label>Keywords</label><br />
-    <input type="text" name="Keywords" value="@Model.Keywords" /> <br /><br />
+                <div class="form-fields-group">
+                    <input type="checkbox" name="EmailAlerts" value="true" checked="@Model.EmailAlerts" /> <label class="lbl">Send email alerts</label>
+                </div>
 
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-4 text-right">
+                <label for="keywords">Keywords</label>
+            </div>
+            <div class="col-md-8">
+                <input type="text" name="Keywords" id="keywords" value="@Model.Keywords" class="form-control" />
+            </div>
+        </div>
+
+    
     @foreach (var item in Model.Data)
     {
         if (item.Name != "Salary" && item.Name != "CompanyName")
         {
-            <input type="hidden" name="Filters[@counter].RootId" value='@item.Name' />
-            <select id=@string.Format("selected-{0}", item.Name) name="Filters[@counter].Values" style="display:none" multiple></select>
-            <div class="dropdown dropdown-tree" id=@item.Name></div> <br />
+            <div class="row form-group">
+                <div class="col-md-4 text-right">
+                    @{
+                        var displayTitle = item.Name;
+                        if (displayTitle == "CountryLocationArea")
+                        {
+                            displayTitle = "Location";
+                        }
+                        else if (displayTitle == "WorkType")
+                        {
+                            displayTitle = "Work Type";
+                        }
+                        else if (displayTitle == "CompanyName")
+                        {
+                            displayTitle = "Company Name";
+                        }
+                    }
+                    <label>@displayTitle</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="hidden" name="Filters[@counter].RootId" value='@item.Name' />
+                    <select id=@string.Format("selected-{0}", item.Name) name="Filters[@counter].Values" style="display:none" multiple class="form-control"></select>
+                    <div class="dropdown dropdown-tree" id=@item.Name></div>
+                </div>
+            </div>
             counter++;
         }
         else if (item.Name == "Salary")
@@ -80,9 +120,17 @@
         }
     }
 
-    <input type="submit" value="SAVE" class="btn btn-primary" />
+    <div class="row form-group">
+        <div class="col-md-4 text-right"></div>
+        <div class="col-md-4">
+            <input type="submit" value="SAVE" class="btn btn-primary" />
+        </div>
+    </div>
+
+    
     @*@Html.ActionLink("SEARCH", "ViewResults", "JobAlert", new { id = Model.Id }, null)
-    @Html.ActionLink("DELETE", "Delete", "JobAlert", new { id = Model.Id }, new { onclick = "return confirmDelete();" })*@
+        @Html.ActionLink("DELETE", "Delete", "JobAlert", new { id = Model.Id }, new { onclick = "return confirmDelete();" })*@
+    </div>
 </form>
 }
 
@@ -187,8 +235,16 @@
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
 
             for (var item of filterData.Data) {
+                var displayTitle = item.Name;
+                if (displayTitle == 'CountryLocationArea')
+                    displayTitle = 'Location';
+                else if (displayTitle == 'WorkType')
+                    displayTitle = 'Work Type';
+                else if (displayTitle == 'CompanyName')
+                    displayTitle = 'Company Name';
+
                 optionsArray[item.Name] = {
-                    title: item.Name,
+                    title: displayTitle,
                     data: item.Filters,
                     maxHeight: 500,
                     closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',

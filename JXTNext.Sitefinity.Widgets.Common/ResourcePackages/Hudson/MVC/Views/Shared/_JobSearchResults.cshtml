@@ -282,7 +282,7 @@
                 searchPath += ("&Page=" + PageNumber);
             }
 
-            if (searchPath.includes("SortBy=")) {
+            if (searchPath.indexOf("SortBy=") > -1) {
                 let pageIndex = searchPath.indexOf("SortBy=");
                 searchPath = searchPath.slice(0, pageIndex);
                 searchPath += ("SortBy=" + sortBy);

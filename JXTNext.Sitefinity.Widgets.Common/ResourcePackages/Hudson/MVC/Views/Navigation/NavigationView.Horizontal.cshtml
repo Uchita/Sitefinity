@@ -8,6 +8,8 @@
 @*For user login check*@
 @using JXTNext.Sitefinity.Common.Helpers;
 
+@using Telerik.Sitefinity.DynamicModules.Model;
+
 @*Add scripts and stylesheets*@
 @Html.Script(ScriptRef.JQuery, "top")
 @Html.Script(Url.WidgetContent("Mvc/Scripts/Bootstrap/js/bootstrap.min.js"), "top", false)
@@ -99,7 +101,13 @@
                     <div class="dropdown-menu">
                         @if (lastInsight != null)
                         {
-                            var bestUrl = ContentHelper.GetBestArticleUrl(lastInsight.DataItem);
+                            var bestUrl = "";
+                            //var bestUrl = ContentHelper.GetBestArticleUrl(lastInsight.DataItem);
+                            DynamicContent dynamicVar = lastInsight.DataItem as DynamicContent;
+                            if (dynamicVar != null)
+                            {
+                                bestUrl = "/insights/articles/detail" + dynamicVar.SystemUrl;
+                            }
                             <h4>Last insight</h4>
                             <div>
                                 <a href="@bestUrl">
@@ -114,9 +122,16 @@
                     <div class="dropdown-menu">
                         @if (featuredArticle != null)
                         {
-                            var bestUrl = ContentHelper.GetBestArticleUrl(featuredArticle.DataItem);
+                            var bestUrl = "";
+                            //var bestUrl = ContentHelper.GetBestArticleUrl(featuredArticle.DataItem);
+                            DynamicContent dynamicVar = featuredArticle.DataItem as DynamicContent;
+                            if(dynamicVar != null)
+                            {
+                                bestUrl = "/insights/articles/detail" + dynamicVar.SystemUrl;
+                            }
+                            
                             <h4>Featured article</h4>
-                            <a href="@bestUrl">
+                            <a href="@bestUrl" rel="@featuredArticle.DataItem">
                                 <div>
                                     <div class="dropdown-menu-featured-image">
                                         <img src="@Html.Raw(featuredArticle.Fields.HeaderImage.Fields.MediaUrl)" />

@@ -271,7 +271,7 @@
             if (searchPath == null || searchPath == "") {
                 searchPath += ("?" + "Page=" + PageNumber);
             }
-            else if (searchPath.includes("Page=")) {
+            else if (searchPath.indexOf("Page=") > -1) {
                 let pageIndex = searchPath.indexOf("Page=");
                 searchPath = searchPath.slice(0, pageIndex);
                 searchPath += ("Page=" + PageNumber);

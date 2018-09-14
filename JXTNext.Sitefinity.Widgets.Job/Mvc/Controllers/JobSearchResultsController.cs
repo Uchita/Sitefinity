@@ -85,7 +85,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetSearchResults(string jobRequest, int pageNumber)
+        public JsonResult GetSearchResults(string jobRequest, int pageNumber, string sortBy)
         {
             //Use preconfigured search config from widget settings if available
             JobSearchResultsFilterModel searchInputs;
@@ -126,6 +126,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
             searchInputs.Page = pageNumber;
+            searchInputs.SortBy = sortBy;
 
             JXTNext_SearchJobsRequest searchRequest = ProcessInputToSearchRequest(searchInputs);
 
@@ -254,7 +255,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ViewBag.Request = JsonConvert.SerializeObject(filterModel);
             ViewBag.FilterModel = JsonConvert.SerializeObject(filterModel);
             ViewBag.PageSize = (int)this.PageSize;
-            ViewBag.SortOrder = this.Sorting;
             ViewBag.CssClass = this.CssClass;
             if (jobResultsList != null)
                 ViewBag.TotalCount = jobResultsList.Total;
@@ -332,6 +332,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 request.PageNumber = filterModel.Page - 1;
                 request.PageSize = (int)this.PageSize;
             }
+
+            string sortBy = this.Sorting;
+            if (filterModel != null && !filterModel.SortBy.IsNullOrEmpty())
+                sortBy = filterModel.SortBy;
+
+            request.SortBy = JobSearchResultsFilterModel.GetSortEnumFromString(sortBy);
+            ViewBag.SortOrder = JobSearchResultsFilterModel.GetSortStringFromEnum(request.SortBy);
 
             return request;
         }

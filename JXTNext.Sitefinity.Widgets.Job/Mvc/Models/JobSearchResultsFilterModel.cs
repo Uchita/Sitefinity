@@ -18,6 +18,94 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
         public string SortBy { get; set; }
 
 
+        public static JXTNext_SearchJobsRequest ProcessInputToSearchRequest(JobSearchResultsFilterModel filterModel, int? pageSize, int pageSizeDefaultValue)
+        {
+            JXTNext_SearchJobsRequest request = new JXTNext_SearchJobsRequest();
+            if (filterModel != null)
+            {
+                if (!string.IsNullOrEmpty(filterModel.Keywords))
+                    request.KeywordsSearchCriteria = new List<KeywordSearch> { new KeywordSearch { Keyword = filterModel.Keywords } };
+
+                if (filterModel.ConsultantSearch != null && !string.IsNullOrEmpty(filterModel.ConsultantSearch.Email))
+                    request.ConsultantSearchCriteria = new ConsultantSearch() { Email = filterModel.ConsultantSearch.Email, FirstName = filterModel.ConsultantSearch.FirstName, LastName = filterModel.ConsultantSearch.LastName };
+
+                List<IClassificationSearch> classificationSearches = new List<IClassificationSearch>();
+                bool isFiltersExists = false;
+                if (filterModel.Salary != null)
+                {
+                    isFiltersExists = true;
+                    Classification_RangeSearch cateRangeSearch = new Classification_RangeSearch()
+                    {
+                        ClassificationRootName = filterModel.Salary.RootName,
+                        TargetValue = filterModel.Salary.TargetValue,
+                        UpperRange = filterModel.Salary.UpperRange,
+                        LowerRange = filterModel.Salary.LowerRange
+                    };
+                    classificationSearches.Add(cateRangeSearch);
+                }
+
+                if (filterModel.Filters != null && filterModel.Filters.Count() > 0)
+                {
+                    isFiltersExists = true;
+                    for (int i = 0; i < filterModel.Filters.Count(); i++)
+                    {
+                        var filter = filterModel.Filters[i];
+                        if (filter != null && filter.values != null && filter.values.Count > 0)
+                        {
+                            Classification_CategorySearch cateSearch = new Classification_CategorySearch
+                            {
+                                ClassificationRootName = filter.rootId,
+                                TargetClassifications = new List<Classification_CategorySearchTarget>()
+                            };
+
+                            foreach (var filterItem in filter.values)
+                            {
+                                var targetCategory = new Classification_CategorySearchTarget() { SubTargets = new List<Classification_CategorySearchTarget>() };
+                                ProcessFilterLevels(targetCategory, filterItem);
+                                cateSearch.TargetClassifications.Add(targetCategory);
+                            }
+
+                            classificationSearches.Add(cateSearch);
+                        }
+                    }
+                }
+
+                if (isFiltersExists)
+                    request.ClassificationsSearchCriteria = classificationSearches;
+
+                if (pageSize.HasValue && pageSize.Value > 0)
+                    request.PageSize = pageSize.Value;
+                else
+                    request.PageSize = pageSizeDefaultValue;
+
+                if (filterModel.Page <= 0)
+                    filterModel.Page = 1;
+
+                request.PageNumber = filterModel.Page - 1;
+            }
+
+            return request;
+        }
+
+
+        public static void ProcessFilterLevels(Classification_CategorySearchTarget catTarget, JobSearchFilterReceiverItem filterItem)
+        {
+            if (catTarget != null && filterItem != null)
+            {
+                catTarget.TargetValue = filterItem.ItemID;
+                if (filterItem.SubTargets != null && filterItem.SubTargets.Count > 0)
+                {
+                    foreach (var subItem in filterItem.SubTargets)
+                    {
+                        Classification_CategorySearchTarget catSubTarget = new Classification_CategorySearchTarget() { SubTargets = new List<Classification_CategorySearchTarget>() };
+                        ProcessFilterLevels(catSubTarget, subItem);
+                        catTarget.SubTargets.Add(catSubTarget);
+                    }
+                }
+            }
+        }
+
+
         public static SearchSortBy GetSortEnumFromString(string sort)
         {
             SearchSortBy sortBy = SearchSortBy.Recent;

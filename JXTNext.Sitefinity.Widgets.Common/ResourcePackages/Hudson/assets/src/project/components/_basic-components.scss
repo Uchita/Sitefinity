@@ -478,6 +478,7 @@ blockquote{
 
     .display-cell {
         display: table-cell;
+        float: none;
     }
 
     
@@ -703,6 +704,9 @@ img, iframe {
 .black-2-bg{ 
     background: $black-2; color: $brightColor; 
     >*{ color: $brightColor!important;} 
+}
+.grey-2-bg{
+    background: $grey-2;
 }
 .bg-lightblue{
     background-color: #e9f5f2;

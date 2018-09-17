@@ -183,6 +183,9 @@ jQuery(function ($) {
         var curTaxonName = '';
         var parentTaxon = '';
         if (stripPath.length) {
+            if (stripPath[stripPath.length - 1] == "") {
+                stripPath.pop();
+            }
             curTaxonName = stripPath[stripPath.length - 1];
             //console.log(curTaxonName);
             if (stripPath.length > 2 && stripPath[stripPath.length - 2] == "career-advice") {

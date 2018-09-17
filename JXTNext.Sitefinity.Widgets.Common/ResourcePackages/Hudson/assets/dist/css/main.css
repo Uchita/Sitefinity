@@ -7612,7 +7612,8 @@ blockquote {
     display: table;
     width: 100%; }
   .page-wrapper .display-cell {
-    display: table-cell; }
+    display: table-cell;
+    float: none; }
   .page-wrapper .text-muted {
     font-size: 14px;
     font-size: 1.4rem;
@@ -7764,6 +7765,9 @@ img, iframe {
   color: #fff; }
   .black-2-bg > * {
     color: #fff !important; }
+
+.grey-2-bg {
+  background: #e6ebe8; }
 
 .bg-lightblue {
   background-color: #e9f5f2;
@@ -9118,7 +9122,10 @@ ul.breadcrumb {
       width: auto; }
 
 .banner-with-basic {
-  background-color: #116368; }
+  background-color: #116368;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: cover; }
   .banner-with-basic .thumbnail {
     background-color: rgba(255, 255, 255, 0.9);
     background-size: 100% auto;
@@ -9902,6 +9909,36 @@ ul.breadcrumb {
   -ms-flex-pack: center !important;
   justify-content: center !important; }
 
+.withpadding {
+  padding: 20px !important; }
+
+.nobottompadding {
+  padding: 20px 20px 0px 20px !important; }
+
+.article-details .greybackground-orangeheaderlist {
+  background-color: #e6ebe8;
+  overflow: hidden;
+  margin-bottom: 0; }
+  .article-details .greybackground-orangeheaderlist ol li {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #faa61a;
+    line-height: 125%; }
+  .article-details .greybackground-orangeheaderlist p {
+    color: #000; }
+
+.article-details .postmiddle .WhiteShadowBoxMiddle ul, .article-details .postmiddle .WhiteShadowBoxMiddle ol {
+  list-style-type: square;
+  margin: 0;
+  padding: 4px 18px 4px 26px; }
+  .article-details .postmiddle .WhiteShadowBoxMiddle ul li, .article-details .postmiddle .WhiteShadowBoxMiddle ol li {
+    margin: 0;
+    padding: 5px 0;
+    line-height: 18px; }
+
+.article-details .image-wrap {
+  margin: 0; }
+
 /*#endregion Articles/Insights */
 /*#region Board members*/
 .board-members {
@@ -10235,6 +10272,8 @@ ul.breadcrumb {
 
 .consultant-page {
   margin-bottom: 25px; }
+  .consultant-page h2, .consultant-page h3 {
+    margin: 30px 0 20px; }
   .consultant-page img {
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.32); }
   .consultant-page .contact-me {

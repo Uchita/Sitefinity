@@ -32,7 +32,7 @@
     var taxon = featuredArticle.GetHierarchicalTaxons("articles").First();
 
     <div class="@Model.CssClass">
-        <h1 class="text-center">@taxon.Title.ToString()</h1>
+        <h2 class="text-center">@taxon.Title.ToString()</h2>
         <br />
         <div class="thumbnail card-basic small-caption">
             <a href="@navigateUrl">

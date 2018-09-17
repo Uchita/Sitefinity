@@ -354,6 +354,9 @@
 
 .banner-with-basic {
     background-color: #116368;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: cover;
 
     .thumbnail {
         background-color: rgba(255, 255, 255, 0.9);

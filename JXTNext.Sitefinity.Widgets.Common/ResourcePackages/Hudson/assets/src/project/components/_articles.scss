@@ -185,3 +185,39 @@
     -ms-flex-pack: center!important;
     justify-content: center!important;
 }
+
+.withpadding {
+    padding: 20px!important;
+}
+.nobottompadding {
+    padding: 20px 20px 0px 20px!important;
+}
+.article-details{
+    .greybackground-orangeheaderlist {
+        background-color: #e6ebe8;
+        overflow: hidden;
+        margin-bottom: 0;
+        ol li {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #faa61a;
+            line-height: 125%;
+        }
+        p{
+            color: $global-text-color;
+        }
+    }
+    .postmiddle .WhiteShadowBoxMiddle ul, .postmiddle .WhiteShadowBoxMiddle ol {
+        list-style-type: square;
+        margin: 0;
+        padding: 4px 18px 4px 26px;
+        li{
+            margin: 0;
+            padding: 5px 0;
+            line-height: 18px;
+        }
+    }
+    .image-wrap{
+        margin: 0;
+    }
+}

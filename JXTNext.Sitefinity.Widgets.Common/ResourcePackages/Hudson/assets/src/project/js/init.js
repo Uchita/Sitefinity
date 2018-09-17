@@ -174,7 +174,7 @@ $(document).ready(function () {
         autoplay: true,
         autoplayTimeout: 5000,
         autoplayHoverPause: true,
-        loop: true,
+        loop: false,
         responsive: {
             0: {
                 items: 1

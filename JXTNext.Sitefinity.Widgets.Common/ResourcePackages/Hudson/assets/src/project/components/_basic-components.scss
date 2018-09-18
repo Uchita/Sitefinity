@@ -894,7 +894,9 @@ header {
                     width: 25%;
                     min-height: 200px;
                     background: none;
-
+                    &.no-bdr{
+                        border: none!important;
+                    }
                     a {
                         font-family: $font-family-medium;
                         &::after{

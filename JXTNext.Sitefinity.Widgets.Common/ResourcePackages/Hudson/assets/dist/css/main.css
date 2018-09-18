@@ -10635,6 +10635,17 @@ ul.breadcrumb {
     .testimonials-slider .testimonial-author {
       font-size: 11px;
       font-size: 1.1rem; }
+    .testimonials-slider.testimonials-simple.with-side-image .img-holder {
+      max-width: 200px;
+      margin: 0 auto; }
+    .testimonials-slider.testimonials-simple.with-side-image .owl-dots {
+      width: 100%;
+      position: static; }
+    .testimonials-slider.with-top-image .quote span {
+      top: 25px; }
+    .testimonials-slider.with-top-image .quote.text-right {
+      bottom: 65px;
+      right: -50px; }
   .thumbnail.card-basic .caption {
     min-height: 180px; }
   .thumbnail.card-basic .img-wrap {
@@ -11050,6 +11061,10 @@ ul.breadcrumb {
     left: 0; }
     .testimonials-slider.testimonials-simple .quote.text-right {
       bottom: 0; }
+  .testimonials-slider.testimonials-simple.with-side-image .img-holder {
+    max-width: 150px; }
+  .testimonials-slider.testimonials-simple.with-side-image .owl-item > div {
+    padding-bottom: 0; }
   .testimonials-slider .owl-item {
     padding-left: 25px;
     padding-right: 25px;

@@ -459,6 +459,27 @@
             font-size: 11px;
             font-size: 1.1rem;
         }
+        &.testimonials-simple.with-side-image{
+            .img-holder{
+                max-width: 200px;
+                margin: 0 auto;
+            }
+            .owl-dots{
+                width: 100%;
+                position: static;
+            }
+        }
+        &.with-top-image{
+            .quote{
+                span{
+                    top: 25px;
+                }
+                &.text-right{
+                    bottom: 65px;
+                    right: -50px;
+                }
+            }
+        }
     }
 
     .thumbnail {
@@ -913,6 +934,7 @@
         .owl-dots{
             bottom: 43px;
         }
+        
     }
 
     .xs-no-bdr-right{
@@ -1143,6 +1165,14 @@
             left: 0;
             &.text-right{
                 bottom: 0;
+            }
+        }
+        &.with-side-image{
+            .img-holder{
+                max-width: 150px;
+            }
+            .owl-item>div{
+                padding-bottom: 0;
             }
         }
     }

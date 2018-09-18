@@ -13,11 +13,11 @@
     <br /><div class="alert alert-danger">@ViewBag.PostBackMessage</div>
 }
 <div class="login-form sign-in-with">
-    <form id="job-app-form" action="@Url.Action("ApplyJob","JobApplication")" method="post" enctype="multipart/form-data">
+    <form id="job-app-form" action="@Url.Action("ApplyJob","JobApplication")" method="post" enctype="multipart/form-data" autocomplete="off">
 
         <div class="row">
             <div class="col-xs-12 col-md-4 text-right"></div>
-            <div class="col-xs-12 col-md-8"><h2 id="appFormState">Login</h2></div>
+            <div class="col-xs-12 col-md-8"><h2 id="appFormState">Enter your details</h2></div>
         </div>
 
         <div class="basic-form">
@@ -32,7 +32,7 @@
                                 <label class="form-label" for="userid">Email*</label>
                             </div>
                             <div class="col-md-8">
-                                <input id="userid" type="text" name="Email" class="form-control" required placeholder="Enter email address to begin" autocomplete="off" />
+                                <input id="userid" type="text" name="Email" class="form-control" required placeholder="Enter email address to begin" autocomplete="email" />
                             </div>
                         </div>
                     </div>
@@ -367,15 +367,17 @@
 
                         if (response == false) {
                             $('#register').show();
-                            $('#appFormState').text('Enter your details');
+                            
                             $('#firstname-lastname').removeAttr('hidden');
                             registerForm = true;
                             $('#password-reg').prop('required', true);
                             $('#firstname-reg').prop('required', true);
                             $('#password-reg').prop('pattern', "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
                             $('#password-reg').prop('title', "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters");
+                            $('#password-guide').removeClass('hidden');
                             $('#strength-wrap').show();
                             $('#password-reg').attr('placeholder', "Choose your password");
+                            $('.loginwith_socialmedia').hide();
                         }
                         //this is to show the password field
                         else {
@@ -389,6 +391,7 @@
                             $('#forgot-password').removeClass('hidden');
                             $('#password-guide').addClass('hidden');
                             $('#password-reg').attr('placeholder', "Enter your password");
+                            $('.loginwith_socialmedia').show();
                         }
                         $('#upload-files-container').show();
                         $('#apply').removeAttr('disabled');

@@ -1,0 +1,45 @@
+﻿@model dynamic
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+<div class="text-center mb-30">
+    <h2>@ViewBag.ConsultantName's jobs</h2>
+</div>
+
+@if (Model != null && Model.SearchResults != null && Model.SearchResults.Count > 0)
+{
+<div class="consultant-jobs row same-height-wrapper">
+    @foreach (var jobOffer in Model.SearchResults)
+    {
+        <div class="col-sm-4">
+
+            <div class="featured-job-offer same-height-box">
+                @*<div class="job-offer-company text-right"><img alt="Asset 2" src="/images/default-source/clients/optus.png" title="@jobOffer.Title"></div>*@
+                <div class="job-offer">
+                    <h3><a class="title-link" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">@jobOffer.Title</a></h3>
+                    @*@{
+                            var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(Math.Round(jobOffer.DateCreated / 1000d)).ToLocalTime()
+                        }*@
+                    @*<p class="text-muted">@obOffer.DateCreated</p>*@
+                    <p class="job-offer-sum">
+                        @Html.Raw(jobOffer.ShortDescription)
+                    </p>
+                </div>
+                <a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID"></a>
+            </div>
+
+        </div>
+
+    }
+</div>
+}
+else
+{
+    <div class="alert alert-info text-center">There are no jobs posted by <strong>@ViewBag.ConsultantName</strong></div>
+}
+
+<div class="row row-see-more">
+    <div class="col-md-12">
+        <div class="text-center"><a class="btn btn-default" href="@ViewBag.JobResultsPageUrl">View all jobs</a></div>
+    </div>
+</div>

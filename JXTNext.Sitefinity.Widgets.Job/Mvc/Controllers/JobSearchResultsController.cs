@@ -19,6 +19,7 @@ using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using Telerik.Sitefinity.Security.Model;
 using System.Collections.Specialized;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
+using System.Text.RegularExpressions;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -152,8 +153,17 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 OrderedDictionary classifParentIdsOrdDict = new OrderedDictionary();
                 JobDetailsViewModel.AppendParentIds(classifOrdDict, classifParentIdsOrdDict);
 
+                List<string> seoString = new List<string>();
+                foreach(var key in classifParentIdsOrdDict.Keys)
+                {
+                    string value = classifParentIdsOrdDict[key].ToString();
+                    string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
+                    seoString.Add(SEOString);
+                }
+
                 item.Classifications = classifParentIdsOrdDict;
                 item.ClassificationsRootName = "Classifications";
+                item.ClassificationsSEORouteName = String.Join("/", seoString);
             }
 
             return new JsonResult { Data = jobResponse };

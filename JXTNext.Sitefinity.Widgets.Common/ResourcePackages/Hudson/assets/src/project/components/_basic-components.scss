@@ -8,8 +8,9 @@ blockquote{
     flex-wrap: wrap;
 }
 .flex-center{
-    align-items: center;
-    justify-content: center;
+    -webkit-box-pack: center!important;
+    -ms-flex-pack: center!important;
+    justify-content: center!important;
 }
 
 .width-limit{

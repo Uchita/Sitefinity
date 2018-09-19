@@ -1483,13 +1483,13 @@
     <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.PageBannerVideoPopup.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\Detail.TestimonialCompactWithSideImage.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\List.TestimonialCompactWithSideImage.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\List.TestimonialCompactWithTopImage.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Consultant\List.ListFilterMinimal.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">

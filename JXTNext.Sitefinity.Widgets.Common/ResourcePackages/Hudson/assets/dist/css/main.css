@@ -7258,8 +7258,9 @@ blockquote {
   flex-wrap: wrap; }
 
 .flex-center {
-  align-items: center;
-  justify-content: center; }
+  -webkit-box-pack: center !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important; }
 
 .width-limit {
   max-width: 450px; }
@@ -10125,60 +10126,64 @@ ul.breadcrumb {
         background-repeat: no-repeat;
         height: 235px;
         width: 100%; }
-      .owl-consultants .owl-stage .consultant .caption {
-        padding: 0 20px; }
-        .owl-consultants .owl-stage .consultant .caption .consultant-sum {
-          font-family: AkzidGroProReg, sans-serif; }
-        .owl-consultants .owl-stage .consultant .caption .consultant-name {
-          margin-top: 15px;
-          color: #01a3a4; }
-      .owl-consultants .owl-stage .consultant .consultant-btn {
-        color: #ababab;
-        text-decoration: none;
-        display: block;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        min-height: 30px;
-        -webkit-line-clamp: 2;
-        max-height: 50px;
-        text-transform: uppercase;
-        padding: 0 35px 5px 35px;
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        font-size: 14px;
-        font-size: 1.4rem;
-        font-family: AkzidGroProMed, sans-serif; }
-        .owl-consultants .owl-stage .consultant .consultant-btn:before {
-          content: '';
-          width: 30px;
-          height: 30px;
-          position: absolute;
-          right: 0;
-          background: #01a3a4;
-          bottom: 0; }
-        .owl-consultants .owl-stage .consultant .consultant-btn:after {
-          content: '\f105';
-          position: absolute;
-          bottom: 0;
-          right: 11px;
-          font-weight: 900;
-          font-size: 16px;
-          font-size: 1.6rem;
-          line-height: 28px;
-          font-family: 'Font Awesome 5 Free';
-          color: #fff; }
-        .owl-consultants .owl-stage .consultant .consultant-btn:hover:before {
-          background: #007077; }
-        .owl-consultants .owl-stage .consultant .consultant-btn:hover:after {
-          color: #fff; }
-        .owl-consultants .owl-stage .consultant .consultant-btn:active:before {
-          background: #007077; }
-        .owl-consultants .owl-stage .consultant .consultant-btn:active:after {
-          color: #01a3a4; }
+
+.consultant .caption {
+  padding: 0 20px; }
+  .consultant .caption .consultant-sum {
+    font-family: AkzidGroProReg, sans-serif; }
+  .consultant .caption .consultant-name {
+    margin-top: 15px;
+    color: #01a3a4; }
+
+.consultant .consultant-btn {
+  color: #ababab !important;
+  text-decoration: none;
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 30px;
+  -webkit-line-clamp: 2;
+  max-height: 50px;
+  text-transform: uppercase;
+  padding: 0 35px 5px 35px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 14px;
+  font-size: 1.4rem;
+  font-family: AkzidGroProMed, sans-serif; }
+  .consultant .consultant-btn:before {
+    content: '';
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    background: #01a3a4;
+    bottom: 0; }
+  .consultant .consultant-btn:after {
+    content: '\f105';
+    position: absolute;
+    bottom: 0;
+    right: 11px;
+    font-weight: 900;
+    font-size: 16px;
+    font-size: 1.6rem;
+    line-height: 28px;
+    font-family: 'Font Awesome 5 Free';
+    color: #fff; }
+  .consultant .consultant-btn:hover {
+    color: #01a3a4 !important; }
+    .consultant .consultant-btn:hover:before {
+      background: #007077; }
+    .consultant .consultant-btn:hover:after {
+      color: #fff; }
+  .consultant .consultant-btn:active:before {
+    background: #007077; }
+  .consultant .consultant-btn:active:after {
+    color: #01a3a4; }
 
 .consultant-jobs {
   margin-top: 30px;
@@ -10283,6 +10288,30 @@ ul.breadcrumb {
     font-size: 2.4rem; }
   .consultant-page .contact-consultant-position {
     margin-bottom: 20px; }
+
+.consultant-minimal > .filters-wrapper {
+  max-width: 900px;
+  margin: 0 auto; }
+
+.consultant-minimal .consultant .item {
+  background: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+  text-align: center;
+  padding: 0 0 50px;
+  position: relative;
+  margin: 12px 1%;
+  width: 23%;
+  color: #000; }
+
+.consultant-minimal .consultant .contact-consultant-image {
+  overflow: hidden; }
+
+.consultant-minimal .consultant .consultant-photo {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 235px;
+  width: 100.4%; }
 
 /*#endregion Consultans*/
 /*#region risk measurement*/

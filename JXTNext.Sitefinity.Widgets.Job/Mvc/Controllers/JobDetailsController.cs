@@ -62,6 +62,54 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             _OConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
         }
 
+        [RelativeRoute("{*tags}")]
+        public ActionResult RouteHandler(string[] tags)
+        {
+            if (Request.IsAjaxRequest()) // Ajax calls
+            {
+                if (tags != null && tags.Length > 0)
+                {
+                    var routePath = tags.FirstOrDefault();
+                    if (routePath.ToUpper().Contains("GETALLSAVEDJOBS"))
+                    {
+                        return GetAllSavedJobs();
+                    }
+                    else if (routePath.ToUpper().Contains("SAVEJOB") || routePath.ToUpper().Contains("REMOVESAVEDJOB"))
+                    {
+                        if (Request.Form["JobId"] != null)
+                        {
+                            int jobId;
+                            if (Int32.TryParse(Request.Form["JobId"], out jobId))
+                            {
+                                if (routePath.ToUpper().Contains("SAVEJOB"))
+                                    return SaveJob(jobId);
+                                else if(routePath.ToUpper().Contains("REMOVESAVEDJOB"))
+                                    return RemoveSavedJob(jobId);
+                            }
+                        }
+                    }
+                }
+            }
+            else // Non-Ajax calls
+            {
+                if (tags != null && tags.Length > 0)
+                {
+                    string urlRoute = tags.FirstOrDefault();
+                    string jobIdStr = urlRoute.Substring(0, urlRoute.LastIndexOf('/')).Split('/').Last();
+                    int jobId;
+                    if (Int32.TryParse(jobIdStr, out jobId))
+                    {
+                        return Index(jobId);
+                    }
+                }
+            }
+
+            // Default redirect to Index action
+            return Index(null);
+
+        }
+
+
         // GET: JobDetails
         public ActionResult Index(int? jobId)
         {

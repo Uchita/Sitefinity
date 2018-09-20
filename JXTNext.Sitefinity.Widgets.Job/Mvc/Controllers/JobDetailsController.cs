@@ -63,8 +63,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         [RelativeRoute("{*tags}")]
-        public ActionResult RouteHandler(string[] tags)
+        public ActionResult RouteHandler(string[] tags, int? jobid)
         {
+            // Always jobid has high priority
+            if (jobid.HasValue)
+                return Index(jobid.Value);
+
             if (Request.IsAjaxRequest()) // Ajax calls
             {
                 if (tags != null && tags.Length > 0)

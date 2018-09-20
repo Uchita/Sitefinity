@@ -145,25 +145,40 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             foreach(var item in jobResponse.SearchResults)
             {
-                // Processing Classifications
-                OrderedDictionary classifOrdDict = new OrderedDictionary();
-                classifOrdDict.Add(item.CustomData["Classifications[0].Filters[0].ExternalReference"], item.CustomData["Classifications[0].Filters[0].Value"]);
-                string parentClassificationsKey = "Classifications[0].Filters[0].SubLevel[0]";
-                JobDetailsViewModel.ProcessCustomData(parentClassificationsKey, item.CustomData, classifOrdDict);
-                OrderedDictionary classifParentIdsOrdDict = new OrderedDictionary();
-                JobDetailsViewModel.AppendParentIds(classifOrdDict, classifParentIdsOrdDict);
+                List<OrderedDictionary> classificationItemsList = new List<OrderedDictionary>();
+                item.ClassificationsRootName = "Classifications";
 
-                List<string> seoString = new List<string>();
-                foreach(var key in classifParentIdsOrdDict.Keys)
+                // Assuming the maximum ten parents the job will be posted
+                for (int i = 0; i < 10; i++)
                 {
-                    string value = classifParentIdsOrdDict[key].ToString();
-                    string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
-                    seoString.Add(SEOString);
+                    string key = "Classifications[0].Filters[" + i + "].ExternalReference";
+                    string value = "Classifications[0].Filters[" + i + "].Value";
+                    string parentClassificationsKey = "Classifications[0].Filters["+i+"].SubLevel[0]";
+                    if (item.CustomData.ContainsKey(key))
+                    {
+                        OrderedDictionary classifOrdDict = new OrderedDictionary();
+                        classifOrdDict.Add(item.CustomData[key], item.CustomData[value]);
+                        JobDetailsViewModel.ProcessCustomData(parentClassificationsKey, item.CustomData, classifOrdDict);
+                        OrderedDictionary classifParentIdsOrdDict = new OrderedDictionary();
+                        JobDetailsViewModel.AppendParentIds(classifOrdDict, classifParentIdsOrdDict);
+                        classificationItemsList.Add(classifParentIdsOrdDict);
+                        item.Classifications = classificationItemsList;
+                    }
                 }
 
-                item.Classifications = classifParentIdsOrdDict;
-                item.ClassificationsRootName = "Classifications";
-                item.ClassificationsSEORouteName = String.Join("/", seoString);
+                // Take the first item in the list as SEO route for Job Details page
+                if (item.Classifications.Count > 0)
+                {
+                    List<string> seoString = new List<string>();
+                    foreach (var key in item.Classifications[0].Keys)
+                    {
+                        string value = item.Classifications[0][key].ToString();
+                        string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
+                        seoString.Add(SEOString);
+                    }
+
+                    item.ClassificationsSEORouteName = String.Join("/", seoString);
+                }
             }
 
             return new JsonResult { Data = jobResponse };

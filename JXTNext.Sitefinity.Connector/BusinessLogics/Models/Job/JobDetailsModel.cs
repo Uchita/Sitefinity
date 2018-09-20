@@ -32,7 +32,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job
         public string Address { get; set; }
         public float AddressLatitude { get; set; }
         public float AddressLongtitude { get; set; }
-        public OrderedDictionary Classifications { get; set; }
+        public List<OrderedDictionary> Classifications { get; set; }
         public string ClassificationsRootName { get; set; }
         public string ClassificationsSEORouteName { get; set; }
 

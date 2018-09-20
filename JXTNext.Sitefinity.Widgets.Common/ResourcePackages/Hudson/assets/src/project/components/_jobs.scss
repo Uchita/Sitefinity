@@ -181,7 +181,7 @@
 .job-offer {
 
     &-details {
-
+        padding-right: 40px;
         table {
             margin: 30px 0;
             width: 100%;
@@ -234,6 +234,17 @@
                 left: 0;
                 color: $job-sidebar-icon-color;
             }
+        }
+    }
+
+    &-apply{
+        max-width: 400px;
+    }
+    @media (max-width:991px) {
+    
+        &-details {
+            padding-right: 0;
+            margin-bottom: 40px;
         }
     }
 }
@@ -306,6 +317,22 @@
                 .link-default{
                     font-size: 1.4rem;
                 }   
+            }
+
+            .jobCatHirarchy{
+                padding-top: 10px;
+                .jobCatItem{
+                   display: block;
+                    a{ 
+                        &::after{
+                            content: ">";
+                            padding-left: 4px;
+                        }
+                        &:last-child::after{
+                            content: "";
+                        }
+                    }
+                }
             }
 
             &:hover {

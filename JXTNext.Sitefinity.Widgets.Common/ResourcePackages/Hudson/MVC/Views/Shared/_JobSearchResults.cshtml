@@ -67,18 +67,20 @@
 
                 </div>
             </div>
-            <div class="row">
+            <div class="row jobCatHirarchy">
                 <div class="col-xs-12">
                     # $.each(Classifications, function(index, item){#
-                    <div>
+                    <small class="jobCatItem">
+                   
                     # for (var key in item) {#
                     # if(key.length >= 32){#
                     # var hrefLink = '';#
+                    
                     # hrefLink = '@ViewBag.CurrentPageUrl' + '?Filters[0].rootId=' + ClassificationsRootName + '&Filters[0].values=' + key;#
                     <a href=#:hrefLink#>#:item[key]#</a>
                     #}#
                     #}#
-                    </div>
+                    </small>
                     #});#
                 </div>
             </div>

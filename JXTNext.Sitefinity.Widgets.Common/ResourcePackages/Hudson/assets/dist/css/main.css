@@ -9666,6 +9666,15 @@ ul.breadcrumb {
     padding: 15px; }
     .page-wrapper .search-results .search-result .search-result-description .link-default {
       font-size: 1.4rem; }
+  .page-wrapper .search-results .search-result .jobCatHirarchy {
+    padding-top: 10px; }
+    .page-wrapper .search-results .search-result .jobCatHirarchy .jobCatItem {
+      display: block; }
+      .page-wrapper .search-results .search-result .jobCatHirarchy .jobCatItem a::after {
+        content: ">";
+        padding-left: 4px; }
+      .page-wrapper .search-results .search-result .jobCatHirarchy .jobCatItem a:last-child::after {
+        content: ""; }
   .page-wrapper .search-results .search-result:hover {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.42); }
     .page-wrapper .search-results .search-result:hover .search-result-top {

@@ -210,7 +210,7 @@
                     filterModel.Salary = salary;
                 }
 
-                filterModel.Keywords = $("#selectedkeywordsfilter").val();
+                filterModel.Keywords = encodeURIComponent($("#selectedkeywordsfilter").val());
                 filterModel.SortBy = $("#sortOrder").val();// We need to persist the sort order selected in job search results
                 var data = { filterModel: filterModel }
                 var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";

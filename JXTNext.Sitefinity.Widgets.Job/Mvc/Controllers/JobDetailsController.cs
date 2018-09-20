@@ -65,10 +65,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         [RelativeRoute("{*tags}")]
         public ActionResult RouteHandler(string[] tags, int? jobid)
         {
-            // Always jobid has high priority
-            if (jobid.HasValue)
-                return Index(jobid.Value);
-
             if (Request.IsAjaxRequest()) // Ajax calls
             {
                 if (tags != null && tags.Length > 0)
@@ -96,6 +92,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
             else // Non-Ajax calls
             {
+                if (jobid.HasValue)
+                    return Index(jobid.Value);
+
                 if (tags != null && tags.Length > 0)
                 {
                     string urlRoute = tags.FirstOrDefault();

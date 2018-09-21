@@ -490,7 +490,7 @@
         margin-bottom: 0;
     } 
 }
-.save-icon, .applied-icon{
+.save-icon, .applied-icon, .alert-icon{
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -499,10 +499,15 @@
     background-size: 40px auto;
     position: relative;
     top: 7px;
+    color: #219fa3;
 }
 .save-icon{
     background-image: url('../images/saved-jobs.png');
 }
 .applied-icon{
     background-image: url('../images/applied-jobs.png');
+}
+.alert-icon{
+    top: 1px;
+    left: 5px;
 }

@@ -9317,14 +9317,11 @@ ul.breadcrumb {
   .page-wrapper .login-form .forgot-password {
     padding-left: 0px; }
     .page-wrapper .login-form .forgot-password a {
-      font-size: 1.4rem;
-      color: #858585; }
+      font-size: 1.4rem; }
       .page-wrapper .login-form .forgot-password a:hover, .page-wrapper .login-form .forgot-password a:focus {
         color: #01a3a4; }
-  .page-wrapper .login-form .checkbox a {
-    color: #858585; }
-    .page-wrapper .login-form .checkbox a:hover, .page-wrapper .login-form .checkbox a:focus {
-      color: #01a3a4; }
+  .page-wrapper .login-form .checkbox a:hover, .page-wrapper .login-form .checkbox a:focus {
+    color: #01a3a4; }
   .page-wrapper .login-form .btn-block {
     margin-top: 10px; }
   .page-wrapper .login-form .basic-form .checkbox {

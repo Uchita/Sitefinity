@@ -679,6 +679,14 @@ img, iframe {
 .mb-40{
     margin-bottom: 40px;
 }
+.no-marg-top{ margin-top: 0!important; }
+.no-marg-btm{ margin-bottom: 0!important; }
+.visible-hidden {
+    visibility: hidden;
+    opacity: 0;
+    height: 1px;
+    min-height: 1px!important;
+}
 
 .section-title {
     margin-bottom: 20px;

@@ -32,7 +32,8 @@
                                 <label class="form-label" for="userid">Email*</label>
                             </div>
                             <div class="col-md-8">
-                                <input id="userid" type="text" name="Email" class="form-control" required placeholder="Enter email address to begin" autocomplete="email" />
+                                <input id="userid" type="text" name="Email" class="form-control" required placeholder="Enter email address to begin" autocomplete="email" onfocus="this.removeAttribute('readonly');" readonly />
+                                <small class="welcome-message hidden">Welcome back!</small>
                             </div>
                         </div>
                     </div>
@@ -80,9 +81,7 @@
                                     <em>Password must contain 8 characters or more, 1 uppercase letter, 1 lowercase letter and 1 number</em>
                                 </span>
                                 <div id="forgot-password" class="form-group forgot-password hidden">
-                                    <em>
                                         <br /><a href="/sign-in/ForgotPassword/">Forgot password?</a>
-                                    </em>
                                 </div>
                             </div>
                         </div>
@@ -171,9 +170,9 @@
                             <label class="col-xs-12 col-md-4"></label>
                             <div class="col-xs-12 col-md-8">
                                 <div class="checkbox clearfix">
-                                    <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="Please agree to our privacy policy" oninvalid="this.setCustomValidity('Please agree to our privacy policy')" oninput="this.setCustomValidity('')">
+                                    <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="Please agree to Hudson's privacy policy" oninvalid="this.setCustomValidity('Please agree to Hudson&apos;s privacy policy')" oninput="this.setCustomValidity('')">
                                     <span class="checkbox-icon fas fa-check"></span>
-                                    I agree to Hudson <a href="/privacy-policy" target="_blank" style="text-decoration:underline; color:#000;">Privacy Policy</a>
+                                    I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
                                 </div>
                                 <input id="apply" type="submit" value="Apply Now" class="btn btn-block btn-primary" disabled />
                             </div>
@@ -217,7 +216,6 @@
      var appStatus = '@Model.ApplicationStatus';
      var isUserLoggedIn = '@ViewBag.IsUserLoggedIn';
      var registerForm = false;
-
 
 
      function validateEmail(elementValue) {
@@ -315,7 +313,6 @@
              }
          });
 
-
          if (appStatus == 'Available' && isUserLoggedIn == 'True') {
              $('#login-register-container').hide();
              $('#apply').removeAttr('disabled');
@@ -376,8 +373,9 @@
                             $('#password-reg').prop('title', "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters");
                             $('#password-guide').removeClass('hidden');
                             $('#strength-wrap').show();
-                            $('#password-reg').attr('placeholder', "Choose your password");
+                            $('#password-reg').attr('placeholder', "Choose your password").val('');
                             $('.loginwith_socialmedia').hide();
+                            $('.welcome-message').addClass('hidden');
                         }
                         //this is to show the password field
                         else {
@@ -392,6 +390,8 @@
                             $('#password-guide').addClass('hidden');
                             $('#password-reg').attr('placeholder', "Enter your password");
                             $('.loginwith_socialmedia').show();
+                            $('.welcome-message').removeClass('hidden');
+
                         }
                         $('#upload-files-container').show();
                         $('#apply').removeAttr('disabled');

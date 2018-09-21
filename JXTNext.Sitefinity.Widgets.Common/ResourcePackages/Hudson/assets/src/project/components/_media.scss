@@ -1092,6 +1092,15 @@
                 white-space: nowrap;
             }
         }
+
+        .apply-with, .sign-in-with{
+            ul {
+                li {
+                    float: none;
+                    margin-right: 0;
+                }
+            }
+        }
     }
 
     .job-search {

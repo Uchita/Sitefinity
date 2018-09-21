@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="col-md-8">
 
-                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", placeholder = "Enter your email address", required = "required" })
+                                    @Html.TextBoxFor(m => m.Email, new { @id = "userid", @class = "form-control", type = "email", placeholder = "Enter your email address", required = "required" })
 
                                     @if (Html.ValidationMessageFor(m => m.Email) != null)
                                     {

@@ -277,6 +277,14 @@ $(document).ready(function () {
         }
     }
 
+    if( $('input[type="password"]').length ){
+        $('#userid').change(function(){
+            if( $(this).val() == "" ){
+                $('input[type="password"]').val("");
+            }
+        });
+    }
+
 });
 
 $(window).resize(function () {

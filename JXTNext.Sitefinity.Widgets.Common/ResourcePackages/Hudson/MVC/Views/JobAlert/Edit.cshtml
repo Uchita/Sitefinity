@@ -8,18 +8,19 @@
 @Html.Script(Url.WidgetContent("/Mvc/Scripts/jquery.nstSlider.js"))
 @Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/rangeSlider.css"))
 
-<h1>Edit job alert</h1>
+<h2><span class="alert-icon far fa-bell"></span>Edit job alert</h2>
 
-<h2>Alert details</h2>
+<h3>Alert details</h3>
 
 @if (Model != null)
 {
 <form method="post" action="@Url.Action("Edit","JobAlert")" onsubmit="return preventSubmit();">
     @{
         int counter = 0;
+        var privacyErrMsg = "Please agree to Hudson's privacy policy";
     }
 
-    <div class="field-wrapper">
+    <div class="field-wrapper basic-form no-marg-top">
         <div class="row form-group">
             <div class="col-md-4 text-right">
                 <label for="name">Name*</label>
@@ -27,11 +28,6 @@
             <div class="col-md-8">
                 <input type="hidden" name="Id" value="@Model.Id" />
                 <input type="text" name="Name" id="name" required value="@Model.Name" class="form-control" />
-
-                <div class="form-fields-group">
-                    <input type="checkbox" name="EmailAlerts" value="true" checked="@Model.EmailAlerts" /> <label class="lbl">Send email alerts</label>
-                </div>
-
             </div>
         </div>
 
@@ -44,91 +40,101 @@
             </div>
         </div>
 
-    
-    @foreach (var item in Model.Data)
-    {
-        if (item.Name != "Salary" && item.Name != "CompanyName")
+
+        @foreach (var item in Model.Data)
         {
-            <div class="row form-group">
-                <div class="col-md-4 text-right">
-                    @{
-                        var displayTitle = item.Name;
-                        if (displayTitle == "CountryLocationArea")
-                        {
-                            displayTitle = "Location";
+            if (item.Name != "Salary" && item.Name != "CompanyName")
+            {
+                <div class="row form-group">
+                    <div class="col-md-4 text-right">
+                        @{
+                            var displayTitle = item.Name;
+                            if (displayTitle == "CountryLocationArea")
+                            {
+                                displayTitle = "Location";
+                            }
+                            else if (displayTitle == "WorkType")
+                            {
+                                displayTitle = "Work Type";
+                            }
+                            else if (displayTitle == "CompanyName")
+                            {
+                                displayTitle = "Company Name";
+                            }
                         }
-                        else if (displayTitle == "WorkType")
-                        {
-                            displayTitle = "Work Type";
-                        }
-                        else if (displayTitle == "CompanyName")
-                        {
-                            displayTitle = "Company Name";
-                        }
-                    }
-                    <label>@displayTitle</label>
+                        <label>@displayTitle</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="hidden" name="Filters[@counter].RootId" value='@item.Name' />
+                        <select id=@string.Format("selected-{0}", item.Name) name="Filters[@counter].Values" style="display:none" multiple class="form-control"></select>
+                        <div class="dropdown dropdown-tree" id=@item.Name></div>
+                    </div>
                 </div>
-                <div class="col-md-8">
-                    <input type="hidden" name="Filters[@counter].RootId" value='@item.Name' />
-                    <select id=@string.Format("selected-{0}", item.Name) name="Filters[@counter].Values" style="display:none" multiple class="form-control"></select>
-                    <div class="dropdown dropdown-tree" id=@item.Name></div>
-                </div>
-            </div>
-            counter++;
-        }
-        else if (item.Name == "Salary")
-        {
-            <div class="row form-group">
-                <div class="col-md-4 text-right">
-                    <label>@item.Name</label>
-                </div>
-                <div class="col-md-8">
-                    <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden" />
-                    <select class="SalaryRangeSelect form-control">
-                        <option value="-1" selected>Choose Salary</option>
+                counter++;
+            }
+            else if (item.Name == "Salary")
+            {
+                <div class="row form-group">
+                    <div class="col-md-4 text-right">
+                        <label>@item.Name</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden" />
+                        <select class="SalaryRangeSelect form-control">
+                            <option value="-1" selected>Choose Salary</option>
+                            @foreach (var salaryItem in item.Filters)
+                            {
+                                <option value="@salaryItem.ID">@salaryItem.Label</option>
+                            }
+                        </select>
                         @foreach (var salaryItem in item.Filters)
                         {
-                            <option value="@salaryItem.ID">@salaryItem.Label</option>
-                        }
-                    </select>
-                    @foreach (var salaryItem in item.Filters)
-                    {
-                        var lower = 15000;
-                        var upper = 200000;
-                        if (salaryItem.Label == "Hourly Salary")
-                        {
-                            lower = 18;
-                            upper = 200;
-                        }
-                        <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
+                            var lower = 15000;
+                            var upper = 200000;
+                            if (salaryItem.Label == "Hourly Salary")
+                            {
+                                lower = 18;
+                                upper = 200;
+                            }
+                            <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
 
-                            <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
-                                 data-cur_min="@lower" data-cur_max="@upper">
+                                <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
+                                     data-cur_min="@lower" data-cur_max="@upper">
 
-                                <div class="bar"></div>
-                                <div class="leftGrip"></div>
-                                <div class="rightGrip"></div>
+                                    <div class="bar"></div>
+                                    <div class="leftGrip"></div>
+                                    <div class="rightGrip"></div>
+                                </div>
+                                <div class="leftLabel">$<span>@lower</span></div>
+                                <div class="rightLabel">$<span>@upper</span></div>
+
                             </div>
-                            <div class="leftLabel">$<span>@lower</span></div>
-                            <div class="rightLabel">$<span>@upper</span></div>
 
-                        </div>
-
-                    }
+                        }
+                    </div>
+                </div>
+            }
+        }
+        <div class="row form-group">
+            <div class="col-md-4 text-right"></div>
+            <div class="col-md-8">
+                <div class="checkbox clearfix">
+                    <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" checked required title="@privacyErrMsg" oninvalid='this.setCustomValidity("@privacyErrMsg")' oninput="this.setCustomValidity('')">
+                    <span class="checkbox-icon fas fa-check"></span>
+                    I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
                 </div>
             </div>
-        }
-    }
-
-    <div class="row form-group">
-        <div class="col-md-4 text-right"></div>
-        <div class="col-md-4">
-            <input type="submit" value="SAVE" class="btn btn-primary" />
         </div>
-    </div>
+        <div class="row form-group">
+            <div class="col-md-4 text-right"></div>
+            <div class="col-md-8">
+                <input type="submit" value="SAVE" class="btn btn-primary" />
+                <a href="/user-dashboard" class="btn btn-primary">Cancel</a>
+            </div>
+        </div>
 
-    
-    @*@Html.ActionLink("SEARCH", "ViewResults", "JobAlert", new { id = Model.Id }, null)
+
+        @*@Html.ActionLink("SEARCH", "ViewResults", "JobAlert", new { id = Model.Id }, null)
         @Html.ActionLink("DELETE", "Delete", "JobAlert", new { id = Model.Id }, new { onclick = "return confirmDelete();" })*@
     </div>
 </form>
@@ -233,8 +239,7 @@
         
         if (model != null && model != "undefined") {
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
-
-            for (var item of filterData.Data) {
+            $.each(filterData.Data, function (index, item) {
                 var displayTitle = item.Name;
                 if (displayTitle == 'CountryLocationArea')
                     displayTitle = 'Location';
@@ -256,7 +261,7 @@
                     prefixIdText: ''
                 };
                 $("#" + item.Name).DropDownTree(optionsArray[item.Name]);
-            }
+            });
         }
     });
 </script>

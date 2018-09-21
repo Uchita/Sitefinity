@@ -105,7 +105,7 @@
                             </div>
                         </div>
                     }
-                    <div class="col-xs-2 col-sm-4 col-md-4 text-right">
+                    <div class="col-xs-2 pull-right text-right">
                         <a class="filter-job-close" data-filter-trigger="close"><em class="fas fa-times"></em></a>
                     </div>
                 </div>
@@ -171,8 +171,7 @@
         if (model != null && @Html.Raw(json) != "undefined") {
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
 
-
-            for (var item of filterData) {
+            $.each(filterData, function (index, item){
                 switch (item.ControlType) {
                     case 'TextBox':
                         break;
@@ -193,7 +192,7 @@
                     default:
                         break;
                 }
-            }
+            });
         }
    });
 </script>

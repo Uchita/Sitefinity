@@ -35,11 +35,13 @@ ThemeGlobal.JobsFilterToggle = function (target) {
             $(".filter.filter-active").removeClass("filter-active");
             $(".filter-job-close").hide();
         });
-        //if not target obj is active
+        //if target obj is not active
     } else if (!targetEl.is(activeEl)) {
+        
         activeEl.toggleClass("active").slideToggle();
         targetEl.toggleClass("active").slideToggle();
     } else if( targetEl.is(activeEl) ){
+        $(".filter-job-close").hide();
         targetEl.toggleClass("active").slideToggle();
     }
 

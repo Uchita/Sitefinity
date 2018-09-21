@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <input type="text" name="LastName" class="form-control" placeholder="Last name" required />
+                                        <input type="text" id="lastname-reg" name="LastName" class="form-control" placeholder="Last name" />
                                     </div>
                                 </div>
                             </div>
@@ -96,6 +96,16 @@
                                 </div>
                             </div>*@
                         <!-- Password strenght -->
+
+                        <div class="row form-group reg-field hidden">
+                            <div class="col-md-4 text-right">
+                                <label class="form-label" for="ReTypePassword">Repeat Password*</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input id="ReTypePassword" type="password" name="ReTypePassword" class="form-control" placeholder="Retype your password" required />
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
@@ -110,7 +120,7 @@
 
                         <!-- Resume -->
                         <div class="form-group row">
-                            <label class="form-label col-xs-12 col-md-4 text-right">upload your cv *</label>
+                            <label class="form-label col-xs-12 col-md-4 text-right">upload your cv*</label>
                             <div class="col-xs-12 col-md-8">
                                 <div class="box clearfix text-center">
                                     <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
@@ -170,7 +180,7 @@
                             <label class="col-xs-12 col-md-4"></label>
                             <div class="col-xs-12 col-md-8">
                                 <div class="checkbox clearfix">
-                                    <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="Please agree to Hudson's privacy policy" oninvalid="this.setCustomValidity('Please agree to Hudson&apos;s privacy policy')" oninput="this.setCustomValidity('')">
+                                    <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="Please agree to Hudson's privacy policy" oninvalid='this.setCustomValidity("Please agree to Hudson&apos;s privacy policy")' oninput="this.setCustomValidity('')">
                                     <span class="checkbox-icon fas fa-check"></span>
                                     I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
                                 </div>
@@ -369,11 +379,15 @@
                             registerForm = true;
                             $('#password-reg').prop('required', true);
                             $('#firstname-reg').prop('required', true);
+                            $('#lastname-reg').prop('required', true);
+                           
                             $('#password-reg').prop('pattern', "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
                             $('#password-reg').prop('title', "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters");
                             $('#password-guide').removeClass('hidden');
                             $('#strength-wrap').show();
                             $('#password-reg').attr('placeholder', "Choose your password").val('');
+                            $('#forgot-password').addClass('hidden');
+                            $('.reg-field').removeClass('hidden');
                             $('.loginwith_socialmedia').hide();
                             $('.welcome-message').addClass('hidden');
                         }
@@ -383,10 +397,12 @@
                             $('#firstname-lastname').attr('hidden', 'true');
                             registerForm = false;
                             $('#firstname-reg').prop('required', false);
+                            $('#lastname-reg').prop('required', false);
                             $('#password-reg').removeAttr('pattern');
                             $('#password-reg').removeAttr('title');
                             $('#password-reg').prop('required', true);
                             $('#forgot-password').removeClass('hidden');
+                            $('.reg-field').addClass('hidden');
                             $('#password-guide').addClass('hidden');
                             $('#password-reg').attr('placeholder', "Enter your password");
                             $('.loginwith_socialmedia').show();
@@ -413,6 +429,17 @@
          $('#password-reg').keyup(function () {
              if (registerForm) {
                  runPassword($(this).val());
+             }
+         });
+         $('#ReTypePassword').keydown(function () {
+             $(this).next('.alert').remove();
+         });
+         $('#ReTypePassword').blur(function () {
+             var pwVal = $('#password-reg').val();
+             if (pwVal != "") {
+                 if (pwVal != $(this).val()) {
+                     $(this).after("<div class='alert alert-danger'><small>Password does not matched with Repeat password.</small></div>");
+                 }
              }
          });
 

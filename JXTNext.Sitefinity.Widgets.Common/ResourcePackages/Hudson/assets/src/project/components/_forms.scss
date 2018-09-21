@@ -132,7 +132,7 @@
             a {
                 font-size: 1.4rem;
                 // font-style: italic;
-                color: #858585;
+                // color: #858585;
 
                 &:hover, &:focus {
                     color: $global-highlight-color;
@@ -141,7 +141,7 @@
         }
         .checkbox {
             a{
-                color: #858585;
+                // color: #858585;
                 &:hover, &:focus {
                     color: $global-highlight-color;
                 }

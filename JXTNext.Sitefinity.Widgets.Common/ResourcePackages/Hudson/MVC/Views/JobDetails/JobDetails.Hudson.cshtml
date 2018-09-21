@@ -45,7 +45,8 @@
                                         List<string> locationsDisplay = new List<string>();
                                         foreach (var item in @Model.Locations.Keys)
                                         {
-                                            locationsDisplay.Add(Model.Locations[item].ToString());
+                                            string locHREFLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewBag.JobResultsPageUrl, @Model.LocationsRootName, @item.ToString());
+                                            locationsDisplay.Add(@"<a href=""" + locHREFLink + @""" title=""" + Model.Locations[item] + @""">" + Model.Locations[item] + @"</a>");
                                         }
                                     }
                                     <span>@Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", locationsDisplay))</span>

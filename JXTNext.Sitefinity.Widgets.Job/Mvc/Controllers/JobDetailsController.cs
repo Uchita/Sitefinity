@@ -144,10 +144,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
                 // Processing Locations
                 OrderedDictionary locOrdDict = new OrderedDictionary();
-                classifOrdDict.Add(jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].ExternalReference"], jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"]);
+                locOrdDict.Add(jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].ExternalReference"], jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"]);
                 string parentLocKey = "CountryLocationArea[0].Filters[0].SubLevel[0]";
                 JobDetailsViewModel.ProcessCustomData(parentLocKey, jobListingResponse.Job.CustomData, locOrdDict);
-                
+                OrderedDictionary locParentIdsOrdDict = new OrderedDictionary();
+                JobDetailsViewModel.AppendParentIds(locOrdDict, locParentIdsOrdDict);
+
                 DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.DateCreated), TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time"));
                 DateTime utcTime = ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.DateCreated);
                 DateTime elocalTime;
@@ -164,8 +166,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
 
                 viewModel.Classifications = classifParentIdsOrdDict;
-                viewModel.Locations = locOrdDict;
+                viewModel.Locations = locParentIdsOrdDict;
                 viewModel.ClassificationsRootName = "Classifications";
+                viewModel.LocationsRootName = "CountryLocationArea";
 
                 ViewBag.CssClass = this.CssClass;
                 ViewBag.JobApplicationPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationPageId);

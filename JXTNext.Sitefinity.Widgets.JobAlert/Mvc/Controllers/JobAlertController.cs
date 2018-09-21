@@ -13,6 +13,7 @@ using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Logics;
 using Telerik.Sitefinity.Security.Claims;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
+using System.Web;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -238,7 +239,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         static string ToQueryString(JobAlertViewModel jobAlertDetails)
         {
             List<string> queryParamsStringList = new List<string>();
-            queryParamsStringList.Add("Keywords=" + jobAlertDetails.Keywords);
+            // Encode the URL string
+            // Why replacing single quote with %27?
+            // To be inconsistent with JavaScript encodeURIComponent in the front end.
+            queryParamsStringList.Add("Keywords=" + Uri.EscapeDataString(jobAlertDetails.Keywords).Replace("'", "%27"));
                        
             if (jobAlertDetails.Filters != null)
             {

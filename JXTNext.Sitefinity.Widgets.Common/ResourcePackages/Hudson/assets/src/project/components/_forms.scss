@@ -131,12 +131,19 @@
             padding-left: 0px;
             a {
                 font-size: 1.4rem;
-                font-style: italic;
-                color: #b5b5b5;
+                // font-style: italic;
+                color: #858585;
 
                 &:hover, &:focus {
-                    color: #858585;
-                    text-decoration: none;
+                    color: $global-highlight-color;
+                }
+            }
+        }
+        .checkbox {
+            a{
+                color: #858585;
+                &:hover, &:focus {
+                    color: $global-highlight-color;
                 }
             }
         }
@@ -338,6 +345,8 @@
 
             li {
                 margin-bottom: 5px;
+                margin-right: 10px;
+                float: left;
 
                 .btn {
                     height: 35px;
@@ -368,6 +377,21 @@
         }
     }
     /*#endregion Social*/
+}
+
+#userid[readonly]{
+    background: none;
+}
+.welcome-message {
+    padding: 2px 0px;
+    display: block;
+    font-size: 1.4rem;
+    color: #ff9000;
+    &::before {
+        content: '\f4fc';
+        font: 700 1.2rem/1 'Font Awesome 5 Free';
+        margin-right: 6px;
+    }
 }
 
 /*#endregion Log in/Sign in/Apply*/

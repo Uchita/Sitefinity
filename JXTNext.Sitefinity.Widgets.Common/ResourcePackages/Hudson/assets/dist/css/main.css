@@ -7740,6 +7740,18 @@ img, iframe {
 .mb-40 {
   margin-bottom: 40px; }
 
+.no-marg-top {
+  margin-top: 0 !important; }
+
+.no-marg-btm {
+  margin-bottom: 0 !important; }
+
+.visible-hidden {
+  visibility: hidden;
+  opacity: 0;
+  height: 1px;
+  min-height: 1px !important; }
+
 .section-title {
   margin-bottom: 20px; }
 
@@ -9306,11 +9318,13 @@ ul.breadcrumb {
     padding-left: 0px; }
     .page-wrapper .login-form .forgot-password a {
       font-size: 1.4rem;
-      font-style: italic;
-      color: #b5b5b5; }
+      color: #858585; }
       .page-wrapper .login-form .forgot-password a:hover, .page-wrapper .login-form .forgot-password a:focus {
-        color: #858585;
-        text-decoration: none; }
+        color: #01a3a4; }
+  .page-wrapper .login-form .checkbox a {
+    color: #858585; }
+    .page-wrapper .login-form .checkbox a:hover, .page-wrapper .login-form .checkbox a:focus {
+      color: #01a3a4; }
   .page-wrapper .login-form .btn-block {
     margin-top: 10px; }
   .page-wrapper .login-form .basic-form .checkbox {
@@ -9423,7 +9437,9 @@ ul.breadcrumb {
   .page-wrapper .apply-with ul, .page-wrapper .sign-in-with ul {
     padding-left: 0; }
     .page-wrapper .apply-with ul li, .page-wrapper .sign-in-with ul li {
-      margin-bottom: 5px; }
+      margin-bottom: 5px;
+      margin-right: 10px;
+      float: left; }
       .page-wrapper .apply-with ul li .btn, .page-wrapper .sign-in-with ul li .btn {
         height: 35px;
         min-width: 120px;
@@ -9438,6 +9454,19 @@ ul.breadcrumb {
     .page-wrapper .apply-with.job-application-social ul li, .page-wrapper .sign-in-with.job-application-social ul li {
       float: left;
       margin-right: 10px; }
+
+#userid[readonly] {
+  background: none; }
+
+.welcome-message {
+  padding: 2px 0px;
+  display: block;
+  font-size: 1.4rem;
+  color: #ff9000; }
+  .welcome-message::before {
+    content: '\f4fc';
+    font: 700 1.2rem/1 'Font Awesome 5 Free';
+    margin-right: 6px; }
 
 /*#endregion Log in/Sign in/Apply*/
 .form-group .error-message {
@@ -9794,7 +9823,7 @@ ul.breadcrumb {
 .result-meta p {
   margin-bottom: 0; }
 
-.save-icon, .applied-icon {
+.save-icon, .applied-icon, .alert-icon {
   display: inline-block;
   width: 40px;
   height: 40px;
@@ -9802,13 +9831,18 @@ ul.breadcrumb {
   background-repeat: no-repeat;
   background-size: 40px auto;
   position: relative;
-  top: 7px; }
+  top: 7px;
+  color: #219fa3; }
 
 .save-icon {
   background-image: url("../images/saved-jobs.png"); }
 
 .applied-icon {
   background-image: url("../images/applied-jobs.png"); }
+
+.alert-icon {
+  top: 1px;
+  left: 5px; }
 
 /*#endregion Job offers */
 /*#region Articles/Insights */
@@ -11078,6 +11112,9 @@ ul.breadcrumb {
   .page-wrapper footer .postfooter-links a {
     font-size: 1.3rem;
     white-space: nowrap; }
+  .page-wrapper .apply-with ul li, .page-wrapper .sign-in-with ul li {
+    float: none;
+    margin-right: 0; }
   .job-search .filter-active a:after {
     content: none; }
   .job-search .filter-job-classification:before {

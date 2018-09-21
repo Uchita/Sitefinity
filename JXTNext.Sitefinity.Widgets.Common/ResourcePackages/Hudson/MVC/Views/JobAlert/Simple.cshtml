@@ -1,6 +1,40 @@
 ﻿@model List<JobAlertViewModel>
 @using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Models
 
+<h2><span class="alert-icon far fa-bell"></span>Job alerts</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
+                    @Html.ActionLink("Search", "ViewResults", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
+                    @Html.ActionLink("Delete", "Delete", "JobAlert", new { id = item.Id }, new { onclick = "return confirmDelete();", @class = "btn btn-sm btn-tag btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+else
+{
+    <div class="alert alert-info">You currently don't have any job alerts.</div>
+}
+
 
 @if (ViewBag.StatusMessage != null)
 {
@@ -16,54 +50,7 @@
 
 @Html.ActionLink("Create Job Alert", "Create", "JobAlert", new { @class = "btn" })
 
-<br />
-<br />
-@if (Model != null && Model.Count > 0)
-{
 
-    <table class="table table-bordered">
-        <tr>
-            <th>Name</th>
-            <th>Send Email Alerts</th>
-            @*<th>Last Modified</th>*@
-            <th>Action</th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @item.Name
-                </td>
-
-                <td>
-
-                    @if (item.EmailAlerts == true)
-                    {
-                        @Html.Raw("Yes")
-                    }
-                    else
-                    {
-                        @Html.Raw("No")
-                    }
-
-                </td>
-                @*<td id="@item.Id"></td>*@
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, new { @class="btn btn-sm btn-tag" })
-                    @Html.ActionLink("Search", "ViewResults", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
-                    @Html.ActionLink("Delete", "Delete", "JobAlert", new { id = item.Id }, new { onclick = "return confirmDelete();", @class = "btn btn-sm btn-tag btn-danger" })
-                </td>
-            </tr>
-        }
-
-    </table>
-}
-
-else
-{
-    <div class="alert alert-info">You currently don't have any job alerts.</div>
-}
 
 <script type="text/javascript">
 

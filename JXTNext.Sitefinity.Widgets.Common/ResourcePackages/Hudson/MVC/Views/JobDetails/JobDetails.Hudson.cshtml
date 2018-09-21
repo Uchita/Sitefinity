@@ -30,8 +30,8 @@
                     <h1>@Model.JobDetails.Title</h1>
                 </div>
                 @*<div class="col-md-4">
-                        <img alt="westpac-small" src="/images/default-source/clients/westpac-small.png?sfvrsn=cc5d3f6d_2" title="westpac-small">
-                    </div>*@
+                <img alt="westpac-small" src="/images/default-source/clients/westpac-small.png?sfvrsn=cc5d3f6d_2" title="westpac-small">
+            </div>*@
             </div><div class="row job-offer-summary">
                 <div class="col-md-12">
                     <table>
@@ -145,11 +145,20 @@
                         </tbody>
                     </table>
                 </div>
-            </div><div class="row job-offer-apply">
-                <div class="col-md-12">
-                    <a class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl?jobid=@Model.JobDetails.JobID">APPLY NOW</a>
-                </div>
             </div>
+            @if (ViewBag.IsJobApplied)
+            {
+                <div class="alert alert-info">You have already applied</div>
+            }
+            else
+            {
+                <div class="row job-offer-apply">
+                    <div class="col-md-12">
+                        <a class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl?jobid=@Model.JobDetails.JobID">APPLY NOW</a>
+                    </div>
+                </div>
+            }
+
         </div>
         @Html.Raw(ViewBag.GoogleForJobs)
     </div>

@@ -52,6 +52,11 @@
     /*-webkit-clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);
     clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);*/
     &.card-basic {
+        >a{
+            display: block;
+            max-height: 396px;
+            overflow: hidden;
+        }
         img, a > img {
             margin: 0;
             width: 100%

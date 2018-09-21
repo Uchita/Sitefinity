@@ -15,6 +15,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
         public OrderedDictionary Classifications { get; set; }
         public OrderedDictionary Locations { get; set; }
         public string ClassificationsRootName { get; set; }
+        public string LocationsRootName { get; set; }
 
         // CustomData is of Flat JSON, so we are getting the values as .Sublevel[0]
         // Process this until we find the key .Sublevel[0] as null

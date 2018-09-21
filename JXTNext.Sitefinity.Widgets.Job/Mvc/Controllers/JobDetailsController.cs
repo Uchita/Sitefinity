@@ -195,6 +195,22 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 viewModel.JobDetails.AddressLatitude = viewModel.JobDetails.AddressLatitude == null ? "" : viewModel.JobDetails.AddressLatitude;
                 viewModel.JobDetails.AddressLongtitude = viewModel.JobDetails.AddressLongtitude == null ? "" : viewModel.JobDetails.AddressLongtitude;
 
+                #region Check job already applied
+                ViewBag.IsJobApplied = false;
+                JXTNext_MemberAppliedJobResponse response = _BLConnector.MemberAppliedJobsGet() as JXTNext_MemberAppliedJobResponse;
+                if(response.Success)
+                {
+                    foreach (var item in response.MemberAppliedJobs)
+                    {
+                        if(item.JobId == jobId.Value)
+                        {
+                            ViewBag.IsJobApplied = true;
+                            break;
+                        }
+                    }
+                }
+                #endregion
+
                 return View(fullTemplateName, viewModel);
             }
 

@@ -242,7 +242,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             // Encode the URL string
             // Why replacing single quote with %27?
             // To be inconsistent with JavaScript encodeURIComponent in the front end.
-            queryParamsStringList.Add("Keywords=" + Uri.EscapeDataString(jobAlertDetails.Keywords).Replace("'", "%27"));
+            string encodeKeywords = jobAlertDetails.Keywords;
+            if (!encodeKeywords.IsNullOrEmpty())
+                encodeKeywords = Uri.EscapeDataString(jobAlertDetails.Keywords).Replace("'", "%27");
+
+            queryParamsStringList.Add("Keywords=" + encodeKeywords);
                        
             if (jobAlertDetails.Filters != null)
             {

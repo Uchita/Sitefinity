@@ -307,6 +307,7 @@ blockquote{
 
     .form-control {
         height: 40px;
+        color: #000;
     }
 
     .form-control,
@@ -555,7 +556,6 @@ blockquote{
     .link-default {
         &:hover, &:focus {
             color: $global-highlight-color;
-            text-decoration: none;
         }
     }
 

@@ -7456,7 +7456,8 @@ blockquote {
   .page-wrapper .form-group.label-hide label {
     visibility: hidden; }
   .page-wrapper .form-control {
-    height: 40px; }
+    height: 40px;
+    color: #000; }
   .page-wrapper .form-control,
   .page-wrapper input[type="text"],
   .page-wrapper input[type="date"],
@@ -7653,8 +7654,7 @@ blockquote {
   .page-wrapper .btn-sm, .page-wrapper .btn-group-sm > .btn {
     padding: 5px 10px; }
   .page-wrapper .link-default:hover, .page-wrapper .link-default:focus {
-    color: #01a3a4;
-    text-decoration: none; }
+    color: #01a3a4; }
   .page-wrapper .default-ul li {
     margin-top: 10px; }
   .page-wrapper .jumbotron-content .btn {
@@ -8964,7 +8964,7 @@ ul.breadcrumb {
   .thumbnail.card-basic .caption {
     position: relative;
     padding: 25px;
-    min-height: 216px;
+    min-height: 234px;
     font-size: 1.4rem;
     line-height: 1.3; }
     .thumbnail.card-basic .caption h3 {
@@ -10546,8 +10546,7 @@ ul.breadcrumb {
       margin-bottom: 10px;
       border-right: 1px solid #01a3a4; }
     .page-wrapper .login-form .basic-form .registration-link {
-      margin-top: 20px;
-      padding-right: 30px; }
+      margin-top: 20px; }
   .page-wrapper .reg-form .basic-form {
     margin-top: 0; }
     .page-wrapper .reg-form .basic-form .login-border {
@@ -10650,7 +10649,7 @@ ul.breadcrumb {
     header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu:nth-child(1) {
       display: none; } }
 
-@media (max-width: 1023px) {
+@media (max-width: 1024px) {
   #pager ul {
     position: static;
     transform: none;

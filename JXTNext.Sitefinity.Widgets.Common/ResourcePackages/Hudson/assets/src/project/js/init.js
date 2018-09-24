@@ -201,7 +201,8 @@ $(document).ready(function () {
     }
 
     $('.owl-contact-gallery').owlCarousel({
-        loop: true,
+        loop: false,
+        autoplay: true,
         margin: 15,
         responsive: {
             0: {
@@ -216,7 +217,7 @@ $(document).ready(function () {
         }
     });
     $('.owl-life-at-hudson').owlCarousel({
-        loop: true,
+        loop: false,
         margin: 15,
         responsive: {
             0: {
@@ -233,7 +234,7 @@ $(document).ready(function () {
     $('.owl-card-basic').each(function (i, obj) {
         if ($(this).children().length > 1) {
             $(this).owlCarousel({
-                loop: true,
+                loop: false,
                 margin: 15,
                 responsive: {
                     0: {
@@ -253,7 +254,7 @@ $(document).ready(function () {
     });
     $('.owl-carousel-jumbotron').owlCarousel({
         items: 1,
-        loop: true,
+        loop: false,
         nav: true,
         dots: false,
         navContainerClass: 'owl-nav'

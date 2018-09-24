@@ -63,7 +63,7 @@
                                     </label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" name="PhoneNumber" class="form-control" placeholder="Phone number" />
+                                    <input type="number" name="PhoneNumber" class="form-control" placeholder="Phone number" />
                                 </div>
                             </div>
                         </div>
@@ -102,7 +102,8 @@
                                 <label class="form-label" for="ReTypePassword">Repeat Password*</label>
                             </div>
                             <div class="col-md-8">
-                                <input id="ReTypePassword" type="password" name="ReTypePassword" class="form-control" placeholder="Retype your password" required />
+                                <input id="ReTypePassword" type="password" name="ReTypePassword" class="form-control" placeholder="Retype your password" />
+                                <div class='alert alert-danger error-message hidden'>Password does not matched with Repeat password.</div>
                             </div>
                         </div>
 
@@ -361,6 +362,7 @@
             var valid = validateEmail(emailId);
             var parm = { email: emailId };
             var urlPath = $(location).attr('pathname') + "/CheckUser";
+            $('.welcome-message').addClass('hidden');
             if (valid) {
                 $(this).css('color', '#000');
                 $.ajax({
@@ -380,6 +382,7 @@
                             $('#password-reg').prop('required', true);
                             $('#firstname-reg').prop('required', true);
                             $('#lastname-reg').prop('required', true);
+                            $('#ReTypePassword').prop('required', true);
                            
                             $('#password-reg').prop('pattern', "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
                             $('#password-reg').prop('title', "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters");
@@ -401,6 +404,8 @@
                             $('#password-reg').removeAttr('pattern');
                             $('#password-reg').removeAttr('title');
                             $('#password-reg').prop('required', true);
+                            $('#ReTypePassword').prop('required', false);
+
                             $('#forgot-password').removeClass('hidden');
                             $('.reg-field').addClass('hidden');
                             $('#password-guide').addClass('hidden');
@@ -428,19 +433,24 @@
 
          $('#password-reg').keyup(function () {
              if (registerForm) {
-                 runPassword($(this).val());
+                 //runPassword($(this).val());
              }
          });
-         $('#ReTypePassword').keydown(function () {
-             $(this).next('.alert').remove();
-         });
+       
          $('#ReTypePassword').blur(function () {
              var pwVal = $('#password-reg').val();
+             
              if (pwVal != "") {
                  if (pwVal != $(this).val()) {
-                     $(this).after("<div class='alert alert-danger'><small>Password does not matched with Repeat password.</small></div>");
+                     $(this).next(".alert").removeClass('hidden');
+                     $(this).addClass('error-field');
+                     registerForm = false;
+                 } else {
+                     $(this).next('.alert').addClass('hidden');
+                     $(this).removeClass('error-field');
+                     registerForm = true;
                  }
-             }
+             } 
          });
 
          function checkPassword(strPassword) {

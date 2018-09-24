@@ -1143,6 +1143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Sitefinity\" />
+    <Folder Include="ResourcePackages\Hudson\MVC\Views\Consultant\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminApp\assets\js\kendo-editor\kendo.custom.min.js.map" />

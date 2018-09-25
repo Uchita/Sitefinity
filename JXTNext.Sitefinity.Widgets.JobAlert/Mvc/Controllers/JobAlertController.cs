@@ -38,7 +38,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ViewBag.CssClass = this.CssClass;
             ViewBag.Status = TempData["StatusCode"];
             ViewBag.StatusMessage = TempData["StatusMessage"];
-            
+            ViewBag.IsMemberUser = SitefinityHelper.IsUserLoggedIn("Member");
+
             return View("Simple", jobAlertData);
         }
 
@@ -54,16 +55,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 && filtersResponse.Filters.Data != null)
                 dynamicFilterResponse = filtersResponse.Filters.Data as dynamic;
 
-            var isMembeUser = false;
-            // Only Members can create the job alert
-            if (SitefinityHelper.IsUserLoggedIn())
-            {
-                var currUser = SitefinityHelper.GetUserById(ClaimsManager.GetCurrentIdentity().UserId);
-                if (currUser != null)
-                    isMembeUser = SitefinityHelper.IsUserInRole(currUser, "Member");
-            }
-
-            ViewBag.IsMemberUser = isMembeUser;
+            ViewBag.IsMemberUser = SitefinityHelper.IsUserLoggedIn("Member");
            
             return View("Create", dynamicFilterResponse);
         }

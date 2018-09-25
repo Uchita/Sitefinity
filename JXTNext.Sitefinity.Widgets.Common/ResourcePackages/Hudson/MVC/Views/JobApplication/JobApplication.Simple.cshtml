@@ -77,24 +77,28 @@
                                 <span class="hidden alert alert-danger error-message wrongPassword-message">
                                     Your password is incorrect!
                                 </span>
+                                <span class="hidden alert alert-danger error-message emptyPassword-message">
+                                    Please enter password.
+                                </span>
                                 <span id="password-guide" class="text-muted">
                                     <em>Password must contain 8 characters or more, 1 uppercase letter, 1 lowercase letter and 1 number</em>
                                 </span>
                                 <div id="forgot-password" class="form-group forgot-password hidden">
-                                        <br /><a href="/sign-in/ForgotPassword/">Forgot password?</a>
+                                    <br /><a href="/sign-in/ForgotPassword/">Forgot password?</a>
                                 </div>
+                                <input type="button" id="sign-in-btn" class="form-group hidden btn btn-primary" data-jobid="@Model.JobId" value="Sign-In" />
                             </div>
                         </div>
 
                         <!-- Password strenght -->
                         @*<div class="row" id="strength-wrap" style="display:none;">
-                                <div class="col-md-4 text-right">
-                                    <label class="form-label" for="password-reg">Password strength</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <div id="password-strength"><span class="strengh-text"></span></div>
-                                </div>
-                            </div>*@
+                        <div class="col-md-4 text-right">
+                            <label class="form-label" for="password-reg">Password strength</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div id="password-strength"><span class="strengh-text"></span></div>
+                        </div>
+                    </div>*@
                         <!-- Password strenght -->
 
                         <div class="row form-group reg-field hidden">
@@ -110,6 +114,7 @@
                     </div>
 
                 </div>
+                <div class="alert alert-info hidden" id="already-applied-info">You have already applied for this job.</div>
             }
             <!-- Upload section -->
             <div class="upload-section">
@@ -186,6 +191,7 @@
                                     I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
                                 </div>
                                 <input id="apply" type="submit" value="Apply Now" class="btn btn-block btn-primary" disabled />
+
                             </div>
                         </div>
                     </div>
@@ -267,61 +273,11 @@
              }
 
              if ((appStatus == 'Available' && isUserLoggedIn == 'True') && fileUploadFlag || registerForm) {
-                 if (registerForm) {
+                 //if (registerForm) {
                      self.submit();
-                 }
-                 else {
-                     //for login email address & password check & submit login form
-                     var parm = { email: '', password: '', isUserLoggedIn:true };
-                     var urlPath = $(location).attr('pathname') + "/ValidateUser";
-                     $.ajax({
-                         type: 'POST',
-                         cache: false,
-                         url: urlPath,
-                         data: parm,
-                         dataType: 'Json',
-                         success: function (response) {
-                             if (response.IsUserVerified == true) { // User exists
-                                 if (response.IsUserMember == true) { // Member user
-                                     self.submit();
-                                 }
-                                 else {
-                                     alert("You should be a Member to apply for the job.")
-                                 }
-                             }
-                         },
-                         error: function (response) {
-                         }
-                     });
-                 }
-             } else {
-
-                 //for login email address & password check & submit login form
-                 var parm = { email: $('#userid').val(), password: $('#password-reg').val(), isUserLoggedIn: false };
-                 var urlPath = $(location).attr('pathname') + "/ValidateUser";
-                 $.ajax({
-                     type: 'POST',
-                     cache: false,
-                     url: urlPath,
-                     data: parm,
-                     dataType: 'Json',
-                     success: function (response) {
-                         if (response.IsUserVerified == true) { // User exists
-                             if (response.IsUserMember == true) { // Member user
-                                 self.submit();
-                             }
-                             else {
-                                 alert("You should be a Member to apply for the job.")
-                             }
-                         } else {
-                             //if password wrong
-                             $('#password-reg').parent().find('.error-message.wrongPassword-message').removeClass('hidden');
-                         }
-                     },
-                     error: function (response) {
-                     }
-                 });
-             }
+                 //}
+                 
+             } 
          });
 
          if (appStatus == 'Available' && isUserLoggedIn == 'True') {
@@ -354,7 +310,80 @@
             $("#coverletter-selected-type").val(coverLetterSelectedType);
             var coverletterBrowseName = document.getElementById("application-coverletter").files[0].name;
             $(".coverletter-name").text(coverletterBrowseName);
-        });
+         });
+
+         $('#sign-in-btn').click(function () {
+             $('#password-reg').parent().find('.error-message.emptyPassword-message').addClass('hidden');
+             $('#password-reg').parent().find('.error-message.wrongPassword-message').addClass('hidden');
+             if ($('#password-reg').val() == '' || $('#password-reg').val() == null || $('#password-reg').val() == 'undefined') {
+                 $('#password-reg').parent().find('.error-message.emptyPassword-message').removeClass('hidden');
+                 return true;
+             }
+
+             
+             var jobId = $(this).data("jobid");
+             //for login email address & password check & submit login form
+             var parm = { email: $('#userid').val(), password: $('#password-reg').val(), staySignedIn: true, isUserLoggedIn: false };
+             var urlPath = $(location).attr('pathname') + "/ValidateUser";
+             $.ajax({
+                 type: 'POST',
+                 cache: false,
+                 url: urlPath,
+                 data: parm,
+                 dataType: 'Json',
+                 success: function (response) {
+                     isUserLoggedIn = 'True';
+                     $('#password-reg').parent().find('.error-message.wrongPassword-message').addClass('hidden');
+                     // Once the user signed in , we need to know that the user is already applied for this job.
+                      if (response.IsUserSignedIn == true) {
+                            
+                             $.ajax({
+                                 type: 'POST',
+                                 cache: false,
+                                 url: $(location).attr('pathname') + "/IsJobApplied",
+                                 data: { jobId: jobId},
+                                 dataType: 'Json',
+                                 success: function (response) {
+                                     if (response == true) {
+                                         $('#login-register-container').hide();
+                                         $('#appFormState').hide();
+                                         $('#already-applied-info').removeClass('hidden');
+                                     }
+                                     else {
+                                         // Show upload files section
+                                         $('#login-register-container').hide();
+                                         $('#apply').removeAttr('disabled');
+                                         $('#userid').removeAttr('required');
+                                         $('#upload-files-container').show();
+                                         $('#appFormState').text('Upload your files');
+                                         $("#upload-files-container").show();
+                                     }
+                                 },
+                                 error: function (response) {
+                                 }
+                             });
+
+                         }
+                         else {
+                             if (response.IsUserVerified == true) { // User exists
+                                 if (response.IsUserMember == true) { // Member user
+                                     $("#upload-files-container").show();
+                                 }
+                                 else {
+                                     alert("You should be a Member to apply for the job.")
+                                 }
+                             } else {
+                                 //if password wrong
+                                 $('#password-reg').parent().find('.error-message.wrongPassword-message').removeClass('hidden');
+                             }
+
+                         }
+                 },
+                 error: function (response) {
+                 }
+             });
+
+         });
 
 
         $('#userid').keyup(function () {
@@ -363,6 +392,8 @@
             var parm = { email: emailId };
             var urlPath = $(location).attr('pathname') + "/CheckUser";
             $('.welcome-message').addClass('hidden');
+            $('#password-reg').parent().find('.error-message.emptyPassword-message').addClass('hidden');
+            $('#password-reg').parent().find('.error-message.wrongPassword-message').addClass('hidden');
             if (valid) {
                 $(this).css('color', '#000');
                 $.ajax({
@@ -372,7 +403,7 @@
                     data: parm,
                     dataType: 'Json',
                     success: function (response) {
-                        $("#upload-files-container").show();
+                        //$("#upload-files-container").show();
 
                         if (response == false) {
                             $('#register').show();
@@ -382,7 +413,6 @@
                             $('#password-reg').prop('required', true);
                             $('#firstname-reg').prop('required', true);
                             $('#lastname-reg').prop('required', true);
-                            $('#ReTypePassword').prop('required', true);
                            
                             $('#password-reg').prop('pattern', "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
                             $('#password-reg').prop('title', "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters");
@@ -393,6 +423,8 @@
                             $('.reg-field').removeClass('hidden');
                             $('.loginwith_socialmedia').hide();
                             $('.welcome-message').addClass('hidden');
+                            $('#ReTypePassword').prop('required', true);
+                            $('#sign-in-btn').addClass('hidden');
                         }
                         //this is to show the password field
                         else {
@@ -404,17 +436,17 @@
                             $('#password-reg').removeAttr('pattern');
                             $('#password-reg').removeAttr('title');
                             $('#password-reg').prop('required', true);
-                            $('#ReTypePassword').prop('required', false);
-
                             $('#forgot-password').removeClass('hidden');
                             $('.reg-field').addClass('hidden');
                             $('#password-guide').addClass('hidden');
                             $('#password-reg').attr('placeholder', "Enter your password");
                             $('.loginwith_socialmedia').show();
                             $('.welcome-message').removeClass('hidden');
+                            $('#ReTypePassword').prop('required', false);
+                            $('#sign-in-btn').removeClass('hidden');
 
                         }
-                        $('#upload-files-container').show();
+                        //$('#upload-files-container').show();
                         $('#apply').removeAttr('disabled');
                     },
                     error: function (response) {
@@ -436,10 +468,13 @@
                  //runPassword($(this).val());
              }
          });
-       
+         $('#ReTypePassword').keydown(function () {
+             $(this).next('.alert').remove();
+         });
+        
          $('#ReTypePassword').blur(function () {
              var pwVal = $('#password-reg').val();
-             
+
              if (pwVal != "") {
                  if (pwVal != $(this).val()) {
                      $(this).next(".alert").removeClass('hidden');
@@ -450,7 +485,7 @@
                      $(this).removeClass('error-field');
                      registerForm = true;
                  }
-             } 
+             }
          });
 
          function checkPassword(strPassword) {

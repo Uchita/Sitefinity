@@ -286,10 +286,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         [HttpPost]
-        public JsonResult ValidateUser(string email, string password, bool isUserLoggedIn)
+        public JsonResult ValidateUser(string email, string password, bool staySignedIn, bool isUserLoggedIn)
         {
             bool isUserVerified = true;
             bool isMemberUser = false;
+            bool isUserSignedIn = false;
+     
             if (!isUserLoggedIn)
             {
                 isUserVerified = SitefinityHelper.IsUserVerified(email, password);
@@ -308,16 +310,53 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     isMemberUser = SitefinityHelper.IsUserInRole(currUser, "Member");
             }
 
+            #region Entered Email exists in JXTNext Member list
+            if (isMemberUser)
+            {
+                //instantiate the Sitefinity user manager
+                //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
+                UserManager userManager = UserManager.GetManager();
+                if (userManager.ValidateUser(email, password))
+                {
+                    //if you need to get the user instance use the out parameter
+                    Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
+                    SecurityManager.AuthenticateUser(userManager.Provider.Name, email, password, staySignedIn, out userToAuthenticate);
+                    if (userToAuthenticate != null)
+                      isUserSignedIn = true;
+                }
+            }
+            #endregion
+
             var response = new
             {
                 IsUserVerified = isUserVerified,
-                IsUserMember = isMemberUser
-
+                IsUserMember = isMemberUser,
+                IsUserSignedIn = isUserSignedIn
             };
 
             return new JsonResult { Data = response };
         }
 
+        [HttpPost]
+        public JsonResult IsJobApplied( int jobId)
+        {
+            bool isJobApplied = false;
+
+            JXTNext_MemberAppliedJobResponse appliedJobresponse = _blConnector.MemberAppliedJobsGet() as JXTNext_MemberAppliedJobResponse;
+            if (appliedJobresponse.Success)
+            {
+                foreach (var item in appliedJobresponse.MemberAppliedJobs)
+                {
+                    if (item.JobId == jobId)
+                    {
+                        isJobApplied = true;
+                        break;
+                    }
+                }
+            }
+
+            return new JsonResult { Data = isJobApplied };
+        }
         private JobApplicationAttachmentSource GetAttachmentSourceType(string sourceType)
         {
             if (sourceType.ToUpper() == "DROPBOX")

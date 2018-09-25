@@ -72,9 +72,7 @@
                                 @if (Model.ShowForgotPasswordLink)
                                 {
                                     <div class="form-group forgot-password">
-                                        <em>
-                                            @Html.ActionLink(Html.Resource("ForgottenPasword"), "ForgotPassword")
-                                        </em>
+                                        @Html.ActionLink(Html.Resource("ForgottenPasword"), "ForgotPassword")
                                     </div>
                                 }
                                 @if (Model.ShowRememberMe)

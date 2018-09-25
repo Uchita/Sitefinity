@@ -48,11 +48,11 @@ else
     }
 }
 
-@Html.ActionLink("Create New Job Alert", "Create", "JobAlert", new { @class = "btn" })
+@Html.ActionLink("Create New Job Alert", "Create", "JobAlert", new { @class = "btn jobalert-btn" })
 
 
 
-        <script type="text/javascript">
+<script type="text/javascript">
 
     function confirmDelete() {
           if (confirm("Are you sure you want to delete this record?")) {
@@ -70,8 +70,19 @@ else
 
                 
           }
+
         var memberStatus = '@ViewBag.IsMemberUser';
-        console.log(memberStatus);
+        
+        //checking user logged in is member role
+        $('.jobalert-btn').click(function (e) {
+            
+            if (memberStatus.toLocaleLowerCase() != "true") {
+                e.preventDefault();
+                alert('Please login as Member to create job alert.');
+            }
+        });
+        
+
         var model = @Html.Raw(json);
         if (model != null && model != "undefined") {
             for (var item of model) {

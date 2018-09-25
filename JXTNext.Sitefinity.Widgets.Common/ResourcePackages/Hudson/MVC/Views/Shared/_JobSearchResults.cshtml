@@ -1,6 +1,13 @@
 ﻿@model dynamic
 @using Telerik.Sitefinity.Services;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using JXTNext.Sitefinity.Common.Helpers
+
+
+@{ 
+    var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
+}
+
 <div class="result-meta">
     <p><span class="cur-search-count">Your search resulted in: <span class="count-num">@ViewBag.TotalCount</span> position(s)</span> | <a href="/advancedsearch" title="New job search">New Search</a></p>
 </div>
@@ -9,7 +16,8 @@
     @*<a class="btn btn-sm" href="">RSS FEED</a>
         <a class="btn btn-sm" href="">ADD FAVOURITE</a>
     *@
-    <a class="btn btn-sm" href="/job-alert/Create" title="Create you job alert">CREATE JOB ALERT</a>
+
+    <a class="btn btn-sm jobalert-btn" href="/job-alert/Create" title="Create you job alert">CREATE JOB ALERT</a>
     <div class="select">
         <select id="sortOrder" class="default-select">
             <option selected="selected" value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
@@ -71,15 +79,15 @@
                 <div class="col-xs-12">
                     # $.each(Classifications, function(index, item){#
                     <small class="jobCatItem">
-                   
-                    # for (var key in item) {#
-                    # if(key.length >= 32){#
-                    # var hrefLink = '';#
-                    
-                    # hrefLink = '@ViewBag.CurrentPageUrl' + '?Filters[0].rootId=' + ClassificationsRootName + '&Filters[0].values=' + key;#
-                    <a href=#:hrefLink#>#:item[key]#</a>
-                    #}#
-                    #}#
+
+                        # for (var key in item) {#
+                        # if(key.length >= 32){#
+                        # var hrefLink = '';#
+
+                        # hrefLink = '@ViewBag.CurrentPageUrl' + '?Filters[0].rootId=' + ClassificationsRootName + '&Filters[0].values=' + key;#
+                        <a href=#:hrefLink#>#:item[key]#</a>
+                        #}#
+                        #}#
                     </small>
                     #});#
                 </div>
@@ -107,7 +115,7 @@
                 ajaxActionName = "/RemoveSavedJob";
                 jobid = $(this).data('savedjobid');
             }
-           
+
             var parm = { JobId: jobid };
             var urlPath = $(location).attr('pathname') + ajaxActionName;
             var self = $(this);
@@ -118,7 +126,7 @@
                 data: parm,
                 dataType: 'Json',
                 success: function (response) {
-    
+
                     if (response.Success == true) { // Job Saved
                         if (unSaveJob) {
                             self.removeClass("saved");
@@ -139,6 +147,16 @@
                 error: function (response) { // Error
                 }
             });
+        });
+
+        var memberStatus = '@isMemberUser';
+        //checking user logged in is member role
+        $('.jobalert-btn').click(function (e) {
+
+            if (memberStatus.toLocaleLowerCase() != "true") {
+                e.preventDefault();
+                alert('Please login as Member to create job alert.');
+            }
         });
 
     });
@@ -173,16 +191,16 @@
                 data: parm,
                 dataType: 'Json',
                 success: function (response) {
-      
+
                     if (response.Success == true) { // Getting the all saved jobs
                         $('.save-job').each(function () {
                             var jobid = $(this).data('jobid');
                             var selfJob = $(this);
 
                             $.each(response.SavedJobs, function (index, saveJobInfo) {
-                   
+
                                 if (saveJobInfo.JobId == jobid) {
-            
+
                                     $(selfJob).addClass("saved");
                                     $(selfJob).text("Job saved");
                                     $(selfJob).attr('data-savedjobid', saveJobInfo.SavedJobId);
@@ -190,18 +208,18 @@
                             });
                         });
                     }
-                    else { 
-           
+                    else {
+
                     }
                 },
                 error: function (response) { // Error
                 }
             });
 
-           
+
         };
 
-       
+
 
         $("#sortOrder").change(function () {
             sortBy = $(this).val();

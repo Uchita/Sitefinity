@@ -9382,6 +9382,8 @@ ul.breadcrumb {
   .page-wrapper .sf-profile img {
     max-width: 150px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); }
+  .page-wrapper .sf-profile label {
+    padding-top: 0; }
   .page-wrapper .user-profile-dash {
     border-bottom: 1px solid #000;
     padding-bottom: 50px;
@@ -9473,7 +9475,7 @@ ul.breadcrumb {
   margin-top: 2px;
   display: block;
   margin-bottom: 0;
-  border-radius: 3px;
+  border-radius: 0;
   font-size: 85%; }
 
 .minWt100 {

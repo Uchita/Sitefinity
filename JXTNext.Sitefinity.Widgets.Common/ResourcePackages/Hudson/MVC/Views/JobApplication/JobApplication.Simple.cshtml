@@ -312,6 +312,14 @@
             $(".coverletter-name").text(coverletterBrowseName);
          });
 
+         //on enter key on password field triggering sign in button click
+         $('#password-reg').on('keydown', function (event) {
+             if (event.which == 13) { //enter key
+                 $('#sign-in-btn').trigger('click');
+             }
+         });
+
+         //member sign in continue
          $('#sign-in-btn').click(function () {
              $('#password-reg').parent().find('.error-message.emptyPassword-message').addClass('hidden');
              $('#password-reg').parent().find('.error-message.wrongPassword-message').addClass('hidden');
@@ -384,7 +392,6 @@
              });
 
          });
-
 
         $('#userid').keyup(function () {
             var emailId = $(this).val();

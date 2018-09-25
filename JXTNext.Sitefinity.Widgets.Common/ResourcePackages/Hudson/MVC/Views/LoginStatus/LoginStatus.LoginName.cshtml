@@ -24,3 +24,14 @@
 <input type="hidden" data-sf-role="sf-allow-windows-sts-login" value="@Model.AllowWindowsStsLogin.ToString()" />
 
 @Html.Script(Url.WidgetContent("Mvc/Scripts/LoginStatus/login-status.js"), "bottom")
+
+<script>
+    $(document).ajaxComplete( function() {
+        if ($('.header-top-links').data('sf-role') == 'sf-logged-in-view')
+        {   
+            var userName = $('.header-top-links a[data-sf-role="sf-logged-in-name"]').text();
+            userFirstName = userName.split(' ')[0];
+            $('.header-top-links a[data-sf-role="sf-logged-in-name"]').text(userFirstName);
+        }   
+    });
+</script>

@@ -310,6 +310,8 @@
             text-transform: none;
             font: 1.4rem/1 AkzidGroProRegular,sans-serif;
             position: relative;
+            text-overflow: ellipsis;
+            overflow: hidden;
             &:hover, &:focus{
                 background: none;
                 color: #999;

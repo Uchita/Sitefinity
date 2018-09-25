@@ -109,6 +109,9 @@
                                 <div class="col-md-8">
                                     @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Choose password", required = "required", pattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title = "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" })
 
+                                    <span class="text-muted">
+                                        <em>Password must contain 8 characters or more, 1 uppercase letter, 1 lowercase letter and 1 number</em><br />&nbsp;
+                                    </span>
 
                                     @if (Html.ValidationMessageFor(m => m.Password) != null)
                                     {
@@ -116,9 +119,7 @@
                                             <span class="help-block"> @Html.ValidationMessageFor(m => m.Password)</span>
                                         </div>
                                     }
-                                    <span class="text-muted">
-                                        <em>Password must contain 8 characters or more, 1 uppercase letter, 1 lowercase letter and 1 number</em><br />&nbsp;
-                                    </span>
+
                                 </div>
                             </div>
 

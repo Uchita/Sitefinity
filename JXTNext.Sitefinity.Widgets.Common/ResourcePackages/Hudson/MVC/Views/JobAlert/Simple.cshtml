@@ -48,7 +48,7 @@ else
     }
 }
 
-@Html.ActionLink("Create Job Alert", "Create", "JobAlert", new { @class = "btn" })
+@Html.ActionLink("Create New Job Alert", "Create", "JobAlert", new { @class = "btn jobalert-btn" })
 
 
 
@@ -67,7 +67,21 @@ else
          @{
                 var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
                 var json = serializer.Serialize(Model);
+
+                
           }
+
+        var memberStatus = '@ViewBag.IsMemberUser';
+        
+        //checking user logged in is member role
+        $('.jobalert-btn').click(function (e) {
+            
+            if (memberStatus.toLocaleLowerCase() != "true") {
+                e.preventDefault();
+                alert('Please login as Member to create job alert.');
+            }
+        });
+        
 
         var model = @Html.Raw(json);
         if (model != null && model != "undefined") {
@@ -98,7 +112,12 @@ else
 
             return `${day}/${month}/${year}`;
         };
+
+        //
+        function checkMemberStatus() {
+
+        }
     });
 
-</script>
+        </script>
 

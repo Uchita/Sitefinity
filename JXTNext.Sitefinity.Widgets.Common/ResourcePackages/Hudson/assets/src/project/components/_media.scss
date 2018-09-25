@@ -937,7 +937,9 @@
     }
     
     .page-wrapper{
-        
+        .btn{
+            min-width: 100px;
+        }
         footer{
             .page-section{
                 padding: 15px 0;

@@ -7326,12 +7326,15 @@ blockquote {
     border: 1px solid;
     border-radius: 0;
     padding: 10px 25px;
+    min-width: 150px;
     font-size: 16px;
     font-size: 1.6rem;
     font-family: AkzidGroProMed, sans-serif;
     text-transform: uppercase;
     background: transparent;
     color: #007077; }
+    .page-wrapper .btn.btn-tag {
+      min-width: 30px; }
     .page-wrapper .btn:hover, .page-wrapper .btn:focus {
       border-color: #007077;
       background: #007077;
@@ -7399,7 +7402,7 @@ blockquote {
     width: 100%; }
   .page-wrapper .btn-primary {
     border: 0;
-    padding: 9px 55px;
+    padding: 11px 55px;
     background: #ff9000;
     color: #fff; }
     .page-wrapper .btn-primary:hover, .page-wrapper .btn-primary:focus {
@@ -9382,6 +9385,8 @@ ul.breadcrumb {
   .page-wrapper .sf-profile img {
     max-width: 150px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); }
+  .page-wrapper .sf-profile label {
+    padding-top: 0; }
   .page-wrapper .user-profile-dash {
     border-bottom: 1px solid #000;
     padding-bottom: 50px;
@@ -9473,7 +9478,7 @@ ul.breadcrumb {
   margin-top: 2px;
   display: block;
   margin-bottom: 0;
-  border-radius: 3px;
+  border-radius: 0;
   font-size: 85%; }
 
 .minWt100 {
@@ -10991,6 +10996,8 @@ ul.breadcrumb {
       position: absolute;
       bottom: 7px;
       right: 0; }
+  .page-wrapper .btn {
+    min-width: 100px; }
   .page-wrapper footer .page-section {
     padding: 15px 0; }
   .page-wrapper footer .footer-social {

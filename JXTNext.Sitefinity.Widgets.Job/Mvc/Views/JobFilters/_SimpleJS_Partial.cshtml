@@ -25,6 +25,8 @@
 
             var salarySliderEle = $('#' + modelSalary.TargetValue).parent().find('.nstSlider');
             if (salarySliderEle != null) {
+                isSlarySelected = true;
+                salary.TargetValue = modelSalary.TargetValue;
                 $(salarySliderEle).data("cur_min", modelSalary.LowerRange);
                 $(salarySliderEle).data("cur_max", modelSalary.UpperRange);
             }

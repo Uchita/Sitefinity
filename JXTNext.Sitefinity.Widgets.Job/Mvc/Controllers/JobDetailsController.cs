@@ -170,6 +170,17 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 viewModel.ClassificationsRootName = "Classifications";
                 viewModel.LocationsRootName = "CountryLocationArea";
 
+                // Getting the SEO route name for classifications
+                List<string> seoString = new List<string>();
+                foreach (var key in classifParentIdsOrdDict.Keys)
+                {
+                    string value = classifParentIdsOrdDict[key].ToString();
+                    string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
+                    seoString.Add(SEOString);
+                }
+
+                viewModel.ClassificationsSEORouteName = String.Join("/", seoString); 
+
                 ViewBag.CssClass = this.CssClass;
                 ViewBag.JobApplicationPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationPageId);
                 ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.JobResultsPageId);

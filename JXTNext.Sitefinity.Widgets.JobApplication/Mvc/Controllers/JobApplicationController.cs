@@ -62,6 +62,77 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             _blConnector = blConnector;
         }
 
+
+        [RelativeRoute("{*tags}")]
+        public ActionResult RouteHandler(string[] tags, int? jobid)
+        {
+            if (Request.IsAjaxRequest()) // Ajax calls
+            {
+                if (tags != null && tags.Length > 0)
+                {
+                    var routePath = tags.FirstOrDefault();
+                    if (routePath.ToUpper().Contains("CHECKUSER"))
+                    {
+                        if (Request.Form["email"] != null)
+                        {
+                            return CheckUser(Request.Form["email"]);
+                        }
+                    }
+                    else if (routePath.ToUpper().Contains("ISJOBAPPLIED"))
+                    {
+                        if (Request.Form["jobId"] != null)
+                        {
+                            int jobId;
+                            if (Int32.TryParse(Request.Form["jobId"], out jobId))
+                            {
+                                return IsJobApplied(jobId);
+                            }
+                        }
+                    }
+                    else if (routePath.ToUpper().Contains("VALIDATEUSER"))
+                    {
+                        if (Request.Form["email"] != null)
+                        {
+                            return ValidateUser(Request.Form["email"], Request.Form["password"], Convert.ToBoolean(Request.Form["staySignedIn"]), Convert.ToBoolean(Request.Form["isUserLoggedIn"]));
+                        }
+                    }
+                }
+            }
+            else // Non-Ajax calls
+            {
+                if (tags != null && tags.Length > 0)
+                {
+                    string urlRoute = tags.FirstOrDefault();
+                    if (urlRoute.ToUpper().Contains("APPLYJOB"))
+                    {
+                        ApplyJobModel applyJobModel = new ApplyJobModel();
+                        applyJobModel.JobId = Convert.ToInt32(Request.Form["JobId"]);
+                        applyJobModel.FirstName = Request.Form["FirstName"];
+                        applyJobModel.LastName = Request.Form["LastName"];
+                        applyJobModel.PhoneNumber = Request.Form["PhoneNumber"];
+                        applyJobModel.Email = Request.Form["Email"];
+                        applyJobModel.Password = Request.Form["Password"];
+                        applyJobModel.UploadFilesResume = Request.Form["UploadFilesResume"];
+                        applyJobModel.UploadFilesCoverLetter = Request.Form["UploadFilesCoverLetter"];
+                        applyJobModel.ResumeSelectedType = Request.Form["ResumeSelectedType"];
+                        applyJobModel.CoverLetterSelectedType = Request.Form["CoverLetterSelectedType"];
+
+                       return ApplyJob(applyJobModel);
+                    }
+
+                    string jobIdStr = urlRoute.Substring(0, urlRoute.LastIndexOf('/')).Split('/').Last();
+                    if (Int32.TryParse(jobIdStr, out int jobId))
+                    {
+                        return Index(jobId);
+                    }
+                }
+            }
+
+            // Default redirect to Index action
+            return Index(null);
+
+        }
+
         // GET: JobApplication
         [HttpGet]
         public ActionResult Index(int? jobid)

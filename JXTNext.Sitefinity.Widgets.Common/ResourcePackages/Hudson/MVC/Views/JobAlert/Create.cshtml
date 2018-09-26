@@ -171,8 +171,8 @@
                 isSlarySelected = true;
                 $('#' + this.value).removeClass('visible-hidden');
                 salary.TargetValue = this.value;
-                salary.LowerRange = $(this).parent().find('.leftLabel span').text();
-                salary.UpperRange = $(this).parent().find('.rightLabel span').text();
+                salary.LowerRange = $("#" + $(this).val()).find('.leftLabel span').text();
+                salary.UpperRange = $("#" + $(this).val()).find('.rightLabel span').text();
             } else if ($(this).hasClass('changed') && this.value == -1) {
                 isSlarySelected = false;
             }

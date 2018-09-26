@@ -86,7 +86,16 @@
                                 <div id="forgot-password" class="form-group forgot-password hidden">
                                     <br /><a href="/sign-in/ForgotPassword/">Forgot password?</a>
                                 </div>
-                                <input type="button" id="sign-in-btn" class="form-group hidden btn btn-primary" data-jobid="@Model.JobId" value="Sign-In" />
+
+                                <div class="form-group" id="rememberme-block">
+                                    <div class="checkbox clearfix">
+                                        <input checked="checked" id="RememberMe" name="RememberMe" type="checkbox" value="true">
+                                        <span class="checkbox-icon fas fa-check"></span>
+                                        Stay signed in
+                                    </div>
+                                </div>
+
+                                <input type="button" id="sign-in-btn" class="form-group hidden btn btn-primary btn-block" data-jobid="@Model.JobId" value="Sign in to continue" />
                             </div>
                         </div>
 
@@ -330,8 +339,10 @@
 
              
              var jobId = $(this).data("jobid");
+             var staySignedinFlag = $('#RememberMe').is(':checked') ? true : false;
+             console.log(staySignedinFlag);
              //for login email address & password check & submit login form
-             var parm = { email: $('#userid').val(), password: $('#password-reg').val(), staySignedIn: true, isUserLoggedIn: false };
+             var parm = { email: $('#userid').val(), password: $('#password-reg').val(), staySignedIn: staySignedinFlag, isUserLoggedIn: false };
              var urlPath = $(location).attr('pathname') + "/ValidateUser";
              $.ajax({
                  type: 'POST',
@@ -359,7 +370,8 @@
                                      }
                                      else {
                                          // Show upload files section
-                                         $('#login-register-container').hide();
+                                         $('#register').hide();
+                                         $('#userid').attr('disabled',true);
                                          $('#apply').removeAttr('disabled');
                                          $('#userid').removeAttr('required');
                                          $('#upload-files-container').show();
@@ -401,6 +413,8 @@
             $('.welcome-message').addClass('hidden');
             $('#password-reg').parent().find('.error-message.emptyPassword-message').addClass('hidden');
             $('#password-reg').parent().find('.error-message.wrongPassword-message').addClass('hidden');
+            $('#rememberme-block').addClass('hidden');
+            $('#upload-files-container').hide();
             if (valid) {
                 $(this).css('color', '#000');
                 $.ajax({
@@ -410,12 +424,12 @@
                     data: parm,
                     dataType: 'Json',
                     success: function (response) {
-                        //$("#upload-files-container").show();
-
+                        //get the registration form
                         if (response == false) {
                             $('#register').show();
                             
                             $('#firstname-lastname').removeAttr('hidden');
+                            $('#upload-files-container').show();
                             registerForm = true;
                             $('#password-reg').prop('required', true);
                             $('#firstname-reg').prop('required', true);
@@ -427,6 +441,7 @@
                             $('#strength-wrap').show();
                             $('#password-reg').attr('placeholder', "Choose your password").val('');
                             $('#forgot-password').addClass('hidden');
+                            $('#rememberme-block').addClass('hidden');
                             $('.reg-field').removeClass('hidden');
                             $('.loginwith_socialmedia').hide();
                             $('.welcome-message').addClass('hidden');
@@ -434,6 +449,7 @@
                             $('#sign-in-btn').addClass('hidden');
                         }
                         //this is to show the password field
+                        //only sign in form
                         else {
                             $('#register').show();
                             $('#firstname-lastname').attr('hidden', 'true');
@@ -444,6 +460,7 @@
                             $('#password-reg').removeAttr('title');
                             $('#password-reg').prop('required', true);
                             $('#forgot-password').removeClass('hidden');
+                            $('#rememberme-block').removeClass('hidden');
                             $('.reg-field').addClass('hidden');
                             $('#password-guide').addClass('hidden');
                             $('#password-reg').attr('placeholder', "Enter your password");
@@ -476,7 +493,7 @@
              }
          });
          $('#ReTypePassword').keydown(function () {
-             $(this).next('.alert').remove();
+             $(this).next('.alert').addClass('hidden');
          });
         
          $('#ReTypePassword').blur(function () {

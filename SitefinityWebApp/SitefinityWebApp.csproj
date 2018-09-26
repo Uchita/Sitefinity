@@ -970,6 +970,7 @@
     <Content Include="Mvc\Styles\rangeSlider.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="robots.txt" />
     <Content Include="Views\CustomSiteSettings\CustomSiteSettings.ascx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

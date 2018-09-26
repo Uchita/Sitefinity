@@ -7326,7 +7326,6 @@ blockquote {
     border: 1px solid;
     border-radius: 0;
     padding: 10px 25px;
-    min-width: 150px;
     font-size: 16px;
     font-size: 1.6rem;
     font-family: AkzidGroProMed, sans-serif;
@@ -8288,7 +8287,8 @@ main {
 
 .dropdown.dropdown-tree > ul {
   white-space: normal;
-  padding-left: 0; }
+  padding-left: 0;
+  overflow: visible; }
   .dropdown.dropdown-tree > ul li {
     white-space: normal;
     position: relative;

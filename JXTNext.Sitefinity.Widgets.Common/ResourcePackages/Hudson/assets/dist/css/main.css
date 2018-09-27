@@ -8981,6 +8981,14 @@ ul.breadcrumb {
         position: absolute;
         bottom: 0;
         right: 0; }
+  .thumbnail.fixed-width {
+    width: 23%;
+    min-width: 200px;
+    max-width: 250px;
+    margin: 0 1%;
+    flex-grow: 1; }
+  .thumbnail.simple-card .caption {
+    padding: 20px 10px; }
   .thumbnail.card-rollover {
     position: relative;
     margin-top: 20px;
@@ -10674,6 +10682,8 @@ ul.breadcrumb {
     padding: 30px 0; }
   .flex {
     display: block; }
+  .sm-flex {
+    display: flex; }
   .sm-text-center {
     text-align: center !important; }
   .page-wrapper {
@@ -10758,6 +10768,9 @@ ul.breadcrumb {
     min-height: 180px; }
   .thumbnail.card-basic .img-wrap {
     max-height: none; }
+  .thumbnail.fixed-width {
+    width: 48%;
+    margin-bottom: 20px; }
   .thumbnail.card-rollover .card-description {
     font-size: 16px;
     font-size: 1.6rem; }
@@ -11109,6 +11122,9 @@ ul.breadcrumb {
       .thumbnail.card-rollover .caption h3 {
         margin-top: 0;
         margin-bottom: 5px; }
+  .thumbnail.fixed-width {
+    width: 100%;
+    margin: 0 0 20px; }
   .page-wrapper footer .col-xs-3, .page-wrapper footer .col-xs-9 {
     float: left;
     width: auto; }

@@ -370,6 +370,9 @@
     .flex{
         display: block;
     }
+    .sm-flex{
+        display: flex;
+    }
     .sm-text-center{
         text-align: center!important;
     }
@@ -520,6 +523,10 @@
             .img-wrap{
                 max-height: none;
             }
+        }
+        &.fixed-width{
+            width: 48%;
+            margin-bottom: 20px;
         }
         
         &.card-rollover .card-description {
@@ -1075,6 +1082,12 @@
 
     }
 
+    .thumbnail{
+        &.fixed-width{
+            width: 100%;
+            margin: 0 0 20px;
+        }
+    }
     .page-wrapper {
         footer{
             .col-xs-3, .col-xs-9{

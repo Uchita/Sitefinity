@@ -98,6 +98,19 @@
         }
     }
 
+    &.fixed-width{
+        width: 23%;
+        min-width: 200px;
+        max-width: 250px;
+        margin: 0 1%;
+        flex-grow: 1;
+    }
+    &.simple-card{
+        .caption{
+            padding: 20px 10px;
+        }
+    }
+
     &.card-rollover {
         position: relative;
         margin-top: 20px;

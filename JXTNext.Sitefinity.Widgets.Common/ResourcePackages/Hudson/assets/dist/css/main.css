@@ -7458,7 +7458,7 @@ blockquote {
   .page-wrapper .form-group.label-hide label {
     visibility: hidden; }
   .page-wrapper .form-control {
-    height: 40px;
+    height: 45px;
     color: #000; }
   .page-wrapper .form-control,
   .page-wrapper input[type="text"],
@@ -8288,7 +8288,7 @@ main {
 .dropdown.dropdown-tree > ul {
   white-space: normal;
   padding-left: 0;
-  overflow: visible; }
+  overflow: hidden; }
   .dropdown.dropdown-tree > ul li {
     white-space: normal;
     position: relative;
@@ -10382,7 +10382,7 @@ ul.breadcrumb {
   background-position: center;
   background-repeat: no-repeat;
   height: 235px;
-  width: 100.4%; }
+  width: 100.1%; }
 
 /*#endregion Consultans*/
 /*#region risk measurement*/
@@ -10832,6 +10832,8 @@ ul.breadcrumb {
         bottom: 2px; }
   .consultant-images img {
     margin-bottom: 10px; }
+  .consultant-minimal .consultant .item {
+    width: 31%; }
   .testimonials-slider .testimonial-title {
     margin: 0 auto; }
   .center-bottom-img {
@@ -10933,12 +10935,15 @@ ul.breadcrumb {
       width: auto; }
   .paralax-image {
     background-size: auto !important; }
-  .jumbotron-container .jumbotron .h1, .jumbotron-container .jumbotron h1 {
-    font-size: 30px;
-    font-size: 3rem; }
-  .jumbotron-container .jumbotron p {
-    font-size: 18px;
-    font-size: 1.8rem; }
+  .jumbotron-container .jumbotron {
+    padding-top: 150px;
+    min-height: 400px; }
+    .jumbotron-container .jumbotron .h1, .jumbotron-container .jumbotron h1 {
+      font-size: 30px;
+      font-size: 3rem; }
+    .jumbotron-container .jumbotron p {
+      font-size: 18px;
+      font-size: 1.8rem; }
   .thumbnail.card-rollover {
     margin-top: 20px;
     margin-bottom: 0;
@@ -11054,7 +11059,9 @@ ul.breadcrumb {
     padding: 40px 70px 10px; }
   .form-newsletter {
     max-width: 400px;
-    margin: 0 auto; } }
+    margin: 0 auto; }
+  .consultant-minimal .consultant .item {
+    width: 46.5%; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron .owl-nav {
@@ -11213,7 +11220,10 @@ ul.breadcrumb {
   .job-offer-contacts td {
     display: block;
     margin-bottom: 5px;
-    word-break: break-word; } }
+    word-break: break-word; }
+  .consultant-minimal .consultant .item {
+    width: auto;
+    margin: 12px 15px; } }
 
 @media (max-width: 400px) {
   .section-ul ul.nav-stacked li {

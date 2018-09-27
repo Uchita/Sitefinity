@@ -632,6 +632,11 @@
     .consultant-images img {
         margin-bottom: 10px;
     }
+    .consultant-minimal{
+        .consultant .item{
+            width: 31%;   
+        }
+    }
 
     .testimonials-slider .testimonial-title {
         margin: 0 auto;
@@ -801,7 +806,8 @@
     }
 
     .jumbotron-container .jumbotron {
-
+        padding-top: 150px;
+        min-height: 400px;
         .h1, h1 {
             font-size: 30px;
             font-size: 3rem;
@@ -1024,6 +1030,11 @@
     .form-newsletter{
         max-width: 400px;
         margin: 0 auto;
+    }
+    .consultant-minimal{
+        .consultant .item{
+            width:46.5%;   
+        }
     }
     
 }
@@ -1260,7 +1271,14 @@
             word-break: break-word;
         }
     }
-
+    .consultant-minimal{
+        .consultant{
+            .item{
+                width:auto; 
+                margin: 12px 15px;  
+            }
+        }
+    }
 }
 
 @media (max-width:400px){
@@ -1272,6 +1290,7 @@
             margin-right: 0;
         }
     }   
+
 }
 
 /*#endregion Phones*/

@@ -8561,8 +8561,10 @@ ul.vertical-ul {
   padding: 20px 0; }
 
 /*#endregion Footer*/
-.sf-Gallery-thumbs-container .owl-contact-gallery {
-  margin-bottom: 0; }
+.sf-Gallery-thumbs-container {
+  margin-bottom: 4rem; }
+  .sf-Gallery-thumbs-container .owl-contact-gallery {
+    margin-bottom: 0; }
 
 .alert {
   border-radius: 0; }

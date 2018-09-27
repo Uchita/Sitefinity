@@ -22,6 +22,7 @@
             var privacyErrMsg = "Please agree to Hudson's privacy policy";
         }
         <div class="field-wrapper basic-form no-marg-top">
+            <div class="alert alert-warning filter-madatory-message hidden">Please enter filter value for at least Keyword or Location.</div>
             <div class="row form-group">
                 <div class="col-md-4 text-right">
                     <label for="name">Job alert name*</label>
@@ -48,13 +49,16 @@
                         <div class="col-md-4 text-right">
                             @{
                                 var displayTitle = item.Name;
-                                if (displayTitle == "CountryLocationArea") {
+                                if (displayTitle == "CountryLocationArea")
+                                {
                                     displayTitle = "Location";
                                 }
-                                else if (displayTitle == "WorkType") {
+                                else if (displayTitle == "WorkType")
+                                {
                                     displayTitle = "Work Type";
                                 }
-                                else if (displayTitle == "CompanyName") {
+                                else if (displayTitle == "CompanyName")
+                                {
                                     displayTitle = "Company Name";
                                 }
                             }
@@ -112,24 +116,24 @@
                 }
             }
 
-        <div class="row form-group">
-            <div class="col-md-4 text-right"></div>
-            <div class="col-md-8">
-                <div class="checkbox clearfix">
-                    <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" checked required title="@privacyErrMsg" oninvalid='this.setCustomValidity("@privacyErrMsg")' oninput="this.setCustomValidity('')">
-                    <span class="checkbox-icon fas fa-check"></span>
-                    I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+            <div class="row form-group">
+                <div class="col-md-4 text-right"></div>
+                <div class="col-md-8">
+                    <div class="checkbox clearfix">
+                        <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" checked required title="@privacyErrMsg" oninvalid='this.setCustomValidity("@privacyErrMsg")' oninput="this.setCustomValidity('')">
+                        <span class="checkbox-icon fas fa-check"></span>
+                        I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-4 text-right"></div>
+                <div class="col-md-8">
+                    <input id="create-job-alert-submit-btn" type="submit" value="SAVE" class="btn btn-primary" />
+                    <a href="/user-dashboard" class="btn">Cancel</a>
                 </div>
             </div>
         </div>
-        <div class="row form-group">
-            <div class="col-md-4 text-right"></div>
-            <div class="col-md-8">
-                <input id="create-job-alert-submit-btn" type="submit" value="SAVE" class="btn btn-primary" />
-                <a href="/user-dashboard" class="btn">Cancel</a>
-            </div>
-        </div>
-    </div>
 </form>
 }
 
@@ -146,6 +150,13 @@
                 $("#selected-" + id).append('<option value="' + value + '" selected="true">' + value + '</option>')
             });
         });
+
+        if ($('#keywords').val() == "" && $('#selected-CountryLocationArea').val() == null) {
+            $('.filter-madatory-message').removeClass('hidden');
+            return false;
+        } else {
+            $('.filter-madatory-message').addClass('hidden');
+        }
 
         if (isSlarySelected) {
             $('#salary-model-bind-hidden').val(JSON.stringify(salary));
@@ -233,8 +244,6 @@
                 $("#" + item.Name).DropDownTree(optionsArray[item.Name]);
             });
         }
-
-
 
     });
 </script>

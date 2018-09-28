@@ -19,6 +19,13 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Models
         public JobAlertStatus Status { get; set; }
     }
 
+    public class CreateAsJobAlertFilterModel
+    {
+        public string Keywords { get; set; }
+        public List<JobAlertFilters> Filters { get; set; }
+        public JobAlertSalaryFilterReceiver Salary { get; set; }
+    }
+
     public class JobAlertFilters
     {
         public string RootId { get; set; }

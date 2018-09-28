@@ -17,7 +17,7 @@
         <a class="btn btn-sm" href="">ADD FAVOURITE</a>
     *@
 
-    <a class="btn btn-sm jobalert-btn" href="/job-alert/Create" title="Create you job alert">CREATE JOB ALERT</a>
+    <a class="btn btn-sm jobalert-btn" href="/user-dashboard/Create" title="Create you job alert">CREATE JOB ALERT</a>
     <div class="select">
         <select id="sortOrder" class="default-select">
             <option selected="selected" value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
@@ -327,6 +327,8 @@
             var pushStateUrl = $(location).attr('pathname') + searchPath;
             var data = { filterModel: filterModel }
             window.history.pushState(data, "", pushStateUrl);
+
+            $('.jobalert-btn').prop('href', '/user-dashboard/Create' + searchPath);
 
             //pager status
             $('#pager li:not(.pageController) a').removeClass('active');

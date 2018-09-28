@@ -14,6 +14,7 @@ using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Logics;
 using Telerik.Sitefinity.Security.Claims;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using System.Web;
+using System.Dynamic;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -44,19 +45,62 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(CreateAsJobAlertFilterModel filterModel)
         {
             TempData["StatusMessage"] = null;
             TempData["StatusCode"] = JobAlertStatus.SUCCESS;
-            dynamic dynamicFilterResponse = null;
+            dynamic dynamicFilterResponse = new ExpandoObject();
             JXTNext_GetJobFiltersRequest request = new JXTNext_GetJobFiltersRequest();
             IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(request);
+            //if (filtersResponse != null && filtersResponse.Filters != null
+            //    && filtersResponse.Filters.Data != null)
+            //    dynamicFilterResponse = filtersResponse.Filters.Data as dynamic;
+
+
+            List<JobFilterRoot> fitersData = null;
             if (filtersResponse != null && filtersResponse.Filters != null
                 && filtersResponse.Filters.Data != null)
-                dynamicFilterResponse = filtersResponse.Filters.Data as dynamic;
+                fitersData = filtersResponse.Filters.Data;
+
+            var serializeFilterData = JsonConvert.SerializeObject(fitersData);
+            var filtersVMList = JsonConvert.DeserializeObject<List<JobAlertEditFilterRootItem>>(serializeFilterData);
+
+            if (filterModel.Filters != null && filterModel.Filters.Count > 0)
+            {
+                foreach (var rootItem in filterModel.Filters)
+                {
+                    if (rootItem != null)
+                    {
+                        if (filtersVMList != null && filtersVMList.Count > 0)
+                        {
+                            foreach (var filterVMRootItem in filtersVMList)
+                            {
+                                if (filterVMRootItem.Name == rootItem.RootId)
+                                {
+                                    if (filterVMRootItem.Filters != null && filterVMRootItem.Filters.Count > 0)
+                                    {
+                                        foreach (var filterItem in filterVMRootItem.Filters)
+                                        {
+                                            // Here we are coming the ids as parent child relationship and we need
+                                            // Only the current id, so remove underscore and get the exact id
+                                            RemoveUnderScore(rootItem.Values);
+                                            MergeFilters(filterItem, rootItem.Values);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            dynamicFilterResponse.Filters = filtersVMList as dynamic;
 
             ViewBag.IsMemberUser = SitefinityHelper.IsUserLoggedIn("Member");
-           
+            dynamicFilterResponse.Keywords = filterModel.Keywords;
+            dynamicFilterResponse.Salary = filterModel.Salary;
+
+
             return View("Create", dynamicFilterResponse);
         }
 
@@ -282,6 +326,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                             MergeFilters(item, values);
                         }
                     }
+                }
+            }
+        }
+
+        private static void RemoveUnderScore(List<string> values)
+        {
+            if (values != null && values.Count > 0)
+            {
+                for (int i = 0; i < values.Count; i++)
+                {
+                    // Parent and child ids are seprated by underscore
+                    if (values[i].Contains("_"))
+                        values[i] = values[i].Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries).ToList().LastOrDefault();
                 }
             }
         }

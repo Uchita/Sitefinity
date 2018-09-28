@@ -36,12 +36,12 @@
                     <label for="keywords">Keywords</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" name="Keywords" id="keywords" class="form-control" />
+                    <input type="text" name="Keywords" id="keywords" class="form-control" value="@Model.Keywords"/>
                 </div>
             </div>
 
 
-            @foreach (var item in Model)
+            @foreach (var item in Model.Filters)
             {
                 if (item.Name != "Salary" && item.Name != "CompanyName")
                 {
@@ -159,6 +159,7 @@
         }
 
         if (isSlarySelected) {
+            salary.RootName = 'Salary';
             $('#salary-model-bind-hidden').val(JSON.stringify(salary));
             console.log($('#salary-model-bind-hidden').val());
         }
@@ -171,6 +172,29 @@
                 var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
                 var json = serializer.Serialize(Model);
           }
+
+        var model = @Html.Raw(json);
+        var modelSalary = null;
+        $.each(model, function (index, value) {
+            if (value.Key == 'Salary') {
+                modelSalary = value.Value;
+            }
+        });
+        
+        if (modelSalary != null && modelSalary != 'undefined') {
+            salary = modelSalary;
+            isSlarySelected = true;
+            $('.SalaryRangeSelect').val(modelSalary.TargetValue);
+            $('#' + modelSalary.TargetValue).removeClass('visible-hidden');
+            $('.SalaryRangeSelect').addClass('changed');
+
+            var salarySliderEle = $('#' + modelSalary.TargetValue).parent().find('.nstSlider');
+            if (salarySliderEle != null) {
+                $(salarySliderEle).data("cur_min", modelSalary.LowerRange);
+                $(salarySliderEle).data("cur_max", modelSalary.UpperRange);
+            }
+        }
+   
 
         $('select').on('change', function () {
             isSlarySelected = false;
@@ -205,11 +229,14 @@
                     salary.UpperRange = rightValue;
                     $(this).parent().find('.leftLabel span').text(leftValue);
                     $(this).parent().find('.rightLabel span').text(rightValue);
+                },
+                "value_changed_callback": function (cause, leftValue, rightValue) {
+                    $(this).parent().find('.leftLabel span').text(leftValue);
+                    $(this).parent().find('.rightLabel span').text(rightValue);
                 }
             });
         });
 
-        var model = @Html.Raw(json);
         var isUserMember = false;
         isUserMember = '@ViewBag.IsMemberUser';
     
@@ -217,9 +244,9 @@
              $('#create-job-alert-submit-btn').prop('disabled', true);
         }
         
-
-        if (model != null && model != "undefined") {
-            var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
+        var filterData = JSON.parse('@Html.Raw(Json.Encode(Model.Filters))');
+        if (model != null && model != "undefined" && filterData != null && filterData != "undefined") {
+           
             $.each(filterData, function (index, item) {
                 var displayTitle = item.Name;
                 if (displayTitle == 'CountryLocationArea')

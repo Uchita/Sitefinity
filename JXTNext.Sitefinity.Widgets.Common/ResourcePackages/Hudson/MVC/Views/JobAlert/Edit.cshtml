@@ -21,6 +21,8 @@
     }
 
     <div class="field-wrapper basic-form no-marg-top">
+        <div class="alert alert-warning filter-madatory-message hidden">Please enter filter value for at least Keyword or Location.</div>
+
         <div class="row form-group">
             <div class="col-md-4 text-right">
                 <label for="name">Job alert name*</label>
@@ -153,6 +155,13 @@
                 $("#selected-" + id).append('<option value="' + value + '" selected="true">' + value + '</option>')
             });
         });
+
+        if ($('#keywords').val() == "" && $('#selected-CountryLocationArea').val() == null) {
+            $('.filter-madatory-message').removeClass('hidden');
+            return false;
+        } else {
+            $('.filter-madatory-message').addClass('hidden');
+        }
 
         if (isSlarySelected) {
             $('#salary-model-bind-hidden').val(JSON.stringify(salary));

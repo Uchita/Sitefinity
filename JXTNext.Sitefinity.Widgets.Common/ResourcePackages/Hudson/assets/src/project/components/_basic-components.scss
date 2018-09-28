@@ -308,7 +308,7 @@ blockquote{
     }
 
     .form-control {
-        height: 40px;
+        height: 45px;
         color: #000;
     }
 
@@ -1502,7 +1502,8 @@ main {
     >ul{
         white-space: normal;
         padding-left: 0;
-        overflow: visible;
+        overflow: hidden;
+        
         li{
             white-space: normal;
             position: relative;
@@ -1907,6 +1908,7 @@ ul.vertical-ul {
 
 
 .sf-Gallery-thumbs-container{
+    margin-bottom: 4rem;
     .owl-contact-gallery{
         margin-bottom: 0;
     }

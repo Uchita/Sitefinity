@@ -288,6 +288,14 @@ $(document).ready(function () {
         });
     }
 
+    if( $('input[type="number"]').length ){
+        $('input[type="number"]').on('keydown',function(e){
+            if( e.which == 69 ){
+                return false;
+            }
+        });
+    }
+
 });
 
 $(window).resize(function () {

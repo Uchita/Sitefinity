@@ -113,8 +113,9 @@ ThemeGlobal.MobileCarouselInit = function () {
 ThemeGlobal.DynamicFormConditions = function () {
     if( $('form .dfcondition').length ){
         $('#C072_Col00,#C072_Col01').hide();
-        $('#Dropdown-1').change(function () {
-            var selected = $('#Dropdown-1 option:selected').text();
+        var dropdownElem = $('#Dropdown-1');
+        dropdownElem.change(function () {
+            var selected = dropdownElem.find('option:selected').text();
             if (selected == "I am a Job Seeker") {
                 $('#C017_Col00,#C017_Col01,#C045_Col00,#C045_Col01,#C072_Col00,#C072_Col01').hide();
                 $('#C020_Col00,#C020_Col01,#C019_Col00,#C019_Col01,#C022_Col00,#C022_Col01,#C023_Col00,#C023_Col01').show();
@@ -122,6 +123,7 @@ ThemeGlobal.DynamicFormConditions = function () {
             }
             if (selected == "I'd like to submit my CV") {
                 $('#C017_Col00,#C017_Col01,#C045_Col00,#C045_Col01,#C072_Col00,#C072_Col01').hide();
+                $('#C052_Col00, #C053_Col01').parent().hide();
                 $('#C020_Col00,#C020_Col01,#C019_Col00,#C019_Col01,#C022_Col00,#C022_Col01,#C023_Col00,#C023_Col01').show();
                 document.getElementById('functionText').innerHTML = "Which function do you want to work in?";
             }
@@ -140,6 +142,26 @@ ThemeGlobal.DynamicFormConditions = function () {
                 $('#C020_Col00,#C020_Col01,#C019_Col00,#C019_Col01,#C022_Col00,#C022_Col01,#C023_Col00,#C023_Col01,#C072_Col00,#C072_Col01').hide();
             }
         });
+
+        //tiggering the above change function condition on the base of page
+        //class are added on each page based to the form widget
+        if( $('.jobseeker-sel').length ){
+            dropdownElem.val("I am a Job Seeker").change();
+        }else if( $('.submitCV-sel').length ){
+            dropdownElem.val("I'd like to submit my CV").change();
+        }else if( $('.workingForHudson-sel').length ){
+            dropdownElem.val("Working for Hudson").change();
+        }else if( $('.hiringCandidates-sel').length ){
+            dropdownElem.val("Hiring candidates").change();
+        }else if( $('.candidateProfiling-sel').length ){
+            dropdownElem.val("Candidate profiling & assessment").change();
+        }else if( $('.leadershipAssessment-sel').length ){
+            dropdownElem.val("Leadership assessment & development").change();
+        }else if( $('.outplacement-sel').length ){
+            dropdownElem.val("Outplacement & redeployment").change();
+        }else{
+            dropdownElem.val("General inquiry").change();
+        }
     }
 }
 

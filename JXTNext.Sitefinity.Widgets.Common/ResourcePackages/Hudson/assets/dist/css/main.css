@@ -7459,7 +7459,8 @@ blockquote {
     visibility: hidden; }
   .page-wrapper .form-control {
     height: 45px;
-    color: #000; }
+    color: #000;
+    font-family: AkzidGroProReg, sans-serif; }
   .page-wrapper .form-control,
   .page-wrapper input[type="text"],
   .page-wrapper input[type="date"],
@@ -8982,13 +8983,23 @@ ul.breadcrumb {
         bottom: 0;
         right: 0; }
   .thumbnail.fixed-width {
-    width: 23%;
+    width: calc(23% - 30px);
     min-width: 200px;
-    max-width: 250px;
-    margin: 0 1%;
+    max-width: 270px;
+    margin: 0 15px;
     flex-grow: 1; }
-  .thumbnail.simple-card .caption {
-    padding: 20px 10px; }
+  .thumbnail.simple-card {
+    background: none;
+    position: relative;
+    padding-bottom: 45px;
+    margin-bottom: 40px; }
+    .thumbnail.simple-card .caption {
+      position: static;
+      padding: 20px 10px 0;
+      min-height: 80px !important; }
+      .thumbnail.simple-card .caption .btn {
+        position: absolute;
+        bottom: 0; }
   .thumbnail.card-rollover {
     position: relative;
     margin-top: 20px;
@@ -9300,6 +9311,8 @@ ul.breadcrumb {
     margin-top: 8px; }
   .page-wrapper .basic-form .form-group {
     margin-bottom: 10px; }
+    .page-wrapper .basic-form .form-group .btn {
+      min-width: 150px; }
   .page-wrapper .basic-form .upload-section {
     margin: 10px 0 20px 0; }
 
@@ -9429,15 +9442,15 @@ ul.breadcrumb {
     width: 100%;
     text-align: left;
     padding: 12px 10px;
-    color: #999;
+    color: #000;
     text-transform: none;
-    font: 1.4rem/1 AkzidGroProRegular,sans-serif;
+    font: 1.4rem/1 AkzidGroProReg, sans-serif;
     position: relative;
     text-overflow: ellipsis;
     overflow: hidden; }
     .page-wrapper .dropdown-tree button.dropdown-toggle:hover, .page-wrapper .dropdown-tree button.dropdown-toggle:focus {
       background: none;
-      color: #999; }
+      color: #000; }
     .page-wrapper .dropdown-tree button.dropdown-toggle .caret {
       position: absolute;
       right: 10px;
@@ -10727,7 +10740,8 @@ ul.breadcrumb {
   footer a img {
     max-width: 200px; }
   .paralax-image {
-    background-position: center !important; }
+    background-position: center !important;
+    background-attachment: scroll !important; }
   .testimonials-slider {
     padding: 50px 0; }
     .testimonials-slider .owl-dots {
@@ -10813,15 +10827,6 @@ ul.breadcrumb {
       height: 35px;
       overflow: hidden;
       position: relative; }
-      .list-featured-articles h3 + div:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        height: 30px;
-        width: 100%;
-        background: -webkit-linear-gradient(#fff, #fff);
-        background: linear-gradient(rgba(0, 0, 0, 0), white); }
   .press-release-filter {
     text-align: center; }
     .press-release-filter ul li {
@@ -10979,25 +10984,27 @@ ul.breadcrumb {
     margin: 0 auto 40px;
     width: 100%;
     max-width: 400px; }
-    .list-featured-articles li + li {
-      margin-top: 0 !important; }
-    .list-featured-articles li:first-child {
-      padding-top: 230px; }
-      .list-featured-articles li:first-child .featured-article-image {
-        top: 0;
-        left: 0;
-        right: 0;
-        display: block;
-        box-shadow: none;
-        width: 100%;
-        height: 240px;
-        max-height: 240px;
-        overflow: hidden; }
-    .list-featured-articles li .featured-article-image {
-      display: none; }
-    .list-featured-articles li .featured-article {
-      margin: 0 auto;
-      width: 90%; }
+    .list-featured-articles li {
+      margin-bottom: 10px; }
+      .list-featured-articles li + li {
+        margin-top: 0 !important; }
+      .list-featured-articles li:first-child {
+        padding-top: 230px; }
+        .list-featured-articles li:first-child .featured-article-image {
+          top: 0;
+          left: 0;
+          right: 0;
+          display: block;
+          box-shadow: none;
+          width: 100%;
+          height: 240px;
+          max-height: 240px;
+          overflow: hidden; }
+      .list-featured-articles li .featured-article-image {
+        display: none; }
+      .list-featured-articles li .featured-article {
+        margin: 0 auto;
+        width: 90%; }
   .risk-measurement .risk-wrapper {
     width: 100%;
     max-width: 300px;
@@ -11016,8 +11023,6 @@ ul.breadcrumb {
       position: absolute;
       bottom: 7px;
       right: 0; }
-  .page-wrapper .btn {
-    min-width: 100px; }
   .page-wrapper footer .page-section {
     padding: 15px 0; }
   .page-wrapper footer .footer-social {
@@ -11025,6 +11030,8 @@ ul.breadcrumb {
   .page-wrapper .display-table {
     width: auto;
     display: block; }
+  .page-wrapper .form-group .text-right {
+    text-align: left; }
   .testimonials-slider .quote {
     height: 33px; }
     .testimonials-slider .quote.text-right {

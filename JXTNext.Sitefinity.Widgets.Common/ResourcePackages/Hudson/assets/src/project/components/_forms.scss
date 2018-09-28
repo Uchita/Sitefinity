@@ -91,6 +91,9 @@
 
         .form-group {
             margin-bottom: 10px;
+            .btn{
+                min-width: 150px;
+            }
         }
 
         .upload-section {
@@ -309,15 +312,15 @@
             width: 100%;
             text-align: left;
             padding: 12px 10px;
-            color: #999;
+            color: $global-text-color;
             text-transform: none;
-            font: 1.4rem/1 AkzidGroProRegular,sans-serif;
+            font: 1.4rem/1 $font-family-regular;
             position: relative;
             text-overflow: ellipsis;
             overflow: hidden;
             &:hover, &:focus{
                 background: none;
-                color: #999;
+                color: $global-text-color;
             }
             .caret{
                 position: absolute;

@@ -139,7 +139,7 @@
                     }
                     else { // Job failed to save
                         if ((response.Errors[0].indexOf("(401)") > -1) || (response.Errors[0].indexOf("(403)") > -1))
-                            alert("Please login as a member to save a job.");
+                            alert("Please sign-in or register as a member to save a job.");
                         else
                             alert(response.Errors[0]);
                     }
@@ -155,7 +155,7 @@
 
             if (memberStatus.toLocaleLowerCase() != "true") {
                 e.preventDefault();
-                alert('Please login as Member to create job alert.');
+                alert('Please sign-in or register as a member to create job alert.');
             }
         });
 

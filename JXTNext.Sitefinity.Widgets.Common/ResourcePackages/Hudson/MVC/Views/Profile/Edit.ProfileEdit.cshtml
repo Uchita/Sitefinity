@@ -144,7 +144,7 @@
                         <label>
                             @Html.Resource("EditProfileNewPassword")
                         </label>
-                        @Html.PasswordFor(u => u.NewPassword, new { @class = "form-control", pattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title = "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters", autocomplete = "off" })
+                        @Html.PasswordFor(u => u.NewPassword, new { @class = "form-control", pattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title = "Your password must contain at least one number, one uppercase and lowercase letter, and 8 or more characters.", autocomplete = "off" })
 
                         <span class="text-muted">
                             <em>Password must contain 8 characters or more, 1 uppercase letter, 1 lowercase letter and 1 number</em>

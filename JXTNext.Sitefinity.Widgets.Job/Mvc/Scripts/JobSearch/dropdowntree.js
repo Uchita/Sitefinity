@@ -287,13 +287,18 @@ var globalTreeIdCounter=0;
     };
 
     function SetSelectedElementsTitle() {
-         var selectedElementText = $(options.element).GetSelectedElementsText();
+        var selectedElementText = $(options.element).GetSelectedElementsText();
+        
          var titleText = options.title;
          if (selectedElementText.length > 3) {
              titleText = selectedElementText.length + " selected";
          }
          else if (selectedElementText.length > 0) {
-             titleText = selectedElementText.join(' & ');
+             if (selectedElementText.length <= 2) {
+                 titleText = selectedElementText.join(' - ');
+             } else {
+                 titleText = selectedElementText[0] + ' - ' + selectedElementText[1] + ', ' + selectedElementText[2];
+             }            
          }
 
          $(options.element).SetTitle(titleText);

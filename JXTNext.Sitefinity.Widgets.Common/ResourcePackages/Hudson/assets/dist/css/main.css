@@ -8567,6 +8567,26 @@ ul.vertical-ul {
   .sf-Gallery-thumbs-container .owl-contact-gallery {
     margin-bottom: 0; }
 
+.gm-style-iw h3 {
+  font-family: AkzidGroProReg, sans-serif; }
+
+.info-box {
+  border-left: 3px solid #01a3a4;
+  color: #000;
+  font: 1.4rem AkzidGroProLig, sans-serif;
+  padding: 5px 0 5px 10px; }
+  .info-box .map-field {
+    display: block;
+    margin-bottom: 3px;
+    font: 1.7rem AkzidGroProMed, sans-serif; }
+    .info-box .map-field [class*="fa-"] {
+      margin-right: 10px;
+      color: #ff9000;
+      width: 16px; }
+  .info-box .info-text {
+    padding: 5px 0;
+    margin-bottom: 0; }
+
 .alert {
   border-radius: 0; }
 

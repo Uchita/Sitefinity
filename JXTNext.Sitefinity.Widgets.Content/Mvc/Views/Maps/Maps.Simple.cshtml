@@ -20,7 +20,7 @@
         <div class="map-placeholder hidden" data-zoom="@Model.ZoomLevel" data-called=false style="width: 100%; height: 350px;">
             @foreach (var marker in Model.MapsMarkers)
             {
-                <span data-address="@marker.Address" data-icon="@marker.MarkerIconPath"></span>
+                <span data-address="@marker.Address" data-icon="@marker.MarkerIconPath" data-popuptitle="@marker.PopupTitle" data-popuptext="@marker.PopupText" data-popupadditionalinfo="@marker.PopupAdditionalInfo"></span>
             }
         </div>
     }
@@ -52,17 +52,24 @@ else
                     var addresslng = $(this).data('addresslng');
                     var address = $(this).data('address');
                     var icon = $(this).data('icon');
-                    
+
+                    // Pop up information
+                    var popupTitle = $(this).data('popuptitle');
+                    var popupText = $(this).data('popuptext');
+                    var popupAdditionalInfo = $(this).data('popupadditionalinfo');
+
+                    // TODO: Format the popup text and additional info into one field text
+                    // Then pass into markers object below as a filed 'popupText'
 
                     var iconPath = '';
                     if (icon != 'undefined' && typeof icon != 'undefined' && icon != '')
                         iconPath = icon;
 
                     if (addresslat != 'undefined' && addresslng != 'undefined' && typeof addresslat != 'undefined' && typeof addresslng != 'undefined' && addresslat != '' && addresslng != '') {
-                        markers.push({ isLatLng: true, lat: Number(addresslat), lng: Number(addresslng), icon: iconPath });
+                        markers.push({ isLatLng: true, lat: Number(addresslat), lng: Number(addresslng), icon: iconPath, popupTitle: popupTitle, popupText: popupText});
                     }
                     else if (address != null && typeof address != 'undefined' && address != 'undefined' && address.length > 0) {
-                        markers.push({ isLatLng: false, address: address, icon: iconPath });
+                        markers.push({ isLatLng: false, address: address, icon: iconPath, popupTitle: popupTitle, popupText: popupText });
                     }
                 });
 
@@ -77,12 +84,14 @@ else
                              $(this).addMarker({
                                  coords: [item.lat, item.lng],
                                  icon: item.icon
-                            });
+                             });
                         }
                         else {
                             $(this).addMarker({
                                 address: item.address,
-                                icon: item.icon
+                                icon: item.icon,
+                                title: item.popupTitle,
+                                text: item.popupText
                             });
                         }
                     }

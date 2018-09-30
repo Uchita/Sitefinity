@@ -51,7 +51,7 @@
                     <div class="login-border">
                         <div class="width-limit">
                             <h2>@Html.Resource("Registration")</h2>
-                            <p>Register now to create your profile, and your CV, update your details, create job alerts and track your applications!</p>
+                            <p>Create an account to receive job alerts to track your applications!</p>
                         </div>
 
                         @if (!string.IsNullOrEmpty(ViewBag.Error))
@@ -107,7 +107,7 @@
                                     </p>
                                 </div>
                                 <div class="col-md-8">
-                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Choose password", required = "required", pattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title = "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" })
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Choose password", required = "required", pattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title = "Your password must contain at least one number, one uppercase and lowercase letter, and 8 or more characters." })
 
                                     <span class="text-muted">
                                         <em>Password must contain 8 characters or more, 1 uppercase letter, 1 lowercase letter and 1 number</em><br />&nbsp;

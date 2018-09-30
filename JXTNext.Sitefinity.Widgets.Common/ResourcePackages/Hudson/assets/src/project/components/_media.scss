@@ -450,6 +450,7 @@
     }
     .paralax-image{
         background-position: center!important;
+        background-attachment: scroll!important;
     }
     .testimonials-slider {
         padding: 50px 0;
@@ -600,16 +601,16 @@
             overflow: hidden;
             position: relative;
 
-            &:after {
-                content: "";
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                height: 30px;
-                width: 100%;
-                background: -webkit-linear-gradient(#fff, #fff);
-                background: linear-gradient(rgba(0,0,0,0), rgba(255, 255, 255, 1));
-            }
+            // &:after {
+            //     content: "";
+            //     position: absolute;
+            //     bottom: 0;
+            //     left: 0;
+            //     height: 30px;
+            //     width: 100%;
+            //     background: -webkit-linear-gradient(#fff, #fff);
+            //     background: linear-gradient(rgba(0,0,0,0), rgba(255, 255, 255, 1));
+            // }
         }
     }
 
@@ -877,7 +878,7 @@
         width: 100%;
         max-width: 400px;
         li {
-
+            margin-bottom: 10px;
             & + li {
                 margin-top: 0 !important;
 
@@ -950,9 +951,7 @@
     }
     
     .page-wrapper{
-        .btn{
-            min-width: 100px;
-        }
+       
         footer{
             .page-section{
                 padding: 15px 0;
@@ -964,6 +963,9 @@
         .display-table{
             width: auto;
             display: block;
+        }
+        .form-group .text-right{
+            text-align: left;
         }
     }
 

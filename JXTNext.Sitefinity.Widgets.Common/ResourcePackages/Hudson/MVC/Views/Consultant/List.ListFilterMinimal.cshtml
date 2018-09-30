@@ -89,7 +89,7 @@
     </div>
     <!-- End of Specialisation filter list -->
 
-    <div class="consultant flex flex-center">
+    <div class="consultant flex sm-flex flex-center">
         @foreach (var item in Model.Items)
         {
             var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);

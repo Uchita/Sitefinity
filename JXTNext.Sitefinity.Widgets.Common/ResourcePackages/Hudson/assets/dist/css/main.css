@@ -9083,6 +9083,10 @@ ul.breadcrumb {
       background: #219fa3;
       background: rgba(33, 159, 163, 0.9); }
 
+.flex [class*="col-"] .thumbnail {
+  display: table;
+  height: 96%; }
+
 .page-banner .h2, .page-banner h2, .page-banner .h3, .page-banner h3 {
   color: #fff; }
 
@@ -10837,6 +10841,11 @@ ul.breadcrumb {
         bottom: 2px; }
   .consultant-images img {
     margin-bottom: 10px; }
+  .consultant-minimal .filters-wrapper .btn-near-labels {
+    margin-top: 23px; }
+  .consultant-minimal .filters-wrapper .btn-primary {
+    padding: 13px 30px 12px;
+    width: 100%; }
   .consultant-minimal .consultant .item {
     width: 31%; }
   .testimonials-slider .testimonial-title {
@@ -11067,6 +11076,10 @@ ul.breadcrumb {
   .form-newsletter {
     max-width: 400px;
     margin: 0 auto; }
+  .consultant-minimal .filters-wrapper label {
+    display: none; }
+  .consultant-minimal .filters-wrapper .btn-near-labels {
+    margin-top: 0; }
   .consultant-minimal .consultant .item {
     width: 46.5%; } }
 

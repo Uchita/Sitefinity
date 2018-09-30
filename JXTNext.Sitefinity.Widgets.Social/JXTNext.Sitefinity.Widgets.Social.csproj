@@ -299,16 +299,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
+    <Compile Include="Mvc\Controllers\SocialHandlerController.cs" />
     <Compile Include="Mvc\Controllers\SocialLinkController.cs" />
+    <Compile Include="Mvc\Logics\IProcessSocialMediaData.cs" />
+    <Compile Include="Mvc\Logics\ProcessIndeedData.cs" />
+    <Compile Include="Mvc\Logics\ProcessSeekData.cs" />
+    <Compile Include="Mvc\Logics\SocialHandlerLogics.cs" />
     <Compile Include="Mvc\Models\SocialLinkModel.cs" />
     <Compile Include="Mvc\Models\SocialViewModel.cs" />
     <Compile Include="Mvc\StringResources\SocialLinkResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SocialModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <EmbeddedResource Include="Mvc\Views\SocialLink\DesignerView.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\SocialLink\Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\SocialHandler\SocialHandler.Simple.cshtml" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />
   </ItemGroup>

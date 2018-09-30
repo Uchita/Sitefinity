@@ -16,5 +16,8 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models
     {
         public string Address { get; set; }
         public string MarkerIconPath { get; set; }
+        public string PopupTitle { get; set; }
+        public string PopupText { get; set; }
+        public string PopupAdditionalInfo { get; set; }
     }
 }

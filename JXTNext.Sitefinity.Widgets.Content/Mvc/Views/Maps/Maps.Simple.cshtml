@@ -54,22 +54,25 @@ else
                     var icon = $(this).data('icon');
 
                     // Pop up information
-                    var popupTitle = $(this).data('popuptitle');
-                    var popupText = $(this).data('popuptext');
-                    var popupAdditionalInfo = $(this).data('popupadditionalinfo');
+                    var popupTitle = '<h3>' + $(this).data('popuptitle') + '</h3>';
+                    var popupText = '<p class="info-text">' + $(this).data('popuptext') + '</p>';
+                    var popupAdditionalInfo = '';
 
-                    // TODO: Format the popup text and additional info into one field text
-                    // Then pass into markers object below as a filed 'popupText'
+                    if ($(this).data('popupadditionalinfo') != "") {
+                        popupAdditionalInfo = '</span><span class="map-field"><span class="fa fa-phone"></span>'+$(this).data('popupadditionalinfo') + '</span>';
+                    }
+
+                    var infoWindowContent = '<div class="info-box"><span class="map-field"><span class="fas fa-map-marker-alt"></span>' + address + '</span>' + popupAdditionalInfo + popupText +'</div>';
 
                     var iconPath = '';
                     if (icon != 'undefined' && typeof icon != 'undefined' && icon != '')
                         iconPath = icon;
 
                     if (addresslat != 'undefined' && addresslng != 'undefined' && typeof addresslat != 'undefined' && typeof addresslng != 'undefined' && addresslat != '' && addresslng != '') {
-                        markers.push({ isLatLng: true, lat: Number(addresslat), lng: Number(addresslng), icon: iconPath, popupTitle: popupTitle, popupText: popupText});
+                        markers.push({ isLatLng: true, lat: Number(addresslat), lng: Number(addresslng), icon: iconPath, popupTitle: popupTitle, popupText: infoWindowContent});
                     }
                     else if (address != null && typeof address != 'undefined' && address != 'undefined' && address.length > 0) {
-                        markers.push({ isLatLng: false, address: address, icon: iconPath, popupTitle: popupTitle, popupText: popupText });
+                        markers.push({ isLatLng: false, address: address, icon: iconPath, popupTitle: popupTitle, popupText: infoWindowContent });
                     }
                 });
 

@@ -1915,6 +1915,34 @@ ul.vertical-ul {
     }
 }
 
+.gm-style-iw{
+    h3{
+        font-family:  $font-family-regular;
+    }
+}
+.info-box{
+    border-left: 3px solid $global-highlight-color;
+    color: $global-text-color;
+    font: 1.4rem $font-family-light;
+    padding: 5px 0 5px 10px;
+    
+    .map-field{
+        display: block;
+        margin-bottom: 3px;
+        font: 1.7rem $font-family-medium;
+        [class*="fa-"]{
+            margin-right:10px;
+            color: $btn-primary-bg;
+            width: 16px;
+        }
+    }
+    .info-text{
+        padding: 5px 0;
+        margin-bottom: 0;
+    }
+}
+
+
 .alert{
     border-radius: 0;
 }

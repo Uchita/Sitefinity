@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JXTNext.Sitefinity.Common.Helpers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
+using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -44,6 +45,25 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
             };
 
             return local as T;
+        }
+
+        public List<T> ConvertSearchResultsFiltersToLocal<T>(dynamic searchData) where T : class
+        {
+            List<JobFilterRoot> jobFullDetails = new List<JobFilterRoot>();
+
+            foreach (dynamic jobItem in searchData)
+            {
+                //target: JobDetailsFullModel
+                JobFilterRoot local = new JobFilterRoot
+                {
+                    ID = jobItem["ID"],
+                    Name = jobItem["Name"],
+                    Type = jobItem["Type"],
+                    Filters = JsonConvert.DeserializeObject<List<JobFilter>>(jobItem["Filters"].ToString())
+            };
+                jobFullDetails.Add(local);
+            }
+            return jobFullDetails as List<T>;
         }
 
         public List<T> ConvertSearchResultsToLocal<T>(dynamic searchData) where T : class

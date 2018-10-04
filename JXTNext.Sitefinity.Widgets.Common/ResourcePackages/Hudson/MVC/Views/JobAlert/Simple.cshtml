@@ -22,7 +22,7 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
                     @Html.ActionLink("Search", "ViewResults", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
-                    @Html.ActionLink("Delete", "Delete", "JobAlert", new { id = item.Id }, new { onclick = "return confirmDelete();", @class = "btn btn-sm btn-tag btn-danger" })
+                    @Html.ActionLink("Delete", "Delete", "JobAlert", new { id = item.Id }, new { onclick = "return confirmAlertDelete();", @class = "btn btn-sm btn-tag btn-danger" })
                 </td>
             </tr>
         }
@@ -49,13 +49,12 @@ else
 }
 
 @Html.ActionLink("Create New Job Alert", "Create", "JobAlert", new { @class = "btn jobalert-btn" })
-
-
+<a href="/job-seekers/search-results" class="btn" title="New job search">New search</a>
 
 <script type="text/javascript">
 
-    function confirmDelete() {
-          if (confirm("Are you sure you want to delete this Job Alert?")) {
+    function confirmAlertDelete() {
+          if (confirm("Are you sure you want to delete this Job Alert?")) { 
             return true;
         }
         else {
@@ -68,20 +67,20 @@ else
                 var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
                 var json = serializer.Serialize(Model);
 
-                
+
           }
 
         var memberStatus = '@ViewBag.IsMemberUser';
-        
+
         //checking user logged in is member role
         $('.jobalert-btn').click(function (e) {
-            
+
             if (memberStatus.toLocaleLowerCase() != "true") {
                 e.preventDefault();
                 alert('Please login as Member to create job alert.');
             }
         });
-        
+
 
         var model = @Html.Raw(json);
         if (model != null && model != "undefined") {
@@ -119,5 +118,5 @@ else
         }
     });
 
-        </script>
+</script>
 

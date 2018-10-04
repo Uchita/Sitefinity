@@ -312,7 +312,7 @@ $(document).ready(function () {
 
     if( $('input[type="number"]').length ){
         $('input[type="number"]').on('keydown',function(e){
-            if( e.which == 69 ){
+            if( e.which == 69 || e.which == 190 ){
                 return false;
             }
         });

@@ -9769,6 +9769,14 @@ ul.breadcrumb {
 .job-mini .breadcrumb {
   padding-left: 15px; }
 
+.job-offer-actions .saved::before {
+  position: absolute;
+  left: 0;
+  top: 4px; }
+
+.job-offer-actions .saved .fa-save {
+  display: none; }
+
 @media (min-width: 1024) {
   .jobdetail-sidebar {
     padding-left: 40px; } }
@@ -10460,11 +10468,11 @@ ul.breadcrumb {
       .risk-measurement .risk-wrapper .risk img {
         -webkit-transition: .4s;
         transition: .4s;
-        bottom: -200px;
+        bottom: -220px;
         position: absolute;
         left: 0;
         right: 0;
-        margin: auto; }
+        margin: 0; }
       .risk-measurement .risk-wrapper .risk:hover {
         cursor: pointer; }
         .risk-measurement .risk-wrapper .risk:hover img {

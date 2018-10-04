@@ -361,6 +361,20 @@
      padding-left: 15px;
  }   
 }
+
+.job-offer-actions{
+    .saved{
+        &::before{
+            position: absolute;
+            left: 0;
+            top: 4px;
+        }
+        .fa-save {
+            display: none;
+        }
+    }
+}
+
 .jobdetail-sidebar{
     @media (min-width:1024){
         padding-left: 40px;

@@ -410,12 +410,8 @@
             var valid = validateEmail(emailId);
             var parm = { email: emailId };
             var urlPath = $(location).attr('pathname') + "/CheckUser";
-            $('.welcome-message').addClass('hidden');
-            $('.loginwith_socialmedia').show();
-            $('#password-reg').parent().find('.error-message.emptyPassword-message').addClass('hidden');
-            $('#password-reg').parent().find('.error-message.wrongPassword-message').addClass('hidden');
-            $('#rememberme-block').addClass('hidden');
-            $('#upload-files-container').hide();
+            
+            //$('#upload-files-container').hide();
             if (valid) {
                 $(this).css('color', '#000');
                 $.ajax({
@@ -453,6 +449,7 @@
                         //only sign in form
                         else {
                             $('#register').show();
+                            $('#upload-files-container').hide();
                             $('#firstname-lastname').attr('hidden', 'true');
                             registerForm = false;
                             $('#firstname-reg').prop('required', false);
@@ -478,13 +475,18 @@
                    }
                 });
             } else {
-                $('#upload-files-container').hide();
+                $('.welcome-message').addClass('hidden');
+                $('.loginwith_socialmedia').show();
+                
                 $('#register').hide();
                 $(this).css('color', 'red');
                 $('#password-reg').prop('required', false);
                 $('#firstname-reg').prop('required', false);
                 $('#password-reg').removeAttr('pattern');
                 $('#password-reg').removeAttr('title');
+                $('#password-reg').parent().find('.error-message.emptyPassword-message').addClass('hidden');
+                $('#password-reg').parent().find('.error-message.wrongPassword-message').addClass('hidden');
+                $('#rememberme-block').addClass('hidden');
             }
         });
 

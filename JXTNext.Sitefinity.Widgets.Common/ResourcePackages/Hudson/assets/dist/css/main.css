@@ -9943,6 +9943,14 @@ ul.breadcrumb {
     bottom: 0;
     right: 0; }
 
+.article-sorting-wrapper {
+  text-align: right; }
+  .article-sorting-wrapper .page-num-status {
+    margin-right: 15px; }
+
+select.articles-order {
+  padding: 5px 12px; }
+
 .article-details {
   max-width: 660px;
   margin: 0 auto; }
@@ -10185,7 +10193,9 @@ ul.breadcrumb {
     border-radius: 0;
     z-index: 1;
     border: 0;
-    margin: 0; }
+    margin: 0;
+    -webkit-clip-path: polygon(100% 0, 100% 88%, 92% 100%, 0 100%, 0 0);
+    clip-path: polygon(100% 0, 100% 88%, 92% 100%, 0 100%, 0 0); }
     .press-release-filter li .dropdown-menu li, .press-release-filter li.dropdown .dropdown-menu li {
       list-style: none;
       float: none; }

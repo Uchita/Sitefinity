@@ -76,6 +76,8 @@
             z-index: 1;
             border: 0;
             margin: 0;
+            -webkit-clip-path: polygon(100% 0,100% 88%,92% 100%,0 100%,0 0);
+            clip-path: polygon(100% 0,100% 88%,92% 100%,0 100%,0 0);
             li {
                 list-style: none;
                 float: none;

@@ -56,6 +56,16 @@
     }
 }
 
+.article-sorting-wrapper{
+    text-align: right;
+
+    .page-num-status{
+        margin-right: 15px;
+    }
+}
+select.articles-order{
+    padding: 5px 12px;
+}
 .article-details {
     max-width: 660px;
     margin: 0 auto;

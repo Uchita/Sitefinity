@@ -634,6 +634,15 @@
         margin-bottom: 10px;
     }
     .consultant-minimal{
+        .filters-wrapper{
+            .btn-near-labels{
+                margin-top: 23px;
+            }
+            .btn-primary{
+                padding: 13px 30px 12px;
+                width: 100%;
+            }
+        }
         .consultant .item{
             width: 31%;   
         }
@@ -1034,6 +1043,14 @@
         margin: 0 auto;
     }
     .consultant-minimal{
+        .filters-wrapper{
+            label{
+                display: none;
+            }
+            .btn-near-labels{
+                margin-top: 0;
+            }
+        }
         .consultant .item{
             width:46.5%;   
         }

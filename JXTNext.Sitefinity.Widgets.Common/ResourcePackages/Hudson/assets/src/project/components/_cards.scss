@@ -246,6 +246,11 @@
     }
 }
 
+.flex [class*="col-"] .thumbnail{
+    display: table;
+    height: 96%;   
+}
+
 .page-banner {
 
     .h2, h2, .h3, h3 {

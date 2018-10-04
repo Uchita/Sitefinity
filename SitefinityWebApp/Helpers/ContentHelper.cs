@@ -13,6 +13,8 @@ using Telerik.Sitefinity.ContentLocations;
 using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.GenericContent.Model;
 using Telerik.Sitefinity.Utilities.TypeConverters;
+using Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models;
+using SitefinityWebApp.Mvc.Models.CustomDynamicContent;
 
 namespace SitefinityWebApp.Helpers
 {
@@ -44,7 +46,7 @@ namespace SitefinityWebApp.Helpers
 
             if (category == null)
                 return locationService.GetItemDefaultLocation(article).ItemAbsoluteUrl;
-            
+
             var locations = locationService.GetItemLocations(article);
             var bestLocation = locations.FirstOrDefault(l => new Uri(l.ItemAbsoluteUrl).Segments.Any(s => s.ToLower() == category.Name.ToLower()));
             return bestLocation == null ? locationService.GetItemDefaultLocation(article).ItemAbsoluteUrl : bestLocation.ItemAbsoluteUrl;
@@ -65,7 +67,7 @@ namespace SitefinityWebApp.Helpers
                 .FirstOrDefault(t => t.Name == classificationName);
 
             var taxon = taxonomy.Taxa.FirstOrDefault(t => t.Name.ToLower() == taxonName.ToLower());
-            return taxon == null ? 
+            return taxon == null ?
                 instance : instance.Where(item => item.GetValue<TrackedList<Guid>>(fieldName).Contains(taxon.Id)); // TODO;
         }
 
@@ -89,6 +91,107 @@ namespace SitefinityWebApp.Helpers
             }
 
             return relatedItems;
+        }
+
+        public static string GetSortExpression()
+        {
+            string orderByValue = HttpContext.Current.Request.QueryString["orderby"];
+            string sortExpr = null;
+
+            if (!string.IsNullOrWhiteSpace(orderByValue))
+            {
+                switch (orderByValue.ToLower())
+                {
+                    case "date-asc":
+                        sortExpr = "PublicationDate ASC";
+                        break;
+                    case "date-desc":
+                        sortExpr = "PublicationDate DESC";
+                        break;
+                    case "title-asc":
+                        sortExpr = "Title ASC";
+                        break;
+                    case "title-desc":
+                        sortExpr = "Title DESC";
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            return sortExpr;
+        }
+
+        public static string GetSortParameter()
+        {
+            string orderByValue = HttpContext.Current.Request.QueryString["orderby"];
+            string sortParam = null;
+
+            if (!string.IsNullOrWhiteSpace(orderByValue))
+            {
+                switch (orderByValue.ToLower())
+                {
+                    case "date-asc":
+                    case "date-desc":
+                    case "title-asc":
+                    case "title-desc":
+                        sortParam = orderByValue;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            return sortParam;
+        }
+
+        public static string GetItemsPagingInfo(DynamicContentListViewModel model)
+        {
+            var itemsCount = model.Items.Count();
+
+            if (itemsCount == 0)
+            {
+                return string.Empty;
+            }
+            else if (itemsCount == 1)
+            {
+                return "Displaying item 1 of 1";
+            }
+            else
+            {
+                string messageTemplate = "Displaying items {0} to {1} out of {2}";
+                int firstItemOnPageOrdinal = 1;
+                int lastItemOnPageOrdinal = itemsCount;
+                int totalItems = itemsCount;
+                int itemsPerPage = itemsCount;
+
+                if (HttpContext.Current.Items.Contains(CustomDynamicContentModel.ArticlesItemsPerPageFlag))
+                {
+                    itemsPerPage = Convert.ToInt32(HttpContext.Current.Items[CustomDynamicContentModel.ArticlesItemsPerPageFlag]);
+                    HttpContext.Current.Items.Remove(CustomDynamicContentModel.ArticlesItemsPerPageFlag);
+                }
+
+                if (HttpContext.Current.Items.Contains(CustomDynamicContentModel.ArticlesTotalCountFlag))
+                {
+                    totalItems = Convert.ToInt32(HttpContext.Current.Items[CustomDynamicContentModel.ArticlesTotalCountFlag]);
+                    HttpContext.Current.Items.Remove(CustomDynamicContentModel.ArticlesTotalCountFlag);
+                }
+
+                if (model.CurrentPage > 1)
+                {
+                    firstItemOnPageOrdinal = ((model.CurrentPage - 1) * itemsPerPage) + 1;
+                    lastItemOnPageOrdinal = firstItemOnPageOrdinal + itemsPerPage - 1;
+                }
+
+                if (model.CurrentPage == model.TotalPagesCount)
+                {
+                    lastItemOnPageOrdinal = totalItems;
+                }
+
+                var message = string.Format(messageTemplate, firstItemOnPageOrdinal, lastItemOnPageOrdinal, totalItems);
+
+                return message;
+            }
         }
     }
 }

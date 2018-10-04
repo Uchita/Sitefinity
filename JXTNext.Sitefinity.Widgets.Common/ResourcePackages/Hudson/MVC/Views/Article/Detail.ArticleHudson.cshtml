@@ -119,7 +119,7 @@
                 }
 
                 <div class="col-md-4">
-                    <div class="thumbnail card-basic small-caption">
+                    <div class="thumbnail card-basic simple-card">
                         @if (image != null)
                         {
                             thumbnailUrl = MediaContentExtensions.ResolveThumbnailUrl(image, "thumbartic");
@@ -136,7 +136,7 @@
                                 
                             }
                             <p>@trimSummary</p>
-                            <a class="btn btn-more" href="@navigateUrl"></a>
+                            <a class="btn" href="@navigateUrl">Learn more</a>
                         </div>
 
                     </div>

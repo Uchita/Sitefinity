@@ -1,5 +1,4 @@
 ﻿@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
-
 @using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
 @using Telerik.Sitefinity;
 @using Telerik.Sitefinity.Data.ContentLinks;
@@ -8,12 +7,10 @@
 @using Telerik.Sitefinity.Web.DataResolving;
 @using Telerik.Sitefinity.Model.ContentLinks;
 @using Telerik.Sitefinity.RelatedData;
-
 @using System;
 @using Newtonsoft.Json;
 @using Telerik.Sitefinity.DynamicModules;
 @using Telerik.Sitefinity.DynamicModules.Model;
-
 @using Telerik.Sitefinity.Services;
 @using Telerik.Sitefinity.Security.Model;
 @using Telerik.Sitefinity.Taxonomies;
@@ -21,47 +18,59 @@
 @using Telerik.Sitefinity.Model;
 @using Telerik.OpenAccess;
 @using Telerik.Sitefinity.Web;
-
 @using Telerik.Sitefinity.Modules.Pages;
 @using Telerik.Sitefinity.Modules.Libraries;
 
-
 @*Recursive function to get the classification "Article" list as a Filter*@
-@helper ProcessCategories(HierarchicalTaxon taxon)
-{
-    if (taxon != null)
+@helper ProcessCategories(HierarchicalTaxon taxon, string articlesUrl, string sortExpression)
     {
-        var title = taxon.Title;
-        var hierarchicalParentTaxon = taxon.Parent as HierarchicalTaxon;
-        var parentUrlName = "";
-        if (hierarchicalParentTaxon != null)
+        if (taxon != null)
         {
-            parentUrlName = hierarchicalParentTaxon.UrlName.ToString();
-        }
-
-        <li><a href="/insights/articles/@parentUrlName/@taxon.UrlName.ToString()" data-filter="@taxon.Title">@taxon.Title</a></li>
-
-        if (taxon.Subtaxa != null && taxon.Subtaxa.Count > 0)
-        {
-            foreach (var subTaxon in taxon.Subtaxa)
+            var title = taxon.Title;
+            var hierarchicalParentTaxon = taxon.Parent as HierarchicalTaxon;
+            var parentUrlName = "";
+            if (hierarchicalParentTaxon != null)
             {
-                //Recursive call
-                ProcessCategories(subTaxon);
+                parentUrlName = hierarchicalParentTaxon.UrlName.ToString() + "/";
+            }
+
+            var categoryPageUrl = string.Format("{0}{1}{2}{3}", articlesUrl, parentUrlName, taxon.UrlName.ToString(), sortExpression);
+
+            <li><a href="@categoryPageUrl" data-filter="@taxon.Title">@taxon.Title</a></li>
+
+            if (taxon.Subtaxa != null && taxon.Subtaxa.Count > 0)
+            {
+                foreach (var subTaxon in taxon.Subtaxa)
+                {
+                    //Recursive call
+                    ProcessCategories(subTaxon, articlesUrl, sortExpression);
+                }
             }
         }
-    }
 }
-
 <div class="@Model.CssClass">
-
     <div class="articles-top">
         <div class="press-release-filter">
             <ul class="list-unstyled clearfix">
-
                 @{
                     var managerArticle = TaxonomyManager.GetManager();
                     var articleTaxonomy = managerArticle.GetTaxonomies<HierarchicalTaxonomy>().Where(t => t.Name == "Articles").SingleOrDefault();
                     List<Taxon> topLovelTaxa = new List<Taxon>();
+
+
+                    var sortExpression = string.Empty;
+                    var sortParam = SitefinityWebApp.Helpers.ContentHelper.GetSortParameter();
+
+
+                    var baseArticlesUrl = "/insights/articles";
+                    var articlesUrl = baseArticlesUrl + "/";
+                    var allArticlesUrl = baseArticlesUrl;
+
+                    if (sortParam != null)
+                    {
+                        sortExpression = "?orderby=" + sortParam;
+                        allArticlesUrl += sortExpression;
+                    }
 
                     if (articleTaxonomy != null)
                     {
@@ -84,9 +93,10 @@
                                 dropCls = "dropdown";
                             }
 
-                            <li class="@dropCls" data-itemid="@taxon.Id.ToString()">
-                                <a href="/insights/articles/@taxon.UrlName.ToString()" data-filter="@taxon.Title">@taxon.Title</a>
+                            var taxonPageUrl = string.Format("{0}{1}{2}", articlesUrl, taxon.UrlName.ToString(), sortExpression);
 
+                            <li class="@dropCls" data-itemid="@taxon.Id.ToString()">
+                                <a href="@taxonPageUrl" data-filter="@taxon.Title">@taxon.Title</a>
                                 @if (hierarchicalTaxon != null)
                                 {
                                     if (hierarchicalTaxon.Subtaxa != null && hierarchicalTaxon.Subtaxa.Count > 0)
@@ -94,26 +104,34 @@
                                         <ul class="dropdown-menu">
                                             @foreach (var childTaxon in hierarchicalTaxon.Subtaxa)
                                             {
-                                                @ProcessCategories(childTaxon)
+                                                @ProcessCategories(childTaxon, articlesUrl, sortExpression)
                                             }
-
                                         </ul>
                                     }
                                 }
                             </li>
                         }
                     }
+
+                    <li><a href="@allArticlesUrl">show all</a></li>
                 }
-                @*@SiteMapBase.GetActualCurrentNode().Url.ToString().Substring(1)*@
-                <li><a href="/insights/articles/">show all</a></li>
+                <li>
+                    <select class="articles-order">
+                        <option value="date-asc">Sort by - Recent Posts</option>
+                        <option value="date-desc">Sort by - Oldest Posts</option>
+                        <option value="title-asc">Sort by - Alphabetical A-Z</option>
+                        <option value="title-desc">Sort by - Alphabetical Z-A</option>
+                    </select>
+                </li>
             </ul>
         </div>
     </div>
-
     @if (Model != null)
     {
         if (Model.Items.Count() > 0)
         {
+            <span>@SitefinityWebApp.Helpers.ContentHelper.GetItemsPagingInfo(Model)</span>
+
             <div class="row long-card-basic-list flex">
                 @foreach (var item in Model.Items)
                 {
@@ -125,8 +143,6 @@
                             {
                                 <a href="@navigateUrl" class="img-wrap" title="@item.Fields.HeaderImage.Fields.Title"><img alt="@item.Fields.HeaderImage.Fields.Title" src="@MediaContentExtensions.ResolveThumbnailUrl(item.Fields.HeaderImage.DataItem, "thumbartic")" /></a>
                             }
-
-
                             <div class="caption">
                                 <p class="color-light text-uppercase font-medium ">
                                     @{
@@ -152,7 +168,6 @@
                                 <p>@trimSummary</p>
                                 <a class="btn btn-more" href="@navigateUrl"></a>
                             </div>
-
                         </div>
                     </div>
                 }
@@ -167,36 +182,68 @@
     }
     @if (Model.ShowPager)
     {
-        @Html.Action("Index", "ContentPager", new { currentPage = Model.CurrentPage,
-                        totalPagesCount = Model.TotalPagesCount.Value,
-                        redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate })
+        @Html.Action("Index", "ContentPager", new
+        {
+            currentPage = Model.CurrentPage,
+            totalPagesCount = Model.TotalPagesCount.Value,
+            redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
+        })
     }
-
-
 </div>
-
 <script>
-jQuery(function ($) {
-    if ($('.press-release-filter').length) {
-        var pagePath = window.location.pathname;
-        var stripPath = pagePath.split('/');
-        var curTaxonName = '';
-        var parentTaxon = '';
-        if (stripPath.length) {
-            if (stripPath[stripPath.length - 1] == "") {
-                stripPath.pop();
-            }
-            curTaxonName = stripPath[stripPath.length - 1];
-            //console.log(curTaxonName);
-            if (stripPath.length > 2 && stripPath[stripPath.length - 2] == "career-advice") {
-                parentTaxon = stripPath[stripPath.length - 2];
-                $('.press-release-filter > ul > li > a[href*="' + parentTaxon + '"]').first().parent('li').addClass('filter-active');
-                $('.press-release-filter li a[href*="' + curTaxonName + '"]').first().parent('li').addClass('filter-active');
-            } else {
-                $('.press-release-filter > ul > li > a[href*="'+ curTaxonName + '"]').first().parent('li').addClass('filter-active');
+    jQuery(function ($) {
+        if ($('.press-release-filter').length) {
+            var pagePath = window.location.pathname;
+            var stripPath = pagePath.split('/');
+            var curTaxonName = '';
+            var parentTaxon = '';
+            if (stripPath.length) {
+                if (stripPath[stripPath.length - 1] == "") {
+                    stripPath.pop();
+                }
+                curTaxonName = stripPath[stripPath.length - 1];
+                //console.log(curTaxonName);
+                if (stripPath.length > 2 && stripPath[stripPath.length - 2] == "career-advice") {
+                    parentTaxon = stripPath[stripPath.length - 2];
+                    $('.press-release-filter > ul > li > a[href*="' + parentTaxon + '"]').first().parent('li').addClass('filter-active');
+                    $('.press-release-filter li a[href*="' + curTaxonName + '"]').first().parent('li').addClass('filter-active');
+                } else {
+                    $('.press-release-filter > ul > li > a[href*="' + curTaxonName + '"]').first().parent('li').addClass('filter-active');
+                }
             }
         }
-        
-    }
-});
+
+        function updateQueryStringParameter(uri, key, value) {
+            var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+            var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+            if (uri.match(re)) {
+                return uri.replace(re, '$1' + key + "=" + value + '$2');
+            }
+            else {
+                return uri + separator + key + "=" + value;
+            }
+        }
+
+        function getURLParameter(name) {
+            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+        }
+
+        function getURLParameter(name) {
+            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+        }
+
+        var orderByElementSelector = '.articles-order';
+        var orderByParam = 'orderby';
+        var orderByValue = getURLParameter(orderByParam);
+
+        if (orderByValue !== null) {
+            $(orderByElementSelector).val(orderByValue);
+        }
+
+        $(orderByElementSelector).change(function () {
+            window.location.href = updateQueryStringParameter(window.location.href, orderByParam, $(this).val());
+        });
+
+
+    });
 </script>

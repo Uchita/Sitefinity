@@ -115,14 +115,6 @@
 
                     <li><a href="@allArticlesUrl">show all</a></li>
                 }
-                <li>
-                    <select class="articles-order">
-                        <option value="date-asc">Sort by - Recent Posts</option>
-                        <option value="date-desc">Sort by - Oldest Posts</option>
-                        <option value="title-asc">Sort by - Alphabetical A-Z</option>
-                        <option value="title-desc">Sort by - Alphabetical Z-A</option>
-                    </select>
-                </li>
             </ul>
         </div>
     </div>
@@ -130,7 +122,17 @@
     {
         if (Model.Items.Count() > 0)
         {
-            <span>@SitefinityWebApp.Helpers.ContentHelper.GetItemsPagingInfo(Model)</span>
+            
+    <div class="article-sorting-wrapper">
+                    
+    <span class="page-num-status">@SitefinityWebApp.Helpers.ContentHelper.GetItemsPagingInfo(Model)</span>
+        <select class="articles-order">
+            <option value="date-asc">Sort by - Recent Posts</option>
+            <option value="date-desc">Sort by - Oldest Posts</option>
+            <option value="title-asc">Sort by - Alphabetical A-Z</option>
+            <option value="title-desc">Sort by - Alphabetical Z-A</option>
+        </select>
+    </div>
 
             <div class="row long-card-basic-list flex">
                 @foreach (var item in Model.Items)

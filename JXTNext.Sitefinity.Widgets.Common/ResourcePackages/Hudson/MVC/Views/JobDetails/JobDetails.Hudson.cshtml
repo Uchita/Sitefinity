@@ -186,7 +186,7 @@
         }
         <h4>Interested in this job?</h4>
         <ul class="list-unstyled job-offer-actions">
-            <li><a href="#" class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="far fa-save"></em>Save this job</a></li>
+            <li><a href="#" class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="far fa-save"></em><span class="save-status-txt">Save this job</span></a></li>
             <li><a href="javascript:window.print();"><em class="fas fa-print"></em>Print this job</a></li>
             <li>
                 <a href="mailto:?body=@shareUrl&subject=@unencodedPageTitle" title="Tell a friend">
@@ -240,7 +240,7 @@
                                 if (saveJobInfo.JobId == jobid) {
 
                                     $(selfJob).addClass("saved");
-                                    $(selfJob).text("Job saved");
+                                    $(selfJob).find('.save-status-txt').text("Job saved");
                                     $(selfJob).attr('data-savedjobid', saveJobInfo.SavedJobId);
                                 }
                             });
@@ -283,11 +283,11 @@
                     if (response.Success == true) { // Job Saved or unsaved
                         if (unSaveJob) { // Unsave job
                             self.removeClass("saved");
-                            self.text("Save job");
+                            self.find('.save-status-txt').text("Save job");
                         }
                         else { // Save job
                             self.addClass("saved");
-                            self.text("Job saved");
+                            self.find('.save-status-txt').text("Job saved");
                         }
                     }
                     else { // Job failed to save or unsave

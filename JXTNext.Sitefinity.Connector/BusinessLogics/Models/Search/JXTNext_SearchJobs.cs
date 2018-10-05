@@ -1,4 +1,5 @@
 ﻿using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
+using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
         public int Count { get; set; } //amount of jobs returned in this search
         [JsonProperty(PropertyName = "searchResults")]
         public List<JobDetailsFullModel> SearchResults { get; set; }
+        [JsonProperty(PropertyName = "searchResultsFilters")]
+        public List<JobFilterRoot> SearchResultsFilters { get; set; }
     }
 
     public enum SearchSortBy

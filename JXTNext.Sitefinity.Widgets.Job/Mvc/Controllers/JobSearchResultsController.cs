@@ -20,6 +20,9 @@ using Telerik.Sitefinity.Security.Model;
 using System.Collections.Specialized;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using System.Text.RegularExpressions;
+using System.Text;
+using System.IO;
+using System.Web;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -29,6 +32,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
     {
         IBusinessLogicsConnector _BLConnector;
         IOptionsConnector _OptionsConnector;
+        IEnumerable<IBusinessLogicsConnector> _bConnectorsList;
+        IEnumerable<IOptionsConnector> _oConnectorsList;
 
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
@@ -49,6 +54,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         public JobSearchResultsController(IEnumerable<IBusinessLogicsConnector> _bConnectors, IEnumerable<IOptionsConnector> _oConnectors)
         {
+            _bConnectorsList = _bConnectors;
+            _oConnectorsList = _oConnectors;
             _BLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
             _OptionsConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
         }
@@ -186,7 +193,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         [HttpPost]
         [StandaloneResponseFilter]
-        public PartialViewResult GetFilterSearchResultsPartial([ModelBinder(typeof(JobSearchResultsFilterBinder))] JobSearchResultsFilterModel filterModel)
+        public JsonResult GetFilterSearchResultsPartial([ModelBinder(typeof(JobSearchResultsFilterBinder))] JobSearchResultsFilterModel filterModel)
         {
             dynamic dynamicJobResultsList = null;
 
@@ -196,8 +203,46 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 dynamicJobResultsList = response as dynamic;
             }
 
-            return PartialView("_JobSearchResults", dynamicJobResultsList);
+            PartialViewResult jobResultsPartialVR =  PartialView("_JobSearchResults", dynamicJobResultsList);
+            JobFiltersController jobFiltersController = new JobFiltersController(_bConnectorsList, _oConnectorsList);
+            ActionResult filtersActionResult = jobFiltersController.Index(filterModel, SiteMapBase.GetActualCurrentNode().Title, (dynamicJobResultsList != null) ? dynamicJobResultsList.SearchResultsFilters : null);
+
+            return new JsonResult { Data = new { jobResults = RenderActionResultToString(jobResultsPartialVR, this.ControllerContext.Controller), jobResultsFilter = RenderActionResultToString(filtersActionResult, jobFiltersController) } };
         }
+
+        private string RenderActionResultToString(ActionResult result, ControllerBase controllerContext)
+        {
+            // Create memory writer.
+            var sb = new StringBuilder();
+            var memWriter = new StringWriter(sb);
+
+            // Create fake http context to render the view.
+            var fakeResponse = new HttpResponse(memWriter);
+            var fakeContext = new HttpContext(System.Web.HttpContext.Current.Request,
+                fakeResponse);
+
+            var fakeControllerContext = new ControllerContext(
+                new HttpContextWrapper(fakeContext),
+                this.ControllerContext.RouteData,
+                controllerContext
+                );
+
+            var oldContext = System.Web.HttpContext.Current;
+            System.Web.HttpContext.Current = fakeContext;
+
+            // Render the view.
+            result.ExecuteResult(fakeControllerContext);
+
+            // Restore old context.
+            System.Web.HttpContext.Current = oldContext;
+
+            // Flush memory and return output.
+            memWriter.Flush();
+            return sb.ToString();
+        }
+
+
+
 
         [HttpPost]
         public JsonResult SaveJob(int JobId)

@@ -14,6 +14,8 @@ using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using System.ComponentModel;
 using Telerik.Sitefinity.Taxonomies.Model;
 using JXTNext.Sitefinity.Common.Helpers;
+using JXTNext.Sitefinity.Widgets.Job.Mvc.Logics;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -60,7 +62,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         // GET: JobFilters
-        public ActionResult Index([ModelBinder(typeof(JobSearchResultsFilterBinder))] JobSearchResultsFilterModel filterModel)
+        public ActionResult Index([ModelBinder(typeof(JobSearchResultsFilterBinder))] JobSearchResultsFilterModel filterModel, string jobBoardPageTitle, List<JobFilterRoot> searchResultsFilters)
         {
             dynamic dynamicFilterResponse = null;
             JXTNext_GetJobFiltersRequest request = new JXTNext_GetJobFiltersRequest();
@@ -82,10 +84,35 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ViewBag.FilterModel = JsonConvert.SerializeObject(filterModel);
             ViewBag.Keywords = filterModel.Keywords;
             ViewBag.Salary = filterModel.Salary;
+                       
+            if (searchResultsFilters != null && searchResultsFilters.Count > 0)
+                JobFiltersLogics.ProcessFiltersCount(searchResultsFilters, filtersVMList);
+            else if (JobSearchResultsFilterModel.HasFilters(filterModel))
+                JobFiltersLogics.ProcessFiltersCount(GetJobSearchResultsFilters(filterModel), filtersVMList);
+            
 
-            var jobFilterComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
+            var serializedJobSearchParams = this.SerializedJobSearchParams;
+            var prefixIdText = this.PrefixIdText;
+            var displayCompanyName = this.DisplayCompanyName;
+            var templateName = this.TemplateName;
 
-            if (jobFilterComponents != null || this.DisplayCompanyName)
+            // When we are calling it from the job search results controller
+            if (!jobBoardPageTitle.IsNullOrEmpty())
+            {
+                // Getting the widget configuration settings 
+                var widgetSettings = JobFiltersLogics.GetWidgetConfigSettings(jobBoardPageTitle, typeof(JobFiltersController).FullName);
+                if (widgetSettings != null)
+                {
+                    serializedJobSearchParams = widgetSettings.Values["SerializedJobSearchParams"];
+                    prefixIdText = widgetSettings.Values["PrefixIdText"];
+                    displayCompanyName = widgetSettings.Values["DisplayCompanyName"];
+                    templateName = widgetSettings.Values["TemplateName"];
+                }
+            }
+
+            var jobFilterComponents = serializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(serializedJobSearchParams);
+
+            if (jobFilterComponents != null || displayCompanyName)
             {
                 if (jobFilterComponents != null)
                 {
@@ -96,7 +123,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     }
                 }
 
-                var selectedConfigFilters = GetSelecctedFiltersFromConfig(filtersVMList, jobFilterComponents, this.DisplayCompanyName);
+                var selectedConfigFilters = GetSelecctedFiltersFromConfig(filtersVMList, jobFilterComponents, displayCompanyName);
                 AppendParentIds(selectedConfigFilters);
                 dynamicFilterResponse = selectedConfigFilters as dynamic;
             }
@@ -106,9 +133,29 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 dynamicFilterResponse = filtersVMList as dynamic;
             }
 
-            ViewBag.PrefixIdsText = this.PrefixIdText == null ? "" : this.PrefixIdText;
+            ViewBag.PrefixIdsText = prefixIdText == null ? "" : prefixIdText;
 
-            return View(this.TemplateName, dynamicFilterResponse);
+            // Why we returning via path?
+            // we are going to call the same index action from jobsearchresults controller as well. So from there to identify the correct
+            // view, we need to user the virtual path 
+            // Telerik.Sitefinity.Frontend.FrontendService service registers a virtual path for each widget assembly and for Telerik.Sitefinity.Frontend
+            // The contents of a virtual file inside the Frontend-Assembly path can come from the file system at location ~/[Path] When not found there, 
+            // it falls back to retrieving the contents of an embedded resource placed on the same path, inside the specified assembly. 
+            // For example, ~/Frontend-Assembly/Telerik.Sitefinity.Frontend/Mvc/Scripts/Angular/angular.min.js
+            // https://www.progress.com/documentation/sitefinity-cms/priorities-for-resolving-views-mvc
+            return View("~/Frontend-Assembly/Telerik.Sitefinity.Frontend/Mvc/Views/JobFilters/" + templateName + ".cshtml", dynamicFilterResponse);
+        }
+
+        private List<JobFilterRoot> GetJobSearchResultsFilters(JobSearchResultsFilterModel filterModel)
+        {
+            JXTNext_SearchJobsRequest request = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModel, 10);
+            request.SortBy = JobSearchResultsFilterModel.GetSortEnumFromString(filterModel.SortBy);
+            ISearchJobsResponse response = _BLConnector.SearchJobs(request);
+            JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
+            if (jobResultsList != null)
+                return jobResultsList.SearchResultsFilters;
+            else
+                return null;
         }
 
         private void ProcessConfigSubFilters(JobSearchItem configFilterItem, JobFilter newFilter, List<JobFilter> backendJobFilters)

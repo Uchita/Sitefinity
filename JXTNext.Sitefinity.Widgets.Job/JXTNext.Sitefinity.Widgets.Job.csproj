@@ -319,6 +319,7 @@
     <Compile Include="Mvc\Controllers\JobFiltersController.cs" />
     <Compile Include="Mvc\Controllers\JobSearchController.cs" />
     <Compile Include="Mvc\Controllers\JobSearchResultsController.cs" />
+    <Compile Include="Mvc\Logics\JobFiltersLogics.cs" />
     <Compile Include="Mvc\Models\JobDetailsModel.cs" />
     <Compile Include="Mvc\Models\JobDetailsRolesModel.cs" />
     <Compile Include="Mvc\Models\JobFiltersDesignerViewModel.cs" />
@@ -335,7 +336,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Mvc\Views\JobDetails\JobDetails.AppPage.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JobFilters\T_MultiSelect.cshtml" />
-    <EmbeddedResource Include="Mvc\Views\JobFilters\_SimpleJS_Partial.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\Shared\_SimpleJS_Partial.cshtml" />
     <EmbeddedResource Include="Mvc\Views\Consultant\ConsultantJobs.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\Consultant\DesignerView.Simple.cshtml" />
     <None Include="web.config" />

@@ -53,5 +53,27 @@
                               sf-selected-item-id="properties.EmailTemplateId.PropertyValue"
                               sf-provider="properties.EmailTemplateProviderName.PropertyValue" />
         </uib-tab>
+        <uib-tab heading="Apply With Social Media">
+            <div class="list-group list-group-endless" kendo-sortable k-options="sortableOptions" k-on-change="sortItems(kendoEvent)" k-ignore="'input'">
+            <div class="list-group-item"
+                 ng-repeat="item in applyWithSocialMediaList track by item.Id"
+                 ng-class="list-group-item-draggable">
+
+                <div class="row">
+                    <div class="col-xs-1">
+                        <span class="handler list-group-item-drag"></span>
+                    </div>
+                    <div class="col-xs-2">
+                        <div class="checkbox">
+                            <span><label><input type="checkbox" ng-model="item.Selected" />{{item.Title}}</label></span>
+                            @*<span sf-shrinked-breadcrumb="{{item.Title}}" sf-max-length="60"></span>*@
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+                </uib-tab>
     </uib-tabset>
 </div>

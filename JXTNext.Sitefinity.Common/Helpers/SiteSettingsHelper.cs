@@ -95,6 +95,42 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return dropboxClientAPIKey;
         }
 
+        public string GetCurrentSiteSeekClientId()
+        {
+            string seekClientId = "";
+            if (this._siteSettingsContract != null)
+                seekClientId = this._siteSettingsContract.SeekClientId;
+
+            return seekClientId;
+        }
+
+        public string GetCurrentSiteSeekClientSecret()
+        {
+            string seekClientSecret = "";
+            if (this._siteSettingsContract != null)
+                seekClientSecret = this._siteSettingsContract.SeekClientSecret;
+
+            return seekClientSecret;
+        }
+
+        public string GetCurrentSiteSeekClientAdvertiserId()
+        {
+            string seekClientAdvertiserId = "";
+            if (this._siteSettingsContract != null)
+                seekClientAdvertiserId = this._siteSettingsContract.SeekClientAdvertiserId;
+
+            return seekClientAdvertiserId;
+        }
+
+        public string GetCurrentSiteSeekRedirectUri()
+        {
+            string seekRedirectUri = "";
+            if (this._siteSettingsContract != null)
+                seekRedirectUri = this._siteSettingsContract.SeekRedirectUri;
+
+            return seekRedirectUri;
+        }
+
         private const string _itemType = "JXTNext.Sitefinity.Common.Models.CustomSiteSettings.CustomSiteSettingsContract";
         private CustomSiteSettingsContract _siteSettingsContract = null;
     }

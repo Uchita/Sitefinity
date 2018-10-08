@@ -110,6 +110,40 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             }
         }
 
+        #region Seek settings
+        protected virtual TextField SeekClientId
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("seekClientId", true);
+            }
+        }
+
+        protected virtual TextField SeekClientSecret
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("seekClientSecret", true);
+            }
+        }
+
+        protected virtual TextField SeekClientAdvertiserId
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("SeekClientAdvertiserId", true);
+            }
+        }
+
+        protected virtual TextField SeekRedirectUri
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("SeekRedirectUri", true);
+            }
+        }
+        #endregion
+
         #endregion
 
         #region Methods

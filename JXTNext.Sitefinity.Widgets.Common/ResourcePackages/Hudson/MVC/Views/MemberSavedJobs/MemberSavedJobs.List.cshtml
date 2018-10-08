@@ -36,7 +36,7 @@
                     <td><a href="@ViewBag.JobDetailsPageUrl?JobId=@item.JobId">@item.DisplayTitle</a></td>
                     <td>@String.Format("{0:dd MMM-yyyy}", item.DateAdded)</td>
                     <td>
-                        @Html.ActionLink("Remove", "DeleteSavedJob", "MemberSavedJobs", new { savedJobId = item.Id }, new { onclick = "return confirmDelete();", @class = "btn btn-sm btn-tag btn-danger" })
+                        @Html.ActionLink("Remove", "DeleteSavedJob", "MemberSavedJobs", new { savedJobId = item.Id }, new { onclick = "return confirmSaveJobDelete();", @class = "btn btn-sm btn-tag btn-danger" })
                     </td>
                 </tr>
             }
@@ -51,7 +51,7 @@ else
 
 
 <script type="text/javascript">
-    function confirmDelete() {
+    function confirmSaveJobDelete() {
           if (confirm("Are you sure you want to remove this saved job?")) {
             return true;
         }

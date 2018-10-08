@@ -113,6 +113,23 @@
     }
 }
 
+.filter-outer-wrapper{
+    
+    &.lockoverlay{
+        position: relative;
+        &::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(255,255,255,0.5);
+            z-index: 10;
+        }
+    }
+}
+
 .SalaryRangeSelect{
     width: 100%;
 }
@@ -361,6 +378,20 @@
      padding-left: 15px;
  }   
 }
+
+.job-offer-actions{
+    .saved{
+        &::before{
+            position: absolute;
+            left: 0;
+            top: 4px;
+        }
+        .fa-save {
+            display: none;
+        }
+    }
+}
+
 .jobdetail-sidebar{
     @media (min-width:1024){
         padding-left: 40px;
@@ -470,9 +501,11 @@
             display: inline-block;
             margin: 0 1px;
             a{
-                border-color: #219fa3;
+                border: 1px solid #219fa3;
                 color: #219fa3;
                 border-radius: 0!important;
+                min-width: 2em;
+                display: inline-block;
                 &:hover, &:focus, &.active{
                     background: #219fa3;
                     color: #fff;

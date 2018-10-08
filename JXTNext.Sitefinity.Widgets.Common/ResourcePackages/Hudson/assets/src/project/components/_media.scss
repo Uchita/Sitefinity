@@ -977,7 +977,12 @@
             text-align: left;
         }
     }
-
+    .thumbnail{
+        .display-table{
+            display: table;
+            width: 100%;
+        }
+    }
     .testimonials-slider {
         .quote{
             height: 33px;

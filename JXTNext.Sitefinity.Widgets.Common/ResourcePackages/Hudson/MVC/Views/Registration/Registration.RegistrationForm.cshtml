@@ -124,7 +124,7 @@
                                     @if (Html.ValidationMessageFor(m => m.Password) != null)
                                     {
                                         <div class="has-error">
-                                            <span class="help-block"> @Html.ValidationMessageFor(m => m.Password)</span>
+                                            <div class="alert alert-danger"> @Html.ValidationMessageFor(m => m.Password)</div>
                                         </div>
                                     }
 

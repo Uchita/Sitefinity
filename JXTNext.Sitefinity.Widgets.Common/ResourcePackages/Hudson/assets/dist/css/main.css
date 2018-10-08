@@ -8315,7 +8315,8 @@ main {
       font-family: AkzidGroProReg,sans-serif;
       color: #808080; }
       .dropdown.dropdown-tree > ul li a .count {
-        margin-left: 3px; }
+        margin-left: 3px;
+        font-size: 100%; }
     .dropdown.dropdown-tree > ul li .drop-down-item {
       padding: 4px 20px 4px 0;
       right: 0; }
@@ -11135,6 +11136,9 @@ select.articles-order {
     display: block; }
   .page-wrapper .form-group .text-right {
     text-align: left; }
+  .thumbnail .display-table {
+    display: table;
+    width: 100%; }
   .testimonials-slider .quote {
     height: 33px; }
     .testimonials-slider .quote.text-right {

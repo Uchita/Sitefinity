@@ -36,6 +36,19 @@
     <ul class="k-pager-numbers k-reset"></ul>
 </div>
 
+<div class="popup-overlay">
+    <div class="container">
+        <div class="popup-box">
+            <p class="info">Please sign-in or register as a member to <span>create job alert</span>.</p>
+            <div class="button-wrapper">
+                <a href="/register" class="btn btn-primary">Register</a>
+                <a href="/sign-in" class="btn btn-primary">Sign in</a>
+            </div>
+            <a href="javascript:void(0)" class="fa fa-times"></a>
+        </div>
+    </div>
+</div>
+
 <script type="text/x-kendo-template" id="template">
     <div class="job-holder search-result">
         <div class="search-result-top">
@@ -139,7 +152,11 @@
                     }
                     else { // Job failed to save
                         if ((response.Errors[0].indexOf("(401)") > -1) || (response.Errors[0].indexOf("(403)") > -1))
-                            alert("Please sign-in or register as a member to save a job.");
+                            //alert("Please sign-in or register as a member to save a job.");
+                            if ($('.popup-overlay').length) {
+                                $('.popup-overlay .info span').text('save a job');
+                                $('.popup-overlay').fadeIn('fast');
+                            }
                         else
                             alert(response.Errors[0]);
                     }
@@ -155,8 +172,16 @@
 
             if (memberStatus.toLocaleLowerCase() != "true") {
                 e.preventDefault();
-                alert('Please sign-in or register as a member to create job alert.');
+                //alert('Please sign-in or register as a member to create job alert.');
+                if ($('.popup-overlay').length) {
+                    $('.popup-overlay .info span').text('create job alert');
+                    $('.popup-overlay').fadeIn('fast');
+                }
             }
+        });
+
+        $('.popup-overlay .fa-times').click(function () {
+            $('.popup-overlay').fadeOut('fast');
         });
 
     });

@@ -60,6 +60,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public JobApplicationController(IBusinessLogicsConnector blConnector)
         {
             _blConnector = blConnector;
+            if (string.IsNullOrWhiteSpace(this.SerializedApplyWithSocialMedia))
+                this.SerializedApplyWithSocialMedia = ApplyWithSocialMedia.SerializedSocialMediaInit();
         }
 
 
@@ -143,6 +145,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             jobApplicationViewModel.UploadFiles = uploadFileInfo;
             jobApplicationViewModel.JobId = jobid.HasValue ? jobid.Value : 0;
+            jobApplicationViewModel.ApplyWithSocialMediaInfo = GetSelectedSocialMediaItems();
             bool isUserLoggedIn = false;
             string userEmail = String.Empty;
             string userFirstName = String.Empty;
@@ -739,6 +742,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
+        private List<ApplyWithSocialMedia> GetSelectedSocialMediaItems()
+        {
+            var socialMediaLinks = JsonConvert.DeserializeObject<List<ApplyWithSocialMedia>>(this.SerializedApplyWithSocialMedia);
+            var selectedLinks = socialMediaLinks.Where(l => l.Selected == true).ToList();
+
+            return selectedLinks;
+        }
+
         public string ItemType
         {
             get { return this._itemType; }
@@ -760,6 +771,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string SerializedCloudSettingsParams { get; set; }
         public string RegisterPageId { get; set; }
         public string JobApplicationSuccessPageId { get; set; }
+        public virtual string SerializedApplyWithSocialMedia { get; set; }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private string templateName = "Simple";

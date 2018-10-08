@@ -5,6 +5,7 @@ using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
+using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -430,9 +431,11 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
                 dynamic responseObj = JsonConvert.DeserializeObject<dynamic>(response.Response);
                 dynamic responseObjData = JsonConvert.DeserializeObject<dynamic>(responseObj.data.ToString());
                 dynamic responseObjDataSearchResults = JsonConvert.DeserializeObject<dynamic>(responseObjData.jobsearchresults.ToString());
+                dynamic responseObjDataSearchResultsFilters = JsonConvert.DeserializeObject<dynamic>(responseObjData.SearchResultsFilters.ToString());
 
                 if (responseObj["status"] == 200)
-                    return new JXTNext_SearchJobsResponse { Success = true, Total = responseObjDataSearchResults.total, SearchResults = _jobMapper.ConvertSearchResultsToLocal<JobDetailsFullModel>(responseObjDataSearchResults.searchResults) };
+                    return new JXTNext_SearchJobsResponse { Success = true, Total = responseObjDataSearchResults.total, SearchResults = _jobMapper.ConvertSearchResultsToLocal<JobDetailsFullModel>(responseObjDataSearchResults.searchResults), SearchResultsFilters = _jobMapper.ConvertSearchResultsFiltersToLocal<JobFilterRoot>(responseObjDataSearchResultsFilters.Data) };
+            
                 else
                     return new JXTNext_SearchJobsResponse { Success = false, Errors = responseObj.errors };
             }

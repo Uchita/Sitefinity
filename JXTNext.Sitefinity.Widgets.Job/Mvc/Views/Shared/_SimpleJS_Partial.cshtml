@@ -1,6 +1,57 @@
 ﻿@model dynamic
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
+@if (Model != null)
+{
+    <div class="filter-outer-wrapper left-sidebar">
+        <div class="form-group keywordfilter">
+            <label><strong>Keywords:</strong></label>
+            <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" placeholder="Search keywords" /></div>
+        </div>
+
+        @foreach (var item in Model)
+        {
+            if (item.Name != "Salary")
+            {
+                <div class="dropdown dropdown-tree navbar-collapse" id=@string.Format("{0}{1}", ViewBag.PrefixIdsText, item.Name)></div>
+            }
+            else if (item.Name == "Salary")
+            {
+                <select class="SalaryRangeSelect">
+                    <option value="-1" selected>No Salary Preference</option>
+                    @foreach (var salaryItem in item.Filters)
+                    {
+                        <option value="@salaryItem.ID">@salaryItem.Label</option>
+                    }
+                </select>
+                foreach (var salaryItem in item.Filters)
+                {
+                    var lower = 15000;
+                    var upper = 200000;
+                    if (salaryItem.Label == "Hourly Rate")
+                    {
+                        lower = 18;
+                        upper = 200;
+                    }
+                    <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
+
+                        <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
+                             data-cur_min="@lower" data-cur_max="@upper">
+
+                            <div class="bar"></div>
+                            <div class="leftGrip"></div>
+                            <div class="rightGrip"></div>
+                        </div>
+                        <div class="leftLabel">$<span>@lower</span></div>
+                        <div class="rightLabel">$<span>@upper</span></div>
+
+                    </div>
+                }
+            }
+        }
+    </div>
+}
+
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -17,7 +68,7 @@
         var isSlarySelected = false;
         var salary = { TargetValue: 'Salary', LowerRange: 15000, UpperRange: 200000 };
         var modelSalary = JSON.parse('@Html.Raw(Json.Encode(ViewBag.Salary))');
-    
+
         if (modelSalary != null && modelSalary != 'undefined') {
             $('.SalaryRangeSelect').val(modelSalary.TargetValue);
             $('#' + modelSalary.TargetValue).removeClass('visible-hidden');
@@ -31,7 +82,7 @@
                 $(salarySliderEle).data("cur_max", modelSalary.UpperRange);
             }
         }
-               
+
 
         $('.SalaryRangeSelect').on('change', function () {
             isSlarySelected = false;
@@ -50,7 +101,7 @@
                 isSlarySelected = false;
                 eachClickFilter();
             }
-            
+
         });
 
         $('.nstSlider').each(function (i, obj) {
@@ -79,7 +130,7 @@
             });
         });
 
-               
+
 
         $('#selectedkeywordsfilter').on('keyup', function (e) {
             clearTimeout(typingTimer);
@@ -98,7 +149,7 @@
                 $("#selectedkeywordsfilter").parent().addClass('loader');
                 eachClickFilter();
             }
-                
+
         });
 
 
@@ -142,6 +193,9 @@
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
             prefixIdText = @Html.Raw(Json.Encode(ViewBag.PrefixIdsText));
 
+            console.log(filterData);
+            console.log(prefixIdText);
+
             $.each(filterData, function (index, item) {
                 if (item.Name == 'Salary') {
                     isSalaryExists = true;
@@ -177,7 +231,7 @@
                 };
                 $("#" + prefixIdText + item.Name).DropDownTree(optionsArray[prefixIdText + item.Name]);
             });
-            
+
 
             function eachClickFilter() {
                 var filterModel = {};
@@ -199,7 +253,7 @@
                                 return false;
                             }
                         });
-                        
+
                         if (flag == false && selectedIdsCount > 0)
                             filterModel.Filters.push({ rootId: trimmedId, values: $("#" + id).GetSelectedElementIds() });
                     }
@@ -225,16 +279,17 @@
                     cache: false,
                     url: urlPath,
                     data: queryStringData,
-                    dataType: 'html',
+                    dataType: 'json',
                     success: function (response) {
-                        $("#resultsPagePartialContent").empty().html(response);
+                        $("#resultsPagePartialContent").empty().html(response.jobResults);
+                        $("#filtersPagePartialContent").empty().html(response.jobResultsFilter);
                     },
                     error: function (response) {
-                       console.log("Job Filters Error: " + response);
+                       console.log(response);
                     }
                 });
             }
         }
-       
+
     });
 </script>

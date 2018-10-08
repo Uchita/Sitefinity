@@ -17,8 +17,28 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
         public JobSearchSalaryFilterReceiver Salary { get; set; }
         public string SortBy { get; set; }
 
+        public static bool HasFilters(JobSearchResultsFilterModel filterModel)
+        {
+            bool hasFilters = false;
 
-        public static JXTNext_SearchJobsRequest ProcessInputToSearchRequest(JobSearchResultsFilterModel filterModel, int? pageSize, int pageSizeDefaultValue)
+            if(filterModel.Filters != null && filterModel.Filters.Count > 0)
+            {
+                foreach(var filter in filterModel.Filters)
+                {
+                    if(filter.values != null && filter.values.Count > 0)
+                    {
+                        hasFilters = true;
+                        break;
+                    }
+                }
+            }
+            if (filterModel != null && !hasFilters && (!filterModel.Keywords.IsNullOrEmpty() || filterModel.Salary != null))
+                hasFilters = true;
+
+            return hasFilters;
+        }
+
+        public static JXTNext_SearchJobsRequest ProcessInputToSearchRequest(JobSearchResultsFilterModel filterModel, int? pageSize, int pageSizeDefaultValue = 5)
         {
             JXTNext_SearchJobsRequest request = new JXTNext_SearchJobsRequest();
             if (filterModel != null)

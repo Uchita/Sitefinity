@@ -64,6 +64,37 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             get;
             set;
         }
+
+        #region Seek
+        [DataMember]
+        public string SeekClientId
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string SeekClientSecret
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string SeekClientAdvertiserId
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string SeekRedirectUri
+        {
+            get;
+            set;
+        }
+        #endregion
+
         #endregion
 
         #region LoadDefaults
@@ -84,6 +115,12 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             this.DropboxAppId = section.UICustomSiteSettings.CurrentDropboxAppId;
             this.DropboxAppSecret = section.UICustomSiteSettings.CurrentDropboxAppSecret;
             this.DropboxClientAPIKey = section.UICustomSiteSettings.CurrentDropboxClientAPIKey;
+
+            // Seek
+            this.SeekClientId = section.UICustomSiteSettings.CurrentSeekClientId;
+            this.SeekClientSecret = section.UICustomSiteSettings.CurrentSeekClientSecret;
+            this.SeekClientAdvertiserId = section.UICustomSiteSettings.CurrentSeekClientAdvertiserId;
+            this.SeekRedirectUri = section.UICustomSiteSettings.CurrentSeekRedirectUri;
         }
 
         public void SaveDefaults()
@@ -100,6 +137,12 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             section.UICustomSiteSettings.CurrentDropboxAppId = this.DropboxAppId;
             section.UICustomSiteSettings.CurrentDropboxAppSecret = this.DropboxAppSecret;
             section.UICustomSiteSettings.CurrentDropboxClientAPIKey = this.DropboxClientAPIKey;
+
+            // Seek
+            section.UICustomSiteSettings.CurrentSeekClientId = this.SeekClientId;
+            section.UICustomSiteSettings.CurrentSeekClientSecret = this.SeekClientSecret;
+            section.UICustomSiteSettings.CurrentSeekClientAdvertiserId = this.SeekClientAdvertiserId;
+            section.UICustomSiteSettings.CurrentSeekRedirectUri = this.SeekRedirectUri;
 
             manager.SaveSection(section);
         }

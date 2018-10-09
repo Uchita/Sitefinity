@@ -9146,9 +9146,24 @@ ul.breadcrumb {
       background: #219fa3;
       background: rgba(33, 159, 163, 0.9); }
 
+.simple-card .thumbnail {
+  background: none;
+  position: relative;
+  padding-bottom: 45px;
+  margin-bottom: 40px; }
+  .simple-card .thumbnail .caption {
+    background: none;
+    position: static;
+    padding: 20px 10px 0;
+    min-height: 80px !important; }
+    .simple-card .thumbnail .caption .btn {
+      position: absolute;
+      bottom: 0; }
+
 .flex [class*="col-"] .thumbnail {
   display: table;
-  height: 96%; }
+  height: 96%;
+  width: 100%; }
 
 .page-banner .h2, .page-banner h2, .page-banner .h3, .page-banner h3 {
   color: #fff; }
@@ -9471,9 +9486,9 @@ ul.breadcrumb {
     margin-bottom: 2rem; }
   .page-wrapper .sf-profile h2 {
     font-size: 3.2rem;
-    margin-top: 2.0rem; }
+    margin-top: 2.35rem; }
   .page-wrapper .sf-profile img {
-    max-width: 150px;
+    max-width: 200px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); }
   .page-wrapper .sf-profile label {
     padding-top: 0; }
@@ -11114,7 +11129,7 @@ select.articles-order {
     max-width: 300px;
     margin: 10px auto 20px;
     float: none; }
-    .risk-measurement .risk-wrapper .risk img, .risk-measurement .risk-wrapper .risk:hover img {
+    .risk-measurement .risk-wrapper .risk img {
       bottom: 0; }
   .white-box-list .white-box {
     height: auto !important;

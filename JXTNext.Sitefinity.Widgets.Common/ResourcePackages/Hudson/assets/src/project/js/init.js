@@ -165,7 +165,6 @@ ThemeGlobal.DynamicFormConditions = function () {
     }
 }
 
-
 $(document).ready(function () {
 
     ThemeGlobal.QuickLinksToggle();

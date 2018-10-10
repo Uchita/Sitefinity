@@ -37,7 +37,7 @@
 {
     <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();" class="jn_jobSearch jn_search hz-listing cs-layout">
         <div class="row">
-            <div class="form-fields-group ">
+            <div class="field-wrapper basic-form no-marg-top">
                 @{
                     int counter = 0;
                 }
@@ -203,11 +203,13 @@
             var prefixIdText = @Html.Raw(Json.Encode(ViewData["PrefixIdsText"]));
 
             for (var item of filterData) {
+                
                 switch (item.ControlType) {
                     case 'TextBox':
                         break;
 
                     case 'DropDown Multi':
+                        
                         optionsArray[prefixIdText+item.ID] = {
                             title: item.PlaceholderText,
                             data: item.Filters,
@@ -215,8 +217,9 @@
                             closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
                             openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
                             multiSelect: true,
-                            selectChildren: false,
+                            selectChildren: true,
                             expandChildren: true,
+                            enableSearch: false,
                             prefixIdText: prefixIdText,
                         };
                         $("#" + prefixIdText + item.ID).DropDownTree(optionsArray[prefixIdText+item.ID]);
@@ -290,7 +293,6 @@
                 }
             });
         });
-
 
    });
 </script>

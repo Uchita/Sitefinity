@@ -8,7 +8,8 @@
             <label><strong>Keywords:</strong></label>
             <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" placeholder="Search keywords" /></div>
         </div>
-
+        <div class="filter-toggle"><span class="btn btn-primary">@Html.Resource("JobFilterToggleBtn")</span></div>
+        <div class="sm-wrapper">
         @foreach (var item in Model)
         {
             if (item.Name != "Salary")
@@ -49,6 +50,7 @@
                 }
             }
         }
+       </div>
     </div>
 }
 
@@ -151,6 +153,13 @@
             }
 
         });
+
+        //for mobile only = show hide the filter
+        if ($('.filter-toggle').length) {
+            $('.filter-toggle').click(function () {
+                $('.sm-wrapper').fadeToggle('fast');
+            });
+        }
 
 
         function makeQueryString(obj, prefix, isArray) {

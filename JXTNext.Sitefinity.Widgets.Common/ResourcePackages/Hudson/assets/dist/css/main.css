@@ -9674,6 +9674,9 @@ ul.breadcrumb {
     display: block;
     color: #000; }
 
+.filter-toggle {
+  display: none; }
+
 .filter-outer-wrapper.lockoverlay {
   position: relative; }
   .filter-outer-wrapper.lockoverlay::before {
@@ -11098,6 +11101,8 @@ select.articles-order {
     margin-top: 0;
     margin-bottom: 10px;
     width: 50%; }
+  .filter-toggle {
+    display: block; }
   .list-featured-articles {
     padding: 0 !important;
     margin: 0 auto 40px;
@@ -11124,6 +11129,9 @@ select.articles-order {
       .list-featured-articles li .featured-article {
         margin: 0 auto;
         width: 90%; }
+  .sm-wrapper {
+    display: none;
+    margin-top: 20px; }
   .risk-measurement .risk-wrapper {
     width: 100%;
     max-width: 300px;

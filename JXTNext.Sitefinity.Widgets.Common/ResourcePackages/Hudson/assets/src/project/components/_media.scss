@@ -880,7 +880,9 @@
             }
         }
     }
-
+    .filter-toggle{
+        display: block;
+    }
     .list-featured-articles {
         padding: 0!important;
         margin: 0 auto 40px;
@@ -932,7 +934,10 @@
             }
         }
     }
-
+    .sm-wrapper{
+        display: none;
+        margin-top: 20px;
+    }
     .risk-measurement .risk-wrapper {
         width: 100%;
         max-width: 300px;

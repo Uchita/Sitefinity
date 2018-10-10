@@ -71,7 +71,7 @@
     }
 
     .risk-measurement .risk-wrapper {
-        width: 50%;
+        width: 33.3%;
     }
     .list-featured-articles{
         font-size: 1.4rem;
@@ -267,9 +267,9 @@
     .risk-measurement .risk-wrapper {
         width: 20%;
 
-        .risk img {
-            left: 15px;
-        }
+        // .risk img {
+        //     left: 15px;
+        // }
     }
     
     .contact-consultant {
@@ -939,10 +939,8 @@
         margin-top: 20px;
     }
     .risk-measurement .risk-wrapper {
-        width: 100%;
-        max-width: 300px;
+        width: 50%;
         margin: 10px auto 20px;
-        float: none;
         .risk img{
             bottom: 0;
         }
@@ -1314,6 +1312,10 @@
             margin-left: 0;
             left: 0;
         }
+    }
+    .risk-measurement .risk-wrapper {
+        width: 100%;
+        float: none;
     }
 }
 

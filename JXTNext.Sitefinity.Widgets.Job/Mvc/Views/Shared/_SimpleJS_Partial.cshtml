@@ -156,7 +156,8 @@
 
         //for mobile only = show hide the filter
         if ($('.filter-toggle').length) {
-            $('.filter-toggle').click(function () {
+            $('.filter-toggle .btn').click(function () {
+                $(this).toggleClass('active');
                 $('.sm-wrapper').fadeToggle('fast');
             });
         }

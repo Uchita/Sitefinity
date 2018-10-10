@@ -10527,7 +10527,9 @@ select.articles-order {
     position: relative; }
     .risk-measurement .risk-wrapper .risk {
       height: 345px;
-      position: relative; }
+      max-width: 188px;
+      position: relative;
+      margin: 0 auto; }
       .risk-measurement .risk-wrapper .risk .risk-title {
         font-size: 24px;
         font-size: 2.4rem;
@@ -10657,7 +10659,7 @@ select.articles-order {
   .thumbnail.card-rollover-bg .card-description {
     padding: 15px; }
   .risk-measurement .risk-wrapper {
-    width: 50%; }
+    width: 33.3%; }
   .list-featured-articles {
     font-size: 1.4rem;
     line-height: 1.4; }
@@ -10763,8 +10765,6 @@ select.articles-order {
     padding-top: 0px; }
   .risk-measurement .risk-wrapper {
     width: 20%; }
-    .risk-measurement .risk-wrapper .risk img {
-      left: 15px; }
   .contact-consultant .contact-consultant-info {
     min-height: 370px; }
   .right-bottom-below img {
@@ -11133,10 +11133,8 @@ select.articles-order {
     display: none;
     margin-top: 20px; }
   .risk-measurement .risk-wrapper {
-    width: 100%;
-    max-width: 300px;
-    margin: 10px auto 20px;
-    float: none; }
+    width: 50%;
+    margin: 10px auto 20px; }
     .risk-measurement .risk-wrapper .risk img {
       bottom: 0; }
   .white-box-list .white-box {
@@ -11368,7 +11366,10 @@ select.articles-order {
   .popup-overlay .container {
     max-width: 100%;
     margin-left: 0;
-    left: 0; } }
+    left: 0; }
+  .risk-measurement .risk-wrapper {
+    width: 100%;
+    float: none; } }
 
 @media (max-width: 400px) {
   .section-ul ul.nav-stacked li {

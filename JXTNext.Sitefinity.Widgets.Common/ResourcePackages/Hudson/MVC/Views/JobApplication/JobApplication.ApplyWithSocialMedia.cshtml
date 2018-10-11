@@ -1,0 +1,44 @@
+﻿@model dynamic
+@using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
+
+@using JXTNext.Sitefinity.Common.Helpers
+
+@if (Model != null && Model.ApplyWithSocialMediaInfo != null)
+{
+    var siteSettingsHelper = new SiteSettingsHelper();
+    <span class="footer-social" style="text-align: center">
+
+        <div>
+            <ul class="list-inline">
+                @foreach (var item in Model.ApplyWithSocialMediaInfo)
+                {
+                    switch (item.Title)
+                    {
+                        case "Seek":
+
+                            var clientId = siteSettingsHelper.GetCurrentSiteSeekClientId();
+                            var advertiserId = siteSettingsHelper.GetCurrentSiteSeekClientAdvertiserId();
+                            var redirectUri = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
+
+                            string hrefLink = String.Format("https://www.seek.com.au/api/iam/oauth2/authorize?client_id={0}&redirect_uri={1}&state=seek&scope=r_profile_apply&response_type=code&advertiser_id={2}", clientId, redirectUri, advertiserId);
+
+                            <li><a href=@hrefLink title=@item.Title>@item.Title</a></li>
+                            break;
+
+                        case "Indeed":
+                            <li><a href="#" target="_blank" title=@item.Title>@item.Title</a></li>
+                            break;
+
+                        case "LinkedIn":
+                            <li><a href="#" target="_blank" title=@item.Title>@item.Title</a></li>
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+
+            </ul>
+        </div>
+    </span>
+}

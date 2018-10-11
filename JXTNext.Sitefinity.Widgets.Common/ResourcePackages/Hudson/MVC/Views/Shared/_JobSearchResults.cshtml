@@ -247,6 +247,7 @@
 
         $("#sortOrder").change(function () {
             sortBy = $(this).val();
+            PageNumber = 1;
             bindJobs(PageNumber);
         });
 

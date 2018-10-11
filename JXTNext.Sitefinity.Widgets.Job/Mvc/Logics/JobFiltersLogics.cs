@@ -25,7 +25,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Logics
                     FirstOrDefault();
 
                 var pageData = page.GetPageData();
-                var pageDraft = manager.EditPage(pageData.Id);
+                var pageDraft = manager.GetPageDraft(pageData.Id);
                 var pageDraftControls = pageDraft.Controls
                     .Where(c => c.ObjectType == typeof(MvcControllerProxy).FullName)
                     .ToList();

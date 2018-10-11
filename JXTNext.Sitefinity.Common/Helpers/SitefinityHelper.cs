@@ -12,6 +12,7 @@ using Telerik.Sitefinity.Security.Model;
 using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.Taxonomies;
 using Telerik.Sitefinity.Taxonomies.Model;
+using Telerik.Sitefinity.Web;
 
 namespace JXTNext.Sitefinity.Common.Helpers
 {
@@ -274,6 +275,11 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 isUserInRole = roleManager.IsUserInRole(user.Id, roleName);
 
             return isUserInRole;
+        }
+
+        public static string GetCurrentPageUrl()
+        {
+            return GetPageUrl(SiteMapBase.GetActualCurrentNode().Id.ToString());
         }
     }
 }

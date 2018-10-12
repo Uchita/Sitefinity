@@ -63,7 +63,7 @@
                                     </label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="number" name="PhoneNumber" class="form-control" placeholder="Phone number" />
+                                    <input type="text" id="PhoneNumber" name="PhoneNumber" pattern="[0-9]*" class="form-control" placeholder="Phone number" />
                                 </div>
                             </div>
                         </div>
@@ -404,7 +404,7 @@
              });
 
          });
-
+         
         $('#userid').keyup(function () {
             var emailId = $(this).val();
             var valid = validateEmail(emailId);

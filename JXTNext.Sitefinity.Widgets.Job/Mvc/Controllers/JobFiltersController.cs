@@ -262,6 +262,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     filter.ID = parentId + "_" + filter.ID;
                     if (filter.Filters != null && filter.Filters.Count > 0)
                     {
+                        // Organiging by alphbetical order
+                        filter.Filters = filter.Filters.OrderBy(x => x.Label).ToList();
                         ProcessFiltersIds(filter.Filters, filter.ID);
                     }
                 }
@@ -276,9 +278,15 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 {
                     if (filterRoot.Filters != null && filterRoot.Filters.Count > 0)
                     {
+                        filterRoot.Filters = filterRoot.Filters.OrderBy(x => x.Label).ToList();
                         foreach (var filter in filterRoot.Filters)
                         {
-                            ProcessFiltersIds(filter.Filters, filter.ID);
+                            if (filter.Filters != null && filter.Filters.Count > 0)
+                            {
+                                // Organiging by alphbetical order
+                                filter.Filters = filter.Filters.OrderBy(x => x.Label).ToList();
+                                ProcessFiltersIds(filter.Filters, filter.ID);
+                            }
                         }
                     }
                 }

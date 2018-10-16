@@ -71,7 +71,7 @@
     }
 
     .risk-measurement .risk-wrapper {
-        width: 50%;
+        width: 33.3%;
     }
     .list-featured-articles{
         font-size: 1.4rem;
@@ -267,9 +267,9 @@
     .risk-measurement .risk-wrapper {
         width: 20%;
 
-        .risk img {
-            left: 15px;
-        }
+        // .risk img {
+        //     left: 15px;
+        // }
     }
     
     .contact-consultant {
@@ -880,7 +880,9 @@
             }
         }
     }
-
+    .filter-toggle{
+        display: block;
+    }
     .list-featured-articles {
         padding: 0!important;
         margin: 0 auto 40px;
@@ -932,13 +934,14 @@
             }
         }
     }
-
+    .sm-wrapper{
+        display: none;
+        margin-top: 20px;
+    }
     .risk-measurement .risk-wrapper {
-        width: 100%;
-        max-width: 300px;
+        width: 50%;
         margin: 10px auto 20px;
-        float: none;
-        .risk img, .risk:hover img{
+        .risk img{
             bottom: 0;
         }
     }
@@ -977,7 +980,12 @@
             text-align: left;
         }
     }
-
+    .thumbnail{
+        .display-table{
+            display: table;
+            width: 100%;
+        }
+    }
     .testimonials-slider {
         .quote{
             height: 33px;
@@ -1304,6 +1312,10 @@
             margin-left: 0;
             left: 0;
         }
+    }
+    .risk-measurement .risk-wrapper {
+        width: 100%;
+        float: none;
     }
 }
 

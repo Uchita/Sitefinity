@@ -144,6 +144,24 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
         }
         #endregion
 
+        #region Indeed settings
+        protected virtual TextField IndeedClientAPIToken
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("indeedClientAPIToken", true);
+            }
+        }
+
+        protected virtual TextField IndeedClientSecret
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("indeedClientSecret", true);
+            }
+        }
+        #endregion
+
         #endregion
 
         #region Methods

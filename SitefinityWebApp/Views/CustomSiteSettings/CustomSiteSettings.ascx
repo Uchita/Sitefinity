@@ -26,3 +26,8 @@
 <sitefinity:TextField ID="seekClientSecret" runat="server" DataFieldName="SeekClientSecret" Title="Please Enter Seek Client Secret" CssClass="sfSettingsSection" DisplayMode="Write" />
 <sitefinity:TextField ID="seekClientAdvertiserId" runat="server" DataFieldName="SeekClientAdvertiserId" Title="Please Enter Seek Client Advertiser ID" CssClass="sfSettingsSection" DisplayMode="Write" />
 <sitefinity:TextField ID="seekRedirectUri" runat="server" DataFieldName="SeekRedirectUri" Title="Please Enter Seek redirect Uri" CssClass="sfSettingsSection" DisplayMode="Write" />
+<br />
+
+<h3>INDEED SETTINGS</h3><br />
+<sitefinity:TextField ID="indeedClientAPIToken" runat="server" DataFieldName="IndeedClientAPIToken" Title="Please Enter Indeed Client API Token" CssClass="sfSettingsSection" DisplayMode="Write" />
+<sitefinity:TextField ID="indeedClientSecret" runat="server" DataFieldName="IndeedClientSecret" Title="Please Enter Indeed Client Secret" CssClass="sfSettingsSection" DisplayMode="Write" />

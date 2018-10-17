@@ -259,5 +259,47 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
         }
 
         #endregion
+
+        #region Indeed
+        /// <summary>
+        /// Gets or sets the Indeed API Token
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("indeedClientAPIToken")]
+        [DescriptionResource(typeof(ConfigDescriptions), "IndeedClientAPIToken")]
+
+        [DataMember]
+        public virtual String CurrentIndeedClientAPIToken
+        {
+            get
+            {
+                return (String)this["indeedClientAPIToken"];
+            }
+            set
+            {
+                this["indeedClientAPIToken"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Indeed Client Secret
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("indeedClientSecret")]
+        [DescriptionResource(typeof(ConfigDescriptions), "IndeedClientSecret")]
+
+        [DataMember]
+        public virtual String CurrentIndeedClientSecret
+        {
+            get
+            {
+                return (String)this["indeedClientSecret"];
+            }
+            set
+            {
+                this["indeedClientSecret"] = value;
+            }
+        }
+        #endregion
     }
 }

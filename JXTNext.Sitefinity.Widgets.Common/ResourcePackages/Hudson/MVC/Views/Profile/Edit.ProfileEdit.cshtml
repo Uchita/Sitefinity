@@ -6,6 +6,8 @@
 @using Telerik.Sitefinity.Utilities;
 @using Telerik.Sitefinity.Services;
 
+@using JXTNext.Sitefinity.Common.Helpers;
+
 @Html.Script(ScriptRef.JQuery, "top")
 @Html.Script("//ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.js", "top")
 @Html.Script("//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js", "top")
@@ -44,7 +46,7 @@
         </div> 
 		
         <div class="col-xs-9 col-md-10">
-             @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
             {
 
                 <div class="alert alert-danger">
@@ -57,74 +59,74 @@
                     @Html.Resource("EditProfileFirstName")
                 </label>
                 @Html.TextBoxFor(u => u.Profile["FirstName"], new { @class = "form-control" })
-                
+
                 @if (Html.ValidationMessageFor(u => u.Profile["FirstName"]) != null)
                 {
                     <div class="has-error">
                         <span class="help-block">@Html.ValidationMessageFor(u => u.Profile["FirstName"])</span>
                     </div>
-                } 
+                }
             </div>
-        
+
             <div class="form-group">
                 <label>
                     @Html.Resource("EditProfileLastName")
                 </label>
                 @Html.TextBoxFor(u => u.Profile["LastName"], new { @class = "form-control" })
-                
+
                 @if (Html.ValidationMessageFor(u => u.Profile["LastName"]) != null)
                 {
                     <div class="has-error">
                         <span class="help-block">@Html.ValidationMessageFor(u => u.Profile["LastName"])</span>
                     </div>
-                } 
-            </div>		
-			
-            <div class="form-group">
-                <label>
-                    @Html.Resource("EditProfileNickname")
-                </label>
-                @Html.TextBoxFor(u => u.Profile["Nickname"], new { @class = "form-control" })
-                
-                @if (Html.ValidationMessageFor(u => u.Profile["Nickname"]) != null)
-                {
-                    <div class="has-error">
-                        <span class="help-block">@Html.ValidationMessageFor(u => u.Profile["Nickname"])</span>
-                    </div>
-                } 
+                }
             </div>
 
-            <div class="form-group">
-                <label>
-                    @Html.Resource("EditProfileAbout")
-                </label>
-               @Html.TextAreaFor(u => u.Profile["About"], new { @class = "form-control" })
+            @*<div class="form-group">
+            <label>
+                @Html.Resource("EditProfileNickname")
+            </label>
+            @Html.TextBoxFor(u => u.Profile["Nickname"], new { @class = "form-control" })
 
-            </div>
-        
-		
-		    @if (string.IsNullOrEmpty(Model.ExternalProviderName))
-			{
-				<div class="form-group">
-					<label>
-						@Html.Resource("EditProfileEmail")
-					</label>
-					@Html.TextBoxFor(u => u.Email, new { @class = "form-control" })
-					
-					@if (Html.ValidationMessageFor(u => u.Email) != null)
-					{
-						<div class="has-error">
-							<span class="help-block">@Html.ValidationMessageFor(u => u.Email)</span>
-						</div>
-					} 
-				</div>
-				
-				<div class="sf-mb-xl"><a href="#" data-sf-role="edit-profile-change-password-button">@Html.Resource("EditProfileChangePasswordButton")</a></div>
+            @if (Html.ValidationMessageFor(u => u.Profile["Nickname"]) != null)
+            {
+                <div class="has-error">
+                    <span class="help-block">@Html.ValidationMessageFor(u => u.Profile["Nickname"])</span>
+                </div>
+            }
+        </div>
 
-				<div data-sf-role="edit-profile-change-password-holder" style="display:none">
+        <div class="form-group">
+            <label>
+                @Html.Resource("EditProfileAbout")
+            </label>
+           @Html.TextAreaFor(u => u.Profile["About"], new { @class = "form-control" })
 
-					<h4>@Html.Resource("EditProfileEditChangePasswordHeader")</h4>
-				
+        </div>*@
+
+
+            @if (string.IsNullOrEmpty(Model.ExternalProviderName))
+            {
+                <div class="form-group">
+                    <label>
+                        @Html.Resource("EditProfileEmail")
+                    </label>
+                    @Html.TextBoxFor(u => u.Email, new { @class = "form-control" })
+
+                    @if (Html.ValidationMessageFor(u => u.Email) != null)
+                    {
+                        <div class="has-error">
+                            <span class="help-block">@Html.ValidationMessageFor(u => u.Email)</span>
+                        </div>
+                    }
+                </div>
+
+                <div class="sf-mb-xl"><a href="#" data-sf-role="edit-profile-change-password-button">@Html.Resource("EditProfileChangePasswordButton")</a></div>
+
+                <div data-sf-role="edit-profile-change-password-holder" style="display:none">
+
+                    <h4>@Html.Resource("EditProfileEditChangePasswordHeader")</h4>
+
                     <div class="form-group">
                         <label>
                             @Html.Resource("EditProfileOldPassword")
@@ -158,52 +160,58 @@
                         }
                     </div>
 
-					<div class="form-group">
-						<label>
-							@Html.Resource("EditProfileRepeatPassword")
-						</label>
-						@Html.PasswordFor(u => u.RepeatPassword, new { @class = "form-control", autocomplete = "off" })
-						
-						@if (Html.ValidationMessageFor(u => u.RepeatPassword) != null)
-						{
-							<div class="has-error">
-								<span class="help-block">@Html.ValidationMessageFor(u => u.RepeatPassword, String.Empty, new { @class = "alert alert-danger error-message" })</span>
-							</div>
-						} 
-					</div>
-				</div>
-			}
-			else
-			{
-				<h4>@string.Format(Html.Resource("RegistratedWithExternal"), Model.ExternalProviderName)</h4>
-			
-				<div class="form-group">
-					<label>
-						@Html.Resource("EditProfileEmail")
-					</label>
-					<div>
-						@Html.HiddenFor(u => u.Email)
-						@Model.Email
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<label>
-						@Html.Resource("Password")
-					</label>
-					<div>
-						@string.Format(Html.Resource("ExternalProviderNoPassword"), Model.ExternalProviderName)
-					</div>
-				</div>
-			}		
-		
+                    <div class="form-group">
+                        <label>
+                            @Html.Resource("EditProfileRepeatPassword")
+                        </label>
+                        @Html.PasswordFor(u => u.RepeatPassword, new { @class = "form-control", autocomplete = "off" })
+
+                        @if (Html.ValidationMessageFor(u => u.RepeatPassword) != null)
+                        {
+                            <div class="has-error">
+                                <span class="help-block">@Html.ValidationMessageFor(u => u.RepeatPassword, String.Empty, new { @class = "alert alert-danger error-message" })</span>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <h3>@string.Format(Html.Resource("RegistratedWithExternal"), Model.ExternalProviderName)</h3>
+
+                <div class="form-group">
+                    <label>
+                        @Html.Resource("EditProfileEmail")
+                    </label>
+                    <div>
+                        @Html.HiddenFor(u => u.Email)
+                        @Model.Email
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        @Html.Resource("Password")
+                    </label>
+                    <div>
+                        @string.Format(Html.Resource("ExternalProviderNoPassword"), Model.ExternalProviderName)
+                    </div>
+                </div>
+            }
+
             @if (SystemManager.IsDesignMode)
             {
                 <button data-sf-role="profile-submit" type="button" class="btn btn-primary">@Html.Resource("EditProfileSave")</button>
+                
             }
-            else 
+            else
             {
                 <button data-sf-role="profile-submit" type="submit" class="btn btn-primary">@Html.Resource("EditProfileSave")</button>
+
+                
+                    string currentPageUrl = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.GetCurrentPageUrl();
+                
+                <a data-sf-role="profile-edit-cancel" href="@currentPageUrl" class="btn" type="reset">Cancel</a>
             }
 
             @if (SystemManager.IsPreviewMode)
@@ -224,3 +232,4 @@
 <input type="hidden" data-sf-role="has-password-errors" value="@hasPasswordErrors.ToString().ToLowerInvariant()" />
  
 @Html.Script(Url.WidgetContent("Mvc/Scripts/Profile/profile-edit.js"), "bottom")
+

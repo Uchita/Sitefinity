@@ -356,6 +356,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ViewBag.HidePushStateUrl = this.HidePushStateUrl;
             ViewBag.PageFullUrl = SitefinityHelper.GetPageFullUrl(SiteMapBase.GetActualCurrentNode().Id);
 
+            ViewBag.IsMember = SitefinityHelper.IsUserLoggedIn("Member");
+
             return response;
         }
 

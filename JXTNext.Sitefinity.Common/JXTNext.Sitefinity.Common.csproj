@@ -215,7 +215,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\GeneralHelper.cs" />
     <Compile Include="Helpers\SiteSettingsHelper.cs" />
     <Compile Include="Models\CustomSiteSettings\CustomSiteSettings.cs" />
     <Compile Include="Models\CustomSiteSettings\CustomSiteSettingsConfig.cs" />

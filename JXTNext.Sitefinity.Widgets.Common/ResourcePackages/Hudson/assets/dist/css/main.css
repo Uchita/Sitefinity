@@ -8315,7 +8315,8 @@ main {
       font-family: AkzidGroProReg,sans-serif;
       color: #808080; }
       .dropdown.dropdown-tree > ul li a .count {
-        margin-left: 3px; }
+        margin-left: 3px;
+        font-size: 100%; }
     .dropdown.dropdown-tree > ul li .drop-down-item {
       padding: 4px 20px 4px 0;
       right: 0; }
@@ -9145,9 +9146,24 @@ ul.breadcrumb {
       background: #219fa3;
       background: rgba(33, 159, 163, 0.9); }
 
+.simple-card .thumbnail {
+  background: none;
+  position: relative;
+  padding-bottom: 45px;
+  margin-bottom: 40px; }
+  .simple-card .thumbnail .caption {
+    background: none;
+    position: static;
+    padding: 20px 10px 0;
+    min-height: 80px !important; }
+    .simple-card .thumbnail .caption .btn {
+      position: absolute;
+      bottom: 0; }
+
 .flex [class*="col-"] .thumbnail {
   display: table;
-  height: 96%; }
+  height: 96%;
+  width: 100%; }
 
 .page-banner .h2, .page-banner h2, .page-banner .h3, .page-banner h3 {
   color: #fff; }
@@ -9470,9 +9486,9 @@ ul.breadcrumb {
     margin-bottom: 2rem; }
   .page-wrapper .sf-profile h2 {
     font-size: 3.2rem;
-    margin-top: 2.0rem; }
+    margin-top: 2.35rem; }
   .page-wrapper .sf-profile img {
-    max-width: 150px;
+    max-width: 200px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); }
   .page-wrapper .sf-profile label {
     padding-top: 0; }
@@ -9657,6 +9673,9 @@ ul.breadcrumb {
   .job-search .filter-job-classification a {
     display: block;
     color: #000; }
+
+.filter-toggle {
+  display: none; }
 
 .filter-outer-wrapper.lockoverlay {
   position: relative; }
@@ -10508,7 +10527,9 @@ select.articles-order {
     position: relative; }
     .risk-measurement .risk-wrapper .risk {
       height: 345px;
-      position: relative; }
+      max-width: 188px;
+      position: relative;
+      margin: 0 auto; }
       .risk-measurement .risk-wrapper .risk .risk-title {
         font-size: 24px;
         font-size: 2.4rem;
@@ -10638,7 +10659,7 @@ select.articles-order {
   .thumbnail.card-rollover-bg .card-description {
     padding: 15px; }
   .risk-measurement .risk-wrapper {
-    width: 50%; }
+    width: 33.3%; }
   .list-featured-articles {
     font-size: 1.4rem;
     line-height: 1.4; }
@@ -10744,8 +10765,6 @@ select.articles-order {
     padding-top: 0px; }
   .risk-measurement .risk-wrapper {
     width: 20%; }
-    .risk-measurement .risk-wrapper .risk img {
-      left: 15px; }
   .contact-consultant .contact-consultant-info {
     min-height: 370px; }
   .right-bottom-below img {
@@ -11082,6 +11101,8 @@ select.articles-order {
     margin-top: 0;
     margin-bottom: 10px;
     width: 50%; }
+  .filter-toggle {
+    display: block; }
   .list-featured-articles {
     padding: 0 !important;
     margin: 0 auto 40px;
@@ -11108,12 +11129,13 @@ select.articles-order {
       .list-featured-articles li .featured-article {
         margin: 0 auto;
         width: 90%; }
+  .sm-wrapper {
+    display: none;
+    margin-top: 20px; }
   .risk-measurement .risk-wrapper {
-    width: 100%;
-    max-width: 300px;
-    margin: 10px auto 20px;
-    float: none; }
-    .risk-measurement .risk-wrapper .risk img, .risk-measurement .risk-wrapper .risk:hover img {
+    width: 50%;
+    margin: 10px auto 20px; }
+    .risk-measurement .risk-wrapper .risk img {
       bottom: 0; }
   .white-box-list .white-box {
     height: auto !important;
@@ -11135,6 +11157,9 @@ select.articles-order {
     display: block; }
   .page-wrapper .form-group .text-right {
     text-align: left; }
+  .thumbnail .display-table {
+    display: table;
+    width: 100%; }
   .testimonials-slider .quote {
     height: 33px; }
     .testimonials-slider .quote.text-right {
@@ -11341,7 +11366,10 @@ select.articles-order {
   .popup-overlay .container {
     max-width: 100%;
     margin-left: 0;
-    left: 0; } }
+    left: 0; }
+  .risk-measurement .risk-wrapper {
+    width: 100%;
+    float: none; } }
 
 @media (max-width: 400px) {
   .section-ul ul.nav-stacked li {

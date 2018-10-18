@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JXTNext.Sitefinity.Widgets.Social.Mvc.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,9 +16,9 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
         }
 
         // Interface method
-        public (string, bool) ProcessData(string data)
+        public SocialMediaProcessedResponse ProcessData(string data)
         {
-            return (null, true);
+            return null;
         }
     }
 }

@@ -95,6 +95,22 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
         }
         #endregion
 
+        #region Indeed
+        [DataMember]
+        public string IndeedClientAPIToken
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string IndeedClientSecret
+        {
+            get;
+            set;
+        }
+        #endregion
+
         #endregion
 
         #region LoadDefaults
@@ -121,6 +137,10 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             this.SeekClientSecret = section.UICustomSiteSettings.CurrentSeekClientSecret;
             this.SeekClientAdvertiserId = section.UICustomSiteSettings.CurrentSeekClientAdvertiserId;
             this.SeekRedirectUri = section.UICustomSiteSettings.CurrentSeekRedirectUri;
+
+            // Indeed
+            this.IndeedClientAPIToken = section.UICustomSiteSettings.CurrentIndeedClientAPIToken;
+            this.IndeedClientSecret = section.UICustomSiteSettings.CurrentIndeedClientSecret;
         }
 
         public void SaveDefaults()
@@ -143,6 +163,10 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             section.UICustomSiteSettings.CurrentSeekClientSecret = this.SeekClientSecret;
             section.UICustomSiteSettings.CurrentSeekClientAdvertiserId = this.SeekClientAdvertiserId;
             section.UICustomSiteSettings.CurrentSeekRedirectUri = this.SeekRedirectUri;
+            
+            // Indeed
+            section.UICustomSiteSettings.CurrentIndeedClientAPIToken = this.IndeedClientAPIToken;
+            section.UICustomSiteSettings.CurrentIndeedClientSecret = this.IndeedClientSecret;
 
             manager.SaveSection(section);
         }

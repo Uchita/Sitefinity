@@ -109,27 +109,30 @@
     var OfficeLocationName = "";
     var OfficeLocationUrl = "";
 
-    if (item.Fields.Office != null && item.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
+    if (item.Fields.Office != null)
     {
-        OfficeLocationName = Html.HtmlSanitize((string)item.Fields.Office.Fields.Name).ToString();
-        OfficeLocationUrl = item.Fields.Office.Fields.UrlName.ToString();
-    }
-    else
-    {
-        List<string> OfficeLocationNameList = new List<string>();
-        List<string> OfficeLocationUrlList = new List<string>();
-
-        foreach (var office in item.Fields.Office)
+        if (item.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
         {
-            if (!OfficeLocationNameList.Contains((string)office.Fields.Name))
-            {
-                OfficeLocationNameList.Add((string)office.Fields.Name);
-                OfficeLocationUrlList.Add(office.Fields.UrlName.ToString());
-            }
+            OfficeLocationName = Html.HtmlSanitize((string)item.Fields.Office.Fields.Name).ToString();
+            OfficeLocationUrl = item.Fields.Office.Fields.UrlName.ToString();
         }
+        else
+        {
+            List<string> OfficeLocationNameList = new List<string>();
+            List<string> OfficeLocationUrlList = new List<string>();
 
-        OfficeLocationName = string.Join(", ", OfficeLocationNameList.ToArray());
-        OfficeLocationUrl = string.Join(",", OfficeLocationUrlList.ToArray());
+            foreach (var office in item.Fields.Office)
+            {
+                if (!OfficeLocationNameList.Contains((string)office.Fields.Name))
+                {
+                    OfficeLocationNameList.Add((string)office.Fields.Name);
+                    OfficeLocationUrlList.Add(office.Fields.UrlName.ToString());
+                }
+            }
+
+            OfficeLocationName = string.Join(", ", OfficeLocationNameList.ToArray());
+            OfficeLocationUrl = string.Join(",", OfficeLocationUrlList.ToArray());
+        }
     }
 
     <div class="contact-consultant row" data-filtersector="@(string.Join(",",filterValues))" data-filterlocation="@OfficeLocationUrl">

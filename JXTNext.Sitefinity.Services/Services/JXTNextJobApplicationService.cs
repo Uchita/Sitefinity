@@ -1,14 +1,17 @@
 ﻿using JXTNext.Sitefinity.Common.Helpers;
 using JXTNext.Sitefinity.Services.Intefaces;
-using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication;
+using JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
+using Telerik.Sitefinity.DynamicModules;
+using Telerik.Sitefinity.Model;
 using Telerik.Sitefinity.Security;
 using Telerik.Sitefinity.Security.Claims;
+using Telerik.Sitefinity.Utilities.TypeConverters;
 
 namespace JXTNext.Sitefinity.Services.Services
 {
@@ -114,6 +117,20 @@ namespace JXTNext.Sitefinity.Services.Services
             }
 
             return hasFailedUpload;
+        }
+
+        public string GetHtmlEmailContent(string emailTemplateId, string emailTemplateProviderName, string itemType)
+        {
+            string htmlEmailContent = String.Empty;
+            if (!String.IsNullOrEmpty(emailTemplateId))
+            {
+                var dynamicModuleManager = DynamicModuleManager.GetManager(emailTemplateProviderName);
+                var emailTemplateType = TypeResolutionService.ResolveType(itemType);
+                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(emailTemplateId.ToUpper()));
+                htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
+            }
+
+            return htmlEmailContent;
         }
     }
 }

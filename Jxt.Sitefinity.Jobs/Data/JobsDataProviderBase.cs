@@ -1,11 +1,8 @@
-﻿using System;
+﻿using Jxt.Sitefinity.Jobs.Data.Model;
+using System;
 using System.Collections;
 using System.Linq;
-using Telerik.Sitefinity.Modules.GenericContent;
-using Telerik.Sitefinity.GenericContent.Model;
-using System.Collections.Generic;
 using Telerik.Sitefinity.Data;
-using Jxt.Sitefinity.Jobs.Data.Model;
 
 namespace Jxt.Sitefinity.Jobs.Data
 {
@@ -74,7 +71,7 @@ namespace Jxt.Sitefinity.Jobs.Data
 
             if (itemType == typeof(JobListing))
                 return SetExpressions(this.GetJobListings(), filterExpression, orderExpression, skip, take, ref totalCount);
-            
+
             throw GetInvalidItemTypeException(itemType, this.GetKnownTypes());
         }
 

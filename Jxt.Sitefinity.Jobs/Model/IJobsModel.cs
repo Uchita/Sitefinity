@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Jxt.Sitefinity.Jobs.ViewModel;
 using System.Collections.Generic;
-using Jxt.Sitefinity.Jobs.ViewModel;
 
 namespace Jxt.Sitefinity.Jobs.Model
 {

@@ -771,7 +771,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string SerializedCloudSettingsParams { get; set; }
         public string RegisterPageId { get; set; }
         public string JobApplicationSuccessPageId { get; set; }
-        public virtual string SerializedApplyWithSocialMedia { get; set; }
+        public string SerializedApplyWithSocialMedia { get; set; }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private string templateName = "Simple";

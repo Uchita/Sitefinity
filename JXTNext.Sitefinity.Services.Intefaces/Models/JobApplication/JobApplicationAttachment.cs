@@ -12,7 +12,7 @@ using Telerik.Sitefinity.Modules.Libraries;
 using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.Workflow;
 
-namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
+namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
 {
     public class JobApplicationAttachmentSettings
     {

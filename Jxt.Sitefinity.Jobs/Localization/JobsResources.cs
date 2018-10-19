@@ -13,7 +13,6 @@ namespace Jxt.Sitefinity.Jobs.Localization
             : base(dataProvider)
         { }
 
-       
         [ResourceEntry("JobsTitle",
                        Value = "Jobs",
                        Description = "The title of this class.",

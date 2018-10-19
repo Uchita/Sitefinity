@@ -281,5 +281,11 @@ namespace JXTNext.Sitefinity.Common.Helpers
         {
             return GetPageUrl(SiteMapBase.GetActualCurrentNode().Id.ToString());
         }
+
+        public static void LogoutCurrentUser()
+        {
+            SecurityManager.Logout();
+            SecurityManager.DeleteAuthCookies();
+        }
     }
 }

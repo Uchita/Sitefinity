@@ -194,11 +194,11 @@
                                         <input type="file" multiple id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.html,.htm,.xhtml" />
                                         <small class="lbl">Browse</small>
                                     </div>
-                                    <div class="uploadfield-wrap dropbox-upload hidden">
+                                    <div class="uploadfield-wrap dropbox-upload">
                                         <button type="button" id="dropbox-documents-btn">Dropbox Documents</button>
                                         <small class="lbl">Dropbox</small>
                                     </div>
-                                    <div class="uploadfield-wrap google-drive-upload hidden">
+                                    <div class="uploadfield-wrap google-drive-upload">
                                         <button type="button" id="documents-google-drive-btn">Google Drive Documents</button>
                                         <small class="lbl">Google Drive</small>
                                     </div>
@@ -715,7 +715,7 @@
          };
 
        dropboxResumeOptions = {
-            // Required. Called when a user selects an item in the Chooser.
+            // Required. Called when a user selects an item in the Chooser.            
             success: function (files) {
 
                 uploadResumeModel.UrlPath = files[0].link;
@@ -781,7 +781,64 @@
             // while true allows the user to select both folders and files.
             // You cannot specify `linkType: "direct"` when using `folderselect: true`.
             folderselect: false, // or true
-        };
+         };
+
+         dropboxDocumentsOptions = {
+             // Required. Called when a user selects an item in the Chooser.            
+             success: function (files) {
+
+                var stringyModel = "[";
+
+                 for (var i = 0; i < files.length; i++) {
+                     uploadResumeModel.UrlPath = files[i].link;
+                     uploadResumeModel.FileName = files[i].name;
+                     if (stringyModel != "[")
+                         stringyModel += ",";
+                     stringyModel += JSON.stringify(uploadResumeModel);
+                 }
+                 stringyModel += "]";
+                
+                documentsSelectedType = 'Dropbox';
+                $('#uploadDocumentsJson').val(stringyModel);
+                $('#application-documents').val('');
+                $("#documents-selected-type").val(documentsSelectedType);
+                var Filenames = "";
+                for (var i = 0; i < files.length; i++) {
+                    if (Filenames != "")
+                        Filenames += "<br/>";
+                    Filenames += files[i].name;
+                }
+                $('.documents-name').html(Filenames);               
+
+
+                 $('#dburl').text(files[0].link);
+                 $('#dbname').text(files[0].name);
+             },
+
+             // Optional. Called when the user closes the dialog without selecting a file
+             // and does not include any parameters.
+             cancel: function () { },
+
+             // Optional. "preview" (default) is a preview link to the document for sharing,
+             // "direct" is an expiring link to download the contents of the file. For more
+             // information about link types, see Link types below.
+             linkType: "direct", // or "direct"
+
+             // Optional. A value of false (default) limits selection to a single file, while
+             // true enables multiple file selection.
+             multiselect: true, // or true
+
+             // Optional. This is a list of file extensions. If specified, the user will
+             // only be able to select files with these extensions. You may also specify
+             // file types, such as "video" or "images" in the list. For more information,
+             // see File types below. By default, all extensions are allowed.
+             extensions: ['.pdf', '.doc', '.docx'],
+
+             // Optional. A value of false (default) limits selection to files,
+             // while true allows the user to select both folders and files.
+             // You cannot specify `linkType: "direct"` when using `folderselect: true`.
+             folderselect: false, // or true
+         };
 
 
         $('#dropbox-resume-btn').click(function () {
@@ -799,7 +856,7 @@
         $('#dropbox-documents-btn').click(function () {
             isDropboxResume = false;
             isDropboxCoverLetter = false;
-            Dropbox.choose(dropboxResumeOptions);
+            Dropbox.choose(dropboxDocumentsOptions);
         });
     });
 
@@ -850,7 +907,7 @@
                 gapi.auth2.authorize({
                     client_id: clientId,
                     scope: scope
-                }, handleAuthResult);
+                }, handleAuthResultMulti);
             });
         }
 
@@ -866,11 +923,30 @@
             }
         }
 
+        function handleAuthResultMulti(authResult) {
+            if (authResult && !authResult.error) {
+                oauthToken = authResult.access_token;
+                createPickerMulti();
+            }
+        }
+
         // Create and render a Picker object for picking user Photos.
         function createPicker() {
             if (pickerApiLoaded && oauthToken) {
                 var picker = new google.picker.PickerBuilder().
+                    addView(new google.picker.View(google.picker.ViewId.DOCS).setMimeTypes("application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")).                    
+                    setOAuthToken(oauthToken).
+                    setDeveloperKey(developerKey).
+                    setCallback(pickerCallback).
+                    build();
+                picker.setVisible(true);
+            }
+        }
+        function createPickerMulti() {
+            if (pickerApiLoaded && oauthToken) {
+                var picker = new google.picker.PickerBuilder().
                     addView(new google.picker.View(google.picker.ViewId.DOCS).setMimeTypes("application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")).
+                    enableFeature(google.picker.Feature.MULTISELECT_ENABLED).
                     setOAuthToken(oauthToken).
                     setDeveloperKey(developerKey).
                     setCallback(pickerCallback).
@@ -885,10 +961,9 @@
             var name = "";
             var fileId = "";
             var mime = "";
+            debugger;
 
-
-            if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
-                var docs = data[google.picker.Response.DOCUMENTS]; 
+            if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {                
                 var doc = data[google.picker.Response.DOCUMENTS][0];
                 fileId = doc[google.picker.Document.ID];
                 url = doc[google.picker.Document.URL];
@@ -902,6 +977,32 @@
                 uploadResumeModel.AuthToken = oauthToken;
 
                 var stringyModel = JSON.stringify(uploadResumeModel);
+
+                var docs = data[google.picker.Response.DOCUMENTS]; 
+                var stringyModels = "[";
+                var Filenames = "";
+
+                for (var i = 0; i < docs.length; i++) {
+                    doc = docs[i];
+                    fileId = doc[google.picker.Document.ID];
+                    url = doc[google.picker.Document.URL];
+                    name = doc[google.picker.Document.NAME]
+                    mime = doc[google.picker.Document.MIME_TYPE];
+
+                    uploadResumeModel.UrlPath = url;
+                    uploadResumeModel.FileName = name;
+                    uploadResumeModel.Field = fileId;
+                    uploadResumeModel.MIMEType = mime;
+                    uploadResumeModel.AuthToken = oauthToken;
+                    
+                    if (stringyModels != "[") {
+                        stringyModels += ",";
+                        Filenames += "<br/>";
+                    }
+                    stringyModels += JSON.stringify(uploadResumeModel);                    
+                    Filenames += doc[google.picker.Document.NAME];
+                }
+                stringyModels += "]";
 
                 if (isGoogleResume) {
                     resumeSelectedType = 'GoogleDrive';
@@ -920,15 +1021,9 @@
                     }
                     else {
                         documentsSelectedType = 'GoogleDrive';
-                        $('#uploadDocumentsJson').val(stringyModel);
+                        $('#uploadDocumentsJson').val(stringyModels);
                         $('#application-documents').val('');
                         $("#documents-selected-type").val(documentsSelectedType);
-                        var Filenames = "";
-                        for (var i = 0; i < docs.length; i++) {
-                            if (Filenames != "")
-                                Filenames += "<br/>";
-                            Filenames += docs[i][google.picker.Document.NAME];
-                        }
                         $('.documents-name').html(Filenames);                        
                     }
                 }

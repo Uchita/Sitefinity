@@ -653,16 +653,22 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             // Processing Documents
             if (sourceDocuments == JobApplicationAttachmentSource.GoogleDrive)
             {
-                var googleDriveModel = JsonConvert.DeserializeObject<UploadFilesFormPostModel>(uploadFilesDocumentsJSON);
-                JobApplicationAttachmentUploadItem item = GetAttachementFromGoogleDrive(googleDriveModel, JobApplicationAttachmentType.Documents);
-                attachmentItems.Add(item);
+                var googleDriveModel = JsonConvert.DeserializeObject<List<UploadFilesFormPostModel>>(uploadFilesDocumentsJSON);
+                foreach (var googleFile in googleDriveModel)
+                {
+                    JobApplicationAttachmentUploadItem item = GetAttachementFromGoogleDrive(googleFile, JobApplicationAttachmentType.Documents);
+                    attachmentItems.Add(item);
+                }
             }
 
             if (sourceDocuments == JobApplicationAttachmentSource.Dropbox)
             {
-                var dropboxDriveModel = JsonConvert.DeserializeObject<UploadFilesFormPostModel>(uploadFilesDocumentsJSON);
-                JobApplicationAttachmentUploadItem item = GetAttachementFromDropbox(dropboxDriveModel, JobApplicationAttachmentType.Documents);
-                attachmentItems.Add(item);
+                var dropboxDriveModel = JsonConvert.DeserializeObject<List<UploadFilesFormPostModel>>(uploadFilesDocumentsJSON);
+                foreach (var dropboxFile in dropboxDriveModel)
+                {
+                    JobApplicationAttachmentUploadItem item = GetAttachementFromDropbox(dropboxFile, JobApplicationAttachmentType.Documents);
+                    attachmentItems.Add(item);
+                }                
             }
 
             return attachmentItems;

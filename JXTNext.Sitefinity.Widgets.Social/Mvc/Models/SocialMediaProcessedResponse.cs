@@ -16,6 +16,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Models
         public string PhoneNumber { get; set; }
         public string FileName { get; set; }
         public Stream FileStream { get; set; }
+        public int? JobId { get; set; }
         public bool Success { get; set; }
         public List<string> Errors { get; set; }
     }

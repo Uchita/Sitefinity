@@ -1499,6 +1499,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Hudson\MVC\Views\Maps\Maps.Simple.cshtml">
+     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+	<Content Include="ResourcePackages\Hudson\MVC\Views\JobApplication\JobApplication.ApplyWithSocialMedia.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">

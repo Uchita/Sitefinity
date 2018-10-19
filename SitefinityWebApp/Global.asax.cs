@@ -59,6 +59,7 @@ namespace SitefinityWebApp
             Res.RegisterResource<MemberSavedJobsResources>();
             Res.RegisterResource<MemberAppliedJobsResources>();
             Res.RegisterResource<ConsultantResources>();
+            Res.RegisterResource<SocialHandlerResources>();
 
             if (e.CommandName == "Bootstrapped")
             {

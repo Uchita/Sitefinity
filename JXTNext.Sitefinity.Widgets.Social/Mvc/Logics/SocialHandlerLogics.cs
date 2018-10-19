@@ -1,4 +1,9 @@
-﻿using System;
+﻿using JXTNext.Sitefinity.Connector.BusinessLogics;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
+using JXTNext.Sitefinity.Services.Intefaces;
+using JXTNext.Sitefinity.Widgets.Social.Mvc.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,18 +14,22 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
     public class SocialHandlerLogics
     {
         IEnumerable<IProcessSocialMediaData> _processSocialMediaData;
-        public SocialHandlerLogics(IEnumerable<IProcessSocialMediaData> processSocialMediaData)
+        IJobApplicationService _jobApplicationService;
+       
+        public SocialHandlerLogics(IEnumerable<IProcessSocialMediaData> processSocialMediaData, IJobApplicationService jobApplicationService)
         {
             _processSocialMediaData = processSocialMediaData;
+            _jobApplicationService = jobApplicationService;
         }
 
-        public string ProcessSocialHandlerData(string data)
+        public SocialMediaProcessedResponse ProcessSocialHandlerData(string data)
         {
             foreach(var item in _processSocialMediaData)
             {
-                (string result, bool isProcessed) = item.ProcessData(data);
-                if(isProcessed)
+                var result = item.ProcessData(data);
+                if (result != null && result.Success)
                     return result;
+                    
             }
 
             return null;

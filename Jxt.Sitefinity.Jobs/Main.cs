@@ -13,7 +13,7 @@ namespace Jxt.Sitefinity.Jobs
             Telerik.Sitefinity.Abstractions.Bootstrapper.Initialized += Bootstrapper_Initialized;
             Telerik.Sitefinity.Abstractions.Bootstrapper.Bootstrapped += Bootstrapper_Bootstrapped;
         }
-
+        
         private static void Bootstrapper_Initialized(object sender, ExecutedEventArgs e)
         {
             if (e.CommandName == "RegisterRoutes")

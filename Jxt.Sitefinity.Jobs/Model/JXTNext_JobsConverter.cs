@@ -1,4 +1,9 @@
-﻿using Jxt.Sitefinity.Jobs.ViewModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Jxt.Sitefinity.Jobs.ViewModel;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
 
 namespace Jxt.Sitefinity.Jobs.Model
@@ -11,7 +16,7 @@ namespace Jxt.Sitefinity.Jobs.Model
             {
                 Id = data.JobID,
                 Title = data.Title,
-                Description = data.Description,
+                Description = data.Description,                
             };
         }
 

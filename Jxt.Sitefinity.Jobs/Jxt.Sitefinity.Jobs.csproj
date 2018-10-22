@@ -282,7 +282,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mvc\Scripts\JobsBackend\" />
+    <Folder Include="app\" />
+    <Folder Include="Mvc\Scripts\JobsBakend\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">

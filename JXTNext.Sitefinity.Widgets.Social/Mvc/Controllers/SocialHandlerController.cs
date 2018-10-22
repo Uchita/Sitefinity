@@ -19,6 +19,7 @@ using JXTNext.Sitefinity.Widgets.Social.Mvc.StringResources;
 using JXTNext.Sitefinity.Common.Helpers;
 using Telerik.Sitefinity.Security.Claims;
 using JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication;
+using System.IO;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 {
@@ -52,7 +53,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             _blConnector = blConnector;
         }
 
-        public ActionResult Index(string code, string state)
+        public ActionResult Index(string code, string state, int? JobId)
         {
             // This is the CSS classes enter from More Options
             ViewBag.CssClass = this.CssClass;
@@ -65,120 +66,119 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             SocialMediaJobViewModel viewModel = new SocialMediaJobViewModel();
             viewModel.Status = JobApplicationStatus.Available;
 
-            if (Int32.TryParse(state, out int jobId))
+            if (_socialHandlerLogics != null)
             {
-                if (_socialHandlerLogics != null)
+                var result = _socialHandlerLogics.ProcessSocialHandlerData(code, state, Request.InputStream);
+                if (result != null && result.Success == true && result.JobId.HasValue)
                 {
-                    var result = _socialHandlerLogics.ProcessSocialHandlerData(code);
-                    if (result != null && result.Success == true)
+                    JobApplicationStatus status = JobApplicationStatus.Available;
+                    if (_jobApplicationService != null)
                     {
-                        JobApplicationStatus status = JobApplicationStatus.Available;
-                        if (_jobApplicationService != null)
+                        ApplicantInfo applicantInfo = new ApplicantInfo()
                         {
-                            ApplicantInfo applicantInfo = new ApplicantInfo()
+                            FirstName = result.FirstName,
+                            LastName = result.LastName,
+                            Email = result.Email,
+                            Password = "Password123",
+                            PhoneNumber = result.PhoneNumber
+                        };
+                        var overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
+                        if (overrideEmail != null && status == JobApplicationStatus.Available)
+                        {
+                            // Gather Attachments
+                            Guid identifier = Guid.NewGuid();
+                            JobApplicationAttachmentUploadItem uploadItem = new JobApplicationAttachmentUploadItem()
                             {
-                                FirstName = result.FirstName,
-                                LastName = result.LastName,
-                                Email = result.Email,
-                                Password = "Password123",
-                                PhoneNumber = result.PhoneNumber
+                                Id = identifier.ToString(),
+                                AttachmentType = JobApplicationAttachmentType.Resume,
+                                FileName = result.FileName,
+                                FileStream = result.FileStream,
+                                PathToAttachment = identifier.ToString() + "_" + result.FileName,
+                                Status = "Ready"
                             };
-                            var overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
-                            if (overrideEmail != null && status == JobApplicationStatus.Available)
+
+                            List<JobApplicationAttachmentUploadItem> attachments = new List<JobApplicationAttachmentUploadItem>();
+                            attachments.Add(uploadItem);
+
+                            string resumeAttachmentPath = JobApplicationAttachmentUploadItem.GetAttachmentPath(attachments, JobApplicationAttachmentType.Resume);
+                            string coverletterAttachmentPath = JobApplicationAttachmentUploadItem.GetAttachmentPath(attachments, JobApplicationAttachmentType.Coverletter);
+
+                            string htmlEmailContent = _jobApplicationService.GetHtmlEmailContent(this.EmailTemplateId, this.EmailTemplateProviderName, this._itemType);
+
+                            // Email notification settings
+                            EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
+                                                                                                new EmailTarget(SitefinityHelper.GetUserFirstNameById(ClaimsManager.GetCurrentIdentity().UserId), overrideEmail),
+                                                                                                this.EmailTemplateEmailSubject,
+                                                                                                htmlEmailContent);
+                            // CC and BCC emails
+                            if (!this.EmailTemplateCC.IsNullOrEmpty())
                             {
-                                // Gather Attachments
-                                Guid identifier = Guid.NewGuid();
-                                JobApplicationAttachmentUploadItem uploadItem = new JobApplicationAttachmentUploadItem()
+                                foreach (var ccEmail in this.EmailTemplateCC.Split(';'))
                                 {
-                                    Id = identifier.ToString(),
-                                    AttachmentType = JobApplicationAttachmentType.Resume,
-                                    FileName = result.FileName,
-                                    FileStream = result.FileStream,
-                                    PathToAttachment = identifier.ToString() + "_" + result.FileName,
-                                    Status = "Ready"
-                                };
-
-                                List<JobApplicationAttachmentUploadItem> attachments = new List<JobApplicationAttachmentUploadItem>();
-                                attachments.Add(uploadItem);
-
-                                string resumeAttachmentPath = JobApplicationAttachmentUploadItem.GetAttachmentPath(attachments, JobApplicationAttachmentType.Resume);
-                                string coverletterAttachmentPath = JobApplicationAttachmentUploadItem.GetAttachmentPath(attachments, JobApplicationAttachmentType.Coverletter);
-
-                                string htmlEmailContent = _jobApplicationService.GetHtmlEmailContent(this.EmailTemplateId, this.EmailTemplateProviderName, this._itemType);
-
-                                // Email notification settings
-                                EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
-                                                                                                    new EmailTarget(SitefinityHelper.GetUserFirstNameById(ClaimsManager.GetCurrentIdentity().UserId), overrideEmail),
-                                                                                                    this.EmailTemplateEmailSubject,
-                                                                                                    htmlEmailContent);
-                                // CC and BCC emails
-                                if (!this.EmailTemplateCC.IsNullOrEmpty())
-                                {
-                                    foreach (var ccEmail in this.EmailTemplateCC.Split(';'))
-                                    {
-                                        emailNotificationSettings.AddCC(String.Empty, ccEmail);
-                                    }
+                                    emailNotificationSettings.AddCC(String.Empty, ccEmail);
                                 }
+                            }
 
-                                if (!this.EmailTemplateBCC.IsNullOrEmpty())
+                            if (!this.EmailTemplateBCC.IsNullOrEmpty())
+                            {
+                                foreach (var bccEmail in this.EmailTemplateBCC.Split(';'))
                                 {
-                                    foreach (var bccEmail in this.EmailTemplateBCC.Split(';'))
-                                    {
-                                        emailNotificationSettings.AddBCC(String.Empty, bccEmail);
-                                    }
+                                    emailNotificationSettings.AddBCC(String.Empty, bccEmail);
                                 }
+                            }
 
-                                //Create Application 
-                                IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(
-                                    new JXTNext_MemberApplicationRequest { ApplyResourceID = jobId, MemberID = 2, ResumePath = resumeAttachmentPath, CoverletterPath = coverletterAttachmentPath, EmailNotification = emailNotificationSettings },
-                                    overrideEmail);
+                            //Create Application 
+                            IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(
+                                new JXTNext_MemberApplicationRequest { ApplyResourceID = result.JobId.Value, MemberID = 2, ResumePath = resumeAttachmentPath, CoverletterPath = coverletterAttachmentPath, EmailNotification = emailNotificationSettings },
+                                overrideEmail);
 
-                                if (response.Success && response.ApplicationID.HasValue)
+                            if (response.Success && response.ApplicationID.HasValue)
+                            {
+                                var hasFailedUpload = _jobApplicationService.UploadFiles(attachments);
+                                if (hasFailedUpload)
                                 {
-                                    var hasFailedUpload = _jobApplicationService.UploadFiles(attachments);
-                                    if (hasFailedUpload)
-                                    {
-                                        viewModel.Status = JobApplicationStatus.Technical_Issue; // Unable to attach files
-                                        viewModel.Message = "Unable to attach files to application";
-                                    }
-                                    else
-                                    {
-                                        viewModel.Status = JobApplicationStatus.Applied_Successful;
-                                        viewModel.Message = "Your application was successfully processed.";
-                                        if (!this.JobApplicationSuccessPageId.IsNullOrEmpty())
-                                        {
-                                            var successPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationSuccessPageId);
-                                            return Redirect(successPageUrl);
-                                        }
-                                    }
+                                    viewModel.Status = JobApplicationStatus.Technical_Issue; // Unable to attach files
+                                    viewModel.Message = "Unable to attach files to application";
                                 }
                                 else
                                 {
-                                    viewModel.Status = JobApplicationStatus.Technical_Issue;
-                                    viewModel.Message = response.Errors.FirstOrDefault();
+                                    viewModel.Status = JobApplicationStatus.Applied_Successful;
+                                    viewModel.Message = "Your application was successfully processed.";
+                                    if (!this.JobApplicationSuccessPageId.IsNullOrEmpty())
+                                    {
+                                        var successPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationSuccessPageId);
+                                        return Redirect(successPageUrl);
+                                    }
                                 }
                             }
                             else
                             {
-                                if (status == JobApplicationStatus.NotAbleToLoginCreatedUser)
-                                    viewModel.Message = "Unable to process your job application. Please try logging in and re-apply for the job.";
-                                else if (status == JobApplicationStatus.NotAbleToCreateUser)
-                                    viewModel.Message = "Unable to create user. Please register from";
-
-                                viewModel.Status = status;
+                                viewModel.Status = JobApplicationStatus.Technical_Issue;
+                                viewModel.Message = response.Errors.FirstOrDefault();
                             }
+                        }
+                        else
+                        {
+                            if (status == JobApplicationStatus.NotAbleToLoginCreatedUser)
+                                viewModel.Message = "Unable to process your job application. Please try logging in and re-apply for the job.";
+                            else if (status == JobApplicationStatus.NotAbleToCreateUser)
+                                viewModel.Message = "Unable to create user. Please register from";
+
+                            viewModel.Status = status;
                         }
                     }
                 }
             }
-            if(!this.JobSearchResultsPageId.IsNullOrEmpty())
+
+
+            if (!this.JobSearchResultsPageId.IsNullOrEmpty())
                 ViewBag.JobSearchResultsUrl = SitefinityHelper.GetPageUrl(this.JobSearchResultsPageId);
 
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
 
             return View(fullTemplateName, viewModel);
         }
-       
+
         protected override void HandleUnknownAction(string actionName)
         {
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");

@@ -20,6 +20,7 @@ using JXTNext.Sitefinity.Common.Helpers;
 using Telerik.Sitefinity.Security.Claims;
 using JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication;
 using System.IO;
+using Telerik.Sitefinity.Abstractions;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 {
@@ -55,6 +56,9 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
         public ActionResult Index(string code, string state, int? JobId)
         {
+            // Logging this info for Indeed test
+            Log.Write("Social Handler Index Action Start : ", ConfigurationPolicy.ErrorLog);
+
             // This is the CSS classes enter from More Options
             ViewBag.CssClass = this.CssClass;
 
@@ -71,6 +75,9 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 var result = _socialHandlerLogics.ProcessSocialHandlerData(code, state, Request.InputStream);
                 if (result != null && result.Success == true && result.JobId.HasValue)
                 {
+                    // Logging this info for Indeed test
+                    Log.Write(result.JobId, ConfigurationPolicy.ErrorLog);
+
                     JobApplicationStatus status = JobApplicationStatus.Available;
                     if (_jobApplicationService != null)
                     {

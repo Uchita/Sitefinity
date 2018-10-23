@@ -37,8 +37,10 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
         public string Password { get; set; }
         public string UploadFilesResume { get; set; }
         public string UploadFilesCoverLetter { get; set; }
+        public string UploadFilesDocuments { get; set; }
         public string ResumeSelectedType { get; set; }
         public string CoverLetterSelectedType { get; set; }
+        public string DocumentsSelectedType { get; set; }
     }
 
     public class UploadFilesFormPostModel

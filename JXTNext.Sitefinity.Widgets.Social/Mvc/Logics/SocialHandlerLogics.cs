@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Telerik.Sitefinity.Abstractions;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
 {
@@ -25,7 +26,8 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
 
         public SocialMediaProcessedResponse ProcessSocialHandlerData(string data, string state, Stream stream)
         {
-            foreach(var item in _processSocialMediaData)
+            Log.Write("ProcessSocialHandlerData In : ", ConfigurationPolicy.ErrorLog);
+            foreach (var item in _processSocialMediaData)
             {
                 var result = item.ProcessData(data, state, stream);
                 if (result != null && result.Success)

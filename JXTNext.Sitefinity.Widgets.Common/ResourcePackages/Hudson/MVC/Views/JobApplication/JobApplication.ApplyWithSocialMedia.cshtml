@@ -28,15 +28,17 @@
 
                         case "Indeed":
                             @*<li><a href="#" target="_blank" title=@item.Title role="button">Apply With @item.Title</a></li>*@
+                            var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
+                            var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
                             <li>
                                 <span class="indeed-apply-widget"
-                                      data-indeed-apply-apiToken="3dbb9a7125adc11ca2377ed45413af47bd6fcabda7778164f0c0def572d16e79"
+                                      data-indeed-apply-apiToken=@indeedAPIToken
                                       data-indeed-apply-jobId=@Model.JobId
-                                      data-indeed-apply-jobLocation="New York, NY 10110"
-                                      data-indeed-apply-jobCompanyName="Your Company"
+                                      data-indeed-apply-jobLocation="Australia"
+                                      data-indeed-apply-jobCompanyName="JXT"
                                       data-indeed-apply-jobTitle="Test Engineer"
-                                      data-indeed-apply-jobUrl="http://www.yourcompany.com/careers/yourjob123.html"
-                                      data-indeed-apply-postUrl="http://www.yourcompany.com/process-applications"
+                                      data-indeed-apply-jobUrl=""
+                                      data-indeed-apply-postUrl=@redirectUriSocial
                                       data-indeed-apply-jobMeta="right-rail-apply-button"></span>
                                 <script>
                                     (function (d, s, id) {

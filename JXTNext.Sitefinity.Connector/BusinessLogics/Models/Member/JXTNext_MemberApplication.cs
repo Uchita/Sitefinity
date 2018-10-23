@@ -14,6 +14,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member
 
         public string ResumePath { get; set; }
         public string CoverletterPath { get; set; }
+        public List<string> DocumentsPath { get; set; }
 
         public EmailNotificationSettings EmailNotification { get; set; }
     }

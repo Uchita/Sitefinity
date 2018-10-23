@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Telerik.Sitefinity.Abstractions;
 //using JXTNext.SocialMedia.Models.Seek;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
@@ -25,10 +26,12 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
         // Interface method
         public SocialMediaProcessedResponse ProcessData(string code, string state, Stream stream)
         {
+            Log.Write("ProcessData Seek ProcessData : ", ConfigurationPolicy.ErrorLog);
             SocialMediaProcessedResponse processedResponse = null;
 
             if (!code.IsNullOrEmpty())
             {
+                Log.Write("ProcessData Seek Condtion check true : ", ConfigurationPolicy.ErrorLog);
                 processedResponse = new SocialMediaProcessedResponse();
                 try
                 {

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using JXTNext.Sitefinity.Widgets.Social.Mvc.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +10,6 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
 {
     public interface IProcessSocialMediaData
     {
-        (string, bool) ProcessData(string data);
+        SocialMediaProcessedResponse ProcessData(string data, string state, Stream stream);
     }
 }

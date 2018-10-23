@@ -61,7 +61,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         // GET: JobSearchResults
-        public ActionResult Index([ModelBinder(typeof(JobSearchResultsFilterBinder))] JobSearchResultsFilterModel filterModel, int?jobId)
+        public ActionResult Index([ModelBinder(typeof(JobSearchResultsFilterBinder))] JobSearchResultsFilterModel filterModel, int? jobId)
         {
             dynamic dynamicJobResultsList = null;
 
@@ -72,7 +72,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 var jobDetails = jobListingResponse.Job;
                 var classificationTopLevelId = jobListingResponse.Job.CustomData["Classifications[0].Filters[0].ExternalReference"];
 
-                JobSearchResultsFilterModel filterModelNew = new JobSearchResultsFilterModel() { Filters = new List<JobSearchFilterReceiver>()};
+                JobSearchResultsFilterModel filterModelNew = new JobSearchResultsFilterModel() { Filters = new List<JobSearchFilterReceiver>() };
                 JobSearchFilterReceiverItem filterReceiverItem = new JobSearchFilterReceiverItem() { ItemID = classificationTopLevelId };
                 JobSearchFilterReceiver filterReceiver = new JobSearchFilterReceiver() { rootId = "Classifications", values = new List<JobSearchFilterReceiverItem>() };
                 filterReceiver.values.Add(filterReceiverItem);
@@ -109,7 +109,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
                 if (jobFilterComponents != null)
                 {
-                    searchInputs = new JobSearchResultsFilterModel() {Keywords =this.KeywordsSelectedJobs, Filters = new List<JobSearchFilterReceiver>() };
+                    searchInputs = new JobSearchResultsFilterModel() { Keywords = this.KeywordsSelectedJobs, Filters = new List<JobSearchFilterReceiver>() };
                     foreach (JobSearchModel item in jobFilterComponents)
                     {
                         FilterData(item.Filters);
@@ -150,7 +150,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             JXTNext_SearchJobsResponse jobResponse = (JXTNext_SearchJobsResponse)_BLConnector.SearchJobs(searchRequest);
 
-            foreach(var item in jobResponse.SearchResults)
+            foreach (var item in jobResponse.SearchResults)
             {
                 List<OrderedDictionary> classificationItemsList = new List<OrderedDictionary>();
                 item.ClassificationsRootName = "Classifications";
@@ -160,7 +160,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 {
                     string key = "Classifications[0].Filters[" + i + "].ExternalReference";
                     string value = "Classifications[0].Filters[" + i + "].Value";
-                    string parentClassificationsKey = "Classifications[0].Filters["+i+"].SubLevel[0]";
+                    string parentClassificationsKey = "Classifications[0].Filters[" + i + "].SubLevel[0]";
                     if (item.CustomData.ContainsKey(key))
                     {
                         OrderedDictionary classifOrdDict = new OrderedDictionary();
@@ -203,7 +203,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 dynamicJobResultsList = response as dynamic;
             }
 
-            PartialViewResult jobResultsPartialVR =  PartialView("_JobSearchResults", dynamicJobResultsList);
+            PartialViewResult jobResultsPartialVR = PartialView("_JobSearchResults", dynamicJobResultsList);
             JobFiltersController jobFiltersController = new JobFiltersController(_bConnectorsList, _oConnectorsList);
             ActionResult filtersActionResult = jobFiltersController.Index(filterModel, SiteMapBase.GetActualCurrentNode().Title, (dynamicJobResultsList != null) ? dynamicJobResultsList.SearchResultsFilters : null);
 
@@ -264,7 +264,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public JsonResult GetAllSavedJobs()
         {
             JXTNext_MemberGetSavedJobResponse response = _BLConnector.MemberGetSavedJobs() as JXTNext_MemberGetSavedJobResponse;
-           return new JsonResult { Data = response };
+            return new JsonResult { Data = response };
         }
 
         /// <summary>
@@ -279,7 +279,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             dynamic dynamicJobResultsList = null;
 
-            JobSearchResultsFilterModel filterModelNew = new JobSearchResultsFilterModel() { ConsultantSearch = new Consultant() {Email = user.User.Email } };
+            JobSearchResultsFilterModel filterModelNew = new JobSearchResultsFilterModel() { ConsultantSearch = new Consultant() { Email = user.User.Email } };
             ISearchJobsResponse response = GetJobSearchResultsResponse(filterModelNew);
             JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
             dynamicJobResultsList = jobResultsList as dynamic;

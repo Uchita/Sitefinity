@@ -1,6 +1,7 @@
 ﻿using Jxt.Sitefinity.Jobs;
 using JXTNext.Sitefinity.Common.Models;
 using JXTNext.Sitefinity.Connector;
+using JXTNext.Sitefinity.Services.Services;
 using JXTNext.Sitefinity.Widgets.Authentication;
 using JXTNext.Sitefinity.Widgets.Job;
 using JXTNext.Sitefinity.Widgets.Social;
@@ -32,6 +33,7 @@ namespace SitefinityWebApp.App_Start
                 , new Widgets_JobModule()
                 , new Widgets_UserModule()
                 , new SocialModule()
+                , new ServiceInterfacesModule()
                 );
 
             BindInjectionModels();

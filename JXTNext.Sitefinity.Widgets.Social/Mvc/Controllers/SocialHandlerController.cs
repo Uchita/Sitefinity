@@ -82,7 +82,9 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                     if(result != null)
                     {
                         Log.Write("_socialHandlerLogics 'result' not null", ConfigurationPolicy.ErrorLog);
-                        Log.Write(result.Success + " " + result.JobId + " " + result.Errors.FirstOrDefault(), ConfigurationPolicy.ErrorLog);
+                        Log.Write(result.Success + " " + result.JobId, ConfigurationPolicy.ErrorLog);
+                        if(result.Errors != null)
+                            Log.Write(result.Errors.FirstOrDefault(), ConfigurationPolicy.ErrorLog);
                     }
                     if (result != null && result.Success == true && result.JobId.HasValue)
                     {

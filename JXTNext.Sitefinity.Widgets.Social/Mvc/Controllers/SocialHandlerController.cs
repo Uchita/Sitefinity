@@ -76,8 +76,12 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 if (_socialHandlerLogics != null)
                 {
                     Log.Write("_socialHandlerLogics not null", ConfigurationPolicy.ErrorLog);
+                    StreamReader reader = new StreamReader(Request.InputStream);
+                    string indeedJsonStringData = String.Empty;
+                    if (reader != null)
+                        indeedJsonStringData = reader.ReadToEnd();
 
-                    var result = _socialHandlerLogics.ProcessSocialHandlerData(code, state, Request.InputStream);
+                    var result = _socialHandlerLogics.ProcessSocialHandlerData(code, state, indeedJsonStringData);
 
                     if(result != null)
                     {
@@ -103,6 +107,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 PhoneNumber = result.PhoneNumber
                             };
                             var overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
+                            Log.Write("overrideEmail is : " + overrideEmail, ConfigurationPolicy.ErrorLog);
                             if (overrideEmail != null && status == JobApplicationStatus.Available)
                             {
                                 // Gather Attachments
@@ -179,6 +184,8 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                             }
                             else
                             {
+                                Log.Write("overrideEmail is null: ", ConfigurationPolicy.ErrorLog);
+
                                 if (status == JobApplicationStatus.NotAbleToLoginCreatedUser)
                                     viewModel.Message = "Unable to process your job application. Please try logging in and re-apply for the job.";
                                 else if (status == JobApplicationStatus.NotAbleToCreateUser)
@@ -186,6 +193,11 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
                                 viewModel.Status = status;
                             }
+                        }
+
+                        else
+                        {
+                            Log.Write("_jobApplicationService is null", ConfigurationPolicy.ErrorLog);
                         }
                     }
                 }

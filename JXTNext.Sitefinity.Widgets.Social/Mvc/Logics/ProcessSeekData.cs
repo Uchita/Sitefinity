@@ -24,7 +24,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
         }
 
         // Interface method
-        public SocialMediaProcessedResponse ProcessData(string code, string state, Stream stream)
+        public SocialMediaProcessedResponse ProcessData(string code, string state, string indeedData)
         {
             Log.Write("ProcessData Seek ProcessData : ", ConfigurationPolicy.ErrorLog);
             SocialMediaProcessedResponse processedResponse = null;

@@ -21,63 +21,61 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
         }
 
         // Interface method
-        public SocialMediaProcessedResponse ProcessData(string data, string state, Stream stream)
+        public SocialMediaProcessedResponse ProcessData(string data, string state, string indeedData)
         {
             Log.Write("ProcessData Indeed In : " + data, ConfigurationPolicy.ErrorLog);
             SocialMediaProcessedResponse processedResponse = null;
-            if (data.IsNullOrEmpty() && stream != null)
+            if (data.IsNullOrEmpty() && !indeedData.IsNullOrEmpty())
             {
                 Log.Write("ProcessData Indeed Intial Condtion pass : ", ConfigurationPolicy.ErrorLog);
-                using (StreamReader reader = new StreamReader(stream))
+                Log.Write("ProcessData Indeed, indeedData : " + indeedData, ConfigurationPolicy.ErrorLog);
+                processedResponse = new SocialMediaProcessedResponse();
+                try
                 {
-                    processedResponse = new SocialMediaProcessedResponse();
-                    try
+                    Log.Write("ProcessData Indeed entered try block : ", ConfigurationPolicy.ErrorLog);
+
+                    IndeedSocialMediaRequest indeedReq = new IndeedSocialMediaRequest();
+                    indeedReq.IndeedApplicationJson = indeedData;
+
+                    IndeedSocialMediaService indeedSocialMediaService = new IndeedSocialMediaService();
+                    // Indeed API call
+                    var indeedAPIResponse = indeedSocialMediaService.ProcessSocialMediaIntegration<IndeedSocialMediaResponse, IndeedSocialMediaRequest>(indeedReq);
+
+                    if (indeedAPIResponse.SocialMediaProcessSuccess)
                     {
-                        Log.Write("ProcessData Indeed entered try block : ", ConfigurationPolicy.ErrorLog);
-                        var indeedData = reader.ReadToEnd();
+                        Log.Write("ProcessData Indeed indeedAPIResponse.SocialMediaProcessSuccess : ", ConfigurationPolicy.ErrorLog);
+                        processedResponse.Success = true;
+                        processedResponse.Email = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.Email;
+                        processedResponse.FirstName = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.FirstName;
+                        processedResponse.LastName = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.LastName;
+                        processedResponse.PhoneNumber = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.PhoneNumber;
+                        processedResponse.FileStream = indeedAPIResponse.IndeedJobApplication.IndeedResume.data;
+                        processedResponse.FileName = indeedAPIResponse.IndeedJobApplication.IndeedResume.fileName;
 
-                        IndeedSocialMediaRequest indeedReq = new IndeedSocialMediaRequest();
-                        indeedReq.IndeedApplicationJson = indeedData;
-
-                        IndeedSocialMediaService indeedSocialMediaService = new IndeedSocialMediaService();
-                        // Indeed API call
-                        var indeedAPIResponse = indeedSocialMediaService.ProcessSocialMediaIntegration<IndeedSocialMediaResponse, IndeedSocialMediaRequest>(indeedReq);
-
-                        if(indeedAPIResponse.SocialMediaProcessSuccess)
+                        if (Int32.TryParse(indeedAPIResponse.IndeedJobApplication.JXTNextJob.jobId, out int jobId))
                         {
-                            Log.Write("ProcessData Indeed indeedAPIResponse.SocialMediaProcessSuccess : ", ConfigurationPolicy.ErrorLog);
-                            processedResponse.Success = true;
-                            processedResponse.Email = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.Email;
-                            processedResponse.FirstName = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.FirstName;
-                            processedResponse.LastName = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.LastName;
-                            processedResponse.PhoneNumber = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.PhoneNumber;
-                            processedResponse.FileStream = indeedAPIResponse.IndeedJobApplication.IndeedResume.data;
-                            processedResponse.FileName = indeedAPIResponse.IndeedJobApplication.IndeedResume.fileName;
-
-                            if (Int32.TryParse(indeedAPIResponse.IndeedJobApplication.JXTNextJob.jobId, out int jobId))
-                            {
-                                Log.Write("ProcessData Indeed indeedAPIResponse.SocialMediaProcessSuccess job id is extracted : ", ConfigurationPolicy.ErrorLog);
-                                processedResponse.JobId = jobId;
-                            }
-                        }
-                        else
-                        {
-                            Log.Write("ProcessData Indeed indeedAPIResponse.SocialMediaProcessSuccess false: " + indeedAPIResponse.Errors.FirstOrDefault(), ConfigurationPolicy.ErrorLog);
-                            processedResponse.Success = false;
-                            processedResponse.Errors = indeedAPIResponse.Errors;
+                            Log.Write("ProcessData Indeed indeedAPIResponse.SocialMediaProcessSuccess job id is extracted : ", ConfigurationPolicy.ErrorLog);
+                            processedResponse.JobId = jobId;
                         }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        Log.Write("ProcessData Indeed catch block : " + ex.Message, ConfigurationPolicy.ErrorLog);
-
+                        Log.Write("ProcessData Indeed indeedAPIResponse.SocialMediaProcessSuccess false: " + indeedAPIResponse.Errors.FirstOrDefault(), ConfigurationPolicy.ErrorLog);
                         processedResponse.Success = false;
-                        List<string> errors = new List<string>();
-                        errors.Add(ex.Message);
-                        processedResponse.Errors = errors;
+                        processedResponse.Errors = indeedAPIResponse.Errors;
                     }
                 }
+                catch (Exception ex)
+                {
+                    Log.Write("ProcessData Indeed catch block : " + ex.Message, ConfigurationPolicy.ErrorLog);
+
+                    processedResponse.Success = false;
+                    List<string> errors = new List<string>();
+                    errors.Add(ex.Message);
+                    processedResponse.Errors = errors;
+                }
             }
+
             return processedResponse;
         }
     }

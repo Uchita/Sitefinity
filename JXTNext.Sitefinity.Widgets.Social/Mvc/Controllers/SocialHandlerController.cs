@@ -79,7 +79,11 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                     StreamReader reader = new StreamReader(Request.InputStream);
                     string indeedJsonStringData = String.Empty;
                     if (reader != null)
+                    {
+                        Log.Write("indeedJsonStringData " + indeedJsonStringData, ConfigurationPolicy.ErrorLog);
+                        Log.Write("Request.InputStream length " + Request.InputStream.Length, ConfigurationPolicy.ErrorLog);
                         indeedJsonStringData = reader.ReadToEnd();
+                    }
 
                     var result = _socialHandlerLogics.ProcessSocialHandlerData(code, state, indeedJsonStringData);
 
@@ -110,6 +114,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                             Log.Write("overrideEmail is : " + overrideEmail, ConfigurationPolicy.ErrorLog);
                             if (overrideEmail != null && status == JobApplicationStatus.Available)
                             {
+                                Log.Write("overrideEmail is in: ", ConfigurationPolicy.ErrorLog);
                                 // Gather Attachments
                                 Guid identifier = Guid.NewGuid();
                                 JobApplicationAttachmentUploadItem uploadItem = new JobApplicationAttachmentUploadItem()
@@ -135,6 +140,8 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                                                                                     new EmailTarget(SitefinityHelper.GetUserFirstNameById(ClaimsManager.GetCurrentIdentity().UserId), overrideEmail),
                                                                                                     this.EmailTemplateEmailSubject,
                                                                                                     htmlEmailContent);
+
+                                Log.Write("emailNotificationSettings after: ", ConfigurationPolicy.ErrorLog);
                                 // CC and BCC emails
                                 if (!this.EmailTemplateCC.IsNullOrEmpty())
                                 {
@@ -152,14 +159,20 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     }
                                 }
 
+                                Log.Write("BL response before: ", ConfigurationPolicy.ErrorLog);
+
                                 //Create Application 
                                 IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(
                                     new JXTNext_MemberApplicationRequest { ApplyResourceID = result.JobId.Value, MemberID = 2, ResumePath = resumeAttachmentPath, CoverletterPath = coverletterAttachmentPath, EmailNotification = emailNotificationSettings },
                                     overrideEmail);
 
+                                Log.Write("BL response after: ", ConfigurationPolicy.ErrorLog);
+
                                 if (response.Success && response.ApplicationID.HasValue)
                                 {
+                                    Log.Write("BL response in: ", ConfigurationPolicy.ErrorLog);
                                     var hasFailedUpload = _jobApplicationService.UploadFiles(attachments);
+                                    Log.Write("file upload is : " + hasFailedUpload, ConfigurationPolicy.ErrorLog);
                                     if (hasFailedUpload)
                                     {
                                         viewModel.Status = JobApplicationStatus.Technical_Issue; // Unable to attach files
@@ -171,13 +184,16 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                         viewModel.Message = "Your application was successfully processed.";
                                         if (!this.JobApplicationSuccessPageId.IsNullOrEmpty())
                                         {
+                                            Log.Write("JobApplicationSuccessPageId is not null: ", ConfigurationPolicy.ErrorLog);
                                             var successPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationSuccessPageId);
+                                            Log.Write("successPageUrl : " + successPageUrl, ConfigurationPolicy.ErrorLog);
                                             return Redirect(successPageUrl);
                                         }
                                     }
                                 }
                                 else
                                 {
+                                    Log.Write("Member application is : " + response.Errors.FirstOrDefault(), ConfigurationPolicy.ErrorLog);
                                     viewModel.Status = JobApplicationStatus.Technical_Issue;
                                     viewModel.Message = response.Errors.FirstOrDefault();
                                 }

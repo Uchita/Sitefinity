@@ -10,6 +10,6 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
 {
     public interface IProcessSocialMediaData
     {
-        SocialMediaProcessedResponse ProcessData(string data, string state, Stream stream);
+        SocialMediaProcessedResponse ProcessData(string data, string state, string indeedData);
     }
 }

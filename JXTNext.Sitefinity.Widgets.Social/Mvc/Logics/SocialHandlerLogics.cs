@@ -24,12 +24,12 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
             _jobApplicationService = jobApplicationService;
         }
 
-        public SocialMediaProcessedResponse ProcessSocialHandlerData(string data, string state, Stream stream)
+        public SocialMediaProcessedResponse ProcessSocialHandlerData(string data, string state, string indeedData)
         {
             Log.Write("ProcessSocialHandlerData In : ", ConfigurationPolicy.ErrorLog);
             foreach (var item in _processSocialMediaData)
             {
-                var result = item.ProcessData(data, state, stream);
+                var result = item.ProcessData(data, state, indeedData);
                 if (result != null && result.Success)
                     return result;
                     

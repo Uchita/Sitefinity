@@ -14,5 +14,6 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
         T ConvertToLocalEntity<T>(dynamic data) where T : class;
 
         List<T> ConvertSearchResultsToLocal<T>(dynamic data) where T : class;
+        List<T> ConvertSearchResultsFiltersToLocal<T>(dynamic data) where T : class;
     }
 }

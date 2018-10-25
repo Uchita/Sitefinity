@@ -71,7 +71,7 @@
     }
 
     .risk-measurement .risk-wrapper {
-        width: 50%;
+        width: 33.3%;
     }
     .list-featured-articles{
         font-size: 1.4rem;
@@ -136,7 +136,7 @@
 
             .registration-link {
                 margin-top: 20px;
-                padding-right: 30px;
+                // padding-right: 30px;
             }
         }
         .reg-form{
@@ -267,9 +267,9 @@
     .risk-measurement .risk-wrapper {
         width: 20%;
 
-        .risk img {
-            left: 15px;
-        }
+        // .risk img {
+        //     left: 15px;
+        // }
     }
     
     .contact-consultant {
@@ -333,14 +333,45 @@
             margin-right: 0;
         }
     }
-}
+    header{
+        .main-nav .navbar-nav > li.dropdown:hover {
 
+            .dropdown-menu {
+                width: 33%;
+
+                &:nth-child(1) {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 1024px){
+    #pager{
+        ul{
+            position: static;
+            transform: none;
+            display: block;
+            padding: 0;
+            margin: 0;
+            li{
+                a{
+                    padding: 0 1px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
 @media (max-width: 991px) {
     main .page-section{
         padding: 30px 0;
     }
     .flex{
         display: block;
+    }
+    .sm-flex{
+        display: flex;
     }
     .sm-text-center{
         text-align: center!important;
@@ -400,7 +431,7 @@
                 padding: 10px;
                 width: 50%;
 
-                &:nth-child(3), &:nth-child(4) {
+                &:nth-child(4) {
                     display: none;
                 }
 
@@ -419,6 +450,7 @@
     }
     .paralax-image{
         background-position: center!important;
+        background-attachment: scroll!important;
     }
     .testimonials-slider {
         padding: 50px 0;
@@ -459,6 +491,27 @@
             font-size: 11px;
             font-size: 1.1rem;
         }
+        &.testimonials-simple.with-side-image{
+            .img-holder{
+                max-width: 200px;
+                margin: 0 auto;
+            }
+            .owl-dots{
+                width: 100%;
+                position: static;
+            }
+        }
+        &.with-top-image{
+            .quote{
+                span{
+                    top: 25px;
+                }
+                &.text-right{
+                    bottom: 65px;
+                    right: -50px;
+                }
+            }
+        }
     }
 
     .thumbnail {
@@ -471,6 +524,10 @@
             .img-wrap{
                 max-height: none;
             }
+        }
+        &.fixed-width{
+            width: 48%;
+            margin-bottom: 20px;
         }
         
         &.card-rollover .card-description {
@@ -544,16 +601,16 @@
             overflow: hidden;
             position: relative;
 
-            &:after {
-                content: "";
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                height: 30px;
-                width: 100%;
-                background: -webkit-linear-gradient(#fff, #fff);
-                background: linear-gradient(rgba(0,0,0,0), rgba(255, 255, 255, 1));
-            }
+            // &:after {
+            //     content: "";
+            //     position: absolute;
+            //     bottom: 0;
+            //     left: 0;
+            //     height: 30px;
+            //     width: 100%;
+            //     background: -webkit-linear-gradient(#fff, #fff);
+            //     background: linear-gradient(rgba(0,0,0,0), rgba(255, 255, 255, 1));
+            // }
         }
     }
 
@@ -576,6 +633,20 @@
     .consultant-images img {
         margin-bottom: 10px;
     }
+    .consultant-minimal{
+        .filters-wrapper{
+            .btn-near-labels{
+                margin-top: 23px;
+            }
+            .btn-primary{
+                padding: 13px 30px 12px;
+                width: 100%;
+            }
+        }
+        .consultant .item{
+            width: 31%;   
+        }
+    }
 
     .testimonials-slider .testimonial-title {
         margin: 0 auto;
@@ -592,6 +663,9 @@
         button span{
             top: -15px;
         }
+    }
+    .minWt100{
+        min-width: 90px;
     }
 }
 
@@ -742,7 +816,8 @@
     }
 
     .jumbotron-container .jumbotron {
-
+        padding-top: 150px;
+        min-height: 400px;
         .h1, h1 {
             font-size: 30px;
             font-size: 3rem;
@@ -805,14 +880,16 @@
             }
         }
     }
-
+    .filter-toggle{
+        display: block;
+    }
     .list-featured-articles {
         padding: 0!important;
         margin: 0 auto 40px;
         width: 100%;
         max-width: 400px;
         li {
-
+            margin-bottom: 10px;
             & + li {
                 margin-top: 0 !important;
 
@@ -857,9 +934,13 @@
             }
         }
     }
-
+    .sm-wrapper{
+        display: none;
+        margin-top: 20px;
+    }
     .risk-measurement .risk-wrapper {
-        width: 100%;
+        width: 50%;
+        margin: 10px auto 20px;
         .risk img{
             bottom: 0;
         }
@@ -882,7 +963,7 @@
     }
     
     .page-wrapper{
-        
+       
         footer{
             .page-section{
                 padding: 15px 0;
@@ -895,8 +976,16 @@
             width: auto;
             display: block;
         }
+        .form-group .text-right{
+            text-align: left;
+        }
     }
-
+    .thumbnail{
+        .display-table{
+            display: table;
+            width: 100%;
+        }
+    }
     .testimonials-slider {
         .quote{
             height: 33px;
@@ -910,6 +999,7 @@
         .owl-dots{
             bottom: 43px;
         }
+        
     }
 
     .xs-no-bdr-right{
@@ -959,6 +1049,19 @@
     .form-newsletter{
         max-width: 400px;
         margin: 0 auto;
+    }
+    .consultant-minimal{
+        .filters-wrapper{
+            label{
+                display: none;
+            }
+            .btn-near-labels{
+                margin-top: 0;
+            }
+        }
+        .consultant .item{
+            width:46.5%;   
+        }
     }
     
 }
@@ -1017,6 +1120,12 @@
 
     }
 
+    .thumbnail{
+        &.fixed-width{
+            width: 100%;
+            margin: 0 0 20px;
+        }
+    }
     .page-wrapper {
         footer{
             .col-xs-3, .col-xs-9{
@@ -1034,6 +1143,15 @@
             .postfooter-links a{
                 font-size: 1.3rem;
                 white-space: nowrap;
+            }
+        }
+
+        .apply-with, .sign-in-with{
+            ul {
+                li {
+                    float: none;
+                    margin-right: 0;
+                }
             }
         }
     }
@@ -1142,6 +1260,14 @@
                 bottom: 0;
             }
         }
+        &.with-side-image{
+            .img-holder{
+                max-width: 150px;
+            }
+            .owl-item>div{
+                padding-bottom: 0;
+            }
+        }
     }
     .testimonials-slider{
         .owl-item{
@@ -1172,7 +1298,25 @@
             word-break: break-word;
         }
     }
-
+    .consultant-minimal{
+        .consultant{
+            .item{
+                width:auto; 
+                margin: 12px 15px;  
+            }
+        }
+    }
+    .popup-overlay{
+        .container{
+            max-width:100%;
+            margin-left: 0;
+            left: 0;
+        }
+    }
+    .risk-measurement .risk-wrapper {
+        width: 100%;
+        float: none;
+    }
 }
 
 @media (max-width:400px){
@@ -1184,6 +1328,7 @@
             margin-right: 0;
         }
     }   
+
 }
 
 /*#endregion Phones*/

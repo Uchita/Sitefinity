@@ -27,7 +27,7 @@
 
 <div class="@Model.CssClass">
 
-    <div class="row long-card-basic-list flex">
+    <div class="row long-card-basic-list flex justify-content-md-center">
         @foreach (var item in Model.Items)
         {
             var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);

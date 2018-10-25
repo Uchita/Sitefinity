@@ -18,84 +18,85 @@
                 height: 235px;
                 width: 100%;
             }
+        }
+    }
+}
+.consultant {
+    .caption {
+        padding: 0 20px;
 
-            .caption {
-                padding: 0 20px;
+        .consultant-sum {
+            font-family: $font-family-regular;
+        }
 
-                .consultant-sum {
-                    font-family: $font-family-regular;
-                }
+        .consultant-name {
+            margin-top: 15px;
+            color: $global-highlight-color;
+        }
+    }
+    .consultant-btn {
+        color: $page-section-bg-light!important;
+        text-decoration: none;
+        display: block;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-height: 30px;
+        -webkit-line-clamp: 2;
+        max-height: 50px;
+        text-transform: uppercase;
+        padding: 0 35px 5px 35px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        font-size: 14px;
+        font-size: 1.4rem;
+        font-family: $font-family-medium;
 
-                .consultant-name {
-                    margin-top: 15px;
-                    color: $global-highlight-color;
-                }
+        &:before {
+            content: '';
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            right: 0;
+            background: $global-highlight-color;
+            bottom: 0;
+        }
+
+        &:after {
+            content: '\f105';
+            position: absolute;
+            bottom: 0;
+            right: 11px;
+            font-weight: 900;
+            font-size: 16px;
+            font-size: 1.6rem;
+            line-height: 28px;
+            font-family: 'Font Awesome 5 Free';
+            color: #fff;
+        }
+
+        &:hover {
+            color: $global-highlight-color!important;
+            &:before {
+                background: $btn-more-hover-bg;
             }
 
-            .consultant-btn {
-                color: $page-section-bg-light;
-                text-decoration: none;
-                display: block;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                min-height: 30px;
-                -webkit-line-clamp: 2;
-                max-height: 50px;
-                text-transform: uppercase;
-                padding: 0 35px 5px 35px;
-                width: 100%;
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                font-size: 14px;
-                font-size: 1.4rem;
-                font-family: $font-family-medium;
+            &:after {
+                color: $btn-more-hover-color;
+            }
+        }
 
-                &:before {
-                    content: '';
-                    width: 30px;
-                    height: 30px;
-                    position: absolute;
-                    right: 0;
-                    background: $global-highlight-color;
-                    bottom: 0;
-                }
+        &:active {
 
-                &:after {
-                    content: '\f105';
-                    position: absolute;
-                    bottom: 0;
-                    right: 11px;
-                    font-weight: 900;
-                    font-size: 16px;
-                    font-size: 1.6rem;
-                    line-height: 28px;
-                    font-family: 'Font Awesome 5 Free';
-                    color: #fff;
-                }
+            &:before {
+                background: $btn-more-active-bg;
+            }
 
-                &:hover {
-                    &:before {
-                        background: $btn-more-hover-bg;
-                    }
-
-                    &:after {
-                        color: $btn-more-hover-color;
-                    }
-                }
-
-                &:active {
-
-                    &:before {
-                        background: $btn-more-active-bg;
-                    }
-
-                    &:after {
-                        color: $btn-more-active-color;
-                    }
-                }
+            &:after {
+                color: $btn-more-active-color;
             }
         }
     }
@@ -130,6 +131,12 @@
             bottom: 0;
             right: 0;
         }
+    }
+}
+
+.filters-wrapper{
+    label{
+        padding-top: 0;
     }
 }
 
@@ -225,6 +232,9 @@
 
 .consultant-page {
     margin-bottom: 25px;
+    h2, h3{
+        margin: 30px 0 20px;
+    }
 
     img {
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.32);
@@ -238,4 +248,36 @@
     .contact-consultant-position {
         margin-bottom: 20px;
     }
+}
+
+//consultant filter in contact landing page
+//this is minimal filter with minimal details and few consultant listed
+.consultant-minimal{
+    > .filters-wrapper{
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .consultant{
+        .item{
+            background: $brightColor;
+            box-shadow: 0 0 10px 0 rgba(0,0,0,.16);
+            text-align: center;
+            padding: 0 0 50px;
+            position: relative;
+            margin: 12px 1%;
+            width: 23%;
+            color: $global-text-color;
+        }
+        .contact-consultant-image{
+            overflow: hidden;
+        }
+       .consultant-photo {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 235px;
+            width: 100.1%;
+        }
+    }
+    
 }

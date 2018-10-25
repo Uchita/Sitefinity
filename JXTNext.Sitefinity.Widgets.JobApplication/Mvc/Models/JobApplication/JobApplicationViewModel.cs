@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
         public string ApplicationMessage { get; set; }
         public JobApplicationUploadFilesModel UploadFiles { get; set; }
         public int JobId { get; set; }
+        public List<ApplyWithSocialMedia> ApplyWithSocialMediaInfo { get; set; }
     }
 
     public class JobApplicationUploadFilesModel
@@ -35,8 +37,10 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
         public string Password { get; set; }
         public string UploadFilesResume { get; set; }
         public string UploadFilesCoverLetter { get; set; }
+        public string UploadFilesDocuments { get; set; }
         public string ResumeSelectedType { get; set; }
         public string CoverLetterSelectedType { get; set; }
+        public string DocumentsSelectedType { get; set; }
     }
 
     public class UploadFilesFormPostModel
@@ -46,6 +50,23 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
         public string Field { get; set; }
         public string AuthToken { get; set; }
         public string MIMEType { get; set; }
+    }
+
+    public class ApplyWithSocialMedia
+    {
+        public bool Selected { get; set; }
+        public string Title { get; set; }
+        public int Id { get; set; }
+
+        public static string SerializedSocialMediaInit()
+        {
+            var socialLinks = new List<ApplyWithSocialMedia>();
+            socialLinks.Add(new ApplyWithSocialMedia() { Id = 1, Selected = false, Title = "Seek" });
+            socialLinks.Add(new ApplyWithSocialMedia() { Id = 2, Selected = false, Title = "Indeed" });
+            socialLinks.Add(new ApplyWithSocialMedia() { Id = 3, Selected = false, Title = "LinkedIn" });
+
+            return JsonConvert.SerializeObject(socialLinks);
+        }
     }
 
 }

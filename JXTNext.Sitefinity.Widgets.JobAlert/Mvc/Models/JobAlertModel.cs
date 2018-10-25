@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Models
 {
@@ -18,6 +19,13 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Models
         public JobAlertStatus Status { get; set; }
     }
 
+    public class CreateAsJobAlertFilterModel
+    {
+        public string Keywords { get; set; }
+        public List<JobAlertFilters> Filters { get; set; }
+        public JobAlertSalaryFilterReceiver Salary { get; set; }
+    }
+
     public class JobAlertFilters
     {
         public string RootId { get; set; }
@@ -30,6 +38,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Models
         public string Name { get; set; }
         public bool EmailAlerts { get; set; }
         public string Keywords { get; set; }
+        public JobAlertSalaryFilterReceiver Salary { get; set; }
         public List<JobAlertEditFilterRootItem> Data { get; set; }
     }
 
@@ -56,12 +65,12 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Models
         public int LowerRange { get; set; }
     }
 
-    public enum JobAlertStatus
+    public enum JobAlertStatus 
     {
         AVAILABLE = 0,
         SUCCESS = 1,
         CREATE_FAILED = 2,
-        UPATED_FAILED = 3,
+        UPDATE_FAILED = 3,
         DELETE_FAILED = 4
     }
 }

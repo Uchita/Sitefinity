@@ -13,156 +13,145 @@
 
 
 <div class="@Model.CssClass row sf-m-xxs login-form reg-form">
-	@if ((Request.QueryString["ShowActivationMsg"] == "true") ||
-	 (ViewBag.ShowActivationMsg is bool && ViewBag.ShowActivationMsg))
+    @if (Telerik.Sitefinity.Security.SecurityManager.GetCurrentUserId() == Guid.Empty || SystemManager.IsInlineEditingMode || SystemManager.IsDesignMode)
     {
-        <h3>
-            @Html.Resource("VisitYourEmail")
-        </h3>
 
-        <p>@string.Format(Html.Resource("ActivationLinkHasBeenSent"), Model.Email)</p>
-        <a href="javascript:void(0)" data-sf-role="sendAgainLink" class="btn btn-primary">@Html.Resource("SendAgain")</a>
 
-        <div data-sf-role="confirmationResendInfo" style="display:none;">
-            @string.Format(Html.Resource("ActivationLinkHasBeenSentAgain"), Model.Email)
-            <a href="javascript:void(0)" data-sf-role="sendAgainLink" class="btn btn-primary">@Html.Resource("SendAgain")</a>
-        </div>
-
-        <input type="hidden" data-sf-role="sf-resend-confirmation-endpoint-url" value="@Url.Action("ResendConfirmationEmail", new { email = Model.Email})" />
-    }
-    else if ((Request.QueryString["ShowSuccessfulRegistrationMsg"] == "true") ||
-             (ViewBag.ShowSuccessfulRegistrationMsg is bool && ViewBag.ShowSuccessfulRegistrationMsg))
-    {
-        <h3>@Html.Resource("ThankYou")</h3>
-        <p>@Html.Resource("DefaultSuccessfulRegistrationMessage")</p>
-
-    }
-    else
-    {
-        using (Html.BeginFormSitefinity(true))
+        if ((Request.QueryString["ShowActivationMsg"] == "true") ||
+         (ViewBag.ShowActivationMsg is bool && ViewBag.ShowActivationMsg))
         {
-          @Html.ValidationSummary(true);
-            
-        <div class="basic-form">
-            <div class="login-border">
-                <div class="width-limit">
-                    <h1>@Html.Resource("Registration")</h1>
-                    <p>Register now to create your profile, and your CV, update your details, create job alerts and track your applications!</p>
-                </div>
-                
-                @if (!string.IsNullOrEmpty(ViewBag.Error))
-                {
-                    <div class="alert alert-danger">
-                        @ViewBag.Error
-                    </div>
-                }
+            <h3>
+                @Html.Resource("VisitYourEmail")
+            </h3>
 
-                @Html.HiddenFor(m => m.RequiresQuestionAndAnswer)
+            <p>@string.Format(Html.Resource("ActivationLinkHasBeenSent"), Model.Email)</p>
+            <a href="javascript:void(0)" data-sf-role="sendAgainLink" class="btn btn-primary">@Html.Resource("SendAgain")</a>
+
+            <div data-sf-role="confirmationResendInfo" style="display:none;">
+                @string.Format(Html.Resource("ActivationLinkHasBeenSentAgain"), Model.Email)
+                <a href="javascript:void(0)" data-sf-role="sendAgainLink" class="btn btn-primary">@Html.Resource("SendAgain")</a>
+            </div>
+
+            <input type="hidden" data-sf-role="sf-resend-confirmation-endpoint-url" value="@Url.Action("ResendConfirmationEmail", new { email = Model.Email })" />
+        }
+        else if ((Request.QueryString["ShowSuccessfulRegistrationMsg"] == "true") ||
+                 (ViewBag.ShowSuccessfulRegistrationMsg is bool && ViewBag.ShowSuccessfulRegistrationMsg))
+        {
+            <h2>@Html.Resource("ThankYou")</h2>
+            <p>@Html.Resource("DefaultSuccessfulRegistrationMessage")</p>
+
+        }
+        else
+        {
+            using (Html.BeginFormSitefinity(true))
+            {
+                @Html.ValidationSummary(true);
+
+                <div class="basic-form">
+                    <div class="login-border">
+                        <div class="width-limit">
+                            <h2>@Html.Resource("Registration")</h2>
+                            <p>Create an account to receive job alerts to track your applications!</p>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(ViewBag.Error))
+                        {
+                        <div class="alert alert-danger">
+                            @if(ViewBag.Error == "Please enter a different email.")
+                            {
+                            <span>This email address is already registered. Click <a href="/sign-in" title="Please sign in">here</a> to sign in using this account</span>
+                            }
+                            else
+                            {
+                                <span>@ViewBag.Error</span>
+                            }
+
+                        </div>
+                        }
+
+                        @Html.HiddenFor(m => m.RequiresQuestionAndAnswer)
 
 
-                    <div class="field-wrapper">
-                        <div class="row">
-                            <div class="col-md-4 text-right">
-                                <p class="form-label">Name *</p>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    @Html.TextBox("Profile[FirstName]", null, new { @class = "form-control", placeholder = "First name", required = "required" })
+                        <div class="field-wrapper">
+                            <div class="row">
+                                <div class="col-md-4 text-right">
+                                    <p class="form-label">Name *</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.TextBox("Profile[FirstName]", null, new { @class = "form-control", placeholder = "First name", required = "required" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.TextBox("Profile[LastName]", null, new { @class = "form-control", placeholder = "Last name", required = "required" })
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    @Html.TextBox("Profile[LastName]", null, new { @class = "form-control", placeholder = "Last name", required = "required" })
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-4 text-right">
-                                <p class="form-label">
-                                    Email*
-                                </p>
-                            </div>
-                            <div class="col-md-8">
-
-                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", placeholder = "Enter your email address", required = "required" })
-
-                                @if (Html.ValidationMessageFor(m => m.Email) != null)
-                                {
-                                    <div class="has-error">
-                                        <span class="help-block">@Html.ValidationMessageFor(m => m.Email)</span>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-4 text-right">
-                                <p class="form-label">
-                                    @Html.Resource("Password")<span>*</span>
-                                </p>
-                            </div>
-                            <div class="col-md-8">
-                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Choose password", required = "required", pattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title = "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" })
-
-
-                                @if (Html.ValidationMessageFor(m => m.Password) != null)
-                                {
-                                    <div class="has-error">
-                                        <span class="help-block"> @Html.ValidationMessageFor(m => m.Password)</span>
-                                    </div>
-                                }
-                                <span class="text-muted">
-                                    <em>Password must contain 8 characters or more, 1 uppercase letter, 1 lowercase letter and 1 number</em><br />&nbsp;
-                                </span>
-                            </div>
-                        </div>
-                        
-                        @*<div class="row form-group" id="strength-wrap">
-                            <div class="col-md-4 text-right">
-                                <label class="form-label" for="password-reg">Password strength</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div id="password-strength"><span class="strengh-text"></span></div>
-                            </div>
-                        </div>*@
-                        <div class="form-group">
                             <div class="row">
                                 <div class="col-md-4 text-right">
                                     <p class="form-label">
-                                        @Html.Resource("ReTypePassword") *
+                                        Email*
                                     </p>
                                 </div>
                                 <div class="col-md-8">
-                                    @Html.PasswordFor(m => m.ReTypePassword, new { @class = "form-control", placeholder = "Retype your password", required = "required" })
-                                    @if (Html.ValidationMessageFor(m => m.ReTypePassword) != null)
+
+                                    @Html.TextBoxFor(m => m.Email, new { @id = "userid", @class = "form-control", type = "email", placeholder = "Enter your email address", required = "required" })
+
+                                    @if (Html.ValidationMessageFor(m => m.Email) != null)
                                     {
                                         <div class="has-error">
-                                            <span class="help-block">@Html.ValidationMessageFor(m => m.ReTypePassword)</span>
+                                            <span class="help-block">@Html.ValidationMessageFor(m => m.Email)</span>
                                         </div>
                                     }
                                 </div>
                             </div>
-                        </div>
 
+                            <div class="row">
+                                <div class="col-md-4 text-right">
+                                    <p class="form-label">
+                                        @Html.Resource("Password")<span>*</span>
+                                    </p>
+                                </div>
+                                <div class="col-md-8">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Choose password", required = "required", pattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title = "Your password must contain at least one number, one uppercase and lowercase letter, and 8 or more characters." })
 
-                        @if (Model.RequiresQuestionAndAnswer)
-                        {
+                                    <span class="text-muted">
+                                        <em>Password must contain 8 characters or more, 1 uppercase letter, 1 lowercase letter and 1 number</em><br />&nbsp;
+                                    </span>
 
+                                    @if (Html.ValidationMessageFor(m => m.Password) != null)
+                                    {
+                                        <div class="has-error">
+                                            <div class="alert alert-danger"> @Html.ValidationMessageFor(m => m.Password)</div>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+
+                            @*<div class="row form-group" id="strength-wrap">
+                                    <div class="col-md-4 text-right">
+                                        <label class="form-label" for="password-reg">Password strength</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div id="password-strength"><span class="strengh-text"></span></div>
+                                    </div>
+                                </div>*@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-4 text-right">
                                         <p class="form-label">
-                                            ]
-                                            @Html.Resource("Question")
+                                            @Html.Resource("ReTypePassword") *
                                         </p>
                                     </div>
                                     <div class="col-md-8">
-                                        @Html.TextBoxFor(m => m.Question, new { @class = "form-control" })
-                                        @if (Html.ValidationMessageFor(m => m.Question) != null)
+                                        @Html.PasswordFor(m => m.ReTypePassword, new { @class = "form-control", placeholder = "Retype your password", required = "required" })
+                                        @if (Html.ValidationMessageFor(m => m.ReTypePassword) != null)
                                         {
                                             <div class="has-error">
-                                                <span class="help-block"> @Html.ValidationMessageFor(m => m.Question)</span>
+                                                <span class="help-block">@Html.ValidationMessageFor(m => m.ReTypePassword)</span>
                                             </div>
                                         }
                                     </div>
@@ -170,62 +159,97 @@
                             </div>
 
 
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-4 text-right">
-                                        <p class="form-label">
-                                            @Html.Resource("Answer")
-                                        </p>
+                            @if (Model.RequiresQuestionAndAnswer)
+                            {
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4 text-right">
+                                            <p class="form-label">
+                                                ]
+                                                @Html.Resource("Question")
+                                            </p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(m => m.Question, new { @class = "form-control" })
+                                            @if (Html.ValidationMessageFor(m => m.Question) != null)
+                                            {
+                                                <div class="has-error">
+                                                    <span class="help-block"> @Html.ValidationMessageFor(m => m.Question)</span>
+                                                </div>
+                                            }
+                                        </div>
                                     </div>
-                                    <div class="col-md-8">
-                                        @Html.TextBoxFor(m => m.Answer, new { @class = "form-control" })
-                                        @if (Html.ValidationMessageFor(m => m.Answer) != null)
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4 text-right">
+                                            <p class="form-label">
+                                                @Html.Resource("Answer")
+                                            </p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(m => m.Answer, new { @class = "form-control" })
+                                            @if (Html.ValidationMessageFor(m => m.Answer) != null)
+                                            {
+                                                <div class="has-error">
+                                                    <span class="help-block"> @Html.ValidationMessageFor(m => m.Answer)</span>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8">
+                                    <div class="checkbox clearfix">
+                                        <input name="privacypolicy" title="Please agree to our privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Please agree to our privacy policy');" type="checkbox" value="agree">
+                                        <span class="checkbox-icon fas fa-check"></span>
+                                        I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                                    </div>
+                                    <div class="btn-block">
+                                        @if (SystemManager.IsDesignMode && !SystemManager.IsPreviewMode)
                                         {
-                                            <div class="has-error">
-                                                <span class="help-block"> @Html.ValidationMessageFor(m => m.Answer)</span>
-                                            </div>
+                                            <button type="button" class="btn btn-primary">@Html.Resource("Register")</button>
+                                        }
+                                        else
+                                        {
+                                            <button type="submit" class="btn btn-primary">@Html.Resource("Register")</button>
                                         }
                                     </div>
                                 </div>
                             </div>
-                        }
 
-                        <div class="row">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-8">
-                                <div class="checkbox clearfix">
-                                    <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required="" title="Please agree to our privacy policy" oninvalid="this.setCustomValidity('Please agree to our privacy policy')" oninput="this.setCustomValidity('')">
-                                    <span class="checkbox-icon fas fa-check"></span>
-                                    I agree to Hudson <a href="/privacy-policy" target="_blank" style="text-decoration:underline; color:#000;">Privacy Policy</a>
-                                </div>                         
-                                <div class="btn-block">
-                                    @if (SystemManager.IsDesignMode && !SystemManager.IsPreviewMode)
-                                    {
-                                        <button type="button" class="btn btn-primary">@Html.Resource("Register")</button>
-                                    }
-                                    else
-                                    {
-                                        <button type="submit" class="btn btn-primary">@Html.Resource("Register")</button>
-                                    }
+                        </div>
+
+                        <div class="registration-link">
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8">
+                                    Already have an account?
+                                    <a href="@Model.LoginPageUrl" class="font-regular link-default">@Html.Resource("BackToLogin")</a>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-
-                <div class="registration-link">
-                    <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-8">
-                            Already have an account?
-                            <a href="@Model.LoginPageUrl" class="font-regular link-default">@Html.Resource("BackToLogin")</a>
-                        </div>
-                    </div>
                 </div>
-
-                </div>
-        </div>
+            }
         }
+    }
+    else
+    {
+        <h2 class="color-highlight">You are already logged in</h2>
+        <p>
+            There&rsquo;s lots to discover so enjoy your journey!
+        </p>
+        <p>
+            <a href="/job-seekers/search-results">Job Search</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/">Back to home</a>
+        </p>
     }
 </div>
 @Html.Script(Url.WidgetContent("Mvc/Scripts/Registration/registration-form.js"), "bottom")
@@ -239,9 +263,9 @@
         var m_strNumber = "0123456789";
         var m_strCharacters = "!@@#$%^&*?_~";
 
-        $('#Password').keyup(function () {
-            runPassword($(this).val());
-        });
+        //$('#Password').keyup(function () {
+        //    runPassword($(this).val());
+        //});
 
         function checkPassword(strPassword) {
             // Reset combination count

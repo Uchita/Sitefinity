@@ -8,6 +8,8 @@
 @*For user login check*@
 @using JXTNext.Sitefinity.Common.Helpers;
 
+@using Telerik.Sitefinity.DynamicModules.Model;
+
 @*Add scripts and stylesheets*@
 @Html.Script(ScriptRef.JQuery, "top")
 @Html.Script(Url.WidgetContent("Mvc/Scripts/Bootstrap/js/bootstrap.min.js"), "top", false)
@@ -80,56 +82,50 @@
             <a href="@node.Url" target="@node.LinkTarget">@node.Title<span class="decoration"></span></a>
             <div class="dropdown-menu-container">
                 <div class="dropdown-menu-columns">
-                    <div class="dropdown-menu">
-                        <ul>
-                            @RenderSubLevelsRecursive(node, 1)
-                        </ul>
-                    </div>
-                    <div class="dropdown-menu">
-                        @foreach (var flattenedChild in node.ChildNodes)
-                        {
-                            if (flattenedChild.ChildNodes.Count > 0)
+                    <div class="dropdown-menu"></div>
+                        <div class="dropdown-menu no-bdr">
+                            <ul>
+                                @RenderSubLevelsRecursive(node, 1)
+                            </ul>
+                        </div>
+                        <div class="dropdown-menu">
+                            @foreach (var flattenedChild in node.ChildNodes)
                             {
-                                <ul style="display:none;" data-parent-id="@flattenedChild.OriginalSiteMapNode.Key.ToLower()">
-                                    @RenderSubLevelsRecursive(flattenedChild, 1)
-                                </ul>
+                                if (flattenedChild.ChildNodes.Count > 0)
+                                {
+                                    <ul style="display:none;" data-parent-id="@flattenedChild.OriginalSiteMapNode.Key.ToLower()">
+                                        @RenderSubLevelsRecursive(flattenedChild, 1)
+                                    </ul>
+                                }
                             }
-                        }
-                    </div>
-                    <div class="dropdown-menu">
-                        @if (lastInsight != null)
-                        {
-                            var bestUrl = ContentHelper.GetBestArticleUrl(lastInsight.DataItem);
-                            <h4>Last insight</h4>
-                            <div>
-                                <a href="@bestUrl">
-                                    <div class="dropdown-menu-featured-image">
-                                        <img src="@Html.Raw(lastInsight.Fields.HeaderImage.Fields.MediaUrl)" />
-                                    </div>
-                                    <h5>@lastInsight.Fields.Title</h5>
-                                </a>
-                            </div>
-                        }
-                    </div>
-                    <div class="dropdown-menu">
-                        @if (featuredArticle != null)
-                        {
-                            var bestUrl = ContentHelper.GetBestArticleUrl(featuredArticle.DataItem);
-                            <h4>Featured article</h4>
-                            <a href="@bestUrl">
-                                <div>
-                                    <div class="dropdown-menu-featured-image">
-                                        <img src="@Html.Raw(featuredArticle.Fields.HeaderImage.Fields.MediaUrl)" />
-                                    </div>
-                                    <h5>@featuredArticle.Fields.Title</h5>
+                        </div>
 
-                                </div>
-                            </a>
-                        }
+                        <div class="dropdown-menu">
+                            @if (featuredArticle != null)
+                            {
+                                var bestUrl = "";
+                                //var bestUrl = ContentHelper.GetBestArticleUrl(featuredArticle.DataItem);
+                                DynamicContent dynamicVar = featuredArticle.DataItem as DynamicContent;
+                                if (dynamicVar != null)
+                                {
+                                    bestUrl = "/insights/articles/detail" + dynamicVar.SystemUrl;
+                                }
+
+                                <h4>Featured article</h4>
+                                <a href="@bestUrl" rel="@featuredArticle.DataItem">
+                                    <div>
+                                        <div class="dropdown-menu-featured-image">
+                                            <img src="@Html.Raw(featuredArticle.Fields.HeaderImage.Fields.MediaUrl)" />
+                                        </div>
+                                        <h5>@featuredArticle.Fields.Title</h5>
+
+                                    </div>
+                                </a>
+                            }
+                        </div>
+                        <div class="clearfix">
+                        </div>
                     </div>
-                    <div class="clearfix">
-                    </div>
-                </div>
             </div>
         </li>
     }

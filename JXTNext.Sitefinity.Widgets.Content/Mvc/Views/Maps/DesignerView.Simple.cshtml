@@ -4,7 +4,10 @@
     <p><i>Please make sure Google Maps API key at "Administration->Settings->Custom Site Settings"</i></p><br />
     <div class="form-group" data-ng-repeat="row in rows">
         <input type="text" ng-model="row.Address" ng-autocomplete class="form-control" placeholder="Enter Location" />
-        <input type="text" ng-model="row.MarkerIconPath" class="form-control" placeholder="Enter Marker Icon Path" />
+        <input type="text" ng-model="row.MarkerIconPath" class="form-control" placeholder="Enter Marker Icon Path (Optional)" />
+        <input type="text" ng-model="row.PopupTitle" class="form-control" placeholder="Enter Pop up title (Optional)" />
+        <input type="text" ng-model="row.PopupText" class="form-control" placeholder="Enter Pop up text (Optional)" />
+        <input type="text" ng-model="row.PopupAdditionalInfo" class="form-control" placeholder="Enter Pop up addiitonal info (Optional)" />
         <button class="btn btn-danger" id="row.ID" ng-click="removeRow(row.RowId)">
             @Html.Resource("DeleteMarker")
         </button>

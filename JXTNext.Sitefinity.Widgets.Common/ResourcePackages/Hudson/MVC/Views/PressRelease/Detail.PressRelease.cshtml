@@ -18,8 +18,11 @@
     <h1 class="article-detail-title text-center" @Html.InlineEditingFieldAttributes("Title", "ShortText")>
         @Model.Item.Fields.Title
     </h1>
-
-    <p class="article-detail-author text-center">by @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)</p>
+    
+    @if (!string.IsNullOrEmpty(Model.Item.Fields.AuthorName))
+    {
+        <p class="article-detail-author text-center">by @Model.Item.Fields.AuthorName</p>
+    }
 
     @*Start Content field*@
     <div class="article-description" @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>

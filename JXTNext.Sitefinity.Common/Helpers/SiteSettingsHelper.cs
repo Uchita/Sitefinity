@@ -95,6 +95,60 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return dropboxClientAPIKey;
         }
 
+        public string GetCurrentSiteSeekClientId()
+        {
+            string seekClientId = "";
+            if (this._siteSettingsContract != null)
+                seekClientId = this._siteSettingsContract.SeekClientId;
+
+            return seekClientId;
+        }
+
+        public string GetCurrentSiteSeekClientSecret()
+        {
+            string seekClientSecret = "";
+            if (this._siteSettingsContract != null)
+                seekClientSecret = this._siteSettingsContract.SeekClientSecret;
+
+            return seekClientSecret;
+        }
+
+        public string GetCurrentSiteSeekClientAdvertiserId()
+        {
+            string seekClientAdvertiserId = "";
+            if (this._siteSettingsContract != null)
+                seekClientAdvertiserId = this._siteSettingsContract.SeekClientAdvertiserId;
+
+            return seekClientAdvertiserId;
+        }
+
+        public string GetCurrentSiteSeekRedirectUri()
+        {
+            string seekRedirectUri = "";
+            if (this._siteSettingsContract != null)
+                seekRedirectUri = this._siteSettingsContract.SeekRedirectUri;
+
+            return seekRedirectUri;
+        }
+
+        public string GetCurrentSiteIndeedClientAPIToken()
+        {
+            string indeedClientAPIToken = "";
+            if (this._siteSettingsContract != null)
+                indeedClientAPIToken = this._siteSettingsContract.IndeedClientAPIToken;
+
+            return indeedClientAPIToken;
+        }
+
+        public string GetCurrentSiteIndeedClientSecret()
+        {
+            string indeedClientSecret = "";
+            if (this._siteSettingsContract != null)
+                indeedClientSecret = this._siteSettingsContract.IndeedClientSecret;
+
+            return indeedClientSecret;
+        }
+
         private const string _itemType = "JXTNext.Sitefinity.Common.Models.CustomSiteSettings.CustomSiteSettingsContract";
         private CustomSiteSettingsContract _siteSettingsContract = null;
     }

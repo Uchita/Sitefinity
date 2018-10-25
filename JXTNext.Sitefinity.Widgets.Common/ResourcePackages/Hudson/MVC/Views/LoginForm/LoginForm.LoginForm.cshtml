@@ -18,7 +18,7 @@
             <div>
                 @Html.ValidationSummary(true)
 
-                <h1>@Html.Resource("LoginFormLogInLegendHeader")</h1>
+                <h2>@Html.Resource("LoginFormLogInLegendHeader")</h2>
                 <div class="basic-form">
 
 
@@ -28,7 +28,7 @@
                             @Html.Resource("IncorrectCredentialsMessage")
                         </div>
                     }
-                    <div class="login-border">
+                    <div class="login-wrap">
 
                         <div class="form-group">
                             <div class="row">
@@ -36,13 +36,13 @@
                                     <p class="form-label">Email*</p>
                                 </div>
                                 <div class="col-md-8">
-                                    @Html.TextBoxFor(u => u.UserName, new { @class = "form-control", @placeholder = "Enter your email address" })
+                                    @Html.TextBoxFor(u => u.UserName, new { @id = "userid", @class = "form-control", @placeholder = "Enter your email address" })
                                     @if (Html.ValidationMessage("UserName") != null)
-                                {
+                                    {
                                         <div class="has-error">
                                             <span class="help-block">@Html.ValidationMessage("UserName")</span>
                                         </div>
-                                }
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -57,11 +57,11 @@
                                 <div class="col-md-8">
                                     @Html.PasswordFor(u => u.Password, new { @class = "form-control", @placeholder = "Enter your password" })
                                     @if (Html.ValidationMessage("Password") != null)
-                        {
+                                    {
                                         <div class="has-error">
                                             <span class="help-block">@Html.ValidationMessage("Password")</span>
                                         </div>
-                        }
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -71,8 +71,8 @@
                             <div class="col-md-8">
                                 @if (Model.ShowForgotPasswordLink)
                                 {
-                                    <div class="form-group forgot-password"><em>
-                                        @Html.ActionLink(Html.Resource("ForgottenPasword"), "ForgotPassword")</em>
+                                    <div class="form-group forgot-password">
+                                        @Html.ActionLink(Html.Resource("ForgottenPasword"), "ForgotPassword")
                                     </div>
                                 }
                                 @if (Model.ShowRememberMe)
@@ -84,7 +84,7 @@
                                             @Html.Resource("RememberMe")
                                         </div>
                                     </div>
-                                 }
+                                }
 
                                 <div class="btn-block">
                                     <button type="submit" class="btn btn-primary">@Html.Resource("LoginFormLogInButton")</button>
@@ -111,7 +111,7 @@
                         </div>
                     </div>
 
-                    
+
                 </div>
             </div>
         }
@@ -119,7 +119,14 @@
 
     else
     {
-        <h1 class="color-highlight">@Html.Resource("AlreadyLoggedIn")</h1>
+        <h2 class="color-highlight">@Html.Resource("AlreadyLoggedIn")</h2>
+        <p>
+            There&rsquo;s lots to discover so enjoy your journey!
+        </p>
+        <p>
+            <a href="/job-seekers/search-results">Job Search</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/">Back to home</a>
+        </p>
+
     }
 </div>
 

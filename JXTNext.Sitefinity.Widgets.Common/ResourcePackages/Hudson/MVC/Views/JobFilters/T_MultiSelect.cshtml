@@ -7,55 +7,9 @@
 @Html.Script(Url.WidgetContent("/Mvc/Scripts/jquery.nstSlider.js"))
 @Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/rangeSlider.css"))
 
-@if (Model != null)
-{
-<div class="filter-outer-wrapper left-sidebar">
-    <div class="form-group keywordfilter">
-        <label><strong>Keywords:</strong></label>
-        <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" placeholder="Search keywords"/></div>
-    </div>
 
-    @foreach (var item in Model)
-    {
-        if (item.Name != "Salary")
-        {
-            <div class="dropdown dropdown-tree navbar-collapse" id=@string.Format("{0}{1}", ViewBag.PrefixIdsText, item.Name)></div>
-        }
-        else if (item.Name == "Salary")
-        {
-            <select class="SalaryRangeSelect">
-                <option value="-1" selected>No Salary Preference</option>
-                @foreach (var salaryItem in item.Filters)
-                {
-                    <option value="@salaryItem.ID">@salaryItem.Label</option>
-                }
-            </select>
-            foreach (var salaryItem in item.Filters)
-            {
-                var lower = 15000;
-                var upper = 200000;
-                if(salaryItem.Label == "Hourly Salary")
-                {
-                    lower = 18;
-                    upper = 200;
-                }
-            <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
-                
-                <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
-                        data-cur_min="@lower" data-cur_max="@upper">
-
-                    <div class="bar"></div>
-                    <div class="leftGrip"></div>
-                    <div class="rightGrip"></div>
-                </div>
-                <div class="leftLabel">$<span>@lower</span></div>
-                <div class="rightLabel">$<span>@upper</span></div>
-
-            </div>
-            }
-        }
-    }
+<div id="filtersPagePartialContent">
+    @Html.Partial("_SimpleJS_Partial", (object)Model)
 </div>
-}
 
-@Html.Partial("_SimpleJS_Partial", (object)Model)
+

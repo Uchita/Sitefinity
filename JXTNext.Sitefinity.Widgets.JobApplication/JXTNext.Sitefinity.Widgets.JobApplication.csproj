@@ -354,6 +354,7 @@
     <EmbeddedResource Include="Mvc\Views\JobApplication\JobApplication.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JobApplication\DesignerView.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JobApplication\DesignerView.Simple.json" />
+    <EmbeddedResource Include="Mvc\Views\JobApplication\JobApplication.ApplyWithSocialMedia.cshtml" />
     <None Include="Web.config" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />

@@ -12,6 +12,9 @@ using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Logics;
 using Telerik.Sitefinity.Security.Claims;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
+using System.Web;
+using System.Dynamic;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -34,79 +37,87 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             List<JobAlertViewModel> jobAlertData = _jobAlertsBC.MemberJobAlertsGet();
 
             ViewBag.CssClass = this.CssClass;
-            ViewBag.CreateMessage = TempData["CreateMessage"];
-            ViewBag.DeleteMessage = TempData["DeleteMessage"];
-            ViewBag.Status = TempData["Status"];
-            
+            ViewBag.Status = TempData["StatusCode"];
+            ViewBag.StatusMessage = TempData["StatusMessage"];
+            ViewBag.IsMemberUser = SitefinityHelper.IsUserLoggedIn("Member");
+
             return View("Simple", jobAlertData);
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(CreateAsJobAlertFilterModel filterModel)
         {
-            dynamic dynamicFilterResponse = null;
+            TempData["StatusMessage"] = null;
+            TempData["StatusCode"] = JobAlertStatus.SUCCESS;
+            dynamic dynamicFilterResponse = new ExpandoObject();
             JXTNext_GetJobFiltersRequest request = new JXTNext_GetJobFiltersRequest();
             IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(request);
+            //if (filtersResponse != null && filtersResponse.Filters != null
+            //    && filtersResponse.Filters.Data != null)
+            //    dynamicFilterResponse = filtersResponse.Filters.Data as dynamic;
+
+
+            List<JobFilterRoot> fitersData = null;
             if (filtersResponse != null && filtersResponse.Filters != null
                 && filtersResponse.Filters.Data != null)
-                dynamicFilterResponse = filtersResponse.Filters.Data as dynamic;
+                fitersData = filtersResponse.Filters.Data;
 
-            var isMembeUser = false;
-            // Only Members can create the job alert
-            if (SitefinityHelper.IsUserLoggedIn())
+            var serializeFilterData = JsonConvert.SerializeObject(fitersData);
+            var filtersVMList = JsonConvert.DeserializeObject<List<JobAlertEditFilterRootItem>>(serializeFilterData);
+
+            if (filterModel.Filters != null && filterModel.Filters.Count > 0)
             {
-                var currUser = SitefinityHelper.GetUserById(ClaimsManager.GetCurrentIdentity().UserId);
-                if (currUser != null)
-                    isMembeUser = SitefinityHelper.IsUserInRole(currUser, "Member");
+                foreach (var rootItem in filterModel.Filters)
+                {
+                    if (rootItem != null)
+                    {
+                        if (filtersVMList != null && filtersVMList.Count > 0)
+                        {
+                            foreach (var filterVMRootItem in filtersVMList)
+                            {
+                                if (filterVMRootItem.Name == rootItem.RootId)
+                                {
+                                    if (filterVMRootItem.Filters != null && filterVMRootItem.Filters.Count > 0)
+                                    {
+                                        foreach (var filterItem in filterVMRootItem.Filters)
+                                        {
+                                            // Here we are coming the ids as parent child relationship and we need
+                                            // Only the current id, so remove underscore and get the exact id
+                                            RemoveUnderScore(rootItem.Values);
+                                            MergeFilters(filterItem, rootItem.Values);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
-            ViewBag.IsMemberUser = isMembeUser;
-           
+            dynamicFilterResponse.Filters = filtersVMList as dynamic;
+
+            ViewBag.IsMemberUser = SitefinityHelper.IsUserLoggedIn("Member");
+            dynamicFilterResponse.Keywords = filterModel.Keywords;
+            dynamicFilterResponse.Salary = filterModel.Salary;
+
+
             return View("Create", dynamicFilterResponse);
         }
 
         [HttpPost]
         public ActionResult Create(JobAlertViewModel model)
         {
-            // TODO: When the Backend API is ready,
-            // We need to pass this model to it
-            JobAlertSalaryFilterReceiver salary = null;
-            if (!model.SalaryStringify.IsNullOrEmpty())
-            {
-                salary = JsonConvert.DeserializeObject<JobAlertSalaryFilterReceiver>(model.SalaryStringify);
-            }
-            if (salary != null)
-                model.Salary = salary;
-
-            var epochTime = ConversionHelper.GetUnixTimestamp(SitefinityHelper.GetSitefinityApplicationTime(), true);
-            model.LastModifiedTime = (long)epochTime;
-
-            // Remove null value filters
-            List<JobAlertFilters> Filters = new List<JobAlertFilters>();
-            if(model != null && model.Filters != null && model.Filters.Count > 0)
-            {
-                foreach (var item in model.Filters)
-                {
-                    if (item.Values != null && item.Values.Count > 0)
-                        Filters.Add(item);
-                }
-            }
-
-            model.Filters = Filters;
-            
-
+            var response = GetUpsertResponse(model);
             var stausMessage = "A Job Alert has been created successfully.";
             var alertStatus = JobAlertStatus.SUCCESS;
-            var response = _jobAlertsBC.MemberJobAlertUpsert(model);
             if (!response.Success)
             {
                 stausMessage = response.Errors.First();
                 alertStatus = JobAlertStatus.CREATE_FAILED;
             }
 
-            TempData["DeleteMessage"] = null;
-            TempData["CreateMessage"] = stausMessage;
-            TempData["Status"] = alertStatus;
+            TempData["StatusCode"] = alertStatus;
+            TempData["StatusMessage"] = stausMessage;
 
             // Why action name is empty?
             // Here we need to call Index action, if we are providing action name as Index here
@@ -118,8 +129,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
+            TempData["StatusMessage"] = null;
+            TempData["StatusCode"] = JobAlertStatus.SUCCESS;
             JobAlertViewModel jobAlertDetails = _jobAlertsBC.MemberJobAlertGet(id);
-            IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
+            JXTNext_GetJobFiltersRequest request = new JXTNext_GetJobFiltersRequest();
+            IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(request);
 
             List<JobFilterRoot> fitersData = null;
             if (filtersResponse != null && filtersResponse.Filters != null
@@ -139,7 +153,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         {
                             foreach (var filterVMRootItem in filtersVMList)
                             {
-                                if (filterVMRootItem.ID == rootItem.RootId)
+                                if (filterVMRootItem.Name == rootItem.RootId)
                                 {
                                     if (filterVMRootItem.Filters != null && filterVMRootItem.Filters.Count > 0)
                                     {
@@ -160,6 +174,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             editVM.Name = jobAlertDetails.Name;
             editVM.Keywords = jobAlertDetails.Keywords;
             editVM.EmailAlerts = jobAlertDetails.EmailAlerts;
+            editVM.Salary = jobAlertDetails.Salary;
 
             return View("Edit", editVM);
         }
@@ -167,13 +182,23 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         [HttpPost]
         public ActionResult Edit(JobAlertViewModel model)
         {
-            // TODO: When the Backend API is ready,
-            // We need to pass this model to it
+            var statusMessage = "A Job Alert has been updated successfully.";
+            var alertStatus = JobAlertStatus.SUCCESS;
+            var response = GetUpsertResponse(model, true);
+            if (!response.Success)
+            {
+                statusMessage = response.Errors.First();
+                alertStatus = JobAlertStatus.UPDATE_FAILED;
+            }
+
+            TempData["StatusMessage"] = statusMessage;
+            TempData["StatusCode"] = alertStatus;
 
             // Why action name is empty?
             // Here we need to call Index action, if we are providing action name as Index here
             // It is appending in the URL, but we dont want to show that in URL. So, sending it as empty
             // Will definity call defaut action i,.e Index
+
             return RedirectToAction("");
         }
 
@@ -200,10 +225,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 alertStatus = JobAlertStatus.DELETE_FAILED;
             }
 
-            TempData["CreateMessage"] = null;
-            TempData["DeleteMessage"] = statusMessage;
-            TempData["Status"] = alertStatus;
-
+            TempData["StatusMessage"] = statusMessage;
+            TempData["StatusCode"] = alertStatus;
+                       
             // Why action name is empty?
             // Here we need to call Index action, if we are providing action name as Index here
             // It is appending in the URL, but we dont want to show that in URL. So, sending it as empty
@@ -216,10 +240,49 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
         }
 
+        private IMemberUpsertJobAlertResponse GetUpsertResponse(JobAlertViewModel model, bool update = false)
+        {
+            JobAlertSalaryFilterReceiver salary = null;
+            if (!model.SalaryStringify.IsNullOrEmpty())
+            {
+                salary = JsonConvert.DeserializeObject<JobAlertSalaryFilterReceiver>(model.SalaryStringify);
+            }
+
+            if (salary != null)
+                model.Salary = salary;
+
+            var epochTime = ConversionHelper.GetUnixTimestamp(SitefinityHelper.GetSitefinityApplicationTime(), true);
+            model.LastModifiedTime = (long)epochTime;
+
+            // Remove null value filters
+            List<JobAlertFilters> Filters = new List<JobAlertFilters>();
+            if (model != null && model.Filters != null && model.Filters.Count > 0)
+            {
+                foreach (var item in model.Filters)
+                {
+                    if (item.Values != null && item.Values.Count > 0)
+                        Filters.Add(item);
+                }
+            }
+
+            model.Filters = Filters;
+
+            var response = _jobAlertsBC.MemberJobAlertUpsert(model, update);
+
+            return response;
+        }
+
         static string ToQueryString(JobAlertViewModel jobAlertDetails)
         {
             List<string> queryParamsStringList = new List<string>();
-            queryParamsStringList.Add("Keywords=" + jobAlertDetails.Keywords);
+            // Encode the URL string
+            // Why replacing single quote with %27?
+            // To be inconsistent with JavaScript encodeURIComponent in the front end.
+            string encodeKeywords = jobAlertDetails.Keywords;
+            if (!encodeKeywords.IsNullOrEmpty())
+                encodeKeywords = Uri.EscapeDataString(jobAlertDetails.Keywords).Replace("'", "%27");
+
+            queryParamsStringList.Add("Keywords=" + encodeKeywords);
                        
             if (jobAlertDetails.Filters != null)
             {
@@ -263,6 +326,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                             MergeFilters(item, values);
                         }
                     }
+                }
+            }
+        }
+
+        private static void RemoveUnderScore(List<string> values)
+        {
+            if (values != null && values.Count > 0)
+            {
+                for (int i = 0; i < values.Count; i++)
+                {
+                    // Parent and child ids are seprated by underscore
+                    if (values[i].Contains("_"))
+                        values[i] = values[i].Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries).ToList().LastOrDefault();
                 }
             }
         }

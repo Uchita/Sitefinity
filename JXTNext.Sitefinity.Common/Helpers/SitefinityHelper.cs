@@ -12,6 +12,7 @@ using Telerik.Sitefinity.Security.Model;
 using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.Taxonomies;
 using Telerik.Sitefinity.Taxonomies.Model;
+using Telerik.Sitefinity.Web;
 
 namespace JXTNext.Sitefinity.Common.Helpers
 {
@@ -237,13 +238,29 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return isVerified;
         }
 
-        public static bool IsUserLoggedIn()
+        public static bool IsUserLoggedIn(string roleName = null)
         {
             bool isUserLoggedIn = false;
             var currentIdentity = ClaimsManager.GetCurrentIdentity();
 
             if (currentIdentity.IsAuthenticated)
                 isUserLoggedIn = true;
+
+            if(!roleName.IsNullOrEmpty())
+            {
+                if(isUserLoggedIn)
+                {
+                    var currUser = SitefinityHelper.GetUserById(ClaimsManager.GetCurrentIdentity().UserId);
+                    if (currUser != null)
+                        isUserLoggedIn = SitefinityHelper.IsUserInRole(currUser, roleName);
+                    else
+                        return false;
+                }
+                else
+                {
+                    return false;
+                }
+            }
 
             return isUserLoggedIn;
         }
@@ -258,6 +275,17 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 isUserInRole = roleManager.IsUserInRole(user.Id, roleName);
 
             return isUserInRole;
+        }
+
+        public static string GetCurrentPageUrl()
+        {
+            return GetPageUrl(SiteMapBase.GetActualCurrentNode().Id.ToString());
+        }
+
+        public static void LogoutCurrentUser()
+        {
+            SecurityManager.Logout();
+            SecurityManager.DeleteAuthCookies();
         }
     }
 }

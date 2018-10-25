@@ -175,5 +175,131 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
                 this["dropboxClientAPIKey"] = value;
             }
         }
+
+        #region Seek
+
+        /// <summary>
+        /// Gets or sets the Dropbox Client API Key
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("seekClientId")]
+        [DescriptionResource(typeof(ConfigDescriptions), "SeekClientId")]
+
+        [DataMember]
+        public virtual String CurrentSeekClientId
+        {
+            get
+            {
+                return (String)this["seekClientId"];
+            }
+            set
+            {
+                this["seekClientId"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Dropbox Client API Key
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("seekClientSecret")]
+        [DescriptionResource(typeof(ConfigDescriptions), "SeekClientSecret")]
+
+        [DataMember]
+        public virtual String CurrentSeekClientSecret
+        {
+            get
+            {
+                return (String)this["seekClientSecret"];
+            }
+            set
+            {
+                this["seekClientSecret"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Dropbox Client API Key
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("seekClientAdvertiserId")]
+        [DescriptionResource(typeof(ConfigDescriptions), "SeekClientAdvertiserId")]
+
+        [DataMember]
+        public virtual String CurrentSeekClientAdvertiserId
+        {
+            get
+            {
+                return (String)this["seekClientAdvertiserId"];
+            }
+            set
+            {
+                this["seekClientAdvertiserId"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Dropbox Client API Key
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("seekRedirectUri")]
+        [DescriptionResource(typeof(ConfigDescriptions), "SeekRedirectUri")]
+
+        [DataMember]
+        public virtual String CurrentSeekRedirectUri
+        {
+            get
+            {
+                return (String)this["seekRedirectUri"];
+            }
+            set
+            {
+                this["seekRedirectUri"] = value;
+            }
+        }
+
+        #endregion
+
+        #region Indeed
+        /// <summary>
+        /// Gets or sets the Indeed API Token
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("indeedClientAPIToken")]
+        [DescriptionResource(typeof(ConfigDescriptions), "IndeedClientAPIToken")]
+
+        [DataMember]
+        public virtual String CurrentIndeedClientAPIToken
+        {
+            get
+            {
+                return (String)this["indeedClientAPIToken"];
+            }
+            set
+            {
+                this["indeedClientAPIToken"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Indeed Client Secret
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("indeedClientSecret")]
+        [DescriptionResource(typeof(ConfigDescriptions), "IndeedClientSecret")]
+
+        [DataMember]
+        public virtual String CurrentIndeedClientSecret
+        {
+            get
+            {
+                return (String)this["indeedClientSecret"];
+            }
+            set
+            {
+                this["indeedClientSecret"] = value;
+            }
+        }
+        #endregion
     }
 }

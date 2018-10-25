@@ -14,49 +14,51 @@
 
 @if (Model != null)
 {
-    <h1>Create job alert</h1>
-    <h2>Alert details</h2>
+    <h2><span class="alert-icon far fa-bell"></span>Create job alert</h2>
+    <h3>Alert details</h3>
     <form method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();">
         @{
             int counter = 0;
+            var privacyErrMsg = "Please agree to Hudson's privacy policy";
         }
-        <div class="field-wrapper">
+        <div class="field-wrapper basic-form no-marg-top">
+            <div class="alert alert-warning filter-madatory-message hidden">Please enter filter value for at least Keyword or Location.</div>
             <div class="row form-group">
                 <div class="col-md-4 text-right">
-                    <label>Name*</label>
+                    <label for="name">Job alert name*</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" name="Name" required class="form-control" />
-                    <div class="form-fields-group">
-                        <input type="checkbox" name="EmailAlerts" value="true" /> <label class="lbl">Send Email Alerts</label>
-                    </div>
+                    <input type="text" name="Name" id="name" required class="form-control" />
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-md-4 text-right">
-                    <label>Keywords</label>
+                    <label for="keywords">Keywords</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" name="Keywords" class="form-control" />
+                    <input type="text" name="Keywords" id="keywords" class="form-control" value="@Model.Keywords"/>
                 </div>
             </div>
 
 
-            @foreach (var item in Model)
+            @foreach (var item in Model.Filters)
             {
-                if (item.Name != "Salary")
+                if (item.Name != "Salary" && item.Name != "CompanyName")
                 {
                     <div class="row form-group">
                         <div class="col-md-4 text-right">
                             @{
                                 var displayTitle = item.Name;
-                                if (displayTitle == "CountryLocationArea") {
+                                if (displayTitle == "CountryLocationArea")
+                                {
                                     displayTitle = "Location";
                                 }
-                                else if (displayTitle == "WorkType") {
+                                else if (displayTitle == "WorkType")
+                                {
                                     displayTitle = "Work Type";
                                 }
-                                else if (displayTitle == "CompanyName") {
+                                else if (displayTitle == "CompanyName")
+                                {
                                     displayTitle = "Company Name";
                                 }
                             }
@@ -89,7 +91,7 @@
                             {
                                 var lower = 15000;
                                 var upper = 200000;
-                                if (salaryItem.Label == "Hourly Salary")
+                                if (salaryItem.Label == "Hourly Rate")
                                 {
                                     lower = 18;
                                     upper = 200;
@@ -113,13 +115,25 @@
                     </div>
                 }
             }
-        <div class="row form-group">
-            <div class="col-md-4 text-right"></div>
-            <div class="col-md-4">
-                <input id="create-job-alert-submit-btn" type="submit" value="SAVE" class="btn btn-primary" />
+
+            <div class="row form-group">
+                <div class="col-md-4 text-right"></div>
+                <div class="col-md-8">
+                    <div class="checkbox clearfix">
+                        <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" checked required title="@privacyErrMsg" oninvalid='this.setCustomValidity("@privacyErrMsg")' oninput="this.setCustomValidity('')">
+                        <span class="checkbox-icon fas fa-check"></span>
+                        I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-4 text-right"></div>
+                <div class="col-md-8">
+                    <input id="create-job-alert-submit-btn" type="submit" value="SAVE" class="btn btn-primary" />
+                    <a href="/user-dashboard" class="btn">Cancel</a>
+                </div>
             </div>
         </div>
-    </div>
 </form>
 }
 
@@ -137,7 +151,15 @@
             });
         });
 
+        if ($('#keywords').val() == "" && $('#selected-CountryLocationArea').val() == null) {
+            $('.filter-madatory-message').removeClass('hidden');
+            return false;
+        } else {
+            $('.filter-madatory-message').addClass('hidden');
+        }
+
         if (isSlarySelected) {
+            salary.RootName = 'Salary';
             $('#salary-model-bind-hidden').val(JSON.stringify(salary));
             console.log($('#salary-model-bind-hidden').val());
         }
@@ -151,6 +173,29 @@
                 var json = serializer.Serialize(Model);
           }
 
+        var model = @Html.Raw(json);
+        var modelSalary = null;
+        $.each(model, function (index, value) {
+            if (value.Key == 'Salary') {
+                modelSalary = value.Value;
+            }
+        });
+        
+        if (modelSalary != null && modelSalary != 'undefined') {
+            salary = modelSalary;
+            isSlarySelected = true;
+            $('.SalaryRangeSelect').val(modelSalary.TargetValue);
+            $('#' + modelSalary.TargetValue).removeClass('visible-hidden');
+            $('.SalaryRangeSelect').addClass('changed');
+
+            var salarySliderEle = $('#' + modelSalary.TargetValue).parent().find('.nstSlider');
+            if (salarySliderEle != null) {
+                $(salarySliderEle).data("cur_min", modelSalary.LowerRange);
+                $(salarySliderEle).data("cur_max", modelSalary.UpperRange);
+            }
+        }
+   
+
         $('select').on('change', function () {
             isSlarySelected = false;
             $('.salaryrangewrapper').each(function (i, obj) {
@@ -161,8 +206,8 @@
                 isSlarySelected = true;
                 $('#' + this.value).removeClass('visible-hidden');
                 salary.TargetValue = this.value;
-                salary.LowerRange = $(this).parent().find('.leftLabel span').text();
-                salary.UpperRange = $(this).parent().find('.rightLabel span').text();
+                salary.LowerRange = $("#" + $(this).val()).find('.leftLabel span').text();
+                salary.UpperRange = $("#" + $(this).val()).find('.rightLabel span').text();
             } else if ($(this).hasClass('changed') && this.value == -1) {
                 isSlarySelected = false;
             }
@@ -184,11 +229,14 @@
                     salary.UpperRange = rightValue;
                     $(this).parent().find('.leftLabel span').text(leftValue);
                     $(this).parent().find('.rightLabel span').text(rightValue);
+                },
+                "value_changed_callback": function (cause, leftValue, rightValue) {
+                    $(this).parent().find('.leftLabel span').text(leftValue);
+                    $(this).parent().find('.rightLabel span').text(rightValue);
                 }
             });
         });
 
-        var model = @Html.Raw(json);
         var isUserMember = false;
         isUserMember = '@ViewBag.IsMemberUser';
     
@@ -196,11 +244,10 @@
              $('#create-job-alert-submit-btn').prop('disabled', true);
         }
         
-
-        if (model != null && model != "undefined") {
-            var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
-
-            for (var item of filterData) {
+        var filterData = JSON.parse('@Html.Raw(Json.Encode(Model.Filters))');
+        if (model != null && model != "undefined" && filterData != null && filterData != "undefined") {
+           
+            $.each(filterData, function (index, item) {
                 var displayTitle = item.Name;
                 if (displayTitle == 'CountryLocationArea')
                     displayTitle = 'Location';
@@ -219,13 +266,11 @@
                     selectChildren: true,
                     expandChildren: true,
                     enableSearch: false,
-                    prefixIdText:''
+                    prefixIdText: ''
                 };
                 $("#" + item.Name).DropDownTree(optionsArray[item.Name]);
-            }
+            });
         }
-
-
 
     });
 </script>

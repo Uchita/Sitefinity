@@ -18,7 +18,7 @@
 
         $scope.addNewRow = function () {
             var newRowId = $scope.rows.length + 1;
-            var newRow = { 'RowId': newRowId, 'ID': '', 'Address': '', 'MarkerIconPath': ''};
+            var newRow = { 'RowId': newRowId, 'ID': '', 'Address': '', 'MarkerIconPath': '', 'PopupTitle': '', 'PopupText': '', 'PopupAdditionalInfo': ''};
             $scope.rows.push(newRow);
             $scope.properties.SerializedMapsParams.PropertyValue = angular.toJson($scope.rows);
         };
@@ -44,7 +44,10 @@
                             RowId: 1,
                             ID: '',
                             Address: '',
-                            MarkerIconPath: ''
+                            MarkerIconPath: '',
+                            PopupTitle: '',
+                            PopupText: '',
+                            PopupAdditionalInfo:''
                         }
                     ];
                 }

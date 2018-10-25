@@ -49,12 +49,14 @@ namespace JXTNext.Sitefinity.Common.Constants
                 /// <summary>
                 /// Name of the Categories field (Category) of type Classification 
                 /// </summary>
-                public const string Category = "Category";
+                //public const string Category = "Category";
 
                 /// <summary>
                 /// Name of the Header image field (HeaderImage) of type RelatedMedia  - Telerik.Sitefinity.Libraries.Model.Image
                 /// </summary>
                 public const string HeaderImage = "HeaderImage";
+
+                public const string Articles = "articles";
 
             }
         }

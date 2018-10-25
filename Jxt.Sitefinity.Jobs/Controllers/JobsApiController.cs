@@ -2,18 +2,13 @@
 using Jxt.Sitefinity.Jobs.ViewModel;
 using Jxt.Sitefinity.Jobs.ViewModel.Serialization;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
-using System.Web.Mvc;
 
 namespace Jxt.Sitefinity.Jobs.Controllers
 {
-    public class JobsApiController: ApiController
+    public class JobsApiController : ApiController
     {
         IJobsModel _jobsModel;
 
@@ -34,7 +29,7 @@ namespace Jxt.Sitefinity.Jobs.Controllers
         {
             var vm = _jobsModel.GetSingleViewModel(id);
 
-            if( vm == null )
+            if (vm == null)
             {
                 //error
                 return null;
@@ -56,18 +51,17 @@ namespace Jxt.Sitefinity.Jobs.Controllers
             var updatedJob = _jobsModel.Update(vm);
             return this.Json<JobViewModel>(vm, new JsonSerializerSettings() { ContractResolver = new LowercaseContractResolver(), Formatting = Formatting.Indented });
         }
-        
+
         [System.Web.Mvc.HttpDelete]
         public bool Delete(int id)
         {
             _jobsModel.Delete(id);
             return true;
         }
-        
+
         private void DrawDependencies()
         {
             _jobsModel = new JobsModel();
         }
-
     }
 }

@@ -10,10 +10,13 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
     public class JobApplicationAttachmentSettings
     {
         public static string APPLICATION_RESUME_UPLOAD_KEY = "application-resume";
-        public static string APPLICATION_RESUME_UPLOAD_LIBRARY = "application-resume";
+        public static string APPLICATION_RESUME_UPLOAD_LIBRARY = "application-resume";       
 
         public static string APPLICATION_COVERLETTER_UPLOAD_KEY = "application-coverletter";
         public static string APPLICATION_COVERLETTER_UPLOAD_LIBRARY = "application-coverletter";
+
+        public static string APPLICATION_DOCUMENTS_UPLOAD_KEY = "application-documents";
+        public static string APPLICATION_DOCUMENTS_UPLOAD_LIBRARY = "application-documents";
     }
 
     public class JobApplicationAttachmentItem
@@ -47,7 +50,8 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
     public enum JobApplicationAttachmentType
     {
         Resume = 1,
-        Coverletter = 2
+        Coverletter = 2,
+        Documents = 3
     }
 
     public enum JobApplicationAttachmentSource

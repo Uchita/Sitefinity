@@ -62,6 +62,57 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             _OConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
         }
 
+        [RelativeRoute("{*tags}")]
+        public ActionResult RouteHandler(string[] tags, int? jobid)
+        {
+            if (Request.IsAjaxRequest()) // Ajax calls
+            {
+                if (tags != null && tags.Length > 0)
+                {
+                    var routePath = tags.FirstOrDefault();
+                    if (routePath.ToUpper().Contains("GETALLSAVEDJOBS"))
+                    {
+                        return GetAllSavedJobs();
+                    }
+                    else if (routePath.ToUpper().Contains("SAVEJOB") || routePath.ToUpper().Contains("REMOVESAVEDJOB"))
+                    {
+                        if (Request.Form["JobId"] != null)
+                        {
+                            int jobId;
+                            if (Int32.TryParse(Request.Form["JobId"], out jobId))
+                            {
+                                if (routePath.ToUpper().Contains("SAVEJOB"))
+                                    return SaveJob(jobId);
+                                else if(routePath.ToUpper().Contains("REMOVESAVEDJOB"))
+                                    return RemoveSavedJob(jobId);
+                            }
+                        }
+                    }
+                }
+            }
+            else // Non-Ajax calls
+            {
+                if (jobid.HasValue)
+                    return Index(jobid.Value);
+
+                if (tags != null && tags.Length > 0)
+                {
+                    string urlRoute = tags.FirstOrDefault();
+                    string jobIdStr = urlRoute.Substring(0, urlRoute.LastIndexOf('/')).Split('/').Last();
+                    int jobId;
+                    if (Int32.TryParse(jobIdStr, out jobId))
+                    {
+                        return Index(jobId);
+                    }
+                }
+            }
+
+            // Default redirect to Index action
+            return Index(null);
+
+        }
+
+
         // GET: JobDetails
         public ActionResult Index(int? jobId)
         {
@@ -93,10 +144,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
                 // Processing Locations
                 OrderedDictionary locOrdDict = new OrderedDictionary();
-                classifOrdDict.Add(jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].ExternalReference"], jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"]);
+                locOrdDict.Add(jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].ExternalReference"], jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"]);
                 string parentLocKey = "CountryLocationArea[0].Filters[0].SubLevel[0]";
                 JobDetailsViewModel.ProcessCustomData(parentLocKey, jobListingResponse.Job.CustomData, locOrdDict);
-                
+                OrderedDictionary locParentIdsOrdDict = new OrderedDictionary();
+                JobDetailsViewModel.AppendParentIds(locOrdDict, locParentIdsOrdDict);
+
                 DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.DateCreated), TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time"));
                 DateTime utcTime = ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.DateCreated);
                 DateTime elocalTime;
@@ -113,8 +166,20 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
 
                 viewModel.Classifications = classifParentIdsOrdDict;
-                viewModel.Locations = locOrdDict;
+                viewModel.Locations = locParentIdsOrdDict;
                 viewModel.ClassificationsRootName = "Classifications";
+                viewModel.LocationsRootName = "CountryLocationArea";
+
+                // Getting the SEO route name for classifications
+                List<string> seoString = new List<string>();
+                foreach (var key in classifParentIdsOrdDict.Keys)
+                {
+                    string value = classifParentIdsOrdDict[key].ToString();
+                    string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
+                    seoString.Add(SEOString);
+                }
+
+                viewModel.ClassificationsSEORouteName = String.Join("/", seoString); 
 
                 ViewBag.CssClass = this.CssClass;
                 ViewBag.JobApplicationPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationPageId);
@@ -140,6 +205,22 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 viewModel.JobDetails.Address = viewModel.JobDetails.Address == null ? "" : viewModel.JobDetails.Address;
                 viewModel.JobDetails.AddressLatitude = viewModel.JobDetails.AddressLatitude == null ? "" : viewModel.JobDetails.AddressLatitude;
                 viewModel.JobDetails.AddressLongtitude = viewModel.JobDetails.AddressLongtitude == null ? "" : viewModel.JobDetails.AddressLongtitude;
+
+                #region Check job already applied
+                ViewBag.IsJobApplied = false;
+                JXTNext_MemberAppliedJobResponse response = _BLConnector.MemberAppliedJobsGet() as JXTNext_MemberAppliedJobResponse;
+                if(response.Success)
+                {
+                    foreach (var item in response.MemberAppliedJobs)
+                    {
+                        if(item.JobId == jobId.Value)
+                        {
+                            ViewBag.IsJobApplied = true;
+                            break;
+                        }
+                    }
+                }
+                #endregion
 
                 return View(fullTemplateName, viewModel);
             }

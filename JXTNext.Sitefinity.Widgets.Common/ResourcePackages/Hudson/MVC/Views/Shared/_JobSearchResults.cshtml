@@ -1,6 +1,13 @@
 ﻿@model dynamic
 @using Telerik.Sitefinity.Services;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using JXTNext.Sitefinity.Common.Helpers
+
+
+@{ 
+    var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
+}
+
 <div class="result-meta">
     <p><span class="cur-search-count">Your search resulted in: <span class="count-num">@ViewBag.TotalCount</span> position(s)</span> | <a href="/advancedsearch" title="New job search">New Search</a></p>
 </div>
@@ -8,13 +15,15 @@
 <div class="search-top clearfix">
     @*<a class="btn btn-sm" href="">RSS FEED</a>
         <a class="btn btn-sm" href="">ADD FAVOURITE</a>
-        <a class="btn btn-sm" href="">CREATE AS ALERT</a>*@
+    *@
+
+    <a class="btn btn-sm jobalert-btn" href="/user-dashboard/Create" title="Create you job alert">CREATE JOB ALERT</a>
     <div class="select">
         <select id="sortOrder" class="default-select">
-            <option selected="selected" value="">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
+            <option selected="selected" value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
             <option value="Old">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
-            <option value="AZ">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
-            <option value="ZA">@Html.Resource("SortByAlphaZA", "JobSearchResultsResources")</option>
+            <option value="A-Z">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
+            <option value="Z-A">@Html.Resource("SortByAlphaZA", "JobSearchResultsResources")</option>
             <option value="SalaryHighToLow">@Html.Resource("SortBySalHighToLow", "JobSearchResultsResources")</option>
             <option value="SalaryLowToHigh">@Html.Resource("SortBySalLowToHigh", "JobSearchResultsResources")</option>
         </select>
@@ -27,13 +36,26 @@
     <ul class="k-pager-numbers k-reset"></ul>
 </div>
 
+<div class="popup-overlay">
+    <div class="container">
+        <div class="popup-box">
+            <p class="info">Please sign-in or register as a member to <span>create job alert</span>.</p>
+            <div class="button-wrapper">
+                <a href="/register" class="btn btn-primary">Register</a>
+                <a href="/sign-in" class="btn btn-primary">Sign in</a>
+            </div>
+            <a href="javascript:void(0)" class="fa fa-times"></a>
+        </div>
+    </div>
+</div>
+
 <script type="text/x-kendo-template" id="template">
     <div class="job-holder search-result">
         <div class="search-result-top">
 
             <div class="row">
                 <div class="col-sm-8 col-xs-12">
-                    <h3><a href="@ViewBag.JobDetailsPageUrl?jobId=#:JobID#" class="search-result-title">#:Title#</a></h3>
+                    <h3><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="search-result-title">#:Title#</a></h3>
                 </div>
                 <div class="col-sm-4 col-xs-12 text-right">
                     <span class="save-job" data-jobid="#:JobID#">Save job</span> | <a href='mailto:#:CustomData["ApplicationMethod.ApplicationEmail"]#'>Send email</a><br />
@@ -66,9 +88,21 @@
 
                 </div>
             </div>
-            <div class="row">
+            <div class="row jobCatHirarchy">
                 <div class="col-xs-12">
-                    <span class="link-default">#:CustomData["Classifications[0].Filters[0].Value"]#</span>
+                    # $.each(Classifications, function(index, item){#
+                    <small class="jobCatItem">
+
+                        # for (var key in item) {#
+                        # if(key.length >= 32){#
+                        # var hrefLink = '';#
+
+                        # hrefLink = '@ViewBag.CurrentPageUrl' + '?Filters[0].rootId=' + ClassificationsRootName + '&Filters[0].values=' + key;#
+                        <a href=#:hrefLink#>#:item[key]#</a>
+                        #}#
+                        #}#
+                    </small>
+                    #});#
                 </div>
             </div>
         </div>
@@ -94,7 +128,7 @@
                 ajaxActionName = "/RemoveSavedJob";
                 jobid = $(this).data('savedjobid');
             }
-           
+
             var parm = { JobId: jobid };
             var urlPath = $(location).attr('pathname') + ajaxActionName;
             var self = $(this);
@@ -105,7 +139,7 @@
                 data: parm,
                 dataType: 'Json',
                 success: function (response) {
-    
+
                     if (response.Success == true) { // Job Saved
                         if (unSaveJob) {
                             self.removeClass("saved");
@@ -118,7 +152,11 @@
                     }
                     else { // Job failed to save
                         if ((response.Errors[0].indexOf("(401)") > -1) || (response.Errors[0].indexOf("(403)") > -1))
-                            alert("Please login as a member to save a job.");
+                            //alert("Please sign-in or register as a member to save a job.");
+                            if ($('.popup-overlay').length) {
+                                $('.popup-overlay .info span').text('save a job');
+                                $('.popup-overlay').fadeIn('fast');
+                            }
                         else
                             alert(response.Errors[0]);
                     }
@@ -128,8 +166,25 @@
             });
         });
 
-    });
+        var memberStatus = '@ViewBag.IsMember';
+        //checking user logged in is member role
+        $('.jobalert-btn').click(function (e) {
 
+            if (memberStatus.toLocaleLowerCase() != "true") {
+                e.preventDefault();
+                //alert('Please sign-in or register as a member to create job alert.');
+                if ($('.popup-overlay').length) {
+                    $('.popup-overlay .info span').text('create job alert');
+                    $('.popup-overlay').fadeIn('fast');
+                }
+            }
+        });
+
+        $('.popup-overlay .fa-times').click(function () {
+            $('.popup-overlay').fadeOut('fast');
+        });
+
+    });
 
     var model = @Html.Raw(json);
     var isDesignMode = @Html.Raw(Json.Encode(@SystemManager.IsDesignMode));
@@ -144,7 +199,8 @@
         var dataSource;
         var queryStringArr = [];
 
-        $("#sortOrder").val('@ViewBag.SortOrder');
+        var sortBy = '@ViewBag.SortOrder';
+        $("#sortOrder").val(sortBy);
         bindJobsPages(PageNumber);
         bindJobs(PageNumber);
 
@@ -159,16 +215,16 @@
                 data: parm,
                 dataType: 'Json',
                 success: function (response) {
-      
+
                     if (response.Success == true) { // Getting the all saved jobs
                         $('.save-job').each(function () {
                             var jobid = $(this).data('jobid');
                             var selfJob = $(this);
 
                             $.each(response.SavedJobs, function (index, saveJobInfo) {
-                   
+
                                 if (saveJobInfo.JobId == jobid) {
-            
+
                                     $(selfJob).addClass("saved");
                                     $(selfJob).text("Job saved");
                                     $(selfJob).attr('data-savedjobid', saveJobInfo.SavedJobId);
@@ -176,20 +232,22 @@
                             });
                         });
                     }
-                    else { 
-           
+                    else {
+
                     }
                 },
                 error: function (response) { // Error
                 }
             });
 
-           
+
         };
 
-       
+
 
         $("#sortOrder").change(function () {
+            sortBy = $(this).val();
+            PageNumber = 1;
             bindJobs(PageNumber);
         });
 
@@ -264,13 +322,13 @@
 
         function bindJobs(PageNumber) {
 
-            var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), pageNumber: PageNumber };
+            var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), pageNumber: PageNumber, sortBy: sortBy };
             var urlPath = $(location).attr('pathname') + "/GetSearchResults";
             var searchPath = $(location).attr('search');
             if (searchPath == null || searchPath == "") {
                 searchPath += ("?" + "Page=" + PageNumber);
             }
-            else if (searchPath.includes("Page=")) {
+            else if (searchPath.indexOf("Page=") > -1) {
                 let pageIndex = searchPath.indexOf("Page=");
                 searchPath = searchPath.slice(0, pageIndex);
                 searchPath += ("Page=" + PageNumber);
@@ -279,11 +337,23 @@
                 searchPath += ("&Page=" + PageNumber);
             }
 
+            if (searchPath.indexOf("SortBy=") > -1) {
+                let pageIndex = searchPath.indexOf("SortBy=");
+                searchPath = searchPath.slice(0, pageIndex);
+                searchPath += ("SortBy=" + sortBy);
+            }
+            else {
+                searchPath += ("&SortBy=" + sortBy);
+            }
+
             queryStringArr.length = 0;
             filterModel.Page = PageNumber;
+            filterModel.SortBy = sortBy;
             var pushStateUrl = $(location).attr('pathname') + searchPath;
             var data = { filterModel: filterModel }
             window.history.pushState(data, "", pushStateUrl);
+
+            $('.jobalert-btn').prop('href', '/user-dashboard/Create' + searchPath);
 
             //pager status
             $('#pager li:not(.pageController) a').removeClass('active');
@@ -304,7 +374,9 @@
             } else {
                 $('#pager li.pageNext a').removeAttr('disabled');
             }
-
+            $('html,body').animate({
+                scrollTop: 0
+            }, 0);
             //adding loader
             if (!jobContainer.hasClass('loading')) {
                 jobContainer.addClass('loading');
@@ -317,7 +389,7 @@
                 data: parm,
                 dataType: 'Json',
                 success: function (response) {
-
+                    
                     if (response.Total > 0) {
                         dataSource = new kendo.data.DataSource({
                             data: response.SearchResults,
@@ -328,7 +400,7 @@
                         var sorttext = getSortOrder();
                         var token = sorttext.split(':');
 
-                        dataSource.sort({ field: token[0], dir: token[1] });
+                        //dataSource.sort({ field: token[0], dir: token[1] });
 
                         jobContainer.kendoListView({
                             dataSource: dataSource,
@@ -359,16 +431,14 @@
 
                     //removing the loader in the job result widget
                     jobContainer.removeClass('loading');
-                    $('html,body').animate({
-                        scrollTop: 0
-                    }, 500);
+                    
                     //removing the loader in the search keyword - job filter widget
                     $("#selectedkeywordsfilter").parent().removeClass('loader');
                     //removing the loading in the filter widget itself
-                    $('.filter-outer-wrapper').removeClass('lockoverlay');
+                    $('.filter-outer-wrapper').removeClass('lockoverlay visible-hidden');
                 },
                 error: function (response) {
-                    console.log('error response: '+response);
+                    console.log(response);
                 }
             });
         };

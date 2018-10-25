@@ -28,7 +28,7 @@
         font-family: $font-family-regular;
 
         .form-control {
-            color: $forms-placeholder-color;
+            color: $global-text-color;
         }
 
         textarea {
@@ -91,11 +91,21 @@
 
         .form-group {
             margin-bottom: 10px;
+            .btn{
+                min-width: 150px;
+            }
         }
 
         .upload-section {
             margin: 10px 0 20px 0;
         }
+    }
+}
+
+.login-form{
+    h2{
+        font-size: 3.6rem;
+        margin-bottom: 2rem;
     }
 }
 
@@ -124,12 +134,19 @@
             padding-left: 0px;
             a {
                 font-size: 1.4rem;
-                font-style: italic;
-                color: #b5b5b5;
+                // font-style: italic;
+                // color: #858585;
 
                 &:hover, &:focus {
-                    color: #858585;
-                    text-decoration: none;
+                    color: $global-highlight-color;
+                }
+            }
+        }
+        .checkbox {
+            a{
+                // color: #858585;
+                &:hover, &:focus {
+                    color: $global-highlight-color;
                 }
             }
         }
@@ -233,6 +250,27 @@
             font-size: 3.2rem;
             margin-top: 2.35rem;
         }
+        img{
+            max-width: 200px;
+            box-shadow: 1px 1px 1px rgba(0,0,0,.2);
+        }
+        label{
+            padding-top: 0;
+        }
+    }
+    .user-profile-dash{
+        border-bottom: 1px solid $global-text-color;
+        padding-bottom: 50px;
+        margin-bottom: 30px;
+        img{
+           width: 100%; 
+           height: auto;
+        }
+    }
+    .dash-tbl-wrap{
+        h2{
+            margin-bottom: 20px;
+        }
     }
     .sign-in-with {
         clear: both;
@@ -273,13 +311,15 @@
             width: 100%;
             text-align: left;
             padding: 12px 10px;
-            color: #999;
+            color: $global-text-color;
             text-transform: none;
-            font: 1.4rem/1 AkzidGroProRegular,sans-serif;
+            font: 1.4rem/1 $font-family-regular;
             position: relative;
+            text-overflow: ellipsis;
+            overflow: hidden;
             &:hover, &:focus{
                 background: none;
-                color: #999;
+                color: $global-text-color;
             }
             .caret{
                 position: absolute;
@@ -312,6 +352,8 @@
 
             li {
                 margin-bottom: 5px;
+                margin-right: 10px;
+                float: left;
 
                 .btn {
                     height: 35px;
@@ -344,6 +386,21 @@
     /*#endregion Social*/
 }
 
+#userid[readonly]{
+    background: none;
+}
+.welcome-message {
+    padding: 2px 0px;
+    display: block;
+    font-size: 1.4rem;
+    color: #ff9000;
+    &::before {
+        content: '\f4fc';
+        font: 700 1.2rem/1 'Font Awesome 5 Free';
+        margin-right: 6px;
+    }
+}
+
 /*#endregion Log in/Sign in/Apply*/
 
 .form-group .error-message {
@@ -351,7 +408,7 @@
     margin-top: 2px;
     display: block;
     margin-bottom: 0;
-    border-radius: 3px;
+    border-radius: 0;
     font-size: 85%;
 }
 //used for dynamic form for checkbox field

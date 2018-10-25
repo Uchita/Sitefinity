@@ -32,6 +32,7 @@ var globalTreeIdCounter=0;
     $.fn.DropDownTree = function(options){
     //helpers
         $(this).attr("data-prefixidtext", options.prefixIdText);
+    
 
     function RenderData(data, element){		
         for(var i = 0 ; i< data.length ; i++){
@@ -51,6 +52,9 @@ var globalTreeIdCounter=0;
                     $("#" + options.prefixIdText + data[i].ID).append("<ul style='display:none'></ul>");
                     $("#" + options.prefixIdText + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
                     RenderData(data[i].Filters, $("#" + options.prefixIdText + data[i].ID).find("ul").first());
+                    if ((data[i].Selected == true)) {
+                        $("#" + options.prefixIdText + data[i].ID).find("ul").show();
+                    }
                  }else if(options.addChildren){
                     $("#" + options.prefixIdText + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
                 }
@@ -92,6 +96,9 @@ var globalTreeIdCounter=0;
     $(options.element).on("click", "li a", function (e) {
         if ($(this).attr('href').indexOf('#') == 0) {
             e.preventDefault();
+        }
+        if ($(this).parent().find('ul').length && $(this).hasClass('active') ) {
+            $(this).find('.arrow').trigger('click');
         }
     });
 	
@@ -170,6 +177,7 @@ var globalTreeIdCounter=0;
                 $(this).parents("li").first().find(".select-box").removeClass("fa-square-o");
                 $(this).parents("li").first().find(".select-box").addClass("fa-check-square-o");
                 $(this).parents("li").first().find("a").addClass("active");
+                $(this).parent("li").find("a .arrow").trigger('click');
             }
             if (options.selectParent) {
                 selectParent($(this));
@@ -279,13 +287,18 @@ var globalTreeIdCounter=0;
     };
 
     function SetSelectedElementsTitle() {
-         var selectedElementText = $(options.element).GetSelectedElementsText();
+        var selectedElementText = $(options.element).GetSelectedElementsText();
+        
          var titleText = options.title;
          if (selectedElementText.length > 3) {
              titleText = selectedElementText.length + " selected";
          }
          else if (selectedElementText.length > 0) {
-             titleText = selectedElementText.join(' & ');
+             if (selectedElementText.length <= 2) {
+                 titleText = selectedElementText.join(' - ');
+             } else {
+                 titleText = selectedElementText[0] + ' - ' + selectedElementText[1] + ', ' + selectedElementText[2];
+             }            
          }
 
          $(options.element).SetTitle(titleText);

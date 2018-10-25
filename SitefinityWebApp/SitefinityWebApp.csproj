@@ -37,7 +37,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <TargetFrameworkProfile />
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <DisableOutOfProcTask>True</DisableOutOfProcTask>
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
@@ -970,6 +970,7 @@
     <Content Include="Mvc\Styles\rangeSlider.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="robots.txt" />
     <Content Include="Views\CustomSiteSettings\CustomSiteSettings.ascx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1143,6 +1144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Sitefinity\" />
+    <Folder Include="ResourcePackages\Hudson\MVC\Views\Consultant\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminApp\assets\js\kendo-editor\kendo.custom.min.js.map" />
@@ -1333,6 +1335,14 @@
     <ProjectReference Include="..\JXTNext.Sitefinity.Identity\JXTNext.Sitefinity.Widgets.Authentication.csproj">
       <Project>{9a208d8f-aa97-4ce5-a42b-71bde987124c}</Project>
       <Name>JXTNext.Sitefinity.Widgets.Authentication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Services.Intefaces\JXTNext.Sitefinity.Services.Intefaces.csproj">
+      <Project>{94381396-d85e-469c-b828-24cf03548df5}</Project>
+      <Name>JXTNext.Sitefinity.Services.Intefaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Services\JXTNext.Sitefinity.Services.csproj">
+      <Project>{d9961410-da67-44e6-95f6-bc5efee6cb4e}</Project>
+      <Name>JXTNext.Sitefinity.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.Common\JXTNext.Sitefinity.Widgets.Common.csproj">
       <Project>{3afccbdc-a395-48e5-aa1c-8fe9cfdd16db}</Project>

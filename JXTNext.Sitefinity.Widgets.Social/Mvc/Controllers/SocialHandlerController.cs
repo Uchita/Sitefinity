@@ -21,6 +21,7 @@ using Telerik.Sitefinity.Security.Claims;
 using JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication;
 using System.IO;
 using Telerik.Sitefinity.Abstractions;
+using System.Text;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 {
@@ -78,11 +79,22 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                     Log.Write("_socialHandlerLogics not null", ConfigurationPolicy.ErrorLog);
                     StreamReader reader = new StreamReader(Request.InputStream);
                     string indeedJsonStringData = String.Empty;
+                    string indeedJsonStringData2 = null;
                     if (reader != null)
                     {
+                        indeedJsonStringData = reader.ReadToEnd();
                         Log.Write("indeedJsonStringData " + indeedJsonStringData, ConfigurationPolicy.ErrorLog);
                         Log.Write("Request.InputStream length " + Request.InputStream.Length, ConfigurationPolicy.ErrorLog);
-                        indeedJsonStringData = reader.ReadToEnd();
+                        Log.Write("Request.InputStream position " + Request.InputStream.Position, ConfigurationPolicy.ErrorLog);
+                        Log.Write("Request.InputStream can read " + Request.InputStream.CanRead, ConfigurationPolicy.ErrorLog);
+                        Log.Write("Request.InputStream CanSeek " + Request.InputStream.CanSeek, ConfigurationPolicy.ErrorLog);
+                        Log.Write("Request.InputStream Canwrite " + Request.InputStream.CanWrite, ConfigurationPolicy.ErrorLog);
+                    }
+
+                    using (StreamReader reader2 = new StreamReader(Request.InputStream, Encoding.UTF8))
+                    {
+                        indeedJsonStringData2 = reader.ReadToEnd();
+                        Log.Write("indeedJsonStringData2 " + indeedJsonStringData2, ConfigurationPolicy.ErrorLog);
                     }
 
                     var result = _socialHandlerLogics.ProcessSocialHandlerData(code, state, indeedJsonStringData);

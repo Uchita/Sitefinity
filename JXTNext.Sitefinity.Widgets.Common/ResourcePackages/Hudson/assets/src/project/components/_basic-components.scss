@@ -1431,7 +1431,9 @@ main {
                 color: $sidebar-link-color;
             }
         }
-
+        // .dropdown-current > ul{
+        //     display: block;
+        // }
         .dropdown-menu {
             position: relative;
             -webkit-box-shadow: none;
@@ -1517,8 +1519,7 @@ main {
     >ul{
         white-space: normal;
         padding-left: 0;
-        overflow: hidden;
-        
+        min-width: 250px;
         li{
             white-space: normal;
             position: relative;
@@ -1567,6 +1568,14 @@ main {
                     background: none;
                 }
             }
+        }
+    }
+}
+
+.left-sidebar{
+    .dropdown.dropdown-tree{
+        >ul{
+            overflow: hidden;
         }
     }
 }

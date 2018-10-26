@@ -19,10 +19,10 @@
     <form method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();">
         @{
             int counter = 0;
-            var privacyErrMsg = "Please agree to Hudson's privacy policy";
+            var privacyErrMsg = "Please agree to Hudson\'s privacy policy";
         }
         <div class="field-wrapper basic-form no-marg-top">
-            <div class="alert alert-warning filter-madatory-message hidden">Please enter filter value for at least Keyword or Location.</div>
+            <div class="alert alert-warning filter-madatory-message hidden">Please enter filter value for at least one.</div>
             <div class="row form-group">
                 <div class="col-md-4 text-right">
                     <label for="name">Job alert name*</label>
@@ -120,7 +120,7 @@
                 <div class="col-md-4 text-right"></div>
                 <div class="col-md-8">
                     <div class="checkbox clearfix">
-                        <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" checked required title="@privacyErrMsg" oninvalid='this.setCustomValidity("@privacyErrMsg")' oninput="this.setCustomValidity('')">
+                        <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" checked required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid='this.setCustomValidity("@privacyErrMsg")' >
                         <span class="checkbox-icon fas fa-check"></span>
                         I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
                     </div>
@@ -151,7 +151,7 @@
             });
         });
 
-        if ($('#keywords').val() == "" && $('#selected-CountryLocationArea').val() == null) {
+        if ($('#keywords').val() == "" && $('#selected-Classifications').val() == null && $('#selected-CountryLocationArea').val() == null && $('#selected-WorkType').val() == null) {
             $('.filter-madatory-message').removeClass('hidden');
             return false;
         } else {

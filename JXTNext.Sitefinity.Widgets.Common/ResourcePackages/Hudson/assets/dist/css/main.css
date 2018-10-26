@@ -8297,7 +8297,7 @@ main {
 .dropdown.dropdown-tree > ul {
   white-space: normal;
   padding-left: 0;
-  overflow: hidden; }
+  min-width: 250px; }
   .dropdown.dropdown-tree > ul li {
     white-space: normal;
     position: relative;
@@ -8332,6 +8332,9 @@ main {
         color: #219fa3; }
       .dropdown.dropdown-tree > ul li:hover ul li:hover {
         background: none; }
+
+.left-sidebar .dropdown.dropdown-tree > ul {
+  overflow: hidden; }
 
 .field-wrapper .dropdown-tree {
   margin-bottom: 0; }
@@ -10855,7 +10858,8 @@ select.articles-order {
       font-size: 1.8rem; }
     .page-wrapper .btn {
       font-size: 14px;
-      font-size: 1.4rem; }
+      font-size: 1.4rem;
+      margin-bottom: 5px; }
     .page-wrapper .basic-form .form-label {
       text-align: left;
       display: block; }

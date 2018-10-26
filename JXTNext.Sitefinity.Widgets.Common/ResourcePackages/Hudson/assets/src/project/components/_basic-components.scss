@@ -1189,6 +1189,14 @@ header {
 
     
 }
+
+.open{
+    .fa-caret-down{
+        &:before{
+            content: '\f0d8';
+        }
+    }
+}
 /*#endregion Header */
 
 /*#region Main */

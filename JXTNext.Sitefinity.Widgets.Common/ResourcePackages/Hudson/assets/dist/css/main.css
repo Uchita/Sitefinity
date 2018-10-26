@@ -8082,6 +8082,9 @@ header {
         header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu a {
           color: #fff; }
 
+.open .fa-caret-down:before {
+  content: '\f0d8'; }
+
 /*#endregion Header */
 /*#region Main */
 /*temp*/
@@ -9501,22 +9504,23 @@ ul.breadcrumb {
       height: auto; }
   .page-wrapper .dash-tbl-wrap h2 {
     margin-bottom: 20px; }
-  .page-wrapper .sign-in-with {
-    clear: both; }
-    .page-wrapper .sign-in-with h2 {
-      font-size: 3.6rem;
-      margin-bottom: 2rem; }
-    .page-wrapper .sign-in-with ul {
-      padding-top: 16px; }
-      .page-wrapper .sign-in-with ul li a::before {
+  .page-wrapper .sign-in-with, .page-wrapper .ext-provider-form {
+    clear: both;
+    margin-bottom: 2rem; }
+    .page-wrapper .sign-in-with h2, .page-wrapper .ext-provider-form h2 {
+      font-size: 3.2rem;
+      margin-bottom: 0.5rem; }
+    .page-wrapper .sign-in-with ul, .page-wrapper .ext-provider-form ul {
+      padding-top: 15px; }
+      .page-wrapper .sign-in-with ul li a::before, .page-wrapper .ext-provider-form ul li a::before {
         font-family: 'Font Awesome 5 Brands';
         margin-right: 10px; }
-      .page-wrapper .sign-in-with ul li a:hover, .page-wrapper .sign-in-with ul li a:focus {
+      .page-wrapper .sign-in-with ul li a:hover, .page-wrapper .sign-in-with ul li a:focus, .page-wrapper .ext-provider-form ul li a:hover, .page-wrapper .ext-provider-form ul li a:focus {
         opacity: 0.9; }
-      .page-wrapper .sign-in-with ul li .btn {
+      .page-wrapper .sign-in-with ul li .btn, .page-wrapper .ext-provider-form ul li .btn {
         text-align: left;
         margin-bottom: 0; }
-        .page-wrapper .sign-in-with ul li .btn em {
+        .page-wrapper .sign-in-with ul li .btn em, .page-wrapper .ext-provider-form ul li .btn em {
           margin-right: 10px; }
   .page-wrapper .field-wrapper {
     padding-top: 16px; }
@@ -9538,11 +9542,21 @@ ul.breadcrumb {
       right: 10px;
       top: 17px; }
   .page-wrapper .apply-with .btn.btn-indeed {
-    background: #f85402 url(../images/indeedBtn.png) no-repeat 50% 50%; }
+    background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50%; }
   .page-wrapper .apply-with .btn.btn-linkedin {
-    background: #007cb7 url(../images/linkkedinBtn.png) no-repeat 50% 50%; }
+    background: #007cb7 url(../images/linkkedinBtn.png) no-repeat 50% 50%;
+    text-indent: -9em; }
   .page-wrapper .apply-with .btn.btn-seek {
-    background: #e61977 url(../images/seekBtn.png) no-repeat 50% 50%; }
+    background: #e61977 url(../images/seekBtn.png) no-repeat 50% 50%;
+    text-indent: -9em; }
+  .page-wrapper #indeed-btnwrapper .indeed-apply-button {
+    background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50% !important;
+    width: 120px;
+    border-radius: 0 !important;
+    height: 35px !important;
+    padding: 0 !important; }
+  .page-wrapper #indeed-btnwrapper .indeed-apply-button span {
+    display: none !important; }
   .page-wrapper .apply-with ul, .page-wrapper .sign-in-with ul {
     padding-left: 0; }
     .page-wrapper .apply-with ul li, .page-wrapper .sign-in-with ul li {
@@ -9673,6 +9687,13 @@ ul.breadcrumb {
   .job-search .filter-job-classification a {
     display: block;
     color: #000; }
+
+.jobalert-field {
+  float: left;
+  height: 33px;
+  margin-top: 10px;
+  margin-right: 15px;
+  width: 290px; }
 
 .filter-toggle {
   display: none; }

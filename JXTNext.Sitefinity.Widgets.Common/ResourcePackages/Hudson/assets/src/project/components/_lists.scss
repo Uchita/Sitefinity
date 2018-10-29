@@ -8,6 +8,10 @@
     }
 }
 
+.flex .white-box-list .white-box{
+    height: 100%!important;
+}
+
 .white-box-single .white-box {
     -webkit-clip-path: polygon(100% 0,100% 90%,98% 100%,0 100%,0 0);
     clip-path: polygon(100% 0,100% 90%,98% 100%,0 100%,0 0);

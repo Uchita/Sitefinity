@@ -7223,6 +7223,16 @@ div.k-event {
   src: url("../fonts/AkzidGroProBol.eot") format("embedded-opentype"), url("../fonts/AkzidGroProBol.woff2") format("woff2"), url("../fonts/AkzidGroProBol.woff") format("woff"), url("../fonts/AkzidGroProBol.ttf") format("truetype"), url("../fonts/AkzidGroProBol.svg#AkzidGroProBol") format("svg"); }
 
 /*#region Editor resets */
+.sfPageEditor .modal-dialog .form-control {
+  margin-bottom: 1px; }
+
+.sf-backend-wrp .form-group {
+  clear: both;
+  padding-top: 10px; }
+
+.sf-backend-wrp .btn.pull-left {
+  margin-right: 3px; }
+
 .sfPageContainer {
   position: relative; }
   .sfPageContainer .page-wrapper {
@@ -8657,6 +8667,17 @@ ul.vertical-ul {
     right: 15px; }
     .popup-overlay .fa-times:hover, .popup-overlay .fa-times:focus {
       text-decoration: none; }
+
+.prefooter-content .testimonials-slider.testimonials-simple.with-side-image .item,
+.testimonials-slider.testimonials-simple.with-side-image .item {
+  bottom: 25%;
+  position: absolute; }
+
+.prefooter-content .testimonials-slider.testimonials-simple.with-side-image .img-holder {
+  width: 80%; }
+
+.map-placeholder {
+  width: unset !important; }
 
 @-webkit-keyframes spin {
   0% {
@@ -10630,6 +10651,9 @@ select.articles-order {
     clip-path: polygon(100% 0, 100% 90%, 93% 100%, 0 100%, 0 0);
     min-height: 250px; }
 
+.flex .white-box-list .white-box {
+  height: 100% !important; }
+
 .white-box-single .white-box {
   -webkit-clip-path: polygon(100% 0, 100% 90%, 98% 100%, 0 100%, 0 0);
   clip-path: polygon(100% 0, 100% 90%, 98% 100%, 0 100%, 0 0); }
@@ -10942,7 +10966,11 @@ select.articles-order {
       background-color: #fff;
       padding: 20px; }
   .customer-logo, .customer-logo .display-cell {
-    height: 120px; }
+    height: 150px;
+    padding: 10px 0;
+    width: 100%; }
+  .customer-logo img {
+    height: 130px; }
   .list-featured-articles {
     margin-bottom: 45px; }
     .list-featured-articles li + li {
@@ -11162,10 +11190,14 @@ select.articles-order {
     margin: 10px auto 20px; }
     .risk-measurement .risk-wrapper .risk img {
       bottom: 0; }
+  .customer-logo .display-cell {
+    display: block; }
   .white-box-list .white-box {
     height: auto !important;
     min-height: 0;
     margin-right: 0; }
+  .white-box-list > div {
+    margin-bottom: 30px; }
   .thumbnail.card-rollover .card-rollover-more {
     position: relative;
     padding-right: 35px; }

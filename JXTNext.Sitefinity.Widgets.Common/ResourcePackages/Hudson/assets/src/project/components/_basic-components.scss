@@ -2038,6 +2038,17 @@ ul.vertical-ul {
     }
 }
 
+.prefooter-content .testimonials-slider.testimonials-simple.with-side-image .item, 
+.testimonials-slider.testimonials-simple.with-side-image .item{    
+    bottom: 25%; position: absolute;
+}
+.prefooter-content .testimonials-slider.testimonials-simple.with-side-image .img-holder{ 
+    width:80%;
+}
+
+.map-placeholder{
+    width: unset !important;
+}
 
 
 @-webkit-keyframes spin {

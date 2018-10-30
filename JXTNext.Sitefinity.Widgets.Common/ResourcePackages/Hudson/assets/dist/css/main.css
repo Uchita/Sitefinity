@@ -7223,6 +7223,16 @@ div.k-event {
   src: url("../fonts/AkzidGroProBol.eot") format("embedded-opentype"), url("../fonts/AkzidGroProBol.woff2") format("woff2"), url("../fonts/AkzidGroProBol.woff") format("woff"), url("../fonts/AkzidGroProBol.ttf") format("truetype"), url("../fonts/AkzidGroProBol.svg#AkzidGroProBol") format("svg"); }
 
 /*#region Editor resets */
+.sfPageEditor .modal-dialog .form-control {
+  margin-bottom: 1px; }
+
+.sf-backend-wrp .form-group {
+  clear: both;
+  padding-top: 10px; }
+
+.sf-backend-wrp .btn.pull-left {
+  margin-right: 3px; }
+
 .sfPageContainer {
   position: relative; }
   .sfPageContainer .page-wrapper {
@@ -8082,6 +8092,9 @@ header {
         header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu a {
           color: #fff; }
 
+.open .fa-caret-down:before {
+  content: '\f0d8'; }
+
 /*#endregion Header */
 /*#region Main */
 /*temp*/
@@ -8294,7 +8307,7 @@ main {
 .dropdown.dropdown-tree > ul {
   white-space: normal;
   padding-left: 0;
-  overflow: hidden; }
+  min-width: 250px; }
   .dropdown.dropdown-tree > ul li {
     white-space: normal;
     position: relative;
@@ -8329,6 +8342,9 @@ main {
         color: #219fa3; }
       .dropdown.dropdown-tree > ul li:hover ul li:hover {
         background: none; }
+
+.left-sidebar .dropdown.dropdown-tree > ul {
+  overflow: hidden; }
 
 .field-wrapper .dropdown-tree {
   margin-bottom: 0; }
@@ -8651,6 +8667,17 @@ ul.vertical-ul {
     right: 15px; }
     .popup-overlay .fa-times:hover, .popup-overlay .fa-times:focus {
       text-decoration: none; }
+
+.prefooter-content .testimonials-slider.testimonials-simple.with-side-image .item,
+.testimonials-slider.testimonials-simple.with-side-image .item {
+  bottom: 25%;
+  position: absolute; }
+
+.prefooter-content .testimonials-slider.testimonials-simple.with-side-image .img-holder {
+  width: 80%; }
+
+.map-placeholder {
+  width: unset !important; }
 
 @-webkit-keyframes spin {
   0% {
@@ -9501,22 +9528,23 @@ ul.breadcrumb {
       height: auto; }
   .page-wrapper .dash-tbl-wrap h2 {
     margin-bottom: 20px; }
-  .page-wrapper .sign-in-with {
-    clear: both; }
-    .page-wrapper .sign-in-with h2 {
-      font-size: 3.6rem;
-      margin-bottom: 2rem; }
-    .page-wrapper .sign-in-with ul {
-      padding-top: 16px; }
-      .page-wrapper .sign-in-with ul li a::before {
+  .page-wrapper .sign-in-with, .page-wrapper .ext-provider-form {
+    clear: both;
+    margin-bottom: 2rem; }
+    .page-wrapper .sign-in-with h2, .page-wrapper .ext-provider-form h2 {
+      font-size: 3.2rem;
+      margin-bottom: 0.5rem; }
+    .page-wrapper .sign-in-with ul, .page-wrapper .ext-provider-form ul {
+      padding-top: 15px; }
+      .page-wrapper .sign-in-with ul li a::before, .page-wrapper .ext-provider-form ul li a::before {
         font-family: 'Font Awesome 5 Brands';
         margin-right: 10px; }
-      .page-wrapper .sign-in-with ul li a:hover, .page-wrapper .sign-in-with ul li a:focus {
+      .page-wrapper .sign-in-with ul li a:hover, .page-wrapper .sign-in-with ul li a:focus, .page-wrapper .ext-provider-form ul li a:hover, .page-wrapper .ext-provider-form ul li a:focus {
         opacity: 0.9; }
-      .page-wrapper .sign-in-with ul li .btn {
+      .page-wrapper .sign-in-with ul li .btn, .page-wrapper .ext-provider-form ul li .btn {
         text-align: left;
         margin-bottom: 0; }
-        .page-wrapper .sign-in-with ul li .btn em {
+        .page-wrapper .sign-in-with ul li .btn em, .page-wrapper .ext-provider-form ul li .btn em {
           margin-right: 10px; }
   .page-wrapper .field-wrapper {
     padding-top: 16px; }
@@ -9538,11 +9566,21 @@ ul.breadcrumb {
       right: 10px;
       top: 17px; }
   .page-wrapper .apply-with .btn.btn-indeed {
-    background: #f85402 url(../images/indeedBtn.png) no-repeat 50% 50%; }
+    background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50%; }
   .page-wrapper .apply-with .btn.btn-linkedin {
-    background: #007cb7 url(../images/linkkedinBtn.png) no-repeat 50% 50%; }
+    background: #007cb7 url(../images/linkkedinBtn.png) no-repeat 50% 50%;
+    text-indent: -9em; }
   .page-wrapper .apply-with .btn.btn-seek {
-    background: #e61977 url(../images/seekBtn.png) no-repeat 50% 50%; }
+    background: #e61977 url(../images/seekBtn.png) no-repeat 50% 50%;
+    text-indent: -9em; }
+  .page-wrapper #indeed-btnwrapper .indeed-apply-button {
+    background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50% !important;
+    width: 120px;
+    border-radius: 0 !important;
+    height: 35px !important;
+    padding: 0 !important; }
+  .page-wrapper #indeed-btnwrapper .indeed-apply-button span {
+    display: none !important; }
   .page-wrapper .apply-with ul, .page-wrapper .sign-in-with ul {
     padding-left: 0; }
     .page-wrapper .apply-with ul li, .page-wrapper .sign-in-with ul li {
@@ -9673,6 +9711,13 @@ ul.breadcrumb {
   .job-search .filter-job-classification a {
     display: block;
     color: #000; }
+
+.jobalert-field {
+  float: left;
+  height: 33px;
+  margin-top: 10px;
+  margin-right: 15px;
+  width: 290px; }
 
 .filter-toggle {
   display: none; }
@@ -10606,6 +10651,9 @@ select.articles-order {
     clip-path: polygon(100% 0, 100% 90%, 93% 100%, 0 100%, 0 0);
     min-height: 250px; }
 
+.flex .white-box-list .white-box {
+  height: 100% !important; }
+
 .white-box-single .white-box {
   -webkit-clip-path: polygon(100% 0, 100% 90%, 98% 100%, 0 100%, 0 0);
   clip-path: polygon(100% 0, 100% 90%, 98% 100%, 0 100%, 0 0); }
@@ -10834,7 +10882,8 @@ select.articles-order {
       font-size: 1.8rem; }
     .page-wrapper .btn {
       font-size: 14px;
-      font-size: 1.4rem; }
+      font-size: 1.4rem;
+      margin-bottom: 5px; }
     .page-wrapper .basic-form .form-label {
       text-align: left;
       display: block; }
@@ -10917,7 +10966,11 @@ select.articles-order {
       background-color: #fff;
       padding: 20px; }
   .customer-logo, .customer-logo .display-cell {
-    height: 120px; }
+    height: 150px;
+    padding: 10px 0;
+    width: 100%; }
+  .customer-logo img {
+    height: 130px; }
   .list-featured-articles {
     margin-bottom: 45px; }
     .list-featured-articles li + li {
@@ -11137,10 +11190,14 @@ select.articles-order {
     margin: 10px auto 20px; }
     .risk-measurement .risk-wrapper .risk img {
       bottom: 0; }
+  .customer-logo .display-cell {
+    display: block; }
   .white-box-list .white-box {
     height: auto !important;
     min-height: 0;
     margin-right: 0; }
+  .white-box-list > div {
+    margin-bottom: 30px; }
   .thumbnail.card-rollover .card-rollover-more {
     position: relative;
     padding-right: 35px; }

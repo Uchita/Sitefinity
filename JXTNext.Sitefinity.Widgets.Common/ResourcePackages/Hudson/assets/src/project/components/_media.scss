@@ -403,6 +403,7 @@
         .btn {
             font-size: 14px;
             font-size: 1.4rem;
+            margin-bottom: 5px;
         }
 
         .basic-form .form-label {
@@ -556,7 +557,12 @@
     }
 
     .customer-logo, .customer-logo .display-cell {
-        height: 120px;
+        height: 150px;
+        padding: 10px 0;
+        width: 100%;
+    }
+    .customer-logo img{
+        height: 130px;
     }
 
     .list-featured-articles {
@@ -946,10 +952,16 @@
         }
     }
 
+    .customer-logo .display-cell {
+        display: block;
+    }
     .white-box-list .white-box {
         height: auto !important;
         min-height: 0;
         margin-right: 0;
+    }
+    .white-box-list > div {
+        margin-bottom: 30px;
     }
 
     .thumbnail.card-rollover .card-rollover-more{

@@ -1189,6 +1189,14 @@ header {
 
     
 }
+
+.open{
+    .fa-caret-down{
+        &:before{
+            content: '\f0d8';
+        }
+    }
+}
 /*#endregion Header */
 
 /*#region Main */
@@ -1423,7 +1431,9 @@ main {
                 color: $sidebar-link-color;
             }
         }
-
+        // .dropdown-current > ul{
+        //     display: block;
+        // }
         .dropdown-menu {
             position: relative;
             -webkit-box-shadow: none;
@@ -1509,8 +1519,7 @@ main {
     >ul{
         white-space: normal;
         padding-left: 0;
-        overflow: hidden;
-        
+        min-width: 250px;
         li{
             white-space: normal;
             position: relative;
@@ -1559,6 +1568,14 @@ main {
                     background: none;
                 }
             }
+        }
+    }
+}
+
+.left-sidebar{
+    .dropdown.dropdown-tree{
+        >ul{
+            overflow: hidden;
         }
     }
 }
@@ -2021,6 +2038,17 @@ ul.vertical-ul {
     }
 }
 
+.prefooter-content .testimonials-slider.testimonials-simple.with-side-image .item, 
+.testimonials-slider.testimonials-simple.with-side-image .item{    
+    bottom: 25%; position: absolute;
+}
+.prefooter-content .testimonials-slider.testimonials-simple.with-side-image .img-holder{ 
+    width:80%;
+}
+
+.map-placeholder{
+    width: unset !important;
+}
 
 
 @-webkit-keyframes spin {

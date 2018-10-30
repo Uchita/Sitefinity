@@ -1,8 +1,18 @@
 /*#region Editor resets */
 .sfPageEditor {
-
+    .modal-dialog .form-control{
+        margin-bottom: 1px;
+    }
 }
-
+.sf-backend-wrp{
+    .form-group{
+        clear: both;
+        padding-top: 10px;
+    }
+    .btn.pull-left{
+        margin-right: 3px;
+    }
+} 
 .sfPageContainer {
     position: relative;
 

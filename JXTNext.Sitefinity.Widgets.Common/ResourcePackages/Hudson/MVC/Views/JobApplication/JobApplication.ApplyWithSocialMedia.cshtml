@@ -31,7 +31,9 @@
                                       data-indeed-apply-jobTitle="Test Engineer"
                                       data-indeed-apply-jobUrl=""
                                       data-indeed-apply-postUrl=@redirectUriSocial
-                                      data-indeed-apply-jobMeta="right-rail-apply-button"></span>
+                                      data-indeed-apply-jobMeta="right-rail-apply-button"
+                                      data-indeed-apply-onapplied="OnIndeedCompleted">
+                                </span>
                                 <script>
                                     (function (d, s, id) {
                                         var js, iajs = d.getElementsByTagName(s)[0];
@@ -65,3 +67,12 @@
         </div>
     </div>
 }
+
+
+<script type="text/javascript">
+    var successPageUrl = '@ViewBag.SuccessPageUrl';
+
+    function OnIndeedCompleted() {
+        location.href = successPageUrl;
+    }
+</script>

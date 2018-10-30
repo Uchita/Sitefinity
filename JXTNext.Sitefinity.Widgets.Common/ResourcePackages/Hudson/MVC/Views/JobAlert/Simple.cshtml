@@ -47,9 +47,10 @@ else
         <div class="alert alert-danger">@ViewBag.StatusMessage</div>
     }
 }
-
+<div class="button-wrapper">
 @Html.ActionLink("Create New Job Alert", "Create", "JobAlert", new { @class = "btn jobalert-btn" })
 <a href="/advancedsearch" class="btn" title="New job search">New search</a>
+</div>
 
 <div class="popup-overlay">
     <div class="container">

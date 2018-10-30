@@ -77,6 +77,9 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 if (_socialHandlerLogics != null)
                 {
                     Log.Write("_socialHandlerLogics not null", ConfigurationPolicy.ErrorLog);
+                    if(Request.InputStream != null)
+                        Request.InputStream.Position = 0;
+
                     StreamReader reader = new StreamReader(Request.InputStream);
                     string indeedJsonStringData = String.Empty;
                     string indeedJsonStringData2 = null;

@@ -287,5 +287,18 @@ namespace JXTNext.Sitefinity.Common.Helpers
             SecurityManager.Logout();
             SecurityManager.DeleteAuthCookies();
         }
+
+        public static string GetLoggedInUserEmail()
+        {
+            string email = String.Empty;
+            if (IsUserLoggedIn()) // User already logged in
+            {
+                var currUser = SitefinityHelper.GetUserById(ClaimsManager.GetCurrentIdentity().UserId);
+                if (currUser != null)
+                    email = currUser.Email;
+            }
+
+            return email;
+        }
     }
 }

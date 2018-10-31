@@ -160,13 +160,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
+    <Compile Include="IJobAlertService.cs" />
     <Compile Include="IJobApplicationService.cs" />
+    <Compile Include="Models\JobApplication\JobAlertModel.cs" />
     <Compile Include="Models\JobApplication\JobApplicationAttachment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Connector\JXTNext.Sitefinity.Connector.csproj">
+      <Project>{BF418B44-EBCE-499F-BBD3-6BA98A24E144}</Project>
+      <Name>JXTNext.Sitefinity.Connector</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

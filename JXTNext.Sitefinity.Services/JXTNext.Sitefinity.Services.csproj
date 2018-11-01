@@ -163,12 +163,17 @@
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceInterfacesModule.cs" />
+    <Compile Include="Services\JXTNextJobAlertService.cs" />
     <Compile Include="Services\JXTNextJobApplicationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">
       <Project>{9ccdbc01-ef02-4d74-9385-5c0f1da2eb7a}</Project>
       <Name>JXTNext.Sitefinity.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Connector\JXTNext.Sitefinity.Connector.csproj">
+      <Project>{BF418B44-EBCE-499F-BBD3-6BA98A24E144}</Project>
+      <Name>JXTNext.Sitefinity.Connector</Name>
     </ProjectReference>
     <ProjectReference Include="..\JXTNext.Sitefinity.Services.Intefaces\JXTNext.Sitefinity.Services.Intefaces.csproj">
       <Project>{94381396-d85e-469c-b828-24cf03548df5}</Project>

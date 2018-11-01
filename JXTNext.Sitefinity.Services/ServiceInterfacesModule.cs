@@ -19,6 +19,7 @@ namespace JXTNext.Sitefinity.Services.Services
         public override void Load()
         {
              Bind<IJobApplicationService>().To<JXTNextJobApplicationService>();
+             Bind<IJobAlertService>().To<JXTNextJobAlertService>();
         }
     }
 }

@@ -30,7 +30,6 @@ using Telerik.Sitefinity.Security.Claims;
 using System.Web.Security;
 using Telerik.Sitefinity.Security.Model;
 using Telerik.Sitefinity.Services;
-using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -171,19 +170,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ViewBag.UserFirstName = userFirstName;
             ViewBag.RegisterPageUrl = SitefinityHelper.GetPageUrl(this.RegisterPageId);
             ViewBag.PostBackMessage = TempData["PostBackMessage"];
-            if (!this.JobApplicationSuccessPageId.IsNullOrEmpty())
-                ViewBag.SuccessPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationSuccessPageId);
-
-            // These values are required for the Indeed apply
-            if(jobid.HasValue)
-            {
-                IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = jobid.Value };
-                IGetJobListingResponse jobListingResponse = _blConnector.GuestGetJob(jobListingRequest);
-                ViewBag.JobTitle = jobListingResponse.Job.Title;
-                ViewBag.CompanyName = jobListingResponse.Job.CustomData["CompanyName"];
-                ViewBag.JobLocation = jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"];
-            }
-              
 
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
             return View(fullTemplateName, jobApplicationViewModel);

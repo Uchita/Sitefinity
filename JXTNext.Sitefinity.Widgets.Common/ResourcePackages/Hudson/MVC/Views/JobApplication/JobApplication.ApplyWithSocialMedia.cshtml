@@ -1,6 +1,5 @@
 ﻿@model dynamic
 @using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
-@using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
 @using JXTNext.Sitefinity.Common.Helpers
 
@@ -27,13 +26,14 @@
                                 <span class="indeed-apply-widget"
                                       data-indeed-apply-apiToken=@indeedAPIToken
                                       data-indeed-apply-jobId=@Model.JobId
-                                      data-indeed-apply-jobLocation='@ViewBag.JobLocation'
-                                      data-indeed-apply-jobCompanyName='@ViewBag.CompanyName'
-                                      data-indeed-apply-jobTitle='@ViewBag.JobTitle'
+                                      data-indeed-apply-jobLocation="Australia"
+                                      data-indeed-apply-jobCompanyName="JXT"
+                                      data-indeed-apply-jobTitle="Test Engineer"
                                       data-indeed-apply-jobUrl=""
                                       data-indeed-apply-postUrl=@redirectUriSocial
                                       data-indeed-apply-jobMeta="right-rail-apply-button"
-                                      data-indeed-apply-onapplied="OnIndeedCompleted"></span>
+                                      data-indeed-apply-onapplied="OnIndeedCompleted">
+                                </span>
                                 <script>
                                     (function (d, s, id) {
                                         var js, iajs = d.getElementsByTagName(s)[0];

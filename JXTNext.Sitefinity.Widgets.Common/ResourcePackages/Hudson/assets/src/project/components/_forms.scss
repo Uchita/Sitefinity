@@ -82,6 +82,9 @@
                 &:hover {
                     cursor: pointer;
                 }
+                &:focus + span{
+                    outline: $highlighted-headings-color solid 1px;
+                }
             }
             
         }

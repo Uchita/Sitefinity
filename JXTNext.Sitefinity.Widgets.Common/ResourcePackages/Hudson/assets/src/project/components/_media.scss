@@ -775,14 +775,38 @@
                 padding: 7px 10px;
 
                 .icon-bar {
-                    background-color: $btn-primary-color;
+                    background: none;
+                    &::before{
+                        font: 900 2rem 'Font Awesome 5 Free';
+                        content: '\f00d';
+                        color: $brightColor;
+                        position: relative;
+                        left: -2px;
+                        top: -2px;
+                    }
+                    & + .icon-bar{
+                        display: none;
+                    }
+                }
+
+                &.collapsed{
+                    .icon-bar{
+                        background-color: $btn-primary-color;
+                        &::before{
+                            display: none;
+                        }
+                        & + .icon-bar{
+                            display: block;
+                        }
+                    }
                 }
 
                 &:hover, &:active, &:focus {
                     background: none;
-
-                    .icon-bar {
-                        background-color: $btn-primary-color;
+                    &.collapsed{
+                        .icon-bar {
+                            background-color: $btn-primary-color;
+                        }
                     }
                 }
             }

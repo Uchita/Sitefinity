@@ -2,7 +2,6 @@
 using JXTNext.Sitefinity.Connector.Options;
 using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using JXTNext.Sitefinity.Common.Helpers;
-using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,6 +14,8 @@ using Telerik.Sitefinity.Security.Claims;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using System.Web;
 using System.Dynamic;
+using JXTNext.Sitefinity.Services.Intefaces;
+using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -22,19 +23,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
     [ControllerToolboxItem(Name = "JobAlert_MVC", Title = "Job Alert", SectionName = "JXTNext.JobAlert", CssClass = JobAlertController.WidgetIconCssClass)]
     public class JobAlertController : Controller
     {
-        JobAlertsBC _jobAlertsBC;
         IOptionsConnector _OConnector;
-       
-        public JobAlertController(IEnumerable<IOptionsConnector> _oConnectors, JobAlertsBC jobAlertsBC)
+        IJobAlertService _jobAlertService;
+
+        public JobAlertController(IEnumerable<IOptionsConnector> _oConnectors, IJobAlertService jobAlertService)
         {
-            _jobAlertsBC = jobAlertsBC;
+            _jobAlertService = jobAlertService;
             _OConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
         }
 
         // GET: JobAlert
         public ActionResult Index()
         {
-            List<JobAlertViewModel> jobAlertData = _jobAlertsBC.MemberJobAlertsGet();
+            List<JobAlertViewModel> jobAlertData = _jobAlertService.MemberJobAlertsGet();
 
             ViewBag.CssClass = this.CssClass;
             ViewBag.Status = TempData["StatusCode"];
@@ -131,7 +132,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             TempData["StatusMessage"] = null;
             TempData["StatusCode"] = JobAlertStatus.SUCCESS;
-            JobAlertViewModel jobAlertDetails = _jobAlertsBC.MemberJobAlertGet(id);
+            JobAlertViewModel jobAlertDetails = _jobAlertService.MemberJobAlertGet(id);
             JXTNext_GetJobFiltersRequest request = new JXTNext_GetJobFiltersRequest();
             IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(request);
 
@@ -205,7 +206,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         [HttpGet]
         public ActionResult ViewResults(int id)
         {
-            JobAlertViewModel jobAlertDetails = _jobAlertsBC.MemberJobAlertGet(id);
+            JobAlertViewModel jobAlertDetails = _jobAlertService.MemberJobAlertGet(id);
             string resultsPageUrl = SitefinityHelper.GetPageUrl(this.ResultsPageId);
 
             return Redirect(resultsPageUrl + "?" + ToQueryString(jobAlertDetails));
@@ -218,7 +219,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             // We need to pass this job alert id to it
             var statusMessage = "A Job Alert has been deleted successfully.";
             var alertStatus = JobAlertStatus.SUCCESS;
-            var response = _jobAlertsBC.MemberJobAlertDelete(id);
+            var response = _jobAlertService.MemberJobAlertDelete(id);
             if (!response.Success)
             {
                 statusMessage = response.Errors.First();
@@ -267,7 +268,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             model.Filters = Filters;
 
-            var response = _jobAlertsBC.MemberJobAlertUpsert(model, update);
+            if (model != null && model.Email.IsNullOrEmpty())
+                model.Email = SitefinityHelper.GetLoggedInUserEmail();
+
+            var response = _jobAlertService.MemberJobAlertUpsert(model, update);
 
             return response;
         }

@@ -11,7 +11,7 @@ namespace JXTNext.Sitefinity.Common.Models.Communications
     {
         public MailAddress To { get; set; }
         public MailAddress From { get; set; }
-        public MailAddress ReplyTo { get; set; }
+        public MailAddressCollection ReplyTo { get; set; }
         public MailAddressCollection Cc { get; set; }
         public MailAddressCollection Bcc { get; set; }
         public string EmailBody { get; set; }

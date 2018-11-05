@@ -108,6 +108,9 @@
     <Content Include="ResourcePackages\Hudson\assets\dist\images\logo-linkedin.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\logo-sm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Hudson\assets\dist\images\owl\ajax-loader.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

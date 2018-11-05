@@ -8068,7 +8068,7 @@ header {
       left: 0;
       width: 100%;
       max-height: 100%;
-      height: calc(100% - 110px);
+      height: calc(100% - 95px);
       background: #2e2e2e;
       overflow: auto;
       z-index: 1000; }
@@ -10061,6 +10061,8 @@ ul.breadcrumb {
           background: #219fa3;
           color: #fff;
           border-color: #219fa3; }
+        #pager ul li a[disabled] {
+          display: none; }
   #pager .pagePrev a, #pager .pageNext a {
     padding: 0 10px; }
 
@@ -10744,7 +10746,7 @@ select.articles-order {
 /*#region Tablet*/
 @media (min-width: 768px) {
   header .brand-logo {
-    height: 55px;
+    height: 50px;
     position: relative !important;
     top: 15px;
     z-index: 100; }
@@ -11139,19 +11141,21 @@ select.articles-order {
     background: #007077;
     background: rgba(0, 112, 119, 0.8); }
   header .brand-logo {
-    height: 40px;
+    height: 23px;
     width: 150px;
     display: block;
-    margin: 10px auto; }
+    margin: 10px auto;
+    background-image: url("../images/logo-sm.png");
+    background-size: auto 100%;
+    background-position: center; }
   header .navbar-fixed-top .brand-logo {
-    height: 40px;
-    text-align: center;
-    background-position: 0 3px; }
+    height: 23px;
+    text-align: center; }
   header .navbar-fixed-top .main-nav {
-    top: 15px; }
+    top: 8px; }
   header .main-nav {
     position: absolute;
-    top: 15px;
+    top: 8px;
     right: 10px;
     margin: 0;
     height: 0;

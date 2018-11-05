@@ -831,7 +831,16 @@ header {
     top: 0;
     width: 100%;
     z-index: 998;
-
+    .brand-logo{
+        background:url('../images/hudson_logo_white.svg') no-repeat 0 0 / 100% auto;
+        width: 200px;
+        display: block;
+        text-indent: -99em;
+        overflow: hidden;
+        transition: all 0.2s ease;
+        -moz-transition: all 0.2s ease;
+        -webkit-transition: all 0.2s ease;
+    }
     .navbar-fixed-top {
 
         &:before {
@@ -847,6 +856,7 @@ header {
         }
 
         .brand-logo{
+            width: 127px;
             height: 50px;
             top: 20px;
         }
@@ -1446,6 +1456,14 @@ main {
             position: absolute;
             right: 0;
             top: 10px;
+            border-bottom: 4px solid;
+            border-top:none;
+        }
+        &.collapsed{
+            .caret{
+                border-bottom-color: transparent;
+                border-top:4px solid;
+            }
         }
     }
 

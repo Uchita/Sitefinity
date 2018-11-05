@@ -7866,6 +7866,15 @@ header {
   top: 0;
   width: 100%;
   z-index: 998; }
+  header .brand-logo {
+    background: url("../images/hudson_logo_white.svg") no-repeat 0 0/100% auto;
+    width: 200px;
+    display: block;
+    text-indent: -99em;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease; }
   header .navbar-fixed-top:before {
     content: '';
     position: absolute;
@@ -7877,6 +7886,7 @@ header {
     background: black;
     background: rgba(0, 0, 0, 0.8); }
   header .navbar-fixed-top .brand-logo {
+    width: 127px;
     height: 50px;
     top: 20px; }
   header .navbar-fixed-top .main-nav {
@@ -8268,7 +8278,12 @@ main {
     .left-sidebar .container-fluid > a .caret, .left-sidebar .navbar-collapse > a .caret {
       position: absolute;
       right: 0;
-      top: 10px; }
+      top: 10px;
+      border-bottom: 4px solid;
+      border-top: none; }
+    .left-sidebar .container-fluid > a.collapsed .caret, .left-sidebar .navbar-collapse > a.collapsed .caret {
+      border-bottom-color: transparent;
+      border-top: 4px solid; }
   .left-sidebar .container-fluid .nav, .left-sidebar .navbar-collapse .nav {
     width: 100%; }
     .left-sidebar .container-fluid .nav li, .left-sidebar .navbar-collapse .nav li {
@@ -9733,6 +9748,10 @@ ul.breadcrumb {
   .job-search .fa-angle-up {
     display: none;
     color: #fff; }
+  .job-search .filter em {
+    margin-left: 3px;
+    position: relative;
+    top: 2px; }
   .job-search .filter-active {
     position: relative; }
     .job-search .filter-active a {
@@ -11126,17 +11145,18 @@ select.articles-order {
     margin: 10px auto; }
   header .navbar-fixed-top .brand-logo {
     height: 40px;
-    text-align: center; }
+    text-align: center;
+    background-position: 0 3px; }
   header .navbar-fixed-top .main-nav {
     top: 15px; }
   header .main-nav {
     position: absolute;
     top: 15px;
-    left: 10px;
+    right: 10px;
     margin: 0;
     height: 0;
     width: auto;
-    min-width: 50px; }
+    min-width: 42px; }
     header .main-nav .navbar-default .navbar-toggle {
       float: left;
       border: 0;
@@ -11149,7 +11169,7 @@ select.articles-order {
           content: '\f00d';
           color: #fff;
           position: relative;
-          left: -2px;
+          left: 2px;
           top: -2px; }
         header .main-nav .navbar-default .navbar-toggle .icon-bar + .icon-bar {
           display: none; }
@@ -11218,8 +11238,58 @@ select.articles-order {
     margin-top: 0;
     margin-bottom: 10px;
     width: 50%; }
+  .job-search .filter > a {
+    margin-left: 0; }
+  .job-search .col-xs-5 {
+    width: auto;
+    float: left; }
+  .job-search .col-xs-4.pull-right {
+    width: auto;
+    padding-left: 0; }
+  .job-search .form-group {
+    margin-bottom: 8px; }
+  .job-container {
+    position: static; }
   .filter-toggle {
-    display: block; }
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 15px;
+    width: 100px;
+    overflow: hidden; }
+    .filter-toggle .btn {
+      padding: 12px 20px;
+      width: 100%;
+      background: #fff;
+      color: #01a3a4;
+      border: 1px solid #01a3a4;
+      font-size: 1.6rem;
+      line-height: 1.15; }
+      .filter-toggle .btn:hover, .filter-toggle .btn:focus {
+        background: #01a3a4;
+        color: #fff; }
+  .search-top .jobalert-btn {
+    position: absolute;
+    top: 20px;
+    left: 130px;
+    padding: 12px 20px;
+    font-size: 1.6rem !important;
+    line-height: 1.15; }
+  .search-top .select {
+    position: absolute;
+    top: 20px;
+    left: 335px;
+    min-width: calc(100% - 420px); }
+    .search-top .select select {
+      height: 44px !important;
+      text-transform: uppercase;
+      font-size: 1.6rem !important;
+      font-family: AkzidGroProMed,sans-serif; }
+      .search-top .select select option {
+        text-transform: none;
+        font-family: AkzidGroProReg,sans-serif; }
+  div#filtersPagePartialContent {
+    padding-top: 65px; }
   .list-featured-articles {
     padding: 0 !important;
     margin: 0 auto 40px;

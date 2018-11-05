@@ -68,6 +68,13 @@
         display: none;
         color: #fff;
     }
+    .filter{
+        em{
+            margin-left: 3px;
+            position: relative;
+            top: 2px;
+        }
+    }
 
     .filter-active {
         position: relative;

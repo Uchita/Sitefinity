@@ -16,6 +16,6 @@ namespace JXTNext.Sitefinity.Common.Models.Communications
         public MailAddressCollection Bcc { get; set; }
         public string EmailBody { get; set; }
         public string Subject { get; set; }
-        public AttachmentCollection Attachments { get; set; }
+        public List<Attachment> Attachments { get; set; }
     }
 }

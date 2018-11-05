@@ -30,7 +30,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 throw new NullReferenceException();
 
             emailRequest.EmailBody = GenerateEmailBody(emailRequest.EmailBody, emailContent);
-            
+
             return SendEmail(emailRequest, smtpSettings);
         }
 
@@ -60,7 +60,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
             SESClientResponse emailSendStatus = emailService.SendEmail<SESClientResponse, SESClientRequest>(sesRequest);
 
-            return emailSendStatus.EmailActionSuccess; 
+            return emailSendStatus.EmailActionSuccess;
         }
 
         /// <summary>

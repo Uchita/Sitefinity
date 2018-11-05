@@ -151,7 +151,7 @@
                                         @if (Html.ValidationMessageFor(m => m.ReTypePassword) != null)
                                         {
                                             <div class="has-error">
-                                                <span class="help-block">@Html.ValidationMessageFor(m => m.ReTypePassword)</span>
+                                                <span class="help-block">@Html.ValidationMessageFor(m => m.ReTypePassword, "The password and confirmation password do not match")</span>
                                             </div>
                                         }
                                     </div>

@@ -155,7 +155,7 @@
                         @if (Html.ValidationMessageFor(u => u.NewPassword) != null)
                         {
                             <div class="has-error">
-                                <span class="help-block">@Html.ValidationMessageFor(u => u.NewPassword, String.Empty, new { @class = "alert alert-danger error-message" })</span>
+                                <span class="help-block">@Html.ValidationMessageFor(u => u.NewPassword, "The password and confirmation password do not match", new { @class = "alert alert-danger error-message" })</span>
                             </div>
                         }
                     </div>
@@ -169,7 +169,7 @@
                         @if (Html.ValidationMessageFor(u => u.RepeatPassword) != null)
                         {
                             <div class="has-error">
-                                <span class="help-block">@Html.ValidationMessageFor(u => u.RepeatPassword, String.Empty, new { @class = "alert alert-danger error-message" })</span>
+                                <span class="help-block">@Html.ValidationMessageFor(u => u.RepeatPassword, "The password and confirmation password do not match", new { @class = "alert alert-danger error-message" })</span>
                             </div>
                         }
                     </div>

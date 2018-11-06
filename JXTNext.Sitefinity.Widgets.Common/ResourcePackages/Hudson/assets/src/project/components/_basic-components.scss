@@ -1188,10 +1188,26 @@ header {
             .dropdown-menu {
                 padding-right: 0;
                 padding-left: 0;
-                a {
-                    padding: 5px 30px 5px 0;
-                    color: $brightColor;
+                position: fixed;
+                background: $global-highlight-color;
+                height: 100%;
+                top: 45px;
+                li{
+                    padding: 0 20px;
+                    a {
+                        padding: 11px 30px 12px 0;
+                        color: $brightColor;
+                        font: 1.6rem/1.2 $font-family-regular;
+                        border-bottom: 1px solid $brightColor;
+                    }
+                    .custom-expander{
+                        right: 15px;
+                    }
+                    &:last-child a{
+                        border-bottom: none;
+                    }
                 }
+                
 
                 .dropdown.open{
                     & > a {
@@ -1204,9 +1220,7 @@ header {
                        color: $global-text-color;
                    }
                 }
-                ul{
-                    padding-left: 10px;
-                }
+                
                 .custom-expander{
                     right: 0;
                 }
@@ -1257,7 +1271,20 @@ header {
         }
     }
 
-    
+    .back-mnu{
+        position: fixed;
+        left: 20px;
+        color: $brightColor;
+        top: 14px;
+        text-transform: uppercase;
+        font-family: $font-family-medium;
+        &::before{
+            content: '\f104';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            margin-right: 5px;
+        }
+    }
 }
 
 .open{

@@ -82,6 +82,9 @@
                 &:hover {
                     cursor: pointer;
                 }
+                &:focus + span{
+                    outline: $highlighted-headings-color solid 1px;
+                }
             }
             
         }
@@ -272,14 +275,15 @@
             margin-bottom: 20px;
         }
     }
-    .sign-in-with {
+    .sign-in-with, .ext-provider-form {
         clear: both;
+        margin-bottom: 2rem;
         h2{
-            font-size: 3.6rem;
-            margin-bottom: 2rem;
+            font-size: 3.2rem;
+            margin-bottom: 0.5rem;
         }
         ul {
-            padding-top: 16px;
+            padding-top: 15px;
             li {
                 a{
                     &::before{
@@ -330,20 +334,32 @@
     }
 
     .apply-with {
+        
         .btn {
-
             &.btn-indeed {
-                background: #f85402 url(../images/indeedBtn.png) no-repeat 50% 50%;
+                background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50%;
             }
 
             &.btn-linkedin {
                 background: #007cb7 url(../images/linkkedinBtn.png) no-repeat 50% 50%;
+                text-indent: -9em;
             }
 
             &.btn-seek {
                 background: #e61977 url(../images/seekBtn.png) no-repeat 50% 50%;
+                text-indent: -9em;
             }
         }
+    }
+    #indeed-btnwrapper .indeed-apply-button{
+        background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50%!important;
+        width: 120px;
+        border-radius: 0!important;
+        height: 35px!important;
+        padding: 0!important;
+    }
+    #indeed-btnwrapper .indeed-apply-button span{
+        display: none!important;
     }
 
     .apply-with, .sign-in-with {

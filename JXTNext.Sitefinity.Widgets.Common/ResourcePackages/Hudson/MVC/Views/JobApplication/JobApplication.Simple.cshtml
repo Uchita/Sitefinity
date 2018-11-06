@@ -63,7 +63,7 @@
                                     </label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="number" name="PhoneNumber" class="form-control" placeholder="Phone number" />
+                                    <input type="text" id="PhoneNumber" name="PhoneNumber" pattern="[0-9]*" class="form-control" placeholder="Phone number" />
                                 </div>
                             </div>
                         </div>
@@ -101,13 +101,13 @@
 
                         <!-- Password strenght -->
                         @*<div class="row" id="strength-wrap" style="display:none;">
-                        <div class="col-md-4 text-right">
-                            <label class="form-label" for="password-reg">Password strength</label>
-                        </div>
-                        <div class="col-md-8">
-                            <div id="password-strength"><span class="strengh-text"></span></div>
-                        </div>
-                    </div>*@
+                                <div class="col-md-4 text-right">
+                                    <label class="form-label" for="password-reg">Password strength</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div id="password-strength"><span class="strengh-text"></span></div>
+                                </div>
+                            </div>*@
                         <!-- Password strenght -->
 
                         <div class="row form-group reg-field hidden">
@@ -163,7 +163,7 @@
 
                         <!-- Coverletter -->
                         <div class="form-group row">
-                            <label class="form-label col-xs-12 col-md-4 text-right">upload documents</label>
+                            <label class="form-label col-xs-12 col-md-4 text-right">upload Cover Letter</label>
                             <div class="col-xs-12 col-md-8">
                                 <div class="box clearfix text-center">
                                     <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
@@ -184,18 +184,44 @@
                             </div>
                         </div>
 
+                        <!-- Documents -->
+                        <div class="form-group row">
+                            <label class="form-label col-xs-12 col-md-4 text-right">upload documents</label>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="box clearfix text-center">
+                                    <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
+                                    <div class="uploadfield-wrap">
+                                        <input type="file" multiple id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.html,.htm,.xhtml" />
+                                        <small class="lbl">Browse</small>
+                                    </div>
+                                    <div class="uploadfield-wrap dropbox-upload">
+                                        <button type="button" id="dropbox-documents-btn">Dropbox Documents</button>
+                                        <small class="lbl">Dropbox</small>
+                                    </div>
+                                    <div class="uploadfield-wrap google-drive-upload">
+                                        <button type="button" id="documents-google-drive-btn">Google Drive Documents</button>
+                                        <small class="lbl">Google Drive</small>
+                                    </div>
+                                    <span class="note documents-name"></span>
+                                </div><!-- end box -->
+                            </div>
+                        </div>
+
 
                         <input type="hidden" id="uploadResumeJson" name="UploadFilesResume" />
                         <input type="hidden" id="uploadCoverLetterJson" name="UploadFilesCoverLetter" />
+                        <input type="hidden" id="uploadDocumentsJson" name="UploadFilesDocuments" />
                         <input type="hidden" id="resume-selected-type" name="ResumeSelectedType" />
                         <input type="hidden" id="coverletter-selected-type" name="CoverLetterSelectedType" />
+                        <input type="hidden" id="documents-selected-type" name="DocumentsSelectedType" />
                         <input type="hidden" id="jobid" name="JobId" value="@Model.JobId" />
 
                         <div class="form-group button-wrapper row">
                             <label class="col-xs-12 col-md-4"></label>
                             <div class="col-xs-12 col-md-8">
                                 <div class="checkbox clearfix">
-                                    <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="Please agree to Hudson's privacy policy" oninvalid='this.setCustomValidity("Please agree to Hudson&apos;s privacy policy")' oninput="this.setCustomValidity('')">
+                                    
+                                    <input name="privacypolicy" title="Please agree to Hudson's privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Please agree to Hudson\'s privacy policy');" type="checkbox" value="agree">
                                     <span class="checkbox-icon fas fa-check"></span>
                                     I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
                                 </div>
@@ -252,12 +278,17 @@
 
     var uploadResumeModel = { UrlPath: '', FileName: '', Field: '', MIMEType: '', AuthToken: '' };
     var uploadCoverModel = { UrlPath: '', FileName: '', Field: '', MIMEType: '', AuthToken: '' };
+    var uploadDocumentsModel = { UrlPath: '', FileName: '', Field: '', MIMEType: '', AuthToken: '' };
     var isGoogleResume = false;
     var isDropboxResume = false;
+    var isGoogleCoverLetter = false;
+    var isDropboxCoverLetter = false;
     var resumeSelectedType = '';
     var coverLetterSelectedType = 'Local';
+    var documentsLetterSelectedType = 'Local';
 
     $("#coverletter-selected-type").val(coverLetterSelectedType);
+    $("#documents-selected-type").val(documentsLetterSelectedType);
     $("#resume-selected-type").val(resumeSelectedType);
 
      // Password Strength
@@ -285,8 +316,8 @@
                  //if (registerForm) {
                      self.submit();
                  //}
-                 
-             } 
+
+             }
          });
 
          if (appStatus == 'Available' && isUserLoggedIn == 'True') {
@@ -321,6 +352,19 @@
             $(".coverletter-name").text(coverletterBrowseName);
          });
 
+         $('#application-documents').change(function () {
+             documentsSelectedType = 'Local';
+             $("#documents-selected-type").val(documentsSelectedType);
+             var files = document.getElementById("application-documents").files;
+             var documentsBrowseName = "";
+             for (var i = 0; i < files.length; i++) {
+                 if (documentsBrowseName != "")
+                     documentsBrowseName += "<br/>";
+                 documentsBrowseName += files[i].name;
+             }
+             $(".documents-name").html(documentsBrowseName);
+         });
+
          //on enter key on password field triggering sign in button click
          $('#password-reg').on('keydown', function (event) {
              if (event.which == 13) { //enter key
@@ -337,7 +381,7 @@
                  return true;
              }
 
-             
+
              var jobId = $(this).data("jobid");
              var staySignedinFlag = $('#RememberMe').is(':checked') ? true : false;
              console.log(staySignedinFlag);
@@ -355,7 +399,7 @@
                      $('#password-reg').parent().find('.error-message.wrongPassword-message').addClass('hidden');
                      // Once the user signed in , we need to know that the user is already applied for this job.
                       if (response.IsUserSignedIn == true) {
-                            
+
                              $.ajax({
                                  type: 'POST',
                                  cache: false,
@@ -410,7 +454,7 @@
             var valid = validateEmail(emailId);
             var parm = { email: emailId };
             var urlPath = $(location).attr('pathname') + "/CheckUser";
-            
+
             //$('#upload-files-container').hide();
             if (valid) {
                 $(this).css('color', '#000');
@@ -424,14 +468,14 @@
                         //get the registration form
                         if (response == false) {
                             $('#register').show();
-                            
+
                             $('#firstname-lastname').removeAttr('hidden');
                             $('#upload-files-container').show();
                             registerForm = true;
                             $('#password-reg').prop('required', true);
                             $('#firstname-reg').prop('required', true);
                             $('#lastname-reg').prop('required', true);
-                           
+
                             $('#password-reg').prop('pattern', "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
                             $('#password-reg').prop('title', "Your password must contain at least one number, one uppercase and lowercase letter, and 8 or more characters.");
                             $('#password-guide').removeClass('hidden');
@@ -477,7 +521,7 @@
             } else {
                 $('.welcome-message').addClass('hidden');
                 $('.loginwith_socialmedia').show();
-                
+
                 $('#register').hide();
                 $(this).css('color', 'red');
                 $('#password-reg').prop('required', false);
@@ -498,7 +542,7 @@
          $('#ReTypePassword').keydown(function () {
              $(this).next('.alert').addClass('hidden');
          });
-        
+
          $('#ReTypePassword').blur(function () {
              var pwVal = $('#password-reg').val();
 
@@ -672,7 +716,7 @@
          };
 
        dropboxResumeOptions = {
-            // Required. Called when a user selects an item in the Chooser.
+            // Required. Called when a user selects an item in the Chooser.            
             success: function (files) {
 
                 uploadResumeModel.UrlPath = files[0].link;
@@ -688,12 +732,28 @@
                     $('.resume-name').text(files[0].name);
                 }
                 else {
-                    coverLetterSelectedType = 'Dropbox';
-                    $('#uploadCoverLetterJson').val(stringyModel);
-                    $('#application-coverletter').val('');
-                    $("#coverletter-selected-type").val(coverLetterSelectedType);
-                    $('.coverletter-name').text(files[0].name);
+                    if (isDropboxCoverLetter) {
+                        coverLetterSelectedType = 'Dropbox';
+                        $('#uploadCoverLetterJson').val(stringyModel);
+                        $('#application-coverletter').val('');
+                        $("#coverletter-selected-type").val(coverLetterSelectedType);
+                        $('.coverletter-name').text(files[0].name);
+                    }
+                    else {
+                        documentsSelectedType = 'Dropbox';
+                        $('#uploadDocumentsJson').val(stringyModel);
+                        $('#application-documents').val('');
+                        $("#documents-selected-type").val(documentsSelectedType);
+                        var Filenames = "";
+                        for (var i = 0; i < files.length; i++) {
+                            if (Filenames != "")
+                                Filenames += "<br/>";
+                            Filenames += files[i].name;
+                        }
+                        $('.documents-name').html(Filenames);
+                    }
                 }
+
 
                 $('#dburl').text(files[0].link);
                 $('#dbname').text(files[0].name);
@@ -722,19 +782,83 @@
             // while true allows the user to select both folders and files.
             // You cannot specify `linkType: "direct"` when using `folderselect: true`.
             folderselect: false, // or true
-        };
+         };
+
+         dropboxDocumentsOptions = {
+             // Required. Called when a user selects an item in the Chooser.            
+             success: function (files) {
+
+                var stringyModel = "[";
+
+                 for (var i = 0; i < files.length; i++) {
+                     uploadResumeModel.UrlPath = files[i].link;
+                     uploadResumeModel.FileName = files[i].name;
+                     if (stringyModel != "[")
+                         stringyModel += ",";
+                     stringyModel += JSON.stringify(uploadResumeModel);
+                 }
+                 stringyModel += "]";
+                
+                documentsSelectedType = 'Dropbox';
+                $('#uploadDocumentsJson').val(stringyModel);
+                $('#application-documents').val('');
+                $("#documents-selected-type").val(documentsSelectedType);
+                var Filenames = "";
+                for (var i = 0; i < files.length; i++) {
+                    if (Filenames != "")
+                        Filenames += "<br/>";
+                    Filenames += files[i].name;
+                }
+                $('.documents-name').html(Filenames);               
+
+
+                 $('#dburl').text(files[0].link);
+                 $('#dbname').text(files[0].name);
+             },
+
+             // Optional. Called when the user closes the dialog without selecting a file
+             // and does not include any parameters.
+             cancel: function () { },
+
+             // Optional. "preview" (default) is a preview link to the document for sharing,
+             // "direct" is an expiring link to download the contents of the file. For more
+             // information about link types, see Link types below.
+             linkType: "direct", // or "direct"
+
+             // Optional. A value of false (default) limits selection to a single file, while
+             // true enables multiple file selection.
+             multiselect: true, // or true
+
+             // Optional. This is a list of file extensions. If specified, the user will
+             // only be able to select files with these extensions. You may also specify
+             // file types, such as "video" or "images" in the list. For more information,
+             // see File types below. By default, all extensions are allowed.
+             extensions: ['.pdf', '.doc', '.docx'],
+
+             // Optional. A value of false (default) limits selection to files,
+             // while true allows the user to select both folders and files.
+             // You cannot specify `linkType: "direct"` when using `folderselect: true`.
+             folderselect: false, // or true
+         };
 
 
         $('#dropbox-resume-btn').click(function () {
             isDropboxResume = true;
+            isDropboxCoverLetter = false;
             Dropbox.choose(dropboxResumeOptions);
         });
 
         $('#dropbox-coverletter-btn').click(function () {
             isDropboxResume = false;
+            isDropboxCoverLetter = true;
             Dropbox.choose(dropboxResumeOptions);
         });
 
+        $('#dropbox-documents-btn').click(function () {
+            isDropboxResume = false;
+            isDropboxCoverLetter = false;
+            Dropbox.choose(dropboxDocumentsOptions);
+        });
     });
 
 
@@ -762,7 +886,7 @@
         function onAuthApiLoad() {
             $('#resume-google-drive-btn').click(function () {
                 isGoogleResume = true;
-
+                isGoogleCoverLetter = false;
                 gapi.auth2.authorize({
                     client_id: clientId,
                     scope: scope
@@ -770,13 +894,22 @@
             });
 
            $('#coverletter-google-drive-btn').click(function () {
-                isGoogleResume = false;
+               isGoogleResume = false;
+               isGoogleCoverLetter = true;
                 gapi.auth2.authorize({
                     client_id: clientId,
                     scope: scope
                 }, handleAuthResult);
             });
 
+            $('#documents-google-drive-btn').click(function () {
+                isGoogleResume = false;
+                isGoogleCoverLetter = false;
+                gapi.auth2.authorize({
+                    client_id: clientId,
+                    scope: scope
+                }, handleAuthResultMulti);
+            });
         }
 
         function onPickerApiLoad() {
@@ -791,11 +924,30 @@
             }
         }
 
+        function handleAuthResultMulti(authResult) {
+            if (authResult && !authResult.error) {
+                oauthToken = authResult.access_token;
+                createPickerMulti();
+            }
+        }
+
         // Create and render a Picker object for picking user Photos.
         function createPicker() {
             if (pickerApiLoaded && oauthToken) {
                 var picker = new google.picker.PickerBuilder().
+                    addView(new google.picker.View(google.picker.ViewId.DOCS).setMimeTypes("application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")).                    
+                    setOAuthToken(oauthToken).
+                    setDeveloperKey(developerKey).
+                    setCallback(pickerCallback).
+                    build();
+                picker.setVisible(true);
+            }
+        }
+        function createPickerMulti() {
+            if (pickerApiLoaded && oauthToken) {
+                var picker = new google.picker.PickerBuilder().
                     addView(new google.picker.View(google.picker.ViewId.DOCS).setMimeTypes("application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")).
+                    enableFeature(google.picker.Feature.MULTISELECT_ENABLED).
                     setOAuthToken(oauthToken).
                     setDeveloperKey(developerKey).
                     setCallback(pickerCallback).
@@ -810,9 +962,9 @@
             var name = "";
             var fileId = "";
             var mime = "";
+            debugger;
 
-
-            if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+            if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {                
                 var doc = data[google.picker.Response.DOCUMENTS][0];
                 fileId = doc[google.picker.Document.ID];
                 url = doc[google.picker.Document.URL];
@@ -827,6 +979,32 @@
 
                 var stringyModel = JSON.stringify(uploadResumeModel);
 
+                var docs = data[google.picker.Response.DOCUMENTS]; 
+                var stringyModels = "[";
+                var Filenames = "";
+
+                for (var i = 0; i < docs.length; i++) {
+                    doc = docs[i];
+                    fileId = doc[google.picker.Document.ID];
+                    url = doc[google.picker.Document.URL];
+                    name = doc[google.picker.Document.NAME]
+                    mime = doc[google.picker.Document.MIME_TYPE];
+
+                    uploadResumeModel.UrlPath = url;
+                    uploadResumeModel.FileName = name;
+                    uploadResumeModel.Field = fileId;
+                    uploadResumeModel.MIMEType = mime;
+                    uploadResumeModel.AuthToken = oauthToken;
+                    
+                    if (stringyModels != "[") {
+                        stringyModels += ",";
+                        Filenames += "<br/>";
+                    }
+                    stringyModels += JSON.stringify(uploadResumeModel);                    
+                    Filenames += doc[google.picker.Document.NAME];
+                }
+                stringyModels += "]";
+
                 if (isGoogleResume) {
                     resumeSelectedType = 'GoogleDrive';
                     $('#uploadResumeJson').val(stringyModel);
@@ -835,12 +1013,22 @@
                     $('.resume-name').text(name);
                 }
                 else {
-                    coverLetterSelectedType = 'GoogleDrive';
-                    $('#uploadCoverLetterJson').val(stringyModel);
-                    $('#application-coverletter').val('');
-                    $("#coverletter-selected-type").val(coverLetterSelectedType);
-                    $('.coverletter-name').text(name);
+                    if (isGoogleCoverLetter) {
+                        coverLetterSelectedType = 'GoogleDrive';
+                        $('#uploadCoverLetterJson').val(stringyModel);
+                        $('#application-coverletter').val('');
+                        $("#coverletter-selected-type").val(coverLetterSelectedType);
+                        $('.coverletter-name').text(name);
+                    }
+                    else {
+                        documentsSelectedType = 'GoogleDrive';
+                        $('#uploadDocumentsJson').val(stringyModels);
+                        $('#application-documents').val('');
+                        $("#documents-selected-type").val(documentsSelectedType);
+                        $('.documents-name').html(Filenames);                        
+                    }
                 }
+
             }
 
             var message = url;

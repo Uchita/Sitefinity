@@ -14,11 +14,40 @@
         @foreach (var item in Model.Items)
         {
             var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
-            
+
+            var OfficeLocationName = "";
+            var OfficeLocationUrl = "";
+
+            if (item.Fields.Office != null)
+            {
+                if (item.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
+                {
+                    OfficeLocationName = Html.HtmlSanitize((string)item.Fields.Office.Fields.Name).ToString();
+                    OfficeLocationUrl = item.Fields.Office.Fields.UrlName.ToString();
+                }
+                else
+                {
+                    List<string> OfficeLocationNameList = new List<string>();
+                    List<string> OfficeLocationUrlList = new List<string>();
+
+                    foreach (var office in item.Fields.Office)
+                    {
+                        if (!OfficeLocationNameList.Contains((string)office.Fields.Name))
+                        {
+                            OfficeLocationNameList.Add((string)office.Fields.Name);
+                            OfficeLocationUrlList.Add(office.Fields.UrlName.ToString());
+                        }
+                    }
+
+                    OfficeLocationName = string.Join(", ", OfficeLocationNameList.ToArray());
+                    OfficeLocationUrl = string.Join(",", OfficeLocationUrlList.ToArray());
+                }
+            }
+
 			<div class="contact-consultant row">
 				
-				@if(item.Fields.Pic != null)
-				{
+				@if (item.Fields.Pic != null)
+                {
 					<div class="col-md-6"><a class="contact-consultant-image" href="@navigateUrl">
                         <img src="@MediaContentExtensions.ResolveThumbnailUrl(item.Fields.Pic.DataItem, "thumb350")" alt="@item.Fields.Pic.Fields.Title" />
                         <div class="contact-image-rollover"><div class="display-table"><div class="display-cell">View Profile</div></div></div></a>
@@ -30,7 +59,7 @@
                     <div class="color-highlight contact-consultant-name">@Html.HtmlSanitize((string)item.Fields.ConsultantName)</div>
                     @if (item.Fields.Office != null)
                     {
-                        <div class="contact-consultant-position">@Html.HtmlSanitize((string)item.Fields.Position), @Html.HtmlSanitize((string)item.Fields.Office.Fields.Name)</div>
+                    <div class="contact-consultant-position">@Html.HtmlSanitize((string)item.Fields.Position), @OfficeLocationName</div>
                     }
                     else
                     {

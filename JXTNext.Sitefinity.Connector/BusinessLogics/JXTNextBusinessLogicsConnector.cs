@@ -464,7 +464,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             {
                 HeaderValues = base.HTTP_Request_HeaderValues,
                 Data = jobAlert,
-                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/member/jobalert")
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/member/email/{jobAlert.Email}/jobalert")
             };
             ConnectorResponse response = JXTNext.Common.API.Connector.Post(connectorRequest);
 

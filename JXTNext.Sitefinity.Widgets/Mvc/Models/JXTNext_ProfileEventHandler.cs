@@ -1,4 +1,5 @@
-﻿using JXTNext.Sitefinity.Common.Models;
+﻿using JXTNext.Sitefinity.Common.Helpers;
+using JXTNext.Sitefinity.Common.Models;
 using JXTNext.Sitefinity.Connector.BusinessLogics;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Mappers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
@@ -24,13 +25,17 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Models
 
             UserProfileManager userProfileManager = UserProfileManager.GetManager();
             SitefinityProfile profile = userProfileManager.GetUserProfile(user, eventinfo.ProfileType) as SitefinityProfile;
-            
+
+            // user.ExternalProviderName is null means registrating through normal registration
+            // Otherwise registring through External provider like LinkedIn, Facebook, etc...
+            // In case external provider, we will recieve the password as null but JXTNext Member database table requires
+            // password should not be empty, so generating some random password of 8 characters length.
             JXTNext_MemberRegister memberReg = new JXTNext_MemberRegister
             {
                 Email = user.Email,
                 FirstName = profile.FirstName,
                 LastName = profile.LastName,
-                Password = user.Password
+                Password = user.ExternalProviderName.IsNullOrEmpty() ? user.Password : GeneralHelper.GeneratePassword(8)
             };
 
             IEnumerable<IJobListingMapper> jobListingMappers = new List<IJobListingMapper> { new JXTNext_JobListingMapper() };

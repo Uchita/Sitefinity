@@ -131,6 +131,24 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return seekRedirectUri;
         }
 
+        public string GetCurrentSiteIndeedClientAPIToken()
+        {
+            string indeedClientAPIToken = "";
+            if (this._siteSettingsContract != null)
+                indeedClientAPIToken = this._siteSettingsContract.IndeedClientAPIToken;
+
+            return indeedClientAPIToken;
+        }
+
+        public string GetCurrentSiteIndeedClientSecret()
+        {
+            string indeedClientSecret = "";
+            if (this._siteSettingsContract != null)
+                indeedClientSecret = this._siteSettingsContract.IndeedClientSecret;
+
+            return indeedClientSecret;
+        }
+
         private const string _itemType = "JXTNext.Sitefinity.Common.Models.CustomSiteSettings.CustomSiteSettingsContract";
         private CustomSiteSettingsContract _siteSettingsContract = null;
     }

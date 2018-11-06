@@ -1,4 +1,4 @@
-﻿var ThemeGlobal = {};
+var ThemeGlobal = {};
 
 ThemeGlobal.QuickLinksToggle = function () {
     var trigger = $('[data-quick-links-toggle=""]'),
@@ -275,7 +275,8 @@ $(document).ready(function () {
     });
     $('.owl-carousel-jumbotron').owlCarousel({
         items: 1,
-        loop: false,
+        loop: true,
+        autoplay: true,
         nav: true,
         dots: false,
         navContainerClass: 'owl-nav'

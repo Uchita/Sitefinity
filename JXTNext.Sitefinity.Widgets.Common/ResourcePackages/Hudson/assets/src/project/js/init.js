@@ -346,6 +346,12 @@ $(document).ready(function () {
         });
     }
 
+    if( $('.search-toggle').length ){
+        $('.search-toggle').on('click', function(){
+           $('.keywordfilter').toggle(); 
+        });
+    }
+
 });
 
 $(window).resize(function () {

@@ -11276,46 +11276,78 @@ select.articles-order {
     margin-bottom: 8px; }
   .job-container {
     position: static; }
-  .filter-toggle {
+  .filter-toggle, .search-toggle {
     display: block;
     position: absolute;
     top: 0;
     left: 15px;
-    width: 100px;
+    width: 80px;
     overflow: hidden; }
-    .filter-toggle .btn {
-      padding: 12px 20px;
+    .filter-toggle .btn, .filter-toggle i, .search-toggle .btn, .search-toggle i {
+      padding: 11px 10px;
       width: 100%;
       background: #fff;
       color: #01a3a4;
       border: 1px solid #01a3a4;
       font-size: 1.6rem;
-      line-height: 1.15; }
-      .filter-toggle .btn:hover, .filter-toggle .btn:focus {
+      line-height: 1;
+      margin-bottom: 0; }
+      .filter-toggle .btn:hover, .filter-toggle .btn:focus, .filter-toggle i:hover, .filter-toggle i:focus, .search-toggle .btn:hover, .search-toggle .btn:focus, .search-toggle i:hover, .search-toggle i:focus {
         background: #01a3a4;
         color: #fff; }
+  .search-toggle {
+    left: auto;
+    right: 15px;
+    width: 40px; }
   .search-top .jobalert-btn {
     position: absolute;
     top: 20px;
-    left: 130px;
-    padding: 12px 20px;
+    right: 65px;
+    padding: 10px 20px;
+    margin: 0 !important;
     font-size: 1.6rem !important;
-    line-height: 1.15; }
+    line-height: 1.15;
+    width: 40px;
+    text-indent: -92em;
+    overflow: hidden; }
+    .search-top .jobalert-btn::before {
+      content: '\f0f3';
+      font: 900 2.2rem/1.7 'Font Awesome 5 Free';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+      text-indent: 0; }
   .search-top .select {
     position: absolute;
     top: 20px;
-    left: 335px;
-    min-width: calc(100% - 420px); }
+    left: 105px;
+    min-width: 103px !important;
+    width: 104px;
+    margin-top: 0 !important; }
     .search-top .select select {
-      height: 44px !important;
+      height: 40px !important;
       text-transform: uppercase;
       font-size: 1.6rem !important;
-      font-family: AkzidGroProMed,sans-serif; }
+      font-family: AkzidGroProMed, sans-serif;
+      padding-right: 20px; }
       .search-top .select select option {
         text-transform: none;
-        font-family: AkzidGroProReg,sans-serif; }
+        font-family: AkzidGroProReg, sans-serif; }
+  .sm-wrapper {
+    display: none;
+    margin-top: 20px; }
   div#filtersPagePartialContent {
-    padding-top: 65px; }
+    padding-top: 50px; }
+    div#filtersPagePartialContent .keywordfilter {
+      display: none;
+      margin-top: 10px; }
+    div#filtersPagePartialContent .filter-outer-wrapper {
+      margin-bottom: 10px; }
+    div#filtersPagePartialContent .sm-wrapper {
+      margin-top: 10px;
+      margin-bottom: 20px; }
   .list-featured-articles {
     padding: 0 !important;
     margin: 0 auto 40px;
@@ -11342,9 +11374,6 @@ select.articles-order {
       .list-featured-articles li .featured-article {
         margin: 0 auto;
         width: 90%; }
-  .sm-wrapper {
-    display: none;
-    margin-top: 20px; }
   .risk-measurement .risk-wrapper {
     width: 50%;
     margin: 10px auto 20px; }

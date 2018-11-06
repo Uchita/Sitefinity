@@ -930,56 +930,95 @@
     .job-container{
         position: static;
     }
-    .filter-toggle{
+    .filter-toggle, .search-toggle{
         display: block;
         position: absolute;
         top: 0;
         left: 15px;
-        width: 100px;
+        width: 80px;
         overflow: hidden;
-        .btn{
-            padding: 12px 20px;
+        .btn, i{
+            padding: 11px 10px;
             width: 100%;
             background: $brightColor;
             color: $global-highlight-color;
             border: 1px solid $global-highlight-color;
             font-size: 1.6rem;
-            line-height: 1.15;
+            line-height: 1;
+            margin-bottom: 0;
             &:hover, &:focus{
                 background: $global-highlight-color;
                 color: $brightColor;
             }
         }
     }
+    .search-toggle{
+        left: auto;
+        right: 15px;
+        width: 40px;
+    }
     
     .search-top{
         .jobalert-btn{
             position: absolute;
             top: 20px;
-            left: 130px;
-            padding: 12px 20px;
+            right: 65px;
+            padding: 10px 20px;
+            margin: 0!important;
             font-size: 1.6rem!important;
             line-height: 1.15;
+            width: 40px;
+            text-indent: -92em;
+            overflow: hidden;
+            &::before {
+                content: '\f0f3';
+                font: 900 2.2rem/1.7 'Font Awesome 5 Free';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                z-index: 1;
+                text-indent: 0;
+            }
         }
         .select{
             position: absolute;
             top: 20px;
-            left: 335px;
-            min-width: calc(100% - 420px);
+            left: 105px;
+            min-width: 103px!important;
+            width: 104px;
+            margin-top: 0!important;
+
             select{
-                height: 44px!important;
+                height: 40px!important;
                 text-transform: uppercase;
                 font-size: 1.6rem!important;
-                font-family: AkzidGroProMed,sans-serif;
+                font-family: $font-family-medium;
+                padding-right: 20px;
                 option {
                     text-transform: none;
-                    font-family: AkzidGroProReg,sans-serif;
+                    font-family: $font-family-regular;
                 }
             }
         }
     }
+    .sm-wrapper{
+        display: none;
+        margin-top: 20px;
+    }
     div#filtersPagePartialContent{
-        padding-top: 65px;
+        padding-top: 50px;
+        .keywordfilter{
+            display: none;
+            margin-top:10px;
+        }
+        .filter-outer-wrapper{
+            margin-bottom: 10px;
+        }
+        .sm-wrapper{
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
     }
     
     .list-featured-articles {
@@ -1033,10 +1072,7 @@
             }
         }
     }
-    .sm-wrapper{
-        display: none;
-        margin-top: 20px;
-    }
+    
     .risk-measurement .risk-wrapper {
         width: 50%;
         margin: 10px auto 20px;

@@ -125,6 +125,23 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
             }
         }
 
+        public static void ProcessFilterLevelsToFlat(JobSearchFilterReceiverItem filterItem, List<string> values)
+        {
+            if (filterItem != null)
+            {
+                if (values != null)
+                    values.Add(filterItem.ItemID);
+
+                if (filterItem.SubTargets != null && filterItem.SubTargets.Count > 0)
+                {
+                    foreach (var subItem in filterItem.SubTargets)
+                    {
+                        ProcessFilterLevelsToFlat(subItem, values);
+                    }
+                }
+            }
+        }
+
 
         public static SearchSortBy GetSortEnumFromString(string sort)
         {

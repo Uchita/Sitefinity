@@ -20,9 +20,9 @@
             <div class="alert alert-success">@Model.Widget.EmailSentMessage</div>
         }
 
-        using (Html.BeginFormSitefinity("", "JobEmailForm", FormMethod.Post, new { @class = "ajaxsss" }))
+        using (Html.BeginFormSitefinity("", "JobEmailForm", FormMethod.Post))
         {
-            Html.ValidationSummary(true, null, new { @class = "alert alert-danger" });
+            @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" });
 
             <div class="form-group form-group-Job">
                 <label>@Html.Raw(Model.Widget.JobLabel)</label>

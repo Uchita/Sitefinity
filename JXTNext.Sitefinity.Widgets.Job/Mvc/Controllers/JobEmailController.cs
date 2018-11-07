@@ -1,12 +1,17 @@
-﻿using JXTNext.Sitefinity.Connector.BusinessLogics;
+﻿using JXTNext.Sitefinity.Common.Helpers;
+using JXTNext.Sitefinity.Common.Models.Communications;
+using JXTNext.Sitefinity.Connector.BusinessLogics;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
-using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
 using JXTNext.Sitefinity.Connector.Options;
 using JXTNext.Sitefinity.Widgets.Job.Mvc.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Dynamic;
 using System.Linq;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using Telerik.Sitefinity.DynamicModules;
 using Telerik.Sitefinity.Model;
@@ -222,7 +227,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             try
             {
-                if (_SendEmail(form))
+                if (_SendEmail(form, viewModel.Job))
                 {
                     var manager = PageManager.GetManager();
                     var node = SiteMapBase.GetActualCurrentNode();
@@ -251,7 +256,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         #region Private methods
 
-        private dynamic _GetRequestedJob(int jobId)
+        private JobDetailsFullModel _GetRequestedJob(int jobId)
         {
             try
             {
@@ -269,39 +274,91 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return null;
         }
 
-        private bool _SendEmail(JobEmailFormModel form)
+        private bool _SendEmail(JobEmailFormModel form, JobDetailsFullModel job)
         {
             var subject = string.IsNullOrWhiteSpace(this.EmailSubject) ? "Job for you" : this.EmailSubject;
 
             var content = _GetHtmlEmailContent();
 
+            var emailSender = new SitefinityEmailSender();
+
+            // ideally there should be a common method to get a job's url
+            // doing this due to lack of such method
+            var jobUrl = Request.Url.Scheme + "://" + Request.Url.Authority;
+            if (!string.IsNullOrWhiteSpace(JobDetailsPageId))
+            {
+                jobUrl += SitefinityHelper.GetPageUrl(JobDetailsPageId);
+
+                if (job.Classifications.Count > 0)
+                {
+                    List<string> seoString = new List<string>();
+                    foreach (var key in job.Classifications[0].Keys)
+                    {
+                        string value = job.Classifications[0][key].ToString();
+                        string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
+                        seoString.Add(SEOString);
+                    }
+
+                    jobUrl += String.Join("/", seoString);
+                }
+
+                jobUrl += "/" + job.JobID;
+            }
+
+            dynamic data = new ExpandoObject();
+
+            data.Job = new ExpandoObject();
+            data.Job.Id = job.JobID;
+            data.Job.Title = job.Title;
+            data.Job.Url = jobUrl;
+
+            var result = false;
+
             if (form.EmailFriend)
             {
-                var from = new EmailTarget(form.Name, form.Email);
+                var from = new MailAddress(form.Email, form.Name);
 
                 foreach (var item in form.Friend)
                 {
-                    var to = new EmailTarget(item.Name, item.Email);
+                    var emailRequest = new EmailRequest
+                    {
+                        To = new MailAddress(item.Email, item.Name),
+                        From = from,
+                        Subject = subject,
+                        EmailBody = content
+                    };
 
-                    var emailNotificationSettings = new EmailNotificationSettings(from, to, subject, content);
-
-                    // todo parse email content
-                    // todo send email
+                    if (emailSender.SendEmail(emailRequest, data))
+                    {
+                        result = true;
+                    }
                 }
             }
             else
             {
-                var from = new EmailTarget(this.EmailFromName, this.EmailFromEmail);
+                MailAddress from;
 
-                var to = new EmailTarget(form.Name, form.Email);
+                if (string.IsNullOrWhiteSpace(this.EmailFromEmail))
+                {
+                    from = null;
+                }
+                else
+                {
+                    from = new MailAddress(this.EmailFromEmail, this.EmailFromName);
+                }
 
-                var emailNotificationSettings = new EmailNotificationSettings(from, to, subject, content);
+                var emailRequest = new EmailRequest
+                {
+                    To = new MailAddress(form.Email, form.Name),
+                    From = from,
+                    Subject = subject,
+                    EmailBody = content
+                };
 
-                // todo parse email content
-                // todo send email
+                result = emailSender.SendEmail(emailRequest, data);
             }
 
-            return true;
+            return result;
         }
 
         private string _GetHtmlEmailContent()

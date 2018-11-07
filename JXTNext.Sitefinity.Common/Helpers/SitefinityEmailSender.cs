@@ -51,7 +51,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 ReceiverToCc = emailRequest.Cc,
                 From = emailRequest.From,
                 EmailBody = emailRequest.EmailBody,
-                EmailSubject = emailRequest.EmailBody,
+                EmailSubject = emailRequest.Subject,
                 Host = smtpSettings.Host,
                 Port = smtpSettings.Port,
                 SMTP_Password = smtpSettings.Password,

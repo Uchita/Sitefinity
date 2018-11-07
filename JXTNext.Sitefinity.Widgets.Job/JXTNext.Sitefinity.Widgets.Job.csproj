@@ -369,6 +369,10 @@
       <Project>{bf418b44-ebce-499f-bbd3-6ba98a24e144}</Project>
       <Name>JXTNext.Sitefinity.Connector</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Services.Intefaces\JXTNext.Sitefinity.Services.Intefaces.csproj">
+      <Project>{94381396-d85e-469c-b828-24cf03548df5}</Project>
+      <Name>JXTNext.Sitefinity.Services.Intefaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mvc\Scripts\JobDetails\designerview-simple.js" />

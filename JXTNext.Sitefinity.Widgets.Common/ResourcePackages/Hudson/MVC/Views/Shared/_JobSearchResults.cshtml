@@ -6,6 +6,7 @@
 
 @{ 
     var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
+    var isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
 }
 
 <div class="result-meta">
@@ -17,19 +18,27 @@
         <a class="btn btn-sm" href="">ADD FAVOURITE</a>
     *@
     <div>Receive new jobs for this search by email.</div>
-        <div>
-            <input type="email" id="anonycreatejobalert" value="" placeholder="Receive new jobs for this search by email." class="jobalert-field" /><a class="btn btn-sm jobalert-btn ml-5" href="/user-dashboard/Create" title="Create you job alert">CREATE JOB ALERT</a>
-            <div class="select">
-                <select id="sortOrder" class="default-select">
-                    <option selected="selected" value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
-                    <option value="Old">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
-                    <option value="A-Z">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
-                    <option value="Z-A">@Html.Resource("SortByAlphaZA", "JobSearchResultsResources")</option>
-                    <option value="SalaryHighToLow">@Html.Resource("SortBySalHighToLow", "JobSearchResultsResources")</option>
-                    <option value="SalaryLowToHigh">@Html.Resource("SortBySalLowToHigh", "JobSearchResultsResources")</option>
-                </select>
-            </div>
+    <div>
+        <input type="email" id="anonycreatejobalert" value="" placeholder="Receive new jobs for this search by email." class="jobalert-field" />
+        @if (isLoggedIn)
+        {
+            <a class="btn btn-sm jobalert-btn ml-5" href="/user-dashboard/Create" title="Create you job alert">CREATE JOB ALERT</a>
+        }
+        else
+        {
+            <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create you job alert">CREATE ANON JOB ALERT</a>
+        }
+        <div class="select">
+            <select id="sortOrder" class="default-select">
+                <option selected="selected" value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
+                <option value="Old">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
+                <option value="A-Z">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
+                <option value="Z-A">@Html.Resource("SortByAlphaZA", "JobSearchResultsResources")</option>
+                <option value="SalaryHighToLow">@Html.Resource("SortBySalHighToLow", "JobSearchResultsResources")</option>
+                <option value="SalaryLowToHigh">@Html.Resource("SortBySalLowToHigh", "JobSearchResultsResources")</option>
+            </select>
         </div>
+    </div>
     </div>
 
     <div id="listView" class="search-results"></div>
@@ -245,6 +254,30 @@
 
         };
 
+
+        $('#anon-job-alert').click(function () {
+            var email = $('#anonycreatejobalert').val();
+            var alertData = { filterModel: filterModel, email: email };
+            var urlPath = $(location).attr('pathname') + "/CreateAnonymousJobAlert";
+            $.ajax({
+                type: 'POST',
+                cache: false,
+                url: urlPath,
+                data: alertData,
+                dataType: 'Json',
+                success: function (response) {
+                    console.log(response);
+                    if (response.Success == true) {
+                        
+                    }
+                    else {
+                        
+                    }
+                },
+                error: function (response) { // Error
+                }
+            });
+        });
 
 
         $("#sortOrder").change(function () {

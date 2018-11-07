@@ -12,9 +12,15 @@
                 <label>Email Sent Message</label>
                 <input ng-model="properties.EmailSentMessage.PropertyValue" type="text" class="form-control" />
             </div>
+
+            <div class="form-group">
+                <label>Job Details Page</label>
+                <sf-list-selector sf-page-selector
+                                  sf-selected-item-id="properties.JobDetailsPageId.PropertyValue" />
+            </div>
         </uib-tab>
 
-        <uib-tab heading="Email">           
+        <uib-tab heading="Email">
             <div class="form-group">
                 <label>Subject</label>
                 <input ng-model="properties.EmailSubject.PropertyValue" type="text" class="form-control" />

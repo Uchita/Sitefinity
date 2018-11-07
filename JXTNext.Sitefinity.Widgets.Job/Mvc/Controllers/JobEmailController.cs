@@ -68,6 +68,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string EmailFromName { get; set; }
         public string EmailFromEmail { get; set; }
 
+        public string JobDetailsPageId { get; set; }
+
         public string ItemType
         {
             get { return this._itemType; }

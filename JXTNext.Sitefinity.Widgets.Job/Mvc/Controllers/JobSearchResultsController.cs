@@ -183,6 +183,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
                         seoString.Add(SEOString);
                     }
+                    seoString.Add(Regex.Replace(item.Title, @"([^\w]+)", "-"));
 
                     item.ClassificationsSEORouteName = String.Join("/", seoString);
                 }

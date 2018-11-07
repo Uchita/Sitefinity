@@ -289,7 +289,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 jobUrl += SitefinityHelper.GetPageUrl(JobDetailsPageId);
 
-                if (job.Classifications.Count > 0)
+                if (job.Classifications != null && job.Classifications.Count > 0)
                 {
                     List<string> seoString = new List<string>();
                     foreach (var key in job.Classifications[0].Keys)

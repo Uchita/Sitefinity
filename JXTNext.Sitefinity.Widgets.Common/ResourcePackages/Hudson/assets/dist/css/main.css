@@ -7866,6 +7866,15 @@ header {
   top: 0;
   width: 100%;
   z-index: 998; }
+  header .brand-logo {
+    background: url("../images/hudson_logo_white.svg") no-repeat 0 0/100% auto;
+    width: 200px;
+    display: block;
+    text-indent: -99em;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease; }
   header .navbar-fixed-top:before {
     content: '';
     position: absolute;
@@ -7877,6 +7886,7 @@ header {
     background: black;
     background: rgba(0, 0, 0, 0.8); }
   header .navbar-fixed-top .brand-logo {
+    width: 127px;
     height: 50px;
     top: 20px; }
   header .navbar-fixed-top .main-nav {
@@ -8058,7 +8068,7 @@ header {
       left: 0;
       width: 100%;
       max-height: 100%;
-      height: calc(100% - 110px);
+      height: calc(100% - 95px);
       background: #2e2e2e;
       overflow: auto;
       z-index: 1000; }
@@ -8093,17 +8103,27 @@ header {
         font-size: 1.8rem; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu {
         padding-right: 0;
-        padding-left: 0; }
-        header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu a {
-          padding: 5px 30px 5px 0;
-          color: #fff; }
+        padding-left: 0;
+        position: fixed;
+        background: #01a3a4;
+        height: 100%;
+        top: 45px; }
+        header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu li {
+          padding: 0 20px; }
+          header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu li a {
+            padding: 11px 30px 12px 0;
+            color: #fff;
+            font: 1.6rem/1.2 AkzidGroProReg, sans-serif;
+            border-bottom: 1px solid #fff; }
+          header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu li .custom-expander {
+            right: 15px; }
+          header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu li:last-child a {
+            border-bottom: none; }
         header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu .dropdown.open > a {
           background: none;
           color: #fff; }
         header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu .dropdown.dropdown-active > a {
           color: #000; }
-        header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu ul {
-          padding-left: 10px; }
         header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu .custom-expander {
           right: 0; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .open > .custom-expander::before {
@@ -8132,6 +8152,18 @@ header {
         height: 15px;
         position: relative;
         margin-right: 20px; }
+  header .back-mnu {
+    position: fixed;
+    left: 20px;
+    color: #fff;
+    top: 14px;
+    text-transform: uppercase;
+    font-family: AkzidGroProMed, sans-serif; }
+    header .back-mnu::before {
+      content: '\f104';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      margin-right: 5px; }
 
 .open .fa-caret-down:before {
   content: '\f0d8'; }
@@ -8268,7 +8300,12 @@ main {
     .left-sidebar .container-fluid > a .caret, .left-sidebar .navbar-collapse > a .caret {
       position: absolute;
       right: 0;
-      top: 10px; }
+      top: 10px;
+      border-bottom: 4px solid;
+      border-top: none; }
+    .left-sidebar .container-fluid > a.collapsed .caret, .left-sidebar .navbar-collapse > a.collapsed .caret {
+      border-bottom-color: transparent;
+      border-top: 4px solid; }
   .left-sidebar .container-fluid .nav, .left-sidebar .navbar-collapse .nav {
     width: 100%; }
     .left-sidebar .container-fluid .nav li, .left-sidebar .navbar-collapse .nav li {
@@ -9733,6 +9770,10 @@ ul.breadcrumb {
   .job-search .fa-angle-up {
     display: none;
     color: #fff; }
+  .job-search .filter em {
+    margin-left: 3px;
+    position: relative;
+    top: 2px; }
   .job-search .filter-active {
     position: relative; }
     .job-search .filter-active a {
@@ -10042,6 +10083,8 @@ ul.breadcrumb {
           background: #219fa3;
           color: #fff;
           border-color: #219fa3; }
+        #pager ul li a[disabled] {
+          display: none; }
   #pager .pagePrev a, #pager .pageNext a {
     padding: 0 10px; }
 
@@ -10725,7 +10768,7 @@ select.articles-order {
 /*#region Tablet*/
 @media (min-width: 768px) {
   header .brand-logo {
-    height: 55px;
+    height: 50px;
     position: relative !important;
     top: 15px;
     z-index: 100; }
@@ -11120,23 +11163,26 @@ select.articles-order {
     background: #007077;
     background: rgba(0, 112, 119, 0.8); }
   header .brand-logo {
-    height: 40px;
+    height: 23px;
     width: 150px;
     display: block;
-    margin: 10px auto; }
+    margin: 10px auto;
+    background-image: url("../images/logo-sm.png");
+    background-size: auto 100%;
+    background-position: center; }
   header .navbar-fixed-top .brand-logo {
-    height: 40px;
+    height: 23px;
     text-align: center; }
   header .navbar-fixed-top .main-nav {
-    top: 15px; }
+    top: 8px; }
   header .main-nav {
     position: absolute;
-    top: 15px;
-    left: 10px;
+    top: 8px;
+    right: 10px;
     margin: 0;
     height: 0;
     width: auto;
-    min-width: 50px; }
+    min-width: 42px; }
     header .main-nav .navbar-default .navbar-toggle {
       float: left;
       border: 0;
@@ -11149,7 +11195,7 @@ select.articles-order {
           content: '\f00d';
           color: #fff;
           position: relative;
-          left: -2px;
+          left: 2px;
           top: -2px; }
         header .main-nav .navbar-default .navbar-toggle .icon-bar + .icon-bar {
           display: none; }
@@ -11218,8 +11264,90 @@ select.articles-order {
     margin-top: 0;
     margin-bottom: 10px;
     width: 50%; }
-  .filter-toggle {
-    display: block; }
+  .job-search .filter > a {
+    margin-left: 0; }
+  .job-search .col-xs-5 {
+    width: auto;
+    float: left; }
+  .job-search .col-xs-4.pull-right {
+    width: auto;
+    padding-left: 0; }
+  .job-search .form-group {
+    margin-bottom: 8px; }
+  .job-container {
+    position: static; }
+  .filter-toggle, .search-toggle {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 15px;
+    width: 80px;
+    overflow: hidden; }
+    .filter-toggle .btn, .filter-toggle i, .search-toggle .btn, .search-toggle i {
+      padding: 11px 10px;
+      width: 100%;
+      background: #fff;
+      color: #01a3a4;
+      border: 1px solid #01a3a4;
+      font-size: 1.6rem;
+      line-height: 1;
+      margin-bottom: 0; }
+      .filter-toggle .btn:hover, .filter-toggle .btn:focus, .filter-toggle i:hover, .filter-toggle i:focus, .search-toggle .btn:hover, .search-toggle .btn:focus, .search-toggle i:hover, .search-toggle i:focus {
+        background: #01a3a4;
+        color: #fff; }
+  .search-toggle {
+    left: auto;
+    right: 15px;
+    width: 40px; }
+  .search-top .jobalert-btn {
+    position: absolute;
+    top: 20px;
+    right: 65px;
+    padding: 10px 20px;
+    margin: 0 !important;
+    font-size: 1.6rem !important;
+    line-height: 1.15;
+    width: 40px;
+    text-indent: -92em;
+    overflow: hidden; }
+    .search-top .jobalert-btn::before {
+      content: '\f0f3';
+      font: 900 2.2rem/1.7 'Font Awesome 5 Free';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+      text-indent: 0; }
+  .search-top .select {
+    position: absolute;
+    top: 20px;
+    left: 105px;
+    min-width: 103px !important;
+    width: 104px;
+    margin-top: 0 !important; }
+    .search-top .select select {
+      height: 40px !important;
+      text-transform: uppercase;
+      font-size: 1.6rem !important;
+      font-family: AkzidGroProMed, sans-serif;
+      padding-right: 20px; }
+      .search-top .select select option {
+        text-transform: none;
+        font-family: AkzidGroProReg, sans-serif; }
+  .sm-wrapper {
+    display: none;
+    margin-top: 20px; }
+  div#filtersPagePartialContent {
+    padding-top: 50px; }
+    div#filtersPagePartialContent .keywordfilter {
+      display: none;
+      margin-top: 10px; }
+    div#filtersPagePartialContent .filter-outer-wrapper {
+      margin-bottom: 10px; }
+    div#filtersPagePartialContent .sm-wrapper {
+      margin-top: 10px;
+      margin-bottom: 20px; }
   .list-featured-articles {
     padding: 0 !important;
     margin: 0 auto 40px;
@@ -11246,9 +11374,6 @@ select.articles-order {
       .list-featured-articles li .featured-article {
         margin: 0 auto;
         width: 90%; }
-  .sm-wrapper {
-    display: none;
-    margin-top: 20px; }
   .risk-measurement .risk-wrapper {
     width: 50%;
     margin: 10px auto 20px; }

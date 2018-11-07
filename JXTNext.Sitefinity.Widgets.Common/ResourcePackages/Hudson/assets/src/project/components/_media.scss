@@ -3,11 +3,10 @@
     header {
 
         .brand-logo {
-            height: 55px;
+            height: 50px;
             position: relative !important;
             top: 15px;
             z-index: 100;
-
             a {
 
                 img {
@@ -743,30 +742,32 @@
             background: rgba(0,112,119,.8);
         }
         .brand-logo {
-            height: 40px;
+            height: 23px;
             width: 150px;
             display: block;
             margin: 10px auto;
-           
+            background-image: url('../images/logo-sm.png');
+            background-size: auto 100%;
+            background-position: center;
         }
         .navbar-fixed-top{
             .brand-logo {
-                height: 40px;
+                height: 23px;
                 text-align: center;
             }
             .main-nav{
-                top: 15px;
+                top: 8px;
             }
         }
 
         .main-nav {
             position: absolute;
-            top: 15px;
-            left: 10px;
+            top: 8px;
+            right: 10px;
             margin: 0;
             height: 0;
             width: auto;
-            min-width: 50px;
+            min-width: 42px;
 
             .navbar-default .navbar-toggle {
                 float: left;
@@ -781,7 +782,7 @@
                         content: '\f00d';
                         color: $brightColor;
                         position: relative;
-                        left: -2px;
+                        left: 2px;
                         top: -2px;
                     }
                     & + .icon-bar{
@@ -909,10 +910,117 @@
                 width: 50%;
             }
         }
+        .filter > a{
+            margin-left: 0;
+        } 
+
+        .col-xs-5{
+            width: auto;
+            float: left;
+        }
+        .col-xs-4.pull-right{
+            width: auto;
+            padding-left: 0;
+        }
+        .form-group{
+            margin-bottom: 8px;
+        }
     }
-    .filter-toggle{
+
+    .job-container{
+        position: static;
+    }
+    .filter-toggle, .search-toggle{
         display: block;
+        position: absolute;
+        top: 0;
+        left: 15px;
+        width: 80px;
+        overflow: hidden;
+        .btn, i{
+            padding: 11px 10px;
+            width: 100%;
+            background: $brightColor;
+            color: $global-highlight-color;
+            border: 1px solid $global-highlight-color;
+            font-size: 1.6rem;
+            line-height: 1;
+            margin-bottom: 0;
+            &:hover, &:focus{
+                background: $global-highlight-color;
+                color: $brightColor;
+            }
+        }
     }
+    .search-toggle{
+        left: auto;
+        right: 15px;
+        width: 40px;
+    }
+    
+    .search-top{
+        .jobalert-btn{
+            position: absolute;
+            top: 20px;
+            right: 65px;
+            padding: 10px 20px;
+            margin: 0!important;
+            font-size: 1.6rem!important;
+            line-height: 1.15;
+            width: 40px;
+            text-indent: -92em;
+            overflow: hidden;
+            &::before {
+                content: '\f0f3';
+                font: 900 2.2rem/1.7 'Font Awesome 5 Free';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                z-index: 1;
+                text-indent: 0;
+            }
+        }
+        .select{
+            position: absolute;
+            top: 20px;
+            left: 105px;
+            min-width: 103px!important;
+            width: 104px;
+            margin-top: 0!important;
+
+            select{
+                height: 40px!important;
+                text-transform: uppercase;
+                font-size: 1.6rem!important;
+                font-family: $font-family-medium;
+                padding-right: 20px;
+                option {
+                    text-transform: none;
+                    font-family: $font-family-regular;
+                }
+            }
+        }
+    }
+    .sm-wrapper{
+        display: none;
+        margin-top: 20px;
+    }
+    div#filtersPagePartialContent{
+        padding-top: 50px;
+        .keywordfilter{
+            display: none;
+            margin-top:10px;
+        }
+        .filter-outer-wrapper{
+            margin-bottom: 10px;
+        }
+        .sm-wrapper{
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+    }
+    
     .list-featured-articles {
         padding: 0!important;
         margin: 0 auto 40px;
@@ -964,10 +1072,7 @@
             }
         }
     }
-    .sm-wrapper{
-        display: none;
-        margin-top: 20px;
-    }
+    
     .risk-measurement .risk-wrapper {
         width: 50%;
         margin: 10px auto 20px;

@@ -363,9 +363,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         private string _GetHtmlEmailContent()
         {
-            var htmlEmailContent = String.Empty;
+            string htmlEmailContent;
 
-            if (!String.IsNullOrEmpty(this.EmailTemplateId))
+            if (string.IsNullOrEmpty(this.EmailTemplateId))
+            {
+                htmlEmailContent = _GetDefaultHtmlEmailContent();
+            }
+            else
             {
                 var dynamicModuleManager = DynamicModuleManager.GetManager(_emailTemplateProvider);
 
@@ -373,10 +377,33 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
                 var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.EmailTemplateId.ToUpper()));
 
-                htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
+                if (emailTemplateItem == null)
+                {
+                    htmlEmailContent = _GetDefaultHtmlEmailContent();
+                }
+                else
+                {
+                    htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
+                }
             }
 
             return htmlEmailContent;
+        }
+
+        private string _GetDefaultHtmlEmailContent()
+        {
+            return @"
+                <p>Hi {Recipient.DisplayName},</p>
+
+                <p>Have a look at this job:<br />
+                Job: {Job.Title}<br />
+                URL: {Job.Url}</p>
+
+                <p>{Message}</p>
+
+                <p>Cheers<br />
+                {Sender.DisplayName}</p>
+            ";
         }
 
         private int _GetMaxFriends()

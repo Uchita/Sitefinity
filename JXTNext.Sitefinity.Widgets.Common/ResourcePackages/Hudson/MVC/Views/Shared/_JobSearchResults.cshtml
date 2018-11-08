@@ -137,7 +137,7 @@
             if ($(this).hasClass('saved')) {
                 unSaveJob = true;
                 ajaxActionName = "/RemoveSavedJob";
-                jobid = $(this).data('savedjobid');
+                jobid = $(this).attr('data-savedjobid');
             }
 
             var parm = { JobId: jobid };
@@ -159,6 +159,7 @@
                         else {
                             self.addClass("saved");
                             self.text("Job saved");
+                            self.attr('data-savedjobid', response.SavedJobId);
                         }
                     }
                     else { // Job failed to save

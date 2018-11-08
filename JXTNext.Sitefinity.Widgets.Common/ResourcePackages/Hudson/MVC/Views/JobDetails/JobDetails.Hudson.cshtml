@@ -189,7 +189,7 @@
             <li><a href="#" class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="far fa-save"></em><span class="save-status-txt">Save this job</span></a></li>
             <li><a href="javascript:window.print();"><em class="fas fa-print"></em>Print this job</a></li>
             <li>
-                <a href="mailto:?body=@shareUrl&subject=@unencodedPageTitle" title="Tell a friend">
+                <a href="@ViewBag.EmailJobPageUrl?JobId=@Model.JobDetails.JobID" title="Tell a friend">
                     <em class="fas fa-envelope"></em>Email this job
                 </a>
             </li>

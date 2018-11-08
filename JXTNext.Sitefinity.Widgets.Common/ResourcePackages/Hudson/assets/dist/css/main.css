@@ -7275,6 +7275,13 @@ blockquote {
 .width-limit {
   max-width: 450px; }
 
+.caret {
+  width: 8px;
+  border: none;
+  font: 900 1.3rem/1 'Font Awesome 5 Free'; }
+  .caret:before {
+    content: '\f107'; }
+
 .page-wrapper {
   font-size: 16px;
   font-size: 1.6rem;
@@ -7547,7 +7554,7 @@ blockquote {
     padding: 0;
     position: relative; }
     .page-wrapper .select:before {
-      content: '\f0d7';
+      content: '\f107';
       position: absolute;
       top: 50%;
       right: 0;
@@ -8165,9 +8172,6 @@ header {
       font-weight: 900;
       margin-right: 5px; }
 
-.open .fa-caret-down:before {
-  content: '\f0d8'; }
-
 /*#endregion Header */
 /*#region Main */
 /*temp*/
@@ -8300,12 +8304,16 @@ main {
     .left-sidebar .container-fluid > a .caret, .left-sidebar .navbar-collapse > a .caret {
       position: absolute;
       right: 0;
-      top: 10px;
-      border-bottom: 4px solid;
-      border-top: none; }
+      top: 6px;
+      width: 8px;
+      border: none;
+      font: 900 1.3rem/1 'Font Awesome 5 Free'; }
+      .left-sidebar .container-fluid > a .caret:before, .left-sidebar .navbar-collapse > a .caret:before {
+        content: '\f107'; }
     .left-sidebar .container-fluid > a.collapsed .caret, .left-sidebar .navbar-collapse > a.collapsed .caret {
-      border-bottom-color: transparent;
-      border-top: 4px solid; }
+      right: -1px; }
+      .left-sidebar .container-fluid > a.collapsed .caret:before, .left-sidebar .navbar-collapse > a.collapsed .caret:before {
+        content: '\f105'; }
   .left-sidebar .container-fluid .nav, .left-sidebar .navbar-collapse .nav {
     width: 100%; }
     .left-sidebar .container-fluid .nav li, .left-sidebar .navbar-collapse .nav li {
@@ -8322,7 +8330,7 @@ main {
         text-align: right;
         line-height: 20px; }
         .left-sidebar .container-fluid .nav li span.dropdown-toggle, .left-sidebar .navbar-collapse .nav li span.dropdown-toggle {
-          top: 12px; }
+          top: 10px; }
         .left-sidebar .container-fluid .nav li span.submenu-toggle, .left-sidebar .navbar-collapse .nav li span.submenu-toggle {
           top: 6px; }
       .left-sidebar .container-fluid .nav li > span, .left-sidebar .navbar-collapse .nav li > span {
@@ -8357,8 +8365,10 @@ main {
     .left-sidebar .container-fluid .nav > li > a, .left-sidebar .navbar-collapse .nav > li > a {
       font-family: AkzidGroProMed, sans-serif;
       color: #808080; }
-    .left-sidebar .container-fluid .nav .open > a > .fa-angle-down:before, .left-sidebar .container-fluid .nav .open > .fa-angle-down:before, .left-sidebar .navbar-collapse .nav .open > a > .fa-angle-down:before, .left-sidebar .navbar-collapse .nav .open > .fa-angle-down:before {
-      content: "\f106"; }
+    .left-sidebar .container-fluid .nav .open > a > .fa-angle-right:before, .left-sidebar .container-fluid .nav .open > .fa-angle-right:before, .left-sidebar .navbar-collapse .nav .open > a > .fa-angle-right:before, .left-sidebar .navbar-collapse .nav .open > .fa-angle-right:before {
+      content: "\f107"; }
+    .left-sidebar .container-fluid .nav .open > a > .fa-angle-right:before, .left-sidebar .container-fluid .nav .open > .fa-caret-right:before, .left-sidebar .navbar-collapse .nav .open > a > .fa-angle-right:before, .left-sidebar .navbar-collapse .nav .open > .fa-caret-right:before {
+      content: "\f0d7"; }
     .left-sidebar .container-fluid .nav .open > a, .left-sidebar .container-fluid .nav > li > a:focus, .left-sidebar .container-fluid .nav > li > a:hover, .left-sidebar .container-fluid .nav .open > a:focus, .left-sidebar .container-fluid .nav .open > a:hover, .left-sidebar .navbar-collapse .nav .open > a, .left-sidebar .navbar-collapse .nav > li > a:focus, .left-sidebar .navbar-collapse .nav > li > a:hover, .left-sidebar .navbar-collapse .nav .open > a:focus, .left-sidebar .navbar-collapse .nav .open > a:hover {
       background-color: transparent; }
     .left-sidebar .container-fluid .nav .active > a, .left-sidebar .container-fluid .nav .dropdown-active > a, .left-sidebar .container-fluid .nav .open > a, .left-sidebar .container-fluid .nav > li > a:focus, .left-sidebar .container-fluid .nav > li > a:hover, .left-sidebar .container-fluid .nav .open > a:focus, .left-sidebar .container-fluid .nav .open > a:hover,

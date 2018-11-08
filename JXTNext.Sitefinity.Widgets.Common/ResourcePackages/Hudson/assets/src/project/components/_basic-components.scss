@@ -16,6 +16,15 @@ blockquote{
 .width-limit{
     max-width: 450px;
 }
+
+.caret{
+    width: 8px;
+    border: none;
+    font: 900 1.3rem/1 'Font Awesome 5 Free';
+    &:before{
+        content: '\f107';
+    }
+}
 .page-wrapper {
     //page wrapper class will prevent general styles leaking into page designer styles when not needed
     font-size: $global-font-size-px;
@@ -391,7 +400,7 @@ blockquote{
         position: relative;
 
         &:before {
-            content: '\f0d7';
+            content: '\f107';
             position: absolute;
             top: 50%;
             right: 0;
@@ -1290,7 +1299,7 @@ header {
 .open{
     .fa-caret-down{
         &:before{
-            content: '\f0d8';
+            // content: '\f0d8';
         }
     }
 }
@@ -1482,14 +1491,24 @@ main {
         .caret{
             position: absolute;
             right: 0;
-            top: 10px;
-            border-bottom: 4px solid;
-            border-top:none;
+            top: 6px;
+            width: 8px;
+            border: none;
+            // border: 4px solid transparent;
+            // border-top-color: #000; 
+            font: 900 1.3rem/1 'Font Awesome 5 Free';
+            &:before{
+                content: '\f107';
+            }
         }
         &.collapsed{
             .caret{
-                border-bottom-color: transparent;
-                border-top:4px solid;
+                // border-left-color: #000;
+                // border-top-color: transparent;
+                right: -1px;
+                &:before{
+                    content: '\f105';
+                }
             }
         }
     }
@@ -1517,7 +1536,7 @@ main {
                 line-height: 20px;
 
                 &.dropdown-toggle{
-                    top:12px;
+                    top:10px;
                 } 
                 &.submenu-toggle {
                     top: 6px;
@@ -1577,8 +1596,11 @@ main {
             color: $sidebar-default-color;
         }
 
-        .open > a > .fa-angle-down:before, .open > .fa-angle-down:before {
-            content: "\f106";
+        .open > a > .fa-angle-right:before, .open > .fa-angle-right:before {
+            content: "\f107";
+        }
+        .open > a > .fa-angle-right:before, .open > .fa-caret-right:before, {
+            content: "\f0d7";
         }
 
         & .open > a, & > li > a:focus, & > li > a:hover, & .open > a:focus, & .open > a:hover {

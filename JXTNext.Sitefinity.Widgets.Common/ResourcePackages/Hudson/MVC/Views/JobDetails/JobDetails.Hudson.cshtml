@@ -181,6 +181,7 @@
 
         @{
             var shareUrl = SocialShareButtons.ShareUrl;
+            
             var unencodedPageTitle = Model.JobDetails.Title;
             var pageTitle = HttpUtility.UrlEncode(unencodedPageTitle);
         }
@@ -193,7 +194,6 @@
                     <em class="fas fa-envelope"></em>Email this job
                 </a>
             </li>
-
             @*<li><span class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="fas fa-save"></em>Save this job</span></li>*@
         </ul>
 
@@ -201,7 +201,7 @@
 }
     <script type="text/javascript">
     $(document).ready(function () {
-
+        document.title = '@Model.JobDetails.Title';
         var isLoggedIn = '@isUserLoggedIn';
 
         //checking user logged in is member role

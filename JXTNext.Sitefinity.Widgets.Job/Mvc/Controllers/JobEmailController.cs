@@ -16,6 +16,7 @@ using System.Web.Mvc;
 using Telerik.Sitefinity.DynamicModules;
 using Telerik.Sitefinity.Model;
 using Telerik.Sitefinity.Modules.Pages;
+using Telerik.Sitefinity.Multisite;
 using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Utilities.TypeConverters;
 using Telerik.Sitefinity.Web;
@@ -305,18 +306,21 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 jobUrl += "/" + job.JobID;
             }
 
-            dynamic data = new ExpandoObject();
+            dynamic templateData = new ExpandoObject();
 
-            data.Job = new ExpandoObject();
-            data.Job.Id = job.JobID;
-            data.Job.Title = job.Title;
-            data.Job.Url = jobUrl;
+            templateData.Job = new ExpandoObject();
+            templateData.Job.Id = job.JobID;
+            templateData.Job.Title = job.Title;
+            templateData.Job.Url = jobUrl;
 
             var result = false;
 
             if (form.EmailFriend)
             {
                 var from = new MailAddress(form.Email, form.Name);
+
+                templateData.Sender = from;
+                templateData.Message = Regex.Replace(form.FriendMessage, "<.*?>", String.Empty).Replace("\n", "<br />");
 
                 foreach (var item in form.Friend)
                 {
@@ -328,7 +332,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         EmailBody = content
                     };
 
-                    if (emailSender.SendEmail(emailRequest, data))
+                    templateData.Recipient = emailRequest.To;
+
+                    if (emailSender.SendEmail(emailRequest, templateData))
                     {
                         result = true;
                     }
@@ -336,26 +342,33 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
             else
             {
-                MailAddress from;
-
-                if (string.IsNullOrWhiteSpace(this.EmailFromEmail))
+                // if the email is not set then create one using current site's domain name
+                var fromEmail = this.EmailFromEmail;
+                if (string.IsNullOrEmpty(fromEmail))
                 {
-                    from = null;
+                    fromEmail = "noreply@" + Request.Url.Host;
                 }
-                else
+
+                // if the name is not set then use current site's name
+                var fromName = this.EmailFromName;
+                if (string.IsNullOrEmpty(fromName))
                 {
-                    from = new MailAddress(this.EmailFromEmail, this.EmailFromName);
+                    fromName = new MultisiteContext().CurrentSite.Name;
                 }
 
                 var emailRequest = new EmailRequest
                 {
                     To = new MailAddress(form.Email, form.Name),
-                    From = from,
+                    From = new MailAddress(fromEmail, fromName),
                     Subject = subject,
                     EmailBody = content
                 };
 
-                result = emailSender.SendEmail(emailRequest, data);
+                templateData.Recipient = emailRequest.To;
+                templateData.Sender = emailRequest.From;
+                templateData.Message = string.Empty;
+
+                result = emailSender.SendEmail(emailRequest, templateData);
             }
 
             return result;

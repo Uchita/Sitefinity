@@ -420,8 +420,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
                 MaxFriends = _GetMaxFriends(),
 
-                JobNotFoundMessage = string.IsNullOrEmpty(this.JobNotFoundMessage) ? "Specified job does not exist or has expired." : this.JobNotFoundMessage,
-                EmailSentMessage = string.IsNullOrEmpty(this.EmailSentMessage) ? "Email sent successfully." : this.EmailSentMessage,
+                JobNotFoundMessage = string.IsNullOrEmpty(this.JobNotFoundMessage) ? "The job you are looking for does not exist or has expired." : this.JobNotFoundMessage,
+                EmailSentMessage = string.IsNullOrEmpty(this.EmailSentMessage) ? "Email has been sent successfully." : this.EmailSentMessage,
             };
 
             model.Form = form ?? new JobEmailFormModel();

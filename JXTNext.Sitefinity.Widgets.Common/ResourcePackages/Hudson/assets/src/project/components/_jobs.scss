@@ -342,8 +342,9 @@
                     font-size: 14px;
                     font-size: 1.4rem;
 
-                    &, &:hover, &:focus {
+                    &:hover, &:focus {
                         color: inherit;
+                        text-decoration: underline;
                     }
                 }
             }
@@ -380,6 +381,8 @@
 
                     a, a:hover, a:focus {
                         color: #fff;
+                    }
+                    h3 a{
                         text-decoration: none;
                     }
                     .saved::before{
@@ -428,6 +431,9 @@
 .save-job{
     cursor: pointer;
     font-size: 1.4rem;
+    &:hover, &:focus{
+        text-decoration: underline;
+    }
 }
 .saved{
     &::before{

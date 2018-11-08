@@ -218,6 +218,7 @@ $(document).ready(function () {
     $('.owl-carousel-testimonials').owlCarousel({
         items: 1,
         loop: true,
+        autoplay: true,
     });
 
     $('.owl-consultants').owlCarousel({

@@ -9945,8 +9945,9 @@ ul.breadcrumb {
     .page-wrapper .search-results .search-result .search-result-top a {
       font-size: 14px;
       font-size: 1.4rem; }
-      .page-wrapper .search-results .search-result .search-result-top a, .page-wrapper .search-results .search-result .search-result-top a:hover, .page-wrapper .search-results .search-result .search-result-top a:focus {
-        color: inherit; }
+      .page-wrapper .search-results .search-result .search-result-top a:hover, .page-wrapper .search-results .search-result .search-result-top a:focus {
+        color: inherit;
+        text-decoration: underline; }
   .page-wrapper .search-results .search-result .search-result-description {
     padding: 15px; }
     .page-wrapper .search-results .search-result .search-result-description .link-default {
@@ -9966,7 +9967,8 @@ ul.breadcrumb {
       color: #fff;
       background-color: #01a3a4; }
       .page-wrapper .search-results .search-result:hover .search-result-top a, .page-wrapper .search-results .search-result:hover .search-result-top a:hover, .page-wrapper .search-results .search-result:hover .search-result-top a:focus {
-        color: #fff;
+        color: #fff; }
+      .page-wrapper .search-results .search-result:hover .search-result-top h3 a {
         text-decoration: none; }
       .page-wrapper .search-results .search-result:hover .search-result-top .saved::before {
         color: #fff; }
@@ -9995,6 +9997,8 @@ ul.breadcrumb {
 .save-job {
   cursor: pointer;
   font-size: 1.4rem; }
+  .save-job:hover, .save-job:focus {
+    text-decoration: underline; }
 
 .saved::before {
   content: "\f005";
@@ -11302,7 +11306,7 @@ select.articles-order {
   .search-top .jobalert-btn {
     position: absolute;
     top: 20px;
-    right: 65px;
+    right: 63px;
     padding: 10px 20px;
     margin: 0 !important;
     font-size: 1.6rem !important;
@@ -11322,7 +11326,7 @@ select.articles-order {
   .search-top .select {
     position: absolute;
     top: 20px;
-    left: 105px;
+    left: 103px;
     min-width: 103px !important;
     width: 104px;
     margin-top: 0 !important; }

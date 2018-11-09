@@ -281,6 +281,7 @@ $(document).ready(function () {
             }
         }
     });
+    
     $('.owl-card-basic').each(function (i, obj) {
         if ($(this).children().length > 1) {
             $(this).owlCarousel({

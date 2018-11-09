@@ -156,7 +156,7 @@
 .featured-job-offer {
     position: relative;
     margin: 12px 0;
-    padding: 30px 35px 60px 60px;
+    padding: 60px;
     background: #fff;
 
     .job-offer-company {
@@ -165,6 +165,9 @@
         img {
             max-width: 150px;
         }
+    }
+    h3{
+        margin-top: 0;
     }
 
     .job-offer {

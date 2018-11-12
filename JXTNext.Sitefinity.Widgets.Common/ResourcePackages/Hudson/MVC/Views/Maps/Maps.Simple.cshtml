@@ -83,12 +83,17 @@ else
                     $(this).googleMap({
                         zoom: zoomLevel // Initial zoom level (optional)
                     });
+                    var showMarker = true;
+                    if (markers.length > 1) {
+                        showMarker = false;
+                    }
 
                     for (var item of markers) {
                         if (item.isLatLng) {
                              $(this).addMarker({
                                  coords: [item.lat, item.lng],
-                                 icon: item.icon
+                                 icon: item.icon,
+                                 showInfoWindow: showMarker
                              });
                         }
                         else {
@@ -96,7 +101,8 @@ else
                                 address: item.address,
                                 icon: item.icon,
                                 title: item.popupTitle,
-                                text: item.popupText
+                                text: item.popupText,
+                                showInfoWindow: showMarker
                             });
                         }
                     }

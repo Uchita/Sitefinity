@@ -84,6 +84,10 @@
                 <button type="button" id="consultantSearch" class="sf-SubmitButton btn btn-primary">SEARCH</button>
             </div>
         </div>
+
+        <div class="col-xs-12">
+            <p>Consultant(s) found: <strong class="const-found">0</strong></p>
+        </div>
     </div>
     <!-- End of Specialisation filter list -->
 
@@ -207,7 +211,9 @@
                 $('.alert').removeClass('hidden');
             } else {
                 $('.alert').addClass('hidden');
-            }
+            } 
+
+            $('.const-found').text($('.contact-consultant:not(.hidden)').length);
 
         }); //end of click function
 

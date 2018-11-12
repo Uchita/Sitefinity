@@ -286,7 +286,7 @@
       position: absolute;
       top: 45px; }
     .testimonials-slider .quote.text-right span {
-      right: 0; }
+      right: 10px; }
   .testimonials-slider.with-top-image {
     padding: 60px 0 20px; }
     .testimonials-slider.with-top-image .owl-item {

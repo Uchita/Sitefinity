@@ -3,13 +3,14 @@
 
 @if (Model != null)
 {
-    <div class="filter-outer-wrapper left-sidebar visible-hidden">
-        <div class="form-group keywordfilter">
-            <label><strong>Keywords:</strong></label>
-            <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" placeholder="Search keywords" /></div>
-        </div>
-        <div class="filter-toggle"><span class="btn btn-primary">@Html.Resource("JobFilterToggleBtn")</span></div>
-        <div class="sm-wrapper">
+<div class="filter-outer-wrapper left-sidebar visible-hidden">
+    <div class="form-group keywordfilter">
+        <label><strong>Keywords:</strong></label>
+        <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" placeholder="Search keywords" /></div>
+    </div>
+    <div class="filter-toggle"><span class="btn btn-primary">@Html.Resource("JobFilterToggleBtn")</span></div>
+    <div class="search-toggle visible-xs"><i class="fas fa-search"></i></div>
+    <div class="sm-wrapper">
         @foreach (var item in Model)
         {
             if (item.Name != "Salary")
@@ -50,8 +51,8 @@
                 }
             }
         }
-       </div>
     </div>
+</div>
 }
 
 <script type="text/javascript">
@@ -223,8 +224,8 @@
                     title: displayTitle,
                     data: item.Filters,
                     maxHeight: 'none',
-                    closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
-                    openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
+                    closedArrow: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+                    openedArrow: '<i class="fa fa-angle-down" aria-hidden="true"></i>',
                     multiSelect: true,
                     enableSearch: false,
                     selectChildren: true,

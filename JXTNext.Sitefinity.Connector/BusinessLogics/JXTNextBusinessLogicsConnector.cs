@@ -297,14 +297,14 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
                 return new JXTNext_MemberSaveJobResponse { Success = false, Errors = new List<string> { response.Response } };
         }
         
-        public IMemberUpsertJobAlertResponse MemberUpsertJobAlert(IMemberUpsertJobAlertRequest jobAlert)
+        public IMemberUpsertJobAlertResponse MemberUpsertJobAlert(IMemberUpsertJobAlertRequest jobAlert, bool isUserLoggedIn)
         {
             JXTNext_MemberUpsertJobAlertRequest createJobAlert = jobAlert as JXTNext_MemberUpsertJobAlertRequest;
 
             if (createJobAlert.MemberJobAlertId.HasValue)
                 return MemberUpdateJobAlert(createJobAlert);
             else
-                return MemberCreateJobAlert(createJobAlert);
+                return MemberCreateJobAlert(createJobAlert, isUserLoggedIn);
         }
 
         public IMemberJobAlertsResponse MemberJobAlertsGet()
@@ -520,13 +520,17 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             return ProcessJobAlertResponse(response);
         }
 
-        private IMemberUpsertJobAlertResponse MemberCreateJobAlert(JXTNext_MemberUpsertJobAlertRequest jobAlert)
+        private IMemberUpsertJobAlertResponse MemberCreateJobAlert(JXTNext_MemberUpsertJobAlertRequest jobAlert, bool isUserLoggedIn)
         {
+            string path = $"/api/member/email/{jobAlert.Email}/jobalert";
+            if(!isUserLoggedIn)
+                path = $"/api/guest/email/{jobAlert.Email}/jobalert";
+
             ConnectorPostRequest connectorRequest = new ConnectorPostRequest(HTTP_Requests_MaxWaitTime)
             {
                 HeaderValues = base.HTTP_Request_HeaderValues,
                 Data = jobAlert,
-                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/member/email/{jobAlert.Email}/jobalert")
+                TargetUri = new Uri(CONFIG_DataAccessTarget + path)
             };
             ConnectorResponse response = JXTNext.Common.API.Connector.Post(connectorRequest);
 

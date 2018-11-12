@@ -23,6 +23,8 @@ using System.Text.RegularExpressions;
 using System.Text;
 using System.IO;
 using System.Web;
+using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert;
+using JXTNext.Sitefinity.Services.Intefaces;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -34,6 +36,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         IOptionsConnector _OptionsConnector;
         IEnumerable<IBusinessLogicsConnector> _bConnectorsList;
         IEnumerable<IOptionsConnector> _oConnectorsList;
+        IJobAlertService _jobAlertService;
 
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
@@ -52,8 +55,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
-        public JobSearchResultsController(IEnumerable<IBusinessLogicsConnector> _bConnectors, IEnumerable<IOptionsConnector> _oConnectors)
+        public JobSearchResultsController(IEnumerable<IBusinessLogicsConnector> _bConnectors, IEnumerable<IOptionsConnector> _oConnectors, IJobAlertService jobAlertService)
         {
+            _jobAlertService = jobAlertService;
             _bConnectorsList = _bConnectors;
             _oConnectorsList = _oConnectors;
             _BLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
@@ -183,6 +187,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
                         seoString.Add(SEOString);
                     }
+                    seoString.Add(Regex.Replace(item.Title, @"([^\w]+)", "-"));
 
                     item.ClassificationsSEORouteName = String.Join("/", seoString);
                 }
@@ -208,6 +213,82 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ActionResult filtersActionResult = jobFiltersController.Index(filterModel, SiteMapBase.GetActualCurrentNode().Title, (dynamicJobResultsList != null) ? dynamicJobResultsList.SearchResultsFilters : null);
 
             return new JsonResult { Data = new { jobResults = RenderActionResultToString(jobResultsPartialVR, this.ControllerContext.Controller), jobResultsFilter = RenderActionResultToString(filtersActionResult, jobFiltersController) } };
+        }
+
+
+        [HttpPost]
+        public JsonResult CreateAnonymousJobAlert(JobSearchResultsFilterModel filterModel, string email)
+        {
+            string alertName = String.Empty;
+
+            // Creating the job alert model
+            JobAlertViewModel alertModel = new JobAlertViewModel()
+            {
+                Filters = new List<JobAlertFilters>(),
+                Salary = new JobAlertSalaryFilterReceiver(),
+                Email = email
+            };
+
+            if(filterModel != null)
+            {
+                // Keywords
+                alertModel.Keywords = filterModel.Keywords;
+                if (!alertModel.Keywords.IsNullOrEmpty())
+                    alertName = alertModel.Keywords;
+
+                // Filters
+                if (filterModel.Filters != null && filterModel.Filters.Count() > 0)
+                {
+                    List<JobAlertFilters> alertFilters = new List<JobAlertFilters>();
+                    bool flag = false;
+                    for (int i = 0; i < filterModel.Filters.Count(); i++)
+                    {
+                        var filter = filterModel.Filters[i];
+                        if (filter != null && filter.values != null && filter.values.Count > 0)
+                        {
+                            JobAlertFilters alertFilter = new JobAlertFilters
+                            {
+                                RootId = filter.rootId,
+                                Values = new List<string>()
+                            };
+                            
+                            foreach (var filterItem in filter.values)
+                            {
+                                if(!flag && alertName.IsNullOrEmpty())
+                                {
+                                    flag = true;
+                                    alertName = filter.values.Count.ToString() + " " + filter.rootId;
+                                }
+
+                                JobSearchResultsFilterModel.ProcessFilterLevelsToFlat(filterItem, alertFilter.Values);
+                            }
+
+                            alertFilters.Add(alertFilter);
+                        }
+                    }
+
+                    alertModel.Filters = alertFilters;
+                }
+
+                // Salary
+                if (filterModel.Salary != null)
+                {
+                    alertModel.Salary.RootName = filterModel.Salary.RootName;
+                    alertModel.Salary.TargetValue = filterModel.Salary.TargetValue;
+                    alertModel.Salary.LowerRange = filterModel.Salary.LowerRange;
+                    alertModel.Salary.UpperRange = filterModel.Salary.UpperRange;
+
+                    if (alertName.IsNullOrEmpty())
+                        alertName = "Salary from" + alertModel.Salary.LowerRange.ToString() + " to " + alertModel.Salary.UpperRange.ToString();
+                }
+            }
+
+            if (alertName.IsNullOrEmpty())
+                alertName = "All search";
+
+            alertModel.Name = alertName;
+            var response = _jobAlertService.MemberJobAlertUpsert(alertModel);
+            return new JsonResult { Data = response };
         }
 
         private string RenderActionResultToString(ActionResult result, ControllerBase controllerContext)

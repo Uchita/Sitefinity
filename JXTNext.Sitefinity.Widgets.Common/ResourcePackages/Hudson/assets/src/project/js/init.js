@@ -165,10 +165,38 @@ ThemeGlobal.DynamicFormConditions = function () {
     }
 }
 
+ThemeGlobal.MobileSubNavigationToggle = function(){
+    var backTrigger = "";
+    var menuItem = $(".navbar-nav .dropdown");
+    var lvlTrigger = menuItem.find('.custom-expander');
+    lvlTrigger.on('click',function(){
+        backTrigger = $(this);
+        if( $('.navbar-header').find('.back-mnu').length ){
+            $('.navbar-header').find('.back-mnu').addClass('hidden');
+        }
+        
+        if( $(this).parent().hasClass("open") ){
+            $('.navbar-header').prepend( '<span class="back-mnu">Back</span>' );
+        }
+        
+    });
+    $('.navbar-header').on('click','.back-mnu', function(){
+        
+        $(this).remove();
+        backTrigger.trigger('click');
+        if( $('.navbar-header').find('.back-mnu').length ){
+            $('.navbar-header').find('.back-mnu').removeClass('hidden');
+            backTrigger =  $(".navbar-nav .dropdown.open").find('>.custom-expander');
+        }
+       
+    });
+}
+
 $(document).ready(function () {
 
     ThemeGlobal.QuickLinksToggle();
     ThemeGlobal.HeaderToggleFixed();
+    ThemeGlobal.MobileSubNavigationToggle();
     window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (f) { setTimeout(f, 1000 / 60) }
 
     window.addEventListener('scroll', function () {
@@ -190,6 +218,7 @@ $(document).ready(function () {
     $('.owl-carousel-testimonials').owlCarousel({
         items: 1,
         loop: true,
+        autoplay: true,
     });
 
     $('.owl-consultants').owlCarousel({
@@ -252,6 +281,7 @@ $(document).ready(function () {
             }
         }
     });
+    
     $('.owl-card-basic').each(function (i, obj) {
         if ($(this).children().length > 1) {
             $(this).owlCarousel({
@@ -315,6 +345,12 @@ $(document).ready(function () {
             if( e.which == 69 || e.which == 190 ){
                 return false;
             }
+        });
+    }
+
+    if( $('.search-toggle').length ){
+        $('.search-toggle').on('click', function(){
+           $('.keywordfilter').toggle(); 
         });
     }
 

@@ -27,9 +27,17 @@
 
     
         <div class="row">
-            @if (@Model.Error == true)
+            @if (@Model.UploadError == true)
             {
                 <h4>Upload Error! Review the uploaded document.</h4>
+            }
+            @if (@Model.FetchError == true)
+            {
+                <h4>Error while fetching the resume files.</h4>
+            }
+            @if (@Model.DeleteError == true)
+            {
+                <h4>Delete Error! Try again.</h4>
             }
 
         </div>

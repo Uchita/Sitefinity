@@ -86,6 +86,7 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
 
         public ActionResult Index()
         {
+            ProfileResumeViewModel VM = new ProfileResumeViewModel();
             try
             {
                 var res = _blConnector.GetMemberByEmail(Email);
@@ -97,21 +98,22 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
 
                 //var response = _blConnector.GetMemberByEmail(Email);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
-                throw ex;
+                VM.FetchError = true;
+                //throw ex;
             }
-            
 
+            VM.ResumeList = this.resumeList;
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
-            return View(fullTemplateName,new ProfileResumeViewModel() { ResumeList = this.resumeList});
+            return View(fullTemplateName,VM);
         }
 
 
         [HttpGet]
         public ActionResult DeleteResume(Guid resumeId)
         {
+            ProfileResumeViewModel VM = new ProfileResumeViewModel();
             try
             {
                 JobApplicationAttachmentUploadItem deleteResumeFileItem = new JobApplicationAttachmentUploadItem();
@@ -138,14 +140,17 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
                     }
                 }
                   
-                var fullTemplateName = this.templateNamePrefix + this.TemplateName;
-                return View(fullTemplateName, new ProfileResumeViewModel() { ResumeList = this.resumeList });
+                
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
-                throw ex;
+                VM.DeleteError = true;
+                //throw ex;
             }
+
+            VM.ResumeList = this.resumeList;
+            var fullTemplateName = this.templateNamePrefix + this.TemplateName;
+            return View(fullTemplateName, VM);
         }
 
 
@@ -211,9 +216,9 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                VM.Error = true;
+                VM.UploadError = true;
                 //throw ex;
             }
             VM.ResumeList = this.resumeList;

@@ -218,6 +218,7 @@ $(document).ready(function () {
     $('.owl-carousel-testimonials').owlCarousel({
         items: 1,
         loop: true,
+        autoplay: true,
     });
 
     $('.owl-consultants').owlCarousel({
@@ -280,6 +281,7 @@ $(document).ready(function () {
             }
         }
     });
+    
     $('.owl-card-basic').each(function (i, obj) {
         if ($(this).children().length > 1) {
             $(this).owlCarousel({

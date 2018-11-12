@@ -157,6 +157,11 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
             ProfileResumeViewModel VM = new ProfileResumeViewModel();
             try
             {
+                var res = _blConnector.GetMemberByEmail(Email);
+
+                if (res.Member != null && res.Member.ResumeFiles != null)
+                    this.resumeList = JsonConvert.DeserializeObject<List<ProfileResumeJsonModel>>(res.Member.ResumeFiles);
+
                 if (ModelState.IsValid)
                 {
 
@@ -184,12 +189,6 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
                             PathToAttachment = identifier.ToString() + "_" + file.FileName
                         });
 
-                        
-
-                        var res = _blConnector.GetMemberByEmail(Email);
-                        
-                        if(res.Member != null && res.Member.ResumeFiles != null)
-                            this.resumeList = JsonConvert.DeserializeObject<List<ProfileResumeJsonModel>>(res.Member.ResumeFiles);
 
                         _jobApplicationService.UploadFiles(attachments);
 
@@ -214,8 +213,8 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
             }
             catch (Exception ex)
             {
-                VM.Error = false;
-                throw ex;
+                VM.Error = true;
+                //throw ex;
             }
             VM.ResumeList = this.resumeList;
 

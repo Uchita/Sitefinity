@@ -13,6 +13,16 @@
             resumeInput.click();
         });
 
+        $("#myFile").change(function () {
+            if ($(this).val()) {
+                $("#uploadBtn").prop("disabled", false);
+            }
+            else {
+                $("#uploadBtn").prop("disabled", true);
+            }
+        });
+
+
         $('[data-sf-role=profile-resume-delete]').click(function (event) {
             var model = {};
             model.id = $('.myModelId').val();

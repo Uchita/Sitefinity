@@ -183,7 +183,7 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
                         }
 
                         Guid identifier = Guid.NewGuid();
-                        List<JobApplicationAttachmentUploadItem> attachments = this.GetLoginUserResumeFilesByEmail(this.Email);
+                        List<JobApplicationAttachmentUploadItem> attachments = new List<JobApplicationAttachmentUploadItem>();
                         attachments.Add(new JobApplicationAttachmentUploadItem()
                         {
                             Id = identifier.ToString(),

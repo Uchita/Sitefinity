@@ -3,6 +3,7 @@ using JXTNext.Sitefinity.Services.Intefaces;
 using JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -105,6 +106,22 @@ namespace JXTNext.Sitefinity.Services.Services
 
             return ovverideEmail;
 
+        }
+
+
+        public bool DeleteFile(JobApplicationAttachmentUploadItem deletefile)
+        {
+            return JobApplicationAttachmentUploadItem.DeleteFromAmazonS3("private-amazon-s3-provider", deletefile.AttachmentType, deletefile.Id);
+        }
+
+
+        public List<JobApplicationAttachmentUploadItem> GetFiles(List<JobApplicationAttachmentUploadItem> attachments)
+        {
+            foreach (var item in attachments)
+            {
+                item.FileUrl = JobApplicationAttachmentUploadItem.FetchFromAmazonS3("private-amazon-s3-provider", item.AttachmentType, item.Id);
+            }
+            return attachments;
         }
 
         public bool UploadFiles(List<JobApplicationAttachmentUploadItem> attachments)

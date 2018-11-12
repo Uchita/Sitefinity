@@ -20,6 +20,68 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         IJobListingMapper _jobMapper;
         IMemberMapper _memberMapper;
 
+        public IMemberGetByIdResponse GetMemberByEmail(string email)
+        {
+            try
+            {
+                ConnectorGetRequest connectorRequest = new ConnectorGetRequest(HTTP_Requests_MaxWaitTime)
+                {
+                    HeaderValues = HTTP_Request_HeaderValues,
+                    TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/member/GetMemberByEmail/{email}")
+                };
+                ConnectorResponse response = JXTNext.Common.API.Connector.Get(connectorRequest);
+
+                //parse the response
+                bool actionSuccessful = response.Success;
+
+                if (actionSuccessful)
+                {
+                    dynamic responseObj = JObject.Parse(response.Response);
+
+                    if (responseObj["status"] == 200)
+                        return new JXTNext_MemberGetByIdResponse { Success = true, Member = _memberMapper.Member_ConvertToLocalEntity<MemberModel>(responseObj) };
+                    else
+                        return new JXTNext_MemberGetByIdResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };
+                }
+                else
+                    return new JXTNext_MemberGetByIdResponse { Success = false, Errors = new List<string> { response.Response } };
+            }
+            catch (Exception ex)
+            {
+
+                return new JXTNext_MemberGetByIdResponse { Success = false, Errors = new List<string> { ex.Message } };
+            }
+           
+            
+        }
+
+        public IMemberGetByIdResponse UpdateMember(MemberModel modelData)
+        {
+            ConnectorPostRequest connectorRequest = new ConnectorPostRequest(HTTP_Requests_MaxWaitTime)
+            {
+                HeaderValues = HTTP_Request_HeaderValues,
+                Data = _memberMapper.Member_ConvertToAPIEntity(modelData),
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/member/UpdateMemberResumeFiles")
+            };
+            ConnectorResponse response = JXTNext.Common.API.Connector.Post(connectorRequest);
+
+            //parse the response
+            bool actionSuccessful = response.Success;
+            
+            if (actionSuccessful)
+            {
+                dynamic responseObj = JObject.Parse(response.Response);
+
+                if (responseObj["status"] == 200)
+                    return new JXTNext_MemberGetByIdResponse { Success = true, Member = _memberMapper.Member_ConvertToLocalEntity<MemberModel>(responseObj) };
+                else
+                    return new JXTNext_MemberGetByIdResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };
+            }
+            else
+                return new JXTNext_MemberGetByIdResponse { Success = false, Errors = new List<string> { response.Response } };
+        }
+
+
         public IntegrationConnectorType ConnectorType => IntegrationConnectorType.JXTNext;
 
         public JXTNextBusinessLogicsConnector(IEnumerable<IJobListingMapper> jobMappers, IEnumerable<IMemberMapper> memberMapper, IRequestSession session) : base(session)

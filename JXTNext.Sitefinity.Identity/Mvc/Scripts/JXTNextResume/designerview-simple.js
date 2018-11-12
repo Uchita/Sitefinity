@@ -10,18 +10,7 @@
         // scope variables and set up
         // ------------------------------------------------------------------------
 
-        $scope.feedback.showLoadingIndicator = true;
-
-        var onGetPropertiesSuccess = function (data) {
-            if (data) {
-                $scope.properties = propertyService.toAssociativeArray(data.Items);
-
-                if ($scope.properties.Mode.PropertyValue === 'EditOnly' &&
-                    $scope.properties.SaveChangesAction.PropertyValue === 'SwitchToReadMode') {
-                    $scope.properties.SaveChangesAction.PropertyValue = 'ShowMessage';
-                }
-            }
-        };
+        
 
         propertyService.get()
             .then(onGetPropertiesSuccess)

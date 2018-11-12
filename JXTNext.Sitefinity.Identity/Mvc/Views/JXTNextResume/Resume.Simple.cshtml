@@ -1,0 +1,59 @@
+﻿@model JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.JXTNextResume.ProfileResumeViewModel
+
+@using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.JXTNextResume;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.UI.MVC;
+@using Telerik.Sitefinity.Utilities;
+@using Telerik.Sitefinity.Services;
+
+<div>
+
+    @using (Html.BeginFormSitefinity("UploadResume", "UploadResumeForm", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <h3>@Html.Resource("AttachResumeLink")</h3>
+        @*<div class="uploadfield-wrap">
+                <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.xls,.xlsx,.rtf" />
+                <small class="lbl">Browse</small>
+            </div>*@
+        <input data-sf-role="profile-resume-attachment-upload" type="file" value='@Html.Resource("UploadFileLink")' accept=".pdf,.doc,.docx,.txt,.xls,.xlsx,.rtf" name="profile-resume" />
+        <h5>@Html.Resource("AttachFileConditionsLink")</h5>
+        <div class="input-group">
+            @*<input data-sf-role="profile-resume-attachment-save" type="submit" value='@Html.Resource("SaveFileAttachmentLink")' />*@
+            <input type="submit" value='@Html.Resource("SaveFileAttachmentLink")' />
+        </div>
+        <br />
+    }
+
+    
+        <div class="row">
+            @if (@Model.Error == true)
+            {
+                <h4>Upload Error! Review the uploaded document.</h4>
+            }
+
+        </div>
+    <br />
+        <div class="row" id="dvResumeResults">
+            <table class="table">
+
+                @foreach (var item in @Model.ResumeList)
+                {
+                    <tr>
+                        <td><span>@item.FileFullName</span></td>
+                        <td><a download="@item.FileName" href="@item.FileUrl" target="_blank">@Html.Resource("ViewResume")</a></td>
+                        <td> @Html.ActionLink("DELETE", "DeleteResume", "JXTNextResume", new { resumeId = item.Id }, new { @class = "btn btn-sm btn-tag" })</td>
+                        @*<td><input type="submit" data-sf-role="profile-resume-delete" value="@Html.Resource("DeleteResume")"></td>*@
+                        <td>
+                            <input name="Id" value="@item.Id" hidden />
+                            <input name="FileName" value="@item.FileName" hidden />
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+
+</div>
+@Html.Script(Url.WidgetContent("Mvc/Scripts/JXTNextResume/profile-resume-upload.js"), "bottom", false)

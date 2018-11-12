@@ -1,7 +1,6 @@
 ﻿using Ninject.Modules;
 using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.LoginStatusExtended;
 using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.UsersListExtended;
-using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.JXTNextProfile;
 
 namespace JXTNext.Sitefinity.Widgets.Authentication
 {
@@ -17,7 +16,6 @@ namespace JXTNext.Sitefinity.Widgets.Authentication
         {
             Bind<ILoginStatusExtendedModel>().To<LoginStatusExtendedModel>();
             Bind<IUsersListExtendedModel>().To<UsersListExtendedModel>();
-            Bind<IJXTNextProfileModel>().To<JXTNextProfileModel>();
         }
     }
 }

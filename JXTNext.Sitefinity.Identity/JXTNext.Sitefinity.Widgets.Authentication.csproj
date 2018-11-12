@@ -246,26 +246,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
-    <Compile Include="Mvc\Controllers\JXTNextProfileController.cs" />
+    <Compile Include="Mvc\Controllers\JXTNextResumeController.cs" />
     <Compile Include="Mvc\Controllers\UsersListExtendedController.cs" />
     <Compile Include="Mvc\Helpers\UsersHelperExtended.cs" />
-    <Compile Include="Mvc\Models\JXTNextProfile\CustomJXTNextProfileViewModel.cs" />
-    <Compile Include="Mvc\Models\JXTNextProfile\DynamicUserJXTNextProfileFieldAccessor.cs" />
-    <Compile Include="Mvc\Models\JXTNextProfile\IJXTNextProfileModel.cs" />
-    <Compile Include="Mvc\Models\JXTNextProfile\JXTNextProfileBindingsContract.cs" />
-    <Compile Include="Mvc\Models\JXTNextProfile\JXTNextProfileEditViewModel.cs" />
-    <Compile Include="Mvc\Models\JXTNextProfile\JXTNextProfileEmailEditViewModel.cs" />
-    <Compile Include="Mvc\Models\JXTNextProfile\JXTNextProfileModel.cs" />
-    <Compile Include="Mvc\Models\JXTNextProfile\JXTNextProfilePreviewViewModel.cs" />
-    <Compile Include="Mvc\Models\JXTNextProfile\SaveAction.cs" />
-    <Compile Include="Mvc\Models\JXTNextProfile\ViewMode.cs" />
+    <Compile Include="Mvc\Models\JXTNextResume\ProfileResumeJsonModel.cs" />
+    <Compile Include="Mvc\Models\JXTNextResume\ProfileResumeViewModel.cs" />
     <Compile Include="Mvc\Models\UsersListExtended\IUsersListExtendedModel.cs" />
     <Compile Include="Mvc\Models\UsersListExtended\SelectionModeExtended.cs" />
     <Compile Include="Mvc\Models\UsersListExtended\SitefinityProfileItemExtendedViewModel.cs" />
     <Compile Include="Mvc\Models\UsersListExtended\UserDetailsExtendedViewModel.cs" />
     <Compile Include="Mvc\Models\UsersListExtended\UsersListExtendedModel.cs" />
     <Compile Include="Mvc\Models\UsersListExtended\UsersListExtendedViewModel.cs" />
-    <Compile Include="Mvc\StringResources\JXTNextProfileResources.cs" />
+    <Compile Include="Mvc\StringResources\JXTNextResumeResources.cs" />
     <Compile Include="Mvc\StringResources\UsersListExtendedResources.cs" />
     <Compile Include="UserProfileMvcOutputCacheVariation.cs" />
     <Compile Include="Widgets_AuthenticationModule.cs" />
@@ -287,11 +279,9 @@
     <EmbeddedResource Include="Mvc\Views\UsersListExtended\DesignerView.Simple.json" />
     <EmbeddedResource Include="Mvc\Views\UsersListExtended\Detail.UserDetails.cshtml" />
     <EmbeddedResource Include="Mvc\Views\UsersListExtended\List.UsersList.cshtml" />
-    <EmbeddedResource Include="Mvc\Views\JXTNextProfile\ConfirmPassword.ProfileEdit.cshtml" />
-    <EmbeddedResource Include="Mvc\Views\JXTNextProfile\DesignerView.Simple.cshtml" />
-    <EmbeddedResource Include="Mvc\Views\JXTNextProfile\DesignerView.Simple.json" />
-    <EmbeddedResource Include="Mvc\Views\JXTNextProfile\Edit.ProfileEdit.cshtml" />
-    <EmbeddedResource Include="Mvc\Views\JXTNextProfile\Read.ProfilePreview.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JXTNextResume\Resume.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JXTNextResume\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JXTNextResume\DesignerView.Simple.json" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -309,10 +299,21 @@
       <Project>{9ccdbc01-ef02-4d74-9385-5c0f1da2eb7a}</Project>
       <Name>JXTNext.Sitefinity.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Connector\JXTNext.Sitefinity.Connector.csproj">
+      <Project>{BF418B44-EBCE-499F-BBD3-6BA98A24E144}</Project>
+      <Name>JXTNext.Sitefinity.Connector</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Services.Intefaces\JXTNext.Sitefinity.Services.Intefaces.csproj">
+      <Project>{94381396-D85E-469C-B828-24CF03548DF5}</Project>
+      <Name>JXTNext.Sitefinity.Services.Intefaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Mvc\Scripts\JXTNextResume\profile-resume-upload.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Mvc\Scripts\JXTNextProfile\designerview-simple.js" />
-    <EmbeddedResource Include="Mvc\Scripts\JXTNextProfile\profile-edit.js" />
+    <EmbeddedResource Include="Mvc\Scripts\JXTNextResume\designerview-simple.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="OpenAccessNuget.targets" />

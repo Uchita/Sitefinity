@@ -68,6 +68,13 @@
         display: none;
         color: #fff;
     }
+    .filter{
+        em{
+            margin-left: 3px;
+            position: relative;
+            top: 2px;
+        }
+    }
 
     .filter-active {
         position: relative;
@@ -149,7 +156,7 @@
 .featured-job-offer {
     position: relative;
     margin: 12px 0;
-    padding: 30px 35px 60px 60px;
+    padding: 60px;
     background: #fff;
 
     .job-offer-company {
@@ -158,6 +165,9 @@
         img {
             max-width: 150px;
         }
+    }
+    h3{
+        margin-top: 0;
     }
 
     .job-offer {
@@ -335,8 +345,9 @@
                     font-size: 14px;
                     font-size: 1.4rem;
 
-                    &, &:hover, &:focus {
+                    &:hover, &:focus {
                         color: inherit;
+                        text-decoration: underline;
                     }
                 }
             }
@@ -373,6 +384,8 @@
 
                     a, a:hover, a:focus {
                         color: #fff;
+                    }
+                    h3 a{
                         text-decoration: none;
                     }
                     .saved::before{
@@ -421,6 +434,9 @@
 .save-job{
     cursor: pointer;
     font-size: 1.4rem;
+    &:hover, &:focus{
+        text-decoration: underline;
+    }
 }
 .saved{
     &::before{
@@ -522,6 +538,9 @@
                     background: #219fa3;
                     color: #fff;
                     border-color: #219fa3;
+                }
+                &[disabled]{
+                    display: none;
                 }
             }
         }

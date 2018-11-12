@@ -4,7 +4,10 @@
     .breadcrumb,
     .job-offer-actions,
     .jobdetail-sidebar,
-    .prefooter-content {
+    .prefooter-content,
+    #back-to-results,
+    .backtoresult .spt,
+    .job-offer-apply{
         display: none!important;
     }
     .page-wrapper{
@@ -28,4 +31,7 @@
         display: none!important;
     }
     
+    a[href]:after {
+        display: none;
+    }
 }

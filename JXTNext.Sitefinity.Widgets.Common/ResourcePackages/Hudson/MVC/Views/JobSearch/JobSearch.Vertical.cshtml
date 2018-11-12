@@ -205,7 +205,7 @@
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
             var prefixIdText = @Html.Raw(Json.Encode(ViewData["PrefixIdsText"]));
 
-            for (var item of filterData) {
+            $.each(filterData, function (index, item) {
 
                 switch (item.ControlType) {
                     case 'TextBox':
@@ -213,25 +213,25 @@
 
                     case 'DropDown Multi':
 
-                        optionsArray[prefixIdText+item.ID] = {
+                        optionsArray[prefixIdText + item.ID] = {
                             title: item.PlaceholderText,
                             data: item.Filters,
                             maxHeight: 500,
-                            closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
-                            openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
+                            closedArrow: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+                            openedArrow: '<i class="fa fa-angle-down" aria-hidden="true"></i>',
                             multiSelect: true,
                             selectChildren: true,
                             expandChildren: false,
                             enableSearch: false,
                             prefixIdText: prefixIdText,
                         };
-                        $("#" + prefixIdText + item.ID).DropDownTree(optionsArray[prefixIdText+item.ID]);
+                        $("#" + prefixIdText + item.ID).DropDownTree(optionsArray[prefixIdText + item.ID]);
                         break;
 
                     default:
                         break;
                 }
-            }
+            });
         }
 
 

@@ -17,11 +17,13 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         IMemberSaveJobResponse MemberSaveJob(IMemberSaveJob saveJob);
         IMemberGetSavedJobsResponse MemberGetSavedJobs();
         IMemberSaveJobResponse MemberDeleteSavedJob(int savedJobId);
-        IMemberUpsertJobAlertResponse MemberUpsertJobAlert(IMemberUpsertJobAlertRequest jobAlert);
+        IMemberUpsertJobAlertResponse MemberUpsertJobAlert(IMemberUpsertJobAlertRequest jobAlert, bool isUserLoggedIn = true);
         IMemberJobAlertsResponse MemberJobAlertsGet();
         IMemberJobAlertsResponse MemberJobAlertGet(int jobAlertId);
         IBaseResponse MemberJobAlertDelete(int jobAlertId);
         IMemberAppliedJobResponse MemberAppliedJobsGet();
+        IMemberGetByIdResponse GetMemberByEmail(string email);
+        IMemberGetByIdResponse UpdateMember(MemberModel modelData);
         #endregion
 
         #region Advertiser User Calls

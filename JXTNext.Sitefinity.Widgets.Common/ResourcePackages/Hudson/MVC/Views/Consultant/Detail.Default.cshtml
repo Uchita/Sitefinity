@@ -75,7 +75,7 @@
 				
 			@if(!string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber))
 			{
-				<em class="fas fa-phone"></em>@Model.Item.Fields.PhoneNumber<br />
+				<a href="tel:@Model.Item.Fields.PhoneNumber"><em class="fas fa-phone"></em>@Model.Item.Fields.PhoneNumber</a><br />
 			}
 				
 			@if(!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))

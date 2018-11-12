@@ -93,6 +93,9 @@
     <Content Include="ResourcePackages\Hudson\assets\dist\images\applied-jobs.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\hudson_logo_white.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Hudson\assets\dist\images\indeed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -103,6 +106,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Hudson\assets\dist\images\logo-linkedin.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\logo-sm.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Hudson\assets\dist\images\owl\ajax-loader.gif">
@@ -1499,9 +1505,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Hudson\MVC\Views\Maps\Maps.Simple.cshtml">
-     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-	<Content Include="ResourcePackages\Hudson\MVC\Views\JobApplication\JobApplication.ApplyWithSocialMedia.cshtml">
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobApplication\JobApplication.ApplyWithSocialMedia.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">

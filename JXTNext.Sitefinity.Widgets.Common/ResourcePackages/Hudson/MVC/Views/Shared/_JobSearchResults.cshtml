@@ -69,7 +69,7 @@
                         <h3><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="search-result-title">#:Title#</a></h3>
                     </div>
                     <div class="col-sm-4 col-xs-12 text-right">
-                        <span class="save-job" data-jobid="#:JobID#">Save job</span> | <a href='mailto:#:CustomData["ApplicationMethod.ApplicationEmail"]#'>Send email</a><br />
+                        <span class="save-job" data-jobid="#:JobID#">Save job</span> | <a href='@ViewBag.EmailJobPageUrl?JobId=#:JobID#'>Send email</a><br />
                         <small>#:DateCreated_Representation#</small>
 
                     </div>

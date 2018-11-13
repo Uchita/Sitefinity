@@ -1,0 +1,52 @@
+﻿﻿@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+<div ng-controller="SimpleCtrl">
+    <uib-tabset class="nav-tabs-wrapper">
+        <uib-tab heading="General">
+            <div class="form-group">
+                <label>Job Not Found Message</label>
+                <input ng-model="properties.JobNotFoundMessage.PropertyValue" type="text" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Email Sent Message</label>
+                <input ng-model="properties.EmailSentMessage.PropertyValue" type="text" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Job Details Page</label>
+                <sf-list-selector sf-page-selector
+                                  sf-selected-item-id="properties.JobDetailsPageId.PropertyValue" />
+            </div>
+        </uib-tab>
+
+        <uib-tab heading="Email">
+            <div class="form-group">
+                <label>Subject</label>
+                <input ng-model="properties.EmailSubject.PropertyValue" type="text" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>From Name</label>
+                <input ng-model="properties.EmailFromName.PropertyValue" type="text" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>From Email</label>
+                <input ng-model="properties.EmailFromEmail.PropertyValue" type="text" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Template</label>
+                <sf-list-selector sf-multiselect="false"
+                                  sf-dynamic-items-selector
+                                  sf-item-type="properties.ItemType.PropertyValue"
+                                  sf-identifier-field="Title"
+                                  sf-master="true"
+                                  sf-selected-item-name="properties.EmailTemplateName.PropertyValue"
+                                  sf-selected-item-id="properties.EmailTemplateId.PropertyValue"
+                                  sf-provider="properties.EmailTemplateProvider.PropertyValue" />
+            </div>
+        </uib-tab>
+    </uib-tabset>
+</div>

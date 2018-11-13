@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Telerik.Sitefinity.GenericContent.Model;
 using Telerik.Sitefinity.Libraries.Model;
 using Telerik.Sitefinity.Modules.Libraries;
 using Telerik.Sitefinity.Services;
@@ -21,6 +22,12 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
 
         public static string APPLICATION_COVERLETTER_UPLOAD_KEY = "application-coverletter";
         public static string APPLICATION_COVERLETTER_UPLOAD_LIBRARY = "application-coverletter";
+
+        public static string PROFILE_RESUME_UPLOAD_KEY = "profile-resume";
+        public static string PROFILE_RESUME_UPLOAD_LIBRARY = "profile-resume";
+
+        public static string PROFILE_COVERLETTER_UPLOAD_KEY = "profile-coverletter";
+        public static string PROFILE_COVERLETTER_UPLOAD_LIBRARY = "profile-coverletter";
     }
 
     public class JobApplicationAttachmentItem
@@ -49,6 +56,7 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
         public Stream FileStream { get; set; }
         public string FileName { get; set; }
         public string PathToAttachment { get; set; }
+        public string FileUrl { get; set; }
 
         public static void ProcessFileUpload(ref JobApplicationAttachmentUploadItem uploadItem)
         {
@@ -56,7 +64,7 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
 
             try
             {
-                UploadToAmazonS3(Guid.Parse(uploadItem.Id), "private-amazon-s3-provider", libName, uploadItem.PathToAttachment, uploadItem.FileStream);
+                uploadItem.FileUrl =  UploadToAmazonS3(Guid.Parse(uploadItem.Id), "private-amazon-s3-provider", libName, uploadItem.PathToAttachment, uploadItem.FileStream);
                 uploadItem.Status = "Completed";
             }
             catch (Exception ex)
@@ -74,9 +82,74 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
                     return JobApplicationAttachmentSettings.APPLICATION_RESUME_UPLOAD_LIBRARY;
                 case JobApplicationAttachmentType.Coverletter:
                     return JobApplicationAttachmentSettings.APPLICATION_COVERLETTER_UPLOAD_LIBRARY;
+                case JobApplicationAttachmentType.ProfileResume:
+                    return JobApplicationAttachmentSettings.PROFILE_RESUME_UPLOAD_LIBRARY;
+                case JobApplicationAttachmentType.ProfileCoverletter:
+                    return JobApplicationAttachmentSettings.PROFILE_COVERLETTER_UPLOAD_LIBRARY;
                 default:
                     return null;
             }
+        }
+
+
+        public static bool DeleteFromAmazonS3(string providerName, JobApplicationAttachmentType attachmentType, string itemTitle)
+        {
+            var libName = FileUploadLibraryGet(attachmentType);
+            LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
+            var docLibs = librariesManager.GetDocumentLibraries();
+            bool result = false;
+            foreach (var lib in docLibs)
+            {
+                if (lib.Title.ToLower() == libName)
+                {
+                    var items = lib.Items();
+                    var document = lib.Items().Where(item => item.Title.Contains(itemTitle)).FirstOrDefault();
+                   
+
+
+                    if (document != null)
+                    {
+                        result = true;
+                        //librariesManager.Delete(document.MediaFileLinks.FirstOrDefault());
+                        var dd = librariesManager.GetDocument(document.Id);
+                        if (dd != null)
+                        {
+                            librariesManager.DeleteDocument(dd);
+                            librariesManager.SaveChanges();
+                        }
+                        break;
+                    }
+
+                }
+            }
+            return result;
+        }
+
+
+        public static  string FetchFromAmazonS3(string providerName, JobApplicationAttachmentType attachmentType, string itemTitle)
+        {
+            var libName = FileUploadLibraryGet(attachmentType);
+
+            LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
+            var docLibs = librariesManager.GetDocumentLibraries();
+
+            foreach (var lib in docLibs)
+            {
+                if (lib.Title.ToLower() == libName)
+                {
+                    var items = lib.Items();
+                    var document = lib.Items().Where(item => item.Title.Contains(itemTitle)).FirstOrDefault();
+                    
+                    if (document != null && document.Status != ContentLifecycleStatus.Deleted)
+                    {
+                        return document.Url;
+                        
+                    }
+                        
+                }
+            }
+
+            return null;
         }
 
         public static string GetAttachmentPath(List<JobApplicationAttachmentUploadItem> attachmentItems, JobApplicationAttachmentType attachmentType)
@@ -87,11 +160,11 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
             return item.PathToAttachment;
         }
 
-        public static void UploadToAmazonS3(Guid masterDocumentId, string providerName, string libName, string fileName, Stream fileStream)
+        public static string UploadToAmazonS3(Guid masterDocumentId, string providerName, string libName, string fileName, Stream fileStream)
         {
             LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
             var libManagerSecurityCheckStatus = librariesManager.Provider.SuppressSecurityChecks;
-
+            string url = null;
             try
             {
                 // Make sure that supress the security checks so that everyone can upload the files
@@ -116,9 +189,9 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
                     document.UrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
                     document.MediaFileUrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
                     document.ApprovalWorkflowState = "Published";
-
+                   
                     //Upload the document file.
-                    string fileExtension = fileName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).Last();
+                    string fileExtension = "."+fileName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).Last();
                     librariesManager.Upload(document, fileStream, fileExtension ?? string.Empty);
 
                     //Recompiles and validates the url of the document.
@@ -126,7 +199,7 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
 
                     //Save the changes.
                     librariesManager.SaveChanges();
-
+                    url = document.Url;
                     //Publish the DocumentLibraries item. The live version acquires new ID.
                     var bag = new Dictionary<string, string>();
                     bag.Add("ContentType", typeof(Document).FullName);
@@ -141,13 +214,17 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
                 // Reset the suppress security checks
                 librariesManager.Provider.SuppressSecurityChecks = libManagerSecurityCheckStatus;
             }
+
+            return url;
         }
     }
 
     public enum JobApplicationAttachmentType
     {
         Resume = 1,
-        Coverletter = 2
+        Coverletter = 2,
+        ProfileResume = 3,
+        ProfileCoverletter = 4
     }
 
     public enum JobApplicationAttachmentSource

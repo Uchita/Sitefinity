@@ -1204,6 +1204,27 @@
             width:46.5%;   
         }
     }
+
+    .mobile-breadcrumb{
+        z-index: 1;
+        margin-top: 24px;
+        position: relative;
+        height: 35px;
+        .breadcrumb {
+            margin: 0;
+            position: fixed;
+            width: 100%;
+            border-bottom: 1px solid #eee;
+            left: 0;
+            top: 43px;
+            padding: 10px 15px;
+            background: white;
+            li a:before{
+                content: '<';
+                margin-right: 5px;
+            }
+        }
+    }
     
 }
 

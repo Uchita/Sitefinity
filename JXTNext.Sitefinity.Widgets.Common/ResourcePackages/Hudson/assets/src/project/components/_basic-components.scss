@@ -1209,6 +1209,9 @@ header {
                 background: $global-highlight-color;
                 height: 100%;
                 top: 45px;
+                left: 100%;
+                transition: left 0.2s ease-in-out;
+                display: block;
                 li{
                     padding: 0 20px;
                     a {
@@ -1247,6 +1250,9 @@ header {
                     &::before{
                         content: '\f104';
                     }
+                }
+                > .dropdown-menu{
+                    left: 0;
                 }
             }
 

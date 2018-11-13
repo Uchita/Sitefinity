@@ -190,6 +190,12 @@ ThemeGlobal.MobileSubNavigationToggle = function(){
         }
        
     });
+
+    $('.navbar-header').on('click', '.navbar-toggle', function(){
+        $('.back-mnu').remove();
+        $('.dropdown').removeClass('open');
+        $('.page-wrapper').toggleClass('menu-opened');
+    });
 }
 
 $(document).ready(function () {

@@ -76,7 +76,7 @@
         
         .caption {
             position: relative;
-            padding: 25px;
+            padding: 50px;
             min-height: 234px;
             font-size: 1.4rem;
             line-height: 1.3;
@@ -124,10 +124,16 @@
             }
         }
     }
+    &.small-caption{
+        .caption{
+            padding: 30px;
+        }
+    }
 
     &.card-rollover {
         position: relative;
         margin-top: 20px;
+        margin-bottom: 0;
         padding: 20px 10px;
         text-align: center;
 
@@ -493,7 +499,7 @@
         text-align: center;
         position: relative;
         z-index: 1;
-        margin-top: 20px;
+        margin-top: 30px;
 
         .process-number {
             font-size: 36px;

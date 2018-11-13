@@ -31,7 +31,7 @@
     var singleDropdownControls = Model.Where(m => m.ControlType == "DropDown Single");
     var listControls = Model.Where(m => m.ControlType == "List").Take(2).ToList();
 
-    <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();">
+    <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();" class="@ViewData["CssClass"]">
         <div class="job-search">
             <div class="container">
                 <div class="row">

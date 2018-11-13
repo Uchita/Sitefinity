@@ -711,9 +711,12 @@ img, iframe {
 }
 
 .box{
-    padding: 2rem;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    // padding: 2rem;
+    // margin-top: 3rem;
+    // margin-bottom: 3rem;
+    margin: 0;
+    padding: 0;
+    
     &.box-pad-5{
         padding: 5rem;
         @media (max-width:767px) {
@@ -1148,7 +1151,7 @@ header {
             padding: 0;
             & > li{
                 background: $global-highlight-color;
-                padding: 0 20px;
+                padding: 7px 20px;
             }
             & > li:nth-last-child(4) > a{
                 border-bottom: none;
@@ -1202,7 +1205,7 @@ header {
                 height: 100%;
                 top: 45px;
                 li{
-                    padding: 0 20px;
+                    padding: 7px 20px;
                     a {
                         padding: 11px 30px 12px 0;
                         color: $brightColor;
@@ -1259,10 +1262,11 @@ header {
                 }
             }
             .social-mnu{
-                
+                padding-top: 0;
+                padding-bottom: 0;
                 .header-top-social{
                     display: block;
-                    padding: 10px 0;
+                    padding: 15px 0;
                     border-bottom: 1px solid $brightColor;
                 }
                 ul{
@@ -1823,6 +1827,7 @@ ul.vertical-ul {
 .pagination{
     display: block;
     text-align: center;
+    margin-top: 50px;
     li{
         display: inline-block;
         a{
@@ -2174,6 +2179,7 @@ ul.vertical-ul {
 }
 
 .map-placeholder{
+    height: 425px;
     width: unset !important;
 }
 

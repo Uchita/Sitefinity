@@ -11,52 +11,62 @@
 
     @using (Html.BeginFormSitefinity("UploadResume", "UploadResumeForm", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-        <h3>@Html.Resource("AttachResumeLink")</h3>
+        <h2><span class="alert-icon far fa-file-alt"></span>@Html.Resource("AttachResumeLink")</h2>
         @*<div class="uploadfield-wrap">
                 <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.xls,.xlsx,.rtf" />
                 <small class="lbl">Browse</small>
             </div>*@
         <input id="myFile" data-sf-role="profile-resume-attachment-upload" type="file" value='@Html.Resource("UploadFileLink")' accept=".pdf,.doc,.docx,.txt,.xls,.xlsx,.rtf" name="profile-resume" />
-        <h5>@Html.Resource("AttachFileConditionsLink")</h5>
-        <div class="input-group">
+        <p class="note"><small>@Html.Resource("AttachFileConditionsLink")</small></p>
+        <div class="button-wrapper">
             @*<input data-sf-role="profile-resume-attachment-save" type="submit" value='@Html.Resource("SaveFileAttachmentLink")' />*@
-            <input id="uploadBtn" type="submit" value='@Html.Resource("SaveFileAttachmentLink")' disabled/>
+            <input id="uploadBtn" class="btn" type="submit" value='@Html.Resource("SaveFileAttachmentLink")' disabled/>
         </div>
-        <br />
+        
     }
 
     
-        <div class="row">
+        <br>
             @if (@Model.UploadError == true)
             {
-                <h4>Upload Error! Review the uploaded document.</h4>
+                <div class="alert alert-danger">Upload Error! Review the uploaded document.</div>
             }
             @if (@Model.FetchError == true)
             {
-                <h4>Error while fetching the resume files.</h4>
+                <div class="alert alert-danger">
+                    Error while fetching the resume files.</div>
             }
             @if (@Model.DeleteError == true)
             {
-                <h4>Delete Error! Try again.</h4>
+                <div class="alert alert-danger">
+                    Delete Error! Try again.</div>
             }
 
-        </div>
-    <br />
-        <div class="row" id="dvResumeResults">
+        
+ 
+        <div class="" id="dvResumeResults">
             <table class="table">
-
+                <tr>
+                    <th>Name</th>
+                    <th width="122">Action</th>
+                    <th width="100">Date</th>
+                </tr>
                 @foreach (var item in @Model.ResumeList)
                 {
-                    <tr>
-                        <td><span>@item.FileFullName</span></td>
-                        <td><a download="@item.FileName" href="@item.FileUrl" target="_blank">@Html.Resource("ViewResume")</a></td>
-                        <td> @Html.ActionLink("DELETE", "DeleteResume", "JXTNextResume", new { resumeId = item.Id }, new { @class = "btn btn-sm btn-tag" })</td>
+                <tr>
+                    <td><span>@item.FileFullName</span></td>
+                    <td>
+                        <a class="btn btn-sm btn-tag" download="@item.FileName" href="@item.FileUrl" target="_blank">@Html.Resource("ViewResume")</a> @Html.ActionLink("DELETE", "DeleteResume", "JXTNextResume", new { resumeId = item.Id }, new { @class = "btn btn-sm btn-tag btn-danger" })
+                        <input name="Id" value="@item.Id" hidden />
+                        <input name="FileName" value="@item.FileName" hidden />
+                    </td>
+                    <td>
+                        
                         @*<td><input type="submit" data-sf-role="profile-resume-delete" value="@Html.Resource("DeleteResume")"></td>*@
-                        <td>
-                            <input name="Id" value="@item.Id" hidden />
-                            <input name="FileName" value="@item.FileName" hidden />
-                        </td>
-                    </tr>
+                        
+                    </td>
+                    
+                </tr>
                 }
 
             </table>

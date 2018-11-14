@@ -360,6 +360,13 @@ $(document).ready(function () {
         });
     }
 
+    $('#userid').on('click',function(){
+        $(this).removeAttr('readonly').blur().focus();
+    });
+    $('#userid').on('focus',function(){
+        $(this).removeAttr('readonly');
+    });
+
 });
 
 $(window).resize(function () {

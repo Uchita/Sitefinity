@@ -142,7 +142,7 @@ $(function () {
 
 							if(params.title != "" && params.text != "" && !params.url) {
 								var infowindow = new google.maps.InfoWindow({
-                                    content: '<div class="map-info">' + params.title + params.text + '</div>'
+                                    content: '<div class="map-info">' + '<h3>'+ params.title + '</h3>' + params.text + '</div>'
                                 });
 
 
@@ -207,7 +207,7 @@ $(function () {
 
         			if(params.title != "" && params.text != "" && !params.url) {
           				var infowindow = new google.maps.InfoWindow({
-						content: '<div class="map-info">'+params.title+params.text + '</div>'
+						content: '<div class="map-info">'+'<h3>'+ params.title + '</h3>' +params.text + '</div>'
 					});
 
                     

@@ -84,5 +84,44 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
             return appliedJobs as List<T>;
         }
 
+        public T Member_ConvertToLocalEntity<T>(dynamic data) where T : class
+        {
+            MemberModel local = new MemberModel();
+            local.Id = data["id"];
+            local.SiteId = data["siteId"];
+            //Type = data["Type"],
+            local.FirstName = data["firstName"];
+            local.Surname = data["surname"];
+            local.Email = data["email"];
+            local.DateCreated = data["dateCreated"];
+            local.Status = data["status"];
+            local.UserId = data["userId"];
+            local.Data = data["data"];
+            local.ResumeFiles = data["resumeFiles"];
+
+            return local as T;
+        }
+
+        public dynamic Member_ConvertToAPIEntity(MemberModel local)
+        {
+            
+            dynamic apiObj = new
+            {
+                id = local.Id,
+                siteId = local.SiteId,
+                //Type = data["Type"],
+                firstName  = local.FirstName,
+                surname = local.Surname,
+                email = local.Email,
+                dateCreated = local.DateCreated,
+            status = local.Status,
+            userId = local.UserId,
+            data = local.Data,
+                resumeFiles = local.ResumeFiles
+        };
+
+            return apiObj;
+        }
+
     }
 }

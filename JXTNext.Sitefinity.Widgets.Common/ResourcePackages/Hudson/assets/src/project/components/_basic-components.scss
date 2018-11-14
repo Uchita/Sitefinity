@@ -16,6 +16,15 @@ blockquote{
 .width-limit{
     max-width: 450px;
 }
+
+.caret{
+    width: 8px;
+    border: none;
+    font: 900 1.3rem/1 'Font Awesome 5 Free';
+    &:before{
+        content: '\f107';
+    }
+}
 .page-wrapper {
     //page wrapper class will prevent general styles leaking into page designer styles when not needed
     font-size: $global-font-size-px;
@@ -391,7 +400,7 @@ blockquote{
         position: relative;
 
         &:before {
-            content: '\f0d7';
+            content: '\f107';
             position: absolute;
             top: 50%;
             right: 0;
@@ -702,9 +711,12 @@ img, iframe {
 }
 
 .box{
-    padding: 2rem;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    // padding: 2rem;
+    // margin-top: 3rem;
+    // margin-bottom: 3rem;
+    margin: 0;
+    padding: 0;
+    
     &.box-pad-5{
         padding: 5rem;
         @media (max-width:767px) {
@@ -1125,15 +1137,20 @@ header {
         .navbar-collapse {
             margin-bottom: 0;
             position: fixed;
-            left: 0;
+            left: 100%;
             width: 100%;
             max-height: 100%;
-            height: calc(100% - 95px);
+            height: calc(100% - 95px)!important;
             background: $global-headings-color;
             overflow: auto;
             z-index: 1000;
+            display: block;
+            transition: left 0.2s ease-in-out;
+            &.in{
+                left: 0;
+            }
         }
-
+        
         .nav.navbar-nav {
             margin: 0;
             padding: 0;
@@ -1156,7 +1173,7 @@ header {
 
             li > a,
             .dropdown > a {
-                padding: 11px 0;
+                padding: 16px 0;
             }
 
             .dropdown {
@@ -1171,14 +1188,14 @@ header {
                         color: $global-text-color;
                     }
                 }
-                &:last-child a{
+                &:last-child > a{
                     border-bottom: none;
                 }
                 
             }
 
             .custom-expander {
-                top: 10px;
+                top: 15px;
                 right: 15px;
                 text-align: center;
                 color: $brightColor!important;
@@ -1192,10 +1209,13 @@ header {
                 background: $global-highlight-color;
                 height: 100%;
                 top: 45px;
+                left: 100%;
+                transition: left 0.2s ease-in-out;
+                display: block;
                 li{
                     padding: 0 20px;
                     a {
-                        padding: 11px 30px 12px 0;
+                        padding: 15px 30px 16px 0;
                         color: $brightColor;
                         font: 1.6rem/1.2 $font-family-regular;
                         border-bottom: 1px solid $brightColor;
@@ -1203,7 +1223,7 @@ header {
                     .custom-expander{
                         right: 15px;
                     }
-                    &:last-child a{
+                    &:last-child > a{
                         border-bottom: none;
                     }
                 }
@@ -1231,6 +1251,9 @@ header {
                         content: '\f104';
                     }
                 }
+                > .dropdown-menu{
+                    left: 0;
+                }
             }
 
             
@@ -1242,18 +1265,22 @@ header {
                     color: $brightColor;
                 }
             }
+            .timesheet-mnu a{
+                padding-bottom: 15px;
+            }
             .combine-mnu{
-                padding: 10px 20px;
+                padding: 15px 20px;
                 a{
                     display: inline;
                     border-bottom: none;
                 }
             }
             .social-mnu{
-                
+                padding-top: 0;
+                padding-bottom: 0;
                 .header-top-social{
                     display: block;
-                    padding: 10px 0;
+                    padding: 15px 0;
                     border-bottom: 1px solid $brightColor;
                 }
                 ul{
@@ -1286,11 +1313,21 @@ header {
         }
     }
 }
+.menu-opened{
+    .mobile-nav.left-sidebar{
+        .navbar-collapse{
+            left: 0;
+        }
+    }
+    .main-content{
+        left: -100%;
+    }
+}
 
 .open{
     .fa-caret-down{
         &:before{
-            content: '\f0d8';
+            // content: '\f0d8';
         }
     }
 }
@@ -1301,6 +1338,9 @@ header {
 /*temp*/
 .main-content {
     min-height: 50vh;
+    position: relative;
+    left: 0;
+    transition: left 0.2s ease-in-out;
 }
 
 main {
@@ -1482,14 +1522,24 @@ main {
         .caret{
             position: absolute;
             right: 0;
-            top: 10px;
-            border-bottom: 4px solid;
-            border-top:none;
+            top: 6px;
+            width: 8px;
+            border: none;
+            // border: 4px solid transparent;
+            // border-top-color: #000; 
+            font: 900 1.3rem/1 'Font Awesome 5 Free';
+            &:before{
+                content: '\f107';
+            }
         }
         &.collapsed{
             .caret{
-                border-bottom-color: transparent;
-                border-top:4px solid;
+                // border-left-color: #000;
+                // border-top-color: transparent;
+                right: -1px;
+                &:before{
+                    content: '\f105';
+                }
             }
         }
     }
@@ -1517,7 +1567,7 @@ main {
                 line-height: 20px;
 
                 &.dropdown-toggle{
-                    top:12px;
+                    top:10px;
                 } 
                 &.submenu-toggle {
                     top: 6px;
@@ -1577,8 +1627,11 @@ main {
             color: $sidebar-default-color;
         }
 
-        .open > a > .fa-angle-down:before, .open > .fa-angle-down:before {
-            content: "\f106";
+        .open > a > .fa-angle-right:before, .open > .fa-angle-right:before {
+            content: "\f107";
+        }
+        .open > a > .fa-angle-right:before, .open > .fa-caret-right:before, {
+            content: "\f0d7";
         }
 
         & .open > a, & > li > a:focus, & > li > a:hover, & .open > a:focus, & .open > a:hover {
@@ -1801,6 +1854,7 @@ ul.vertical-ul {
 .pagination{
     display: block;
     text-align: center;
+    margin-top: 50px;
     li{
         display: inline-block;
         a{
@@ -2152,6 +2206,7 @@ ul.vertical-ul {
 }
 
 .map-placeholder{
+    height: 425px;
     width: unset !important;
 }
 

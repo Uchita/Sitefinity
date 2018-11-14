@@ -21,7 +21,16 @@
         @Html.Resource("DropJobSearchResults", "JobDetailsResources")
     </p>
     <sf-list-selector sf-page-selector sf-selected-item-id="properties.JobResultsPageId.PropertyValue" sf-select-button-text="Select a page"></sf-list-selector>
-</div><br />
+</div>
+<div class="form-group">
+    <label>@Html.Resource("SelectEmailJob", "JobDetailsResources")</label>
+
+    <p class="description-note">
+        @Html.Resource("DropEmailJob", "JobDetailsResources")
+    </p>
+    <sf-list-selector sf-page-selector sf-selected-item-id="properties.EmailJobPageId.PropertyValue" sf-select-button-text="Select a page"></sf-list-selector>
+</div>
+<br />
 
 <label>@Html.Resource("ApplyButtonShow", "JobDetailsResources")</label>
 <div class="form-group">

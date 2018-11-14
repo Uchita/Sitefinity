@@ -84,6 +84,34 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets phrase: Where to display email job?
+        /// </summary>
+        [ResourceEntry("SelectEmailJob",
+            Value = "Please select Email Job Page",
+            Description = "phrase : Please select Email Job Page")]
+        public string DisplayEmailJob
+        {
+            get
+            {
+                return this["SelectEmailJob"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: This is the page where you have dropped email job widget
+        /// </summary>
+        [ResourceEntry("DropEmailJob",
+            Value = "This is the page where you have dropped email job widget",
+            Description = "phrase : This is the page where you have dropped email job widget")]
+        public string DropEmailJob
+        {
+            get
+            {
+                return this["DropEmailJob"];
+            }
+        }
+
+        /// <summary>
         /// Gets phrase: This is the page where you have dropped search results widget
         /// </summary>
         [ResourceEntry("ApplyButtonShow",

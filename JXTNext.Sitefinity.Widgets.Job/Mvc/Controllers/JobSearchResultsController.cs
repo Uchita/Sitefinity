@@ -434,6 +434,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.ResultsPageId);
             ViewBag.CurrentPageUrl = SitefinityHelper.GetPageUrl(SiteMapBase.GetActualCurrentNode().Id.ToString());
             ViewBag.JobDetailsPageUrl = SitefinityHelper.GetPageUrl(this.DetailsPageId);
+            ViewBag.EmailJobPageUrl = SitefinityHelper.GetPageUrl(this.EmailJobPageId);
             ViewBag.HidePushStateUrl = this.HidePushStateUrl;
             ViewBag.PageFullUrl = SitefinityHelper.GetPageFullUrl(SiteMapBase.GetActualCurrentNode().Id);
 
@@ -525,6 +526,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public int? PageSize { get; set; }
         public string DetailsPageId { get; set; }
         public string ResultsPageId { get; set; }
+        public string EmailJobPageId { get; set; }
         public string Sorting { get; set; }
         public bool IsAllJobs { get; set; }
         public string CssClass { get; set; }

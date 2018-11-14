@@ -190,6 +190,12 @@ ThemeGlobal.MobileSubNavigationToggle = function(){
         }
        
     });
+
+    $('.navbar-header').on('click', '.navbar-toggle', function(){
+        $('.back-mnu').remove();
+        $('.dropdown').removeClass('open');
+        $('.page-wrapper').toggleClass('menu-opened');
+    });
 }
 
 $(document).ready(function () {
@@ -218,6 +224,7 @@ $(document).ready(function () {
     $('.owl-carousel-testimonials').owlCarousel({
         items: 1,
         loop: true,
+        autoplay: true,
     });
 
     $('.owl-consultants').owlCarousel({
@@ -280,6 +287,7 @@ $(document).ready(function () {
             }
         }
     });
+    
     $('.owl-card-basic').each(function (i, obj) {
         if ($(this).children().length > 1) {
             $(this).owlCarousel({

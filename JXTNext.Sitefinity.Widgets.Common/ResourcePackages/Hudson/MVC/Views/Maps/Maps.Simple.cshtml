@@ -19,7 +19,7 @@
 
     if (Model != null && Model.MapsMarkers != null)
     {
-        <div class="map-placeholder hidden" data-zoom="@Model.ZoomLevel" data-called=false style="width: 100%; height: 350px;">
+        <div class="map-placeholder hidden" data-zoom="@Model.ZoomLevel" data-called=false >
             @foreach (var marker in Model.MapsMarkers)
             {
                 <span data-address="@marker.Address" data-icon="@marker.MarkerIconPath" data-popuptitle="@marker.PopupTitle" data-popuptext="@marker.PopupText" data-popupadditionalinfo="@marker.PopupAdditionalInfo"></span>
@@ -56,7 +56,10 @@ else
                     var icon = $(this).data('icon');
 
                     // Pop up information
-                    var popupTitle = '<h3>' + $(this).data('popuptitle') + '</h3>';
+                    var popupTitle = 'Hudson Office';
+                    if ($(this).data('popuptitle').length) {
+                        popupTitle = $(this).data('popuptitle');
+                    }
                     var popupText = '<p class="info-text">' + $(this).data('popuptext') + '</p>';
                     var popupAdditionalInfo = '';
 

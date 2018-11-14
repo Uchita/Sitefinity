@@ -19,7 +19,7 @@
 
     if (Model != null && Model.MapsMarkers != null)
     {
-        <div class="map-placeholder hidden" data-zoom="@Model.ZoomLevel" data-called=false style="width: 100%; height: 350px;">
+        <div class="map-placeholder hidden" data-zoom="@Model.ZoomLevel" data-called=false >
             @foreach (var marker in Model.MapsMarkers)
             {
                 <span data-address="@marker.Address" data-icon="@marker.MarkerIconPath" data-popuptitle="@marker.PopupTitle" data-popuptext="@marker.PopupText" data-popupadditionalinfo="@marker.PopupAdditionalInfo"></span>
@@ -56,7 +56,10 @@ else
                     var icon = $(this).data('icon');
 
                     // Pop up information
-                    var popupTitle = '<h3>' + $(this).data('popuptitle') + '</h3>';
+                    var popupTitle = 'Hudson Office';
+                    if ($(this).data('popuptitle').length) {
+                        popupTitle = $(this).data('popuptitle');
+                    }
                     var popupText = '<p class="info-text">' + $(this).data('popuptext') + '</p>';
                     var popupAdditionalInfo = '';
 
@@ -83,12 +86,17 @@ else
                     $(this).googleMap({
                         zoom: zoomLevel // Initial zoom level (optional)
                     });
+                    var showMarker = true;
+                    if (markers.length > 1) {
+                        showMarker = false;
+                    }
 
                     for (var item of markers) {
                         if (item.isLatLng) {
                              $(this).addMarker({
                                  coords: [item.lat, item.lng],
-                                 icon: item.icon
+                                 icon: item.icon,
+                                 showInfoWindow: showMarker
                              });
                         }
                         else {
@@ -96,7 +104,8 @@ else
                                 address: item.address,
                                 icon: item.icon,
                                 title: item.popupTitle,
-                                text: item.popupText
+                                text: item.popupText,
+                                showInfoWindow: showMarker
                             });
                         }
                     }

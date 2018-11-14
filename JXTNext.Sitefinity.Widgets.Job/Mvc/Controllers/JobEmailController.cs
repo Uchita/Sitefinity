@@ -315,9 +315,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             var result = false;
 
+            // if the email is not set then create one using current site's domain name
+            var fromEmail = this.EmailFromEmail;
+            if (string.IsNullOrEmpty(fromEmail))
+            {
+                fromEmail = "noreply@" + Request.Url.Host;
+            }
+
             if (form.EmailFriend)
             {
-                var from = new MailAddress(form.Email, form.Name);
+                var from = new MailAddress(fromEmail, form.Name);
+
+                var replyToCollection = new MailAddressCollection();
+                replyToCollection.Add(new MailAddress(form.Email, form.Name));
 
                 templateData.Sender = from;
                 templateData.Message = Regex.Replace(form.FriendMessage, "<.*?>", String.Empty).Replace("\n", "<br />");
@@ -327,6 +337,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     var emailRequest = new EmailRequest
                     {
                         To = new MailAddress(item.Email, item.Name),
+                        ReplyTo = replyToCollection,
                         From = from,
                         Subject = subject,
                         EmailBody = content
@@ -342,13 +353,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
             else
             {
-                // if the email is not set then create one using current site's domain name
-                var fromEmail = this.EmailFromEmail;
-                if (string.IsNullOrEmpty(fromEmail))
-                {
-                    fromEmail = "noreply@" + Request.Url.Host;
-                }
-
                 // if the name is not set then use current site's name
                 var fromName = this.EmailFromName;
                 if (string.IsNullOrEmpty(fromName))

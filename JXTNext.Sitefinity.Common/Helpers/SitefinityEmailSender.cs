@@ -55,7 +55,9 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 Host = smtpSettings.Host,
                 Port = smtpSettings.Port,
                 SMTP_Password = smtpSettings.Password,
-                SMTP_Username = smtpSettings.UserName
+                SMTP_Username = smtpSettings.UserName,
+                ReplyTo = emailRequest.ReplyTo,
+                Attachments = emailRequest.Attachments
             };
 
             SESClientResponse emailSendStatus = emailService.SendEmail<SESClientResponse, SESClientRequest>(sesRequest);

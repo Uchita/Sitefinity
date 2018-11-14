@@ -185,9 +185,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     {
                         string value = item.Classifications[0][key].ToString();
                         string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
-                        seoString.Add(SEOString);
+                        seoString.Add(SEOString + "-jobs");
                     }
-                    seoString.Add(Regex.Replace(item.Title, @"([^\w]+)", "-"));
+                    seoString.Add(Regex.Replace(item.Title + "-job", @"([^\w]+)", "-"));
 
                     item.ClassificationsSEORouteName = String.Join("/", seoString);
                 }

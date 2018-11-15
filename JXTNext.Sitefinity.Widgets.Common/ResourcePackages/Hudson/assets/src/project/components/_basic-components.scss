@@ -104,7 +104,8 @@ blockquote{
         &:hover,
         &:focus,
         &:active {
-            color: $global-links-color;
+            color: $global-text-color;
+            text-decoration: unset;
         }
     }
     p{
@@ -282,9 +283,9 @@ blockquote{
     }
 
     .row-see-more {
-        margin-bottom: 3rem;
+        margin-bottom: 0;
         .btn {
-            margin-top: 38px;
+            margin-top: 0;
         }
     }
 
@@ -698,8 +699,11 @@ img, iframe {
 .mb-40{
     margin-bottom: 40px;
 }
+.margintop50{ margin-top:$gap;}
 .no-marg-top{ margin-top: 0!important; }
-.no-marg-btm{ margin-bottom: 0!important; }
+.no-marg-btm, .marginbtm0{ margin-bottom: 0!important; }
+.container-button{margin-bottom:$gap;}
+
 .visible-hidden {
     visibility: hidden;
     opacity: 0;
@@ -1170,6 +1174,8 @@ header {
                 background: $global-highlight-color;
                 color: $brightColor;
                 border-bottom: 1px solid $brightColor;
+                font-size: 1.6rem;
+                letter-spacing: 0.05rem;
             }
 
             li > a,
@@ -1180,7 +1186,7 @@ header {
             .dropdown {
 
                 & > a {
-                    padding-right: 30px;
+                    padding-right: 40px;
                 }
 
                 &.open, &.active, .active {
@@ -1196,11 +1202,15 @@ header {
             }
 
             .custom-expander {
-                top: 15px;
-                right: 15px;
+                top: 0;
+                right: 0;
+                width: 50px;
+                height: 52px;
+                line-height: 51px;
                 text-align: center;
                 color: $brightColor!important;
                 font-size: 1.8rem;
+                padding-right: 5px;
             }
 
             .dropdown-menu {
@@ -1218,12 +1228,11 @@ header {
                     a {
                         padding: 15px 30px 16px 0;
                         color: $brightColor;
-                        font: 1.6rem/1.2 $font-family-regular;
+                        font: 1.75rem/1.2 $font-family-regular;
                         border-bottom: 1px solid $brightColor;
+                        letter-spacing: 0.05rem;
                     }
-                    .custom-expander{
-                        right: 15px;
-                    }
+                    
                     &:last-child > a{
                         border-bottom: none;
                     }
@@ -1270,7 +1279,7 @@ header {
                 padding-bottom: 15px;
             }
             .combine-mnu{
-                padding: 15px 20px;
+                padding: 16px 20px;
                 a{
                     display: inline;
                     border-bottom: none;
@@ -1281,7 +1290,7 @@ header {
                 padding-bottom: 0;
                 .header-top-social{
                     display: block;
-                    padding: 15px 0;
+                    padding: 16px 0;
                     border-bottom: 1px solid $brightColor;
                 }
                 ul{
@@ -1357,6 +1366,14 @@ main {
     position: relative;
     background: $page-section-bg-base;
     color: $page-section-bg-base-color;
+    h2{
+        margin-top: 0;
+        margin-bottom: $gap;
+    }
+    .thumbnail{
+        margin-top: 0;
+        margin-bottom: 0;
+    }
     .form-container{
         .basic-form{
             margin-top: 0;
@@ -1385,6 +1402,7 @@ main {
             color: inherit;
         }
     }
+    .heading-margin{margin-top:$gap;}
 
     &.section-highlight {
         background: $page-section-bg-highlight;

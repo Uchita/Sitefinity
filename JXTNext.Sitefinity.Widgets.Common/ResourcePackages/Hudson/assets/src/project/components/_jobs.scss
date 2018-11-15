@@ -155,8 +155,8 @@
 
 .featured-job-offer {
     position: relative;
-    margin: 12px 0;
-    padding: 60px;
+    margin: 0 0 $gap;
+    padding: $gap;
     background: #fff;
 
     .job-offer-company {

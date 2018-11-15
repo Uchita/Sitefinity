@@ -218,7 +218,7 @@
     }
     else if (node.HasChildOpen)
     {
-        @Html.Raw("");
+        @Html.Raw("active");
     }
 }
 <script>
@@ -239,6 +239,8 @@
                 $(ulSelector).hide();
             }
         });
+
+        $('.dropdown').removeClass('open');
 
         $(".dropdown").mouseleave(function (e) {
             $(this).find("a.link-active").removeClass("link-active");

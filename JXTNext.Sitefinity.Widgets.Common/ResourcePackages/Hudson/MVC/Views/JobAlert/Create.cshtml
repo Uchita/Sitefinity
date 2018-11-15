@@ -22,7 +22,7 @@
             var privacyErrMsg = "Please agree to Hudson\'s privacy policy";
         }
         <div class="field-wrapper basic-form no-marg-top">
-            <div class="alert alert-warning filter-madatory-message hidden">Please enter filter value for at least one.</div>
+            <div class="alert alert-warning filter-madatory-message hidden">@Html.Resource("nofilterselectedmessage", "Labels")</div>
             <div class="row form-group">
                 <div class="col-md-4 text-right">
                     <label for="name">Job alert name*</label>
@@ -36,7 +36,7 @@
                     <label for="keywords">Keywords</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" name="Keywords" id="keywords" class="form-control" value="@Model.Keywords"/>
+                    <input type="text" name="Keywords" id="keywords" class="form-control" value="@Model.Keywords" />
                 </div>
             </div>
 
@@ -120,7 +120,7 @@
                 <div class="col-md-4 text-right"></div>
                 <div class="col-md-8">
                     <div class="checkbox clearfix">
-                        <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" checked required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid='this.setCustomValidity("@privacyErrMsg")' >
+                        <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid='this.setCustomValidity("@privacyErrMsg")'>
                         <span class="checkbox-icon fas fa-check"></span>
                         I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
                     </div>

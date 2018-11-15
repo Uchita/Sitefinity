@@ -64,7 +64,7 @@ else
                     var popupAdditionalInfo = '';
 
                     if ($(this).data('popupadditionalinfo') != "") {
-                        popupAdditionalInfo = '</span><span class="map-field"><span class="fa fa-phone"></span>'+$(this).data('popupadditionalinfo') + '</span>';
+                        popupAdditionalInfo = '</span><span class="map-field"><a href="tel: ' + $(this).data('popupadditionalinfo') + '"><span class="fa fa-phone"></span>'+$(this).data('popupadditionalinfo') + '</a></span>';
                     }
 
                     var infoWindowContent = '<div class="info-box"><span class="map-field"><span class="fas fa-map-marker-alt"></span>' + address + '</span>' + popupAdditionalInfo + popupText +'</div>';

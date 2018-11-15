@@ -104,7 +104,8 @@ blockquote{
         &:hover,
         &:focus,
         &:active {
-            color: $global-links-color;
+            color: $global-text-color;
+            text-decoration: unset;
         }
     }
     p{
@@ -145,6 +146,7 @@ blockquote{
             font-family: $font-family-light;
             text-transform: none;
             color: #fff;
+            overflow: hidden;
         }
 
         &.btn-linkedin {
@@ -281,9 +283,9 @@ blockquote{
     }
 
     .row-see-more {
-        margin-bottom: 3rem;
+        margin-bottom: 0;
         .btn {
-            margin-top: 38px;
+            margin-top: 0;
         }
     }
 
@@ -697,8 +699,11 @@ img, iframe {
 .mb-40{
     margin-bottom: 40px;
 }
+.margintop50{ margin-top:$gap;}
 .no-marg-top{ margin-top: 0!important; }
-.no-marg-btm{ margin-bottom: 0!important; }
+.no-marg-btm, .marginbtm0{ margin-bottom: 0!important; }
+.container-button{margin-bottom:$gap;}
+
 .visible-hidden {
     visibility: hidden;
     opacity: 0;
@@ -711,9 +716,12 @@ img, iframe {
 }
 
 .box{
-    padding: 2rem;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    // padding: 2rem;
+    // margin-top: 3rem;
+    // margin-bottom: 3rem;
+    margin: 0;
+    padding: 0;
+    
     &.box-pad-5{
         padding: 5rem;
         @media (max-width:767px) {
@@ -1134,15 +1142,20 @@ header {
         .navbar-collapse {
             margin-bottom: 0;
             position: fixed;
-            left: 0;
+            left: 100%;
             width: 100%;
             max-height: 100%;
-            height: calc(100% - 95px);
+            height: calc(100% - 95px)!important;
             background: $global-headings-color;
             overflow: auto;
             z-index: 1000;
+            display: block;
+            transition: left 0.2s ease-in-out;
+            &.in{
+                left: 0;
+            }
         }
-
+        
         .nav.navbar-nav {
             margin: 0;
             padding: 0;
@@ -1161,17 +1174,19 @@ header {
                 background: $global-highlight-color;
                 color: $brightColor;
                 border-bottom: 1px solid $brightColor;
+                font-size: 1.6rem;
+                letter-spacing: 0.05rem;
             }
 
             li > a,
             .dropdown > a {
-                padding: 11px 0;
+                padding: 16px 0;
             }
 
             .dropdown {
 
                 & > a {
-                    padding-right: 30px;
+                    padding-right: 40px;
                 }
 
                 &.open, &.active, .active {
@@ -1180,18 +1195,22 @@ header {
                         color: $global-text-color;
                     }
                 }
-                &:last-child a{
+                &:last-child > a{
                     border-bottom: none;
                 }
                 
             }
 
             .custom-expander {
-                top: 10px;
-                right: 15px;
+                top: 0;
+                right: 0;
+                width: 50px;
+                height: 52px;
+                line-height: 51px;
                 text-align: center;
                 color: $brightColor!important;
                 font-size: 1.8rem;
+                padding-right: 5px;
             }
 
             .dropdown-menu {
@@ -1201,18 +1220,20 @@ header {
                 background: $global-highlight-color;
                 height: 100%;
                 top: 45px;
+                left: 100%;
+                transition: left 0.2s ease-in-out;
+                display: block;
                 li{
                     padding: 0 20px;
                     a {
-                        padding: 11px 30px 12px 0;
+                        padding: 15px 30px 16px 0;
                         color: $brightColor;
-                        font: 1.6rem/1.2 $font-family-regular;
+                        font: 1.75rem/1.2 $font-family-regular;
                         border-bottom: 1px solid $brightColor;
+                        letter-spacing: 0.05rem;
                     }
-                    .custom-expander{
-                        right: 15px;
-                    }
-                    &:last-child a{
+                    
+                    &:last-child > a{
                         border-bottom: none;
                     }
                 }
@@ -1240,6 +1261,9 @@ header {
                         content: '\f104';
                     }
                 }
+                > .dropdown-menu{
+                    left: 0;
+                }
             }
 
             
@@ -1251,18 +1275,22 @@ header {
                     color: $brightColor;
                 }
             }
+            .timesheet-mnu a{
+                padding-bottom: 15px;
+            }
             .combine-mnu{
-                padding: 10px 20px;
+                padding: 16px 20px;
                 a{
                     display: inline;
                     border-bottom: none;
                 }
             }
             .social-mnu{
-                
+                padding-top: 0;
+                padding-bottom: 0;
                 .header-top-social{
                     display: block;
-                    padding: 10px 0;
+                    padding: 16px 0;
                     border-bottom: 1px solid $brightColor;
                 }
                 ul{
@@ -1295,6 +1323,16 @@ header {
         }
     }
 }
+.menu-opened{
+    .mobile-nav.left-sidebar{
+        .navbar-collapse{
+            left: 0;
+        }
+    }
+    .main-content{
+        left: -100%;
+    }
+}
 
 .open{
     .fa-caret-down{
@@ -1310,6 +1348,9 @@ header {
 /*temp*/
 .main-content {
     min-height: 50vh;
+    position: relative;
+    left: 0;
+    transition: left 0.2s ease-in-out;
 }
 
 main {
@@ -1325,6 +1366,14 @@ main {
     position: relative;
     background: $page-section-bg-base;
     color: $page-section-bg-base-color;
+    h2{
+        margin-top: 0;
+        margin-bottom: $gap;
+    }
+    .thumbnail{
+        margin-top: 0;
+        margin-bottom: 0;
+    }
     .form-container{
         .basic-form{
             margin-top: 0;
@@ -1353,6 +1402,7 @@ main {
             color: inherit;
         }
     }
+    .heading-margin{margin-top:$gap;}
 
     &.section-highlight {
         background: $page-section-bg-highlight;
@@ -1823,6 +1873,7 @@ ul.vertical-ul {
 .pagination{
     display: block;
     text-align: center;
+    margin-top: 50px;
     li{
         display: inline-block;
         a{
@@ -2174,6 +2225,7 @@ ul.vertical-ul {
 }
 
 .map-placeholder{
+    height: 425px;
     width: unset !important;
 }
 

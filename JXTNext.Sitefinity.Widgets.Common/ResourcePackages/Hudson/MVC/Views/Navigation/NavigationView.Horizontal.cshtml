@@ -240,6 +240,8 @@
             }
         });
 
+        $('.dropdown').removeClass('open');
+
         $(".dropdown").mouseleave(function (e) {
             $(this).find("a.link-active").removeClass("link-active");
             $(ulSelector).hide();

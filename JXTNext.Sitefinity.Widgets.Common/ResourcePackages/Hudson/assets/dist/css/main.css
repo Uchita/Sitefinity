@@ -7542,7 +7542,7 @@ blockquote {
   .page-wrapper input:-ms-input-placeholder,
   .page-wrapper select:-ms-input-placeholder,
   .page-wrapper textarea:-ms-input-placeholder {
-    color: #b5b5b5; }
+    color: #b5b5b5 !important; }
   .page-wrapper input[type="number"]::-webkit-outer-spin-button,
   .page-wrapper input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -9194,7 +9194,6 @@ ul.breadcrumb {
     position: relative;
     padding: 25px;
     min-height: 234px;
-    font-size: 1.4rem;
     line-height: 1.3; }
     .thumbnail.card-basic .caption h3 {
       margin-top: 0;
@@ -9824,7 +9823,8 @@ ul.breadcrumb {
     cursor: pointer;
     color: #fff; }
     .job-search a:hover {
-      text-decoration: none; }
+      text-decoration: none;
+      color: #fff; }
   .job-search .fa-angle-up {
     display: none;
     color: #fff; }
@@ -9987,50 +9987,54 @@ ul.breadcrumb {
     margin-top: 10px;
     float: left; }
 
-.page-wrapper .search-results .search-result {
+.page-wrapper .search-results .job-holder {
   border: 1px solid #01a3a4;
   margin-top: 15px;
   transition: .2s;
   -webkit-transition: .2s; }
-  .page-wrapper .search-results .search-result .search-result-top {
+  .page-wrapper .search-results .job-holder .search-result-top {
     padding: 10px 15px;
     -webkit-transition: .2s;
     transition: .2s; }
-    .page-wrapper .search-results .search-result .search-result-top h3 {
+    .page-wrapper .search-results .job-holder .search-result-top h3 {
       margin: 5px 0; }
-    .page-wrapper .search-results .search-result .search-result-top .search-result-title {
+    .page-wrapper .search-results .job-holder .search-result-top .search-result-title {
       font-size: 24px;
       font-size: 2.4rem;
       margin: 10px 0; }
-    .page-wrapper .search-results .search-result .search-result-top a {
+    .page-wrapper .search-results .job-holder .search-result-top .save-job {
+      color: #01a3a4; }
+    .page-wrapper .search-results .job-holder .search-result-top a {
       font-size: 14px;
       font-size: 1.4rem; }
-      .page-wrapper .search-results .search-result .search-result-top a:hover, .page-wrapper .search-results .search-result .search-result-top a:focus {
+      .page-wrapper .search-results .job-holder .search-result-top a:hover, .page-wrapper .search-results .job-holder .search-result-top a:focus {
         color: inherit;
         text-decoration: underline; }
-  .page-wrapper .search-results .search-result .search-result-description {
+  .page-wrapper .search-results .job-holder .search-result-description {
     padding: 15px; }
-    .page-wrapper .search-results .search-result .search-result-description .link-default {
+    .page-wrapper .search-results .job-holder .search-result-description .link-default {
       font-size: 1.4rem; }
-  .page-wrapper .search-results .search-result .jobCatHirarchy {
+  .page-wrapper .search-results .job-holder .jobCatHirarchy {
     padding-top: 10px; }
-    .page-wrapper .search-results .search-result .jobCatHirarchy .jobCatItem {
+    .page-wrapper .search-results .job-holder .jobCatHirarchy .jobCatItem {
       display: block; }
-      .page-wrapper .search-results .search-result .jobCatHirarchy .jobCatItem a::after {
+      .page-wrapper .search-results .job-holder .jobCatHirarchy .jobCatItem a::after {
         content: ">";
         padding-left: 4px; }
-      .page-wrapper .search-results .search-result .jobCatHirarchy .jobCatItem a:last-child::after {
+      .page-wrapper .search-results .job-holder .jobCatHirarchy .jobCatItem a:last-child::after {
         content: ""; }
-  .page-wrapper .search-results .search-result:hover {
+  .page-wrapper .search-results .job-holder:hover {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.42); }
-    .page-wrapper .search-results .search-result:hover .search-result-top {
+    .page-wrapper .search-results .job-holder:hover .search-result-top {
       color: #fff;
       background-color: #01a3a4; }
-      .page-wrapper .search-results .search-result:hover .search-result-top a, .page-wrapper .search-results .search-result:hover .search-result-top a:hover, .page-wrapper .search-results .search-result:hover .search-result-top a:focus {
+      .page-wrapper .search-results .job-holder:hover .search-result-top a, .page-wrapper .search-results .job-holder:hover .search-result-top a:hover, .page-wrapper .search-results .job-holder:hover .search-result-top a:focus {
         color: #fff; }
-      .page-wrapper .search-results .search-result:hover .search-result-top h3 a {
+      .page-wrapper .search-results .job-holder:hover .search-result-top h3 a {
         text-decoration: none; }
-      .page-wrapper .search-results .search-result:hover .search-result-top .saved::before {
+      .page-wrapper .search-results .job-holder:hover .search-result-top .save-job {
+        color: #fff; }
+      .page-wrapper .search-results .job-holder:hover .search-result-top .saved::before {
         color: #fff; }
 
 .job-mini .breadcrumb {

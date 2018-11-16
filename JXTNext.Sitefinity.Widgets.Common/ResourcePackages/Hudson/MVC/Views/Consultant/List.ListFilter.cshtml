@@ -34,7 +34,7 @@
                 </label>
                 <div class="select">
                     <select id="SectorFilter" name="SectorFilter" required="required" class="form-control">
-                        <option value="all">All Specialisation</option>
+                        <option value="all">All Specialisations</option>
                         @{
                             List
                             <Taxon>
@@ -61,7 +61,7 @@
                 </label>
                 <div class="select">
                     <select id="LocationFilter" name="LocationFilter" required="required" class="form-control">
-                        <option value="all">All Location</option>
+                        <option value="all">All Locations</option>
                         @{
                             var manager = DynamicModuleManager.GetManager("OpenAccessProvider");
                             var officeType = TypeResolutionService.ResolveType("Telerik.Sitefinity.DynamicTypes.Model.Offices.Office");

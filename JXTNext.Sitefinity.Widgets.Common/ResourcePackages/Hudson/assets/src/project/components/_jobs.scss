@@ -61,6 +61,7 @@
 
         &:hover {
             text-decoration: none;
+            color: $brightColor;
         }
     }
 
@@ -322,7 +323,7 @@
     }
 
     .search-results {
-        .search-result {
+        .job-holder {
             border: 1px solid $global-highlight-color;
             margin-top: 15px;
             transition: .2s;
@@ -340,7 +341,9 @@
                     font-size: 2.4rem;
                     margin: 10px 0;
                 }
-
+                .save-job{
+                    color: $global-highlight-color;
+                }
                 a {
                     font-size: 14px;
                     font-size: 1.4rem;
@@ -387,6 +390,9 @@
                     }
                     h3 a{
                         text-decoration: none;
+                    }
+                    .save-job{
+                        color: $brightColor;
                     }
                     .saved::before{
                         color: $brightColor;

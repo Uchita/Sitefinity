@@ -15,6 +15,8 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.JXTNextResume
         public string FileExtension { get; set; }
         public string FileUrl { get; set; }
 
+        public string UploadDateStr { get { return UploadDate.ToString(); } }
+
         public string FileFullName { get { return FileName + "." + FileExtension; } }
     }
 }

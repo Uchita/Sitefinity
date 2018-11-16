@@ -12,5 +12,6 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.JXTNextResume
         public bool UploadError { get; set; }
         public bool FetchError { get; set; }
         public bool DeleteError { get; set; }
+        public string JsonData { get; set; }
     }
 }

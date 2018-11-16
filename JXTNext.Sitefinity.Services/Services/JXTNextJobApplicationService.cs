@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
+using Telerik.Sitefinity.Abstractions;
 using Telerik.Sitefinity.DynamicModules;
 using Telerik.Sitefinity.Model;
 using Telerik.Sitefinity.Security;
@@ -146,7 +147,7 @@ namespace JXTNext.Sitefinity.Services.Services
                 var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(emailTemplateId.ToUpper()));
                 htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
             }
-
+            Log.Write("Inside GetHtmlEmailContent method ", ConfigurationPolicy.ErrorLog);
             return htmlEmailContent;
         }
     }

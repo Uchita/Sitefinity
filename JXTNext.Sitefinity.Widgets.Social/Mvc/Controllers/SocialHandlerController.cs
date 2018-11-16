@@ -141,15 +141,17 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     PathToAttachment = identifier.ToString() + "_" + result.FileName,
                                     Status = "Ready"
                                 };
-
+                                Log.Write("overrideEmail uploadItem object created", ConfigurationPolicy.ErrorLog);
                                 List<JobApplicationAttachmentUploadItem> attachments = new List<JobApplicationAttachmentUploadItem>();
                                 attachments.Add(uploadItem);
-
+                                Log.Write("overrideEmail uploadItem attachment added", ConfigurationPolicy.ErrorLog);
                                 string resumeAttachmentPath = JobApplicationAttachmentUploadItem.GetAttachmentPath(attachments, JobApplicationAttachmentType.Resume);
+                                Log.Write("After resume GetAttachmentPath", ConfigurationPolicy.ErrorLog);
                                 string coverletterAttachmentPath = JobApplicationAttachmentUploadItem.GetAttachmentPath(attachments, JobApplicationAttachmentType.Coverletter);
+                                Log.Write("After cover letter GetAttachmentPath", ConfigurationPolicy.ErrorLog);
 
                                 string htmlEmailContent = _jobApplicationService.GetHtmlEmailContent(this.EmailTemplateId, this.EmailTemplateProviderName, this._itemType);
-
+                                Log.Write("After GetHtmlEmailContent", ConfigurationPolicy.ErrorLog);
                                 // Email notification settings
                                 EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                     new EmailTarget(SitefinityHelper.GetUserFirstNameById(ClaimsManager.GetCurrentIdentity().UserId), overrideEmail),

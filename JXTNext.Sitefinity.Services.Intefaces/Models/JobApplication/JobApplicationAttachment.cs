@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Telerik.Sitefinity.Abstractions;
 using Telerik.Sitefinity.GenericContent.Model;
 using Telerik.Sitefinity.Libraries.Model;
 using Telerik.Sitefinity.Modules.Libraries;
@@ -155,6 +156,7 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
         public static string GetAttachmentPath(List<JobApplicationAttachmentUploadItem> attachmentItems, JobApplicationAttachmentType attachmentType)
         {
             JobApplicationAttachmentUploadItem item = attachmentItems.Where(c => c.AttachmentType == attachmentType).FirstOrDefault();
+            Log.Write("In GetAttachmentPath method item", ConfigurationPolicy.ErrorLog);
             if (item == null)
                 return null;
             return item.PathToAttachment;

@@ -10112,9 +10112,13 @@ ul.breadcrumb {
     display: block;
     margin-top: -20px;
     color: #01a3a4; }
+  .upload-section .uploadfield-wrap input[type="file"]:focus + .lbl, .upload-section .uploadfield-wrap button:focus + .lbl {
+    font-weight: bold; }
 
 .upload-section .note {
-  display: block; }
+  display: block;
+  clear: both;
+  word-break: break-word; }
 
 .note {
   color: #b5b5b5;

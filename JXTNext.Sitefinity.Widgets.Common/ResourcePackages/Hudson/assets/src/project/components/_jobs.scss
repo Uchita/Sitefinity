@@ -507,9 +507,16 @@
             margin-top: -20px;
             color: $global-highlight-color;
         }
+        input[type="file"]:focus, button:focus{
+            + .lbl{
+                font-weight: bold;
+            }
+        }
     }
     .note{
         display: block;
+        clear: both;
+        word-break: break-word;
     }
 }
 .note{

@@ -40,33 +40,12 @@ namespace JXTNext.Sitefinity.Services.Services
             if (!string.IsNullOrEmpty(applicantInfo.Email))
             {
                 Telerik.Sitefinity.Security.Model.User existingUser = SitefinityHelper.GetUserByEmail(applicantInfo.Email);
-
+                
                 if (existingUser != null)
                 {
                     #region Entered Email exists in Sitefinity User list
-                    //instantiate the Sitefinity user manager
-                    //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
-                    UserManager userManager = UserManager.GetManager();
-                    if (userManager.ValidateUser(applicantInfo.Email, applicantInfo.Password))
-                    {
-                        //if you need to get the user instance use the out parameter
-                        Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
-                        SecurityManager.AuthenticateUser(userManager.Provider.Name, applicantInfo.Email, applicantInfo.Password, false, out userToAuthenticate);
-                        if (userToAuthenticate == null)
-                        {
-                            status = JobApplicationStatus.NotAbleToLoginCreatedUser;
-                            return ovverideEmail;
-                        }
-                        else
-                        {
-                            ovverideEmail = userToAuthenticate.Email;
-                        }
-                    }
-                    else
-                    {
-                        status = JobApplicationStatus.NotAbleToLoginCreatedUser;
-                        return ovverideEmail;
-                    }
+                    ovverideEmail = existingUser.Email;
+                    return ovverideEmail;
                     #endregion
                 }
                 else

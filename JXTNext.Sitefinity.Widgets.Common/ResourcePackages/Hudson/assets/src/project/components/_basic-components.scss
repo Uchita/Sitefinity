@@ -380,7 +380,7 @@ blockquote{
     input:-ms-input-placeholder,
     select:-ms-input-placeholder,
     textarea:-ms-input-placeholder {
-        color: $forms-placeholder-color;
+        color: $forms-placeholder-color!important;
     }
 
     input[type="number"]::-webkit-outer-spin-button,

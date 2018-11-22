@@ -672,6 +672,14 @@
     .minWt100{
         min-width: 90px;
     }
+
+    .board-members-row{
+        display: block; 
+        > div{
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+    }
 }
 
 @media (max-width: 800px) {

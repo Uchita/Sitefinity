@@ -7283,8 +7283,8 @@ blockquote {
     content: '\f107'; }
 
 .page-wrapper {
-  font-size: 16px;
-  font-size: 1.6rem;
+  font-size: 18px;
+  font-size: 1.8rem;
   line-height: 22px;
   font-family: AkzidGroProLig, sans-serif;
   color: #000;
@@ -8805,7 +8805,7 @@ ul.vertical-ul {
   bottom: 25%;
   position: absolute; }
 
-.prefooter-content .testimonials-slider.testimonials-simple.with-side-image .img-holder {
+.testimonials-slider.testimonials-simple.with-side-image .img-holder {
   width: 80%; }
 
 .map-placeholder {
@@ -10369,11 +10369,15 @@ select.articles-order {
 .board-members {
   text-align: center; }
   .board-members-row {
-    padding: 0 0 30px; }
+    padding: 0 0 30px;
+    display: flex;
+    flex-wrap: wrap; }
     .board-members-row:before, .board-members-row:after {
       display: block;
       height: 0;
       clear: both; }
+    .board-members-row h4 {
+      line-height: 1.3; }
   .board-members-item {
     display: inline-block;
     vertical-align: top;
@@ -11205,7 +11209,12 @@ select.articles-order {
   .owl-carousel-jumbotron .owl-nav button span {
     top: -15px; }
   .minWt100 {
-    min-width: 90px; } }
+    min-width: 90px; }
+  .board-members-row {
+    display: block; }
+    .board-members-row > div {
+      max-width: 500px;
+      margin: 0 auto 40px; } }
 
 @media (max-width: 800px) {
   .page-wrapper {

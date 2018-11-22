@@ -6,7 +6,7 @@
 
 @{ 
     var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
-    var isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
+    bool isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
 }
 
 <div class="result-meta">
@@ -50,7 +50,7 @@
     <div id="pager" class="k-pager-wrap k-widget k-floatwrap" data-role="]">
         <ul class="k-pager-numbers k-reset"></ul>
     </div>
-
+    <input id="loginVar" value="@isLoggedIn" type="text" hidden/>
     <div class="popup-overlay">
         <div class="container">
             <div class="popup-box">
@@ -65,6 +65,7 @@
     </div>
 
     <script type="text/x-kendo-template" id="template">
+        
         <div class="job-holder search-result">
             <div class="search-result-top">
 
@@ -73,7 +74,10 @@
                         <h3><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="search-result-title">#:Title#</a></h3>
                     </div>
                     <div class="col-sm-4 col-xs-12 text-right">
-                        <span class="save-job" data-jobid="#:JobID#">Save job</span> | <a href='@ViewBag.EmailJobPageUrl?JobId=#:JobID#'>Send email</a><br />
+                        # if ( islogged ){ #
+                        <span class="save-job" data-jobid="#:JobID#">Save job</span> |
+                        # } #
+                        <a href='@ViewBag.EmailJobPageUrl?JobId=#:JobID#'>Send email</a><br />
                         <small>#:DateCreated_Representation#</small>
 
                     </div>
@@ -133,7 +137,9 @@
          var emailPattern = "^[a-zA-Z0-9_][a-zA-Z0-9!#$%&amp;'*+/=?_`{|}~-]*(?:.[a-zA-Z0-9!#$%&amp;';*+/=?_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?.)+(?:[a-zA-Z]{2,})$";
          var emptyMsg = "Email field should not be empty.";
          var invalidMsg = "Email address is invalid";
+         
       }
+        var islogged = $("#loginVar").val(); //used in kendo template
 
     $(document).ready(function () {
         $(document).on('click', '.save-job', function (e) {
@@ -202,7 +208,7 @@
         $('.popup-overlay .fa-times').click(function () {
             $('.popup-overlay').fadeOut('fast');
         });
-
+        
     });
 
     var model = @Html.Raw(json);

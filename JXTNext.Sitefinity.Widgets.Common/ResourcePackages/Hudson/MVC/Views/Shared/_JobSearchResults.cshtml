@@ -29,8 +29,8 @@
             
             <input type="email" id="anonycreatejobalert" value="" placeholder="Receive new jobs for this search by email." class="jobalert-field" />
             <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">CREATE JOB ALERT</a>
-            <div class="alert alert-info jobalert-message hidden">Your job alert has been created. Please check your email to verify your account.</div>
-            <div class="alert alert-danger jobalert-error-message hidden">There is error while creating your job alert.</div>
+            <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
+            <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
         }
         <div class="select">
             <select id="sortOrder" class="default-select">

@@ -154,7 +154,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 Log.Write("After GetHtmlEmailContent", ConfigurationPolicy.ErrorLog);
                                 // Email notification settings
                                 EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
-                                                                                                    new EmailTarget(SitefinityHelper.GetUserFirstNameById(ClaimsManager.GetCurrentIdentity().UserId), overrideEmail),
+                                                                                                    new EmailTarget(SitefinityHelper.GetUserFirstNameById(SitefinityHelper.GetUserByEmail(overrideEmail).Id), overrideEmail),
                                                                                                     this.EmailTemplateEmailSubject,
                                                                                                     htmlEmailContent);
 

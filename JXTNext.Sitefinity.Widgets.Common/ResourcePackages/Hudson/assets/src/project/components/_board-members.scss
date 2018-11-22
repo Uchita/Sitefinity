@@ -3,12 +3,17 @@
 
     &-row {
         padding: 0 0 30px;
+        display: flex;
+        flex-wrap: wrap;
 
         &:before,
         &:after {
             display: block;
             height: 0;
             clear: both;
+        }
+        h4{
+            line-height:1.3;
         }
     }
 

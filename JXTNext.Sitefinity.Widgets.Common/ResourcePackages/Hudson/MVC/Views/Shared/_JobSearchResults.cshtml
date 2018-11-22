@@ -6,7 +6,7 @@
 
 @{ 
     var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
-    var isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
+    bool isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
 }
 
 <div class="result-meta">
@@ -19,13 +19,15 @@
     *@
     <div>Receive new jobs for this search by email.</div>
     <div>
-        <input type="email" id="anonycreatejobalert" value="" placeholder="Receive new jobs for this search by email." class="jobalert-field" />
+
         @if (isLoggedIn)
         {
             <a class="btn btn-sm jobalert-btn ml-5" href="/user-dashboard/Create" title="Create your job alert">CREATE JOB ALERT</a>
         }
         else
         {
+            
+            <input type="email" id="anonycreatejobalert" value="" placeholder="Receive new jobs for this search by email." class="jobalert-field" />
             <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">CREATE JOB ALERT</a>
             <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
             <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
@@ -48,7 +50,7 @@
     <div id="pager" class="k-pager-wrap k-widget k-floatwrap" data-role="]">
         <ul class="k-pager-numbers k-reset"></ul>
     </div>
-
+    <input id="loginVar" value="@isLoggedIn" type="text" hidden/>
     <div class="popup-overlay">
         <div class="container">
             <div class="popup-box">
@@ -63,6 +65,7 @@
     </div>
 
     <script type="text/x-kendo-template" id="template">
+        
         <div class="job-holder search-result">
             <div class="search-result-top">
 
@@ -71,7 +74,10 @@
                         <h3><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="search-result-title">#:Title#</a></h3>
                     </div>
                     <div class="col-sm-4 col-xs-12 text-right">
-                        <span class="save-job" data-jobid="#:JobID#">Save job</span> | <a href='@ViewBag.EmailJobPageUrl?JobId=#:JobID#'>Send email</a><br />
+                        # if ( islogged ){ #
+                        <span class="save-job" data-jobid="#:JobID#">Save job</span> |
+                        # } #
+                        <a href='@ViewBag.EmailJobPageUrl?JobId=#:JobID#'>Send email</a><br />
                         <small>#:DateCreated_Representation#</small>
 
                     </div>
@@ -126,9 +132,14 @@
     <script type="text/javascript">
 
      @{
-          var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-          var json = serializer.Serialize(Model);
+         var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+         var json = serializer.Serialize(Model);
+         var emailPattern = "^[a-zA-Z0-9_][a-zA-Z0-9!#$%&amp;'*+/=?_`{|}~-]*(?:.[a-zA-Z0-9!#$%&amp;';*+/=?_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?.)+(?:[a-zA-Z]{2,})$";
+         var emptyMsg = "Email field should not be empty.";
+         var invalidMsg = "Email address is invalid";
+         
       }
+        var islogged = $("#loginVar").val(); //used in kendo template
 
     $(document).ready(function () {
         $(document).on('click', '.save-job', function (e) {
@@ -197,7 +208,7 @@
         $('.popup-overlay .fa-times').click(function () {
             $('.popup-overlay').fadeOut('fast');
         });
-
+        
     });
 
     var model = @Html.Raw(json);
@@ -260,8 +271,20 @@
 
         $('#anon-job-alert').click(function () {
             var email = $('#anonycreatejobalert').val();
+
+            var pattern = new RegExp('@emailPattern');
+            if (email.length < 1) {
+                $('.jobalert-error-message').removeClass('hidden').text('@emptyMsg');
+                return false;
+            }
+            else if (!pattern.test(email)) {
+                $('.jobalert-error-message').removeClass('hidden').text('@invalidMsg');
+                return false;
+            }
+
             var alertData = { filterModel: filterModel, email: email };
             var urlPath = $(location).attr('pathname') + "/CreateAnonymousJobAlert";
+            
             $.ajax({
                 type: 'POST',
                 cache: false,
@@ -271,8 +294,8 @@
                 success: function (response) {
                     console.log(response);
                     if (response.Success == true) {
-                        $('#anonycreatejobalert').hide();
-                        $(this).hide();
+                        $('#anonycreatejobalert, #anon-job-alert').hide();
+                        //$(this).hide();
                         $('.jobalert-error-message').addClass('hidden');
                         $('.jobalert-message').removeClass('hidden');
                     }

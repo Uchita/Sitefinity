@@ -32,7 +32,7 @@
                                 <label class="form-label" for="userid">Email*</label>
                             </div>
                             <div class="col-md-8">
-                                <input id="userid" type="text" name="Email" class="form-control" required placeholder="Enter email address to begin" autocomplete="email" readonly />
+                                <input id="userid" type="text" name="Email" class="form-control" required placeholder="Enter email address to begin" autocomplete="email" aria-describedby="email-verify-message" readonly />
                                 <small class="welcome-message hidden">Welcome back!</small>
                             </div>
                         </div>
@@ -46,12 +46,12 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <input id="firstname-reg" type="text" name="FirstName" class="form-control" placeholder="First name" />
+                                        <input id="firstname-reg" type="text" name="FirstName" class="form-control" placeholder="First name" aria-describedby="firstName-message" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <input type="text" id="lastname-reg" name="LastName" class="form-control" placeholder="Last name" />
+                                        <input type="text" id="lastname-reg" name="LastName" class="form-control" placeholder="Last name" aria-describedby="lastName-message" />
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                                     </label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" id="PhoneNumber" name="PhoneNumber" pattern="[0-9]*" class="form-control" placeholder="Phone number" />
+                                    <input type="tel" id="PhoneNumber" name="PhoneNumber" pattern="[0-9]*" class="form-control" placeholder="Phone number" aria-describedby="phone-message" />
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                                 <label class="form-label" for="password-reg">Password*</label>
                             </div>
                             <div class="col-md-8">
-                                <input id="password-reg" type="password" name="Password" class="form-control" autocomplete="off" placeholder="Choose your password" />
+                                <input id="password-reg" type="password" name="Password" class="form-control" autocomplete="off" placeholder="Choose your password" aria-describedby="password-message" />
                                 <span class="hidden alert alert-danger error-message wrongPassword-message">
                                     Your password is incorrect!
                                 </span>

@@ -359,10 +359,15 @@ $(document).ready(function () {
            $('.keywordfilter').toggle(); 
         });
     }
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
 
-    $('#userid').on('click',function(){
-        $(this).removeAttr('readonly').blur().focus();
-    });
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))  // If Internet Explorer, return version number
+    {
+        $('#userid').on('click',function(){
+            $(this).removeAttr('readonly').blur().focus();
+        });
+    }
     $('#userid').on('focus',function(){
         $(this).removeAttr('readonly');
     });

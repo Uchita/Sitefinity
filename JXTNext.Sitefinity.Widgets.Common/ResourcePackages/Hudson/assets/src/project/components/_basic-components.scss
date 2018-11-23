@@ -25,6 +25,10 @@ blockquote{
         content: '\f107';
     }
 }
+.spacer{
+    clear: both;
+    height: 3rem;
+}
 .page-wrapper {
     //page wrapper class will prevent general styles leaking into page designer styles when not needed
     font-size: $global-font-size-px;

@@ -162,6 +162,51 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
         }
         #endregion
 
+        #region Instagram settings
+        protected virtual TextField InstagramClientIdToken
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("instagramClientIdToken", true);
+            }
+        }
+
+        protected virtual TextField InstagramClientSecret
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("instagramClientSecret", true);
+            }
+        }
+
+        protected virtual TextField InstagramAccessToken
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("instagramAccessToken", true);
+            }
+        }
+
+        protected virtual TextField InstagramExpiration
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("instagramExpiration", true);
+            }
+        }
+
+        protected virtual TextField InstagramMaxItems
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("instagramMaxItems", true);
+            }
+        }
+
+
+
+        #endregion
+
         #endregion
 
         #region Methods

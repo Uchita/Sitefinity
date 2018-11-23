@@ -31,6 +31,7 @@ using System.Web.Security;
 using Telerik.Sitefinity.Security.Model;
 using Telerik.Sitefinity.Services;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
+using JXTNext.Sitefinity.Services.Intefaces;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -40,7 +41,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
     public class JobApplicationController : Controller
     {
         IBusinessLogicsConnector _blConnector;
-
+        IJobApplicationService _jobApplicationService;
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
         /// </summary>
@@ -58,8 +59,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
-        public JobApplicationController(IBusinessLogicsConnector blConnector)
+        public JobApplicationController(IBusinessLogicsConnector blConnector, IJobApplicationService jobApplicationService)
         {
+            _jobApplicationService = jobApplicationService;
             _blConnector = blConnector;
             if (string.IsNullOrWhiteSpace(this.SerializedApplyWithSocialMedia))
                 this.SerializedApplyWithSocialMedia = ApplyWithSocialMedia.SerializedSocialMediaInit();
@@ -183,7 +185,24 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 ViewBag.CompanyName = jobListingResponse.Job.CustomData["CompanyName"];
                 ViewBag.JobLocation = jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"];
             }
-              
+
+            if (isUserLoggedIn && !string.IsNullOrEmpty(userEmail))
+            {
+                var response = _blConnector.GetMemberByEmail(userEmail);
+                if (response.Member?.ResumeFiles != null)
+                {
+                    var resumeList = JsonConvert.DeserializeObject<List<ProfileResume>>(response.Member.ResumeFiles);
+                    List<SelectListItem> myResumes = new List<SelectListItem>();
+                    myResumes.Add(new SelectListItem { Text = "SELECT YOUR CV", Value = "0" });
+                    foreach (var item in resumeList)
+                    {
+                        var datestr = item.UploadDate.ToShortDateString();
+                        myResumes.Add(new SelectListItem { Text = datestr + " - " + item.FileFullName, Value = item.Id.ToString() });
+                    }
+                    ViewBag.ResumeList = myResumes;
+
+                }
+            }
 
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
             return View(fullTemplateName, jobApplicationViewModel);
@@ -285,8 +304,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             JobApplicationAttachmentSource sourceCoverLetter = GetAttachmentSourceType(applyJobModel.CoverLetterSelectedType);
             JobApplicationAttachmentSource sourceDocuments = GetAttachmentSourceType(applyJobModel.DocumentsSelectedType);
 
-            List<JobApplicationAttachmentUploadItem> attachments = GatherAttachments(sourceResume, sourceCoverLetter, sourceDocuments, applyJobModel.UploadFilesResume, applyJobModel.UploadFilesCoverLetter, applyJobModel.UploadFilesDocuments);
 
+            List<JobApplicationAttachmentUploadItem> attachments = GatherAttachments(sourceResume, sourceCoverLetter, sourceDocuments, applyJobModel.UploadFilesResume, applyJobModel.UploadFilesCoverLetter, applyJobModel.UploadFilesDocuments);
+            
+            
             string resumeAttachmentPath = GetAttachmentPath(attachments, JobApplicationAttachmentType.Resume).FirstOrDefault();
             string coverletterAttachmentPath = GetAttachmentPath(attachments, JobApplicationAttachmentType.Coverletter).FirstOrDefault();
             List<string> documentsAttachmentPath = GetAttachmentPath(attachments, JobApplicationAttachmentType.Documents);
@@ -383,7 +404,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             bool isUserVerified = true;
             bool isMemberUser = false;
             bool isUserSignedIn = false;
-
+            List<SelectListItem> myResumes = new List<SelectListItem>();
             if (!isUserLoggedIn)
             {
                 isUserVerified = SitefinityHelper.IsUserVerified(email, password);
@@ -391,7 +412,22 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 {
                     var user = SitefinityHelper.GetUserByEmail(email);
                     if (user != null)
+                    {
                         isMemberUser = SitefinityHelper.IsUserInRole(user, "Member");
+                        var memberResponse = _blConnector.GetMemberByEmail(user.Email);
+                        if (memberResponse.Member?.ResumeFiles != null)
+                        {
+                            var resumeList = JsonConvert.DeserializeObject<List<ProfileResume>>(memberResponse.Member.ResumeFiles);
+                            
+                            myResumes.Add(new SelectListItem { Text = "SELECT YOUR CV", Value = "0" });
+                            foreach (var item in resumeList)
+                            {
+                                var datestr = item.UploadDate.ToShortDateString();
+                                myResumes.Add(new SelectListItem { Text = datestr + " - " + item.FileFullName, Value = item.Id.ToString() });
+                            }
+                        }
+                    }
+                        
                 }
 
             }
@@ -423,7 +459,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 IsUserVerified = isUserVerified,
                 IsUserMember = isMemberUser,
-                IsUserSignedIn = isUserSignedIn
+                IsUserSignedIn = isUserSignedIn,
+                myResumes = JsonConvert.SerializeObject(myResumes)
             };
 
             return new JsonResult { Data = response };
@@ -455,7 +492,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 return JobApplicationAttachmentSource.Dropbox;
             if (sourceType.ToUpper() == "GOOGLEDRIVE")
                 return JobApplicationAttachmentSource.GoogleDrive;
-
+            if (sourceType.ToUpper() == "SAVED")
+                return JobApplicationAttachmentSource.Saved;
             return JobApplicationAttachmentSource.Local;
 
         }
@@ -525,7 +563,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     document.ApprovalWorkflowState = "Published";
 
                     //Upload the document file.
-                    string fileExtension = fileName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).Last();
+                    string fileExtension = "." + fileName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).Last();
                     librariesManager.Upload(document, fileStream, fileExtension ?? string.Empty);
 
                     //Recompiles and validates the url of the document.
@@ -593,6 +631,40 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         private List<JobApplicationAttachmentUploadItem> GatherAttachments(JobApplicationAttachmentSource sourceResume, JobApplicationAttachmentSource sourceCoverLetter, JobApplicationAttachmentSource sourceDocuments, string uploadFilesResumeJSON, string uploadFilesCoverLetterJSON, string uploadFilesDocumentsJSON)
         {
             List<JobApplicationAttachmentUploadItem> attachmentItems = new List<JobApplicationAttachmentUploadItem>();
+            
+            if (sourceResume == JobApplicationAttachmentSource.Saved)
+            {
+                var currentIdentity = ClaimsManager.GetCurrentIdentity();
+
+                if (currentIdentity.IsAuthenticated)
+                {
+                    var currUser = SitefinityHelper.GetUserById(currentIdentity.UserId);
+                    if (currUser != null)
+                    {
+                        
+                        var memberResponse = _blConnector.GetMemberByEmail(currUser.Email);
+                        if (memberResponse.Member?.ResumeFiles != null)
+                        {
+                            var resumeList = JsonConvert.DeserializeObject<List<ProfileResume>>(memberResponse.Member.ResumeFiles);
+                            var selectedResume = resumeList.Where(x => x.Id.ToString() == uploadFilesResumeJSON).FirstOrDefault();
+                            if (selectedResume != null)
+                            {
+                                var resumeUploadStream = _jobApplicationService.GetFileStreamFromAmazonS3(JobApplicationAttachmentSettings.PROFILE_RESUME_UPLOAD_KEY, 1, uploadFilesResumeJSON);
+                                if (resumeUploadStream != null)
+                                {
+                                    JobApplicationAttachmentUploadItem item = GatherSavedResumeAttachmentDetails(JobApplicationAttachmentType.Resume, resumeUploadStream, selectedResume.FileFullName);
+                                    if (item != null)
+                                        attachmentItems.Add(item);
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+                
+                
+
+            }
 
             if (sourceResume == JobApplicationAttachmentSource.Local)
             {
@@ -764,6 +836,24 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
             return paths;
+        }
+
+        private JobApplicationAttachmentUploadItem GatherSavedResumeAttachmentDetails(JobApplicationAttachmentType attachmentType, Stream file, string fileName)
+        {
+            if (file != null )
+            {
+                Guid identifier = Guid.NewGuid();
+                return new JobApplicationAttachmentUploadItem
+                {
+                    Id = identifier.ToString(),
+                    AttachmentType = attachmentType,
+                    FileName = fileName,
+                    FileStream = file,
+                    PathToAttachment = identifier.ToString() + "_" + fileName,
+                    Status = "Ready"
+                };
+            }
+            return null;
         }
 
         private JobApplicationAttachmentUploadItem GatherAttachmentDetails(JobApplicationAttachmentType attachmentType, HttpPostedFileBase file)

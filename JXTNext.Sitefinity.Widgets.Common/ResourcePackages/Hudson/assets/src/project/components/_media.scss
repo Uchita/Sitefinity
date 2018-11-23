@@ -376,18 +376,20 @@
         text-align: center!important;
     }
     .page-wrapper {
-        font-size: 14px;
-        font-size: 1.4rem;
+        font-size: 16px;
+        font-size: 1.6rem;
         line-height: normal;
 
         .h1, h1 {
             font-size: 36px;
             font-size: 3.6rem;
+            margin-bottom: 3rem;
         }
 
         .h2, h2 {
             font-size: 24px;
             font-size: 2.4rem;
+            margin-bottom: 3rem;
         }
 
         .h3, h3 {
@@ -672,6 +674,14 @@
     .minWt100{
         min-width: 90px;
     }
+
+    .board-members-row{
+        display: block; 
+        > div{
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+    }
 }
 
 @media (max-width: 800px) {
@@ -727,6 +737,9 @@
   
     .page-wrapper main{
         padding-top: 0;
+    }
+    main .page-section {
+        padding: 20px 0;
     }
     header {
 
@@ -847,8 +860,8 @@
     }
 
     .jumbotron-container .jumbotron {
-        padding-top: 150px;
-        min-height: 400px;
+        padding-top: 100px;
+        min-height: 220px;
         .h1, h1 {
             font-size: 30px;
             font-size: 3rem;
@@ -880,8 +893,8 @@
             .card-description {
                 position: static;
                 padding: 0;
-                font-size: 14px;
-                font-size: 1.4rem;
+                font-size: 16px;
+                font-size: 1.6rem;
                 opacity: 1;
                 filter: alpha(opacity=100);
                 -webkit-transition: none;
@@ -1008,12 +1021,14 @@
     }
     div#filtersPagePartialContent{
         padding-top: 50px;
+        
         .keywordfilter{
             display: none;
             margin-top:10px;
         }
         .filter-outer-wrapper{
             margin-bottom: 10px;
+            display: block;
         }
         .sm-wrapper{
             margin-top: 10px;
@@ -1154,6 +1169,10 @@
     }
     .left-sidebar{
         margin-bottom: 50px;
+        display: none;
+        &.mobile-nav{
+            display: block;
+        }
     }
     .page-section {
         .right-bottom-img{
@@ -1225,6 +1244,13 @@
             }
         }
     }
+    .pos-static{
+        margin-top: 0;
+        margin-bottom: 2rem;
+        .breadcrumb{
+            position: static;
+        }
+    }
     
 }
 
@@ -1241,9 +1267,7 @@
 }
 
 @media (max-width:499px) {
-    main .page-section{
-        padding: 20px 0;
-    }
+   
     .left-sidebar{
         margin-bottom: 30px;
     }

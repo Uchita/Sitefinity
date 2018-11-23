@@ -151,7 +151,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
         public string GetCurrentSiteInstagramClientIdToken()
         {
-            string instagramClientIdToken = "";
+            string instagramClientIdToken = String.Empty;
             if (this._siteSettingsContract != null)
                 instagramClientIdToken = this._siteSettingsContract.InstagramClientIdToken;
 
@@ -160,7 +160,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
         public string GetCurrentSiteInstagramClientSecret()
         {
-            string instagramClientSecret = "";
+            string instagramClientSecret = String.Empty;
             if (this._siteSettingsContract != null)
                 instagramClientSecret = this._siteSettingsContract.InstagramClientSecret;
 
@@ -169,7 +169,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
         public string GetCurrentSiteInstagramAccessToken()
         {
-            string instagramAccessToken = "";
+            string instagramAccessToken = String.Empty;
             if (this._siteSettingsContract != null)
                 instagramAccessToken = this._siteSettingsContract.InstagramAccessToken;
 

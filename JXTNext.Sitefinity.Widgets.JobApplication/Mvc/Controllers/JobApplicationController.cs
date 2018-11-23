@@ -188,10 +188,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             if (isUserLoggedIn && !string.IsNullOrEmpty(userEmail))
             {
-                var res = _blConnector.GetMemberByEmail(userEmail);
-                if (res.Member != null && res.Member.ResumeFiles != null)
+                var response = _blConnector.GetMemberByEmail(userEmail);
+                if (response.Member?.ResumeFiles != null)
                 {
-                    var resumeList = JsonConvert.DeserializeObject<List<ProfileResume>>(res.Member.ResumeFiles);
+                    var resumeList = JsonConvert.DeserializeObject<List<ProfileResume>>(response.Member.ResumeFiles);
                     List<SelectListItem> myResumes = new List<SelectListItem>();
                     myResumes.Add(new SelectListItem { Text = "SELECT YOUR CV", Value = "0" });
                     foreach (var item in resumeList)
@@ -414,10 +414,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     if (user != null)
                     {
                         isMemberUser = SitefinityHelper.IsUserInRole(user, "Member");
-                        var res = _blConnector.GetMemberByEmail(user.Email);
-                        if (res.Member != null && res.Member.ResumeFiles != null)
+                        var memberResponse = _blConnector.GetMemberByEmail(user.Email);
+                        if (memberResponse.Member?.ResumeFiles != null)
                         {
-                            var resumeList = JsonConvert.DeserializeObject<List<ProfileResume>>(res.Member.ResumeFiles);
+                            var resumeList = JsonConvert.DeserializeObject<List<ProfileResume>>(memberResponse.Member.ResumeFiles);
                             
                             myResumes.Add(new SelectListItem { Text = "SELECT YOUR CV", Value = "0" });
                             foreach (var item in resumeList)
@@ -642,18 +642,22 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     if (currUser != null)
                     {
                         
-                        var res = _blConnector.GetMemberByEmail(currUser.Email);
-                        if (res.Member != null && res.Member.ResumeFiles != null)
+                        var memberResponse = _blConnector.GetMemberByEmail(currUser.Email);
+                        if (memberResponse.Member?.ResumeFiles != null)
                         {
-                            var resumeList = JsonConvert.DeserializeObject<List<ProfileResume>>(res.Member.ResumeFiles);
+                            var resumeList = JsonConvert.DeserializeObject<List<ProfileResume>>(memberResponse.Member.ResumeFiles);
                             var selectedResume = resumeList.Where(x => x.Id.ToString() == uploadFilesResumeJSON).FirstOrDefault();
-                            var resumeUploadStream = _jobApplicationService.GetFileStreamFromAmazonS3(JobApplicationAttachmentSettings.PROFILE_RESUME_UPLOAD_KEY, 1, uploadFilesResumeJSON);
-                            if (resumeUploadStream != null)
+                            if (selectedResume != null)
                             {
-                                JobApplicationAttachmentUploadItem item = GatherSavedResumeAttachmentDetails(JobApplicationAttachmentType.Resume, resumeUploadStream, selectedResume.FileFullName);
-                                if (item != null)
-                                    attachmentItems.Add(item);
+                                var resumeUploadStream = _jobApplicationService.GetFileStreamFromAmazonS3(JobApplicationAttachmentSettings.PROFILE_RESUME_UPLOAD_KEY, 1, uploadFilesResumeJSON);
+                                if (resumeUploadStream != null)
+                                {
+                                    JobApplicationAttachmentUploadItem item = GatherSavedResumeAttachmentDetails(JobApplicationAttachmentType.Resume, resumeUploadStream, selectedResume.FileFullName);
+                                    if (item != null)
+                                        attachmentItems.Add(item);
+                                }
                             }
+                            
                         }
                     }
                 }

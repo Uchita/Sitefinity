@@ -17,6 +17,6 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
 
         public string UploadDateStr { get { return UploadDate.ToString(); } }
 
-        public string FileFullName { get { return FileName + "." + FileExtension; } }
+        public string FileFullName { get { return $"{FileName}.{FileExtension}"; } }
     }
 }

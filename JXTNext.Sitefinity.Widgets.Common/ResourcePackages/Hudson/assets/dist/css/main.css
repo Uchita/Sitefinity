@@ -7282,6 +7282,10 @@ blockquote {
   .caret:before {
     content: '\f107'; }
 
+.spacer {
+  clear: both;
+  height: 3rem; }
+
 .page-wrapper {
   font-size: 18px;
   font-size: 1.8rem;
@@ -9651,14 +9655,17 @@ ul.breadcrumb {
     font-size: 1.4rem; }
   .page-wrapper .login-form h1 {
     margin-bottom: 2rem; }
-  .page-wrapper .sf-profile h2 {
-    font-size: 3.2rem;
-    margin-top: 2.35rem; }
-  .page-wrapper .sf-profile img {
-    max-width: 200px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); }
-  .page-wrapper .sf-profile label {
-    padding-top: 0; }
+  .page-wrapper .sf-profile {
+    margin-bottom: 2rem; }
+    .page-wrapper .sf-profile h2 {
+      font-size: 3.2rem;
+      margin-top: 3.5rem;
+      margin-bottom: 1.5rem; }
+    .page-wrapper .sf-profile img {
+      max-width: 200px;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); }
+    .page-wrapper .sf-profile label {
+      padding-top: 0; }
   .page-wrapper .user-profile-dash {
     border-bottom: 1px solid #000;
     padding-bottom: 50px;
@@ -11050,15 +11057,17 @@ select.articles-order {
   .sm-text-center {
     text-align: center !important; }
   .page-wrapper {
-    font-size: 14px;
-    font-size: 1.4rem;
+    font-size: 16px;
+    font-size: 1.6rem;
     line-height: normal; }
     .page-wrapper .h1, .page-wrapper h1 {
       font-size: 36px;
-      font-size: 3.6rem; }
+      font-size: 3.6rem;
+      margin-bottom: 3rem; }
     .page-wrapper .h2, .page-wrapper h2 {
       font-size: 24px;
-      font-size: 2.4rem; }
+      font-size: 2.4rem;
+      margin-bottom: 3rem; }
     .page-wrapper .h3, .page-wrapper h3 {
       font-size: 20px;
       font-size: 2.0rem; }
@@ -11250,6 +11259,8 @@ select.articles-order {
 @media (max-width: 767px) {
   .page-wrapper main {
     padding-top: 0; }
+  main .page-section {
+    padding: 20px 0; }
   header .navbar-fixed-top:before {
     content: '';
     position: absolute;
@@ -11324,8 +11335,8 @@ select.articles-order {
   .paralax-image {
     background-size: auto !important; }
   .jumbotron-container .jumbotron {
-    padding-top: 150px;
-    min-height: 400px; }
+    padding-top: 100px;
+    min-height: 220px; }
     .jumbotron-container .jumbotron .h1, .jumbotron-container .jumbotron h1 {
       font-size: 30px;
       font-size: 3rem; }
@@ -11345,8 +11356,8 @@ select.articles-order {
     .thumbnail.card-rollover .card-description {
       position: static;
       padding: 0;
-      font-size: 14px;
-      font-size: 1.4rem;
+      font-size: 16px;
+      font-size: 1.6rem;
       opacity: 1;
       filter: alpha(opacity=100);
       -webkit-transition: none;
@@ -11442,7 +11453,8 @@ select.articles-order {
       display: none;
       margin-top: 10px; }
     div#filtersPagePartialContent .filter-outer-wrapper {
-      margin-bottom: 10px; }
+      margin-bottom: 10px;
+      display: block; }
     div#filtersPagePartialContent .sm-wrapper {
       margin-top: 10px;
       margin-bottom: 20px; }
@@ -11519,7 +11531,10 @@ select.articles-order {
   .xs-marg-btm {
     margin-bottom: 30px; }
   .left-sidebar {
-    margin-bottom: 50px; }
+    margin-bottom: 50px;
+    display: none; }
+    .left-sidebar.mobile-nav {
+      display: block; }
   .page-section .right-bottom-img {
     padding-bottom: 40vw; }
     .page-section .right-bottom-img img {
@@ -11561,7 +11576,12 @@ select.articles-order {
       background: white; }
       .mobile-breadcrumb .breadcrumb li a:before {
         content: '<';
-        margin-right: 5px; } }
+        margin-right: 5px; }
+  .pos-static {
+    margin-top: 0;
+    margin-bottom: 2rem; }
+    .pos-static .breadcrumb {
+      position: static; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron .owl-nav {
@@ -11572,8 +11592,6 @@ select.articles-order {
     clear: left; } }
 
 @media (max-width: 499px) {
-  main .page-section {
-    padding: 20px 0; }
   .left-sidebar {
     margin-bottom: 30px; }
   .col-xs-1 {

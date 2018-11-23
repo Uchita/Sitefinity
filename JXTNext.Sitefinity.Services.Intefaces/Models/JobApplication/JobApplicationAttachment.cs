@@ -126,6 +126,38 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
             return result;
         }
 
+        public static Stream GetFileStreamFromAmazonS3(string providerName, string srcLibName,int attachmentType,string fileTitle)
+        {
+            LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
+            var libManagerSecurityCheckStatus = librariesManager.Provider.SuppressSecurityChecks;
+            string documentFileName = string.Empty;
+            try
+            {
+                var docLibs = librariesManager.GetDocumentLibraries();
+                
+                foreach (var lib in docLibs)
+                {
+                    if (lib.Title.ToLower() == srcLibName)
+                    {
+                        var items = lib.Items();
+                        var srcdocument = lib.Items().Where(item => item.Title.Contains(fileTitle)).FirstOrDefault();
+
+                        if (srcdocument != null && srcdocument.Status != ContentLifecycleStatus.Deleted)
+                        {
+                            return librariesManager.Download(srcdocument.Id);
+                            //return new FileStream(srcdocument.FilePath,FileMode.Open);
+                        }
+
+                    }
+                }
+            }
+            finally
+            {
+                // Reset the suppress security checks
+                librariesManager.Provider.SuppressSecurityChecks = libManagerSecurityCheckStatus;
+            }
+            return null;
+        }
 
         public static  string FetchFromAmazonS3(string providerName, JobApplicationAttachmentType attachmentType, string itemTitle)
         {

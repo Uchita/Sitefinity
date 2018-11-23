@@ -15,5 +15,6 @@ namespace JXTNext.Sitefinity.Services.Intefaces
         string GetHtmlEmailContent(string emailTemplateId, string emailTemplateProviderName, string itemType);
         List<JobApplicationAttachmentUploadItem> GetFiles(List<JobApplicationAttachmentUploadItem> attachments);
         bool DeleteFile(JobApplicationAttachmentUploadItem deletefile);
+        Stream GetFileStreamFromAmazonS3(string srcLibName, int attachmentType, string id);
     }
 }

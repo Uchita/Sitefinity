@@ -176,6 +176,14 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return instagramAccessToken;
         }
 
+        
+        public void SetCurrentSiteInstagramAccessToken(string instagramAccessToken)
+        {
+            if (this._siteSettingsContract != null && !string.IsNullOrEmpty(instagramAccessToken))
+                 this._siteSettingsContract.InstagramAccessToken = instagramAccessToken;
+
+        }
+
         public int GetCurrentSiteInstagramExpiration()
         {
             int instagramExpiration = 10;

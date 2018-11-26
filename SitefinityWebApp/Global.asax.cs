@@ -112,6 +112,10 @@ namespace SitefinityWebApp
                 "jxt",
                 "jxt/{controller}/{id}",
                 new { id = RouteParameter.Optional });
+            GlobalConfiguration.Configuration.Routes.MapHttpRoute(
+                "Instagram",
+                "Instagram/{controller}/{id}",
+                new { id = RouteParameter.Optional });
             //FrontendModule.Current.DependencyResolver.Rebind<IRegistrationModel>().To<JXTNext_MemberRegistrationModel>();
         }
 

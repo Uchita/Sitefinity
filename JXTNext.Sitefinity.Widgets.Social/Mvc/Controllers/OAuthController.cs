@@ -17,20 +17,23 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
     public class OAuthController : ApiController
     {
         ConfigManager manager = ConfigManager.GetManager();
-        InstagramConfig instagramConfig;
+        private readonly string redirectUrl = "/instagram/oauth";
+        private readonly string sitefinityPath = "/Sitefinity";
+        private readonly string instagramPublicScopeValue = "publiccontent";
+        private readonly string instagramPublicContentValue = "public_content";
         InstagramOAuthClient client;
         private SiteSettingsHelper siteSettingsHelper;
 
         public OAuthController()
         {
             siteSettingsHelper = new SiteSettingsHelper();
-            instagramConfig = manager.GetSection<InstagramConfig>();
+            
 
             client = new InstagramOAuthClient
             {
                 ClientId = siteSettingsHelper.GetCurrentSiteInstagramClientIdToken(),
                 ClientSecret = siteSettingsHelper.GetCurrentSiteInstagramClientSecret(),
-                RedirectUri = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)
+                RedirectUri = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + redirectUrl
             };
         }
 
@@ -40,12 +43,12 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         {
             string state = Guid.NewGuid().ToString();
 
-            instagramConfig.AccessToken = state;
-            manager.SaveSection(instagramConfig);
-
-            string authorizationUrl = client.GetAuthorizationUrl(state, InstagramScope.PublicContent).Replace("publiccontent", "public_content");
+            siteSettingsHelper.SetCurrentSiteInstagramAccessToken(state);
+            
+            string authorizationUrl = client.GetAuthorizationUrl(state, InstagramScope.PublicContent).Replace(instagramPublicScopeValue, instagramPublicContentValue);
 
             HttpContext.Current.Response.Redirect(authorizationUrl);
+            
         }
 
         [HttpGet]
@@ -55,10 +58,10 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                instagramConfig.AccessToken = response.Body.AccessToken;
-                manager.SaveSection(instagramConfig);
+                siteSettingsHelper.SetCurrentSiteInstagramAccessToken(response.Body.AccessToken);
+                
 
-                HttpContext.Current.Response.Redirect(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + "/Sitefinity");
+                HttpContext.Current.Response.Redirect(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + sitefinityPath);
             }
         }
     }

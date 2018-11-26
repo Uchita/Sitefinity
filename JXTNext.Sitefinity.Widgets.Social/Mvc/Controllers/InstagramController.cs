@@ -128,7 +128,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             return string.Format("{0}{1}", "instagramMedia", Username);
         }
 
-        //InstagramConfig instagramConfig = Config.Get<InstagramConfig>();
+        
         #endregion
     }
 }

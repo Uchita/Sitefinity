@@ -27,7 +27,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         public OAuthController()
         {
             siteSettingsHelper = new SiteSettingsHelper();
-            //instagramConfig = manager.GetSection<InstagramConfig>();
+            
 
             client = new InstagramOAuthClient
             {

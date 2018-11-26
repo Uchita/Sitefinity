@@ -26,6 +26,8 @@ using Telerik.Sitefinity.Security.Events;
 using JXTNext.Sitefinity.Connector.BusinessLogics;
 using Ninject;
 using JXTNext.Sitefinity.Widgets.User.Mvc.StringResources;
+using Telerik.Sitefinity.Configuration;
+using JXTNext.Sitefinity.Widgets.Social.Mvc.Configuration;
 
 namespace SitefinityWebApp
 {
@@ -67,6 +69,7 @@ namespace SitefinityWebApp
                 GlobalFilters.Filters.Add(new SocialShareAttribute());
                 SystemManager.RegisterBasicSettings<GenericBasicSettingsView<CustomSiteSettings, CustomSiteSettingsContract>>("CustomSiteSettingsConfig", "Custom Site Settings", "", true);
                 FrontendModule.Current.DependencyResolver.Rebind<IDynamicContentModel>().To<CustomDynamicContentModel>();
+                Config.RegisterSection<InstagramConfig>();
             }
         }
 

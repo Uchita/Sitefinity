@@ -19,6 +19,7 @@ namespace JXTNext.Sitefinity.Services.Services
 {
     public class JXTNextJobApplicationService : IJobApplicationService
     {
+        private static readonly string awsProvider = "private-amazon-s3-provider";
         public string GetOverrideEmail(ref JobApplicationStatus status, ApplicantInfo applicantInfo, bool isSocialMedia = false)
         {
             string ovverideEmail = null;
@@ -104,6 +105,11 @@ namespace JXTNext.Sitefinity.Services.Services
             return attachments;
         }
 
+        public Stream GetFileStreamFromAmazonS3(string srcLibName ,int attachmentType, string id)
+        {
+            return JobApplicationAttachmentUploadItem.GetFileStreamFromAmazonS3(awsProvider, srcLibName, attachmentType, id);
+        }
+
         public bool UploadFiles(List<JobApplicationAttachmentUploadItem> attachments)
         {
             bool hasFailedUpload = false;
@@ -129,5 +135,7 @@ namespace JXTNext.Sitefinity.Services.Services
             Log.Write("Inside GetHtmlEmailContent method ", ConfigurationPolicy.ErrorLog);
             return htmlEmailContent;
         }
+
+        
     }
 }

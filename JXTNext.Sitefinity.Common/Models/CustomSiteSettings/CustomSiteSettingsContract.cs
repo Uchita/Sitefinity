@@ -111,6 +111,43 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
         }
         #endregion
 
+        #region Instagram
+        [DataMember]
+        public string InstagramClientIdToken
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string InstagramClientSecret
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string InstagramAccessToken
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public int InstagramExpiration
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public int InstagramMaxItems
+        {
+            get;
+            set;
+        }
+        #endregion
+
         #endregion
 
         #region LoadDefaults
@@ -141,6 +178,13 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             // Indeed
             this.IndeedClientAPIToken = section.UICustomSiteSettings.CurrentIndeedClientAPIToken;
             this.IndeedClientSecret = section.UICustomSiteSettings.CurrentIndeedClientSecret;
+
+            // Instagram
+            this.InstagramClientIdToken = section.UICustomSiteSettings.CurrentInstagramClientIdToken;
+            this.InstagramClientSecret = section.UICustomSiteSettings.CurrentInstagramClientSecret;
+            this.InstagramAccessToken = section.UICustomSiteSettings.CurrentInstagramAccessToken;
+            this.InstagramExpiration = section.UICustomSiteSettings.CurrentInstagramExpiration;
+            this.InstagramMaxItems = section.UICustomSiteSettings.CurrentInstagramMaxItems;
         }
 
         public void SaveDefaults()
@@ -167,6 +211,14 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             // Indeed
             section.UICustomSiteSettings.CurrentIndeedClientAPIToken = this.IndeedClientAPIToken;
             section.UICustomSiteSettings.CurrentIndeedClientSecret = this.IndeedClientSecret;
+
+
+            // Instagram
+            section.UICustomSiteSettings.CurrentInstagramClientIdToken = this.InstagramClientIdToken;
+            section.UICustomSiteSettings.CurrentInstagramClientSecret = this.InstagramClientSecret;
+            section.UICustomSiteSettings.CurrentInstagramAccessToken = this.InstagramAccessToken;
+            section.UICustomSiteSettings.CurrentInstagramExpiration = this.InstagramExpiration;
+            section.UICustomSiteSettings.CurrentInstagramMaxItems = this.InstagramMaxItems;
 
             manager.SaveSection(section);
         }

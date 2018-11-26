@@ -7651,6 +7651,8 @@ blockquote {
     font-size: 14px;
     font-size: 1.4rem;
     color: #aaa; }
+    .page-wrapper .text-muted a {
+      text-decoration: underline; }
   .page-wrapper .font-light {
     font-family: AkzidGroProLig, sans-serif; }
   .page-wrapper .font-regular {
@@ -8230,6 +8232,8 @@ main {
   color: inherit; }
   .page-section h2 {
     margin-top: 0;
+    margin-bottom: 25px; }
+  .page-section .home-h2 h2 {
     margin-bottom: 50px; }
   .page-section .thumbnail {
     margin-top: 0;
@@ -8298,6 +8302,11 @@ main {
     color: #fff; }
   .section-highlight-light .btn {
     border-color: #fff; }
+
+.home-padding .thumbnail.card-basic .caption {
+  height: 240px;
+  padding: 50px;
+  font-size: 1.6rem; }
 
 .sf-list-item h3[data-sf-role="toggleLink"] {
   padding: 13px 20px;
@@ -9511,9 +9520,10 @@ ul.breadcrumb {
   margin: 0 0 30px; }
 
 .form-newsletter p {
-  margin: 10px 0 0;
+  margin: 10px auto 0;
   font-size: 14px;
-  font-size: 1.4rem; }
+  font-size: 1.4rem;
+  width: 85%; }
 
 /*#endregion Form - Newsletter */
 /*#region Form - Contact us*/
@@ -10371,6 +10381,58 @@ select.articles-order {
 .article-details .image-wrap {
   margin: 0; }
 
+.article-padding .thumbnail {
+  margin-bottom: 0;
+  margin-top: 50px; }
+
+/* UL list for articles - teal square */
+.article-details ul.teal {
+  list-style: none;
+  margin: 0px;
+  padding: 0 0 0 30px; }
+  .article-details ul.teal li {
+    padding-bottom: 15px; }
+    .article-details ul.teal li::before {
+      content: "■";
+      font-family: "Arial Black";
+      color: #009c9e;
+      display: inline-block;
+      width: 1.3em;
+      margin-left: -1.3em; }
+
+/* OL list for articles - numbered h3 */
+.article-details ol.numbered-h3 {
+  list-style: none;
+  counter-reset: subheader;
+  margin: 0px;
+  padding: 0 0 0 30px; }
+  .article-details ol.numbered-h3 li {
+    counter-increment: subheader;
+    color: #009c9e;
+    font-size: 2.4rem;
+    font-weight: 500;
+    line-height: 1.1; }
+    .article-details ol.numbered-h3 li::before {
+      content: counter(subheader) ".";
+      color: #009c9e;
+      font-size: 2.4rem;
+      font-weight: 500;
+      line-height: 1.1;
+      display: inline-block;
+      width: 2em;
+      margin-left: -2.5em;
+      margin-right: 0.5em;
+      text-align: right; }
+    .article-details ol.numbered-h3 li p {
+      margin: 10px 0 30px 0;
+      font-size: 1.8rem;
+      line-height: 1.4;
+      color: #000; }
+    .article-details ol.numbered-h3 li ul li {
+      font-size: 1.8rem;
+      line-height: 1.4;
+      color: #000; }
+
 /*#endregion Articles/Insights */
 /*#region Board members*/
 .board-members {
@@ -10479,7 +10541,8 @@ select.articles-order {
       .press-release-filter ul li a {
         font-family: AkzidGroProMed, sans-serif;
         text-transform: uppercase;
-        color: #a3a3a3; }
+        color: #a3a3a3;
+        font-size: 1.6rem; }
         .press-release-filter ul li a:hover {
           text-decoration: none;
           color: #01a3a4; }
@@ -11561,7 +11624,7 @@ select.articles-order {
   .consultant-minimal .consultant .item {
     width: 46.5%; }
   .mobile-breadcrumb {
-    z-index: 1;
+    z-index: 10000;
     margin-top: 24px;
     position: relative;
     height: 35px; }
@@ -11693,6 +11756,10 @@ select.articles-order {
   .featured-job-offer .job-offer-sum:after,
   .list-featured-articles h3 + div:after {
     display: none; }
+  .featured-job-offer,
+  .home-padding .thumbnail.card-basic .caption {
+    padding-right: 18px;
+    padding-left: 18px; }
   .mobile-owl-carousel .owl-item {
     padding: 0 !important; }
     .mobile-owl-carousel .owl-item > div {

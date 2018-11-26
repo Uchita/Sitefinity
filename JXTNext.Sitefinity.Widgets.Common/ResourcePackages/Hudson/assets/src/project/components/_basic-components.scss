@@ -524,6 +524,9 @@ blockquote{
         font-size: 14px;
         font-size: 1.4rem;
         color: #aaa;
+        a{
+            text-decoration: underline;
+        }
     }
 
     .font-light {
@@ -1387,6 +1390,9 @@ main {
     color: $page-section-bg-base-color;
     h2{
         margin-top: 0;
+        margin-bottom: $gap / 2;
+    }
+    .home-h2 h2 {    
         margin-bottom: $gap;
     }
     .thumbnail{
@@ -1488,6 +1494,13 @@ main {
         border-color: $page-section-bg-highlight-light-color;
     }
 }
+
+
+.home-padding .thumbnail.card-basic .caption{
+    height: 240px; 
+    padding:50px;  
+    font-size: 1.6rem;
+} 
 
 
 //expandable content list

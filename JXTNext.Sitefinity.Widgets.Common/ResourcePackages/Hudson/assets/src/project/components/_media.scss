@@ -1225,7 +1225,7 @@
     }
 
     .mobile-breadcrumb{
-        z-index: 1;
+        z-index: 10000;
         margin-top: 24px;
         position: relative;
         height: 35px;
@@ -1398,6 +1398,11 @@
     .featured-job-offer .job-offer-sum:after,
     .list-featured-articles h3+div:after{
         display: none;
+    }
+    .featured-job-offer, 
+    .home-padding .thumbnail.card-basic .caption{
+        padding-right:18px; 
+        padding-left:18px;
     }
     .mobile-owl-carousel {
         .owl-item{

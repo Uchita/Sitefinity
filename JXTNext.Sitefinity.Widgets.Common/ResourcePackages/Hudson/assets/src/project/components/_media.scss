@@ -742,7 +742,9 @@
         padding: 20px 0;
     }
     header {
-
+        .navbar{
+            min-height: 10px;
+        }
         .navbar-fixed-top:before {
             content: '';
             position: absolute;
@@ -1225,7 +1227,7 @@
     }
 
     .mobile-breadcrumb{
-        z-index: 10000;
+        z-index: 10;
         margin-top: 24px;
         position: relative;
         height: 35px;

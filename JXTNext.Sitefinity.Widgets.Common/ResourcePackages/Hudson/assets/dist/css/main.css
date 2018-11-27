@@ -11324,6 +11324,8 @@ select.articles-order {
     padding-top: 0; }
   main .page-section {
     padding: 20px 0; }
+  header .navbar {
+    min-height: 10px; }
   header .navbar-fixed-top:before {
     content: '';
     position: absolute;
@@ -11624,7 +11626,7 @@ select.articles-order {
   .consultant-minimal .consultant .item {
     width: 46.5%; }
   .mobile-breadcrumb {
-    z-index: 10000;
+    z-index: 10;
     margin-top: 24px;
     position: relative;
     height: 35px; }

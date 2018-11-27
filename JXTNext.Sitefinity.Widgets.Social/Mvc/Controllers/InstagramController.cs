@@ -79,13 +79,13 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         {
             var service = InstagramService.CreateFromAccessToken(siteSettingsHelper.GetCurrentSiteInstagramAccessToken());
 
-            var userResponse = service.Users.Search(Username);
+            var userResponse = service.Users.GetSelf();
 
             // Temporary list for storing the retrieved media
             var media = new List<InstagramMedia>();
 
             // Find the first user with the specified username
-            var user = userResponse.Body.Data.FirstOrDefault(x => x.Username == Username);
+            var user = userResponse.Body.Data;
 
             if (user != null)
             {
@@ -128,7 +128,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             return string.Format("{0}{1}", "instagramMedia", Username);
         }
 
-        InstagramConfig instagramConfig = Config.Get<InstagramConfig>();
+        
         #endregion
     }
 }

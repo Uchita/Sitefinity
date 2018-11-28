@@ -8334,6 +8334,9 @@ main {
 .left-sidebar .search-wrap input {
   width: 100%; }
 
+.left-sidebar .dropdown.dropdown-current .dropdown-menu {
+  display: block; }
+
 .left-sidebar .container-fluid, .left-sidebar .navbar-collapse {
   font-size: 1.4rem;
   font-size: 14px;

@@ -1541,6 +1541,11 @@ main {
             width: 100%;
         }
     }
+    .dropdown.dropdown-current{
+        .dropdown-menu{
+            display: block;
+        }
+    }
 }
 .left-sidebar .container-fluid, .left-sidebar .navbar-collapse {
     font-size: $sidebar-font-size;

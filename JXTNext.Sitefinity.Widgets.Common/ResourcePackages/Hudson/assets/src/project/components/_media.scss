@@ -551,6 +551,11 @@
     .home-padding .thumbnail.card-basic .caption{
         padding: 30px;
     }
+    .featured-job-offer{
+        .job-offer-sum{
+            height: 125px;
+        }
+    }
 
     .process-card-holder .display-cell {
         display: block;
@@ -916,6 +921,12 @@
                     padding: 0;
                 }
             }
+        }
+    }
+
+    .featured-job-offer{
+        .job-offer-sum{
+            height: auto;
         }
     }
 

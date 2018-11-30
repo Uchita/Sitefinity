@@ -1499,8 +1499,9 @@ main {
 
 .home-padding .thumbnail.card-basic .caption{
     height: 240px; 
-    padding:50px;  
-    font-size: 1.6rem;
+    padding: $gap;  
+    font-size: $global-font-size;
+    line-height: 1.6;
 } 
 
 

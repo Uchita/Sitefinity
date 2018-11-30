@@ -378,7 +378,6 @@
     .page-wrapper {
         font-size: 16px;
         font-size: 1.6rem;
-        line-height: normal;
 
         .h1, h1 {
             font-size: 36px;
@@ -389,7 +388,7 @@
         .h2, h2 {
             font-size: 24px;
             font-size: 2.4rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .h3, h3 {
@@ -402,11 +401,13 @@
         }
 
         .btn {
-            font-size: 14px;
-            font-size: 1.4rem;
+            font-size: 16px;
+            font-size: 1.6rem;
             margin-bottom: 5px;
         }
-
+        .btn-more{
+            margin-bottom: 0;
+        }
         .basic-form .form-label {
             text-align: left;
             display: block;
@@ -547,6 +548,10 @@
         }
     }
     
+    .home-padding .thumbnail.card-basic .caption{
+        padding: 30px;
+    }
+
     .process-card-holder .display-cell {
         display: block;
         margin-top: 20px;
@@ -682,6 +687,12 @@
             margin: 0 auto 40px;
         }
     }
+
+    .page-wrapper .form-control,
+    .left-sidebar .container-fluid, 
+    .left-sidebar .navbar-collapse{
+        font-size: 1.6rem;
+    }
 }
 
 @media (max-width: 800px) {
@@ -738,9 +749,7 @@
     .page-wrapper main{
         padding-top: 0;
     }
-    main .page-section {
-        padding: 20px 0;
-    }
+    
     header {
         .navbar{
             min-height: 10px;
@@ -863,7 +872,7 @@
 
     .jumbotron-container .jumbotron {
         padding-top: 100px;
-        min-height: 220px;
+        min-height: 260px;
         .h1, h1 {
             font-size: 30px;
             font-size: 3rem;
@@ -911,7 +920,7 @@
     }
 
     .job-search {
-
+        margin-top: -30px;
         .filter-job-classification .row {
 
             & + .row {
@@ -1088,6 +1097,9 @@
                 width: 90%;
             }
         }
+        h3+div{
+            height: auto;
+        }
     }
     
     .risk-measurement .risk-wrapper {
@@ -1254,6 +1266,9 @@
         }
     }
     
+    .contact-box {
+        margin-bottom: 40px;
+    }
 }
 
 @media screen and (max-width: 767px) {

@@ -211,6 +211,7 @@
     // }
     @media (max-width: 991px){
         padding: 30px;
+        margin-bottom: 30px;
     }
     @media (max-width: 767px){
         margin: 0 auto 15px;
@@ -263,7 +264,6 @@
         }
 
         a {
-            font-size: 1.5rem;
             position: relative;
             padding-left: 27px;
             color: $job-sidebar-link-color;
@@ -359,7 +359,7 @@
                 padding: 15px;
                 .link-default{
                     font-size: 1.4rem;
-                }   
+                } 
             }
 
             .jobCatHirarchy{

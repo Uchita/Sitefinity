@@ -1,0 +1,29 @@
+﻿@model SitefinityWebApp.Mvc.Models.MultiCard.MultiCardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+<section class="sm-col-layout bg-dark-grey">
+    <div class="container">
+        <div class="row">
+
+                    @if (!string.IsNullOrEmpty(Model.GroupHeader))
+                    {
+                <div class="col-12 col-lg-3">
+                    <h3>@Model.GroupHeader</h3>
+                </div>
+                    }
+
+               
+                <div class="col-12 col-lg-9">
+                    <div class="row">
+                        @foreach (var card in Model.Cards)
+                        {
+                            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                                <p>@Html.HtmlSanitize(card.Description)</p>
+                            </div>
+                        }
+                        </div>
+                </div>
+            </div>
+    </div>
+</section>
+

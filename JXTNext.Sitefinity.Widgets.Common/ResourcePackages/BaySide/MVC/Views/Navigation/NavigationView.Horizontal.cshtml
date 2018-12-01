@@ -1,0 +1,66 @@
+@model Telerik.Sitefinity.Frontend.Navigation.Mvc.Models.INavigationModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Navigation.Mvc.Models;
+@using Telerik.Sitefinity.Modules.Pages;
+@using SitefinityWebApp.Helpers;
+@*For user login check*@
+@using JXTNext.Sitefinity.Common.Helpers;
+@using Telerik.Sitefinity.DynamicModules.Model;
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white float-right">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            @foreach (var node in Model.Nodes)
+            {
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="@node.Url" id="SpecialisationsSubmenu"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @node.Title <span class="sr-only">(current)</span>
+                    </a>
+                    @if (node.ChildNodes.Count > 0)
+                    {
+                        <div class="dropdown-menu" aria-labelledby="SpecialisationsSubmenu">
+                            @foreach (var childNode in node.ChildNodes)
+                            {
+                                bool hasSubChilds = false;
+
+                                if (node.ChildNodes.Any(cn => cn.ChildNodes.Count > 0)) { hasSubChilds = true; }
+
+                                if (hasSubChilds)
+                                {
+                                    if (childNode.ChildNodes.Count > 0)
+                                    {
+
+                                        <a class="dropdown-item menu-heading" href="@childNode.Url">@childNode.Title</a>
+
+                                        foreach (var subChildNode in childNode.ChildNodes)
+                                        {
+                                            <a class="dropdown-item" href="@subChildNode.Url">@subChildNode.Title</a>
+
+                                        }
+                                    }
+
+                                    else
+                                    {
+                                        <a class="dropdown-item menu-heading" href="@childNode.Url">@childNode.Title</a>
+
+                                    }
+                                }
+                                else
+                                {
+                                    <a class="dropdown-item" href="@childNode.Url">@childNode.Title</a>
+                                }
+
+
+                            }
+                        </div>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+</nav>

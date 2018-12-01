@@ -1,0 +1,41 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Frontend.Lists.Mvc.Models;
+@using Telerik.Sitefinity.RelatedData;
+
+<section class="g-section latest-news bg-grey">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3>Latest News</h3>
+            </div>
+        </div>
+        <!-- .row/ -->
+        <div class="row">
+            @foreach (var item in Model.Items)
+            {
+                var imageurl = "";
+                foreach (var relatedItem in item.Fields.NewsImage)
+                {
+
+                    imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+
+                }
+
+              
+
+                var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+                <div class="news-list col-12 col-sm-6 col-md-4">
+                    <img src="@imageurl" alt="">
+                    <div class="news-date"> @item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")</div>
+                    <p class="news-desc">@item.Fields.Title</p>
+                    <a href="@navigateUrl" class="btn btn-link">> Read More</a>
+                </div>
+            }
+        </div>
+        <!-- .row/ -->
+    </div>
+</section>

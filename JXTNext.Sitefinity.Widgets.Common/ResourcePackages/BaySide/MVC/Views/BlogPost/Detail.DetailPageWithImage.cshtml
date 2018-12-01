@@ -1,0 +1,54 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Web.DataResolving;
+
+<div class="@Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
+    <h3>
+        <span @Html.InlineEditingFieldAttributes("Title", "ShortText")>@Model.Item.Fields.Title</span>
+    </h3>
+
+    <div>
+        @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy")
+        @Html.Resource("By")
+        @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)
+        @Html.CommentsCount(string.Empty, @Model.Item.DataItem)
+    </div>
+
+
+    <div @Html.InlineEditingFieldAttributes("Summary", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</div>
+
+
+
+    @{var imageurl = ""; }
+    @foreach (var relatedItem in Model.Item.Fields.BlogImage)
+    {
+        imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+    }
+
+    <div><img style="width:100%" src="@imageurl" /></div>
+
+    @{
+        if (Model.EnableSocialSharing)
+        {
+            var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
+            @Html.SocialShareOptions(item);
+        }
+    }
+
+    <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
+
+    @Html.CommentsList(@Model.Item.DataItem)
+</div>
+
+<h3 class="mt-4 h3-heading">Share</h3>
+
+<a class="fa fa-facebook"></a>
+
+<a class="fa fa-twitter"></a>
+
+<a class="fa fa-linkedin"> </a>
+
+<a class="fa fa-stumbleupon"> </a>
+

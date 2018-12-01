@@ -1,0 +1,71 @@
+﻿@using System.Web.Mvc;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.UI.MVC;
+@using Telerik.Sitefinity.Services;
+
+<!DOCTYPE html>
+<html @Html.RenderLangAttribute()>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8" />
+    <title></title>
+
+    @Html.Section("head")
+    @Html.StyleSheet(Url.Content("~/ResourcePackages/Bayside/assets/css/bootstrap.css"), "head")
+    @Html.StyleSheet(Url.Content("~/ResourcePackages/Bayside/assets/css/grid-framwork.css"), "head")
+    @Html.StyleSheet(Url.Content("~/ResourcePackages/Bayside/assets/css/animate.css"), "head")
+    @Html.StyleSheet(Url.Content("~/ResourcePackages/Bayside/assets/css/font-awesome.min.css"), "head")
+    @Html.StyleSheet(Url.Content("~/ResourcePackages/Bayside/assets/css/owl.carousel.css"), "head")
+    @Html.StyleSheet(Url.Content("~/ResourcePackages/Bayside/assets/css/bayside.css"), "head")
+    
+    @Html.Script("/ResourcePackages/Bayside/assets/js/jquery-3.3.1.js", "head")
+
+</head>
+
+<body>
+    
+    @Html.Section("top")
+    <div class="page-wrapper">
+        <header class="app-header">
+            @Html.SfPlaceHolder("Header")
+        </header>
+        <main class="app-content">
+            <div class="main-content">
+                @Html.SfPlaceHolder("Main")
+            </div>
+            <div class="prefooter-content" style="display:none;">
+                @Html.SfPlaceHolder("Prefooter")
+            </div>
+        </main>
+        <footer class="app-footer">
+            @Html.SfPlaceHolder("Footer")
+        </footer>
+    </div>
+    @* Inline editing scripts and helpers. They should be available only when inline editing is possible. *@
+    @if (Html.ShouldRenderInlineEditing())
+    {
+        @Html.Script(ScriptRef.MicrosoftAjax, "top")
+        @Html.Script(ScriptRef.MicrosoftAjaxCore, "top")
+        @*@Html.Script(ScriptRef.JQuery, "top")*@
+
+        @Html.Script(Url.EmbeddedResource("Telerik.Sitefinity.Resources.Reference", "Telerik.Sitefinity.Resources.Scripts.jquery.ba-outside-events.min.js"), "top")
+        @Html.Script(ScriptRef.KendoAll, "top")
+        @Html.Script(ScriptRef.KendoTimezones, "top")
+        @Html.Script(Url.EmbeddedResource("Telerik.Sitefinity.Resources.Reference", "Telerik.Sitefinity.Resources.Scripts.RequireJS.require.min.js"), "top")
+        @Html.InlineEditingManager(false)
+    }
+
+    @Html.Section("bottom")
+    @Html.Script("/ResourcePackages/Bayside/assets/js/bootstrap.js", "bottom")
+    @Html.Script("/ResourcePackages/Bayside/assets/js/parallax.js", "bottom")
+    @Html.Script("/ResourcePackages/Bayside/assets/js/owl.carousel.js", "bottom")
+    @if (!Telerik.Sitefinity.Services.SystemManager.IsDesignMode || Telerik.Sitefinity.Services.SystemManager.IsPreviewMode)
+    {
+        @Html.Script("/ResourcePackages/Bayside/assets/js/wow.js", "head")
+    }
+    @Html.Script("/ResourcePackages/Bayside/assets/js/bayside.js", "bottom")
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+﻿@model Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Profile.ProfilePreviewViewModel
+
+@using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Profile;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@if (Model != null)
+{
+    <div class="@Model.CssClass">
+        <div class="sf-profile row">
+            <div class="col-xs-12 col-md-4">
+                <img src="@Model.AvatarImageUrl" alt="@Model.UserName" width="158" />
+            </div>
+
+            <div class="col-xs-12 col-md-8">
+                <h2>Welcome back @Model.DisplayName</h2>
+                <p>@Model.Email</p>
+            </div>
+        </div>
+    </div>
+}

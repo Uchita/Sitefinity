@@ -1,0 +1,11 @@
+@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+@*<div class="service-item col-12 col-sm-6 col-lg-3 text-center">*@
+    <img class="service-icon" src='@Model.SelectedSizeUrl' alt="Talent Sourcing" />
+    <h4 class="service-name">@Html.HtmlSanitize(Model.Heading)</h4>
+    <p class="service-desc">
+        @Html.HtmlSanitize(Model.Description)
+    </p>
+    <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-link">@Model.ActionName</a>
+@*</div>*@

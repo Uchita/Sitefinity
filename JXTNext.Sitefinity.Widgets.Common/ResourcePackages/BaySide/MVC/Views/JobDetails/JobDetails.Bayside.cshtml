@@ -1,0 +1,126 @@
+﻿@using JXTNext.Sitefinity.Widgets.Job.Mvc.Models
+@model JobDetailsViewModel
+@using Telerik.Sitefinity.Frontend.SocialShare.SocialShareHelpers
+
+@using System.Collections.Specialized;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Web;
+
+@using JXTNext.Sitefinity.Common.Helpers
+
+@{
+    var isUserLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
+    var isMemberUser = false;
+    if (isUserLoggedIn)
+    {
+        isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
+    }
+}
+
+@if (Model != null)
+{
+
+    List<string> classificationsDisplay = new List<string>();
+    foreach (var item in @Model.Classifications.Keys)
+    {
+        string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewBag.JobResultsPageUrl, @Model.ClassificationsRootName, @item.ToString());
+
+        classificationsDisplay.Add(@"<a href=""" + hrefLink + @""" title=""" + Model.Classifications[item] + @""">" + Model.Classifications[item] + @"</a>");
+    }
+
+
+    <div class="col-12">
+        <nav class="mt-5" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Library</li>
+            </ol>
+        </nav>
+        <!-- breadcrumb/ -->
+    </div>
+
+    <div class="job-detail col-12 col-sm-12 col-md-8">
+        <div class="border rounded p-4">
+
+            <img src="http://192.168.0.174:3000/assets/images/brand/logo/4-BaysidePersonnel.svg" class="float-right"
+                 alt="">
+            <h2 class="mt-2">@Model.JobDetails.Title</h2>
+
+
+            <ul class="border border-top-0 border-right-0 border-left-0 pb-4">
+                @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"]))
+                {
+                    <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"]</li>
+                }
+                @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"]))
+                {
+                    <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"]</li>
+                }
+                @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"]))
+                {
+                    <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"]</li>
+                }
+            </ul>
+
+            <ul class="inline-list p-0 mb-4">
+
+
+                @*Sydney*@
+
+                @{
+                    var location = "";
+                }
+                @foreach (var item in @Model.Locations.Keys)
+                {
+                    location = (string)@Model.Locations[item];
+                }
+                <li class="mr-5"><i class="fa fa-map-marker"></i>location</li>
+
+                <li class="mr-5"><i class="fa fa-dollar"></i> Annual</li>
+                <li class="mr-5"><i class="fa fa-clock-o"></i> @Model.JobDetails.CustomData["WorkType.Filters[0].Value"]</li>
+            </ul>
+
+
+
+            @{
+                string cleanContent = GeneralHelper.RemoveInlineStyling((string)Model.JobDetails.Description);
+            }
+            <p>
+                @Html.HtmlSanitize((string)cleanContent)
+            </p>
+
+            <div class="sm-text">
+                @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))
+            </div>
+
+        </div>
+
+        <a href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID" class="btn btn-outline-primary btn-block mt-4">Apply now</a>
+    </div>
+    <!--END: job_details -->
+
+    <aside class="job-sidebar col-12 col-sm-12 col-md-4 pl-lg-4">
+
+        <a href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID" class="btn btn-outline-primary d-md-block d-none">Apply now</a>
+
+        <h3 class="mt-4 h3-heading">Interested in this job?</h3>
+
+        <ul class="inline-list p-0 mb-4">
+            <li class="mr-3"><a class="action-link" data-jobid="@Model.JobDetails.JobID" href="#"><i class="fa fa-save"></i> <span>Save</span></a></li>
+            @*<li><a href="#" class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="far fa-save"></em><span class="save-status-txt">Save this job</span></a></li>*@
+
+            <li class="mr-3"><a class="action-link" href="javascript:window.print();"><i class="fa fa-print"></i> <span>Print</span></a></li>
+            @*<li><a href="javascript:window.print();"><em class="fas fa-print"></em>Print this job</a></li>*@
+
+            <li class="mr-3"><a class="action-link" href="@ViewBag.EmailJobPageUrl?JobId=@Model.JobDetails.JobID"><i class="fa fa-envelope"></i> <span>Email</span></a></li>
+            @*<li>
+                    <a href="@ViewBag.EmailJobPageUrl?JobId=@Model.JobDetails.JobID" title="Tell a friend">
+                        <em class="fas fa-envelope"></em>Email this job
+                    </a>
+                </li>*@
+        </ul>
+
+    </aside>
+
+
+}

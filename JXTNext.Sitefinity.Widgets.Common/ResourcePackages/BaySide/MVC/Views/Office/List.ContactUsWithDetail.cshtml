@@ -1,0 +1,61 @@
+﻿@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+
+<h2>Recruitment Services</h2>
+<div class="address-panel panel-group" id="addressAccordion">
+    @foreach (var item in Model.Items)
+    {
+
+    if(Model.Items.First()==item)
+    {
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#addressAccordion" href="#@item.Fields.Name.Trim().Replace(" "," ")">
+                    @item.Fields.Name
+                    <span aria-hidden="true" class="icon-downarrow"></span>
+                </a>
+            </h4>
+        </div>
+        <div id="@item.Fields.Name.Trim().Replace(" "," ")" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <p>
+                    @Html.HtmlSanitize((string)item.Fields.OfficeBio)
+                </p>
+
+            </div>
+        </div>
+    </div>
+    }
+
+    else
+    {
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#addressAccordion" href="#@item.Fields.Name.Trim().Replace(" "," ")">
+                    @item.Fields.Name
+                    <span aria-hidden="true" class="icon-downarrow"></span>
+                </a>
+            </h4>
+        </div>
+        <div id="@item.Fields.Name.Trim().Replace(" "," ")" class="panel-collapse collapse">
+            <div class="panel-body">
+                <p>
+                    @Html.HtmlSanitize((string)item.Fields.OfficeBio)
+                </p>
+
+            </div>
+        </div>
+    </div>
+    }
+    }
+</div>

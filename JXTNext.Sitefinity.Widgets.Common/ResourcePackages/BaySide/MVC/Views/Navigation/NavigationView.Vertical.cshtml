@@ -1,0 +1,64 @@
+@model Telerik.Sitefinity.Frontend.Navigation.Mvc.Models.INavigationModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Navigation.Mvc.Models;
+@using Telerik.Sitefinity.Modules.Pages;
+
+@*Add scripts and stylesheets*@
+
+@*<div class="col-md-3">*@
+    @* @Html.Action("GetView", new { viewName = "Dropdown",  model= Model}) *@
+
+    @*<ul class="nav nav-pills nav-stacked">*@
+    @foreach (var node in Model.Nodes)
+    {
+        @RenderSubLevelsRecursive(node);
+    }
+    @*</ul>*@
+@*</div>*@
+
+@*Here is specified the rendering for the sub levels*@
+@helper RenderSubLevelsRecursive(NodeViewModel node)
+{
+    @*<li>*@
+    <h4>@node.Title</h4>
+    @*<a href="@node.Url" target="@node.LinkTarget">@node.Title</a>*@
+    if (node.ChildNodes.Count > 0)
+    {
+        <ul class="footer_menu">
+        @foreach (var childNode in node.ChildNodes)
+        {
+            <li><a href="@childNode.LinkTarget">@childNode.Title</a></li>
+            @*@RenderSubLevelsRecursive(childNode)*@
+
+        }
+        </ul>
+    }
+    else
+    {
+
+    }
+    @*</li>*@
+
+    @*<h4>@node.Title</h4>
+        @if (node.ChildNodes.Count > 0)
+        {
+            <ul class="footer_menu">
+                @foreach (var childNode in node.ChildNodes)
+                {
+                    @RenderSubLevelsChild(childNode)
+                }
+            </ul>
+        }*@
+
+
+    @*@helper RenderSubLevelsChild(NodeViewModel node)
+        {
+
+            <li><a href="#">Alitis</a></li>
+        }*@
+
+
+}
+
+

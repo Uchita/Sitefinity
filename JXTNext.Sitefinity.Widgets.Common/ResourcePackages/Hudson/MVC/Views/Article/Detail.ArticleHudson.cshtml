@@ -32,6 +32,8 @@
     List<string> filterValues = new List<string>();
     var articleIds = Model.Item.Fields.articles;
     var authorName = "Hudson";
+    var authorUrl = "";
+
     foreach (var taxonItem in articleIds)
     {
         Guid articleID = new Guid(taxonItem.ToString());
@@ -47,11 +49,14 @@
             @Model.Item.Fields.Title
         </h1>
 
-        @if (!string.IsNullOrEmpty(Model.Item.Fields.AuthorName))
+        @if (Model.Item.Fields.AuthorName != null)
         {
-            authorName = Model.Item.Fields.AuthorName;
+            authorName = Model.Item.Fields.AuthorName.Fields.ConsultantName;
+            authorUrl = Model.Item.Fields.AuthorName.Fields.UrlName.ToString();
+            <p class="article-detail-author text-center">by <a href="/contact-us/find-a-hudson-consultant/consultant/@authorUrl">@authorName</a></p>
+        } else {
+            <p class="article-detail-author text-center">by @authorName</p>
         }
-        <p class="article-detail-author text-center">by @authorName</p>
 
         <!-- TODO -->
         @*Start HeaderImage field*@

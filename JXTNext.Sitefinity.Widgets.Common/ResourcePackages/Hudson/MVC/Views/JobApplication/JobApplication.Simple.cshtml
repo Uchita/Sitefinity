@@ -148,9 +148,7 @@
                     <div class="form-group row" id="user-profile-resume" hidden>
                         <label class="form-label col-xs-12 col-md-4 text-right"></label>
                         <div class="col-xs-12 col-md-8">
-                            <select class="list-group" id="user-profile-resume-list">
-                                
-                            </select><!-- end box -->
+                            <select class="list-group" id="user-profile-resume-list"></select><!-- end box -->
 
                         </div>
                     </div>
@@ -237,6 +235,7 @@
                     <input type="hidden" id="resume-selected-type" name="ResumeSelectedType" />
                     <input type="hidden" id="coverletter-selected-type" name="CoverLetterSelectedType" />
                     <input type="hidden" id="documents-selected-type" name="DocumentsSelectedType" />
+                    <input type="hidden" id="email-selected" name="Email" />
                     <input type="hidden" id="jobid" name="JobId" value="@Model.JobId" />
 
                     <div class="form-group button-wrapper row">
@@ -291,6 +290,7 @@
      var appStatus = '@Model.ApplicationStatus';
      var isUserLoggedIn = '@ViewBag.IsUserLoggedIn';
      var registerForm = false;
+     var userLoggedInParamFromViewbag = '@ViewBag.IsUserLoggedIn';
 
 
      function validateEmail(elementValue) {
@@ -360,11 +360,17 @@
              $('#check-login').hide();
          }
 
-        $('#application-resume').change(function () {
+         $('#application-resume').change(function () {
             resumeSelectedType = 'Local';
             $("#resume-selected-type").val(resumeSelectedType);
             var resumeBrowseName = document.getElementById("application-resume").files[0].name;
-            $(".resume-name").text(resumeBrowseName);
+             $(".resume-name").text(resumeBrowseName);
+             
+             if (userLoggedInParamFromViewbag == 'True') {
+                 $("#MySavedResumes").val('0');
+             } else {
+                 $("#user-profile-resume-list").val('0');
+             }
             $(".resume-message").addClass('hidden');
         });
 
@@ -419,7 +425,6 @@
 
              var jobId = $(this).data("jobid");
              var staySignedinFlag = $('#RememberMe').is(':checked') ? true : false;
-             console.log(staySignedinFlag);
              //for login email address & password check & submit login form
              var parm = { email: $('#userid').val(), password: $('#password-reg').val(), staySignedIn: staySignedinFlag, isUserLoggedIn: false };
              var urlPath = $(location).attr('pathname') + "/ValidateUser";
@@ -458,6 +463,7 @@
                                          $('#appFormState').text('Upload your files');
                                          $("#upload-files-container").show();
                                          $('#user-profile-resume').removeAttr('hidden');
+                                         $('#email-selected').val($('#userid').val());
                                      }
                                  },
                                  error: function (response) {
@@ -599,6 +605,7 @@
          
 
          $("#user-profile-resume-list").on("change", function () {
+             
              if ($(this).val() == '0') {
                  resumeSelectedType = '';
                  $("#resume-selected-type").val(resumeSelectedType);
@@ -607,6 +614,8 @@
                  resumeSelectedType = 'Saved';
                  $("#resume-selected-type").val(resumeSelectedType);
                  $('#uploadResumeJson').val($(this).val());
+                 $(".resume-name").text('');
+                 $("#application-resume").val("");
                  $(".resume-message").addClass('hidden');
              }
              
@@ -783,6 +792,12 @@
                     $('#application-resume').val('');
                     $("#resume-selected-type").val(resumeSelectedType);
                     $('.resume-name').text(files[0].name);
+                    if (userLoggedInParamFromViewbag == 'True') {
+                        $("#MySavedResumes").val('0');
+                    } else {
+                        $("#user-profile-resume-list").val('0');
+                    }
+                    
                 }
                 else {
                     if (isDropboxCoverLetter) {
@@ -1007,6 +1022,8 @@
                 resumeSelectedType = 'Saved';
                 $("#resume-selected-type").val(resumeSelectedType);
                 $('#uploadResumeJson').val(resumeId);
+                $(".resume-name").text('');
+                $("#application-resume").val("");
                 $(".resume-message").addClass('hidden');
             }
 
@@ -1080,6 +1097,12 @@
                     $('#application-resume').val('');
                     $("#resume-selected-type").val(resumeSelectedType);
                     $('.resume-name').text(name);
+                    if (userLoggedInParamFromViewbag == 'True') {
+                        $("#MySavedResumes").val('0');
+                    } else {
+                        $("#user-profile-resume-list").val('0');
+                    }
+                    
                 }
                 else {
                     if (isGoogleCoverLetter) {

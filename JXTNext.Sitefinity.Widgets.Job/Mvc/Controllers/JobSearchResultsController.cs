@@ -55,6 +55,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
+        private readonly string CategoryString = "Categories";
+        private readonly string RangeString = "Range";
+
         public JobSearchResultsController(IEnumerable<IBusinessLogicsConnector> _bConnectors, IEnumerable<IOptionsConnector> _oConnectors, IJobAlertService jobAlertService)
         {
             _jobAlertService = jobAlertService;
@@ -62,6 +65,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             _oConnectorsList = _oConnectors;
             _BLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
             _OptionsConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
+            
         }
 
         // GET: JobSearchResults
@@ -220,7 +224,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public JsonResult CreateAnonymousJobAlert(JobSearchResultsFilterModel filterModel, string email)
         {
             string alertName = String.Empty;
-
+            var jsonData = JsonConvert.SerializeObject(filterModel);
+            var searchModel = _mapToCronJobJsonModel(filterModel);
             // Creating the job alert model
             JobAlertViewModel alertModel = new JobAlertViewModel()
             {
@@ -228,6 +233,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 Salary = new JobAlertSalaryFilterReceiver(),
                 Email = email
             };
+
+
 
             if(filterModel != null)
             {
@@ -287,6 +294,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 alertName = "All search";
 
             alertModel.Name = alertName;
+            searchModel.jobAlertViewModelData = alertModel;
+            alertModel.Data = JsonConvert.SerializeObject(searchModel);
             var response = _jobAlertService.MemberJobAlertUpsert(alertModel);
             return new JsonResult { Data = response };
         }
@@ -507,6 +516,83 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
             return filtersData;
+        }
+
+        private Classification_CategorySearchTargetJson MapJobSearchFilterToClassification(JobSearchFilterReceiverItem filterItem)
+        {
+
+            if (filterItem != null)
+            {
+                Classification_CategorySearchTargetJson obj = new Classification_CategorySearchTargetJson();
+                obj.TargetValue = filterItem.ItemID;
+
+
+                if (filterItem.SubTargets != null && filterItem.SubTargets.Count > 0)
+                {
+                    obj.SubTargets = new List<Classification_CategorySearchTargetJson>();
+                    foreach (var item in filterItem.SubTargets)
+                    {
+                        Classification_CategorySearchTargetJson temp = new Classification_CategorySearchTargetJson();
+                        var classification = MapJobSearchFilterToClassification(item);
+                        if(classification != null)
+                        {
+                            obj.SubTargets.Add(classification);
+                        }
+                        else
+                        {
+                            obj.SubTargets = null;
+                        }
+                    }
+                }
+
+                return obj;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+        private Classification_CategorySearchJson _mapToClassificationData(JobSearchFilterReceiver filter)
+        {
+            Classification_CategorySearchJson classification = new Classification_CategorySearchJson();
+            classification.SearchType = CategoryString;
+            classification.ClassificationRootName = filter.rootId;
+            classification.TargetClassifications = filter.values
+                .Select(x => MapJobSearchFilterToClassification(x))
+                .ToList();
+            return classification;
+        }
+
+        
+
+        private SearchModel _mapToCronJobJsonModel(JobSearchResultsFilterModel filterModel)
+        {
+            var filterData = filterModel.Filters;
+            JobAlertJsonModelData json = new JobAlertJsonModelData();
+            json.FieldRanges = null;
+            json.FieldSearches = null;
+            foreach (var filter in filterData)
+            {
+                json.ClassificationsSearchCriteria.Add(_mapToClassificationData(filter));
+            }
+
+            if(filterModel.Salary != null)
+            {
+                json.ClassificationsSearchCriteria.Add(new Classification_CategorySearchJson()
+                {
+                    SearchType = RangeString,
+                    ClassificationRootID = filterModel.Salary.TargetValue,
+                    UpperRange = filterModel.Salary.UpperRange,
+                    LowerRange = filterModel.Salary.LowerRange
+                });
+            }
+            
+            
+            filterModel.Keywords?.Split(',').ToList().ForEach(x => json.KeywordsSearchCriteria.Add(new KeywordSearchJson() { Keyword = x}));
+
+            return new SearchModel() { search = json };
         }
 
         private string _serializedFilterData;

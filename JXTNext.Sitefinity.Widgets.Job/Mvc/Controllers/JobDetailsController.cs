@@ -184,6 +184,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 ViewBag.CssClass = this.CssClass;
                 ViewBag.JobApplicationPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationPageId);
                 ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.JobResultsPageId);
+                ViewBag.EmailJobPageUrl = SitefinityHelper.GetPageUrl(this.EmailJobPageId);
                 ViewBag.GoogleForJobs = ReplaceToken(GoogleForJobsTemplate, JsonConvert.SerializeObject(new
                 {
                     CurrencySymbol = "$",
@@ -277,6 +278,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         private JobDetailsRolesModel model;
         public string JobApplicationPageId { get; set; }
         public string JobResultsPageId { get; set; }
+        public string EmailJobPageId { get; set; }
         public object GetDateTimeFromUnix { get; private set; }
 
         private string templateName = "Simple";

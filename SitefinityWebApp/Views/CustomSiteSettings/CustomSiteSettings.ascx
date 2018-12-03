@@ -31,3 +31,10 @@
 <h3>INDEED SETTINGS</h3><br />
 <sitefinity:TextField ID="indeedClientAPIToken" runat="server" DataFieldName="IndeedClientAPIToken" Title="Please Enter Indeed Client API Token" CssClass="sfSettingsSection" DisplayMode="Write" />
 <sitefinity:TextField ID="indeedClientSecret" runat="server" DataFieldName="IndeedClientSecret" Title="Please Enter Indeed Client Secret" CssClass="sfSettingsSection" DisplayMode="Write" />
+
+<h3>INSTAGRAM SETTINGS</h3><br />
+<sitefinity:TextField ID="instagramClientIdToken" runat="server" DataFieldName="InstagramClientIdToken" Title="Please Enter Instagram Client Id Token" CssClass="sfSettingsSection" DisplayMode="Write" />
+<sitefinity:TextField ID="instagramClientSecret" runat="server" DataFieldName="InstagramClientSecret" Title="Please Enter Instagram Client Secret" CssClass="sfSettingsSection" DisplayMode="Write" />
+<sitefinity:TextField ID="instagramAccessToken" runat="server" DataFieldName="InstagramAccessToken" Title="Please Enter Instagram Access Token" CssClass="sfSettingsSection" DisplayMode="Write" />
+<sitefinity:TextField ID="instagramExpiration" runat="server" DataFieldName="InstagramExpiration" Title="Please Enter Instagram Expiration" CssClass="sfSettingsSection" DisplayMode="Write" />
+<sitefinity:TextField ID="instagramMaxItems" runat="server" DataFieldName="InstagramMaxItems" Title="Please Enter Instagram Max Items" CssClass="sfSettingsSection" DisplayMode="Write" />

@@ -58,10 +58,10 @@
                                 @(string.Join(", ", filterValues))
                             </small>
                         </p>
-                        <h4>@Html.HtmlSanitize((string)item.Fields.Title)</h4>
+                        <h4><a href="@navigateUrl" title="@item.Fields.HeaderImage.Fields.Title">@Html.HtmlSanitize((string)item.Fields.Title)</a></h4>
                         @{
                             var summary = Html.HtmlSanitize((string)item.Fields.Summary).ToString();
-                            string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 120 ? summary.Substring(0, 120) + "..." : summary;
+                            string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 90 ? summary.Substring(0, 90) + "..." : summary;
                         }
                         <p>@trimSummary</p>
                         <a class="btn btn-more" href="@navigateUrl"></a>

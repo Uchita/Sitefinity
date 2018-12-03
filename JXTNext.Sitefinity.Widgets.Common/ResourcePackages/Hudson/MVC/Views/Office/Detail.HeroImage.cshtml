@@ -15,7 +15,7 @@
 
 @if (Model.Item.Fields.HeroImage != null)
 {
-    <div class="jumbotron-container">
+    <div class="jumbotron-container @Model.CssClass">
         <div class="jumbotron" style="background-image: url('@Model.Item.Fields.HeroImage.Fields.MediaUrl');">
             <div class="jumbotron-content">
                 <h1>@Model.Item.Fields.Name</h1>

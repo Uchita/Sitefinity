@@ -5,6 +5,7 @@
 {
     var dynamicItemModel = new ContentDetailsViewModel();
     dynamicItemModel.Item = Model.Items.First();
-
+<div class="@Model.CssClass">
     @Html.Partial("Detail.MapAndGallery", dynamicItemModel)
+</div>
 }

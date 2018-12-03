@@ -36,7 +36,7 @@
 @if (Model != null)
 {
     <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();" class="jn_jobSearch jn_search hz-listing cs-layout">
-       
+
         <div class="field-wrapper basic-form no-marg-top">
             @{
                 int counter = 0;
@@ -90,14 +90,16 @@
                                     <label>@item.FilterType</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden" />
-                                    <div class="select"><select class="SalaryRangeSelect form-control">
-                                        <option value="-1" selected>Choose Salary</option>
-                                        @foreach (var salaryItem in item.Filters)
-                                        {
-                                            <option value="@salaryItem.ID">@salaryItem.Label</option>
-                                        }
-                                    </select></div>
+                                    <div class="hidden" id="divSalary"></div>
+                                    <div class="select">
+                                        <select class="SalaryRangeSelect form-control">
+                                            <option value="-1" selected>Choose Salary</option>
+                                            @foreach (var salaryItem in item.Filters)
+                                            {
+                                                <option value="@salaryItem.ID">@salaryItem.Label</option>
+                                            }
+                                        </select>
+                                    </div>
                                     @foreach (var salaryItem in item.Filters)
                                     {
                                         var lower = 15000;
@@ -110,10 +112,12 @@
                                         <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
 
                                             <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
-                                                    data-cur_min="@lower" data-cur_max="@upper">
+                                                 data-cur_min="@lower" data-cur_max="@upper">
 
                                                 <div class="bar"></div>
+
                                                 <div class="leftGrip"></div>
+
                                                 <div class="rightGrip"></div>
                                             </div>
                                             <div class="leftLabel">$<span>@lower</span></div>
@@ -170,7 +174,7 @@
                 <input class="btn btn-primary" type="submit" value="Browse Jobs" />
             </div>
         </div>
-        
+
     </form>
 }
 
@@ -178,16 +182,15 @@
     var optionsArray = {};
     var optionsArray = {};
     var isSalaryExists = false;
-    var isSlarySelected = false;
+    var isSalarySelected = false;
     var salary = { RootName: 'Salary', TargetValue: '', LowerRange: 15000, UpperRange: 200000 };
 
     function preventSubmit() {
          $.each(optionsArray,function (id, item) {
-            $($("#" + id).GetSelectedElementIds()).each(function (index, value) {
+             $($("#" + id).GetSelectedElementIds()).each(function (index, value) {                 
                 $("#selected-" + id).append('<option value="' + value + '" selected="true">' + value + '</option>')
             });
-        });
-
+        });                
         return true;
     };
 
@@ -202,33 +205,33 @@
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
             var prefixIdText = @Html.Raw(Json.Encode(ViewData["PrefixIdsText"]));
 
-            for (var item of filterData) {
-                
+            $.each(filterData, function (index, item) {
+
                 switch (item.ControlType) {
                     case 'TextBox':
                         break;
 
                     case 'DropDown Multi':
-                        
-                        optionsArray[prefixIdText+item.ID] = {
+
+                        optionsArray[prefixIdText + item.ID] = {
                             title: item.PlaceholderText,
                             data: item.Filters,
                             maxHeight: 500,
-                            closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
-                            openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
+                            closedArrow: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+                            openedArrow: '<i class="fa fa-angle-down" aria-hidden="true"></i>',
                             multiSelect: true,
                             selectChildren: true,
-                            expandChildren: true,
+                            expandChildren: false,
                             enableSearch: false,
                             prefixIdText: prefixIdText,
                         };
-                        $("#" + prefixIdText + item.ID).DropDownTree(optionsArray[prefixIdText+item.ID]);
+                        $("#" + prefixIdText + item.ID).DropDownTree(optionsArray[prefixIdText + item.ID]);
                         break;
 
                     default:
                         break;
                 }
-            }
+            });
         }
 
 
@@ -241,7 +244,7 @@
 
         if (modelSalary != null && modelSalary != 'undefined') {
             salary = modelSalary;
-            isSlarySelected = true;
+            isSalarySelected = true;
             $('.SalaryRangeSelect').val(modelSalary.TargetValue);
             $('#' + modelSalary.TargetValue).removeClass('visible-hidden');
             $('.SalaryRangeSelect').addClass('changed');
@@ -253,22 +256,22 @@
             }
         }
 
-        $('select').on('change', function () {
-            isSlarySelected = false;
+        $('select').on('change', function () {            
+            isSalarySelected = false;
             $('.salaryrangewrapper').each(function (i, obj) {
                 $(this).addClass('visible-hidden');
-            });
+            });            
             if (this.value != -1) {
                 $(this).addClass('changed');
-                isSlarySelected = true;
-                $('#' + this.value).removeClass('visible-hidden');
+                isSalarySelected = true;
+                $('#' + this.value).removeClass('visible-hidden');    
                 salary.TargetValue = this.value;
                 salary.LowerRange = $("#" + $(this).val()).find('.leftLabel span').text();
-                salary.UpperRange = $("#" + $(this).val()).find('.rightLabel span').text();
+                salary.UpperRange = $("#" + $(this).val()).find('.rightLabel span').text();                                                
             } else if ($(this).hasClass('changed') && this.value == -1) {
-                isSlarySelected = false;
+                isSalarySelected = false;
             }
-
+            salaryValues();
         });
 
         $('.nstSlider').each(function (i, obj) {
@@ -285,7 +288,8 @@
                     salary.LowerRange = leftValue;
                     salary.UpperRange = rightValue;
                     $(this).parent().find('.leftLabel span').text(leftValue);
-                    $(this).parent().find('.rightLabel span').text(rightValue);
+                    $(this).parent().find('.rightLabel span').text(rightValue);          
+                    salaryValues();
                 },
                 "value_changed_callback": function (cause, leftValue, rightValue) {
                     $(this).parent().find('.leftLabel span').text(leftValue);
@@ -293,6 +297,19 @@
                 }
             });
         });
+
+        function salaryValues() {
+            if (isSalarySelected) {
+                document.getElementById("divSalary").innerHTML = '<input type="hidden" name="Salary.RootName" id="SalaryRootName" /><input type="hidden" name="Salary.TargetValue" id="SalaryTargetValue" /><input type="hidden" name="Salary.LowerRange" id="SalaryLowerRange" /><input type="hidden" name="Salary.UpperRange" id="SalaryUpperRange" />';
+                document.getElementById("SalaryRootName").value = salary.RootName;
+                document.getElementById("SalaryTargetValue").value = salary.TargetValue;
+                document.getElementById("SalaryLowerRange").value = salary.LowerRange;
+                document.getElementById("SalaryUpperRange").value = salary.UpperRange;
+            }
+            else
+                document.getElementById("divSalary").innerHTML = "";
+        };
+        
 
    });
 </script>

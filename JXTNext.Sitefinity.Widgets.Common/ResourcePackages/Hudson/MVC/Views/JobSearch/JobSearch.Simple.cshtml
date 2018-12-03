@@ -31,7 +31,7 @@
     var singleDropdownControls = Model.Where(m => m.ControlType == "DropDown Single");
     var listControls = Model.Where(m => m.ControlType == "List").Take(2).ToList();
 
-    <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();">
+    <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();" class="@ViewData["CssClass"]">
         <div class="job-search">
             <div class="container">
                 <div class="row">
@@ -100,14 +100,18 @@
                     {
                         <div class="col-xs-5 col-sm-4 col-md-4">
                             <div class="filter">
-                                <a data-filter-trigger="@list.ID">@list.PlaceholderText <em class="fas fa-angle-down"></em></a>
-                                
+                                <a data-filter-trigger="@list.ID">@list.PlaceholderText <em class="fas fa-angle-down"></em></a>   
                             </div>
                         </div>
                     }
-                    <div class="col-xs-2 pull-right text-right">
-                        <a class="filter-job-close" data-filter-trigger="close"><em class="fas fa-times"></em></a>
+
+                    <div class="col-xs-4 pull-right text-right">
+                        <a href="/advancedsearch" title="Advanced search">Advanced Search</a>
+
                     </div>
+                    @*<div class="col-xs-2 pull-right text-right">
+                        <a class="filter-job-close" data-filter-trigger="close"><em class="fas fa-times"></em></a>
+                    </div>*@
                 </div>
             </div>
 

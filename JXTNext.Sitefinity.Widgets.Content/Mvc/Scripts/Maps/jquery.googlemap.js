@@ -26,7 +26,7 @@ $(function () {
 			overviewMapControl: false,
 			streetViewControl: false,
 			scrollwheel: false,
-			mapTypeControl: false
+            mapTypeControl: false,
 		}, params);
 
 		switch(params.type) {
@@ -73,7 +73,8 @@ $(function () {
 			icon : false,
 			draggable : false,
 			title : "",
-			text : "",
+            text: "",
+            showInfoWindow: true,
 			success : function() {}
 		}, params);
 
@@ -141,13 +142,15 @@ $(function () {
 
 							if(params.title != "" && params.text != "" && !params.url) {
 								var infowindow = new google.maps.InfoWindow({
-                                    content: '<div class="map-info">' + params.title + params.text + '</div>'
+                                    content: '<div class="map-info">' + '<h3>'+ params.title + '</h3>' + params.text + '</div>'
                                 });
 
 
                                 var map = $that.data('googleMap');
                                 //opens on page load
-                                infowindow.open(map, marker);
+                                if (params.showInfoWindow) {
+                                    infowindow.open(map, marker);
+                                }
 								google.maps.event.addListener(marker, 'click', function() {
 									infowindow.open(map, marker);
 								});
@@ -204,18 +207,20 @@ $(function () {
 
         			if(params.title != "" && params.text != "" && !params.url) {
           				var infowindow = new google.maps.InfoWindow({
-						content: '<div class="map-info">'+params.title+params.text + '</div>'
+						content: '<div class="map-info">'+'<h3>'+ params.title + '</h3>' +params.text + '</div>'
 					});
 
                     
 					var map = $this.data('googleMap');
 
                     //opens in page load   
-                    infowindow.open(map, marker);
+                    if (params.showInfoWindow) {
+                        infowindow.open(map, marker);
+                    }
 
-	        			google.maps.event.addListener(marker, 'click', function() {
-		        			infowindow.open(map, marker);
-	        			});
+	        		google.maps.event.addListener(marker, 'click', function() {
+		        		infowindow.open(map, marker);
+	        		});
 				} else if(params.url) {
           				google.maps.event.addListener(marker, 'click', function() {
               					document.location = params.url;

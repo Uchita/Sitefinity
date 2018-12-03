@@ -21,11 +21,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
         {
             bool hasFilters = false;
 
-            if(filterModel.Filters != null && filterModel.Filters.Count > 0)
+            if (filterModel.Filters != null && filterModel.Filters.Count > 0)
             {
-                foreach(var filter in filterModel.Filters)
+                foreach (var filter in filterModel.Filters)
                 {
-                    if(filter.values != null && filter.values.Count > 0)
+                    if (filter.values != null && filter.values.Count > 0)
                     {
                         hasFilters = true;
                         break;
@@ -120,6 +120,23 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
                         Classification_CategorySearchTarget catSubTarget = new Classification_CategorySearchTarget() { SubTargets = new List<Classification_CategorySearchTarget>() };
                         ProcessFilterLevels(catSubTarget, subItem);
                         catTarget.SubTargets.Add(catSubTarget);
+                    }
+                }
+            }
+        }
+
+        public static void ProcessFilterLevelsToFlat(JobSearchFilterReceiverItem filterItem, List<string> values)
+        {
+            if (filterItem != null)
+            {
+                if (values != null)
+                    values.Add(filterItem.ItemID);
+
+                if (filterItem.SubTargets != null && filterItem.SubTargets.Count > 0)
+                {
+                    foreach (var subItem in filterItem.SubTargets)
+                    {
+                        ProcessFilterLevelsToFlat(subItem, values);
                     }
                 }
             }
@@ -236,25 +253,27 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
             public string RootId { get; set; }
             public List<string> Values { get; set; }
         }
-          public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
+        public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-     
+
             HttpRequestBase request = controllerContext.HttpContext.Request;
             string keywords = request.Params["Keywords"];
-            
+
             int page = 1;
             if (request.Params["Page"] != null)
                 page = Int32.Parse(request.Params["Page"]);
 
             string sortBy = request.Params["SortBy"];
 
-            JobSearchSalaryFilterReceiver salray = null;
-            if(request.Params["Salary.TargetValue"] != null && request.Params["Salary.LowerRange"] != null && request.Params["Salary.UpperRange"] != null)
+            JobSearchSalaryFilterReceiver salary = null;
+            if (request.Params["Salary.TargetValue"] != null && request.Params["Salary.LowerRange"] != null && request.Params["Salary.UpperRange"] != null)
             {
                 string salaryTargetValue = request.Params["Salary.TargetValue"];
-                int salaryLowerRange = Int32.Parse(request.Params["Salary.LowerRange"]);
-                int salaryUpperRange = Int32.Parse(request.Params["Salary.UpperRange"]);
-                salray = new JobSearchSalaryFilterReceiver() { RootName = "Salary",TargetValue = salaryTargetValue, LowerRange = salaryLowerRange, UpperRange = salaryUpperRange };
+                int salaryLowerRange = 0;
+                Int32.TryParse(request.Params["Salary.LowerRange"], out salaryLowerRange);
+                int salaryUpperRange = 0;
+                Int32.TryParse(request.Params["Salary.UpperRange"], out salaryUpperRange);
+                salary = new JobSearchSalaryFilterReceiver() { RootName = "Salary", TargetValue = salaryTargetValue, LowerRange = salaryLowerRange, UpperRange = salaryUpperRange };
             }
 
             /*
@@ -267,7 +286,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
 
             Dictionary<string, FilterNode> tracker = new Dictionary<string, FilterNode>();
 
-            List<string> filterKeys = request.QueryString.AllKeys.Where(c => c.ToUpper().Contains("FILTERS")).OrderBy(c=>c).ToList();
+            List<string> filterKeys = request.QueryString.AllKeys.Where(c => c.ToUpper().Contains("FILTERS")).OrderBy(c => c).ToList();
             var reqParams = request.QueryString;
             if (filterKeys == null || filterKeys.Count <= 0)
             {
@@ -310,15 +329,15 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
              */
 
             //process tracker into target model
-            JobSearchResultsFilterModel targetModel = new JobSearchResultsFilterModel() { Keywords = keywords, Page = page, Filters = new List<JobSearchFilterReceiver>(), Salary = salray, SortBy = sortBy };
+            JobSearchResultsFilterModel targetModel = new JobSearchResultsFilterModel() { Keywords = keywords, Page = page, Filters = new List<JobSearchFilterReceiver>(), Salary = salary, SortBy = sortBy };
 
-            foreach(string trackerKey in tracker.Keys)
+            foreach (string trackerKey in tracker.Keys)
             {
                 FilterNode thisFilterNode = tracker[trackerKey];
                 JobSearchFilterReceiver receiver = new JobSearchFilterReceiver { rootId = thisFilterNode.RootId, values = new List<JobSearchFilterReceiverItem>() };
-                if( thisFilterNode.Values != null && thisFilterNode.Values.Count() > 0)
-                { 
-                    foreach(string value in thisFilterNode.Values)
+                if (thisFilterNode.Values != null && thisFilterNode.Values.Count() > 0)
+                {
+                    foreach (string value in thisFilterNode.Values)
                     {
                         AssignNodeRoot(receiver, value);
                     }
@@ -339,23 +358,23 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
             if (itemIDs.Count() == 0)
                 return;
 
-            if( itemIDs.Count() == 1)
+            if (itemIDs.Count() == 1)
             {
                 if (root.values == null)
-                { 
+                {
                     root.values.Add(new JobSearchFilterReceiverItem { ItemID = itemIDs[0] });
                 }
                 else
                 {
                     bool hasMatchingItem = root.values.Where(c => c.ItemID.Equals(itemIDs[0])).Any();
-                    if(!hasMatchingItem )
+                    if (!hasMatchingItem)
                         root.values.Add(new JobSearchFilterReceiverItem { ItemID = itemIDs[0] });
                 }
                 return;
             }
             else
             {
-                JobSearchFilterReceiverItem nextLevelItem =  null;
+                JobSearchFilterReceiverItem nextLevelItem = null;
                 if (root.values == null)
                 {
                     nextLevelItem = new JobSearchFilterReceiverItem { ItemID = itemIDs[0] };
@@ -372,7 +391,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
                     else
                         nextLevelItem = matchingItem;
                 }
-                if( nextLevelItem != null)
+                if (nextLevelItem != null)
                     AssignNodeRootItem(nextLevelItem, String.Join("_", itemIDs.Skip(1)));
             }
         }
@@ -385,11 +404,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
             //create the next level item
             JobSearchFilterReceiverItem itemLevel1 = null;
 
-            if( itemIDs.Count() > 0)
+            if (itemIDs.Count() > 0)
             {
                 JobSearchFilterReceiverItem matchingLevel1 = null;
-                if(item.SubTargets != null)
-                    matchingLevel1 = item.SubTargets.Where(c=>c.ItemID.Equals(itemIDs[0])).FirstOrDefault();
+                if (item.SubTargets != null)
+                    matchingLevel1 = item.SubTargets.Where(c => c.ItemID.Equals(itemIDs[0])).FirstOrDefault();
 
                 if (matchingLevel1 == null)
                 {

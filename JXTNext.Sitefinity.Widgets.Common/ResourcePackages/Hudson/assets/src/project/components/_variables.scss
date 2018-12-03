@@ -1,7 +1,7 @@
 // General(fonts, sizes in em/rem, etc.) - fill in later?
-$global-font-size: 1.6rem;
-$global-font-size-px: 16px;
-$global-line-height: 22px;
+$global-font-size: 1.8rem;
+$global-font-size-px: 18px;
+$global-line-height: 1.6;
 $global-font-family: AkzidGroProLig, sans-serif;
 $font-family-light: AkzidGroProLig, sans-serif;
 $font-family-regular: AkzidGroProReg, sans-serif;
@@ -101,12 +101,12 @@ $testimonial-dot-active-color: #464646;
 $footer-nav-links: #2e2e2e;
 $footer-nav-links-hover: #01a3a4;
 $postfooter-bg: #E0E0E0;
-$postfooter-links-color: #777;
+$postfooter-links-color: #A4A4A4;
 
 //Left sidebar
 $sidebar-link-color: #01a3a4;
-$sidebar-font-size: 1.4rem;
-$sidebar-font-size-px: 14px;
+$sidebar-font-size: 1.8rem;
+$sidebar-font-size-px: 18px;
 $sidebar-default-color: #808080;
 
 //Job details sidebar
@@ -143,3 +143,4 @@ $orange-1: #ff8f00;
 
 $black-2: #232323;
 
+$gap: 50px;

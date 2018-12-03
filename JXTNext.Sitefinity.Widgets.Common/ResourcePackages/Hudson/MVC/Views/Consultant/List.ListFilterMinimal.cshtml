@@ -36,7 +36,7 @@
                 </label>
                 <div class="select">
                     <select id="SectorFilter" name="SectorFilter" required="required" class="form-control">
-                        <option value="all">All Specialisation</option>
+                        <option value="all">All Specialisations</option>
                         @{
                             List
                             <Taxon>
@@ -63,7 +63,7 @@
                 </label>
                 <div class="select">
                     <select id="LocationFilter" name="LocationFilter" required="required" class="form-control">
-                        <option value="all">All Location</option>
+                        <option value="all">All Locations</option>
                         @{
                             var manager = DynamicModuleManager.GetManager("OpenAccessProvider");
                             var officeType = TypeResolutionService.ResolveType("Telerik.Sitefinity.DynamicTypes.Model.Offices.Office");
@@ -111,9 +111,30 @@
 
             if (item.Fields.Office != null)
             {
-                OfficeLocationName = Html.HtmlSanitize((string)item.Fields.Office.Fields.Name).ToString();
-                OfficeLocationUrl = item.Fields.Office.Fields.UrlName.ToString();
+                if (item.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
+                {
+                    OfficeLocationName = Html.HtmlSanitize((string)item.Fields.Office.Fields.Name).ToString();
+                    OfficeLocationUrl = item.Fields.Office.Fields.UrlName.ToString();
+                }
+                else
+                {
+                    List<string> OfficeLocationNameList = new List<string>();
+                    List<string> OfficeLocationUrlList = new List<string>();
+
+                    foreach (var office in item.Fields.Office)
+                    {
+                        if (!OfficeLocationNameList.Contains((string)office.Fields.Name))
+                        {
+                            OfficeLocationNameList.Add((string)office.Fields.Name);
+                            OfficeLocationUrlList.Add(office.Fields.UrlName.ToString());
+                        }
+                    }
+
+                    OfficeLocationName = string.Join(", ", OfficeLocationNameList.ToArray());
+                    OfficeLocationUrl = string.Join(",", OfficeLocationUrlList.ToArray());
+                }
             }
+
             <div class="item hidden" data-filtersector="@(string.Join(",",filterValues))" data-filterlocation="@OfficeLocationUrl">
                 @{
                     var testimonialImage = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.png";
@@ -134,7 +155,7 @@
                 </div>
                 @if (item.Fields.Office != null)
                 {
-                    <a class="consultant-btn" href="@navigateUrl">@Html.HtmlSanitize((string)item.Fields.Office.Fields.Name).ToString().ToUpper()</a>
+                <a class="consultant-btn" href="@navigateUrl">@OfficeLocationName</a>
                 }
             </div>
         }
@@ -190,14 +211,18 @@
                     }
 
                     //checking location to matched result
-                    if (curLocationVal != "") {
-                        if (filterLocationVal != 'all') {
+                    var curLocationVal = curLocationVal.split(',');
+                    if (curLocationVal.length) {
+                        if (filterLocationVal != 'all' && flag == true) {
                             //match the value of filter and
                             //also check the result of sector that need to be true
-                            if (curLocationVal.toLowerCase() == filterLocationVal && flag == true) {
-                                flag = true;
-                            } else {
-                                flag = false;
+                            for (i = 0; i < curLocationVal.length; i++) {
+                                if (curLocationVal[i].toLowerCase() == filterLocationVal) {
+                                    flag = true;
+                                    break;
+                                } else {
+                                    flag = false;
+                                }
                             }
                         } //end of all check
                     } else {

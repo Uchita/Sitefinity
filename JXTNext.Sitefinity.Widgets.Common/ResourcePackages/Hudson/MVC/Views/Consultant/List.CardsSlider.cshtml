@@ -15,6 +15,9 @@
 
         if (consultant.Fields.Pic != null && consultant.Fields.Office != null)
         {
+            var OfficeLocationName = "";
+            var OfficeLocationUrl = "";
+
             <div class="item">
                 <div class="consultant same-height-box">
                     <a href="@navigateUrl">
@@ -25,7 +28,34 @@
                         <p class="consultant-sum">
                             @Html.HtmlSanitize((string)consultant.Fields.Position)
                         </p>
-                    </div><a class="consultant-btn" href="@navigateUrl">@Html.HtmlSanitize((string)consultant.Fields.Office.Fields.Name).ToString().ToUpper()</a>
+                    </div>
+                    @if (consultant.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
+                    {
+                        OfficeLocationName = Html.HtmlSanitize((string)consultant.Fields.Office.Fields.Name).ToString();
+                        OfficeLocationUrl = consultant.Fields.Office.Fields.UrlName.ToString();
+                    }
+                    else
+                    {
+                        List<string> OfficeLocationNameList = new List<string>();
+                        List<string> OfficeLocationUrlList = new List<string>();
+
+                        foreach (var office in consultant.Fields.Office)
+                        {
+                            if (!OfficeLocationNameList.Contains((string)office.Fields.Name))
+                            {
+                                OfficeLocationNameList.Add((string)office.Fields.Name);
+                                OfficeLocationUrlList.Add(office.Fields.UrlName.ToString());
+                            }
+                        }
+
+                        OfficeLocationName = string.Join(", ", OfficeLocationNameList.ToArray());
+                        OfficeLocationUrl = string.Join(",", OfficeLocationUrlList.ToArray());
+                    }
+                    @if (consultant.Fields.Office != null)
+                    {
+                        <a class="consultant-btn" href="@navigateUrl">@OfficeLocationName</a>
+                    }
+
                 </div>
             </div>
         }

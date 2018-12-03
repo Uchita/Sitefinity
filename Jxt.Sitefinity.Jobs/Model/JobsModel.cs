@@ -6,7 +6,6 @@ using JXTNext.Sitefinity.Connector.BusinessLogics.Mappers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
-using System;
 using System.Collections.Generic;
 
 namespace Jxt.Sitefinity.Jobs.Model
@@ -27,7 +26,7 @@ namespace Jxt.Sitefinity.Jobs.Model
                 new JobDetailsFullModel() { JobID = 789, Title = "QA Engineer - default", Description = "test" }
             };
         }
-        
+
         public JobViewModel GetSingleViewModel(int id)
         {
             IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = id };
@@ -38,16 +37,16 @@ namespace Jxt.Sitefinity.Jobs.Model
 
             return this.GetVM(jobListingResponse.Job);
         }
-        
+
         public List<JobViewModel> GetListViewModel()
         {
             var vmList = new List<JobViewModel>();
 
-            ISearchJobsRequest jobListingRequest = new JXTNext_SearchJobsRequest { };
-            JXTNext_SearchJobsResponse jobListingResponse = (JXTNext_SearchJobsResponse) _jxtBLConnector.SearchJobs(jobListingRequest);
+            ISearchJobsRequest jobListingRequest = new JXTNext_SearchJobsRequest { PageSize = 10 };
+            JXTNext_SearchJobsResponse jobListingResponse = (JXTNext_SearchJobsResponse)_jxtBLConnector.SearchJobs(jobListingRequest);
 
-            if(jobListingResponse.Success)
-            { 
+            if (jobListingResponse.Success)
+            {
                 foreach (var jl in jobListingResponse.SearchResults)
                 {
                     vmList.Add(this.GetVM(jl));
@@ -63,7 +62,7 @@ namespace Jxt.Sitefinity.Jobs.Model
             jl.Title = job.Title;
             jl.Description = job.Description;
 
-            ICreateJobListingRequest jobCreateRequest = new JXTNext_CreateJobListingRequest {  JobData = _jxtJobsConverter.Convert(job) };
+            ICreateJobListingRequest jobCreateRequest = new JXTNext_CreateJobListingRequest { JobData = _jxtJobsConverter.Convert(job) };
             ICreateJobListingResponse jobCreateResponse = _jxtBLConnector.AdvertiserCreateJob(jobCreateRequest);
 
             if (jobCreateResponse.JobId.HasValue)
@@ -71,7 +70,7 @@ namespace Jxt.Sitefinity.Jobs.Model
             else
                 return null;
         }
-        
+
         public JobViewModel Update(JobViewModel job)
         {
             //this.Delete(job.Id);

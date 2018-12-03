@@ -50,7 +50,7 @@
                 <a href="@childNode.Url" target="@childNode.LinkTarget">
                     @childNode.Title
                 </a>
-                <span class="fas fa-caret-down dropdown-toggle" data-toggle="dropdown"></span>
+                <span class="fas fa-angle-right dropdown-toggle" data-toggle="dropdown"></span>
                 <ul class="dropdown-menu">
                     @RenderSubSubLevelsRecursive(childNode)
                 </ul>
@@ -103,7 +103,7 @@
 if (node.HasChildOpen)
 {
     //@Html.Raw("active");
-        @Html.Raw("current");
+        @Html.Raw("current open");
     }
 }
 @Html.Script(Url.WidgetContent("MVC/Scripts/Navigation/leftSidebar.js"), "bottom")

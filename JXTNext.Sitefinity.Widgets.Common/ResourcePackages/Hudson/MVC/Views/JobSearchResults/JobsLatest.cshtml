@@ -19,12 +19,13 @@
                 @*<div class="job-offer-company text-right"><img alt="Asset 2" src="/images/default-source/clients/optus.png" title="@jobOffer.Title"></div>*@
                 <div class="job-offer">
                     <h3><a class="title-link" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">@jobOffer.Title</a></h3>
-                    @*@{
-                        var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(Math.Round(jobOffer.DateCreated / 1000d)).ToLocalTime()
-                    }*@
-                    @*<p class="text-muted">@obOffer.DateCreated</p>*@    
+                     
+                    @{
+                        var summary = Html.HtmlSanitize((string)jobOffer.ShortDescription).ToString();
+                        string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 250 ? summary.Substring(0, 250) + "..." : summary;
+                    }
                     <p class="job-offer-sum">
-                        @Html.Raw(jobOffer.ShortDescription)
+                        @trimSummary
                     </p>
                 </div>
                 <a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID"></a>

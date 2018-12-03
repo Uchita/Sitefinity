@@ -3,11 +3,10 @@
     header {
 
         .brand-logo {
-            height: 55px;
+            height: 50px;
             position: relative !important;
             top: 15px;
             z-index: 100;
-
             a {
 
                 img {
@@ -189,7 +188,7 @@
 
         .display-cell {
             position: relative;
-            padding: 0 35px 20px 35px;
+            padding: 0 50px 20px;
 
             &:before {
                 background-color: #fff;
@@ -377,18 +376,19 @@
         text-align: center!important;
     }
     .page-wrapper {
-        font-size: 14px;
-        font-size: 1.4rem;
-        line-height: normal;
+        font-size: 16px;
+        font-size: 1.6rem;
 
         .h1, h1 {
             font-size: 36px;
             font-size: 3.6rem;
+            margin-bottom: 3rem;
         }
 
         .h2, h2 {
             font-size: 24px;
             font-size: 2.4rem;
+            margin-bottom: 2rem;
         }
 
         .h3, h3 {
@@ -401,10 +401,13 @@
         }
 
         .btn {
-            font-size: 14px;
-            font-size: 1.4rem;
+            font-size: 16px;
+            font-size: 1.6rem;
+            margin-bottom: 5px;
         }
-
+        .btn-more{
+            margin-bottom: 0;
+        }
         .basic-form .form-label {
             text-align: left;
             display: block;
@@ -453,7 +456,7 @@
         background-attachment: scroll!important;
     }
     .testimonials-slider {
-        padding: 50px 0;
+        padding: $gap 0;
 
         .owl-dots {
             bottom: 25px;
@@ -545,6 +548,15 @@
         }
     }
     
+    .home-padding .thumbnail.card-basic .caption{
+        padding: 30px;
+    }
+    .featured-job-offer{
+        .job-offer-sum{
+            height: 125px;
+        }
+    }
+
     .process-card-holder .display-cell {
         display: block;
         margin-top: 20px;
@@ -556,7 +568,12 @@
     }
 
     .customer-logo, .customer-logo .display-cell {
-        height: 120px;
+        height: 150px;
+        padding: 10px 0;
+        width: 100%;
+    }
+    .customer-logo img{
+        max-height: 130px;
     }
 
     .list-featured-articles {
@@ -667,6 +684,20 @@
     .minWt100{
         min-width: 90px;
     }
+
+    .board-members-row{
+        display: block; 
+        > div{
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+    }
+
+    .page-wrapper .form-control,
+    .left-sidebar .container-fluid, 
+    .left-sidebar .navbar-collapse{
+        font-size: 1.6rem;
+    }
 }
 
 @media (max-width: 800px) {
@@ -723,8 +754,11 @@
     .page-wrapper main{
         padding-top: 0;
     }
+    
     header {
-
+        .navbar{
+            min-height: 10px;
+        }
         .navbar-fixed-top:before {
             content: '';
             position: absolute;
@@ -737,30 +771,32 @@
             background: rgba(0,112,119,.8);
         }
         .brand-logo {
-            height: 40px;
+            height: 23px;
             width: 150px;
             display: block;
             margin: 10px auto;
-           
+            background-image: url('../images/logo-sm.png');
+            background-size: auto 100%;
+            background-position: center;
         }
         .navbar-fixed-top{
             .brand-logo {
-                height: 40px;
+                height: 23px;
                 text-align: center;
             }
             .main-nav{
-                top: 15px;
+                top: 8px;
             }
         }
 
         .main-nav {
             position: absolute;
-            top: 15px;
-            left: 10px;
+            top: 8px;
+            right: 10px;
             margin: 0;
             height: 0;
             width: auto;
-            min-width: 50px;
+            min-width: 42px;
 
             .navbar-default .navbar-toggle {
                 float: left;
@@ -769,14 +805,38 @@
                 padding: 7px 10px;
 
                 .icon-bar {
-                    background-color: $btn-primary-color;
+                    background: none;
+                    &::before{
+                        font: 900 2rem 'Font Awesome 5 Free';
+                        content: '\f00d';
+                        color: $brightColor;
+                        position: relative;
+                        left: 2px;
+                        top: -2px;
+                    }
+                    & + .icon-bar{
+                        display: none;
+                    }
+                }
+
+                &.collapsed{
+                    .icon-bar{
+                        background-color: $btn-primary-color;
+                        &::before{
+                            display: none;
+                        }
+                        & + .icon-bar{
+                            display: block;
+                        }
+                    }
                 }
 
                 &:hover, &:active, &:focus {
                     background: none;
-
-                    .icon-bar {
-                        background-color: $btn-primary-color;
+                    &.collapsed{
+                        .icon-bar {
+                            background-color: $btn-primary-color;
+                        }
                     }
                 }
             }
@@ -816,8 +876,8 @@
     }
 
     .jumbotron-container .jumbotron {
-        padding-top: 150px;
-        min-height: 400px;
+        padding-top: 100px;
+        min-height: 260px;
         .h1, h1 {
             font-size: 30px;
             font-size: 3rem;
@@ -849,8 +909,8 @@
             .card-description {
                 position: static;
                 padding: 0;
-                font-size: 14px;
-                font-size: 1.4rem;
+                font-size: 16px;
+                font-size: 1.6rem;
                 opacity: 1;
                 filter: alpha(opacity=100);
                 -webkit-transition: none;
@@ -864,8 +924,14 @@
         }
     }
 
-    .job-search {
+    .featured-job-offer{
+        .job-offer-sum{
+            height: auto;
+        }
+    }
 
+    .job-search {
+        margin-top: -30px;
         .filter-job-classification .row {
 
             & + .row {
@@ -879,10 +945,119 @@
                 width: 50%;
             }
         }
+        .filter > a{
+            margin-left: 0;
+        } 
+
+        .col-xs-5{
+            width: auto;
+            float: left;
+        }
+        .col-xs-4.pull-right{
+            width: auto;
+            padding-left: 0;
+        }
+        .form-group{
+            margin-bottom: 8px;
+        }
     }
-    .filter-toggle{
+
+    .job-container{
+        position: static;
+    }
+    .filter-toggle, .search-toggle{
         display: block;
+        position: absolute;
+        top: 0;
+        left: 15px;
+        width: 80px;
+        overflow: hidden;
+        .btn, i{
+            padding: 11px 10px;
+            width: 100%;
+            background: $brightColor;
+            color: $global-highlight-color;
+            border: 1px solid $global-highlight-color;
+            font-size: 1.6rem;
+            line-height: 1;
+            margin-bottom: 0;
+            &:hover, &:focus{
+                background: $global-highlight-color;
+                color: $brightColor;
+            }
+        }
     }
+    .search-toggle{
+        left: auto;
+        right: 15px;
+        width: 40px;
+    }
+    
+    .search-top{
+        .jobalert-btn{
+            position: absolute;
+            top: 20px;
+            right: 63px;
+            padding: 10px 20px;
+            margin: 0!important;
+            font-size: 1.6rem!important;
+            line-height: 1.15;
+            width: 40px;
+            text-indent: -92em;
+            overflow: hidden;
+            &::before {
+                content: '\f0f3';
+                font: 900 2.2rem/1.7 'Font Awesome 5 Free';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                z-index: 1;
+                text-indent: 0;
+            }
+        }
+        .select{
+            position: absolute;
+            top: 20px;
+            left: 103px;
+            min-width: 103px!important;
+            width: 104px;
+            margin-top: 0!important;
+
+            select{
+                height: 40px!important;
+                text-transform: uppercase;
+                font-size: 1.6rem!important;
+                font-family: $font-family-medium;
+                padding-right: 20px;
+                option {
+                    text-transform: none;
+                    font-family: $font-family-regular;
+                }
+            }
+        }
+    }
+    .sm-wrapper{
+        display: none;
+        margin-top: 20px;
+    }
+    div#filtersPagePartialContent{
+        padding-top: 50px;
+        
+        .keywordfilter{
+            display: none;
+            margin-top:10px;
+        }
+        .filter-outer-wrapper{
+            margin-bottom: 10px;
+            display: block;
+        }
+        .sm-wrapper{
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+    }
+    
     .list-featured-articles {
         padding: 0!important;
         margin: 0 auto 40px;
@@ -933,11 +1108,11 @@
                 width: 90%;
             }
         }
+        h3+div{
+            height: auto;
+        }
     }
-    .sm-wrapper{
-        display: none;
-        margin-top: 20px;
-    }
+    
     .risk-measurement .risk-wrapper {
         width: 50%;
         margin: 10px auto 20px;
@@ -946,10 +1121,16 @@
         }
     }
 
+    .customer-logo .display-cell {
+        display: block;
+    }
     .white-box-list .white-box {
         height: auto !important;
         min-height: 0;
         margin-right: 0;
+    }
+    .white-box-list > div {
+        margin-bottom: 30px;
     }
 
     .thumbnail.card-rollover .card-rollover-more{
@@ -971,6 +1152,14 @@
             .footer-social{
                 margin-top: 18px;
             }
+            .postfooter-links{
+                display: block;
+                a{
+                    font-size: 1.1rem;
+                    padding-left: 5px;
+                    margin-left: 5px;
+                }
+            } 
         }
         .display-table{
             width: auto;
@@ -978,6 +1167,17 @@
         }
         .form-group .text-right{
             text-align: left;
+        }
+        .mobile-footer-menu{
+            padding-bottom: 15px;
+            .col-xs-6{
+                clear: none!important;
+                float: left;
+                width: 50%;
+            }
+        }
+        .footer-bar{
+            padding: 10px 0;
         }
     }
     .thumbnail{
@@ -1013,6 +1213,10 @@
     }
     .left-sidebar{
         margin-bottom: 50px;
+        display: none;
+        &.mobile-nav{
+            display: block;
+        }
     }
     .page-section {
         .right-bottom-img{
@@ -1063,7 +1267,38 @@
             width:46.5%;   
         }
     }
+
+    .mobile-breadcrumb{
+        z-index: 10;
+        margin-top: 24px;
+        position: relative;
+        height: 35px;
+        .breadcrumb {
+            margin: 0;
+            position: fixed;
+            width: 100%;
+            border-bottom: 1px solid #eee;
+            left: 0;
+            top: 43px;
+            padding: 10px 15px;
+            background: white;
+            li a:before{
+                content: '<';
+                margin-right: 5px;
+            }
+        }
+    }
+    .pos-static{
+        margin-top: 0;
+        margin-bottom: 2rem;
+        .breadcrumb{
+            position: static;
+        }
+    }
     
+    .contact-box {
+        margin-bottom: 40px;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -1079,9 +1314,7 @@
 }
 
 @media (max-width:499px) {
-    main .page-section{
-        padding: 20px 0;
-    }
+   
     .left-sidebar{
         margin-bottom: 30px;
     }
@@ -1140,10 +1373,11 @@
                     margin: 0 3px;
                 }
             }
-            .postfooter-links a{
-                font-size: 1.3rem;
-                white-space: nowrap;
-            }
+            .postfooter-links{
+                a{
+                    white-space: nowrap;
+                }
+            } 
         }
 
         .apply-with, .sign-in-with{
@@ -1212,6 +1446,11 @@
     .featured-job-offer .job-offer-sum:after,
     .list-featured-articles h3+div:after{
         display: none;
+    }
+    .featured-job-offer, 
+    .home-padding .thumbnail.card-basic .caption{
+        padding-right:18px; 
+        padding-left:18px;
     }
     .mobile-owl-carousel {
         .owl-item{

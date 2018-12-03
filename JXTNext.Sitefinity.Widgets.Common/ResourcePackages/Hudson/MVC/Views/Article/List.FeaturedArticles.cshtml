@@ -64,7 +64,7 @@
 
                 @if (item.Fields.HeaderImage != null)
                 {
-                    <div class="featured-article-image"><img alt="@item.Fields.HeaderImage.Fields.Title" src="@MediaContentExtensions.ResolveThumbnailUrl(item.Fields.HeaderImage.DataItem, "thumbartic")" /></div>
+                    <div class="featured-article-image"><a href="@navigateUrl" title="@item.Fields.HeaderImage.Fields.Title"><img alt="@item.Fields.HeaderImage.Fields.Title" src="@MediaContentExtensions.ResolveThumbnailUrl(item.Fields.HeaderImage.DataItem, "thumbartic")" /></a></div>
                 }
 
             </li>

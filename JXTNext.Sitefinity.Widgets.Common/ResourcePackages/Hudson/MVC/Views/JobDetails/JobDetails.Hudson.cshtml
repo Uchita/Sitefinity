@@ -181,19 +181,23 @@
 
         @{
             var shareUrl = SocialShareButtons.ShareUrl;
+            
             var unencodedPageTitle = Model.JobDetails.Title;
             var pageTitle = HttpUtility.UrlEncode(unencodedPageTitle);
         }
         <h4>Interested in this job?</h4>
         <ul class="list-unstyled job-offer-actions">
-            <li><a href="#" class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="far fa-save"></em><span class="save-status-txt">Save this job</span></a></li>
+            @if (isUserLoggedIn)
+            {
+                <li><a href="#" class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="far fa-save"></em><span class="save-status-txt">Save this job</span></a></li>
+            }
+            
             <li><a href="javascript:window.print();"><em class="fas fa-print"></em>Print this job</a></li>
             <li>
-                <a href="mailto:?body=@shareUrl&subject=@unencodedPageTitle" title="Tell a friend">
+                <a href="@ViewBag.EmailJobPageUrl?JobId=@Model.JobDetails.JobID" title="Tell a friend">
                     <em class="fas fa-envelope"></em>Email this job
                 </a>
             </li>
-
             @*<li><span class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="fas fa-save"></em>Save this job</span></li>*@
         </ul>
 
@@ -201,7 +205,7 @@
 }
     <script type="text/javascript">
     $(document).ready(function () {
-
+        document.title = '@Model.JobDetails.Title';
         var isLoggedIn = '@isUserLoggedIn';
 
         //checking user logged in is member role
@@ -216,7 +220,9 @@
             }
         });
 
-        processSavedJobs();
+        if (isLoggedIn.toLocaleLowerCase() == "true") {
+            processSavedJobs();
+        }
 
         function processSavedJobs() {
             var parm = {};

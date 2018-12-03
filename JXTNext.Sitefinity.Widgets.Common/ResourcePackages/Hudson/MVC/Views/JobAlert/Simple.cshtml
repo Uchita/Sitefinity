@@ -1,5 +1,5 @@
 ﻿@model List<JobAlertViewModel>
-@using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Models
+@using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert
 
 <h2><span class="alert-icon far fa-bell"></span>Job alerts</h2>
 
@@ -47,9 +47,10 @@ else
         <div class="alert alert-danger">@ViewBag.StatusMessage</div>
     }
 }
-
+<div class="button-wrapper">
 @Html.ActionLink("Create New Job Alert", "Create", "JobAlert", new { @class = "btn jobalert-btn" })
 <a href="/advancedsearch" class="btn" title="New job search">New search</a>
+</div>
 
 <div class="popup-overlay">
     <div class="container">

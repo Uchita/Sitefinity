@@ -290,6 +290,7 @@
      var appStatus = '@Model.ApplicationStatus';
      var isUserLoggedIn = '@ViewBag.IsUserLoggedIn';
      var registerForm = false;
+     var userLoggedInParamFromViewbag = '@ViewBag.IsUserLoggedIn';
 
 
      function validateEmail(elementValue) {
@@ -363,8 +364,13 @@
             resumeSelectedType = 'Local';
             $("#resume-selected-type").val(resumeSelectedType);
             var resumeBrowseName = document.getElementById("application-resume").files[0].name;
-            $(".resume-name").text(resumeBrowseName);
-            $("#user-profile-resume-list").val('0');
+             $(".resume-name").text(resumeBrowseName);
+             
+             if (userLoggedInParamFromViewbag == 'True') {
+                 $("#MySavedResumes").val('0');
+             } else {
+                 $("#user-profile-resume-list").val('0');
+             }
             $(".resume-message").addClass('hidden');
         });
 
@@ -419,7 +425,6 @@
 
              var jobId = $(this).data("jobid");
              var staySignedinFlag = $('#RememberMe').is(':checked') ? true : false;
-             console.log(staySignedinFlag);
              //for login email address & password check & submit login form
              var parm = { email: $('#userid').val(), password: $('#password-reg').val(), staySignedIn: staySignedinFlag, isUserLoggedIn: false };
              var urlPath = $(location).attr('pathname') + "/ValidateUser";
@@ -788,7 +793,12 @@
                     $('#application-resume').val('');
                     $("#resume-selected-type").val(resumeSelectedType);
                     $('.resume-name').text(files[0].name);
-                    $("#user-profile-resume-list").val('0');
+                    if (userLoggedInParamFromViewbag == 'True') {
+                        $("#MySavedResumes").val('0');
+                    } else {
+                        $("#user-profile-resume-list").val('0');
+                    }
+                    
                 }
                 else {
                     if (isDropboxCoverLetter) {
@@ -1088,7 +1098,12 @@
                     $('#application-resume').val('');
                     $("#resume-selected-type").val(resumeSelectedType);
                     $('.resume-name').text(name);
-                    $("#user-profile-resume-list").val('0');
+                    if (userLoggedInParamFromViewbag == 'True') {
+                        $("#MySavedResumes").val('0');
+                    } else {
+                        $("#user-profile-resume-list").val('0');
+                    }
+                    
                 }
                 else {
                     if (isGoogleCoverLetter) {

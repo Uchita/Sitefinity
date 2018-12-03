@@ -135,8 +135,17 @@
 }
 
 .filters-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
     label{
         padding-top: 0;
+    }
+    .btn{
+        margin-bottom: 0;
+        padding: 11px 55px;
     }
 }
 
@@ -256,6 +265,7 @@
     > .filters-wrapper{
         max-width: 900px;
         margin: 0 auto;
+        line-height: 1.3;
     }
     .consultant{
         .item{

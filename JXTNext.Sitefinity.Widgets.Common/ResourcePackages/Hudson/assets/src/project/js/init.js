@@ -225,12 +225,13 @@ $(document).ready(function () {
         items: 1,
         loop: true,
         autoplay: true,
+        autoplayTimeout: 7000,
     });
 
     $('.owl-consultants').owlCarousel({
         margin: 25,
         autoplay: true,
-        autoplayTimeout: 5000,
+        autoplayTimeout: 7000,
         autoplayHoverPause: true,
         loop: false,
         responsive: {

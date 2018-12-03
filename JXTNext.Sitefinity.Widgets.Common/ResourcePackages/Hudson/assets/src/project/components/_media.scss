@@ -378,7 +378,6 @@
     .page-wrapper {
         font-size: 16px;
         font-size: 1.6rem;
-        line-height: normal;
 
         .h1, h1 {
             font-size: 36px;
@@ -389,7 +388,7 @@
         .h2, h2 {
             font-size: 24px;
             font-size: 2.4rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .h3, h3 {
@@ -402,11 +401,13 @@
         }
 
         .btn {
-            font-size: 14px;
-            font-size: 1.4rem;
+            font-size: 16px;
+            font-size: 1.6rem;
             margin-bottom: 5px;
         }
-
+        .btn-more{
+            margin-bottom: 0;
+        }
         .basic-form .form-label {
             text-align: left;
             display: block;
@@ -547,6 +548,15 @@
         }
     }
     
+    .home-padding .thumbnail.card-basic .caption{
+        padding: 30px;
+    }
+    .featured-job-offer{
+        .job-offer-sum{
+            height: 125px;
+        }
+    }
+
     .process-card-holder .display-cell {
         display: block;
         margin-top: 20px;
@@ -563,7 +573,7 @@
         width: 100%;
     }
     .customer-logo img{
-        height: 130px;
+        max-height: 130px;
     }
 
     .list-featured-articles {
@@ -682,6 +692,12 @@
             margin: 0 auto 40px;
         }
     }
+
+    .page-wrapper .form-control,
+    .left-sidebar .container-fluid, 
+    .left-sidebar .navbar-collapse{
+        font-size: 1.6rem;
+    }
 }
 
 @media (max-width: 800px) {
@@ -738,11 +754,11 @@
     .page-wrapper main{
         padding-top: 0;
     }
-    main .page-section {
-        padding: 20px 0;
-    }
+    
     header {
-
+        .navbar{
+            min-height: 10px;
+        }
         .navbar-fixed-top:before {
             content: '';
             position: absolute;
@@ -861,7 +877,7 @@
 
     .jumbotron-container .jumbotron {
         padding-top: 100px;
-        min-height: 220px;
+        min-height: 260px;
         .h1, h1 {
             font-size: 30px;
             font-size: 3rem;
@@ -908,8 +924,14 @@
         }
     }
 
-    .job-search {
+    .featured-job-offer{
+        .job-offer-sum{
+            height: auto;
+        }
+    }
 
+    .job-search {
+        margin-top: -30px;
         .filter-job-classification .row {
 
             & + .row {
@@ -1086,6 +1108,9 @@
                 width: 90%;
             }
         }
+        h3+div{
+            height: auto;
+        }
     }
     
     .risk-measurement .risk-wrapper {
@@ -1127,6 +1152,14 @@
             .footer-social{
                 margin-top: 18px;
             }
+            .postfooter-links{
+                display: block;
+                a{
+                    font-size: 1.1rem;
+                    padding-left: 5px;
+                    margin-left: 5px;
+                }
+            } 
         }
         .display-table{
             width: auto;
@@ -1134,6 +1167,17 @@
         }
         .form-group .text-right{
             text-align: left;
+        }
+        .mobile-footer-menu{
+            padding-bottom: 15px;
+            .col-xs-6{
+                clear: none!important;
+                float: left;
+                width: 50%;
+            }
+        }
+        .footer-bar{
+            padding: 10px 0;
         }
     }
     .thumbnail{
@@ -1225,7 +1269,7 @@
     }
 
     .mobile-breadcrumb{
-        z-index: 10000;
+        z-index: 10;
         margin-top: 24px;
         position: relative;
         height: 35px;
@@ -1252,6 +1296,9 @@
         }
     }
     
+    .contact-box {
+        margin-bottom: 40px;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -1326,10 +1373,11 @@
                     margin: 0 3px;
                 }
             }
-            .postfooter-links a{
-                font-size: 1.3rem;
-                white-space: nowrap;
-            }
+            .postfooter-links{
+                a{
+                    white-space: nowrap;
+                }
+            } 
         }
 
         .apply-with, .sign-in-with{

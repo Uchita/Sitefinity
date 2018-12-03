@@ -498,7 +498,6 @@
             var parm = { email: emailId };
             var urlPath = $(location).attr('pathname') + "/CheckUser";
 
-            //$('#upload-files-container').hide();
             if (valid) {
                 $(this).css('color', '#000');
                 $.ajax({
@@ -555,7 +554,7 @@
                             $('#sign-in-btn').removeClass('hidden');
 
                         }
-                        //$('#upload-files-container').show();
+                      
                         $('#apply').removeAttr('disabled');
                     },
                     error: function (response) {
@@ -564,7 +563,7 @@
             } else {
                 $('.welcome-message').addClass('hidden');
                 $('.loginwith_socialmedia').show();
-
+                $('#upload-files-container').hide();
                 $('#register').hide();
                 $(this).css('color', 'red');
                 $('#password-reg').prop('required', false);

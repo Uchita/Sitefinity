@@ -4,51 +4,60 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 @using Telerik.Sitefinity.Web.DataResolving;
 
-<div class="@Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
-    <h3>
-        <span @Html.InlineEditingFieldAttributes("Title", "ShortText")>@Model.Item.Fields.Title</span>
+<div class="col blog-detail-col">
+
+    <h3 class="posted-by">
+        By
+        @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)
     </h3>
 
-    <div>
+    <p class="posted-date">
         @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy")
-        @Html.Resource("By")
-        @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)
         @Html.CommentsCount(string.Empty, @Model.Item.DataItem)
-    </div>
+    </p>
+
+    <h4 class="blog-title">@Model.Item.Fields.Title</h4>
 
 
-    <div @Html.InlineEditingFieldAttributes("Summary", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</div>
+
+
+
+    <div @Html.InlineEditingFieldAttributes("Summary", "LongText" )><p>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</p></div>
 
 
 
     @{var imageurl = ""; }
     @foreach (var relatedItem in Model.Item.Fields.BlogImage)
     {
-        imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+    imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
     }
 
-    <div><img style="width:100%" src="@imageurl" /></div>
+    <div class="row">
+        <div class="col-12 mt-4 mb-4">
+            <div class="cta-bg" data-parallax="scroll" data-image-src="@imageurl">
+
+            </div>
+        </div>
+    </div>
 
     @{
-        if (Model.EnableSocialSharing)
-        {
-            var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
-            @Html.SocialShareOptions(item);
-        }
+    if (Model.EnableSocialSharing)
+    {
+    var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
+    @Html.SocialShareOptions(item);
+    }
     }
 
-    <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
+    <div @Html.InlineEditingFieldAttributes("Content", "LongText" )>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
 
     @Html.CommentsList(@Model.Item.DataItem)
 </div>
 
-<h3 class="mt-4 h3-heading">Share</h3>
 
-<a class="fa fa-facebook"></a>
 
-<a class="fa fa-twitter"></a>
+<style>
 
-<a class="fa fa-linkedin"> </a>
-
-<a class="fa fa-stumbleupon"> </a>
-
+    .cta-bg {
+        min-height: 155px;
+    }
+</style>

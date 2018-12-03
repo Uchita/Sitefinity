@@ -1,0 +1,20 @@
+@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+
+<section class="cta" style="background-image: url('@Model.SelectedSizeUrl');">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6 text-center">
+                <h3>@Html.HtmlSanitize(Model.Heading)</h3>
+                <p>@Html.HtmlSanitize(Model.Description)</p>
+            </div>
+            <div class="col-12 col-md-auto ml-md-auto">
+                @if (!string.IsNullOrEmpty(Model.ActionName))
+                {
+                    <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-outline-white" role="button">@Model.ActionName</a>
+                }
+            </div>
+        </div>
+    </div>
+</section>

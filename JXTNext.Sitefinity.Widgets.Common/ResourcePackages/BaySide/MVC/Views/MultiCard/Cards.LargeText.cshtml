@@ -1,16 +1,16 @@
 ﻿@model SitefinityWebApp.Mvc.Models.MultiCard.MultiCardViewModel
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
-<section class="g-section">
+<section class="g-section @Model.CssClass">
     <div class="container">
         <div class="row">
-            @{                        
+            @{
                 int count = 1;
             }
             @foreach (var card in Model.Cards)
             {
                 if (count % 2 == 0)
                 {
-                    <div class="col-12 col-md-6 mt-5 mt-md-0">
+                    <div class="col-12 col-md-6 mt-5 mt-md-0 1">
                         @if (!string.IsNullOrEmpty(card.Heading))
                         {
                             <h3>@Html.HtmlSanitize(card.Heading)</h3>
@@ -21,7 +21,7 @@
                 }
                 else
                 {
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-6 2">
                         @if (!string.IsNullOrEmpty(card.Heading))
                         {
                             <h3>@Html.HtmlSanitize(card.Heading)</h3>

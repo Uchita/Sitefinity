@@ -6,28 +6,17 @@
 
 <div class="col blog-detail-col">
 
-    <h3 class="posted-by">
-        By
-        @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)
-    </h3>
-
+    <h3 class="posted-by">By @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)</h3>
     <p class="posted-date">
-        @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy")
-        @Html.CommentsCount(string.Empty, @Model.Item.DataItem)
+        @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")
+        @*@Html.CommentsCount(string.Empty, @Model.Item.DataItem)*@
     </p>
-
     <h4 class="blog-title">@Model.Item.Fields.Title</h4>
 
 
-
-
-
     <div @Html.InlineEditingFieldAttributes("Summary", "LongText")><p>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</p></div>
-
-
-
     @{var imageurl = ""; }
-    @foreach (var relatedItem in Model.Item.Fields.BlogImage)
+    @foreach (var relatedItem in Model.Item.Fields.NewsImage)
     {
         imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
     }
@@ -40,19 +29,10 @@
         </div>
     </div>
 
-    @{
-        if (Model.EnableSocialSharing)
-        {
-            var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
-            @Html.SocialShareOptions(item);
-        }
-    }
+    <div @Html.InlineEditingFieldAttributes("Content", "LongText")><p>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</p></div>
 
-    <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
 
-    @Html.CommentsList(@Model.Item.DataItem)
 </div>
-
 
 
 <style>

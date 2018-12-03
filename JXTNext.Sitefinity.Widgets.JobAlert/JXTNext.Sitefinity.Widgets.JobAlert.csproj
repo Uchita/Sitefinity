@@ -303,6 +303,7 @@
     <Compile Include="Mvc\Logics\JobAlertsBC.cs" />
     <Compile Include="Mvc\Models\JobAlertModel.cs" />
     <Compile Include="Mvc\StringResources\JobAlertResources.cs" />
+    <Compile Include="Mvc\Utility\JobAlertUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Widgets_JobAlertModule.cs" />
   </ItemGroup>
@@ -313,7 +314,9 @@
     <EmbeddedResource Include="Mvc\Views\JobAlert\Edit.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JobAlert\Simple.cshtml" />
     <None Include="OpenAccessNuGet.targets" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mvc\Scripts\JobAlert\designerview-simple.js" />

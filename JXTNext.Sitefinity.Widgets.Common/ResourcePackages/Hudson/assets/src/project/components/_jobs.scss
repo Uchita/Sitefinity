@@ -495,6 +495,9 @@
                 color: $global-highlight-color;
             }
         }
+        select{
+            width: 100%;
+        }
         input[type="file"], button{
             opacity: 0;
             height: 50px;

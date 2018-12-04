@@ -25,7 +25,7 @@
 </head>
 
 <body>
-   
+
     @Html.Section("top")
     <div class="page-wrapper">
         <header class="app-header">
@@ -58,12 +58,12 @@
     }
 
     @Html.Section("bottom")
-    @Html.Script("/ResourcePackages/Bayside/assets/js/bootstrap.js", "bottom")
     @Html.Script("/ResourcePackages/Bayside/assets/js/parallax.js", "bottom")
     @Html.Script("/ResourcePackages/Bayside/assets/js/owl.carousel.js", "bottom")
     @if (!Telerik.Sitefinity.Services.SystemManager.IsDesignMode || Telerik.Sitefinity.Services.SystemManager.IsPreviewMode)
     {
         @Html.Script("/ResourcePackages/Bayside/assets/js/wow.js", "head")
+        @Html.Script("/ResourcePackages/Bayside/assets/js/bootstrap.js", "bottom")
     }
     @Html.Script("/ResourcePackages/Bayside/assets/js/bayside.js", "bottom")
 </body>

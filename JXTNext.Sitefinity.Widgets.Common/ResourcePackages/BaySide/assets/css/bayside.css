@@ -4899,7 +4899,7 @@ h2,
 
 h2,
 .h2 {
-    font-weight: 100;
+    font-weight: 400;
 }
 
 h3,
@@ -4915,7 +4915,7 @@ h4 {
 p {
     font-size: 18px;
     line-height: 1.5;
-    font-weight: 100;
+    font-weight: 400;
     color: #333132;
 }
 
@@ -4930,7 +4930,7 @@ p {
 .btn {
     font-size: 1em;
     border-radius: 4px;
-    padding: 7px 23px;
+    padding: 8px 23px 7px;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -5137,7 +5137,7 @@ p {
         top: 0;
         bottom: 0;
         right: 0;
-        background: rgba(37, 130, 176, 0.7);
+        background: rgba(0, 136, 207, 0.7);
         opacity: 0;
         transition: all 0.4s ease;
     }
@@ -5191,15 +5191,7 @@ p {
         margin-bottom: 0;
     }
 
-    .g-section.our-services h3 {
-        margin-bottom: 48px;
-    }
-
-    .g-section.featured-insights h3 {
-        margin-bottom: 33px;
-    }
-
-    .g-section.latest-news h3 {
+    .g-section .section-heading {
         margin-bottom: 30px;
     }
 
@@ -5262,6 +5254,10 @@ p {
     }
 }
 
+.g-section.our-specialist p, .g-section.why-work p {
+    font-weight: 400;
+}
+
 /*-------Group Section----End------*/
 /*-------Service Item----------*/
 .service-item {
@@ -5281,6 +5277,7 @@ p {
         color: #333132;
         font-size: 14px;
         line-height: 17px;
+        font-weight: 400;
     }
 
 /*-------Service Item-----End-----*/
@@ -5468,88 +5465,147 @@ p {
         color: #0088CF;
     }
 
-:root {
-    --blue: #0088CF;
-    --green: #54b948;
-    --sage: #f0f7ee;
-    --dark-blue: #304e6b;
-    --white: #fff;
-    --black: #333;
-    --red: #ea232a;
-    --dark: #414141;
+.network_talent h2 + p {
+    margin-bottom: 30px;
 }
 
-/*-------Footer----------*/
-.app-footer {
-    background: #3c4044;
-    padding: 90px 0;
-    color: #BCBEC0;
+/*=========IDS=====*/
+.network_talent h2 + p {
+    margin-bottom: 30px;
 }
 
-    .app-footer h4 {
-        color: #BCBEC0;
-        font-size: 17px;
-        font-weight: 600;
-        line-height: 1.5;
+.job_feature .text-white {
+    font-size: 28px;
+    color: #fff;
+    margin: 0 0 25px 0;
+}
+
+.job_feature .btn.btn-outline-primary {
+    color: #fff;
+    border-color: #fff;
+    font-size: 14px;
+}
+
+    .job_feature .btn.btn-outline-primary:hover {
+        color: #083a81;
+        background: #fff;
     }
 
-    .app-footer ul {
-        padding-left: 0;
-        margin-bottom: 20px;
+.feedback_form {
+    width: 100%;
+    float: left;
+    padding: 60px 0;
+    color: #000;
+}
+
+.fas {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.feedback_form .form-group {
+    width: 100%;
+    float: left;
+    margin-bottom: 20px;
+}
+
+    .feedback_form .form-group.hc .checkbox {
+        width: 33.33%;
+        float: left;
+        position: relative;
+        margin: 0 0 8px 0;
+        padding: 0 10px 0 25px;
     }
 
-        .app-footer ul li {
-            list-style: none;
-            line-height: 2;
-        }
-
-            .app-footer ul li a {
-                text-decoration: none;
-                transition: all 0.4s ease;
-                -webkit-transition: all 0.4s ease;
-                -ms-transition: all 0.4s ease;
-                -moz-transition: all 0.4s ease;
-                position: relative;
-                display: inline-block;
-                color: #7A8087;
-                font-size: 14px;
-                line-height: 1.8;
-            }
-
-                .app-footer ul li a:hover {
-                    color: #f1f1f1;
-                }
-
-    .app-footer .footer_menu_inline {
-        margin-bottom: 5px;
+    .feedback_form .form-group.hc:nth-child(5) .checkbox {
+        width: auto;
+        margin-right: 5px;
     }
 
-        .app-footer .footer_menu_inline li {
-            display: inline-block;
-            margin-right: 15px;
-        }
-
-            .app-footer .footer_menu_inline li a {
-                color: #9B9B9B;
-            }
-
-    .app-footer .social_links li a {
-        font-size: 18px;
-        line-height: 1;
-        color: #bcbec0;
+    .feedback_form .form-group.hc strong {
+        display: block;
+        width: 100%;
+        float: left;
+        margin-bottom: 10px;
     }
 
-        .app-footer .social_links li a::before {
-            display: none;
-        }
-
-    .app-footer .copyright {
-        margin: 0;
-        font-size: 12px;
-        color: #fff;
+    .feedback_form .form-group .checkbox input[type="checkbox"] {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 18px;
+        height: 18px;
+        margin: 0px;
     }
 
-/*-------Footer------End----*/
+    .feedback_form .form-group .checkbox .checkbox-icon {
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: center;
+        display: none;
+    }
+
+    .feedback_form .form-group .checkbox::after,
+    .feedback_form .form-group .checkbox:before {
+        display: none;
+    }
+
+.advanced-search-from form {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #000;
+}
+
+.advanced-search-from .col-md-4.text-right {
+    max-width: 23%;
+    text-align: left !important;
+}
+
+.advanced-search-from .field-wrapper .dropdown .btn {
+    width: 100%;
+    text-align: left;
+    padding: 6px 12px;
+    height: 45px;
+    background: none !important;
+}
+
+    .advanced-search-from .field-wrapper .dropdown .btn .caret {
+        float: right;
+        margin: 9px 0 0 0;
+    }
+
+.advanced-search-from .field-wrapper label.col-4 {
+    max-width: 100%;
+    padding: 0px;
+}
+
+.advanced-search-from .field-wrapper .salaryrangewrapper .nstSlider .rightGrip,
+.advanced-search-from .field-wrapper .salaryrangewrapper .nstSlider .leftGrip,
+.advanced-search-from .field-wrapper .salaryrangewrapper .nstSlider .bar {
+    background: #3465B0;
+}
+
+@media (max-width: 767px) {
+    .feedback_form .form-group.hc .checkbox {
+        width: 100%;
+    }
+
+    .advanced-search-from .col-md-4.text-right {
+        max-width: 100%;
+    }
+}
+
+/*=========IDS  End=====*/
 
 /* ------App header__start------ */
 .app-header {
@@ -5612,6 +5668,7 @@ p {
     .app-header .navbar-expand-lg .navbar-collapse {
         display: flex !important;
         flex-basis: auto;
+        padding-right: 0;
     }
 
     .app-header .navbar-expand-lg .navbar-nav {
@@ -5834,6 +5891,7 @@ p {
         margin-left: 20px;
         box-shadow: none;
         color: #C5C5C5;
+        padding-top: 7px;
     }
 
     .header-search_form .btn {
@@ -5891,16 +5949,104 @@ p {
 
 /* ------App header__End------ */
 
+:root {
+    --blue: #0088CF;
+    --green: #54b948;
+    --sage: #f0f7ee;
+    --dark-blue: #304e6b;
+    --white: #fff;
+    --black: #333;
+    --red: #ea232a;
+    --dark: #414141;
+}
+
+/*-------Footer----------*/
+.app-footer {
+    background: #3c4044;
+    padding: 90px 0;
+    color: #BCBEC0;
+}
+
+    .app-footer h4 {
+        color: #BCBEC0;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 1.5;
+    }
+
+    .app-footer ul {
+        padding-left: 0;
+        margin-bottom: 20px;
+    }
+
+        .app-footer ul li {
+            list-style: none;
+            line-height: 2;
+        }
+
+            .app-footer ul li a {
+                text-decoration: none;
+                transition: all 0.4s ease;
+                -webkit-transition: all 0.4s ease;
+                -ms-transition: all 0.4s ease;
+                -moz-transition: all 0.4s ease;
+                position: relative;
+                display: inline-block;
+                color: #7A8087;
+                font-size: 14px;
+                line-height: 1.8;
+            }
+
+                .app-footer ul li a:hover {
+                    color: #f1f1f1;
+                }
+
+    .app-footer .footer_menu_inline {
+        margin-bottom: 5px;
+    }
+
+        .app-footer .footer_menu_inline li {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+            .app-footer .footer_menu_inline li a {
+                color: #9B9B9B;
+            }
+
+    .app-footer .social_links li a {
+        font-size: 18px;
+        line-height: 1;
+        color: #bcbec0;
+    }
+
+        .app-footer .social_links li a::before {
+            display: none;
+        }
+
+    .app-footer .copyright {
+        margin: 0;
+        font-size: 12px;
+        color: #fff;
+    }
+
+/*-------Footer------End----*/
+
 /*==========Hero Banner==========*/
 .hero-banner {
     color: #FFFFFF;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    padding-bottom: 80px;
-    padding-top: 80px;
+    padding-bottom: 77px;
+    padding-top: 78px;
     background-attachment: fixed;
 }
+
+    .hero-banner.hero-banner-sm {
+        padding-bottom: 60px;
+        padding-top: 60px;
+    }
 
     .hero-banner > .container > .row {
         min-height: 353px;
@@ -5940,6 +6086,7 @@ p {
     background-size: cover;
     background-repeat: no-repeat;
     margin-bottom: 40px;
+    float: right;
 }
 
 @media (max-width: 991px) {
@@ -5977,10 +6124,15 @@ p {
     font-size: 14px;
     line-height: 17px;
     color: #FFFFFF;
+    font-weight: 400;
+    margin-bottom: 20px;
 }
 
 .job-item h2 {
     color: #FFFFFF;
+    margin-top: 0;
+    line-height: 1;
+    margin-bottom: 15px;
 }
 
 .animated.delay-05s {
@@ -6007,7 +6159,7 @@ p {
 
     .list-item .bg-image,
     .news-list .bg-image {
-        margin-bottom: 20px;
+        margin-bottom: 24px;
         width: 100%;
         height: 170px;
         transition: all 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
@@ -6092,6 +6244,7 @@ p {
     .featured-carousel .carousel-content p {
         font-size: 14px;
         line-height: 17px;
+        font-weight: 400;
     }
 
 .featured-carousel .carousel-title {
@@ -6179,6 +6332,8 @@ p {
     .sm-col-layout p {
         color: #fff;
         line-height: 1.3;
+        font-size: 1rem;
+        font-weight: 400;
     }
 
 .cta {
@@ -6215,7 +6370,7 @@ p {
 
 .squire-box {
     color: #fff;
-    padding: 50px 30px 90px;
+    padding: 50px 30px 90px !important;
     background-image: url("../images/Administration-and-Executive-Talent.jpg");
     position: relative;
     min-height: 100%;
@@ -6243,18 +6398,21 @@ p {
         left: 30px;
     }
 
+        .squire-box a:hover, .squire-box a:focus {
+            color: #fff;
+        }
+
     .squire-box .squire-overlay {
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
-        background: linear-gradient(90deg, #0087CD 0%, #3465AF 100%);
+        background-color: #3465AF;
     }
 
     .squire-box:nth-of-type(3n+1) .squire-overlay {
-        background-color: #0088CF;
-        opacity: 0.5;
+        background: rgba(0, 136, 207, 0.7);
     }
 
 .testimonial-content {
@@ -6273,9 +6431,6 @@ p {
 
 .owl-dots {
     text-align: center;
-}
-
-.testimonial-carousel .owl-dots {
     margin-top: 30px;
 }
 
@@ -6400,13 +6555,13 @@ p {
 }
 
 .img-absolute-wrap {
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
     .img-absolute-wrap .img-absolute {
         position: absolute;
         left: 50%;
-        height: 100%;
+        height: 105%;
         width: auto;
         max-width: 1000%;
         transform: translateX(-50%);
@@ -7109,6 +7264,4 @@ p {
     margin-bottom: 70px;
 }
 
-.cta-bg {
-        min-height: 155px;
-    }
+/*# sourceMappingURL=bayside.css.map */

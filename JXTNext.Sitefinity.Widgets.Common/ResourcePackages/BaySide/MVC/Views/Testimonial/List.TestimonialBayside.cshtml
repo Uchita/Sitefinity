@@ -1,0 +1,38 @@
+﻿@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+
+
+<section class="g-section testimonial">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center">Latest Testimonial</h2>
+            </div>
+        </div>
+        <div class="owl-carousel testimonial-carousel">
+
+
+            @foreach (var item in Model.Items)
+            {
+                <div class="item">
+                    <div class="testimonial-content">
+                        <p>
+                            @item.Fields.Quote
+                        </p>
+                        <p class="user-name">@item.Fields.By</p>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</section>

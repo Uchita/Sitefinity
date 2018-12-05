@@ -132,6 +132,23 @@
                 {
 
                 <div id="upload-files-container" hidden>
+                    <div class="form-group row">
+                        <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                        <div class="col-xs-12 col-md-8">
+                            <div class="list-group">
+                                <label for="selectresume">
+                                    <input id="selectresume" type="radio" name="resume" checked/>
+                                    <span class="text-right">Select a resume stored on Hudson</span>
+                                </label>
+                                <label for="uploadresume">
+                                    <input id="uploadresume" type="radio" name="resume"/>
+                                    <span class="text-right">Upload a resume</span>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    
                     @if (ViewBag.IsUserLoggedIn)
                     {
                         <div class="form-group row">
@@ -155,7 +172,7 @@
 
 
                     <!-- Resume -->
-                    <div class="form-group row">
+                    <div class="form-group row" id="uploadresumeblock" hidden>
                         <label class="form-label col-xs-12 col-md-4 text-right">upload your cv*</label>
                         <div class="col-xs-12 col-md-8">
                             <div class="box clearfix text-center">
@@ -320,7 +337,31 @@
      var m_strNumber = "0123456789";
      var m_strCharacters = "!@@#$%^&*?_~";
 
+    $("#selectresume").change(function () {
+        $("#uploadresumeblock").hide();
+        if (userLoggedInParamFromViewbag == 'True') {
+            $("#MySavedResumes").show();
+        } else {
+            $("#user-profile-resume-list").show();
+        }
+        
+    });
+
+    $("#uploadresume").change(function () {
+        $("#uploadresumeblock").show('hidden');
+        if (userLoggedInParamFromViewbag == 'True') {
+            $("#MySavedResumes").hide();
+        } else {
+            $("#user-profile-resume-list").hide();
+        }
+        
+    });
+
+
      $(document).ready(function () {
+
+         
+         
 
          $('form').submit(function (e) {
              e.preventDefault();

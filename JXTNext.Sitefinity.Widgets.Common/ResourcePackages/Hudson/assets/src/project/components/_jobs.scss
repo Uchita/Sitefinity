@@ -495,9 +495,6 @@
                 color: $global-highlight-color;
             }
         }
-        select{
-            width: 100%;
-        }
         input[type="file"], button{
             opacity: 0;
             height: 50px;
@@ -520,6 +517,9 @@
         display: block;
         clear: both;
         word-break: break-word;
+    }
+    select{
+        width: 100%;
     }
 }
 .note{

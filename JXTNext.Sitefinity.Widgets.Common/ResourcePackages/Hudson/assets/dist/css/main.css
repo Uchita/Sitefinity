@@ -7708,7 +7708,8 @@ blockquote {
     display: table-row; }
   .page-wrapper .table {
     background: #fff;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); }
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px; }
     .page-wrapper .table th {
       border-top: none;
       border-bottom: 1px solid #eee;
@@ -8312,16 +8313,19 @@ main {
   line-height: 1.6; }
 
 .sf-list-item h3[data-sf-role="toggleLink"] {
-  padding: 13px 20px;
+  padding: 13px 40px 13px 20px;
   background: #eee;
-  position: relative; }
+  position: relative;
+  font-size: 1.8rem; }
   .sf-list-item h3[data-sf-role="toggleLink"] > i {
     position: absolute;
     right: 8px;
     top: 17px; }
 
 .sf-list-item .sf-list-content {
-  padding: 10px; }
+  padding: 10px 0; }
+  .sf-list-item .sf-list-content ul {
+    padding-left: 20px; }
 
 /*#endregion Page sections */
 /*#region Left sidebar*/
@@ -8839,7 +8843,10 @@ ul.vertical-ul {
   width: unset !important; }
 
 .date-col {
-  min-width: 125px; }
+  width: 130px; }
+
+.col-2btn-width {
+  width: 123px; }
 
 @-webkit-keyframes spin {
   0% {
@@ -9690,8 +9697,8 @@ ul.breadcrumb {
     margin-bottom: 2rem; }
     .page-wrapper .sf-profile h2 {
       font-size: 3.2rem;
-      margin-top: 3.5rem;
-      margin-bottom: 1.5rem; }
+      margin-top: 1.6rem;
+      margin-bottom: 0.8rem; }
     .page-wrapper .sf-profile img {
       max-width: 200px;
       box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); }
@@ -9706,6 +9713,8 @@ ul.breadcrumb {
       height: auto; }
   .page-wrapper .dash-tbl-wrap h2 {
     margin-bottom: 20px; }
+  .page-wrapper .dash-tbl-wrap div.alert {
+    margin-bottom: 30px; }
   .page-wrapper .sign-in-with, .page-wrapper .ext-provider-form {
     clear: both;
     margin-bottom: 2rem; }
@@ -10140,8 +10149,6 @@ ul.breadcrumb {
     content: "\f3aa"; }
   .upload-section .uploadfield-wrap:hover::before, .upload-section .uploadfield-wrap:focus::before {
     color: #01a3a4; }
-  .upload-section .uploadfield-wrap select {
-    width: 100%; }
   .upload-section .uploadfield-wrap input[type="file"], .upload-section .uploadfield-wrap button {
     opacity: 0;
     height: 50px;
@@ -10159,6 +10166,9 @@ ul.breadcrumb {
   display: block;
   clear: both;
   word-break: break-word; }
+
+.upload-section select {
+  width: 100%; }
 
 .note {
   color: #b5b5b5;

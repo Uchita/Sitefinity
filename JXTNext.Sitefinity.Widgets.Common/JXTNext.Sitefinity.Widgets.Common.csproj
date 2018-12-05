@@ -159,6 +159,9 @@
     <Content Include="ResourcePackages\BaySide\assets\images\BG-Recruitment-Workforce-Management-Specialists.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\BaySide\assets\images\Box1-Latest-Features-70-Transparency.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\assets\images\brand\1-Alitis.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

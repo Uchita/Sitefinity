@@ -11,7 +11,7 @@
                     <h3 class="text-white">
                         @if (!string.IsNullOrEmpty(Model.GroupHeader))
                         {
-                            @Model.GroupHeader
+                            @Html.HtmlSanitize(@Model.GroupHeader)
                         }
                     </h3>
                 }
@@ -20,7 +20,7 @@
                     <h3 class="text-white">
                         @if (!string.IsNullOrEmpty(Model.GroupHeader))
                         {
-                            @Model.GroupHeader
+                            @Html.HtmlSanitize(@Model.GroupHeader)
                         }
                     </h3>
                 }

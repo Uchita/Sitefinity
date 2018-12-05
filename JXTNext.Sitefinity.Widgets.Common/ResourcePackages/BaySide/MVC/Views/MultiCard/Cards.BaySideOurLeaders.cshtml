@@ -6,28 +6,17 @@
 @foreach (var card in Model.Cards)
 {
     @*<div class="leader-list col-12 col-sm-6 col-lg-3">*@
-        <div class="leader-image">
-            <div class="leader-thumb bg-image" style="background-image: url('@Model.SelectedSizeUrl');"></div>
-            <div class="leader_logo">
-                <img src="@card.SelectedSizeUrl" alt="">
-            </div>
-
+    <div class="leader-image">
+        <div class="leader-thumb bg-image" style="background-image: url('@Model.SelectedSizeUrl');"></div>
+        <div class="leader_logo">
+            <img src="@card.SelectedSizeUrl" alt="">
         </div>
-        <div class="leader-name">@Html.HtmlSanitize(card.Heading)</div>
-        <div class="leader-designation">@Model.GroupHeader</div>
-        <a href="#@card.Heading.Replace(" ","").Replace(",","")"  data-toggle="collapse" class="btn btn-link">
-            @card.ActionName
-        </a>
-    @*</div>*@
 
-    <div id="@card.Heading.Replace(" ","").Replace(",","")" class="leader-content collapse col-12 col-sm-12">
-        <div class="border-blue">
-            <p>
-                @Html.HtmlSanitize(card.Description)
-            </p>
-            <a href="#@card.Heading.Replace(" ","").Replace(",","")"  data-toggle="collapse" class="btn btn-link">
-                @Model.GroupActionName
-            </a>
-        </div>
     </div>
+    <div class="leader-name">@Html.HtmlSanitize(card.Heading)</div>
+    <div class="leader-designation">@Model.GroupHeader</div>
+    <a href="javascript:void(0)" data-desc="@Html.HtmlSanitize(card.Description)" class="btn btn-link">
+        @card.ActionName
+    </a>
+    @*</div>*@
 }

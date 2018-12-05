@@ -3,12 +3,16 @@
 
 <section class="sm-col-layout bg-dark-grey">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="row">
 
             @if (!string.IsNullOrEmpty(Model.GroupHeader))
             {
                 <div class="col-12 col-lg-3">
-                    <h3 class="mt-0">@Model.GroupHeader</h3>
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <h3 class="mt-0">@Model.GroupHeader</h3>
+                        </div>
+                    </div>
                 </div>
             }
 

@@ -6455,18 +6455,6 @@ p {
     background: rgba(0, 136, 207, 0.7);
 }
 
-@media (max-width: 767px) {
-    .squire-box-row .col-12:nth-child(odd) .squire-overlay {
-        background: rgba(0, 136, 207, 0.7);
-    }
-}
-
-@media (max-width: 767px) {
-    .squire-box-row .col-12:nth-child(even) .squire-overlay {
-        background: #3465AF;
-    }
-}
-
 .testimonial-content {
     max-width: 700px;
     margin-left: auto;

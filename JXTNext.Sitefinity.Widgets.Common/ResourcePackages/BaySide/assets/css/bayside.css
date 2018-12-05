@@ -5425,12 +5425,6 @@ p {
     margin-right: auto;
 }
 
-    .readmore-content h3 {
-        font-size: 20px;
-        line-height: 1.2;
-        font-weight: 600;
-    }
-
 /*-------Owl carousel Navigation-----End-----*/
 .hbspot-form {
     padding-bottom: 0px;
@@ -5615,7 +5609,7 @@ p {
 
 /* ------App header__start------ */
 .app-header {
-    padding-top: 15px;
+    padding-top: 20px;
 }
 
     .app-header.inner-page {
@@ -5640,7 +5634,6 @@ p {
 
 .app-header .app-logo {
     margin-bottom: 15px;
-    height: 40px;
 }
 
 @media (max-width: 991px) {
@@ -5868,7 +5861,7 @@ p {
     }
 
 .navbar.top-navbar {
-    margin-bottom: 2px;
+    margin-bottom: 5px;
 }
 
 @media (max-width: 991px) {
@@ -6045,8 +6038,8 @@ p {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    padding-bottom: 76px;
-    padding-top: 77px;
+    padding-bottom: 77px;
+    padding-top: 78px;
     background-attachment: fixed;
 }
 
@@ -6288,7 +6281,7 @@ p {
     .featured-carousel .carousel-abs-content:after {
         content: "";
         position: absolute;
-        height: 1px;
+        height: 3px;
         width: 60px;
         background: #fff;
         top: 0;
@@ -7270,3 +7263,5 @@ p {
     margin-top: 70px;
     margin-bottom: 70px;
 }
+
+/*# sourceMappingURL=bayside.css.map */

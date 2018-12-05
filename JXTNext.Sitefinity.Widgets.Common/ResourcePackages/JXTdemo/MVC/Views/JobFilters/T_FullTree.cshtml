@@ -1,0 +1,260 @@
+﻿@model dynamic
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+@if (Model != null)
+{
+   
+    <div class="form-group">
+        <label><strong>Keywords:</strong></label>
+        <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" /></div>
+    </div>
+
+    foreach (var item in Model)
+    {
+        //item is JobFilterRoot
+        <ul class="filter-multilevel">
+            <li>
+                <a href="#">@item.Name</a>
+                @if (item.Filters != null)
+                {
+                    <ul>
+                        @foreach (var filters in item.Filters)
+                        {
+                            @PrintFirstLevelFiltersOnly(filters, item.Name)
+                        }
+                    </ul>
+                }
+            </li>
+        </ul>
+    }
+
+
+    <div id="selectedfilters">
+
+    </div>
+    <div id="keywordsselected">
+
+    </div>
+    <br />
+
+    <button id="refine-results" class="btn btn-primary">REFINE RESULTS</button>
+    
+}
+
+@helper PrintFirstLevelFiltersOnly(dynamic node, string rootId)
+{
+    <li>
+        <a href="#" id="@node.ID" data-rootid="@rootId" class="filterElement">@(HttpUtility.HtmlDecode(node.Label)) (@node.Count)</a>
+    </li>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+         @{
+                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                var json = serializer.Serialize(Model);
+          }
+
+        var optionsArray = {};
+        var queryStringArr = [];
+        console.log("Startig of script");
+
+        function makeQueryString(obj, prefix, isArray) {
+
+            for (var p in obj) {
+                if (obj.hasOwnProperty(p)) {
+                    var k, v;
+                    if (isArray)
+                        k = prefix ? prefix + "%5B" + p + "%5D" : p, v = obj[p];
+                    else {
+                        if (prefix.match(".values$"))
+                            k = prefix ? prefix : p, v = obj[p];
+                        else
+                            k = prefix ? prefix + "." + p + "" : p, v = obj[p];
+                    }
+
+                    if (v !== null && typeof v === "object") {
+                        if (Array.isArray(v)) {
+                            if (k.match(".values$"))
+                                makeQueryString(v, k, false);
+                            else
+                                makeQueryString(v, k, true);
+                        } else {
+                            makeQueryString(v, k, false);
+                        }
+                    } else {
+                        if (v === null || v === "undefined")
+                            v = "";
+
+                        var query = k + "=" + v;
+                        queryStringArr.push(query);
+                    }
+                }
+            }
+            return queryStringArr.join("&");
+        };
+
+
+        var model = @Html.Raw(json);
+        if (model != null && model != "undefined") {
+            var filterModel = JSON.parse('@Html.Raw(@ViewBag.FilterModel)');
+            var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
+            console.log("filterModel.Filters.Keywords: " + filterModel.Keywords);
+
+            // Adding Keywords to selected keywords div
+            if (filterModel.Keywords != null && filterModel.Keywords != "undefined" && filterModel.Keywords !== "") {
+                $.each($("#keywordsselected").children(), function (index, value) {
+                    $(this).remove();
+                });
+
+                let elem = $('<input/>').attr({
+                    type: "button",
+                    value: filterModel.Keywords,
+                    class: "selectedkeywordselem"
+                });
+
+                $("#keywordsselected").append(elem);
+            }
+
+            // Adding Filters to selected filters div
+            if (filterModel.Filters != null && filterModel.Filters != "undefined" && filterModel.Filters.length > 0) {
+                $.each($("#selectedfilters").children(), function (index, value) {
+                    $(this).remove();
+                });
+
+                for (let item of filterModel.Filters) {
+                    if (item.rootId != null && item.rootId != "undefined" && item.values != null && item.values != "undefined" && item.values.length > 0) {
+                        for (let filterKey of item.values) {
+                            let displayText = getFilterDisplayName(item.rootId, filterKey);
+                            if (displayText == null || displayText == "undefined" || displayText == "") displayText = filterKey;
+                            var elem = $('<input/>').attr({
+                                type: "button",
+                                value: displayText,
+                                class: "selectedelem",
+                                dataid: filterKey,
+                                datarootid: item.rootId
+
+                            });
+
+                            $("#selectedfilters").append(elem);
+                        }
+                    }
+                }
+            }
+
+            // Item click to filter
+            $(".filterElement").click(function (event) {
+                filterModel = JSON.parse('@Html.Raw(@ViewBag.FilterModel)');
+                filterModel.Filters = [];
+
+                var id = $(this).attr('id');
+                var rootId = $(this).attr('data-rootid');
+                var elemText = $(this).text();
+
+                var elem = $('<input/>').attr({
+                    type: "button",
+                    value: elemText,
+                    class: "selectedelem",
+                    dataid: id,
+                    datarootid: rootId
+
+                });
+
+                $("#selectedfilters").append(elem);
+
+                ajaxRequest(getFilterModel());
+            });
+
+            // Item click to remove filter
+            $(".selectedelem").live('click', function () {
+                $(this).remove();
+                ajaxRequest(getFilterModel());
+            });
+
+            // Keywords item click to remove filter
+            $(".selectedkeywordselem").live('click', function () {
+                $(this).remove();
+                ajaxRequest(getFilterModel());
+            });
+
+             // Prepare filtet model
+            function getFilterModel() {
+                let filterModel = JSON.parse('@Html.Raw(@ViewBag.FilterModel)');
+                filterModel.Filters = [];
+                filterModel.Keywords = null;
+
+                // Getting all elements in from filters div
+                $.each($("#selectedfilters").children(), function (index, value) {
+
+                    let flag = false;
+                    for (var item of filterModel.Filters) {
+                        if (item.rootId === $(this).attr('datarootid')) {
+                            item.values.push($(this).attr('dataid'));
+                            flag = true;
+                        }
+                    }
+
+                    if (flag == false) {
+                        filterModel.Filters.push({ rootId: $(this).attr('datarootid'), values: [$(this).attr('dataid')] });
+                    }
+                });
+
+                // Getting all elements in from keywords div
+                $.each($("#keywordsselected").children(), function (index, value) {
+                    let keywords = $(this).attr('value')
+                     if (keywords != null && keywords != "") {
+                        filterModel.Keywords = keywords;
+                    }
+                });
+
+                return filterModel;
+            }
+
+            // Ajax request
+            function ajaxRequest(filterModelAjax) {
+                let data = { filterModel: filterModelAjax }
+                let urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
+                let pushStateUrl = $(location).attr('pathname') + "?" + makeQueryString(filterModelAjax, "", false);
+                window.history.pushState(data, "", pushStateUrl);
+                queryStringArr.length = 0;
+                $.ajax({
+                    type: "POST",
+                    cache: false,
+                    url: urlPath,
+                    data: data,
+                    dataType: 'html',
+                    success: function (response) {
+                        $("#resultsPagePartialContent").empty().html(response);
+                    },
+                    error: function (response) {
+                        console.log("Job Filters Error: " + response);
+                    }
+                });
+            }
+
+            function processFilters(filters, filterId) {
+                for (let filterItem of filters) {
+                    if (filterItem.ID === filterId) {
+                        return filterItem.Label;
+                    }
+                    else if (filterItem.Filters != null && filterItem.Filters != "undefinded" && filterItem.Filters.length > 0) {
+                        processFilters(filterItem.Filters, filterId);
+                    }
+                }
+
+                return null;
+            }
+
+            function getFilterDisplayName(filterRootId, filterId) {
+                let filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
+                for (let filterRootItem of filterData) {
+                    if (filterRootItem.Name === filterRootId) {
+                        return processFilters(filterRootId, filterId);
+                    }
+                }
+            }
+        }
+        $('.sidebar .dropdown-tree .dropdown-toggle').dropdown('toggle');
+    });
+
+</script>

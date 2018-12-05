@@ -1,0 +1,203 @@
+ /*
+ * Mixin for easy media queries
+ * @include bp(tablet) { SCSS here };
+ * Default css is for big screen > 1300px width
+ * widescreen value 1600 for panning feature
+*/
+
+// Borrowed from bootstrap 4
+// Breakpoints
+
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+    $n: index($breakpoint-names, $name);
+    @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+  }
+
+// Minimum breakpoint width. Null for the smallest (first) breakpoint.
+//
+//    >> breakpoint-min(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    576px
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+    $min: map-get($breakpoints, $name);
+    @return if($min != 0, $min, null);
+}
+
+// Maximum breakpoint width. Null for the largest (last) breakpoint.
+// The maximum value is calculated as the minimum of the next one less 0.02px
+// to work around the limitations of `min-` and `max-` prefixes and viewports with fractional widths.
+// See https://www.w3.org/TR/mediaqueries-4/#mq-min-max
+// Uses 0.02px rather than 0.01px to work around a current rounding bug in Safari.
+// See https://bugs.webkit.org/show_bug.cgi?id=178261
+//
+//    >> breakpoint-max(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    767.98px
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+    $next: breakpoint-next($name, $breakpoints);
+    @return if($next, breakpoint-min($next, $breakpoints) - .02px, null);
+}
+
+// Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+// Makes the @content apply to the given breakpoint and wider.
+@mixin bp-min($name, $breakpoints: $grid-breakpoints) {
+    $min: breakpoint-min($name, $breakpoints);
+    @if $min {
+      @media (min-width: $min) {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  }
+
+// Media of at most the maximum breakpoint width. No query for the largest breakpoint.
+// Makes the @content apply to the given breakpoint and narrower.
+@mixin bp-max($name, $breakpoints: $grid-breakpoints) {
+    $max: breakpoint-max($name, $breakpoints);
+    @if $max {
+      @media (max-width: $max) {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+}
+
+//custom breakpoint with specific range
+@mixin bp-range($name){
+    $breakpoint-names: map-keys($grid-breakpoints);
+    $n: index($breakpoint-names, $name);
+    @if $n < length($breakpoint-names){
+        
+        @media( min-width: map-get($grid-breakpoints,$name)) and (max-width: map-get($grid-breakpoints, nth($breakpoint-names, $n + 1))){
+            @content;
+        }
+    }
+}
+
+
+@mixin listReset(){
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+/*
+ * Mixin for CSS3 transition
+ * @include transition($property:all, $duration:0.2s, $function:ease);
+*/
+@mixin transition($property, $duration, $function:linear) {	
+	-webkit-transition: $property $duration $function;
+	-moz-transition: $property $duration $function;
+	-ms-transition: $property $duration $function;
+	-o-transition: $property $duration $function;
+	transition: $property $duration $function;
+}
+
+@mixin flip(){
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
+/* keyframes mixin
+ * use of keyframes mixin
+ * @include keyframes(rotate){}
+*/
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+//set label style
+@mixin setLbl(){
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: $p1Color;
+    font-weight: 700;
+}
+
+//diamond shape
+@mixin mkrDiamond($arrow:false, $dim:6rem){
+    background: $p2Color;
+    color: $baseColor;
+    border: none;
+    padding: 1.5rem;
+    width: $dim;
+    height: $dim;
+    text-indent: -99em;
+    overflow: hidden;
+    display: inline-block;
+    border-radius: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    @include rotate(45deg);
+    font: 4rem/1 FontAwesome;
+    cursor: pointer;
+    @if $arrow = true{
+        &::after{
+            display: block;
+            @include rotate(-45deg);
+            position: relative;
+            text-indent: 0;
+        }
+    }
+    &:hover, &:focus{
+        background: darken($p2Color,10%);
+    }
+    @include bp-max(sm){
+        width: $dim*0.75;
+        height: $dim*0.75;
+        font-size: 2.6rem;
+    }
+}
+
+/* rotate mixin
+ * use of keyframes mixin
+ * @include rotate($deg:0deg);
+*/
+@mixin rotate($deg:0deg) {
+	transform: rotate($deg);
+	-webkit-transform: rotate($deg);
+	-moz-transform: rotate($deg);
+	-o-transform: rotate($deg);
+	-ms-transform: rotate($deg);
+}
+
+//web fonts
+/*
+ * @font-face mixin
+ * Bulletproof font-face via Font Squirrel
+ * @include fontface('family', 'assets/fonts/', 'myfontname');
+ */
+
+ @mixin fontface($font-family, $font-url, $font-name) {
+	@font-face {
+		font: {
+			family: $font-family;
+			style: normal;
+			weight: normal;
+		}
+		src: url($font-url + '/' + $font-name + '.eot');
+		src: url($font-url + '/' + $font-name + '.eot#iefix') format('embedded-opentype'),
+			 url($font-url + '/' + $font-name + '.woff') format('woff'),
+			 url($font-url + '/' + $font-name + '.svg#' + $font-name) format('svg');
+	}
+}
+
+//custom font
+@include fontface('Sen', '../fonts', 'Sen-Regular');
+@include fontface('Sen Bold', '../fonts', 'Sen-Bold');
+@include fontface('Sen ExtraBold', '../fonts', 'Sen-ExtraBold');

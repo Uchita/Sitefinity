@@ -1,0 +1,48 @@
+//Helper styles
+@import 'helper/variables';
+@import 'helper/mixin';
+@import 'helper/common';
+@import 'helper/icons';
+@import 'helper/color-theme';
+//Sitefinity admin fix due to conflict between the classes used
+@import 'helper/sitefinity-admin-fixes';
+
+//plugin css
+@import 'plugins/owl.carousel';
+@import 'plugins/bootstrap-select';
+@import 'plugins/bootstrap-slider';
+
+//Component::Structural styles
+@import 'components/header';
+@import 'components/navigation';
+@import 'components/banner';
+@import 'components/footer';
+@import 'components/forms';
+@import 'components/sidebar';
+
+//Widgets
+@import 'widgets/social-links';
+@import 'widgets/word-scroller';
+@import 'widgets/multicard';
+@import 'widgets/jobSearch';
+@import 'widgets/jobResult';
+@import 'widgets/jobfilter';
+@import 'widgets/jobsFeed';
+@import 'widgets/teamFeed';
+@import 'widgets/testimonialFeed';
+@import 'widgets/gridBox';
+@import 'widgets/image-scroller';
+@import 'widgets/timeline';
+@import 'widgets/innerbanner';
+
+//Pages specific
+@import 'pages/homepage';
+@import 'pages/blog';
+@import 'pages/jobresult';
+@import 'pages/jobdetail';
+@import 'pages/servicepagesTpl';
+@import 'pages/memberprofile';
+@import 'pages/consultantprofile';
+
+
+

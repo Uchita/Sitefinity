@@ -1,0 +1,162 @@
+//Job Detail page specific 
+.backtoresult{
+    margin-bottom: 9rem;
+    font-size: 2.4rem;
+    a{
+        color: lighten($fontColor,46.5%);
+        &:hover, &:focus{
+            text-decoration: none;
+            color: $fontColor;
+            .prev-btn{
+                background: darken($p2Color,10%);
+            }
+        }
+    }
+}
+.prev-btn{
+    margin-right:0.8rem;
+    position: relative;
+    top: -6px;
+    @include mkrDiamond;
+    &::after{
+        content: '\f104';
+        left: 2px;
+        top: -10px;
+    }
+}
+.job-mini{
+    margin-bottom: 12rem;
+    .job-holder{
+        margin-bottom: 1rem;
+        padding-right: 5rem;
+        @include bp-max(md){
+            padding-right: 0;
+        }
+    }
+    .job-topbar{
+        text-align: left;
+        max-width: 400px;
+    }
+    .job-header{
+        padding: 0 0 3rem;
+        .highlight{
+            font-size: 3rem;
+        }
+    }
+    .page-title{
+        font-size: 6.3rem;
+        line-height: 1.2;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+    .sc-job-meta-group{
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+        dd{
+            width: auto;
+            flex-grow: 1;
+        }
+    } 
+    .job-copy{
+        padding: 3rem 3rem 2rem 0;
+    }
+    .job-ref{
+        font-size: 3.2rem;
+        margin-bottom: 2rem;
+        .meta-key{
+            color: $fontColor;
+            margin-right: 5px;
+        }
+        .meta-value{
+            color: $p4Color;
+            font-weight: bold;
+        }
+    }
+    .aside{
+        margin-top: 3.5rem;
+        h4{
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+        }
+    }
+    .sidebar{
+        max-width: initial;
+        margin-right: 0;
+        float: none;
+    }
+    @include bp-max(md){
+        margin-bottom: 3rem;
+        .page-title{
+            font-size: 4rem;
+        }
+        .job-header{         
+            .highlight{
+                font-size: 2.5rem;
+            }
+        }
+        .job-copy{
+            padding-right: 0;
+        } 
+        .sidebar{
+            margin-top: 7rem;
+        }
+    }
+}
+.job-sec2{
+    float: right;
+    text-align: center;
+    margin-bottom: 7rem;
+    @include bp-max(md){
+        float: none;
+        margin: 0 auto 2rem;
+        .job-ref{
+            float: left;
+        }
+        .job-image{
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            border-radius: 50%;
+            float: right;
+            margin-bottom: 0;
+        }
+        a.link{
+            clear: left;
+            display: block;
+            text-align: left;
+        }
+    }
+
+}
+
+
+// Related blog post
+.form-widget{
+    padding: 15rem 20px;
+    color: $brightColor;
+    h2{
+        color: $brightColor;
+        flex-grow: 1;
+        margin-bottom: 6rem;
+    }
+}
+
+//job detail tempalte for the job application page
+.job-app{
+    .job-topbar{
+        max-width: 200px;
+    }
+    .page-title small{
+        font-size: 1.6rem;
+        color: lighten($fontColor,30%);
+        display: block;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-family: 'Sen';
+        margin-bottom: 2rem;
+    }
+}

@@ -1,0 +1,215 @@
+// Team feed widget
+// Scroller full width size
+// Flip card animation
+.jn_teamFeed{
+    background: $brightColor url('../images/star-chain.jpg') no-repeat center center;
+    padding: $vrt-gap+2 0;
+    h2{
+        text-align: center;
+    }
+}
+
+//on the base of fullwidth scrolling
+// .jn_scroller-fullwidth{}
+
+//on the base of flipper
+.jn_scroller-fullwidth{
+    max-height: 580px;
+    overflow: hidden;
+}
+.card-flipper {
+    .pos {
+        margin: 25px 0 15px;
+        text-align: center;
+    }
+
+    .card-flip {
+        position: relative;
+    }
+
+    .owl-stage-outer{
+        padding-bottom: 60px;
+    }
+
+    .sc-item {
+        padding-top: 5px;
+        padding-bottom: 10px;
+        position: relative;
+        margin: 0 15px;
+
+        .front {
+            background-color: #dbecf4;
+            position: relative;
+            border-radius: 5px;
+            overflow:hidden;
+
+            > h3 {
+                position: absolute;
+                bottom: 1.5rem;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                color: $brightColor;
+                font-size: 6rem;
+                text-shadow: 0 5px 20px $baseColor;
+            }
+        }
+        .sf-img-thmb{
+            min-height:410px;
+            width:330px;
+        }
+
+        .overlay {
+            opacity: 0;
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: $brightColor;
+            padding: 3.5rem 2rem;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px 2px rgba(0,0,0,0.2);
+            @include transition(opacity,0.6s,ease);
+
+            .block-wrap{
+                display: table;
+                height: 100%;
+                text-decoration: none;
+                color: $fontColor;
+            }
+            h3 {
+                margin-bottom: 1.5rem;
+            }
+
+            h4 {
+                color: $p1Color;
+                font-weight: 400;
+                margin-bottom: 2.5rem;
+            }
+
+            .footer-meta {
+                position: absolute;
+                bottom: -6.3rem;
+                left: 0;
+                width: 100%;
+                height: 8rem;
+                text-align: center;
+                font-size: 3rem;
+
+                a {
+                    background-color: $p2Color;
+                    @include mkrDiamond;
+                    text-decoration: none;
+                    margin: 0 15px;
+                    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+
+                    &.icon-phone {
+                        font-size: 115%;
+                    }
+
+                    &.icon-mail {
+                        font-size: 95%;
+                       &:after{
+                           top: 4px;
+                           left: -2px;
+                       }
+                    }
+                    &.icon-linkedin {
+                        font-size: 3.5rem;
+                        &:after{
+                            top: -4px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .pos {
+            @include transition(opacity,0.2s,ease);
+        }
+
+        &:hover, &:focus {
+            .overlay {
+                opacity: 1;
+            }
+
+            .pos {
+                opacity: 0;
+            }
+        }
+
+        @include bp-max(md) {
+            .front {
+                > h3 {
+                    font-size: 4rem;
+                }
+            }
+        }
+
+        @include bp-max(sm) {
+            max-width: 320px;
+            
+            .overlay {
+                .footer-meta {
+                    font-size: 2.3rem;
+
+                    a {
+                        margin: 0 10px;
+
+                        &.icon-mail::after {
+                            left: -3px;
+                            top: 2px;
+                        }
+
+                        &.icon-linkedin::after {
+                            top: -5px;
+                            left: -2px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.row {
+        .sc-item {
+            padding: 0;
+            margin-bottom: 6rem;
+        }
+
+        .col {
+            flex-grow: 0;
+        }
+
+        .card-flip {
+            min-width: 330px;
+        }
+
+        @include bp-max(sm) {
+            .sc-item {
+                max-width: 100%;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            .card-flip {
+                min-width: 240px;
+            }
+        }
+    }
+
+    //meet the team page
+    //listing page for the user
+    &.grid-view{
+        .sc-item{
+            
+        }
+    }
+}
+
+.team-wrapper{
+    padding: 7rem 0;
+}
+

@@ -1,0 +1,113 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using JXTNext.Sitefinity.Common.Helpers;
+@using Telerik.Sitefinity.Web;
+@using SitefinityWebApp.Mvc.Attributes
+
+@using Telerik.Sitefinity.Security;
+@using Telerik.Sitefinity.Security.Model;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Libraries;
+
+@{
+    string imageURL = ((Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel)Model.Item).GetItemImageUrl("Image", 0);
+}
+
+@if (String.IsNullOrEmpty(imageURL) == false)
+{
+    <figure>
+        <img src="@imageURL" alt="@Model.Item.Fields.Title" />
+    </figure>
+}
+
+<div class="col-md-3">
+    <div class="blog-metadata">
+        <div class="meta-data">
+            <div class="data-date">
+                <span class="jn_ico icon-calendar"></span>
+                <span class="data-dateValue"><span class="data-month">@Model.Item.GetDateTime("PublicationDate", "MMM")</span> <span class="data-day">@Model.Item.GetDateTime("PublicationDate", "dd")</span></span>
+            </div>
+
+            @{
+                if (Model.EnableSocialSharing)
+                {
+                    var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
+                    @Html.SocialShareOptions(item, "SocialShareInCode");
+                }
+            }
+
+
+            <div class="bio-pick">
+                @{
+                    if (string.IsNullOrEmpty(Model.Item.Fields.Author))
+                    {
+                        UserManager userManager = UserManager.GetManager();
+                        UserProfileManager profileManager = UserProfileManager.GetManager();
+                        Telerik.Sitefinity.Security.Model.User user = userManager.GetUser(Model.Item.Fields.Owner);
+                        if (user != null)
+                        {
+                            SitefinityProfile profile = profileManager.GetUserProfile<SitefinityProfile>(user);
+
+                            if (profile != null)
+                            {
+                                ContentLink avatarLink = profile.Avatar;
+                                if (avatarLink != null)
+                                {
+                                    var librariesManager = LibrariesManager.GetManager(avatarLink.ChildItemProviderName);
+                                    // returns Live item
+                                    var avatarImage = librariesManager.GetImage(avatarLink.ChildItemId);
+
+                                    var avatarThumbnailUrl = avatarImage.ThumbnailUrl;
+                                    <figure>
+                                        <img src="@avatarThumbnailUrl" alt="avatar" />
+                                    </figure>
+                                }
+                            }
+                        }
+                    }
+                }
+
+                <div class="bio-desc" rel="@Model.Item.Fields.Author">
+                    <small>About the author</small>
+                    <p><strong>@DataResolver.Resolve(Model.Item.DataItem, "Author", null)</strong></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-9">
+    <div class="h-section">
+        <div class="section-header">
+            <h3 @Html.InlineEditingFieldAttributes("Title", "ShortText")>@Model.Item.Fields.Title</h3>
+
+            @if (Model.Item.Fields.Tags != null && Model.Item.Fields.Tags.Count > 0)
+            {
+                <div class="tags">
+                    @foreach (var taxon in Model.Item.GetFlatTaxons("Tags"))
+                    {
+                        <a href="/@SiteMapBase.GetActualCurrentNode().UrlName/-in-tags/tags/@taxon.UrlName.ToString()">@taxon.Title.ToString()</a>
+                    }
+                </div>
+            }
+        </div>
+        <div class="post-content">
+            <div class="post-summary" @Html.InlineEditingFieldAttributes("Summary", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</div>
+
+            <div class="full-desc" @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
+
+        </div>
+
+    </div>
+    @if (Model.Item.Fields.AllowComments)
+    {
+        <div class="comment-wrapper">
+
+            @Html.CommentsList(@Model.Item.DataItem)
+
+        </div>
+    }
+</div>

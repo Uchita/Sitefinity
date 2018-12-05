@@ -1,0 +1,47 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using JXTNext.Sitefinity.Common.Helpers
+
+<div class="@Model.CssClass gridBox-wrap">
+   
+        @foreach (var item in Model.Items)
+        {
+            //string imageURL = ((Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel)item).GetItemImageUrl("Image", 0);
+            string imageThumbnailUrl = ((Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel)item).GetItemThumbnailImageUrl("Image", 0);
+
+            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+
+    <article class="gridBox-item ins-blog" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)item.Fields.Id)>
+
+        <h3>
+            <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a>
+        </h3>
+
+        @if (!String.IsNullOrEmpty(imageThumbnailUrl))
+        {
+            <figure>
+                <img src="@imageThumbnailUrl" alt="@item.Fields.Title" />
+            </figure>
+        }
+
+        @if (!string.IsNullOrEmpty(item.Fields.Summary))
+        {
+            <div class="post-summary">@Html.HtmlSanitize((string)item.Fields.Summary)</div>
+        }
+        else
+        {
+            string contents = (string)item.Fields.Content;
+            contents = contents.Substring(0, contents.Length > 250 ? 250 : contents.Length);
+            <div class="full-desc">@Html.HtmlSanitize(contents)</div>
+        }
+
+    </article>
+        }
+
+</div>
+<div class="button-wrapper">
+    <a class="btn" href="/news" title="Read more">Read more</a>
+</div>

@@ -1,0 +1,68 @@
+/*
+Project: JXT Demo
+*/ 
+
+//variables definations
+
+// Google Fonts
+@import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,900);
+
+//Font variables
+$baseFont: 'Sen', sans-serif;
+$boldFont: 'Montserrat', sans-serif;
+
+//color variables
+//text colors
+$baseColor: #1e2022; //dark gray
+$fontColor: #606263; //lighter gray
+$p1Color: #FF0042; //red
+$p2Color: #FEE43D; //yellow
+$p3Color: #3b475d; //cobalt blue
+$p4Color: #fb7704; //orange
+$p4LColor: #FFA024; //fade orange
+$p5Color: #00B298; //green
+
+$brightColor: #fff;
+//background colors
+$bgColor: #F4F9FE;
+
+
+//Bootstrap custom select variables
+$color-red-error: rgb(185, 74, 72) !default;
+$color-grey-arrow: rgba(204, 204, 204, 0.2) !default;
+
+$width-default: 220px !default; // 3 960px-grid columns
+
+$zindex-select-dropdown: 1060 !default; // must be higher than a modal background (1050)
+
+//** Placeholder text color
+$input-color-placeholder: #bbbcbc !default;
+
+//vertical gaps of elements
+$vrt-gap: 5rem !default;
+
+$grid-breakpoints: (
+  // Extra small screen / phone
+  xs: 0,
+  // Small screen / phone
+  sm: 576px,
+  // Medium screen / tablet
+  md: 768px,
+  // Large screen / desktop
+  lg: 992px,
+  // tablet landscape
+  tl: 1024px,
+  // Large custom screen
+  lcg: 1070px,
+  // Extra large screen / wide desktop
+  xl: 1200px,
+  //Extra large custom screen
+  xcl: 1250px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+);

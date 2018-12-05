@@ -1,0 +1,192 @@
+@model JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.UsersListExtended.UsersListExtendedViewModel
+
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Security.Claims;
+@using Telerik.Sitefinity.Frontend.Identity.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.UsersList;
+@using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.UsersListExtended;
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Modules.UserProfiles;
+@using JXTNext.Sitefinity.Widgets.Authentication.Mvc.HelpersExtended;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Security.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+@using Telerik.Sitefinity.Model;
+@using Telerik.OpenAccess;
+
+@Html.Script(ScriptRef.JQuery, "top", false)
+
+@if (Model.ContentType == typeof(SitefinityProfile))
+{
+    Telerik.Sitefinity.Security.UserManager userManager = Telerik.Sitefinity.Security.UserManager.GetManager();
+    Telerik.Sitefinity.Security.UserProfileManager userProfileManager = Telerik.Sitefinity.Security.UserProfileManager.GetManager();
+    <div class="container">
+        <div class="jn_word-scroller item-filters">
+
+            <label>Select Team:</label>
+            <ul class="owl-carousel">
+                <li><a href="javascript:void(0);" data-filter="All" class="active">All</a></li>
+                @{
+                    var manager = TaxonomyManager.GetManager();
+
+                    var departmentsTaxonomy = manager.GetTaxonomies<HierarchicalTaxonomy>().Where(t => t.Name == "Departments").SingleOrDefault();
+
+
+                    if (departmentsTaxonomy != null)
+                    {
+
+                        foreach (var taxon in departmentsTaxonomy.Taxa)
+                        {
+                            <li class="ss"><a href="javascript:void(0);" data-filter="@taxon.Title">@taxon.Title</a></li>
+
+                        }
+                    }
+
+                }
+
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div class="@Model.CssClass">
+        <div class="bg-2 team-wrapper">
+            <div class="container">
+                <h2 class="block-title">The expert team</h2>
+                <div class="row card-flipper grid-view justify-content-center">
+                    @{
+                        int i = 0;
+                    }
+                    @foreach (var item in Model.Items)
+                    {
+                        var consultantProfile = userProfileManager.GetUserProfiles((item.DataItem as SitefinityProfile).User).Where(c => c.GetType().FullName.ToUpper().Contains("CONSULTANTPROFILE")).FirstOrDefault();
+
+                        //Getting the Dynamic Classification: Department associated with
+                        //each consultant for filtering
+                        List<string> filterValues = new List<string>();
+                        if (consultantProfile != null)
+                        {
+                            var departmentsTaxa = Telerik.Sitefinity.Model.DataExtensions.GetValue<TrackedList<Guid>>(consultantProfile, "Departments");
+                            foreach (var taxonItem in departmentsTaxa)
+                            {
+                                Guid categoryID = new Guid(taxonItem.ToString());
+                                var taxonManager = TaxonomyManager.GetManager();
+                                var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == categoryID).ToList().FirstOrDefault();
+                                filterValues.Add(taxon.Name);
+                            }
+                        }
+
+                        <div class="sc-item" data-filterval="@(string.Join(",",filterValues))">
+                            <div class="card-flip">
+                                <div class="front sf-img-thmb">
+                                    <img class="media-object" src="@((item as SitefinityProfileItemExtendedViewModel).AvatarImageUrl)" alt="@(((UserProfile)item.DataItem).GetUserDisplayName())" width="330" height="410" />
+                                    <h3>@item.Fields.FirstName</h3>
+                                </div>
+
+                                <div class="overlay sf-media-body">
+                                    <a class="block-wrap" href="@UsersHelperExtended.EncodeUrlUsername(HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage), item as SitefinityProfileItemExtendedViewModel)">
+                                        <h3>@(((SitefinityProfile)item.DataItem).GetUserDisplayName())</h3>
+                                        <p>
+                                            @Html.HtmlSanitize((((SitefinityProfileItemExtendedViewModel)item).About))
+                                        </p>
+                                    </a>
+
+                                    <div class="footer-meta">
+                                        @if (consultantProfile != null && !String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Phone")))
+                                        {
+                                            <a href="@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Phone"))" title="Phone" class="jn_ico icon-phone"></a>
+                                        }
+
+                                        <a href="mailto:@(((SitefinityProfile)item.DataItem).User.Email)" title="Email" class="jn_ico icon-mail"></a>
+                                        @if (consultantProfile != null && !String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_linkedin")))
+                                        {
+                                            <a href="@Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_linkedin")" title="Linked-in" class="jn_ico icon-linkedin" target="_blank"></a>
+                                        }
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    @if (Model.ShowPager)
+                    {
+                        @Html.Action("Index", "ContentPager", new
+                        {
+                            currentPage = Model.CurrentPage,
+                            totalPagesCount = Model.TotalPagesCount.Value,
+                            redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
+                        })
+                    }
+                </div>
+
+                <div class="alert alert-info hidden"><small>There are no expert member on this selected department.</small></div>
+
+            </div>
+        </div>
+    </div>
+}
+else
+{
+
+}
+
+    <script>
+    jQuery(document).ready(function ($) {
+        $('.item-filters li a').on('click', function () {
+            var item = $(this);
+            var filterValue = item.data('filter').toLowerCase();
+
+            //making all inactive first
+            $('.item-filters li a').removeClass('active');
+            //making the clicked one active
+            item.addClass('active');
+
+            //except for all add hidden class to unmatched item
+            $('.team-wrapper .card-flipper .sc-item').removeClass('hidden');
+            if (filterValue != "all") {
+                $('.team-wrapper .card-flipper .sc-item').each(function () {
+                    if (!checkFilter($(this).data('filterval'), filterValue)) {
+                        $(this).addClass('hidden');
+                    }
+                });
+            }
+
+            //checking if there are matched items
+            if ($('.team-wrapper .card-flipper .sc-item[data-filterval*="' + filterValue + '"]').length < 1 ) {
+                $('.alert').removeClass('hidden');
+                if (filterValue == "all") {
+                    $('.alert').addClass('hidden');
+                }
+            } else {
+                $('.alert').addClass('hidden');
+            }
+
+        }); //end of click function
+
+        //function to check the filter match
+        function checkFilter(curVal, filterVal) {
+            var curVal = curVal.split(',');
+            if (curVal.length) {
+                var flag = false;
+                for (i = 0; i < curVal.length; i++) {
+                    if (curVal[i].toLowerCase() == filterVal) {
+                        flag = true;
+                        return true;
+                    } else {
+                        flag = false;
+                    }
+                }
+                if (flag === false) {
+                    return false;
+                }
+            }
+        }
+
+    });
+    </script>

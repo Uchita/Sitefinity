@@ -112,7 +112,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public ActionResult Create(JobAlertViewModel model)
         {
             List<JobAlertEditFilterRootItem> filtersVMList = GetJobFilterData();
-            model.Salary = JsonConvert.DeserializeObject<JobAlertSalaryFilterReceiver>(model.SalaryStringify);
+            if(model.SalaryStringify != null)
+            {
+                model.Salary = JsonConvert.DeserializeObject<JobAlertSalaryFilterReceiver>(model.SalaryStringify);
+            }
+            
             model.Data = JobAlertUtility.ConvertJobAlertViewModelToSearchModel(model, filtersVMList);
             var response = GetUpsertResponse(model);
             var stausMessage = "A Job Alert has been created successfully.";

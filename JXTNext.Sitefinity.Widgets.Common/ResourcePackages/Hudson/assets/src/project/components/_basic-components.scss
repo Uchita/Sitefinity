@@ -637,6 +637,7 @@ blockquote{
     .table {
         background: #fff;
         box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        margin-bottom: 30px;
 
         th {
             border-top: none;
@@ -1306,6 +1307,7 @@ header {
                 a{
                     display: inline;
                     border-bottom: none;
+                    background: none;
                 }
             }
             .social-mnu{
@@ -1508,9 +1510,10 @@ main {
 //expandable content list
 .sf-list-item{
     h3[data-sf-role="toggleLink"] {
-        padding: 13px 20px;
+        padding: 13px 40px 13px 20px;
         background: #eee;
         position: relative;
+        font-size: 1.8rem;
         >i{
             position: absolute;
             right: 8px;
@@ -1518,7 +1521,10 @@ main {
         }
     }
     .sf-list-content{
-        padding: 10px;
+        padding: 10px 0;
+        ul{
+            padding-left: 20px;
+        }
     }
 }
 
@@ -2273,6 +2279,14 @@ ul.vertical-ul {
 .map-placeholder{
     height: 425px;
     width: unset !important;
+}
+
+//table css
+.date-col{
+    width: 130px;
+}
+.col-2btn-width{
+    width: 123px;
 }
 
 

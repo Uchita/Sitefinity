@@ -31,7 +31,9 @@
         .form-control {
             color: $global-text-color;
         }
-
+        select{
+            padding-left: 6px;
+        }
         textarea {
             height: 115px;
             resize: none;
@@ -253,8 +255,8 @@
         margin-bottom: 2rem;
         h2{
             font-size: 3.2rem;
-            margin-top: 3.5rem;
-            margin-bottom: 1.5rem;
+            margin-top: 1.6rem;
+            margin-bottom: 0.8rem;
         }
         img{
             max-width: 200px;
@@ -276,6 +278,9 @@
     .dash-tbl-wrap{
         h2{
             margin-bottom: 20px;
+        }
+        div.alert{
+            margin-bottom: 30px;
         }
     }
     .sign-in-with, .ext-provider-form {
@@ -320,7 +325,7 @@
             padding: 12px 10px;
             color: $global-text-color;
             text-transform: none;
-            font: 1.4rem/1 $font-family-regular;
+            font: $global-font-size/1 $font-family-regular;
             position: relative;
             text-overflow: ellipsis;
             overflow: hidden;

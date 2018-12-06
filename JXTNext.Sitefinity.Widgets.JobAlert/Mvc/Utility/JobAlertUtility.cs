@@ -123,7 +123,11 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
         public static string ConvertJobAlertViewModelToSearchModel(JobAlertViewModel model, List<JobAlertEditFilterRootItem> filtersVMList)
         {
             JobAlertEditFilterRootItem dest = new JobAlertEditFilterRootItem();
-            model.Salary = JsonConvert.DeserializeObject<JobAlertSalaryFilterReceiver>(model.SalaryStringify);
+            if(model.SalaryStringify != null)
+            {
+                model.Salary = JsonConvert.DeserializeObject<JobAlertSalaryFilterReceiver>(model.SalaryStringify);
+            }
+           
             var alertViewModel = JsonConvert.SerializeObject(model);
 
 
@@ -153,11 +157,17 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
                 }
             }
 
-            SearchModel searchModel = new SearchModel()
+            SearchModel searchModel = new SearchModel();
+            searchModel.search = _mapToSearchModel(filtersVMList, model);
+            if(alertViewModel != null)
             {
-                search = _mapToSearchModel(filtersVMList, model),
-                jobAlertViewModelData = JsonConvert.DeserializeObject<JobAlertViewModel>(alertViewModel)
-            };
+                searchModel.jobAlertViewModelData = JsonConvert.DeserializeObject<JobAlertViewModel>(alertViewModel);
+            }
+            else
+            {
+                searchModel.jobAlertViewModelData = null;
+            }
+            
             return JsonConvert.SerializeObject(searchModel);
 
         }

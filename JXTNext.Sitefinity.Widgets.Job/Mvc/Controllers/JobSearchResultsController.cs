@@ -559,7 +559,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             Classification_CategorySearchJson classification = new Classification_CategorySearchJson();
             classification.SearchType = CategoryString;
             classification.ClassificationRootName = filter.rootId;
-            classification.TargetClassifications = filter.values
+            classification.TargetClassifications = filter.values?
                 .Select(x => MapJobSearchFilterToClassification(x))
                 .ToList();
             return classification;
@@ -573,10 +573,18 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             JobAlertJsonModelData json = new JobAlertJsonModelData();
             json.FieldRanges = null;
             json.FieldSearches = null;
-            foreach (var filter in filterData)
+
+            if(filterData != null)
             {
-                json.ClassificationsSearchCriteria.Add(_mapToClassificationData(filter));
+                foreach (var filter in filterData)
+                {
+                    if (filter != null)
+                    {
+                        json.ClassificationsSearchCriteria.Add(_mapToClassificationData(filter));
+                    }
+                }
             }
+            
 
             if(filterModel.Salary != null)
             {

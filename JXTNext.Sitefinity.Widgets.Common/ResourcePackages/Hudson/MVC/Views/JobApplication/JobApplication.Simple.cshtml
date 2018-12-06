@@ -131,30 +131,37 @@
                 @if (Model.ApplicationStatus == JobApplicationStatus.Available)
                 {
 
-                <div id="upload-files-container" hidden>
-                    <div class="form-group row">
-                        <label class="form-label col-xs-12 col-md-4 text-right"></label>
-                        <div class="col-xs-12 col-md-8">
-                            <div class="list-group">
-                                <label for="selectresume">
-                                    <input id="selectresume" type="radio" name="resume" checked/>
-                                    <span class="text-right">Select a resume stored on Hudson</span>
-                                </label>
-                                <label for="uploadresume">
-                                    <input id="uploadresume" type="radio" name="resume"/>
-                                    <span class="text-right">Upload a resume</span>
-                                </label>
-                            </div>
+                    var loginElemHide = "";
 
-                        </div>
-                    </div>
+                <div id="upload-files-container" hidden>
                     
+                        
                     @if (ViewBag.IsUserLoggedIn)
                     {
+                        loginElemHide = "hidden";
+
                         <div class="form-group row">
                             <label class="form-label col-xs-12 col-md-4 text-right"></label>
                             <div class="col-xs-12 col-md-8">
                                 <div class="list-group">
+                                    <label for="selectresume">
+                                        <input id="selectresume" type="radio" name="resume" checked />
+                                        <span class="text-right">Select a resume stored on Hudson</span>
+                                    </label>
+                                    <label for="uploadresume">
+                                        <input id="uploadresume" type="radio" name="resume" />
+                                        <span class="text-right">Upload a resume</span>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="list-group select">
                                     @Html.DropDownList("MySavedResumes", (IEnumerable<SelectListItem>)ViewBag.ResumeList, new { @onchange = "ProcessSavedResume(this.value)" })
                                 </div><!-- end box -->
 
@@ -165,14 +172,16 @@
                     <div class="form-group row" id="user-profile-resume" hidden>
                         <label class="form-label col-xs-12 col-md-4 text-right"></label>
                         <div class="col-xs-12 col-md-8">
-                            <select class="list-group" id="user-profile-resume-list"></select><!-- end box -->
+                            <div class="select">
+                                <select class="list-group" id="user-profile-resume-list"></select><!-- end box -->
+                            </div>
 
                         </div>
                     </div>
 
 
                     <!-- Resume -->
-                    <div class="form-group row" id="uploadresumeblock" hidden>
+                    <div class="form-group row" id="uploadresumeblock" @loginElemHide>
                         <label class="form-label col-xs-12 col-md-4 text-right">upload your cv*</label>
                         <div class="col-xs-12 col-md-8">
                             <div class="box clearfix text-center">
@@ -340,7 +349,7 @@
     $("#selectresume").change(function () {
         $("#uploadresumeblock").hide();
         if (userLoggedInParamFromViewbag == 'True') {
-            $("#MySavedResumes").show();
+            $("#MySavedResumes").parent('div').show();
         } else {
             $("#user-profile-resume-list").show();
         }
@@ -348,9 +357,9 @@
     });
 
     $("#uploadresume").change(function () {
-        $("#uploadresumeblock").show('hidden');
+        $("#uploadresumeblock").show();
         if (userLoggedInParamFromViewbag == 'True') {
-            $("#MySavedResumes").hide();
+            $("#MySavedResumes").parent('div').hide();
         } else {
             $("#user-profile-resume-list").hide();
         }

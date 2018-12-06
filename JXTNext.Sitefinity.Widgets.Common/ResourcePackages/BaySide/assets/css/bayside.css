@@ -4881,6 +4881,11 @@ a {
         color: #3465B0;
     }
 
+    a.dropdown-toggle:focus, a:focus {
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+    }
+
 h1,
 .h1 {
     font-size: 45px;
@@ -5623,6 +5628,18 @@ p {
     }
 }
 
+.hs-error-msgs {
+    padding-left: 0;
+}
+
+    .hs-error-msgs label {
+        color: #ea232a !important;
+    }
+
+input.hs-input, textarea.hs-input, select.hs-input {
+    font-size: 1em !important;
+}
+
 /*=========IDS  End=====*/
 
 /* ------App header__start------ */
@@ -5791,7 +5808,7 @@ p {
             margin-bottom: 10px;
         }
 
-        .app-header .dropdown-menu .dropdown-item:hover, .app-header .dropdown-menu .dropdown-item:focus {
+        .app-header .dropdown-menu .dropdown-item:hover, .app-header .dropdown-menu .dropdown-item.active, .app-header .dropdown-menu .dropdown-item:focus {
             color: #0088CF;
             text-decoration: none;
         }
@@ -5874,7 +5891,7 @@ p {
     font-size: 15px;
 }
 
-    .navbar .navbar-nav .nav-link:focus, .navbar .navbar-nav .nav-link:hover {
+    .navbar .navbar-nav .nav-link:focus, .navbar .navbar-nav .nav-link.active, .navbar .navbar-nav .nav-link:hover {
         color: #0088CF;
         text-decoration: none;
     }
@@ -6087,6 +6104,10 @@ p {
     .hero-banner h1 {
         margin-bottom: 0;
     }
+}
+
+.hero-banner.hero-banner-sm h1 {
+    margin-bottom: 0;
 }
 
 @media (max-width: 767px) {
@@ -6603,7 +6624,7 @@ p {
         left: 50%;
         height: 105%;
         width: auto;
-        max-width: 1000%;
+        max-width: 200%;
         transform: translateX(-50%);
         -webkit-transform: translateX(-50%);
         -moz-transform: translateX(-50%);
@@ -6826,18 +6847,6 @@ p {
         font-weight: 600;
         color: #0088CF;
     }
-
-        .breadcrumb a::before {
-            display: inline-block;
-            width: auto;
-            height: auto;
-            margin-right: 0.255em;
-            vertical-align: 0;
-            content: "\f105";
-            border: none;
-            font-weight: normal;
-            font-family: FontAwesome;
-        }
 
 .job-detail {
     color: #333132;
@@ -7105,6 +7114,8 @@ p {
         padding-right: 14px;
         color: #0088CF;
         border-color: #0088CF;
+        min-width: 40px;
+        text-align: center;
     }
 
         .pagination > li > span.active, .pagination > li > span:hover, .pagination > li > span:focus,
@@ -7118,7 +7129,7 @@ p {
 
         .pagination > li > span.prev-btn,
         .pagination > li > a.prev-btn {
-            padding: 0px 7px;
+            padding: 1px 7px;
         }
 
             .pagination > li > span.prev-btn svg,
@@ -7130,12 +7141,12 @@ p {
 
         .pagination > li > span.next-btn,
         .pagination > li > a.next-btn {
-            padding: 0px 7px;
+            padding: 1px 7px;
         }
 
         .pagination > li > span svg,
         .pagination > li > a svg {
-            margin-top: 7px;
+            margin-top: 8px;
             fill: currentColor;
         }
 

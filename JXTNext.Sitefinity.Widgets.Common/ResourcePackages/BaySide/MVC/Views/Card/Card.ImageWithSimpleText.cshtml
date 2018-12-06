@@ -6,10 +6,9 @@
         <div class="row">
             <div class="col-8 ml-auto mr-auto text-center">
                 <p class="text-white text-italic mb-0">@Html.HtmlSanitize(Model.Description)</p>
-                <br />
                 @if (!string.IsNullOrEmpty(Model.ActionName))
                 {
-                    <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary" role="button">@Model.ActionName</a>
+                    <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary mt-3" role="button">@Model.ActionName</a>
                 }
 
             </div>

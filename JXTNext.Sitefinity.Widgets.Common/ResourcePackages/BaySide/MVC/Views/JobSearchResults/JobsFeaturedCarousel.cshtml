@@ -6,23 +6,26 @@
     <div class="container">*@
 <div id="internalJobs" class="featured-carousel owl-carousel">
 
-    @foreach (var jobOffer in Model.SearchResults)
+    @if (Model != null && Model.SearchResults != null)
     {
+        foreach (var jobOffer in Model.SearchResults)
+        {
 
-        <div class="item">
-            <h4>@jobOffer.Title</h4>
-            <p>
-                @if (jobOffer.ShortDescription.Length > 210)
-                {
-                    @Html.Raw(jobOffer.ShortDescription.Substring(0, 210) + "...");
-                }
-                else
-                {
-                    @Html.Raw(jobOffer.ShortDescription);
-                }
-            </p>
-            <a class="btn btn-link pl-0" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">> View job</a>
-        </div>
+            <div class="item">
+                <h4>@jobOffer.Title</h4>
+                <p>
+                    @if (jobOffer.ShortDescription.Length > 210)
+                    {
+                        @Html.Raw(jobOffer.ShortDescription.Substring(0, 210) + "...");
+                    }
+                    else
+                    {
+                        @Html.Raw(jobOffer.ShortDescription);
+                    }
+                </p>
+                <a class="btn btn-link pl-0" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">> View job</a>
+            </div>
+        }
     }
 </div>
 

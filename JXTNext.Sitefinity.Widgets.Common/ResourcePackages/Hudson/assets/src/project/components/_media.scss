@@ -344,6 +344,18 @@
             }
         }
     }
+
+    .testimonials-slider{
+        &.testimonials-simple.with-side-image{
+            .item{
+                position: relative!important;
+                bottom: auto!important;
+            }
+            .owl-dots{
+                bottom: 15px;
+            }
+        } 
+    }
 }
 @media (max-width: 1024px){
     #pager{
@@ -501,7 +513,8 @@
             }
             .owl-dots{
                 width: 100%;
-                position: static;
+                position: relative;
+                margin-top: -10px;
             }
         }
         &.with-top-image{
@@ -1022,18 +1035,22 @@
         }
         .select{
             position: absolute;
-            top: 20px;
+            top: 30px;
             left: 103px;
             min-width: 103px!important;
             width: 104px;
             margin-top: 0!important;
-
+            &::before{
+                color: $global-highlight-color;
+            }
             select{
                 height: 40px!important;
                 text-transform: uppercase;
                 font-size: 1.6rem!important;
                 font-family: $font-family-medium;
                 padding-right: 20px;
+                border-color: $global-highlight-color;
+                color: $global-highlight-color;
                 option {
                     text-transform: none;
                     font-family: $font-family-regular;
@@ -1203,7 +1220,22 @@
         .owl-dots{
             bottom: 43px;
         }
-        
+        &.with-top-image{
+            .quote{
+                span{
+                    top: -15px;
+                    left: 0;
+                }
+                &.text-right{
+                    right: 0;
+                    bottom: 45px;
+                    span{
+                        left: auto;
+                        right: 0;
+                    }
+                }
+            }
+        }
     }
 
     .xs-no-bdr-right{
@@ -1253,7 +1285,15 @@
         .testimonial{
             padding: 40px 70px 10px;
         }
+        &.with-side-image{
+            .quote{
+                .text-right{
+                    right: 0;
+                }
+            }
+        }
     }
+   
     .form-newsletter{
         max-width: 400px;
         margin: 0 auto;
@@ -1510,6 +1550,13 @@
             .owl-item>div{
                 padding-bottom: 0;
             }
+            
+            .quote{
+                .text-right span{
+                    bottom: -10px;
+                }
+            }
+            
         }
     }
     .testimonials-slider{

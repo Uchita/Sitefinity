@@ -31,7 +31,9 @@
         .form-control {
             color: $global-text-color;
         }
-
+        select{
+            padding-left: 6px;
+        }
         textarea {
             height: 115px;
             resize: none;
@@ -323,7 +325,7 @@
             padding: 12px 10px;
             color: $global-text-color;
             text-transform: none;
-            font: 1.4rem/1 $font-family-regular;
+            font: $global-font-size/1 $font-family-regular;
             position: relative;
             text-overflow: ellipsis;
             overflow: hidden;

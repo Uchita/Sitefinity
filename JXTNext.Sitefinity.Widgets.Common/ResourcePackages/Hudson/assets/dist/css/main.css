@@ -9341,7 +9341,7 @@ ul.breadcrumb {
         display: table-cell;
         vertical-align: middle; }
       .thumbnail.card-rollover-bg .card-description h3 {
-        font-size: 16px;
+        font-size: 1.8rem;
         font-family: AkzidGroProMed, sans-serif;
         text-transform: uppercase;
         color: inherit; }
@@ -9560,6 +9560,8 @@ ul.breadcrumb {
   font-family: AkzidGroProReg, sans-serif; }
   .page-wrapper .basic-form .form-control {
     color: #000; }
+  .page-wrapper .basic-form select {
+    padding-left: 6px; }
   .page-wrapper .basic-form textarea {
     height: 115px;
     resize: none; }
@@ -9741,7 +9743,7 @@ ul.breadcrumb {
     padding: 12px 10px;
     color: #000;
     text-transform: none;
-    font: 1.4rem/1 AkzidGroProReg, sans-serif;
+    font: 1.8rem AkzidGroProReg, sans-serif;
     position: relative;
     text-overflow: ellipsis;
     overflow: hidden; }
@@ -10087,6 +10089,9 @@ ul.breadcrumb {
 .job-mini .breadcrumb {
   padding-left: 15px; }
 
+.job-offer-actions li .save-job {
+  font-size: inherit; }
+
 .job-offer-actions .saved::before {
   position: absolute;
   left: 0;
@@ -10157,7 +10162,7 @@ ul.breadcrumb {
     cursor: pointer; }
   .upload-section .uploadfield-wrap .lbl {
     display: block;
-    margin-top: -20px;
+    margin-top: -7px;
     color: #01a3a4; }
   .upload-section .uploadfield-wrap input[type="file"]:focus + .lbl, .upload-section .uploadfield-wrap button:focus + .lbl {
     font-weight: bold; }
@@ -11145,7 +11150,12 @@ select.articles-order {
   header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu {
     width: 33%; }
     header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu:nth-child(1) {
-      display: none; } }
+      display: none; }
+  .testimonials-slider.testimonials-simple.with-side-image .item {
+    position: relative !important;
+    bottom: auto !important; }
+  .testimonials-slider.testimonials-simple.with-side-image .owl-dots {
+    bottom: 15px; } }
 
 @media (max-width: 1024px) {
   #pager ul {
@@ -11244,7 +11254,8 @@ select.articles-order {
       margin: 0 auto; }
     .testimonials-slider.testimonials-simple.with-side-image .owl-dots {
       width: 100%;
-      position: static; }
+      position: relative;
+      margin-top: -10px; }
     .testimonials-slider.with-top-image .quote span {
       top: 25px; }
     .testimonials-slider.with-top-image .quote.text-right {
@@ -11557,17 +11568,21 @@ select.articles-order {
       text-indent: 0; }
   .search-top .select {
     position: absolute;
-    top: 20px;
+    top: 30px;
     left: 103px;
     min-width: 103px !important;
     width: 104px;
     margin-top: 0 !important; }
+    .search-top .select::before {
+      color: #01a3a4; }
     .search-top .select select {
       height: 40px !important;
       text-transform: uppercase;
       font-size: 1.6rem !important;
       font-family: AkzidGroProMed, sans-serif;
-      padding-right: 20px; }
+      padding-right: 20px;
+      border-color: #01a3a4;
+      color: #01a3a4; }
       .search-top .select select option {
         text-transform: none;
         font-family: AkzidGroProReg, sans-serif; }
@@ -11667,6 +11682,15 @@ select.articles-order {
     padding-bottom: 30px; }
   .testimonials-slider .owl-dots {
     bottom: 43px; }
+  .testimonials-slider.with-top-image .quote span {
+    top: -15px;
+    left: 0; }
+  .testimonials-slider.with-top-image .quote.text-right {
+    right: 0;
+    bottom: 45px; }
+    .testimonials-slider.with-top-image .quote.text-right span {
+      left: auto;
+      right: 0; }
   .xs-no-bdr-right {
     border-right: none; }
   .xs-pad-right-15 {
@@ -11694,6 +11718,8 @@ select.articles-order {
     right: 15px; }
   .testimonials-slider.testimonials-simple .testimonial {
     padding: 40px 70px 10px; }
+  .testimonials-slider.testimonials-simple.with-side-image .quote .text-right {
+    right: 0; }
   .form-newsletter {
     max-width: 400px;
     margin: 0 auto; }
@@ -11869,6 +11895,8 @@ select.articles-order {
     max-width: 150px; }
   .testimonials-slider.testimonials-simple.with-side-image .owl-item > div {
     padding-bottom: 0; }
+  .testimonials-slider.testimonials-simple.with-side-image .quote .text-right span {
+    bottom: -10px; }
   .testimonials-slider .owl-item {
     padding-left: 25px;
     padding-right: 25px;

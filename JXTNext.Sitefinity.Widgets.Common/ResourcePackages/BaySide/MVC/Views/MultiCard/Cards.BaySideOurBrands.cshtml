@@ -4,12 +4,10 @@
 
 @foreach (var card in Model.Cards)
 {
-    @*<div class="col-md-6 wow slideInUp">*@
+    <a href="@Model.GroupActionUrl">
         <div class="brand_blk" style="background-image:url('@Model.SelectedSizeUrl')">
-            <!-- <div class="brand_content"> -->
             <h4>@Html.HtmlSanitize(card.Heading)</h4>
             <img src="@card.SelectedSizeUrl" alt="@card.ImageAlternativeText">
-            <!-- </div> -->
         </div>
-    @*</div>*@
+    </a>
 }

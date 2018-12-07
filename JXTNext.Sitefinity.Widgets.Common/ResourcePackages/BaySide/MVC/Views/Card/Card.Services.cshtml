@@ -2,10 +2,18 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
 @*<div class="service-item col-12 col-sm-6 col-lg-3 text-center">*@
-    <img class="service-icon" src='@Model.SelectedSizeUrl' alt="Talent Sourcing" />
-    <h3 class="service-name">@Html.HtmlSanitize(Model.Heading)</h3>
-    <p class="service-desc">
+<img class="service-icon" src='@Model.SelectedSizeUrl' alt="Talent Sourcing" />
+<h3 class="service-name">@Html.HtmlSanitize(Model.Heading)</h3>
+<p class="service-desc">
+    @if (Model.Description.Length > 100)
+    {
+        @Html.HtmlSanitize(Model.Description.Substring(0, 100) + "...")
+    }
+    else
+    {
         @Html.HtmlSanitize(Model.Description)
-    </p>
-    <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-link">@Model.ActionName</a>
+    }
+
+</p>
+<a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-link">@Model.ActionName</a>
 @*</div>*@

@@ -58,7 +58,7 @@
                 display: inline-block;
                 color: $forms-element-border;
                 position: absolute;
-                top: 0;
+                top: 2px;
                 left: 0;
                 text-align: center;
                 font-size: 13px;
@@ -113,6 +113,12 @@
         font-size: 3.6rem;
         margin-bottom: 2rem;
     }
+}
+
+.list-group label{
+    color: $global-text-color;
+    text-transform: none;
+    font-family: $font-family-regular;
 }
 
 #password-strength {

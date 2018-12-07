@@ -9579,7 +9579,7 @@ ul.breadcrumb {
     display: inline-block;
     color: #01a3a4;
     position: absolute;
-    top: 0;
+    top: 2px;
     left: 0;
     text-align: center;
     font-size: 13px; }
@@ -9612,6 +9612,11 @@ ul.breadcrumb {
 .login-form h2 {
   font-size: 3.6rem;
   margin-bottom: 2rem; }
+
+.list-group label {
+  color: #000;
+  text-transform: none;
+  font-family: AkzidGroProReg, sans-serif; }
 
 #password-strength {
   position: relative;

@@ -395,6 +395,7 @@
             font-size: 36px;
             font-size: 3.6rem;
             margin-bottom: 3rem;
+            margin-top: 0;
         }
 
         .h2, h2 {
@@ -785,7 +786,6 @@
             width: 100%;
             height: 100%;
             background: #007077;
-            background: rgba(0,112,119,.8);
         }
         .brand-logo {
             height: 23px;
@@ -860,7 +860,9 @@
         }
         
     }
-
+    .main-content{
+        padding-top: 43px;
+    }
     .mobile-owl-carousel {
         .thumbnail{
             max-width: 400px;
@@ -893,7 +895,7 @@
     }
 
     .jumbotron-container .jumbotron {
-        padding-top: 100px;
+        padding-top: 70px;
         min-height: 260px;
         .h1, h1 {
             font-size: 30px;
@@ -948,7 +950,7 @@
     }
 
     .job-search {
-        margin-top: -30px;
+        margin-top: 0;
         .filter-job-classification .row {
 
             & + .row {
@@ -1358,7 +1360,10 @@
 }
 
 @media (max-width:499px) {
-   
+    .jumbotron-container .jumbotron {
+        padding-top: 50px;
+        min-height: 183px;
+    }
     .left-sidebar{
         margin-bottom: 30px;
     }
@@ -1521,6 +1526,11 @@
             }
         }
     }
+    .testimonials-slider{
+        .testimonial-title{
+            padding: 0;
+        }
+    }
     .testimonials-slider.testimonials-simple{
         
         .item, .owl-item>div{
@@ -1538,9 +1548,14 @@
         }
         .quote{
             top: 3px;
-            left: 0;
+            left: 5px;
             &.text-right{
                 bottom: 0;
+                right: 0;
+                left: auto;
+                span{
+                    right: 0;
+                }
             }
         }
         &.with-side-image{

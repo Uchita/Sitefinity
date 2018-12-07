@@ -219,6 +219,13 @@
     }
 }
 
+.consultant-jobs {
+    .owl-item{
+        @media (max-width: 767px){
+            margin-right: 0!important;
+        }
+    }
+}
 .job-offer {
 
     &-details {

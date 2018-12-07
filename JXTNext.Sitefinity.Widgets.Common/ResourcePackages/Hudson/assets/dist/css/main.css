@@ -9600,6 +9600,38 @@ ul.breadcrumb {
       cursor: pointer; }
     .page-wrapper .basic-form .checkbox input[type="checkbox"]:focus + span {
       outline: #219fa3 solid 1px; }
+  .page-wrapper .basic-form .radiobutton {
+    position: relative; }
+    .page-wrapper .basic-form .radiobutton .radiobutton-icon {
+      width: 25px;
+      height: 25px;
+      border: 1px solid #01a3a4;
+      display: inline-block;
+      color: transparent;
+      position: absolute;
+      top: 10px;
+      left: 0;
+      text-align: center;
+      font-size: 13px;
+      border-radius: 50%; }
+      .page-wrapper .basic-form .radiobutton .radiobutton-icon::before {
+        font-size: 1.75rem;
+        line-height: 1.33;
+        padding-right: 1px; }
+    .page-wrapper .basic-form .radiobutton input[type="radio"] {
+      z-index: 2;
+      position: relative;
+      opacity: 0;
+      height: 20px;
+      width: 20px;
+      margin: 0 10px 0 0;
+      float: left; }
+      .page-wrapper .basic-form .radiobutton input[type="radio"]:hover {
+        cursor: pointer; }
+        .page-wrapper .basic-form .radiobutton input[type="radio"]:hover + .radiobutton-icon {
+          color: #eee; }
+      .page-wrapper .basic-form .radiobutton input[type="radio"]:checked + .radiobutton-icon, .page-wrapper .basic-form .radiobutton input[type="radio"]:checked:hover + .radiobutton-icon {
+        color: #01a3a4; }
   .page-wrapper .basic-form .sf-FileField {
     margin-top: 8px; }
   .page-wrapper .basic-form .form-group {
@@ -9973,6 +10005,10 @@ ul.breadcrumb {
     .featured-job-offer {
       margin: 0 auto 15px;
       max-width: 400px; } }
+
+@media (max-width: 767px) {
+  .consultant-jobs .owl-item {
+    margin-right: 0 !important; } }
 
 .job-offer-details {
   padding-right: 40px; }
@@ -11188,7 +11224,8 @@ select.articles-order {
     .page-wrapper .h1, .page-wrapper h1 {
       font-size: 36px;
       font-size: 3.6rem;
-      margin-bottom: 3rem; }
+      margin-bottom: 3rem;
+      margin-top: 0; }
     .page-wrapper .h2, .page-wrapper h2 {
       font-size: 24px;
       font-size: 2.4rem;
@@ -11408,8 +11445,7 @@ select.articles-order {
     display: block;
     width: 100%;
     height: 100%;
-    background: #007077;
-    background: rgba(0, 112, 119, 0.8); }
+    background: #007077; }
   header .brand-logo {
     height: 23px;
     width: 150px;
@@ -11457,6 +11493,8 @@ select.articles-order {
         background: none; }
         header .main-nav .navbar-default .navbar-toggle:hover.collapsed .icon-bar, header .main-nav .navbar-default .navbar-toggle:active.collapsed .icon-bar, header .main-nav .navbar-default .navbar-toggle:focus.collapsed .icon-bar {
           background-color: #fff; }
+  .main-content {
+    padding-top: 43px; }
   .mobile-owl-carousel .thumbnail {
     max-width: 400px;
     margin-left: auto;
@@ -11474,7 +11512,7 @@ select.articles-order {
   .paralax-image {
     background-size: auto !important; }
   .jumbotron-container .jumbotron {
-    padding-top: 100px;
+    padding-top: 70px;
     min-height: 260px; }
     .jumbotron-container .jumbotron .h1, .jumbotron-container .jumbotron h1 {
       font-size: 30px;
@@ -11508,7 +11546,7 @@ select.articles-order {
   .featured-job-offer .job-offer-sum {
     height: auto; }
   .job-search {
-    margin-top: -30px; }
+    margin-top: 0; }
     .job-search .filter-job-classification .row + .row {
       margin-top: 0; }
     .job-search .filter-job-classification .row > div {
@@ -11768,6 +11806,9 @@ select.articles-order {
     clear: left; } }
 
 @media (max-width: 499px) {
+  .jumbotron-container .jumbotron {
+    padding-top: 50px;
+    min-height: 183px; }
   .left-sidebar {
     margin-bottom: 30px; }
   .col-xs-1 {
@@ -11882,6 +11923,8 @@ select.articles-order {
     padding-top: 200px; }
     .list-featured-articles li:first-child .featured-article-image {
       max-height: 200px; }
+  .testimonials-slider .testimonial-title {
+    padding: 0; }
   .testimonials-slider.testimonials-simple .item, .testimonials-slider.testimonials-simple .owl-item > div {
     padding-bottom: 50px; }
   .testimonials-slider.testimonials-simple .testimonial {
@@ -11893,9 +11936,13 @@ select.articles-order {
     bottom: 0; }
   .testimonials-slider.testimonials-simple .quote {
     top: 3px;
-    left: 0; }
+    left: 5px; }
     .testimonials-slider.testimonials-simple .quote.text-right {
-      bottom: 0; }
+      bottom: 0;
+      right: 0;
+      left: auto; }
+      .testimonials-slider.testimonials-simple .quote.text-right span {
+        right: 0; }
   .testimonials-slider.testimonials-simple.with-side-image .img-holder {
     max-width: 150px; }
   .testimonials-slider.testimonials-simple.with-side-image .owl-item > div {

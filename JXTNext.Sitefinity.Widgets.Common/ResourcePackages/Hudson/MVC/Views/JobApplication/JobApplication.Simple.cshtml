@@ -144,12 +144,14 @@
                             <label class="form-label col-xs-12 col-md-4 text-right"></label>
                             <div class="col-xs-12 col-md-8">
                                 <div class="list-group">
-                                    <label for="selectresume">
+                                    <label for="selectresume" class="radiobutton">
                                         <input id="selectresume" type="radio" name="resume" checked />
+                                        <span class="radiobutton-icon fas fa-circle"></span>
                                         <span class="text-right">Select a resume stored on Hudson</span>
                                     </label>
-                                    <label for="uploadresume">
+                                    <label for="uploadresume" class="radiobutton">
                                         <input id="uploadresume" type="radio" name="resume" />
+                                        <span class="radiobutton-icon fas fa-circle"></span>
                                         <span class="text-right">Upload a resume</span>
                                     </label>
                                 </div>
@@ -187,7 +189,7 @@
                             <div class="box clearfix text-center">
                                 <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
                                 <div class="uploadfield-wrap">
-                                    <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.html,.htm,.xhtml" />
+                                    <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
 
 
                                     <small class="lbl">Browse</small>
@@ -215,7 +217,7 @@
                             <div class="box clearfix text-center">
                                 <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
                                 <div class="uploadfield-wrap">
-                                    <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.html,.htm,.xhtml" />
+                                    <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
                                     <small class="lbl">Browse</small>
                                 </div>
                                 <div class="uploadfield-wrap dropbox-upload">
@@ -238,7 +240,7 @@
                             <div class="box clearfix text-center">
                                 <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
                                 <div class="uploadfield-wrap">
-                                    <input type="file" multiple id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.html,.htm,.xhtml" />
+                                    <input type="file" multiple id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
                                     <small class="lbl">Browse</small>
                                 </div>
                                 <div class="uploadfield-wrap dropbox-upload">
@@ -894,7 +896,7 @@
             // only be able to select files with these extensions. You may also specify
             // file types, such as "video" or "images" in the list. For more information,
             // see File types below. By default, all extensions are allowed.
-            extensions: ['.pdf', '.doc', '.docx'],
+            extensions: ['.pdf', '.doc', '.docx', '.txt', '.rtf', '.html'],
 
             // Optional. A value of false (default) limits selection to files,
             // while true allows the user to select both folders and files.
@@ -951,7 +953,7 @@
              // only be able to select files with these extensions. You may also specify
              // file types, such as "video" or "images" in the list. For more information,
              // see File types below. By default, all extensions are allowed.
-             extensions: ['.pdf', '.doc', '.docx'],
+             extensions: ['.pdf', '.doc', '.docx', '.txt', '.rtf', '.html'],
 
              // Optional. A value of false (default) limits selection to files,
              // while true allows the user to select both folders and files.

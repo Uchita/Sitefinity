@@ -91,6 +91,49 @@
             }
             
         }
+
+        .radiobutton{
+            position: relative;
+            .radiobutton-icon {
+                width: 25px;
+                height: 25px;
+                border: 1px solid $forms-element-border;
+                display: inline-block;
+                color: transparent;
+                position: absolute;
+                top: 10px;
+                left: 0;
+                text-align: center;
+                font-size: 13px;
+                border-radius: 50%;
+                &::before{
+                    font-size: 1.75rem;
+                    line-height: 1.33;
+                    padding-right: 1px;
+                }
+            }
+
+            input[type="radio"] {
+                z-index: 2;
+                position: relative;
+                opacity: 0;
+                height: 20px;
+                width: 20px;
+                margin: 0 10px 0 0;
+                float: left;
+
+
+                &:hover {
+                    cursor: pointer;
+                    & + .radiobutton-icon{
+                        color: #eee;
+                    }
+                }
+                &:checked + .radiobutton-icon, &:checked:hover + .radiobutton-icon {
+                    color: $global-highlight-color;
+                }
+            }
+        }
         .sf-FileField{
             margin-top: 8px;
         }

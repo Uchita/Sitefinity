@@ -5,9 +5,9 @@
 <img class="service-icon" src='@Model.SelectedSizeUrl' alt="Talent Sourcing" />
 <h3 class="service-name">@Html.HtmlSanitize(Model.Heading)</h3>
 <p class="service-desc">
-    @if (Model.Description.Length > 100)
+    @if (Model.Description.Length > 105)
     {
-        @Html.HtmlSanitize(Model.Description.Substring(0, 100) + "...")
+        @Html.HtmlSanitize(Model.Description.Substring(0, 105) + "...")
     }
     else
     {

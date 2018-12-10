@@ -421,20 +421,47 @@
 
 /*#endregion Testimonials slider*/
 /*#region Life at hudson*/
-.owl-life-at-hudson {
+.owl-instagram {
   margin-top: 50px; }
-  .owl-life-at-hudson .life-at-hudson-image {
-    height: 235px;
+  .owl-instagram .instagram-image-holder {
+    height: 260px;
     background-size: cover;
     background-position: center;
-    display: block;
-    position: relative; }
-    .owl-life-at-hudson .life-at-hudson-image em {
+    position: relative;
+    display: flex;
+    align-items: center;
+    -webkit-box-align: center; }
+    .owl-instagram .instagram-image-holder em {
       position: absolute;
       top: 10px;
       right: 10px;
       color: #fff; }
-  .owl-life-at-hudson .owl-stage-outer {
+    .owl-instagram .instagram-image-holder img {
+      width: 100%;
+      vertical-align: top; }
+    .owl-instagram .instagram-image-holder::after, .owl-instagram .instagram-image-holder::before {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transition: all 0.5s;
+      -webkit-transition: all 0.5s; }
+    .owl-instagram .instagram-image-holder::before {
+      content: attr(data-instagram-likes);
+      color: #fff;
+      z-index: 1;
+      line-height: 150px;
+      text-align: center;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box; }
+    .owl-instagram .instagram-image-holder::after {
+      content: '\A';
+      background: rgba(0, 0, 0, 0.6); }
+    .owl-instagram .instagram-image-holder:hover::before, .owl-instagram .instagram-image-holder:hover::after {
+      opacity: 1; }
+  .owl-instagram .owl-stage-outer {
     margin-bottom: 40px; }
 
 .owl-card-basic {

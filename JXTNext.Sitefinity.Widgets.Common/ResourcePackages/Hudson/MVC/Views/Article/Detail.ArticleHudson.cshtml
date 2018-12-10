@@ -138,7 +138,7 @@
                                     <p class="color-light text-uppercase font-medium "><small>@(string.Join(", ", articleTaxonValues))</small></p>
                                     <h4 @Html.InlineEditingFieldAttributes("Title", "ShortText")><a href="@navigateUrl" title="@articleTitle">@articleTitle</a></h4>
                                     @{
-                                        string trimSummary = GeneralHelper.TrimStringContent(articleSummary, 120);
+                                        string trimSummary = GeneralHelper.TrimStringContent(articleSummary, 90);
 
                                     }
                                     <p>@trimSummary</p>

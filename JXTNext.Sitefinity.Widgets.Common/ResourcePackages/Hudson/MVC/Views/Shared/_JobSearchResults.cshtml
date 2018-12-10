@@ -7,6 +7,7 @@
 @{ 
     var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
     bool isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
+    var defaultLogo = "/ResourcePackages/Hudson/assets/dist/images/defaultLogo.png";
 }
 
 <div class="result-meta">
@@ -105,6 +106,9 @@
                         <p>#:ShortDescription#</p>
                         #}#
 
+                    </div>
+                    <div class="col-sm-2 pull-right">
+                        <img src="@defaultLogo" alt="Hudson" />
                     </div>
                 </div>
                 <div class="row jobCatHirarchy">

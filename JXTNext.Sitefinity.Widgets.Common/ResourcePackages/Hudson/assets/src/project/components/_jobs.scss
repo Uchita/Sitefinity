@@ -157,11 +157,11 @@
 .featured-job-offer {
     position: relative;
     margin: 0 0 $gap;
-    padding: $gap;
+    padding: 30px $gap $gap;
     background: #fff;
 
     .job-offer-company {
-        margin-bottom: 20px;
+        margin-bottom: 30px;
 
         img {
             max-width: 150px;
@@ -340,8 +340,10 @@
                 padding: 10px 15px;
                 -webkit-transition: .2s;
                 transition: .2s;
+                line-height: 1;
                 h3{
                     margin: 5px 0;
+                    line-height: 1.3;
                 }
                 .search-result-title {
                     font-size: 24px;
@@ -359,6 +361,9 @@
                         color: inherit;
                         text-decoration: underline;
                     }
+                }
+                small{
+                    font-size: 1.4rem;
                 }
             }
 

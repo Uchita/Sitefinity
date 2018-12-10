@@ -273,7 +273,7 @@ $(document).ready(function () {
             }
         }
     });
-    $('.owl-life-at-hudson').owlCarousel({
+    $('.owl-instagram').owlCarousel({
         loop: false,
         margin: 15,
         responsive: {

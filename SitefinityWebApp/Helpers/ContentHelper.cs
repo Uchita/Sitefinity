@@ -15,11 +15,36 @@ using Telerik.Sitefinity.GenericContent.Model;
 using Telerik.Sitefinity.Utilities.TypeConverters;
 using Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models;
 using SitefinityWebApp.Mvc.Models.CustomDynamicContent;
+using Telerik.Sitefinity.Modules.Pages;
+using Telerik.Sitefinity.Pages.Model;
+using Telerik.Sitefinity;
+using Telerik.Sitefinity.Fluent.Pages;
+using Telerik.Sitefinity.Abstractions;
 
 namespace SitefinityWebApp.Helpers
 {
     public static class ContentHelper
     {
+
+        public static string FindPagebyUrlNativeAPI(string urlName)
+        {
+            var rootPageNodes = App.WorkWith().Pages().LocatedIn(PageLocation.Frontend).Where(p => p.Parent.Id == SiteInitializer.CurrentFrontendRootNodeId).Get().ToList();
+            string pageTitle = string.Empty;
+            PageNode rootPageNode = rootPageNodes.Where(r => r.UrlName.Value == "specialist-recruitment-group").FirstOrDefault();
+
+            if (rootPageNode != null && rootPageNode.ShowInNavigation && rootPageNode.Nodes.Count > 0)
+            {
+                PageNode node = rootPageNode.Nodes.Where(r => r.UrlName.Value == "~/specialist-recruitment").FirstOrDefault();
+                if (node != null)
+                {
+                    PageNode subNode = node.Nodes.Where(n => n.UrlName.Value.Replace("~", "").Replace("/", "") == urlName.Replace("/", "")).FirstOrDefault();
+                    if (subNode != null) pageTitle = subNode.GetPageData().HtmlTitle.Value;
+                }
+            }
+
+            return pageTitle;
+        }
+
         public static ItemViewModel GetLastInsight()
         {
             // Todo - filter insight articles only.

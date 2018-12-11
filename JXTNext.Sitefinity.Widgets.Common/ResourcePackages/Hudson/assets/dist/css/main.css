@@ -8401,7 +8401,7 @@ main {
         .left-sidebar .container-fluid .nav li span.submenu-toggle, .left-sidebar .navbar-collapse .nav li span.submenu-toggle {
           top: 6px; }
       .left-sidebar .container-fluid .nav li > span, .left-sidebar .navbar-collapse .nav li > span {
-        color: #808080; }
+        color: #333; }
         .left-sidebar .container-fluid .nav li > span:hover, .left-sidebar .container-fluid .nav li > span:focus, .left-sidebar .navbar-collapse .nav li > span:hover, .left-sidebar .navbar-collapse .nav li > span:focus {
           color: #01a3a4;
           cursor: pointer; }
@@ -8432,7 +8432,7 @@ main {
         background-color: transparent; }
     .left-sidebar .container-fluid .nav > li > a, .left-sidebar .navbar-collapse .nav > li > a {
       font-family: AkzidGroProMed, sans-serif;
-      color: #808080; }
+      color: #333; }
     .left-sidebar .container-fluid .nav .open > a > .fa-angle-right:before, .left-sidebar .container-fluid .nav .open > .fa-angle-right:before, .left-sidebar .navbar-collapse .nav .open > a > .fa-angle-right:before, .left-sidebar .navbar-collapse .nav .open > .fa-angle-right:before {
       content: "\f107"; }
     .left-sidebar .container-fluid .nav .open > a > .fa-angle-right:before, .left-sidebar .container-fluid .nav .open > .fa-caret-right:before, .left-sidebar .navbar-collapse .nav .open > a > .fa-angle-right:before, .left-sidebar .navbar-collapse .nav .open > .fa-caret-right:before {
@@ -8483,7 +8483,7 @@ main {
       white-space: normal;
       display: block !important;
       font-family: AkzidGroProReg,sans-serif;
-      color: #808080;
+      color: #333;
       line-height: 1.3; }
       .dropdown.dropdown-tree > ul li a .count {
         margin-left: 3px;

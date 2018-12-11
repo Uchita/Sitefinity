@@ -131,30 +131,39 @@
                 @if (Model.ApplicationStatus == JobApplicationStatus.Available)
                 {
 
-                <div id="upload-files-container" hidden>
-                    <div class="form-group row">
-                        <label class="form-label col-xs-12 col-md-4 text-right"></label>
-                        <div class="col-xs-12 col-md-8">
-                            <div class="list-group">
-                                <label for="selectresume">
-                                    <input id="selectresume" type="radio" name="resume" checked/>
-                                    <span class="text-right">Select a resume stored on Hudson</span>
-                                </label>
-                                <label for="uploadresume">
-                                    <input id="uploadresume" type="radio" name="resume"/>
-                                    <span class="text-right">Upload a resume</span>
-                                </label>
-                            </div>
+                    var loginElemHide = "";
 
-                        </div>
-                    </div>
+                <div id="upload-files-container" hidden>
                     
+                        
                     @if (ViewBag.IsUserLoggedIn)
                     {
+                        loginElemHide = "hidden";
+
                         <div class="form-group row">
                             <label class="form-label col-xs-12 col-md-4 text-right"></label>
                             <div class="col-xs-12 col-md-8">
                                 <div class="list-group">
+                                    <label for="selectresume" class="radiobutton">
+                                        <input id="selectresume" type="radio" name="resume" checked />
+                                        <span class="radiobutton-icon fas fa-circle"></span>
+                                        <span class="text-right">Select a resume stored on Hudson</span>
+                                    </label>
+                                    <label for="uploadresume" class="radiobutton">
+                                        <input id="uploadresume" type="radio" name="resume" />
+                                        <span class="radiobutton-icon fas fa-circle"></span>
+                                        <span class="text-right">Upload a resume</span>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="list-group select">
                                     @Html.DropDownList("MySavedResumes", (IEnumerable<SelectListItem>)ViewBag.ResumeList, new { @onchange = "ProcessSavedResume(this.value)" })
                                 </div><!-- end box -->
 
@@ -165,20 +174,22 @@
                     <div class="form-group row" id="user-profile-resume" hidden>
                         <label class="form-label col-xs-12 col-md-4 text-right"></label>
                         <div class="col-xs-12 col-md-8">
-                            <select class="list-group" id="user-profile-resume-list"></select><!-- end box -->
+                            <div class="select">
+                                <select class="list-group" id="user-profile-resume-list"></select><!-- end box -->
+                            </div>
 
                         </div>
                     </div>
 
 
                     <!-- Resume -->
-                    <div class="form-group row" id="uploadresumeblock" hidden>
+                    <div class="form-group row" id="uploadresumeblock" @loginElemHide>
                         <label class="form-label col-xs-12 col-md-4 text-right">upload your cv*</label>
                         <div class="col-xs-12 col-md-8">
                             <div class="box clearfix text-center">
                                 <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
                                 <div class="uploadfield-wrap">
-                                    <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.html,.htm,.xhtml" />
+                                    <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
 
 
                                     <small class="lbl">Browse</small>
@@ -206,7 +217,7 @@
                             <div class="box clearfix text-center">
                                 <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
                                 <div class="uploadfield-wrap">
-                                    <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.html,.htm,.xhtml" />
+                                    <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
                                     <small class="lbl">Browse</small>
                                 </div>
                                 <div class="uploadfield-wrap dropbox-upload">
@@ -229,7 +240,7 @@
                             <div class="box clearfix text-center">
                                 <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
                                 <div class="uploadfield-wrap">
-                                    <input type="file" multiple id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.html,.htm,.xhtml" />
+                                    <input type="file" multiple id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
                                     <small class="lbl">Browse</small>
                                 </div>
                                 <div class="uploadfield-wrap dropbox-upload">
@@ -340,7 +351,7 @@
     $("#selectresume").change(function () {
         $("#uploadresumeblock").hide();
         if (userLoggedInParamFromViewbag == 'True') {
-            $("#MySavedResumes").show();
+            $("#MySavedResumes").parent('div').show();
         } else {
             $("#user-profile-resume-list").show();
         }
@@ -348,9 +359,9 @@
     });
 
     $("#uploadresume").change(function () {
-        $("#uploadresumeblock").show('hidden');
+        $("#uploadresumeblock").show();
         if (userLoggedInParamFromViewbag == 'True') {
-            $("#MySavedResumes").hide();
+            $("#MySavedResumes").parent('div').hide();
         } else {
             $("#user-profile-resume-list").hide();
         }
@@ -885,7 +896,7 @@
             // only be able to select files with these extensions. You may also specify
             // file types, such as "video" or "images" in the list. For more information,
             // see File types below. By default, all extensions are allowed.
-            extensions: ['.pdf', '.doc', '.docx'],
+            extensions: ['.pdf', '.doc', '.docx', '.txt', '.rtf', '.html'],
 
             // Optional. A value of false (default) limits selection to files,
             // while true allows the user to select both folders and files.
@@ -942,7 +953,7 @@
              // only be able to select files with these extensions. You may also specify
              // file types, such as "video" or "images" in the list. For more information,
              // see File types below. By default, all extensions are allowed.
-             extensions: ['.pdf', '.doc', '.docx'],
+             extensions: ['.pdf', '.doc', '.docx', '.txt', '.rtf', '.html'],
 
              // Optional. A value of false (default) limits selection to files,
              // while true allows the user to select both folders and files.

@@ -7,6 +7,7 @@
 @{ 
     var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
     bool isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
+    var defaultLogo = "/ResourcePackages/Hudson/assets/dist/images/defaultLogo.png";
 }
 
 <div class="result-meta">
@@ -17,7 +18,7 @@
     @*<a class="btn btn-sm" href="">RSS FEED</a>
         <a class="btn btn-sm" href="">ADD FAVOURITE</a>
     *@
-    <div>Receive new jobs for this search by email.</div>
+   
     <div>
 
         @if (isLoggedIn)
@@ -26,8 +27,8 @@
         }
         else
         {
-            
-            <input type="email" id="anonycreatejobalert" value="" placeholder="Receive new jobs for this search by email." class="jobalert-field" />
+            <div>Receive new jobs for this search by email.</div>
+            <input type="email" id="anonycreatejobalert" value="" placeholder="Enter email address" class="jobalert-field" />
             <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">CREATE JOB ALERT</a>
             <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
             <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
@@ -105,6 +106,9 @@
                         <p>#:ShortDescription#</p>
                         #}#
 
+                    </div>
+                    <div class="col-sm-2 pull-right">
+                        <img src="@defaultLogo" alt="Hudson" />
                     </div>
                 </div>
                 <div class="row jobCatHirarchy">

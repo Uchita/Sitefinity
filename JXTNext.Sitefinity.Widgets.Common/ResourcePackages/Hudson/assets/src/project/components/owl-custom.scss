@@ -289,15 +289,17 @@
 /*#endregion Testimonials slider*/
 
 /*#region Life at hudson*/
-.owl-life-at-hudson {
+.owl-instagram {
     margin-top: 50px;
 
-    .life-at-hudson-image {
-        height: 235px;
+    .instagram-image-holder {
+        height: 260px;
         background-size: cover;
         background-position: center;
-        display: block;
         position: relative;
+        display: flex;
+        align-items: center;
+        -webkit-box-align: center;
 
         em {
             position: absolute;
@@ -305,8 +307,42 @@
             right: 10px;
             color: #fff;
         }
-    }
 
+        img {
+            width: 100%;
+            vertical-align: top;
+        }
+
+        &::after,
+        &::before {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+        }
+        
+        &::before{
+            content: attr(data-instagram-likes);
+            color: #fff;
+            z-index: 1;
+            line-height: 150px;
+            text-align: center;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+        &::after{
+            content: '\A';
+            background: rgba(0,0,0,0.6);
+        }
+        &:hover::before, &:hover::after{
+            opacity: 1;
+        }
+    }
+ 
     .owl-stage-outer {
         margin-bottom: 40px;
     }

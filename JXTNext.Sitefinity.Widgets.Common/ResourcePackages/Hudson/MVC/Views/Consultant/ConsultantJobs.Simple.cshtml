@@ -22,7 +22,11 @@
                         }*@
                     @*<p class="text-muted">@obOffer.DateCreated</p>*@
                     <p class="job-offer-sum">
-                        @Html.Raw(jobOffer.ShortDescription)
+                        @{
+                            var summary = Html.HtmlSanitize((string)jobOffer.ShortDescription).ToString();
+                            string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 90 ? summary.Substring(0, 90) + "..." : summary;
+                        }
+                        @trimSummary;
                     </p>
                 </div>
                 <a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID"></a>

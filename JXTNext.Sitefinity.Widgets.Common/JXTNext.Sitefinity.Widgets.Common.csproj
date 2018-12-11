@@ -93,6 +93,9 @@
     <Content Include="ResourcePackages\Hudson\assets\dist\images\applied-jobs.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\defaultLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Hudson\assets\dist\images\hudson_logo_white.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -142,10 +142,9 @@
                     var noImageCls = "";
                     <div class="col-md-4">
                         <div class="thumbnail card-basic small-caption">
-                            @if (item.Fields.HeaderImage != null && item.Fields.HeaderImage.DataItem != null)
+                            @if (item.Fields.HeaderImage.DataItem != null)
                             {
                                 imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(item.Fields.HeaderImage.DataItem, "thumbartic");
-
                             }
                             else
                             {
@@ -170,7 +169,7 @@
                                         @(string.Join(", ", filterValues))
                                     </small>
                                 </p>
-                                <h4><a href="@navigateUrl" title="@item.Fields.Title">@Html.HtmlSanitize((string)item.Fields.Title)</a></h4>
+                                <h4><a href="@navigateUrl" title="@item.Fields.HeaderImage.Fields.Title">@Html.HtmlSanitize((string)item.Fields.Title)</a></h4>
                                 @{
                                     var summary = Html.HtmlSanitize((string)item.Fields.Summary).ToString();
                                     string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 90 ? summary.Substring(0, 90) + "..." : summary;

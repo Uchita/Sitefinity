@@ -9226,8 +9226,6 @@ ul.breadcrumb {
       max-width: 150%;
       min-width: 100%;
       min-height: 100%; }
-  .thumbnail.card-basic .no-image img {
-    max-width: 100% !important; }
   .thumbnail.card-basic .caption {
     position: relative;
     padding: 25px;

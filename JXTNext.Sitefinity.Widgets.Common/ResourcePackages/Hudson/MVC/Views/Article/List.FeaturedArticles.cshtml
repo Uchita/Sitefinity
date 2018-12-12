@@ -33,7 +33,6 @@
             var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
             var imageThumbUrl = "";
             var noImageCls = "";
-
         <li>
             <div class="featured-article">
 
@@ -60,11 +59,11 @@
                     </a>
                 </h3>
                 <div class="desc">
-                    @{ 
+                    @{
                         var summary = Html.HtmlSanitize((string)item.Fields.Summary).ToString();
                         string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 180 ? summary.Substring(0, 180) + "..." : summary;
                     }
-                    @trimSummary                   
+                   @trimSummary
                 </div>
 
                 <a class="btn btn-more" href="@navigateUrl"></a>
@@ -79,8 +78,7 @@
                 imageThumbUrl = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.jpg";
                 noImageCls = "no-image";
             }
-
-            <div class="featured-article-image @noImageCls"><a href="@navigateUrl" title="@item.Fields.Title"><img alt="@item.Fields.Title" src="@imageThumbUrl" /></a></div>
+            <div class="featured-article-image"><a href="@navigateUrl" title="@item.Fields.Title"><img alt="@item.Fields.Title" src="@imageThumbUrl" /></a></div>
 
         </li>
 

@@ -39,7 +39,7 @@ blockquote{
 
     b, strong {
         font-weight: normal;
-        font-family: $font-family-bold;
+        font-family: $font-family-medium;
     }
 
     ul {
@@ -61,7 +61,7 @@ blockquote{
 
     dt {
         font-weight: normal;
-        font-family: $font-family-bold;
+        font-family: $font-family-medium;
     }
 
     ul, ol {
@@ -1566,7 +1566,7 @@ main {
     }
     
     > a {
-        font-family: $font-family-bold;
+        font-family: $font-family-medium;
         color: $sidebar-link-color;
         text-transform: uppercase;
         display: block!important;

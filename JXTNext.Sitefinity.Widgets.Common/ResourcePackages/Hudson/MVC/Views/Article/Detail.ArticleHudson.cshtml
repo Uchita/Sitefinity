@@ -54,7 +54,15 @@
             authorName = Model.Item.Fields.AuthorName.Fields.ConsultantName;
             authorUrl = Model.Item.Fields.AuthorName.Fields.UrlName.ToString();
             <p class="article-detail-author text-center">by <a href="/contact-us/find-a-hudson-consultant/consultant/@authorUrl">@authorName</a></p>
-        } else {
+        }
+        else if (Model.Item.Fields.BoardMember != null)
+        {
+            authorName = Model.Item.Fields.BoardMember.Fields.Name;
+            authorUrl = Model.Item.Fields.BoardMember.Fields.UrlName.ToString();
+            <p class="article-detail-author text-center">by <a href="/about-us/the-board/@authorUrl">@authorName</a></p>
+        }
+        else
+        {
             <p class="article-detail-author text-center">by @authorName</p>
         }
 

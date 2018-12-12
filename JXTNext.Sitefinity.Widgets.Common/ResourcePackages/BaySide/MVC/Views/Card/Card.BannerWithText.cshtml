@@ -5,7 +5,7 @@
         <div class="col-12 col-md-6 img-absolute-wrap">
             <img class="img-absolute" src="@Model.SelectedSizeUrl" alt="@Model.Heading">
         </div>
-        <div class="col-12 col-md-6 pt-5 pb-5">
+        <div class="col-12 col-md-6 pt-5 pb-5 @Model.CssClass">
             <div class="col-50-content content-right">
                 @if (!string.IsNullOrEmpty(Model.Heading))
                 {
@@ -14,7 +14,7 @@
                 <p>
                     @Html.HtmlSanitize(Model.Description)
                 </p>
-                <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-outline-primary mt-4">@Model.ActionName</a>
+                <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary mt-4">@Model.ActionName</a>
             </div>
         </div>
     </div>

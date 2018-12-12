@@ -2488,6 +2488,9 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.BannerWithBasic.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.RightBannerWithText.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.BannerWithText.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

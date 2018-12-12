@@ -8,13 +8,13 @@
     margin-left: auto;
 }
 
-@media (min-width: 576px) {
+/*@media (min-width: 576px) {
     .app-header .container,
     .app-content .container,
     .app-footer .container {
         max-width: 540px;
     }
-}
+}*/
 
 @media (min-width: 768px) {
     .app-header .container,

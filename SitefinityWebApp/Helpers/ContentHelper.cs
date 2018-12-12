@@ -26,19 +26,46 @@ namespace SitefinityWebApp.Helpers
     public static class ContentHelper
     {
 
-        public static string FindPagebyUrlNativeAPI(string urlName)
+        public static string FindPagebyUrlNativeAPI(string urlName, string parentNodeUrl)
         {
             var rootPageNodes = App.WorkWith().Pages().LocatedIn(PageLocation.Frontend).Where(p => p.Parent.Id == SiteInitializer.CurrentFrontendRootNodeId).Get().ToList();
             string pageTitle = string.Empty;
-            PageNode rootPageNode = rootPageNodes.Where(r => r.UrlName.Value == "specialist-recruitment-group").FirstOrDefault();
 
-            if (rootPageNode != null && rootPageNode.ShowInNavigation && rootPageNode.Nodes.Count > 0)
+            if (parentNodeUrl == "/specialist-recruitment-group")
             {
-                PageNode node = rootPageNode.Nodes.Where(r => r.UrlName.Value == "~/specialist-recruitment").FirstOrDefault();
-                if (node != null)
+                PageNode rootPageNode = rootPageNodes.Where(r => r.UrlName.Value == "specialist-recruitment-group").FirstOrDefault();
+
+                if (rootPageNode != null && rootPageNode.ShowInNavigation && rootPageNode.Nodes.Count > 0)
                 {
-                    PageNode subNode = node.Nodes.Where(n => n.UrlName.Value.Replace("~", "").Replace("/", "") == urlName.Replace("/", "")).FirstOrDefault();
-                    if (subNode != null) pageTitle = subNode.GetPageData().HtmlTitle.Value;
+                    PageNode node = rootPageNode.Nodes.Where(r => r.UrlName.Value == "~/specialist-recruitment").FirstOrDefault();
+                    if (node != null)
+                    {
+                        PageNode subNode = node.Nodes.Where(n => n.UrlName.Value.Replace("~", "").Replace("/", "") == urlName.Replace("/", "")).FirstOrDefault();
+                        if (subNode != null) pageTitle = subNode.GetPageData().HtmlTitle.Value;
+                    }
+                }
+            }
+
+            else if (parentNodeUrl == "/contact")
+            {
+                PageNode rootPageNode1 = rootPageNodes.Where(r => r.UrlName.Value == "contact").FirstOrDefault();
+
+                var pageManager = PageManager.GetManager();
+
+                if (rootPageNode1 != null && rootPageNode1.ShowInNavigation && rootPageNode1.Nodes.Count > 0)
+                {
+                    PageNode node1 = rootPageNode1.Nodes.Where(r => r.UrlName.Value == "our-brands").FirstOrDefault();
+                    if (node1 != null)
+                    {
+                        PageNode subNode1 = node1.Nodes.Where(n => n.UrlName.Value.Replace("contact", "").Replace("our-brands", "").Replace("~", "").Replace("/", "") == urlName.Replace("/", "").Replace("contact", "").Replace("our-brands", "").Replace("~", "").Replace("/", "")).FirstOrDefault();
+                        if (subNode1 != null)
+                        {
+                            PageNode linkedPageNode = pageManager.GetPageNode(subNode1.LinkedNodeId);
+                            if (linkedPageNode != null)
+                                pageTitle = linkedPageNode.GetPageData().HtmlTitle.Value;
+
+                        }
+                    }
                 }
             }
 

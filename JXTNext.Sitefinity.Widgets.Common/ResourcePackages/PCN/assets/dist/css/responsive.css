@@ -1,0 +1,558 @@
+/*
+-----------------------------------
+        Table of contents
+-----------------------------------
+1. Media(min-width:1210px)
+2. Media(max-width:1199px)
+3. Media(max-width:991px)
+4. Media(max-width:767px)
+5. Media(max-width:480px)
+
+-----*/
+@media (min-width: 1200px) and (max-width: 1209px) {
+
+    .container {
+        max-width: 1200px;
+        width: 100%;
+    }
+
+    .three_colmun_section .row {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    .three_colmun_section .colmun {
+        padding: 0 15px;
+    }
+}
+
+/* -----------------------------------
+    1. Media(min-width:1210px)
+----------------------------------- */
+
+@media (min-width: 1210px) {
+
+    .container {
+        max-width: 1210px;
+        width: 100%;
+    }
+}
+
+
+/* -----------------------------------
+    2. Media(max-width:1199px)
+----------------------------------- */
+@media (max-width: 1199px) {
+
+    .header .header_right {
+        padding: 7px 0 0 0;
+    }
+
+    .header .site_logo {
+        width: 190px;
+    }
+
+    .header .main_menu ul li {
+        margin-left: 15px;
+    }
+
+        .header .main_menu ul li a {
+            font-size: 14px;
+        }
+
+
+    .header .user_login a {
+        padding: 0 9px;
+        font-size: 14px;
+    }
+
+    .header .socials {
+        margin: 2px 0 0 0;
+    }
+
+        .header .socials ul li {
+            margin-left: 15px;
+        }
+
+            .header .socials ul li a {
+                font-size: 14px;
+            }
+
+    .banner_section h1 {
+        font-size: 50px;
+    }
+
+    .about_twoC .colmun {
+        padding: 0 3%;
+        height: 500px;
+    }
+
+    .job_section .item {
+        padding: 0 3%;
+    }
+
+    .logos_section {
+        padding: 30px 0;
+    }
+
+    .three_colmun_section .row {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    .three_colmun_section .colmun {
+        padding: 0 15px;
+    }
+
+    .header_banner {
+        padding: 150px 0 90px 0;
+    }
+
+        .header_banner h1 {
+            font-size: 50px;
+        }
+
+    .blog_section .latest_news .sub {
+        padding: 23px 5px 20px 5px;
+    }
+
+    .blog_section .latest_news .sub_title {
+        font-size: 26px;
+    }
+
+    .blog_sidebar .tab-content .sub_title {
+        font-family: FuturaBT-Heavy;
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
+
+
+/* -----------------------------------
+    3. Media(max-width:991px)
+----------------------------------- */
+@media (max-width: 991px) {
+
+    .header.menu_open:after {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        content: "";
+        background: rgba(0,0,0,0.5);
+    }
+
+    .header {
+        padding: 20px 0 0 0;
+    }
+
+        .header .site_logo {
+            width: 200px;
+        }
+
+    .menu_toogle {
+        margin: 6px 0 0 0;
+        display: block;
+    }
+
+    .header .header_right {
+        padding: 0 20px 30px 20px;
+        width: 50%;
+        height: 100%;
+        position: fixed;
+        top: 0px;
+        right: -100%;
+        opacity: 0;
+        overflow: auto;
+        background: #004F6E;
+        transition: all 0.3s ease-out 0s;
+        -webkit-transition: all 0.3s ease-out 0s;
+        -o-transition: all 0.3s ease-out 0s;
+        z-index: 10;
+    }
+
+        .header .header_right.open {
+            right: 0px;
+            opacity: 1;
+        }
+
+    .mobile_menu_logo {
+        display: block;
+    }
+
+    .header .main_menu {
+        padding: 15px 0;
+        width: 100%;
+        margin: 0 0 20px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+        .header .main_menu ul li {
+            width: 100%;
+            margin: 0px;
+        }
+
+            .header .main_menu ul li a {
+                padding: 5px 0;
+                border: none;
+            }
+
+                .header .main_menu ul li a:hover, .header .main_menu ul li.active a {
+                    color: #8EDD2B;
+                }
+
+    .header .socials {
+        padding-bottom: 20px;
+        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+        .header .socials ul li {
+            margin: 0 15px 0 0;
+        }
+
+
+    .header .user_login {
+        padding: 20px 0;
+        width: 100%;
+        float: left;
+    }
+
+        .header .user_login a, .header .user_login a:first-child, .header .user_login a:last-child {
+            padding: 0 20px;
+            height: 34px;
+            line-height: 34px;
+            font-family: FuturaBT-Heavy;
+            text-align: center;
+            color: #004F6E;
+            background: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+            .header .user_login a:last-child {
+                float: right;
+            }
+
+    .banner_section {
+        padding: 200px 0 0 0;
+        min-height: 440px;
+    }
+
+        .banner_section h1 {
+            font-size: 40px;
+        }
+
+            .banner_section h1 br {
+                display: none;
+            }
+
+    .search_job .input-style {
+        width: 200px;
+    }
+
+    .search_job .job_btn {
+        width: 200px;
+    }
+
+    .about_section .read_btn {
+        margin-top: 30px;
+    }
+
+    .about_section .title {
+        font-size: 20px;
+    }
+
+    .about_section .sub_title {
+        font-size: 26px;
+    }
+
+    .about_twoC {
+        margin-top: 55px;
+    }
+
+        .about_twoC .colmun {
+            padding: 0 15px;
+        }
+
+            .about_twoC .colmun .cntr {
+                padding-top: 0px;
+            }
+
+    .job_section {
+        padding: 60px 0;
+    }
+
+        .job_section .item {
+            padding: 0 15px;
+        }
+
+        .job_section .title {
+            margin: 25px 0 15px 0;
+            font-size: 20px;
+        }
+
+    .three_colmun_section {
+        padding: 40px 0 50px 0;
+    }
+
+        .three_colmun_section .title {
+            margin-bottom: 25px;
+            font-size: 22px;
+        }
+
+        .three_colmun_section .white_panel .sub {
+            padding: 25px 0;
+        }
+
+        .three_colmun_section .sub_title {
+            font-size: 22px;
+        }
+
+        .three_colmun_section .action_link {
+            padding-top: 10px;
+        }
+
+    .header_banner {
+        padding: 110px 0 55px 0;
+    }
+
+        .header_banner h1 {
+            font-size: 40px;
+        }
+
+    .blog_section .feature_article {
+        margin-bottom: 35px;
+    }
+
+        .blog_section .feature_article .text {
+            padding: 5px 8px 20px 8px;
+            margin: -60px 0 0 40px;
+            width: calc(100% - 80px);
+        }
+
+        .blog_section .feature_article .sub_title {
+            font-size: 28px;
+        }
+
+        .blog_section .feature_article p {
+            font-size: 14px;
+            line-height: 16px;
+        }
+
+    .blog_section .latest_news .sub {
+        padding: 20px 0px 20px 0px;
+    }
+
+    .blog_section .latest_news .sub_title {
+        margin: 18px 0 8px 0;
+        font-size: 18px;
+    }
+
+    .blog_section .latest_news p {
+        margin-bottom: 10px;
+        font-size: 14px;
+        line-height: 16px;
+    }
+
+    .blog_section .latest_news .action_link {
+        font-size: 13px;
+    }
+
+    .blog_section .news_pagination a span {
+        padding: 7px 5px;
+    }
+
+    .blog_sidebar {
+        padding-left: 10px;
+    }
+
+        .blog_sidebar .title {
+            font-size: 16px;
+        }
+
+        .blog_sidebar .news_tabs li a {
+            padding: 5px 4px;
+            font-size: 15px;
+        }
+
+        .blog_sidebar .tab-content .sub_title {
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        .blog_sidebar .tab-content .action_link {
+            font-size: 13px;
+        }
+
+    .footer_top {
+        padding: 40px 0 35px 0;
+    }
+
+        .footer_top ul li a {
+            font-size: 14px;
+        }
+}
+
+
+/* -----------------------------------
+    4. Media(max-width:767px)
+----------------------------------- */
+@media (max-width: 767px) {
+
+    .header .header_right {
+        padding: 0 15px;
+        width: calc(100% - 20%);
+    }
+
+    .mobile_menu_logo {
+        padding: 15px 0;
+    }
+
+        .mobile_menu_logo .logo {
+            margin: 3px 0 0 0;
+            width: 150px;
+        }
+
+    .banner_section {
+        padding: 165px 0 0 0;
+        min-height: 370px;
+    }
+
+        .banner_section h1 {
+            font-size: 26px;
+            line-height: 1.2em;
+        }
+
+    .search_job {
+        padding: 25px 0;
+    }
+
+        .search_job .input-style {
+            margin: 0 0 10px 0;
+            width: 100%;
+        }
+
+        .search_job .job_btn {
+            margin: 0px;
+            width: 100%;
+        }
+
+    .about_twoC .colmun {
+        padding: 60px 15px;
+        height: auto;
+    }
+
+        .about_twoC .colmun.left:after {
+            right: -15px;
+            left: -15px;
+        }
+
+        .about_twoC .colmun.left .image {
+            right: -15px;
+            left: -15px;
+        }
+
+        .about_twoC .colmun.right:after {
+            right: -15px;
+            left: -15px;
+        }
+
+        .about_twoC .colmun.right .image {
+            right: -15px;
+            left: -15px;
+        }
+
+        .about_twoC .colmun .read_btn {
+            margin-top: 40px;
+        }
+
+    .job_section {
+        padding: 40px 0;
+    }
+
+        .job_section .item {
+            padding: 15px;
+        }
+
+        .job_section p {
+            margin-bottom: 20px;
+        }
+
+    .three_colmun_section {
+        padding: 30px 0 40px 0;
+    }
+
+        .three_colmun_section .colmun {
+            padding: 15px;
+        }
+
+        .three_colmun_section .sub_title {
+            font-size: 22px;
+            font-family: FuturaBT-Heavy;
+        }
+
+    .footer_top {
+        padding: 30px 0 25px 0;
+    }
+
+        .footer_top ul li {
+            margin: 5px 8px;
+        }
+
+    .footer_bottom ul li {
+        margin: 0 10px;
+    }
+
+    .header_banner h1 {
+        font-size: 28px;
+    }
+
+    .blog_section {
+        padding: 30px 0;
+    }
+
+        .blog_section h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .blog_section .blogcontent {
+            margin-bottom: 25px;
+        }
+
+        .blog_section .feature_article {
+            margin-bottom: 25px;
+        }
+
+            .blog_section .feature_article .text {
+                margin: -60px 0 0 30px;
+                padding: 5px 0 20px 0;
+                width: calc(100% - 60px);
+            }
+
+            .blog_section .feature_article .sub_title {
+                font-size: 24px;
+            }
+
+        .blog_section .latest_news .news {
+            width: 50%;
+        }
+
+        .blog_section .news_pagination a span {
+            padding: 6px 3px;
+            font-size: 14px;
+        }
+}
+
+/* -----------------------------------
+    5. Media(max-width:480px)
+----------------------------------- */
+@media (max-width: 567px) {
+
+    .blog_section .latest_news .news {
+        padding-bottom: 15px;
+        width: 100%;
+    }
+}

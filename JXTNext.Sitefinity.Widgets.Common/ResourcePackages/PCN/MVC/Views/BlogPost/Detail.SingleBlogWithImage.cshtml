@@ -1,0 +1,33 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Web.DataResolving;
+
+
+
+@{
+    var imageurl = "";
+    foreach (var relatedItem in Model.Item.Fields.BlogImage)
+    {
+        imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+    }
+    var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(Model.Item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage);
+}
+<div class="article @Model.CssClass">
+    <div class="image">
+        <a href="@navigateUrl"><img src="@imageurl" alt="image"></a>
+    </div>
+    <div class="text">
+        <div class="sub">
+            <h4 class="sub_title"><a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@Model.Item.Fields.Title</a></h4>
+            <div class="date_author">
+                By
+                <strong> @DataResolver.Resolve(Model.Item.DataItem, "Author", null)</strong> | @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")
+            </div>
+            <p>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</p>
+            <a href="@navigateUrl" class="action_link">Read More</a>
+        </div>
+    </div>
+
+</div>

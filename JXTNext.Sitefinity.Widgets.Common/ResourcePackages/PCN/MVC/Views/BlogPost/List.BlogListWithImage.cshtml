@@ -1,0 +1,70 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Frontend.Blogs.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Blogs.Mvc.Models.Blog;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+@using Telerik.Sitefinity.Web.DataResolving;
+
+
+@Html.Script(ScriptRef.JQuery, "top", false)
+
+
+<div class="@Model.CssClass row">
+
+    @foreach (var item in Model.Items)
+    {
+
+        var imageurl = "";
+        foreach (var relatedItem in item.Fields.BlogImage)
+        {
+            imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+        }
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+
+        <div class="news col-xs-12 col-sm-6">
+            <div class="sub">
+                <div class="under">
+
+                    <div class="image">
+                        <a href="@navigateUrl"><img src="@imageurl" alt="image"></a>
+                    </div>
+
+                    <div class="text">
+
+                        <h4 class="sub_title"><a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a></h4>
+
+                        <div class="date_author">
+                            By <strong> @DataResolver.Resolve(item.DataItem, "Author", null)</strong> | @item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")
+                        </div>
+                        <p>@Html.HtmlSanitize((string)item.Fields.Summary)</p>
+                        <a href="@navigateUrl" class="action_link">Read More</a>
+                        <a href="#" class="action_link leave">Leave Comment</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+@if (Model.ShowPager)
+{
+    <div class="news_pagination">
+
+        @Html.Action("Index", "ContentPager", new
+          {
+              currentPage = Model.CurrentPage,
+              totalPagesCount = Model.TotalPagesCount.Value,
+              redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
+          })
+
+    </div>
+}
+
+

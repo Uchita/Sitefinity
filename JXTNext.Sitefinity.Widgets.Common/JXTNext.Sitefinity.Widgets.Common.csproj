@@ -318,6 +318,9 @@
     <Content Include="ResourcePackages\BaySide\GridSystem\Templates\background-left-image-layout.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\BaySide\GridSystem\Templates\section.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\GridSystem\Templates\background-right-image-layout.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -2486,6 +2489,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.BannerWithBasic.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.LeftTextWithBanner.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.Image.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.RightBannerWithText.cshtml">

@@ -24,18 +24,19 @@
 <section class="full-section @Model.CssClass">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-6 img-absolute-wrap">
-                <div class="img-absolute image-pos-left bg-image" style="background-image: url('@Model.SelectedSizeUrl');"></div>
-            </div>
+
             <div class="g-section col-12 col-md-6">
                 @if (!string.IsNullOrEmpty(Model.Heading))
                 {
-                <h3>@Html.HtmlSanitize(Model.Heading)</h3>
+                    <h3>@Html.HtmlSanitize(Model.Heading)</h3>
                 }
                 <p>
                     @Html.HtmlSanitize(Model.Description)
                 </p>
                 <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary mt-4">@Model.ActionName</a>
+            </div>
+            <div class="col-12 col-md-6 img-absolute-wrap">
+                <div class="img-absolute bg-image" style="background-image: url('@Model.SelectedSizeUrl');"></div>
             </div>
         </div>
     </div>

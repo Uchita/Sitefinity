@@ -1117,6 +1117,7 @@
     <Content Include="ResourcePackages\BaySide\GridSystem\Templates\page-section-light.html" />
     <Content Include="ResourcePackages\BaySide\GridSystem\Templates\page-section-lighter.html" />
     <Content Include="ResourcePackages\BaySide\GridSystem\Templates\page-section.html" />
+    <Content Include="ResourcePackages\BaySide\GridSystem\Templates\section.html" />
     <Content Include="ResourcePackages\BaySide\gruntfile.js" />
     <Content Include="ResourcePackages\BaySide\MVC\Scripts\Navigation\leftSidebar.js" />
     <Content Include="ResourcePackages\BaySide\MVC\Scripts\Navigation\pills.js" />
@@ -1902,6 +1903,9 @@
     <Content Include="ResourcePackages\BaySide\package.json" />
     <Content Include="ResourcePackages\BaySide\razorgenerator.directives" />
     <Content Include="ResourcePackages\BaySide\README.md" />
+    <Content Include="ResourcePackages\BaySide\MVC\Views\Card\Card.Image.cshtml" />
+    <Content Include="ResourcePackages\BaySide\MVC\Views\Card\Card.RightBannerWithText.cshtml" />
+    <Content Include="ResourcePackages\BaySide\MVC\Views\Card\Card.LeftTextWithBanner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Jxt.Sitefinity.Jobs\Jxt.Sitefinity.Jobs.csproj">

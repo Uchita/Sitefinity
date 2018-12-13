@@ -5697,6 +5697,15 @@ select.hs-input {
     font-size: 1em !important;
 }
 
+.simpe-list {
+    padding-left: 0;
+    list-style-position: inside;
+}
+
+.hbspt-form {
+    padding-top: 60px;
+}
+
 /*=========IDS  End=====*/
 
 /* ------App header__start------ */
@@ -6481,18 +6490,18 @@ select.hs-input {
         font-weight: 400;
     }
 
-    .sm-col-layout .row.h-100.align-items-center .col-12 {
+    .sm-col-layout .row.multicol-row .col-12 {
         margin-bottom: 40px;
     }
 
 @media (min-width: 992px) {
-    .sm-col-layout .row.h-100.align-items-center .col-12:nth-last-of-type(1), .sm-col-layout .row.h-100.align-items-center .col-12:nth-last-of-type(2), .sm-col-layout .row.h-100.align-items-center .col-12:nth-last-of-type(3) {
+    .sm-col-layout .row.multicol-row .col-12:nth-last-of-type(1), .sm-col-layout .row.multicol-row .col-12:nth-last-of-type(2), .sm-col-layout .row.multicol-row .col-12:nth-last-of-type(3) {
         margin-bottom: 0;
     }
 }
 
 @media (max-width: 767px) {
-    .sm-col-layout .row.h-100.align-items-center .col-12:last-child {
+    .sm-col-layout .row.multicol-row .col-12:last-child {
         margin-bottom: 0;
     }
 }
@@ -6663,6 +6672,7 @@ select.hs-input {
         padding-top: 20px;
         padding-bottom: 20px;
         border-right: 1px solid #fff;
+        min-height: 100%;
     }
 
         .section-graphics .graphic-col .item-icon {

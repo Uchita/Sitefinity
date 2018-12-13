@@ -3,7 +3,7 @@
 
 <section class="sm-col-layout bg-dark-grey">
     <div class="container">
-        <div class="row">
+        <div class="row align-items-center">
 
             @if (!string.IsNullOrEmpty(Model.GroupHeader))
             {
@@ -18,7 +18,7 @@
 
 
             <div class="col-12 col-lg-9">
-                <div class="row h-100 align-items-center">
+                <div class="row multicol-row">
                     @foreach (var card in Model.Cards)
                     {
                         <div class="col-12 col-md-6 col-lg-4">

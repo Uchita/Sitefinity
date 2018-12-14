@@ -49,21 +49,25 @@
     }
 
     .header .site_logo {
-        width: 190px;
+        width: 160px;
+    }
+
+    .header .main_menu ul li span {
+        font-size: 14px;
     }
 
     .header .main_menu ul li {
-        margin-left: 15px;
+        margin-left: 8px;
     }
 
         .header .main_menu ul li a {
-            font-size: 14px;
+            font-size: 12px;
         }
 
 
     .header .user_login a {
         padding: 0 9px;
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .header .socials {
@@ -71,12 +75,16 @@
     }
 
         .header .socials ul li {
-            margin-left: 15px;
+            margin-left: 12px;
         }
 
             .header .socials ul li a {
-                font-size: 14px;
+                font-size: 13px;
             }
+
+    .header .user_login {
+        padding: 5px 0 0 3px;
+    }
 
     .banner_section h1 {
         font-size: 50px;
@@ -256,29 +264,34 @@
         width: 200px;
     }
 
-    .about_section .read_btn {
-        margin-top: 30px;
+    .about_section {
+        padding: 38px 0 55px 0;
     }
 
-    .about_section .title {
-        font-size: 20px;
-    }
-
-    .about_section .sub_title {
-        font-size: 26px;
-    }
-
-    .about_twoC {
-        margin-top: 55px;
-    }
-
-        .about_twoC .colmun {
-            padding: 0 15px;
+        .about_section p {
+            padding: 0 8%;
         }
 
-            .about_twoC .colmun .cntr {
-                padding-top: 0px;
-            }
+        .about_section .read_btn {
+            margin-top: 30px;
+        }
+
+        .about_section .title {
+            font-size: 20px;
+        }
+
+        .about_section .sub_title {
+            font-size: 26px;
+        }
+
+
+    .about_twoC .colmun {
+        padding: 0 15px;
+    }
+
+        .about_twoC .colmun .cntr {
+            padding-top: 0px;
+        }
 
     .job_section {
         padding: 60px 0;
@@ -438,6 +451,10 @@
             margin: 0px;
             width: 100%;
         }
+
+    .about_section p {
+        padding: 0;
+    }
 
     .about_twoC .colmun {
         padding: 60px 15px;

@@ -3,16 +3,12 @@
 
 <section class="cta" style="background-image: url('@Model.SelectedSizeUrl');">
     <div class="container">
-        <div class="row">
-            <div class="col-8 ml-auto mr-auto text-center">
-                <div class="max-720">
-                    <p class="quote-text text-white text-italic mb-0">@Html.HtmlSanitize(Model.Description)</p>
-                    @if (!string.IsNullOrEmpty(Model.ActionName))
-                    {
-                        <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary mt-3" role="button">@Model.ActionName</a>
-                    }
-                </div>
-            </div>
+        <div class="max-720 text-center">
+            <p class="quote-text text-white text-italic mb-0">@Html.HtmlSanitize(Model.Description)</p>
+            @if (!string.IsNullOrEmpty(Model.ActionName))
+            {
+                <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary mt-3" role="button">@Model.ActionName</a>
+            }
         </div>
     </div>
 </section>

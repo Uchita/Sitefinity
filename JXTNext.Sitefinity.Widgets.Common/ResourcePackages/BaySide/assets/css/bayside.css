@@ -5543,15 +5543,7 @@ p {
         color: #0088CF;
     }
 
-.network_talent h2 + p {
-    margin-bottom: 30px;
-}
-
 /*=========IDS=====*/
-.network_talent h2 + p {
-    margin-bottom: 30px;
-}
-
 .job_feature .text-white {
     font-size: 28px;
     color: #fff;
@@ -5706,7 +5698,94 @@ select.hs-input {
     padding-top: 60px;
 }
 
+.mt-30 {
+    margin-top: 30px;
+}
+
 /*=========IDS  End=====*/
+
+:root {
+    --blue: #0088CF;
+    --green: #54b948;
+    --sage: #f0f7ee;
+    --dark-blue: #304e6b;
+    --white: #fff;
+    --black: #333;
+    --red: #ea232a;
+    --dark: #414141;
+}
+
+/*-------Footer----------*/
+.app-footer {
+    background: #3c4044;
+    padding: 90px 0;
+    color: #BCBEC0;
+}
+
+    .app-footer h4 {
+        color: #BCBEC0;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 1.5;
+    }
+
+    .app-footer ul {
+        padding-left: 0;
+        margin-bottom: 20px;
+    }
+
+        .app-footer ul li {
+            list-style: none;
+            line-height: 2;
+        }
+
+            .app-footer ul li a {
+                text-decoration: none;
+                transition: all 0.4s ease;
+                -webkit-transition: all 0.4s ease;
+                -ms-transition: all 0.4s ease;
+                -moz-transition: all 0.4s ease;
+                position: relative;
+                display: inline-block;
+                color: #7A8087;
+                font-size: 14px;
+                line-height: 1.8;
+            }
+
+                .app-footer ul li a:hover {
+                    color: #f1f1f1;
+                }
+
+    .app-footer .footer_menu_inline {
+        margin-bottom: 5px;
+    }
+
+        .app-footer .footer_menu_inline li {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+            .app-footer .footer_menu_inline li a {
+                color: #9B9B9B;
+            }
+
+    .app-footer .social_links li a {
+        font-size: 18px;
+        line-height: 1;
+        color: #bcbec0;
+    }
+
+        .app-footer .social_links li a::before {
+            display: none;
+        }
+
+    .app-footer .copyright {
+        margin: 0;
+        font-size: 12px;
+        color: #fff;
+    }
+
+/*-------Footer------End----*/
 
 /* ------App header__start------ */
 .app-header {
@@ -6085,89 +6164,6 @@ select.hs-input {
 
 /* ------App header__End------ */
 
-:root {
-    --blue: #0088CF;
-    --green: #54b948;
-    --sage: #f0f7ee;
-    --dark-blue: #304e6b;
-    --white: #fff;
-    --black: #333;
-    --red: #ea232a;
-    --dark: #414141;
-}
-
-/*-------Footer----------*/
-.app-footer {
-    background: #3c4044;
-    padding: 90px 0;
-    color: #BCBEC0;
-}
-
-    .app-footer h4 {
-        color: #BCBEC0;
-        font-size: 17px;
-        font-weight: 600;
-        line-height: 1.5;
-    }
-
-    .app-footer ul {
-        padding-left: 0;
-        margin-bottom: 20px;
-    }
-
-        .app-footer ul li {
-            list-style: none;
-            line-height: 2;
-        }
-
-            .app-footer ul li a {
-                text-decoration: none;
-                transition: all 0.4s ease;
-                -webkit-transition: all 0.4s ease;
-                -ms-transition: all 0.4s ease;
-                -moz-transition: all 0.4s ease;
-                position: relative;
-                display: inline-block;
-                color: #7A8087;
-                font-size: 14px;
-                line-height: 1.8;
-            }
-
-                .app-footer ul li a:hover {
-                    color: #f1f1f1;
-                }
-
-    .app-footer .footer_menu_inline {
-        margin-bottom: 5px;
-    }
-
-        .app-footer .footer_menu_inline li {
-            display: inline-block;
-            margin-right: 15px;
-        }
-
-            .app-footer .footer_menu_inline li a {
-                color: #9B9B9B;
-            }
-
-    .app-footer .social_links li a {
-        font-size: 18px;
-        line-height: 1;
-        color: #bcbec0;
-    }
-
-        .app-footer .social_links li a::before {
-            display: none;
-        }
-
-    .app-footer .copyright {
-        margin: 0;
-        font-size: 12px;
-        color: #fff;
-    }
-
-/*-------Footer------End----*/
-
 /*==========Hero Banner==========*/
 .hero-banner {
     color: #FFFFFF;
@@ -6468,10 +6464,11 @@ select.hs-input {
 .content-two-colmun > img {
     max-width: 180px;
     line-break: normal;
+    margin-bottom: 25px;
 }
 
 .content-two-colmun > .btn {
-    margin-top: 18px;
+    margin-top: 19px;
 }
 
 .sm-col-layout {

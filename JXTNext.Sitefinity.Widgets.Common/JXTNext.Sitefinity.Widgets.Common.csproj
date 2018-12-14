@@ -2876,6 +2876,9 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\MultiCard\Cards.TextWithBackground.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\MultiCard\Cards.ButtonWhiteTextWithBackground.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\MultiCard\Cards.WhiteTextWithBackground.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

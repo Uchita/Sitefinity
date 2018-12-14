@@ -11,12 +11,12 @@
     {
         if (string.IsNullOrEmpty(Model.ActionName))
         {
-            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-link pl-0"></a>
+            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-link pl-0 @Model.CssClass"></a>
 
         }
         else
         {
-            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn  btn-link pl-0">@Model.ActionName</a>
+            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn  btn-link pl-0 @Model.CssClass">@Model.ActionName</a>
         }
     }
 </div>

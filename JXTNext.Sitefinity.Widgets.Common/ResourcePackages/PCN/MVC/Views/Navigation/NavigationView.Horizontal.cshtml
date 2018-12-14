@@ -11,24 +11,24 @@
 @using Telerik.Sitefinity.DynamicModules.Model;
 
 @*<ul>
-    <li class="active"><a href="#">About</a></li>
-    <li><a href="#">Candidates</a></li>
-    <li><a href="#">Clients</a></li>
-    <li><a href="#">Jobs</a></li>
-    <li><a href="#">News</a></li>
-    <li><a href="#">Magazine</a></li>
-    <li><a href="#">Contact</a></li>
-</ul>*@
+        <li class="active"><a href="#">About</a></li>
+        <li><a href="#">Candidates</a></li>
+        <li><a href="#">Clients</a></li>
+        <li><a href="#">Jobs</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Magazine</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>*@
 
 
-   
 
-    <ul class="first-level">
-        @foreach (var node in Model.Nodes)
-        {
-            @RenderRootLevelNode(node);
-        }
-    </ul>
+
+<ul class="first-level">
+    @foreach (var node in Model.Nodes)
+    {
+        @RenderRootLevelNode(node);
+    }
+</ul>
 
 @*Here is specified the rendering for the root level*@
 @helper RenderRootLevelNode(NodeViewModel node)
@@ -38,6 +38,7 @@
         @if (node.ChildNodes.Count > 0)
         {
             <span class="fas fa-angle-down"></span>
+            <span class="mobile-arrow fas fa-angle-right"></span>
             <ul class="second-level">
                 @foreach (var childNode in node.ChildNodes)
                 {
@@ -56,6 +57,7 @@
         @if (node.ChildNodes.Count > 0)
         {
             <span class="fas fa-angle-down"></span>
+            <span class="mobile-arrow fas fa-angle-right"></span>
             <ul class="third-level">
                 @foreach (var childNode in node.ChildNodes)
                 {

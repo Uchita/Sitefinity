@@ -291,3 +291,63 @@
     }
     
 }
+
+
+//
+.single-card{
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    .consultant{
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        .consultant-photo{
+            display: block;
+            width: 60%;
+            max-width: 371px;
+            height: 371px;
+            img{
+                width: 100%;
+            }
+        }
+        .caption{
+            position: relative;
+            display: block;
+            min-height: 200px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            width: 40%;
+            text-align: center;
+            padding: 60px;
+            flex-grow: 1;
+        }
+        .consultant-name{
+            margin-bottom: 0;
+        }
+        .consultant-sum{
+            margin-bottom: 15px;
+            color: $global-text-color;
+        }
+        .consultant-btn{
+            position: static;
+            padding: 0;
+        }
+
+        @media (max-width: 767px){
+            display: block;
+            .consultant-photo{
+                width: auto;
+                margin: 0 auto;
+                height: auto;
+            }
+            .caption{
+                width: 95%;
+                max-width: 300px;
+                margin: 0 auto; 
+                padding: 20px;
+                min-height: 100px;
+            }
+        }
+    }
+    
+}

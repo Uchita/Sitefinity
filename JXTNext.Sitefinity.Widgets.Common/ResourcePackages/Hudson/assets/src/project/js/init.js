@@ -227,7 +227,7 @@ $(document).ready(function () {
         autoplay: true,
         autoplayTimeout: 7000,
     });
-
+    
     $('.owl-consultants').owlCarousel({
         margin: 25,
         autoplay: true,

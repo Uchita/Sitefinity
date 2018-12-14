@@ -43,7 +43,7 @@ blockquote{
     }
 
     ul {
-        padding-left: 15px;
+        padding-left: 20px;
         list-style: square outside none;
 
         &.check-list {
@@ -356,7 +356,7 @@ blockquote{
         border: 1px solid $forms-element-border;
         -webkit-border-radius: 0;
         border-radius: 0;
-        padding: 10px 12px;
+        padding: 9px 12px 11px;
 
         &:hover,
         &:focus {

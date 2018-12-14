@@ -1475,7 +1475,22 @@ h1, h2, h3, h4, h5, h6 {
                 }
 
 
+.right-content-mid .partner-item {
+    padding-bottom: 30px;
+}
 
+.right-content-mid a {
+    color: #4294c4;
+    text-decoration: underline;
+}
+
+    .right-content-mid a:hover {
+        text-decoration: none;
+    }
+
+.right-content-mid ul {
+    padding: 0 0 10px 20px;
+}
 
 
 
@@ -1485,9 +1500,13 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* https://www.r34.jxt.com.au/ style.css */
-#dynamic-container, #content-container, #job-dynamic-container {
+#dynamic-container, #content-container, #job-dynamic-container, .dynamic-container {
     padding-top: 3em;
     padding-bottom: 2em;
+}
+
+.dynamic-container {
+    clear: both;
 }
 
 #dynamic-side-left-container, #side-left {

@@ -2750,6 +2750,12 @@
     <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.BlogListWithImage.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\Consultant\Detail.MemberDetail.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\Consultant\List.MeettheTeamLandingPage.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">

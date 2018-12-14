@@ -8,102 +8,112 @@
 @Html.Script(ScriptRef.JQuery, "top")
 @Html.Script(Url.WidgetContent("Mvc/Scripts/Bootstrap/js/bootstrap.min.js"), "top", false)
 
-<div class="@Model.CssClass left-sidebar">
+<div class="@Model.CssClass prefix_left-navigation">
     @* @Html.Action("GetView", new { viewName = "Dropdown",  model= Model}) *@
 
     <nav class="navbar " role="navigation">
 
         <div class="container-fluid">
-            @foreach (var node in Model.Nodes)
-            {
-                @RenderRootLevelNode(node);
-            }
+            <ul>
+                @foreach (var node in Model.Nodes)
+                {
+                    @RenderRootLevelNode(node);
+                }
+            </ul>
         </div>
     </nav>
 </div>
 
 @*Here is specified the rendering for the root level*@
 @helper RenderRootLevelNode(NodeViewModel node)
-{
-    if (node.ChildNodes.Count > 0)
     {
-        <a href="@node.Url" target="@node.LinkTarget">@node.Title</a>
+                        /**/
 
-        <ul class="nav navbar-nav">
-            @RenderSubLevelsRecursive(node)
-        </ul>
-    }
-    else
-    {
-        <a href="@node.Url" target="@node.LinkTarget">@node.Title</a>
-    }
+                        if (node.ChildNodes.Count > 0)
+                        {
+                            <li><a href="@node.Url" target="@node.LinkTarget">@node.Title</a></li>
+
+                            <ul class="nav navbar-nav">
+                                @RenderSubLevelsRecursive(node)
+                            </ul>
+                        }
+                        else
+                        {
+                            <li><a href="@node.Url" target="@node.LinkTarget">@node.Title</a></li>
+                        }
 }
 
 @*Here is specified the rendering for first child levels*@
 @helper RenderSubLevelsRecursive(NodeViewModel node)
-{
-    foreach (var childNode in node.ChildNodes)
     {
-        if (childNode.ChildNodes.Count > 0)
-        {
-            <li class="dropdown dropdown-first-level dropdown-@GetClass(childNode)">
-                <a href="@childNode.Url" target="@childNode.LinkTarget">
-                    @childNode.Title
-                </a>
-                <span class="fas fa-angle-right dropdown-toggle" data-toggle="dropdown"></span>
-                <ul class="dropdown-menu">
-                    @RenderSubSubLevelsRecursive(childNode)
-                </ul>
-            </li>
-        }
-        else
-        {
-            <li class="@GetClass(childNode)">
-                <a href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
-            </li>
-        }
-    }
+                        /**/
+
+                        foreach (var childNode in node.ChildNodes)
+                        {
+                            if (childNode.ChildNodes.Count > 0)
+                            {
+                                <li class="dropdown dropdown-first-level dropdown-@GetClass(childNode)">
+                                    <a href="@childNode.Url" target="@childNode.LinkTarget">
+                                        @childNode.Title
+                                    </a>
+                                    <span class="fas fa-angle-right dropdown-toggle" data-toggle="dropdown"></span>
+                                    <ul class="dropdown-menu">
+                                        @RenderSubSubLevelsRecursive(childNode)
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="@GetClass(childNode)">
+                                    <a href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
+                                </li>
+                            }
+                        }
 }
 
 @*Here is specified the rendering for all child levels*@
 @helper RenderSubSubLevelsRecursive(NodeViewModel node)
-{
-    foreach (var childNode in node.ChildNodes)
     {
-        if (childNode.ChildNodes.Count > 0)
-        {
-            <li class="dropdown dropdown-submenu-level dropdown-@GetClass(childNode)">
-                <a href="@childNode.Url" target="@childNode.LinkTarget">
-                    @childNode.Title
-                </a>
-                <span class="fas fa-angle-down submenu-toggle"></span>
-                <ul class="dropdown-menu">
-                    @RenderSubSubLevelsRecursive(childNode)
-                </ul>
-            </li>
-        }
-        else
-        {
-            <li class="@GetClass(childNode)">
-                <a href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
-            </li>
-        }
-    }
+                        /**/
+
+                        foreach (var childNode in node.ChildNodes)
+                        {
+                            if (childNode.ChildNodes.Count > 0)
+                            {
+                                <li class="dropdown dropdown-submenu-level dropdown-@GetClass(childNode)">
+                                    <a href="@childNode.Url" target="@childNode.LinkTarget">
+                                        @childNode.Title
+                                    </a>
+                                    <span class="fas fa-angle-down submenu-toggle"></span>
+                                    <ul class="dropdown-menu">
+                                        @RenderSubSubLevelsRecursive(childNode)
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="@GetClass(childNode)">
+                                    <a href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
+                                </li>
+                            }
+                        }
 }
 
 @*Resolves the class that will be added for each node depending whether it is selected*@
 @helper GetClass(NodeViewModel node)
-{
-
-    if (node.IsCurrentlyOpened)
     {
-        //@Html.Raw("active");
-        @Html.Raw("current")
-}
-if (node.HasChildOpen)
-{
-    //@Html.Raw("active");
-        @Html.Raw("current open");
-    }
+                        /**/
+
+
+                        if (node.IsCurrentlyOpened)
+                        {
+                            //@Html.Raw("active");
+                            @Html.Raw("current")
+                        }
+                        if (node.HasChildOpen)
+                        {
+                            //@Html.Raw("active");
+                            @Html.Raw("current open");
+                        }
 }
 @Html.Script(Url.WidgetContent("MVC/Scripts/Navigation/leftSidebar.js"), "bottom")

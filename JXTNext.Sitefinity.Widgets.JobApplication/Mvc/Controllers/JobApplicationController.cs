@@ -190,19 +190,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             if (isUserLoggedIn && !string.IsNullOrEmpty(userEmail))
             {
                 var response = _blConnector.GetMemberByEmail(userEmail);
+                List<SelectListItem> myResumes = new List<SelectListItem>();
+                myResumes.Add(new SelectListItem { Text = "SELECT YOUR CV", Value = "0" });
                 if (response.Member?.ResumeFiles != null)
                 {
                     var resumeList = JsonConvert.DeserializeObject<List<ProfileResume>>(response.Member.ResumeFiles);
-                    List<SelectListItem> myResumes = new List<SelectListItem>();
-                    myResumes.Add(new SelectListItem { Text = "SELECT YOUR CV", Value = "0" });
+                    
                     foreach (var item in resumeList)
                     {
                         var datestr = item.UploadDate.ToShortDateString();
                         myResumes.Add(new SelectListItem { Text = datestr + " - " + item.FileFullName, Value = item.Id.ToString() });
                     }
-                    ViewBag.ResumeList = myResumes;
-
                 }
+                ViewBag.ResumeList = myResumes;
             }
 
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;

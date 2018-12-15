@@ -261,6 +261,7 @@
     <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite\twitter.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Hudson\csslint_report\csslint.xml" />
     <Content Include="ResourcePackages\Hudson\GridSystem\Templates\container.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

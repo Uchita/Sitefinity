@@ -171,15 +171,31 @@
                         </div>
                     }
 
-                    <div class="form-group row" id="user-profile-resume" hidden>
-                        <label class="form-label col-xs-12 col-md-4 text-right"></label>
-                        <div class="col-xs-12 col-md-8">
-                            <div class="select">
-                                <select class="list-group" id="user-profile-resume-list"></select><!-- end box -->
-                            </div>
+                        <div class="form-group row" id="user-profile-resume" hidden>
+                            <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="list-group">
+                                    <label for="selectresume" class="radiobutton">
+                                        <input id="selectresume" type="radio" name="resume" checked />
+                                        <span class="radiobutton-icon fas fa-circle"></span>
+                                        <span class="text-right">Select a resume stored on Hudson</span>
+                                    </label>
+                                    <label for="uploadresume" class="radiobutton">
+                                        <input id="uploadresume" type="radio" name="resume" />
+                                        <span class="radiobutton-icon fas fa-circle"></span>
+                                        <span class="text-right">Upload a resume</span>
+                                    </label>
+                                </div>
 
+                            </div>
+                            <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="list-group select">
+                                    <select id="user-profile-resume-list"></select><!-- end box -->
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
 
 
                     <!-- Resume -->
@@ -353,7 +369,7 @@
         if (userLoggedInParamFromViewbag == 'True') {
             $("#MySavedResumes").parent('div').show();
         } else {
-            $("#user-profile-resume-list").show();
+            $("#user-profile-resume-list").parent('div').show();
         }
         
     });
@@ -363,7 +379,7 @@
         if (userLoggedInParamFromViewbag == 'True') {
             $("#MySavedResumes").parent('div').hide();
         } else {
-            $("#user-profile-resume-list").hide();
+            $("#user-profile-resume-list").parent('div').hide();
         }
         
     });
@@ -515,6 +531,7 @@
                                          $('#appFormState').text('Upload your files');
                                          $("#upload-files-container").show();
                                          $('#user-profile-resume').removeAttr('hidden');
+                                         $('#uploadresumeblock').hide();
                                          $('#email-selected').val($('#userid').val());
                                      }
                                  },

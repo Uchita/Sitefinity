@@ -13,26 +13,24 @@
 
             </div>
         </div>
+    </div>
+    <div id="featuredInsights" class="featured-carousel owl-carousel">
+        @foreach (var card in Model.Cards)
+        {
 
-        <div id="featuredInsights" class="featured-carousel owl-carousel">
-            @foreach (var card in Model.Cards)
-            {
-
-                <div class="item">
-                    <img src="@card.SelectedSizeUrl" alt="@card.ImageAlternativeText">
-                    <div class="carousel-content">
-                        <div class="carousel-title">@Html.HtmlSanitize(card.Heading)</div>
-                        <p>@Html.HtmlSanitize(card.Description)</p>
-                    </div>
-                    <div class="carousel-overlay"></div>
-                    <div class="carousel-abs-content">
-                        <a href="@Html.HtmlSanitize(@card.ActionUrl)" target="_blank">@Html.HtmlSanitize(@card.ActionName)</a>
-                    </div>
+            <div class="item">
+                <img src="@card.SelectedSizeUrl" alt="@card.ImageAlternativeText">
+                <div class="carousel-content">
+                    <div class="carousel-title">@Html.HtmlSanitize(card.Heading)</div>
+                    <p>@Html.HtmlSanitize(card.Description)</p>
                 </div>
+                <div class="carousel-overlay"></div>
+                <div class="carousel-abs-content">
+                    <a href="@Html.HtmlSanitize(@card.ActionUrl)" target="_blank">@Html.HtmlSanitize(@card.ActionName)</a>
+                </div>
+            </div>
 
 
-            }
-        </div>
-
+        }
     </div>
 </section>

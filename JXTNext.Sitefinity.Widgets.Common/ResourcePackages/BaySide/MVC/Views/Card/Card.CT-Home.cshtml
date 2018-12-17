@@ -22,7 +22,7 @@
 
                 @if (!string.IsNullOrEmpty(Model.ActionName))
                 {
-                    <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-outline-white" role="button">@Model.ActionName</a>
+                    <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn @Model.CssClass" role="button">@Model.ActionName</a>
                 }
 
             </div>

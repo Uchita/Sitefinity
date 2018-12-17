@@ -2482,6 +2482,9 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.BackgroundImage.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.BackgroundImageFullBlackText.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.BackgroundImageFull.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

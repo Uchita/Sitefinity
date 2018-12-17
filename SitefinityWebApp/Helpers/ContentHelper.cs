@@ -41,7 +41,7 @@ namespace SitefinityWebApp.Helpers
                     if (node != null)
                     {
                         PageNode subNode = node.Nodes.Where(n => n.UrlName.Value.Replace("~", "").Replace("/", "") == urlName.Replace("/", "")).FirstOrDefault();
-                        if (subNode != null) pageTitle = subNode.GetPageData().HtmlTitle.Value;
+                        if (subNode != null) pageTitle = subNode.GetPageData().HtmlTitle.Value.Replace("| Bayside Group", string.Empty);
                     }
                 }
             }
@@ -62,7 +62,7 @@ namespace SitefinityWebApp.Helpers
                         {
                             PageNode linkedPageNode = pageManager.GetPageNode(subNode1.LinkedNodeId);
                             if (linkedPageNode != null)
-                                pageTitle = linkedPageNode.GetPageData().HtmlTitle.Value;
+                                pageTitle = linkedPageNode.GetPageData().HtmlTitle.Value.Replace("| Bayside Group", string.Empty);
 
                         }
                     }

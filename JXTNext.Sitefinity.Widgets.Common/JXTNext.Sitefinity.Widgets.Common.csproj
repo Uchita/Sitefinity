@@ -2750,10 +2750,13 @@
     <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.BlogListWithImage.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="ResourcePackages\PCN\MVC\Views\Card\Card.ContainerWithBg.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\PCN\MVC\Views\Consultant\Detail.MemberDetail.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ResourcePackages\PCN\MVC\Views\Consultant\List.MeettheTeamLandingPage.cshtml">
+    <None Include="ResourcePackages\PCN\MVC\Views\Consultant\List.MeetTheTeamLandingPage.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

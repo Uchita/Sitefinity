@@ -53,7 +53,12 @@
 
     @Html.Section("bottom")
     @*@Html.Script("https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js", "bottom")*@
-    @*@Html.Script("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", "bottom")*@
+
+    @if (!Telerik.Sitefinity.Services.SystemManager.IsDesignMode || Telerik.Sitefinity.Services.SystemManager.IsPreviewMode)
+    {
+        @Html.Script("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", "bottom")
+    }
+
     @Html.Script("/ResourcePackages/PCN/assets/dist/js/owl.carousel.min.js", "bottom")
     @Html.Script("/ResourcePackages/PCN/assets/dist/js/custom.js", "bottom")
 

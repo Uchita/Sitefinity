@@ -79,6 +79,10 @@ h1, h2, h3, h4, h5, h6 {
     src: url(../webfonts/FuturaBT-Heavy.ttf);
 }
 
+a {
+    color: #004F6E;
+}
+
 /* full_width */
 .full_width {
     width: 100%;
@@ -1492,6 +1496,21 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 0 10px 20px;
 }
 
+.right-content-mid h2 {
+    margin-top: 0px;
+}
+
+.job-holder {
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin: 15px 0;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+}
+
+    .job-holder h3 {
+        margin-top: 0px;
+    }
 
 /* Left */
 .prefix_left-navigation ul, .prefix_left-navigation li {
@@ -1922,7 +1941,7 @@ ul.team-section {
 .nav > li > a:hover, .nav > li > a:focus {
     text-decoration: none;
     background-color: transparent;
-    color: #ff5500;
+    color: #4294C4;
 }
 
 .consultants {
@@ -1944,7 +1963,7 @@ ul.team-section {
 
     .consultants .job-title {
         font-size: 15px;
-        color: #FF5500;
+        color: #4294C4;
         text-transform: uppercase;
         font-weight: bold;
         position: relative;
@@ -1977,6 +1996,11 @@ ul.team-section {
     margin-bottom: 60px;
 }
 
+    .consultants .colio-item:nth-of-type(4n+5) {
+        clear: both;
+    }
+
+
 .consultants .view a.btn.subscribe-btn {
     display: inline-block;
     margin: 0 auto;
@@ -1984,10 +2008,17 @@ ul.team-section {
     vertical-align: middle;
     border-width: 1px;
     /* position: absolute; */
+    border-color: #fff;
+    color: #fff;
     /* top: 10%; */
     margin-top: 40%;
     padding: 15px 20px;
 }
+
+    .consultants .view a.btn.subscribe-btn:hover {
+        background: #fff;
+        color: #004F6E;
+    }
 
 .consultants .view {
     position: absolute;
@@ -1995,7 +2026,7 @@ ul.team-section {
     right: 0;
     top: 0;
     bottom: 0;
-    background: rgba(255,85,0,0.7);
+    background: rgba(0,79,109,0.6);
     opacity: 0;
     transition: 0.5s;
 }
@@ -2003,10 +2034,19 @@ ul.team-section {
 .team-intro-section {
     padding: 56px 0 56px;
     text-align: center;
-    background: url(../images/team-member-banner.jpg) no-repeat center center;
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
     position: relative;
+    width: 100%;
+    float: left;
+    clear: both;
 }
+
+    .team-intro-section h2 {
+        color: #fff;
+        line-height: 1.3;
+    }
 
 .consultant-detail {
     padding: 109px 0 44px;
@@ -2024,14 +2064,14 @@ ul.team-section {
     .consultant-detail .job-title {
         font-size: 15px;
         text-transform: uppercase;
-        color: #FF5500;
+        color: #4294C4;
         font-weight: 700;
     }
 
 .consultant-decription span {
     height: 28px;
     width: 28px;
-    border: 1px solid #FF5500;
+    border: 1px solid #4294C4;
     display: inline-block;
     text-align: center;
     line-height: 28px;
@@ -2072,7 +2112,7 @@ ul.team-section {
     }
 
     .consultant-detail .contact a:hover {
-        color: #ff5500;
+        color: #4294C4;
     }
 
 .consultant-detail h4 {
@@ -2134,7 +2174,7 @@ ul.team-section {
 
 .team-intro-section h2 span, .job-heading h2 span {
     display: block;
-    color: #FF5500;
+    color: #4294C4;
 }
 
 .consultant-testimonials {
@@ -2156,8 +2196,16 @@ ul.team-section {
     margin: 0;
     margin-top: 33px;
     border-width: 1px;
-    padding: 20px 33px;
+    padding: 11px 33px;
+    border-color: #fff;
+    color: #fff;
 }
+
+    .team-intro-section .btn.subscribe-btn:hover {
+        border-color: #fff;
+        background: #fff;
+        color: #004F6E;
+    }
 
 .team-intro-section:after {
     content: "";
@@ -2202,7 +2250,7 @@ ul.team-section {
     color: #333;
     text-transform: uppercase;
     font-size: 15px;
-    color: #FF5500;
+    color: #4294C4;
     font-weight: 700;
 }
 
@@ -2220,11 +2268,11 @@ ul.team-section {
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
     color: #555;
     background-color: #fff;
-    border: 3px solid #ff5500;
-    border-bottom-color: #ff5500;
+    border: 3px solid #4294C4;
+    border-bottom-color: #4294C4;
     cursor: default;
     /* font-size: 25px; */
-    color: #ff5500;
+    color: #4294C4;
 }
 
 .crsl-item a {
@@ -2840,28 +2888,26 @@ input[type="image"] {
 .btn, .btn-primary {
     font-size: 15px;
     font-weight: 700;
-    color: #fff;
+    color: #004F6E;
     border-radius: 0;
     background-color: transparent;
-    border: 2px solid #ff5500;
-    padding: 20px 40px;
+    border: 2px solid #004F6E;
+    padding: 10px 30px;
     text-decoration: none;
 }
 
     .btn:hover, .btn-primary:hover, .btn:focus .btn-primary:focus {
-        border-color: #ff5500;
-        background-color: transparent;
-        color: #ff5500;
+        background-color: #004F6E;
     }
 
 .btn-default {
-    border: 2px solid #ff5500;
+    border: 2px solid #4294C4;
     color: #fff;
-    background-color: #ff5500;
+    background-color: #4294C4;
 }
 
     .btn-default:hover, .btn-default:focus {
-        border-color: #ff5500;
+        border-color: #4294C4;
         background-color: transparent;
         color: #fff;
     }
@@ -2870,7 +2916,7 @@ input[type="image"] {
     }
 
 .btn-sm, .btn-group-sm > .btn {
-    padding: 5px 15px;
+    padding: 6px 15px;
     font-size: 12px;
     line-height: 1.5;
 }
@@ -2943,8 +2989,8 @@ input[type="image"] {
 }
 
 .button {
-    border: solid 2px #ff5500;
-    color: #ff5500;
+    border: solid 2px #4294C4;
+    color: #4294C4;
     padding: 19px 18px;
     font-weight: 700;
     text-decoration: none;
@@ -2954,7 +3000,7 @@ input[type="image"] {
 
     .button:hover, .button:focus, .button:active {
         color: #fff;
-        background: #ff5500;
+        background: #4294C4;
     }
 
 .perspiciatis-sec {
@@ -2973,9 +3019,9 @@ input[type="image"] {
     }
 
 .btn-small {
-    background: #ff5500;
+    background: #4294C4;
     color: #fff;
-    border: solid 2px #ff5500;
+    border: solid 2px #4294C4;
     display: inline-block;
     padding: 17px 29px;
     transition: all 0.4s ease-in-out;
@@ -2989,7 +3035,7 @@ input[type="image"] {
 }
 
     .btn-small:hover, .btn-small:focus, .btn-small:active {
-        color: #ff5500;
+        color: #4294C4;
         background: none;
     }
 
@@ -3520,7 +3566,7 @@ ul.site-login {
     }
 
         ul.site-login li a:hover {
-            color: #ff5500;
+            color: #4294C4;
         }
 
 li#memberStatusDashRegister, li#memberStatusDashLogin {
@@ -3936,4 +3982,83 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
 .list-inline {
     margin: 0px;
+}
+
+.checkbox {
+    padding-left: 20px;
+}
+
+    .checkbox .checkbox-icon {
+        display: none;
+    }
+
+.reg-form {
+    margin: 0px;
+}
+
+.field-wrapper {
+    padding-bottom: 20px;
+}
+
+.jobCatHirarchy {
+    padding-top: 15px;
+}
+
+#pager.k-pager-wrap {
+    background: transparent;
+    padding: 20px 0 0 0;
+    border: none;
+}
+
+    #pager.k-pager-wrap a {
+        border: 2px solid #004F6E;
+        padding: 8px 15px;
+        line-height: normal;
+        border-radius: 5px;
+        outline: none;
+        min-width: initial;
+        margin-right: 8px;
+    }
+
+        #pager.k-pager-wrap a:hover {
+            background: #004F6E;
+            color: #fff;
+        }
+
+.result-meta {
+    float: left;
+}
+
+.search-top {
+    float: right;
+}
+
+    .search-top .btn {
+        float: left;
+    }
+
+    .search-top .select {
+        float: left;
+    }
+
+.search-results {
+    clear: both;
+    padding-top: 25px;
+}
+
+
+.form-label {
+    font-family: FuturaBT-Medium;
+}
+
+    .form-label span {
+        color: #F60;
+        padding: 0 5px;
+    }
+
+
+#team-tabing {
+    width: 100%;
+    float: left;
+    clear: both;
 }

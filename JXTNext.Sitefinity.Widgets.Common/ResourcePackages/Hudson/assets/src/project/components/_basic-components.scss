@@ -445,7 +445,7 @@ blockquote{
             text-overflow: ellipsis;
             white-space: nowrap;
             height: 44px;
-
+            background: white;
             &::-ms-expand {
                 display: none;
             }
@@ -728,6 +728,9 @@ img, iframe {
 .no-marg-btm, .marginbtm0{ margin-bottom: 0!important; }
 .container-button{margin-bottom:$gap;}
 
+pre{
+    font-size: 1.6rem;
+}
 .visible-hidden {
     visibility: hidden;
     opacity: 0;
@@ -2184,18 +2187,43 @@ ul.vertical-ul {
         display: block;
         margin-bottom: 3px;
         font: 1.7rem $font-family-medium;
+        
         [class*="fa-"]{
             margin-right:10px;
             color: $btn-primary-bg;
             width: 16px;
+            vertical-align: top;
+            display: inline-block;
+            padding-top: 2px;
         }
     }
     .info-text{
         padding: 5px 0;
         margin-bottom: 0;
     }
+
+    pre{
+        display: inline-block;
+        line-height: 1.6;
+    }
 }
 
+address.info-box{
+    margin-bottom: 0;
+}
+.get-in-touch{
+    margin-top: 1rem;
+
+    .collapsed{
+        .sf-icon{
+            color: $global-text-color;
+            &::before{
+                content: "\e114";
+            }
+        }
+    }
+   
+}
 
 .alert{
     border-radius: 0;
@@ -2280,6 +2308,7 @@ ul.vertical-ul {
     height: 425px;
     width: unset !important;
 }
+
 
 //table css
 .date-col{

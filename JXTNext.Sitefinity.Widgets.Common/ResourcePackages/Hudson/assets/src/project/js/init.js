@@ -373,6 +373,15 @@ $(document).ready(function () {
         $(this).removeAttr('readonly');
     });
 
+    //contact page : office detail page
+    //map replacement
+
+    if( $('.contact-detail-page').length && $('.map-placeholder').length ){
+        
+            $('.map-placeholder').addClass('hidden-xs').clone().addClass('visible-xs').removeClass('hidden-xs').insertAfter( $('.mobile-breadcrumb') );
+        
+    }
+
 });
 
 $(window).resize(function () {

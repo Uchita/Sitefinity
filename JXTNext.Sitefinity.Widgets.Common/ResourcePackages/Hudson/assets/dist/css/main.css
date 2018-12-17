@@ -7583,7 +7583,8 @@ blockquote {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      height: 44px; }
+      height: 44px;
+      background: white; }
       .page-wrapper .select select::-ms-expand {
         display: none; }
   .page-wrapper textarea {
@@ -7786,6 +7787,9 @@ img, iframe {
 
 .container-button {
   margin-bottom: 50px; }
+
+pre {
+  font-size: 1.6rem; }
 
 .visible-hidden {
   visibility: hidden;
@@ -8766,10 +8770,26 @@ ul.vertical-ul {
     .info-box .map-field [class*="fa-"] {
       margin-right: 10px;
       color: #ff9000;
-      width: 16px; }
+      width: 16px;
+      vertical-align: top;
+      display: inline-block;
+      padding-top: 2px; }
   .info-box .info-text {
     padding: 5px 0;
     margin-bottom: 0; }
+  .info-box pre {
+    display: inline-block;
+    line-height: 1.6; }
+
+address.info-box {
+  margin-bottom: 0; }
+
+.get-in-touch {
+  margin-top: 1rem; }
+  .get-in-touch .collapsed .sf-icon {
+    color: #000; }
+    .get-in-touch .collapsed .sf-icon::before {
+      content: "\e114"; }
 
 .alert {
   border-radius: 0; }
@@ -10823,6 +10843,10 @@ select.articles-order {
       position: absolute;
       bottom: 0;
       right: 0; }
+  @media (max-width: 767px) {
+    .consultant-jobs {
+      margin-left: 0;
+      margin-right: 0; } }
 
 .filters-wrapper {
   display: flex;
@@ -11122,7 +11146,9 @@ select.articles-order {
   .white-box-single .white-box .white-box-ul li {
     width: 50%;
     float: left;
-    padding: 0 30px 0 0; } }
+    padding: 0 30px 0 0; }
+  .md-pull-right {
+    float: right !important; } }
 
 @media (min-width: 768px) and (max-width: 1199px) {
   header .navbar.navbar-default .navbar-nav > li > a {
@@ -12054,7 +12080,13 @@ select.articles-order {
     left: 0; }
   .risk-measurement .risk-wrapper {
     width: 100%;
-    float: none; } }
+    float: none; }
+  .map-placeholder {
+    height: 350px; }
+  .gm-style-iw {
+    max-width: 100% !important; }
+  .info-box .map-field {
+    font-size: 1.5rem; } }
 
 @media (max-width: 400px) {
   .section-ul ul.nav-stacked li {

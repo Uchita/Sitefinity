@@ -9,7 +9,7 @@
     --dark: #414141;
 }
 
-@font-face {
+/*@font-face {
     font-family: 'Proxima Nova';
     src: url("../fonts/web/proxima_nova_regular-webfont.eot") format("embedded-opentype"), url("../fonts/web/proxima_nova_regular-webfont.svg") format("svg"), url("../fonts/web/proxima_nova_regular-webfont.ttf") format("truetype"), url("../fonts/web/proxima_nova_regular-webfont.woff") format("woff");
 }
@@ -24,10 +24,11 @@
     font-family: 'Proxima Nova';
     src: url("../fonts/web/proxima_nova_semibold-webfont.eot") format("embedded-opentype"), url("../fonts/web/proxima_nova_semibold-webfont.svg") format("svg"), url("../fonts/web/proximanova-semibold-webfont.ttf") format("truetype"), url("../fonts/web/proximanova-semibold-webfont.woff") format("woff"), url("../fonts/web/proximanova-semibold-webfont.woff2") format("woff2");
     font-weight: 500;
-}
+}*/
 
 body, html {
-    font-family: 'Proxima Nova';
+    /*font-family: 'Proxima Nova';*/
+    font-family: 'Muli', sans-serif;
     font-size: 16px;
     line-height: 1.25em;
     color: #304e6b;
@@ -38,11 +39,13 @@ h1,
 h2,
 h3,
 h4 {
-    font-family: 'Proxima Nova';
+    /*font-family: 'Proxima Nova';*/
+    font-family: 'Muli', sans-serif;
 }
 
 label {
-    font-family: 'Proxima Nova';
+    /*font-family: 'Proxima Nova';*/
+    font-family: 'Muli', sans-serif;
 }
 
 /*-----------Margins Padings------------------*/
@@ -4972,6 +4975,21 @@ p {
         border-color: #fff;
     }
 
+.btn-outline-black {
+    color: #333132;
+    background-color: transparent;
+    background-image: none;
+    border-color: #333132;
+}
+
+    .btn-outline-black.active,
+    .btn-outline-black:focus,
+    .btn-outline-black:hover {
+        color: #fff;
+        background-color: #333132;
+        border-color: #333132;
+    }
+
 .btn-outline-primary.active,
 .btn-outline-primary:focus,
 .btn-outline-primary:hover {
@@ -5132,8 +5150,20 @@ p {
     background-color: #EAEAEA;
 }
 
+.bg-black {
+    background-color: #000;
+}
+
 .bg-dark-grey {
     background-color: #3C4044;
+}
+
+.bg-dark-grey {
+    background-color: #3C4044;
+}
+
+#tl-timeline-iframe {
+    width: 100%;
 }
 
 /*---------Background----End-----*/
@@ -6099,7 +6129,7 @@ select.hs-input {
 
 /* ------App header__End------ */
 
-:root {
+/*:root {
     --blue: #0088CF;
     --green: #54b948;
     --sage: #f0f7ee;
@@ -6108,7 +6138,7 @@ select.hs-input {
     --black: #333;
     --red: #ea232a;
     --dark: #414141;
-}
+}*/
 
 /*-------Footer----------*/
 .app-footer {
@@ -6471,13 +6501,14 @@ select.hs-input {
     opacity: 0;
 }
 
+/*Issue: 208*/
 .content-two-colmun {
     -webkit-column-count: 2;
     -moz-column-count: 2;
     column-count: 2;
-    -webkit-column-gap: 30px;
-    -moz-column-gap: 30px;
-    column-gap: 30px;
+    -webkit-column-gap: 83px;
+    -moz-column-gap: 83px;
+    column-gap: 83px;
 }
 
 @media (max-width: 767px) {
@@ -6740,9 +6771,9 @@ select.hs-input {
     padding-right: 15px;
 }
 
-@media (min-width: 991px) {
+@media (min-width: 992px) {
     .col-50-content {
-        max-width: 550px;
+        max-width: 495px;
         float: right;
     }
 }

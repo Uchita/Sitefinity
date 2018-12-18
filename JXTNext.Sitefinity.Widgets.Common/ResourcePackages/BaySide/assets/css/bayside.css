@@ -3248,17 +3248,17 @@ button.bg-dark:focus {
     .app-content .container,
     .app-footer .container,
     .app-header .container {
-        max-width: 960px;
+        max-width: 990px;
     }
 }
 
-@media (min-width: 1200px) {
+/*@media (min-width: 1200px) {
     .app-content .container,
     .app-footer .container,
     .app-header .container {
         max-width: 990px;
     }
-}
+}*/
 
 .app-content .container-fluid,
 .app-footer .container-fluid,
@@ -5406,10 +5406,15 @@ p {
 
 /*-------Video Wrap----End------*/
 /*-------Featured carousel----------*/
-@media (max-width: 1150px) {
+.featured-carousel {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 767px) {
     .featured-carousel {
-        padding-right: 50px;
-        padding-left: 50px;
+        max-width: 320px;
     }
 }
 
@@ -5447,19 +5452,27 @@ p {
     left: 0;
 }
 
-@media (min-width: 1280px) {
-    .owl-nav .owl-prev {
-        left: -70px;
-    }
-}
-
 .owl-nav .owl-next {
     right: 0;
 }
 
-@media (min-width: 1280px) {
+@media (max-width: 1099px) {
+    .featured-carousel .owl-nav {
+        display: none;
+    }
+}
+
+@media (min-width: 1100px) {
+    .owl-nav .owl-prev {
+        left: -50px;
+    }
+
     .owl-nav .owl-next {
-        right: -70px;
+        right: -50px;
+    }
+
+    .featured-carousel .owl-dots {
+        display: none;
     }
 }
 
@@ -6226,7 +6239,14 @@ select.hs-input {
         padding: 0;
     }
 
-@media (max-width: 767px) {
+@media (min-width: 992px) {
+    .list-item .bg-image,
+    .news-list .bg-image {
+        min-width: 308px;
+    }
+}
+
+@media (max-width: 535px) {
     .more-resources .btn {
         margin-bottom: 10px;
     }
@@ -6234,7 +6254,9 @@ select.hs-input {
         .more-resources .btn:last-child {
             margin-bottom: 0;
         }
+}
 
+@media (max-width: 767px) {
     .news-list {
         margin-bottom: 50px;
     }
@@ -6306,19 +6328,19 @@ select.hs-input {
 }
 
 @media (max-width: 991px) {
-    .job-item {
+    /*.job-item {
         margin-right: auto;
         width: calc(50% - 20px);
         max-width: 100%;
         float: left;
-    }
+    }*/
 
-        .job-item:first-child {
+    /*.job-item:first-child {
             margin-right: 40px;
-        }
+        }*/
 }
 
-@media (max-width: 650px) {
+@media (max-width: 767px) {
     .job-item {
         width: 100%;
         max-width: 304px;

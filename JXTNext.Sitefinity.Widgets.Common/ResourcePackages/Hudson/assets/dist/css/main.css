@@ -8310,11 +8310,17 @@ main {
   .section-highlight-light .btn {
     border-color: #fff; }
 
+.home-padding.flex .thumbnail {
+  height: 100% !important; }
+
 .home-padding .thumbnail.card-basic .caption {
-  height: 240px;
+  min-height: 240px;
   padding: 50px;
   font-size: 1.8rem;
-  line-height: 1.6; }
+  line-height: 1.6;
+  height: 58%; }
+  .home-padding .thumbnail.card-basic .caption p:last-child {
+    margin-bottom: 0; }
 
 .sf-list-item h3[data-sf-role="toggleLink"] {
   padding: 13px 40px 13px 20px;
@@ -10846,7 +10852,10 @@ select.articles-order {
   @media (max-width: 767px) {
     .consultant-jobs {
       margin-left: 0;
-      margin-right: 0; } }
+      margin-right: 0; }
+      .consultant-jobs .owl-item {
+        padding-left: 7px;
+        padding-right: 7px; } }
 
 .filters-wrapper {
   display: flex;
@@ -11203,6 +11212,8 @@ select.articles-order {
     margin-top: 0; }
     .page-wrapper .reg-form .basic-form .login-border {
       padding-top: 0; }
+  .page-wrapper .basic-form .form-group .text-right {
+    padding-left: 0; }
   .page-section .right-bottom-img img {
     max-width: 43%; }
   .page-section .center-bottom-img img {
@@ -11624,29 +11635,6 @@ select.articles-order {
     .jumbotron-container .jumbotron p {
       font-size: 18px;
       font-size: 1.8rem; }
-  .thumbnail.card-rollover {
-    margin-top: 20px;
-    margin-bottom: 0;
-    text-align: left; }
-    .thumbnail.card-rollover .caption {
-      padding: 9px 0; }
-      .thumbnail.card-rollover .caption .h3, .thumbnail.card-rollover .caption h3 {
-        font-size: 18px;
-        font-size: 1.8rem;
-        color: #000; }
-    .thumbnail.card-rollover .card-description {
-      position: static;
-      padding: 0;
-      font-size: 16px;
-      font-size: 1.6rem;
-      opacity: 1;
-      filter: alpha(opacity=100);
-      -webkit-transition: none;
-      transition: none;
-      background: none;
-      color: #000; }
-      .thumbnail.card-rollover .card-description .card-description-content {
-        padding: 0; }
   .featured-job-offer .job-offer-sum {
     height: auto; }
   .job-search {
@@ -11788,13 +11776,6 @@ select.articles-order {
     margin-right: 0; }
   .white-box-list > div {
     margin-bottom: 30px; }
-  .thumbnail.card-rollover .card-rollover-more {
-    position: relative;
-    padding-right: 35px; }
-    .thumbnail.card-rollover .card-rollover-more .btn {
-      position: absolute;
-      bottom: 7px;
-      right: 0; }
   .page-wrapper footer .page-section {
     padding: 15px 0; }
   .page-wrapper footer .footer-social {
@@ -11818,9 +11799,41 @@ select.articles-order {
       width: 50%; }
   .page-wrapper .footer-bar {
     padding: 10px 0; }
+  .thumbnail.card-rollover {
+    margin-top: 20px;
+    margin-bottom: 0;
+    text-align: left; }
+    .thumbnail.card-rollover .caption {
+      padding: 9px 0; }
+      .thumbnail.card-rollover .caption .h3, .thumbnail.card-rollover .caption h3 {
+        font-size: 18px;
+        font-size: 1.8rem;
+        color: #000; }
+    .thumbnail.card-rollover .card-description {
+      position: static;
+      padding: 0;
+      font-size: 16px;
+      font-size: 1.6rem;
+      opacity: 1;
+      filter: alpha(opacity=100);
+      -webkit-transition: none;
+      transition: none;
+      background: none;
+      color: #000; }
+      .thumbnail.card-rollover .card-description .card-description-content {
+        padding: 0; }
+  .thumbnail.card-rollover .card-rollover-more {
+    position: relative;
+    padding-right: 35px; }
+    .thumbnail.card-rollover .card-rollover-more .btn {
+      position: absolute;
+      bottom: 7px;
+      right: 0; }
   .thumbnail .display-table {
     display: table;
     width: 100%; }
+  .thumbnail.small-caption .caption h4 {
+    min-height: 25px; }
   .testimonials-slider .quote {
     height: 33px; }
     .testimonials-slider .quote.text-right {
@@ -11899,7 +11912,37 @@ select.articles-order {
     .pos-static .breadcrumb {
       position: static; }
   .contact-box {
-    margin-bottom: 40px; } }
+    margin-bottom: 40px; }
+  .articles-top .press-release-filter {
+    padding: 0;
+    display: none; }
+    .articles-top .press-release-filter.in {
+      display: block; }
+  .button-toggler {
+    margin: 0 auto 2rem; }
+    .button-toggler .btn {
+      padding: 5px 15px;
+      margin-bottom: 0; }
+  .press-release-filter ul {
+    text-align: left; }
+    .press-release-filter ul li {
+      display: block; }
+      .press-release-filter ul li + li {
+        margin-left: 0;
+        padding-left: 0;
+        border-left: none; }
+      .press-release-filter ul li.dropdown > a::after {
+        right: 0; }
+      .press-release-filter ul li.dropdown .dropdown-menu {
+        position: static;
+        width: 100%; }
+      .press-release-filter ul li a {
+        display: block; }
+  .sx-fullwidth-card .row > [class*="col-"] {
+    padding: 0; }
+  .sx-fullwidth-card .thumbnail .caption {
+    width: 94%;
+    padding: 15px; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron .owl-nav {

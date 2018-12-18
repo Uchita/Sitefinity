@@ -1501,12 +1501,18 @@ main {
     }
 }
 
-
+.home-padding.flex .thumbnail{
+    height: 100%!important;
+}
 .home-padding .thumbnail.card-basic .caption{
-    height: 240px; 
+    min-height: 240px; 
     padding: $gap;  
     font-size: $global-font-size;
     line-height: 1.6;
+    height: 58%;
+    p:last-child{
+        margin-bottom: 0;
+    }
 } 
 
 

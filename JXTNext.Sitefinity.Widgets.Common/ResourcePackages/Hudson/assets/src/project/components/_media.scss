@@ -150,6 +150,14 @@
                 }
             }
         }
+
+        .basic-form{
+            .form-group{
+                .text-right{
+                    padding-left: 0;
+                }
+            }
+        }
     }
     
     .page-section {
@@ -912,41 +920,6 @@
         }
     }
 
-    .thumbnail {
-
-        &.card-rollover {
-            margin-top: 20px;
-            margin-bottom: 0;
-            text-align: left;
-
-            .caption {
-                padding: 9px 0;
-
-                .h3, h3 {
-                    font-size: 18px;
-                    font-size: 1.8rem;
-                    color: $global-text-color;
-                }
-            }
-
-            .card-description {
-                position: static;
-                padding: 0;
-                font-size: 16px;
-                font-size: 1.6rem;
-                opacity: 1;
-                filter: alpha(opacity=100);
-                -webkit-transition: none;
-                transition: none;
-                background: none;
-                color: $global-text-color;
-                .card-description-content{
-                    padding: 0;
-                }
-            }
-        }
-    }
-
     .featured-job-offer{
         .job-offer-sum{
             height: auto;
@@ -1160,16 +1133,6 @@
         margin-bottom: 30px;
     }
 
-    .thumbnail.card-rollover .card-rollover-more{
-        position:relative;
-        padding-right:35px;
-        .btn{
-            position: absolute;
-            bottom:7px;
-            right:0;
-        }
-    }
-    
     .page-wrapper{
        
         footer{
@@ -1207,10 +1170,60 @@
             padding: 10px 0;
         }
     }
+    .thumbnail {
+
+        &.card-rollover {
+            margin-top: 20px;
+            margin-bottom: 0;
+            text-align: left;
+
+            .caption {
+                padding: 9px 0;
+
+                .h3, h3 {
+                    font-size: 18px;
+                    font-size: 1.8rem;
+                    color: $global-text-color;
+                }
+            }
+
+            .card-description {
+                position: static;
+                padding: 0;
+                font-size: 16px;
+                font-size: 1.6rem;
+                opacity: 1;
+                filter: alpha(opacity=100);
+                -webkit-transition: none;
+                transition: none;
+                background: none;
+                color: $global-text-color;
+                .card-description-content{
+                    padding: 0;
+                }
+            }
+        }
+    }
+    .thumbnail.card-rollover .card-rollover-more{
+        position:relative;
+        padding-right:35px;
+        .btn{
+            position: absolute;
+            bottom:7px;
+            right:0;
+        }
+    }
     .thumbnail{
         .display-table{
             display: table;
             width: 100%;
+        }
+        &.small-caption{
+            .caption{
+               h4{
+                   min-height: 25px;
+               } 
+            }
         }
     }
     .testimonials-slider {
@@ -1350,7 +1363,60 @@
         margin-bottom: 40px;
     }
     
-    
+    .articles-top{
+        .press-release-filter{
+            padding: 0;
+            display: none;
+            &.in{
+                display: block;
+            }
+        }
+    }
+    .button-toggler{
+        margin: 0 auto 2rem;
+        .btn{
+            padding: 5px 15px;
+            margin-bottom: 0;
+        }
+    }
+
+    .press-release-filter{
+        ul{
+            text-align: left;
+            li{
+                display: block;
+                + li{
+                    margin-left: 0;
+                    padding-left: 0;
+                    border-left: none;
+                }
+                &.dropdown{
+                    >a::after{
+                        right: 0;
+                    }
+                    .dropdown-menu{
+                        position: static;
+                        width: 100%;
+                    }
+                }
+                a{
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .sx-fullwidth-card{
+        .row > [class*="col-"]{
+            padding: 0;
+        }
+        .thumbnail{
+            .caption{
+                width: 94%;
+                padding: 15px;
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 767px) {

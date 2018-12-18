@@ -5,17 +5,9 @@
         var group = list.closest('.form-group-Friends');
 
         if (list.find('.row').length > 1) {
-            group.find('.col-name')
-                .removeClass('col-sm-6')
-                .addClass('col-sm-5');
-
             group.find('.col-action').show();
         }
         else {
-            group.find('.col-name')
-                .addClass('col-sm-6')
-                .removeClass('col-sm-5');
-
             group.find('.col-action').hide();
         }
     }

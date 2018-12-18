@@ -227,7 +227,7 @@ $(document).ready(function () {
         autoplay: true,
         autoplayTimeout: 7000,
     });
-
+    
     $('.owl-consultants').owlCarousel({
         margin: 25,
         autoplay: true,
@@ -372,6 +372,15 @@ $(document).ready(function () {
     $('#userid').on('focus',function(){
         $(this).removeAttr('readonly');
     });
+
+    //contact page : office detail page
+    //map replacement
+
+    if( $('.contact-detail-page').length && $('.map-placeholder').length ){
+        
+            $('.map-placeholder').addClass('hidden-xs').clone().addClass('visible-xs').removeClass('hidden-xs').insertAfter( $('.mobile-breadcrumb') );
+        
+    }
 
 });
 

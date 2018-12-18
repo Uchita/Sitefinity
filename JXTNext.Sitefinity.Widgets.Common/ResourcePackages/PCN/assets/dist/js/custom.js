@@ -4,8 +4,7 @@ $(document).ready(function () {
     $('.logo_slider').owlCarousel({
         center: true,
         loop: true,
-        margin: 40,
-        autoWidth: true,
+        margin: 20,
         autoplay: true,
         autoplayTimeout: 2000,
         nav: false,
@@ -17,7 +16,7 @@ $(document).ready(function () {
                 items: 4
             },
             1200: {
-                items: 6
+                items: 7
             }
         }
     });

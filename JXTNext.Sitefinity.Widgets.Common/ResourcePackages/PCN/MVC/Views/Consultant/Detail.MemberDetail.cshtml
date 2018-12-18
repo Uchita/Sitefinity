@@ -15,137 +15,60 @@
 @using Telerik.Sitefinity.Modules.Libraries;
 @using Telerik.Sitefinity.Taxonomies;
 @using Telerik.Sitefinity.Taxonomies.Model;
-<div id="content" class="col-xs-12 col-md-9 col-sm-12" style="box-sizing: border-box;">
-    <div class="content-holder">
 
-        <div class="row inner-content profile-pg">
+<div class="consultant-detail full_width">
+    <div class="container">
 
-            <div class="col-md-4 col-sm-12 col-xs-12">
-                <div class="consultnat-detail">
-                    @if (Model.Item.Fields.Pic != null)
-                    {
-                        <div class="consult-image" style="background-image: url(@MediaContentExtensions.ResolveThumbnailUrl(Model.Item.Fields.Pic.DataItem, "thumb350")">
-                            &nbsp;
-                        </div>
-                    }
+        <div class="row">
 
-                    <div class="clearfix"></div>
-                    @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber))
-                    {
-                        <strong>Phone:</strong> <a class="prof-phone" href="tel:@Model.Item.Fields.PhoneNumber" title="Call Us">@Model.Item.Fields.PhoneNumber</a>
-                    }
-                    <ul>
+            <div class="col-md-3">
+                @if (Model.Item.Fields.Pic != null)
+                {
+                    <figure>
+                        <img class="img-responsive" src="@MediaContentExtensions.ResolveThumbnailUrl(Model.Item.Fields.Pic.DataItem, "thumb350")">
+                        <figcaption>
+                            <a class="btn-small" href="@ViewBag.JobResultsPageUrl" title="VIEW ALL MY JOBS">VIEW ALL MY JOBS</a>
+                        </figcaption>
+                    </figure>
+                }
+
+                <div class="clearfix"></div>
+
+                <div class="contact">
+                    <h4>RECRUITMENT CONSULTANT:</h4>
+                    <p>
+                        @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber))
+                        {
+                            <a href="tel:@Model.Item.Fields.PhoneNumber" title="Call Us"><i aria-hidden="true" class="fa fa-phone"></i>@Model.Item.Fields.PhoneNumber</a>
+                        }<br />
+
                         @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.Email))
                         {
-                            <li>
-                                <a href="mailto:@Model.Item.Fields.Email" title="Mail Us"><i class="fa fa-envelope fa-fw"><span class="hidden">icon</span></i></a>
-                            </li>
+                            <a href="mailto:@Model.Item.Fields.Email" title="Mail Us"><i aria-hidden="true" class="fa fa-envelope"></i>@Model.Item.Fields.Email</a>
+
                         }
+                        <br />
                         @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
                         {
-
-                            <li>
-                                <a href="@Model.Item.Fields.LinkedInProfileUrl" rel="noopener" target="_blank" title="Linkedin"><i aria-hidden="true" class="fa fa-linkedin fa-fw"><span class="hidden">icon</span></i> </a>
-                            </li>
+                            <a href="@Model.Item.Fields.LinkedInProfileUrl" rel="noopener" target="_blank" title="Linkedin"><i aria-hidden="true" class="fab fa-linkedin-in"><span class="hidden">icon</span></i> </a>
                         }
-                    </ul>
+                    </p>
+
                 </div>
-                @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber))
-                {
-                    <div class="callback-request">
-                        <p>
-                            <a href="tel:@Model.Item.Fields.PhoneNumber" title="Call Us">REQUEST A CALL BACK</a>
-                        </p>
-                    </div>
-                }
             </div>
-            <div class="col-md-8 col-sm-12 col-xs-12">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <h1 class="consultnat-name">
-                            @Html.HtmlSanitize((string)Model.Item.Fields.ConsultantName)
-                        </h1>
+            <div class="col-md-9 consultant-decription">
 
-                        @if (Model.Item.Fields.Office != null)
-                        {
-                            var OfficeLocationName = "";
-                            var OfficeLocationUrl = "";
+                <h3>@Html.HtmlSanitize((string)Model.Item.Fields.ConsultantName)</h3>
+                <span><a href="@Model.Item.Fields.LinkedInProfileUrl" target="_blank" title="linkedin"><i class="fab fa-linkedin-in"><!-- linkedin --></i></a></span>
+                <p class="job-title">@Html.HtmlSanitize((string)Model.Item.Fields.Position)</p>
+
+                <p>@Html.HtmlSanitize((string)Model.Item.Fields.Bio)</p>
+
+                <a class="button" href="/about/meet-the-team" title="Go Back">
+                    <i aria-hidden="true" class="fa fa-angle-left"><!-- --></i> GO BACK
+                </a>
 
 
-                            if (Model.Item.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
-                            {
-                                OfficeLocationName = Html.HtmlSanitize((string)Model.Item.Fields.Office.Fields.Name).ToString();
-                                OfficeLocationUrl = Model.Item.Fields.Office.Fields.UrlName.ToString();
-                            }
-                            else
-                            {
-                                List<string> OfficeLocationNameList = new List<string>();
-                                List<string> OfficeLocationUrlList = new List<string>();
-
-                                foreach (var office in Model.Item.Fields.Office)
-                                {
-                                    if (!OfficeLocationNameList.Contains((string)office.Fields.Name))
-                                    {
-                                        OfficeLocationNameList.Add((string)office.Fields.Name);
-                                        OfficeLocationUrlList.Add(office.Fields.UrlName.ToString());
-                                    }
-                                }
-
-                                OfficeLocationName = string.Join(", ", OfficeLocationNameList.ToArray());
-                                OfficeLocationUrl = string.Join(",", OfficeLocationUrlList.ToArray());
-                            }
-                            <h3 class="consultnat-position">
-                                @Html.HtmlSanitize((string)Model.Item.Fields.Position), @OfficeLocationName
-                            </h3>
-
-                        }
-                        else
-                        {
-                            <h3 class="consultnat-position">
-                                @Html.HtmlSanitize((string)Model.Item.Fields.Position)
-                            </h3>
-                        }
-
-                        @{
-                            string Specialisation = "";
-                            foreach (var item3 in Model.Item.Fields.Category)
-                            {
-
-                                Guid GUcollectionid = item3;
-                                TaxonomyManager manager = TaxonomyManager.GetManager();
-                                var taxonTitle = manager.GetTaxa<HierarchicalTaxon>
-                                    ()
-                                    .Where(t => t.Id == GUcollectionid)
-                                    .SingleOrDefault()
-                                    .Title;
-
-                                if (taxonTitle != "")
-                                {
-
-                                    if (Specialisation == "")
-                                    {
-                                        Specialisation = Specialisation + @taxonTitle;
-                                    }
-                                    else
-                                    {
-                                        Specialisation = Specialisation + ", " + @taxonTitle;
-                                    }
-                                }
-                            }
-
-                        }
-
-                        @if (!string.IsNullOrEmpty(Specialisation))
-                        {
-                            <strong>Specialisation: @Specialisation</strong>
-                        }
-
-                        <div class="consultnat-desc">
-                            @Html.HtmlSanitize((string)Model.Item.Fields.Bio)
-                        </div>
-                    </div>
-
-                </div>
             </div>
 
 

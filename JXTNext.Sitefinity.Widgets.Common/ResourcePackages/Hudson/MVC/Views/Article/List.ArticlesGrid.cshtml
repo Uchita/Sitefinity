@@ -48,7 +48,7 @@
             }
         }
 }
-<div class="sx-fullwidth-card @Model.CssClass">
+<div class="sx-fullwidth-card article-filter-page @Model.CssClass">
     <div class="articles-top">
         <div class="button-toggler visible-xs text-center"><span class="btn btn-sm collapsed" data-toggle="collapse" data-target="#articleFilters">Filter Topic</span></div>
       
@@ -216,10 +216,10 @@
                 //console.log(curTaxonName);
                 if (stripPath.length > 2 && stripPath[stripPath.length - 2] == "career-advice") {
                     parentTaxon = stripPath[stripPath.length - 2];
-                    $('.press-release-filter > ul > li > a[href*="' + parentTaxon + '"]').first().parent('li').addClass('filter-active');
-                    $('.press-release-filter li a[href*="' + curTaxonName + '"]').first().parent('li').addClass('filter-active');
+                    $('.press-release-filter > ul > li > a[href$="' + parentTaxon + '"]').first().parent('li').addClass('filter-active');
+                    $('.press-release-filter li a[href$="' + curTaxonName + '"]').first().parent('li').addClass('filter-active');
                 } else {
-                    $('.press-release-filter > ul > li > a[href*="' + curTaxonName + '"]').first().parent('li').addClass('filter-active');
+                    $('.press-release-filter > ul > li > a[href$="' + curTaxonName + '"]').first().parent('li').addClass('filter-active');
                 }
             }
         }

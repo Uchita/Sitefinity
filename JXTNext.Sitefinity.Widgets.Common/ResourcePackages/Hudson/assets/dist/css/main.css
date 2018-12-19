@@ -7270,7 +7270,10 @@ blockquote {
 .flex-center {
   -webkit-box-pack: center !important;
   -ms-flex-pack: center !important;
-  justify-content: center !important; }
+  justify-content: center !important;
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important; }
 
 .width-limit {
   max-width: 450px; }
@@ -7752,6 +7755,9 @@ blockquote {
 img, iframe {
   max-width: 100%;
   border: none; }
+
+.responsive-img {
+  width: 100%; }
 
 .modal-dialog {
   max-width: 90%;
@@ -8314,13 +8320,10 @@ main {
   height: 100% !important; }
 
 .home-padding .thumbnail.card-basic .caption {
-  min-height: 240px;
   padding: 50px;
   font-size: 1.8rem;
   line-height: 1.6;
-  height: 58%; }
-  .home-padding .thumbnail.card-basic .caption p:last-child {
-    margin-bottom: 0; }
+  background: #fff; }
 
 .sf-list-item h3[data-sf-role="toggleLink"] {
   padding: 13px 40px 13px 20px;
@@ -8856,11 +8859,6 @@ address.info-box {
     .popup-overlay .fa-times:hover, .popup-overlay .fa-times:focus {
       text-decoration: none; }
 
-.prefooter-content .testimonials-slider.testimonials-simple.with-side-image .item,
-.testimonials-slider.testimonials-simple.with-side-image .item {
-  bottom: 25%;
-  position: absolute; }
-
 .testimonials-slider.testimonials-simple.with-side-image .img-holder {
   width: 80%; }
 
@@ -9255,7 +9253,7 @@ ul.breadcrumb {
   .thumbnail.card-basic .caption {
     position: relative;
     padding: 25px;
-    min-height: 247px;
+    min-height: 225px;
     line-height: 1.3;
     height: 50%; }
     .thumbnail.card-basic .caption h3 {
@@ -9267,6 +9265,8 @@ ul.breadcrumb {
         position: absolute;
         bottom: 0;
         right: 0; }
+    .thumbnail.card-basic .caption p:last-of-type {
+      margin-bottom: 0; }
   .thumbnail.card-basic h4 a:hover, .thumbnail.card-basic h4 a:focus {
     color: #007077;
     text-decoration: none; }
@@ -9395,7 +9395,7 @@ ul.breadcrumb {
 
 .flex [class*="col-"] .thumbnail {
   display: table;
-  height: 96%;
+  height: 92%;
   width: 100%; }
 
 .page-banner .h2, .page-banner h2, .page-banner .h3, .page-banner h3 {
@@ -11292,7 +11292,10 @@ select.articles-order {
   .thumbnail.card-basic .img-wrap {
     height: 200px; }
   .thumbnail.card-basic .caption {
-    min-height: 230px; }
+    min-height: 230px;
+    height: 55%; }
+  .home-padding .thumbnail.card-basic .caption {
+    height: 59.2%; }
   .list-featured-articles .featured-article-image {
     max-height: 200px; }
   .press-release-filter ul li a {
@@ -11331,6 +11334,8 @@ select.articles-order {
     padding: 30px 0; }
   .flex {
     display: block; }
+  .home-padding.flex {
+    display: flex; }
   .sm-flex {
     display: flex; }
   .sm-text-center {
@@ -11436,7 +11441,8 @@ select.articles-order {
     .long-card-basic-list .thumbnail .img-wrap {
       max-height: none; }
   .home-padding .thumbnail.card-basic .caption {
-    padding: 30px; }
+    padding: 30px;
+    height: 64%; }
   .featured-job-offer .job-offer-sum {
     height: 125px; }
   .process-card-holder .display-cell {
@@ -11615,7 +11621,8 @@ select.articles-order {
     margin-left: auto;
     margin-right: auto; }
   .mobile-owl-carousel .owl-dots {
-    position: static; }
+    position: static;
+    width: 100%; }
   .mobile-owl-carousel.owl-loaded .col-xs-6 {
     float: none;
     width: 100%; }
@@ -11942,7 +11949,27 @@ select.articles-order {
     padding: 0; }
   .sx-fullwidth-card .thumbnail .caption {
     width: 94%;
-    padding: 15px; } }
+    padding: 15px; }
+  .article-filter-page .thumbnail {
+    margin-bottom: 0; }
+    .article-filter-page .thumbnail .img-wrap {
+      display: none; }
+    .article-filter-page .thumbnail .caption {
+      min-height: 80px;
+      height: auto;
+      border-bottom: 1px solid #E0E0E0; }
+      .article-filter-page .thumbnail .caption p:first-of-type {
+        margin-bottom: 5px; }
+      .article-filter-page .thumbnail .caption p:last-of-type {
+        display: none; }
+      .article-filter-page .thumbnail .caption h4 {
+        margin-top: 0;
+        margin-bottom: 5px;
+        line-height: 1.4; }
+  .article-filter-page .long-card-basic-list > [class*="col-"]:first-child .thumbnail .img-wrap {
+    display: block; }
+  .article-filter-page .long-card-basic-list > [class*="col-"]:last-child .thumbnail .caption {
+    border-bottom: none; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron .owl-nav {

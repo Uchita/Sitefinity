@@ -312,7 +312,11 @@
         }
         .caption{
             min-height: 230px;
+            height: 55%;
         }
+    }
+    .home-padding .thumbnail.card-basic .caption{
+        height: 59.2%;
     }
     .list-featured-articles .featured-article-image{
         max-height: 200px;
@@ -392,6 +396,9 @@
     }
     .flex{
         display: block;
+    }
+    .home-padding.flex{
+        display: flex;
     }
     .sm-flex{
         display: flex;
@@ -576,6 +583,7 @@
     
     .home-padding .thumbnail.card-basic .caption{
         padding: 30px;
+        height: 64%;
     }
     .featured-job-offer{
         .job-offer-sum{
@@ -883,6 +891,7 @@
         }
         .owl-dots{
             position: static;
+            width: 100%;
         }
         &.owl-loaded {
 
@@ -1416,6 +1425,38 @@
                 padding: 15px;
             }
         }
+    }
+
+    .article-filter-page{
+        .thumbnail{
+            margin-bottom: 0;
+            .img-wrap{
+                display: none;
+            }
+            .caption{
+                min-height: 80px;
+                height: auto;
+                border-bottom: 1px solid $postfooter-bg;
+                p:first-of-type{
+                    margin-bottom: 5px;
+                }
+                p:last-of-type{
+                    display: none;
+                }
+                h4{
+                    margin-top: 0;
+                    margin-bottom: 5px;
+                    line-height: 1.4;
+                }
+            }
+        }
+       .long-card-basic-list > [class*="col-"]:first-child .thumbnail .img-wrap{
+           display: block;
+       }
+       .long-card-basic-list > [class*="col-"]:last-child .thumbnail .caption{
+           border-bottom: none;
+       }
+        
     }
 }
 

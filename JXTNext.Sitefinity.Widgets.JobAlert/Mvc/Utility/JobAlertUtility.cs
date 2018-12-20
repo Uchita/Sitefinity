@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,75 +13,119 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
     public static class JobAlertUtility
     {
         private readonly static string CategoryString = "Categories";
+        private readonly static string SalaryString = "Salary";
+        private readonly static string CompanyString = "CompanyName";
         private readonly static string RangeString = "Range";
-        private static Classification_CategorySearchJson _mapToClassificationData(JobAlertEditFilterRootItem filter)
+        private static dynamic _mapToClassificationData(JobAlertEditFilterRootItem filter, JobAlertViewModel model)
         {
-            Classification_CategorySearchJson classification = new Classification_CategorySearchJson();
-            classification.SearchType = CategoryString;
-            classification.ClassificationRootName = filter.Name;
-            classification.TargetClassifications = filter.Filters
-                .Select(x => MapJobAlertFilterToClassification(x))
-                .ToList();
-            return classification;
+            if (filter.Name.ToLower() != SalaryString.ToLower())
+            {
+                dynamic classification = new ExpandoObject();
+                classification.SearchType = CategoryString;
+                classification.ClassificationRootName = filter.Name;
+
+                var subTargets = filter.Filters
+                    .Select(x => MapJobAlertFilterToClassification(x))
+                    .Where(x => x != null)
+                    .ToList();
+                if (subTargets != null && subTargets.Count != 0)
+                {
+                    classification.TargetClassifications = subTargets;
+                }
+
+                return classification;
+            }
+            else
+            {
+                return null;
+            }
+            
         }
 
 
-        private static JobAlertJsonModelData _mapToSearchModel(List<JobAlertEditFilterRootItem> filtersVMList, JobAlertViewModel model)
+        private static dynamic _mapToSearchModel(List<JobAlertEditFilterRootItem> filtersVMList, JobAlertViewModel model)
         {
 
-            JobAlertJsonModelData json = new JobAlertJsonModelData();
+            dynamic json = new ExpandoObject();
             json.FieldRanges = null;
             json.FieldSearches = null;
+            json.ClassificationsSearchCriteria = new List<dynamic>();
+            json.KeywordsSearchCriteria = new List<dynamic>();
+            var companyFilter = filtersVMList.Where(x => x.Name.ToLower() == CompanyString.ToLower()).FirstOrDefault();
+            if (companyFilter != null && companyFilter.Filters != null && companyFilter.Filters.Count > 0)
+            {
+                var companyFieldSearch = new List<dynamic>();
+                foreach (var filter in companyFilter.Filters)
+                {
+                    if (filter.Selected)
+                    {
+                        dynamic company = new ExpandoObject();
+                        company.CompanyId = filter.ID;
+                        companyFieldSearch.Add(company);
+                    }
+                }
+                if(companyFieldSearch.Count > 0)
+                {
+                    json.FieldSearches = companyFieldSearch;
+                }
+                
+            }
+            
+            
             foreach (var filter in filtersVMList)
             {
-                var classificationData = _mapToClassificationData(filter);
-                if(classificationData != null)
+                var classificationData = _mapToClassificationData(filter,model);
+                if(classificationData != null && filter.Name.ToLower() != CompanyString.ToLower())
                 {
                     json.ClassificationsSearchCriteria.Add(classificationData);
                 }
-                else
-                {
-                    json.ClassificationsSearchCriteria = null;
-                }
             }
 
-            if(model.Salary != null)
+            if (model.Salary != null)
             {
-                json.ClassificationsSearchCriteria.Add(new Classification_CategorySearchJson()
-                {
-                    SearchType = RangeString,
-                    TargetClassifications = null,
-                    ClassificationRootID = model.Salary.TargetValue,
-                    UpperRange = model.Salary.UpperRange,
-                    LowerRange = model.Salary.LowerRange
-                });
+                dynamic classification = new ExpandoObject();
+                classification.SearchType = RangeString;
+                classification.ClassificationRootName = SalaryString;
+                classification.TargetValue = model.Salary.TargetValue;
+                classification.UpperRange = model.Salary.UpperRange;
+                classification.LowerRange = model.Salary.LowerRange;
+                json.ClassificationsSearchCriteria.Add(classification);
+            }
+
+            if (model.Keywords != null && model.Keywords.Length > 0)
+            {
+                model.Keywords.Split(',').ToList().ForEach(x => json.KeywordsSearchCriteria.Add(new { Keyword = x }));
+            }
+            else
+            {
+                json.KeywordsSearchCriteria = null;
             }
             
-
-            model.Keywords?.Split(',').ToList().ForEach(x => json.KeywordsSearchCriteria.Add(new KeywordSearchJson() { Keyword = x }));
-
 
             return json;
         }
 
 
-        static Classification_CategorySearchTargetJson MapJobAlertFilterToClassification(JobAlertEditFilterItem filterItem)
+        static dynamic MapJobAlertFilterToClassification(JobAlertEditFilterItem filterItem)
         {
             
-            if (filterItem != null)
+            if (filterItem != null && filterItem.Selected)
             {
-                Classification_CategorySearchTargetJson obj = new Classification_CategorySearchTargetJson();
+                dynamic obj = new ExpandoObject();
                 obj.TargetValue = filterItem.ID;
                 
 
                 if (filterItem.Filters != null && filterItem.Filters.Count > 0)
                 {
-                    obj.SubTargets = new List<Classification_CategorySearchTargetJson>();
+                    obj.SubTargets = new List<dynamic>();
                     foreach (var item in filterItem.Filters)
                     {
-                        Classification_CategorySearchTargetJson temp = new Classification_CategorySearchTargetJson();
-                        
-                        obj.SubTargets.Add(MapJobAlertFilterToClassification(item));
+                        dynamic temp = new ExpandoObject();
+                        var subTargets = MapJobAlertFilterToClassification(item);
+                        if(subTargets != null)
+                        {
+                            obj.SubTargets.Add(subTargets);
+                        }
                     }
                 }
 
@@ -157,7 +202,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
                 }
             }
 
-            SearchModel searchModel = new SearchModel();
+            dynamic searchModel = new ExpandoObject();
             searchModel.search = _mapToSearchModel(filtersVMList, model);
             if(alertViewModel != null)
             {

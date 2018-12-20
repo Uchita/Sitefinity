@@ -27,9 +27,9 @@
                         <p class="job-offer-sum">
                             @{
                                 var summary = Html.HtmlSanitize((string)jobOffer.ShortDescription).ToString();
-                                string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 180 ? summary.Substring(0, 180) + "..." : summary;
+                                string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 220 ? summary.Substring(0, 220) + "..." : summary;
                             }
-                            @trimSummary;
+                            @trimSummary
                         </p>
                     </div>
                     <a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID"></a>

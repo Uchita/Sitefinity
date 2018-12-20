@@ -171,7 +171,7 @@
         <div class="row form-group">
             <div class="col-md-4 text-right"></div>
             <div class="col-md-8 button-wrapper">
-                <input class="btn btn-primary" type="submit" value="Browse Jobs" />
+                <input class="btn btn-primary" type="submit" value="Browse jobs" />
             </div>
         </div>
 
@@ -187,10 +187,10 @@
 
     function preventSubmit() {
          $.each(optionsArray,function (id, item) {
-             $($("#" + id).GetSelectedElementIds()).each(function (index, value) {                 
+             $($("#" + id).GetSelectedElementIds()).each(function (index, value) {
                 $("#selected-" + id).append('<option value="' + value + '" selected="true">' + value + '</option>')
             });
-        });                
+        });
         return true;
     };
 
@@ -256,18 +256,18 @@
             }
         }
 
-        $('select').on('change', function () {            
+        $('select').on('change', function () {
             isSalarySelected = false;
             $('.salaryrangewrapper').each(function (i, obj) {
                 $(this).addClass('visible-hidden');
-            });            
+            });
             if (this.value != -1) {
                 $(this).addClass('changed');
                 isSalarySelected = true;
-                $('#' + this.value).removeClass('visible-hidden');    
+                $('#' + this.value).removeClass('visible-hidden');
                 salary.TargetValue = this.value;
                 salary.LowerRange = $("#" + $(this).val()).find('.leftLabel span').text();
-                salary.UpperRange = $("#" + $(this).val()).find('.rightLabel span').text();                                                
+                salary.UpperRange = $("#" + $(this).val()).find('.rightLabel span').text();
             } else if ($(this).hasClass('changed') && this.value == -1) {
                 isSalarySelected = false;
             }
@@ -288,7 +288,7 @@
                     salary.LowerRange = leftValue;
                     salary.UpperRange = rightValue;
                     $(this).parent().find('.leftLabel span').text(leftValue);
-                    $(this).parent().find('.rightLabel span').text(rightValue);          
+                    $(this).parent().find('.rightLabel span').text(rightValue);
                     salaryValues();
                 },
                 "value_changed_callback": function (cause, leftValue, rightValue) {
@@ -309,7 +309,7 @@
             else
                 document.getElementById("divSalary").innerHTML = "";
         };
-        
+
 
    });
 </script>

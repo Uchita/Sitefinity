@@ -2,7 +2,7 @@ $(document).ready(function () {
     if (typeof WOW !== 'undefined') {
         new WOW().init();
     }
-    $("#featuredInsights,#internalJobs").owlCarousel({
+    $("#featuredInsights,#internalJobs1").owlCarousel({
         margin: 18,
         nav: true,
         dots: true,

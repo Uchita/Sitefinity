@@ -27,7 +27,6 @@
 }*/
 
 body, html {
-    /*font-family: 'Proxima Nova';*/
     font-family: 'Muli', sans-serif;
     font-size: 16px;
     line-height: 1.25em;
@@ -39,12 +38,10 @@ h1,
 h2,
 h3,
 h4 {
-    /*font-family: 'Proxima Nova';*/
     font-family: 'Muli', sans-serif;
 }
 
 label {
-    /*font-family: 'Proxima Nova';*/
     font-family: 'Muli', sans-serif;
 }
 
@@ -4928,6 +4925,7 @@ h3,
 
 h4 {
     color: #000;
+    font-weight: 600;
 }
 
 .app-content li,
@@ -4949,6 +4947,7 @@ p {
 .btn {
     font-size: 1em;
     border-radius: 4px;
+    font-weight: 600;
     padding: 8px 23px 7px;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -5909,7 +5908,7 @@ select.hs-input {
 
     .app-header .dropdown-menu .dropdown-item {
         color: #7E7E7E;
-        font-size: 14px;
+        font-size: 13px;
         line-height: 17px;
         padding-left: 0;
         background-color: transparent;
@@ -5968,6 +5967,7 @@ select.hs-input {
 
         .app-header .navbar-nav .dropdown-menu {
             top: 100%;
+            font-size: 13px;
             margin: 0;
             display: block;
             visibility: hidden;
@@ -6591,10 +6591,11 @@ select.hs-input {
 
 .squire-box {
     color: #fff;
-    padding: 50px 30px 90px !important;
+    padding: 50px 30px 90px 40px !important;
     background-image: url("../images/Administration-and-Executive-Talent.jpg");
     position: relative;
     min-height: 100%;
+    overflow: hidden;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -6616,7 +6617,7 @@ select.hs-input {
         color: #fff;
         position: absolute;
         bottom: 50px;
-        left: 30px;
+        left: 40px;
     }
 
         .squire-box a:hover, .squire-box a:focus {
@@ -6805,26 +6806,33 @@ select.hs-input {
 .img-absolute-wrap {
     overflow: visible;
     min-height: 300px !important;
+    position: static !important;
 }
+
 
     .img-absolute-wrap .img-absolute {
         position: absolute;
-        left: 0;
+        right: 0px;
+        width: 50%;
         height: 100%;
-        right: -370px;
         top: 0;
     }
 
         .img-absolute-wrap .img-absolute.image-pos-left {
-            left: -370px;
-            right: 0;
+            left: 0px;
         }
 
+
 @media (max-width: 767px) {
-    .img-absolute-wrap .img-absolute {
-        left: -15px;
-        right: -15px;
+
+
+    .img-absolute-wrap {
+        position: relative !important;
     }
+
+        .img-absolute-wrap .img-absolute {
+            width: 100%;
+        }
 }
 
 @media (max-width: 767px) {
@@ -7496,4 +7504,39 @@ select.hs-input {
 .margin-container {
     margin-top: 70px;
     margin-bottom: 70px;
+}
+
+.aboutus_blue_title {
+    padding-bottom: 20px;
+}
+
+.multitext_subtext {
+    padding-top: 5px;
+}
+
+.content-two-block .img-absolute-wrap {
+    padding-left: 40px;
+}
+
+.baner_right_space, .text-margin-left, .content-on-img {
+    padding-left: 40px !important;
+}
+
+@media (max-width: 767px) {
+
+    .content-two-block .img-absolute-wrap {
+        padding-left: 15px;
+    }
+
+    .baner_right_space, .text-margin-left, .content-on-img {
+        padding-left: 15px !important;
+    }
+
+    .squire-box {
+        padding: 50px 15px 90px 15px !important;
+    }
+
+        .squire-box a {
+            left: 15px;
+        }
 }

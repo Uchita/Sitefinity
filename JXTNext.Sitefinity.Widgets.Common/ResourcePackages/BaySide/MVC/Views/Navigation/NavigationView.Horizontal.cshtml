@@ -22,7 +22,7 @@
                 if (parentNode.Url == "/specialist-recruitment-group")
                 {
                     <li class="nav-item dropdown mega-menu">
-                        <a class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a target="@parentNode.LinkTarget" class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
                         <div class="dropdown-menu">
@@ -39,7 +39,7 @@
                                     {
                                         <div class="col-12 col-lg-8">
 
-                                            <a class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">@childNode.Title</a>
+                                            <a target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">@childNode.Title</a>
 
                                             @if (childNode.ChildNodes.Count > 4)
                                             {
@@ -59,7 +59,7 @@
                                                         <ul>
                                                             @foreach (var node in listTopFive)
                                                             {
-                                                                <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                                <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                                 <li><i>@ContentHelper.FindPagebyUrlNativeAPI(node.Url, parentNode.Url)</i></li>
                                                             }
                                                         </ul>
@@ -68,7 +68,7 @@
                                                         <ul>
                                                             @foreach (var node in listRemainingNodes)
                                                             {
-                                                                <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                                <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                                 <li><i>@ContentHelper.FindPagebyUrlNativeAPI(node.Url, parentNode.Url)</i></li>
                                                             }
                                                         </ul>
@@ -85,7 +85,7 @@
 
                                                             @foreach (var node in listAllNodes)
                                                             {
-                                                                <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                                <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                                 <li><i>@ContentHelper.FindPagebyUrlNativeAPI(node.Url, parentNode.Url)</i></li>
                                                             }
                                                         </ul>
@@ -106,24 +106,24 @@
                                     {
                                         if (childNode.Url == "/specialist-recruitment/our-industries")
                                         {
-                                            <a class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">@childNode.Title</a>
+                                            <a target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">@childNode.Title</a>
                                             <ul>
                                                 @foreach (var node in childNode.ChildNodes)
                                                 {
 
-                                                    <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         }
 
                                         else if (childNode.Url == "/specialist-recruitment-group/learn-more")
                                         {
-                                            <a class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">@childNode.Title</a>
+                                            <a target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">@childNode.Title</a>
                                             <ul>
                                                 @foreach (var node in childNode.ChildNodes)
                                                 {
 
-                                                    <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         }
@@ -137,7 +137,7 @@
                 else if (parentNode.Title == "Jobs")
                 {
                     <li class="nav-item dropdown mega-menu">
-                        <a class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a target="@parentNode.LinkTarget" class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
                         <div class="dropdown-menu">
@@ -149,19 +149,19 @@
 
                                         if (childnode.Url == "/jobs/advancedsearch")
                                         {
-                                            <a class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">Job Search</a>
+                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">Job Search</a>
                                             <ul>
-                                                <li><a class="dropdown-item @GetClass(childnode)" href="@childnode.Url">Find a job</a></li>
+                                                <li><a target="@childnode.LinkTarget" class="dropdown-item @GetClass(childnode)" href="@childnode.Url">Find a job</a></li>
                                             </ul>
                                         }
                                         if (childnode.Url == "/jobs/job-application-tool")
                                         {
 
-                                            <a class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
+                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var subchildnode in childnode.ChildNodes)
                                                 {
-                                                    <li><a class="dropdown-item @GetClass(subchildnode)" href="@subchildnode.Url">@subchildnode.Title</a></li>
+                                                    <li><a target="@subchildnode.LinkTarget" class="dropdown-item @GetClass(subchildnode)" href="@subchildnode.Url">@subchildnode.Title</a></li>
                                                 }
                                             </ul>
                                         }
@@ -180,7 +180,7 @@
 
                                         if (childNode1.Url == "/jobs/specialist-jobs-new")
                                         {
-                                            <a class="dropdown-item menu-heading @GetClass(childNode1)" href="@childNode1.Url">@childNode1.Title</a>
+                                            <a target="@childNode1.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode1)" href="@childNode1.Url">@childNode1.Title</a>
 
 
                                             if (childNode1.ChildNodes.Count > 10)
@@ -203,7 +203,7 @@
                                                         <ul>
                                                             @foreach (var node in listTopTen)
                                                             {
-                                                                <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                                <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                             }
                                                         </ul>
                                                     </div>
@@ -211,18 +211,18 @@
                                                         <ul>
                                                             @foreach (var node in listRemainingNodes1)
                                                             {
-                                                                <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                                <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                             }
                                                         </ul>
                                                         @foreach (var childNode11 in parentNode.ChildNodes)
                                                         {
                                                             if (childNode11.Url == "/jobs/learn-more")
                                                             {
-                                                                <a class="dropdown-item menu-heading @GetClass(childNode11)" href="@childNode11.Url">@childNode11.Title</a>
+                                                                <a target="@childNode11.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode11)" href="@childNode11.Url">@childNode11.Title</a>
                                                                 <ul>
                                                                     @foreach (var subNode in childNode11.ChildNodes)
                                                                     {
-                                                                        <li><a class="dropdown-item  @GetClass(subNode)" href="@subNode.Url">@subNode.Title</a></li>
+                                                                        <li><a target="@subNode.LinkTarget" class="dropdown-item  @GetClass(subNode)" href="@subNode.Url">@subNode.Title</a></li>
                                                                     }
                                                                 </ul>
                                                             }
@@ -238,7 +238,7 @@
                                                         <ul>
                                                             @foreach (var node in listAllNodes1)
                                                             {
-                                                                <li><a class="dropdown-item @GetClass(node)" href="">@node.Title</a></li>
+                                                                <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="">@node.Title</a></li>
                                                             }
                                                         </ul>
                                                     </div>
@@ -259,7 +259,7 @@
                 else if (parentNode.Url == "/employer-services")
                 {
                     <li class="nav-item dropdown mega-menu">
-                        <a class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a target="@parentNode.LinkTarget" class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
                         <div class="dropdown-menu">
@@ -270,11 +270,11 @@
                                     if (childnode.Url == "/employer-services/partnering-with-employers")
                                     {
                                         <div class="col-12 col-lg-4">
-                                            <a class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
+                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         </div>
@@ -282,11 +282,11 @@
                                     else if (childnode.Url == "/employer-services/what-we-do")
                                     {
                                         <div class="col-12 col-lg-4">
-                                            <a class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
+                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         </div>
@@ -294,11 +294,11 @@
                                     else if (childnode.Url == "/employer-services/learn-more")
                                     {
                                         <div class="col-12 col-lg-4">
-                                            <a class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
+                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         </div>
@@ -313,7 +313,7 @@
                 else if (parentNode.Url == "/resources")
                 {
                     <li class="nav-item dropdown mega-menu ">
-                        <a class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a target="@parentNode.LinkTarget" class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
                         <div class="dropdown-menu">
@@ -325,11 +325,11 @@
                                     {
 
                                         <div class="col-12 col-lg-4">
-                                            <a class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
+                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         </div>
@@ -338,11 +338,11 @@
                                     {
 
                                         <div class="col-12 col-lg-4">
-                                            <a class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
+                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         </div>
@@ -351,11 +351,11 @@
                                     {
 
                                         <div class="col-12 col-lg-4">
-                                            <a class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
+                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li><a target="@node.LinkTarget"  class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
 
@@ -363,11 +363,11 @@
                                             {
                                                 if (childNode11.Url == "/resources/learn-more")
                                                 {
-                                                    <a class="dropdown-item menu-heading @GetClass(childNode11)" href="@childNode11.Url">@childNode11.Title</a>
+                                                    <a target="@childNode11.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode11)" href="@childNode11.Url">@childNode11.Title</a>
                                                     <ul>
                                                         @foreach (var subNode in childNode11.ChildNodes)
                                                         {
-                                                            <li><a class="dropdown-item  @GetClass(subNode)" href="@subNode.Url">@subNode.Title</a></li>
+                                                            <li><a target="@subNode.LinkTarget" class="dropdown-item  @GetClass(subNode)" href="@subNode.Url">@subNode.Title</a></li>
                                                         }
                                                     </ul>
                                                 }
@@ -382,7 +382,7 @@
                 else if (parentNode.Url == "/about")
                 {
                     <li class="nav-item dropdown mega-menu">
-                        <a class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a target="@parentNode.LinkTarget" class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
                         <div class="dropdown-menu">
@@ -394,11 +394,11 @@
                                     {
 
                                         <div class="col-12 col-lg-4">
-                                            <a class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
+                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         </div>
@@ -407,11 +407,11 @@
                                     {
 
                                         <div class="col-12 col-lg-4">
-                                            <a class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
+                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         </div>
@@ -419,11 +419,11 @@
                                     else if (childnode.Url == "/about/learn-more")
                                     {
                                         <div class="col-12 col-lg-4">
-                                            <a class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
+                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         </div>
@@ -444,7 +444,7 @@
                 else if (parentNode.Url == "/contact")
                 {
                     <li class="nav-item dropdown mega-menu">
-                        <a class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a target="@parentNode.LinkTarget" class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
                         <div class="dropdown-menu">
@@ -454,12 +454,12 @@
                                     {
                                         if (childNode.Url == "/contact/actions")
                                         {
-                                            <a class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">@childNode.Title</a>
+                                            <a target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">@childNode.Title</a>
                                             <ul>
                                                 @foreach (var node in childNode.ChildNodes)
                                                 {
 
-                                                    <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         }
@@ -488,7 +488,7 @@
                                     {
                                         <div class="col-12 col-lg-8">
 
-                                            <a class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">Visit the Brand Site</a>
+                                            <a target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">Visit the Brand Site</a>
 
                                             @if (childNode.ChildNodes.Count > 4)
                                             {
@@ -508,7 +508,7 @@
                                                         <ul>
                                                             @foreach (var node in listTopFive)
                                                             {
-                                                                <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                                <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                                 <li><i>@ContentHelper.FindPagebyUrlNativeAPI(node.Url, parentNode.Url)</i></li>
                                                             }
                                                         </ul>
@@ -517,7 +517,7 @@
                                                         <ul>
                                                             @foreach (var node in listRemainingNodes)
                                                             {
-                                                                <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                                <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                                 <li><i>@ContentHelper.FindPagebyUrlNativeAPI(node.Url, parentNode.Url)</i></li>
                                                             }
                                                         </ul>
@@ -534,7 +534,7 @@
 
                                                             @foreach (var node in listAllNodes)
                                                             {
-                                                                <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                                <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                                 <li><i>@ContentHelper.FindPagebyUrlNativeAPI(node.Url, parentNode.Url)</i></li>
                                                             }
                                                         </ul>
@@ -542,19 +542,15 @@
                                                     <div class="col-12 col-lg-6">
                                                         <ul></ul>
                                                     </div>
-
                                                 </div>
                                             }
-
                                         </div>
                                     }
                                 }
-
                             </div>
                         </div>
                     </li>
                 }
-
             }
         </ul>
     </div>

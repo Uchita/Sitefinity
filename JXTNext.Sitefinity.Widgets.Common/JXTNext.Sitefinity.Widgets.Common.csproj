@@ -279,6 +279,9 @@
     <Content Include="ResourcePackages\BaySide\assets\js\jquery-3.3.1.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\BaySide\assets\js\jquery.data-parallax.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\assets\js\owl.carousel.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -2000,6 +2003,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\assets\dist\fonts\sf-icon-font.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\BaySide\assets\doc\BG-Customer-Service-Charter.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\assets\fonts\fontawesome-webfont.eot">

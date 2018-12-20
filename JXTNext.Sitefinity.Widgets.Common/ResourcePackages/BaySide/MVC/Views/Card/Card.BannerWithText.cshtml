@@ -1,25 +1,4 @@
-﻿@*@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
-    @using Telerik.Sitefinity.Frontend.Mvc.Helpers
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-md-6 img-absolute-wrap">
-            <div class="img-absolute image-pos-left bg-image" style="background-image: url('@Model.SelectedSizeUrl');"></div>
-        </div>
-        <div class="g-section col-12 col-md-6 @Model.CssClass">
-            @if (!string.IsNullOrEmpty(Model.Heading))
-            {
-            <h3>@Html.HtmlSanitize(Model.Heading)</h3>
-            }
-            <p>
-                @Html.HtmlSanitize(Model.Description)
-            </p>
-            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary mt-4">@Model.ActionName</a>
-        </div>
-    </div>
-</div>*@
-
-
-@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
+﻿@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 <section class="full-section @Model.CssClass">
     <div class="container">
@@ -27,15 +6,22 @@
             <div class="col-12 col-md-6 img-absolute-wrap">
                 <div class="img-absolute image-pos-left bg-image" style="background-image: url('@Model.SelectedSizeUrl');"></div>
             </div>
-            <div class="g-section col-12 col-md-6">
+            <div class="g-section col-12 col-md-6 baner_right_space">
                 @if (!string.IsNullOrEmpty(Model.Heading))
                 {
-                <h3>@Html.HtmlSanitize(Model.Heading)</h3>
+                    if (Model.Heading == "Customer Service Charter")
+                    {
+                        <h3 id="CustomerServiceCharter">@Html.HtmlSanitize(Model.Heading)</h3>
+                    }
+                    else
+                    {
+                        <h3>@Html.HtmlSanitize(Model.Heading)</h3>
+                    }
                 }
                 <p>
                     @Html.HtmlSanitize(Model.Description)
                 </p>
-                <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary mt-4">@Model.ActionName</a>
+                <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary mt-4" download>@Model.ActionName</a>
             </div>
         </div>
     </div>

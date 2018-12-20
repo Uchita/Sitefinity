@@ -15,8 +15,11 @@
     </div>
     <div class="leader-name">@Html.HtmlSanitize(card.Heading)</div>
     <div class="leader-designation">@Model.GroupHeader</div>
-    <a href="javascript:void(0)" data-desc="@Html.HtmlSanitize(card.Description)" class="btn btn-link">
-        @card.ActionName
-    </a>
-    @*</div>*@
+
+    if (card.Description != null && card.Description.Length > 0)
+    {
+        <a href="javascript:void(0)" data-desc="@Html.HtmlSanitize(card.Description)" class="btn btn-link">
+            @card.ActionName
+        </a>
+    }
 }

@@ -62,6 +62,9 @@
                 right: -11px;
                 display: block;
             }
+            &:hover::after{
+                content: '\f077';
+            }
         }
     }
     li, li.dropdown {

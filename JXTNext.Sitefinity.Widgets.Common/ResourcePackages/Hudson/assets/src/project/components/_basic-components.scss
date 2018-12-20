@@ -11,6 +11,9 @@ blockquote{
     -webkit-box-pack: center!important;
     -ms-flex-pack: center!important;
     justify-content: center!important;
+    -webkit-box-align: center!important;
+    -ms-flex-align: center!important;
+    align-items: center!important;
 }
 
 .width-limit{
@@ -694,6 +697,9 @@ blockquote{
 img, iframe {
     max-width: 100%;
     border: none;
+}
+.responsive-img{
+    width: 100%;
 }
 .modal-dialog{
     max-width: 90%;
@@ -1501,12 +1507,14 @@ main {
     }
 }
 
-
+.home-padding.flex .thumbnail{
+    height: 100%!important;
+}
 .home-padding .thumbnail.card-basic .caption{
-    height: 240px; 
     padding: $gap;  
     font-size: $global-font-size;
     line-height: 1.6;
+    background: $brightColor;
 } 
 
 
@@ -2296,10 +2304,6 @@ address.info-box{
     }
 }
 
-.prefooter-content .testimonials-slider.testimonials-simple.with-side-image .item, 
-.testimonials-slider.testimonials-simple.with-side-image .item{    
-    bottom: 25%; position: absolute;
-}
 .testimonials-slider.testimonials-simple.with-side-image .img-holder{ 
     width:80%;
 }

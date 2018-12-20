@@ -9488,9 +9488,13 @@ ul.breadcrumb {
     background-color: rgba(255, 255, 255, 0.9);
     background-size: 100% auto;
     margin-bottom: 0; }
+    .banner-with-basic .thumbnail h1 {
+      margin-bottom: 3rem; }
     .banner-with-basic .thumbnail .banner-with-basic-summary {
       font-size: 24px;
       font-size: 2.4rem; }
+    .banner-with-basic .thumbnail .caption {
+      padding-bottom: 3.5rem; }
 
 .owl-carousel-jumbotron .owl-nav {
   width: 100%;
@@ -10703,6 +10707,8 @@ select.articles-order {
       bottom: -2px;
       right: -11px;
       display: block; }
+    .press-release-filter li.dropdown > a:hover::after {
+      content: '\f077'; }
   .press-release-filter li a:hover, .press-release-filter li a:focus, .press-release-filter li.dropdown a:hover, .press-release-filter li.dropdown a:focus {
     text-decoration: none; }
   .press-release-filter li .dropdown-menu, .press-release-filter li.dropdown .dropdown-menu {
@@ -11950,8 +11956,11 @@ select.articles-order {
   .sx-fullwidth-card .thumbnail .caption {
     width: 94%;
     padding: 15px; }
+  .article-filter-page .long-card-basic-list {
+    margin-top: 4rem; }
   .article-filter-page .thumbnail {
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    max-width: 100%; }
     .article-filter-page .thumbnail .img-wrap {
       display: none; }
     .article-filter-page .thumbnail .caption {
@@ -11966,10 +11975,25 @@ select.articles-order {
         margin-top: 0;
         margin-bottom: 5px;
         line-height: 1.4; }
-  .article-filter-page .long-card-basic-list > [class*="col-"]:first-child .thumbnail .img-wrap {
-    display: block; }
-  .article-filter-page .long-card-basic-list > [class*="col-"]:last-child .thumbnail .caption {
-    border-bottom: none; } }
+  .press-release-filter ul li {
+    margin-bottom: 8px; }
+    .press-release-filter ul li a {
+      font-size: 1.6rem; }
+  .article-sorting-wrapper {
+    display: none; }
+  .banner-with-basic {
+    background-image: none !important;
+    background-color: #fff;
+    padding: 0 !important; }
+    .banner-with-basic .thumbnail {
+      background-color: #f0f0f0; }
+      .banner-with-basic .thumbnail h1 {
+        font-size: 2.2rem;
+        margin-bottom: 1rem; }
+      .banner-with-basic .thumbnail .banner-with-basic-summary {
+        font-size: 1.6rem; }
+      .banner-with-basic .thumbnail .caption {
+        min-height: 150px; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron .owl-nav {

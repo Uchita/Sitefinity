@@ -1428,8 +1428,12 @@
     }
 
     .article-filter-page{
+        .long-card-basic-list{
+            margin-top: 4rem;
+        }
         .thumbnail{
             margin-bottom: 0;
+            max-width: 100%;
             .img-wrap{
                 display: none;
             }
@@ -1450,14 +1454,36 @@
                 }
             }
         }
-       .long-card-basic-list > [class*="col-"]:first-child .thumbnail .img-wrap{
-           display: block;
-       }
-       .long-card-basic-list > [class*="col-"]:last-child .thumbnail .caption{
-           border-bottom: none;
-       }
-        
+       
     }
+    .press-release-filter ul li{
+        margin-bottom: 8px;
+        a{
+            font-size: 1.6rem;
+        }
+    }
+    .article-sorting-wrapper{
+        display: none;
+    }
+    .banner-with-basic{
+        background-image:none!important;
+        background-color: $brightColor;
+        padding: 0!important;
+        .thumbnail{
+            background-color: $page-section-bg-lighter;
+            h1{
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+            .banner-with-basic-summary{
+                font-size: 1.6rem;
+            }
+            .caption{
+                min-height: 150px;
+            }
+        }
+    }
+
 }
 
 @media screen and (max-width: 767px) {

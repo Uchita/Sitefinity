@@ -139,8 +139,8 @@
          var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
          var json = serializer.Serialize(Model);
          var emailPattern = "^[a-zA-Z0-9_][a-zA-Z0-9!#$%&amp;'*+/=?_`{|}~-]*(?:.[a-zA-Z0-9!#$%&amp;';*+/=?_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?.)+(?:[a-zA-Z]{2,})$";
-         var emptyMsg = "Email field should not be empty.";
-         var invalidMsg = "Email address is invalid";
+         var emptyMsg = "Please enter your email address.";
+         var invalidMsg = "Please enter your valid email address.";
          
       }
         var islogged = $("#loginVar").val(); //used in kendo template

@@ -5,37 +5,40 @@
 <div class="text-center mb-30">
     <h2>@ViewBag.ConsultantName's jobs</h2>
 </div>
+@{
+    var defaultLogo = "/ResourcePackages/Hudson/assets/dist/images/defaultLogo.png";
+}
 
 @if (Model != null && Model.SearchResults != null && Model.SearchResults.Count > 0)
 {
-<div class="consultant-jobs owl-carousel owl-card-basic owl-theme row same-height-wrapper">
-    @foreach (var jobOffer in Model.SearchResults)
-    {
-        <div class="item">
+    <div class="consultant-jobs owl-carousel owl-card-basic owl-theme row same-height-wrapper">
+        @foreach (var jobOffer in Model.SearchResults)
+        {
+            <div class="item">
 
-            <div class="featured-job-offer same-height-box">
-                @*<div class="job-offer-company text-right"><img alt="Asset 2" src="/images/default-source/clients/optus.png" title="@jobOffer.Title"></div>*@
-                <div class="job-offer">
-                    <h3><a class="title-link" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">@jobOffer.Title</a></h3>
-                    @*@{
-                            var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(Math.Round(jobOffer.DateCreated / 1000d)).ToLocalTime()
-                        }*@
-                    @*<p class="text-muted">@obOffer.DateCreated</p>*@
-                    <p class="job-offer-sum">
-                        @{
-                            var summary = Html.HtmlSanitize((string)jobOffer.ShortDescription).ToString();
-                            string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 90 ? summary.Substring(0, 90) + "..." : summary;
-                        }
-                        @trimSummary;
-                    </p>
+                <div class="featured-job-offer same-height-box">
+                    <div class="job-offer-company text-right"><img alt="@jobOffer.Title" src="@defaultLogo"></div>
+                    <div class="job-offer">
+                        <h3><a class="title-link" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">@jobOffer.Title</a></h3>
+                        @*@{
+                                var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(Math.Round(jobOffer.DateCreated / 1000d)).ToLocalTime()
+                            }*@
+                        @*<p class="text-muted">@obOffer.DateCreated</p>*@
+                        <p class="job-offer-sum">
+                            @{
+                                var summary = Html.HtmlSanitize((string)jobOffer.ShortDescription).ToString();
+                                string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 180 ? summary.Substring(0, 180) + "..." : summary;
+                            }
+                            @trimSummary;
+                        </p>
+                    </div>
+                    <a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID"></a>
                 </div>
-                <a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID"></a>
+
             </div>
 
-        </div>
-
-    }
-</div>
+        }
+    </div>
 }
 else
 {

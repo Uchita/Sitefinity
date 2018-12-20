@@ -49,7 +49,7 @@
                     case "TextBox":
                         <div class="row form-group">
                             <div class="col-md-4 text-right">
-                                <label for="Keywords">@item.PlaceholderText</label>
+                                <label for="Keywords" class="form-label">@item.PlaceholderText</label>
                             </div>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" placeholder="@item.PlaceholderText" name="Keywords" />
@@ -63,7 +63,7 @@
                         GetValuesList(item.Filters);
                         <div class="row form-group">
                             <div class="col-md-4 text-right">
-                                <label for="Filters[@counter].values">
+                                <label for="Filters[@counter].values" class="form-label">
                                     @item.FilterType
                                 </label>
                             </div>
@@ -87,7 +87,7 @@
                             @if (item.FilterType == "Salary")
                             {
                                 <div class="col-md-4 text-right">
-                                    <label>@item.FilterType</label>
+                                    <label class="form-label">@item.FilterType</label>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="hidden" id="divSalary"></div>
@@ -134,7 +134,7 @@
 
                                 <div class="col-md-4 text-right">
                                     <input type="hidden" name="Filters[@counter].rootId" value='@item.FilterType' />
-                                    <label class="col-4" for="@string.Format("selected-{0}",item.ID)" rel="@item.FilterType">
+                                    <label class="col-4 form-label" for="@string.Format("selected-{0}",item.ID)" rel="@item.FilterType">
                                         @item.PlaceholderText
                                     </label>
                                 </div>

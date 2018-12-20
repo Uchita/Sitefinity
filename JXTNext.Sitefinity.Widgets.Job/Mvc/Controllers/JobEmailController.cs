@@ -449,10 +449,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 EmailFriendLabel = string.IsNullOrEmpty(this.EmailFriendLabel) ? "Click here to email this job to a friend" : this.EmailFriendLabel,
                 EmailFriendHelp = this.EmailFriendHelp,
 
-                FriendNameLabel = string.IsNullOrEmpty(this.FriendNameLabel) ? "Your Friend's Name" : this.FriendNameLabel,
+                FriendNameLabel = string.IsNullOrEmpty(this.FriendNameLabel) ? "Friend's Name" : this.FriendNameLabel,
                 FriendNameHelp = this.EmailFriendHelp,
 
-                FriendEmailLabel = string.IsNullOrEmpty(this.FriendEmailLabel) ? "Your Friend's Email" : this.FriendEmailLabel,
+                FriendEmailLabel = string.IsNullOrEmpty(this.FriendEmailLabel) ? "Friend's Email" : this.FriendEmailLabel,
                 FriendEmailHelp = this.EmailFriendHelp,
 
                 FriendMessageLabel = string.IsNullOrEmpty(this.FriendMessageLabel) ? "Message For Your Friend" : this.FriendMessageLabel,

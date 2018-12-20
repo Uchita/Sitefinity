@@ -38,6 +38,10 @@
         float:left;
         padding: 0 30px 0 0;
     }
+
+    .md-pull-right{
+        float: right!important;
+    }
 }
 @media (min-width:768px) and (max-width: 1199px) {
 
@@ -861,7 +865,7 @@
         
     }
     .main-content{
-        padding-top: 43px;
+        
     }
     .mobile-owl-carousel {
         .thumbnail{
@@ -1015,7 +1019,7 @@
     .search-top{
         .jobalert-btn{
             position: absolute;
-            top: 20px;
+            top: 30px;
             right: 63px;
             padding: 10px 20px;
             margin: 0!important;
@@ -1316,7 +1320,7 @@
 
     .mobile-breadcrumb{
         z-index: 10;
-        margin-top: 24px;
+        margin-top: 10px;
         position: relative;
         height: 35px;
         .breadcrumb {
@@ -1336,7 +1340,7 @@
     }
     .pos-static{
         margin-top: 0;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
         .breadcrumb{
             position: static;
         }
@@ -1345,6 +1349,8 @@
     .contact-box {
         margin-bottom: 40px;
     }
+    
+    
 }
 
 @media screen and (max-width: 767px) {
@@ -1621,6 +1627,15 @@
     .risk-measurement .risk-wrapper {
         width: 100%;
         float: none;
+    }
+    .map-placeholder{
+        height: 350px;
+    }
+    .gm-style-iw{
+        max-width: 100%!important;
+    }
+    .info-box .map-field {
+        font-size: 1.5rem
     }
 }
 

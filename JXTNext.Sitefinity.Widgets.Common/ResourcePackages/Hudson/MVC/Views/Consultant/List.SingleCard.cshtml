@@ -1,0 +1,66 @@
+@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Modules.Libraries;
+<div class="single-card">
+    @foreach (var consultant in Model.Items)
+    {
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(consultant, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+
+        if (consultant.Fields.Pic != null && consultant.Fields.Office != null)
+        {
+            var OfficeLocationName = "";
+            var OfficeLocationUrl = "";
+
+            
+            <div class="consultant">
+                <a href="@navigateUrl" title="@consultant.Fields.ConsultantName" class="consultant-photo">
+                    <img src="@MediaContentExtensions.ResolveThumbnailUrl(consultant.Fields.Pic.DataItem, "thumb350")" alt="@consultant.Fields.ConsultantName">
+                </a>
+                <a href="@navigateUrl" class="caption">
+                    <h3 class="consultant-name">@consultant.Fields.ConsultantName</h3>
+                    <p class="consultant-sum">
+                        @Html.HtmlSanitize((string)consultant.Fields.Position)
+                    </p>
+
+                    @if (consultant.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
+                    {
+                        OfficeLocationName = Html.HtmlSanitize((string)consultant.Fields.Office.Fields.Name).ToString();
+                        OfficeLocationUrl = consultant.Fields.Office.Fields.UrlName.ToString();
+                    }
+                    else
+                    {
+                        List<string> OfficeLocationNameList = new List<string>();
+                        List<string> OfficeLocationUrlList = new List<string>();
+
+                        foreach (var office in consultant.Fields.Office)
+                        {
+                            if (!OfficeLocationNameList.Contains((string)office.Fields.Name))
+                            {
+                                OfficeLocationNameList.Add((string)office.Fields.Name);
+                                OfficeLocationUrlList.Add(office.Fields.UrlName.ToString());
+                            }
+                        }
+
+                        OfficeLocationName = string.Join(", ", OfficeLocationNameList.ToArray());
+                        OfficeLocationUrl = string.Join(",", OfficeLocationUrlList.ToArray());
+                    }
+                    @if (consultant.Fields.Office != null)
+                    {
+                        <span class="consultant-btn">@OfficeLocationName</span>
+                    }
+                </a>
+                
+            </div>
+           
+        }
+    }
+</div>
+
+

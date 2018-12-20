@@ -31,43 +31,56 @@
         @foreach (var item in Model.Items)
         {
             var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+            var imageThumbUrl = "";
+            var noImageCls = "";
+        <li>
+            <div class="featured-article">
 
-            <li>
-                <div class="featured-article">
-
-                    @if (item.Fields.articles != null)
-                    {
-                        List<string> filterValues = new List<string>();
-                        var articleIds = item.Fields.articles;
-                        foreach (var taxonItem in articleIds)
-                        {
-                            Guid articleID = new Guid(taxonItem.ToString());
-                            var taxonManager = TaxonomyManager.GetManager();
-                            var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
-                            filterValues.Add(taxon.Title);
-                        }
-                        <div class="text-muted">
-                            @(string.Join(", ", filterValues))
-                        </div>
-                    }
-
-                    <h3>
-                        <a href="@navigateUrl">
-
-                            @Html.HtmlSanitize((string)item.Fields.Title)
-                        </a>
-                    </h3>
-                    <div>@Html.HtmlSanitize((string)item.Fields.Summary)</div>
-
-                    <a class="btn btn-more" href="@navigateUrl"></a>
-                </div>
-
-                @if (item.Fields.HeaderImage != null)
+                @if (item.Fields.articles != null)
                 {
-                    <div class="featured-article-image"><a href="@navigateUrl" title="@item.Fields.HeaderImage.Fields.Title"><img alt="@item.Fields.HeaderImage.Fields.Title" src="@MediaContentExtensions.ResolveThumbnailUrl(item.Fields.HeaderImage.DataItem, "thumbartic")" /></a></div>
+                    List<string> filterValues = new List<string>();
+                    var articleIds = item.Fields.articles;
+                    foreach (var taxonItem in articleIds)
+                    {
+                        Guid articleID = new Guid(taxonItem.ToString());
+                        var taxonManager = TaxonomyManager.GetManager();
+                        var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
+                        filterValues.Add(taxon.Title);
+                    }
+                    <div class="text-muted">
+                        @(string.Join(", ", filterValues))
+                    </div>
                 }
 
-            </li>
+                <h3>
+                    <a href="@navigateUrl">
+
+                        @Html.HtmlSanitize((string)item.Fields.Title)
+                    </a>
+                </h3>
+                <div class="desc">
+                    @{
+                        var summary = Html.HtmlSanitize((string)item.Fields.Summary).ToString();
+                        string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 180 ? summary.Substring(0, 180) + "..." : summary;
+                    }
+                   @trimSummary
+                </div>
+
+                <a class="btn btn-more" href="@navigateUrl"></a>
+            </div>
+
+            @if (item.Fields.HeaderImage != null)
+            {
+                imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(item.Fields.HeaderImage.DataItem, "thumbartic");
+            }
+            else
+            {
+                imageThumbUrl = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.jpg";
+                noImageCls = "no-image";
+            }
+            <div class="featured-article-image"><a href="@navigateUrl" title="@item.Fields.Title"><img alt="@item.Fields.Title" src="@imageThumbUrl" /></a></div>
+
+        </li>
 
         }
     </ul>

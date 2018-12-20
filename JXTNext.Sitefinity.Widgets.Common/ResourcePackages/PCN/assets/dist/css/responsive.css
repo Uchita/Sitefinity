@@ -451,6 +451,14 @@
         .footer_top ul li a {
             font-size: 14px;
         }
+
+    .consultants .colio-item:nth-of-type(4n+5) {
+        clear: none;
+    }
+
+    .consultants .colio-item:nth-of-type(3n+4) {
+        clear: both;
+    }
 }
 
 
@@ -606,6 +614,18 @@
             padding: 6px 3px;
             font-size: 14px;
         }
+
+    .consultants .colio-item {
+        width: 50%;
+    }
+
+        .consultants .colio-item:nth-of-type(3n+4) {
+            clear: none;
+        }
+
+        .consultants .colio-item:nth-of-type(2n+3) {
+            clear: both;
+        }
 }
 
 /* -----------------------------------
@@ -615,6 +635,10 @@
 
     .blog_section .latest_news .news {
         padding-bottom: 15px;
+        width: 100%;
+    }
+
+    .consultants .colio-item {
         width: 100%;
     }
 }

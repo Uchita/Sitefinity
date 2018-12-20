@@ -462,6 +462,25 @@ a {
         margin-top: 54px;
     }
 
+    .about_section.left_align {
+        text-align: left;
+        padding-bottom: 40px;
+    }
+
+        .about_section.left_align p {
+            padding: 0px;
+            margin-bottom: 15px;
+        }
+
+        .about_section.left_align ul, .about_section.left_align ol {
+            padding: 0 0 15px 40px;
+        }
+
+        .about_section.left_align li {
+            padding-bottom: 5px;
+        }
+
+
 /* read_btn */
 .read_btn {
     color: #333;
@@ -1495,7 +1514,7 @@ a {
     }
 
 .right-content-mid ul {
-    padding: 0 0 10px 20px;
+    padding: 0 0 10px 30px;
 }
 
 .right-content-mid h2 {

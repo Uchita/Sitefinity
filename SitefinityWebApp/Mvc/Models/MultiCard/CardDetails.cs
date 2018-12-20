@@ -30,7 +30,7 @@ namespace SitefinityWebApp.Mvc.Models.MultiCard
                 Heading = this.Heading,
                 Description = this.Description,
                 ActionName = this.ActionName,
-                ActionUrl = "#"//SfPagesHelper.GetLinkedUrl(this.LinkedPageId, this.LinkedUrl, this.IsPageSelectMode)
+                ActionUrl = SfPagesHelper.GetLinkedUrl(this.LinkedPageId, this.LinkedUrl, this.IsPageSelectMode)
             };
 
             SfImage image;

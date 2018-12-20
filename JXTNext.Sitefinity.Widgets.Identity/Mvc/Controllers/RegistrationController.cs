@@ -11,6 +11,7 @@ using Telerik.Sitefinity.Security.Claims;
 
 namespace JXTNext.Sitefinity.Widgets.Identity.Mvc.Controllers
 {
+    [EnhanceViewEngines]
     [Localization(typeof(RegistrationResources))]
     [ControllerToolboxItem(Name = "Registration_MVC", Title = "JXTNext Registration", SectionName = "JXTNext.Users", CssClass = RegistrationController.WidgetIconCssClass)]
     public class RegistrationController : Controller

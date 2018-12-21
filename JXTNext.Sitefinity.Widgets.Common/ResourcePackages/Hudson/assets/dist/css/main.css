@@ -8861,6 +8861,8 @@ address.info-box {
 
 .testimonials-slider.testimonials-simple.with-side-image .img-holder {
   width: 80%; }
+  .testimonials-slider.testimonials-simple.with-side-image .img-holder img {
+    width: 100%; }
 
 .map-placeholder {
   height: 425px;
@@ -9624,7 +9626,8 @@ ul.breadcrumb {
     width: 20px;
     margin: 0 10px 0 0;
     float: left; }
-    .page-wrapper .basic-form .checkbox input[type="checkbox"]:checked + .checkbox-icon:before {
+    .page-wrapper .basic-form .checkbox input[type="checkbox"]:checked + .checkbox-icon:before,
+    .page-wrapper .basic-form .checkbox input[type="checkbox"]:checked + input + .checkbox-icon:before {
       content: "\f00c";
       line-height: 19px; }
     .page-wrapper .basic-form .checkbox input[type="checkbox"]:hover {

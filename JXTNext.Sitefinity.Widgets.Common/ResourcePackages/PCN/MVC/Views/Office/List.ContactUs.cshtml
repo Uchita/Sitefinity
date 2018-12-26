@@ -19,9 +19,7 @@
 
         <h3>@item.Fields.Name</h3>
         <p>
-            Level 2, 50 York St,<br>
-            Sydney, NSW 2000<br>
-            Ph: 02 9955 7170
+            @Html.HtmlSanitize((string)item.Fields.OfficeBio)
         </p>
         <p>
             <a class="mini-new-buttons r34_contact-map-link btn btn-primary" href="#">View Map Below</a>

@@ -165,6 +165,9 @@
     <Content Include="ResourcePackages\PCN\assets\dist\webfonts\fa-solid-900.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\PCN\GridSystem\Templates\blogsidesearch.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\PCN\GridSystem\Templates\container.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -856,12 +859,18 @@
     <Content Include="ResourcePackages\PCN\MVC\Views\Card\Card.ContainerWithBg.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.BlogSideTabList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\PCN\MVC\Views\Consultant\Detail.MemberDetail.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\PCN\MVC\Views\Consultant\List.MeetTheTeamLandingPage.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="ResourcePackages\PCN\MVC\Views\HierarchicalTaxonomy\HierarchicalTaxonomy.CategoriesSearchList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">

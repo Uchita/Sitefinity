@@ -40,7 +40,40 @@ $(document).ready(function () {
         $(this).toggleClass('fa-angle-down');
     });
 
+
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    /* blog filter */
+    var categoryQS = "";
+    if (getParameterByName("categories") != null) { categoryQS = getParameterByName("categories"); }
+
+    $('.blog-categories').change(function () {
+        var title = $(this).attr('data-Title');
+        if (this.checked) {
+            categoryQS += title + ",";
+        }
+        else {
+            categoryQS = categoryQS.replace(title + ",", '')
+        }
+        if (categoryQS.length > 0) {
+            window.location.href = "/blog?categories=" + categoryQS;
+        }
+        else {
+            window.location.href = "/blog"
+        }
+
+    });
 });
+
+
 
 
 

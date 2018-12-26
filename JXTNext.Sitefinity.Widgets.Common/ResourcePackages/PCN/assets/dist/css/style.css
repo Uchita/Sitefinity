@@ -4154,3 +4154,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     vertical-align: middle;
     margin: 0 30px 15px 0;
 }
+.tab-content #popular {
+    display: block;
+    opacity: 1;
+}

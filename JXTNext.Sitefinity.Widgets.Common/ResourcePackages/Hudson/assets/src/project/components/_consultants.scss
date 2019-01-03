@@ -136,6 +136,10 @@
     @media (max-width:767px){
         margin-left: 0;
         margin-right: 0;
+        .owl-item{
+            padding-left: 7px;
+            padding-right: 7px;
+        }
     }
 }
 

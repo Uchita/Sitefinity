@@ -7270,7 +7270,10 @@ blockquote {
 .flex-center {
   -webkit-box-pack: center !important;
   -ms-flex-pack: center !important;
-  justify-content: center !important; }
+  justify-content: center !important;
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important; }
 
 .width-limit {
   max-width: 450px; }
@@ -7752,6 +7755,9 @@ blockquote {
 img, iframe {
   max-width: 100%;
   border: none; }
+
+.responsive-img {
+  width: 100%; }
 
 .modal-dialog {
   max-width: 90%;
@@ -8310,11 +8316,14 @@ main {
   .section-highlight-light .btn {
     border-color: #fff; }
 
+.home-padding.flex .thumbnail {
+  height: 100% !important; }
+
 .home-padding .thumbnail.card-basic .caption {
-  height: 240px;
   padding: 50px;
   font-size: 1.8rem;
-  line-height: 1.6; }
+  line-height: 1.6;
+  background: #fff; }
 
 .sf-list-item h3[data-sf-role="toggleLink"] {
   padding: 13px 40px 13px 20px;
@@ -8850,11 +8859,6 @@ address.info-box {
     .popup-overlay .fa-times:hover, .popup-overlay .fa-times:focus {
       text-decoration: none; }
 
-.prefooter-content .testimonials-slider.testimonials-simple.with-side-image .item,
-.testimonials-slider.testimonials-simple.with-side-image .item {
-  bottom: 25%;
-  position: absolute; }
-
 .testimonials-slider.testimonials-simple.with-side-image .img-holder {
   width: 80%; }
 
@@ -9249,7 +9253,7 @@ ul.breadcrumb {
   .thumbnail.card-basic .caption {
     position: relative;
     padding: 25px;
-    min-height: 247px;
+    min-height: 225px;
     line-height: 1.3;
     height: 50%; }
     .thumbnail.card-basic .caption h3 {
@@ -9261,6 +9265,8 @@ ul.breadcrumb {
         position: absolute;
         bottom: 0;
         right: 0; }
+    .thumbnail.card-basic .caption p:last-of-type {
+      margin-bottom: 0; }
   .thumbnail.card-basic h4 a:hover, .thumbnail.card-basic h4 a:focus {
     color: #007077;
     text-decoration: none; }
@@ -9389,7 +9395,7 @@ ul.breadcrumb {
 
 .flex [class*="col-"] .thumbnail {
   display: table;
-  height: 96%;
+  height: 92%;
   width: 100%; }
 
 .page-banner .h2, .page-banner h2, .page-banner .h3, .page-banner h3 {
@@ -9482,9 +9488,13 @@ ul.breadcrumb {
     background-color: rgba(255, 255, 255, 0.9);
     background-size: 100% auto;
     margin-bottom: 0; }
+    .banner-with-basic .thumbnail h1 {
+      margin-bottom: 3rem; }
     .banner-with-basic .thumbnail .banner-with-basic-summary {
       font-size: 24px;
       font-size: 2.4rem; }
+    .banner-with-basic .thumbnail .caption {
+      padding-bottom: 3.5rem; }
 
 .owl-carousel-jumbotron .owl-nav {
   width: 100%;
@@ -10697,6 +10707,8 @@ select.articles-order {
       bottom: -2px;
       right: -11px;
       display: block; }
+    .press-release-filter li.dropdown > a:hover::after {
+      content: '\f077'; }
   .press-release-filter li a:hover, .press-release-filter li a:focus, .press-release-filter li.dropdown a:hover, .press-release-filter li.dropdown a:focus {
     text-decoration: none; }
   .press-release-filter li .dropdown-menu, .press-release-filter li.dropdown .dropdown-menu {
@@ -10846,7 +10858,10 @@ select.articles-order {
   @media (max-width: 767px) {
     .consultant-jobs {
       margin-left: 0;
-      margin-right: 0; } }
+      margin-right: 0; }
+      .consultant-jobs .owl-item {
+        padding-left: 7px;
+        padding-right: 7px; } }
 
 .filters-wrapper {
   display: flex;
@@ -11203,6 +11218,8 @@ select.articles-order {
     margin-top: 0; }
     .page-wrapper .reg-form .basic-form .login-border {
       padding-top: 0; }
+  .page-wrapper .basic-form .form-group .text-right {
+    padding-left: 0; }
   .page-section .right-bottom-img img {
     max-width: 43%; }
   .page-section .center-bottom-img img {
@@ -11281,7 +11298,10 @@ select.articles-order {
   .thumbnail.card-basic .img-wrap {
     height: 200px; }
   .thumbnail.card-basic .caption {
-    min-height: 230px; }
+    min-height: 230px;
+    height: 55%; }
+  .home-padding .thumbnail.card-basic .caption {
+    height: 59.2%; }
   .list-featured-articles .featured-article-image {
     max-height: 200px; }
   .press-release-filter ul li a {
@@ -11320,6 +11340,8 @@ select.articles-order {
     padding: 30px 0; }
   .flex {
     display: block; }
+  .home-padding.flex {
+    display: flex; }
   .sm-flex {
     display: flex; }
   .sm-text-center {
@@ -11425,7 +11447,8 @@ select.articles-order {
     .long-card-basic-list .thumbnail .img-wrap {
       max-height: none; }
   .home-padding .thumbnail.card-basic .caption {
-    padding: 30px; }
+    padding: 30px;
+    height: 64%; }
   .featured-job-offer .job-offer-sum {
     height: 125px; }
   .process-card-holder .display-cell {
@@ -11604,7 +11627,8 @@ select.articles-order {
     margin-left: auto;
     margin-right: auto; }
   .mobile-owl-carousel .owl-dots {
-    position: static; }
+    position: static;
+    width: 100%; }
   .mobile-owl-carousel.owl-loaded .col-xs-6 {
     float: none;
     width: 100%; }
@@ -11624,29 +11648,6 @@ select.articles-order {
     .jumbotron-container .jumbotron p {
       font-size: 18px;
       font-size: 1.8rem; }
-  .thumbnail.card-rollover {
-    margin-top: 20px;
-    margin-bottom: 0;
-    text-align: left; }
-    .thumbnail.card-rollover .caption {
-      padding: 9px 0; }
-      .thumbnail.card-rollover .caption .h3, .thumbnail.card-rollover .caption h3 {
-        font-size: 18px;
-        font-size: 1.8rem;
-        color: #000; }
-    .thumbnail.card-rollover .card-description {
-      position: static;
-      padding: 0;
-      font-size: 16px;
-      font-size: 1.6rem;
-      opacity: 1;
-      filter: alpha(opacity=100);
-      -webkit-transition: none;
-      transition: none;
-      background: none;
-      color: #000; }
-      .thumbnail.card-rollover .card-description .card-description-content {
-        padding: 0; }
   .featured-job-offer .job-offer-sum {
     height: auto; }
   .job-search {
@@ -11788,13 +11789,6 @@ select.articles-order {
     margin-right: 0; }
   .white-box-list > div {
     margin-bottom: 30px; }
-  .thumbnail.card-rollover .card-rollover-more {
-    position: relative;
-    padding-right: 35px; }
-    .thumbnail.card-rollover .card-rollover-more .btn {
-      position: absolute;
-      bottom: 7px;
-      right: 0; }
   .page-wrapper footer .page-section {
     padding: 15px 0; }
   .page-wrapper footer .footer-social {
@@ -11818,9 +11812,41 @@ select.articles-order {
       width: 50%; }
   .page-wrapper .footer-bar {
     padding: 10px 0; }
+  .thumbnail.card-rollover {
+    margin-top: 20px;
+    margin-bottom: 0;
+    text-align: left; }
+    .thumbnail.card-rollover .caption {
+      padding: 9px 0; }
+      .thumbnail.card-rollover .caption .h3, .thumbnail.card-rollover .caption h3 {
+        font-size: 18px;
+        font-size: 1.8rem;
+        color: #000; }
+    .thumbnail.card-rollover .card-description {
+      position: static;
+      padding: 0;
+      font-size: 16px;
+      font-size: 1.6rem;
+      opacity: 1;
+      filter: alpha(opacity=100);
+      -webkit-transition: none;
+      transition: none;
+      background: none;
+      color: #000; }
+      .thumbnail.card-rollover .card-description .card-description-content {
+        padding: 0; }
+  .thumbnail.card-rollover .card-rollover-more {
+    position: relative;
+    padding-right: 35px; }
+    .thumbnail.card-rollover .card-rollover-more .btn {
+      position: absolute;
+      bottom: 7px;
+      right: 0; }
   .thumbnail .display-table {
     display: table;
     width: 100%; }
+  .thumbnail.small-caption .caption h4 {
+    min-height: 25px; }
   .testimonials-slider .quote {
     height: 33px; }
     .testimonials-slider .quote.text-right {
@@ -11899,7 +11925,75 @@ select.articles-order {
     .pos-static .breadcrumb {
       position: static; }
   .contact-box {
-    margin-bottom: 40px; } }
+    margin-bottom: 40px; }
+  .articles-top .press-release-filter {
+    padding: 0;
+    display: none; }
+    .articles-top .press-release-filter.in {
+      display: block; }
+  .button-toggler {
+    margin: 0 auto 2rem; }
+    .button-toggler .btn {
+      padding: 5px 15px;
+      margin-bottom: 0; }
+  .press-release-filter ul {
+    text-align: left; }
+    .press-release-filter ul li {
+      display: block; }
+      .press-release-filter ul li + li {
+        margin-left: 0;
+        padding-left: 0;
+        border-left: none; }
+      .press-release-filter ul li.dropdown > a::after {
+        right: 0; }
+      .press-release-filter ul li.dropdown .dropdown-menu {
+        position: static;
+        width: 100%; }
+      .press-release-filter ul li a {
+        display: block; }
+  .sx-fullwidth-card .row > [class*="col-"] {
+    padding: 0; }
+  .sx-fullwidth-card .thumbnail .caption {
+    width: 94%;
+    padding: 15px; }
+  .article-filter-page .long-card-basic-list {
+    margin-top: 4rem; }
+  .article-filter-page .thumbnail {
+    margin-bottom: 0;
+    max-width: 100%; }
+    .article-filter-page .thumbnail .img-wrap {
+      display: none; }
+    .article-filter-page .thumbnail .caption {
+      min-height: 80px;
+      height: auto;
+      border-bottom: 1px solid #E0E0E0; }
+      .article-filter-page .thumbnail .caption p:first-of-type {
+        margin-bottom: 5px; }
+      .article-filter-page .thumbnail .caption p:last-of-type {
+        display: none; }
+      .article-filter-page .thumbnail .caption h4 {
+        margin-top: 0;
+        margin-bottom: 5px;
+        line-height: 1.4; }
+  .press-release-filter ul li {
+    margin-bottom: 8px; }
+    .press-release-filter ul li a {
+      font-size: 1.6rem; }
+  .article-sorting-wrapper {
+    display: none; }
+  .banner-with-basic {
+    background-image: none !important;
+    background-color: #fff;
+    padding: 0 !important; }
+    .banner-with-basic .thumbnail {
+      background-color: #f0f0f0; }
+      .banner-with-basic .thumbnail h1 {
+        font-size: 2.2rem;
+        margin-bottom: 1rem; }
+      .banner-with-basic .thumbnail .banner-with-basic-summary {
+        font-size: 1.6rem; }
+      .banner-with-basic .thumbnail .caption {
+        min-height: 150px; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron .owl-nav {

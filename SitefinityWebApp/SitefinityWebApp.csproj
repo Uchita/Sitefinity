@@ -1136,6 +1136,7 @@
     <Content Include="Sitefinity\Services\Versioning\HistoryService.svc" />
     <Content Include="Sitefinity\Services\Workflow\WorkflowDefinitionService.svc" />
     <Content Include="Sitefinity\Services\Workflow\WorkflowService.svc" />
+    <Content Include="Views\Robots\RobotSettings.ascx" />
     <Content Include="web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1354,6 +1355,10 @@
     <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.Content\JXTNext.Sitefinity.Widgets.Content.csproj">
       <Project>{84c57321-d20d-48a2-957d-4511a984f836}</Project>
       <Name>JXTNext.Sitefinity.Widgets.Content</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.Identity\JXTNext.Sitefinity.Widgets.Identity.csproj">
+      <Project>{d867dd9c-fde3-433f-a21e-8de0c3477325}</Project>
+      <Name>JXTNext.Sitefinity.Widgets.Identity</Name>
     </ProjectReference>
     <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.JobAlert\JXTNext.Sitefinity.Widgets.JobAlert.csproj">
       <Project>{3c241adf-92c1-4cf4-8b45-a6563f78cc50}</Project>

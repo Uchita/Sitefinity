@@ -28,6 +28,7 @@ using Ninject;
 using JXTNext.Sitefinity.Widgets.User.Mvc.StringResources;
 using Telerik.Sitefinity.Configuration;
 using JXTNext.Sitefinity.Widgets.Social.Mvc.Configuration;
+using JXTNext.Sitefinity.Common.Models.Robots;
 
 namespace SitefinityWebApp
 {
@@ -68,6 +69,7 @@ namespace SitefinityWebApp
             {
                 GlobalFilters.Filters.Add(new SocialShareAttribute());
                 SystemManager.RegisterBasicSettings<GenericBasicSettingsView<CustomSiteSettings, CustomSiteSettingsContract>>("CustomSiteSettingsConfig", "Custom Site Settings", "", true);
+                SystemManager.RegisterBasicSettings<GenericBasicSettingsView<RobotSettings, RobotSettingsContract>>("RobotSettingsConfig", "Robot Settings", "", true);
                 FrontendModule.Current.DependencyResolver.Rebind<IDynamicContentModel>().To<CustomDynamicContentModel>();
                 Config.RegisterSection<InstagramConfig>();
             }

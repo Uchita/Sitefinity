@@ -18,7 +18,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
         private readonly static string RangeString = "Range";
         private static dynamic _mapToClassificationData(JobAlertEditFilterRootItem filter, JobAlertViewModel model)
         {
-            if (filter.Name.ToLower() != SalaryString.ToLower())
+            if (filter.Name != null && filter.Name.ToLower() != SalaryString.ToLower())
             {
                 dynamic classification = new ExpandoObject();
                 classification.SearchType = CategoryString;
@@ -28,7 +28,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
                     .Select(x => MapJobAlertFilterToClassification(x))
                     .Where(x => x != null)
                     .ToList();
-                if (subTargets != null && subTargets.Count != 0)
+                if (subTargets != null && subTargets.Count > 0)
                 {
                     classification.TargetClassifications = subTargets;
                 }
@@ -92,7 +92,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
                 json.ClassificationsSearchCriteria.Add(classification);
             }
 
-            if (model.Keywords != null && model.Keywords.Length > 0)
+            if (String.IsNullOrWhiteSpace(model.Keywords))
             {
                 model.Keywords.Split(',').ToList().ForEach(x => json.KeywordsSearchCriteria.Add(new { Keyword = x }));
             }

@@ -94,7 +94,7 @@ ThemeGlobal.MobileCarouselInit = function () {
     var slider = $(".mobile-owl-carousel");
     if (slider.length > 0) {
         slider.each(function () {
-            if (checkWidth >= 767) {
+            if (checkWidth >= 768) {
                 $(this).trigger('destroy.owl.carousel');
                 $(this).removeClass('owl-carousel owl-theme');
             } else if (checkWidth < 768 && !$(this).hasClass("owl-loaded")) {

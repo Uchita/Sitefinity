@@ -32,6 +32,7 @@ blockquote{
     clear: both;
     height: 3rem;
 }
+
 .page-wrapper {
     //page wrapper class will prevent general styles leaking into page designer styles when not needed
     font-size: $global-font-size-px;
@@ -132,6 +133,7 @@ blockquote{
         text-transform: uppercase;
         background: $btn-secondary-bg;
         color: $btn-secondary-color;
+        white-space: normal;
 
         &.btn-tag {
             min-width: 30px;
@@ -1505,16 +1507,6 @@ main {
     .btn {
         border-color: $page-section-bg-highlight-light-color;
     }
-}
-
-.home-padding.flex .thumbnail{
-    height: 100%!important;
-}
-.home-padding .thumbnail.card-basic .caption{
-    padding: $gap;  
-    font-size: $global-font-size;
-    line-height: 1.6;
-    background: $brightColor;
 } 
 
 

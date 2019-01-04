@@ -35,9 +35,9 @@ $(document).ready(function () {
         var thisContent = $(this).attr("data-desc");
         if (thisContent) {
             $(".leader-content").remove();
-            var str = `<div class="md-row leader-content"><div class="col-12 col-sm-12 border-blue"><p>`;
+            var str = '<div class="md-row leader-content"><div class="col-12 col-sm-12 border-blue"><p>';
             str += thisContent;
-            str += `</p><a href="javascript:void(0)" class="btn btn-link">Read less</a></div></div>`;
+            str += '</p><a href="javascript:void(0)" class="btn btn-link">Read less</a></div></div>';
             $(this).closest(".md-row").after(str);
         }
     });

@@ -29,7 +29,7 @@
 
                 var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
                 <div class="news-list col-12 col-sm-6 col-md-4">
-                    <div class="bg-image" style="background-image: url('@imageurl');"></div>
+                    <div class="bg-image-wrap"><div class="bg-image" style="background-image: url('@imageurl');"></div></div>
                     <div class="news-date"> @item.GetDateTime("PublicationDate", "MMM d, yyyy")</div>
                     <p class="news-desc">@item.Fields.Title</p>
                     <a href="@navigateUrl" class="btn btn-link">> Read more</a>

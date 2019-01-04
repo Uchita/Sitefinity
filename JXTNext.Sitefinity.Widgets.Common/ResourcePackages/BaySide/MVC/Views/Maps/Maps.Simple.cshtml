@@ -19,17 +19,17 @@
 
     if (Model != null && Model.MapsMarkers != null)
     {
-        <div class="map-placeholder hidden" data-zoom="@Model.ZoomLevel" data-called=false >
-            @foreach (var marker in Model.MapsMarkers)
-            {
-                <span data-address="@marker.Address" data-icon="@marker.MarkerIconPath" data-popuptitle="@marker.PopupTitle" data-popuptext="@marker.PopupText" data-popupadditionalinfo="@marker.PopupAdditionalInfo"></span>
-            }
-        </div>
+<div class="map-placeholder hidden" data-zoom="@Model.ZoomLevel" data-called=false>
+    @foreach (var marker in Model.MapsMarkers)
+    {
+    <span data-address="@marker.Address" data-icon="@marker.MarkerIconPath" data-popuptitle="@marker.PopupTitle" data-popuptext="@marker.PopupText" data-popupadditionalinfo="@marker.PopupAdditionalInfo"></span>
+    }
+</div>
     }
 }
 else
 {
-    <div class="alert alert-danger">Google Maps API key is not set. Please set at "Administration->Settings->Custom Site Settings"</div>
+<div class="alert alert-danger">Google Maps API key is not set. Please set at "Administration->Settings->Custom Site Settings"</div>
 }
 
 <script type="text/javascript">
@@ -40,7 +40,7 @@ else
 
         // Iterate throgh all the elemetns having class map-placeholder in the page
         // And it will place the map inside it
-        $(".map-placeholder").each(function (index) {
+        $(".map-placeholder").each(function (index, elm) {
 
             if ($(this).children().length > 0) {
                 var markers = [];
@@ -56,7 +56,7 @@ else
                     var icon = $(this).data('icon');
 
                     // Pop up information
-                    var popupTitle = 'Hudson Office';
+                    var popupTitle = 'Bayside Office';
                     if ($(this).data('popuptitle').length) {
                         popupTitle = $(this).data('popuptitle');
                     }
@@ -64,17 +64,17 @@ else
                     var popupAdditionalInfo = '';
 
                     if ($(this).data('popupadditionalinfo') != "") {
-                        popupAdditionalInfo = '</span><span class="map-field"><span class="fa fa-phone"></span>'+$(this).data('popupadditionalinfo') + '</span>';
+                        popupAdditionalInfo = '</span><span class="map-field"><span class="fa fa-phone"></span>' + $(this).data('popupadditionalinfo') + '</span>';
                     }
 
-                    var infoWindowContent = '<div class="info-box"><span class="map-field"><span class="fas fa-map-marker-alt"></span>' + address + '</span>' + popupAdditionalInfo + popupText +'</div>';
+                    var infoWindowContent = '<div class="info-box"><span class="map-field"><span class="fas fa-map-marker-alt"></span>' + address + '</span>' + popupAdditionalInfo + popupText + '</div>';
 
                     var iconPath = '';
                     if (icon != 'undefined' && typeof icon != 'undefined' && icon != '')
                         iconPath = icon;
 
                     if (addresslat != 'undefined' && addresslng != 'undefined' && typeof addresslat != 'undefined' && typeof addresslng != 'undefined' && addresslat != '' && addresslng != '') {
-                        markers.push({ isLatLng: true, lat: Number(addresslat), lng: Number(addresslng), icon: iconPath, popupTitle: popupTitle, popupText: infoWindowContent});
+                        markers.push({ isLatLng: true, lat: Number(addresslat), lng: Number(addresslng), icon: iconPath, popupTitle: popupTitle, popupText: infoWindowContent });
                     }
                     else if (address != null && typeof address != 'undefined' && address != 'undefined' && address.length > 0) {
                         markers.push({ isLatLng: false, address: address, icon: iconPath, popupTitle: popupTitle, popupText: infoWindowContent });
@@ -83,33 +83,60 @@ else
 
                 if (markers.length > 0) {
                     $(this).removeClass('hidden');
-                    $(this).googleMap({
-                        zoom: zoomLevel // Initial zoom level (optional)
+                    //$(this).googleMap({
+                    //    zoom: zoomLevel // Initial zoom level (optional)
+                    //});
+                    var akMap = new google.maps.Map(elm, {
+                        zoom: zoomLevel
                     });
                     var showMarker = true;
                     if (markers.length > 1) {
                         showMarker = false;
                     }
-
-                    for (var item of markers) {
-                        if (item.isLatLng) {
-                             $(this).addMarker({
-                                 coords: [item.lat, item.lng],
-                                 icon: item.icon,
-                                 showInfoWindow: showMarker
-                             });
-                        }
-                        else {
-                            $(this).addMarker({
-                                address: item.address,
-                                icon: item.icon,
-                                title: item.popupTitle,
-                                text: item.popupText,
+                    var markersLength = markers.length;
+                    for (var i = 0; i < markersLength; i++) {
+                        if (markers[i].isLatLng) {
+                            //$(this).addMarker({
+                            //    coords: [item.lat, item.lng],
+                            //    icon: item.icon,
+                            //    showInfoWindow: showMarker
+                            //});
+                            var marker = new google.maps.Marker({
+                                position: { lat: markers[i].lat, lng: markers[i].lng },
+                                map: akMap,
+                                icon: markers[i].icon,
                                 showInfoWindow: showMarker
                             });
                         }
+                        else {
+                            var markerObj = {
+                                address: markers[i].address,
+                                map: akMap,
+                                icon: markers[i].icon,
+                                title: markers[i].popupTitle,
+                                text: markers[i].popupText,
+                                showInfoWindow: showMarker
+                            };
+                            var geocoder = new google.maps.Geocoder();
+                            codeAddress(geocoder, markerObj);
+                        }
                     }
                 }
+            }
+        });
+    }
+
+    function codeAddress(geocoder, markerObj) {
+        geocoder.geocode({ 'address': markerObj.address }, function (results, status) {
+            if (status === 'OK') {
+                markerObj.position = results[0].geometry.location;
+                markerObj.map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker(markerObj);
+                var infowindow = new google.maps.InfoWindow();
+                marker.addListener('click', function () {
+                    infowindow.setContent('<h3>' + markerObj.title + '</h3>' + markerObj.text);
+                    infowindow.open(markerObj.map, this);
+                });
             }
         });
     }

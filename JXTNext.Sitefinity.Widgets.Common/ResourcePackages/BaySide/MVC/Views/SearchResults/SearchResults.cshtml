@@ -6,13 +6,13 @@
 @using Telerik.Sitefinity.Modules.Libraries;
 @using Telerik.Sitefinity.Libraries.Model;
 
-<div class=" @Model.CssClass">
+<div class="search-results @Model.CssClass">
 
     <div class="row">
         <div class="col-md-8">
-                @if (@Model.Results.TotalCount > 0)
-                {
-                if(ViewBag.IsFilteredbyPermission)
+            @if (@Model.Results.TotalCount > 0)
+            {
+                if (ViewBag.IsFilteredbyPermission)
                 {
                     <h1>@Html.HtmlSanitize(Model.ResultText)</h1>
                 }
@@ -20,23 +20,24 @@
                 {
                     <h1>@Model.Results.TotalCount @Html.HtmlSanitize(Model.ResultText)</h1>
                 }
-                }
-                else
-                {
+            }
+            else
+            {
                 <h1>@Html.Resource("No") @Html.HtmlSanitize(Model.ResultText)</h1>
-                }
+            }
         </div>
         <div class="col-md-4">
             @if (Model.AllowSorting && @Model.Results.TotalCount > 0)
             {
-                <label>@Html.Resource("SortBy")
-                    <select class="userSortDropdown" title="@Html.Resource("SortDropdown")">
-                        <option value="@OrderByOptions.Relevance" @(Model.OrderBy == OrderByOptions.Relevance ? "selected=selected" : "")>@Html.Resource("Relevance")</option>
-                        <option value="@OrderByOptions.Newest" @(Model.OrderBy == OrderByOptions.Newest ? "selected=selected" : "")>@Html.Resource("NewestFirst")</option>
-                        <option value="@OrderByOptions.Oldest" @(Model.OrderBy == OrderByOptions.Oldest ? "selected=selected" : "")>@Html.Resource("OldestFirst")</option>
-                    </select>
-                </label>
-            }
+                <label>
+                    @Html.Resource("SortBy")
+                <select class="userSortDropdown" title="@Html.Resource("SortDropdown")">
+                    <option value="@OrderByOptions.Relevance" @(Model.OrderBy == OrderByOptions.Relevance ? "selected=selected" : "")>@Html.Resource("Relevance")</option>
+                    <option value="@OrderByOptions.Newest" @(Model.OrderBy == OrderByOptions.Newest ? "selected=selected" : "")>@Html.Resource("NewestFirst")</option>
+                    <option value="@OrderByOptions.Oldest" @(Model.OrderBy == OrderByOptions.Oldest ? "selected=selected" : "")>@Html.Resource("OldestFirst")</option>
+                </select>
+            </label>
+        }
         </div>
     </div>
 
@@ -57,73 +58,67 @@
                 }
             }
         </div>
-    }   
-             
+    }
+
     <div class="sf-search-results media-list">
         @foreach (var item in Model.Results.Data)
         {
             var hasLink = item.GetValue("Link") != null && !String.IsNullOrEmpty(item.GetValue("Link").ToString());
-            <div class="media sf-media">
+            <div class="search-list media sf-media">
 
-            @if (((Telerik.Sitefinity.Services.Search.Model.Document)item).ItemType.ToString() == typeof(Telerik.Sitefinity.Libraries.Model.Image).ToString())
-            {
-    
-            <div class="media-left sf-img-thmb">
-                <a href="@item.GetValue("Link")">
-                    <img src="@item.GetValue("Link")" alt="@item.GetValue("Title")" width="120"/>
-                </a>
-            </div>
-            }
-
-            else if (((Telerik.Sitefinity.Services.Search.Model.Document)item).ItemType.ToString() == typeof(Telerik.Sitefinity.Libraries.Model.Video).ToString())
-            {
-                LibrariesManager librariesManager = LibrariesManager.GetManager();
-                var videoTmbId = new Guid((string)item.GetValue("Id"));
-                Video video = librariesManager.GetVideo(videoTmbId);
-                if (video != null)
+                @if (((Telerik.Sitefinity.Services.Search.Model.Document)item).ItemType.ToString() == typeof(Telerik.Sitefinity.Libraries.Model.Image).ToString())
                 {
-                    var thumbUrl = video.ThumbnailUrl;
-                
-                <div class="media-left">
-                    <div class="sf-video-thmb">
 
+                    <div class="media-left sf-img-thmb">
                         <a href="@item.GetValue("Link")">
-                            <img src="@thumbUrl" alt="@item.GetValue("Title")" width="120"/>
-                        
-                            <div class="sf-icon-play"></div>
-                        
+                            <img src="@item.GetValue("Link")" alt="@item.GetValue("Title")" width="120" />
                         </a>
                     </div>
-                </div>
                 }
 
-            }
-
-            else
-            {
-
-            }
-            
-            
-            <div class="media-body sf-media-body">
-
-                <h3>
-                    @if (hasLink)
-                    {
-                        <a href="@item.GetValue("Link")">@item.GetValue("Title")</a>
-                    }
-                    else
-                    {
-                        @item.GetValue("Title")
-                    }
-                </h3>
-
-                <p>@Html.HtmlSanitize((string)item.GetValue("HighLighterResult"))</p>
-                @if (hasLink)
+                else if (((Telerik.Sitefinity.Services.Search.Model.Document)item).ItemType.ToString() == typeof(Telerik.Sitefinity.Libraries.Model.Video).ToString())
                 {
-                    <a href="@item.GetValue("Link")">@item.GetValue("Link")</a>
+                    LibrariesManager librariesManager = LibrariesManager.GetManager();
+                    var videoTmbId = new Guid((string)item.GetValue("Id"));
+                    Video video = librariesManager.GetVideo(videoTmbId);
+                    if (video != null)
+                    {
+                        var thumbUrl = video.ThumbnailUrl;
+
+                        <div class="media-left">
+                            <div class="sf-video-thmb">
+
+                                <a href="@item.GetValue("Link")">
+                                    <img src="@thumbUrl" alt="@item.GetValue("Title")" width="120" />
+
+                                    <div class="sf-icon-play"></div>
+
+                                </a>
+                            </div>
+                        </div>
+                    }
+
                 }
-            </div>
+
+                else
+                {
+
+                }
+
+
+                <div class="media-body sf-media-body">
+                    <h3>
+                        @if (hasLink)
+                        {
+                            <a href="@item.GetValue("Link")">@item.GetValue("Title")</a>
+                        }
+                        else
+                        {
+                            @item.GetValue("Title")
+                        }
+                    </h3>
+                    <p>@Html.HtmlSanitize((string)item.GetValue("HighLighterResult"))</p>
+                </div>
             </div>
         }
 
@@ -131,24 +126,24 @@
 
     @if (Model.DisplayMode == ListDisplayMode.Paging && Model.TotalPagesCount != null && Model.TotalPagesCount > 1)
     {
-        if(ViewBag.IsFilteredbyPermission) 
+        if (ViewBag.IsFilteredbyPermission)
         {
-             <ul class="pagination">
+            <ul class="pagination">
                 @if (Model.CurrentPage > 1)
-				{
+                {
                     <li>
-					    <a href='@string.Format(ViewBag.RedirectPageUrlTemplate, Model.CurrentPage - 1)'>@Html.Resource("Prev")</a>
+                        <a href='@string.Format(ViewBag.RedirectPageUrlTemplate, Model.CurrentPage - 1)'>@Html.Resource("Prev")</a>
                     </li>
-				}
+                }
                 @if (Model.CurrentPage < @Model.TotalPagesCount)
-				{
+                {
                     <li>
                         <a href='@string.Format(ViewBag.RedirectPageUrlTemplate, Model.CurrentPage + 1)'>@Html.Resource("Next")</a>
                     </li>
-				}
+                }
             </ul>
         }
-        else 
+        else
         {
             if (Model.CurrentPage == Model.TotalPagesCount)
             {
@@ -158,7 +153,7 @@
             {
                 <em class="text-muted">@Model.ItemsPerPage of @Model.Results.TotalCount results</em>
             }
-            
+
             <div>
                 @Html.Action("Index", "ContentPager", new
                 {
@@ -175,7 +170,7 @@
     <input type="hidden" data-sf-role="searchResIndexCatalogue" value='@Request.QueryString["indexCatalogue"]' />
     <input type="hidden" data-sf-role="searchResQuery" value='@Request.QueryString["searchQuery"]' />
     <input type="hidden" data-sf-role="searchResWordsMode" value='@Request.QueryString["wordsMode"]' />
-        
+
 </div>
 
 @Html.Script(ScriptRef.JQuery, "top")

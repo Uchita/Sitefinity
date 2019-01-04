@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    $(".parallax-mirror").addClass("translate-fixed");
+
     if (typeof WOW !== 'undefined') {
         new WOW().init();
     }
@@ -100,6 +102,14 @@ $(document).ready(function () {
                     $counter.text("0");
                 }
             });
+
+
+            // Parallax image top
+            if (winScroll < 50) {
+                $(".parallax-mirror").addClass("translate-fixed");
+            } else {
+                $(".parallax-mirror").removeClass("translate-fixed");
+            }
 
         });
 

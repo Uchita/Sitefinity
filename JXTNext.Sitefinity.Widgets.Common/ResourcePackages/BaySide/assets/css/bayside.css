@@ -7620,3 +7620,9 @@ select.hs-input {
         border-bottom: none;
         padding-bottom: 0;
     }
+
+.parallax-mirror.translate-fixed img {
+    -webkit-transform: translate3d(-165px, 0, 0px) !important;
+    -moz-transform: translate3d(-165px, 0, 0px) !important;
+    transform: translate3d(-165px, 0, 0px) !important;
+}

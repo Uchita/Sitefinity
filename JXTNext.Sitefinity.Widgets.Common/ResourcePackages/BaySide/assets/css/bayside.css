@@ -4889,7 +4889,7 @@ h1,
 @media (max-width: 767px) {
     h1,
     .h1 {
-        font-size: 30px;
+        /*font-size: 30px;*/
         line-height: 1.2;
     }
 }
@@ -4931,6 +4931,20 @@ h4 {
 .app-content li,
 p {
     font-size: 18px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #333132;
+}
+
+.job-detail li, p {
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #333132;
+}
+
+.search-results li, p {
+    font-size: 16px;
     line-height: 1.5;
     font-weight: 400;
     color: #333132;
@@ -5441,12 +5455,25 @@ p {
     margin-right: auto;
 }
 
+    .featured-carousel .owl-stage {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .featured-carousel .item {
+        padding-bottom: 39px;
+    }
+
+    .featured-carousel .btn-link {
+        position: absolute;
+        bottom: 0;
+    }
+
 @media (max-width: 767px) {
     .featured-carousel {
         max-width: 320px;
     }
 }
-
 /*-------Featured carousel-----End-----*/
 /*-------Owl carousel Navigation----------*/
 .owl-nav > div {
@@ -6711,7 +6738,7 @@ select.hs-input {
 
 .section-graphics {
     padding-top: 104px;
-    padding-bottom: 62px;
+    padding-bottom: 79px;
     color: #fff;
     text-align: center;
 }
@@ -6785,6 +6812,7 @@ select.hs-input {
     .col-50-content {
         max-width: 495px;
         float: right;
+        padding-right: 40px;
     }
 }
 

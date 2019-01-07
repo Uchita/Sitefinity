@@ -3,7 +3,8 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
 @*<section class="g-section">
-    <div class="container">*@
+    <div class="container">
+*@
 <div id="internalJobs1" class="featured-carousel owl-carousel">
 
     @if (Model != null && Model.SearchResults != null)
@@ -13,17 +14,7 @@
 
             <div class="item">
                 <h4>
-                    @if (@jobOffer.Title.Length > 50)
-                    {
-                        @Html.Raw(@jobOffer.Title.Substring(0, 20) + "...")
-                    }
-                    else
-                    {
-                        @jobOffer.Title;
-                    }
-
-
-
+                    @jobOffer.Title;
                 </h4>
                 <p>
                     @if (jobOffer.ShortDescription.Length > 180)
@@ -35,11 +26,14 @@
                         @Html.Raw(jobOffer.ShortDescription);
                     }
                 </p>
-                <a class="btn btn-link pl-0" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">> View job</a>
+                <a class="btn btn-link pl-0" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">
+                    > View job
+                </a>
             </div>
         }
     }
 </div>
 
-@*</div>
+@*
+        </div>
     </section>*@

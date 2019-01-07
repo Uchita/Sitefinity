@@ -220,10 +220,10 @@
                             <label class="col-xs-12 col-md-4"></label>
                             <div class="col-xs-12 col-md-8">
                                 <div class="checkbox clearfix">
-                                    
+
                                     <input name="privacypolicy" title="Please agree to Hudson's privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Please agree to Hudson\'s privacy policy');" type="checkbox" value="agree">
                                     <span class="checkbox-icon fas fa-check"></span>
-                                    I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                                    I agree to Bayside Group <a href="/privacy-policy" target="_blank">Privacy Policy</a>
                                 </div>
                                 <input id="apply" type="submit" value="Apply Now" class="btn btn-block btn-primary" disabled />
 
@@ -716,7 +716,7 @@
          };
 
        dropboxResumeOptions = {
-            // Required. Called when a user selects an item in the Chooser.            
+            // Required. Called when a user selects an item in the Chooser.
             success: function (files) {
 
                 uploadResumeModel.UrlPath = files[0].link;
@@ -785,7 +785,7 @@
          };
 
          dropboxDocumentsOptions = {
-             // Required. Called when a user selects an item in the Chooser.            
+             // Required. Called when a user selects an item in the Chooser.
              success: function (files) {
 
                 var stringyModel = "[";
@@ -798,7 +798,7 @@
                      stringyModel += JSON.stringify(uploadResumeModel);
                  }
                  stringyModel += "]";
-                
+
                 documentsSelectedType = 'Dropbox';
                 $('#uploadDocumentsJson').val(stringyModel);
                 $('#application-documents').val('');
@@ -809,7 +809,7 @@
                         Filenames += "<br/>";
                     Filenames += files[i].name;
                 }
-                $('.documents-name').html(Filenames);               
+                $('.documents-name').html(Filenames);
 
 
                  $('#dburl').text(files[0].link);
@@ -935,7 +935,7 @@
         function createPicker() {
             if (pickerApiLoaded && oauthToken) {
                 var picker = new google.picker.PickerBuilder().
-                    addView(new google.picker.View(google.picker.ViewId.DOCS).setMimeTypes("application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")).                    
+                    addView(new google.picker.View(google.picker.ViewId.DOCS).setMimeTypes("application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")).
                     setOAuthToken(oauthToken).
                     setDeveloperKey(developerKey).
                     setCallback(pickerCallback).
@@ -964,7 +964,7 @@
             var mime = "";
             debugger;
 
-            if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {                
+            if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
                 var doc = data[google.picker.Response.DOCUMENTS][0];
                 fileId = doc[google.picker.Document.ID];
                 url = doc[google.picker.Document.URL];
@@ -979,7 +979,7 @@
 
                 var stringyModel = JSON.stringify(uploadResumeModel);
 
-                var docs = data[google.picker.Response.DOCUMENTS]; 
+                var docs = data[google.picker.Response.DOCUMENTS];
                 var stringyModels = "[";
                 var Filenames = "";
 
@@ -995,12 +995,12 @@
                     uploadResumeModel.Field = fileId;
                     uploadResumeModel.MIMEType = mime;
                     uploadResumeModel.AuthToken = oauthToken;
-                    
+
                     if (stringyModels != "[") {
                         stringyModels += ",";
                         Filenames += "<br/>";
                     }
-                    stringyModels += JSON.stringify(uploadResumeModel);                    
+                    stringyModels += JSON.stringify(uploadResumeModel);
                     Filenames += doc[google.picker.Document.NAME];
                 }
                 stringyModels += "]";
@@ -1025,7 +1025,7 @@
                         $('#uploadDocumentsJson').val(stringyModels);
                         $('#application-documents').val('');
                         $("#documents-selected-type").val(documentsSelectedType);
-                        $('.documents-name').html(Filenames);                        
+                        $('.documents-name').html(Filenames);
                     }
                 }
 

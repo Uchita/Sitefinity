@@ -56,7 +56,7 @@
 <div id="listView" class="search-results"></div>
 <script type="text/x-kendo-template" id="template">
     <div class="job-list border rounded p-4">
-        <img src="~/ResourcePackages/BaySide/assets/images/bayside-logo-black.png" class="float-right"
+        <img src="/ResourcePackages/BaySide/assets/images/bayside-logo-black.png" class="float-right"
              alt="">
         <h2 class="mt-2"><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#">#:Title#</a></h2>
         <ul class="border border-top-0 border-right-0 border-left-0 pb-4">
@@ -71,12 +71,39 @@
             <p>#:ShortDescription#</p>
             #}#
         </ul>
+        <div class="row jobCatHirarchy">
+            <div class="col-xs-12">
+                # $.each(Classifications, function(index, item){#
+                <small class="jobCatItem">
+                    # var isAppend= true ; #
+                    # for (var key in item) {#
+
+                    # if(key.length >= 32){#
+                    # var hrefLink = '';#
+
+                    # hrefLink = '@ViewBag.CurrentPageUrl' + '?Filters[0].rootId=' + ClassificationsRootName + '&Filters[0].values=' + key;#
+
+                    # if(isAppend){#
+                    <a href=#:hrefLink#> #:item[key]# </a> >
+                    # isAppend= false ; #
+                    #}else{#
+                    <a href=#:hrefLink#>  #:item[key]# </a>
+                    #}#
+                    #}#
+                    #}#
+
+
+
+                </small><br />
+                #});#
+            </div>
+        </div>
         <div class="row align-items-center mt-4">
             <div class="col">
                 <ul class="inline-list p-0 mb-0">
-                    <li class="mr-5"><i class="fa fa-map-marker"></i> Sydney</li>
-                    <li class="mr-5"><i class="fa fa-dollar"></i> Annual</li>
-                    <li class="mr-5"><i class="fa fa-clock-o"></i> Full time</li>
+                    <li class="mr-3"><i class="fa fa-map-marker"></i> #:CustomData["CountryLocationArea[0].Filters[0].Value"]#</li>
+                    <li class="mr-3"><i class="fa fa-dollar"></i> #:CustomData["Salary.Filters[0].Value"]#</li>
+                    <li class="mr-3"><i class="fa fa-clock-o"></i> #:CustomData["WorkType.Filters[0].Value"]#</li>
                 </ul>
             </div>
             <div class="col-auto text-right">

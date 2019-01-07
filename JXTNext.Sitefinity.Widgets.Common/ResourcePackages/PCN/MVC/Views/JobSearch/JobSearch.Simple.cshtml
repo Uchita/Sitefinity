@@ -4,10 +4,16 @@
 @Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
 @Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.js"), "bottom")
 @functions {
-    List<string> _itemsList = new List<string>();
-    Dictionary<string, dynamic> _idNamesLevelsPair = new Dictionary<string, dynamic>();
+    List<string>
+        _itemsList = new List<string>
+            ();
+    Dictionary<string, dynamic>
+        _idNamesLevelsPair = new Dictionary<string, dynamic>
+            ();
 
-    public List<string> GetValuesList(List<JobSearchItem> searchItemsList)
+    public List<string>
+        GetValuesList(List<JobSearchItem>
+            searchItemsList)
     {
 
         foreach (var item in searchItemsList)
@@ -31,11 +37,11 @@
 
 @if (Model != null)
 {
-    var textboxControl = Model.Where(m => m.ControlType == "TextBox").FirstOrDefault();
+    var textboxControl = Model.Where(m => m.ControlType == "TextBox");
     var singleDropdownControls = Model.Where(m => m.ControlType == "DropDown Single");
     var listControls = Model.Where(m => m.ControlType == "List").Take(2).ToList();
 
-    <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();" class="@ViewData["CssClass"]">
+    <form action="@ViewData[" JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();" class="@ViewData[" CssClass"]">
         <div class="full_width search_job">
             <div class="container">
 
@@ -46,10 +52,17 @@
 
                 @if (textboxControl != null)
                 {
-
-                    <input class="input-style" placeholder="@textboxControl.PlaceholderText" type="text" name="Keywords">
-
+                    foreach (var txt in textboxControl)
+                    {
+                        <div class="corner">
+                            <div class="cut">
+                                <input class="input-style" placeholder="@txt.PlaceholderText" type="text" name="@txt.PlaceholderText">
+                            </div>
+                        </div>
+                    }
                     controlCounter++;
+
+
                 }
 
                 @foreach (var dropdownControl in singleDropdownControls)
@@ -83,8 +96,11 @@
                     controlCounter++;
                 }
 
-                <button class="job_btn" type="submit">Search Jobs</button>
-
+                <div class="corner c-btn">
+                    <div class="cut">
+                        <button class="job_btn" type="submit">Search Jobs</button>
+                    </div>
+                </div>
 
 
                 @*<div class="row">
@@ -96,11 +112,11 @@
                     <div class="row">
                         @foreach (var list in listControls)
                         {
-                            <div class="col-xs-5 col-sm-4 col-md-4">
-                                <div class="filter">
-                                    <a data-filter-trigger="@list.ID">@list.PlaceholderText <em class="fas fa-angle-down"></em></a>
-                                </div>
+                        <div class="col-xs-5 col-sm-4 col-md-4">
+                            <div class="filter">
+                                <a data-filter-trigger="@list.ID">@list.PlaceholderText <em class="fas fa-angle-down"></em></a>
                             </div>
+                        </div>
                         }
 
                         <div class="col-xs-4 pull-right text-right">
@@ -110,36 +126,38 @@
                 @*<div class="col-xs-2 pull-right text-right">
                         <a class="filter-job-close" data-filter-trigger="close"><em class="fas fa-times"></em></a>
                     </div>*@
-                @*</div>*@
+                @*
+                    </div>*@
             </div>
 
             @*@foreach (var list in listControls)
                 {
-                    _itemsList.Clear();
-                    _idNamesLevelsPair.Clear();
-                    GetValuesList(list.Filters);
-                    int itemCounter = 0;
-                    <div class="container filter-job-classification" data-filter-target="@list.ID">
-                        @foreach (dynamic itemName in _idNamesLevelsPair)
-                        {
-                            if (itemCounter % 4 == 0)
-                            {
-                                @: <div class="row">
-                            }
-
-                            string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewData["JobResultsPageUrl"], list.FilterType, itemName.Key);
-                            <div class="col-sm-3 col-md-3">
-                                <a href=@hrefLink>@itemName.Value.name</a>
-                            </div>
-
-                            if (itemCounter % 4 == 3 || itemCounter == (_idNamesLevelsPair.Count - 1))
-                            {
-                                @: </div>
-                            }
-
-                            itemCounter++;
+                _itemsList.Clear();
+                _idNamesLevelsPair.Clear();
+                GetValuesList(list.Filters);
+                int itemCounter = 0;
+                <div class="container filter-job-classification" data-filter-target="@list.ID">
+                    @foreach (dynamic itemName in _idNamesLevelsPair)
+                    {
+                    if (itemCounter % 4 == 0)
+                    {
+                    @: <div class="row">
                         }
+
+                        string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewData["JobResultsPageUrl"], list.FilterType, itemName.Key);
+                        <div class="col-sm-3 col-md-3">
+                            <a href=@hrefLink>@itemName.Value.name</a>
+                        </div>
+
+                        if (itemCounter % 4 == 3 || itemCounter == (_idNamesLevelsPair.Count - 1))
+                        {
+                        @:
                     </div>
+                    }
+
+                    itemCounter++;
+                    }
+                </div>
                 }*@
         </div>
     </form>
@@ -151,50 +169,50 @@
 </style>
 
 <script type="text/javascript">
-    var optionsArray = {};
+                                var optionsArray = {};
 
-    function preventSubmit() {
-         $.each(optionsArray,function (id, item) {
-            $($("#" + id).GetSelectedElementIds()).each(function (index, value) {
-                $("#selected-" + id).append('<option value="' + value + '" selected="true">' + value + '</option>')
-            });
-        });
+                                function preventSubmit() {
+                                    $.each(optionsArray, function (id, item) {
+                                        $($("#" + id).GetSelectedElementIds()).each(function (index, value) {
+                                            $("#selected-" + id).append('<option value="' + value + '" selected="true">' + value + '</option>')
+                                        });
+                                    });
 
-        return true;
-    };
+                                    return true;
+                                };
 
-    $(document).ready(function () {
-         @{
-                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-                var json = serializer.Serialize(Model);
-          }
+                                $(document).ready(function () {
+                                    @{
+                                        var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                                        var json = serializer.Serialize(Model);
+                                    }
 
-        var model = @Html.Raw(json);
-        if (model != null && @Html.Raw(json) != "undefined") {
-            var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
+                                    var model = @Html.Raw(json);
+                                    if (model != null && @Html.Raw(json) != "undefined") {
+                                    var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
 
-            $.each(filterData, function (index, item){
-                switch (item.ControlType) {
-                    case 'TextBox':
-                        break;
+                                    $.each(filterData, function (index, item) {
+                                        switch (item.ControlType) {
+                                            case 'TextBox':
+                                                break;
 
-                    case 'DropDown Multi':
-                        optionsArray[item.ID] = {
-                            title: item.PlaceholderText,
-                            data: item.Filters,
-                            maxHeight: 500,
-                            closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
-                            openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
-                            multiSelect: true,
-                            selectChildren: true,
-                        };
-                        $("#" + item.ID).DropDownTree(optionsArray[item.ID]);
-                        break;
+                                            case 'DropDown Multi':
+                                                optionsArray[item.ID] = {
+                                                    title: item.PlaceholderText,
+                                                    data: item.Filters,
+                                                    maxHeight: 500,
+                                                    closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
+                                                    openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
+                                                    multiSelect: true,
+                                                    selectChildren: true,
+                                                };
+                                                $("#" + item.ID).DropDownTree(optionsArray[item.ID]);
+                                                break;
 
-                    default:
-                        break;
-                }
-            });
-        }
-   });
+                                            default:
+                                                break;
+                                        }
+                                    });
+                                }
+                                                                                       });
 </script>

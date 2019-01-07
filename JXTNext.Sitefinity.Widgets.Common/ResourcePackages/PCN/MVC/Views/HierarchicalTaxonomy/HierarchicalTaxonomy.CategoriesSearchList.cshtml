@@ -1,0 +1,24 @@
+﻿@model Telerik.Sitefinity.Frontend.Taxonomies.Mvc.Models.TaxonomyViewModel
+
+@{
+    var reqcatfilter = Request.QueryString["categories"] == null ? "" : Request.QueryString["categories"];
+}
+<h3 class="title">Categories</h3>
+<div class="category">
+    @foreach (var taxon in Model.Taxa)
+    {
+        if (reqcatfilter.Contains(Convert.ToString(taxon.Title.ToString().Trim())))
+        {
+            <label><input type="checkbox" class="blog-categories" name="category" data-title="@taxon.Title" checked><span class="check"></span> @taxon.Title</label>
+        }
+        else
+        {
+            <label><input type="checkbox" class="blog-categories" name="category" data-title="@taxon.Title"><span class="check"></span> @taxon.Title</label>
+        }
+        if (Model.ShowItemCount)
+        {
+            <span class="text-muted">@Html.Raw(string.Format("({0})", taxon.Count))</span>
+        }
+    }
+
+</div>

@@ -138,6 +138,7 @@
     <Content Include="ResourcePackages\PCN\assets\dist\images\news-right-border.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\PCN\assets\dist\images\pcn-favicon.png" />
     <Content Include="ResourcePackages\PCN\assets\dist\images\three-colmun-bg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -862,6 +863,9 @@
     <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.BlogSideTabList.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="ResourcePackages\PCN\MVC\Views\Card\Card.HomeAboutUsContainer.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\PCN\MVC\Views\Consultant\Detail.MemberDetail.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

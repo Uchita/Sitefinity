@@ -103,6 +103,14 @@
         padding: 0 3%;
     }
 
+    .subscribe_sec .form-control {
+        width: 200px;
+    }
+
+    .subscribe_sec .btn-primary {
+        width: 200px;
+    }
+
     .logos_section {
         padding: 30px 0;
     }
@@ -309,6 +317,14 @@
         width: 200px;
     }
 
+    .subscribe_sec .form-control {
+        width: 145px;
+    }
+
+    .subscribe_sec .btn-primary {
+        width: 145px;
+    }
+
     .about_section {
         padding: 38px 0 55px 0;
     }
@@ -495,8 +511,12 @@
         padding: 25px 0;
     }
 
-        .search_job .input-style {
+        .search_job .corner {
             margin: 0 0 10px 0;
+            width: calc(100% - 15px);
+        }
+
+        .search_job .input-style {
             width: 100%;
         }
 
@@ -504,6 +524,14 @@
             margin: 0px;
             width: 100%;
         }
+
+    .subscribe_sec .form-control {
+        width: 100%;
+    }
+
+    .subscribe_sec .btn-primary {
+        width: 100%;
+    }
 
     .about_section p {
         padding: 0;

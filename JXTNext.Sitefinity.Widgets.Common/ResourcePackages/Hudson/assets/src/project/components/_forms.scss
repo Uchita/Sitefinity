@@ -77,7 +77,9 @@
                 margin: 0 10px 0 0;
                 float: left;
 
-                &:checked + .checkbox-icon:before {
+                &:checked + .checkbox-icon:before,
+                &:checked + input + .checkbox-icon:before
+                {
                     content: "\f00c";
                     line-height: 19px;
                 }

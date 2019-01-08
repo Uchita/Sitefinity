@@ -1,6 +1,17 @@
 @model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
-<div class="thumbnail card-basic @Model.CssClass">
+@{ 
+    var actionStatusCls = "";
+}
+@if (string.IsNullOrEmpty(Model.ActionUrl))
+{
+    actionStatusCls = "nopagelink";
+}
+else
+{
+    actionStatusCls = "pagelinknormalbtn";
+}
+<div class="thumbnail card-basic @Model.CssClass @actionStatusCls">
     @if (!string.IsNullOrEmpty(Model.ActionUrl))
     {
         <a href="@Html.UrlSanitize(Model.ActionUrl)">

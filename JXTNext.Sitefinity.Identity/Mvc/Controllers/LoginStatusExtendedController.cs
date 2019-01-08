@@ -121,6 +121,7 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
             else
             {
                 SecurityManager.Logout();
+                SecurityManager.DeleteAuthCookies();
             }
 
             return this.Redirect(logoutUrl);

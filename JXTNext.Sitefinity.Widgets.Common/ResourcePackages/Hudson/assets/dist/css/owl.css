@@ -243,6 +243,10 @@
   margin-right: auto; }
 
 /*#region Mobile slider*/
+.mobile-owl-carousel .owl-item [class*="col-"] {
+  width: auto;
+  float: none; }
+
 .mobile-owl-carousel.owl-loaded {
   margin-left: 0;
   margin-right: 0; }
@@ -252,6 +256,9 @@
   right: 0;
   bottom: -25px;
   left: 0; }
+
+.mobile-owl-2-items .owl-item img {
+  width: auto; }
 
 /*#endregion Mobile slider*/
 /*#region Testimonials slider*/

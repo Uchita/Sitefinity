@@ -7902,6 +7902,7 @@ header {
   header .brand-logo {
     background: url("../images/hudson_logo_white.svg") no-repeat 0 0/100% auto;
     width: 200px;
+    max-width: 100%;
     display: block;
     text-indent: -99em;
     overflow: hidden;
@@ -8468,7 +8469,8 @@ main {
 .dropdown.dropdown-tree > ul {
   white-space: normal;
   padding-left: 0;
-  min-width: 250px; }
+  min-width: 250px;
+  width: 100%; }
   .dropdown.dropdown-tree > ul li {
     white-space: normal;
     position: relative;
@@ -8489,7 +8491,8 @@ main {
       display: block !important;
       font-family: AkzidGroProReg,sans-serif;
       color: #333;
-      line-height: 1.3; }
+      line-height: 1.3;
+      font-size: initial; }
       .dropdown.dropdown-tree > ul li a .count {
         margin-left: 3px;
         font-size: 100%; }
@@ -8497,7 +8500,7 @@ main {
       padding: 4px 20px 4px 0;
       right: 0; }
       .dropdown.dropdown-tree > ul li .drop-down-item .arrow {
-        top: 16px;
+        top: 13px;
         right: 0;
         font-size: 1.2rem; }
     .dropdown.dropdown-tree > ul li:hover {
@@ -9193,10 +9196,14 @@ ul.breadcrumb {
   .jumbotron-container .jumbotron {
     position: relative;
     margin-bottom: 0;
-    padding-top: 250px;
+    padding-top: 70px;
     min-height: 550px;
     text-align: center;
-    color: #fff; }
+    color: #fff;
+    display: flex;
+    -webkit-box-align: center !important;
+    -ms-flex-align: center !important;
+    align-items: center !important; }
     .jumbotron-container .jumbotron:before {
       content: '';
       position: absolute;
@@ -9211,7 +9218,8 @@ ul.breadcrumb {
     .jumbotron-container .jumbotron .jumbotron-content {
       position: relative;
       z-index: 10;
-      padding: 0 40px; }
+      padding: 0 40px;
+      width: 100%; }
     .jumbotron-container .jumbotron .h1, .jumbotron-container .jumbotron h1 {
       font-size: 48px;
       font-size: 4.8rem;
@@ -11612,6 +11620,8 @@ select.articles-order {
     margin-bottom: 40px; }
   .mb-xs-20 {
     margin-bottom: 20px; }
+  .xs-text-center {
+    text-align: center !important; }
   .page-wrapper main {
     padding-top: 0; }
   header .navbar {
@@ -11690,8 +11700,7 @@ select.articles-order {
   .paralax-image {
     background-size: auto !important; }
   .jumbotron-container .jumbotron {
-    padding-top: 70px;
-    min-height: 260px; }
+    min-height: 320px; }
     .jumbotron-container .jumbotron .h1, .jumbotron-container .jumbotron h1 {
       font-size: 30px;
       font-size: 3rem; }
@@ -12063,9 +12072,6 @@ select.articles-order {
     clear: left; } }
 
 @media (max-width: 499px) {
-  .jumbotron-container .jumbotron {
-    padding-top: 50px;
-    min-height: 183px; }
   .left-sidebar {
     margin-bottom: 30px; }
   .col-xs-1 {

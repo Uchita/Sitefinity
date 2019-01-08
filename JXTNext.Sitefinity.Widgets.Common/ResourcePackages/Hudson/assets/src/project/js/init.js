@@ -356,10 +356,11 @@ $(document).ready(function () {
     }
 
     if( $('.search-toggle').length ){
-        $('.search-toggle').on('click', function(){
+        $('body').on('click', '.search-toggle', function(){
            $('.keywordfilter').toggle(); 
         });
     }
+    
     var ua = window.navigator.userAgent;
     var msie = ua.indexOf("MSIE ");
 

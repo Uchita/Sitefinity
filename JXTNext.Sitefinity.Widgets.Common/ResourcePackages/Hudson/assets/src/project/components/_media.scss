@@ -814,6 +814,9 @@
 @media (max-width: 767px) {
     .mb-xs-40{ margin-bottom: 40px; }
     .mb-xs-20{ margin-bottom: 20px; }
+    .xs-text-center{
+        text-align: center!important;
+    }
     .page-wrapper main{
         padding-top: 0;
     }
@@ -941,8 +944,8 @@
     }
 
     .jumbotron-container .jumbotron {
-        padding-top: 70px;
-        min-height: 260px;
+        min-height: 320px;
+
         .h1, h1 {
             font-size: 30px;
             font-size: 3rem;
@@ -1538,10 +1541,7 @@
 }
 
 @media (max-width:499px) {
-    .jumbotron-container .jumbotron {
-        padding-top: 50px;
-        min-height: 183px;
-    }
+    
     .left-sidebar{
         margin-bottom: 30px;
     }

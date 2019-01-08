@@ -71,6 +71,9 @@ $(document).ready(function () {
         }
 
     });
+
+
+
 });
 
 
@@ -81,6 +84,54 @@ $(window).on('scroll', function () {
     } else {
         $('.header').removeClass('stickyheader');
     }
+});
+
+
+/**
+ * ==================
+ * Equal Height 
+ * =====================
+ */
+function equalHeightAp(container) {
+
+    var currentTallest = 0;
+    var currentRowStart = 0;
+    var rowDivs = new Array();
+    var $el;
+    var $element;
+    var topPosition = 0;
+    var topPostion = 0;
+    var currentDiv;
+
+    $(container).each(function () {
+
+        $element = $(this);
+        $($element).height('auto');
+        topPostion = $element.position().top;
+
+        if (currentRowStart != topPostion) {
+
+            for (currentDiv = 0; currentDiv < rowDivs.length; currentDiv++) {
+                rowDivs[currentDiv].height(currentTallest);
+            }
+
+            rowDivs.length = 0;
+            currentRowStart = topPostion;
+            currentTallest = $element.height();
+            rowDivs.push($element);
+
+        } else {
+            rowDivs.push($element);
+            currentTallest = (currentTallest < $element.height()) ? ($element.height()) : (currentTallest);
+        }
+
+        for (currentDiv = 0; currentDiv < rowDivs.length; currentDiv++) {
+            rowDivs[currentDiv].height(currentTallest);
+        }
+    });
+}
+$(window).on("load", function () {
+    equalHeightAp('.equalHeight');
 });
 
 

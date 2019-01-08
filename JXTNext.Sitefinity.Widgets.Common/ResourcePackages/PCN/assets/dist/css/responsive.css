@@ -164,8 +164,13 @@
     }
 
     .header {
-        padding: 20px 0 0 0;
+        padding: 15px 0;
+        background: #004F6E;
     }
+
+        .header.stickyheader {
+            padding: 15px 0;
+        }
 
         .header .site_logo {
             width: 200px;
@@ -204,8 +209,8 @@
     .header .main_menu {
         padding: 0 0 15px 0;
         width: calc(100% + 15px);
-        margin: 0 0 20px 0;
-        border-bottom: 1px solid rgba(255,255,255,0.2);
+        margin: 0px;
+        /*border-bottom: 1px solid rgba(255,255,255,0.2);*/
     }
 
         .header .main_menu ul li {
@@ -264,9 +269,7 @@
         }
 
     .header .socials {
-        padding-bottom: 20px;
         width: 100%;
-        border-bottom: 1px solid rgba(255,255,255,0.2);
     }
 
         .header .socials ul li {
@@ -475,6 +478,10 @@
     .consultants .colio-item:nth-of-type(3n+4) {
         clear: both;
     }
+
+    .advertise-logo .image-rpt {
+        width: 50%;
+    }
 }
 
 
@@ -485,7 +492,7 @@
 
     .header .header_right {
         padding: 0 15px;
-        width: calc(100% - 20%);
+        width: 256px;
     }
 
     .mobile_menu_logo {
@@ -500,12 +507,15 @@
     .banner_section {
         padding: 165px 0 0 0;
         min-height: 370px;
+        z-index: 5;
     }
 
         .banner_section h1 {
             font-size: 26px;
             line-height: 1.2em;
         }
+
+
 
     .search_job {
         padding: 25px 0;

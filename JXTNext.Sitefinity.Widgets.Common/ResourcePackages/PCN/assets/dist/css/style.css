@@ -55,7 +55,7 @@ ul, ol {
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
-    color: #000;
+    color: #004f6e;
     font-family: FuturaBT-Heavy;
 }
 
@@ -356,7 +356,6 @@ a {
     background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
-    z-index: 1;
 }
 
     .banner_section:after {
@@ -366,7 +365,7 @@ a {
         top: 0px;
         left: 0px;
         content: "";
-        z-index: -1;
+        z-index: 3;
         background: rgba(0,79,109,0.4);
     }
 
@@ -377,7 +376,47 @@ a {
         text-transform: uppercase;
         letter-spacing: 1px;
         line-height: 1.1em;
+        z-index: 4;
+        position: relative;
     }
+
+
+.homebanner {
+    position: relative;
+    overflow: hidden;
+}
+
+.bg-video {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    right: 0;
+    height: 100%;
+    z-index: 1;
+}
+
+    .bg-video video {
+        z-index: 0;
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+    }
+
+.sfPageEditor .bg-video {
+    position: static !important;
+}
+
+    .sfPageEditor .bg-video video {
+        position: static !important;
+    }
+
 
 /* header_banner */
 .header_banner {
@@ -637,6 +676,13 @@ a {
 
 hr {
     border-top: 1px solid #8EDD2B;
+    clear: both;
+    margin: 0px;
+}
+
+.about_section.left_align hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .about_section.left_align p {
@@ -931,7 +977,7 @@ hr {
 
 /* three_colmun_section */
 .three_colmun_section {
-    padding: 55px 0 91px 0;
+    padding: 32px 0 90px 0;
     position: relative;
     z-index: 1;
     background: url(../images/three-colmun-bg.png) no-repeat top center;
@@ -4410,14 +4456,66 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     padding-bottom: 0px;
 }
 
-
-.advertise-logo a {
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 30px 15px 0;
+.advertise-logo {
+    margin: 0 -10px;
 }
+
+    .advertise-logo .image-rpt {
+        width: 25%;
+        float: left;
+        padding: 0 10px;
+        margin-bottom: 15px;
+    }
+
+    .advertise-logo a {
+        display: block;
+        vertical-align: middle;
+        padding: 20px;
+        height: 100%;
+        background: rgba(0,0,0,0.2);
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .advertise-logo a:hover {
+            background: rgba(0,0,0,0.15);
+        }
+
+    .advertise-logo img {
+        max-height: 40px;
+        max-width: 100%;
+    }
 
 .tab-content #popular {
     display: block;
     opacity: 1;
 }
+
+.cookie-banner-container {
+    background: #9c9b9b;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    text-align: center;
+    width: 100%;
+    float: left;
+    padding: 8px 0px;
+    color: #fff;
+    z-index: 10;
+}
+
+    .cookie-banner-container a {
+        color: #8edd2b;
+        text-decoration: none;
+    }
+
+        .cookie-banner-container a:hover {
+            color: #fff;
+        }
+
+    .cookie-banner-container + .header {
+        top: 25px;
+    }

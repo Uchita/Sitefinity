@@ -12,7 +12,7 @@
     <meta charset="utf-8" />
     <link rel="icon" href="/ResourcePackages/PCN/assets/dist/images/pcn-favicon.png" type="image/png" sizes="16x16">
     <title></title>
-    
+
 
     @Html.Section("head")
     @Html.StyleSheet(Url.Content("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"), "head")
@@ -25,6 +25,12 @@
 
 <body>
     @Html.Section("top")
+    <div class="cookie-banner-container">
+        <div class="container">
+            By using this website you agree to the use of <a href="/privacy-policy">cookies</a>
+            <a class="accept-link" href="javascript:void(0);"><em class="far fa-check-square"></em></a>
+        </div>
+    </div>
 
     <header class="header">
         @Html.SfPlaceHolder("Header")
@@ -41,15 +47,15 @@
     @* Inline editing scripts and helpers. They should be available only when inline editing is possible. *@
     @*@if (Html.ShouldRenderInlineEditing())
         {
-            @Html.Script(ScriptRef.MicrosoftAjax, "top")
-            @Html.Script(ScriptRef.MicrosoftAjaxCore, "top")
-            @Html.Script(ScriptRef.JQuery, "top")
+        @Html.Script(ScriptRef.MicrosoftAjax, "top")
+        @Html.Script(ScriptRef.MicrosoftAjaxCore, "top")
+        @Html.Script(ScriptRef.JQuery, "top")
 
-            @Html.Script(Url.EmbeddedResource("Telerik.Sitefinity.Resources.Reference", "Telerik.Sitefinity.Resources.Scripts.jquery.ba-outside-events.min.js"), "top")
-            @Html.Script(ScriptRef.KendoAll, "top")
-            @Html.Script(ScriptRef.KendoTimezones, "top")
-            @Html.Script(Url.EmbeddedResource("Telerik.Sitefinity.Resources.Reference", "Telerik.Sitefinity.Resources.Scripts.RequireJS.require.min.js"), "top")
-            @Html.InlineEditingManager(false)
+        @Html.Script(Url.EmbeddedResource("Telerik.Sitefinity.Resources.Reference", "Telerik.Sitefinity.Resources.Scripts.jquery.ba-outside-events.min.js"), "top")
+        @Html.Script(ScriptRef.KendoAll, "top")
+        @Html.Script(ScriptRef.KendoTimezones, "top")
+        @Html.Script(Url.EmbeddedResource("Telerik.Sitefinity.Resources.Reference", "Telerik.Sitefinity.Resources.Scripts.RequireJS.require.min.js"), "top")
+        @Html.InlineEditingManager(false)
         }*@
 
     @Html.Section("bottom")

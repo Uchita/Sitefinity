@@ -221,6 +221,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             MembershipCreateStatus membershipCreateStatus;
             ViewBag.PostBackMessage = null;
             ViewBag.IsUserLoggedIn = false;
+            applyJobModel.Email = applyJobModel.Email.Trim(',');
             var currentIdentity = ClaimsManager.GetCurrentIdentity();
             
             if (SitefinityHelper.IsUserLoggedIn() && currentIdentity.IsAuthenticated) // User already logged in

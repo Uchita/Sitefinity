@@ -26,6 +26,7 @@ using System.Web;
 using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert;
 using JXTNext.Sitefinity.Services.Intefaces;
 using System.Dynamic;
+using Telerik.Sitefinity.Security.Claims;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -38,7 +39,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         IEnumerable<IBusinessLogicsConnector> _bConnectorsList;
         IEnumerable<IOptionsConnector> _oConnectorsList;
         IJobAlertService _jobAlertService;
-
+        private char[] charsToTrim = { '*', '\'', '"', '~', '!', '@', '#', '$', '%', '^', '&', '(', ')', '-', '_', '+', '=', '{', '}' };
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
         /// </summary>
@@ -75,7 +76,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public ActionResult Index([ModelBinder(typeof(JobSearchResultsFilterBinder))] JobSearchResultsFilterModel filterModel, int? jobId)
         {
             dynamic dynamicJobResultsList = null;
-
+            if(filterModel != null && !string.IsNullOrEmpty(filterModel.Keywords))
+            {
+                filterModel.Keywords = filterModel.Keywords.Trim(charsToTrim);
+            }
+            
             if (jobId.HasValue)
             {
                 IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = jobId.Value };
@@ -209,8 +214,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             dynamic dynamicJobResultsList = null;
 
+            
             if (filterModel != null)
             {
+                if (!string.IsNullOrEmpty(filterModel.Keywords))
+                {
+                    filterModel.Keywords = filterModel.Keywords.Trim(charsToTrim);
+                }
                 ISearchJobsResponse response = GetJobSearchResultsResponse(filterModel);
                 dynamicJobResultsList = response as dynamic;
             }
@@ -451,8 +461,17 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ViewBag.EmailJobPageUrl = SitefinityHelper.GetPageUrl(this.EmailJobPageId);
             ViewBag.HidePushStateUrl = this.HidePushStateUrl;
             ViewBag.PageFullUrl = SitefinityHelper.GetPageFullUrl(SiteMapBase.GetActualCurrentNode().Id);
-
             ViewBag.IsMember = SitefinityHelper.IsUserLoggedIn("Member");
+
+            var currentIdentity = ClaimsManager.GetCurrentIdentity();
+            if (currentIdentity.IsAuthenticated)
+            {
+                var currUser = SitefinityHelper.GetUserById(currentIdentity.UserId);
+                if (currUser != null)
+                {
+                    ViewBag.Email = currUser.Email;
+                }
+            }
 
             return response;
         }
@@ -585,7 +604,32 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             
         }
 
-        
+        private string GetClassificationNameById(string classificationId)
+        {
+            var topLovelCategories = SitefinityHelper.GetTopLevelCategories();
+
+            foreach (var taxon in topLovelCategories)
+            {
+                JobFilterRoot filterRoot = new JobFilterRoot() { Filters = new List<JobFilter>() };
+                filterRoot.ID = taxon.Id.ToString().ToUpper();
+                filterRoot.Name = taxon.Title;
+                if(classificationId == filterRoot.ID)
+                {
+                    return filterRoot.Name;
+                }
+                var hierarchicalTaxon = taxon as HierarchicalTaxon;
+                if (hierarchicalTaxon != null)
+                {
+                    foreach (var childTaxon in hierarchicalTaxon.Subtaxa)
+                    {
+                        var jobFilter = new JobFilter() { Filters = new List<JobFilter>() };
+                        ProcessCategories(childTaxon, jobFilter);
+                        filterRoot.Filters.Add(jobFilter);
+                    }
+                }
+            }
+            return null;
+        }
 
         private dynamic _mapToCronJobJsonModel(JobSearchResultsFilterModel filterModel)
         {

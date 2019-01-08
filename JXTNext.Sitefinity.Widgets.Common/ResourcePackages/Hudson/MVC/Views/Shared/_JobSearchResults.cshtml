@@ -21,9 +21,12 @@
    
     <div>
 
-        @if (isLoggedIn)
+        @if (ViewBag.IsMember)
         {
-            <a class="btn btn-sm jobalert-btn ml-5" href="/user-dashboard/Create" title="Create your job alert">CREATE JOB ALERT</a>
+            <input type="email" id="anonycreatejobalert" value="@ViewBag.Email" hidden />
+            <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+            <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
+            <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
         }
         else
         {

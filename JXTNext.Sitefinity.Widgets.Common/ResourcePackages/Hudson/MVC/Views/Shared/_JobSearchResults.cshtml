@@ -11,7 +11,7 @@
 }
 
 <div class="result-meta">
-    <p><span class="cur-search-count">Your search resulted in: <span class="count-num">@ViewBag.TotalCount</span> position(s)</span> | <a href="/advancedsearch" title="New job search">New Search</a></p>
+    <p><span class="cur-search-count">Your search resulted in: <span class="count-num">@ViewBag.TotalCount</span> position(s)</span> | <a href="/advancedsearch" title="New job search">Search jobs</a></p>
 </div>
 
 <div class="search-top clearfix">
@@ -90,7 +90,7 @@
                 <div class="row">
                     <div class="col-sm-4 sc-job-meta-group">
                         <span class="meta-location">#:CustomData["CountryLocationArea[0].Filters[0].Value"]#</span><br />
-                        <span class="meta-salary">$#:CustomData["Salary.Filters[0].Min"]# - $#:CustomData["Salary.Filters[0].Max"]#</span><br />
+                                                                                                                   <span class="meta-salary">$#:CustomData["Salary.Filters[0].Min"]# - $#:CustomData["Salary.Filters[0].Max"]# #CustomData["Salary.Filters[0].Value"]#</span><br />
                         <span class="meta-worktype">#:CustomData["WorkType.Filters[0].Value"]#</span>
                     </div>
 

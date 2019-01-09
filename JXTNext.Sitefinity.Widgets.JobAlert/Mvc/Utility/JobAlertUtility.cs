@@ -92,7 +92,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
                 json.ClassificationsSearchCriteria.Add(classification);
             }
 
-            if (String.IsNullOrWhiteSpace(model.Keywords))
+            if (model != null && String.IsNullOrWhiteSpace(model.Keywords))
             {
                 model.Keywords.Split(',').ToList().ForEach(x => json.KeywordsSearchCriteria.Add(new { Keyword = x }));
             }

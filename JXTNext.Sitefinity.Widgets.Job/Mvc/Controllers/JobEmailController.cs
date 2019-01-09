@@ -205,14 +205,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     }
                 }
 
-                fieldKey = "FriendMessage";
-                if (ModelState.IsValidField(fieldKey))
-                {
-                    if (string.IsNullOrWhiteSpace(form.FriendMessage))
-                    {
-                        ModelState.AddModelError(fieldKey, JobEmailFormModel.RequiredFieldMessage);
-                    }
-                }
             }
 
             // do not proceed if we have errors
@@ -330,7 +322,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 replyToCollection.Add(new MailAddress(form.Email, form.Name));
 
                 templateData.Sender = from;
-                templateData.Message = Regex.Replace(form.FriendMessage, "<.*?>", String.Empty).Replace("\n", "<br />");
+                if( form.FriendMessage != null )
+                {
+                    templateData.Message = Regex.Replace(form.FriendMessage, "<.*?>", String.Empty).Replace("\n", "<br />");
+                }
+                
 
                 foreach (var item in form.Friend)
                 {

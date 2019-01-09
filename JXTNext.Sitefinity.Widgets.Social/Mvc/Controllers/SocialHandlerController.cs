@@ -126,6 +126,15 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 PhoneNumber = result.PhoneNumber
                             };
                             var overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
+                            var currentIdentity = ClaimsManager.GetCurrentIdentity();
+                            if (currentIdentity.IsAuthenticated)
+                            {
+                                var currUser = SitefinityHelper.GetUserById(currentIdentity.UserId);
+                                if (currUser != null)
+                                {
+                                    overrideEmail = currUser.Email;
+                                }
+                            }
                             Log.Write("overrideEmail is : " + overrideEmail, ConfigurationPolicy.ErrorLog);
                             if (overrideEmail != null && status == JobApplicationStatus.Available)
                             {
@@ -227,7 +236,6 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 viewModel.Status = status;
                             }
                         }
-
                         else
                         {
                             Log.Write("_jobApplicationService is null", ConfigurationPolicy.ErrorLog);

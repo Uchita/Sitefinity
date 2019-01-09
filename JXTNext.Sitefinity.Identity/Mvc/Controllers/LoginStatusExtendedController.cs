@@ -108,20 +108,14 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
         {
             var logoutUrl = this.Model.GetLogoutPageUrl() ?? this.GetCurrentPageUrl();
 
-            if (Config.Get<SecurityConfig>().AuthenticationMode == SecConfig.AuthenticationMode.Claims)
-            {
-                var owinContext = SystemManager.CurrentHttpContext.Request.GetOwinContext();
-                var authenticationTypes = ClaimsManager.CurrentAuthenticationModule.GetSignOutAuthenticationTypes().ToArray();
+            var owinContext = SystemManager.CurrentHttpContext.Request.GetOwinContext();
+            var authenticationTypes = ClaimsManager.CurrentAuthenticationModule.GetSignOutAuthenticationTypes().ToArray();
 
-                owinContext.Authentication.SignOut(new AuthenticationProperties
-                {
-                    RedirectUri = logoutUrl
-                }, authenticationTypes);
-            }
-            else
+            owinContext.Authentication.SignOut(new AuthenticationProperties
             {
-                SecurityManager.Logout();
-            }
+                RedirectUri = logoutUrl
+            }, authenticationTypes);
+
 
             return this.Redirect(logoutUrl);
         }

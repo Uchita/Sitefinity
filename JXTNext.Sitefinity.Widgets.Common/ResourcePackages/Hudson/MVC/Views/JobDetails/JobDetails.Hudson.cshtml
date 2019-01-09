@@ -146,7 +146,13 @@
                                     @Model.JobDetails.ReferenceNo
                                 </td>
                             </tr>
-                            <tr><td><strong>Contact Details:</strong></td><td>@Model.JobDetails.CustomData["ApplicationMethod.ApplicationEmail"]</td></tr>
+                            @{
+                                if (Model.JobDetails.CustomData["ContactDetails"] != "")
+                                {
+                                    <tr><td><strong>Contact Details:</strong></td><td>@Model.JobDetails.CustomData["ContactDetails"]</td></tr>
+                                }
+                            }
+
                             <tr>
                                 <td><strong>Profession:&nbsp; </strong></td>
                                 <td>

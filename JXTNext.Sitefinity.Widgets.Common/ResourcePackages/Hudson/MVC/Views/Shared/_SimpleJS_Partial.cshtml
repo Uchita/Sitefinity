@@ -19,14 +19,16 @@
             }
             else if (item.Name == "Salary")
             {
-                <select class="SalaryRangeSelect ss">
-                    <option value="-1" selected>No Salary Preference</option>
-                    @foreach (var salaryItem in item.Filters)
-                    {
-                        <option value="@salaryItem.ID">@salaryItem.Label</option>
-                    }
+                <div class="select">
+                    <select class="SalaryRangeSelect ss">
+                        <option value="-1" selected>No Salary Preference</option>
+                        @foreach (var salaryItem in item.Filters)
+                        {
+                            <option value="@salaryItem.ID">@salaryItem.Label</option>
+                        }
                     
-                </select>
+                    </select>
+                </div>
                 foreach (var salaryItem in item.Filters)
                 {
                     var lower = 15000;

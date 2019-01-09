@@ -29,11 +29,7 @@ namespace JXTNext.Sitefinity.Services.Services
                 var currUser = SitefinityHelper.GetUserById(ClaimsManager.GetCurrentIdentity().UserId);
                 if (currUser != null)
                 {
-                    // Logout the current user and login social media user
-                    if (isSocialMedia && currUser.Email.ToUpper() != applicantInfo.Email.ToUpper())
-                        SitefinityHelper.LogoutCurrentUser();
-                    else
-                        return currUser.Email;
+                    return currUser.Email;
                 }
             }
 

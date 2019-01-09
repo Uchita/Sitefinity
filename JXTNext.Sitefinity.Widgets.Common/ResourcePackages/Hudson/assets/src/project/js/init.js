@@ -370,7 +370,7 @@ $(document).ready(function () {
             $(this).removeAttr('readonly').blur().focus();
         });
     }
-    $('#userid').on('focus',function(){
+    $('#userid').on('focus, touchstart',function(){
         $(this).removeAttr('readonly');
     });
 

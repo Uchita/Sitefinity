@@ -14,13 +14,15 @@ else
 <div class="thumbnail card-basic @Model.CssClass @actionStatusCls">
     @if (!string.IsNullOrEmpty(Model.ActionUrl))
     {
-        <a href="@Html.UrlSanitize(Model.ActionUrl)">
+        <a href="@Html.UrlSanitize(Model.ActionUrl)" class="img-wrap" title="@Model.ImageTitle">
             <img src="@Model.SelectedSizeUrl" title="@Model.ImageTitle" alt="@Model.ImageAlternativeText">
         </a>
     }
     else
     {
-        <img src="@Model.SelectedSizeUrl" title="@Model.ImageTitle" alt="@Model.ImageAlternativeText">
+        <div class="img-wrap">
+            <img src="@Model.SelectedSizeUrl" title="@Model.ImageTitle" alt="@Model.ImageAlternativeText">
+        </div>
     }
 
     <div class="caption">

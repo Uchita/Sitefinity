@@ -309,6 +309,7 @@
             .img-wrap{
                 height: 200px;
             }
+            
         }
     }
     .thumbnail.card-basic{
@@ -318,6 +319,11 @@
         .caption{
             min-height: 230px;
             height: 55%;
+        }
+        &.card-basic-regular-sum{
+            .img-wrap{
+                height: auto;
+            }
         }
     }
     .home-padding .thumbnail.card-basic .caption{
@@ -909,7 +915,7 @@
         
     }
     .main-content{
-        
+        padding-top: 44px;
     }
     .mobile-owl-carousel {
         .thumbnail{
@@ -1227,7 +1233,7 @@
 
             .caption {
                 padding: 9px 0;
-
+                position: relative;
                 .h3, h3 {
                     font-size: 18px;
                     font-size: 1.8rem;
@@ -1493,6 +1499,9 @@
                     margin-top: 0;
                     margin-bottom: 5px;
                     line-height: 1.4;
+                }
+                .btn.btn-more{
+                    right: 0;
                 }
             }
         }

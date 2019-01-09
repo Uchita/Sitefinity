@@ -54,8 +54,10 @@
                         @MobileRootLevelNode(node)
                     }
                     <li class="extra-mnu timesheet-mnu"><a href="/timesheets-and-payroll-process"><em class="far fa-calendar-alt"></em> Timesheets</a></li>
+                  
                     @if (JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn())
                     {
+                        <li class="extra-mnu"><a href="/user-dashboard">Dashboard</a></li>
                         <li class="extra-mnu"><a href="/home/SignOut">Log out</a></li>
                     }
                     else

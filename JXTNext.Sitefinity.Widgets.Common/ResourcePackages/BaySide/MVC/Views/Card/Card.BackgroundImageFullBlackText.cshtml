@@ -15,8 +15,8 @@
 
 <div class="img-absolute bg-image @Model.CssClass" style="background-image: url('@Model.SelectedSizeUrl')"></div>
 <div class="row full-height align-items-center">
-    <div class="g-section col-12 content-on-img">
-        <h3 class="mt-0" style="color:black">@Html.HtmlSanitize(Model.Heading)</h3>
+    <div class="col-12 content-on-img">
+        <h3 style="color:black">@Html.HtmlSanitize(Model.Heading)</h3>
         <p style="color:black">
             @Html.HtmlSanitize(Model.Description)
         </p>

@@ -13,47 +13,63 @@
 <div class="row">
     <div class="col-12">
         <div class="row">
-            <div class="col-12 col-md-8">
-                <h2>@ViewBag.TotalCount job(s) found</h2>
+            <div class="col-12 col-md-6">
+                <h2>@ViewBag.TotalCount job(s) found | <a href="/jobs/advancedsearch">New search</a></h2>
             </div>
-            <div class="col-12 col-md-4">
-                <select id="sortOrder" class="dropdown-menu">
-                    <option selected="selected" value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
-                    <option value="Old">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
-                    <option value="A-Z">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
-                    <option value="Z-A">@Html.Resource("SortByAlphaZA", "JobSearchResultsResources")</option>
-                    <option value="SalaryHighToLow">@Html.Resource("SortBySalHighToLow", "JobSearchResultsResources")</option>
-                    <option value="SalaryLowToHigh">@Html.Resource("SortBySalLowToHigh", "JobSearchResultsResources")</option>
-                </select>
-                @*<div class="dropdown dropdown-select">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Sort by - Recent
-                            <span aria-hidden="true" class="icon-downarrow"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                        </ul>
-                    </div>*@
-                <!-- dropdown/ -->
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
+                    <select id="sortOrder" class="form-control">
+                        <option selected="selected" value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
+                        <option value="Old">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
+                        <option value="A-Z">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
+                        <option value="Z-A">@Html.Resource("SortByAlphaZA", "JobSearchResultsResources")</option>
+                        <option value="SalaryHighToLow">@Html.Resource("SortBySalHighToLow", "JobSearchResultsResources")</option>
+                        <option value="SalaryLowToHigh">@Html.Resource("SortBySalLowToHigh", "JobSearchResultsResources")</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
+                    <input type="email" id="anonycreatejobalert" value="" placeholder="Receive new jobs for this search by email." class="jobalert-field form-control" />
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="form-group text-right">
+                    @if (isLoggedIn)
+                    {
+                        <a class="btn btn-outline-primary btn-block jobalert-btn" href="/user-dashboard/Create" title="Create you job alert">CREATE JOB ALERT</a>
+                    }
+                    else
+                    {
+                        <a id="anon-job-alert" class="btn btn-block btn-outline-primary" href="#" title="Create you job alert">CREATE ANON JOB ALERT</a>
+                    }
+                </div>
             </div>
         </div>
         <!-- .row/ -->
     </div>
     <!-- .col-12/ -->
-    <div class="col-12">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page"><a href="/jobs/advancedsearch">New search</a></li>
-            </ol>
-        </nav>
-        <!-- breadcrumb/ -->
-    </div>
+
 </div>
 <!-- .row/ -->
 <div id="listView" class="search-results"></div>
+
+
+
+<div class="popup-overlay">
+    <div class="container">
+        <div class="popup-box">
+            <p class="info">Please sign-in or register as a member to <span>create job alert</span>.</p>
+            <div class="button-wrapper">
+                <a href="/register" class="btn btn-primary">Register</a>
+                <a href="/sign-in" class="btn btn-primary">Sign in</a>
+            </div>
+            <a href="javascript:void(0)" class="fa fa-times"></a>
+        </div>
+    </div>
+</div>
 <script type="text/x-kendo-template" id="template">
     <div class="job-list border rounded p-4">
         <img src="/ResourcePackages/BaySide/assets/images/bayside-logo-black.png" class="float-right"
@@ -150,10 +166,10 @@
 
 <script type="text/javascript">
 
-     @{
-          var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-          var json = serializer.Serialize(Model);
-      }
+    @{
+        var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+        var json = serializer.Serialize(Model);
+    }
 
     $(document).ready(function () {
         $(document).on('click', '.save-job', function (e) {
@@ -196,8 +212,8 @@
                                 $('.popup-overlay .info span').text('save a job');
                                 $('.popup-overlay').fadeIn('fast');
                             }
-                        else
-                            alert(response.Errors[0]);
+                            else
+                                alert(response.Errors[0]);
                     }
                 },
                 error: function (response) { // Error
@@ -244,7 +260,7 @@
         bindJobs(PageNumber);
 
         function processSavedJobs() {
-            var parm = { };
+            var parm = {};
             var urlPath = $(location).attr('pathname') + "/GetAllSavedJobs";
             var self = $(this);
             $.ajax({
@@ -351,8 +367,7 @@
             return queryStringArr.join("&");
         };
 
-        function bindJobsPages(PageNumber)
-        {
+        function bindJobsPages(PageNumber) {
             if (highestPage > 1) {
                 var lis = '';
                 var pageJumpNext = false;
@@ -385,195 +400,196 @@
 
         function bindJobs(PageNumber) {
 
-            var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), pageNumber: PageNumber, sortBy: sortBy };
-            var urlPath = $(location).attr('pathname') + "/GetSearchResults";
-            var searchPath = $(location).attr('search');
-            if (searchPath == null || searchPath == "") {
-                searchPath += ("?" + "Page=" + PageNumber);
-            }
-            else if (searchPath.indexOf("Page=") > -1) {
-                let pageIndex = searchPath.indexOf("Page=");
-                searchPath = searchPath.slice(0, pageIndex);
-                searchPath += ("Page=" + PageNumber);
-            }
-            else {
-                searchPath += ("&Page=" + PageNumber);
-            }
+            var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), pageNumber: PageNumber, sortBy: sortBy
+        };
+        var urlPath = $(location).attr('pathname') + "/GetSearchResults";
+        var searchPath = $(location).attr('search');
+        if (searchPath == null || searchPath == "") {
+            searchPath += ("?" + "Page=" + PageNumber);
+        }
+        else if (searchPath.indexOf("Page=") > -1) {
+            let pageIndex = searchPath.indexOf("Page=");
+            searchPath = searchPath.slice(0, pageIndex);
+            searchPath += ("Page=" + PageNumber);
+        }
+        else {
+            searchPath += ("&Page=" + PageNumber);
+        }
 
-            if (searchPath.indexOf("SortBy=") > -1) {
-                let pageIndex = searchPath.indexOf("SortBy=");
-                searchPath = searchPath.slice(0, pageIndex);
-                searchPath += ("SortBy=" + sortBy);
-            }
-            else {
-                searchPath += ("&SortBy=" + sortBy);
-            }
+        if (searchPath.indexOf("SortBy=") > -1) {
+            let pageIndex = searchPath.indexOf("SortBy=");
+            searchPath = searchPath.slice(0, pageIndex);
+            searchPath += ("SortBy=" + sortBy);
+        }
+        else {
+            searchPath += ("&SortBy=" + sortBy);
+        }
 
-            queryStringArr.length = 0;
-            filterModel.Page = PageNumber;
-            filterModel.SortBy = sortBy;
-            var pushStateUrl = $(location).attr('pathname') + searchPath;
-            var data = { filterModel: filterModel }
-            window.history.pushState(data, "", pushStateUrl);
+        queryStringArr.length = 0;
+        filterModel.Page = PageNumber;
+        filterModel.SortBy = sortBy;
+        var pushStateUrl = $(location).attr('pathname') + searchPath;
+        var data = { filterModel: filterModel }
+        window.history.pushState(data, "", pushStateUrl);
 
-            $('.jobalert-btn').prop('href', '/user-dashboard/Create' + searchPath);
+        $('.jobalert-btn').prop('href', '/user-dashboard/Create' + searchPath);
 
-            //pager status
-            $('#pager li:not(.pageController) a').removeClass('active');
-            $('#pager li:not(.pageController) a[data-page="' + (PageNumber == 0 ? 1 : PageNumber) + '"]').addClass('active');
-            //prev next status
-            if (PageNumber <= 1) {
-                $('#pager li.pagePrev a').attr('disabled', true);
-            } else {
-                $('#pager li.pagePrev a').removeAttr('disabled');
-                $('#pager li.pagePrev a').attr('data-page', parseInt(PageNumber) - 1);
-            }
+        //pager status
+        $('#pager li:not(.pageController) a').removeClass('active');
+        $('#pager li:not(.pageController) a[data-page="' + (PageNumber == 0 ? 1 : PageNumber) + '"]').addClass('active');
+        //prev next status
+        if (PageNumber <= 1) {
+            $('#pager li.pagePrev a').attr('disabled', true);
+        } else {
+            $('#pager li.pagePrev a').removeAttr('disabled');
+            $('#pager li.pagePrev a').attr('data-page', parseInt(PageNumber) - 1);
+        }
 
-            if (parseInt(PageNumber) + 1 <= highestPage) {
-                $('#pager li.pageNext a').attr('data-page', parseInt(PageNumber) + 1);
-            }
-            if (parseInt(PageNumber) >= highestPage) {
-                $('#pager li.pageNext a').attr('disabled', true);
-            } else {
-                $('#pager li.pageNext a').removeAttr('disabled');
-            }
-            $('html,body').animate({
-                scrollTop: 0
-            }, 0);
-            //adding loader
-            if (!jobContainer.hasClass('loading')) {
-                jobContainer.addClass('loading');
-            }
+        if (parseInt(PageNumber) + 1 <= highestPage) {
+            $('#pager li.pageNext a').attr('data-page', parseInt(PageNumber) + 1);
+        }
+        if (parseInt(PageNumber) >= highestPage) {
+            $('#pager li.pageNext a').attr('disabled', true);
+        } else {
+            $('#pager li.pageNext a').removeAttr('disabled');
+        }
+        $('html,body').animate({
+            scrollTop: 0
+        }, 0);
+        //adding loader
+        if (!jobContainer.hasClass('loading')) {
+            jobContainer.addClass('loading');
+        }
 
-            $.ajax({
-                type: 'POST',
-                cache: false,
-                url: urlPath,
-                data: parm,
-                dataType: 'Json',
-                success: function (response) {
+        $.ajax({
+            type: 'POST',
+            cache: false,
+            url: urlPath,
+            data: parm,
+            dataType: 'Json',
+            success: function (response) {
 
-                    if (response.Total > 0) {
-                        dataSource = new kendo.data.DataSource({
-                            data: response.SearchResults,
-                            total: response.Total,
-                        });
-                        $(".count-num").html(response.Total);
+                if (response.Total > 0) {
+                    dataSource = new kendo.data.DataSource({
+                        data: response.SearchResults,
+                        total: response.Total,
+                    });
+                    $(".count-num").html(response.Total);
 
-                        var sorttext = getSortOrder();
-                        var token = sorttext.split(':');
+                    var sorttext = getSortOrder();
+                    var token = sorttext.split(':');
 
-                        //dataSource.sort({ field: token[0], dir: token[1] });
+                    //dataSource.sort({ field: token[0], dir: token[1] });
 
-                        jobContainer.kendoListView({
-                            dataSource: dataSource,
-                            template: kendo.template($("#template").html()),
+                    jobContainer.kendoListView({
+                        dataSource: dataSource,
+                        template: kendo.template($("#template").html()),
 
-                        });
+                    });
 
-                        processSavedJobs();
-                    } else {
+                    processSavedJobs();
+                } else {
 
-                        $(".info-block").removeClass('hidden');
-                        $("#sortOrder").parent().hide();
-                    }
-
-                    //check the layout on the base of active
-                    //or Retrieve from local storage for checking too
-                    if ($('.layout-switch .jn_ico.active').hasClass('icon-grid-view')) {
-                        $('#resultsPagePartialContent').removeClass('list-view').addClass('grid-view');
-                        $('.job-holder').addClass('col-lg-6');
-                    }
-                    //in case of taking from local storage, when data is loaded on filter selection
-                    else if (typeof (Storage) !== "undefined" && localStorage.getItem("resultLayout") == 'grid') {
-                        $('#resultsPagePartialContent').removeClass('list-view').addClass('grid-view');
-                        $('.layout-switch .jn_ico').removeClass('active');
-                        $('.layout-switch .icon-grid-view').addClass('active');
-                        $('.job-holder').addClass('col-lg-6');
-                    }
-
-                    //removing the loader in the job result widget
-                    jobContainer.removeClass('loading');
-
-                    //removing the loader in the search keyword - job filter widget
-                    $("#selectedkeywordsfilter").parent().removeClass('loader');
-                    //removing the loading in the filter widget itself
-                    $('.filter-outer-wrapper').removeClass('lockoverlay visible-hidden');
-                },
-                error: function (response) {
-                    console.log(response);
+                    $(".info-block").removeClass('hidden');
+                    $("#sortOrder").parent().hide();
                 }
-            });
-        };
 
-        function pageChange(pageObj) {
-            var currPageNumber = $(pageObj).attr('data-page');
-            var disableFlag = $(pageObj).attr('disabled');
-            if (disableFlag == "disabled") {
-                return false;
-            }
-
-            bindJobsPages(currPageNumber);
-
-            if (currPageNumber != PageNumber) {
-                PageNumber = parseInt(currPageNumber);
-                bindJobs(PageNumber);
-                //changing the prev & next page number attribute
-                $('.pagePrev a').attr('data-page', PageNumber - 1);
-                if (PageNumber + 1 <= highestPage ) {
-                    $('.pageNext a').attr('data-page', PageNumber + 1);
+                //check the layout on the base of active
+                //or Retrieve from local storage for checking too
+                if ($('.layout-switch .jn_ico.active').hasClass('icon-grid-view')) {
+                    $('#resultsPagePartialContent').removeClass('list-view').addClass('grid-view');
+                    $('.job-holder').addClass('col-lg-6');
                 }
+                //in case of taking from local storage, when data is loaded on filter selection
+                else if (typeof (Storage) !== "undefined" && localStorage.getItem("resultLayout") == 'grid') {
+                    $('#resultsPagePartialContent').removeClass('list-view').addClass('grid-view');
+                    $('.layout-switch .jn_ico').removeClass('active');
+                    $('.layout-switch .icon-grid-view').addClass('active');
+                    $('.job-holder').addClass('col-lg-6');
+                }
+
+                //removing the loader in the job result widget
+                jobContainer.removeClass('loading');
+
+                //removing the loader in the search keyword - job filter widget
+                $("#selectedkeywordsfilter").parent().removeClass('loader');
+                //removing the loading in the filter widget itself
+                $('.filter-outer-wrapper').removeClass('lockoverlay visible-hidden');
+            },
+            error: function (response) {
+                console.log(response);
             }
+        });
+    };
 
-        };
+    function pageChange(pageObj) {
+        var currPageNumber = $(pageObj).attr('data-page');
+        var disableFlag = $(pageObj).attr('disabled');
+        if (disableFlag == "disabled") {
+            return false;
+        }
 
-        function getSortOrder() {
-            var sortValue = $("#sortOrder").val();
-            switch (sortValue) {
-                case 'Old':
-                    return 'DatePosted:desc';
-                    break;
-                case 'AZ':
-                    return 'Title:asc';
-                    break;
-                case 'ZA':
-                    return 'Title:desc';
-                    break;
-                case 'SalaryHighToLow':
-                    return 'CustomData["Salary.Filters[0].Min"]:desc';
-                    break;
-                case 'SalaryLowToHigh':
-                    return 'CustomData["Salary.Filters[0].Max"]:asc';
-                    break;
-                default:
-                    return 'DatePosted:asc';
-                    break;
-            }
-        };
+        bindJobsPages(currPageNumber);
 
-        function layoutSwitch() {
-            if ($('.layout-switch').length) {
-                $('.layout-switch span.jn_ico').click(function () {
-                    $(this).siblings().removeClass('active');
-                    $(this).addClass('active');
-
-                    if ($(this).hasClass('icon-grid-view')) {
-                        //browser local Store
-                        if (typeof (Storage) !== "undefined") {
-                            localStorage.setItem("resultLayout", "grid");
-                        }
-                        $('.list-view').removeClass('list-view').addClass('grid-view');
-                        $('.job-holder').addClass('col-lg-6');
-                    } else {
-                        if (typeof (Storage) !== "undefined") {
-                            localStorage.setItem("resultLayout", "list");
-                        }
-                        $('.grid-view').removeClass('grid-view').addClass('list-view');
-                        $('.job-holder').removeClass('col-lg-6');
-                    }
-                });
+        if (currPageNumber != PageNumber) {
+            PageNumber = parseInt(currPageNumber);
+            bindJobs(PageNumber);
+            //changing the prev & next page number attribute
+            $('.pagePrev a').attr('data-page', PageNumber - 1);
+            if (PageNumber + 1 <= highestPage) {
+                $('.pageNext a').attr('data-page', PageNumber + 1);
             }
         }
+
+    };
+
+    function getSortOrder() {
+        var sortValue = $("#sortOrder").val();
+        switch (sortValue) {
+            case 'Old':
+                return 'DatePosted:desc';
+                break;
+            case 'AZ':
+                return 'Title:asc';
+                break;
+            case 'ZA':
+                return 'Title:desc';
+                break;
+            case 'SalaryHighToLow':
+                return 'CustomData["Salary.Filters[0].Min"]:desc';
+                break;
+            case 'SalaryLowToHigh':
+                return 'CustomData["Salary.Filters[0].Max"]:asc';
+                break;
+            default:
+                return 'DatePosted:asc';
+                break;
+        }
+    };
+
+    function layoutSwitch() {
+        if ($('.layout-switch').length) {
+            $('.layout-switch span.jn_ico').click(function () {
+                $(this).siblings().removeClass('active');
+                $(this).addClass('active');
+
+                if ($(this).hasClass('icon-grid-view')) {
+                    //browser local Store
+                    if (typeof (Storage) !== "undefined") {
+                        localStorage.setItem("resultLayout", "grid");
+                    }
+                    $('.list-view').removeClass('list-view').addClass('grid-view');
+                    $('.job-holder').addClass('col-lg-6');
+                } else {
+                    if (typeof (Storage) !== "undefined") {
+                        localStorage.setItem("resultLayout", "list");
+                    }
+                    $('.grid-view').removeClass('grid-view').addClass('list-view');
+                    $('.job-holder').removeClass('col-lg-6');
+                }
+            });
+        }
+    }
     }
 
 </script>

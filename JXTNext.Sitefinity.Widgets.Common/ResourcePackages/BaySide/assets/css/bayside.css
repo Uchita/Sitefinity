@@ -4962,7 +4962,7 @@ p {
     font-size: 1em;
     border-radius: 4px;
     font-weight: 600;
-    padding: 8px 23px 7px;
+    padding: 6px 23px 8px;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -5118,7 +5118,7 @@ p {
         }
 
     .filter_sidebar .sm-wrapper .dropdown-tree li a {
-        padding: 3px 23px;
+        padding: 3px 15px 3px 25px;
         display: block !important;
         font-size: 14px;
         color: #000;
@@ -5718,15 +5718,23 @@ p {
 .advanced-search-from .field-wrapper .dropdown .btn {
     width: 100%;
     text-align: left;
-    padding: 6px 12px;
+    padding: 6px 20px 6px 12px;
     height: 45px;
     background: none !important;
 }
 
     .advanced-search-from .field-wrapper .dropdown .btn .caret {
         float: right;
-        margin: 9px 0 0 0;
+        margin: 0;
+        position: absolute;
+        right: 6px;
+        top: 22px;
     }
+
+.advanced-search-from .field-wrapper .dropdowntree-name {
+    overflow: hidden;
+    display: block;
+}
 
 .advanced-search-from .field-wrapper label.col-4 {
     max-width: 100%;
@@ -7650,7 +7658,286 @@ select.hs-input {
     }
 
 .parallax-mirror.translate-fixed img {
-    -webkit-transform: translate3d(-165px, 0, 0px) !important;
-    -moz-transform: translate3d(-165px, 0, 0px) !important;
-    transform: translate3d(-165px, 0, 0px) !important;
+    -webkit-transform: translateY(0px) !important;
+    -moz-transform: translateY(0px) !important;
+    transform: translateY(0px) !important;
+}
+
+/*Job filter sidebar*/
+
+.filter-outer-wrapper .dropdown-tree > ul {
+    white-space: nowrap;
+}
+
+.filter-outer-wrapper .dropdown-tree li {
+    position: relative;
+}
+
+.filter-outer-wrapper .dropdown-tree a {
+    white-space: pre-wrap;
+}
+
+.filter-outer-wrapper .dropdown-tree .arrow {
+    position: absolute;
+    display: inline-block;
+    margin-right: 0;
+    transform: translate(0);
+    -webkit-transform: translate(0);
+    -moz-transform: translate(0);
+    margin-left: 0;
+    top: 0;
+}
+
+.filter-outer-wrapper .dropdown-tree li > i {
+    margin-left: 0;
+    position: absolute;
+    left: 0;
+    top: 7px;
+}
+
+.filter-outer-wrapper .dropdown-tree li .count {
+    display: none;
+}
+/*Job filter sidebar::End*/
+.app-content .content-two-colmun li {
+    font-size: 1em;
+}
+
+/*Apply form position======*/
+.bdr-right {
+    border-right: 1px solid #000;
+}
+
+.bdr-right, .pad-right-30 {
+    padding-right: 30px;
+}
+
+.sf-profile img {
+    box-shadow: 1px 1px 1px rgba(0,0,0,.2);
+}
+
+.basic-form .upload-section {
+    margin: 10px 0 20px;
+}
+
+.login-form.sign-in-with .list-group {
+    margin-bottom: 20px;
+    padding-left: 0;
+}
+
+    .login-form.sign-in-with .list-group label {
+        color: #000;
+        text-transform: none;
+        position: relative;
+    }
+
+.login-form.sign-in-with .radiobutton input[type=radio] {
+    z-index: 2;
+    position: relative;
+    opacity: 0;
+    height: 20px;
+    width: 20px;
+    margin: 0 10px 0 0;
+    float: left;
+}
+
+.login-form.sign-in-with .form-label {
+    color: #0088CF;
+}
+
+.login-form.sign-in-with .radiobutton .radiobutton-icon {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #01a3a4;
+    display: inline-block;
+    color: transparent;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    text-align: center;
+    font-size: 13px;
+    border-radius: 50%;
+}
+
+    .login-form.sign-in-with .radiobutton .radiobutton-icon::before {
+        font-size: 1.75rem;
+        line-height: 1.33;
+        padding-right: 1px;
+    }
+
+.login-form.sign-in-with .select {
+    padding: 0;
+    position: relative;
+}
+
+.login-form.sign-in-with select {
+    padding-left: 6px;
+}
+
+.login-form.sign-in-with .select select {
+    padding: 6px 25px 6px 12px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 44px;
+    background: #fff;
+}
+
+.upload-section select {
+    width: 100%;
+}
+
+.upload-section .box {
+    border: 1px solid #01a3a4;
+    padding: 10px;
+    margin: 0;
+}
+
+.upload-section .note {
+    display: block;
+    word-break: break-word;
+}
+
+.upload-section .uploadfield-wrap {
+    padding: 15px 0 5px;
+    position: relative;
+    color: #01a3a4;
+    text-align: center;
+    width: 33%;
+    float: left;
+    overflow: hidden;
+}
+
+    .upload-section .uploadfield-wrap button, .upload-section .uploadfield-wrap input[type=file] {
+        opacity: 0;
+        height: 50px;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+    }
+
+    .upload-section .uploadfield-wrap .lbl {
+        display: block;
+        margin-top: -7px;
+        color: #0088CF;
+    }
+
+    .upload-section .uploadfield-wrap::before {
+        content: "\f07c";
+        color: #2e2e2e;
+        font-family: 'FontAwesome';
+        font-weight: 900;
+        font-size: 3rem;
+        position: absolute;
+        top: 15px;
+        z-index: 0;
+        width: 100%;
+        left: 0;
+    }
+
+    .upload-section .uploadfield-wrap.dropbox-upload::before {
+        font-family: 'FontAwesome';
+        content: "\f16b";
+    }
+
+    .upload-section .uploadfield-wrap.google-drive-upload::before {
+        content: "";
+        background-image: url(../images/google-drive-48.png);
+        background-repeat: no-repeat;
+        height: 100%;
+        top: 0;
+        left: 20px;
+    }
+
+.login-form.sign-in-with .checkbox {
+    margin-left: 0;
+    margin-top: 0;
+}
+
+    .login-form.sign-in-with .checkbox input[type=checkbox] {
+        z-index: 2;
+        position: relative;
+        opacity: 0;
+        height: 20px;
+        width: 20px;
+        margin: 0 10px 0 0;
+        float: left;
+    }
+
+    .login-form.sign-in-with .checkbox .checkbox-icon {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #0088CF;
+        display: inline-block;
+        color: #0088CF;
+        position: absolute;
+        top: 2px;
+        left: 0;
+        text-align: center;
+        font-size: 13px;
+    }
+
+        .login-form.sign-in-with .checkbox .checkbox-icon:before {
+            content: '';
+        }
+
+    .login-form.sign-in-with .checkbox input[type=checkbox]:checked + .checkbox-icon:before {
+        content: "\f00c";
+        line-height: 19px;
+    }
+
+.ext-provider-form .apply-with .btn {
+    height: 35px;
+    min-width: 120px;
+    padding: 6px 10px;
+    overflow: hidden;
+}
+
+    .ext-provider-form .apply-with .btn.btn-seek {
+        background: url(../images/seekBtn.png) 50% 50% no-repeat #e61977;
+        text-indent: -9em;
+    }
+
+
+.popup-overlay {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    display: none;
+    z-index: 10000;
+    background: rgba(0,0,0,.8);
+}
+/*.ext-provider-form .apply-with .indeed-apply-button {
+    background: url(../images/indeedBtn.png) 50% 50% no-repeat #fd6001 !important;
+    width: 120px;
+    border-radius: 0 !important;
+    height: 35px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    cursor: pointer !important;
+}*/
+@media (max-width: 991px) {
+    .md-no-bdr-right {
+        border-right: none !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .login-form.sign-in-with .form-group .text-right {
+        padding-left: 0;
+    }
+}
+/*Apply form position======::End*/
+
+.jobs-list .form-control {
+    height: 38px;
 }

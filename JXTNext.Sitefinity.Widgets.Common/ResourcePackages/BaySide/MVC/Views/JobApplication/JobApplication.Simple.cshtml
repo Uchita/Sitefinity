@@ -12,8 +12,14 @@
 {
     <br /><div class="alert alert-danger">@ViewBag.PostBackMessage</div>
 }
+
+<input type="hidden" value='@TempData["JobTitleTemp"]' id="hdnJobTitle" />
+@*<p>
+        @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model,
+        Newtonsoft.Json.Formatting.Indented))
+    </p>*@
 <div class="login-form sign-in-with">
-    <form id="job-app-form" action="@Url.Action("ApplyJob","JobApplication")" method="post" enctype="multipart/form-data" autocomplete="off">
+    <form id="job-app-form" action="@Url.Action(" ApplyJob","JobApplication")" method="post" enctype="multipart/form-data" autocomplete="off">
 
         <div class="row">
             <div class="col-xs-12 col-md-4 text-right"></div>
@@ -265,12 +271,12 @@
 
 <script>
 
-     var appStatus = '@Model.ApplicationStatus';
-     var isUserLoggedIn = '@ViewBag.IsUserLoggedIn';
-     var registerForm = false;
+    var appStatus = '@Model.ApplicationStatus';
+    var isUserLoggedIn = '@ViewBag.IsUserLoggedIn';
+    var registerForm = false;
 
 
-     function validateEmail(elementValue) {
+    function validateEmail(elementValue) {
         var emailPattern = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         return emailPattern.test(elementValue);
     };
@@ -291,51 +297,51 @@
     $("#documents-selected-type").val(documentsLetterSelectedType);
     $("#resume-selected-type").val(resumeSelectedType);
 
-     // Password Strength
-     var m_strUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-     var m_strLowerCase = "abcdefghijklmnopqrstuvwxyz";
-     var m_strNumber = "0123456789";
-     var m_strCharacters = "!@@#$%^&*?_~";
+    // Password Strength
+    var m_strUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var m_strLowerCase = "abcdefghijklmnopqrstuvwxyz";
+    var m_strNumber = "0123456789";
+    var m_strCharacters = "!@@#$%^&*?_~";
 
-     $(document).ready(function () {
+    $(document).ready(function () {
+        $('h1.fadeInUp').html($('#hdnJobTitle').val());
+        $('form').submit(function (e) {
+            e.preventDefault();
+            var self = this;
+            var fileUploadFlag = false;
+            //checking the resume file upload
+            if (resumeSelectedType == "" || resumeSelectedType.length == 0) {
+                fileUploadFlag = false;
+                $(".resume-message").removeClass('hidden');
+                return false;
+            } else {
+                fileUploadFlag = true;
+            }
 
-         $('form').submit(function (e) {
-             e.preventDefault();
-             var self = this;
-             var fileUploadFlag = false;
-             //checking the resume file upload
-             if (resumeSelectedType == "" || resumeSelectedType.length == 0) {
-                 fileUploadFlag = false;
-                 $(".resume-message").removeClass('hidden');
-                 return false;
-             } else {
-                 fileUploadFlag = true;
-             }
+            if ((appStatus == 'Available' && isUserLoggedIn == 'True') && fileUploadFlag || registerForm) {
+                //if (registerForm) {
+                self.submit();
+                //}
 
-             if ((appStatus == 'Available' && isUserLoggedIn == 'True') && fileUploadFlag || registerForm) {
-                 //if (registerForm) {
-                     self.submit();
-                 //}
+            }
+        });
 
-             }
-         });
+        if (appStatus == 'Available' && isUserLoggedIn == 'True') {
+            $('#login-register-container').hide();
+            $('#apply').removeAttr('disabled');
+            $('#userid').removeAttr('required');
+            $('#upload-files-container').show();
+            $('#appFormState').text('Upload your files');
+        }
 
-         if (appStatus == 'Available' && isUserLoggedIn == 'True') {
-             $('#login-register-container').hide();
-             $('#apply').removeAttr('disabled');
-             $('#userid').removeAttr('required');
-             $('#upload-files-container').show();
-             $('#appFormState').text('Upload your files');
-         }
+        if (appStatus == 'Available' && isUserLoggedIn != 'True') {
+            $('#upload-files-container').hide();
+            $('#apply').removeAttr('disabled');
+        }
 
-         if (appStatus == 'Available' && isUserLoggedIn != 'True') {
-             $('#upload-files-container').hide();
-             $('#apply').removeAttr('disabled');
-         }
-
-         if (appStatus != 'Available') {
-             $('#check-login').hide();
-         }
+        if (appStatus != 'Available') {
+            $('#check-login').hide();
+        }
 
         $('#application-resume').change(function () {
             resumeSelectedType = 'Local';
@@ -350,104 +356,104 @@
             $("#coverletter-selected-type").val(coverLetterSelectedType);
             var coverletterBrowseName = document.getElementById("application-coverletter").files[0].name;
             $(".coverletter-name").text(coverletterBrowseName);
-         });
+        });
 
-         $('#application-documents').change(function () {
-             documentsSelectedType = 'Local';
-             $("#documents-selected-type").val(documentsSelectedType);
-             var files = document.getElementById("application-documents").files;
-             var documentsBrowseName = "";
-             for (var i = 0; i < files.length; i++) {
-                 if (documentsBrowseName != "")
-                     documentsBrowseName += "<br/>";
-                 documentsBrowseName += files[i].name;
-             }
-             $(".documents-name").html(documentsBrowseName);
-         });
+        $('#application-documents').change(function () {
+            documentsSelectedType = 'Local';
+            $("#documents-selected-type").val(documentsSelectedType);
+            var files = document.getElementById("application-documents").files;
+            var documentsBrowseName = "";
+            for (var i = 0; i < files.length; i++) {
+                if (documentsBrowseName != "")
+                    documentsBrowseName += "<br/>";
+                documentsBrowseName += files[i].name;
+            }
+            $(".documents-name").html(documentsBrowseName);
+        });
 
-         //on enter key on password field triggering sign in button click
-         $('#password-reg').on('keydown', function (event) {
-             if (event.which == 13) { //enter key
-                 $('#sign-in-btn').trigger('click');
-             }
-         });
+        //on enter key on password field triggering sign in button click
+        $('#password-reg').on('keydown', function (event) {
+            if (event.which == 13) { //enter key
+                $('#sign-in-btn').trigger('click');
+            }
+        });
 
-         //member sign in continue
-         $('#sign-in-btn').click(function () {
-             $('#password-reg').parent().find('.error-message.emptyPassword-message').addClass('hidden');
-             $('#password-reg').parent().find('.error-message.wrongPassword-message').addClass('hidden');
-             if ($('#password-reg').val() == '' || $('#password-reg').val() == null || $('#password-reg').val() == 'undefined') {
-                 $('#password-reg').parent().find('.error-message.emptyPassword-message').removeClass('hidden');
-                 return true;
-             }
+        //member sign in continue
+        $('#sign-in-btn').click(function () {
+            $('#password-reg').parent().find('.error-message.emptyPassword-message').addClass('hidden');
+            $('#password-reg').parent().find('.error-message.wrongPassword-message').addClass('hidden');
+            if ($('#password-reg').val() == '' || $('#password-reg').val() == null || $('#password-reg').val() == 'undefined') {
+                $('#password-reg').parent().find('.error-message.emptyPassword-message').removeClass('hidden');
+                return true;
+            }
 
 
-             var jobId = $(this).data("jobid");
-             var staySignedinFlag = $('#RememberMe').is(':checked') ? true : false;
-             console.log(staySignedinFlag);
-             //for login email address & password check & submit login form
-             var parm = { email: $('#userid').val(), password: $('#password-reg').val(), staySignedIn: staySignedinFlag, isUserLoggedIn: false };
-             var urlPath = $(location).attr('pathname') + "/ValidateUser";
-             $.ajax({
-                 type: 'POST',
-                 cache: false,
-                 url: urlPath,
-                 data: parm,
-                 dataType: 'Json',
-                 success: function (response) {
-                     isUserLoggedIn = 'True';
-                     $('#password-reg').parent().find('.error-message.wrongPassword-message').addClass('hidden');
-                     // Once the user signed in , we need to know that the user is already applied for this job.
-                      if (response.IsUserSignedIn == true) {
+            var jobId = $(this).data("jobid");
+            var staySignedinFlag = $('#RememberMe').is(':checked') ? true : false;
+            console.log(staySignedinFlag);
+            //for login email address & password check & submit login form
+            var parm = { email: $('#userid').val(), password: $('#password-reg').val(), staySignedIn: staySignedinFlag, isUserLoggedIn: false };
+            var urlPath = $(location).attr('pathname') + "/ValidateUser";
+            $.ajax({
+                type: 'POST',
+                cache: false,
+                url: urlPath,
+                data: parm,
+                dataType: 'Json',
+                success: function (response) {
+                    isUserLoggedIn = 'True';
+                    $('#password-reg').parent().find('.error-message.wrongPassword-message').addClass('hidden');
+                    // Once the user signed in , we need to know that the user is already applied for this job.
+                    if (response.IsUserSignedIn == true) {
 
-                             $.ajax({
-                                 type: 'POST',
-                                 cache: false,
-                                 url: $(location).attr('pathname') + "/IsJobApplied",
-                                 data: { jobId: jobId},
-                                 dataType: 'Json',
-                                 success: function (response) {
-                                     if (response == true) {
-                                         $('#login-register-container').hide();
-                                         $('#appFormState').hide();
-                                         $('#already-applied-info').removeClass('hidden');
-                                     }
-                                     else {
-                                         // Show upload files section
-                                         $('#register').hide();
-                                         $('#userid').attr('disabled',true);
-                                         $('#apply').removeAttr('disabled');
-                                         $('#userid').removeAttr('required');
-                                         $('#upload-files-container').show();
-                                         $('#appFormState').text('Upload your files');
-                                         $("#upload-files-container").show();
-                                     }
-                                 },
-                                 error: function (response) {
-                                 }
-                             });
+                        $.ajax({
+                            type: 'POST',
+                            cache: false,
+                            url: $(location).attr('pathname') + "/IsJobApplied",
+                            data: { jobId: jobId },
+                            dataType: 'Json',
+                            success: function (response) {
+                                if (response == true) {
+                                    $('#login-register-container').hide();
+                                    $('#appFormState').hide();
+                                    $('#already-applied-info').removeClass('hidden');
+                                }
+                                else {
+                                    // Show upload files section
+                                    $('#register').hide();
+                                    $('#userid').attr('disabled', true);
+                                    $('#apply').removeAttr('disabled');
+                                    $('#userid').removeAttr('required');
+                                    $('#upload-files-container').show();
+                                    $('#appFormState').text('Upload your files');
+                                    $("#upload-files-container").show();
+                                }
+                            },
+                            error: function (response) {
+                            }
+                        });
 
-                         }
-                         else {
-                             if (response.IsUserVerified == true) { // User exists
-                                 if (response.IsUserMember == true) { // Member user
-                                     $("#upload-files-container").show();
-                                 }
-                                 else {
-                                     alert("You should be a Member to apply for the job.")
-                                 }
-                             } else {
-                                 //if password wrong
-                                 $('#password-reg').parent().find('.error-message.wrongPassword-message').removeClass('hidden');
-                             }
+                    }
+                    else {
+                        if (response.IsUserVerified == true) { // User exists
+                            if (response.IsUserMember == true) { // Member user
+                                $("#upload-files-container").show();
+                            }
+                            else {
+                                alert("You should be a Member to apply for the job.")
+                            }
+                        } else {
+                            //if password wrong
+                            $('#password-reg').parent().find('.error-message.wrongPassword-message').removeClass('hidden');
+                        }
 
-                         }
-                 },
-                 error: function (response) {
-                 }
-             });
+                    }
+                },
+                error: function (response) {
+                }
+            });
 
-         });
+        });
 
         $('#userid').keyup(function () {
             var emailId = $(this).val();
@@ -516,7 +522,7 @@
                         $('#apply').removeAttr('disabled');
                     },
                     error: function (response) {
-                   }
+                    }
                 });
             } else {
                 $('.welcome-message').addClass('hidden');
@@ -534,188 +540,186 @@
             }
         });
 
-         $('#password-reg').keyup(function () {
-             if (registerForm) {
-                 //runPassword($(this).val());
-             }
-         });
-         $('#ReTypePassword').keydown(function () {
-             $(this).next('.alert').addClass('hidden');
-         });
+        $('#password-reg').keyup(function () {
+            if (registerForm) {
+                //runPassword($(this).val());
+            }
+        });
+        $('#ReTypePassword').keydown(function () {
+            $(this).next('.alert').addClass('hidden');
+        });
 
-         $('#ReTypePassword').blur(function () {
-             var pwVal = $('#password-reg').val();
+        $('#ReTypePassword').blur(function () {
+            var pwVal = $('#password-reg').val();
 
-             if (pwVal != "") {
-                 if (pwVal != $(this).val()) {
-                     $(this).next(".alert").removeClass('hidden');
-                     $(this).addClass('error-field');
-                     registerForm = false;
-                 } else {
-                     $(this).next('.alert').addClass('hidden');
-                     $(this).removeClass('error-field');
-                     registerForm = true;
-                 }
-             }
-         });
+            if (pwVal != "") {
+                if (pwVal != $(this).val()) {
+                    $(this).next(".alert").removeClass('hidden');
+                    $(this).addClass('error-field');
+                    registerForm = false;
+                } else {
+                    $(this).next('.alert').addClass('hidden');
+                    $(this).removeClass('error-field');
+                    registerForm = true;
+                }
+            }
+        });
 
-         function checkPassword(strPassword) {
-             // Reset combination count
-             var nScore = 0;
+        function checkPassword(strPassword) {
+            // Reset combination count
+            var nScore = 0;
 
-             // Password length
-             // -- Less than 4 characters
-             if (strPassword.length < 5) {
-                 nScore += 5;
-             }
-             // -- 5 to 7 characters
-             else if (strPassword.length > 4 && strPassword.length < 8) {
-                 nScore += 10;
-             }
-             // -- 8 or more
-             else if (strPassword.length > 7) {
-                 nScore += 25;
-             }
+            // Password length
+            // -- Less than 4 characters
+            if (strPassword.length < 5) {
+                nScore += 5;
+            }
+            // -- 5 to 7 characters
+            else if (strPassword.length > 4 && strPassword.length < 8) {
+                nScore += 10;
+            }
+            // -- 8 or more
+            else if (strPassword.length > 7) {
+                nScore += 25;
+            }
 
-             // Letters
-             var nUpperCount = countContain(strPassword, m_strUpperCase);
-             var nLowerCount = countContain(strPassword, m_strLowerCase);
-             var nLowerUpperCount = nUpperCount + nLowerCount;
-             // -- Letters are all lower case
-             if (nUpperCount == 0 && nLowerCount != 0) {
-                 nScore += 10;
-             }
-             // -- Letters are upper case and lower case
-             else if (nUpperCount != 0 && nLowerCount != 0) {
-                 nScore += 20;
-             }
+            // Letters
+            var nUpperCount = countContain(strPassword, m_strUpperCase);
+            var nLowerCount = countContain(strPassword, m_strLowerCase);
+            var nLowerUpperCount = nUpperCount + nLowerCount;
+            // -- Letters are all lower case
+            if (nUpperCount == 0 && nLowerCount != 0) {
+                nScore += 10;
+            }
+            // -- Letters are upper case and lower case
+            else if (nUpperCount != 0 && nLowerCount != 0) {
+                nScore += 20;
+            }
 
-             // Numbers
-             var nNumberCount = countContain(strPassword, m_strNumber);
-             // -- 1 number
-             if (nNumberCount == 1) {
-                 nScore += 10;
-             }
-             // -- 3 or more numbers
-             if (nNumberCount >= 3) {
-                 nScore += 20;
-             }
+            // Numbers
+            var nNumberCount = countContain(strPassword, m_strNumber);
+            // -- 1 number
+            if (nNumberCount == 1) {
+                nScore += 10;
+            }
+            // -- 3 or more numbers
+            if (nNumberCount >= 3) {
+                nScore += 20;
+            }
 
-             // Characters
-             var nCharacterCount = countContain(strPassword, m_strCharacters);
-             // -- 1 character
-             if (nCharacterCount == 1) {
-                 nScore += 10;
-             }
-             // -- More than 1 character
-             if (nCharacterCount > 1) {
-                 nScore += 25;
-             }
+            // Characters
+            var nCharacterCount = countContain(strPassword, m_strCharacters);
+            // -- 1 character
+            if (nCharacterCount == 1) {
+                nScore += 10;
+            }
+            // -- More than 1 character
+            if (nCharacterCount > 1) {
+                nScore += 25;
+            }
 
-             // Bonus
-             // -- Letters and numbers
-             if (nNumberCount != 0 && nLowerUpperCount != 0) {
-                 nScore += 2;
-             }
-             // -- Letters, numbers, and characters
-             if (nNumberCount != 0 && nLowerUpperCount != 0 && nCharacterCount != 0) {
-                 nScore += 3;
-             }
-             // -- Mixed case letters, numbers, and characters
-             if (nNumberCount != 0 && nUpperCount != 0 && nLowerCount != 0 && nCharacterCount != 0) {
-                 nScore += 5;
-             }
-
-
-             return nScore;
-         };
-
-         // Runs password through check and then updates GUI
+            // Bonus
+            // -- Letters and numbers
+            if (nNumberCount != 0 && nLowerUpperCount != 0) {
+                nScore += 2;
+            }
+            // -- Letters, numbers, and characters
+            if (nNumberCount != 0 && nLowerUpperCount != 0 && nCharacterCount != 0) {
+                nScore += 3;
+            }
+            // -- Mixed case letters, numbers, and characters
+            if (nNumberCount != 0 && nUpperCount != 0 && nLowerCount != 0 && nCharacterCount != 0) {
+                nScore += 5;
+            }
 
 
-         function runPassword(strPassword) {
-             // Check password
-             var nScore = checkPassword(strPassword);
+            return nScore;
+        };
+
+        // Runs password through check and then updates GUI
 
 
-             // Get controls
-             var ctlBar = document.getElementById("password-strength");
+        function runPassword(strPassword) {
+            // Check password
+            var nScore = checkPassword(strPassword);
 
-             // Set new width
-             var nScoreWth = nScore; //*1.25
-             var nScoreLen = '0';
-             if (nScoreWth >= 100) {
-                 nScoreLen = '100%';
-             }
-             else {
-                 nScoreLen = nScoreWth + '%';
-             }
-             ctlBar.style.width = nScoreLen;
 
-             // Color and text
-             // -- Very Secure
-             if (nScore == 100)
-             {
-                 var strText = "Very Secure";
-                 var strColor = "#0ca908";
-             }
-             // -- Secure
-             else if (nScore >= 90)
-             {
-                 var strText = "Secure";
-                 vstrColor = "#197e84";
-             }
-             // -- Very Strong
-             else if (nScore >= 80) {
-                 var strText = "Very Strong";
-                 var strColor = "#008000";
-             }
-             // -- Strong
-             else if (nScore >= 60) {
-                 var strText = "Strong";
-                 var strColor = "#006000";
-             }
-             // -- Average
-             else if (nScore >= 40) {
-                 var strText = "Average";
-                 var strColor = "#e78300";
-             }
-             // -- Weak
-             else if (nScore >= 20) {
-                 var strText = "Weak";
-                 var strColor = "#Fe3d1a";
-             }
-             // -- Very Weak
-             else {
-                 var strText = "Very Weak";
-                 var strColor = "#e71a1a";
-             }
+            // Get controls
+            var ctlBar = document.getElementById("password-strength");
 
-             if (strPassword.length == 0) {
-                 ctlBar.style.backgroundColor = "";
-                 ctlBar.querySelector('.strengh-text').innerHTML = "";
-             }
-             else {
-                 ctlBar.style.backgroundColor = strColor;
-                 ctlBar.querySelector('.strengh-text').innerHTML = strText;
-             }
-         };
+            // Set new width
+            var nScoreWth = nScore; //*1.25
+            var nScoreLen = '0';
+            if (nScoreWth >= 100) {
+                nScoreLen = '100%';
+            }
+            else {
+                nScoreLen = nScoreWth + '%';
+            }
+            ctlBar.style.width = nScoreLen;
 
-         // Checks a string for a list of characters
-         function countContain(strPassword, strCheck) {
-             // Declare variables
-             var nCount = 0;
+            // Color and text
+            // -- Very Secure
+            if (nScore == 100) {
+                var strText = "Very Secure";
+                var strColor = "#0ca908";
+            }
+            // -- Secure
+            else if (nScore >= 90) {
+                var strText = "Secure";
+                vstrColor = "#197e84";
+            }
+            // -- Very Strong
+            else if (nScore >= 80) {
+                var strText = "Very Strong";
+                var strColor = "#008000";
+            }
+            // -- Strong
+            else if (nScore >= 60) {
+                var strText = "Strong";
+                var strColor = "#006000";
+            }
+            // -- Average
+            else if (nScore >= 40) {
+                var strText = "Average";
+                var strColor = "#e78300";
+            }
+            // -- Weak
+            else if (nScore >= 20) {
+                var strText = "Weak";
+                var strColor = "#Fe3d1a";
+            }
+            // -- Very Weak
+            else {
+                var strText = "Very Weak";
+                var strColor = "#e71a1a";
+            }
 
-             for (i = 0; i < strPassword.length; i++) {
-                 if (strCheck.indexOf(strPassword.charAt(i)) > -1) {
-                     nCount++;
-                 }
-             }
+            if (strPassword.length == 0) {
+                ctlBar.style.backgroundColor = "";
+                ctlBar.querySelector('.strengh-text').innerHTML = "";
+            }
+            else {
+                ctlBar.style.backgroundColor = strColor;
+                ctlBar.querySelector('.strengh-text').innerHTML = strText;
+            }
+        };
 
-             return nCount;
-         };
+        // Checks a string for a list of characters
+        function countContain(strPassword, strCheck) {
+            // Declare variables
+            var nCount = 0;
 
-       dropboxResumeOptions = {
+            for (i = 0; i < strPassword.length; i++) {
+                if (strCheck.indexOf(strPassword.charAt(i)) > -1) {
+                    nCount++;
+                }
+            }
+
+            return nCount;
+        };
+
+        dropboxResumeOptions = {
             // Required. Called when a user selects an item in the Chooser.
             success: function (files) {
 
@@ -782,22 +786,22 @@
             // while true allows the user to select both folders and files.
             // You cannot specify `linkType: "direct"` when using `folderselect: true`.
             folderselect: false, // or true
-         };
+        };
 
-         dropboxDocumentsOptions = {
-             // Required. Called when a user selects an item in the Chooser.
-             success: function (files) {
+        dropboxDocumentsOptions = {
+            // Required. Called when a user selects an item in the Chooser.
+            success: function (files) {
 
                 var stringyModel = "[";
 
-                 for (var i = 0; i < files.length; i++) {
-                     uploadResumeModel.UrlPath = files[i].link;
-                     uploadResumeModel.FileName = files[i].name;
-                     if (stringyModel != "[")
-                         stringyModel += ",";
-                     stringyModel += JSON.stringify(uploadResumeModel);
-                 }
-                 stringyModel += "]";
+                for (var i = 0; i < files.length; i++) {
+                    uploadResumeModel.UrlPath = files[i].link;
+                    uploadResumeModel.FileName = files[i].name;
+                    if (stringyModel != "[")
+                        stringyModel += ",";
+                    stringyModel += JSON.stringify(uploadResumeModel);
+                }
+                stringyModel += "]";
 
                 documentsSelectedType = 'Dropbox';
                 $('#uploadDocumentsJson').val(stringyModel);
@@ -812,34 +816,34 @@
                 $('.documents-name').html(Filenames);
 
 
-                 $('#dburl').text(files[0].link);
-                 $('#dbname').text(files[0].name);
-             },
+                $('#dburl').text(files[0].link);
+                $('#dbname').text(files[0].name);
+            },
 
-             // Optional. Called when the user closes the dialog without selecting a file
-             // and does not include any parameters.
-             cancel: function () { },
+            // Optional. Called when the user closes the dialog without selecting a file
+            // and does not include any parameters.
+            cancel: function () { },
 
-             // Optional. "preview" (default) is a preview link to the document for sharing,
-             // "direct" is an expiring link to download the contents of the file. For more
-             // information about link types, see Link types below.
-             linkType: "direct", // or "direct"
+            // Optional. "preview" (default) is a preview link to the document for sharing,
+            // "direct" is an expiring link to download the contents of the file. For more
+            // information about link types, see Link types below.
+            linkType: "direct", // or "direct"
 
-             // Optional. A value of false (default) limits selection to a single file, while
-             // true enables multiple file selection.
-             multiselect: true, // or true
+            // Optional. A value of false (default) limits selection to a single file, while
+            // true enables multiple file selection.
+            multiselect: true, // or true
 
-             // Optional. This is a list of file extensions. If specified, the user will
-             // only be able to select files with these extensions. You may also specify
-             // file types, such as "video" or "images" in the list. For more information,
-             // see File types below. By default, all extensions are allowed.
-             extensions: ['.pdf', '.doc', '.docx'],
+            // Optional. This is a list of file extensions. If specified, the user will
+            // only be able to select files with these extensions. You may also specify
+            // file types, such as "video" or "images" in the list. For more information,
+            // see File types below. By default, all extensions are allowed.
+            extensions: ['.pdf', '.doc', '.docx'],
 
-             // Optional. A value of false (default) limits selection to files,
-             // while true allows the user to select both folders and files.
-             // You cannot specify `linkType: "direct"` when using `folderselect: true`.
-             folderselect: false, // or true
-         };
+            // Optional. A value of false (default) limits selection to files,
+            // while true allows the user to select both folders and files.
+            // You cannot specify `linkType: "direct"` when using `folderselect: true`.
+            folderselect: false, // or true
+        };
 
 
         $('#dropbox-resume-btn').click(function () {
@@ -862,110 +866,129 @@
     });
 
 
-        // Googler Drive
+    // Googler Drive
 
-        // The Browser API key obtained from the Google API Console.
-        var developerKey = "@googleAPIKey";
+    // The Browser API key obtained from the Google API Console.
+    var developerKey = "@googleAPIKey";
 
-        // The Client ID obtained from the Google API Console. Replace with your own Client ID.
-        var clientId = "@googleClientId";
+    // The Client ID obtained from the Google API Console. Replace with your own Client ID.
+    var clientId = "@googleClientId";
 
-        // Scope to use to access user's photos.
-        var scope = 'https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file';
+    // Scope to use to access user's photos.
+    var scope = 'https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file';
 
-        var pickerApiLoaded = false;
-        var oauthToken;
+    var pickerApiLoaded = false;
+    var oauthToken;
 
 
-        // Use the API Loader script to load google.picker and gapi.auth.
-        function onApiLoad() {
-            gapi.load('auth2', onAuthApiLoad);
-            gapi.load('picker', onPickerApiLoad);
-        }
+    // Use the API Loader script to load google.picker and gapi.auth.
+    function onApiLoad() {
+        gapi.load('auth2', onAuthApiLoad);
+        gapi.load('picker', onPickerApiLoad);
+    }
 
-        function onAuthApiLoad() {
-            $('#resume-google-drive-btn').click(function () {
-                isGoogleResume = true;
-                isGoogleCoverLetter = false;
-                gapi.auth2.authorize({
-                    client_id: clientId,
-                    scope: scope
-                }, handleAuthResult);
-            });
+    function onAuthApiLoad() {
+        $('#resume-google-drive-btn').click(function () {
+            isGoogleResume = true;
+            isGoogleCoverLetter = false;
+            gapi.auth2.authorize({
+                client_id: clientId,
+                scope: scope
+            }, handleAuthResult);
+        });
 
-           $('#coverletter-google-drive-btn').click(function () {
-               isGoogleResume = false;
-               isGoogleCoverLetter = true;
-                gapi.auth2.authorize({
-                    client_id: clientId,
-                    scope: scope
-                }, handleAuthResult);
-            });
+        $('#coverletter-google-drive-btn').click(function () {
+            isGoogleResume = false;
+            isGoogleCoverLetter = true;
+            gapi.auth2.authorize({
+                client_id: clientId,
+                scope: scope
+            }, handleAuthResult);
+        });
 
-            $('#documents-google-drive-btn').click(function () {
-                isGoogleResume = false;
-                isGoogleCoverLetter = false;
-                gapi.auth2.authorize({
-                    client_id: clientId,
-                    scope: scope
-                }, handleAuthResultMulti);
-            });
-        }
+        $('#documents-google-drive-btn').click(function () {
+            isGoogleResume = false;
+            isGoogleCoverLetter = false;
+            gapi.auth2.authorize({
+                client_id: clientId,
+                scope: scope
+            }, handleAuthResultMulti);
+        });
+    }
 
-        function onPickerApiLoad() {
-            pickerApiLoaded = true;
+    function onPickerApiLoad() {
+        pickerApiLoaded = true;
+        createPicker();
+    }
+
+    function handleAuthResult(authResult) {
+        if (authResult && !authResult.error) {
+            oauthToken = authResult.access_token;
             createPicker();
         }
+    }
 
-        function handleAuthResult(authResult) {
-            if (authResult && !authResult.error) {
-                oauthToken = authResult.access_token;
-                createPicker();
-            }
+    function handleAuthResultMulti(authResult) {
+        if (authResult && !authResult.error) {
+            oauthToken = authResult.access_token;
+            createPickerMulti();
         }
+    }
 
-        function handleAuthResultMulti(authResult) {
-            if (authResult && !authResult.error) {
-                oauthToken = authResult.access_token;
-                createPickerMulti();
-            }
+    // Create and render a Picker object for picking user Photos.
+    function createPicker() {
+        if (pickerApiLoaded && oauthToken) {
+            var picker = new google.picker.PickerBuilder().
+                addView(new google.picker.View(google.picker.ViewId.DOCS).setMimeTypes("application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")).
+                setOAuthToken(oauthToken).
+                setDeveloperKey(developerKey).
+                setCallback(pickerCallback).
+                build();
+            picker.setVisible(true);
         }
-
-        // Create and render a Picker object for picking user Photos.
-        function createPicker() {
-            if (pickerApiLoaded && oauthToken) {
-                var picker = new google.picker.PickerBuilder().
-                    addView(new google.picker.View(google.picker.ViewId.DOCS).setMimeTypes("application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")).
-                    setOAuthToken(oauthToken).
-                    setDeveloperKey(developerKey).
-                    setCallback(pickerCallback).
-                    build();
-                picker.setVisible(true);
-            }
+    }
+    function createPickerMulti() {
+        if (pickerApiLoaded && oauthToken) {
+            var picker = new google.picker.PickerBuilder().
+                addView(new google.picker.View(google.picker.ViewId.DOCS).setMimeTypes("application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")).
+                enableFeature(google.picker.Feature.MULTISELECT_ENABLED).
+                setOAuthToken(oauthToken).
+                setDeveloperKey(developerKey).
+                setCallback(pickerCallback).
+                build();
+            picker.setVisible(true);
         }
-        function createPickerMulti() {
-            if (pickerApiLoaded && oauthToken) {
-                var picker = new google.picker.PickerBuilder().
-                    addView(new google.picker.View(google.picker.ViewId.DOCS).setMimeTypes("application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")).
-                    enableFeature(google.picker.Feature.MULTISELECT_ENABLED).
-                    setOAuthToken(oauthToken).
-                    setDeveloperKey(developerKey).
-                    setCallback(pickerCallback).
-                    build();
-                picker.setVisible(true);
-            }
-        }
+    }
 
-        // A simple callback implementation.
-        function pickerCallback(data) {
-            var url = 'nothing';
-            var name = "";
-            var fileId = "";
-            var mime = "";
-            debugger;
+    // A simple callback implementation.
+    function pickerCallback(data) {
+        var url = 'nothing';
+        var name = "";
+        var fileId = "";
+        var mime = "";
+        debugger;
 
-            if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
-                var doc = data[google.picker.Response.DOCUMENTS][0];
+        if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+            var doc = data[google.picker.Response.DOCUMENTS][0];
+            fileId = doc[google.picker.Document.ID];
+            url = doc[google.picker.Document.URL];
+            name = doc[google.picker.Document.NAME]
+            mime = doc[google.picker.Document.MIME_TYPE];
+
+            uploadResumeModel.UrlPath = url;
+            uploadResumeModel.FileName = name;
+            uploadResumeModel.Field = fileId;
+            uploadResumeModel.MIMEType = mime;
+            uploadResumeModel.AuthToken = oauthToken;
+
+            var stringyModel = JSON.stringify(uploadResumeModel);
+
+            var docs = data[google.picker.Response.DOCUMENTS];
+            var stringyModels = "[";
+            var Filenames = "";
+
+            for (var i = 0; i < docs.length; i++) {
+                doc = docs[i];
                 fileId = doc[google.picker.Document.ID];
                 url = doc[google.picker.Document.URL];
                 name = doc[google.picker.Document.NAME]
@@ -977,62 +1000,43 @@
                 uploadResumeModel.MIMEType = mime;
                 uploadResumeModel.AuthToken = oauthToken;
 
-                var stringyModel = JSON.stringify(uploadResumeModel);
-
-                var docs = data[google.picker.Response.DOCUMENTS];
-                var stringyModels = "[";
-                var Filenames = "";
-
-                for (var i = 0; i < docs.length; i++) {
-                    doc = docs[i];
-                    fileId = doc[google.picker.Document.ID];
-                    url = doc[google.picker.Document.URL];
-                    name = doc[google.picker.Document.NAME]
-                    mime = doc[google.picker.Document.MIME_TYPE];
-
-                    uploadResumeModel.UrlPath = url;
-                    uploadResumeModel.FileName = name;
-                    uploadResumeModel.Field = fileId;
-                    uploadResumeModel.MIMEType = mime;
-                    uploadResumeModel.AuthToken = oauthToken;
-
-                    if (stringyModels != "[") {
-                        stringyModels += ",";
-                        Filenames += "<br/>";
-                    }
-                    stringyModels += JSON.stringify(uploadResumeModel);
-                    Filenames += doc[google.picker.Document.NAME];
+                if (stringyModels != "[") {
+                    stringyModels += ",";
+                    Filenames += "<br/>";
                 }
-                stringyModels += "]";
+                stringyModels += JSON.stringify(uploadResumeModel);
+                Filenames += doc[google.picker.Document.NAME];
+            }
+            stringyModels += "]";
 
-                if (isGoogleResume) {
-                    resumeSelectedType = 'GoogleDrive';
-                    $('#uploadResumeJson').val(stringyModel);
-                    $('#application-resume').val('');
-                    $("#resume-selected-type").val(resumeSelectedType);
-                    $('.resume-name').text(name);
+            if (isGoogleResume) {
+                resumeSelectedType = 'GoogleDrive';
+                $('#uploadResumeJson').val(stringyModel);
+                $('#application-resume').val('');
+                $("#resume-selected-type").val(resumeSelectedType);
+                $('.resume-name').text(name);
+            }
+            else {
+                if (isGoogleCoverLetter) {
+                    coverLetterSelectedType = 'GoogleDrive';
+                    $('#uploadCoverLetterJson').val(stringyModel);
+                    $('#application-coverletter').val('');
+                    $("#coverletter-selected-type").val(coverLetterSelectedType);
+                    $('.coverletter-name').text(name);
                 }
                 else {
-                    if (isGoogleCoverLetter) {
-                        coverLetterSelectedType = 'GoogleDrive';
-                        $('#uploadCoverLetterJson').val(stringyModel);
-                        $('#application-coverletter').val('');
-                        $("#coverletter-selected-type").val(coverLetterSelectedType);
-                        $('.coverletter-name').text(name);
-                    }
-                    else {
-                        documentsSelectedType = 'GoogleDrive';
-                        $('#uploadDocumentsJson').val(stringyModels);
-                        $('#application-documents').val('');
-                        $("#documents-selected-type").val(documentsSelectedType);
-                        $('.documents-name').html(Filenames);
-                    }
+                    documentsSelectedType = 'GoogleDrive';
+                    $('#uploadDocumentsJson').val(stringyModels);
+                    $('#application-documents').val('');
+                    $("#documents-selected-type").val(documentsSelectedType);
+                    $('.documents-name').html(Filenames);
                 }
-
             }
 
-            var message = url;
         }
+
+        var message = url;
+    }
 </script>
 
 <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="@dbAPIKey"></script>

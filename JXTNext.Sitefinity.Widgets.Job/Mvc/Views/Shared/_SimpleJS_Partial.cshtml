@@ -9,7 +9,7 @@
         <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" placeholder="Search keywords" /></div>
     </div>
     <div class="filter-toggle"><span class="btn btn-primary">@Html.Resource("JobFilterToggleBtn")</span></div>
-    <div class="search-toggle visible-xs"><i class="fas fa-search"></i></div>
+    @*<div class="search-toggle visible-xs"><i class="fas fa-search"></i></div>*@
     <div class="sm-wrapper">
         @foreach (var item in Model)
         {

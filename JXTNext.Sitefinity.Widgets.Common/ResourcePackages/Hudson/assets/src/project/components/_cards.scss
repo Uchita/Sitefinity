@@ -55,11 +55,18 @@
     border-radius: 0;
     padding: 0px;
     position: relative;
+    background: #f0f0f0;
+    width: calc(100% - 30px);
+    margin: 0 auto;
+    height: 100%;
     &.card-basic {
         >a{
             display: block;
             max-height: 396px;
             overflow: hidden;
+            width: calc(100% + 30px);
+            position: relative;
+            left: -15px;
         }
         img, a > img {
             margin: 0;
@@ -70,6 +77,9 @@
             display: block;
             height: 255px;
             overflow: hidden;
+            width: calc(100% + 30px);
+            position: relative;
+            left: -15px;
             img{
                 width: auto;
                 max-width: 150%;
@@ -288,19 +298,19 @@
         }
     }
 }
-.flex [class*="col-"] .thumbnail{
-    display: table;
-    height: 92%; 
-    width: 100%;  
-    overflow: hidden;
-    &.nopagelink{
-        height: 100%;
-        .caption{
-            height: 100%;
+.flex [class*="col-"]{
+
+    margin-bottom: 40px;
+    .thumbnail{
+        height: 100%; 
+        &.nopagelink{
+            .caption{
+                
+            }
         }
-    }
-    &.pagelinknormalbtn{
-        padding-bottom: 60px;
+        &.pagelinknormalbtn{
+            padding-bottom: 65px;
+        }
     }
 }
 
@@ -365,10 +375,9 @@
 }
 
 .card-basic.small-caption {
-    background-color: transparent;
-
+    
     .caption {
-        width: 90%;
+        // width: 90%;
         margin: 0 auto;
 
         h2{
@@ -377,11 +386,7 @@
     }
 }
 
-.page-section .card-basic.small-caption .caption {
-    background-color: $page-section-bg-lighter;
-}
-
-.page-section.section-lighter .card-basic.small-caption .caption {
+.page-section.section-lighter .thumbnail {
     background-color: #fff;
 }
 
@@ -406,7 +411,16 @@
 
 .card-basic-regular-sum {
     &.thumbnail{
-        height: 100%;
+        width: 100%;
+        margin-bottom: 20px;
+        .img-wrap{
+            width: 100%;
+            left: 0;
+            height: auto;
+            img{
+                max-width:100%; 
+            }
+        }
     }
     p {
         font-family: $font-family-regular;
@@ -422,10 +436,12 @@
 }
 
 .long-card-basic-list {
+    margin-top: 50px;
     .thumbnail {
         margin-bottom: 0;
-        margin-top: 50px;
-        // overflow: hidden; //cutting the shadow
+        margin-top: 0;
+        
+        overflow: visible; //cutting the shadow
         .img-wrap{
             display: block;
             box-shadow: 0 0 10px rgba(0,0,0,.1);
@@ -438,6 +454,7 @@
                 width: auto;   
             }
         } 
+
     }
 }
 
@@ -577,21 +594,12 @@
     }
 }
 
-.home-padding.flex .thumbnail,
-.flex .thumbnail.same-height-box,
-.flex [class*="col-"] > div, .flex [class*="col-"] > div > div
-{
-    height: 100%!important;
-    overflow: hidden;
-}
-.flex [class*="col-"] > div > div{
-    .caption{
-        height: 80%;
-    }
-}
-.home-padding .thumbnail.card-basic .caption{
-    padding: $gap;  
-    font-size: $global-font-size;
-    line-height: 1.6;
+
+.home-padding .thumbnail.card-basic {
     background: $brightColor;
+    .caption{
+        padding: $gap;  
+        font-size: $global-font-size;
+        line-height: 1.6;
+    }
 }

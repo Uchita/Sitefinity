@@ -6,15 +6,21 @@
         // clip-path: polygon(100% 0,100% 90%,93% 100%,0 100%,0 0);
         min-height: 250px;
         position: relative;
-        &::after{
-            background: url('../images/clipmask.png') no-repeat right bottom;
+        &::after, &::before{
             content: '';
             display: block;
             height: 23px;
             position: absolute;
             bottom: -23px;
-            width: 100%;
             left: 0;
+        }
+        &::after{
+            background: url('../images/clipmask.png') no-repeat right bottom;
+            width: 100%;
+        }
+        &::before {
+            background: #fff;
+            width: 50%;
         }
     }
 }
@@ -34,11 +40,18 @@
 }
 
 .white-box-single, .white-box-list {
+    &.same-height-wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        > [class*="col-"]{
+            margin-bottom: 40px;
+        }
+    }
     .white-box {
         padding: 30px 30px 0;
-        margin: 20px 10px 0 0;
+        margin: 20px 10px 40px 0;
         background-color: #fff;
-        height: calc( 100% - 20px );
+        height: calc( 100% - 20px )!important;
         .white-box-title {
             font-size: 24px;
             font-size: 2.4rem;

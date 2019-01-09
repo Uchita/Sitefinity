@@ -15,6 +15,7 @@ using SecConfig = Telerik.Sitefinity.Security.Configuration;
 using Telerik.Sitefinity.Security;
 using System.Web;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
+using Telerik.Sitefinity.Abstractions;
 
 namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
 {
@@ -106,18 +107,31 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
         [RelativeRoute("SignOut")]
         public ActionResult SignOut()
         {
-            var logoutUrl = this.Model.GetLogoutPageUrl() ?? this.GetCurrentPageUrl();
-
-            var owinContext = SystemManager.CurrentHttpContext.Request.GetOwinContext();
-            var authenticationTypes = ClaimsManager.CurrentAuthenticationModule.GetSignOutAuthenticationTypes().ToArray();
-
-            owinContext.Authentication.SignOut(new AuthenticationProperties
+            try
             {
-                RedirectUri = logoutUrl
-            }, authenticationTypes);
+                var logoutUrl = this.Model.GetLogoutPageUrl() ?? this.GetCurrentPageUrl();
+                Log.Write("Login Status extended SignOut : " + logoutUrl, ConfigurationPolicy.ErrorLog);
+                var owinContext = SystemManager.CurrentHttpContext.Request.GetOwinContext();
+                var authenticationTypes = ClaimsManager.CurrentAuthenticationModule.GetSignOutAuthenticationTypes().ToArray();
 
+                owinContext.Authentication.SignOut(new AuthenticationProperties
+                {
+                    RedirectUri = logoutUrl
+                }, authenticationTypes);
 
-            return this.Redirect(logoutUrl);
+                foreach (var item in authenticationTypes)
+                {
+                    Log.Write("Login Status extended after SignOut : " + item, ConfigurationPolicy.ErrorLog);
+                }
+                
+                return this.Redirect(logoutUrl);
+            }
+            catch (Exception ex)
+            {
+                Log.Write("Login Status extended SignOut exception : " + ex.Message, ConfigurationPolicy.ErrorLog);
+                throw;
+            }
+            
         }
 
         /// <summary>

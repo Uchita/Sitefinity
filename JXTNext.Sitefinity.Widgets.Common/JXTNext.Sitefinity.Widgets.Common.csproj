@@ -226,6 +226,9 @@
     <Content Include="ResourcePackages\PCN\GridSystem\Templates\page-section.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\PCN\GridSystem\Templates\section-news-magazine-events.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\PCN\gruntfile.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -716,36 +719,6 @@
     <Content Include="ResourcePackages\PCN\MVC\Views\SubscribeForm\SubscribeForm.SubscribeForm.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\PCN\MVC\Views\Testimonial\Detail.TestimonialCompact.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\PCN\MVC\Views\Testimonial\Detail.TestimonialWithImage.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\PCN\MVC\Views\Testimonial\List.TestimonialBackground.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\PCN\MVC\Views\Testimonial\List.TestimonialClean.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\PCN\MVC\Views\Testimonial\List.TestimonialCompact.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\PCN\MVC\Views\Testimonial\List.TestimonialCompactWithSideImage.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\PCN\MVC\Views\Testimonial\List.TestimonialCompactWithTopImage.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\PCN\MVC\Views\Testimonial\List.TestimonialNoBackground.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\PCN\MVC\Views\Testimonial\List.TestimonialNoParalax.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\PCN\MVC\Views\Testimonial\List.TestimonialWithTitle.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="ResourcePackages\PCN\MVC\Views\TextField\Read.Default.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -878,6 +851,48 @@
     <Content Include="ResourcePackages\PCN\MVC\Views\HierarchicalTaxonomy\HierarchicalTaxonomy.CategoriesSearchList.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\News\List.HomeNews.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\Event\List.HomeEvents.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\News\List.NewsListCarousel.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="ResourcePackages\PCN\MVC\Views\Testimonial\Detail.TestimonialCompact.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\Testimonial\Detail.TestimonialWithImage.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\Testimonial\List.TestimonialSlider.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\Testimonial\List.TestimonialBackground.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\Testimonial\List.TestimonialClean.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\Testimonial\List.TestimonialCompact.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\Testimonial\List.TestimonialCompactWithSideImage.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\Testimonial\List.TestimonialCompactWithTopImage.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\Testimonial\List.TestimonialNoBackground.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\Testimonial\List.TestimonialNoParalax.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\Testimonial\List.TestimonialWithTitle.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">

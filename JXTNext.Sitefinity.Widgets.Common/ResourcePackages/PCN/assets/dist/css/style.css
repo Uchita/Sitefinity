@@ -621,6 +621,7 @@ a {
         -o-transition: all 0.3s ease-in-out;
         -ms-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
+        z-index: -1;
     }
 
     .about_section:hover:after {
@@ -700,7 +701,7 @@ hr {
 
 
 /* read_btn */
-.read_btn {
+.read_btn, .btn-style-corner .btn {
     color: #333;
     text-decoration: none !important;
     display: inline-block;
@@ -708,88 +709,99 @@ hr {
     z-index: 1;
 }
 
-    .read_btn span {
-        padding: 9px 17px;
-        display: block;
-        font-family: FuturaBT-Medium;
-        font-size: 16px;
-        color: #fff;
-        text-transform: uppercase;
-        text-decoration: none !important;
-        border-top: 2px solid #004F6E;
-        border-bottom: 2px solid #004F6E;
-        border-radius: 0;
-        background: #004F6E;
+.btn-style-corner {
+    padding-left: 8px;
+}
+
+    .btn-style-corner .btn {
+        border: none;
+        padding: 0px;
+        font-weight: normal;
     }
 
-    .read_btn:before {
-        width: 12px;
-        height: 11px;
-        position: absolute;
-        top: 3px;
-        left: -5.8px;
-        content: "";
-        border-left: 2px solid #004F6E;
-        transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-        -moz-transform: rotate(45deg);
-        z-index: -1;
-        background: #004F6E;
-    }
+        .read_btn span, .btn-style-corner .btn span {
+            padding: 9px 17px;
+            display: block;
+            font-family: FuturaBT-Medium;
+            font-size: 16px;
+            color: #fff;
+            text-transform: uppercase;
+            text-decoration: none !important;
+            border-top: 2px solid #004F6E;
+            border-bottom: 2px solid #004F6E;
+            border-radius: 0;
+            background: #004F6E;
+        }
 
-    .read_btn:after {
-        width: 12px;
-        height: calc(100% - 9px);
-        position: absolute;
-        bottom: 0px;
-        left: -8px;
-        content: "";
-        border-left: 2px solid #004F6E;
-        border-bottom: 2px solid #004F6E;
-        border-radius: 0 0 0 5px;
-        z-index: -1;
-        background: #004F6E;
-    }
+        .read_btn:before, .btn-style-corner .btn:before {
+            width: 12px;
+            height: 11px;
+            position: absolute;
+            top: 3px;
+            left: -5.8px;
+            content: "";
+            border-left: 2px solid #004F6E;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            z-index: -1;
+            background: #004F6E;
+        }
 
-    .read_btn span:before {
-        width: 11px;
-        height: 12px;
-        position: absolute;
-        bottom: 2px;
-        right: -5px;
-        content: "";
-        border-right: 2px solid #004F6E;
-        transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-        -moz-transform: rotate(45deg);
-        z-index: -1;
-        background: #004F6E;
-    }
+        .read_btn:after, .btn-style-corner .btn:after {
+            width: 12px;
+            height: calc(100% - 9px);
+            position: absolute;
+            bottom: 0px;
+            left: -8px;
+            content: "";
+            border-left: 2px solid #004F6E;
+            border-bottom: 2px solid #004F6E;
+            border-radius: 0 0 0 5px;
+            z-index: -1;
+            background: #004F6E;
+        }
 
-    .read_btn span:after {
-        width: 12px;
-        height: calc(100% - 8px);
-        position: absolute;
-        top: 0px;
-        right: -8px;
-        content: "";
-        border-right: 2px solid #004F6E;
-        border-top: 2px solid #004F6E;
-        border-radius: 0 5px 0 0;
-        z-index: -1;
-        background: #004F6E;
-    }
+        .read_btn span:before, .btn-style-corner .btn span:before {
+            width: 11px;
+            height: 12px;
+            position: absolute;
+            bottom: 2px;
+            right: -5px;
+            content: "";
+            border-right: 2px solid #004F6E;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            z-index: -1;
+            background: #004F6E;
+        }
 
-    .read_btn:hover span {
-        background: #8EDD2B;
-        color: #fff;
-        border-color: #8EDD2B;
-    }
+        .read_btn span:after, .btn-style-corner .btn span:after {
+            width: 12px;
+            height: calc(100% - 8px);
+            position: absolute;
+            top: 0px;
+            right: -8px;
+            content: "";
+            border-right: 2px solid #004F6E;
+            border-top: 2px solid #004F6E;
+            border-radius: 0 5px 0 0;
+            z-index: -1;
+            background: #004F6E;
+        }
 
-        .read_btn:hover:after, .read_btn:hover:before, .read_btn:hover span:after, .read_btn:hover span:before {
+        .read_btn:hover span, .btn-style-corner .btn:hover span {
             background: #8EDD2B;
+            color: #fff;
             border-color: #8EDD2B;
         }
+
+            .read_btn:hover:after, .read_btn:hover:before, .read_btn:hover span:after, .read_btn:hover span:before,
+            .btn-style-corner .btn:hover:after, .btn-style-corner .btn:hover:before, .btn-style-corner .btn:hover span:after, .btn-style-corner .btn:hover span:before {
+                background: #8EDD2B;
+                border-color: #8EDD2B;
+            }
 
 
 
@@ -1096,6 +1108,11 @@ hr {
         color: #4293C4;
         font-family: FuturaBT-Medium;
     }
+
+        .three_colmun_section .blue_text a {
+            color: #4293C4;
+            text-decoration: none;
+        }
 
     .three_colmun_section .action_link {
         padding-top: 25px;
@@ -1803,6 +1820,10 @@ hr {
     margin: 0px !important;
 }
 
+.right-content-mid .partner-item .click-part {
+    width: 100%;
+    float: left;
+}
 
 .right-content-mid .partner-item > div h3 {
     margin-top: 0px;
@@ -1810,15 +1831,17 @@ hr {
 
 .right-content-mid .partner-item > div img {
     margin-bottom: 15px;
+    max-height: 60px;
 }
 
 .right-content-mid a {
     color: #4294c4;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
     .right-content-mid a:hover {
         text-decoration: none;
+        color: #004F6E;
     }
 
 .right-content-mid ul {
@@ -1827,6 +1850,10 @@ hr {
 
 .right-content-mid h2 {
     margin-top: 0px;
+}
+
+.right-content-mid .login-form {
+    margin: 0px;
 }
 
 .job-holder {
@@ -4382,6 +4409,33 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     float: right;
 }
 
+    .search-top > div > div {
+        float: left;
+    }
+
+    .search-top > div > .jobalert-field {
+        float: left;
+        padding: 0 10px;
+        height: 36px;
+        margin: 0 5px;
+    }
+
+
+    .search-top .btn-smc.read_btn {
+        margin: 0 15px 0 10px;
+        float: left;
+    }
+
+        .search-top .btn-smc.read_btn span {
+            font-size: 12px;
+            padding: 8px 10px;
+        }
+
+    .search-top > div .alert {
+        padding: 7px;
+        margin-right: 5px;
+    }
+
     .search-top .btn {
         float: left;
         margin-right: 10px;
@@ -4402,7 +4456,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
 .search-top .select .default-select {
     padding: 0 10px;
-    height: 34px;
+    height: 36px;
 }
 
 .form-label {
@@ -4519,3 +4573,60 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     .cookie-banner-container + .header {
         top: 25px;
     }
+
+.sfPageEditor .cookie-banner-container {
+    position: relative;
+}
+
+.contact-item {
+    padding-bottom: 10px;
+}
+
+    .contact-item .read_btn {
+        margin-left: 8px;
+    }
+
+.blogcontent ul {
+    padding-left: 20px;
+}
+
+.testm-t {
+    font-size: 25px;
+    color: #42A3D9;
+    font-family: FuturaBT-Heavy;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.testimonial_section {
+    width: 100%;
+    float: left;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+    .testimonial_section .desc {
+        margin: 0 0 15px;
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+    .testimonial_section .quote {
+        font-size: 30px;
+        color: #004F6E;
+        font-weight: 700;
+    }
+
+    .testimonial_section .author-name {
+        display: inline-block;
+        color: #4293C4;
+    }
+
+    .testimonial_section .read_btn {
+        margin-top: 30px;
+    }
+
+.menu-left-sidebar .container-fluid {
+    padding: 0 0 15px 0;
+}

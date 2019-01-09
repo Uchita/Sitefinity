@@ -34,6 +34,14 @@ $(document).ready(function () {
         }
     });
 
+    /* logo_slider */
+    $('.testimonial_slider').owlCarousel({
+        loop: true,
+        nav: false,
+        autoplay: true,
+        items: 1
+    });
+
     /* mobile menu */
     $('.menu_toogle').click(function () {
         $('.header_right').addClass('open');
@@ -85,8 +93,8 @@ $(document).ready(function () {
 
     });
 
-
-
+    var btnText = $(".btn-style-corner .btn").text();
+    $(".btn-style-corner .btn").html("<span>" + btnText + "</span>");
 
 
 });

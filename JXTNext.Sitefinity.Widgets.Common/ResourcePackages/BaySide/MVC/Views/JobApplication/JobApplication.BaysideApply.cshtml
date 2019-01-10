@@ -23,7 +23,7 @@
                 case "Indeed":
                     var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
                     var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
-                    <a id="indeed-btnwrapper" class="btn-block">
+                    <a id="indeed-btnwrapper" class="btn-block" href="#" target="_blank">
                         <img src="~/ResourcePackages/BaySide/assets/images/indeed.jpg" alt=""
                              data-indeed-apply-apiToken=@indeedAPIToken
                              data-indeed-apply-jobId=@Model.JobId
@@ -55,7 +55,7 @@
 
                     string hrefLink = String.Format("https://www.seek.com.au/api/iam/oauth2/authorize?client_id={0}&redirect_uri={1}&state={2}&scope=r_profile_apply&response_type=code&advertiser_id={3}", clientId, redirectUri, jobId, advertiserId);
 
-                    <a href=@hrefLink class="btn-block"><img src="~/ResourcePackages/BaySide/assets/images/seek.jpg" alt=""></a>
+                    <a href=@hrefLink class="btn-block" target="_blank"><img src="~/ResourcePackages/BaySide/assets/images/seek.jpg" alt=""></a>
                     break;
 
 

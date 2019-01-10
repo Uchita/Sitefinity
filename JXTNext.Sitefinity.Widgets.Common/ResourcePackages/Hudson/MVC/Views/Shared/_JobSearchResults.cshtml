@@ -276,9 +276,9 @@
         };
 
 
-        $('#anon-job-alert').click(function () {
+        $('#anon-job-alert').on("click",function () {
             var email = $('#anonycreatejobalert').val();
-
+            
             var pattern = new RegExp('@emailPattern');
             if (email.length < 1) {
                 $('.jobalert-error-message').removeClass('hidden').text('@emptyMsg');
@@ -288,6 +288,15 @@
                 $('.jobalert-error-message').removeClass('hidden').text('@invalidMsg');
                 return false;
             }
+            
+            if (filterModel.Filters !== null && filterModel.Filters.length === 0) {
+                var filter = {};
+                filter.rootId = "CountryLocationArea";
+                searchTarget = null;
+                values = [];
+                filterModel.Filters.push(filter);
+            }
+
 
             var alertData = { filterModel: filterModel, email: email };
             var urlPath = $(location).attr('pathname') + "/CreateAnonymousJobAlert";

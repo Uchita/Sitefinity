@@ -168,6 +168,10 @@
         background: #004F6E;
     }
 
+        .header.menu_open {
+            z-index: 11;
+        }
+
         .header.stickyheader {
             padding: 15px 0;
         }
@@ -229,7 +233,7 @@
                 border-bottom: 1px solid rgba(255,255,255,0.2);
             }
 
-                .header .main_menu ul li a:hover, .header .main_menu ul li.active a {
+                .header .main_menu ul li a:hover, .header .main_menu ul li.active > a {
                     color: #8EDD2B;
                 }
 
@@ -237,16 +241,18 @@
             position: relative;
             min-width: 100%;
             background: none;
+            border-radius: 0px;
             box-shadow: none;
         }
 
             .header .main_menu ul ul li a {
                 color: #fff;
                 border-bottom: 1px solid rgba(255,255,255,0.2);
+                border-radius: 0px;
             }
 
 
-        .header .main_menu ul li a:hover, .header .main_menu ul li.active a {
+        .header .main_menu ul li a:hover, .header .main_menu ul li.active > a {
             border-bottom-color: rgba(255,255,255,0.2);
         }
 
@@ -482,6 +488,10 @@
     .advertise-logo .image-rpt {
         width: 50%;
     }
+
+    .prefix_left-navigation li {
+        padding: 0 15px;
+    }
 }
 
 
@@ -669,10 +679,23 @@
         width: 100%;
         margin: 0 0 20px 0;
     }
+
+    .prefix_left-navigation {
+        text-align: center;
+    }
+
+        .prefix_left-navigation li {
+            margin: 5px 0;
+            padding: 0 10px;
+        }
+
+    .cookie-banner-container {
+        font-size: 14px;
+    }
 }
 
 /* -----------------------------------
-    5. Media(max-width:480px)
+    5. Media(max-width:567px)
 ----------------------------------- */
 @media (max-width: 567px) {
 
@@ -683,5 +706,9 @@
 
     .consultants .colio-item {
         width: 100%;
+    }
+
+    .cookie-banner-container {
+        font-size: 12px;
     }
 }

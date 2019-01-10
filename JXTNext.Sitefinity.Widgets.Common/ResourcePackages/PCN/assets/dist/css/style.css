@@ -80,8 +80,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-    color: #004F6E;
+    color: #4294c4;
 }
+
+    a:hover {
+        color: #004F6E;
+        text-decoration: none;
+    }
 
 /* full_width */
 .full_width {
@@ -225,7 +230,7 @@ a {
         text-transform: none;
     }
 
-        .header .main_menu ul ul li a:hover {
+        .header .main_menu ul ul li a:hover, .header .main_menu ul ul li.active a {
             background: #fff;
             color: #004F6E;
         }
@@ -1806,7 +1811,7 @@ hr {
         padding: 0 20px 20px 20px;
     }
 
-.right-content-mid .row:last-child .partner-item .partner-popup {
+.right-content-mid .col-md-12 .row:last-child .partner-item .partner-popup {
     bottom: 100%;
     top: auto;
     margin-top: 0px;
@@ -1822,7 +1827,6 @@ hr {
 
 .right-content-mid .partner-item .click-part {
     width: 100%;
-    float: left;
 }
 
 .right-content-mid .partner-item > div h3 {
@@ -1869,25 +1873,55 @@ hr {
     }
 
 /* Left */
-.prefix_left-navigation ul, .prefix_left-navigation li {
+.horizontal-menu {
+    width: 100%;
+    float: left;
+    border-top: 2px solid #333;
+    border-bottom: 2px solid #333;
+    padding: 20px 0;
+}
+
+    .horizontal-menu .navbar {
+        margin: 0px;
+        min-height: initial;
+    }
+
+    .horizontal-menu .container-fluid {
+        padding: 0px;
+    }
+
+.prefix_left-navigation ul {
     list-style: none;
 }
 
-    .prefix_left-navigation ul li a {
-        font-size: 15px;
-        text-decoration: none;
-        display: block;
-        padding: 10px 0;
-        color: #B1B1B1;
-        position: relative;
-        border-top: 1px solid #E8E8E8;
-        text-indent: 5px;
-        font-family: FuturaBT-Medium;
+.prefix_left-navigation li {
+    display: inline-block;
+    border-right: 1px solid #333;
+    padding: 0 25px;
+}
+
+    .prefix_left-navigation li:first-child {
+        padding-left: 0px;
     }
 
-        .prefix_left-navigation ul li ul li a:hover, .prefix_left-navigation ul li a:hover, .prefix_left-navigation ul li.current > a {
-            color: #333;
-        }
+    .prefix_left-navigation li:last-child {
+        border-right: none;
+    }
+
+.prefix_left-navigation ul li a {
+    font-size: 15px;
+    text-decoration: none;
+    display: block;
+    padding: 0px;
+    color: #333;
+    position: relative;
+    border-bottom: 1px solid transparent;
+    font-family: FuturaBT-Medium;
+}
+
+    .prefix_left-navigation ul li ul li a:hover, .prefix_left-navigation ul li a:hover, .prefix_left-navigation ul li.current > a {
+        border-bottom-color: #8EDD2B;
+    }
 
 .prefix_left-navigation ul {
     padding: 0;
@@ -4514,8 +4548,12 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     margin: 0 -10px;
 }
 
+    .advertise-logo + div {
+        clear: both;
+    }
+
     .advertise-logo .image-rpt {
-        width: 25%;
+        width: 20%;
         float: left;
         padding: 0 10px;
         margin-bottom: 15px;
@@ -4526,7 +4564,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         vertical-align: middle;
         padding: 20px;
         height: 100%;
-        background: rgba(0,0,0,0.2);
+        background: rgba(0,79,110,1);
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
         -o-transition: all 0.3s ease-in-out;
@@ -4535,7 +4573,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     }
 
         .advertise-logo a:hover {
-            background: rgba(0,0,0,0.15);
+            background: rgba(0,79,110,0.8);
         }
 
     .advertise-logo img {
@@ -4606,6 +4644,12 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     margin-bottom: 40px;
 }
 
+    .testimonial_section .items {
+        width: 100%;
+        float: left;
+        padding: 0 10%;
+    }
+
     .testimonial_section .desc {
         margin: 0 0 15px;
         font-size: 15px;
@@ -4629,4 +4673,13 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
 .menu-left-sidebar .container-fluid {
     padding: 0 0 15px 0;
+}
+
+
+.mt-2 {
+    margin-top: 20px;
+}
+
+.mb-2 {
+    margin-bottom: 20px;
 }

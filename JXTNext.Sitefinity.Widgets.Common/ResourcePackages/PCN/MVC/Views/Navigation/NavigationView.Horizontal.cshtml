@@ -10,15 +10,6 @@
 
 @using Telerik.Sitefinity.DynamicModules.Model;
 
-@*<ul>
-        <li class="active"><a href="#">About</a></li>
-        <li><a href="#">Candidates</a></li>
-        <li><a href="#">Clients</a></li>
-        <li><a href="#">Jobs</a></li>
-        <li><a href="#">News</a></li>
-        <li><a href="#">Magazine</a></li>
-        <li><a href="#">Contact</a></li>
-    </ul>*@
 
 
 
@@ -33,7 +24,7 @@
 @*Here is specified the rendering for the root level*@
 @helper RenderRootLevelNode(NodeViewModel node)
 {
-    <li>
+    <li class="@GetClass(node)">
         <a href="@node.Url" target="@node.LinkTarget">@node.Title</a>
         @if (node.ChildNodes.Count > 0)
         {
@@ -52,7 +43,7 @@
 @*Here is specified the rendering for the sub levels*@
 @helper RenderSubLevelsRecursive(NodeViewModel node)
 {
-    <li>
+    <li class="@GetClass(node)">
         <a href="@node.Url" target="@node.LinkTarget">@node.Title</a>
         @if (node.ChildNodes.Count > 0)
         {
@@ -66,4 +57,18 @@
             </ul>
         }
     </li>
+}
+
+
+
+@helper GetClass(NodeViewModel node)
+{
+    if (node.IsCurrentlyOpened)
+    {
+        @Html.Raw("active");
+    }
+    else if (node.HasChildOpen)
+    {
+        @Html.Raw("active");
+    }
 }

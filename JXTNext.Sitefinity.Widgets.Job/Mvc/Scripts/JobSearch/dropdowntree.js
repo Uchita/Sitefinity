@@ -296,9 +296,9 @@ var globalTreeIdCounter=0;
          }
          else if (selectedElementText.length > 0) {
              if (selectedElementText.length <= 2) {
-                 titleText = selectedElementText.join(' - ');
+                 titleText = selectedElementText.join(' , ');
              } else {
-                 titleText = selectedElementText[0] + ' - ' + selectedElementText[1] + ', ' + selectedElementText[2];
+                 titleText = selectedElementText[0] + ' , ' + selectedElementText[1] + ', ' + selectedElementText[2];
              }            
          }
 

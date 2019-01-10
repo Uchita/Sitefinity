@@ -3,6 +3,8 @@
 @model JobApplicationViewModel
 
 @using JXTNext.Sitefinity.Common.Helpers
+@using Newtonsoft.Json;
+
 
 @if (ViewBag.ShowFilesUploadMessage != null)
 {
@@ -133,153 +135,157 @@
 
                     var loginElemHide = "";
 
-                <div id="upload-files-container" hidden>
-                    
-                        
-                    @if (ViewBag.IsUserLoggedIn)
-                    {
-                        loginElemHide = "hidden";
+                    <div id="upload-files-container" hidden>
 
-                        <div class="form-group row">
+
+                        @if (ViewBag.IsUserLoggedIn)
+                        {
+                            loginElemHide = "hidden";
+
+                            <div class="form-group row">
+                                <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                                <div class="col-xs-12 col-md-8">
+                                    <div class="list-group">
+                                        <label for="selectresume" class="radiobutton">
+                                            <input id="selectresume" type="radio" name="resume" checked />
+                                            <span class="radiobutton-icon fas fa-circle"></span>
+                                            <span class="text-right">Select a resume stored on Payment and Card</span>
+                                        </label>
+                                        <label for="uploadresume" class="radiobutton">
+                                            <input id="uploadresume" type="radio" name="resume" />
+                                            <span class="radiobutton-icon fas fa-circle"></span>
+                                            <span class="text-right">Upload a resume</span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                                <div class="col-xs-12 col-md-8">
+                                    <div class="list-group select">
+                                        @if (ViewBag.ResumeList != null)
+                                        {
+                                            @Html.DropDownList("MySavedResumes", (IEnumerable<SelectListItem>)ViewBag.ResumeList, new { @onchange = "ProcessSavedResume(this.value)" })
+                                        }
+                                    </div><!-- end box -->
+
+                                </div>
+                            </div>
+                        }
+
+                        <div class="form-group row" id="user-profile-resume" hidden>
                             <label class="form-label col-xs-12 col-md-4 text-right"></label>
                             <div class="col-xs-12 col-md-8">
-                                <div class="list-group">
-                                    <label for="selectresume" class="radiobutton">
-                                        <input id="selectresume" type="radio" name="resume" checked />
-                                        <span class="radiobutton-icon fas fa-circle"></span>
-                                        <span class="text-right">Select a resume stored on Hudson</span>
-                                    </label>
-                                    <label for="uploadresume" class="radiobutton">
-                                        <input id="uploadresume" type="radio" name="resume" />
-                                        <span class="radiobutton-icon fas fa-circle"></span>
-                                        <span class="text-right">Upload a resume</span>
-                                    </label>
+                                <div class="select">
+                                    <select class="list-group" id="user-profile-resume-list"></select><!-- end box -->
                                 </div>
 
                             </div>
                         </div>
 
 
-                        <div class="form-group row">
-                            <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                        <!-- Resume -->
+                        <div class="form-group row" id="uploadresumeblock" @loginElemHide>
+                            <label class="form-label col-xs-12 col-md-4 text-right">upload your cv*</label>
                             <div class="col-xs-12 col-md-8">
-                                <div class="list-group select">
-                                    @Html.DropDownList("MySavedResumes", (IEnumerable<SelectListItem>)ViewBag.ResumeList, new { @onchange = "ProcessSavedResume(this.value)" })
+                                <div class="box clearfix text-center">
+                                    <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
+                                    <div class="uploadfield-wrap">
+                                        <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
+
+
+                                        <small class="lbl">Browse</small>
+                                    </div>
+                                    <div class="uploadfield-wrap dropbox-upload">
+                                        <button type="button" id="dropbox-resume-btn">Dropbox Resume</button>
+                                        <small class="lbl">Dropbox</small>
+                                    </div>
+                                    <div class="uploadfield-wrap google-drive-upload">
+                                        <button type="button" id="resume-google-drive-btn">Google Drive Resume</button>
+                                        <small class="lbl">Google Drive</small>
+                                    </div>
+                                    <span class="note resume-name"></span>
                                 </div><!-- end box -->
-
+                                <span class="hidden alert alert-danger error-message resume-message">
+                                    Please upload your resume!
+                                </span>
                             </div>
                         </div>
-                    }
 
-                    <div class="form-group row" id="user-profile-resume" hidden>
-                        <label class="form-label col-xs-12 col-md-4 text-right"></label>
-                        <div class="col-xs-12 col-md-8">
-                            <div class="select">
-                                <select class="list-group" id="user-profile-resume-list"></select><!-- end box -->
+                        <!-- Coverletter -->
+                        <div class="form-group row">
+                            <label class="form-label col-xs-12 col-md-4 text-right">upload Cover Letter</label>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="box clearfix text-center">
+                                    <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
+                                    <div class="uploadfield-wrap">
+                                        <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
+                                        <small class="lbl">Browse</small>
+                                    </div>
+                                    <div class="uploadfield-wrap dropbox-upload">
+                                        <button type="button" id="dropbox-coverletter-btn">Dropbox Cover Letter</button>
+                                        <small class="lbl">Dropbox</small>
+                                    </div>
+                                    <div class="uploadfield-wrap google-drive-upload">
+                                        <button type="button" id="coverletter-google-drive-btn">Google Drive CoverLetter</button>
+                                        <small class="lbl">Google Drive</small>
+                                    </div>
+                                    <span class="note coverletter-name"></span>
+                                </div><!-- end box -->
                             </div>
-
                         </div>
-                    </div>
 
-
-                    <!-- Resume -->
-                    <div class="form-group row" id="uploadresumeblock" @loginElemHide>
-                        <label class="form-label col-xs-12 col-md-4 text-right">upload your cv*</label>
-                        <div class="col-xs-12 col-md-8">
-                            <div class="box clearfix text-center">
-                                <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
-                                <div class="uploadfield-wrap">
-                                    <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
-
-
-                                    <small class="lbl">Browse</small>
-                                </div>
-                                <div class="uploadfield-wrap dropbox-upload">
-                                    <button type="button" id="dropbox-resume-btn">Dropbox Resume</button>
-                                    <small class="lbl">Dropbox</small>
-                                </div>
-                                <div class="uploadfield-wrap google-drive-upload">
-                                    <button type="button" id="resume-google-drive-btn">Google Drive Resume</button>
-                                    <small class="lbl">Google Drive</small>
-                                </div>
-                                <span class="note resume-name"></span>
-                            </div><!-- end box -->
-                            <span class="hidden alert alert-danger error-message resume-message">
-                                Please upload your resume!
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Coverletter -->
-                    <div class="form-group row">
-                        <label class="form-label col-xs-12 col-md-4 text-right">upload Cover Letter</label>
-                        <div class="col-xs-12 col-md-8">
-                            <div class="box clearfix text-center">
-                                <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
-                                <div class="uploadfield-wrap">
-                                    <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
-                                    <small class="lbl">Browse</small>
-                                </div>
-                                <div class="uploadfield-wrap dropbox-upload">
-                                    <button type="button" id="dropbox-coverletter-btn">Dropbox Cover Letter</button>
-                                    <small class="lbl">Dropbox</small>
-                                </div>
-                                <div class="uploadfield-wrap google-drive-upload">
-                                    <button type="button" id="coverletter-google-drive-btn">Google Drive CoverLetter</button>
-                                    <small class="lbl">Google Drive</small>
-                                </div>
-                                <span class="note coverletter-name"></span>
-                            </div><!-- end box -->
-                        </div>
-                    </div>
-
-                    <!-- Documents -->
-                    <div class="form-group row">
-                        <label class="form-label col-xs-12 col-md-4 text-right">upload documents</label>
-                        <div class="col-xs-12 col-md-8">
-                            <div class="box clearfix text-center">
-                                <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
-                                <div class="uploadfield-wrap">
-                                    <input type="file" multiple id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
-                                    <small class="lbl">Browse</small>
-                                </div>
-                                <div class="uploadfield-wrap dropbox-upload">
-                                    <button type="button" id="dropbox-documents-btn">Dropbox Documents</button>
-                                    <small class="lbl">Dropbox</small>
-                                </div>
-                                <div class="uploadfield-wrap google-drive-upload">
-                                    <button type="button" id="documents-google-drive-btn">Google Drive Documents</button>
-                                    <small class="lbl">Google Drive</small>
-                                </div>
-                                <span class="note documents-name"></span>
-                            </div><!-- end box -->
-                        </div>
-                    </div>
-
-
-                    <input type="hidden" id="uploadResumeJson" name="UploadFilesResume" />
-                    <input type="hidden" id="uploadCoverLetterJson" name="UploadFilesCoverLetter" />
-                    <input type="hidden" id="uploadDocumentsJson" name="UploadFilesDocuments" />
-                    <input type="hidden" id="resume-selected-type" name="ResumeSelectedType" />
-                    <input type="hidden" id="coverletter-selected-type" name="CoverLetterSelectedType" />
-                    <input type="hidden" id="documents-selected-type" name="DocumentsSelectedType" />
-                    <input type="hidden" id="email-selected" name="Email" />
-                    <input type="hidden" id="jobid" name="JobId" value="@Model.JobId" />
-
-                    <div class="form-group button-wrapper row">
-                        <label class="col-xs-12 col-md-4"></label>
-                        <div class="col-xs-12 col-md-8">
-                            <div class="checkbox clearfix">
-
-                                <input name="privacypolicy" title="Please agree to Hudson's privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Please agree to Hudson\'s privacy policy');" type="checkbox" value="agree">
-                                <span class="checkbox-icon fas fa-check"></span>
-                                I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                        <!-- Documents -->
+                        <div class="form-group row">
+                            <label class="form-label col-xs-12 col-md-4 text-right">upload documents</label>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="box clearfix text-center">
+                                    <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
+                                    <div class="uploadfield-wrap">
+                                        <input type="file" multiple id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
+                                        <small class="lbl">Browse</small>
+                                    </div>
+                                    <div class="uploadfield-wrap dropbox-upload">
+                                        <button type="button" id="dropbox-documents-btn">Dropbox Documents</button>
+                                        <small class="lbl">Dropbox</small>
+                                    </div>
+                                    <div class="uploadfield-wrap google-drive-upload">
+                                        <button type="button" id="documents-google-drive-btn">Google Drive Documents</button>
+                                        <small class="lbl">Google Drive</small>
+                                    </div>
+                                    <span class="note documents-name"></span>
+                                </div><!-- end box -->
                             </div>
-                            <input id="apply" type="submit" value="Apply Now" class="btn btn-block btn-primary" disabled />
+                        </div>
 
+
+                        <input type="hidden" id="uploadResumeJson" name="UploadFilesResume" />
+                        <input type="hidden" id="uploadCoverLetterJson" name="UploadFilesCoverLetter" />
+                        <input type="hidden" id="uploadDocumentsJson" name="UploadFilesDocuments" />
+                        <input type="hidden" id="resume-selected-type" name="ResumeSelectedType" />
+                        <input type="hidden" id="coverletter-selected-type" name="CoverLetterSelectedType" />
+                        <input type="hidden" id="documents-selected-type" name="DocumentsSelectedType" />
+                        <input type="hidden" id="email-selected" name="Email" />
+                        <input type="hidden" id="jobid" name="JobId" value="@Model.JobId" />
+
+                        <div class="form-group button-wrapper row">
+                            <label class="col-xs-12 col-md-4"></label>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="checkbox clearfix">
+
+                                    <input name="privacypolicy" title="Please agree to Payment and Card's privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Please agree to Payment and Card\'s privacy policy');" type="checkbox" value="agree">
+                                    <span class="checkbox-icon fas fa-check"></span>
+                                    I agree to Payment and Card's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                                </div>
+                                <div class="btn-style-corner">
+                                    <button id="apply" class="btn btn-primary" type="submit"><span>Apply Now</span></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
                 }
                 else
                 {
@@ -355,7 +361,7 @@
         } else {
             $("#user-profile-resume-list").show();
         }
-        
+
     });
 
     $("#uploadresume").change(function () {
@@ -365,14 +371,14 @@
         } else {
             $("#user-profile-resume-list").hide();
         }
-        
+
     });
 
 
      $(document).ready(function () {
 
-         
-         
+
+
 
          $('form').submit(function (e) {
              e.preventDefault();
@@ -417,7 +423,7 @@
             $("#resume-selected-type").val(resumeSelectedType);
             var resumeBrowseName = document.getElementById("application-resume").files[0].name;
              $(".resume-name").text(resumeBrowseName);
-             
+
              if (userLoggedInParamFromViewbag == 'True') {
                  $("#MySavedResumes").val('0');
              } else {
@@ -456,11 +462,11 @@
          function processProfileResumeJsonData(data) {
              resumes = data;
              var rows = '';
-             
+
              $.each(JSON.parse(resumes), function (i, item) {
 
                  rows += '<option value="' + item.Value + '">' + item.Text+'</option>';
-                
+
             });
              $('#user-profile-resume-list').html(rows);
          }
@@ -503,7 +509,7 @@
                                          $('#login-register-container').hide();
                                          $('#appFormState').hide();
                                          $('#already-applied-info').removeClass('hidden');
-                                         
+
                                      }
                                      else {
                                          // Show upload files section
@@ -606,7 +612,7 @@
                             $('#sign-in-btn').removeClass('hidden');
 
                         }
-                      
+
                         $('#apply').removeAttr('disabled');
                     },
                     error: function (response) {
@@ -654,10 +660,10 @@
          });
 
 
-         
+
 
          $("#user-profile-resume-list").on("change", function () {
-             
+
              if ($(this).val() == '0') {
                  resumeSelectedType = '';
                  $("#resume-selected-type").val(resumeSelectedType);
@@ -670,7 +676,7 @@
                  $("#application-resume").val("");
                  $(".resume-message").addClass('hidden');
              }
-             
+
          });
 
          function checkPassword(strPassword) {
@@ -830,7 +836,7 @@
          };
 
        dropboxResumeOptions = {
-            // Required. Called when a user selects an item in the Chooser.            
+            // Required. Called when a user selects an item in the Chooser.
             success: function (files) {
 
                 uploadResumeModel.UrlPath = files[0].link;
@@ -849,7 +855,7 @@
                     } else {
                         $("#user-profile-resume-list").val('0');
                     }
-                    
+
                 }
                 else {
                     if (isDropboxCoverLetter) {
@@ -905,7 +911,7 @@
          };
 
          dropboxDocumentsOptions = {
-             // Required. Called when a user selects an item in the Chooser.            
+             // Required. Called when a user selects an item in the Chooser.
              success: function (files) {
 
                 var stringyModel = "[";
@@ -918,7 +924,7 @@
                      stringyModel += JSON.stringify(uploadResumeModel);
                  }
                  stringyModel += "]";
-                
+
                 documentsSelectedType = 'Dropbox';
                 $('#uploadDocumentsJson').val(stringyModel);
                 $('#application-documents').val('');
@@ -929,7 +935,7 @@
                         Filenames += "<br/>";
                     Filenames += files[i].name;
                 }
-                $('.documents-name').html(Filenames);               
+                $('.documents-name').html(Filenames);
 
 
                  $('#dburl').text(files[0].link);
@@ -1055,7 +1061,7 @@
         function createPicker() {
             if (pickerApiLoaded && oauthToken) {
                 var picker = new google.picker.PickerBuilder().
-                    addView(new google.picker.View(google.picker.ViewId.DOCS).setMimeTypes("application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")).                    
+                    addView(new google.picker.View(google.picker.ViewId.DOCS).setMimeTypes("application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")).
                     setOAuthToken(oauthToken).
                     setDeveloperKey(developerKey).
                     setCallback(pickerCallback).
@@ -1065,7 +1071,7 @@
         }
 
         function ProcessSavedResume(resumeId) {
-            
+
             if (resumeId == '0') {
                 resumeSelectedType = '';
                 $("#resume-selected-type").val(resumeSelectedType);
@@ -1102,7 +1108,7 @@
             var mime = "";
             debugger;
 
-            if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {                
+            if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
                 var doc = data[google.picker.Response.DOCUMENTS][0];
                 fileId = doc[google.picker.Document.ID];
                 url = doc[google.picker.Document.URL];
@@ -1117,7 +1123,7 @@
 
                 var stringyModel = JSON.stringify(uploadResumeModel);
 
-                var docs = data[google.picker.Response.DOCUMENTS]; 
+                var docs = data[google.picker.Response.DOCUMENTS];
                 var stringyModels = "[";
                 var Filenames = "";
 
@@ -1133,12 +1139,12 @@
                     uploadResumeModel.Field = fileId;
                     uploadResumeModel.MIMEType = mime;
                     uploadResumeModel.AuthToken = oauthToken;
-                    
+
                     if (stringyModels != "[") {
                         stringyModels += ",";
                         Filenames += "<br/>";
                     }
-                    stringyModels += JSON.stringify(uploadResumeModel);                    
+                    stringyModels += JSON.stringify(uploadResumeModel);
                     Filenames += doc[google.picker.Document.NAME];
                 }
                 stringyModels += "]";
@@ -1154,7 +1160,7 @@
                     } else {
                         $("#user-profile-resume-list").val('0');
                     }
-                    
+
                 }
                 else {
                     if (isGoogleCoverLetter) {
@@ -1169,7 +1175,7 @@
                         $('#uploadDocumentsJson').val(stringyModels);
                         $('#application-documents').val('');
                         $("#documents-selected-type").val(documentsSelectedType);
-                        $('.documents-name').html(Filenames);                        
+                        $('.documents-name').html(Filenames);
                     }
                 }
 

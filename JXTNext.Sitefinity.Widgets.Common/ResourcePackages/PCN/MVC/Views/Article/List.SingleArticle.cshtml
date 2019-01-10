@@ -26,26 +26,27 @@
 @{
     var featuredArticle = Model.Items.FirstOrDefault();
 }
-@if (featuredArticle != null && featuredArticle.Fields.HeaderImage != null && featuredArticle.Fields.articles != null)
+@if (featuredArticle != null)
 {
     var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(featuredArticle, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
     var taxon = featuredArticle.GetHierarchicalTaxons("articles").First();
+    var imgsrc = "";
+    if (featuredArticle.Fields.HeaderImage != null)
+    {
+        imgsrc = MediaContentExtensions.ResolveThumbnailUrl(featuredArticle.Fields.HeaderImage.DataItem);
+    }
+    var summary = (@Html.HtmlSanitize((string)featuredArticle.Fields.Summary)).ToString();
+    if (@Html.HtmlSanitize((string)featuredArticle.Fields.Summary).ToString().Length > 130)
+    {
+        summary = (@Html.HtmlSanitize((string)featuredArticle.Fields.Summary)).ToString().Substring(0, 128);
+    }
 
-    <div class="@Model.CssClass">
-        <h2 class="text-center">@taxon.Title.ToString()</h2>
-        <br />
-        <div class="thumbnail card-basic small-caption">
-            <a href="@navigateUrl">
-                @if (featuredArticle.Fields.HeaderImage != null)
-                {
-                    <img alt="@featuredArticle.Fields.HeaderImage.Fields.Title" src="@MediaContentExtensions.ResolveThumbnailUrl(featuredArticle.Fields.HeaderImage.DataItem, "thumbartic")" />
-                }
-            </a>
-            <div class="caption">
-                <p class="color-light text-uppercase font-medium "><small>@taxon.Title.ToString()</small></p>
-                <h3><a href="@navigateUrl">@Html.HtmlSanitize((string)featuredArticle.Fields.Title)</a></h3>
-                <p>@Html.HtmlSanitize((string)featuredArticle.Fields.Summary)</p>
-                <a class="btn btn-more" href="@navigateUrl"></a>
+    <div class="white_panel">
+        <div class="sub">
+            <p class="blue_text"><a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@featuredArticle.Fields.Title</a></p>
+            <p>@summary</p>
+            <div class="action_link">
+                <a href="@navigateUrl">Read Events</a>
             </div>
         </div>
     </div>

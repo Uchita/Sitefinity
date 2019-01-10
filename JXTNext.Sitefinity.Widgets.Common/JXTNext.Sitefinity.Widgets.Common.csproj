@@ -285,7 +285,7 @@
     <Content Include="ResourcePackages\PCN\MVC\Views\Article\List.RelatedArticles.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\PCN\MVC\Views\Article\List.SingleFeaturedArticle.cshtml">
+    <Content Include="ResourcePackages\PCN\MVC\Views\Article\List.SingleArticle.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\PCN\MVC\Views\Blog\Detail.DetailPage.cshtml">
@@ -465,7 +465,7 @@
     <Content Include="ResourcePackages\PCN\MVC\Views\JobDetails\JobDetails.AppPage.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\PCN\MVC\Views\JobDetails\JobDetails.Hudson.cshtml">
+    <Content Include="ResourcePackages\PCN\MVC\Views\JobDetails\JobDetails.PCN.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="ResourcePackages\PCN\MVC\Views\JobFilters\T_FullTree.cshtml" />
@@ -851,15 +851,21 @@
     <Content Include="ResourcePackages\PCN\MVC\Views\HierarchicalTaxonomy\HierarchicalTaxonomy.CategoriesSearchList.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\PCN\MVC\Views\News\List.HomeNews.cshtml">
+    <Content Include="ResourcePackages\PCN\MVC\Views\News\List.SingleNews.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\PCN\MVC\Views\Event\List.HomeEvents.cshtml">
+    <Content Include="ResourcePackages\PCN\MVC\Views\Event\List.SingleEvent.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\PCN\MVC\Views\News\List.NewsListCarousel.cshtml">
+    <Content Include="ResourcePackages\PCN\MVC\Views\Event\List.FeaturedEvents.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\News\List.FeaturedNews.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="ResourcePackages\PCN\MVC\Views\Shared\_SimpleJS_Partial.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="ResourcePackages\PCN\MVC\Views\Testimonial\Detail.TestimonialCompact.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

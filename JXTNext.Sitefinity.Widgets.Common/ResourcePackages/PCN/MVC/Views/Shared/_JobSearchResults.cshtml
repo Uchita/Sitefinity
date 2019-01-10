@@ -9,33 +9,33 @@
 
     var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
     bool isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
-    var defaultLogo = "/ResourcePackages/Hudson/assets/dist/images/defaultLogo.png";
+    var defaultLogo = "/ResourcePackages/PCN/assets/dist/images/defaultLogo.png";
 }
 
 <div class="result-meta">
-    <p><span class="cur-search-count">Your search resulted in: <span class="count-num">@ViewBag.TotalCount</span> position(s)</span> | <a href="/advancedsearch" title="New job search">New Search</a></p>
+    <p><span class="cur-search-count">Your search resulted in: <span class="count-num">@ViewBag.TotalCount</span> position(s)</span> | <a href="/advancedsearch" title="New job search">Search Jobs</a></p>
 </div>
 
 <div class="search-top clearfix">
     @*<a class="btn btn-sm" href="">RSS FEED</a>
-        <a class="btn btn-sm" href="">ADD FAVOURITE</a>
+    <a class="btn btn-sm" href="">ADD FAVOURITE</a>
     *@
 
     <div>
 
         @if (isLoggedIn)
         {
-            <a class="btn-smc read_btn" href="/user-dashboard/Create" title="Create your job alert"><span>CREATE JOB ALERT</span></a>
+        <a class="btn-smc read_btn" href="/user-dashboard/Create" title="Create your job alert"><span>CREATE JOB ALERT</span></a>
         }
         else
         {
-            <div>Receive new jobs for this search by email.</div>
-            <input type="email" id="anonycreatejobalert" value="" placeholder="Enter email address" class="jobalert-field" />
-            <a id="anon-job-alert" class="btn-smc read_btn" href="#" title="Create your job alert">
-                <span>CREATE JOB ALERT</span>
-            </a>
-            <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
-            <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
+        <div>Receive new jobs for this search by email.</div>
+        <input type="email" id="anonycreatejobalert" value="" placeholder="Enter email address" class="jobalert-field" />
+        <a id="anon-job-alert" class="btn-smc read_btn" href="#" title="Create your job alert">
+            <span>CREATE JOB ALERT</span>
+        </a>
+        <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
+        <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
         }
         <div class="select">
             <select id="sortOrder" class="default-select">
@@ -112,7 +112,7 @@
 
                 </div>
                 <div class="col-sm-2 pull-right">
-                    <img src="@defaultLogo" alt="Hudson" />
+                    <img src="@defaultLogo" alt="PaymentandCards" />
                 </div>
             </div>
             <div class="row jobCatHirarchy">

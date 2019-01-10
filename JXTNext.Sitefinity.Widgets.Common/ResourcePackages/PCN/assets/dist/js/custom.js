@@ -42,6 +42,14 @@ $(document).ready(function () {
         items: 1
     });
 
+    /* logo_slider */
+    $('.article-slider').owlCarousel({
+        loop: true,
+        nav: false,
+        autoplay: true,
+        items: 1
+    });
+
     /* mobile menu */
     $('.menu_toogle').click(function () {
         $('.header_right').addClass('open');

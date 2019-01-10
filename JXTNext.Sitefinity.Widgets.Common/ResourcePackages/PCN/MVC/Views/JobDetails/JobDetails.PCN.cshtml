@@ -9,7 +9,7 @@
 
 @{
     var isUserLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
-    var defaultLogo = "/ResourcePackages/Hudson/assets/dist/images/defaultLogo.png";
+    var defaultLogo = "/ResourcePackages/PCN/assets/dist/images/defaultLogo.png";
     var isMemberUser = false;
     if (isUserLoggedIn)
     {
@@ -44,7 +44,7 @@
                     <h1>@Model.JobDetails.Title</h1>
                 </div>
                 <div class="col-md-2">
-                    <img alt="westpac-small" src="@defaultLogo" title="Hudson">
+                    <img alt="westpac-small" src="@defaultLogo" title="PCN">
                 </div>
             </div><div class="row job-offer-summary">
                 <div class="col-md-12">
@@ -168,7 +168,7 @@
             {
                 <div class="row job-offer-apply">
                     <div class="col-md-12">
-                        <a id="job-application-lnk" class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID">APPLY NOW</a>
+                        <a id="job-application-lnk" class="read_btn" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID"><span>APPLY NOW</span></a>
                     </div>
                 </div>
             }
@@ -180,7 +180,7 @@
     <div class="col-md-4 mb-30 jobdetail-sidebar">
         <div class="row job-offer-apply">
             <div class="col-md-12">
-                <a id="job-application-lnk" class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID">APPLY NOW</a>
+                <a id="job-application-lnk" class="read_btn" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID"><span>APPLY NOW</span></a>
             </div>
         </div>
         <br />
@@ -205,7 +205,7 @@
             var unencodedPageTitle = Model.JobDetails.Title;
             var pageTitle = HttpUtility.UrlEncode(unencodedPageTitle);
         }
-        <h4>Interested in this job?</h4>
+        <h3>Interested in this job?</h3>
         <ul class="list-unstyled job-offer-actions">
             @if (isUserLoggedIn)
             {

@@ -1032,6 +1032,7 @@ hr {
 
     .three_colmun_section .white_panel {
         width: calc(100% - 40px);
+        height: calc(100% - 88px);
         position: relative;
         margin: 0 auto;
         z-index: 1;
@@ -1107,6 +1108,10 @@ hr {
         line-height: 18px;
         word-break: break-all;
         color: #000;
+    }
+
+    .three_colmun_section .blue_text + p {
+        min-height: 54px;
     }
 
     .three_colmun_section .blue_text {
@@ -1913,7 +1918,7 @@ hr {
     text-decoration: none;
     display: block;
     padding: 0px;
-    color: #333;
+    color: #004f6e;
     position: relative;
     border-bottom: 1px solid transparent;
     font-family: FuturaBT-Medium;
@@ -2357,6 +2362,7 @@ ul.team-section {
         text-transform: uppercase;
         font-weight: bold;
         position: relative;
+        min-height: 58px;
         padding-bottom: 20px;
     }
 
@@ -4682,4 +4688,474 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
 .mb-2 {
     margin-bottom: 20px;
+}
+
+
+/*Job filter */
+
+
+.filter_sidebar .filter-toggle {
+    display: none;
+}
+
+.filter_sidebar .keywordfilter {
+    width: 100%;
+    float: left;
+    margin: 0 0 30px 0;
+}
+
+    .filter_sidebar .keywordfilter label {
+        font-size: 18px;
+        color: #004F6E;
+        font-family: FuturaBT-Heavy;
+        text-transform: uppercase;
+        font-weight: normal;
+        margin: 0 0 10px 0;
+    }
+
+        .filter_sidebar .keywordfilter label strong {
+            font-weight: normal;
+        }
+
+    .filter_sidebar .keywordfilter #selectedkeywordsfilter {
+        width: 100%;
+        height: 40px;
+        padding: 0 10px;
+    }
+
+.filter_sidebar .sm-wrapper .navbar-collapse {
+    padding: 0px;
+    margin-bottom: 25px;
+    width: 100%;
+    float: left;
+}
+
+.filter_sidebar .sm-wrapper .dropdown-tree > .dropdown-toggle {
+    font-size: 18px;
+    color: #004F6E;
+    font-family: FuturaBT-Heavy;
+    text-transform: uppercase;
+    font-weight: normal;
+    padding: 0 0 5px 0;
+    border: none;
+    display: block !important;
+    text-align: left;
+    border-radius: 0px;
+    border-bottom: 2px solid #8EDD2B;
+}
+
+    .filter_sidebar .sm-wrapper .dropdown-tree > .dropdown-toggle .caret {
+        display: none;
+    }
+
+.filter_sidebar .sm-wrapper .dropdown-tree ul {
+    padding: 0px;
+    margin: 10px 0;
+}
+
+    .filter_sidebar .sm-wrapper .dropdown-tree ul ul {
+        padding: 0 0 0 20px;
+    }
+
+.filter_sidebar .sm-wrapper .dropdown-tree li {
+    margin: 3px 0;
+    position: relative;
+    background: none !important;
+}
+
+    .filter_sidebar .sm-wrapper .dropdown-tree li > i {
+        margin-left: 0px;
+        color: #D8D8D8;
+        font-size: 18px;
+        position: absolute;
+        top: 4px;
+        left: 0;
+    }
+
+        .filter_sidebar .sm-wrapper .dropdown-tree li > i.fa-check-square-o {
+            color: #000;
+        }
+
+    .filter_sidebar .sm-wrapper .dropdown-tree li a {
+        padding: 3px 23px;
+        display: block !important;
+        font-size: 14px;
+        color: #000;
+        font-weight: 600;
+        background: none !important;
+    }
+
+.filter_sidebar .sm-wrapper .dropdown-tree ul ul li a {
+    font-weight: normal;
+}
+
+.filter_sidebar .sm-wrapper .dropdown-tree .arrow {
+    right: 0px;
+    font-size: 18px;
+    color: #000;
+}
+
+.filter_sidebar .SalaryRangeSelect {
+    width: 100%;
+    height: 45px;
+    border: 1px solid #D8D8D8;
+    padding: 0 10px;
+    border-radius: 5px;
+    margin: 15px 0 5px 0;
+}
+
+.search-result-description .pull-right {
+    padding-top: 10px;
+}
+
+.jn_search {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #000;
+}
+
+    .jn_search .dropdown-toggle {
+        width: 100%;
+        float: left;
+        background: none !important;
+        border: 1px solid #ccc;
+        color: #000;
+        text-align: left;
+        padding: 6px 20px 6px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #555;
+        font-weight: normal;
+        position: relative;
+    }
+
+    .jn_search .dropdown-menu .far {
+        font-family: 'FontAwesomeregular';
+    }
+
+    .jn_search .dropdown {
+        width: 100%;
+        float: left;
+        position: relative;
+    }
+
+    .jn_search .dropdown-toggle .caret {
+        position: absolute;
+        top: 15px;
+        right: 10px;
+    }
+
+    .jn_search .dropdown-tree {
+        display: block !important;
+    }
+
+        .jn_search .dropdown-tree li a {
+            display: block !important;
+            padding: 3px 28px;
+            background: none !important;
+        }
+
+            .jn_search .dropdown-tree li a:hover {
+                color: #004F6E;
+            }
+
+        .jn_search .dropdown-tree li {
+            position: relative;
+            background: none !important;
+        }
+
+        .jn_search .dropdown-tree ul ul {
+            padding-left: 16px;
+        }
+
+        .jn_search .dropdown-tree li .select-box {
+            position: absolute;
+            top: 6px;
+            left: 0px;
+        }
+
+        .jn_search .dropdown-tree .arrow {
+            right: 6px;
+        }
+
+        .jn_search .dropdown-tree .fa-square-o:after {
+            content: "\f0c8";
+            font-family: 'FontAwesomeregular';
+        }
+
+        .jn_search .dropdown-tree .fa-check-square-o:after {
+            content: "\f14a";
+            font-family: 'FontAwesomeregular';
+        }
+
+.salaryrangewrapper .nstSlider .rightGrip, .salaryrangewrapper .nstSlider .leftGrip {
+    background: #004F6E !important;
+}
+
+.salaryrangewrapper .nstSlider .bar {
+    background: #004F6E !important;
+}
+
+.nstSlider:before {
+    background: #b9b9b9 !important;
+}
+
+
+
+
+.basic-form {
+    margin-top: 25px;
+}
+
+    .basic-form .form-control {
+        color: #000
+    }
+
+    .basic-form select {
+        padding-left: 6px
+    }
+
+    .basic-form textarea {
+        height: 115px;
+        resize: none
+    }
+
+
+
+    .basic-form .checkbox .checkbox-icon {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #004F6E;
+        display: inline-block;
+        color: #004F6E;
+        position: absolute;
+        top: 0px;
+        left: 0;
+        text-align: center;
+        font-size: 13px
+    }
+
+        .basic-form .checkbox .checkbox-icon:before {
+            content: "";
+        }
+
+    .basic-form .checkbox {
+        padding-left: 0px;
+    }
+
+        .basic-form .checkbox input[type=checkbox] {
+            z-index: 2;
+            position: relative;
+            opacity: 0;
+            height: 20px;
+            width: 20px;
+            margin: 0 10px 0 0;
+            float: left
+        }
+
+            .basic-form .checkbox input[type=checkbox]:checked + .checkbox-icon:before,
+            .basic-form .checkbox input[type=checkbox]:checked + input + .checkbox-icon:before {
+                content: "\f00c";
+                line-height: 19px
+            }
+
+            .basic-form .checkbox input[type=checkbox]:hover {
+                cursor: pointer
+            }
+
+            .basic-form .checkbox input[type=checkbox]:focus + span {
+                outline: #219fa3 solid 1px
+            }
+
+    .basic-form .radiobutton {
+        position: relative;
+        font-size: 18px;
+        font-weight: normal;
+        margin-bottom: 15px;
+    }
+
+    .basic-form .list-group {
+        margin-bottom: 0px;
+    }
+
+    .basic-form .radiobutton .radiobutton-icon {
+        width: 25px;
+        height: 25px;
+        border: 1px solid #004F6E;
+        display: inline-block;
+        color: transparent;
+        position: absolute;
+        top: 0px;
+        left: 0;
+        text-align: center;
+        font-size: 13px;
+        border-radius: 50%
+    }
+
+        .basic-form .radiobutton .radiobutton-icon::before {
+            font-size: 1.75rem;
+            line-height: 1.33;
+            padding-right: 1px
+        }
+
+    .basic-form .radiobutton input[type=radio] {
+        z-index: 2;
+        position: relative;
+        opacity: 0;
+        height: 20px;
+        width: 20px;
+        margin: 0 10px 0 0;
+        float: left
+    }
+
+        .basic-form .radiobutton input[type=radio]:hover {
+            cursor: pointer
+        }
+
+            .basic-form .radiobutton input[type=radio]:hover + .radiobutton-icon {
+                color: #eee
+            }
+
+        .basic-form .radiobutton input[type=radio]:checked + .radiobutton-icon,
+        .basic-form .radiobutton input[type=radio]:checked:hover + .radiobutton-icon {
+            color: #004F6E
+        }
+
+    .basic-form .sf-FileField {
+        margin-top: 8px
+    }
+
+    .basic-form .btn {
+        border-color: #004F6E
+    }
+
+    .basic-form .form-group {
+        margin-bottom: 10px
+    }
+
+        .basic-form .form-group .btn {
+            min-width: 150px
+        }
+
+    .basic-form .upload-section {
+        margin: 10px 0 20px
+    }
+
+
+.upload-section .box {
+    border: 1px solid #004F6E;
+    padding: 10px;
+    margin: 0
+}
+
+.upload-section .uploadfield-wrap {
+    padding: 15px 0 5px;
+    position: relative;
+    color: #004F6E;
+    text-align: center;
+    width: 33%;
+    float: left;
+    overflow: hidden
+}
+
+    .upload-section .uploadfield-wrap::before {
+        content: "\f07c";
+        color: #2e2e2e;
+        font-family: 'FontAwesomesolid';
+        font-weight: 900;
+        font-size: 3rem;
+        position: absolute;
+        top: 15px;
+        z-index: 0;
+        width: 100%;
+        left: 0
+    }
+
+    .upload-section .uploadfield-wrap.dropbox-upload::before {
+        font-family: 'Font Awesome 5 Brands';
+        content: "\f16b"
+    }
+
+    .upload-section .uploadfield-wrap.google-drive-upload::before {
+        font-family: 'Font Awesome 5 Brands';
+        content: "\f3aa"
+    }
+
+.article-detail-category,
+.list-featured-articles .text-muted {
+    font-family: AkzidGroProMed, sans-serif;
+    text-transform: uppercase
+}
+
+.upload-section .uploadfield-wrap:focus::before,
+.upload-section .uploadfield-wrap:hover::before {
+    color: #004F6E
+}
+
+.upload-section .uploadfield-wrap button,
+.upload-section .uploadfield-wrap input[type=file] {
+    opacity: 0;
+    height: 50px;
+    position: relative;
+    z-index: 1;
+    cursor: pointer
+}
+
+.upload-section .uploadfield-wrap .lbl {
+    display: block;
+    margin-top: -7px;
+    color: #004F6E
+}
+
+.upload-section .uploadfield-wrap button:focus + .lbl,
+.upload-section .uploadfield-wrap input[type=file]:focus + .lbl {
+    font-weight: 700
+}
+
+.upload-section .note {
+    display: block;
+    word-break: break-word
+}
+
+.upload-section select {
+    width: 100%
+}
+
+.job-offer-details {
+    margin-bottom: 20px;
+}
+
+.job-offer-actions li a {
+    color: #4294c4;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.job-offer-actions li {
+    margin-bottom: 5px;
+}
+
+    .job-offer-actions li a em, .sf-social-share li i {
+        margin-right: 5px;
+    }
+
+.social-sidebar li, .sf-social-share li {
+    margin-bottom: 5px;
+    display: block !important;
+}
+
+.jobdetail-sidebar .job-offer-apply {
+    padding-left: 8px;
+}
+
+.job-offer-details .job-offer-apply {
+    padding: 15px 0 0 8px;
+}
+
+.job-offer-details ul {
+    padding: 10px 0 10px 20px;
+}
+
+.login-form {
+    margin: 0px;
 }

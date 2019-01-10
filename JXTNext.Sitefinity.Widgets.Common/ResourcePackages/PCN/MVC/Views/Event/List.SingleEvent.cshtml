@@ -1,0 +1,45 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Events.Mvc.Helpers
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.Modules.Pages
+@using Telerik.Sitefinity.Web.DataResolving
+
+@Html.Script(ScriptRef.JQuery, "top", false)
+
+
+@{
+    var featuredEvent = Model.Items.FirstOrDefault();
+}
+
+@if (featuredEvent != null)
+{
+
+
+    var imageurl = "";
+    foreach (var relatedItem in featuredEvent.Fields.EventImage)
+    {
+        imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+    }
+    var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(featuredEvent, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+    var summary = (@Html.HtmlSanitize((string)featuredEvent.Fields.Summary)).ToString();
+    if (@Html.HtmlSanitize((string)featuredEvent.Fields.Summary).ToString().Length > 130)
+    {
+        summary = (@Html.HtmlSanitize((string)featuredEvent.Fields.Summary)).ToString().Substring(0, 128);
+    }
+<div class="white_panel">
+    <div class="sub">
+        <p class="blue_text"><a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@featuredEvent.Fields.Title</a></p>
+        <p>@summary</p>
+        <div class="action_link">
+            <a href="@navigateUrl">Read Events</a>
+        </div>
+    </div>
+</div>
+
+
+}
+
+
+
+

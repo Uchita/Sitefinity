@@ -7,6 +7,7 @@
 @Html.Script(Url.WidgetContent("/Mvc/Scripts/jquery.nstSlider.js"))
 @Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/rangeSlider.css"))
 
+<div id="createalert-widget">
 @if (!ViewBag.IsMemberUser)
 {
     <div class="alert alert-info">Please login as Member to create job alert.</div>
@@ -275,4 +276,4 @@
     });
 </script>
 
-
+</div>

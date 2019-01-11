@@ -601,7 +601,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         private string GetAdvertiserHtmlEmailContent()
         {
             string htmlEmailContent = String.Empty;
-            this.AdvertiserEmailTemplateId = "3DCBDCE5-F190-4FBA-BE51-074F2E034A04";
             if (!String.IsNullOrEmpty(this.AdvertiserEmailTemplateId))
             {
                 var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);

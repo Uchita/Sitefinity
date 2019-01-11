@@ -31,19 +31,19 @@
 
         <uib-tab heading="Email Template">
             <label>@Html.Resource("EmailSubject")</label>
-            <input type="text" ng-model="properties.EmailTemplateEmailSubject.PropertyValue" class="form-control"/><br /><br />
+            <input type="text" ng-model="properties.EmailTemplateEmailSubject.PropertyValue" class="form-control" /><br /><br />
 
             <label>@Html.Resource("SenderName")</label>
-            <input type="text" ng-model="properties.EmailTemplateSenderName.PropertyValue" class="form-control"/><br /><br />
+            <input type="text" ng-model="properties.EmailTemplateSenderName.PropertyValue" class="form-control" /><br /><br />
 
             <label>@Html.Resource("SenderEmailAddress")</label>
-            <input type="text" ng-model="properties.EmailTemplateSenderEmailAddress.PropertyValue" class="form-control"/><br /><br />
+            <input type="text" ng-model="properties.EmailTemplateSenderEmailAddress.PropertyValue" class="form-control" /><br /><br />
 
             <label>@Html.Resource("EmailCC")</label>
-            <input type="text" ng-model="properties.EmailTemplateCC.PropertyValue" class="form-control"/><br /><br />
+            <input type="text" ng-model="properties.EmailTemplateCC.PropertyValue" class="form-control" /><br /><br />
 
             <label>@Html.Resource("EmailBCC")</label>
-            <input type="text" ng-model="properties.EmailTemplateBCC.PropertyValue" class="form-control"/><br /><br />
+            <input type="text" ng-model="properties.EmailTemplateBCC.PropertyValue" class="form-control" /><br /><br />
 
 
 
@@ -52,6 +52,15 @@
                               sf-selected-item-name="properties.EmailTemplateName.PropertyValue"
                               sf-selected-item-id="properties.EmailTemplateId.PropertyValue"
                               sf-provider="properties.EmailTemplateProviderName.PropertyValue" />
+
+            <label>@Html.Resource("SelectAdvertiserEmailTemplate")</label>
+            <label>@Html.Resource("EmailSubject")</label>
+            <input type="text" ng-model="properties.AdvertiserEmailTemplateEmailSubject.PropertyValue" class="form-control" /><br /><br />
+
+            <sf-list-selector sf-multiselect="false" sf-dynamic-items-selector sf-item-type="properties.ItemType.PropertyValue" sf-identifier-field="Title" sf-master="true"
+                              sf-selected-item-name="properties.AdvertiserEmailTemplateName.PropertyValue"
+                              sf-selected-item-id="properties.AdvertiserEmailTemplateId.PropertyValue"
+                              sf-provider="properties.AdvertiserEmailTemplateProviderName.PropertyValue" />
         </uib-tab>
         <uib-tab heading="Apply With Social Media">
             <div class="list-group list-group-endless" kendo-sortable k-options="sortableOptions" k-on-change="sortItems(kendoEvent)" k-ignore="'input'">

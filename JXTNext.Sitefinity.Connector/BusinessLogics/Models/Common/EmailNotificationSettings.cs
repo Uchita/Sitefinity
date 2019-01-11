@@ -1,11 +1,39 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common
 {
+    public class EmailAttachment
+    {
+        public Stream fileStream { set; get; }
+        public string fileName { set; get; }
+    }
+
+    public class MemoryStreamJsonConverter : JsonConverter
+    {
+        public override bool CanConvert(Type objectType)
+        {
+            return typeof(MemoryStream).IsAssignableFrom(objectType);
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            var bytes = serializer.Deserialize<byte[]>(reader);
+            return bytes != null ? new MemoryStream(bytes) : new MemoryStream();
+        }
+
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            var bytes = ((MemoryStream)value).ToArray();
+            serializer.Serialize(writer, bytes);
+        }
+    }
+
     public class EmailNotificationSettings
     {
         private string _from;
@@ -24,7 +52,17 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common
         public List<EmailTarget> BccEmail { get { return _bccEmails; } }
         public string HtmlContent { get { return _htmlContent; } }
 
-        public EmailNotificationSettings(EmailTarget fromSender, EmailTarget toSender, string subject, string htmlContent)
+        [JsonConverter(typeof(MemoryStreamJsonConverter))]
+        public MemoryStream ResumeFileStream { get; set; } = new MemoryStream();
+        public string ResumeFileName { get; set; }
+        [JsonConverter(typeof(MemoryStreamJsonConverter))]
+        public MemoryStream CoverLeterFileStream { get; set; } = new MemoryStream();
+        public string CoverLeterFileName { get; set; }
+
+        public string ResumeFileStreamJson { get; set; }
+        public string CoverLeterFileStreamJson { get; set; }
+
+        public EmailNotificationSettings(EmailTarget fromSender, EmailTarget toSender, string subject, string htmlContent, Stream resumeFileStream, string resumeFileName,Stream coverLetterFileStream,string coverLetterFileName)
         {
             _to = toSender.Email;
             _from = fromSender.Email;
@@ -33,6 +71,17 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common
             _ccEmails = new List<EmailTarget>();
             _bccEmails = new List<EmailTarget>();
             _htmlContent = htmlContent;
+            if(resumeFileStream != null)
+                resumeFileStream.CopyTo(ResumeFileStream);
+
+            ResumeFileName = resumeFileName;
+            if(coverLetterFileStream != null)
+                coverLetterFileStream.CopyTo(CoverLeterFileStream);
+
+            CoverLeterFileName = coverLetterFileName;
+
+            ResumeFileStreamJson = JsonConvert.SerializeObject(ResumeFileStream, Formatting.Indented, new MemoryStreamJsonConverter());
+            CoverLeterFileStreamJson = JsonConvert.SerializeObject(CoverLeterFileStream, Formatting.Indented, new MemoryStreamJsonConverter());
         }
 
         public void AddCC(string name, string email)

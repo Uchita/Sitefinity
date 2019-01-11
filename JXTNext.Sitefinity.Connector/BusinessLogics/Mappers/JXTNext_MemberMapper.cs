@@ -38,6 +38,9 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                 resumePath = jxtAppDetails.ResumePath,
                 coverletterPath = jxtAppDetails.CoverletterPath,
                 emailNotification = jxtAppDetails.EmailNotification,
+                advertiserName = jxtAppDetails.AdvertiserName,
+                companyName = jxtAppDetails.CompanyName,
+                advertiserEmailNotification = jxtAppDetails.AdvertiserEmailNotification,
                 documentsPath = jxtAppDetails.DocumentsPath
             };
 

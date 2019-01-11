@@ -32,7 +32,7 @@
                 else if (@Model.Cards.Count == 2)
                 {
                     <a href="@Html.HtmlSanitize(@Model.Cards[0].ActionUrl)" class="btn btn-primary mr-4 @Model.Cards[0].Heading">@Html.HtmlSanitize(@Model.Cards[0].ActionName)</a>
-                    <a href="@Html.HtmlSanitize(@Model.Cards[1].ActionUrl)" class="btn btn-primary @Model.Cards[1].Heading">@Html.HtmlSanitize(@Model.Cards[1].ActionName)</a>
+                    <a href="@Html.HtmlSanitize(@Model.Cards[1].ActionUrl)" class="btn btn-primary dark-btn @Model.Cards[1].Heading">@Html.HtmlSanitize(@Model.Cards[1].ActionName)</a>
                 }
             </div>
         </div>

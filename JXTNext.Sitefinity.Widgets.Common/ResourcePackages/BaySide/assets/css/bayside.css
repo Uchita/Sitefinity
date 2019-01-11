@@ -4880,9 +4880,9 @@ a {
 
 h1,
 .h1 {
-    font-size: 45px;
+    font-size: 44px;
     line-height: 55px;
-    font-weight: normal;
+    font-weight: 300;
     color: #000;
 }
 
@@ -4899,7 +4899,7 @@ h3,
 h2,
 .h2 {
     color: #000;
-    font-size: 34px;
+    font-size: 32px;
     line-height: 1.3;
     margin-bottom: 20px
 }
@@ -4910,7 +4910,7 @@ h2,
 
 h2,
 .h2 {
-    font-weight: 400;
+    font-weight: 300;
     padding-bottom: 10px;
 }
 
@@ -4935,6 +4935,10 @@ p {
     line-height: 1.5;
     font-weight: 400;
     color: #333132;
+}
+
+.align-items-stretch li {
+    font-size: 16px;
 }
 
 .job-detail li, p {
@@ -4962,7 +4966,7 @@ p {
 .btn {
     font-size: 1em;
     border-radius: 4px;
-    font-weight: 600;
+    font-weight: 400;
     padding: 6px 23px 8px;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -5399,6 +5403,7 @@ p {
         max-width: 225px;
         margin-left: auto;
         margin-right: auto;
+        min-height: 86px;
     }
 
 /*-------Service Item-----End-----*/
@@ -5415,7 +5420,7 @@ p {
     .app-header .video-wrap > .container > .sm-row, .app-content .video-wrap > .container > .md-row,
     .app-footer .video-wrap > .container > .md-row,
     .app-header .video-wrap > .container > .md-row {
-        min-height: 369px;
+        height: 369px;
     }
 
     .video-wrap .play-btn {
@@ -6064,7 +6069,7 @@ select.hs-input {
 }
 
 .navbar.top-navbar .navbar-nav .nav-link {
-    padding: 0 10px;
+    padding: 0 12px;
     font-weight: bold;
 }
 
@@ -6096,21 +6101,24 @@ select.hs-input {
     }
 
     .header-search_form input::-webkit-input-placeholder {
-        color: #C5C5C5;
+        color: #d8d8d8;
     }
 
     .header-search_form input::-moz-placeholder {
-        color: #C5C5C5;
+        color: #d8d8d8;
     }
 
     .header-search_form input:-ms-input-placeholder {
-        color: #C5C5C5;
+        color: #d8d8d8;
     }
 
     .header-search_form input:-moz-placeholder {
-        color: #C5C5C5;
+        color: #d8d8d8;
     }
 
+.top-menus .navbar-nav .nav-link {
+    color: #304e6b;
+}
 /*----Header Search form ---*/
 @media (max-width: 991px) {
     .primary-nav-wrap {
@@ -6366,9 +6374,17 @@ select.hs-input {
         min-height: 353px;
     }
 
+.hero-banner-sm > .container > .row {
+    height: 353px;
+}
+
 @media (max-width: 767px) {
     .hero-banner > .container > .row {
         min-height: 150px;
+    }
+
+    .hero-banner-sm > .container > .row {
+        height: 150px;
     }
 }
 
@@ -6424,13 +6440,13 @@ select.hs-input {
     .job-item {
         width: 100%;
         max-width: 304px;
-        margin-left: auto;
-        margin-right: auto;
-        float: none;
+        margin-left: 0;
+        margin-right: 0;
+        float: left;
     }
 
         .job-item:first-child {
-            margin-right: auto;
+            margin-left: 0px;
         }
 }
 
@@ -8012,6 +8028,20 @@ select.hs-input {
     margin-left: 10px;
 }
 
+.top-menus .navbar-nav .rb-1 {
+    position: relative;
+}
+
+    .top-menus .navbar-nav .rb-1:after {
+        width: 2px;
+        height: 15px;
+        content: "";
+        background: #304e6b;
+        position: absolute;
+        top: 3px;
+        right: 0px;
+    }
+
 .jn_search .dropdown-menu li a {
     font-size: 14px;
     display: block !important;
@@ -8032,4 +8062,76 @@ select.hs-input {
     top: 0px;
     transform: none;
     margin: 0px;
+}
+
+.job_feature h3 {
+    margin-bottom: 30px;
+}
+
+.dark-btn {
+    border-color: #3465B0;
+    background-color: #3465B0;
+}
+
+.g-section li {
+    font-size: 16px;
+}
+
+.news-slider-mobile {
+    display: none !important;
+}
+
+@media (max-width: 767px) {
+    .service-item {
+        margin-bottom: 25px;
+        text-align: left !important;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+        .service-item .service-icon {
+            float: left;
+        }
+
+        .service-item .service-desc {
+            min-height: auto;
+            max-width: 100%;
+        }
+
+        .service-item .m-right {
+            width: calc(100% - 70px);
+            float: right;
+        }
+
+        .service-item .service-name {
+            margin-top: 0px;
+            margin-bottom: 15px;
+        }
+
+            .service-item .service-name br {
+                display: none;
+            }
+
+        .service-item .btn-link {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+    .video-wrap .video-title {
+        font-size: 24px;
+        line-height: 36px;
+        margin-top: 28px;
+    }
+
+    .video-wrap {
+        background-position: 77% top !important;
+    }
+
+    .news-slider-mobile {
+        display: block !important;
+    }
+
+    .hide-mobile {
+        display: none !important;
+    }
 }

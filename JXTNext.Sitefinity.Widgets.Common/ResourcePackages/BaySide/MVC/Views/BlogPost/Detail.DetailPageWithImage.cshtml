@@ -8,7 +8,12 @@
 
     <h3 class="posted-by">
         By
-        @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)
+        @{var authorName = @DataResolver.Resolve(@Model.Item.DataItem, "Author", null); }
+        @if (authorName == "JXT Admin")
+        {
+            authorName = "Bayside Group";
+        }
+        @authorName
     </h3>
 
     <p class="posted-date">
@@ -22,14 +27,14 @@
 
 
 
-    <div @Html.InlineEditingFieldAttributes("Summary", "LongText" )><p>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</p></div>
+    <div @Html.InlineEditingFieldAttributes("Summary", "LongText")><p>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</p></div>
 
 
 
     @{var imageurl = ""; }
     @foreach (var relatedItem in Model.Item.Fields.BlogImage)
     {
-    imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+        imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
     }
 
     <div class="row">
@@ -41,14 +46,14 @@
     </div>
 
     @{
-    if (Model.EnableSocialSharing)
-    {
-    var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
-    @Html.SocialShareOptions(item);
-    }
+        if (Model.EnableSocialSharing)
+        {
+            var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
+            @Html.SocialShareOptions(item);
+        }
     }
 
-    <div @Html.InlineEditingFieldAttributes("Content", "LongText" )>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
+    <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
 
     @Html.CommentsList(@Model.Item.DataItem)
 </div>

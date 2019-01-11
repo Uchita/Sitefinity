@@ -3,17 +3,19 @@
 
 @*<div class="service-item col-12 col-sm-6 col-lg-3 text-center">*@
 <img class="service-icon" src='@Model.SelectedSizeUrl' alt="Talent Sourcing" />
-<h3 class="service-name">@Html.HtmlSanitize(Model.Heading)</h3>
-<p class="service-desc">
-    @if (Model.Description.Length > 105)
-    {
-        @Html.HtmlSanitize(Model.Description.Substring(0, 105) + "...")
-    }
-    else
-    {
-        @Html.HtmlSanitize(Model.Description)
-    }
+<div class="m-right">
+    <h3 class="service-name">@Html.HtmlSanitize(Model.Heading)</h3>
+    <p class="service-desc">
+        @if (Model.Description.Length > 165)
+        {
+            @Html.HtmlSanitize(Model.Description.Substring(0, 165) + "...")
+        }
+        else
+        {
+            @Html.HtmlSanitize(Model.Description)
+        }
 
-</p>
-<a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-link">@Model.ActionName</a>
+    </p>
+    <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-link">@Model.ActionName</a>
+</div>
 @*</div>*@

@@ -26,7 +26,7 @@
                 </div>
                 <div class="carousel-overlay"></div>
                 <div class="carousel-abs-content">
-                    @if (card.ActionName.Contains("Download eBook"))
+                    @if (card.ActionName.Contains("Download"))
                     {
                         <a href="@Html.HtmlSanitize(@card.ActionUrl)" target="_blank">@Html.HtmlSanitize(@card.ActionName)</a>
                     }

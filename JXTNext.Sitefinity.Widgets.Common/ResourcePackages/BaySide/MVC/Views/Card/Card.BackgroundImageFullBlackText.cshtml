@@ -20,6 +20,6 @@
         <p style="color:black">
             @Html.HtmlSanitize(Model.Description)
         </p>
-        <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-outline-black mt-4">@Model.ActionName</a>
+        <a target="_blank" href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-outline-black mt-4">@Model.ActionName</a>
     </div>
 </div>

@@ -31,6 +31,24 @@ $(document).ready(function () {
         dots: true,
     });
 
+    $(".news-slider-mobile").owlCarousel({
+        margin: 18,
+        nav: false,
+        dots: true,
+        navText: ['<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.61 7.41L14.2 6l-6 6 6 6 1.41-1.41L11.03 12l4.58-4.59z"/></svg>',
+            '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10.02 6L8.61 7.41 13.19 12l-4.58 4.59L10.02 18l6-6-6-6z"/></svg>'
+        ],
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 3,
+                loop: false
+            }
+        }
+    });
+
     /**Leaders Page accordion */
     $(".leader-list a").on("click", function (e) {
         e.preventDefault();

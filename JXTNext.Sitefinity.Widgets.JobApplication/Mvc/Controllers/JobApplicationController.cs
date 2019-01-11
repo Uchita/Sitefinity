@@ -360,8 +360,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                                                                                                 new EmailTarget(applyJobModel.ContactDetails, applyJobModel.ApplicationEmail),
                                                                                                 this.AdvertiserEmailTemplateEmailSubject,
                                                                                                 htmlAdvertiserEmailContent, resumeFileStream,resumeFileName,coverLetterFileStream,coverLetterFileName);
-            //advertiserEmailNotificationSettings.AddBCC("suresh", "suresh@jxt.com.au");
-            //advertiserEmailNotificationSettings.AddBCC("Bhauna Singh", "bee@jxt.com.au");
+            
 
             Log.Write($"currentIdentity.IsAuthenticated value is {currentIdentity.IsAuthenticated}", ConfigurationPolicy.ErrorLog);
             if (currentIdentity.IsAuthenticated)

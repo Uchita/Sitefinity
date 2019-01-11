@@ -9705,7 +9705,8 @@ ul.breadcrumb {
         cursor: pointer; }
         .page-wrapper .basic-form .radiobutton input[type="radio"]:hover + .radiobutton-icon {
           color: #eee; }
-      .page-wrapper .basic-form .radiobutton input[type="radio"]:checked + .radiobutton-icon, .page-wrapper .basic-form .radiobutton input[type="radio"]:checked:hover + .radiobutton-icon {
+      .page-wrapper .basic-form .radiobutton input[type="radio"]:checked + .radiobutton-icon, .page-wrapper .basic-form .radiobutton input[type="radio"]:checked:hover + .radiobutton-icon,
+      .page-wrapper .basic-form .radiobutton input[type="radio"].checked + .radiobutton-icon, .page-wrapper .basic-form .radiobutton input[type="radio"].checked:hover + .radiobutton-icon {
         color: #01a3a4; }
   .page-wrapper .basic-form .sf-FileField {
     margin-top: 8px; }

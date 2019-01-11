@@ -131,7 +131,8 @@
                         color: #eee;
                     }
                 }
-                &:checked + .radiobutton-icon, &:checked:hover + .radiobutton-icon {
+                &:checked + .radiobutton-icon, &:checked:hover + .radiobutton-icon,
+                &.checked + .radiobutton-icon, &.checked:hover + .radiobutton-icon{
                     color: $global-highlight-color;
                 }
             }

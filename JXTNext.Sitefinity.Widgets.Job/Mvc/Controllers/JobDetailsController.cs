@@ -128,6 +128,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 viewModel.JobDetails = jobListingResponse.Job;
 
                 // Getting Consultant Avatar Image Url from Sitefinity 
+                viewModel.ApplicationEmail = jobListingResponse.Job.CustomData["ApplicationMethod.ApplicationEmail"];
                 var user = SitefinityHelper.GetUserByEmail(jobListingResponse.Job.CustomData["ApplicationMethod.ApplicationEmail"]);
                 if (user != null && user.Id != Guid.Empty)
                     viewModel.ApplicationAvatarImageUrl = SitefinityHelper.GetUserAvatarUrlById(user.Id);

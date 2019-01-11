@@ -154,6 +154,20 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets phrase: This is the page where you have dropped search results widget
+        /// </summary>
+        [ResourceEntry("SelectAdvertiserEmailTemplate",
+            Value = "Select Advertiser E-mail template",
+            Description = "phrase : Select Advertiser E-mail template")]
+        public string SelectAdvertiserEmailTemplate
+        {
+            get
+            {
+                return this["SelectEmailTemplate"];
+            }
+        }
+
+        /// <summary>
         /// Gets phrase : CSS classes
         /// </summary>
         [ResourceEntry("CssClasses",

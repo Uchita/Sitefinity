@@ -54,8 +54,10 @@
                         @MobileRootLevelNode(node)
                     }
                     <li class="extra-mnu timesheet-mnu"><a href="/timesheets-and-payroll-process"><em class="far fa-calendar-alt"></em> Timesheets</a></li>
+                  
                     @if (JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn())
                     {
+                        <li class="extra-mnu"><a href="/user-dashboard">Dashboard</a></li>
                         <li class="extra-mnu"><a href="/home/SignOut">Log out</a></li>
                     }
                     else
@@ -108,7 +110,7 @@
                                 DynamicContent dynamicVar = featuredArticle.DataItem as DynamicContent;
                                 if (dynamicVar != null)
                                 {
-                                    bestUrl = "/insights/articles/detail" + dynamicVar.SystemUrl;
+                                    bestUrl = "/insights/articles/detail" + dynamicVar.ItemDefaultUrl;
                                 }
 
                                 <h4>Featured article</h4>
@@ -218,7 +220,7 @@
     }
     else if (node.HasChildOpen)
     {
-        @Html.Raw("");
+        @Html.Raw("active");
     }
 }
 <script>
@@ -239,6 +241,8 @@
                 $(ulSelector).hide();
             }
         });
+
+        $('.dropdown').removeClass('open');
 
         $(".dropdown").mouseleave(function (e) {
             $(this).find("a.link-active").removeClass("link-active");

@@ -3,6 +3,7 @@ using JXTNext.Sitefinity.Connector.BusinessLogics;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using JXTNext.Sitefinity.Services.Intefaces;
 using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert;
+using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlertJson;
 using JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -48,6 +49,42 @@ namespace JXTNext.Sitefinity.Services.Services
             return null;
         }
 
+
+        private SearchModel ConvertToJobAlertData(dynamic data)
+        {
+            string Data = data.Value<string>("Data");
+            if (Data != null)
+            {
+                var jobAlertModel = JsonConvert.DeserializeObject<SearchModel>(Data);
+
+
+                return jobAlertModel;
+            }
+
+            return null;
+        }
+
+        public SearchModel GetMemeberJobAlert(int jobAlertId)
+        {
+            IMemberJobAlertsResponse jobAlertResponse = _BLconnector.MemberJobAlertsGet();
+
+            if (jobAlertResponse.Success)
+            {
+                SearchModel alert = new SearchModel();
+                foreach (dynamic item in jobAlertResponse.MemberJobAlerts)
+                {
+
+                    JObject jItem = JObject.Parse(item.ToString());
+                    if (jItem.Value<int>("Id") == jobAlertId)
+                        alert = ConvertToJobAlertData(jItem);
+                }
+                return alert;
+            }
+
+            return null;
+        }
+
+
         public JobAlertViewModel MemberJobAlertGet(int jobAlertId)
         {
             List<JobAlertViewModel> allJobAlerts = MemberJobAlertsGet();
@@ -67,7 +104,7 @@ namespace JXTNext.Sitefinity.Services.Services
             {
                 Name = jobAlertData.Name,
                 DateCreated = jobAlertData.LastModifiedTime,
-                Data = ConvertToSerializeData(jobAlertData),
+                Data = jobAlertData.Data,
                 Status = 1,
                 MemberJobAlertId = memberJobAlertId,
                 Email = jobAlertData.Email

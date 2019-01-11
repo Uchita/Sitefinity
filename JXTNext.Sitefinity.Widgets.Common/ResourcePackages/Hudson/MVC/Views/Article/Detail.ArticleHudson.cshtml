@@ -32,6 +32,8 @@
     List<string> filterValues = new List<string>();
     var articleIds = Model.Item.Fields.articles;
     var authorName = "Hudson";
+    var authorUrl = "";
+
     foreach (var taxonItem in articleIds)
     {
         Guid articleID = new Guid(taxonItem.ToString());
@@ -47,11 +49,22 @@
             @Model.Item.Fields.Title
         </h1>
 
-        @if (!string.IsNullOrEmpty(Model.Item.Fields.AuthorName))
+        @if (Model.Item.Fields.AuthorName != null)
         {
-            authorName = Model.Item.Fields.AuthorName;
+            authorName = Model.Item.Fields.AuthorName.Fields.ConsultantName;
+            authorUrl = Model.Item.Fields.AuthorName.Fields.UrlName.ToString();
+            <p class="article-detail-author text-center">by <a href="/contact-us/find-a-hudson-consultant/consultant/@authorUrl">@authorName</a></p>
         }
-        <p class="article-detail-author text-center">by @authorName</p>
+        else if (Model.Item.Fields.BoardMember != null)
+        {
+            authorName = Model.Item.Fields.BoardMember.Fields.Name;
+            authorUrl = Model.Item.Fields.BoardMember.Fields.UrlName.ToString();
+            <p class="article-detail-author text-center">by <a href="/about-us/the-board/@authorUrl">@authorName</a></p>
+        }
+        else
+        {
+            <p class="article-detail-author text-center">by @authorName</p>
+        }
 
         <!-- TODO -->
         @*Start HeaderImage field*@
@@ -133,7 +146,7 @@
                                     <p class="color-light text-uppercase font-medium "><small>@(string.Join(", ", articleTaxonValues))</small></p>
                                     <h4 @Html.InlineEditingFieldAttributes("Title", "ShortText")><a href="@navigateUrl" title="@articleTitle">@articleTitle</a></h4>
                                     @{
-                                        string trimSummary = GeneralHelper.TrimStringContent(articleSummary, 120);
+                                        string trimSummary = GeneralHelper.TrimStringContent(articleSummary, 90);
 
                                     }
                                     <p>@trimSummary</p>

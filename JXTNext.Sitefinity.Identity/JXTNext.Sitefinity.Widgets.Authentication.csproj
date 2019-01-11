@@ -310,9 +310,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Mvc\Scripts\JXTNextResume\profile-resume-upload.js" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Mvc\Scripts\JXTNextResume\designerview-simple.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

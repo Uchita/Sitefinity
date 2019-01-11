@@ -15,6 +15,7 @@ using System.Collections.Specialized;
 using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
+using Telerik.Sitefinity.Frontend.Mvc.Infrastructure;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -22,6 +23,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
     [ControllerToolboxItem(Name = "JobDetails_MVC", Title = "Details", SectionName = "JXTNext.Job", CssClass = JobDetailsController.WidgetIconCssClass)]
     public class JobDetailsController : Controller
     {
+
+       
         // All these properties are bind to the designer form 
         // Same will be displayed in the Advanced section of the designer form as text boxes
         [TypeConverter(typeof(ExpandableObjectConverter))]
@@ -125,6 +128,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 viewModel.JobDetails = jobListingResponse.Job;
 
                 // Getting Consultant Avatar Image Url from Sitefinity 
+                viewModel.ApplicationEmail = jobListingResponse.Job.CustomData["ApplicationMethod.ApplicationEmail"];
                 var user = SitefinityHelper.GetUserByEmail(jobListingResponse.Job.CustomData["ApplicationMethod.ApplicationEmail"]);
                 if (user != null && user.Id != Guid.Empty)
                     viewModel.ApplicationAvatarImageUrl = SitefinityHelper.GetUserAvatarUrlById(user.Id);
@@ -222,7 +226,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     }
                 }
                 #endregion
-
+                var meta = new System.Web.UI.HtmlControls.HtmlMeta();
+                meta.Attributes.Add("property", "og:title");
+                meta.Content = jobListingResponse.Job.Title;
+                
+                // Get the current page handler in order to access the page header
+                var pageHandler = this.HttpContext.CurrentHandler.GetPageHandler();
+                pageHandler.Header.Controls.Add(meta);
                 return View(fullTemplateName, viewModel);
             }
 

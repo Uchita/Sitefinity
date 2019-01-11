@@ -14,9 +14,10 @@
     }
 
     p {
-        margin: 10px 0 0;
+        margin: 10px auto 0;
         font-size: 14px;
         font-size: 1.4rem;
+        width: 85%;
     }
 }
 /*#endregion Form - Newsletter */
@@ -30,7 +31,9 @@
         .form-control {
             color: $global-text-color;
         }
-
+        select{
+            padding-left: 6px;
+        }
         textarea {
             height: 115px;
             resize: none;
@@ -55,7 +58,7 @@
                 display: inline-block;
                 color: $forms-element-border;
                 position: absolute;
-                top: 0;
+                top: 2px;
                 left: 0;
                 text-align: center;
                 font-size: 13px;
@@ -74,7 +77,9 @@
                 margin: 0 10px 0 0;
                 float: left;
 
-                &:checked + .checkbox-icon:before {
+                &:checked + .checkbox-icon:before,
+                &:checked + input + .checkbox-icon:before
+                {
                     content: "\f00c";
                     line-height: 19px;
                 }
@@ -88,10 +93,55 @@
             }
             
         }
+
+        .radiobutton{
+            position: relative;
+            .radiobutton-icon {
+                width: 25px;
+                height: 25px;
+                border: 1px solid $forms-element-border;
+                display: inline-block;
+                color: transparent;
+                position: absolute;
+                top: 10px;
+                left: 0;
+                text-align: center;
+                font-size: 13px;
+                border-radius: 50%;
+                &::before{
+                    font-size: 1.75rem;
+                    line-height: 1.33;
+                    padding-right: 1px;
+                }
+            }
+
+            input[type="radio"] {
+                z-index: 2;
+                position: relative;
+                opacity: 0;
+                height: 20px;
+                width: 20px;
+                margin: 0 10px 0 0;
+                float: left;
+
+
+                &:hover {
+                    cursor: pointer;
+                    & + .radiobutton-icon{
+                        color: #eee;
+                    }
+                }
+                &:checked + .radiobutton-icon, &:checked:hover + .radiobutton-icon {
+                    color: $global-highlight-color;
+                }
+            }
+        }
         .sf-FileField{
             margin-top: 8px;
         }
-
+        .btn{
+            border-color: $global-highlight-color;
+        }
         .form-group {
             margin-bottom: 10px;
             .btn{
@@ -110,6 +160,12 @@
         font-size: 3.6rem;
         margin-bottom: 2rem;
     }
+}
+
+.list-group label{
+    color: $global-text-color;
+    text-transform: none;
+    font-family: $font-family-regular;
 }
 
 #password-strength {
@@ -249,9 +305,11 @@
         }
     }
     .sf-profile{
+        margin-bottom: 2rem;
         h2{
             font-size: 3.2rem;
-            margin-top: 2.35rem;
+            margin-top: 1.6rem;
+            margin-bottom: 0.8rem;
         }
         img{
             max-width: 200px;
@@ -273,6 +331,9 @@
     .dash-tbl-wrap{
         h2{
             margin-bottom: 20px;
+        }
+        div.alert{
+            margin-bottom: 30px;
         }
     }
     .sign-in-with, .ext-provider-form {
@@ -317,7 +378,7 @@
             padding: 12px 10px;
             color: $global-text-color;
             text-transform: none;
-            font: 1.4rem/1 $font-family-regular;
+            font: $global-font-size/1 $font-family-regular;
             position: relative;
             text-overflow: ellipsis;
             overflow: hidden;
@@ -430,4 +491,34 @@
 //used for dynamic form for checkbox field
 .minWt100{
     min-width: 100px;
+}
+.form-group-Job{
+    .form-control-static{
+        margin-top: 0;
+        padding-top: 5px;
+        display: block;
+    }
+}
+
+.col-action{
+    
+    @media (min-width:768px){
+        padding: 0!important;
+    }
+    .btn-remove{
+        min-width: 50px!important;
+        padding: 9px 0;
+        @media (max-width:767px){
+            margin-top: 5px;
+        }
+    }
+}
+.form-group-Friends{
+    h3{
+        margin-bottom: 25px;
+    }
+}
+
+.col-wrap{
+    margin-bottom: 5px;
 }

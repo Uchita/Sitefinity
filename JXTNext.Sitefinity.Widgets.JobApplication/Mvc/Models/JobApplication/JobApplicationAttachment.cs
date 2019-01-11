@@ -17,6 +17,12 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
 
         public static string APPLICATION_DOCUMENTS_UPLOAD_KEY = "application-documents";
         public static string APPLICATION_DOCUMENTS_UPLOAD_LIBRARY = "application-documents";
+
+        public static string PROFILE_RESUME_UPLOAD_KEY = "profile-resume";
+        public static string PROFILE_RESUME_UPLOAD_LIBRARY = "profile-resume";
+
+        public static string PROFILE_COVERLETTER_UPLOAD_KEY = "profile-coverletter";
+        public static string PROFILE_COVERLETTER_UPLOAD_LIBRARY = "profile-coverletter";
     }
 
     public class JobApplicationAttachmentItem
@@ -58,7 +64,8 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
     {
         Local = 1,
         GoogleDrive = 2,
-        Dropbox = 3
+        Dropbox = 3,
+        Saved = 4
     }
 
 }

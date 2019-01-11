@@ -96,7 +96,7 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
                     List<JobApplicationAttachmentUploadItem> attachments = this.GetLoginUserResumeFilesByEmail(this.Email);
                 }
 
-                //var response = _blConnector.GetMemberByEmail(Email);
+                
             }
             catch (Exception)
             {
@@ -106,12 +106,15 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
 
             VM.ResumeList = this.resumeList;
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
+            VM.JsonData = JsonConvert.SerializeObject(VM);
             return View(fullTemplateName,VM);
         }
 
 
-        [HttpGet]
-        public ActionResult DeleteResume(Guid resumeId)
+        
+
+        [HttpPost]
+        public JsonResult DeleteResume(Guid resumeId)
         {
             ProfileResumeViewModel VM = new ProfileResumeViewModel();
             try
@@ -132,15 +135,15 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
                         {
 
                             this.resumeList.Remove(temp);
-                            
+
                             res.Member.ResumeFiles = JsonConvert.SerializeObject(this.resumeList);
 
                             _blConnector.UpdateMember(res.Member);
                         }
                     }
                 }
-                  
-                
+
+
             }
             catch (Exception)
             {
@@ -149,13 +152,15 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
             }
 
             VM.ResumeList = this.resumeList;
+            VM.JsonData = JsonConvert.SerializeObject(VM);
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
-            return View(fullTemplateName, VM);
+            return new JsonResult { Data = VM };
         }
 
+        
 
         [HttpPost]
-        public ActionResult UploadResume([Bind(Include = "ResumeList")]ProfileResumeViewModel vm)
+        public JsonResult UploadResume()
         {
             var list = ViewBag.ResumeList;
             HttpPostedFileBase file = null;
@@ -175,7 +180,7 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
                         // process each file
                         file = Request.Files[0];
                         var fileExtension = file.FileName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).Last();
-                        List<string> extensionList = new List<string>() { "pdf","doc","docx","txt","xls","xlsx","rtf" };
+                        List<string> extensionList = new List<string>() { "pdf", "doc", "docx", "txt", "xls", "xlsx", "rtf" };
 
                         if (!extensionList.Contains(fileExtension.ToLower()))
                         {
@@ -212,7 +217,7 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
                         res.Member.ResumeFiles = JsonConvert.SerializeObject(this.resumeList);
                         _blConnector.UpdateMember(res.Member);
                         ViewBag.ResumeList = this.resumeList;
-                        
+
                     }
                 }
             }
@@ -222,9 +227,9 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
                 //throw ex;
             }
             VM.ResumeList = this.resumeList;
-
+            VM.JsonData = JsonConvert.SerializeObject(VM);
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
-            return View(fullTemplateName, VM);
+            return new JsonResult { Data = VM };
         }
 
 

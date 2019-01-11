@@ -149,6 +149,61 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return indeedClientSecret;
         }
 
+        public string GetCurrentSiteInstagramClientIdToken()
+        {
+            string instagramClientIdToken = String.Empty;
+            if (this._siteSettingsContract != null)
+                instagramClientIdToken = this._siteSettingsContract.InstagramClientIdToken;
+
+            return instagramClientIdToken;
+        }
+
+        public string GetCurrentSiteInstagramClientSecret()
+        {
+            string instagramClientSecret = String.Empty;
+            if (this._siteSettingsContract != null)
+                instagramClientSecret = this._siteSettingsContract.InstagramClientSecret;
+
+            return instagramClientSecret;
+        }
+
+        public string GetCurrentSiteInstagramAccessToken()
+        {
+            string instagramAccessToken = String.Empty;
+            if (this._siteSettingsContract != null)
+                instagramAccessToken = this._siteSettingsContract.InstagramAccessToken;
+
+            return instagramAccessToken;
+        }
+
+        
+        public void SetCurrentSiteInstagramAccessToken(string instagramAccessToken)
+        {
+            if (this._siteSettingsContract != null && !string.IsNullOrEmpty(instagramAccessToken))
+                 this._siteSettingsContract.InstagramAccessToken = instagramAccessToken;
+
+        }
+
+        public int GetCurrentSiteInstagramExpiration()
+        {
+            int instagramExpiration = 10;
+            if (this._siteSettingsContract != null)
+                instagramExpiration = this._siteSettingsContract.InstagramExpiration;
+
+            return instagramExpiration;
+        }
+
+        public int GetCurrentSiteInstagramMaxItems()
+        {
+            int instagramMaxItems = 5;
+            if (this._siteSettingsContract != null)
+                instagramMaxItems = this._siteSettingsContract.InstagramMaxItems;
+
+            return instagramMaxItems;
+        }
+
+
+
         private const string _itemType = "JXTNext.Sitefinity.Common.Models.CustomSiteSettings.CustomSiteSettingsContract";
         private CustomSiteSettingsContract _siteSettingsContract = null;
     }

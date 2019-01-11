@@ -6,27 +6,35 @@
 
 @{ 
     var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
-    var isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
+    bool isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
+    var defaultLogo = "/ResourcePackages/Hudson/assets/dist/images/defaultLogo.png";
 }
 
 <div class="result-meta">
-    <p><span class="cur-search-count">Your search resulted in: <span class="count-num">@ViewBag.TotalCount</span> position(s)</span> | <a href="/advancedsearch" title="New job search">New Search</a></p>
+    <p><span class="cur-search-count">Your search resulted in: <span class="count-num">@ViewBag.TotalCount</span> position(s)</span> | <a href="/advancedsearch" title="New job search">Search jobs</a></p>
 </div>
 
 <div class="search-top clearfix">
     @*<a class="btn btn-sm" href="">RSS FEED</a>
         <a class="btn btn-sm" href="">ADD FAVOURITE</a>
     *@
-    <div>Receive new jobs for this search by email.</div>
+   
     <div>
-        <input type="email" id="anonycreatejobalert" value="" placeholder="Receive new jobs for this search by email." class="jobalert-field" />
-        @if (isLoggedIn)
+
+        @if (ViewBag.IsMember)
         {
-            <a class="btn btn-sm jobalert-btn ml-5" href="/user-dashboard/Create" title="Create you job alert">CREATE JOB ALERT</a>
+            <input type="email" id="anonycreatejobalert" value="@ViewBag.Email" hidden />
+            <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+            <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
+            <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
         }
         else
         {
-            <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create you job alert">CREATE ANON JOB ALERT</a>
+            <div>Receive new jobs for this search by email.</div>
+            <input type="email" id="anonycreatejobalert" value="" placeholder="Enter email address" class="jobalert-field" />
+            <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+            <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
+            <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
         }
         <div class="select">
             <select id="sortOrder" class="default-select">
@@ -46,7 +54,7 @@
     <div id="pager" class="k-pager-wrap k-widget k-floatwrap" data-role="]">
         <ul class="k-pager-numbers k-reset"></ul>
     </div>
-
+    <input id="loginVar" value="@isLoggedIn" type="text" hidden/>
     <div class="popup-overlay">
         <div class="container">
             <div class="popup-box">
@@ -61,6 +69,7 @@
     </div>
 
     <script type="text/x-kendo-template" id="template">
+        
         <div class="job-holder search-result">
             <div class="search-result-top">
 
@@ -69,7 +78,10 @@
                         <h3><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="search-result-title">#:Title#</a></h3>
                     </div>
                     <div class="col-sm-4 col-xs-12 text-right">
-                        <span class="save-job" data-jobid="#:JobID#">Save job</span> | <a href='@ViewBag.EmailJobPageUrl?JobId=#:JobID#'>Send email</a><br />
+                        # if ( islogged ){ #
+                        <span class="save-job" data-jobid="#:JobID#">Save job</span> |
+                        # } #
+                        <a href='@ViewBag.EmailJobPageUrl?JobId=#:JobID#'>Send email</a><br />
                         <small>#:DateCreated_Representation#</small>
 
                     </div>
@@ -79,9 +91,9 @@
 
             <div class="search-result-description">
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 sc-job-meta-group">
                         <span class="meta-location">#:CustomData["CountryLocationArea[0].Filters[0].Value"]#</span><br />
-                        <span class="meta-salary">$#:CustomData["Salary.Filters[0].Min"]# - $#:CustomData["Salary.Filters[0].Max"]#</span><br />
+                                                                                                                   <span class="meta-salary">$#:CustomData["Salary.Filters[0].Min"]# - $#:CustomData["Salary.Filters[0].Max"]# #CustomData["Salary.Filters[0].Value"]#</span><br />
                         <span class="meta-worktype">#:CustomData["WorkType.Filters[0].Value"]#</span>
                     </div>
 
@@ -97,6 +109,9 @@
                         <p>#:ShortDescription#</p>
                         #}#
 
+                    </div>
+                    <div class="col-sm-2 pull-right">
+                        <img src="@defaultLogo" alt="Hudson" />
                     </div>
                 </div>
                 <div class="row jobCatHirarchy">
@@ -124,9 +139,14 @@
     <script type="text/javascript">
 
      @{
-          var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-          var json = serializer.Serialize(Model);
+         var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+         var json = serializer.Serialize(Model);
+         var emailPattern = "^[a-zA-Z0-9_][a-zA-Z0-9!#$%&amp;'*+/=?_`{|}~-]*(?:.[a-zA-Z0-9!#$%&amp;';*+/=?_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?.)+(?:[a-zA-Z]{2,})$";
+         var emptyMsg = "Please enter your email address.";
+         var invalidMsg = "Please enter your valid email address.";
+         
       }
+        var islogged = $("#loginVar").val(); //used in kendo template
 
     $(document).ready(function () {
         $(document).on('click', '.save-job', function (e) {
@@ -195,7 +215,7 @@
         $('.popup-overlay .fa-times').click(function () {
             $('.popup-overlay').fadeOut('fast');
         });
-
+        
     });
 
     var model = @Html.Raw(json);
@@ -256,10 +276,31 @@
         };
 
 
-        $('#anon-job-alert').click(function () {
+        $('#anon-job-alert').on("click",function () {
             var email = $('#anonycreatejobalert').val();
+            
+            var pattern = new RegExp('@emailPattern');
+            if (email.length < 1) {
+                $('.jobalert-error-message').removeClass('hidden').text('@emptyMsg');
+                return false;
+            }
+            else if (!pattern.test(email)) {
+                $('.jobalert-error-message').removeClass('hidden').text('@invalidMsg');
+                return false;
+            }
+            
+            if (filterModel.Filters !== null && filterModel.Filters.length === 0) {
+                var filter = {};
+                filter.rootId = "CountryLocationArea";
+                searchTarget = null;
+                values = [];
+                filterModel.Filters.push(filter);
+            }
+
+
             var alertData = { filterModel: filterModel, email: email };
             var urlPath = $(location).attr('pathname') + "/CreateAnonymousJobAlert";
+            
             $.ajax({
                 type: 'POST',
                 cache: false,
@@ -269,10 +310,13 @@
                 success: function (response) {
                     console.log(response);
                     if (response.Success == true) {
-                        
+                        $('#anonycreatejobalert, #anon-job-alert').hide();
+                        //$(this).hide();
+                        $('.jobalert-error-message').addClass('hidden');
+                        $('.jobalert-message').removeClass('hidden');
                     }
                     else {
-                        
+                        $('.jobalert-error-message').removeClass('hidden');
                     }
                 },
                 error: function (response) { // Error

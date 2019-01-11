@@ -21,6 +21,7 @@ using Telerik.Sitefinity.Security.Claims;
 using JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication;
 using System.IO;
 using Telerik.Sitefinity.Abstractions;
+using System.Text;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 {
@@ -76,13 +77,27 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 if (_socialHandlerLogics != null)
                 {
                     Log.Write("_socialHandlerLogics not null", ConfigurationPolicy.ErrorLog);
+                    if(Request.InputStream != null)
+                        Request.InputStream.Position = 0;
+
                     StreamReader reader = new StreamReader(Request.InputStream);
                     string indeedJsonStringData = String.Empty;
+                    string indeedJsonStringData2 = null;
                     if (reader != null)
                     {
+                        indeedJsonStringData = reader.ReadToEnd();
                         Log.Write("indeedJsonStringData " + indeedJsonStringData, ConfigurationPolicy.ErrorLog);
                         Log.Write("Request.InputStream length " + Request.InputStream.Length, ConfigurationPolicy.ErrorLog);
-                        indeedJsonStringData = reader.ReadToEnd();
+                        Log.Write("Request.InputStream position " + Request.InputStream.Position, ConfigurationPolicy.ErrorLog);
+                        Log.Write("Request.InputStream can read " + Request.InputStream.CanRead, ConfigurationPolicy.ErrorLog);
+                        Log.Write("Request.InputStream CanSeek " + Request.InputStream.CanSeek, ConfigurationPolicy.ErrorLog);
+                        Log.Write("Request.InputStream Canwrite " + Request.InputStream.CanWrite, ConfigurationPolicy.ErrorLog);
+                    }
+
+                    using (StreamReader reader2 = new StreamReader(Request.InputStream, Encoding.UTF8))
+                    {
+                        indeedJsonStringData2 = reader.ReadToEnd();
+                        Log.Write("indeedJsonStringData2 " + indeedJsonStringData2, ConfigurationPolicy.ErrorLog);
                     }
 
                     var result = _socialHandlerLogics.ProcessSocialHandlerData(code, state, indeedJsonStringData);
@@ -111,6 +126,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 PhoneNumber = result.PhoneNumber
                             };
                             var overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
+                            
                             Log.Write("overrideEmail is : " + overrideEmail, ConfigurationPolicy.ErrorLog);
                             if (overrideEmail != null && status == JobApplicationStatus.Available)
                             {
@@ -126,20 +142,22 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     PathToAttachment = identifier.ToString() + "_" + result.FileName,
                                     Status = "Ready"
                                 };
-
+                                Log.Write("overrideEmail uploadItem object created", ConfigurationPolicy.ErrorLog);
                                 List<JobApplicationAttachmentUploadItem> attachments = new List<JobApplicationAttachmentUploadItem>();
                                 attachments.Add(uploadItem);
-
+                                Log.Write("overrideEmail uploadItem attachment added", ConfigurationPolicy.ErrorLog);
                                 string resumeAttachmentPath = JobApplicationAttachmentUploadItem.GetAttachmentPath(attachments, JobApplicationAttachmentType.Resume);
+                                Log.Write("After resume GetAttachmentPath", ConfigurationPolicy.ErrorLog);
                                 string coverletterAttachmentPath = JobApplicationAttachmentUploadItem.GetAttachmentPath(attachments, JobApplicationAttachmentType.Coverletter);
+                                Log.Write("After cover letter GetAttachmentPath", ConfigurationPolicy.ErrorLog);
 
                                 string htmlEmailContent = _jobApplicationService.GetHtmlEmailContent(this.EmailTemplateId, this.EmailTemplateProviderName, this._itemType);
-
+                                Log.Write("After GetHtmlEmailContent", ConfigurationPolicy.ErrorLog);
                                 // Email notification settings
                                 EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
-                                                                                                    new EmailTarget(SitefinityHelper.GetUserFirstNameById(ClaimsManager.GetCurrentIdentity().UserId), overrideEmail),
+                                                                                                    new EmailTarget(SitefinityHelper.GetUserFirstNameById(SitefinityHelper.GetUserByEmail(overrideEmail).Id), overrideEmail),
                                                                                                     this.EmailTemplateEmailSubject,
-                                                                                                    htmlEmailContent);
+                                                                                                    htmlEmailContent,null,null,null,null);
 
                                 Log.Write("emailNotificationSettings after: ", ConfigurationPolicy.ErrorLog);
                                 // CC and BCC emails
@@ -210,7 +228,6 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 viewModel.Status = status;
                             }
                         }
-
                         else
                         {
                             Log.Write("_jobApplicationService is null", ConfigurationPolicy.ErrorLog);

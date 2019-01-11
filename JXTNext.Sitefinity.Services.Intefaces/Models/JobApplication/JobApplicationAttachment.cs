@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Telerik.Sitefinity.Abstractions;
 using Telerik.Sitefinity.GenericContent.Model;
 using Telerik.Sitefinity.Libraries.Model;
 using Telerik.Sitefinity.Modules.Libraries;
@@ -125,6 +126,38 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
             return result;
         }
 
+        public static Stream GetFileStreamFromAmazonS3(string providerName, string srcLibName,int attachmentType,string fileTitle)
+        {
+            LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
+            var libManagerSecurityCheckStatus = librariesManager.Provider.SuppressSecurityChecks;
+            string documentFileName = string.Empty;
+            try
+            {
+                var docLibs = librariesManager.GetDocumentLibraries();
+                
+                foreach (var lib in docLibs)
+                {
+                    if (lib.Title.ToLower() == srcLibName)
+                    {
+                        var items = lib.Items();
+                        var srcdocument = lib.Items().Where(item => item.Title.Contains(fileTitle)).FirstOrDefault();
+
+                        if (srcdocument != null && srcdocument.Status != ContentLifecycleStatus.Deleted)
+                        {
+                            return librariesManager.Download(srcdocument.Id);
+                            //return new FileStream(srcdocument.FilePath,FileMode.Open);
+                        }
+
+                    }
+                }
+            }
+            finally
+            {
+                // Reset the suppress security checks
+                librariesManager.Provider.SuppressSecurityChecks = libManagerSecurityCheckStatus;
+            }
+            return null;
+        }
 
         public static  string FetchFromAmazonS3(string providerName, JobApplicationAttachmentType attachmentType, string itemTitle)
         {
@@ -155,6 +188,7 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
         public static string GetAttachmentPath(List<JobApplicationAttachmentUploadItem> attachmentItems, JobApplicationAttachmentType attachmentType)
         {
             JobApplicationAttachmentUploadItem item = attachmentItems.Where(c => c.AttachmentType == attachmentType).FirstOrDefault();
+            Log.Write("In GetAttachmentPath method item", ConfigurationPolicy.ErrorLog);
             if (item == null)
                 return null;
             return item.PathToAttachment;

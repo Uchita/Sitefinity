@@ -25,6 +25,8 @@ using System.IO;
 using System.Web;
 using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert;
 using JXTNext.Sitefinity.Services.Intefaces;
+using System.Dynamic;
+using Telerik.Sitefinity.Security.Claims;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -37,7 +39,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         IEnumerable<IBusinessLogicsConnector> _bConnectorsList;
         IEnumerable<IOptionsConnector> _oConnectorsList;
         IJobAlertService _jobAlertService;
-
+        private char[] charsToTrim = { '*', '\'', '"', '~', '!', '@', '#', '$', '%', '^', '&', '(', ')', '-', '_', '+', '=', '{', '}' };
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
         /// </summary>
@@ -55,6 +57,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
+        private readonly string CategoryString = "Categories";
+        private readonly string RangeString = "Range";
+        private readonly static string SalaryString = "Salary";
+        private readonly static string CompanyString = "CompanyName";
+
         public JobSearchResultsController(IEnumerable<IBusinessLogicsConnector> _bConnectors, IEnumerable<IOptionsConnector> _oConnectors, IJobAlertService jobAlertService)
         {
             _jobAlertService = jobAlertService;
@@ -62,13 +69,18 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             _oConnectorsList = _oConnectors;
             _BLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
             _OptionsConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
+            
         }
 
         // GET: JobSearchResults
         public ActionResult Index([ModelBinder(typeof(JobSearchResultsFilterBinder))] JobSearchResultsFilterModel filterModel, int? jobId)
         {
             dynamic dynamicJobResultsList = null;
-
+            if(filterModel != null && !string.IsNullOrEmpty(filterModel.Keywords))
+            {
+                filterModel.Keywords = filterModel.Keywords.Trim(charsToTrim);
+            }
+            
             if (jobId.HasValue)
             {
                 IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = jobId.Value };
@@ -202,8 +214,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             dynamic dynamicJobResultsList = null;
 
+            
             if (filterModel != null)
             {
+                if (!string.IsNullOrEmpty(filterModel.Keywords))
+                {
+                    filterModel.Keywords = filterModel.Keywords.Trim(charsToTrim);
+                }
                 ISearchJobsResponse response = GetJobSearchResultsResponse(filterModel);
                 dynamicJobResultsList = response as dynamic;
             }
@@ -220,7 +237,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public JsonResult CreateAnonymousJobAlert(JobSearchResultsFilterModel filterModel, string email)
         {
             string alertName = String.Empty;
-
+            var jsonData = JsonConvert.SerializeObject(filterModel);
+            dynamic searchModel = new ExpandoObject();
+            var jsonModel  = _mapToCronJobJsonModel(filterModel);
+            searchModel.search = jsonModel.search;
             // Creating the job alert model
             JobAlertViewModel alertModel = new JobAlertViewModel()
             {
@@ -228,6 +248,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 Salary = new JobAlertSalaryFilterReceiver(),
                 Email = email
             };
+
+
 
             if(filterModel != null)
             {
@@ -287,6 +309,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 alertName = "All search";
 
             alertModel.Name = alertName;
+            searchModel.jobAlertViewModelData = alertModel;
+            alertModel.Data = JsonConvert.SerializeObject(searchModel);
             var response = _jobAlertService.MemberJobAlertUpsert(alertModel);
             return new JsonResult { Data = response };
         }
@@ -437,8 +461,17 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ViewBag.EmailJobPageUrl = SitefinityHelper.GetPageUrl(this.EmailJobPageId);
             ViewBag.HidePushStateUrl = this.HidePushStateUrl;
             ViewBag.PageFullUrl = SitefinityHelper.GetPageFullUrl(SiteMapBase.GetActualCurrentNode().Id);
-
             ViewBag.IsMember = SitefinityHelper.IsUserLoggedIn("Member");
+
+            var currentIdentity = ClaimsManager.GetCurrentIdentity();
+            if (currentIdentity.IsAuthenticated)
+            {
+                var currUser = SitefinityHelper.GetUserById(currentIdentity.UserId);
+                if (currUser != null)
+                {
+                    ViewBag.Email = currUser.Email;
+                }
+            }
 
             return response;
         }
@@ -507,6 +540,158 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
             return filtersData;
+        }
+
+        private dynamic MapJobSearchFilterToClassification(JobSearchFilterReceiverItem filterItem)
+        {
+
+            if (filterItem != null)
+            {
+                dynamic obj = new ExpandoObject();
+                obj.TargetValue = filterItem.ItemID;
+
+                if (filterItem.SubTargets != null && filterItem.SubTargets.Count > 0)
+                {
+                    obj.SubTargets = new List<dynamic>();
+                    foreach (var item in filterItem.SubTargets)
+                    {
+                        dynamic temp = new ExpandoObject();
+                        var classification = MapJobSearchFilterToClassification(item);
+                        if(classification != null)
+                        {
+                            obj.SubTargets.Add(classification);
+                        }
+                    }
+
+                    if(obj.SubTargets.Count == 0)
+                    {
+                        ((IDictionary<String, Object>)obj).Remove("SubTargets");
+                    }
+                }
+
+                return obj;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+        private dynamic _mapToClassificationData(JobSearchFilterReceiver filter)
+        {
+            if (filter.rootId.ToLower() != SalaryString.ToLower())
+            {
+                dynamic classification = new ExpandoObject();
+                classification.SearchType = CategoryString;
+                classification.ClassificationRootName = filter.rootId;
+
+                var filterData = filter.values?
+                    .Select(x => MapJobSearchFilterToClassification(x))
+                    .Where(x => x != null)
+                    .ToList();
+                if (filterData != null && filterData.Count > 0)
+                {
+                    classification.TargetClassifications = filterData;
+                }
+
+                return classification;
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
+
+        private string GetClassificationNameById(string classificationId)
+        {
+            var topLovelCategories = SitefinityHelper.GetTopLevelCategories();
+
+            foreach (var taxon in topLovelCategories)
+            {
+                JobFilterRoot filterRoot = new JobFilterRoot() { Filters = new List<JobFilter>() };
+                filterRoot.ID = taxon.Id.ToString().ToUpper();
+                filterRoot.Name = taxon.Title;
+                if(classificationId == filterRoot.ID)
+                {
+                    return filterRoot.Name;
+                }
+                var hierarchicalTaxon = taxon as HierarchicalTaxon;
+                if (hierarchicalTaxon != null)
+                {
+                    foreach (var childTaxon in hierarchicalTaxon.Subtaxa)
+                    {
+                        var jobFilter = new JobFilter() { Filters = new List<JobFilter>() };
+                        ProcessCategories(childTaxon, jobFilter);
+                        filterRoot.Filters.Add(jobFilter);
+                    }
+                }
+            }
+            return null;
+        }
+
+        private dynamic _mapToCronJobJsonModel(JobSearchResultsFilterModel filterModel)
+        {
+            var filterData = filterModel.Filters;
+            dynamic json = new ExpandoObject();
+            json.FieldRanges = null;
+            json.FieldSearches = null;
+            json.ClassificationsSearchCriteria = new List<dynamic>();
+            json.KeywordsSearchCriteria = new List<dynamic>();
+            var companyFilter = filterData.Where(x => x.rootId.ToLower() == CompanyString.ToLower()).FirstOrDefault();
+            if (companyFilter != null && companyFilter.values != null && companyFilter.values.Count > 0)
+            {
+                var companyFieldSearch = new List<dynamic>();
+                foreach (var filter in companyFilter.values)
+                {
+                    dynamic company = new ExpandoObject();
+                    company.CompanyId = filter.ItemID;
+                    companyFieldSearch.Add(company);
+                }
+                if (companyFieldSearch.Count > 0)
+                {
+                    json.FieldSearches = companyFieldSearch;
+                }
+            }
+
+            if (filterData != null)
+            {
+                foreach (var filter in filterData)
+                {
+                    if (filter != null && filter.rootId.ToLower() != CompanyString.ToLower())
+                    {
+                        var classificationData = _mapToClassificationData(filter);
+                        if(classificationData != null)
+                        {
+                            json.ClassificationsSearchCriteria.Add(classificationData);
+                        }
+                    }
+                }
+
+                if(filterModel.Salary != null )
+                {
+                    dynamic classification = new ExpandoObject();
+                    classification.SearchType = RangeString;
+                    classification.ClassificationRootName = SalaryString;
+                    classification.TargetValue = filterModel.Salary.TargetValue;
+                    classification.UpperRange = filterModel.Salary.UpperRange;
+                    classification.LowerRange = filterModel.Salary.LowerRange;
+                    json.ClassificationsSearchCriteria.Add(classification);
+                }
+            }
+
+            if (filterModel.Keywords != null && filterModel.Keywords.Length > 0)
+            {
+                filterModel.Keywords.Split(',').ToList().ForEach(x => json.KeywordsSearchCriteria.Add(new { Keyword = x }));
+            }
+            else
+            {
+                json.KeywordsSearchCriteria = null;
+            }
+            
+
+            return new { search = json };
         }
 
         private string _serializedFilterData;

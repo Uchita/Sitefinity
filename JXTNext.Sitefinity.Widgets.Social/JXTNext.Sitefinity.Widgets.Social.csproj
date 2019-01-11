@@ -49,8 +49,8 @@
     <Reference Include="IdentityServer3.AccessTokenValidation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
       <HintPath>..\packages\Progress.Sitefinity.IdentityServer3.AccessTokenValidation.1.3.0\lib\net45\IdentityServer3.AccessTokenValidation.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.SocialMedia, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXT.JXTNext.SocialMedia.1.0.2\lib\netstandard2.0\JXTNext.SocialMedia.dll</HintPath>
+    <Reference Include="JXTNext.SocialMedia, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXT.JXTNext.SocialMedia.1.0.3\lib\netstandard2.0\JXTNext.SocialMedia.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.IdentityModel.Protocol.Extensions, Version=1.0.2.33, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Protocol.Extensions.1.0.2.206221351\lib\net45\Microsoft.IdentityModel.Protocol.Extensions.dll</HintPath>
@@ -127,7 +127,11 @@
     <Reference Include="RazorGenerator.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\RazorGenerator.Mvc.2.3.12\lib\net40\RazorGenerator.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Skybrud.Social, Version=0.9.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Skybrud.Social.0.9.6.0\lib\net40\Skybrud.Social.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.20622.1351, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -163,6 +167,7 @@
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Routing" />
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
     </Reference>
@@ -302,12 +307,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
+    <Compile Include="Mvc\Configuration\InstagramConfig.cs" />
+    <Compile Include="Mvc\Controllers\InstagramController.cs" />
+    <Compile Include="Mvc\Controllers\OAuthController.cs" />
     <Compile Include="Mvc\Controllers\SocialHandlerController.cs" />
     <Compile Include="Mvc\Controllers\SocialLinkController.cs" />
     <Compile Include="Mvc\Logics\IProcessSocialMediaData.cs" />
     <Compile Include="Mvc\Logics\ProcessIndeedData.cs" />
     <Compile Include="Mvc\Logics\ProcessSeekData.cs" />
     <Compile Include="Mvc\Logics\SocialHandlerLogics.cs" />
+    <Compile Include="Mvc\Models\InstagramModel.cs" />
     <Compile Include="Mvc\Models\SocialLinkModel.cs" />
     <Compile Include="Mvc\Models\SocialMediaProcessedResponse.cs" />
     <Compile Include="Mvc\Models\SocialViewModel.cs" />
@@ -321,8 +330,13 @@
     <EmbeddedResource Include="Mvc\Views\SocialLink\DesignerView.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\SocialLink\Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\SocialHandler\SocialHandler.Simple.cshtml" />
+    <None Include="Mvc\Views\Instagram\Authorize.cshtml" />
+    <None Include="Mvc\Views\Instagram\Default.cshtml" />
+    <None Include="Mvc\Views\Instagram\DesignerView.Simple.cshtml" />
+    <None Include="Mvc\Views\Instagram\DesignerView.Simple.json" />
     <None Include="Mvc\Views\SocialHandler\DesignerView.Simple.cshtml" />
     <None Include="Mvc\Views\SocialHandler\DesignerView.Simple.json" />
+    <None Include="Mvc\Views\Web.config" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />
   </ItemGroup>

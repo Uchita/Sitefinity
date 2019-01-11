@@ -18,6 +18,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
         public string LocationsRootName { get; set; }
         public string ClassificationsSEORouteName { get; set; }
 
+        public string ApplicationEmail { get; set; }
+
         // CustomData is of Flat JSON, so we are getting the values as .Sublevel[0]
         // Process this until we find the key .Sublevel[0] as null
         public static void ProcessCustomData(string key, Dictionary<string, string> customData, OrderedDictionary ordDict)

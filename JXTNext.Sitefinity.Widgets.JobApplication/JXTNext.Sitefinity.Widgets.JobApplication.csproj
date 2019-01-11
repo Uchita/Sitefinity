@@ -346,6 +346,7 @@
     <Compile Include="Mvc\Models\JobApplication\JobApplicationAttachment.cs" />
     <Compile Include="Mvc\Models\JobApplication\JobApplicationStatus.cs" />
     <Compile Include="Mvc\Models\JobApplication\JobApplicationViewModel.cs" />
+    <Compile Include="Mvc\Models\JobApplication\ProfileResume.cs" />
     <Compile Include="Mvc\StringResources\JobApplicationResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -370,6 +371,10 @@
     <ProjectReference Include="..\JXTNext.Sitefinity.Connector\JXTNext.Sitefinity.Connector.csproj">
       <Project>{BF418B44-EBCE-499F-BBD3-6BA98A24E144}</Project>
       <Name>JXTNext.Sitefinity.Connector</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Services.Intefaces\JXTNext.Sitefinity.Services.Intefaces.csproj">
+      <Project>{94381396-d85e-469c-b828-24cf03548df5}</Project>
+      <Name>JXTNext.Sitefinity.Services.Intefaces</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

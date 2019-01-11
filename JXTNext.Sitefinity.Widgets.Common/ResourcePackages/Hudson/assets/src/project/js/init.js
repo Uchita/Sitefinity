@@ -94,7 +94,7 @@ ThemeGlobal.MobileCarouselInit = function () {
     var slider = $(".mobile-owl-carousel");
     if (slider.length > 0) {
         slider.each(function () {
-            if (checkWidth >= 767) {
+            if (checkWidth >= 768) {
                 $(this).trigger('destroy.owl.carousel');
                 $(this).removeClass('owl-carousel owl-theme');
             } else if (checkWidth < 768 && !$(this).hasClass("owl-loaded")) {
@@ -225,12 +225,13 @@ $(document).ready(function () {
         items: 1,
         loop: true,
         autoplay: true,
+        autoplayTimeout: 7000,
     });
-
+    
     $('.owl-consultants').owlCarousel({
         margin: 25,
         autoplay: true,
-        autoplayTimeout: 5000,
+        autoplayTimeout: 7000,
         autoplayHoverPause: true,
         loop: false,
         responsive: {
@@ -272,7 +273,7 @@ $(document).ready(function () {
             }
         }
     });
-    $('.owl-life-at-hudson').owlCarousel({
+    $('.owl-instagram').owlCarousel({
         loop: false,
         margin: 15,
         responsive: {
@@ -355,9 +356,31 @@ $(document).ready(function () {
     }
 
     if( $('.search-toggle').length ){
-        $('.search-toggle').on('click', function(){
+        $('body').on('click', '.search-toggle', function(){
            $('.keywordfilter').toggle(); 
         });
+    }
+    
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
+
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))  // If Internet Explorer, return version number
+    {
+        $('#userid').on('click',function(){
+            $(this).removeAttr('readonly').blur().focus();
+        });
+    }
+    $('#userid').on('focus, touchstart',function(){
+        $(this).removeAttr('readonly');
+    });
+
+    //contact page : office detail page
+    //map replacement
+
+    if( $('.contact-detail-page').length && $('.map-placeholder').length ){
+        
+            $('.map-placeholder').addClass('hidden-xs').clone().addClass('visible-xs').removeClass('hidden-xs').insertAfter( $('.mobile-breadcrumb') );
+        
     }
 
 });

@@ -230,6 +230,10 @@
     <Compile Include="Helpers\ConversionHelper.cs" />
     <Compile Include="Helpers\SitefinityHelper.cs" />
     <Compile Include="Models\IRequestSession.cs" />
+    <Compile Include="Models\Robots\RobotSettings.cs" />
+    <Compile Include="Models\Robots\RobotSettingsConfig.cs" />
+    <Compile Include="Models\Robots\RobotSettingsContract.cs" />
+    <Compile Include="Models\Robots\RobotSettingsUISettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
+using Telerik.Sitefinity.Abstractions;
 using Telerik.Sitefinity.DynamicModules;
 using Telerik.Sitefinity.Model;
 using Telerik.Sitefinity.Security;
@@ -18,6 +19,7 @@ namespace JXTNext.Sitefinity.Services.Services
 {
     public class JXTNextJobApplicationService : IJobApplicationService
     {
+        private static readonly string awsProvider = "private-amazon-s3-provider";
         public string GetOverrideEmail(ref JobApplicationStatus status, ApplicantInfo applicantInfo, bool isSocialMedia = false)
         {
             string ovverideEmail = null;
@@ -27,11 +29,8 @@ namespace JXTNext.Sitefinity.Services.Services
                 var currUser = SitefinityHelper.GetUserById(ClaimsManager.GetCurrentIdentity().UserId);
                 if (currUser != null)
                 {
-                    // Logout the current user and login social media user
-                    if (isSocialMedia && currUser.Email.ToUpper() != applicantInfo.Email.ToUpper())
-                        SitefinityHelper.LogoutCurrentUser();
-                    else
-                        return currUser.Email;
+                    Log.Write("User is already logged In "+ currUser.Email, ConfigurationPolicy.ErrorLog);
+                    return currUser.Email;
                 }
             }
 
@@ -39,33 +38,13 @@ namespace JXTNext.Sitefinity.Services.Services
             if (!string.IsNullOrEmpty(applicantInfo.Email))
             {
                 Telerik.Sitefinity.Security.Model.User existingUser = SitefinityHelper.GetUserByEmail(applicantInfo.Email);
-
+                
                 if (existingUser != null)
                 {
                     #region Entered Email exists in Sitefinity User list
-                    //instantiate the Sitefinity user manager
-                    //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
-                    UserManager userManager = UserManager.GetManager();
-                    if (userManager.ValidateUser(applicantInfo.Email, applicantInfo.Password))
-                    {
-                        //if you need to get the user instance use the out parameter
-                        Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
-                        SecurityManager.AuthenticateUser(userManager.Provider.Name, applicantInfo.Email, applicantInfo.Password, false, out userToAuthenticate);
-                        if (userToAuthenticate == null)
-                        {
-                            status = JobApplicationStatus.NotAbleToLoginCreatedUser;
-                            return ovverideEmail;
-                        }
-                        else
-                        {
-                            ovverideEmail = userToAuthenticate.Email;
-                        }
-                    }
-                    else
-                    {
-                        status = JobApplicationStatus.NotAbleToLoginCreatedUser;
-                        return ovverideEmail;
-                    }
+                    Log.Write("User is already exists in portal " + existingUser.Email, ConfigurationPolicy.ErrorLog);
+                    ovverideEmail = existingUser.Email;
+                    return ovverideEmail;
                     #endregion
                 }
                 else
@@ -76,6 +55,7 @@ namespace JXTNext.Sitefinity.Services.Services
 
                     if (membershipCreateStatus != MembershipCreateStatus.Success)
                     {
+                        Log.Write("User is created in portal " + existingUser.Email, ConfigurationPolicy.ErrorLog);
                         status = JobApplicationStatus.NotAbleToCreateUser;
                         return ovverideEmail;
                     }
@@ -124,6 +104,11 @@ namespace JXTNext.Sitefinity.Services.Services
             return attachments;
         }
 
+        public Stream GetFileStreamFromAmazonS3(string srcLibName ,int attachmentType, string id)
+        {
+            return JobApplicationAttachmentUploadItem.GetFileStreamFromAmazonS3(awsProvider, srcLibName, attachmentType, id);
+        }
+
         public bool UploadFiles(List<JobApplicationAttachmentUploadItem> attachments)
         {
             bool hasFailedUpload = false;
@@ -146,8 +131,10 @@ namespace JXTNext.Sitefinity.Services.Services
                 var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(emailTemplateId.ToUpper()));
                 htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
             }
-
+            Log.Write("Inside GetHtmlEmailContent method ", ConfigurationPolicy.ErrorLog);
             return htmlEmailContent;
         }
+
+        
     }
 }

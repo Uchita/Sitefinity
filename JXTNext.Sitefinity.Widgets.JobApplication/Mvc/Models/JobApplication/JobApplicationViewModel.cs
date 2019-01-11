@@ -16,6 +16,8 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
         public string ApplicationMessage { get; set; }
         public JobApplicationUploadFilesModel UploadFiles { get; set; }
         public int JobId { get; set; }
+        public string ApplicationEmail { get; set; }
+        public string ContactDetails { get; set; }
         public List<ApplyWithSocialMedia> ApplyWithSocialMediaInfo { get; set; }
     }
 
@@ -41,6 +43,9 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
         public string ResumeSelectedType { get; set; }
         public string CoverLetterSelectedType { get; set; }
         public string DocumentsSelectedType { get; set; }
+        public string ApplicationEmail { get; set; }
+        public string ContactDetails { get; set; }
+        public string CompanyName { get; set; }
     }
 
     public class UploadFilesFormPostModel

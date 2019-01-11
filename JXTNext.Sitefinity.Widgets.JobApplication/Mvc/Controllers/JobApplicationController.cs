@@ -124,7 +124,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         applyJobModel.ResumeSelectedType = Request.Form["ResumeSelectedType"];
                         applyJobModel.CoverLetterSelectedType = Request.Form["CoverLetterSelectedType"];
                         applyJobModel.DocumentsSelectedType = Request.Form["DocumentsSelectedType"];
-
+                        applyJobModel.ContactDetails = Request.Form["ContactDetails"];
+                        applyJobModel.ApplicationEmail = Request.Form["ApplicationEmail"];
+                        applyJobModel.CompanyName = Request.Form["CompanyName"];
+                        
                         return ApplyJob(applyJobModel);
                     }
 
@@ -183,6 +186,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = jobid.Value };
                 IGetJobListingResponse jobListingResponse = _blConnector.GuestGetJob(jobListingRequest);
                 ViewBag.JobTitle = jobListingResponse.Job.Title;
+                jobApplicationViewModel.ApplicationEmail = jobListingResponse.Job.CustomData["ApplicationMethod.ApplicationEmail"];
+                jobApplicationViewModel.ContactDetails = jobListingResponse.Job.CustomData["ContactDetails"];
                 ViewBag.CompanyName = jobListingResponse.Job.CustomData["CompanyName"];
                 ViewBag.JobLocation = jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"];
             }
@@ -326,7 +331,38 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             // Email Notification Settings
             // In the desinger form those are going to be provided by separator as semicolon(;)
             string htmlEmailContent = this.GetHtmlEmailContent();
+            string htmlAdvertiserEmailContent = this.GetAdvertiserHtmlEmailContent();
             EmailNotificationSettings emailNotificationSettings = null;
+
+            Stream resumeFileStream = null;
+            Stream coverLetterFileStream = null;
+
+            string resumeFileName = null;
+            string coverLetterFileName = null;
+            foreach (var item in attachments)
+            {
+                if(item.AttachmentType == JobApplicationAttachmentType.Resume)
+                {
+                    resumeFileStream = item.FileStream;
+                    resumeFileName = item.FileName;
+                }
+
+                if (item.AttachmentType == JobApplicationAttachmentType.Coverletter)
+                {
+                    coverLetterFileName = item.FileName;
+                    coverLetterFileStream = item.FileStream;
+                }
+
+            }
+
+
+            EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
+                                                                                                new EmailTarget(applyJobModel.ContactDetails, applyJobModel.ApplicationEmail),
+                                                                                                this.AdvertiserEmailTemplateEmailSubject,
+                                                                                                htmlAdvertiserEmailContent, resumeFileStream,resumeFileName,coverLetterFileStream,coverLetterFileName);
+            //advertiserEmailNotificationSettings.AddBCC("suresh", "suresh@jxt.com.au");
+            //advertiserEmailNotificationSettings.AddBCC("Bhauna Singh", "bee@jxt.com.au");
+
             Log.Write($"currentIdentity.IsAuthenticated value is {currentIdentity.IsAuthenticated}", ConfigurationPolicy.ErrorLog);
             if (currentIdentity.IsAuthenticated)
             {
@@ -334,7 +370,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(SitefinityHelper.GetUserFirstNameById(currentIdentity.UserId), ovverideEmail),
                                                                                                 this.EmailTemplateEmailSubject,
-                                                                                                htmlEmailContent);
+                                                                                                htmlEmailContent,null,null,null,null);
             }
             else
             {
@@ -344,14 +380,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(SitefinityHelper.GetUserFirstNameById(ClaimsManager.GetCurrentIdentity().UserId), ovverideEmail),
                                                                                                 this.EmailTemplateEmailSubject,
-                                                                                                htmlEmailContent);
+                                                                                                htmlEmailContent, null, null, null, null);
                 }
                 else
                 {
                     new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(string.Empty, ovverideEmail),
                                                                                                 this.EmailTemplateEmailSubject,
-                                                                                                htmlEmailContent);
+                                                                                                htmlEmailContent, null, null, null, null);
                 }
                 
             }
@@ -374,10 +410,20 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
             #endregion
-
+            
             //Create Application 
             IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(
-                new JXTNext_MemberApplicationRequest { ApplyResourceID = applicationResultID, MemberID = memberID, ResumePath = resumeAttachmentPath, CoverletterPath = coverletterAttachmentPath, DocumentsPath = documentsAttachmentPath, EmailNotification = emailNotificationSettings },
+                new JXTNext_MemberApplicationRequest {
+                    ApplyResourceID = applicationResultID,
+                    MemberID = memberID,
+                    ResumePath = resumeAttachmentPath,
+                    CoverletterPath = coverletterAttachmentPath,
+                    DocumentsPath = documentsAttachmentPath,
+                    EmailNotification = emailNotificationSettings,
+                    AdvertiserEmailNotification = advertiserEmailNotificationSettings,
+                    AdvertiserName = applyJobModel.ContactDetails,
+                    CompanyName = applyJobModel.CompanyName
+                },
                 ovverideEmail);
 
             var isJobApplicationSuccess = false;
@@ -547,6 +593,21 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
                 var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
                 var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.EmailTemplateId.ToUpper()));
+                htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
+            }
+
+            return htmlEmailContent;
+        }
+
+        private string GetAdvertiserHtmlEmailContent()
+        {
+            string htmlEmailContent = String.Empty;
+            this.AdvertiserEmailTemplateId = "3DCBDCE5-F190-4FBA-BE51-074F2E034A04";
+            if (!String.IsNullOrEmpty(this.AdvertiserEmailTemplateId))
+            {
+                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
+                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
+                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.AdvertiserEmailTemplateId.ToUpper()));
                 htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
             }
 
@@ -957,6 +1018,21 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string EmailTemplateSenderName { get; set; }
         public string EmailTemplateSenderEmailAddress { get; set; }
         public string EmailTemplateEmailSubject { get; set; }
+        //Job Owner Email template
+        public string AdvertiserEmailTemplateProviderName
+        {
+            get { return _emailTemplateProviderName; }
+            set { this._emailTemplateProviderName = value; }
+        }
+        public string AdvertiserEmailTemplateId { get; set; }
+        public string AdvertiserEmailTemplateName { get; set; }
+        public string AdvertiserEmailTemplateCC { get; set; }
+        public string AdvertiserEmailTemplateBCC { get; set; }
+        public string AdvertiserEmailTemplateSenderName { get; set; }
+        public string AdvertiserEmailTemplateSenderEmailAddress { get; set; }
+        public string AdvertiserEmailTemplateEmailSubject { get; set; }
+
+
         public string CssClass { get; set; }
         public string SerializedCloudSettingsParams { get; set; }
         public string RegisterPageId { get; set; }

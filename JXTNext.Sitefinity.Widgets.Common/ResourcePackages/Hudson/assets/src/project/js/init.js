@@ -385,10 +385,10 @@ $(document).ready(function () {
 
     //user dashboard : job alert create and edit
     //scroll to the job alert widget
-    if( window.location.pathname.toLowerCase().indexOf('user-dashboard/create') > -1 ){
-        $('body, html').animate({
-            scrollTop: $('#createalert-widget').offset().top
-        },1000);
+    if( window.location.pathname.toLowerCase().indexOf('user-dashboard/create') > -1 || window.location.pathname.toLowerCase().indexOf('user-dashboard/edit') > -1 ){
+        $('body, html').stop().animate({
+            scrollTop: $('#createalert-widget').offset().top - 150
+        },10);
     }
 
 

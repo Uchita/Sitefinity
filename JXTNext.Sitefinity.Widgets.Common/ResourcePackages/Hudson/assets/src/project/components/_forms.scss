@@ -110,7 +110,7 @@
                 border-radius: 50%;
                 &::before{
                     font-size: 1.75rem;
-                    line-height: 1.33;
+                    line-height: 1.27;
                     padding-right: 1px;
                 }
             }
@@ -131,7 +131,8 @@
                         color: #eee;
                     }
                 }
-                &:checked + .radiobutton-icon, &:checked:hover + .radiobutton-icon {
+                &:checked + .radiobutton-icon, &:checked:hover + .radiobutton-icon,
+                &.checked + .radiobutton-icon, &.checked:hover + .radiobutton-icon{
                     color: $global-highlight-color;
                 }
             }

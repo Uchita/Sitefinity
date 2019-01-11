@@ -154,9 +154,42 @@
         margin-bottom: 0;
         padding: 20px 10px;
         text-align: center;
+        width: 100%;
+        background: none;
 
         .card-rollover-image {
             min-height: 110px;
+            max-width: 180px;
+            margin: 0 auto;
+            img{
+                max-height: 90px;
+                max-width: 130px;
+            }
+        }
+        &.card-image-with-bdrbtm{
+            .card-rollover-image {
+                border-bottom: 3px solid #ccc;
+            }
+        }
+        &.green-theme{
+            .card-rollover-image {
+                border-color: #9adcd0;
+            }
+        }
+        &.red-theme{
+            .card-rollover-image {
+                border-color: #d93732;
+            }
+        }
+        &.blue-theme{
+            .card-rollover-image {
+                border-color: #50b3f0;
+            }
+        }
+        &.orange-theme{
+            .card-rollover-image {
+                border-color: #f3ac45;
+            }
         }
 
         .card-description {

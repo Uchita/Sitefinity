@@ -69,7 +69,7 @@
         }
 
 
-    .header .user_login a {
+    .header .user_login a, .header .user_login button {
         padding: 0 9px;
         font-size: 12px;
     }
@@ -293,9 +293,10 @@
         float: left;
     }
 
-        .header .user_login a, .header .user_login a:first-child, .header .user_login a:last-child {
-            padding: 0 20px;
+        .header .user_login a, .header .user_login a:first-child, .header .user_login a:last-child, .header .user_login button {
+            padding: 0 11px;
             height: 34px;
+            margin: 3px 0;
             line-height: 34px;
             font-family: FuturaBT-Heavy;
             text-align: center;
@@ -548,14 +549,19 @@
             width: calc(100% - 15px);
         }
 
-        .search_job .input-style {
-            width: 100%;
-        }
+    .subscribe_sec .btn-style-corner {
+        width: calc(100% - 15px);
+        margin: 0px;
+    }
 
-        .search_job .job_btn {
-            margin: 0px;
-            width: 100%;
-        }
+    .search_job .input-style {
+        width: 100%;
+    }
+
+    .search_job .job_btn {
+        margin: 0px;
+        width: 100%;
+    }
 
     .subscribe_sec .form-control {
         width: 100%;

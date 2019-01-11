@@ -267,15 +267,22 @@ a {
     float: left;
 }
 
-    .header .user_login a {
+
+    .header .user_login img, .header .user_login p, .header .user_login p + a, .header .user_login br {
+        display: none;
+    }
+
+    .header .user_login a, .header .user_login button {
         padding: 0 8px;
         float: left;
         font-size: 14px;
         color: #fff;
         text-transform: uppercase;
         text-decoration: none;
+        border: none;
         border-right: 1px solid #8EDD2B;
         line-height: 1em;
+        background: none;
     }
 
         .header .user_login a:last-child {
@@ -283,7 +290,7 @@ a {
             padding-right: 0px;
         }
 
-        .header .user_login a:hover {
+        .header .user_login a:hover, .header .user_login button:hover {
             color: #8EDD2B;
         }
 
@@ -581,7 +588,19 @@ a {
     .subscribe_sec h3 {
         margin: 0 0 20px 0;
         color: #fff;
+        text-align: center !important;
     }
+
+    .subscribe_sec .btn-style-corner {
+        display: inline-block;
+        padding-left: 0px;
+        margin: 0 14px;
+    }
+
+        .subscribe_sec .btn-style-corner .btn-primary span {
+            height: 40px;
+            padding: 7px 17px;
+        }
 
     .subscribe_sec .sf_colsOut {
         display: inline;
@@ -832,14 +851,17 @@ hr {
             height: 100%;
             position: absolute;
             top: 0px;
-            left: -369px;
+            left: 0px;
             right: 0px;
             /*background: url(../images/about-img1.jpg) no-repeat top center / cover;
             */ z-index: -1;
+            background-position: top center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         .about_twoC .colmun.left:after {
-            left: -369px;
+            left: 0px;
         }
 
         .about_twoC .colmun.right .image {
@@ -847,14 +869,17 @@ hr {
             position: absolute;
             top: 0px;
             left: 0px;
-            right: -369px;
+            right: 0px;
             /*content: "";
             background: url(../images/about-img2.jpg) no-repeat top center / cover;*/
             z-index: -1;
+            background-position: top center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         .about_twoC .colmun.right:after {
-            right: -369px;
+            right: 0px;
         }
 
         .about_twoC .colmun:after {
@@ -4878,15 +4903,15 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
             right: 6px;
         }
 
-        .jn_search .dropdown-tree .fa-square-o:after {
-            content: "\f0c8";
-            font-family: 'FontAwesomeregular';
-        }
+.dropdown-tree .fa-square-o:after {
+    content: "\f0c8";
+    font-family: 'FontAwesomeregular';
+}
 
-        .jn_search .dropdown-tree .fa-check-square-o:after {
-            content: "\f14a";
-            font-family: 'FontAwesomeregular';
-        }
+.dropdown-tree .fa-check-square-o:after {
+    content: "\f14a";
+    font-family: 'FontAwesomeregular';
+}
 
 .salaryrangewrapper .nstSlider .rightGrip, .salaryrangewrapper .nstSlider .leftGrip {
     background: #004F6E !important;
@@ -4907,98 +4932,51 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     margin-top: 25px;
 }
 
-    .basic-form .form-control {
-        color: #000
+.login-form .basic-form, .reg-form .basic-form {
+    margin-top: 0px;
+}
+
+    .login-form .basic-form h2 {
+        margin-top: 0px;
     }
 
-    .basic-form select {
-        padding-left: 6px
+.basic-form .form-control {
+    color: #000
+}
+
+.basic-form select {
+    padding-left: 6px
+}
+
+.basic-form textarea {
+    height: 115px;
+    resize: none
+}
+
+
+
+.basic-form .checkbox .checkbox-icon {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #004F6E;
+    display: inline-block;
+    color: #004F6E;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    text-align: center;
+    font-size: 13px
+}
+
+    .basic-form .checkbox .checkbox-icon:before {
+        content: "";
     }
 
-    .basic-form textarea {
-        height: 115px;
-        resize: none
-    }
+.basic-form .checkbox {
+    padding-left: 0px;
+}
 
-
-
-    .basic-form .checkbox .checkbox-icon {
-        width: 20px;
-        height: 20px;
-        border: 1px solid #004F6E;
-        display: inline-block;
-        color: #004F6E;
-        position: absolute;
-        top: 0px;
-        left: 0;
-        text-align: center;
-        font-size: 13px
-    }
-
-        .basic-form .checkbox .checkbox-icon:before {
-            content: "";
-        }
-
-    .basic-form .checkbox {
-        padding-left: 0px;
-    }
-
-        .basic-form .checkbox input[type=checkbox] {
-            z-index: 2;
-            position: relative;
-            opacity: 0;
-            height: 20px;
-            width: 20px;
-            margin: 0 10px 0 0;
-            float: left
-        }
-
-            .basic-form .checkbox input[type=checkbox]:checked + .checkbox-icon:before,
-            .basic-form .checkbox input[type=checkbox]:checked + input + .checkbox-icon:before {
-                content: "\f00c";
-                line-height: 19px
-            }
-
-            .basic-form .checkbox input[type=checkbox]:hover {
-                cursor: pointer
-            }
-
-            .basic-form .checkbox input[type=checkbox]:focus + span {
-                outline: #219fa3 solid 1px
-            }
-
-    .basic-form .radiobutton {
-        position: relative;
-        font-size: 18px;
-        font-weight: normal;
-        margin-bottom: 15px;
-    }
-
-    .basic-form .list-group {
-        margin-bottom: 0px;
-    }
-
-    .basic-form .radiobutton .radiobutton-icon {
-        width: 25px;
-        height: 25px;
-        border: 1px solid #004F6E;
-        display: inline-block;
-        color: transparent;
-        position: absolute;
-        top: 0px;
-        left: 0;
-        text-align: center;
-        font-size: 13px;
-        border-radius: 50%
-    }
-
-        .basic-form .radiobutton .radiobutton-icon::before {
-            font-size: 1.75rem;
-            line-height: 1.33;
-            padding-right: 1px
-        }
-
-    .basic-form .radiobutton input[type=radio] {
+    .basic-form .checkbox input[type=checkbox] {
         z-index: 2;
         position: relative;
         opacity: 0;
@@ -5008,38 +4986,93 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         float: left
     }
 
-        .basic-form .radiobutton input[type=radio]:hover {
+        .basic-form .checkbox input[type=checkbox]:checked + .checkbox-icon:before,
+        .basic-form .checkbox input[type=checkbox]:checked + input + .checkbox-icon:before {
+            content: "\f00c";
+            line-height: 19px
+        }
+
+        .basic-form .checkbox input[type=checkbox]:hover {
             cursor: pointer
         }
 
-            .basic-form .radiobutton input[type=radio]:hover + .radiobutton-icon {
-                color: #eee
-            }
-
-        .basic-form .radiobutton input[type=radio]:checked + .radiobutton-icon,
-        .basic-form .radiobutton input[type=radio]:checked:hover + .radiobutton-icon {
-            color: #004F6E
+        .basic-form .checkbox input[type=checkbox]:focus + span {
+            outline: #219fa3 solid 1px
         }
 
-    .basic-form .sf-FileField {
-        margin-top: 8px
+.basic-form .radiobutton {
+    position: relative;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.basic-form .list-group {
+    margin-bottom: 0px;
+}
+
+.basic-form .radiobutton .radiobutton-icon {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #004F6E;
+    display: inline-block;
+    color: transparent;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    text-align: center;
+    font-size: 13px;
+    border-radius: 50%
+}
+
+    .basic-form .radiobutton .radiobutton-icon::before {
+        font-size: 1.75rem;
+        line-height: 1.33;
+        padding-right: 1px
     }
 
-    .basic-form .btn {
-        border-color: #004F6E
+.basic-form .radiobutton input[type=radio] {
+    z-index: 2;
+    position: relative;
+    opacity: 0;
+    height: 20px;
+    width: 20px;
+    margin: 0 10px 0 0;
+    float: left
+}
+
+    .basic-form .radiobutton input[type=radio]:hover {
+        cursor: pointer
     }
 
-    .basic-form .form-group {
-        margin-bottom: 10px
-    }
-
-        .basic-form .form-group .btn {
-            min-width: 150px
+        .basic-form .radiobutton input[type=radio]:hover + .radiobutton-icon {
+            color: #eee
         }
 
-    .basic-form .upload-section {
-        margin: 10px 0 20px
+    .basic-form .radiobutton input[type=radio]:checked + .radiobutton-icon,
+    .basic-form .radiobutton input[type=radio]:checked:hover + .radiobutton-icon {
+        color: #004F6E
     }
+
+.basic-form .sf-FileField {
+    margin-top: 8px
+}
+
+.basic-form .btn {
+    border-color: #004F6E
+}
+
+.basic-form .form-group {
+    margin-bottom: 10px
+}
+
+    .basic-form .form-group .btn {
+        min-width: 150px
+    }
+
+.basic-form .upload-section {
+    margin: 10px 0 20px
+}
 
 
 .upload-section .box {
@@ -5158,4 +5191,22 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
 .login-form {
     margin: 0px;
+}
+
+.dubble-btn .btn-style-corner {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 25px;
+}
+
+    .dubble-btn .btn-style-corner .btn {
+        min-width: auto;
+    }
+
+.dubble-btn .read_btn span {
+    padding: 10px 17px;
+}
+
+.btn-space {
+    margin-right: 40px;
 }

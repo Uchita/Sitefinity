@@ -59,8 +59,24 @@
             <div class="col-md-9 consultant-decription">
 
                 <h3>@Html.HtmlSanitize((string)Model.Item.Fields.ConsultantName)</h3>
-                <span><a href="@Model.Item.Fields.LinkedInProfileUrl" target="_blank" title="linkedin"><i class="fab fa-linkedin-in"><!-- linkedin --></i></a></span>
-                <span><a href="@Model.Item.Fields.TwitterProfileUrl" target="_blank" title="twitter"><i class="fab fa-twitter"><!-- twitter --></i></a></span>
+                @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
+                {
+                    <span><a href="@Model.Item.Fields.LinkedInProfileUrl" target="_blank" title="linkedin"><i class="fab fa-linkedin-in"><!-- linkedin --></i></a></span>
+                }
+                else
+                {
+                    <span><a href="javascript:void(0);" title="linkedin"><i class="fab fa-linkedin-in"><!-- linkedin --></i></a></span>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.TwitterProfileUrl))
+                {
+                    <span><a href="@Model.Item.Fields.TwitterProfileUrl" target="_blank" title="twitter"><i class="fab fa-twitter"><!-- twitter --></i></a></span>
+                }
+                else
+                {
+                    <span><a href="javascript:void(0);" title="twitter"><i class="fab fa-twitter"><!-- twitter --></i></a></span>
+                }
+
                 <p class="job-title">@Html.HtmlSanitize((string)Model.Item.Fields.Position)</p>
 
                 <p>@Html.HtmlSanitize((string)Model.Item.Fields.Bio)</p>

@@ -18,24 +18,24 @@
 
 <div class="search-top clearfix">
     @*<a class="btn btn-sm" href="">RSS FEED</a>
-    <a class="btn btn-sm" href="">ADD FAVOURITE</a>
+        <a class="btn btn-sm" href="">ADD FAVOURITE</a>
     *@
 
     <div>
 
         @if (isLoggedIn)
         {
-        <a class="btn-smc read_btn" href="/user-dashboard/Create" title="Create your job alert"><span>CREATE JOB ALERT</span></a>
+            <a class="btn-smc read_btn" href="/jobs/job-alert" title="Create your job alert"><span>CREATE JOB ALERT</span></a>
         }
         else
         {
-        <div>Receive new jobs for this search by email.</div>
-        <input type="email" id="anonycreatejobalert" value="" placeholder="Enter email address" class="jobalert-field" />
-        <a id="anon-job-alert" class="btn-smc read_btn" href="#" title="Create your job alert">
-            <span>CREATE JOB ALERT</span>
-        </a>
-        <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
-        <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
+            <div>Receive new jobs for this search by email.</div>
+            <input type="email" id="anonycreatejobalert" value="" placeholder="Enter email address" class="jobalert-field" />
+            <a id="anon-job-alert" class="btn-smc read_btn" href="#" title="Create your job alert">
+                <span>CREATE JOB ALERT</span>
+            </a>
+            <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
+            <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
         }
         <div class="select">
             <select id="sortOrder" class="default-select">
@@ -76,7 +76,8 @@
 
             <div class="row">
                 <div class="col-sm-8 col-xs-12">
-                    <h3><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="search-result-title">#:Title#</a></h3>
+                    @*<h3><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="search-result-title">#:Title#</a></h3>*@
+                    <h3><a href="@ViewBag.JobDetailsPageUrl?JobId=#:JobID#" class="search-result-title">#:Title#</a></h3>
                 </div>
                 <div class="col-sm-4 col-xs-12 text-right">
                     # if ( islogged ){ #

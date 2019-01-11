@@ -866,6 +866,9 @@
     <EmbeddedResource Include="ResourcePackages\PCN\MVC\Views\Shared\_SimpleJS_Partial.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="ResourcePackages\PCN\MVC\Views\MultiCard\Cards.ColumnWithImage.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\PCN\MVC\Views\Testimonial\Detail.TestimonialCompact.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

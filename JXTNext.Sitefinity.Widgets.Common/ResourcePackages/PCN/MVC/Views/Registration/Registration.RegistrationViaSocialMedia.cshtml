@@ -57,9 +57,7 @@
                                 @foreach (var provider in Model.ExternalProviders)
                                 {
                                     var classToBeAdd = "btn btn-" + @provider.Key.ToLower().ToString();
-                                    <li>
-                                        @Html.ActionLink(provider.Key, "LoginExternalProvider", new { model = provider.Key }, new { @class = classToBeAdd })
-                                    </li>
+                                    <a href="/LoginExternalProvider/@provider.Key" class="read_btn btn-space"><span>@provider.Key</span></a>
                                 }
 
                             </ul>
@@ -70,8 +68,8 @@
             }
         }
     }
-    </div>
-        @Html.Script(Url.WidgetContent("Mvc/Scripts/Registration/registration-form.js"), "bottom")
+</div>
+@Html.Script(Url.WidgetContent("Mvc/Scripts/Registration/registration-form.js"), "bottom")
 <script>
     //quick solution to remove/hide one of the login form widget for forgot password page
     if (window.location.href.indexOf('ShowSuccessfulRegistrationMsg') > -1) {

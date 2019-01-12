@@ -22,6 +22,7 @@ using JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication;
 using System.IO;
 using Telerik.Sitefinity.Abstractions;
 using System.Text;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 {
@@ -142,6 +143,23 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     PathToAttachment = identifier.ToString() + "_" + result.FileName,
                                     Status = "Ready"
                                 };
+
+                                // Fetch job details 
+                                string ApplicationEmail = string.Empty;
+                                string ContactDetails = string.Empty;
+                                string CompanyName = string.Empty;
+                                if (result.JobId.HasValue)
+                                {
+                                    IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = result.JobId.Value };
+                                    IGetJobListingResponse jobListingResponse = _blConnector.GuestGetJob(jobListingRequest);
+                                    ViewBag.JobTitle = jobListingResponse.Job.Title;
+                                    ApplicationEmail = jobListingResponse.Job.CustomData["ApplicationMethod.ApplicationEmail"];
+                                    ContactDetails = jobListingResponse.Job.CustomData["ContactDetails"];
+                                    CompanyName = jobListingResponse.Job.CustomData["CompanyName"];
+                                    var JobLocation = jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"];
+                                }
+
+                                // End code for fetch job details
                                 Log.Write("overrideEmail uploadItem object created", ConfigurationPolicy.ErrorLog);
                                 List<JobApplicationAttachmentUploadItem> attachments = new List<JobApplicationAttachmentUploadItem>();
                                 attachments.Add(uploadItem);
@@ -151,9 +169,42 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 string coverletterAttachmentPath = JobApplicationAttachmentUploadItem.GetAttachmentPath(attachments, JobApplicationAttachmentType.Coverletter);
                                 Log.Write("After cover letter GetAttachmentPath", ConfigurationPolicy.ErrorLog);
 
-                                string htmlEmailContent = _jobApplicationService.GetHtmlEmailContent(this.EmailTemplateId, this.EmailTemplateProviderName, this._itemType);
+                                string htmlEmailContent = this.GetEmailHtmlContent();
+                                string htmlAdvertiserEmailContent = this.GetAdevertiserEmailHtmlContent();
                                 Log.Write("After GetHtmlEmailContent", ConfigurationPolicy.ErrorLog);
                                 // Email notification settings
+
+
+                                Stream resumeFileStream = null;
+                                Stream coverLetterFileStream = null;
+
+                                string resumeFileName = null;
+                                string coverLetterFileName = null;
+                                foreach (var item in attachments)
+                                {
+                                    if (item.AttachmentType == JobApplicationAttachmentType.Resume)
+                                    {
+                                        resumeFileStream = item.FileStream;
+                                        resumeFileName = item.FileName;
+                                    }
+
+                                    if (item.AttachmentType == JobApplicationAttachmentType.Coverletter)
+                                    {
+                                        coverLetterFileName = item.FileName;
+                                        coverLetterFileStream = item.FileStream;
+                                    }
+
+                                }
+
+
+                                EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
+                                                                                                                    new EmailTarget(ContactDetails, ApplicationEmail),
+                                                                                                                    this.AdvertiserEmailTemplateEmailSubject,
+                                                                                                                    htmlAdvertiserEmailContent, resumeFileStream, resumeFileName, coverLetterFileStream, coverLetterFileName);
+
+
+
+
                                 EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                     new EmailTarget(SitefinityHelper.GetUserFirstNameById(SitefinityHelper.GetUserByEmail(overrideEmail).Id), overrideEmail),
                                                                                                     this.EmailTemplateEmailSubject,
@@ -166,6 +217,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     foreach (var ccEmail in this.EmailTemplateCC.Split(';'))
                                     {
                                         emailNotificationSettings.AddCC(String.Empty, ccEmail);
+                                        advertiserEmailNotificationSettings.AddCC(String.Empty, ccEmail);
                                     }
                                 }
 
@@ -174,6 +226,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     foreach (var bccEmail in this.EmailTemplateBCC.Split(';'))
                                     {
                                         emailNotificationSettings.AddBCC(String.Empty, bccEmail);
+                                        advertiserEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
                                     }
                                 }
 
@@ -181,7 +234,16 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
                                 //Create Application 
                                 IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(
-                                    new JXTNext_MemberApplicationRequest { ApplyResourceID = result.JobId.Value, MemberID = 2, ResumePath = resumeAttachmentPath, CoverletterPath = coverletterAttachmentPath, EmailNotification = emailNotificationSettings },
+                                    new JXTNext_MemberApplicationRequest {
+                                        ApplyResourceID = result.JobId.Value,
+                                        MemberID = 2,
+                                        ResumePath = resumeAttachmentPath,
+                                        CoverletterPath = coverletterAttachmentPath,
+                                        EmailNotification = emailNotificationSettings,
+                                        AdvertiserEmailNotification = advertiserEmailNotificationSettings,
+                                        AdvertiserName = ContactDetails,
+                                        CompanyName = CompanyName
+                                    },
                                     overrideEmail);
 
                                 Log.Write("BL response after: ", ConfigurationPolicy.ErrorLog);
@@ -255,6 +317,19 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
         }
 
+        private string GetEmailHtmlContent()
+        {
+            //return _jobApplicationService.GetHtmlEmailContent("6AB317D4-D674-4636-8481-014BC6F861E1", this.EmailTemplateProviderName, this._itemType);
+            return _jobApplicationService.GetHtmlEmailContent(this.EmailTemplateId, this.EmailTemplateProviderName, this._itemType);
+        }
+
+        private string GetAdevertiserEmailHtmlContent()
+        {
+            
+            //return _jobApplicationService.GetHtmlEmailContent("3DCBDCE5-F190-4FBA-BE51-074F2E034A04", this.AdvertiserEmailTemplateProviderName, this._itemType);
+            return _jobApplicationService.GetHtmlEmailContent(this.AdvertiserEmailTemplateId, this.AdvertiserEmailTemplateProviderName, this._itemType);
+        }
+
         public string ItemType
         {
             get { return this._itemType; }
@@ -275,6 +350,20 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         public string RegisterPageId { get; set; }
         public string JobApplicationSuccessPageId { get; set; }
         public string JobSearchResultsPageId { get; set; }
+
+        //Job Owner Email template
+        public string AdvertiserEmailTemplateProviderName
+        {
+            get { return _emailTemplateProviderName; }
+            set { this._emailTemplateProviderName = value; }
+        }
+        public string AdvertiserEmailTemplateId { get; set; }
+        public string AdvertiserEmailTemplateName { get; set; }
+        public string AdvertiserEmailTemplateCC { get; set; }
+        public string AdvertiserEmailTemplateBCC { get; set; }
+        public string AdvertiserEmailTemplateSenderName { get; set; }
+        public string AdvertiserEmailTemplateSenderEmailAddress { get; set; }
+        public string AdvertiserEmailTemplateEmailSubject { get; set; }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private string templateName = "Simple";

@@ -57,7 +57,8 @@
             <label>@Html.Resource("EmailSubject")</label>
             <input type="text" ng-model="properties.AdvertiserEmailTemplateEmailSubject.PropertyValue" class="form-control" /><br /><br />
 
-            <sf-list-selector sf-multiselect="false" sf-dynamic-items-selector sf-item-type="properties.ItemType.PropertyValue" sf-identifier-field="Title" sf-master="true"
+            <sf-list-selector sf-multiselect="false" sf-dynamic-items-selector sf-item-type="properties.ItemType.PropertyValue" 
+                              sf-identifier-field="Title" sf-master="true"
                               sf-selected-item-name="properties.AdvertiserEmailTemplateName.PropertyValue"
                               sf-selected-item-id="properties.AdvertiserEmailTemplateId.PropertyValue"
                               sf-provider="properties.AdvertiserEmailTemplateProviderName.PropertyValue" />

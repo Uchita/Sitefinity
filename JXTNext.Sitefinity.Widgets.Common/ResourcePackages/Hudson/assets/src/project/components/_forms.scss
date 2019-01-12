@@ -339,6 +339,7 @@
     .sign-in-with, .ext-provider-form {
         clear: both;
         margin-bottom: 2rem;
+        overflow: hidden;
         h2{
             font-size: 3.2rem;
             margin-bottom: 0.5rem;
@@ -346,6 +347,7 @@
         ul {
             padding-top: 15px;
             li {
+                vertical-align: top;
                 a{
                     &::before{
                         font-family: 'Font Awesome 5 Brands';
@@ -412,17 +414,20 @@
             }
         }
     }
+    #indeed-btnwrapper .indeed-apply-button-container{
+        height: 35px;
+    }
     #indeed-btnwrapper .indeed-apply-button{
         background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50%!important;
         width: 120px;
         border-radius: 0!important;
         height: 35px!important;
         padding: 0!important;
+        span{
+            display: none!important;
+        }
     }
-    #indeed-btnwrapper .indeed-apply-button span{
-        display: none!important;
-    }
-
+  
     .apply-with, .sign-in-with {
         ul {
             padding-left: 0;
@@ -437,6 +442,12 @@
                     min-width: 120px;
                     padding: 6px 10px;
                 }
+            }
+
+            &::after{
+                content: '';
+                display: table;
+                clear: both;
             }
         }
 

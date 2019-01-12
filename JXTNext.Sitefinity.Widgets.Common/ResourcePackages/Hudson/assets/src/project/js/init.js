@@ -370,7 +370,7 @@ $(document).ready(function () {
             $(this).removeAttr('readonly').blur().focus();
         });
     }
-    $('#userid').on('focus, touchstart',function(){
+    $('#userid').on('focus touchstart',function(){
         $(this).removeAttr('readonly');
     });
 
@@ -382,6 +382,15 @@ $(document).ready(function () {
             $('.map-placeholder').addClass('hidden-xs').clone().addClass('visible-xs').removeClass('hidden-xs').insertAfter( $('.mobile-breadcrumb') );
         
     }
+
+    //user dashboard : job alert create and edit
+    //scroll to the job alert widget
+    if( window.location.pathname.toLowerCase().indexOf('user-dashboard/create') > -1 ){
+        $('body, html').animate({
+            scrollTop: $('#createalert-widget').offset().top
+        },1000);
+    }
+
 
 });
 

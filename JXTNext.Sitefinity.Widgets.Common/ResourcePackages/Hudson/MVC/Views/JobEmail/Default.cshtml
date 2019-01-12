@@ -129,16 +129,16 @@
                                     foreach (var item in Model.Form.Friend)
                                     {
                                         <div class="row">
-                                            <div class="col-wrap clearfix">
-                                                <div class="col-name col-sm-4 text-right">
+                                            <div class="col-name col-wrap clearfix">
+                                                <div class="col-sm-4 text-right">
                                                     <label class="form-label">@Html.Raw(Model.Widget.FriendNameLabel)<span class="required">*</span></label>
                                                 </div>
                                                 <div class="col-sm-7 controls">
                                                     @Html.TextBox("Friend[" + idx + "][Name]", item.Name, new { @class = "form-control" })
                                                 </div>
                                             </div>
-                                            <div class="col-wrap clearfix">
-                                                <div class="col-email col-sm-4 text-right">
+                                            <div class="col-email col-wrap clearfix">
+                                                <div class="col-sm-4 text-right">
                                                     <label class="form-label">@Html.Raw(Model.Widget.FriendEmailLabel)<span class="required">*</span></label>
                                                 </div>
                                                 <div class="col-sm-7 controls">

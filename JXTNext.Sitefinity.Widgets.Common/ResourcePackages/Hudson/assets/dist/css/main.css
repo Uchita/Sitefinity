@@ -8318,12 +8318,12 @@ main {
   .section-highlight-light .btn {
     border-color: #fff; }
 
-.sf-list-item h3[data-sf-role="toggleLink"] {
+.sf-list-item h3[data-role="toggleLink"] {
   padding: 13px 40px 13px 20px;
   background: #eee;
   position: relative;
   font-size: 1.8rem; }
-  .sf-list-item h3[data-sf-role="toggleLink"] > i {
+  .sf-list-item h3[data-role="toggleLink"] > i {
     position: absolute;
     right: 8px;
     top: 17px; }
@@ -9312,7 +9312,8 @@ ul.breadcrumb {
     .thumbnail.card-rollover .card-rollover-image {
       min-height: 110px;
       max-width: 180px;
-      margin: 0 auto; }
+      margin: 0 auto;
+      text-align: center; }
       .thumbnail.card-rollover .card-rollover-image img {
         max-height: 90px;
         max-width: 130px; }
@@ -9690,7 +9691,7 @@ ul.breadcrumb {
       border-radius: 50%; }
       .page-wrapper .basic-form .radiobutton .radiobutton-icon::before {
         font-size: 1.75rem;
-        line-height: 1.33;
+        line-height: 1.27;
         padding-right: 1px; }
     .page-wrapper .basic-form .radiobutton input[type="radio"] {
       z-index: 2;
@@ -9704,7 +9705,8 @@ ul.breadcrumb {
         cursor: pointer; }
         .page-wrapper .basic-form .radiobutton input[type="radio"]:hover + .radiobutton-icon {
           color: #eee; }
-      .page-wrapper .basic-form .radiobutton input[type="radio"]:checked + .radiobutton-icon, .page-wrapper .basic-form .radiobutton input[type="radio"]:checked:hover + .radiobutton-icon {
+      .page-wrapper .basic-form .radiobutton input[type="radio"]:checked + .radiobutton-icon, .page-wrapper .basic-form .radiobutton input[type="radio"]:checked:hover + .radiobutton-icon,
+      .page-wrapper .basic-form .radiobutton input[type="radio"].checked + .radiobutton-icon, .page-wrapper .basic-form .radiobutton input[type="radio"].checked:hover + .radiobutton-icon {
         color: #01a3a4; }
   .page-wrapper .basic-form .sf-FileField {
     margin-top: 8px; }
@@ -10317,7 +10319,8 @@ ul.breadcrumb {
     height: 50px;
     position: relative;
     z-index: 1;
-    cursor: pointer; }
+    cursor: pointer;
+    line-height: 0.5; }
   .upload-section .uploadfield-wrap .lbl {
     display: block;
     margin-top: -7px;
@@ -12167,9 +12170,12 @@ select.articles-order {
       padding-right: 20px;
       width: 100px;
       vertical-align: middle; }
+      .thumbnail.card-rollover .card-rollover-image img {
+        max-width: 90px; }
     .thumbnail.card-rollover .caption {
       display: table-cell;
-      vertical-align: middle; }
+      vertical-align: middle;
+      padding-left: 15px; }
       .thumbnail.card-rollover .caption h3 {
         margin-top: 0;
         margin-bottom: 5px; }

@@ -305,5 +305,12 @@
             }
         }
 
+
+        //job filter widget
+        if ($('#filtersPagePartialContent').length) {
+            $('#filtersPagePartialContent #CountryLocationArea li li[data-title="SYDNEY"]')
+                .insertAfter($('#filtersPagePartialContent #CountryLocationArea li li[data-title="PERTH"]'));
+        }
+
     });
 </script>

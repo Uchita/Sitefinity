@@ -392,6 +392,14 @@ $(document).ready(function () {
     }
 
 
+    //office page
+    //get in touch toggle collapse
+    if( $('#officeAddress, .get-in-touch').length ){
+        $('.get-in-touch h3[data-target="#officeAddress"]').on('click', function(e){
+           $( $(this).data('target') ).toggle();
+        });
+    }
+
 });
 
 $(window).resize(function () {

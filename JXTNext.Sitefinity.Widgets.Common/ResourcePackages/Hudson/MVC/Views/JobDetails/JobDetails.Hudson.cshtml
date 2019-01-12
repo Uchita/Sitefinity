@@ -184,11 +184,18 @@
     </div>
 
     <div class="col-md-4 mb-30 jobdetail-sidebar">
-        <div class="row job-offer-apply">
-            <div class="col-md-12">
-                <a id="job-application-lnk" class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID">APPLY NOW</a>
+        @if (ViewBag.IsJobApplied)
+        {
+            <div class="alert alert-info">You have already applied</div>
+        }
+        else
+        {
+            <div class="row job-offer-apply">
+                <div class="col-md-12">
+                    <a id="job-application-lnk" class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID">APPLY NOW</a>
+                </div>
             </div>
-        </div>
+        }
         <br />
         @if (!mapsAPIKey.IsNullOrEmpty())
         {

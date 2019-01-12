@@ -177,6 +177,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ViewBag.UserFirstName = userFirstName;
             ViewBag.RegisterPageUrl = SitefinityHelper.GetPageUrl(this.RegisterPageId);
             ViewBag.PostBackMessage = TempData["PostBackMessage"];
+            ViewBag.EmailTemplateId = this.EmailTemplateId;
+            ViewBag.AdvertiserEmailTemplateId = this.AdvertiserEmailTemplateId;
+
             if (!this.JobApplicationSuccessPageId.IsNullOrEmpty())
                 ViewBag.SuccessPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationSuccessPageId);
 
@@ -397,6 +400,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 foreach (var ccEmail in this.EmailTemplateCC.Split(';'))
                 {
                     emailNotificationSettings.AddCC(String.Empty, ccEmail);
+                    advertiserEmailNotificationSettings.AddCC(String.Empty, ccEmail);
                 }
             }
 
@@ -405,6 +409,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 foreach (var bccEmail in this.EmailTemplateBCC.Split(';'))
                 {
                     emailNotificationSettings.AddBCC(String.Empty, bccEmail);
+                    advertiserEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
                 }
             }
 

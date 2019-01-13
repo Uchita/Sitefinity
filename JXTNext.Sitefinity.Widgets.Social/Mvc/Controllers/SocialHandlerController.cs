@@ -214,8 +214,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
 
                                 EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
-                                                                                                                    //new EmailTarget(ContactDetails, ApplicationEmail),
-                                                                                                                    new EmailTarget("suresh","suresh.vpigroup@outlook.com"),
+                                                                                                                    new EmailTarget(ContactDetails, ApplicationEmail),
                                                                                                                     this.AdvertiserEmailTemplateEmailSubject,
                                                                                                                     htmlAdvertiserEmailContent, resumeFileStream, resumeFileName, coverLetterFileStream, coverLetterFileName);
 

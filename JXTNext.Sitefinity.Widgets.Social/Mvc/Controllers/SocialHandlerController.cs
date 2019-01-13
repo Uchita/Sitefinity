@@ -23,6 +23,7 @@ using System.IO;
 using Telerik.Sitefinity.Abstractions;
 using System.Text;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
+using System.Web.Routing;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 {
@@ -59,6 +60,13 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         public ActionResult Index(string code, string state, int? JobId)
         {
             SocialMediaJobViewModel viewModel = new SocialMediaJobViewModel();
+            bool loggedIn = false;
+            string loggedInEmail = string.Empty;
+            if (this.Request.Cookies.Get("SocialLoginCookie") != null)
+            {
+                loggedIn = Boolean.Parse(this.Request.Cookies.Get("SocialLoginCookie").Value);
+                loggedInEmail = this.Request.Cookies.Get("SocialLoginEmailCookie").Value.ToString();
+            }
 
             try
             {
@@ -126,8 +134,17 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 Password = "Password123",
                                 PhoneNumber = result.PhoneNumber
                             };
-                            var overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
-                            
+
+                            string overrideEmail = string.Empty;
+                            if (loggedIn)
+                            {
+                                overrideEmail = loggedInEmail;
+                            }
+                            else
+                            {
+                                overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
+                            }
+
                             Log.Write("overrideEmail is : " + overrideEmail, ConfigurationPolicy.ErrorLog);
                             if (overrideEmail != null && status == JobApplicationStatus.Available)
                             {
@@ -247,6 +264,20 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     overrideEmail);
 
                                 Log.Write("BL response after: ", ConfigurationPolicy.ErrorLog);
+                                // delete the cookies set in the job application controller
+                                HttpCookie cookie = this.Request.Cookies["SocialLoginCookie"];
+                                if (cookie != null)
+                                {
+                                    cookie.Expires = DateTime.Now.AddDays(-1);
+                                    this.Response.Cookies.Add(cookie);
+                                }
+
+                                cookie = this.Request.Cookies["SocialLoginEmailCookie"];
+                                if (cookie != null)
+                                {
+                                    cookie.Expires = DateTime.Now.AddDays(-1);
+                                    this.Response.Cookies.Add(cookie);
+                                }
 
                                 if (response.Success && response.ApplicationID.HasValue)
                                 {
@@ -303,6 +334,12 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 Log.Write("Social Handler : Exception Caught" + ex.Message, ConfigurationPolicy.ErrorLog);
             }
 
+            if (this.Request.QueryString["error"].ToLower().Contains("denied"))
+            {
+                return Redirect(string.Format("job-application/{0}",  int.Parse(state)));
+                //return Redirect(string.Format("job-application/{0}/{1}/{2}", "Project-Services", "Business-Transformation", int.Parse(state)));
+            }
+            
 
             if (!this.JobSearchResultsPageId.IsNullOrEmpty())
                 ViewBag.JobSearchResultsUrl = SitefinityHelper.GetPageUrl(this.JobSearchResultsPageId);

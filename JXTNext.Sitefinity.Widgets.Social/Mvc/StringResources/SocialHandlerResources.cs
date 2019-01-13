@@ -178,6 +178,17 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.StringResources
             }
         }
 
+        [ResourceEntry("SelectAdvertiserEmailTemplate",
+            Value = "Select Advertiser Email Template:",
+            Description = "phrase : Select Advertiser Email Template")]
+        public string SelectAdvertiserEmailTemplate
+        {
+            get
+            {
+                return this["SelectAdvertiserEmailTemplate"];
+            }
+        }
+        
         [ResourceEntry("AdvertiserEmailTemplateIdResource",
             Value = "Advertiser Email Template Id:",
             Description = "phrase : Advertiser Email Template Id")]

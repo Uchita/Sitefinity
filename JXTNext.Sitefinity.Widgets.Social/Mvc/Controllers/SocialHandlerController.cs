@@ -23,6 +23,7 @@ using System.IO;
 using Telerik.Sitefinity.Abstractions;
 using System.Text;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
+using System.Web.Routing;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 {
@@ -333,6 +334,12 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 Log.Write("Social Handler : Exception Caught" + ex.Message, ConfigurationPolicy.ErrorLog);
             }
 
+            if (this.Request.QueryString["error"].ToLower().Contains("denied"))
+            {
+                return Redirect(string.Format("job-application/{0}",  int.Parse(state)));
+                //return Redirect(string.Format("job-application/{0}/{1}/{2}", "Project-Services", "Business-Transformation", int.Parse(state)));
+            }
+            
 
             if (!this.JobSearchResultsPageId.IsNullOrEmpty())
                 ViewBag.JobSearchResultsUrl = SitefinityHelper.GetPageUrl(this.JobSearchResultsPageId);

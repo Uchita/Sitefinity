@@ -2,11 +2,11 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 <section class="full-section @Model.CssClass">
     <div class="container">
-        <div class="row">
+        <div class="row align-items-stretch img-full-bg">
             <div class="col-12 col-md-6 img-absolute-wrap">
                 <div class="img-absolute image-pos-left bg-image" style="background-image: url('@Model.SelectedSizeUrl');"></div>
             </div>
-            <div class="g-section col-12 col-md-6 baner_right_space">
+            <div class="col-12 col-md-6 pt-5 pb-5 text-margin-left">
                 @if (!string.IsNullOrEmpty(Model.Heading))
                 {
                     if (Model.Heading == "Customer Service Charter")
@@ -21,7 +21,7 @@
                 <p>
                     @Html.HtmlSanitize(Model.Description)
                 </p>
-                <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary mt-4" download>@Model.ActionName</a>
+                <a href="@Html.UrlSanitize(Model.ActionUrl)" target="_blank" class="btn btn-primary mt-4" download>@Model.ActionName</a>
             </div>
         </div>
     </div>

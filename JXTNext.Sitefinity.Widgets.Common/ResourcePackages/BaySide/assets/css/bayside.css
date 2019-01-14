@@ -7680,12 +7680,6 @@ select.hs-input {
         padding-bottom: 0;
     }
 
-.parallax-mirror.translate-fixed img {
-    -webkit-transform: translateY(0px) !important;
-    -moz-transform: translateY(0px) !important;
-    transform: translateY(0px) !important;
-}
-
 /*Job filter sidebar*/
 
 .filter-outer-wrapper .dropdown-tree > ul {
@@ -7951,9 +7945,9 @@ select.hs-input {
 
 /*10jan2019*/
 .dropdown-menu li i {
-    font-weight: 600;
-    margin-top: 5px;
+    /*margin-top: 5px;*/
     display: block;
+    color: #7E7E7E;
 }
 
 .nav-sitemap ul, ul.nav-sitemap, .nav.nav-sitemap ul li, ul.nav.nav-sitemap li {
@@ -8079,6 +8073,12 @@ select.hs-input {
 
 .news-slider-mobile {
     display: none !important;
+}
+
+@media (min-width: 768px) {
+    .text_align_right_min_768 {
+        text-align: right;
+    }
 }
 
 @media (max-width: 767px) {

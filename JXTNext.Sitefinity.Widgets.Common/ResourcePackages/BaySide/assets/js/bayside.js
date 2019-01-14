@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $(".parallax-mirror").addClass("translate-fixed");
+    //$(".parallax-mirror").addClass("translate-fixed");
 
     if (typeof WOW !== 'undefined') {
         new WOW().init();
@@ -121,16 +121,27 @@ $(document).ready(function () {
                 }
             });
 
-
-            // Parallax image top
-            if (winScroll < 50) {
-                $(".parallax-mirror").addClass("translate-fixed");
-            } else {
-                $(".parallax-mirror").removeClass("translate-fixed");
-            }
-
         });
 
     }(jQuery));
+
+    $(".find-talent").click(function () {
+        $('#talent-form').show();
+        $('#our-rtalent-image').hide();
+        $('.find-talent-close-form').show();
+        $('.find-talent').hide();
+        setTimeout(function () {
+            $(window).trigger('resize.px.parallax');
+        }, 500);
+    });
+    $(".find-talent-close-form").click(function () {
+        $('#talent-form').hide();
+        $('#our-rtalent-image').show();
+        $('.find-talent-close-form').hide();
+        $('.find-talent').show();
+        setTimeout(function () {
+            $(window).trigger('resize.px.parallax');
+        }, 500);
+    });
 
 });

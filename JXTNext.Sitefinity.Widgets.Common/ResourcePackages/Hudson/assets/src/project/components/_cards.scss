@@ -158,13 +158,13 @@
         background: none;
 
         .card-rollover-image {
-            min-height: 110px;
+            min-height: 100px;
             max-width: 180px;
             margin: 0 auto;
             text-align: center;
             img{
-                max-height: 90px;
-                max-width: 130px;
+                max-height: 75px;
+                max-width: 110px;
             }
         }
         &.card-image-with-bdrbtm{

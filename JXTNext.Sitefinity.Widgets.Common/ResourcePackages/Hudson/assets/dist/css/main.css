@@ -7766,9 +7766,9 @@ img, iframe {
   max-width: 90%;
   width: 650px; }
 
-.modal-body .button.close {
+.modal-body .button.close, .modal-body button.close {
   position: relative;
-  top: -5px; }
+  top: -8px; }
 
 .dropdown.open > a .fa-angle-down:before {
   content: "\f106"; }
@@ -9720,6 +9720,12 @@ ul.breadcrumb {
       min-width: 150px; }
   .page-wrapper .basic-form .upload-section {
     margin: 10px 0 20px 0; }
+
+#officeAddress {
+  margin-left: 0;
+  padding: 0; }
+  #officeAddress .basic-form {
+    margin-top: 0; }
 
 .login-form h2 {
   font-size: 3.6rem;

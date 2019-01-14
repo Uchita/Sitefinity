@@ -7268,12 +7268,14 @@ blockquote {
   flex-wrap: wrap; }
 
 .flex-center {
-  -webkit-box-pack: center !important;
-  -ms-flex-pack: center !important;
-  justify-content: center !important;
   -webkit-box-align: center !important;
   -ms-flex-align: center !important;
   align-items: center !important; }
+
+.flex-justify-center {
+  -webkit-box-pack: center !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important; }
 
 .width-limit {
   max-width: 450px; }
@@ -9310,13 +9312,13 @@ ul.breadcrumb {
     width: 100%;
     background: none; }
     .thumbnail.card-rollover .card-rollover-image {
-      min-height: 110px;
+      min-height: 100px;
       max-width: 180px;
       margin: 0 auto;
       text-align: center; }
       .thumbnail.card-rollover .card-rollover-image img {
-        max-height: 90px;
-        max-width: 130px; }
+        max-height: 75px;
+        max-width: 110px; }
     .thumbnail.card-rollover.card-image-with-bdrbtm .card-rollover-image {
       border-bottom: 3px solid #ccc; }
     .thumbnail.card-rollover.green-theme .card-rollover-image {
@@ -10187,6 +10189,8 @@ ul.breadcrumb {
   .page-wrapper .search-top .btn {
     margin-top: 10px;
     float: left; }
+  .page-wrapper .search-top .alert {
+    margin-bottom: 0; }
 
 .page-wrapper .search-results .job-holder {
   border: 1px solid #01a3a4;
@@ -11081,6 +11085,20 @@ select.articles-order {
           padding: 20px;
           min-height: 100px; } }
 
+.consultant-images {
+  overflow: hidden; }
+  .consultant-images > .img-item {
+    height: 190px;
+    float: left;
+    padding: 0 15px; }
+  .consultant-images .owl-item .img-item {
+    width: auto;
+    float: none;
+    max-height: 240px;
+    max-width: 400px;
+    padding: 0;
+    margin: 0 auto; }
+
 /*#endregion Consultans*/
 /*#region risk measurement*/
 .risk-measurement {
@@ -11667,7 +11685,7 @@ select.articles-order {
   .xs-text-center {
     text-align: center !important; }
   .page-wrapper main {
-    padding-top: 0; }
+    padding-top: 0 !important; }
   header .navbar {
     min-height: 10px; }
   header .navbar-fixed-top:before {

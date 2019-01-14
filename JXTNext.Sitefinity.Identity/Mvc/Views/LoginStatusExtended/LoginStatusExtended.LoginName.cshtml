@@ -4,19 +4,33 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 @using Telerik.Sitefinity.Modules.Pages;
 @Html.Script(ScriptRef.JQuery, "top", false)
-<div class="@Model.CssClass">
-    <div data-sf-role="sf-logged-in-view" style="display: none">
+<div class="header-top-login @Model.CssClass">
+    <span class="header-top-links" data-sf-role="sf-logged-in-view" style="display: none">
         <span>@Html.Resource("LoggedAs", "LoginStatusExtendedResources") </span>
-        <a href="@(Model.ProfilePageUrl ?? "#")" data-sf-role="sf-logged-in-name"></a>
+        <a href="@(Model.ProfilePageUrl ?? "#")" data-sf-role="sf-logged-in-name" class="sf-mr-m"></a>
         <a href="/sitefinity/signout?sts_signout=true">@Html.Resource("Logout")</a>
-    </div>
-    <div data-sf-role="sf-logged-out-view" style="display: none">
-        <a href="@(Model.LoginPageUrl ?? "#")">@Html.Resource("Login", "LoginStatusExtendedResources")</a>
+    </span>
+
+    <span class="header-top-links" data-sf-role="sf-logged-out-view" style="display: none">
         <a href="@(Model.RegistrationPageUrl ?? "#")">@Html.Resource("RegisterNow", "LoginStatusExtendedResources")</a>
-    </div>
+        <a href="@(Model.LoginPageUrl ?? "#")">@Html.Resource("Login", "LoginStatusExtendedResources")</a>
+    </span>
 </div>
+
 <input type="hidden" data-sf-role="sf-status-json-endpoint-url" value="@Model.StatusServiceUrl" />
 <input type="hidden" data-sf-role="sf-allow-windows-sts-login" value="@Model.AllowWindowsStsLogin.ToString()" />
 <input type="hidden" data-sf-role="sf-logout-redirect-url" value="@Model.LogoutPageUrl" />
 <input type="hidden" data-sf-role="sf-is-design-mode-value" value="@ViewBag.IsDesignMode.ToString()" />
 @Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers.LoginStatusExtendedController", "JXTNext.Sitefinity.Widgets.Authentication.Mvc.Scripts.LoginStatusExtended.login-status.js"), "bottom")
+
+
+<script>
+    $(document).ajaxComplete( function() {
+        if ($('.header-top-links').data('sf-role') == 'sf-logged-in-view')
+        {
+            var userName = $('.header-top-links a[data-sf-role="sf-logged-in-name"]').text();
+            userFirstName = userName.split(' ')[0];
+            $('.header-top-links a[data-sf-role="sf-logged-in-name"]').text(userFirstName);
+        }
+    });
+</script>

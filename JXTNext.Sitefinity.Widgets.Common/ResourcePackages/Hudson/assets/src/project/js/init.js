@@ -288,6 +288,21 @@ $(document).ready(function () {
             }
         }
     });
+    $('.consultant-images').owlCarousel({
+        loop: false,
+        margin: 15,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 2
+            },
+            1200: {
+                items: 3
+            }
+        }
+    });
     
     $('.owl-card-basic').each(function (i, obj) {
         if ($(this).children().length > 1) {

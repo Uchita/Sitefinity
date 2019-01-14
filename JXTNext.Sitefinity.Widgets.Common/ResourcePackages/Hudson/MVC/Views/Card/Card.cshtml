@@ -7,7 +7,7 @@
 {
     actionStatusCls = "nopagelink";
 }
-else if (string.IsNullOrEmpty(Model.ActionName))
+else if (!string.IsNullOrEmpty(Model.ActionName))
 {
     actionStatusCls = "pagelinknormalbtn";
 }

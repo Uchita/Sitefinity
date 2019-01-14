@@ -64,8 +64,11 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             string loggedInEmail = string.Empty;
             if (this.Request.Cookies.Get("SocialLoginCookie") != null)
             {
+                Log.Write("Inside Cookie : ", ConfigurationPolicy.ErrorLog);
                 loggedIn = Boolean.Parse(this.Request.Cookies.Get("SocialLoginCookie").Value);
                 loggedInEmail = this.Request.Cookies.Get("SocialLoginEmailCookie").Value.ToString();
+                Log.Write("Cookie  loggedIn value =" + loggedIn, ConfigurationPolicy.ErrorLog);
+                Log.Write("Cookie  loggedInEmail value =" + loggedInEmail, ConfigurationPolicy.ErrorLog);
             }
 
             try
@@ -138,10 +141,12 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                             string overrideEmail = string.Empty;
                             if (loggedIn)
                             {
+                                Log.Write("loggedIn value 1 =" + loggedIn, ConfigurationPolicy.ErrorLog);
                                 overrideEmail = loggedInEmail;
                             }
                             else
                             {
+                                Log.Write("loggedIn value 2 =" + loggedIn, ConfigurationPolicy.ErrorLog);
                                 overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
                             }
 

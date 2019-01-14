@@ -265,19 +265,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
                                 Log.Write("BL response after: ", ConfigurationPolicy.ErrorLog);
                                 // delete the cookies set in the job application controller
-                                HttpCookie cookie = this.Request.Cookies["SocialLoginCookie"];
-                                if (cookie != null)
-                                {
-                                    cookie.Expires = DateTime.Now.AddDays(-1);
-                                    this.Response.Cookies.Add(cookie);
-                                }
-
-                                cookie = this.Request.Cookies["SocialLoginEmailCookie"];
-                                if (cookie != null)
-                                {
-                                    cookie.Expires = DateTime.Now.AddDays(-1);
-                                    this.Response.Cookies.Add(cookie);
-                                }
+                                this._deleteCookiesCreatedForSocialHandler();
 
                                 if (response.Success && response.ApplicationID.HasValue)
                                 {
@@ -336,6 +324,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
             if (this.Request.QueryString["error"].ToLower().Contains("denied"))
             {
+                this._deleteCookiesCreatedForSocialHandler();
                 return Redirect(string.Format("job-application/{0}",  int.Parse(state)));
                 //return Redirect(string.Format("job-application/{0}/{1}/{2}", "Project-Services", "Business-Transformation", int.Parse(state)));
             }
@@ -352,6 +341,23 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         protected override void HandleUnknownAction(string actionName)
         {
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
+        }
+
+        private void _deleteCookiesCreatedForSocialHandler()
+        {
+            HttpCookie cookie = this.Request.Cookies["SocialLoginCookie"];
+            if (cookie != null)
+            {
+                cookie.Expires = DateTime.Now.AddDays(-1);
+                this.Response.Cookies.Add(cookie);
+            }
+
+            cookie = this.Request.Cookies["SocialLoginEmailCookie"];
+            if (cookie != null)
+            {
+                cookie.Expires = DateTime.Now.AddDays(-1);
+                this.Response.Cookies.Add(cookie);
+            }
         }
 
         private string GetEmailHtmlContent()

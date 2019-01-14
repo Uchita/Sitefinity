@@ -26,7 +26,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job
         public int UserId { get; set; }
         public int AdvertiserUserId { get; set; }
         public long DateCreated { get; set; }
-        public string DateCreated_Representation { get => DateCreated == 0 ? string.Empty : ConversionHelper.GetDateTimeFromUnix(DateCreated).ToString("dd/MM/yyyy"); }
+        public string DateCreated_Representation { get => DateCreated == 0 ? string.Empty : ConversionHelper.GetDateTimeFromUnix(DateCreated).ToLocalTime().ToString("dd/MM/yyyy"); }
         public long? ExpiryDate { get; set; }
         public int Status { get; set; }
         public string Address { get; set; }

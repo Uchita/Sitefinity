@@ -179,6 +179,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 SocialLoginEmailCookie.Value = userEmail;
                 SocialLoginEmailCookie.Expires = DateTime.Now.AddHours(1);
                 this.Response.Cookies.Add(SocialLoginEmailCookie);
+                ViewBag.isLoggedIn = true;
+                ViewBag.loginEmail = userEmail;
             }
 
             ViewBag.IsUserLoggedIn = isUserLoggedIn;

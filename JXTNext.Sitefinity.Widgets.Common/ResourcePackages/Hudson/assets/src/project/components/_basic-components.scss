@@ -8,12 +8,14 @@ blockquote{
     flex-wrap: wrap;
 }
 .flex-center{
-    -webkit-box-pack: center!important;
-    -ms-flex-pack: center!important;
-    justify-content: center!important;
     -webkit-box-align: center!important;
     -ms-flex-align: center!important;
     align-items: center!important;
+}
+.flex-justify-center{
+    -webkit-box-pack: center!important;
+    -ms-flex-pack: center!important;
+    justify-content: center!important;
 }
 
 .width-limit{

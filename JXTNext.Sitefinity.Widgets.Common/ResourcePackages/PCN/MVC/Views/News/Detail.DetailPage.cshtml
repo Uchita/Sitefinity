@@ -4,24 +4,34 @@
 @using Telerik.Sitefinity.Web.DataResolving;
 
 <div class="@Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
+
+    <div class="post-nav">
+        <div class="prev-post"><a href="#" rel="prev"><i class="fas fa-long-arrow-alt-left"></i> Previous Post</a></div>
+        <div class="next-post"><a href="#" rel="next">Next Post <i class="fas fa-long-arrow-alt-right"></i></a></div>
+    </div>
+
+    <div class="entry-meta details">
+        <span class="entry-cats">
+            <span class="main-color-bg cat6"><a href="#">Category</a></span>
+            <span class="main-color-bg cat5"><a href="#">Category 2</a></span>
+        </span>
+        <span class="author">Posted by <a href="#" title="Posts by @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)" rel="author">@DataResolver.Resolve(@Model.Item.DataItem, "Author", null)</a></span>
+        <span class="sep">-</span>
+        <span class="date">@Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
+    </div>
+
     <h3>
         <span @Html.InlineEditingFieldAttributes("Title", "ShortText")>@Model.Item.Fields.Title</span>
 
     </h3>
 
-    <div>
-        @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")
-        @Html.Resource("By")
-        @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)
 
-        @Html.CommentsCount(string.Empty, @Model.Item.DataItem)
-    </div>
 
     <div @Html.InlineEditingFieldAttributes("Summary", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</div>
 
     <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
 
-    @{        
+    @{
         if (Model.EnableSocialSharing)
         {
             var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;

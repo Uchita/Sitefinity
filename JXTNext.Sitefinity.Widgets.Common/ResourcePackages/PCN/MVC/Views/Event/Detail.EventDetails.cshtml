@@ -5,39 +5,53 @@
 @using Telerik.Sitefinity.Web.DataResolving;
 
 <div class="@Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
+
+    <div class="post-nav">
+        <div class="prev-post"><a href="#" rel="prev"><i class="fas fa-long-arrow-alt-left"></i> Previous Post</a></div>
+        <div class="next-post"><a href="#" rel="next">Next Post <i class="fas fa-long-arrow-alt-right"></i></a></div>
+    </div>
+
+    <div class="entry-meta details">
+        <span class="entry-cats">
+            <span class="main-color-bg cat6"><a href="#">Category</a></span>
+            <span class="main-color-bg cat5"><a href="#">Category 2</a></span>
+        </span>
+        <span class="date">@Model.Item.EventDates()</span>
+    </div>
+
     <h3>
         <span @Html.InlineEditingFieldAttributes("Title", "ShortText")>@Model.Item.Fields.Title</span>
     </h3>
     <span style="background: @Model.Item.EventCalendarColour()"></span>
 
-    @if (!string.IsNullOrEmpty(Model.Item.EventDates())) 
-	{
-    <p>
-        <time>@Model.Item.EventDates()</time>
-    </p>
-    }
-    
+    @*@if (!string.IsNullOrEmpty(Model.Item.EventDates()))
+        {
+        <p>
+            <time>@Model.Item.EventDates()</time>
+        </p>
+        }*@
+
     @if (!string.IsNullOrEmpty(Model.Item.Fields.City) || !string.IsNullOrEmpty(Model.Item.Fields.Country))
     {<address>
 
-        @if (!string.IsNullOrEmpty(Model.Item.Fields.City) && !string.IsNullOrEmpty(Model.Item.Fields.Country))
-        {
-            @Model.Item.Fields.City <span>,</span> @Model.Item.Fields.Country
-            <br>
-        }
-        else
-        {
-            @(string.IsNullOrEmpty(Model.Item.Fields.City) ? Model.Item.Fields.Country : Model.Item.Fields.City)
-             <br>
-        }
+            @if (!string.IsNullOrEmpty(Model.Item.Fields.City) && !string.IsNullOrEmpty(Model.Item.Fields.Country))
+            {
+                @Model.Item.Fields.City <span>,</span> @Model.Item.Fields.Country
+                <br>
+            }
+            else
+            {
+                @(string.IsNullOrEmpty(Model.Item.Fields.City) ? Model.Item.Fields.Country : Model.Item.Fields.City)
+                <br>
+            }
 
-        @if (!string.IsNullOrEmpty(Model.Item.Fields.Street))
-        {
-            @Model.Item.Fields.Street
-        }
-    </address>
+            @if (!string.IsNullOrEmpty(Model.Item.Fields.Street))
+            {
+                @Model.Item.Fields.Street
+            }
+        </address>
     }
-    
+
     <div>
         @if (!string.IsNullOrEmpty(Model.Item.Fields.ContactName))
         {
@@ -56,7 +70,7 @@
             @Model.Item.Fields.ContactCell
             <br>
         }
-            
+
         @if (!string.IsNullOrEmpty(Model.Item.Fields.ContactEmail))
         {
             <address><a href="mailto:@(Model.Item.Fields.ContactEmail)" target="_blank">@Model.Item.Fields.ContactEmail</a></address>
@@ -69,15 +83,15 @@
     </div>
 
     @if (!string.IsNullOrEmpty(Model.Item.Fields.Location))
-    {        
+    {
         <p>
-			@*How to find us field*@
-			@Model.Item.Fields.Location
-		</p>
+            @*How to find us field*@
+            @Model.Item.Fields.Location
+        </p>
     }
 
     @if (!string.IsNullOrEmpty(Model.Item.Fields.Description))
-    {        
+    {
         <p>
             @Model.Item.Fields.Description
         </p>
@@ -85,13 +99,13 @@
 
     <p>
         @Html.CommentsCount(string.Empty, Model.Item.DataItem)
-	</p>
-    
+    </p>
+
     @if (ViewBag.AllowCalendarExport)
     {
         <div>
             <span>@Html.Resource("AddTo")</span>
-            <ul>
+            <ul class="pl-2">
                 <li><a href="@Model.Item.GenerateOutlookUrl()" target="_blank">@Html.Resource("OutlookEventExporterTitle")</a>,</li>
                 <li><a href="@Model.Item.GenerateICalUrl()" target="_blank">@Html.Resource("ICalEventExporterTitle")</a>,</li>
                 <li><a href="@Model.Item.GenerateGoogleUrl()" target="_blank">@Html.Resource("GoogleEventExporterTitle")</a></li>
@@ -100,16 +114,16 @@
     }
 
     @if (!string.IsNullOrEmpty(Model.Item.Fields.Summary))
-    {        
+    {
         <p @Html.InlineEditingFieldAttributes("Summary", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</p>
     }
 
     @if (!string.IsNullOrEmpty(Model.Item.Fields.Content))
-    {        
+    {
         <p @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</p>
     }
-    
-    @{        
+
+    @{
         if (Model.EnableSocialSharing)
         {
             var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;

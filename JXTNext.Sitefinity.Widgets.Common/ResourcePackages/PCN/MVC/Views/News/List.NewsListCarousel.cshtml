@@ -1,0 +1,47 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+
+
+
+<ul id="wt-slider">
+        @foreach (var item in Model.Items)
+        {
+
+            var imageurl = "";
+            foreach (var relatedItem in item.Fields.NewsImage)
+            {
+                imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+            }
+            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+
+        <li>
+            <a href="@navigateUrl">
+                <img src="@imageurl" alt="@item.Fields.Title" />
+            </a>
+            <div class="post-info">
+                <div class="title">
+                    <h3>
+                        <a href="@navigateUrl">
+                            @item.Fields.Title
+                        </a>
+                    </h3>
+                </div>
+
+                <div class="post-excerpt">
+                    @Html.HtmlSanitize((string)item.Fields.Summary)
+                </div>
+
+                <a href="@navigateUrl" class="read_btn"><span>Read More</span></a>
+
+            </div>
+        </li>
+        }
+</ul>
+

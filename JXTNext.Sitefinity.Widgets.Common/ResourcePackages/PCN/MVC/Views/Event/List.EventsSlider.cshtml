@@ -1,0 +1,49 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Events.Mvc.Helpers
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.Modules.Pages
+@using Telerik.Sitefinity.Web.DataResolving
+
+@Html.Script(ScriptRef.JQuery, "top", false)
+
+<ul id="wt-slider" class="owl-carousel">
+    @foreach (var item in Model.Items)
+    {
+
+        var imageurl = "";
+        foreach (var relatedItem in item.Fields.EventImage)
+        {
+            imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+        }
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+        <li>
+            <a href="@navigateUrl">
+                <img src="@imageurl" height="320" alt="image">
+            </a>
+
+            <div class="post-info">
+                <div class="entry-meta">
+                    <span class="entry-cats"><span class="main-color-bg cat5"><a href="#">Category</a></span></span>
+                </div>
+
+                <div class="title">
+                    <h3>
+                        <a href="@navigateUrl">@item.Fields.Title</a>
+                    </h3>
+                </div>
+
+                <div class="post-excerpt">
+                    @Html.HtmlSanitize((string)item.Fields.Summary)
+                </div>
+
+                <div class="more">
+                    <a href="@navigateUrl">Read more</a>
+                </div>
+
+            </div>
+
+        </li>
+    }
+</ul>
+

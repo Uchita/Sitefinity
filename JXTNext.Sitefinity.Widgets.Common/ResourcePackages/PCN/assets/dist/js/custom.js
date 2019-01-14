@@ -42,10 +42,19 @@ $(document).ready(function () {
         items: 1
     });
 
-    /* logo_slider */
+    /* article - slider */
     $('.article-slider').owlCarousel({
         loop: true,
         nav: false,
+        autoplay: true,
+        items: 1
+    });
+
+    /* logo_slider */
+    $('#wt-slider').owlCarousel({
+        loop: true,
+        nav: false,
+        dots: true,
         autoplay: true,
         items: 1
     });

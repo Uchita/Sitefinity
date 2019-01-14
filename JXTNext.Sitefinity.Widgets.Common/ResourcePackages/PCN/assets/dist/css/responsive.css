@@ -505,6 +505,15 @@
     .three_colmun_section .white_panel {
         height: calc(100% - 69px);
     }
+
+    .archive-postlist .entry-footer .read_btn {
+        float: left !important;
+        margin-top: 5px;
+    }
+
+        .archive-postlist .entry-footer .read_btn span {
+            font-size: 12px;
+        }
 }
 
 
@@ -713,6 +722,18 @@
 
     .three_colmun_section .blue_text + p {
         min-height: inherit;
+    }
+
+    .archive-postlist .entry-footer .read_btn.pull-right {
+        float: right !important;
+    }
+
+    #wt-slider .post-info {
+        width: calc(100% - 15px);
+    }
+
+    #wt-slider .post-excerpt {
+        width: 100%;
     }
 }
 

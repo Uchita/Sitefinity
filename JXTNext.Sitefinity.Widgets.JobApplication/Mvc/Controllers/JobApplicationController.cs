@@ -585,22 +585,35 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         [HttpPost]
         public JsonResult IsJobApplied(int jobId)
         {
-            bool isJobApplied = false;
-
-            JXTNext_MemberAppliedJobResponse appliedJobresponse = _blConnector.MemberAppliedJobsGet() as JXTNext_MemberAppliedJobResponse;
-            if (appliedJobresponse.Success)
+            try
             {
-                foreach (var item in appliedJobresponse.MemberAppliedJobs)
+                bool isJobApplied = false;
+                Log.Write($"IsJobApplied method1", ConfigurationPolicy.ErrorLog);
+                JXTNext_MemberAppliedJobResponse appliedJobresponse = _blConnector.MemberAppliedJobsGet() as JXTNext_MemberAppliedJobResponse;
+                Log.Write($"IsJobApplied method appliedJobresponse.Success = " + appliedJobresponse.Success, ConfigurationPolicy.ErrorLog);
+                Log.Write($"IsJobApplied method appliedJobresponse.MemberAppliedJobs = " + appliedJobresponse.MemberAppliedJobs, ConfigurationPolicy.ErrorLog);
+
+                if (appliedJobresponse.Success)
                 {
-                    if (item.JobId == jobId)
+                    foreach (var item in appliedJobresponse.MemberAppliedJobs)
                     {
-                        isJobApplied = true;
-                        break;
+                        if (item.JobId == jobId)
+                        {
+                            isJobApplied = true;
+                            Log.Write($"IsJobApplied isJobApplied 1 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
+                            break;
+                        }
                     }
                 }
+                Log.Write($"IsJobApplied isJobApplied 2 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
+                return new JsonResult { Data = isJobApplied };
             }
-
-            return new JsonResult { Data = isJobApplied };
+            catch (Exception ex)
+            {
+                Log.Write($"IsJobApplied exception = " + ex.Message, ConfigurationPolicy.ErrorLog);
+                throw ex;
+            }
+            
         }
         private JobApplicationAttachmentSource GetAttachmentSourceType(string sourceType)
         {

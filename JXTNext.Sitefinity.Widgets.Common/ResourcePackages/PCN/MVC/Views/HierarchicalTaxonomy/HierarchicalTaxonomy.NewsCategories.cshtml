@@ -1,0 +1,17 @@
+﻿@model Telerik.Sitefinity.Frontend.Taxonomies.Mvc.Models.TaxonomyViewModel
+
+@using Newtonsoft.Json;
+
+<div id="wellthemes_popular_categories_widget-3" class="widget widget_categories">
+    <h4>Popular Categories</h4>
+    <ul class="list">
+        @foreach (var taxon in Model.Taxa)
+        {
+            <li>
+                <span class="main-color-bg cat cat3"></span>
+                <a href="@taxon.Url"> @taxon.Title</a>
+            </li>
+        }
+    </ul>
+</div>
+

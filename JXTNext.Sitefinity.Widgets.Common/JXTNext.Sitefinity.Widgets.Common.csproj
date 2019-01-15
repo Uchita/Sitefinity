@@ -175,6 +175,9 @@
     <Content Include="ResourcePackages\PCN\assets\dist\webfonts\FuturaBT-Medium.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\PCN\GridSystem\Templates\newssidesearch.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\PCN\GridSystem\Templates\blogsidesearch.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -902,6 +905,16 @@
     <Content Include="ResourcePackages\PCN\MVC\Views\Event\List.EventsSlider.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\HierarchicalTaxonomy\HierarchicalTaxonomy.NewsCategories.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\News\List.NewsSideTabList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\News\List.CategorisedNewsList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="ResourcePackages\PCN\MVC\Views\News\List.NewsListCarousel.cshtml" />
     <None Include="ResourcePackages\PCN\MVC\Views\Testimonial\Detail.TestimonialCompact.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

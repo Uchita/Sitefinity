@@ -7,13 +7,19 @@
 @using Telerik.Sitefinity.Model;
 @using Telerik.Sitefinity.Taxonomies;
 @using Telerik.Sitefinity.Taxonomies.Model;
+@using Newtonsoft.Json;
+
+@{
+                /**/
+
+                var Json = JsonConvert.SerializeObject(Model);
+}
 
 <div class="archive-postlist @Model.CssClass">
     <div class="row">
 
         @foreach (var item in Model.Items)
         {
-
             var imageurl = "";
             foreach (var relatedItem in item.Fields.NewsImage)
             {
@@ -27,12 +33,15 @@
                     <div class="thumbnail-img overlay">
                         <a href="@navigateUrl"><img src="@imageurl" alt="image"></a>
                         <div class="cat-bullet">
-                            <span class="cat">
-                                <span class="main-color-bg cat5"></span><a href="#">Category</a>
-                            </span>
-                            <span class="cat cat-two">
-                                <span class="main-color-bg cat3"></span><a href="#">Category 2</a>
-                            </span>
+                            @if (item.Fields.Category != null)
+                            {
+                                foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+                                {
+                                    <span class="cat">
+                                        <span class="main-color-bg cat5"></span><a href="#">@taxon.Title.ToString()</a>
+                                    </span>
+                                }
+                            }
                         </div>
                     </div>
 
@@ -72,9 +81,9 @@
 
         @Html.Action("Index", "ContentPager", new
         {
-        currentPage = Model.CurrentPage,
-        totalPagesCount = Model.TotalPagesCount.Value,
-        redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
+            currentPage = Model.CurrentPage,
+            totalPagesCount = Model.TotalPagesCount.Value,
+            redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
         })
 
     </div>

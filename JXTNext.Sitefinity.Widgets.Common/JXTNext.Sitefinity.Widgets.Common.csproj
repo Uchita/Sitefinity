@@ -1374,6 +1374,9 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\Lists\List.WhiteBoxSingle.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\LoginForm\ForgotPassword.ForgottenPasswordBlank.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\LoginForm\ForgotPassword.ForgottenPassword.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

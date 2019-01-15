@@ -5383,7 +5383,7 @@ p {
 /*-------Group Section----End------*/
 /*-------Service Item----------*/
 .service-item {
-    margin-bottom: 79px;
+    margin-bottom: 50px;
 }
 
     .service-item .service-name {
@@ -5973,6 +5973,40 @@ select.hs-input {
             text-decoration: none;
         }
 
+.app-header .main-menu .navbar-nav .nav-item {
+    margin-right: 10px;
+}
+
+.app-header .main-menu .navbar-nav > .nav-item:last-child {
+    margin-right: 0px;
+}
+
+.app-header .main-menu .navbar-nav .nav-item .nav-link {
+    display: inline-block;
+    padding-right: 0px;
+}
+
+    .app-header .main-menu .navbar-nav .nav-item .nav-link:after {
+        display: none;
+    }
+
+.app-header .main-menu .navbar-nav .nav-item .menu-toggle {
+    font-size: 15px;
+    font-style: normal;
+    cursor: pointer;
+    padding: 1px;
+    transition: transform 0.3s;
+    color: #333132;
+    margin: 0 0 0 2px;
+    background: none;
+    border: none;
+}
+
+.app-header .main-menu .navbar-nav .nav-item:hover .menu-toggle {
+    color: #0088CF;
+    transform: rotate(-180deg);
+}
+
 @media (max-width: 991px) {
     .app-header .dropdown-menu {
         position: static;
@@ -6053,7 +6087,7 @@ select.hs-input {
     font-size: 15px;
 }
 
-    .navbar .navbar-nav .nav-link:focus, .navbar .navbar-nav .nav-link.active, .navbar .navbar-nav .nav-link:hover {
+    .navbar .navbar-nav .nav-link:focus, .navbar .navbar-nav .nav-link.active, .navbar .navbar-nav .nav-link:hover, .top-menus .navbar-nav a:hover {
         color: #0088CF;
         text-decoration: none;
     }
@@ -6068,7 +6102,7 @@ select.hs-input {
     }
 }
 
-.navbar.top-navbar .navbar-nav .nav-link {
+.navbar.top-navbar .navbar-nav .nav-link, .top-menus button, .top-menus a {
     padding: 0 12px;
     font-weight: bold;
 }
@@ -6116,8 +6150,13 @@ select.hs-input {
         color: #d8d8d8;
     }
 
-.top-menus .navbar-nav .nav-link {
+.top-menus .navbar-nav .nav-link, .top-menus button, .top-menus a {
     color: #304e6b;
+}
+
+.top-menus button {
+    background: none;
+    border: none;
 }
 /*----Header Search form ---*/
 @media (max-width: 991px) {
@@ -7594,6 +7633,10 @@ select.hs-input {
     padding-left: 40px;
 }
 
+.content-two-block .r-space {
+    padding-right: 40px;
+}
+
 .baner_right_space, .text-margin-left, .content-on-img {
     padding-left: 40px !important;
 }
@@ -7603,6 +7646,11 @@ select.hs-input {
     .content-two-block .img-absolute-wrap {
         padding-left: 15px;
     }
+
+    .content-two-block .r-space {
+        padding-right: 15px;
+    }
+
 
     .baner_right_space, .text-margin-left, .content-on-img {
         padding-left: 15px !important;
@@ -7722,7 +7770,7 @@ select.hs-input {
 
 /*Apply form position======*/
 .bdr-right {
-    border-right: 1px solid #000;
+    border-right: 1px solid #ccc;
 }
 
 .bdr-right, .pad-right-30 {
@@ -7908,6 +7956,10 @@ select.hs-input {
         line-height: 19px;
     }
 
+.ext-provider-form .apply-with li {
+    vertical-align: top;
+}
+
 .ext-provider-form .apply-with .btn {
     height: 35px;
     min-width: 120px;
@@ -7918,6 +7970,7 @@ select.hs-input {
     .ext-provider-form .apply-with .btn.btn-seek {
         background: url(../images/seekBtn.png) 50% 50% no-repeat #e61977;
         text-indent: -9em;
+        border-radius: 0px;
     }
 
 
@@ -8022,6 +8075,14 @@ select.hs-input {
     margin-left: 10px;
 }
 
+.top-menus > div {
+    float: right;
+}
+
+.top-menus .login-status {
+    float: left;
+}
+
 .top-menus .navbar-nav .rb-1 {
     position: relative;
 }
@@ -8073,6 +8134,10 @@ select.hs-input {
 
 .news-slider-mobile {
     display: none !important;
+}
+
+.color-white h3, .color-white p {
+    color: #ffffff;
 }
 
 @media (min-width: 768px) {
@@ -8135,3 +8200,74 @@ select.hs-input {
         display: none !important;
     }
 }
+
+
+.bayside-form {
+    padding: 50px 0;
+    font-size: 14px;
+}
+
+    .bayside-form a, .bayside-form .btn {
+        font-weight: 600;
+    }
+
+    .bayside-form .br-1 {
+        border-right: 1px solid #ccc;
+    }
+
+    .bayside-form h2 {
+        margin-top: 0px;
+        font-weight: 500;
+    }
+
+    .bayside-form .form-group input[type="checkbox"] {
+        margin: 0px;
+        position: static;
+    }
+
+    .bayside-form .basic-form {
+        padding-right: 12%;
+    }
+
+    .bayside-form .sign-in-with .btn {
+        color: #fff;
+    }
+
+    .bayside-form .sign-in-with .btn-google {
+        background-color: #d34836;
+    }
+
+        .bayside-form .sign-in-with .btn-google:after {
+            content: "\f0d5";
+            font-family: FontAwesome;
+            margin-left: 5px;
+            font-weight: normal;
+        }
+
+    .bayside-form .sign-in-with .btn-linkedin {
+        background-color: #0077B5;
+    }
+
+        .bayside-form .sign-in-with .btn-linkedin:after {
+            content: "\f0e1";
+            font-family: FontAwesome;
+            margin-left: 5px;
+            font-weight: normal;
+        }
+
+    .bayside-form .sign-in-with div {
+        display: inline-block;
+        margin-right: 8px;
+    }
+
+.page-wrapper #indeed-btnwrapper .indeed-apply-button {
+    background: url(../images/indeedBtn.png) 50% 50% no-repeat #fd6001 !important;
+    width: 120px;
+    border-radius: 0 !important;
+    height: 35px !important;
+    padding: 0 !important;
+}
+
+    .page-wrapper #indeed-btnwrapper .indeed-apply-button span {
+        display: none !important;
+    }

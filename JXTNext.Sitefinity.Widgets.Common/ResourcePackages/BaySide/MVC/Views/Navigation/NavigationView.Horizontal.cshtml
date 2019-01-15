@@ -10,7 +10,7 @@
 @using System.Linq;
 @using Telerik.Sitefinity.Pages.Model;
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white float-right">
+<nav class="navbar navbar-expand-lg navbar-light bg-white float-right main-menu">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,9 +22,10 @@
                 if (parentNode.Url == "/specialist-recruitment-group")
                 {
                     <li class="nav-item dropdown mega-menu">
-                        <a target="@parentNode.LinkTarget" class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a target="@parentNode.LinkTarget" class="nav-link @GetClass(parentNode)" href="@parentNode.Url" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
+                        <button class="menu-toggle dropdown-toggle" type="button" data-toggle="dropdown"></button>
                         <div class="dropdown-menu">
                             <div class="row">
 
@@ -140,6 +141,7 @@
                         <a target="@parentNode.LinkTarget" class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
+                        <button class="menu-toggle dropdown-toggle" type="button" data-toggle="dropdown"></button>
                         <div class="dropdown-menu">
                             <div class="row">
                                 <div class="col-12 col-lg-4">
@@ -171,9 +173,15 @@
 
                                 <div class="col-12 col-lg-8">
                                     @{
-                                        List<NodeViewModel> listTopTen = new List<NodeViewModel>();
-                                        List<NodeViewModel> listRemainingNodes1 = new List<NodeViewModel>();
-                                        List<NodeViewModel> listAllNodes1 = new List<NodeViewModel>();
+                                        List<NodeViewModel>
+                                            listTopTen = new List<NodeViewModel>
+                                                ();
+                                        List<NodeViewModel>
+                                            listRemainingNodes1 = new List<NodeViewModel>
+                                                ();
+                                        List<NodeViewModel>
+                                            listAllNodes1 = new List<NodeViewModel>
+                                                ();
                                     }
                                     @foreach (var childNode1 in parentNode.ChildNodes)
                                     {
@@ -262,6 +270,7 @@
                         <a target="@parentNode.LinkTarget" class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
+                        <button class="menu-toggle dropdown-toggle" type="button" data-toggle="dropdown"></button>
                         <div class="dropdown-menu">
                             <div class="row">
                                 @foreach (var childnode in parentNode.ChildNodes)
@@ -316,6 +325,7 @@
                         <a target="@parentNode.LinkTarget" class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
+                        <button class="menu-toggle dropdown-toggle" type="button" data-toggle="dropdown"></button>
                         <div class="dropdown-menu">
                             <div class="row">
                                 @foreach (var childnode in parentNode.ChildNodes)
@@ -355,7 +365,7 @@
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a target="@node.LinkTarget"  class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
 
@@ -385,6 +395,7 @@
                         <a target="@parentNode.LinkTarget" class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
+                        <button class="menu-toggle dropdown-toggle" type="button" data-toggle="dropdown"></button>
                         <div class="dropdown-menu">
                             <div class="row">
                                 @foreach (var childnode in parentNode.ChildNodes)
@@ -447,6 +458,7 @@
                         <a target="@parentNode.LinkTarget" class="nav-link dropdown-toggle @GetClass(parentNode)" href="@parentNode.Url" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
+                        <button class="menu-toggle dropdown-toggle" type="button" data-toggle="dropdown"></button>
                         <div class="dropdown-menu">
                             <div class="row">
                                 <div class="col-12 col-lg-4">
@@ -466,21 +478,27 @@
 
                                         @*else if (childNode.Url == "/specialist-recruitment-group/learn-more")
                                             {
-                                                <a class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">@childNode.Title</a>
-                                                <ul>
-                                                    @foreach (var node in childNode.ChildNodes)
-                                                    {
+                                            <a class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">@childNode.Title</a>
+                                            <ul>
+                                                @foreach (var node in childNode.ChildNodes)
+                                                {
 
-                                                        <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
-                                                    }
-                                                </ul>
+                                                <li><a class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                }
+                                            </ul>
                                             }*@
                                     }
                                 </div>
                                 @{
-                                    List<NodeViewModel> listTopFive = new List<NodeViewModel>();
-                                    List<NodeViewModel> listRemainingNodes = new List<NodeViewModel>();
-                                    List<NodeViewModel> listAllNodes = new List<NodeViewModel>();
+                                    List<NodeViewModel>
+                                        listTopFive = new List<NodeViewModel>
+                                            ();
+                                    List<NodeViewModel>
+                                        listRemainingNodes = new List<NodeViewModel>
+                                            ();
+                                    List<NodeViewModel>
+                                        listAllNodes = new List<NodeViewModel>
+                                            ();
                                 }
                                 @foreach (var childNode in parentNode.ChildNodes)
                                 {

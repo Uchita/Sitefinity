@@ -6,13 +6,20 @@
 @Html.Script(ScriptRef.JQuery, "top", false)
 <div class="@Model.CssClass">
     <div data-sf-role="sf-logged-in-view" style="display: none">
-        <span>@Html.Resource("LoggedAs", "LoginStatusExtendedResources") </span>
-        <a href="@(Model.ProfilePageUrl ?? "#")" data-sf-role="sf-logged-in-name"></a>
-        @Html.ActionLink(Html.Resource("Logout", "LoginStatusExtendedResources"), "SignOut")
+        <ul class="navbar-nav">
+            <li class="rb-1 logged">
+                <span>@Html.Resource("LoggedAs", "LoginStatusExtendedResources") </span>
+                <a href="@(Model.ProfilePageUrl ?? "#")" data-sf-role="sf-logged-in-name"></a>
+            </li>
+            <li class="rb-1"> @Html.ActionLink(Html.Resource("Logout", "LoginStatusExtendedResources"), "SignOut")</li>
+        </ul>
     </div>
     <div data-sf-role="sf-logged-out-view" style="display: none">
-        <a href="@(Model.LoginPageUrl ?? "#")">@Html.Resource("Login", "LoginStatusExtendedResources")</a>
-        <a href="@(Model.RegistrationPageUrl ?? "#")">@Html.Resource("RegisterNow", "LoginStatusExtendedResources")</a>
+        <ul class="navbar-nav">
+            <li class="rb-1"><a href="@(Model.RegistrationPageUrl ?? "#")">Register</a></li>
+            <li class="rb-1"><a href="@(Model.LoginPageUrl ?? "#")">Login</a></li>
+        </ul>
+
     </div>
 </div>
 <input type="hidden" data-sf-role="sf-status-json-endpoint-url" value="@Model.StatusServiceUrl" />

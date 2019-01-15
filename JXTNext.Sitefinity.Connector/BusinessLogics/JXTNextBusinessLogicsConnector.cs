@@ -406,7 +406,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             {
                 dynamic responseObj = JObject.Parse(response.Response);
 
-                if (responseObj["status"] == 200)
+                if (responseObj["status"] == 200 && responseObj["data"] != null)
                 {
                     return new JXTNext_MemberAppliedJobResponse { Success = true, MemberAppliedJobs = _memberMapper.MemberAppliedJob_ConvertToLocalEntity<MemberAppliedJob>(JsonConvert.DeserializeObject<dynamic>(responseObj["data"].ToString())) };
                 }

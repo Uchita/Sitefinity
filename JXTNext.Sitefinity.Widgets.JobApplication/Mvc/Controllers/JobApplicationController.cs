@@ -170,15 +170,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
 
                 isUserLoggedIn = true;
-                // setting cookie
-                HttpCookie SocialLoginCookie = new HttpCookie("SocialLoginCookie");
-                SocialLoginCookie.Value = "true";
-                SocialLoginCookie.Expires = DateTime.Now.AddHours(1);
-                this.Response.Cookies.Add(SocialLoginCookie);
-                HttpCookie SocialLoginEmailCookie = new HttpCookie("SocialLoginEmailCookie");
-                SocialLoginEmailCookie.Value = userEmail;
-                SocialLoginEmailCookie.Expires = DateTime.Now.AddHours(1);
-                this.Response.Cookies.Add(SocialLoginEmailCookie);
                 ViewBag.isLoggedIn = true;
                 ViewBag.loginEmail = userEmail;
             }
@@ -443,24 +434,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             var isJobApplicationSuccess = false;
 
-
-            // delete the cookies set in the job application controller
-            HttpCookie cookie = this.Request.Cookies["SocialLoginCookie"];
-            if (cookie != null)
-            {
-                cookie.Expires = DateTime.Now.AddDays(-1);
-                this.Response.Cookies.Add(cookie);
-            }
-
-            cookie = this.Request.Cookies["SocialLoginEmailCookie"];
-            if (cookie != null)
-            {
-                cookie.Expires = DateTime.Now.AddDays(-1);
-                this.Response.Cookies.Add(cookie);
-            }
-
-
-
             if (response.Success && response.ApplicationID.HasValue)
             {
                 //FileUploads
@@ -585,22 +558,35 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         [HttpPost]
         public JsonResult IsJobApplied(int jobId)
         {
-            bool isJobApplied = false;
-
-            JXTNext_MemberAppliedJobResponse appliedJobresponse = _blConnector.MemberAppliedJobsGet() as JXTNext_MemberAppliedJobResponse;
-            if (appliedJobresponse.Success)
+            try
             {
-                foreach (var item in appliedJobresponse.MemberAppliedJobs)
+                bool isJobApplied = false;
+                Log.Write($"IsJobApplied method1", ConfigurationPolicy.ErrorLog);
+                JXTNext_MemberAppliedJobResponse appliedJobresponse = _blConnector.MemberAppliedJobsGet() as JXTNext_MemberAppliedJobResponse;
+                Log.Write($"IsJobApplied method appliedJobresponse.Success = " + appliedJobresponse.Success, ConfigurationPolicy.ErrorLog);
+                Log.Write($"IsJobApplied method appliedJobresponse.MemberAppliedJobs = " + appliedJobresponse.MemberAppliedJobs, ConfigurationPolicy.ErrorLog);
+
+                if (appliedJobresponse.Success)
                 {
-                    if (item.JobId == jobId)
+                    foreach (var item in appliedJobresponse.MemberAppliedJobs)
                     {
-                        isJobApplied = true;
-                        break;
+                        if (item.JobId == jobId)
+                        {
+                            isJobApplied = true;
+                            Log.Write($"IsJobApplied isJobApplied 1 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
+                            break;
+                        }
                     }
                 }
+                Log.Write($"IsJobApplied isJobApplied 2 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
+                return new JsonResult { Data = isJobApplied };
             }
-
-            return new JsonResult { Data = isJobApplied };
+            catch (Exception ex)
+            {
+                Log.Write($"IsJobApplied exception = " + ex.Message, ConfigurationPolicy.ErrorLog);
+                throw ex;
+            }
+            
         }
         private JobApplicationAttachmentSource GetAttachmentSourceType(string sourceType)
         {

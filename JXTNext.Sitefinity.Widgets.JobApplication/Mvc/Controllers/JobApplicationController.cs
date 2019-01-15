@@ -382,7 +382,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 
                 emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(SitefinityHelper.GetUserFirstNameById(currentIdentity.UserId), ovverideEmail),
-                                                                                                this.EmailTemplateEmailSubject,
+                                                                                                this._emailTemplateTitle,
                                                                                                 htmlEmailContent,null,null,null,null);
             }
             else
@@ -392,14 +392,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 {
                     emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(SitefinityHelper.GetUserFirstNameById(ClaimsManager.GetCurrentIdentity().UserId), ovverideEmail),
-                                                                                                this.EmailTemplateEmailSubject,
+                                                                                                this._emailTemplateTitle,
                                                                                                 htmlEmailContent, null, null, null, null);
                 }
                 else
                 {
                     new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(string.Empty, ovverideEmail),
-                                                                                                this.EmailTemplateEmailSubject,
+                                                                                                this._emailTemplateTitle,
                                                                                                 htmlEmailContent, null, null, null, null);
                 }
                 
@@ -619,6 +619,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
         }
 
+        private string _emailTemplateTitle { get; set; }
         private string GetHtmlEmailContent()
         {
             string htmlEmailContent = String.Empty;
@@ -628,6 +629,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
                 var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.EmailTemplateId.ToUpper()));
                 htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
+                this._emailTemplateTitle = emailTemplateItem.GetValue("Title").ToString();
             }
 
             return htmlEmailContent;

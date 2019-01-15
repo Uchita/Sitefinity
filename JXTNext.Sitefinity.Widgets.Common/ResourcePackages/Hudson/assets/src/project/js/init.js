@@ -401,7 +401,6 @@ $(document).ready(function () {
     //contact form replacement
     if( $('.get-in-touch').length && $('.contact-form').length  ){
         $('#officeAddress').html( $('.contact-form iframe') );
-        $('.contact-form').addClass('hidden-xs');
     }
 
     //user dashboard : job alert create and edit

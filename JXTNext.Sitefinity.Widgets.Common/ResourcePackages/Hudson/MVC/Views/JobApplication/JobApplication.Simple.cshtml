@@ -371,6 +371,7 @@
 
     $("#selectresume").change(function () {
         $("#uploadresumeblock").hide();
+        $("#selectresume").addClass("checked");
         if (userLoggedInParamFromViewbag == 'True') {
             $("#MySavedResumes").parent('div').show();
         } else {
@@ -381,6 +382,7 @@
 
     $("#uploadresume").change(function () {
         $("#uploadresumeblock").show();
+        $("#selectresume").removeClass("checked");
         if (userLoggedInParamFromViewbag == 'True') {
             $("#MySavedResumes").parent('div').hide();
         } else {
@@ -392,8 +394,6 @@
 
      $(document).ready(function () {
 
-         
-         
 
          $('form').submit(function (e) {
              e.preventDefault();
@@ -482,8 +482,12 @@
 
                  rows += '<option value="' + item.Value + '">' + item.Text+'</option>';
                 
-            });
-             $('#user-profile-resume-list').html(rows);
+             });
+             if (rows.length) {
+                 $('#user-profile-resume-list').html(rows);
+             } else {
+                 $('#user-profile-resume-list').html('<option val="0">SELECT YOUR CV</option>');
+             }
          }
 
          //member sign in continue

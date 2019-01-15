@@ -710,9 +710,9 @@ img, iframe {
     width: 650px;
 }
 .modal-body{
-    .button.close{
+    .button.close, button.close{
         position: relative;
-        top: -5px;
+        top: -8px;
     }
 }
 .dropdown.open > a .fa-angle-down:before {

@@ -14,16 +14,16 @@
 
             <div class="item">
                 <h4>
-                    @jobOffer.Title;
+                    @jobOffer.Title
                 </h4>
                 <p>
                     @if (jobOffer.ShortDescription.Length > 180)
                     {
-                        @Html.Raw(jobOffer.ShortDescription.Substring(0, 180) + "...");
+                        @Html.Raw(jobOffer.ShortDescription.Substring(0, 180) + "...")
                     }
                     else
                     {
-                        @Html.Raw(jobOffer.ShortDescription);
+                        @Html.Raw(jobOffer.ShortDescription)
                     }
                 </p>
                 <a class="btn btn-link pl-0" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">

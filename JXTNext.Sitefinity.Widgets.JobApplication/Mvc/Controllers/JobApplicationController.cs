@@ -170,15 +170,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
 
                 isUserLoggedIn = true;
-                // setting cookie
-                HttpCookie SocialLoginCookie = new HttpCookie("SocialLoginCookie");
-                SocialLoginCookie.Value = "true";
-                SocialLoginCookie.Expires = DateTime.Now.AddHours(1);
-                this.Response.Cookies.Add(SocialLoginCookie);
-                HttpCookie SocialLoginEmailCookie = new HttpCookie("SocialLoginEmailCookie");
-                SocialLoginEmailCookie.Value = userEmail;
-                SocialLoginEmailCookie.Expires = DateTime.Now.AddHours(1);
-                this.Response.Cookies.Add(SocialLoginEmailCookie);
                 ViewBag.isLoggedIn = true;
                 ViewBag.loginEmail = userEmail;
             }
@@ -442,24 +433,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 ovverideEmail);
 
             var isJobApplicationSuccess = false;
-
-
-            // delete the cookies set in the job application controller
-            HttpCookie cookie = this.Request.Cookies["SocialLoginCookie"];
-            if (cookie != null)
-            {
-                cookie.Expires = DateTime.Now.AddDays(-1);
-                this.Response.Cookies.Add(cookie);
-            }
-
-            cookie = this.Request.Cookies["SocialLoginEmailCookie"];
-            if (cookie != null)
-            {
-                cookie.Expires = DateTime.Now.AddDays(-1);
-                this.Response.Cookies.Add(cookie);
-            }
-
-
 
             if (response.Success && response.ApplicationID.HasValue)
             {

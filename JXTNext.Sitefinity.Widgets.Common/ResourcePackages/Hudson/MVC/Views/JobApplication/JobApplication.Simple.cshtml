@@ -531,17 +531,18 @@
                                          
                                      }
                                      else {
+                                         document.location.reload();
                                          // Show upload files section
-                                         $('#register').hide();
-                                         $('#userid').attr('disabled',true);
-                                         $('#apply').removeAttr('disabled');
-                                         $('#userid').removeAttr('required');
-                                         $('#upload-files-container').show();
-                                         $('#appFormState').text('Upload your files');
-                                         $("#upload-files-container").show();
-                                         $('#user-profile-resume').removeAttr('hidden');
-                                         $('#uploadresumeblock').hide();
-                                         $('#email-selected').val($('#userid').val());
+                                         //$('#register').hide();
+                                         //$('#userid').attr('disabled',true);
+                                         //$('#apply').removeAttr('disabled');
+                                         //$('#userid').removeAttr('required');
+                                         //$('#upload-files-container').show();
+                                         //$('#appFormState').text('Upload your files');
+                                         //$("#upload-files-container").show();
+                                         //$('#user-profile-resume').removeAttr('hidden');
+                                         //$('#uploadresumeblock').hide();
+                                         //$('#email-selected').val($('#userid').val());
                                      }
                                  },
                                  error: function (response) {

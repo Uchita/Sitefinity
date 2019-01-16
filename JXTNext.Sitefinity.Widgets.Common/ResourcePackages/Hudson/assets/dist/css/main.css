@@ -7727,6 +7727,10 @@ blockquote {
   .page-wrapper .full-width {
     width: 100%;
     margin-bottom: 15px; }
+  .page-wrapper .full-height {
+    height: 100%; }
+    .page-wrapper .full-height > div {
+      height: 100%; }
   .page-wrapper label {
     text-transform: uppercase;
     color: #01a3a4;
@@ -9200,6 +9204,7 @@ ul.breadcrumb {
     margin-bottom: 0;
     padding-top: 70px;
     min-height: 550px;
+    height: 550px;
     text-align: center;
     color: #fff;
     display: flex;
@@ -9427,7 +9432,16 @@ ul.breadcrumb {
   .flex [class*="col-"] .thumbnail {
     height: 100%; }
     .flex [class*="col-"] .thumbnail.pagelinknormalbtn {
-      padding-bottom: 65px; }
+      padding-bottom: 65px !important; }
+      .flex [class*="col-"] .thumbnail.pagelinknormalbtn .caption {
+        padding-bottom: 0; }
+        .flex [class*="col-"] .thumbnail.pagelinknormalbtn .caption .btn {
+          position: absolute;
+          bottom: 15px;
+          left: 30px; }
+    .flex [class*="col-"] .thumbnail.no-bg-card {
+      background: none !important;
+      margin-bottom: 20px; }
 
 .page-banner .h2, .page-banner h2, .page-banner .h3, .page-banner h3 {
   color: #fff; }
@@ -11770,7 +11784,8 @@ select.articles-order {
   .paralax-image {
     background-size: auto !important; }
   .jumbotron-container .jumbotron {
-    min-height: 320px; }
+    min-height: 320px;
+    height: 320px; }
     .jumbotron-container .jumbotron .h1, .jumbotron-container .jumbotron h1 {
       font-size: 30px;
       font-size: 3rem; }

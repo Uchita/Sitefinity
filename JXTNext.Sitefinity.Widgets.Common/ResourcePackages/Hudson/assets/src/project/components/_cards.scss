@@ -8,6 +8,7 @@
         margin-bottom: 0;
         padding-top: 70px;
         min-height: 550px;
+        height: 550px;
         text-align: center;
         color: $banner-color;
         display: flex;
@@ -343,7 +344,19 @@
             }
         }
         &.pagelinknormalbtn{
-            padding-bottom: 65px;
+            padding-bottom: 65px!important;
+            .caption{
+                padding-bottom: 0;
+                .btn{
+                    position: absolute;
+                    bottom: 15px;
+                    left: 30px;
+                }
+            }
+        }
+        &.no-bg-card{
+            background: none!important;
+            margin-bottom: 20px;
         }
     }
 }

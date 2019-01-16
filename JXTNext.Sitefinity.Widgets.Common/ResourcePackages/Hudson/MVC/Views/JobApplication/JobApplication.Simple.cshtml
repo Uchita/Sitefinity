@@ -408,7 +408,7 @@
                  fileUploadFlag = true;
              }
 
-             if ((appStatus == 'Available' && isUserLoggedIn == 'True') && fileUploadFlag || registerForm) {
+             if ( appStatus == 'Available' && ( fileUploadFlag || registerForm) ) {
                  //if (registerForm) {
                      self.submit();
                  //}
@@ -512,10 +512,11 @@
                  data: parm,
                  dataType: 'Json',
                  success: function (response) {
-                     isUserLoggedIn = 'True';
+                     
                      $('#password-reg').parent().find('.error-message.wrongPassword-message').addClass('hidden');
                      // Once the user signed in , we need to know that the user is already applied for this job.
-                      if (response.IsUserSignedIn == true) {
+                     if (response.IsUserSignedIn == true) {
+                         isUserLoggedIn = 'True';
                           processProfileResumeJsonData(response.myResumes);
                              $.ajax({
                                  type: 'POST',

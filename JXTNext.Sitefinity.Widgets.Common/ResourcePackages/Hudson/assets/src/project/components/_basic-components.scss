@@ -667,6 +667,9 @@ blockquote{
         > div{
             height: 100%;
         }
+        > h2 + .thumbnail, h2 + br + .thumbnail{
+            height: calc(100% - 50px)!important;
+        }
     }
 
     label {

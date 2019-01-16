@@ -105,10 +105,31 @@
     <Content Include="ResourcePackages\Hudson\assets\dist\images\hudson_logo_white.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\114x114.png">
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\android-chrome-192x192.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\57x57.png">
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\android-chrome-256x256.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\apple-touch-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\browserconfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\favicon-16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\favicon-32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\mstile-150x150.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\safari-pinned-tab.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Hudson\assets\dist\images\indeed.png">
@@ -1568,6 +1589,9 @@
     <Content Include="ResourcePackages\Hudson\MVC\Views\Shared\_SimpleJS_Partial.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\site.webmanifest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1997,5 +2021,6 @@
       <Name>JXTNext.Sitefinity.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

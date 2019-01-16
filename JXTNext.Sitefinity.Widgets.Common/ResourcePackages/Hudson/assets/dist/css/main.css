@@ -7731,6 +7731,8 @@ blockquote {
     height: 100%; }
     .page-wrapper .full-height > div {
       height: 100%; }
+    .page-wrapper .full-height > h2 + .thumbnail, .page-wrapper .full-height h2 + br + .thumbnail {
+      height: calc(100% - 50px) !important; }
   .page-wrapper label {
     text-transform: uppercase;
     color: #01a3a4;

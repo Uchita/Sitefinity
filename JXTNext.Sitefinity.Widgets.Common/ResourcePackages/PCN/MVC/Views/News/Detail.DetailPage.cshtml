@@ -43,7 +43,7 @@
 
     <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
 
-
+    <hr class="space" />
     <div class="yarpp-related">
         <h3>Related posts:</h3>
         <ul>
@@ -59,7 +59,7 @@
         </ul>
     </div>
 
-
+    <hr class="space" />
 
     @{
         if (Model.EnableSocialSharing)
@@ -68,6 +68,6 @@
             @Html.SocialShareOptions(item);
         }
     }
-
+    <hr class="space" />
     @Html.CommentsList(@Model.Item.DataItem)
 </div>

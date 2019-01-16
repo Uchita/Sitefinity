@@ -707,6 +707,11 @@ hr {
     margin: 0px;
 }
 
+    hr.space {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
 .about_section.left_align hr {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -5663,3 +5668,37 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 .content-details ul, .content-details ol, .article-details ul, .article-details ol {
     padding: 0 0 15px 20px;
 }
+
+.article-details .article-detail-social {
+    padding: 0px;
+}
+
+    .article-details .article-detail-social li {
+        display: inline-block !important;
+        padding: 0px;
+    }
+
+        .article-details .article-detail-social li a {
+            display: block;
+            width: 2em;
+            height: 2em;
+            border: solid 1px;
+            margin: 0 .5em 0 0;
+            border-radius: 50%;
+            line-height: 2;
+            font-size: 1.5em;
+            text-align: center;
+            -webkit-transition: all .2s;
+            -moz-transition: all .2s;
+            transition: all .2s;
+        }
+
+            .article-details .article-detail-social li a i {
+                margin: 0px;
+            }
+
+            .article-details .article-detail-social li a:hover {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }

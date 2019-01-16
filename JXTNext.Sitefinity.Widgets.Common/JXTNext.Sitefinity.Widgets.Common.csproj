@@ -175,6 +175,9 @@
     <Content Include="ResourcePackages\PCN\assets\dist\webfonts\FuturaBT-Medium.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\PCN\GridSystem\Templates\eventssidesearch.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\PCN\GridSystem\Templates\newssidesearch.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -912,6 +915,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\PCN\MVC\Views\News\List.CategorisedNewsList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\Event\List.CategorisedEventsList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\Event\List.EventsSideTabList.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ResourcePackages\PCN\MVC\Views\News\List.NewsListCarousel.cshtml" />

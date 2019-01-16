@@ -1,0 +1,44 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Events.Mvc.Helpers
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.Modules.Pages
+@using Telerik.Sitefinity.Web.DataResolving
+
+@Html.Script(ScriptRef.JQuery, "top", false)
+
+
+<div class="post-list">
+
+    @foreach (var item in Model.Items)
+    {
+        var imageurl = "";
+        foreach (var relatedItem in item.Fields.EventImage)
+        {
+            imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+        }
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+
+        <div class="items">
+
+            <div class="thumbnail-img overlay">
+                <a href="@navigateUrl"><img src="@imageurl" alt="image"></a>
+            </div>
+
+            <div class="text">
+                <h3>
+                    <a href="@navigateUrl">@item.Fields.Title</a>
+                </h3>
+                <div class="entry-meta">
+                    <span class="author">Posted by <a href="#" title="Posts by Greythorn Australia" rel="author">@DataResolver.Resolve(item.DataItem, "Author", null)</a></span>
+                    <span class="sep">-</span>
+                    <span class="date">@item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
+                </div>
+            </div>
+
+        </div>
+    }
+
+</div>
+
+

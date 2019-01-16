@@ -860,6 +860,9 @@
     <Content Include="ResourcePackages\PCN\MVC\Views\BlogPost\Detail.SingleBlogWithImage.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\BlogPost\Detail.DetailPageBlank.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.BlogListWithImage.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -921,6 +924,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\PCN\MVC\Views\Event\List.EventsSideTabList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\Event\Detail.EventDetailsBlank.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\News\Detail.DetailPageBlank.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\Event\Detail.EventDetailsBackup.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ResourcePackages\PCN\MVC\Views\News\List.NewsListCarousel.cshtml" />

@@ -4,124 +4,61 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 @using Telerik.Sitefinity.Web.DataResolving;
 
-<div class="@Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
+@{
+    var imageurl = "";
+    foreach (var relatedItem in Model.Item.Fields.EventImage)
+    {
+        imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+    }
+}
+
+<div class="article-details @Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
 
     <div class="post-nav">
         <div class="prev-post"><a href="#" rel="prev"><i class="fas fa-long-arrow-alt-left"></i> Previous Post</a></div>
         <div class="next-post"><a href="#" rel="next">Next Post <i class="fas fa-long-arrow-alt-right"></i></a></div>
     </div>
 
+    <img src="@imageurl" alt="@Model.Item.Fields.Title" />
+
     <div class="entry-meta details">
         <span class="entry-cats">
             <span class="main-color-bg cat6"><a href="#">Category</a></span>
             <span class="main-color-bg cat5"><a href="#">Category 2</a></span>
         </span>
-        <span class="date">@Model.Item.EventDates()</span>
+        <span class="author">Posted by <a href="#" title="Posts by @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)" rel="author">@DataResolver.Resolve(@Model.Item.DataItem, "Author", null)</a></span>
+        <span class="sep">-</span>
+        <span class="date">@Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
     </div>
 
     <h3>
         <span @Html.InlineEditingFieldAttributes("Title", "ShortText")>@Model.Item.Fields.Title</span>
+
     </h3>
-    <span style="background: @Model.Item.EventCalendarColour()"></span>
 
-    @*@if (!string.IsNullOrEmpty(Model.Item.EventDates()))
-        {
-        <p>
-            <time>@Model.Item.EventDates()</time>
-        </p>
-        }*@
 
-    @if (!string.IsNullOrEmpty(Model.Item.Fields.City) || !string.IsNullOrEmpty(Model.Item.Fields.Country))
-    {<address>
 
-            @if (!string.IsNullOrEmpty(Model.Item.Fields.City) && !string.IsNullOrEmpty(Model.Item.Fields.Country))
+    <div @Html.InlineEditingFieldAttributes("Summary", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</div>
+
+    <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
+
+
+    <div class="yarpp-related">
+        <h3>Related posts:</h3>
+        <ul>
+            @foreach (var relatedItem in Model.Item.Fields.RelatedEvents)
             {
-                @Model.Item.Fields.City <span>,</span> @Model.Item.Fields.Country
-                <br>
+                var navigateUrl = "/news/blog/blog-details" + @relatedItem.Fields.ItemDefaultUrl;
+                <li>
+                    <a href="@navigateUrl" rel="bookmark" title="@relatedItem.Fields.Title">
+                        @relatedItem.Fields.Title
+                    </a>
+                </li>
             }
-            else
-            {
-                @(string.IsNullOrEmpty(Model.Item.Fields.City) ? Model.Item.Fields.Country : Model.Item.Fields.City)
-                <br>
-            }
-
-            @if (!string.IsNullOrEmpty(Model.Item.Fields.Street))
-            {
-                @Model.Item.Fields.Street
-            }
-        </address>
-    }
-
-    <div>
-        @if (!string.IsNullOrEmpty(Model.Item.Fields.ContactName))
-        {
-            @Model.Item.Fields.ContactName
-            <br>
-        }
-
-        @if (!string.IsNullOrEmpty(Model.Item.Fields.ContactPhone))
-        {
-            @Model.Item.Fields.ContactPhone
-            <br>
-        }
-
-        @if (!string.IsNullOrEmpty(Model.Item.Fields.ContactCell))
-        {
-            @Model.Item.Fields.ContactCell
-            <br>
-        }
-
-        @if (!string.IsNullOrEmpty(Model.Item.Fields.ContactEmail))
-        {
-            <address><a href="mailto:@(Model.Item.Fields.ContactEmail)" target="_blank">@Model.Item.Fields.ContactEmail</a></address>
-        }
-
-        @if (!string.IsNullOrEmpty(Model.Item.Fields.ContactWeb))
-        {
-            <a href="@(Model.Item.Fields.ContactWeb)" target="_blank">@Model.Item.Fields.ContactWeb</a>
-        }
+        </ul>
     </div>
 
-    @if (!string.IsNullOrEmpty(Model.Item.Fields.Location))
-    {
-        <p>
-            @*How to find us field*@
-            @Model.Item.Fields.Location
-        </p>
-    }
 
-    @if (!string.IsNullOrEmpty(Model.Item.Fields.Description))
-    {
-        <p>
-            @Model.Item.Fields.Description
-        </p>
-    }
-
-    <p>
-        @Html.CommentsCount(string.Empty, Model.Item.DataItem)
-    </p>
-
-    @if (ViewBag.AllowCalendarExport)
-    {
-        <div>
-            <span>@Html.Resource("AddTo")</span>
-            <ul class="pl-2">
-                <li><a href="@Model.Item.GenerateOutlookUrl()" target="_blank">@Html.Resource("OutlookEventExporterTitle")</a>,</li>
-                <li><a href="@Model.Item.GenerateICalUrl()" target="_blank">@Html.Resource("ICalEventExporterTitle")</a>,</li>
-                <li><a href="@Model.Item.GenerateGoogleUrl()" target="_blank">@Html.Resource("GoogleEventExporterTitle")</a></li>
-            </ul>
-        </div>
-    }
-
-    @if (!string.IsNullOrEmpty(Model.Item.Fields.Summary))
-    {
-        <p @Html.InlineEditingFieldAttributes("Summary", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</p>
-    }
-
-    @if (!string.IsNullOrEmpty(Model.Item.Fields.Content))
-    {
-        <p @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</p>
-    }
 
     @{
         if (Model.EnableSocialSharing)
@@ -131,6 +68,5 @@
         }
     }
 
-    @Html.CommentsList(Model.Item.DataItem)
-
+    @Html.CommentsList(@Model.Item.DataItem)
 </div>

@@ -27,6 +27,16 @@
             </div>
             <p>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</p>
             <a href="@navigateUrl" class="action_link">Read More</a>
+
+            @if (Model.Item.Fields.Category != null)
+            {
+                foreach (var taxon in Model.Item.GetHierarchicalTaxons("Category"))
+                {<br /><br />
+                    <span class="cat">
+                        <span class="main-color-bg cat5"></span><a href="#">@taxon.Title.ToString()</a>
+                    </span>
+                }
+            }
         </div>
     </div>
 

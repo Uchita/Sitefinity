@@ -5651,3 +5651,15 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
             font-size: 13px;
             margin: 0 0 7px 0;
         }
+
+.article-details img {
+    margin: 20px 0;
+}
+
+.article-details .sf-Comments-form img, .article-details .media-list img {
+    margin: 0px;
+}
+
+.content-details ul, .content-details ol, .article-details ul, .article-details ol {
+    padding: 0 0 15px 20px;
+}

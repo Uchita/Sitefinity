@@ -3,12 +3,24 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 @using Telerik.Sitefinity.Web.DataResolving;
 
-<div class="@Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
+@using Newtonsoft.Json;
+
+@{
+    var imageurl = "";
+    foreach (var relatedItem in Model.Item.Fields.NewsImage)
+    {
+        imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+    }
+}
+
+<div class="article-details @Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
 
     <div class="post-nav">
         <div class="prev-post"><a href="#" rel="prev"><i class="fas fa-long-arrow-alt-left"></i> Previous Post</a></div>
         <div class="next-post"><a href="#" rel="next">Next Post <i class="fas fa-long-arrow-alt-right"></i></a></div>
     </div>
+
+    <img src="@imageurl" alt="@Model.Item.Fields.Title" />
 
     <div class="entry-meta details">
         <span class="entry-cats">
@@ -30,6 +42,24 @@
     <div @Html.InlineEditingFieldAttributes("Summary", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</div>
 
     <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
+
+
+    <div class="yarpp-related">
+        <h3>Related posts:</h3>
+        <ul>
+            @foreach (var relatedItem in Model.Item.Fields.RelatedNews)
+            {
+                var navigateUrl = "/news/news-details" + @relatedItem.Fields.ItemDefaultUrl;
+                <li>
+                    <a href="@navigateUrl" rel="bookmark" title="@relatedItem.Fields.Title">
+                        @relatedItem.Fields.Title
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+
+
 
     @{
         if (Model.EnableSocialSharing)

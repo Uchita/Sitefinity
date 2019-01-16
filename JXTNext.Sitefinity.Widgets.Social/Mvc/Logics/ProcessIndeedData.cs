@@ -52,9 +52,9 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
                         processedResponse.PhoneNumber = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.PhoneNumber;
                         processedResponse.FileStream = indeedAPIResponse.IndeedJobApplication.IndeedResume.data;
                         processedResponse.FileName = indeedAPIResponse.IndeedJobApplication.IndeedResume.fileName;
-                        if (string.IsNullOrEmpty(indeedAPIResponse.IndeedJobApplication.JXTNextJob.jobCompany))
+                        if (!string.IsNullOrEmpty(indeedAPIResponse.IndeedJobApplication.JXTNextJob.jobMeta))
                         {
-                            string email = indeedAPIResponse.IndeedJobApplication.JXTNextJob.jobCompany.Split(new char[] { ','}).Last();
+                            string email = indeedAPIResponse.IndeedJobApplication.JXTNextJob.jobMeta.Split(new char[] { ';'}).Last();
                             Log.Write("ProcessData Indeed email: " + email, ConfigurationPolicy.ErrorLog);
 
                             if (!string.IsNullOrEmpty(email))

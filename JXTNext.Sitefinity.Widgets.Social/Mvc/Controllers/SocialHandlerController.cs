@@ -145,8 +145,13 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 Log.Write("SitefinityHelper.IsUserLoggedIn() =" + SitefinityHelper.IsUserLoggedIn(), ConfigurationPolicy.ErrorLog);
                                 
                             }
+                            else if (!string.IsNullOrEmpty(result.LoginUserEmail))
+                            {
+                                overrideEmail = result.LoginUserEmail;
+                            }
                             else
                             {
+
                                 Log.Write("SitefinityHelper.IsUserLoggedIn() is false ", ConfigurationPolicy.ErrorLog);
                                 overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
                             }

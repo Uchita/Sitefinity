@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using Telerik.Sitefinity.Abstractions;
@@ -51,7 +52,20 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
                         processedResponse.PhoneNumber = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.PhoneNumber;
                         processedResponse.FileStream = indeedAPIResponse.IndeedJobApplication.IndeedResume.data;
                         processedResponse.FileName = indeedAPIResponse.IndeedJobApplication.IndeedResume.fileName;
+                        if (string.IsNullOrEmpty(indeedAPIResponse.IndeedJobApplication.JXTNextJob.jobCompany))
+                        {
+                            string email = indeedAPIResponse.IndeedJobApplication.JXTNextJob.jobCompany.Split(new char[] { ','}).Last();
+                            Log.Write("ProcessData Indeed email: " + email, ConfigurationPolicy.ErrorLog);
 
+                            if (!string.IsNullOrEmpty(email))
+                            {
+                                email = email.Trim(' ');
+                                Log.Write("ProcessData Indeed this.isValidEmail(email): " + this.isValidEmail(email), ConfigurationPolicy.ErrorLog);
+                                Log.Write("ProcessData Indeed email: " + email, ConfigurationPolicy.ErrorLog);
+                                processedResponse.LoginUserEmail = this.isValidEmail(email) ? email : null;
+                                processedResponse.LoginUserEmail = email;
+                            }
+                        }
                         if (Int32.TryParse(indeedAPIResponse.IndeedJobApplication.JXTNextJob.jobId, out int jobId))
                         {
                             Log.Write("ProcessData Indeed indeedAPIResponse.SocialMediaProcessSuccess job id is extracted : ", ConfigurationPolicy.ErrorLog);
@@ -77,6 +91,20 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
             }
 
             return processedResponse;
+        }
+
+        private bool isValidEmail(string email)
+        {
+            try
+            {
+                MailAddress eamilValue = new MailAddress(email);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
         }
     }
 }

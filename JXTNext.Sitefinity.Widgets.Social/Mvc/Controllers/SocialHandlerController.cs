@@ -60,17 +60,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         public ActionResult Index(string code, string state, int? JobId)
         {
             SocialMediaJobViewModel viewModel = new SocialMediaJobViewModel();
-            bool loggedIn = false;
-            string loggedInEmail = string.Empty;
-            if (this.Request.Cookies.Get("SocialLoginCookie") != null)
-            {
-                Log.Write("Inside Cookie : ", ConfigurationPolicy.ErrorLog);
-                loggedIn = Boolean.Parse(this.Request.Cookies.Get("SocialLoginCookie").Value);
-                loggedInEmail = this.Request.Cookies.Get("SocialLoginEmailCookie").Value.ToString();
-                Log.Write("Cookie  loggedIn value =" + loggedIn, ConfigurationPolicy.ErrorLog);
-                Log.Write("Cookie  loggedInEmail value =" + loggedInEmail, ConfigurationPolicy.ErrorLog);
-            }
-
+            
             try
             {
                 // Logging this info for Indeed test
@@ -139,14 +129,30 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                             };
 
                             string overrideEmail = string.Empty;
-                            if (loggedIn)
+                            if (SitefinityHelper.IsUserLoggedIn())
                             {
-                                Log.Write("loggedIn value 1 =" + loggedIn, ConfigurationPolicy.ErrorLog);
-                                overrideEmail = loggedInEmail;
+                                var currUser = SitefinityHelper.GetUserById(ClaimsManager.GetCurrentIdentity().UserId);
+                                if (currUser != null)
+                                {
+                                    Log.Write("User is already logged In " + currUser.Email, ConfigurationPolicy.ErrorLog);
+                                    overrideEmail = currUser.Email;
+                                }
+                                else
+                                {
+                                    Log.Write("CurUser is null", ConfigurationPolicy.ErrorLog);
+                                    overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
+                                }
+                                Log.Write("SitefinityHelper.IsUserLoggedIn() =" + SitefinityHelper.IsUserLoggedIn(), ConfigurationPolicy.ErrorLog);
+                                
+                            }
+                            else if (!string.IsNullOrEmpty(result.LoginUserEmail))
+                            {
+                                overrideEmail = result.LoginUserEmail;
                             }
                             else
                             {
-                                Log.Write("loggedIn value 2 =" + loggedIn, ConfigurationPolicy.ErrorLog);
+
+                                Log.Write("SitefinityHelper.IsUserLoggedIn() is false ", ConfigurationPolicy.ErrorLog);
                                 overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
                             }
 
@@ -269,9 +275,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     overrideEmail);
 
                                 Log.Write("BL response after: ", ConfigurationPolicy.ErrorLog);
-                                // delete the cookies set in the job application controller
-                                this._deleteCookiesCreatedForSocialHandler();
-
+                                
                                 if (response.Success && response.ApplicationID.HasValue)
                                 {
                                     Log.Write("BL response in: ", ConfigurationPolicy.ErrorLog);
@@ -329,7 +333,6 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
             if (this.Request.QueryString["error"].ToLower().Contains("denied"))
             {
-                this._deleteCookiesCreatedForSocialHandler();
                 return Redirect(string.Format("job-application/{0}",  int.Parse(state)));
                 //return Redirect(string.Format("job-application/{0}/{1}/{2}", "Project-Services", "Business-Transformation", int.Parse(state)));
             }
@@ -348,22 +351,6 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
         }
 
-        private void _deleteCookiesCreatedForSocialHandler()
-        {
-            HttpCookie cookie = this.Request.Cookies["SocialLoginCookie"];
-            if (cookie != null)
-            {
-                cookie.Expires = DateTime.Now.AddDays(-1);
-                this.Response.Cookies.Add(cookie);
-            }
-
-            cookie = this.Request.Cookies["SocialLoginEmailCookie"];
-            if (cookie != null)
-            {
-                cookie.Expires = DateTime.Now.AddDays(-1);
-                this.Response.Cookies.Add(cookie);
-            }
-        }
 
         private string GetEmailHtmlContent()
         {

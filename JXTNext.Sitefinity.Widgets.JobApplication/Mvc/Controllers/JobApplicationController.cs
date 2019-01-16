@@ -170,15 +170,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
 
                 isUserLoggedIn = true;
-                // setting cookie
-                HttpCookie SocialLoginCookie = new HttpCookie("SocialLoginCookie");
-                SocialLoginCookie.Value = "true";
-                SocialLoginCookie.Expires = DateTime.Now.AddHours(1);
-                this.Response.Cookies.Add(SocialLoginCookie);
-                HttpCookie SocialLoginEmailCookie = new HttpCookie("SocialLoginEmailCookie");
-                SocialLoginEmailCookie.Value = userEmail;
-                SocialLoginEmailCookie.Expires = DateTime.Now.AddHours(1);
-                this.Response.Cookies.Add(SocialLoginEmailCookie);
                 ViewBag.isLoggedIn = true;
                 ViewBag.loginEmail = userEmail;
             }
@@ -443,24 +434,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             var isJobApplicationSuccess = false;
 
-
-            // delete the cookies set in the job application controller
-            HttpCookie cookie = this.Request.Cookies["SocialLoginCookie"];
-            if (cookie != null)
-            {
-                cookie.Expires = DateTime.Now.AddDays(-1);
-                this.Response.Cookies.Add(cookie);
-            }
-
-            cookie = this.Request.Cookies["SocialLoginEmailCookie"];
-            if (cookie != null)
-            {
-                cookie.Expires = DateTime.Now.AddDays(-1);
-                this.Response.Cookies.Add(cookie);
-            }
-
-
-
             if (response.Success && response.ApplicationID.HasValue)
             {
                 //FileUploads
@@ -517,90 +490,130 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         [HttpPost]
         public JsonResult ValidateUser(string email, string password, bool staySignedIn, bool isUserLoggedIn)
         {
-            bool isUserVerified = true;
-            bool isMemberUser = false;
-            bool isUserSignedIn = false;
-            List<SelectListItem> myResumes = new List<SelectListItem>();
-            if (!isUserLoggedIn)
+            try
             {
-                isUserVerified = SitefinityHelper.IsUserVerified(email, password);
-                if (isUserVerified)
+                Log.Write($"ValidateUser method1" , ConfigurationPolicy.ErrorLog);
+                bool isUserVerified = true;
+                bool isMemberUser = false;
+                bool isUserSignedIn = false;
+                List<SelectListItem> myResumes = new List<SelectListItem>();
+                if (!isUserLoggedIn)
                 {
-                    var user = SitefinityHelper.GetUserByEmail(email);
-                    if (user != null)
+                    Log.Write($"ValidateUser user is not logged In isUserLoggedIn : "+ isUserLoggedIn, ConfigurationPolicy.ErrorLog);
+                    isUserVerified = SitefinityHelper.IsUserVerified(email, password);
+                    
+                    if (isUserVerified)
                     {
-                        isMemberUser = SitefinityHelper.IsUserInRole(user, "Member");
-                        var memberResponse = _blConnector.GetMemberByEmail(user.Email);
-                        if (memberResponse.Member?.ResumeFiles != null)
+                        Log.Write($"ValidateUser isUserVerified : "+ isUserVerified, ConfigurationPolicy.ErrorLog);
+                        var user = SitefinityHelper.GetUserByEmail(email);
+                        if (user != null)
                         {
-                            var resumeList = JsonConvert.DeserializeObject<List<ProfileResume>>(memberResponse.Member.ResumeFiles);
-                            
-                            myResumes.Add(new SelectListItem { Text = "SELECT YOUR CV", Value = "0" });
-                            foreach (var item in resumeList)
+                            Log.Write($"ValidateUser user in not null", ConfigurationPolicy.ErrorLog);
+                            isMemberUser = SitefinityHelper.IsUserInRole(user, "Member");
+                            var memberResponse = _blConnector.GetMemberByEmail(user.Email);
+                            if (memberResponse.Member?.ResumeFiles != null)
                             {
-                                var datestr = item.UploadDate.ToShortDateString();
-                                myResumes.Add(new SelectListItem { Text = datestr + " - " + item.FileFullName, Value = item.Id.ToString() });
+                                Log.Write($"ValidateUser ResumeFiles is not null", ConfigurationPolicy.ErrorLog);
+                                var resumeList = JsonConvert.DeserializeObject<List<ProfileResume>>(memberResponse.Member.ResumeFiles);
+                                Log.Write($"ValidateUser ResumeFiles resumeList.Count : " + resumeList.Count, ConfigurationPolicy.ErrorLog);
+                                myResumes.Add(new SelectListItem { Text = "SELECT YOUR CV", Value = "0" });
+                                foreach (var item in resumeList)
+                                {
+                                    var datestr = item.UploadDate.ToShortDateString();
+                                    myResumes.Add(new SelectListItem { Text = datestr + " - " + item.FileFullName, Value = item.Id.ToString() });
+                                }
                             }
                         }
+
+                    }
+
+                }
+                else
+                {
+                    var currUser = SitefinityHelper.GetUserById(ClaimsManager.GetCurrentIdentity().UserId);
+                    if (currUser != null)
+                    {
+                        isMemberUser = SitefinityHelper.IsUserInRole(currUser, "Member");
+                        Log.Write($"ValidateUser currUser  isMemberUser : "+ isMemberUser, ConfigurationPolicy.ErrorLog);
                     }
                         
                 }
 
-            }
-            else
-            {
-                var currUser = SitefinityHelper.GetUserById(ClaimsManager.GetCurrentIdentity().UserId);
-                if (currUser != null)
-                    isMemberUser = SitefinityHelper.IsUserInRole(currUser, "Member");
-            }
-
-            #region Entered Email exists in JXTNext Member list
-            if (isMemberUser)
-            {
-                //instantiate the Sitefinity user manager
-                //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
-                UserManager userManager = UserManager.GetManager();
-                if (userManager.ValidateUser(email, password))
+                #region Entered Email exists in JXTNext Member list
+                if (isMemberUser)
                 {
-                    //if you need to get the user instance use the out parameter
-                    Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
-                    SecurityManager.AuthenticateUser(userManager.Provider.Name, email, password, staySignedIn, out userToAuthenticate);
-                    if (userToAuthenticate != null)
-                        isUserSignedIn = true;
+                    //instantiate the Sitefinity user manager
+                    //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
+                    UserManager userManager = UserManager.GetManager();
+                    if (userManager.ValidateUser(email, password))
+                    {
+                        //if you need to get the user instance use the out parameter
+                        Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
+                        SecurityManager.AuthenticateUser(userManager.Provider.Name, email, password, staySignedIn, out userToAuthenticate);
+                        if (userToAuthenticate != null)
+                        {
+                            isUserSignedIn = true;
+                            Log.Write($"ValidateUser userToAuthenticate : " + userToAuthenticate, ConfigurationPolicy.ErrorLog);
+                        }
+                            
+                    }
                 }
+                #endregion
+
+                Log.Write($"ValidateUser isUserVerified : " + isUserVerified, ConfigurationPolicy.ErrorLog);
+                Log.Write($"ValidateUser isMemberUser : " + isMemberUser, ConfigurationPolicy.ErrorLog);
+                Log.Write($"ValidateUser isUserSignedIn : " + isUserSignedIn, ConfigurationPolicy.ErrorLog);
+                Log.Write($"ValidateUser myResumes : " + JsonConvert.SerializeObject(myResumes), ConfigurationPolicy.ErrorLog);
+                var response = new
+                {
+                    IsUserVerified = isUserVerified,
+                    IsUserMember = isMemberUser,
+                    IsUserSignedIn = isUserSignedIn,
+                    myResumes = JsonConvert.SerializeObject(myResumes)
+                };
+
+                return new JsonResult { Data = response };
             }
-            #endregion
-
-            var response = new
+            catch (Exception ex)
             {
-                IsUserVerified = isUserVerified,
-                IsUserMember = isMemberUser,
-                IsUserSignedIn = isUserSignedIn,
-                myResumes = JsonConvert.SerializeObject(myResumes)
-            };
-
-            return new JsonResult { Data = response };
+                Log.Write($"ValidateUser exception" + ex.Message, ConfigurationPolicy.ErrorLog);
+                throw ex;
+            }
+            
         }
 
         [HttpPost]
         public JsonResult IsJobApplied(int jobId)
         {
-            bool isJobApplied = false;
-
-            JXTNext_MemberAppliedJobResponse appliedJobresponse = _blConnector.MemberAppliedJobsGet() as JXTNext_MemberAppliedJobResponse;
-            if (appliedJobresponse.Success)
+            try
             {
-                foreach (var item in appliedJobresponse.MemberAppliedJobs)
+                bool isJobApplied = false;
+                Log.Write($"IsJobApplied method1", ConfigurationPolicy.ErrorLog);
+                JXTNext_MemberAppliedJobResponse appliedJobresponse = _blConnector.MemberAppliedJobsGet() as JXTNext_MemberAppliedJobResponse;
+                Log.Write($"IsJobApplied method appliedJobresponse.Success = " + appliedJobresponse.Success, ConfigurationPolicy.ErrorLog);
+                Log.Write($"IsJobApplied method appliedJobresponse.MemberAppliedJobs = " + appliedJobresponse.MemberAppliedJobs, ConfigurationPolicy.ErrorLog);
+
+                if (appliedJobresponse.Success)
                 {
-                    if (item.JobId == jobId)
+                    foreach (var item in appliedJobresponse.MemberAppliedJobs)
                     {
-                        isJobApplied = true;
-                        break;
+                        if (item.JobId == jobId)
+                        {
+                            isJobApplied = true;
+                            Log.Write($"IsJobApplied isJobApplied 1 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
+                            break;
+                        }
                     }
                 }
+                Log.Write($"IsJobApplied isJobApplied 2 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
+                return new JsonResult { Data = isJobApplied };
             }
-
-            return new JsonResult { Data = isJobApplied };
+            catch (Exception ex)
+            {
+                Log.Write($"IsJobApplied exception = " + ex.Message, ConfigurationPolicy.ErrorLog);
+                throw ex;
+            }
+            
         }
         private JobApplicationAttachmentSource GetAttachmentSourceType(string sourceType)
         {

@@ -13,26 +13,26 @@
 <div class="@Model.CssClass sf-m-xxs login-form">
     @if (Telerik.Sitefinity.Security.SecurityManager.GetCurrentUserId() == Guid.Empty || SystemManager.IsInlineEditingMode || SystemManager.IsDesignMode)
     {
-        using (Html.BeginFormSitefinity(@Request.Url.Query, null, null, FormMethod.Post, null, true))
+    using (Html.BeginFormSitefinity(@Request.Url.Query, null, null, FormMethod.Post, null, true))
+    {
+    <div class="sign-in-with">
+        <h2>Login with Social</h2>
+        @if (Model.ExternalProviders != null && Model.ExternalProviders.Count() > 0)
         {
-            <div class="sign-in-with">
-                <h2>Login with Social</h2>
-                @if (Model.ExternalProviders != null && Model.ExternalProviders.Count() > 0)
-                {
 
 
-                    foreach (var provider in Model.ExternalProviders)
-                    {
-                        var classToBeAdd = "btn btn-" + @provider.Key.ToLower().ToString();
-                        <div>
-                            @Html.ActionLink(provider.Key, "LoginExternalProvider", new { model = provider.Key }, new { @class = classToBeAdd })
-                        </div>
-                    }
-
-
-                }
-            </div>
+        foreach (var provider in Model.ExternalProviders)
+        {
+        var classToBeAdd = "btn btn-" + @provider.Key.ToLower().ToString();
+        <div>
+            @Html.ActionLink(provider.Key, "LoginExternalProvider", new { model = provider.Key }, new { @class = classToBeAdd })
+        </div>
         }
+
+
+        }
+    </div>
+    }
     }
 
 </div>

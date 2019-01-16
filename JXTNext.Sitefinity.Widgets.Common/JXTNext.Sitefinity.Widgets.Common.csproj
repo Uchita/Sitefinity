@@ -150,6 +150,9 @@
     <Content Include="ResourcePackages\BaySide\assets\images\Accessorial-Liability-eBook.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\BaySide\assets\images\alert-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\assets\images\applywithlinkedin.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -268,6 +271,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\BaySide\assets\images\Our-Services-Icons\8-Workplace-Safety-Icon.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\BaySide\assets\images\saved-jobs.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\BaySide\assets\images\Screen Shot 2018-10-19 at 10.48.14 am.png">

@@ -16,10 +16,10 @@
 {
     <h2><span class="alert-icon far fa-bell"></span>Create job alert</h2>
     <h3>Alert details</h3>
-    <form method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();">
+    <form method="post" class="jn_search" enctype="multipart/form-data" onsubmit="return preventSubmit();">
         @{
             int counter = 0;
-            var privacyErrMsg = "Please agree to Hudson\'s privacy policy";
+            var privacyErrMsg = "Please agree to Bayside\'s privacy policy";
         }
         <div class="field-wrapper basic-form no-marg-top">
             <div class="alert alert-warning filter-madatory-message hidden">Please enter filter value for at least one.</div>
@@ -36,7 +36,7 @@
                     <label for="keywords">Keywords</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" name="Keywords" id="keywords" class="form-control" value="@Model.Keywords"/>
+                    <input type="text" name="Keywords" id="keywords" class="form-control" value="@Model.Keywords" />
                 </div>
             </div>
 
@@ -120,21 +120,21 @@
                 <div class="col-md-4 text-right"></div>
                 <div class="col-md-8">
                     <div class="checkbox clearfix">
-                        <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" checked required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid='this.setCustomValidity("@privacyErrMsg")' >
+                        <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" checked required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid='this.setCustomValidity("@privacyErrMsg")'>
                         <span class="checkbox-icon fas fa-check"></span>
-                        I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                        I agree to Bayside's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
                     </div>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-md-4 text-right"></div>
                 <div class="col-md-8">
-                    <input id="create-job-alert-submit-btn" type="submit" value="SAVE" class="btn btn-primary" />
-                    <a href="/user-dashboard" class="btn">Cancel</a>
+                    <input id="create-job-alert-submit-btn" type="submit" value="SAVE" class="btn btn-primary mr-3" />
+                    <a href="/user-dashboard" class="btn btn-outline-primary">Cancel</a>
                 </div>
             </div>
         </div>
-</form>
+    </form>
 }
 
 
@@ -180,7 +180,7 @@
                 modelSalary = value.Value;
             }
         });
-        
+
         if (modelSalary != null && modelSalary != 'undefined') {
             salary = modelSalary;
             isSlarySelected = true;
@@ -194,7 +194,7 @@
                 $(salarySliderEle).data("cur_max", modelSalary.UpperRange);
             }
         }
-   
+
 
         $('select').on('change', function () {
             isSlarySelected = false;
@@ -239,14 +239,14 @@
 
         var isUserMember = false;
         isUserMember = '@ViewBag.IsMemberUser';
-    
+
         if (isUserMember == false || isUserMember == 'False' ) {
              $('#create-job-alert-submit-btn').prop('disabled', true);
         }
-        
+
         var filterData = JSON.parse('@Html.Raw(Json.Encode(Model.Filters))');
         if (model != null && model != "undefined" && filterData != null && filterData != "undefined") {
-           
+
             $.each(filterData, function (index, item) {
                 var displayTitle = item.Name;
                 if (displayTitle == 'CountryLocationArea')

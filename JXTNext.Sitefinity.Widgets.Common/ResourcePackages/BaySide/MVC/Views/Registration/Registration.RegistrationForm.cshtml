@@ -18,7 +18,7 @@
 
 
         if ((Request.QueryString["ShowActivationMsg"] == "true") ||
-         (ViewBag.ShowActivationMsg is bool && ViewBag.ShowActivationMsg))
+        (ViewBag.ShowActivationMsg is bool && ViewBag.ShowActivationMsg))
         {
             <h3>
                 @Html.Resource("VisitYourEmail")
@@ -32,10 +32,10 @@
                 <a href="javascript:void(0)" data-sf-role="sendAgainLink" class="btn btn-primary">@Html.Resource("SendAgain")</a>
             </div>
 
-            <input type="hidden" data-sf-role="sf-resend-confirmation-endpoint-url" value="@Url.Action("ResendConfirmationEmail", new { email = Model.Email })" />
+            <input type="hidden" data-sf-role="sf-resend-confirmation-endpoint-url" value="@Url.Action(" ResendConfirmationEmail", new { email=Model.Email })" />
         }
         else if ((Request.QueryString["ShowSuccessfulRegistrationMsg"] == "true") ||
-                 (ViewBag.ShowSuccessfulRegistrationMsg is bool && ViewBag.ShowSuccessfulRegistrationMsg))
+        (ViewBag.ShowSuccessfulRegistrationMsg is bool && ViewBag.ShowSuccessfulRegistrationMsg))
         {
             <h2>@Html.Resource("ThankYou")</h2>
             <p>@Html.Resource("DefaultSuccessfulRegistrationMessage")</p>
@@ -51,72 +51,64 @@
                     <div class="login-border">
                         <div class="width-limit">
                             <h2>@Html.Resource("Registration")</h2>
-                            <p>Create an account to receive job alerts to track your applications!</p>
+
                         </div>
 
                         @if (!string.IsNullOrEmpty(ViewBag.Error))
                         {
-                        <div class="alert alert-danger">
-                            @if(ViewBag.Error == "Please enter a different email.")
-                            {
-                            <span>This email address is already registered. Click <a href="/sign-in" title="Please sign in">here</a> to sign in using this account</span>
-                            }
-                            else
-                            {
-                                <span>@ViewBag.Error</span>
-                            }
+                            <div class="alert alert-danger">
+                                @if (ViewBag.Error == "Please enter a different email.")
+                                {
+                                    <span>This email address is already registered. Click <a href="/sign-in" title="Please sign in">here</a> to sign in using this account</span>
+                                }
+                                else
+                                {
+                                    <span>@ViewBag.Error</span>
+                                }
 
-                        </div>
+                            </div>
                         }
 
                         @Html.HiddenFor(m => m.RequiresQuestionAndAnswer)
 
 
                         <div class="field-wrapper">
-                            <div class="row">
-                                <div class="col-md-4 text-right">
-                                    <p class="form-label">Name *</p>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        @Html.TextBox("Profile[FirstName]", null, new { @class = "form-control", placeholder = "First name", required = "required" })
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        @Html.TextBox("Profile[LastName]", null, new { @class = "form-control", placeholder = "Last name", required = "required" })
-                                    </div>
-                                </div>
+                            <div class="form-group">
+                                @Html.TextBox("Profile[FirstName]", null, new { @class = "form-control", placeholder = "First Name *", required = "required" })
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-4 text-right">
-                                    <p class="form-label">
-                                        Email*
-                                    </p>
-                                </div>
-                                <div class="col-md-8">
 
-                                    @Html.TextBoxFor(m => m.Email, new { @id = "userid", @class = "form-control", type = "email", placeholder = "Enter your email address", required = "required" })
+                            <div class="form-group">
+                                @Html.TextBox("Profile[LastName]", null, new { @class = "form-control", placeholder = "Last Name *", required = "required" })
+                            </div>
 
-                                    @if (Html.ValidationMessageFor(m => m.Email) != null)
+
+
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.Email, new { @id = "userid", @class = "form-control", type = "email", placeholder = "Email *", required = "required" })
+
+                                @if (Html.ValidationMessageFor(m => m.Email) != null)
+                                {
+                                    <div class="has-error">
+                                        <span class="help-block">@Html.ValidationMessageFor(m => m.Email)</span>
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="form-group">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password *", required = "required", pattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title = "Your password must contain at least one number, one uppercase and lowercase letter, and 8 or more characters." })
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.ReTypePassword, new { @class = "form-control", placeholder = "Confirm Password *", required = "required" })
+                                    @if (Html.ValidationMessageFor(m => m.ReTypePassword) != null)
                                     {
                                         <div class="has-error">
-                                            <span class="help-block">@Html.ValidationMessageFor(m => m.Email)</span>
+                                            <span class="help-block">@Html.ValidationMessageFor(m => m.ReTypePassword, "The password and confirmation password do not match")</span>
                                         </div>
                                     }
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-4 text-right">
-                                    <p class="form-label">
-                                        @Html.Resource("Password")<span>*</span>
-                                    </p>
-                                </div>
-                                <div class="col-md-8">
-                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Choose password", required = "required", pattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title = "Your password must contain at least one number, one uppercase and lowercase letter, and 8 or more characters." })
-
                                     <span class="text-muted">
                                         <em>Password must contain 8 characters or more, 1 uppercase letter, 1 lowercase letter and 1 number</em><br />&nbsp;
                                     </span>
@@ -128,33 +120,6 @@
                                         </div>
                                     }
 
-                                </div>
-                            </div>
-
-                            @*<div class="row form-group" id="strength-wrap">
-                                    <div class="col-md-4 text-right">
-                                        <label class="form-label" for="password-reg">Password strength</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div id="password-strength"><span class="strengh-text"></span></div>
-                                    </div>
-                                </div>*@
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-4 text-right">
-                                        <p class="form-label">
-                                            @Html.Resource("ReTypePassword") *
-                                        </p>
-                                    </div>
-                                    <div class="col-md-8">
-                                        @Html.PasswordFor(m => m.ReTypePassword, new { @class = "form-control", placeholder = "Retype your password", required = "required" })
-                                        @if (Html.ValidationMessageFor(m => m.ReTypePassword) != null)
-                                        {
-                                            <div class="has-error">
-                                                <span class="help-block">@Html.ValidationMessageFor(m => m.ReTypePassword, "The password and confirmation password do not match")</span>
-                                            </div>
-                                        }
-                                    </div>
                                 </div>
                             </div>
 
@@ -203,37 +168,31 @@
                                 </div>
                             }
 
-                            <div class="row">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-8">
-                                    <div class="checkbox clearfix">
-                                        <input name="privacypolicy" title="Please agree to Hudson's privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Please agree to Hudson\'s privacy policy');" type="checkbox" value="agree">
-                                        <span class="checkbox-icon fas fa-check"></span>
-                                        I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
-                                    </div>
-                                    <div class="btn-block">
-                                        @if (SystemManager.IsDesignMode && !SystemManager.IsPreviewMode)
-                                        {
-                                            <button type="button" class="btn btn-primary">@Html.Resource("Register")</button>
-                                        }
-                                        else
-                                        {
-                                            <button type="submit" class="btn btn-primary">@Html.Resource("Register")</button>
-                                        }
-                                    </div>
+
+                            <div class="form-group">
+                                <div class="checkbox clearfix">
+                                    <input name="privacypolicy" title="Please agree to Bayside's privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Please agree to Bayside\'s privacy policy');" type="checkbox" value="agree">
+                                    @*<span class="checkbox-icon fas fa-check"></span>*@
+                                    I agree to Bayside's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                                </div>
+                                <div class="btn-block">
+                                    @if (SystemManager.IsDesignMode && !SystemManager.IsPreviewMode)
+                                    {
+                                        <button type="button" class="btn btn-outline-primary mr-4">@Html.Resource("Register")</button>
+                                    }
+                                    else
+                                    {
+                                        <button type="submit" class="btn btn-outline-primary mr-4">@Html.Resource("Register")</button>
+                                    }
                                 </div>
                             </div>
+
 
                         </div>
 
-                        <div class="registration-link">
-                            <div class="row">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-8">
-                                    Already have an account?
-                                    <a href="@Model.LoginPageUrl" class="font-regular link-default">@Html.Resource("BackToLogin")</a>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            Already have an account?
+                            <a href="@Model.LoginPageUrl" class="font-regular link-default">@Html.Resource("BackToLogin")</a>
                         </div>
 
                     </div>

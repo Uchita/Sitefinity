@@ -48,8 +48,8 @@ else
     }
 }
 <div class="button-wrapper">
-@Html.ActionLink("Create New Job Alert", "Create", "JobAlert", new { @class = "btn jobalert-btn" })
-<a href="/advancedsearch" class="btn" title="New job search">New search</a>
+    @Html.ActionLink("Create New Job Alert", "Create", "JobAlert", new { @class = "btn btn-outline-primary mr-3" })
+    <a href="/jobs/advancedsearch" class="btn btn-outline-primary" title="New job search">New search</a>
 </div>
 
 <div class="popup-overlay">
@@ -58,7 +58,7 @@ else
             <p class="info">Please sign-in or register as a member to <span>create job alert</span>.</p>
             <div class="button-wrapper">
                 <a href="/register" class="btn btn-primary">Register</a>
-                <a href="/sign-in" class="btn btn-primary">Sign in</a>
+                <a href="/login" class="btn btn-primary">Sign in</a>
             </div>
             <a href="javascript:void(0)" class="fa fa-times"></a>
         </div>
@@ -68,7 +68,7 @@ else
 <script type="text/javascript">
 
     function confirmAlertDelete() {
-          if (confirm("Are you sure you want to delete this Job Alert?")) { 
+          if (confirm("Are you sure you want to delete this Job Alert?")) {
             return true;
         }
         else {

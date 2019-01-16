@@ -14,132 +14,132 @@
 
 @if (Model != null)
 {
-<form method="post" action="@Url.Action("Edit","JobAlert")" onsubmit="return preventSubmit();">
-    @{
-        int counter = 0;
-        var privacyErrMsg = "Please agree to Hudson\'s privacy policy";
-    }
+    <form method="post" action="@Url.Action(" Edit","JobAlert")" onsubmit="return preventSubmit();">
+        @{
+            int counter = 0;
+            var privacyErrMsg = "Please agree to Hudson\'s privacy policy";
+        }
 
-    <div class="field-wrapper basic-form no-marg-top">
-        <div class="alert alert-warning filter-madatory-message hidden">Please enter filter value for at least one.</div>
+        <div class="field-wrapper basic-form no-marg-top">
+            <div class="alert alert-warning filter-madatory-message hidden">Please enter filter value for at least one.</div>
 
-        <div class="row form-group">
-            <div class="col-md-4 text-right">
-                <label for="name">Job alert name*</label>
-            </div>
-            <div class="col-md-8">
-                <input type="hidden" name="Id" value="@Model.Id" />
-                <input type="text" name="Name" id="name" required value="@Model.Name" class="form-control" />
-            </div>
-        </div>
-
-        <div class="row form-group">
-            <div class="col-md-4 text-right">
-                <label for="keywords">Keywords</label>
-            </div>
-            <div class="col-md-8">
-                <input type="text" name="Keywords" id="keywords" value="@Model.Keywords" class="form-control" />
-            </div>
-        </div>
-
-
-        @foreach (var item in Model.Data)
-        {
-            if (item.Name != "Salary" && item.Name != "CompanyName")
-            {
-                <div class="row form-group">
-                    <div class="col-md-4 text-right">
-                        @{
-                            var displayTitle = item.Name;
-                            if (displayTitle == "CountryLocationArea")
-                            {
-                                displayTitle = "Location";
-                            }
-                            else if (displayTitle == "WorkType")
-                            {
-                                displayTitle = "Work Type";
-                            }
-                            else if (displayTitle == "CompanyName")
-                            {
-                                displayTitle = "Company Name";
-                            }
-                        }
-                        <label>@displayTitle</label>
-                    </div>
-                    <div class="col-md-8">
-                        <input type="hidden" name="Filters[@counter].RootId" value='@item.Name' />
-                        <select id=@string.Format("selected-{0}", item.Name) name="Filters[@counter].Values" style="display:none" multiple class="form-control"></select>
-                        <div class="dropdown dropdown-tree" id=@item.Name></div>
-                    </div>
+            <div class="row form-group">
+                <div class="col-md-4 text-right">
+                    <label for="name">Job alert name*</label>
                 </div>
-                counter++;
-            }
-            else if (item.Name == "Salary")
+                <div class="col-md-8">
+                    <input type="hidden" name="Id" value="@Model.Id" />
+                    <input type="text" name="Name" id="name" required value="@Model.Name" class="form-control" />
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-md-4 text-right">
+                    <label for="keywords">Keywords</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" name="Keywords" id="keywords" value="@Model.Keywords" class="form-control" />
+                </div>
+            </div>
+
+
+            @foreach (var item in Model.Data)
             {
-                <div class="row form-group">
-                    <div class="col-md-4 text-right">
-                        <label>@item.Name</label>
+                if (item.Name != "Salary" && item.Name != "CompanyName")
+                {
+                    <div class="row form-group">
+                        <div class="col-md-4 text-right">
+                            @{
+                                var displayTitle = item.Name;
+                                if (displayTitle == "CountryLocationArea")
+                                {
+                                    displayTitle = "Location";
+                                }
+                                else if (displayTitle == "WorkType")
+                                {
+                                    displayTitle = "Work Type";
+                                }
+                                else if (displayTitle == "CompanyName")
+                                {
+                                    displayTitle = "Company Name";
+                                }
+                            }
+                            <label>@displayTitle</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="hidden" name="Filters[@counter].RootId" value='@item.Name' />
+                            <select id=@string.Format("selected-{0}", item.Name) name="Filters[@counter].Values" style="display:none" multiple class="form-control"></select>
+                            <div class="dropdown dropdown-tree" id=@item.Name></div>
+                        </div>
                     </div>
-                    <div class="col-md-8">
-                        <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden" />
-                        <select class="SalaryRangeSelect form-control">
-                            <option value="-1" selected>Choose Salary</option>
+                    counter++;
+                }
+                else if (item.Name == "Salary")
+                {
+                    <div class="row form-group">
+                        <div class="col-md-4 text-right">
+                            <label>@item.Name</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden" />
+                            <select class="SalaryRangeSelect form-control">
+                                <option value="-1" selected>Choose Salary</option>
+                                @foreach (var salaryItem in item.Filters)
+                                {
+                                    <option value="@salaryItem.ID">@salaryItem.Label</option>
+                                }
+                            </select>
                             @foreach (var salaryItem in item.Filters)
                             {
-                                <option value="@salaryItem.ID">@salaryItem.Label</option>
-                            }
-                        </select>
-                        @foreach (var salaryItem in item.Filters)
-                        {
-                            var lower = 15000;
-                            var upper = 200000;
-                            if (salaryItem.Label == "Hourly Rate")
-                            {
-                                lower = 18;
-                                upper = 200;
-                            }
-                            <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
+                                var lower = 15000;
+                                var upper = 200000;
+                                if (salaryItem.Label == "Hourly Rate")
+                                {
+                                    lower = 18;
+                                    upper = 200;
+                                }
+                                <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
 
-                                <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
-                                     data-cur_min="@lower" data-cur_max="@upper">
+                                    <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
+                                         data-cur_min="@lower" data-cur_max="@upper">
 
-                                    <div class="bar"></div>
-                                    <div class="leftGrip"></div>
-                                    <div class="rightGrip"></div>
+                                        <div class="bar"></div>
+                                        <div class="leftGrip"></div>
+                                        <div class="rightGrip"></div>
+                                    </div>
+                                    <div class="leftLabel">$<span>@lower</span></div>
+                                    <div class="rightLabel">$<span>@upper</span></div>
+
                                 </div>
-                                <div class="leftLabel">$<span>@lower</span></div>
-                                <div class="rightLabel">$<span>@upper</span></div>
 
-                            </div>
-
-                        }
+                            }
+                        </div>
+                    </div>
+                }
+            }
+            <div class="row form-group">
+                <div class="col-md-4 text-right"></div>
+                <div class="col-md-8">
+                    <div class="checkbox clearfix">
+                        <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" checked required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('')" oninvalid='this.setCustomValidity("@privacyErrMsg")'>
+                        <span class="checkbox-icon fas fa-check"></span>
+                        I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
                     </div>
                 </div>
-            }
-        }
-        <div class="row form-group">
-            <div class="col-md-4 text-right"></div>
-            <div class="col-md-8">
-                <div class="checkbox clearfix">
-                    <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" checked required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('')" oninvalid='this.setCustomValidity("@privacyErrMsg")' >
-                    <span class="checkbox-icon fas fa-check"></span>
-                    I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-4 text-right"></div>
+                <div class="col-md-8">
+                    <input type="submit" value="SAVE" class="btn-primary" />
+                    <a href="/user-dashboard" class="btn">Cancel</a>
                 </div>
             </div>
-        </div>
-        <div class="row form-group">
-            <div class="col-md-4 text-right"></div>
-            <div class="col-md-8">
-                <input type="submit" value="SAVE" class="btn-primary" />
-                <a href="/user-dashboard" class="btn">Cancel</a>
-            </div>
-        </div>
 
 
-        @*@Html.ActionLink("SEARCH", "ViewResults", "JobAlert", new { id = Model.Id }, null)
-        @Html.ActionLink("DELETE", "Delete", "JobAlert", new { id = Model.Id }, new { onclick = "return confirmDelete();" })*@
-    </div>
-</form>
+            @*@Html.ActionLink("SEARCH", "ViewResults", "JobAlert", new { id = Model.Id }, null)
+                @Html.ActionLink("DELETE", "Delete", "JobAlert", new { id = Model.Id }, new { onclick = "return confirmDelete();" })*@
+        </div>
+    </form>
 }
 
 
@@ -179,17 +179,17 @@
         }
     };
 
-    
+
 
     $(document).ready(function () {
-          @{
-                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-                var json = serializer.Serialize(Model);
-          }
+        @{
+            var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            var json = serializer.Serialize(Model);
+        }
 
         var model = @Html.Raw(json);
         var modelSalary = model.Salary;
-        
+
         if (modelSalary != null && modelSalary != 'undefined') {
             salary = modelSalary;
             isSlarySelected = true;
@@ -245,7 +245,7 @@
             });
         });
 
-        
+
         if (model != null && model != "undefined") {
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
             $.each(filterData.Data, function (index, item) {

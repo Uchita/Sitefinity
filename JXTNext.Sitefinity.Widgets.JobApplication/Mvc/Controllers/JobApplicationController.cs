@@ -496,6 +496,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 bool isUserVerified = true;
                 bool isMemberUser = false;
                 bool isUserSignedIn = false;
+                string firstName = null;
                 List<SelectListItem> myResumes = new List<SelectListItem>();
                 if (!isUserLoggedIn)
                 {
@@ -511,6 +512,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                             Log.Write($"ValidateUser user in not null", ConfigurationPolicy.ErrorLog);
                             isMemberUser = SitefinityHelper.IsUserInRole(user, "Member");
                             var memberResponse = _blConnector.GetMemberByEmail(user.Email);
+                            firstName = memberResponse.Member?.FirstName;
                             if (memberResponse.Member?.ResumeFiles != null)
                             {
                                 Log.Write($"ValidateUser ResumeFiles is not null", ConfigurationPolicy.ErrorLog);
@@ -535,6 +537,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     {
                         isMemberUser = SitefinityHelper.IsUserInRole(currUser, "Member");
                         Log.Write($"ValidateUser currUser  isMemberUser : "+ isMemberUser, ConfigurationPolicy.ErrorLog);
+                        firstName = SitefinityHelper.GetUserFirstNameById(currUser.Id);
                     }
                         
                 }
@@ -569,6 +572,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     IsUserVerified = isUserVerified,
                     IsUserMember = isMemberUser,
                     IsUserSignedIn = isUserSignedIn,
+                    FirstName = firstName,
                     myResumes = JsonConvert.SerializeObject(myResumes)
                 };
 

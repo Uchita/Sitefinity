@@ -371,7 +371,7 @@ $(document).ready(function () {
     }
 
     if( $('.search-toggle').length ){
-        $('body').on('click', '.search-toggle', function(){
+        $('.main-content').on('click','.search-toggle', function(){
            $('.keywordfilter').toggle(); 
         });
     }

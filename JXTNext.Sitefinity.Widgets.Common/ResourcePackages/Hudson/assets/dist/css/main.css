@@ -10346,7 +10346,8 @@ ul.breadcrumb {
     position: relative;
     z-index: 1;
     cursor: pointer;
-    line-height: 0.5; }
+    line-height: 0.5;
+    font-size: 2.8rem; }
   .upload-section .uploadfield-wrap .lbl {
     display: block;
     margin-top: -7px;

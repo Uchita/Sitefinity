@@ -339,7 +339,18 @@
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li>
+                                                        @if (node.Url == "/news-career")
+                                                        {
+                                                            <a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="/blogs?BlogParentCategories=dcc3782f-1349-4d8a-924e-4458094741bc&BlogChildCategories=&BlogParentIndustries=&BlogParentTypes=&sortby=undefined&keyword=undefined">@node.Title</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a>
+                                                        }
+
+
+                                                    </li>
                                                 }
                                             </ul>
                                         </div>
@@ -352,7 +363,17 @@
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li>
+                                                        @if (node.Url == "/workplace-relations-news")
+                                                        {
+                                                            <a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="/blogs?BlogParentCategories=60542298-20b7-4bbe-a899-7b3296cd86fd&BlogChildCategories=&BlogParentIndustries=&BlogParentTypes=&sortby=undefined&keyword=undefined">@node.Title</a>
+                                                        }
+
+                                                        else
+                                                        {
+                                                            <a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a>
+                                                        }
+                                                    </li>
                                                 }
                                             </ul>
                                         </div>
@@ -365,7 +386,17 @@
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li>
+
+                                                        @if (node.Url == "/employer-news")
+                                                        {
+                                                            <a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="/blogs?BlogParentCategories=17ef8a80-53ae-4bc9-a8a6-822f188a232d&BlogChildCategories=&BlogParentIndustries=&BlogParentTypes=&sortby=undefined&keyword=undefined">@node.Title</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a>
+                                                        }
+                                                    </li>
                                                 }
                                             </ul>
 

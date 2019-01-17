@@ -144,4 +144,9 @@ $(document).ready(function () {
         }, 500);
     });
 
+    $('.ul-dropdown-toggle').click(function () {
+        $(this).next('ul').slideToggle();
+        $(this).toggleClass('active');
+    });
+
 });

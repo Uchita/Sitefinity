@@ -25,7 +25,8 @@ var BlogChildTypes = [];
 //    //refreshFilterSummary();
 //});
 
-$("#txtSearch").focusout(function () {
+$("#txtSearch").on('change', function (e) {
+    keyword = $("#txtSearch").val();
     redirectHref();
 });
 
@@ -62,7 +63,37 @@ function redirectHref() {
         }
     });
 
-    window.location.href = "/blogs?BlogParentCategories=" + BlogParentCategories.join() + "&BlogChildCategories=" + BlogChildCategories.join() + "&sortby=" + sortBy + "&keyword=" + keyword;
+    $('.parent-blog-industry').each(function () {
+        if ($(this).is(":checked")) {
+            var index1 = BlogParentIndustries.indexOf(this.id);
+            if (index1 < 0) {
+                BlogParentIndustries.push(this.id);
+            }
+        }
+        else {
+            var index = BlogParentIndustries.indexOf(this.id);
+            if (index > -1) {
+                BlogParentIndustries.splice(index, 1);
+            }
+        }
+    });
+
+    $('.parent-blog-type').each(function () {
+        if ($(this).is(":checked")) {
+            var index1 = BlogParentTypes.indexOf(this.id);
+            if (index1 < 0) {
+                BlogParentTypes.push(this.id);
+            }
+        }
+        else {
+            var index = BlogParentTypes.indexOf(this.id);
+            if (index > -1) {
+                BlogParentTypes.splice(index, 1);
+            }
+        }
+    });
+
+    window.location.href = "/blogs?BlogParentCategories=" + BlogParentCategories.join() + "&BlogChildCategories=" + BlogChildCategories.join() + "&BlogParentIndustries=" + BlogParentIndustries.join() + "&BlogParentTypes=" + BlogParentTypes.join() + "&sortby=" + sortBy + "&keyword=" + keyword;
 
 }
 
@@ -102,6 +133,22 @@ $('.parent-blog-industry').on('change', function (e) {
         var index = BlogParentIndustries.indexOf(this.id);
         if (index > -1) {
             BlogParentIndustries.splice(index, 1);
+        }
+    }
+
+    redirectHref();
+});
+
+$('.parent-blog-type').on('change', function (e) {
+
+    if ($(this).is(":checked")) {
+
+        BlogParentTypes.push(this.id);
+    }
+    else {
+        var index = BlogParentTypes.indexOf(this.id);
+        if (index > -1) {
+            BlogParentTypes.splice(index, 1);
         }
     }
 

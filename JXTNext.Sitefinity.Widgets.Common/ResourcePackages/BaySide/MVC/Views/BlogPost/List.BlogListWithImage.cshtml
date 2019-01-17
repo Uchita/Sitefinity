@@ -52,14 +52,60 @@
 
 
 @{
+
     var BlogParentCategories = Request.QueryString["BlogParentCategories"];
     var BlogChildCategories = Request.QueryString["BlogChildCategories"];
+
+    var BlogParentIndustries = Request.QueryString["BlogParentIndustries"];
+    var BlogParentTypes = Request.QueryString["BlogParentTypes"];
+
     var sortby = Request.QueryString["sortby"];
     var reqkeywords = Request.QueryString["keyword"];
 
 
 
     IEnumerable<ItemViewModel> blogList = Model.Items;
+
+
+    if (BlogParentTypes != "undefined" && BlogParentTypes + "" != "")
+    {
+        List<ItemViewModel> filteredBlogList = new List<ItemViewModel>();
+        List<string>
+        BlogParentTypesGuid = BlogParentTypes.Split(',').ToList();
+
+        foreach (var blog in blogList)
+        {
+            foreach (var c in blog.Fields.Category)
+            {
+                if (BlogParentTypesGuid.Any(str => str.Contains(c.ToString())))
+                {
+                    filteredBlogList.Add(blog);
+                }
+            }
+        }
+
+        blogList = filteredBlogList.AsEnumerable();
+    }
+
+    if (BlogParentIndustries != "undefined" && BlogParentIndustries + "" != "")
+    {
+        List<ItemViewModel> filteredBlogList = new List<ItemViewModel>();
+        List<string>
+        BlogParentIndustriesGuid = BlogParentIndustries.Split(',').ToList();
+
+        foreach (var blog in blogList)
+        {
+            foreach (var c in blog.Fields.Category)
+            {
+                if (BlogParentIndustriesGuid.Any(str => str.Contains(c.ToString())))
+                {
+                    filteredBlogList.Add(blog);
+                }
+            }
+        }
+
+        blogList = filteredBlogList.AsEnumerable();
+    }
 
     if (BlogParentCategories != "undefined" && BlogParentCategories + "" != "")
     {
@@ -184,7 +230,7 @@
         }
         var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
 
-        <div class="list-item col-12 col-sm-6">
+        <div class="list-item blog-list-item col-12 col-sm-6">
             <div class="list-item-inner">
                 <div class="bg-image-wrap"><div class="bg-image" style="background-image: url('@imageurl');"></div></div>
                 <div class="list-content">
@@ -209,11 +255,12 @@
 
                         }
                     }
+                    <a href="@navigateUrl" class="btn btn-link">> Read more</a>
                     <div class="list-footer">
                         Category <a href="" class="btn-link">@categoriesName</a>
                     </div>
                 </div>
-                <a href="@navigateUrl" class="btn btn-link">> Read more</a>
+
             </div>
         </div>
         <!-- .list-item/ -->
@@ -244,51 +291,78 @@
 
 
 <script type="text/javascript">
-     $(document).ready(function () {
-         var sortByValue = GetQueryStringParams("sortby");
-         if (sortByValue != "undefined" && sortByValue != null && sortByValue + "" != "" ){
-             $("#sortOrder").val(sortByValue);
-         }
+    $(document).ready(function () {
 
-         var keyword = GetQueryStringParams("keyword");
-         if (keyword != "undefined" && keyword != null && keyword + "" != "") {
-             $("#txtSearch").val(keyword);
-         }
+        //if ($('.row .list-item').length == 0) {
+        //    $('.pagination').hide();
+        //}
 
-         var BlogParentCategories = GetQueryStringParams("BlogParentCategories");
-          if (BlogParentCategories != "undefined" && BlogParentCategories != null && BlogParentCategories + "" != "") {
-              var arr = BlogParentCategories.split(",");
-              for (var i = 0; i < arr.length; i++) {
-                  // Trim the excess whitespace.
-                  var id = arr[i].replace(/^\s*/, "").replace(/\s*$/, "");
-                  // Add additional code here, such as:
-                  $('#' + id).prop("checked", true);
-              }
-         }
+        var sortByValue = GetQueryStringParams("sortby");
+        if (sortByValue != "undefined" && sortByValue != null && sortByValue + "" != "") {
+            $("#sortOrder").val(sortByValue);
+        }
 
-         var BlogChildCategories = GetQueryStringParams("BlogChildCategories");
-         if (BlogChildCategories != "undefined" && BlogChildCategories != null && BlogChildCategories + "" != "") {
-             var arr = BlogChildCategories.split(",");
-             for (var i = 0; i < arr.length; i++) {
-                 // Trim the excess whitespace.
-                 var id = arr[i].replace(/^\s*/, "").replace(/\s*$/, "");
-                 // Add additional code here, such as:
-                 $('#' + id).prop("checked", true);
-             }
-         }
+        var keyword = GetQueryStringParams("keyword");
+        if (keyword != "undefined" && keyword != null && keyword + "" != "") {
+            $("#txtSearch").val(unescape(keyword));
+        }
 
-     });
+        var BlogParentCategories = GetQueryStringParams("BlogParentCategories");
+        if (BlogParentCategories != "undefined" && BlogParentCategories != null && BlogParentCategories + "" != "") {
+            var arr = BlogParentCategories.split(",");
+            for (var i = 0; i < arr.length; i++) {
+                // Trim the excess whitespace.
+                var id = arr[i].replace(/^\s*/, "").replace(/\s*$/, "");
+                // Add additional code here, such as:
+                $('#' + id).prop("checked", true);
+            }
+        }
 
-     function GetQueryStringParams(sParam) {
-         var sPageURL = window.location.search.substring(1);
-         var sURLVariables = sPageURL.split('&');
-         for (var i = 0; i < sURLVariables.length; i++) {
-             var sParameterName = sURLVariables[i].split('=');
-             if (sParameterName[0] == sParam) {
-                 return sParameterName[1];
-             }
-         }
-     }
+        var BlogParentIndustries = GetQueryStringParams("BlogParentIndustries");
+        if (BlogParentIndustries != "undefined" && BlogParentIndustries != null && BlogParentIndustries + "" != "") {
+            var arr = BlogParentIndustries.split(",");
+            for (var i = 0; i < arr.length; i++) {
+                // Trim the excess whitespace.
+                var id = arr[i].replace(/^\s*/, "").replace(/\s*$/, "");
+                // Add additional code here, such as:
+                $('#' + id).prop("checked", true);
+            }
+        }
+
+        var BlogParentTypes = GetQueryStringParams("BlogParentTypes");
+        if (BlogParentTypes != "undefined" && BlogParentTypes != null && BlogParentTypes + "" != "") {
+            var arr = BlogParentTypes.split(",");
+            for (var i = 0; i < arr.length; i++) {
+                // Trim the excess whitespace.
+                var id = arr[i].replace(/^\s*/, "").replace(/\s*$/, "");
+                // Add additional code here, such as:
+                $('#' + id).prop("checked", true);
+            }
+        }
+
+        var BlogChildCategories = GetQueryStringParams("BlogChildCategories");
+        if (BlogChildCategories != "undefined" && BlogChildCategories != null && BlogChildCategories + "" != "") {
+            var arr = BlogChildCategories.split(",");
+            for (var i = 0; i < arr.length; i++) {
+                // Trim the excess whitespace.
+                var id = arr[i].replace(/^\s*/, "").replace(/\s*$/, "");
+                // Add additional code here, such as:
+                $('#' + id).prop("checked", true);
+            }
+        }
+
+    });
+
+    function GetQueryStringParams(sParam) {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) {
+                return sParameterName[1];
+            }
+        }
+    }
 
 
 </script>

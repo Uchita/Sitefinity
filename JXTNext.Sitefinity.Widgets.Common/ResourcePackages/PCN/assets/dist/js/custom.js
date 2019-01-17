@@ -17,7 +17,7 @@ $(document).ready(function () {
     $('.logo_slider').owlCarousel({
         center: true,
         loop: true,
-        margin: 20,
+        margin: 35,
         autoplay: true,
         autoplayTimeout: 2000,
         nav: false,
@@ -110,8 +110,9 @@ $(document).ready(function () {
 
     });
 
-    var btnText = $(".btn-style-corner .btn").text();
-    $(".btn-style-corner .btn").html("<span>" + btnText + "</span>");
+    $(".btn-style-corner .btn").each(function () {
+        $(this).html("<span>" + $(this).text() + "</span>");
+    });
 
 
 });

@@ -142,6 +142,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\PCN\assets\dist\images\pcn-favicon.png" />
+    <Content Include="ResourcePackages\PCN\assets\dist\images\three-colmun-bg.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\PCN\assets\dist\images\three-colmun-bg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

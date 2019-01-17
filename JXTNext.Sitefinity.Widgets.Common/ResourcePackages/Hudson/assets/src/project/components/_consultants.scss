@@ -362,3 +362,22 @@
     }
     
 }
+
+.consultant-images{
+    overflow: hidden;
+    > .img-item{
+        height: 190px;
+        float: left;
+        padding: 0 15px;
+    }
+    .owl-item{
+        .img-item{
+            width: auto;
+            float: none;
+            max-height: 240px;
+            max-width: 400px;
+            padding: 0;
+            margin: 0 auto;
+        }
+    }
+}

@@ -32,7 +32,7 @@
                                 <label class="form-label" for="userid">Email*</label>
                             </div>
                             <div class="col-md-8">
-                                <input id="userid" type="text" name="Email" class="form-control" required placeholder="Enter email address to begin" autocomplete="email" aria-describedby="email-verify-message" inputmode="email" />
+                                <input id="userid" type="text" name="Email" class="form-control" required placeholder="Enter email address to begin" autocomplete="email" aria-describedby="email-verify-message" />
                                 <small class="welcome-message hidden">Welcome back!</small>
                             </div>
                         </div>
@@ -134,8 +134,8 @@
                     var loginElemHide = "";
 
                 <div id="upload-files-container" hidden>
-                    
-                        
+
+
                     @if (ViewBag.IsUserLoggedIn)
                     {
                         loginElemHide = "hidden";
@@ -145,7 +145,7 @@
                             <div class="col-xs-12 col-md-8">
                                 <div class="list-group">
                                     <label for="selectresume" class="radiobutton">
-                                        <input id="selectresume" type="radio" name="resume" checked />
+                                        <input id="selectresume" type="radio" name="resume" class="checked" checked />
                                         <span class="radiobutton-icon fas fa-circle"></span>
                                         <span class="text-right">Select a resume stored on Hudson</span>
                                     </label>
@@ -171,31 +171,31 @@
                         </div>
                     }
 
-                        <div class="form-group row" id="user-profile-resume" hidden>
-                            <label class="form-label col-xs-12 col-md-4 text-right"></label>
-                            <div class="col-xs-12 col-md-8">
-                                <div class="list-group">
-                                    <label for="selectresume" class="radiobutton">
-                                        <input id="selectresume" type="radio" name="resume" checked />
-                                        <span class="radiobutton-icon fas fa-circle"></span>
-                                        <span class="text-right">Select a resume stored on Hudson</span>
-                                    </label>
-                                    <label for="uploadresume" class="radiobutton">
-                                        <input id="uploadresume" type="radio" name="resume" />
-                                        <span class="radiobutton-icon fas fa-circle"></span>
-                                        <span class="text-right">Upload a resume</span>
-                                    </label>
-                                </div>
-
+                    <div class="form-group row" id="user-profile-resume" hidden>
+                        <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                        <div class="col-xs-12 col-md-8">
+                            <div class="list-group">
+                                <label for="selectresume" class="radiobutton">
+                                    <input id="selectresume" type="radio" name="resume" checked />
+                                    <span class="radiobutton-icon fas fa-circle"></span>
+                                    <span class="text-right">Select a resume stored on Hudson</span>
+                                </label>
+                                <label for="uploadresume" class="radiobutton">
+                                    <input id="uploadresume" type="radio" name="resume" />
+                                    <span class="radiobutton-icon fas fa-circle"></span>
+                                    <span class="text-right">Upload a resume</span>
+                                </label>
                             </div>
-                            <label class="form-label col-xs-12 col-md-4 text-right"></label>
-                            <div class="col-xs-12 col-md-8">
-                                <div class="list-group select">
-                                    <select id="user-profile-resume-list"></select><!-- end box -->
-                                </div>
 
-                            </div>
                         </div>
+                        <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                        <div class="col-xs-12 col-md-8">
+                            <div class="list-group select">
+                                <select id="user-profile-resume-list"></select><!-- end box -->
+                            </div>
+
+                        </div>
+                    </div>
 
 
                     <!-- Resume -->
@@ -281,6 +281,11 @@
                     <input type="hidden" id="documents-selected-type" name="DocumentsSelectedType" />
                     <input type="hidden" id="email-selected" name="Email" />
                     <input type="hidden" id="jobid" name="JobId" value="@Model.JobId" />
+                    <input type="hidden" id="applicationemail" name="ApplicationEmail" value="@Model.ApplicationEmail" />
+                    <input type="hidden" id="contactdetails" name="ContactDetails" value="@Model.ContactDetails" />
+                    <input type="hidden" id="companyname" name="CompanyName" value="@ViewBag.CompanyName" />
+                    
+
 
                     <div class="form-group button-wrapper row">
                         <label class="col-xs-12 col-md-4"></label>
@@ -366,6 +371,7 @@
 
     $("#selectresume").change(function () {
         $("#uploadresumeblock").hide();
+        $("#selectresume").addClass("checked");
         if (userLoggedInParamFromViewbag == 'True') {
             $("#MySavedResumes").parent('div').show();
         } else {
@@ -376,6 +382,7 @@
 
     $("#uploadresume").change(function () {
         $("#uploadresumeblock").show();
+        $("#selectresume").removeClass("checked");
         if (userLoggedInParamFromViewbag == 'True') {
             $("#MySavedResumes").parent('div').hide();
         } else {
@@ -387,8 +394,6 @@
 
      $(document).ready(function () {
 
-         
-         
 
          $('form').submit(function (e) {
              e.preventDefault();
@@ -477,8 +482,12 @@
 
                  rows += '<option value="' + item.Value + '">' + item.Text+'</option>';
                 
-            });
-             $('#user-profile-resume-list').html(rows);
+             });
+             if (rows.length) {
+                 $('#user-profile-resume-list').html(rows);
+             } else {
+                 $('#user-profile-resume-list').html('<option val="0">SELECT YOUR CV</option>');
+             }
          }
 
          //member sign in continue
@@ -522,17 +531,18 @@
                                          
                                      }
                                      else {
+                                         document.location.reload();
                                          // Show upload files section
-                                         $('#register').hide();
-                                         $('#userid').attr('disabled',true);
-                                         $('#apply').removeAttr('disabled');
-                                         $('#userid').removeAttr('required');
-                                         $('#upload-files-container').show();
-                                         $('#appFormState').text('Upload your files');
-                                         $("#upload-files-container").show();
-                                         $('#user-profile-resume').removeAttr('hidden');
-                                         $('#uploadresumeblock').hide();
-                                         $('#email-selected').val($('#userid').val());
+                                         //$('#register').hide();
+                                         //$('#userid').attr('disabled',true);
+                                         //$('#apply').removeAttr('disabled');
+                                         //$('#userid').removeAttr('required');
+                                         //$('#upload-files-container').show();
+                                         //$('#appFormState').text('Upload your files');
+                                         //$("#upload-files-container").show();
+                                         //$('#user-profile-resume').removeAttr('hidden');
+                                         //$('#uploadresumeblock').hide();
+                                         //$('#email-selected').val($('#userid').val());
                                      }
                                  },
                                  error: function (response) {

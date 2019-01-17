@@ -42,6 +42,10 @@
     .md-pull-right{
         float: right!important;
     }
+
+    .signinapply-wrapper{
+        padding-left: 30px;
+    }
 }
 @media (min-width:768px) and (max-width: 1199px) {
 
@@ -824,7 +828,7 @@
         text-align: center!important;
     }
     .page-wrapper main{
-        padding-top: 0;
+        padding-top: 0!important;
     }
     
     header {
@@ -1577,10 +1581,14 @@
             padding-right: 20px;
             width: 100px;
             vertical-align: middle;
+            img{
+                max-width: 90px;
+            }
         }
         .caption{
             display: table-cell;
             vertical-align: middle;
+            padding-left: 15px;
             h3{
                 margin-top: 0;
                 margin-bottom: 5px;

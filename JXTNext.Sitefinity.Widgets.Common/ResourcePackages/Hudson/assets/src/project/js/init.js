@@ -288,6 +288,21 @@ $(document).ready(function () {
             }
         }
     });
+    $('.consultant-images').owlCarousel({
+        loop: false,
+        margin: 15,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 2
+            },
+            1200: {
+                items: 3
+            }
+        }
+    });
     
     $('.owl-card-basic').each(function (i, obj) {
         if ($(this).children().length > 1) {
@@ -370,7 +385,7 @@ $(document).ready(function () {
             $(this).removeAttr('readonly').blur().focus();
         });
     }
-    $('#userid').on('focus, touchstart',function(){
+    $('#userid').on('focus touchstart',function(){
         $(this).removeAttr('readonly');
     });
 
@@ -381,6 +396,31 @@ $(document).ready(function () {
         
             $('.map-placeholder').addClass('hidden-xs').clone().addClass('visible-xs').removeClass('hidden-xs').insertAfter( $('.mobile-breadcrumb') );
         
+    }
+
+    //contact form replacement
+    if( $('.get-in-touch').length && $('.contact-form').length  ){
+        $('#officeAddress').html( $('.contact-form iframe') );
+    }
+
+    //user dashboard : job alert create and edit
+    //scroll to the job alert widget
+    var windowPath = window.location.pathname.toLowerCase();
+    if( windowPath.indexOf('user-dashboard') > -1 ){
+        if( windowPath.indexOf('/create') > -1 || windowPath.indexOf('/edit') > -1 || $('.job-alert-message-wrapper').length ){
+            $('body, html').stop().animate({
+                scrollTop: $('#createalert-widget').offset().top - 150
+            },10);
+        }
+    }
+
+
+    //office page
+    //get in touch toggle collapse
+    if( $('#officeAddress, .get-in-touch').length ){
+        $('.get-in-touch h3[data-target="#officeAddress"]').on('click', function(e){
+           $( $(this).data('target') ).toggle();
+        });
     }
 
 });

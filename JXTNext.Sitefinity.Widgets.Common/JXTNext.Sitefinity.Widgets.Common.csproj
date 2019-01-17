@@ -105,6 +105,12 @@
     <Content Include="ResourcePackages\Hudson\assets\dist\images\hudson_logo_white.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\114x114.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\57x57.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Hudson\assets\dist\images\indeed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

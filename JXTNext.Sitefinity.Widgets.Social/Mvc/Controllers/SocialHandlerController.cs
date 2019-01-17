@@ -22,6 +22,8 @@ using JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication;
 using System.IO;
 using Telerik.Sitefinity.Abstractions;
 using System.Text;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
+using System.Web.Routing;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 {
@@ -58,7 +60,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         public ActionResult Index(string code, string state, int? JobId)
         {
             SocialMediaJobViewModel viewModel = new SocialMediaJobViewModel();
-
+            
             try
             {
                 // Logging this info for Indeed test
@@ -125,8 +127,35 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 Password = "Password123",
                                 PhoneNumber = result.PhoneNumber
                             };
-                            var overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
-                            
+
+                            string overrideEmail = string.Empty;
+                            if (SitefinityHelper.IsUserLoggedIn())
+                            {
+                                var currUser = SitefinityHelper.GetUserById(ClaimsManager.GetCurrentIdentity().UserId);
+                                if (currUser != null)
+                                {
+                                    Log.Write("User is already logged In " + currUser.Email, ConfigurationPolicy.ErrorLog);
+                                    overrideEmail = currUser.Email;
+                                }
+                                else
+                                {
+                                    Log.Write("CurUser is null", ConfigurationPolicy.ErrorLog);
+                                    overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
+                                }
+                                Log.Write("SitefinityHelper.IsUserLoggedIn() =" + SitefinityHelper.IsUserLoggedIn(), ConfigurationPolicy.ErrorLog);
+                                
+                            }
+                            else if (!string.IsNullOrEmpty(result.LoginUserEmail))
+                            {
+                                overrideEmail = result.LoginUserEmail;
+                            }
+                            else
+                            {
+
+                                Log.Write("SitefinityHelper.IsUserLoggedIn() is false ", ConfigurationPolicy.ErrorLog);
+                                overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
+                            }
+
                             Log.Write("overrideEmail is : " + overrideEmail, ConfigurationPolicy.ErrorLog);
                             if (overrideEmail != null && status == JobApplicationStatus.Available)
                             {
@@ -142,6 +171,23 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     PathToAttachment = identifier.ToString() + "_" + result.FileName,
                                     Status = "Ready"
                                 };
+
+                                // Fetch job details 
+                                string ApplicationEmail = string.Empty;
+                                string ContactDetails = string.Empty;
+                                string CompanyName = string.Empty;
+                                if (result.JobId.HasValue)
+                                {
+                                    IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = result.JobId.Value };
+                                    IGetJobListingResponse jobListingResponse = _blConnector.GuestGetJob(jobListingRequest);
+                                    ViewBag.JobTitle = jobListingResponse.Job.Title;
+                                    ApplicationEmail = jobListingResponse.Job.CustomData["ApplicationMethod.ApplicationEmail"];
+                                    ContactDetails = jobListingResponse.Job.CustomData["ContactDetails"];
+                                    CompanyName = jobListingResponse.Job.CustomData["CompanyName"];
+                                    var JobLocation = jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"];
+                                }
+
+                                // End code for fetch job details
                                 Log.Write("overrideEmail uploadItem object created", ConfigurationPolicy.ErrorLog);
                                 List<JobApplicationAttachmentUploadItem> attachments = new List<JobApplicationAttachmentUploadItem>();
                                 attachments.Add(uploadItem);
@@ -151,13 +197,46 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 string coverletterAttachmentPath = JobApplicationAttachmentUploadItem.GetAttachmentPath(attachments, JobApplicationAttachmentType.Coverletter);
                                 Log.Write("After cover letter GetAttachmentPath", ConfigurationPolicy.ErrorLog);
 
-                                string htmlEmailContent = _jobApplicationService.GetHtmlEmailContent(this.EmailTemplateId, this.EmailTemplateProviderName, this._itemType);
+                                string htmlEmailContent = this.GetEmailHtmlContent();
+                                string htmlAdvertiserEmailContent = this.GetAdevertiserEmailHtmlContent();
                                 Log.Write("After GetHtmlEmailContent", ConfigurationPolicy.ErrorLog);
                                 // Email notification settings
+
+
+                                Stream resumeFileStream = null;
+                                Stream coverLetterFileStream = null;
+
+                                string resumeFileName = null;
+                                string coverLetterFileName = null;
+                                foreach (var item in attachments)
+                                {
+                                    if (item.AttachmentType == JobApplicationAttachmentType.Resume)
+                                    {
+                                        resumeFileStream = item.FileStream;
+                                        resumeFileName = item.FileName;
+                                    }
+
+                                    if (item.AttachmentType == JobApplicationAttachmentType.Coverletter)
+                                    {
+                                        coverLetterFileName = item.FileName;
+                                        coverLetterFileStream = item.FileStream;
+                                    }
+
+                                }
+
+
+                                EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
+                                                                                                                    new EmailTarget(ContactDetails, ApplicationEmail),
+                                                                                                                    this.AdvertiserEmailTemplateEmailSubject,
+                                                                                                                    htmlAdvertiserEmailContent, resumeFileStream, resumeFileName, coverLetterFileStream, coverLetterFileName);
+
+
+
+
                                 EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                     new EmailTarget(SitefinityHelper.GetUserFirstNameById(SitefinityHelper.GetUserByEmail(overrideEmail).Id), overrideEmail),
                                                                                                     this.EmailTemplateEmailSubject,
-                                                                                                    htmlEmailContent);
+                                                                                                    htmlEmailContent,null,null,null,null);
 
                                 Log.Write("emailNotificationSettings after: ", ConfigurationPolicy.ErrorLog);
                                 // CC and BCC emails
@@ -166,6 +245,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     foreach (var ccEmail in this.EmailTemplateCC.Split(';'))
                                     {
                                         emailNotificationSettings.AddCC(String.Empty, ccEmail);
+                                        advertiserEmailNotificationSettings.AddCC(String.Empty, ccEmail);
                                     }
                                 }
 
@@ -174,6 +254,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     foreach (var bccEmail in this.EmailTemplateBCC.Split(';'))
                                     {
                                         emailNotificationSettings.AddBCC(String.Empty, bccEmail);
+                                        advertiserEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
                                     }
                                 }
 
@@ -181,11 +262,20 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
                                 //Create Application 
                                 IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(
-                                    new JXTNext_MemberApplicationRequest { ApplyResourceID = result.JobId.Value, MemberID = 2, ResumePath = resumeAttachmentPath, CoverletterPath = coverletterAttachmentPath, EmailNotification = emailNotificationSettings },
+                                    new JXTNext_MemberApplicationRequest {
+                                        ApplyResourceID = result.JobId.Value,
+                                        MemberID = 2,
+                                        ResumePath = resumeAttachmentPath,
+                                        CoverletterPath = coverletterAttachmentPath,
+                                        EmailNotification = emailNotificationSettings,
+                                        AdvertiserEmailNotification = advertiserEmailNotificationSettings,
+                                        AdvertiserName = ContactDetails,
+                                        CompanyName = CompanyName
+                                    },
                                     overrideEmail);
 
                                 Log.Write("BL response after: ", ConfigurationPolicy.ErrorLog);
-
+                                
                                 if (response.Success && response.ApplicationID.HasValue)
                                 {
                                     Log.Write("BL response in: ", ConfigurationPolicy.ErrorLog);
@@ -241,6 +331,12 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 Log.Write("Social Handler : Exception Caught" + ex.Message, ConfigurationPolicy.ErrorLog);
             }
 
+            if (this.Request.QueryString["error"].ToLower().Contains("denied"))
+            {
+                return Redirect(string.Format("job-application/{0}",  int.Parse(state)));
+                //return Redirect(string.Format("job-application/{0}/{1}/{2}", "Project-Services", "Business-Transformation", int.Parse(state)));
+            }
+            
 
             if (!this.JobSearchResultsPageId.IsNullOrEmpty())
                 ViewBag.JobSearchResultsUrl = SitefinityHelper.GetPageUrl(this.JobSearchResultsPageId);
@@ -253,6 +349,20 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         protected override void HandleUnknownAction(string actionName)
         {
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
+        }
+
+
+        private string GetEmailHtmlContent()
+        {
+            //return _jobApplicationService.GetHtmlEmailContent("6AB317D4-D674-4636-8481-014BC6F861E1", this.EmailTemplateProviderName, this._itemType);
+            return _jobApplicationService.GetHtmlEmailContent(this.EmailTemplateId, this.EmailTemplateProviderName, this._itemType);
+        }
+
+        private string GetAdevertiserEmailHtmlContent()
+        {
+            
+            //return _jobApplicationService.GetHtmlEmailContent("3DCBDCE5-F190-4FBA-BE51-074F2E034A04", this.AdvertiserEmailTemplateProviderName, this._itemType);
+            return _jobApplicationService.GetHtmlEmailContent(this.AdvertiserEmailTemplateId, this.AdvertiserEmailTemplateProviderName, this._itemType);
         }
 
         public string ItemType
@@ -275,6 +385,20 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         public string RegisterPageId { get; set; }
         public string JobApplicationSuccessPageId { get; set; }
         public string JobSearchResultsPageId { get; set; }
+
+        //Job Owner Email template
+        public string AdvertiserEmailTemplateProviderName
+        {
+            get { return _emailTemplateProviderName; }
+            set { this._emailTemplateProviderName = value; }
+        }
+        public string AdvertiserEmailTemplateId { get; set; }
+        public string AdvertiserEmailTemplateName { get; set; }
+        public string AdvertiserEmailTemplateCC { get; set; }
+        public string AdvertiserEmailTemplateBCC { get; set; }
+        public string AdvertiserEmailTemplateSenderName { get; set; }
+        public string AdvertiserEmailTemplateSenderEmailAddress { get; set; }
+        public string AdvertiserEmailTemplateEmailSubject { get; set; }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private string templateName = "Simple";

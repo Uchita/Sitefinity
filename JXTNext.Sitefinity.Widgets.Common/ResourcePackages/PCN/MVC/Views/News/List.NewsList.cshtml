@@ -10,15 +10,20 @@
 @using Newtonsoft.Json;
 
 @{
-                /**/
+    var Json = JsonConvert.SerializeObject(Model);
+    var archiveddate = Request.QueryString["archivedate"];
 
-                var Json = JsonConvert.SerializeObject(Model);
+    var model = Model.Items;
+    if (archiveddate + "" != "")
+    {
+        model = model.Where(x => x.Fields.PublicationDate.ToString("MMMMM yyyy").Contains(archiveddate.Trim()));
+    }
 }
 
 <div class="archive-postlist @Model.CssClass">
     <div class="row">
 
-        @foreach (var item in Model.Items)
+        @foreach (var item in model)
         {
             var imageurl = "";
             foreach (var relatedItem in item.Fields.NewsImage)
@@ -65,7 +70,7 @@
 
                     <div class="entry-footer">
                         <a class="read_btn" href="@navigateUrl"><span>Read More</span></a>
-                        <a class="read_btn pull-right" href="#"><span><i class="fas fa-comment-alt"></i> Leave Comment</span></a>
+                        <a class="read_btn pull-right" href="@navigateUrl"><span><i class="fas fa-comment-alt"></i> Leave Comment</span></a>
                     </div>
 
                 </div>
@@ -74,6 +79,9 @@
 
     </div>
 </div>
+
+
+
 
 @if (Model.ShowPager)
 {
@@ -89,4 +97,4 @@
     </div>
 }
 
-    <hr class="space" />
+<hr class="space" />

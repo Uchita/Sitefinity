@@ -15,10 +15,21 @@
 
 @Html.Script(ScriptRef.JQuery, "top", false)
 
+
+@{
+
+    var archiveddate = Request.QueryString["archivedate"];
+
+    var model = Model.Items;
+    if (archiveddate + "" != "")
+    {
+        model = model.Where(x => x.Fields.PublicationDate.ToString("MMMMM yyyy").Contains(archiveddate.Trim()));
+    }
+}
 <hr class="space" />
 <div class="@Model.CssClass row">
 
-    @foreach (var item in Model.Items)
+    @foreach (var item in model)
     {
         var imageurl = "";
         foreach (var relatedItem in item.Fields.BlogImage)
@@ -77,4 +88,4 @@
     </div>
 }
 
-    <hr class="space" />
+<hr class="space" />

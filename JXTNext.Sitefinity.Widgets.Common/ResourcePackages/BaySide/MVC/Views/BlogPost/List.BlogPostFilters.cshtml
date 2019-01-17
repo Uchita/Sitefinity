@@ -58,46 +58,47 @@
         }
     }*@
 
+
 <div class="filter-outer-wrapper right-sidebar">
     <div>
-        <select id="sortOrder" class="" onchange="FilterChanged(this)">
-            <option selected="selected" value="Recent">Sort by – Recent</option>
-            <option value="Old">Sort by – Oldest Posts</option>
-            <option value="A-Z">Sort by – Alphabetical A-Z</option>
-            <option value="Z-A">Sort by – Alphabetical Z-A</option>
-            @*<option value="SalaryHighToLow">Sort by – Salary high to low</option>
-                <option value="SalaryLowToHigh">Sort by – Salary low to high</option>*@
+        <select id="sortOrder" class="jxt-news-filter-summary">
+            <option value="latest">Sort by – Recent</option>
+            <option value="oldest">Sort by – Oldest Posts</option>
+            <option value="az">Sort by – Alphabetical A-Z</option>
+            <option value="za">Sort by – Alphabetical Z-A</option>
         </select>
     </div>
 
     <div>
         <label>Search Keyword</label>
-        <input type="text" onchange="FilterChanged(this)" id="txtSearch" />
+        <input type="text" id="txtSearch" />
 
     </div>
 
     <div class="dropdown dropdown-tree navbar-collapse" id="BLOGCATEGORIES" data-prefixidtext="">
-        <a href="#lbl-CATEGORIES" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="lbl-Classifications">
+        <a href="#lbl-CATEGORIES" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="lbl-CATEGORIES">
             <span class="dropdowntree-name">Categories</span>
             <span class="caret"></span>
         </a>
-        <ul style="max-height: none" class="collapse show in" id="lbl-CATEGORIES">
+        <ul style="max-height:none" class="collapse show in" id="lbl-CATEGORIES">
             @foreach (var newscatitem in _dd_blogCategories.Subtaxa)
             {
-                <li id="@newscatitem.Id" data-title="@newscatitem.Name">
-                    <input onchange="FilterChanged(this)" id="@newscatitem.Id" name="@newscatitem.Name" type="checkbox" />
+                <li data-title="@newscatitem.Name">
+                    <input class="parent-blog-category" id="@newscatitem.Id" name="@newscatitem.Name" type="checkbox" />
                     <span>
                         @newscatitem.Name
                     </span>
-                    @foreach (var subcategory in newscatitem.Subtaxa)
-                    {
-                        <ul>
-                            <li id="@subcategory.Id" data-title="@subcategory.Name">
-                                <input onchange="FilterChanged(this)" id="@subcategory.Id" name="@subcategory.Name" type="checkbox" />
+                    <ul>
+                        @foreach (var subcategory in newscatitem.Subtaxa)
+                        {
+
+                            <li data-title="@subcategory.Name">
+                                <input class="child-blog-category" id="@subcategory.Id" name="@subcategory.Name" type="checkbox" />
                                 <span>@subcategory.Name</span>
                             </li>
-                        </ul>
-                    }
+
+                        }
+                    </ul>
                 </li>
 
 
@@ -106,27 +107,29 @@
     </div>
 
     <div class="dropdown dropdown-tree navbar-collapse" id="BLOGINDUSTRIES" data-prefixidtext="">
-        <a href="#lbl-INDUSTRIES" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="lbl-Classifications">
+        <a href="#lbl-INDUSTRIES" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="lbl-INDUSTRIES">
             <span class="dropdowntree-name">Industries</span>
             <span class="caret"></span>
         </a>
         <ul style="max-height: none" class="collapse show in" id="lbl-INDUSTRIES">
             @foreach (var newscatitem in _dd_blogIndustries.Subtaxa)
             {
-                <li id="@newscatitem.Id" data-title="@newscatitem.Name">
-                    <input id="@newscatitem.Id" onchange="FilterChanged(this)" name="@newscatitem.Name" type="checkbox" />
+                <li data-title="@newscatitem.Name">
+                    <input class="parent-blog-industry" id="@newscatitem.Id" name="@newscatitem.Name" type="checkbox" />
                     <span>
                         @newscatitem.Name
                     </span>
-                    @foreach (var subcategory in newscatitem.Subtaxa)
-                    {
-                        <ul>
-                            <li id="@subcategory.Id" data-title="@subcategory.Name">
-                                <input id="@subcategory.Id" onchange="FilterChanged(this)" name="@subcategory.Name" type="checkbox" />
+                    <ul>
+                        @foreach (var subcategory in newscatitem.Subtaxa)
+                        {
+
+                            <li data-title="@subcategory.Name">
+                                <input class="child-blog-industry" id="@subcategory.Id" name="@subcategory.Name" type="checkbox" />
                                 <span>@subcategory.Name</span>
                             </li>
-                        </ul>
-                    }
+
+                        }
+                    </ul>
                 </li>
 
 
@@ -135,7 +138,7 @@
     </div>
 
     <div class="dropdown dropdown-tree navbar-collapse" id="BLOGTYPES" data-prefixidtext="">
-        <a href="#lbl-TYPES" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="lbl-Classifications">
+        <a href="#lbl-TYPES" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="lbl-TYPES">
             <span class="dropdowntree-name">TYPE</span>
             <span class="caret"></span>
         </a>
@@ -163,11 +166,4 @@
         </ul>
     </div>
 </div>
-<script type="text/javascript">
-
-    function FilterChanged(ctrl) {
-        debugger;
-        window.location.href = window.location.href + "?FIlter=" + ctrl.Id;
-    }
-
-</script>
+<script src="~/ResourcePackages/BaySide/assets/js/blogfilter.js"></script>

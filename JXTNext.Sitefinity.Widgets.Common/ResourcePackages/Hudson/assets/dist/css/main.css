@@ -8474,6 +8474,11 @@ main {
     .left-sidebar .container-fluid .left-sidebar-section .sidebar-to, .left-sidebar .navbar-collapse .left-sidebar-section .sidebar-to {
       padding: 0 10px; }
 
+.dropdown.dropdown-tree .arrow {
+  width: 100%;
+  text-align: right;
+  right: 0; }
+
 .dropdown.dropdown-tree > ul {
   white-space: normal;
   padding-left: 0;
@@ -9882,7 +9887,7 @@ ul.breadcrumb {
   .page-wrapper .dropdown-tree button.dropdown-toggle {
     width: 100%;
     text-align: left;
-    padding: 12px 10px;
+    padding: 12px 20px 12px 10px;
     color: #000;
     text-transform: none;
     font: 1.8rem AkzidGroProReg, sans-serif;

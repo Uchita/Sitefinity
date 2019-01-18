@@ -1753,7 +1753,11 @@ main {
     }
 }
 .dropdown.dropdown-tree{
-    
+    .arrow{
+        width: 100%;
+        text-align: right;
+        right: 0;
+    }
     >ul{
         white-space: normal;
         padding-left: 0;

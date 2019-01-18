@@ -1,0 +1,34 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+@using System.Collections;
+@using Newtonsoft.Json;
+@using Telerik.Sitefinity.Services.Comments;
+@using Telerik.Sitefinity.News.Model;
+@using Telerik.Sitefinity.Services;
+
+@{
+    var cs = SystemManager.GetCommentsService();
+
+    //instantiate comment filter
+    var commentFilter = new CommentFilter();
+
+    //add filter by Spam status
+    commentFilter.Status.Add(StatusConstants.Spam);
+
+    //add filter by News
+    commentFilter.ThreadType.Add(typeof(NewsItem).FullName);
+
+    //get the comment with the specified commentKey
+    var comments = cs.GetComments(commentFilter);
+}
+
+
+
+

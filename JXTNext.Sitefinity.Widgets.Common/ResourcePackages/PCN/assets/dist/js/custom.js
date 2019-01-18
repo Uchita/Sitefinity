@@ -115,6 +115,20 @@ $(document).ready(function () {
     });
 
 
+    $(".click-part").click(function () {
+        var thisChildren = $(this).parent().children(".partner-popup");
+        var allChildren = $(".partner-popup");
+        if ($(thisChildren).css('display') == 'block') {
+            $(thisChildren).slideUp("fast");
+            $(".click-part").removeClass("active");
+        }
+        else {
+            $(allChildren).slideUp("fast");
+            $(".click-part").removeClass("active");
+            $(thisChildren).slideDown("fast");
+            $(this).addClass("active");
+        }
+    });
 });
 
 

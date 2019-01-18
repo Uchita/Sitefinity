@@ -15,9 +15,9 @@
 <div class="article-details @Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
 
     @*<div class="post-nav">
-        <div class="prev-post"><a href="#" rel="prev"><i class="fas fa-long-arrow-alt-left"></i> Previous Post</a></div>
-        <div class="next-post"><a href="#" rel="next">Next Post <i class="fas fa-long-arrow-alt-right"></i></a></div>
-    </div>*@
+            <div class="prev-post"><a href="#" rel="prev"><i class="fas fa-long-arrow-alt-left"></i> Previous Post</a></div>
+            <div class="next-post"><a href="#" rel="next">Next Post <i class="fas fa-long-arrow-alt-right"></i></a></div>
+        </div>*@
 
     <img src="@imageurl" alt="@Model.Item.Fields.Title" />
 
@@ -26,12 +26,12 @@
             @if (Model.Item.Fields.Category != null)
             {
                 foreach (var taxon in Model.Item.GetHierarchicalTaxons("Category"))
-                { 
+                {
                     <span class="main-color-bg cat6"><a href="#">@taxon.Title.ToString()</a></span>
                 }
             }
-            
-           
+
+
         </span>
         <span class="author">Posted by <a href="#" title="Posts by @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)" rel="author">@DataResolver.Resolve(@Model.Item.DataItem, "Author", null)</a></span>
         <span class="sep">-</span>
@@ -78,5 +78,5 @@
 
     <hr class="space" />
 
-    @Html.CommentsList(@Model.Item.DataItem)
+
 </div>

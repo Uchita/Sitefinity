@@ -885,6 +885,9 @@
     <Content Include="ResourcePackages\PCN\MVC\Views\Card\Card.Partners.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\Comments\Comments.NewsComments.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\PCN\MVC\Views\Consultant\Detail.MemberDetail.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -937,6 +940,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\PCN\MVC\Views\Event\List.ArchiveList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\Event\List.EventComments.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\HierarchicalTaxonomy\HierarchicalTaxonomy.NewsCategoriesTop.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\Layouts\ArticleTemplate.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ResourcePackages\PCN\MVC\Views\News\List.NewsListCarousel.cshtml" />

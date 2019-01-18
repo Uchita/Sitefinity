@@ -22,8 +22,15 @@
             <a href="@navigateUrl" class="image" style="background-image: url(@imageurl);"></a>
 
             <div class="post-info">
+
                 <div class="entry-meta">
-                    <span class="entry-cats"><span class="main-color-bg cat5"><a href="#">Category</a></span></span>
+                    @if (item.Fields.Category != null)
+                    {
+                        foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+                        {
+                            <span class="entry-cats"><span class="main-color-bg cat5"><a href="#">@taxon.Title.ToString()</a></span></span>
+                        }
+                    }
                 </div>
 
                 <div class="title">

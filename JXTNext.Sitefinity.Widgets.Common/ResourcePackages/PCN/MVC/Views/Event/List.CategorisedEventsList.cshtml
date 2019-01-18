@@ -35,14 +35,14 @@
                     <div class="sub">
 
                         <div class="thumbnail-img overlay">
-                            <a href="@navigateUrl"><img src="@imageurl" alt="image"></a>
+                            <a href="@navigateUrl" class="image" style="background-image: url(@imageurl);"></a>
                             <div class="cat-bullet">
                                 @if (item.Fields.Category != null)
                                 {
                                     foreach (var taxon in item.GetHierarchicalTaxons("Category"))
                                     {
                                         <span class="cat">
-                                            <span class="main-color-bg cat5"></span><a href="#">@taxon.Title.ToString()</a>
+                                            <a href="#">@taxon.Title.ToString()</a>
                                         </span>
                                     }
                                 }

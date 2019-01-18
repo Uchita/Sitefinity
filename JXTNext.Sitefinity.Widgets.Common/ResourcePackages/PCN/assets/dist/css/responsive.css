@@ -149,6 +149,41 @@
     .three_colmun_section .blue_text + p {
         min-height: 72px;
     }
+
+    .widget_categories .list li {
+        width: 100%;
+    }
+
+    .news_side_search .news_side_tabs li a {
+        padding: 6px 2px;
+        font-size: 11px;
+    }
+
+    .news_side_search .news_side_tabs li.active a:after {
+        border-width: 7px 8px 0;
+        bottom: -7px;
+    }
+
+    .archive-postlist .cat-bullet a {
+        font-size: 12px;
+    }
+
+    .items-cat .thumbnail-img {
+        width: 100px;
+    }
+
+    .items-cat .text {
+        width: calc(100% - 100px);
+        font-size: 14px;
+    }
+
+    .news_side_search .items .text h3 {
+        font-size: 12px;
+    }
+
+    .news_side_search .items .text .entry-meta {
+        font-size: 12px;
+    }
 }
 
 
@@ -391,7 +426,7 @@
         }
 
         .three_colmun_section .white_panel .sub {
-            padding: 25px 0;
+            padding: 20px 0;
         }
 
         .three_colmun_section .sub_title {
@@ -506,13 +541,43 @@
         height: calc(100% - 69px);
     }
 
-    .archive-postlist .entry-footer .read_btn {
-        float: left !important;
-        margin-top: 5px;
+
+
+    .archive-postlist .entry-footer .read_btn span {
+        font-size: 12px;
     }
 
-        .archive-postlist .entry-footer .read_btn span {
-            font-size: 12px;
+    #wt-slider .post-excerpt {
+        font-size: 14px;
+    }
+
+    #wt-slider .post-info h3 {
+        font-size: 18px;
+    }
+
+    .archive-postlist .entry-excerpt {
+        min-height: auto;
+    }
+
+    .archive-postlist .thumbnail-img .image {
+        min-height: 200px;
+    }
+
+    .three_colmun_section .sub_title {
+        font-size: 20px;
+    }
+
+    .three_colmun_section .white_panel .image {
+        height: 130px;
+    }
+
+    .about_twoC .colmun .read_btn {
+        margin-right: 20px;
+    }
+
+        .about_twoC .colmun .read_btn span {
+            font-size: 14px;
+            padding: 9px 14px;
         }
 }
 
@@ -631,11 +696,15 @@
 
         .three_colmun_section .colmun {
             padding: 15px;
+            width: 50%;
         }
 
         .three_colmun_section .sub_title {
-            font-size: 22px;
             font-family: FuturaBT-Heavy;
+        }
+
+        .three_colmun_section .entry-meta {
+            font-size: 14px;
         }
 
     .footer_top {
@@ -735,6 +804,34 @@
     #wt-slider .post-excerpt {
         width: 100%;
     }
+
+    .article_section h2 {
+        font-size: 24px;
+    }
+
+    .archive-postlist .col-xs-12 {
+        width: 50%;
+    }
+
+    .cat-list-2 .col-xs-12 {
+        width: 50%;
+    }
+
+        .cat-list-2 .col-xs-12 .col-xs-12 {
+            width: 100%
+        }
+
+    .archive-postlist .read_btn span {
+        padding: 8px 7px;
+    }
+
+    .archive-postlist .entry-excerpt {
+        min-height: 40px;
+    }
+
+    .three_colmun_section .white_panel .image {
+        height: 180px;
+    }
 }
 
 /* -----------------------------------
@@ -757,5 +854,26 @@
 
     .consultants .job-title {
         min-height: inherit;
+    }
+
+
+    .archive-postlist .col-xs-12 {
+        width: 100%;
+    }
+
+    .cat-list-2 .col-xs-12 {
+        width: 100%;
+    }
+
+    .archive-postlist .read_btn span {
+        padding: 8px 7px;
+    }
+
+    .archive-postlist .entry-excerpt {
+        min-height: auto;
+    }
+
+    .three_colmun_section .colmun {
+        width: 100%;
     }
 }

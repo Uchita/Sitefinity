@@ -14,8 +14,9 @@
     var model = Model.Items.OrderByDescending(x => x.Fields.PublicationDate).Select(x => x.Fields.PublicationDate.ToString("MMMMM yyyy")).Distinct().ToList();
 }
 
-<h3 class="title">ARCHIVE</h3>
-<div class="archive">
+
+<div class="archive-list">
+    <h4 class="title">Archive</h4>
     <ul>
         @foreach (var item in model)
         {

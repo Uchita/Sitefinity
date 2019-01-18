@@ -29,17 +29,17 @@
             }
             var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
 
-            <div class="col-xs-12 col-sm-6">
+            <div class="col-xs-12 col-sm-12 col-md-6">
                 <div class="sub">
 
                     <div class="thumbnail-img overlay">
-                        <a href="@navigateUrl"><img src="@imageurl" alt="image"></a>
+                        <a href="@navigateUrl" class="image" style="background-image: url(@imageurl);"></a>
                         <div class="cat-bullet">
                             <span class="cat">
-                                <span class="main-color-bg cat5"></span><a href="#">Category</a>
+                                <a href="#">Category</a>
                             </span>
-                            <span class="cat cat-two">
-                                <span class="main-color-bg cat3"></span><a href="#">Category 2</a>
+                            <span class="cat">
+                                <a href="#">Category 2</a>
                             </span>
                         </div>
                     </div>
@@ -73,7 +73,6 @@
 
     </div>
 </div>
-<hr class="space" />
 @if (Model.ShowPager)
 {
     <div class="news_pagination">

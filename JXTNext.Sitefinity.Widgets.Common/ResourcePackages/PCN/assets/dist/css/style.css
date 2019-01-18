@@ -1469,6 +1469,15 @@ hr {
                 height: auto;
             }
 
+            .blog_section .latest_news .image a {
+                width: 100%;
+                min-height: 185px;
+                float: left;
+                background-position: top center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
         .blog_section .latest_news .text {
             width: 100%;
             float: left;
@@ -4803,6 +4812,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     margin-bottom: 25px;
     width: 100%;
     float: left;
+    box-shadow: none;
 }
 
 .filter_sidebar .sm-wrapper .dropdown-tree > .dropdown-toggle {
@@ -5274,6 +5284,9 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     padding: 45px 0;
 }
 
+    .article_section h2 {
+        margin-top: 0px;
+    }
 
 /*-- News Page Slider --*/
 #wt-slider {
@@ -5337,27 +5350,37 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         left: 0px;
     }
 
-        #wt-slider .post-info .title {
-            margin-bottom: 5px;
-        }
+    #wt-slider li .image {
+        width: 100%;
+        min-height: 320px;
+        float: left;
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 
-        #wt-slider .post-info h3 {
-            background: #393939;
-            background: rgba(0, 0, 0, 0.75);
-            line-height: 22px;
-            padding: 12px 15px;
-            display: inline-block;
-            position: relative;
-            font-size: 20px;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 0;
-        }
+    #wt-slider .post-info .title {
+        margin-bottom: 5px;
+        clear: both;
+    }
 
-            #wt-slider .post-info h3 a {
-                color: white;
-                text-decoration: none;
-            }
+    #wt-slider .post-info h3 {
+        background: #393939;
+        background: rgba(0, 0, 0, 0.75);
+        line-height: 22px;
+        padding: 12px 15px;
+        display: inline-block;
+        position: relative;
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 0;
+    }
+
+        #wt-slider .post-info h3 a {
+            color: white;
+            text-decoration: none;
+        }
 
     #wt-slider .post-excerpt {
         background: #393939;
@@ -5434,7 +5457,19 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     .archive-postlist .thumbnail-img {
         margin-bottom: 10px;
         position: relative;
+        width: 100%;
+        float: left;
     }
+
+        .archive-postlist .thumbnail-img .image {
+            width: 100%;
+            min-height: 250px;
+            float: left;
+            background-position: top center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
 
     .archive-postlist .cat-bullet {
         position: absolute;
@@ -5444,11 +5479,38 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         padding: 8px 12px;
     }
 
+        .archive-postlist .cat-bullet .cat {
+            display: inline-block;
+            position: relative;
+            padding-right: 10px;
+            padding-left: 4px;
+        }
+
+            .archive-postlist .cat-bullet .cat:after {
+                display: inline-block;
+                width: 1px;
+                height: 12px;
+                content: "";
+                background: rgba(142,221,43,0.9);
+                position: absolute;
+                top: 4px;
+                right: 0px;
+            }
+
+            .archive-postlist .cat-bullet .cat:last-child:after {
+                display: none;
+            }
+
         .archive-postlist .cat-bullet a {
             color: #FFFFFF;
             font-size: 13px;
             font-family: FuturaBT-Medium;
+            text-decoration: none;
         }
+
+            .archive-postlist .cat-bullet a:hover {
+                color: #8edd2b;
+            }
 
         .archive-postlist .cat-bullet .cat-two {
             margin-left: 8px;
@@ -5497,6 +5559,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
     .archive-postlist .entry-excerpt {
         margin-bottom: 20px;
+        min-height: 40px;
     }
 
     .archive-postlist .entry-footer {
@@ -5597,7 +5660,12 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
             .widget_categories .list li a {
                 display: block;
+                color: #000;
             }
+
+                .widget_categories .list li a:hover {
+                    color: #62b001;
+                }
 
 .news_side_search {
     width: 100%;
@@ -5618,7 +5686,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
             .news_side_search .news_side_tabs li a {
                 display: block;
                 padding: 7px;
-                font-size: 14px;
+                font-size: 13px;
                 color: #fff;
                 text-align: center;
                 font-family: FuturaBT-Medium;
@@ -5745,3 +5813,42 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
                 -moz-transform: rotate(360deg);
                 transform: rotate(360deg);
             }
+
+.archive-list {
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+}
+
+    .archive-list .title, .widget_categories h4 {
+        padding-bottom: 8px;
+        font-size: 18px;
+        color: #000;
+        font-family: FuturaBT-Heavy;
+        text-transform: uppercase;
+        border-bottom: 1px solid #8EDD2B;
+    }
+
+    .archive-list ul {
+        list-style: none;
+    }
+
+    .archive-list li {
+        margin-bottom: 10px;
+    }
+
+        .archive-list li a {
+            display: block;
+            font-size: 14px;
+            color: #000;
+            text-decoration: none;
+        }
+
+            .archive-list li a:hover {
+                color: #62b001;
+            }
+
+
+.search-result-description ul {
+    padding-left: 20px;
+}

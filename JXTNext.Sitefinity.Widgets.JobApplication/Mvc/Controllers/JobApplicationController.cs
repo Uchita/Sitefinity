@@ -453,14 +453,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 {
                     isJobApplicationSuccess = true;
                     jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Applied_Successful, "Your application was successfully processed");
-                    if (sourceResume == JobApplicationAttachmentSource.Local)
+                    bool profileUploadResult = AddUploadedResumeToProfileDashBoard(attachments.Where(x => x.AttachmentType == JobApplicationAttachmentType.Resume).FirstOrDefault(), ovverideEmail);
+                    if (!profileUploadResult)
                     {
-                        bool profileUploadResult = AddUploadedResumeToProfileDashBoard(attachments.Where(x => x.AttachmentType == JobApplicationAttachmentType.Resume).FirstOrDefault(), ovverideEmail);
-                        if (!profileUploadResult)
-                        {
-                            TempData["PostBackMessage"] = "Unable to attach resume to Profile";
-                            return Redirect(Request.UrlReferrer.PathAndQuery);
-                        }
+                        TempData["PostBackMessage"] = "Unable to attach resume to Profile";
+                        return Redirect(Request.UrlReferrer.PathAndQuery);
                     }
                 }
 

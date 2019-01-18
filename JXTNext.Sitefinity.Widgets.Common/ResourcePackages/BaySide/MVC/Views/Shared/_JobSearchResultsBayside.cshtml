@@ -30,21 +30,32 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-12 col-lg-12 mb-2">Receive new jobs for this search by email.</div>
+        </div>
+        <div class="row">
             <div class="col-12 col-lg-6">
                 <div class="form-group">
                     <input type="email" id="anonycreatejobalert" value="" placeholder="Receive new jobs for this search by email." class="jobalert-field form-control" />
+
+                    <div class="alert alert-danger jobalert-error-message hidden">Please enter your valid email address.</div>
                 </div>
+
             </div>
+            <div class="alert alert-info jobalert-message hidden">Alert created. We’ll send new jobs to your email address.</div>
             <div class="col-12 col-lg-6">
                 <div class="form-group text-right">
-                    @if (isLoggedIn)
-                    {
+                    <a id="anon-job-alert" class="btn btn-outline-primary btn-block" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+
+
+
+                    @*@if (isLoggedIn)
+                        {
                         <a class="btn btn-outline-primary btn-block jobalert-btn" href="/user-dashboard/Create" title="Create you job alert">CREATE JOB ALERT</a>
-                    }
-                    else
-                    {
+                        }
+                        else
+                        {
                         <a id="anon-job-alert" class="btn btn-block btn-outline-primary" href="#" title="Create you job alert">CREATE JOB ALERT</a>
-                    }
+                        }*@
                 </div>
             </div>
         </div>
@@ -301,8 +312,30 @@
 
         $('#anon-job-alert').click(function () {
             var email = $('#anonycreatejobalert').val();
+
+
+
+
+            if (email.length < 1) {
+                $('.jobalert-error-message').removeClass('hidden').text('Please enter your email address.');
+                return false;
+            }
+            //else if (!pattern.test(email)) {
+            //    $('.jobalert-error-message').removeClass('hidden').text('Please enter your valid email address.');
+            //    return false;
+            //}
+
+            if (filterModel.Filters !== null && filterModel.Filters.length === 0) {
+                var filter = {};
+                filter.rootId = "CountryLocationArea";
+                searchTarget = null;
+                values = [];
+                filterModel.Filters.push(filter);
+            }
+
             var alertData = { filterModel: filterModel, email: email };
             var urlPath = $(location).attr('pathname') + "/CreateAnonymousJobAlert";
+
             $.ajax({
                 type: 'POST',
                 cache: false,
@@ -312,10 +345,13 @@
                 success: function (response) {
                     console.log(response);
                     if (response.Success == true) {
-
+                        $('#anonycreatejobalert, #anon-job-alert').hide();
+                        //$(this).hide();
+                        $('.jobalert-error-message').addClass('hidden');
+                        $('.jobalert-message').removeClass('hidden');
                     }
                     else {
-
+                        $('.jobalert-error-message').removeClass('hidden');
                     }
                 },
                 error: function (response) { // Error

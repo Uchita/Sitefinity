@@ -12,7 +12,7 @@
 @Html.Script("//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js", "top")
 
 
-<div class="@Model.CssClass row sf-m-xxs login-form reg-form">
+<div class="@Model.CssClass sf-m-xxs login-form reg-form">
     @if (Telerik.Sitefinity.Security.SecurityManager.GetCurrentUserId() == Guid.Empty || SystemManager.IsInlineEditingMode || SystemManager.IsDesignMode)
     {
 

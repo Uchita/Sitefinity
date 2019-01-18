@@ -1,316 +1,322 @@
 ﻿@model List<JobSearchModel>
-@using JXTNext.Sitefinity.Widgets.Job.Mvc.Models
+    @using JXTNext.Sitefinity.Widgets.Job.Mvc.Models
 
-@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+    @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
-@Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController",
-                                    "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
-@Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController",
-                                    "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.js"), "bottom")
+    @Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController",
+    "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
+    @Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController",
+    "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.js"), "bottom")
 
-@Html.Script(Url.WidgetContent("/Mvc/Scripts/jquery.nstSlider.js"))
-@Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/rangeSlider.css"))
+    @Html.Script(Url.WidgetContent("/Mvc/Scripts/jquery.nstSlider.js"))
+    @Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/rangeSlider.css"))
 
-@functions {
-    List<string> _itemsList = new List<string>();
-    Dictionary<string, dynamic> _idNamesLevelsPair = new Dictionary<string, dynamic>();
+    @functions {
+    List<string>
+        _itemsList = new List<string>
+            ();
+            Dictionary<string, dynamic>
+                _idNamesLevelsPair = new Dictionary<string, dynamic>
+                    ();
 
-    public List<string> GetValuesList(List<JobSearchItem> searchItemsList)
-    {
-
-        foreach (var item in searchItemsList)
-        {
-            if (!string.IsNullOrEmpty(item.Label) && item.Show == true)
-            {
-                _itemsList.Add(item.Label);
-                _idNamesLevelsPair.Add(item.ID, new { name = item.Label, level = item.Level });
-            }
-            if (item.Filters != null)
-                GetValuesList(item.Filters);
-        }
-
-        return _itemsList;
-    }
-}
-
-@if (Model != null)
-{
-    <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();" class="jn_jobSearch jn_search hz-listing cs-layout">
-
-        <div class="field-wrapper basic-form no-marg-top">
-            @{
-                int counter = 0;
-            }
-
-            @foreach (var item in Model)
-            {
-                switch (item.ControlType)
-                {
-                    case "TextBox":
-                        <div class="row form-group">
-                            <div class="col-md-4 text-right">
-                                <label for="Keywords">@item.PlaceholderText</label>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" placeholder="@item.PlaceholderText" name="Keywords" />
-                            </div>
-                        </div>
-                        break;
-
-                    case "DropDown Single":
-                        _itemsList.Clear();
-                        _idNamesLevelsPair.Clear();
-                        GetValuesList(item.Filters);
-                        <div class="row form-group">
-                            <div class="col-md-4 text-right">
-                                <label for="Filters[@counter].values">
-                                    @item.FilterType
-                                </label>
-                            </div>
-                            <div class="col-md-8">
-                                <select class="form-control" name="Filters[@counter].values">
-                                    <option value="" disabled selected>@item.PlaceholderText</option>
-                                    @foreach (dynamic itemName in _idNamesLevelsPair)
-                                    {
-                                        <option value="@itemName.Key">@itemName.Value.name</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-
-                        counter++;
-                        break;
-
-                    case "DropDown Multi":
-                        <div class="row form-group">
-
-                            @if (item.FilterType == "Salary")
+                    public List<string>
+                        GetValuesList(List<JobSearchItem>
+                            searchItemsList)
                             {
-                                <div class="col-md-4 text-right">
-                                    <label>@item.FilterType</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="hidden" id="divSalary"></div>
-                                    <div class="select">
-                                        <select class="SalaryRangeSelect form-control">
-                                            <option value="-1" selected>Choose Salary</option>
+
+                            foreach (var item in searchItemsList)
+                            {
+                            if (!string.IsNullOrEmpty(item.Label) && item.Show == true)
+                            {
+                            _itemsList.Add(item.Label);
+                            _idNamesLevelsPair.Add(item.ID, new { name = item.Label, level = item.Level });
+                            }
+                            if (item.Filters != null)
+                            GetValuesList(item.Filters);
+                            }
+
+                            return _itemsList;
+                            }
+                            }
+
+                            @if (Model != null)
+                            {
+                            <form action="@ViewData[" JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();" class="jn_jobSearch jn_search hz-listing cs-layout">
+
+                                <div class="field-wrapper basic-form no-marg-top">
+                                    @{
+                                    int counter = 0;
+                                    }
+
+                                    @foreach (var item in Model)
+                                    {
+                                    switch (item.ControlType)
+                                    {
+                                    case "TextBox":
+                                    <div class="row form-group">
+                                        <div class="col-md-4 text-right">
+                                            <label for="Keywords">@item.PlaceholderText</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" placeholder="@item.PlaceholderText" name="Keywords" />
+                                        </div>
+                                    </div>
+                                    break;
+
+                                    case "DropDown Single":
+                                    _itemsList.Clear();
+                                    _idNamesLevelsPair.Clear();
+                                    GetValuesList(item.Filters);
+                                    <div class="row form-group">
+                                        <div class="col-md-4 text-right">
+                                            <label for="Filters[@counter].values">
+                                                @item.FilterType
+                                            </label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <select class="form-control" name="Filters[@counter].values">
+                                                <option value="" disabled selected>@item.PlaceholderText</option>
+                                                @foreach (dynamic itemName in _idNamesLevelsPair)
+                                                {
+                                                <option value="@itemName.Key">@itemName.Value.name</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    counter++;
+                                    break;
+
+                                    case "DropDown Multi":
+                                    <div class="row form-group">
+
+                                        @if (item.FilterType == "Salary")
+                                        {
+                                        <div class="col-md-4 text-right">
+                                            <label>@item.FilterType</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="hidden" id="divSalary"></div>
+                                            <div class="select">
+                                                <select class="SalaryRangeSelect form-control">
+                                                    <option value="-1" selected>Choose Salary</option>
+                                                    @foreach (var salaryItem in item.Filters)
+                                                    {
+                                                    <option value="@salaryItem.ID">@salaryItem.Label</option>
+                                                    }
+                                                </select>
+                                            </div>
                                             @foreach (var salaryItem in item.Filters)
                                             {
-                                                <option value="@salaryItem.ID">@salaryItem.Label</option>
-                                            }
-                                        </select>
-                                    </div>
-                                    @foreach (var salaryItem in item.Filters)
-                                    {
-                                        var lower = 15000;
-                                        var upper = 200000;
-                                        if (salaryItem.Label == "Hourly Rate")
-                                        {
+                                            var lower = 15000;
+                                            var upper = 200000;
+                                            if (salaryItem.Label == "Hourly Rate")
+                                            {
                                             lower = 18;
                                             upper = 200;
-                                        }
-                                        <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
+                                            }
+                                            <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
 
-                                            <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
-                                                 data-cur_min="@lower" data-cur_max="@upper">
+                                                <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
+                                                     data-cur_min="@lower" data-cur_max="@upper">
 
-                                                <div class="bar"></div>
+                                                    <div class="bar"></div>
 
-                                                <div class="leftGrip"></div>
+                                                    <div class="leftGrip"></div>
 
-                                                <div class="rightGrip"></div>
+                                                    <div class="rightGrip"></div>
+                                                </div>
+                                                <div class="leftLabel">$<span>@lower</span></div>
+                                                <div class="rightLabel">$<span>@upper</span></div>
+
                                             </div>
-                                            <div class="leftLabel">$<span>@lower</span></div>
-                                            <div class="rightLabel">$<span>@upper</span></div>
 
+                                            } @*end of for each*@
                                         </div>
 
-                                    } @*end of for each*@
+                                        }
+                                        else
+                                        {
+
+                                        <div class="col-md-4 text-right">
+                                            <input type="hidden" name="Filters[@counter].rootId" value='@item.FilterType' />
+                                            <label class="col-4" for="@string.Format(" selected-{0}",item.ID)" rel="@item.FilterType">
+                                                @item.PlaceholderText
+                                            </label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <select id=@string.Format("selected-{0}{1}",ViewData["PrefixIdsText"],item.ID) name="Filters[@counter].values" style="display:none" multiple></select>
+                                            <div class="dropdown dropdown-tree" id=@string.Format("{0}{1}",ViewData["PrefixIdsText"],item.ID)></div>
+                                        </div>
+                                        }
+                                    </div>
+                                    counter++;
+                                    break;
+
+                                    case "List":
+                                    _itemsList.Clear();
+                                    _idNamesLevelsPair.Clear();
+                                    GetValuesList(item.Filters);
+                                    foreach (dynamic itemName in _idNamesLevelsPair)
+                                    {
+                                    string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewData["JobResultsPageUrl"], item.ID, itemName.Key);
+                                    <a href=@hrefLink>@itemName.Value.name</a>
+                                    }
+
+                                    break;
+
+                                    case "Map Search":
+                                    break;
+
+                                    default:
+                                    break;
+
+                                    }
+                                    }
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-4 text-right"></div>
+                                    <div class="col-md-8 button-wrapper">
+                                        <input class="btn btn-primary" type="submit" value="Search jobs" />
+                                    </div>
                                 </div>
 
+                            </form>
                             }
-                            else
-                            {
 
-                                <div class="col-md-4 text-right">
-                                    <input type="hidden" name="Filters[@counter].rootId" value='@item.FilterType' />
-                                    <label class="col-4" for="@string.Format("selected-{0}",item.ID)" rel="@item.FilterType">
-                                        @item.PlaceholderText
-                                    </label>
-                                </div>
-                                <div class="col-md-8">
-                                    <select id=@string.Format("selected-{0}{1}",ViewData["PrefixIdsText"],item.ID) name="Filters[@counter].values" style="display:none" multiple></select>
-                                    <div class="dropdown dropdown-tree" id=@string.Format("{0}{1}",ViewData["PrefixIdsText"],item.ID)></div>
-                                </div>
-                            }
-                        </div>
-                        counter++;
-                        break;
+                            <script type="text/javascript">
+                                var optionsArray = {};
+                                var optionsArray = {};
+                                var isSalaryExists = false;
+                                var isSalarySelected = false;
+                                var salary = { RootName: 'Salary', TargetValue: '', LowerRange: 15000, UpperRange: 200000 };
 
-                    case "List":
-                        _itemsList.Clear();
-                        _idNamesLevelsPair.Clear();
-                        GetValuesList(item.Filters);
-                        foreach (dynamic itemName in _idNamesLevelsPair)
-                        {
-                            string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewData["JobResultsPageUrl"], item.ID, itemName.Key);
-                            <a href=@hrefLink>@itemName.Value.name</a>
-                        }
+                                function preventSubmit() {
+                                    $.each(optionsArray, function (id, item) {
+                                        $($("#" + id).GetSelectedElementIds()).each(function (index, value) {
+                                            $("#selected-" + id).append('<option value="' + value + '" selected="true">' + value + '</option>')
+                                        });
+                                    });
+                                    return true;
+                                };
 
-                        break;
+                                $(document).ready(function () {
+                                    @{
+                                        var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                                        var json = serializer.Serialize(Model);
+                                    }
 
-                    case "Map Search":
-                        break;
+                                    var model = @Html.Raw(json);
+                                    if (model != null && @Html.Raw(json) != "undefined") {
+                                    var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
+                                    var prefixIdText = @Html.Raw(Json.Encode(ViewData["PrefixIdsText"]));
 
-                    default:
-                        break;
+                                    $.each(filterData, function (index, item) {
 
-                }
-            }
-        </div>
-        <div class="row form-group">
-            <div class="col-md-4 text-right"></div>
-            <div class="col-md-8 button-wrapper">
-                <input class="btn btn-primary" type="submit" value="Search jobs" />
-            </div>
-        </div>
+                                        switch (item.ControlType) {
+                                            case 'TextBox':
+                                                break;
 
-    </form>
-}
+                                            case 'DropDown Multi':
 
-<script type="text/javascript">
-    var optionsArray = {};
-    var optionsArray = {};
-    var isSalaryExists = false;
-    var isSalarySelected = false;
-    var salary = { RootName: 'Salary', TargetValue: '', LowerRange: 15000, UpperRange: 200000 };
+                                                optionsArray[prefixIdText + item.ID] = {
+                                                    title: item.PlaceholderText,
+                                                    data: item.Filters,
+                                                    maxHeight: 500,
+                                                    closedArrow: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+                                                    openedArrow: '<i class="fa fa-angle-down" aria-hidden="true"></i>',
+                                                    multiSelect: true,
+                                                    selectChildren: true,
+                                                    expandChildren: false,
+                                                    enableSearch: false,
+                                                    prefixIdText: prefixIdText,
+                                                };
+                                                $("#" + prefixIdText + item.ID).DropDownTree(optionsArray[prefixIdText + item.ID]);
+                                                break;
 
-    function preventSubmit() {
-         $.each(optionsArray,function (id, item) {
-             $($("#" + id).GetSelectedElementIds()).each(function (index, value) {
-                $("#selected-" + id).append('<option value="' + value + '" selected="true">' + value + '</option>')
-            });
-        });
-        return true;
-    };
-
-    $(document).ready(function () {
-         @{
-                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-                var json = serializer.Serialize(Model);
-          }
-
-        var model = @Html.Raw(json);
-        if (model != null && @Html.Raw(json) != "undefined") {
-            var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
-            var prefixIdText = @Html.Raw(Json.Encode(ViewData["PrefixIdsText"]));
-
-            $.each(filterData, function (index, item) {
-
-                switch (item.ControlType) {
-                    case 'TextBox':
-                        break;
-
-                    case 'DropDown Multi':
-
-                        optionsArray[prefixIdText + item.ID] = {
-                            title: item.PlaceholderText,
-                            data: item.Filters,
-                            maxHeight: 500,
-                            closedArrow: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
-                            openedArrow: '<i class="fa fa-angle-down" aria-hidden="true"></i>',
-                            multiSelect: true,
-                            selectChildren: true,
-                            expandChildren: false,
-                            enableSearch: false,
-                            prefixIdText: prefixIdText,
-                        };
-                        $("#" + prefixIdText + item.ID).DropDownTree(optionsArray[prefixIdText + item.ID]);
-                        break;
-
-                    default:
-                        break;
-                }
-            });
-        }
+                                            default:
+                                                break;
+                                        }
+                                    });
+                                }
 
 
-        var modelSalary = null;
-        $.each(model, function (index, value) {
-            if (value.Key == 'Salary') {
-                modelSalary = value.Value;
-            }
-        });
+                                var modelSalary = null;
+                                $.each(model, function (index, value) {
+                                    if (value.Key == 'Salary') {
+                                        modelSalary = value.Value;
+                                    }
+                                });
 
-        if (modelSalary != null && modelSalary != 'undefined') {
-            salary = modelSalary;
-            isSalarySelected = true;
-            $('.SalaryRangeSelect').val(modelSalary.TargetValue);
-            $('#' + modelSalary.TargetValue).removeClass('visible-hidden');
-            $('.SalaryRangeSelect').addClass('changed');
+                                if (modelSalary != null && modelSalary != 'undefined') {
+                                    salary = modelSalary;
+                                    isSalarySelected = true;
+                                    $('.SalaryRangeSelect').val(modelSalary.TargetValue);
+                                    $('#' + modelSalary.TargetValue).removeClass('visible-hidden');
+                                    $('.SalaryRangeSelect').addClass('changed');
 
-            var salarySliderEle = $('#' + modelSalary.TargetValue).parent().find('.nstSlider');
-            if (salarySliderEle != null) {
-                $(salarySliderEle).data("cur_min", modelSalary.LowerRange);
-                $(salarySliderEle).data("cur_max", modelSalary.UpperRange);
-            }
-        }
+                                    var salarySliderEle = $('#' + modelSalary.TargetValue).parent().find('.nstSlider');
+                                    if (salarySliderEle != null) {
+                                        $(salarySliderEle).data("cur_min", modelSalary.LowerRange);
+                                        $(salarySliderEle).data("cur_max", modelSalary.UpperRange);
+                                    }
+                                }
 
-        $('select').on('change', function () {
-            isSalarySelected = false;
-            $('.salaryrangewrapper').each(function (i, obj) {
-                $(this).addClass('visible-hidden');
-            });
-            if (this.value != -1) {
-                $(this).addClass('changed');
-                isSalarySelected = true;
-                $('#' + this.value).removeClass('visible-hidden');
-                salary.TargetValue = this.value;
-                salary.LowerRange = $("#" + $(this).val()).find('.leftLabel span').text();
-                salary.UpperRange = $("#" + $(this).val()).find('.rightLabel span').text();
-            } else if ($(this).hasClass('changed') && this.value == -1) {
-                isSalarySelected = false;
-            }
-            salaryValues();
-        });
+                                $('select').on('change', function () {
+                                    isSalarySelected = false;
+                                    $('.salaryrangewrapper').each(function (i, obj) {
+                                        $(this).addClass('visible-hidden');
+                                    });
+                                    if (this.value != -1) {
+                                        $(this).addClass('changed');
+                                        isSalarySelected = true;
+                                        $('#' + this.value).removeClass('visible-hidden');
+                                        salary.TargetValue = this.value;
+                                        salary.LowerRange = $("#" + $(this).val()).find('.leftLabel span').text();
+                                        salary.UpperRange = $("#" + $(this).val()).find('.rightLabel span').text();
+                                    } else if ($(this).hasClass('changed') && this.value == -1) {
+                                        isSalarySelected = false;
+                                    }
+                                    salaryValues();
+                                });
 
-        $('.nstSlider').each(function (i, obj) {
-            $(this).nstSlider({
-                "rounding": {
-                    "1": "600",
-                    "1000": "200000"
-                },
-                "crossable_handles": false,
-                "left_grip_selector": ".leftGrip",
-                "right_grip_selector": ".rightGrip",
-                "value_bar_selector": ".bar",
-                "user_mouseup_callback": function (leftValue, rightValue, isLeftGripMoved) {
-                    salary.LowerRange = leftValue;
-                    salary.UpperRange = rightValue;
-                    $(this).parent().find('.leftLabel span').text(leftValue);
-                    $(this).parent().find('.rightLabel span').text(rightValue);
-                    salaryValues();
-                },
-                "value_changed_callback": function (cause, leftValue, rightValue) {
-                    $(this).parent().find('.leftLabel span').text(leftValue);
-                    $(this).parent().find('.rightLabel span').text(rightValue);
-                }
-            });
-        });
+                                $('.nstSlider').each(function (i, obj) {
+                                    $(this).nstSlider({
+                                        "rounding": {
+                                            "1": "600",
+                                            "1000": "200000"
+                                        },
+                                        "crossable_handles": false,
+                                        "left_grip_selector": ".leftGrip",
+                                        "right_grip_selector": ".rightGrip",
+                                        "value_bar_selector": ".bar",
+                                        "user_mouseup_callback": function (leftValue, rightValue, isLeftGripMoved) {
+                                            salary.LowerRange = leftValue;
+                                            salary.UpperRange = rightValue;
+                                            $(this).parent().find('.leftLabel span').text(leftValue);
+                                            $(this).parent().find('.rightLabel span').text(rightValue);
+                                            salaryValues();
+                                        },
+                                        "value_changed_callback": function (cause, leftValue, rightValue) {
+                                            $(this).parent().find('.leftLabel span').text(leftValue);
+                                            $(this).parent().find('.rightLabel span').text(rightValue);
+                                        }
+                                    });
+                                });
 
-        function salaryValues() {
-            if (isSalarySelected) {
-                document.getElementById("divSalary").innerHTML = '<input type="hidden" name="Salary.RootName" id="SalaryRootName" /><input type="hidden" name="Salary.TargetValue" id="SalaryTargetValue" /><input type="hidden" name="Salary.LowerRange" id="SalaryLowerRange" /><input type="hidden" name="Salary.UpperRange" id="SalaryUpperRange" />';
-                document.getElementById("SalaryRootName").value = salary.RootName;
-                document.getElementById("SalaryTargetValue").value = salary.TargetValue;
-                document.getElementById("SalaryLowerRange").value = salary.LowerRange;
-                document.getElementById("SalaryUpperRange").value = salary.UpperRange;
-            }
-            else
-                document.getElementById("divSalary").innerHTML = "";
-        };
+                                function salaryValues() {
+                                    if (isSalarySelected) {
+                                        document.getElementById("divSalary").innerHTML = '<input type="hidden" name="Salary.RootName" id="SalaryRootName" /><input type="hidden" name="Salary.TargetValue" id="SalaryTargetValue" /><input type="hidden" name="Salary.LowerRange" id="SalaryLowerRange" /><input type="hidden" name="Salary.UpperRange" id="SalaryUpperRange" />';
+                                        document.getElementById("SalaryRootName").value = salary.RootName;
+                                        document.getElementById("SalaryTargetValue").value = salary.TargetValue;
+                                        document.getElementById("SalaryLowerRange").value = salary.LowerRange;
+                                        document.getElementById("SalaryUpperRange").value = salary.UpperRange;
+                                    }
+                                    else
+                                        document.getElementById("divSalary").innerHTML = "";
+                                };
 
 
-   });
-</script>
+                               });
+                            </script>
 

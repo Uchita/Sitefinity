@@ -1349,6 +1349,15 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\JobSearch\JobSearch.Vertical.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\JXTNextResume\DesignerView.Simple.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\JXTNextResume\DesignerView.Simple.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\JXTNextResume\Resume.Simple.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml" />
     <None Include="ResourcePackages\BaySide\MVC\Views\LanguageSelector\LanguageSelector.LanguageLinks.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1399,6 +1408,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\LoginForm\ResetPassword.ResetPassword.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\LoginStatusExtended\DesignerView.Simple.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\LoginStatusExtended\DesignerView.Simple.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\LoginStatusExtended\LoginStatusExtended.LoginButton.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\LoginStatusExtended\LoginStatusExtended.LoginName.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\LoginStatus\LoginStatus.LoginButton.cshtml">
@@ -1602,6 +1623,7 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\Shared\_JobSearchResultsBayside.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\Shared\_SimpleJS_Partial.cshtml" />
     <None Include="ResourcePackages\BaySide\MVC\Views\SiteSelector\SiteSelector.Default.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

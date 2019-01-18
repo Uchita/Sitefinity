@@ -8330,7 +8330,7 @@ select.hs-input {
 }
 
 .alert-icon {
-    background-image: url(../images/saved-jobs.png);
+    background-image: url(../images/alert-icon.png);
 }
 
 .page-wrapper .table {
@@ -8457,3 +8457,68 @@ select.hs-input {
     .right-filter-sidebar .dropdown-tree .ul-dropdown-toggle.active i:before {
         content: "\f106";
     }
+
+
+.visible-hidden {
+    opacity: 0;
+    height: 1px;
+    min-height: 1px !important;
+}
+
+.jobalert-error-message {
+    /*float: left;*/
+    clear: left;
+    padding: 5px 10px;
+    margin-top: 5px;
+}
+
+.salaryrangewrapper .leftLabel, .salaryrangewrapper .rightLabel {
+    position: absolute;
+    top: 18px;
+    font-size: 0.75rem !important;
+}
+
+.page-wrapper .btn.btn-danger {
+    color: #fff;
+    background: #f55;
+    border-color: red;
+}
+
+.page-wrapper .btn-tag {
+    min-width: 30px;
+    font-size: 1.12rem;
+    padding: 2px 7px;
+}
+
+.page-wrapper .text-muted {
+    font-size: 14px;
+    font-size: 0.88rem;
+    color: #aaa;
+}
+
+.page-wrapper .sf-profile h2 {
+    /*font-size: 3.2rem;*/
+    margin-top: 1.6rem;
+    margin-bottom: .5rem;
+    padding-bottom: 0px !important;
+}
+
+.btn.small-btn {
+    padding: 3px 8px 1px;
+    font-size: 12px;
+}
+
+#dvResumeResults tbody tr td {
+    width: 33.33%;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+#dvResumeResults tbody tr td, #dvResumeResults thead tr th {
+    border: 1px solid #f5f5f5;
+}
+
+#privacypolicy {
+    position: static;
+    margin-left: 0px;
+}

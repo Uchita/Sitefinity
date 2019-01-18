@@ -277,7 +277,12 @@
                 });
 
                 if (isSalaryExists && isSlarySelected){
-                    filterModel.Salary = salary;
+                    if (modelSalary != null && modelSalary != undefined && (modelSalary.LowerRange > salary.LowerRange || modelSalary.UpperRange < salary.UpperRange)) {
+                        filterModel.Salary = modelSalary;
+                    }
+                    else {
+                        filterModel.Salary = salary;
+                    }
                 }
 
                 filterModel.Keywords = encodeURIComponent($("#selectedkeywordsfilter").val());

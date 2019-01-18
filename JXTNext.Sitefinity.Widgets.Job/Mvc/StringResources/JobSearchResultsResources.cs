@@ -140,6 +140,21 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets phrase: Sort By Relevance for the job search results
+        /// </summary>
+        [ResourceEntry("SortByRelevance",
+            Value = "Sort by – Relevance",
+            Description = "phrase : Sort job search results by relevance")]
+        public string SortByRelevance
+        {
+            get
+            {
+                return this["SortByRelevance"];
+            }
+        }
+
+
+        /// <summary>
         /// Gets phrase: Page Size for the job search results
         /// </summary>
         [ResourceEntry("SortByRecent",

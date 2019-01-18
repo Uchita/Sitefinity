@@ -39,7 +39,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
         A_to_Z,
         Z_to_A,
         Salary_High_to_Low,
-        Salary_Low_to_High
+        Salary_Low_to_High,
+        Relevance
     }
 
     public class KeywordSearch

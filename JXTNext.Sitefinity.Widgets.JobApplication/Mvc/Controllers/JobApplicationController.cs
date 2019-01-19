@@ -33,6 +33,7 @@ using Telerik.Sitefinity.Services;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using JXTNext.Sitefinity.Services.Intefaces;
 using Telerik.Sitefinity.Abstractions;
+using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.JXTNextResume;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -445,13 +446,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 {
                     //prompt error message for contact
                     //jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Technical_Issue, "Unable to attach files to application");
-                    TempData["PostBackMessage"] = "Unable to attach files to application";
+                    TempData["PostBackMessage"] = "Unable to attach files to application.";
                     return Redirect(Request.UrlReferrer.PathAndQuery);
                 }
                 else
                 {
                     isJobApplicationSuccess = true;
                     jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Applied_Successful, "Your application was successfully processed");
+                    bool profileUploadResult = AddUploadedResumeToProfileDashBoard(attachments.Where(x => x.AttachmentType == JobApplicationAttachmentType.Resume).FirstOrDefault(), ovverideEmail);
+                    if (!profileUploadResult)
+                    {
+                        TempData["PostBackMessage"] = "Unable to attach resume to Profile";
+                        return Redirect(Request.UrlReferrer.PathAndQuery);
+                    }
                 }
 
             }
@@ -496,6 +503,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 bool isUserVerified = true;
                 bool isMemberUser = false;
                 bool isUserSignedIn = false;
+                string firstName = null;
                 List<SelectListItem> myResumes = new List<SelectListItem>();
                 if (!isUserLoggedIn)
                 {
@@ -511,6 +519,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                             Log.Write($"ValidateUser user in not null", ConfigurationPolicy.ErrorLog);
                             isMemberUser = SitefinityHelper.IsUserInRole(user, "Member");
                             var memberResponse = _blConnector.GetMemberByEmail(user.Email);
+                            firstName = memberResponse.Member?.FirstName;
                             if (memberResponse.Member?.ResumeFiles != null)
                             {
                                 Log.Write($"ValidateUser ResumeFiles is not null", ConfigurationPolicy.ErrorLog);
@@ -535,6 +544,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     {
                         isMemberUser = SitefinityHelper.IsUserInRole(currUser, "Member");
                         Log.Write($"ValidateUser currUser  isMemberUser : "+ isMemberUser, ConfigurationPolicy.ErrorLog);
+                        firstName = SitefinityHelper.GetUserFirstNameById(currUser.Id);
                     }
                         
                 }
@@ -569,6 +579,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     IsUserVerified = isUserVerified,
                     IsUserMember = isMemberUser,
                     IsUserSignedIn = isUserSignedIn,
+                    FirstName = firstName,
                     myResumes = JsonConvert.SerializeObject(myResumes)
                 };
 
@@ -677,11 +688,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
-        private void UploadToAmazonS3(Guid masterDocumentId, string providerName, string libName, string fileName, Stream fileStream)
+        private string UploadToAmazonS3(Guid masterDocumentId, string providerName, string libName, string fileName, Stream fileStream)
         {
             LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
             var libManagerSecurityCheckStatus = librariesManager.Provider.SuppressSecurityChecks;
-
+            string url = null;
             try
             {
                 // Make sure that supress the security checks so that everyone can upload the files
@@ -716,7 +727,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
                     //Save the changes.
                     librariesManager.SaveChanges();
-
+                    url = document.Url;
                     //Publish the DocumentLibraries item. The live version acquires new ID.
                     var bag = new Dictionary<string, string>();
                     bag.Add("ContentType", typeof(Document).FullName);
@@ -731,6 +742,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 // Reset the suppress security checks
                 librariesManager.Provider.SuppressSecurityChecks = libManagerSecurityCheckStatus;
             }
+            return url;
         }
 
         private JobApplicationViewModel GetJobApplicationConfigurations(JobApplicationStatus status, string message)
@@ -1010,13 +1022,29 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return null;
         }
 
+        private void ProcessResumeFileUpload(ref JobApplicationAttachmentUploadItem uploadItem)
+        {
+            var libName = JobApplicationAttachmentSettings.PROFILE_RESUME_UPLOAD_LIBRARY;
+
+            try
+            {
+                uploadItem.FileUrl = UploadToAmazonS3(Guid.Parse(uploadItem.Id), "private-amazon-s3-provider", libName, uploadItem.PathToAttachment, uploadItem.FileStream);
+                uploadItem.Status = "Completed";
+            }
+            catch (Exception ex)
+            {
+                uploadItem.Status = "Failed";
+                uploadItem.Message = ex.Message;
+            }
+        }
+
         private void ProcessFileUpload(ref JobApplicationAttachmentUploadItem uploadItem)
         {
             var libName = FileUploadLibraryGet(uploadItem.AttachmentType);
 
             try
             {
-                UploadToAmazonS3(Guid.Parse(uploadItem.Id), "private-amazon-s3-provider", libName, uploadItem.PathToAttachment, uploadItem.FileStream);
+                uploadItem.FileUrl = UploadToAmazonS3(Guid.Parse(uploadItem.Id), "private-amazon-s3-provider", libName, uploadItem.PathToAttachment, uploadItem.FileStream);
                 uploadItem.Status = "Completed";
             }
             catch (Exception ex)
@@ -1047,6 +1075,43 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             var selectedLinks = socialMediaLinks.Where(l => l.Selected == true).ToList();
 
             return selectedLinks;
+        }
+
+        private bool AddUploadedResumeToProfileDashBoard(JobApplicationAttachmentUploadItem resume,String Email)
+        {
+            try
+            {
+                Guid resumeId = Guid.NewGuid();
+                resume.Id = resumeId.ToString();
+                ProcessResumeFileUpload(ref resume);
+
+                ProfileResumeJsonModel resumeJson = new ProfileResumeJsonModel()
+                {
+                    Id = resumeId,
+                    UploadDate = DateTime.Now,
+                    FileName = resume.FileName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).First(),
+                    UploadPathToAttachment = resume.Id.ToString() + "_" + resume.FileName,
+                    FileExtension = resume.FileName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).Last(),
+                    FileUrl = resume.FileUrl
+                };
+
+                var res = _blConnector.GetMemberByEmail(Email);
+                List<ProfileResumeJsonModel> resumeList = new List<ProfileResumeJsonModel>();
+                if (res.Member != null && res.Member.ResumeFiles != null)
+                    resumeList = JsonConvert.DeserializeObject<List<ProfileResumeJsonModel>>(res.Member.ResumeFiles);
+
+
+                resumeList.Add(resumeJson);
+                res.Member.ResumeFiles = JsonConvert.SerializeObject(resumeList);
+                _blConnector.UpdateMember(res.Member);
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+            return true;
         }
 
         public string ItemType

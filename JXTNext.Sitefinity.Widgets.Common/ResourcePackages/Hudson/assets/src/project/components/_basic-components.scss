@@ -662,6 +662,15 @@ blockquote{
         width: 100%;
         margin-bottom: 15px;
     }
+    .full-height{
+        height: 100%;
+        > div{
+            height: 100%;
+        }
+        > h2 + .thumbnail, h2 + br + .thumbnail{
+            height: calc(100% - 50px)!important;
+        }
+    }
 
     label {
         text-transform: uppercase;
@@ -1744,7 +1753,11 @@ main {
     }
 }
 .dropdown.dropdown-tree{
-    
+    .arrow{
+        width: 100%;
+        text-align: right;
+        right: 0;
+    }
     >ul{
         white-space: normal;
         padding-left: 0;

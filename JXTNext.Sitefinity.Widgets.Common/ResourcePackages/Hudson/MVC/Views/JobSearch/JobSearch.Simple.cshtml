@@ -65,7 +65,7 @@
                                     <div class="select">
                                        <input type="hidden" name="Filters[@counter].rootId" value='@dropdownControl.FilterType' />
                                         <select class="form-control" name="Filters[@counter].values" id="@dropdownControl.FilterType">
-                                            <option value="" disabled selected>@dropdownControl.PlaceholderText</option>
+                                            <option value="" selected>@dropdownControl.PlaceholderText</option>
                                             @foreach (dynamic itemName in _idNamesLevelsPair)
                                             {
                                                 <option value="@itemName.Key">@itemName.Value.name</option>

@@ -122,4 +122,9 @@
     <comment>phrase : Register now</comment>
     <lastModified>2015-03-06T00:00:00</lastModified>
   </data>
+  <data name="LoggedAs">
+    <value>Logged in as</value>
+    <comment>phrase : Logged as</comment>
+    <lastModified>2019-01-16T03:19:56</lastModified>
+  </data>
 </root>

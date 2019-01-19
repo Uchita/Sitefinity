@@ -512,10 +512,14 @@
                  data: parm,
                  dataType: 'Json',
                  success: function (response) {
-                     isUserLoggedIn = 'True';
+                     
                      $('#password-reg').parent().find('.error-message.wrongPassword-message').addClass('hidden');
                      // Once the user signed in , we need to know that the user is already applied for this job.
-                      if (response.IsUserSignedIn == true) {
+                     if (response.IsUserSignedIn == true) {
+                         isUserLoggedIn = 'True';
+                         $('.header-top-links[data-sf-role="sf-logged-in-view"]').show();
+                         $('.header-top-links[data-sf-role="sf-logged-out-view"]').hide();
+                         $('.header-top-links [data-sf-role="sf-logged-in-name"]').text(response.FirstName);
                           processProfileResumeJsonData(response.myResumes);
                              $.ajax({
                                  type: 'POST',
@@ -531,18 +535,17 @@
                                          
                                      }
                                      else {
-                                         document.location.reload();
-                                         // Show upload files section
-                                         //$('#register').hide();
-                                         //$('#userid').attr('disabled',true);
-                                         //$('#apply').removeAttr('disabled');
-                                         //$('#userid').removeAttr('required');
-                                         //$('#upload-files-container').show();
-                                         //$('#appFormState').text('Upload your files');
-                                         //$("#upload-files-container").show();
-                                         //$('#user-profile-resume').removeAttr('hidden');
-                                         //$('#uploadresumeblock').hide();
-                                         //$('#email-selected').val($('#userid').val());
+                                         //Show upload files section
+                                         $('#register').hide();
+                                         $('#userid').attr('disabled',true);
+                                         $('#apply').removeAttr('disabled');
+                                         $('#userid').removeAttr('required');
+                                         $('#upload-files-container').show();
+                                         $('#appFormState').text('Upload your files');
+                                         $("#upload-files-container").show();
+                                         $('#user-profile-resume').removeAttr('hidden');
+                                         $('#uploadresumeblock').hide();
+                                         $('#email-selected').val($('#userid').val());
                                      }
                                  },
                                  error: function (response) {

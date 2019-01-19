@@ -43,7 +43,8 @@
             <div>
                 <label>@Html.Resource("SortOrder", "JobSearchResultsResources")</label>
                 <select id="sortOrder" ng-model="properties.Sorting.PropertyValue" class="form-control">
-                    <option selected="selected" value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
+                    <option selected="selected" value="Relevance">@Html.Resource("SortByRelevance", "JobSearchResultsResources")</option>
+                    <option value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
                     <option value="Old">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
                     <option value="A-Z">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
                     <option value="Z-A">@Html.Resource("SortByAlphaZA", "JobSearchResultsResources")</option>

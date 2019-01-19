@@ -324,9 +324,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 {
                     var item = jobAlertDetails.Filters[i];
                     queryParamsStringList.Add("Filters[" + i + "].rootId=" + item.RootId);
-                    foreach (var filterId in item.Values)
+                    if(item.Values != null)
                     {
-                        queryParamsStringList.Add("Filters[" + i + "].values=" + filterId);
+                        foreach (var filterId in item.Values)
+                        {
+                            queryParamsStringList.Add("Filters[" + i + "].values=" + filterId);
+                        }
                     }
                 }
             }

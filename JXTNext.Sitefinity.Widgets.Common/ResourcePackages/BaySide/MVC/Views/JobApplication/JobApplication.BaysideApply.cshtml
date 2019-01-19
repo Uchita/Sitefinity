@@ -2,7 +2,10 @@
 @using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
 
 @using JXTNext.Sitefinity.Common.Helpers
-<aside class="job-sidebar col-12 col-sm-12 col-md-4 pl-lg-4">
+
+
+
+<aside class="job-sidebar col-12 col-sm-12 col-md-4 pl-lg-4 apply-with-btn">
     @if (Model != null && Model.ApplyWithSocialMediaInfo != null)
     {
         var siteSettingsHelper = new SiteSettingsHelper();
@@ -23,7 +26,42 @@
                 case "Indeed":
                     var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
                     var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
-                    <a id="indeed-btnwrapper" class="btn-block" href="#" target="_blank">
+                    @*<a id="indeed-btnwrapper" class="btn-block" href="#" target="_blank">
+                            <img src="~/ResourcePackages/BaySide/assets/images/indeed.jpg" alt=""
+                                 data-indeed-apply-apiToken=@indeedAPIToken
+                                 data-indeed-apply-jobId=@Model.JobId
+                                 data-indeed-apply-jobLocation="Australia"
+                                 data-indeed-apply-jobCompanyName="JXT"
+                                 data-indeed-apply-jobTitle="Test Engineer"
+                                 data-indeed-apply-jobUrl=""
+                                 data-indeed-apply-postUrl=@redirectUriSocial
+                                 data-indeed-apply-jobMeta="right-rail-apply-button"
+                                 data-indeed-apply-onapplied="OnIndeedCompleted" />
+
+                            <script>
+                                (function (d, s, id) {
+                                    var js, iajs = d.getElementsByTagName(s)[0];
+                                    if (d.getElementById(id)) { return; }
+                                    js = d.createElement(s); js.id = id; js.async = true;
+                                    js.src = "https://apply.indeed.com/indeedapply/static/scripts/app/bootstrap.js";
+                                    iajs.parentNode.insertBefore(js, iajs);
+                                }(document, 'script', 'indeed-apply-js'));
+                            </script>
+                        </a>*@
+                    <a id="indeed-btnwrapper" class="bayside-indeed_btn">
+                        <span class="indeed-apply-widget"
+                              data-indeed-apply-apiToken=@indeedAPIToken
+                              data-indeed-apply-jobId=@Model.JobId
+                              data-indeed-apply-jobLocation="Australia"
+                              data-indeed-apply-jobCompanyName="JXT"
+                              data-indeed-apply-jobTitle="Test Engineer"
+                              data-indeed-apply-jobUrl=""
+                              data-indeed-apply-postUrl=@redirectUriSocial
+                              data-indeed-apply-jobMeta="right-rail-apply-button"
+                              data-indeed-apply-onapplied="OnIndeedCompleted">
+
+                        </span>
+
                         <img src="~/ResourcePackages/BaySide/assets/images/indeed.jpg" alt=""
                              data-indeed-apply-apiToken=@indeedAPIToken
                              data-indeed-apply-jobId=@Model.JobId
@@ -34,7 +72,6 @@
                              data-indeed-apply-postUrl=@redirectUriSocial
                              data-indeed-apply-jobMeta="right-rail-apply-button"
                              data-indeed-apply-onapplied="OnIndeedCompleted" />
-
                         <script>
                             (function (d, s, id) {
                                 var js, iajs = d.getElementsByTagName(s)[0];
@@ -66,10 +103,18 @@
     }
 
     <script type="text/javascript">
+        var successPageUrl = '@ViewBag.SuccessPageUrl';
+
+        function OnIndeedCompleted() {
+            location.href = successPageUrl;
+        }
+    </script>
+</aside>
+
+<script type="text/javascript">
     var successPageUrl = '@ViewBag.SuccessPageUrl';
 
     function OnIndeedCompleted() {
         location.href = successPageUrl;
     }
-    </script>
-</aside>
+</script>

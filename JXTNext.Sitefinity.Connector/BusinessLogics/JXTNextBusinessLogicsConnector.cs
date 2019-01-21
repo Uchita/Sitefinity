@@ -474,6 +474,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         {
             JXTNext_SearchJobsRequest jobSearch = search as JXTNext_SearchJobsRequest;
 
+            jobSearch.FieldSearches = new StatusSearch() { Status = 1 };
             //An extra logic layer should be added to handle this model conversion
             dynamic searchAPIModel = new { search = jobSearch, legacyJobSource = Settings_LegacyJobSource };
 

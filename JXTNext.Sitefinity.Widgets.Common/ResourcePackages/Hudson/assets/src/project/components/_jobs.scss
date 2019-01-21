@@ -137,7 +137,7 @@
 .filter-outer-wrapper{
     
     &.lockoverlay{
-        position: relative;
+        
         &::before{
             content: '';
             position: absolute;

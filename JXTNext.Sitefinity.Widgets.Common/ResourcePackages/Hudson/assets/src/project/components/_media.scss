@@ -1091,7 +1091,9 @@
     }
     div#filtersPagePartialContent{
         padding-top: 50px;
-        
+        > div{
+            padding-top: 0;
+        }
         .keywordfilter{
             display: none;
             margin-top:10px;

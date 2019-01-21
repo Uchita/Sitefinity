@@ -1,0 +1,40 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Events.Mvc.Helpers
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.Modules.Pages
+@using Telerik.Sitefinity.Web.DataResolving
+
+@Html.Script(ScriptRef.JQuery, "top", false)
+
+
+<div class="event-search">
+
+    <h4>Popular Categories</h4>
+
+    <div class="form-group">
+        <input type="text" placeholder="Keywords search" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Location</label>
+        <select class="form-control">
+            <option>Australia</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Event Happening</label>
+        <select class="form-control">
+            <option>This Month</option>
+        </select>
+    </div>
+    
+    <div class="form-group btn-style-corner">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+</div>
+
+
+
+

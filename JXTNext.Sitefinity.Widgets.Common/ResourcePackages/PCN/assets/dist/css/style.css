@@ -1964,15 +1964,125 @@ hr {
 }
 
 .job-holder {
-    padding: 15px;
+    padding: 0;
     border-radius: 5px;
-    border: 1px solid #ccc;
     margin: 15px 0;
-    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+    box-shadow: none !important;
+    width: 100%;
+    float: left;
 }
+
+
+    .job-holder .sub {
+        padding: 28px 12px 20px 12px;
+        width: calc(100% - 40px);
+        float: left;
+        clear: both;
+        position: relative;
+        border-top: 1px solid #E1E2E3;
+        border-bottom: 1px solid #E1E2E3;
+        background: #fff;
+        margin-left: 20px;
+        z-index: 1;
+    }
+
+        .job-holder .sub:before {
+            width: 28px;
+            height: 28px;
+            position: absolute;
+            top: 5px;
+            left: -14px;
+            content: "";
+            background: #fff;
+            border-left: 1px solid #dadada;
+            z-index: -1;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+        }
+
+        .job-holder .sub:after {
+            width: 22px;
+            height: calc(100% - 18px);
+            position: absolute;
+            bottom: -1px;
+            left: -20px;
+            content: "";
+            background: #fff;
+            border-left: 1px solid #E1E2E3;
+            border-bottom: 1px solid #dadada;
+            border-radius: 0 0 0 15px;
+            z-index: -1;
+        }
+
+        .job-holder .sub .under:before {
+            width: 28px;
+            height: 28px;
+            position: absolute;
+            bottom: 5px;
+            right: -14px;
+            content: "";
+            background: #fff;
+            border-right: 1px solid #dadada;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            z-index: -1;
+        }
+
+        .job-holder .sub .under:after {
+            width: 22px;
+            height: calc(100% - 18px);
+            position: absolute;
+            top: -1px;
+            right: -20px;
+            content: "";
+            background: #fff;
+            border-right: 1px solid #E1E2E3;
+            border-top: 1px solid #dadada;
+            border-radius: 0 15px 0 0;
+            z-index: -1;
+        }
 
     .job-holder h3 {
         margin-top: 0px;
+    }
+
+        .job-holder h3 a {
+            color: #004F6E;
+        }
+
+    .job-holder .jobCatItem {
+        color: #333;
+        font-size: 14px;
+        font-family: FuturaBT-Heavy;
+    }
+
+        .job-holder .jobCatItem a {
+            color: #333;
+        }
+
+        .job-holder .jobCatItem span:last-child {
+            display: none;
+        }
+
+    .job-holder .data-job {
+        color: #333;
+        font-size: 14px;
+        font-family: FuturaBT-Heavy;
+    }
+
+    .job-holder .search-result-description {
+        padding-top: 15px;
+    }
+
+    .job-holder .date {
+        float: right;
+        color: #000;
+    }
+
+    .job-holder a {
+        color: #2e2e2e;
     }
 
 /* Left */
@@ -4801,6 +4911,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     width: 100%;
     float: left;
     margin: 0 0 30px 0;
+    display: none;
 }
 
     .filter_sidebar .keywordfilter label {
@@ -4824,7 +4935,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
 .filter_sidebar .sm-wrapper .navbar-collapse {
     padding: 0px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     width: 100%;
     float: left;
     box-shadow: none;
@@ -4832,7 +4943,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
 .filter_sidebar .sm-wrapper .dropdown-tree > .dropdown-toggle {
     font-size: 18px;
-    color: #004F6E;
+    color: #333;
     font-family: FuturaBT-Heavy;
     text-transform: uppercase;
     font-weight: normal;
@@ -4855,10 +4966,10 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
     .filter_sidebar .sm-wrapper .dropdown-tree ul ul {
         padding: 0 0 0 20px;
+        margin: 0px;
     }
 
 .filter_sidebar .sm-wrapper .dropdown-tree li {
-    margin: 3px 0;
     position: relative;
     background: none !important;
 }
@@ -4868,6 +4979,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         color: #D8D8D8;
         font-size: 18px;
         position: absolute;
+        display: none;
         top: 4px;
         left: 0;
     }
@@ -4877,22 +4989,40 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         }
 
     .filter_sidebar .sm-wrapper .dropdown-tree li a {
-        padding: 3px 23px;
+        padding: 10px 0;
         display: block !important;
-        font-size: 14px;
+        font-size: 16px;
         color: #000;
-        font-weight: 600;
         background: none !important;
+        border-top: 1px solid #ccc;
     }
+
+.filter_sidebar .sm-wrapper .dropdown-tree ul ul li:first-child a {
+    border-top: 1px solid #ccc;
+}
+
+.filter_sidebar .sm-wrapper .dropdown-tree li:first-child a {
+    border-top: none;
+}
 
 .filter_sidebar .sm-wrapper .dropdown-tree ul ul li a {
     font-weight: normal;
+}
+
+.filter_sidebar .sm-wrapper .dropdown-tree li a:hover, .filter_sidebar .sm-wrapper .dropdown-tree li > a.active {
+    color: #8EDD2B;
 }
 
 .filter_sidebar .sm-wrapper .dropdown-tree .arrow {
     right: 0px;
     font-size: 18px;
     color: #000;
+    display: none;
+}
+
+.filter_sidebar .sm-wrapper .dropdown-tree .count {
+    margin-left: 6px;
+    font-size: 16px;
 }
 
 .filter_sidebar .SalaryRangeSelect {
@@ -4901,7 +5031,12 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     border: 1px solid #D8D8D8;
     padding: 0 10px;
     border-radius: 5px;
+    display: none;
     margin: 15px 0 5px 0;
+}
+
+.filter_sidebar .salaryrangewrapper {
+    display: none;
 }
 
 .search-result-description .pull-right {
@@ -5839,7 +5974,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     margin-top: 10px;
 }
 
-    .archive-list .title, .widget_categories h4 {
+    .archive-list .title, .widget_categories h4, .event-search h4 {
         padding-bottom: 8px;
         font-size: 18px;
         color: #000;
@@ -5875,6 +6010,32 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 .label-hide strong {
     display: none;
 }
+
+.event-search {
+    width: 100%;
+    float: left;
+    margin-bottom: 40px;
+}
+
+    .event-search h4 {
+        margin-bottom: 18px;
+    }
+
+    .event-search .btn-style-corner {
+        padding-right: 8px;
+    }
+
+        .event-search .btn-style-corner .btn {
+            float: right;
+        }
+
+            .event-search .btn-style-corner .btn span {
+                padding: 6px 28px;
+            }
+
+    .event-search .form-control {
+        border-color: #004f6e;
+    }
 /* Start: article-template */
 .article-template .header {
     position: relative;
@@ -5913,3 +6074,155 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     font-size: 14px;
 }
 /* End: article-template */
+
+.newsDetailsImage img {
+    margin: 0 auto 15px auto;
+    display: block;
+}
+
+.newsDetailsDate h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #91B13C;
+}
+
+.details-btn {
+    padding-right: 8px;
+}
+
+/* internal-job */
+.internal-job {
+    background: #004F6E;
+    padding: 35px 0 65px 0;
+}
+
+    .internal-job h2 {
+        color: #fff;
+        font-family: FuturaBT-Light;
+        font-size: 28px;
+        margin-bottom: 50px;
+    }
+
+    .internal-job #job-slider {
+        width: 100%;
+        float: left;
+    }
+
+
+
+    .internal-job .row {
+        margin-left: -22px;
+        margin-right: -22px;
+    }
+
+    .internal-job .colmun {
+        padding: 0 22px;
+    }
+
+    .internal-job .white_panel {
+        width: calc(100% - 40px);
+        position: relative;
+        margin: 0 auto;
+        z-index: 1;
+        background: #fff;
+    }
+
+        .internal-job .white_panel .sub {
+            padding: 18px 4px;
+        }
+
+        .internal-job .white_panel:before {
+            width: 28px;
+            height: 28px;
+            position: absolute;
+            top: 5px;
+            left: -14px;
+            content: "";
+            background: #fff;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            z-index: -1;
+        }
+
+        .internal-job .white_panel:after {
+            width: 22px;
+            height: calc(100% - 19px);
+            position: absolute;
+            bottom: 0px;
+            left: -20px;
+            content: "";
+            background: #fff;
+            border-radius: 0 0 0 15px;
+            z-index: -1;
+        }
+
+        .internal-job .white_panel .sub:before {
+            width: 28px;
+            height: 28px;
+            position: absolute;
+            bottom: 5px;
+            right: -14px;
+            content: "";
+            background: #fff;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            z-index: -1;
+        }
+
+        .internal-job .white_panel .sub:after {
+            width: 22px;
+            height: calc(100% - 19px);
+            position: absolute;
+            top: 0px;
+            right: -20px;
+            content: "";
+            background: #fff;
+            border-radius: 0 15px 0 0;
+            z-index: -1;
+        }
+
+    .internal-job .sub_title {
+        margin-bottom: 5px;
+        font-size: 22px;
+        color: #004F6E;
+        font-family: FuturaPT-bold;
+    }
+
+        .internal-job .sub_title a {
+            color: #004F6E;
+        }
+
+    .internal-job p {
+        margin-bottom: 10px;
+        font-size: 13px;
+        line-height: 18px;
+        word-break: break-all;
+        color: #000;
+        min-height: 75px;
+    }
+
+    .internal-job .location {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+
+    .internal-job .action_link {
+        padding-top: 25px;
+        text-align: center;
+    }
+
+        .internal-job .action_link a {
+            display: inline-block;
+            color: #4294C4;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-family: FuturaBT-Medium;
+            text-decoration: none;
+        }
+
+            .internal-job .action_link a:hover {
+                text-decoration: underline;
+            }

@@ -12,71 +12,83 @@
     }
 }
 
-<div class="article-details @Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
 
-    @*<div class="post-nav">
-            <div class="prev-post"><a href="#" rel="prev"><i class="fas fa-long-arrow-alt-left"></i> Previous Post</a></div>
-            <div class="next-post"><a href="#" rel="next">Next Post <i class="fas fa-long-arrow-alt-right"></i></a></div>
-        </div>*@
-
-    <img src="@imageurl" alt="@Model.Item.Fields.Title" />
-
-    <div class="entry-meta details">
-        <span class="entry-cats">
-            @if (Model.Item.Fields.Category != null)
-            {
-                foreach (var taxon in Model.Item.GetHierarchicalTaxons("Category"))
-                {
-                    <span class="main-color-bg cat6"><a href="#">@taxon.Title.ToString()</a></span>
-                }
-            }
+<div class="col-md-12 col-xs-12" id="content_col">
 
 
-        </span>
-        <span class="author">Posted by <a href="#" title="Posts by @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)" rel="author">@DataResolver.Resolve(@Model.Item.DataItem, "Author", null)</a></span>
-        <span class="sep">-</span>
-        <span class="date">@Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
+    <!-- Image -->
+    <div class="row newsDetailsImage">
+        <div class="col-md-12 col-xs-12 col-sm-12">
+            <img src="@imageurl" title="@Model.Item.Fields.Title" class="img-responsive">
+        </div>
     </div>
 
-    <h3>
-        <span @Html.InlineEditingFieldAttributes("Title", "ShortText")>@Model.Item.Fields.Title</span>
+    <!-- Date -->
+    <div class="row newsDetailsDate">
+        <div class="col-md-12 col-xs-12 col-sm-12 sectionTitle">
+            <h3>Date</h3>
+        </div>
 
-    </h3>
+        <div class="col-md-6 col-xs-12 col-sm-12">
+            <div class="alert alert-success bar-bg-1 marginTop20">
+                <div class="inner">
 
+                    <h3>From:</h3> <h2>Thursday Oct 24, 2019</h2>
 
+                </div>
+            </div>
+        </div>
 
-    <div @Html.InlineEditingFieldAttributes("Summary", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</div>
+        <div class="col-md-6 col-xs-12 col-sm-12">
+            <div class="alert alert-success bar-bg-1 marginTop20">
+                <div class="inner">
+                    <h3>To:</h3> <h2>Friday Oct 25, 2019</h2>
+                </div>
+            </div>
+        </div>
 
-    <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
-
-    <hr class="space" />
-    <div class="yarpp-related">
-        <h3>Related posts:</h3>
-        <ul>
-            @foreach (var relatedItem in Model.Item.Fields.RelatedEvents)
-            {
-                var navigateUrl = "/news/blog/blog-details" + @relatedItem.Fields.ItemDefaultUrl;
-                <li>
-                    <a href="@navigateUrl" rel="bookmark" title="@relatedItem.Fields.Title">
-                        @relatedItem.Fields.Title
-                    </a>
-                </li>
-            }
-        </ul>
     </div>
 
-    <hr class="space" />
 
-    @{
-        if (Model.EnableSocialSharing)
-        {
-            var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
+    <!-- Details -->
+    <div class="row newsDetailsDetails">
 
-            @Html.SocialShareOptions(item);
-        }
-    }
+        <div class="col-md-12 col-xs-12 col-sm-12 sectionTitle">
+            <h3>Details</h3>
+        </div>
 
-    <hr class="space" />
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <p><strong>@Model.Item.Fields.Title</strong></p>
+
+            <p>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</p>
+
+            <p>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</p>
+
+
+        </div>
+    </div>
+
+
+
+    <!-- Location -->
+
+    <div class="row newsDetailsLocation">
+
+        <div class="col-md-12 col-xs-12 col-sm-12 sectionTitle">
+            <h3>Location</h3>
+        </div>
+
+        <div class="col-md-12 col-xs-12 col-sm-12">
+            <p>Beijing</p>
+        </div>
+
+        <div class="col-md-12 col-xs-12 col-sm-12">
+            <div class="pull-right details-btn">
+                <a href="#" class="read_btn"><span>More Events posts</span></a>
+            </div>
+        </div>
+
+    </div>
 
 
 </div>

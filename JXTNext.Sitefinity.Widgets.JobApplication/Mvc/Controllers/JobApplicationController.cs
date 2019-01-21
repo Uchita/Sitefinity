@@ -34,6 +34,7 @@ using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using JXTNext.Sitefinity.Services.Intefaces;
 using Telerik.Sitefinity.Abstractions;
 using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.JXTNextResume;
+using System.Dynamic;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -340,24 +341,15 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             string htmlAdvertiserEmailContent = this.GetAdvertiserHtmlEmailContent();
             EmailNotificationSettings emailNotificationSettings = null;
 
-            Stream resumeFileStream = null;
-            Stream coverLetterFileStream = null;
 
-            string resumeFileName = null;
-            string coverLetterFileName = null;
+            List<dynamic> emailAttachments = new List<dynamic>();
             foreach (var item in attachments)
             {
-                if(item.AttachmentType == JobApplicationAttachmentType.Resume)
-                {
-                    resumeFileStream = item.FileStream;
-                    resumeFileName = item.FileName;
-                }
+                dynamic emailAttachment = new ExpandoObject();
+                emailAttachment.FileStream = item.FileStream;
+                emailAttachment.FileName = item.FileName;
 
-                if (item.AttachmentType == JobApplicationAttachmentType.Coverletter)
-                {
-                    coverLetterFileName = item.FileName;
-                    coverLetterFileStream = item.FileStream;
-                }
+                emailAttachments.Add(emailAttachment);
 
             }
 
@@ -365,7 +357,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(applyJobModel.ContactDetails, applyJobModel.ApplicationEmail),
                                                                                                 this.AdvertiserEmailTemplateEmailSubject,
-                                                                                                htmlAdvertiserEmailContent, resumeFileStream,resumeFileName,coverLetterFileStream,coverLetterFileName);
+                                                                                                htmlAdvertiserEmailContent, emailAttachments);
             
 
             Log.Write($"currentIdentity.IsAuthenticated value is {currentIdentity.IsAuthenticated}", ConfigurationPolicy.ErrorLog);
@@ -375,7 +367,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(SitefinityHelper.GetUserFirstNameById(currentIdentity.UserId), ovverideEmail),
                                                                                                 this._emailTemplateTitle,
-                                                                                                htmlEmailContent,null,null,null,null);
+                                                                                                htmlEmailContent,null);
             }
             else
             {
@@ -385,14 +377,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(SitefinityHelper.GetUserFirstNameById(ClaimsManager.GetCurrentIdentity().UserId), ovverideEmail),
                                                                                                 this._emailTemplateTitle,
-                                                                                                htmlEmailContent, null, null, null, null);
+                                                                                                htmlEmailContent, null);
                 }
                 else
                 {
                     new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(string.Empty, ovverideEmail),
                                                                                                 this._emailTemplateTitle,
-                                                                                                htmlEmailContent, null, null, null, null);
+                                                                                                htmlEmailContent, null);
                 }
                 
             }

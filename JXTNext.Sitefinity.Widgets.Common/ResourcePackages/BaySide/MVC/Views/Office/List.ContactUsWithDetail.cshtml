@@ -14,48 +14,48 @@
     @foreach (var item in Model.Items)
     {
 
-    if(Model.Items.First()==item)
-    {
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a class="collapsed" data-toggle="collapse" data-parent="#addressAccordion" href="#@item.Fields.Name.Trim().Replace(" "," ")">
-                    @item.Fields.Name
-                    <span aria-hidden="true" class="icon-downarrow"></span>
-                </a>
-            </h4>
-        </div>
-        <div id="@item.Fields.Name.Trim().Replace(" "," ")" class="panel-collapse collapse in">
-            <div class="panel-body">
-                <p>
-                    @Html.HtmlSanitize((string)item.Fields.OfficeBio)
-                </p>
+        if (Model.Items.First() == item)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#addressAccordion" href="#@item.Fields.Name.Trim().Replace(" ","")">
+                            @item.Fields.Name
+                            <span aria-hidden="true" class="icon-downarrow"></span>
+                        </a>
+                    </h4>
+                </div>
+                <div id="@item.Fields.Name.Trim().Replace(" ","")" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <p>
+                            @Html.HtmlSanitize((string)item.Fields.OfficeBio)
+                        </p>
 
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    }
+        }
 
-    else
-    {
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a class="collapsed" data-toggle="collapse" data-parent="#addressAccordion" href="#@item.Fields.Name.Trim().Replace(" "," ")">
-                    @item.Fields.Name
-                    <span aria-hidden="true" class="icon-downarrow"></span>
-                </a>
-            </h4>
-        </div>
-        <div id="@item.Fields.Name.Trim().Replace(" "," ")" class="panel-collapse collapse">
-            <div class="panel-body">
-                <p>
-                    @Html.HtmlSanitize((string)item.Fields.OfficeBio)
-                </p>
+        else
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#addressAccordion" href="#@item.Fields.Name.Trim().Replace(" ","")">
+                            @item.Fields.Name
+                            <span aria-hidden="true" class="icon-downarrow"></span>
+                        </a>
+                    </h4>
+                </div>
+                <div id="@item.Fields.Name.Trim().Replace(" ","")" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p>
+                            @Html.HtmlSanitize((string)item.Fields.OfficeBio)
+                        </p>
 
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    }
+        }
     }
 </div>

@@ -168,7 +168,7 @@
             </div>
             @if (ViewBag.IsJobApplied)
             {
-                <div class="alert alert-info">You have already applied</div>
+                  <div class="alert alert-info">@Html.Resource("JobAlreadyAppliedMsg")</div>
             }
             else
             {
@@ -187,7 +187,7 @@
         @if (ViewBag.IsJobApplied)
         {
             <div class="row job-offer-apply">
-                <div class="alert alert-info">You have already applied</div>
+                <div class="alert alert-info">@Html.Resource("JobAlreadyAppliedMsg")</div>
             </div>
         }
         else

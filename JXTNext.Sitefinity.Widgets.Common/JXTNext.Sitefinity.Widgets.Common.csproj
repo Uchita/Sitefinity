@@ -1313,6 +1313,15 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\JobDetails\JobDetails.Hudson.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <EmbeddedResource Include="ResourcePackages\BaySide\MVC\Views\JobEmail\Default.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourcePackages\BaySide\MVC\Views\JobEmail\DesignerView.Simple.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourcePackages\BaySide\MVC\Views\JobEmail\DesignerView.Simple.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="ResourcePackages\BaySide\MVC\Views\JobFilters\DesignerView.Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

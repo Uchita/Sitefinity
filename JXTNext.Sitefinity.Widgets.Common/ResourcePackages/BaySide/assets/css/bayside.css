@@ -8556,3 +8556,58 @@ privacy-policy {
 .small-bullet-points li {
     font-size: 16px;
 }
+
+.privacy-policy h2 {
+    margin: 16px 0;
+}
+
+.privacy-policy p {
+    margin-bottom: 24px;
+}
+
+/*21/01/2019*/
+
+.custom_row.form-group {
+    margin: 0 -15px 15px;
+    overflow: hidden;
+    clear: both;
+}
+
+.friends-list > .row {
+    overflow: hidden;
+    clear: both;
+}
+
+.friends-list .row:first-child .col-email .custom_row .col-sm-6 {
+    max-width: 66.66%;
+}
+
+.friends-list .row:first-child .col-email .custom_row .col-action {
+    display: none !important;
+}
+
+.friends-list .custom_row .col-action .btn.btn-remove {
+    padding: 10px 15px 10px;
+    width: 100%;
+}
+
+.job-email-widget {
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #333132;
+}
+
+    .job-email-widget .controls.checkbox input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+    }
+
+    .job-email-widget .form-control-static {
+        padding-top: 0px;
+    }
+
+    .job-email-widget h3 {
+        font-weight: normal;
+        font-size: 1.5rem;
+    }

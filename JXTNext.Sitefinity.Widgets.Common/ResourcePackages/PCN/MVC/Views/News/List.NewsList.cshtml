@@ -25,56 +25,57 @@
 
         @foreach (var item in model)
         {
-        var imageurl = "";
-        foreach (var relatedItem in item.Fields.NewsImage)
-        {
-        imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
-        }
-        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+            var imageurl = "";
+            foreach (var relatedItem in item.Fields.NewsImage)
+            {
+                imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+            }
+            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
 
-        <div class="col-xs-12 col-sm-12 col-md-6">
-            <div class="sub">
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <div class="sub">
 
-                <div class="thumbnail-img overlay">
-                    <a href="@navigateUrl" class="image" style="background-image: url(@imageurl);"></a>
-                    <div class="cat-bullet">
-                        @if (item.Fields.Category != null)
-                        {
-                        foreach (var taxon in item.GetHierarchicalTaxons("Category"))
-                        {
-                        <span class="cat">
-                            <a href="#">@taxon.Title.ToString()</a>
-                        </span>
-                        }
-                        }
-                    </div>
-                </div>
-
-
-                <div class="entry-header">
-                    <div class="entry-meta">
-                        <span class="author">Posted by <a href="#" title="Posts by Greythorn Australia" rel="author">@DataResolver.Resolve(item.DataItem, "Author", null)</a></span>
-                        <span class="sep">-</span>
-                        <span class="date">@item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
-
+                    <div class="thumbnail-img overlay">
+                        <a href="@navigateUrl" class="image" style="background-image: url(@imageurl);"></a>
+                        <div class="cat-bullet">
+                            @if (item.Fields.Category != null)
+                            {
+                                foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+                                {
+                                    var url = "/news/-in-category/categories" + @taxon.FullUrl;
+                                    <span class="cat">
+                                        <a href="@url">@taxon.Title.ToString()</a>
+                                    </span>
+                                }
+                            }
+                        </div>
                     </div>
 
-                    <h3>
-                        <a href="@navigateUrl">@item.Fields.Title</a>
-                    </h3>
-                </div>
 
-                <div class="entry-excerpt">
-                    <p>@Html.HtmlSanitize((string)item.Fields.Summary)</p>
-                </div>
+                    <div class="entry-header">
+                        <div class="entry-meta">
+                            <span class="author">Posted by <a href="#" title="Posts by Greythorn Australia" rel="author">@DataResolver.Resolve(item.DataItem, "Author", null)</a></span>
+                            <span class="sep">-</span>
+                            <span class="date">@item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
 
-                <div class="entry-footer">
-                    <a class="read_btn" href="@navigateUrl"><span>Read More</span></a>
-                    <a class="read_btn pull-right" href="@navigateUrl"><span><i class="fas fa-comment-alt"></i> Leave Comment</span></a>
-                </div>
+                        </div>
 
+                        <h3>
+                            <a href="@navigateUrl">@item.Fields.Title</a>
+                        </h3>
+                    </div>
+
+                    <div class="entry-excerpt">
+                        <p>@Html.HtmlSanitize((string)item.Fields.Summary)</p>
+                    </div>
+
+                    <div class="entry-footer">
+                        <a class="read_btn" href="@navigateUrl"><span>Read More</span></a>
+                        <a class="read_btn pull-right" href="@navigateUrl"><span><i class="fas fa-comment-alt"></i> Leave Comment</span></a>
+                    </div>
+
+                </div>
             </div>
-        </div>
         }
 
     </div>
@@ -85,14 +86,14 @@
 
 @if (Model.ShowPager)
 {
-<div class="news_pagination">
+    <div class="news_pagination">
 
-    @Html.Action("Index", "ContentPager", new
-    {
-    currentPage = Model.CurrentPage,
-    totalPagesCount = Model.TotalPagesCount.Value,
-    redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
-    })
+        @Html.Action("Index", "ContentPager", new
+        {
+            currentPage = Model.CurrentPage,
+            totalPagesCount = Model.TotalPagesCount.Value,
+            redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
+        })
 
-</div>
+    </div>
 }

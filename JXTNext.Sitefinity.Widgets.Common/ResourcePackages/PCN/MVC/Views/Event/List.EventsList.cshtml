@@ -4,16 +4,26 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 @using Telerik.Sitefinity.Modules.Pages
 @using Telerik.Sitefinity.Web.DataResolving
-
+@using Newtonsoft.Json;
 @Html.Script(ScriptRef.JQuery, "top", false)
 
 @{
-    var archiveddate = Request.QueryString["archivedate"];
+    var keyword = Request.QueryString["keyword"];
+    var location = Request.QueryString["location"];
+    var duration = Request.QueryString["duration"];
 
     var model = Model.Items;
-    if (archiveddate + "" != "")
+    if (keyword + "" != "")
     {
-        model = model.Where(x => x.Fields.PublicationDate.ToString("MMMMM yyyy").Contains(archiveddate.Trim()));
+        model = model.Where(c => c.Fields.Title.ToString().ToLower().Contains(keyword.ToString().ToLower()) || c.Fields.Summary.ToString().ToLower().Contains(keyword.ToString().ToLower()));
+    }
+    if (location + "" != "")
+    {
+        model = model.Where(x => x.Fields.City == location);
+    }
+    if (duration + "" != "")
+    {
+        model = model.Where(x => x.Fields.EventEnd.ToString("MMMMM yyyy").Contains(duration.Trim()));
     }
 }
 <div class="archive-postlist @Model.CssClass">
@@ -35,12 +45,16 @@
                     <div class="thumbnail-img overlay">
                         <a href="@navigateUrl" class="image" style="background-image: url(@imageurl);"></a>
                         <div class="cat-bullet">
-                            <span class="cat">
-                                <a href="#">Category</a>
-                            </span>
-                            <span class="cat">
-                                <a href="#">Category 2</a>
-                            </span>
+                            @if (item.Fields.Category != null)
+                            {
+                                foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+                                {
+                                    var url = "/news/events1/-in-category/categories" + @taxon.FullUrl;
+                                    <span class="cat">
+                                        <a href="@url">@taxon.Title.ToString()</a>
+                                    </span>
+                                }
+                            }
                         </div>
                     </div>
 
@@ -49,7 +63,7 @@
                         <div class="entry-meta">
                             <span class="author">Posted by <a href="#" title="Posts by Greythorn Australia" rel="author">@DataResolver.Resolve(item.DataItem, "Author", null)</a></span>
                             <span class="sep">-</span>
-                            <span class="date">@item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
+                            <span class="date">@item.GetDateTime("EventStart", "MMM d, yyyy") to @item.GetDateTime("EventEnd", "MMM d, yyyy")</span>
 
                         </div>
 

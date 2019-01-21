@@ -33,7 +33,7 @@
             <div class="alert alert-success bar-bg-1 marginTop20">
                 <div class="inner">
 
-                    <h3>From:</h3> <h2>Thursday Oct 24, 2019</h2>
+                    <h3>From:</h3> <h2>@Model.Item.Fields.EventStart.ToString("dddd MMM d, yyyy")</h2>
 
                 </div>
             </div>
@@ -42,7 +42,7 @@
         <div class="col-md-6 col-xs-12 col-sm-12">
             <div class="alert alert-success bar-bg-1 marginTop20">
                 <div class="inner">
-                    <h3>To:</h3> <h2>Friday Oct 25, 2019</h2>
+                    <h3>To:</h3> <h2>@Model.Item.Fields.EventEnd.ToString("dddd MMM d, yyyy")</h2>
                 </div>
             </div>
         </div>
@@ -58,7 +58,7 @@
         </div>
 
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <p><strong>@Model.Item.Fields.Title</strong></p>
+            <p><strong class="page-title">@Model.Item.Fields.Title</strong></p>
 
             <p>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</p>
 
@@ -79,16 +79,21 @@
         </div>
 
         <div class="col-md-12 col-xs-12 col-sm-12">
-            <p>Beijing</p>
+            <p>@Model.Item.Fields.City</p>
         </div>
 
         <div class="col-md-12 col-xs-12 col-sm-12">
             <div class="pull-right details-btn">
-                <a href="#" class="read_btn"><span>More Events posts</span></a>
+                <a href="/news/events1" class="read_btn"><span>More Events posts</span></a>
             </div>
         </div>
 
     </div>
-
-
 </div>
+
+<script>
+    $(document).ready(function () {
+        var heading = $('.page-title').text();
+        $('.page-heading').text(heading);
+    })
+</script>

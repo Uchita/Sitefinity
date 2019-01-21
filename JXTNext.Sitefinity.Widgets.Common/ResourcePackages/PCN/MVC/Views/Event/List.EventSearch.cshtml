@@ -8,33 +8,71 @@
 @Html.Script(ScriptRef.JQuery, "top", false)
 
 
+@{
+    var model = Model.Items;
+    var location = Model.Items.Select(c => c.Fields.City).Distinct().ToList();
+    var eventdate = Model.Items.OrderByDescending(x => x.Fields.PublicationDate).Select(x => x.Fields.PublicationDate.ToString("MMMMM yyyy")).Distinct().ToList();
+}
 <div class="event-search">
 
     <h4>Popular Categories</h4>
 
     <div class="form-group">
-        <input type="text" placeholder="Keywords search" class="form-control" />
+        <input type="text" placeholder="Keywords search" class="form-control event-keyword" />
     </div>
 
     <div class="form-group">
         <label>Location</label>
-        <select class="form-control">
-            <option>Australia</option>
+        <select class="form-control event-location">
+            <option value="">Location</option>
+            @foreach (var item in location)
+            {
+                <option value="@item">@item</option>
+            }
         </select>
     </div>
     <div class="form-group">
         <label>Event Happening</label>
-        <select class="form-control">
-            <option>This Month</option>
+        <select class="form-control event-date">
+            <option value="">Duration</option>
+
+            @foreach (var item in eventdate)
+            {
+                var arr = item.ToString().Split(' ');
+                if (arr[1] == DateTime.Now.ToString("yyyy"))
+                {
+                    <option value="@item">@item</option>
+                    @*<li><a href="/news/events1?archivedate=@item">@item</a></li>*@
+                }
+                else
+                {
+                    <option value="@arr[1]">@arr[1]</option>
+                    @*<li><a href="/news/events1?archivedate=@arr[1]">@arr[1]</a></li>*@
+                }
+            }
+
+
         </select>
     </div>
-    
+
     <div class="form-group btn-style-corner">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <a class="btn btn-primary search-events">Submit</a>
     </div>
 
 </div>
 
+<script>
+    $(document).ready(function () {
+
+        $('.search-events').click(function () {
+            var keyword = $('.event-keyword').val();
+            var location = $('.event-location').children("option:selected").val();
+            var eventdate = $('.event-date').children("option:selected").val();
+
+            window.location.href = "/news/events1?keyword=" + keyword + "&location=" + location + "&duration=" + eventdate;
+        });
+    })
+</script>
 
 
 

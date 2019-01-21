@@ -10092,17 +10092,15 @@ ul.breadcrumb {
 .filter-toggle {
   display: none; }
 
-.filter-outer-wrapper.lockoverlay {
-  position: relative; }
-  .filter-outer-wrapper.lockoverlay::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.5);
-    z-index: 10; }
+.filter-outer-wrapper.lockoverlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 10; }
 
 .SalaryRangeSelect {
   width: 100%; }
@@ -11891,6 +11889,8 @@ select.articles-order {
     margin-top: 20px; }
   div#filtersPagePartialContent {
     padding-top: 50px; }
+    div#filtersPagePartialContent > div {
+      padding-top: 0; }
     div#filtersPagePartialContent .keywordfilter {
       display: none;
       margin-top: 10px; }

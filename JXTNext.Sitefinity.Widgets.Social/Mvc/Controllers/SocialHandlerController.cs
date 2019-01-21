@@ -24,6 +24,7 @@ using Telerik.Sitefinity.Abstractions;
 using System.Text;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using System.Web.Routing;
+using System.Dynamic;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 {
@@ -203,32 +204,21 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 // Email notification settings
 
 
-                                Stream resumeFileStream = null;
-                                Stream coverLetterFileStream = null;
-
-                                string resumeFileName = null;
-                                string coverLetterFileName = null;
+                                List<dynamic> emailAttachments = new List<dynamic>();
                                 foreach (var item in attachments)
                                 {
-                                    if (item.AttachmentType == JobApplicationAttachmentType.Resume)
-                                    {
-                                        resumeFileStream = item.FileStream;
-                                        resumeFileName = item.FileName;
-                                    }
-
-                                    if (item.AttachmentType == JobApplicationAttachmentType.Coverletter)
-                                    {
-                                        coverLetterFileName = item.FileName;
-                                        coverLetterFileStream = item.FileStream;
-                                    }
-
+                                    dynamic emailAttachment = new ExpandoObject();
+                                    emailAttachment.FileStream = item.FileStream;
+                                    emailAttachment.FileName = item.FileName;
+                                    emailAttachments.Add(emailAttachment);
                                 }
 
 
                                 EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
-                                                                                                                    new EmailTarget(ContactDetails, ApplicationEmail),
+                                                                                                                    //new EmailTarget(ContactDetails, ApplicationEmail),
+                                                                                                                    new EmailTarget("Suresh", "suresh.vpigroup@outlook.com"),
                                                                                                                     this.AdvertiserEmailTemplateEmailSubject,
-                                                                                                                    htmlAdvertiserEmailContent, resumeFileStream, resumeFileName, coverLetterFileStream, coverLetterFileName);
+                                                                                                                    htmlAdvertiserEmailContent, emailAttachments);
 
 
 
@@ -236,7 +226,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                     new EmailTarget(SitefinityHelper.GetUserFirstNameById(SitefinityHelper.GetUserByEmail(overrideEmail).Id), overrideEmail),
                                                                                                     this.EmailTemplateEmailSubject,
-                                                                                                    htmlEmailContent,null,null,null,null);
+                                                                                                    htmlEmailContent,null);
 
                                 Log.Write("emailNotificationSettings after: ", ConfigurationPolicy.ErrorLog);
                                 // CC and BCC emails

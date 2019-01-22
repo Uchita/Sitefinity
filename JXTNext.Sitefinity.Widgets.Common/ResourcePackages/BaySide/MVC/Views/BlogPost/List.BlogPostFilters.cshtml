@@ -84,10 +84,12 @@
             @foreach (var newscatitem in _dd_blogCategories.Subtaxa)
             {
                 <li data-title="@newscatitem.Name">
-                    <input class="parent-blog-category" id="@newscatitem.Id" name="@newscatitem.Name" type="checkbox" />
-                    <span>
-                        @newscatitem.Title
-                    </span>
+                    <label for="@newscatitem.Id">
+                        <input class="parent-blog-category" id="@newscatitem.Id" name="@newscatitem.Name" type="checkbox" />
+                        <span>
+                            @newscatitem.Title
+                        </span>
+                    </label>
                     @if (newscatitem.Subtaxa.Count > 0)
                     {
                         <span class="ul-dropdown-toggle"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
@@ -118,10 +120,12 @@
             @foreach (var newscatitem in _dd_blogIndustries.Subtaxa)
             {
                 <li data-title="@newscatitem.Name">
-                    <input class="parent-blog-industry" id="@newscatitem.Id" name="@newscatitem.Name" type="checkbox" />
-                    <span>
-                        @newscatitem.Title
-                    </span>
+                    <label for="@newscatitem.Id">
+                        <input class="parent-blog-industry" id="@newscatitem.Id" name="@newscatitem.Name" type="checkbox" />
+                        <span>
+                            @newscatitem.Title
+                        </span>
+                    </label>
                     @if (newscatitem.Subtaxa.Count > 0)
                     {
                         <span class="ul-dropdown-toggle"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
@@ -152,11 +156,12 @@
             @foreach (var newscatitem in _dd_blogTypes.Subtaxa)
             {
                 <li data-title="@newscatitem.Name">
-                    <input type="checkbox" class="parent-blog-type" id="@newscatitem.Id" name="@newscatitem.Name" />
-                    <span>
-                        @newscatitem.Title
-                    </span>
-
+                    <label for="@newscatitem.Id">
+                        <input type="checkbox" class="parent-blog-type" id="@newscatitem.Id" name="@newscatitem.Name" />
+                        <span>
+                            @newscatitem.Title
+                        </span>
+                    </label>
                     @if (newscatitem.Subtaxa.Count > 0)
                     {
                         <span class="ul-dropdown-toggle"><i class="fa fa-angle-down" aria-hidden="true"></i></span>

@@ -6305,7 +6305,7 @@ select.hs-input {
     .app-footer .copyright {
         margin: 0;
         font-size: 12px;
-        color: #fff;
+        color: #9B9B9B;
     }
 
 /*-------Footer------End----*/
@@ -6551,7 +6551,7 @@ select.hs-input {
     background-image: url("../images/Box1-Latest-Features-70-Transparency.svg");
     background-repeat: no-repeat;
     background-size: cover;
-    transition: all 0.75s cubic-bezier(0.35, -0.05, 0.45, 1.2);
+    transition: all 0.30s cubic-bezier(0.35, -0.05, 0.45, 1.2);
 }
 
     .featured-carousel .carousel-content p {
@@ -6577,7 +6577,6 @@ select.hs-input {
     bottom: 0;
     width: 100%;
     background-color: #0088CF;
-    transition: all 0.75s cubic-bezier(0.35, -0.05, 0.45, 1.2);
 }
 
 .featured-carousel .carousel-abs-content {
@@ -6589,7 +6588,6 @@ select.hs-input {
     text-align: center;
     padding-top: 15px;
     opacity: 0;
-    transition: all 0.75s cubic-bezier(0.35, -0.05, 0.45, 1.2);
 }
 
     .featured-carousel .carousel-abs-content:after {
@@ -6609,16 +6607,19 @@ select.hs-input {
 
 .featured-carousel .item:hover .carousel-overlay {
     opacity: 0.69;
+    transition: all 0.75s cubic-bezier(0.35, -0.05, 0.45, 1.2);
 }
 
 .featured-carousel .item:hover .carousel-abs-content {
     opacity: 1;
     top: 50%;
+    transition: all 0.50s cubic-bezier(0.35, -0.05, 0.45, 1.2);
 }
 
 .featured-carousel .item:hover .carousel-content {
     bottom: -50px;
     opacity: 0;
+    transition: none;
 }
 
 /*Issue: 208*/
@@ -8429,6 +8430,37 @@ select.hs-input {
             .right-filter-sidebar .dropdown-tree ul li ul li {
                 font-weight: normal;
             }
+
+        .right-filter-sidebar .dropdown-tree ul li label {
+            display: block;
+            margin: 0px;
+            position: relative;
+            padding: 1px 0 0 23px;
+        }
+
+            .right-filter-sidebar .dropdown-tree ul li label input[type="checkbox"] {
+                visibility: hidden;
+                opacity: 0;
+                position: absolute;
+            }
+
+                .right-filter-sidebar .dropdown-tree ul li label input[type="checkbox"]:checked + span:before {
+                    content: "\f046";
+                    color: #000;
+                }
+
+            .right-filter-sidebar .dropdown-tree ul li label span:before {
+                font-family: FontAwesome;
+                content: "\f096";
+                color: #D8D8D8;
+                font-weight: normal;
+                font-size: 18px;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+
 
 .right-filter-sidebar .dropdown-tree .parent-blog-category, .right-filter-sidebar .dropdown-tree .child-blog-category {
     margin: 0px;

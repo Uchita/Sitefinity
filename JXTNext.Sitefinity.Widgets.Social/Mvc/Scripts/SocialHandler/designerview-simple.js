@@ -16,6 +16,27 @@
         );
 
         $scope.$watch(
+            'properties.AdvertiserEmailTemplateName.PropertyValue',
+            function (newVal, oldVal) {
+                if (!!newVal && newVal !== oldVal) {
+                    $scope.properties.AdvertiserEmailTemplateName.PropertyValue = JSON.stringify(newVal);
+                }
+            },
+            true
+        );
+
+        $scope.$watch(
+            'properties.AdvertiserEmailTemplateId.PropertyValue',
+            function (newVal, oldVal) {
+                if (!!newVal && newVal !== oldVal) {
+                    $scope.properties.AdvertiserEmailTemplateId.PropertyValue = newVal;
+                }
+            },
+            true
+        );
+
+
+        $scope.$watch(
             'properties.EmailTemplateName.PropertyValue',
             function (newVal, oldVal) {
                 if (!!newVal && newVal !== oldVal) {

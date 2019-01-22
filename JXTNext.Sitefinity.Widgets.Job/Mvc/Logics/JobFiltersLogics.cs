@@ -73,11 +73,27 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Logics
             }
         }
 
+        private static JobFilter _findFilterItem(JobFilter filterItem, List<JobFilter> values)
+        {
+            foreach (var x in values)
+            {
+                if(x.ID != null && x.ID.ToUpper() == filterItem.ID.ToUpper())
+                {
+                    return x;
+                }
+                else if(x.Label.ToUpper() == filterItem.Label.ToUpper())
+                {
+                    return x;
+                }
+            }
+            return null;
+        }
+
         public static void MergeFiltersCount(JobFilter filterItem, List<JobFilter> values)
         {
             if (filterItem != null)
             {
-                var itemFound = values.Where(x => x.ID.ToUpper() == filterItem.ID.ToUpper()).FirstOrDefault();
+                var itemFound = _findFilterItem(filterItem, values);
                 if (itemFound != null)
                 {
                     filterItem.Count = itemFound.Count;

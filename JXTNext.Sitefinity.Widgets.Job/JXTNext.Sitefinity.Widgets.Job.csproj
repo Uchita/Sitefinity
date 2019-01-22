@@ -330,6 +330,7 @@
     <Compile Include="Mvc\Models\JobEmailViewModel.cs" />
     <Compile Include="Mvc\Models\JobFiltersDesignerViewModel.cs" />
     <Compile Include="Mvc\Models\JobFiltersModel.cs" />
+    <Compile Include="Mvc\Models\JobAlertJsonModelData.cs" />
     <Compile Include="Mvc\Models\JobSearchModel.cs" />
     <Compile Include="Mvc\Models\JobSearchResultsFilterModel.cs" />
     <Compile Include="Mvc\StringResources\JobDetailsResources.cs" />

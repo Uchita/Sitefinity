@@ -84,21 +84,11 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
                         string[] splits = webResponse.Headers["Content-Disposition"].Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
                         string resumeFileNameSplit = splits.Where(c => c.Contains("filename=")).FirstOrDefault();
                         string resumeFileName = resumeFileNameSplit.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries).Last();
-                        string responseMessage = null;
+                        
+                        MemoryStream fileStream = new MemoryStream();
 
-                        using (StreamReader resStreamReader = new StreamReader(webResponse.GetResponseStream()))
-                        {
-                            responseMessage = resStreamReader.ReadToEnd();
-                        }
-                                            
-                        MemoryStream fileStream = null;
-
-                        if (!string.IsNullOrWhiteSpace(responseMessage))
-                        {
-                            var fileBytes = Encoding.UTF8.GetBytes(responseMessage);
-                            fileStream = new MemoryStream(fileBytes);
-                        }
-
+                        byte[] fileBytes = GetStreamBytes(webResponse);
+                        fileStream = new MemoryStream(fileBytes);
                         processedResponse.FileStream = fileStream;
                         processedResponse.FileName = resumeFileName;
                     }
@@ -120,6 +110,19 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
             }
 
             return processedResponse;
+        }
+
+
+        private byte[] GetStreamBytes(WebResponse webResponse)
+        {
+            using (var responseStream = webResponse.GetResponseStream())
+            {
+                using (var stream = new MemoryStream())
+                {
+                    responseStream.CopyTo(stream);
+                    return stream.ToArray();
+                }
+            }
         }
     }
 }

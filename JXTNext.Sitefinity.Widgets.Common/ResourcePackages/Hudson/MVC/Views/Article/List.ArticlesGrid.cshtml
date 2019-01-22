@@ -48,9 +48,11 @@
             }
         }
 }
-<div class="@Model.CssClass">
+<div class="sx-fullwidth-card article-filter-page @Model.CssClass">
     <div class="articles-top">
-        <div class="press-release-filter">
+        <div class="button-toggler visible-xs text-center"><span class="btn btn-sm collapsed" data-toggle="collapse" data-target="#articleFilters">Filter Topic</span></div>
+      
+        <div class="press-release-filter" id="articleFilters">
             <ul class="list-unstyled clearfix">
                 @{
                     var managerArticle = TaxonomyManager.GetManager();
@@ -138,13 +140,20 @@
                 @foreach (var item in Model.Items)
                 {
                     var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
-
+                    var imageThumbUrl = "";
+                    var noImageCls = "";
                     <div class="col-md-4">
                         <div class="thumbnail card-basic small-caption">
-                            @if (item.Fields.HeaderImage.DataItem != null)
+                            @if (item.Fields.HeaderImage != null && item.Fields.HeaderImage.DataItem != null)
                             {
-                                <a href="@navigateUrl" class="img-wrap" title="@item.Fields.HeaderImage.Fields.Title"><img alt="@item.Fields.HeaderImage.Fields.Title" src="@MediaContentExtensions.ResolveThumbnailUrl(item.Fields.HeaderImage.DataItem, "thumbartic")" /></a>
+                                imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(item.Fields.HeaderImage.DataItem, "thumbartic");
                             }
+                            else
+                            {
+                                imageThumbUrl = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.jpg";
+                                noImageCls = "no-image";
+                            }
+                            <a href="@navigateUrl" class="img-wrap @noImageCls" title="@item.Fields.Title"><img alt="@item.Fields.Title" src="@imageThumbUrl" /></a>
                             <div class="caption">
                                 <p class="color-light text-uppercase font-medium ">
                                     @{
@@ -162,7 +171,7 @@
                                         @(string.Join(", ", filterValues))
                                     </small>
                                 </p>
-                                <h4><a href="@navigateUrl" title="@item.Fields.HeaderImage.Fields.Title">@Html.HtmlSanitize((string)item.Fields.Title)</a></h4>
+                                <h4><a href="@navigateUrl" title="@item.Fields.Title">@Html.HtmlSanitize((string)item.Fields.Title)</a></h4>
                                 @{
                                     var summary = Html.HtmlSanitize((string)item.Fields.Summary).ToString();
                                     string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 90 ? summary.Substring(0, 90) + "..." : summary;
@@ -207,10 +216,10 @@
                 //console.log(curTaxonName);
                 if (stripPath.length > 2 && stripPath[stripPath.length - 2] == "career-advice") {
                     parentTaxon = stripPath[stripPath.length - 2];
-                    $('.press-release-filter > ul > li > a[href*="' + parentTaxon + '"]').first().parent('li').addClass('filter-active');
-                    $('.press-release-filter li a[href*="' + curTaxonName + '"]').first().parent('li').addClass('filter-active');
+                    $('.press-release-filter > ul > li > a[href$="' + parentTaxon + '"]').first().parent('li').addClass('filter-active');
+                    $('.press-release-filter li a[href$="' + curTaxonName + '"]').first().parent('li').addClass('filter-active');
                 } else {
-                    $('.press-release-filter > ul > li > a[href*="' + curTaxonName + '"]').first().parent('li').addClass('filter-active');
+                    $('.press-release-filter > ul > li > a[href$="' + curTaxonName + '"]').first().parent('li').addClass('filter-active');
                 }
             }
         }

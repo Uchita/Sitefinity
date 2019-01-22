@@ -292,8 +292,12 @@
     .testimonials-slider .quote span {
       position: absolute;
       top: 45px; }
+      .testimonials-slider .quote span::before {
+        content: '\201C'; }
     .testimonials-slider .quote.text-right span {
       right: 10px; }
+      .testimonials-slider .quote.text-right span::before {
+        content: '\201D'; }
   .testimonials-slider.with-top-image {
     padding: 60px 0 20px; }
     .testimonials-slider.with-top-image .owl-item {
@@ -363,6 +367,12 @@
       top: 5px;
       left: 5px;
       border: 1px solid #01a3a4; }
+
+.single-quote .quote span::before {
+  content: '\2018'; }
+
+.single-quote .quote.text-right span::before {
+  content: '\2019'; }
 
 .testimonials-slider.testimonials-simple {
   margin: 0 auto;

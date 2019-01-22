@@ -51,7 +51,7 @@
                     <div class="login-border">
                         <div class="width-limit">
                             <h2>@Html.Resource("Registration")</h2>
-                            <p>Create an account to receive job alerts to track your applications!</p>
+                            <p>@Html.Resource("RegistrationResourcesDescription")</p>
                         </div>
 
                         @if (!string.IsNullOrEmpty(ViewBag.Error))
@@ -115,10 +115,10 @@
                                     </p>
                                 </div>
                                 <div class="col-md-8">
-                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Choose password", required = "required", pattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title = "Your password must contain at least one number, one uppercase and lowercase letter, and 8 or more characters." })
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Choose password", required = "required", pattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title = Html.Resource("passwordRequirementMsg") })
 
                                     <span class="text-muted">
-                                        <em>Password must contain 8 characters or more, 1 uppercase letter, 1 lowercase letter and 1 number</em><br />&nbsp;
+                                        <em>@Html.Resource("passwordRequirementMsg", "Labels")</em><br />&nbsp;
                                     </span>
 
                                     @if (Html.ValidationMessageFor(m => m.Password) != null)

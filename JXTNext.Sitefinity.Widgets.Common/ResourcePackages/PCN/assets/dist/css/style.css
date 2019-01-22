@@ -152,7 +152,7 @@ a {
     }
 
         .header .main_menu ul li {
-            margin-left: 12px;
+            margin-left: 11px;
             float: left;
             position: relative;
         }
@@ -238,7 +238,7 @@ a {
         }
 
 .header .socials {
-    margin-left: 10px;
+    margin-left: 5px;
     float: left;
 }
 
@@ -248,7 +248,7 @@ a {
     }
 
         .header .socials ul li {
-            margin-left: 14px;
+            margin-left: 11px;
             float: right;
             padding: 0px;
         }
@@ -275,7 +275,7 @@ a {
     }
 
     .header .user_login a, .header .user_login button {
-        padding: 0 8px;
+        padding: 0 6px;
         float: left;
         font-size: 14px;
         color: #fff;
@@ -948,6 +948,10 @@ hr {
             color: #fff;
             box-shadow: 0px 0px 25px #fff;
         }
+
+            .about_twoC .colmun .read_btn:last-child {
+                margin-right: 0px;
+            }
 
             .about_twoC .colmun .read_btn span {
                 color: #fff;
@@ -4655,47 +4659,58 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
 .search-top {
     float: right;
+    width: 100%;
+    padding-top: 8px;
 }
 
-    .search-top > div > div {
-        float: left;
+.filter-outer-wrapper .search-toggle {
+    display: none !important;
+}
+
+.search-top > div > div {
+    float: left;
+}
+
+    .search-top > div > div:first-child {
+        padding-bottom: 8px;
+        width: 100%;
     }
 
-    .search-top > div > .jobalert-field {
-        float: left;
-        padding: 0 10px;
-        height: 36px;
-        margin: 0 5px;
+.search-top > div > .jobalert-field {
+    float: left;
+    padding: 0 10px;
+    height: 36px;
+    margin: 0 5px 0 0;
+}
+
+
+.search-top .btn-smc.read_btn {
+    margin: 0 15px 0 10px;
+    float: left;
+}
+
+    .search-top .btn-smc.read_btn span {
+        font-size: 12px;
+        padding: 8px 10px;
     }
 
+.search-top > div .alert {
+    padding: 7px;
+    margin-right: 5px;
+}
 
-    .search-top .btn-smc.read_btn {
-        margin: 0 15px 0 10px;
-        float: left;
+.search-top .btn {
+    float: left;
+    margin-right: 10px;
+}
+
+    .search-top .btn:hover {
+        color: #fff;
     }
 
-        .search-top .btn-smc.read_btn span {
-            font-size: 12px;
-            padding: 8px 10px;
-        }
-
-    .search-top > div .alert {
-        padding: 7px;
-        margin-right: 5px;
-    }
-
-    .search-top .btn {
-        float: left;
-        margin-right: 10px;
-    }
-
-        .search-top .btn:hover {
-            color: #fff;
-        }
-
-    .search-top .select {
-        float: left;
-    }
+.search-top .select {
+    float: left;
+}
 
 .search-results {
     clear: both;

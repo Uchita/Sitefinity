@@ -70,7 +70,7 @@
 
 
     .header .user_login a, .header .user_login button {
-        padding: 0 9px;
+        padding: 0 6px;
         font-size: 12px;
     }
 
@@ -79,7 +79,7 @@
     }
 
         .header .socials ul li {
-            margin-left: 12px;
+            margin-left: 10px;
         }
 
             .header .socials ul li a {
@@ -87,7 +87,7 @@
             }
 
     .header .user_login {
-        padding: 5px 0 0 3px;
+        padding: 5px 0 0 1px;
     }
 
     .banner_section h1 {
@@ -192,6 +192,28 @@
         .article-template .prefix_left-navigation ul li a {
             font-size: 13px;
         }
+
+    .search-results {
+        padding-top: 12px;
+    }
+
+    .search-top > div > div:first-child {
+        width: 100%;
+        padding-top: 0px;
+        padding-bottom: 8px;
+    }
+
+    .search-top > div > .jobalert-field {
+        margin: 0 5px 10px 0;
+    }
+
+    .search-top > div .alert {
+        margin-bottom: 11px;
+    }
+
+    .search-top .btn-smc.read_btn {
+        margin: 0 15px 11px 10px;
+    }
 }
 
 
@@ -585,7 +607,7 @@
 
         .about_twoC .colmun .read_btn span {
             font-size: 14px;
-            padding: 9px 14px;
+            padding: 9px 9px;
         }
 
 
@@ -647,7 +669,14 @@
             line-height: 1.2em;
         }
 
+    .job-holder .sub {
+        padding: 28px 0px 20px 0px;
+    }
 
+    .job-holder .date {
+        width: 100%;
+        padding-top: 5px;
+    }
 
     .search_job {
         padding: 25px 0;
@@ -684,6 +713,10 @@
         padding: 0;
     }
 
+    .about_section:after {
+        background: rgba(0,0,0,0.1);
+    }
+
     .about_twoC .colmun {
         padding: 60px 15px;
         height: auto;
@@ -692,6 +725,7 @@
         .about_twoC .colmun.left:after {
             right: -15px;
             left: -15px;
+            background: rgba(0,0,0,0.1);
         }
 
         .about_twoC .colmun.left .image {
@@ -702,6 +736,7 @@
         .about_twoC .colmun.right:after {
             right: -15px;
             left: -15px;
+            background: rgba(0,0,0,0.1);
         }
 
         .about_twoC .colmun.right .image {

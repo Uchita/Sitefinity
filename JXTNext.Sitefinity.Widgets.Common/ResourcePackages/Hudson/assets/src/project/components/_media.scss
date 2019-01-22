@@ -1542,6 +1542,13 @@
         }
     }
 
+    .tbl-wrapper{
+        overflow: auto;
+        table{
+            min-width: 500px;
+        }
+    }
+
 }
 
 @media screen and (max-width: 767px) {

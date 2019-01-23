@@ -8,16 +8,16 @@
 @Html.Script(Url.WidgetContent("/Mvc/Scripts/jquery.nstSlider.js"))
 @Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/rangeSlider.css"))
 
-<h2><span class="alert-icon far fa-bell"></span>Edit job alert</h2>
+<h2><span class="alert-icon"></span>Edit job alert</h2>
 
 <h3>Alert details</h3>
 
 @if (Model != null)
 {
-    <form method="post" action="@Url.Action(" Edit","JobAlert")" onsubmit="return preventSubmit();">
+    <form method="post" class="jn_search" action="@Url.Action("Edit","JobAlert")" onsubmit="return preventSubmit();">
         @{
             int counter = 0;
-            var privacyErrMsg = "Please agree to Hudson\'s privacy policy";
+            var privacyErrMsg = "Please agree to Bayside\'s privacy policy";
         }
 
         <div class="field-wrapper basic-form no-marg-top">

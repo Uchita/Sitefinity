@@ -8611,3 +8611,8 @@ privacy-policy {
         font-weight: normal;
         font-size: 1.5rem;
     }
+
+.privacy-policy {
+    margin: 0px !important;
+    position: static !important;
+}

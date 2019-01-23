@@ -245,6 +245,9 @@
     <Content Include="ResourcePackages\PCN\GridSystem\Templates\page-section.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\PCN\GridSystem\Templates\page-magazine-landing.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\PCN\GridSystem\Templates\section-news-magazine-events.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

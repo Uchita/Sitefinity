@@ -214,6 +214,10 @@
     .search-top .btn-smc.read_btn {
         margin: 0 15px 11px 10px;
     }
+
+    .search-top .srch-email {
+        margin-bottom: 11px;
+    }
 }
 
 
@@ -513,7 +517,7 @@
         font-size: 13px;
     }
 
-    .blog_section .news_pagination a span {
+    .news_pagination a span {
         padding: 7px 5px;
     }
 
@@ -635,6 +639,18 @@
 
     .article-template .select-menu {
         display: block;
+    }
+
+    .search-top .select {
+        float: left;
+    }
+
+    .job-holder h3 {
+        font-size: 22px;
+    }
+
+    .footer_top ul li {
+        margin: 0 10px;
     }
 }
 
@@ -824,10 +840,10 @@
             width: 50%;
         }
 
-        .blog_section .news_pagination a span {
-            padding: 6px 3px;
-            font-size: 14px;
-        }
+    .news_pagination a span {
+        padding: 6px 3px;
+        font-size: 14px;
+    }
 
     .consultants .colio-item {
         width: 50%;
@@ -910,6 +926,10 @@
     .article-template .header .socials ul li {
         margin: 0 6px 0 0;
     }
+
+    .search-top .btn-smc.read_btn span {
+        padding: 8px 4px;
+    }
 }
 
 /* -----------------------------------
@@ -953,5 +973,9 @@
 
     .three_colmun_section .colmun {
         width: 100%;
+    }
+
+    .search-top .select {
+        float: left;
     }
 }

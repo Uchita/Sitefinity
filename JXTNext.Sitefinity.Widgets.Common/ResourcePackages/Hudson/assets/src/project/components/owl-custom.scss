@@ -96,11 +96,17 @@
         span {
             position: absolute;
             top: 45px;
+            &::before{
+                content: '\201C';
+            }
         }
 
         &.text-right{
             span {
                 right: 10px;
+                &::before{
+                    content: '\201D';
+                }
             }
         }
     }
@@ -200,6 +206,19 @@
             top: 5px;
             left: 5px;
             border: 1px solid $global-highlight-color;
+        }
+    }
+}
+
+.single-quote{
+    .quote{
+        span{
+            &::before{
+                content: '\2018';
+            }
+        }
+        &.text-right span::before{
+            content: '\2019';
         }
     }
 }

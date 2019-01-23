@@ -26,7 +26,6 @@
 .page-wrapper {
     .basic-form {
         margin-top: 50px;
-        font-family: $font-family-regular;
 
         .form-control {
             color: $global-text-color;
@@ -350,10 +349,6 @@
         clear: both;
         margin-bottom: 2rem;
         overflow: hidden;
-        h2{
-            font-size: 3.2rem;
-            margin-bottom: 0.5rem;
-        }
         ul {
             padding-top: 15px;
             li {
@@ -449,6 +444,7 @@
 
                 .btn {
                     height: 35px;
+                    line-height: 1.2;
                     min-width: 120px;
                     padding: 6px 10px;
                 }

@@ -9653,8 +9653,7 @@ ul.breadcrumb {
 /*#endregion Form - Newsletter */
 /*#region Form - Contact us*/
 .page-wrapper .basic-form {
-  margin-top: 50px;
-  font-family: AkzidGroProReg, sans-serif; }
+  margin-top: 50px; }
   .page-wrapper .basic-form .form-control {
     color: #000; }
   .page-wrapper .basic-form select {
@@ -9865,9 +9864,6 @@ ul.breadcrumb {
     clear: both;
     margin-bottom: 2rem;
     overflow: hidden; }
-    .page-wrapper .sign-in-with h2, .page-wrapper .ext-provider-form h2 {
-      font-size: 3.2rem;
-      margin-bottom: 0.5rem; }
     .page-wrapper .sign-in-with ul, .page-wrapper .ext-provider-form ul {
       padding-top: 15px; }
       .page-wrapper .sign-in-with ul li, .page-wrapper .ext-provider-form ul li {
@@ -9927,6 +9923,7 @@ ul.breadcrumb {
       float: left; }
       .page-wrapper .apply-with ul li .btn, .page-wrapper .sign-in-with ul li .btn {
         height: 35px;
+        line-height: 1.2;
         min-width: 120px;
         padding: 6px 10px; }
     .page-wrapper .apply-with ul::after, .page-wrapper .sign-in-with ul::after {
@@ -12157,7 +12154,11 @@ select.articles-order {
       .banner-with-basic .thumbnail .banner-with-basic-summary {
         font-size: 1.6rem; }
       .banner-with-basic .thumbnail .caption {
-        min-height: 150px; } }
+        min-height: 150px; }
+  .tbl-wrapper {
+    overflow: auto; }
+    .tbl-wrapper table {
+      min-width: 500px; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron .owl-nav {

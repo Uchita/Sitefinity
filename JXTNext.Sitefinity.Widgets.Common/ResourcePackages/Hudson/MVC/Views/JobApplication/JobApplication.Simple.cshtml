@@ -35,7 +35,7 @@
                             </div>
                             <div class="col-md-8">
                                 <input id="userid" type="text" name="Email" class="form-control" required placeholder="Enter email address to begin" autocomplete="email" aria-describedby="email-verify-message" />
-                                <small class="welcome-message hidden">Welcome back!</small>
+                                <small class="welcome-message hidden">@Html.Resource("DashboardWelcomeWidgetTitle", "DashboardResources")</small>
                             </div>
                         </div>
                     </div>
@@ -126,7 +126,7 @@
                     </div>
 
                 </div>
-                <div class="alert alert-info hidden" id="already-applied-info">You have already applied for this job.</div>
+                <div class="alert alert-info hidden" id="already-applied-info">@Html.Resource("JobAlreadyAppliedMsg", "Labels")</div>
             }
             <!-- Upload section -->
             <div class="upload-section">
@@ -203,7 +203,7 @@
 
                     <!-- Resume -->
                     <div class="form-group row" id="uploadresumeblock" @loginElemHide>
-                        <label class="form-label col-xs-12 col-md-4 text-right">upload your cv*</label>
+                        <label class="form-label col-xs-12 col-md-4 text-right">upload your resume*</label>
                         <div class="col-xs-12 col-md-8">
                             <div class="box clearfix text-center">
                                 <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
@@ -491,7 +491,7 @@
              if (rows.length) {
                  $('#user-profile-resume-list').html(rows);
              } else {
-                 $('#user-profile-resume-list').html('<option val="0">SELECT YOUR CV</option>');
+                 $('#user-profile-resume-list').html('<option val="0">SELECT YOUR RESUME</option>');
              }
          }
 

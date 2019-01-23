@@ -167,6 +167,39 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.StringResources
             }
         }
 
+        [ResourceEntry("EmailTemplateIdResource",
+            Value = "Enter E-mail subject:",
+            Description = "phrase : Enter email subject")]
+        public string EmailTemplateIdResource
+        {
+            get
+            {
+                return this["EmailTemplateIdResource"];
+            }
+        }
+
+        [ResourceEntry("SelectAdvertiserEmailTemplate",
+            Value = "Select Advertiser Email Template:",
+            Description = "phrase : Select Advertiser Email Template")]
+        public string SelectAdvertiserEmailTemplate
+        {
+            get
+            {
+                return this["SelectAdvertiserEmailTemplate"];
+            }
+        }
+        
+        [ResourceEntry("AdvertiserEmailTemplateIdResource",
+            Value = "Advertiser Email Template Id:",
+            Description = "phrase : Advertiser Email Template Id")]
+        public string AdvertiserEmailTemplateIdResource
+        {
+            get
+            {
+                return this["AdvertiserEmailTemplateIdResource"];
+            }
+        }
+
         /// <summary>
         /// Gets phrase: This is the page where you have dropped search results widget
         /// </summary>

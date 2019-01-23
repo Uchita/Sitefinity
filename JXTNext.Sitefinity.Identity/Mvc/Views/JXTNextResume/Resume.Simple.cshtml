@@ -10,13 +10,13 @@
 <div>
 
     
-    <h2><span class="save-icon"></span> @Html.Resource("AttachResumeLink")</h2>
+    <h2><span class="save-icon"></span>@Html.Resource("AttachResumeLink")</h2>
     
     <input id="myFile" data-sf-role="profile-resume-attachment-upload" type="file" value='@Html.Resource("UploadFileLink")' accept=".pdf,.doc,.docx,.txt,.xls,.xlsx,.rtf" name="profile-resume" />
     <h5>@Html.Resource("AttachFileConditionsLink")</h5>
     <div class="input-group">
         @*<input data-sf-role="profile-resume-attachment-save" type="submit" value='@Html.Resource("SaveFileAttachmentLink")' />*@
-        <input id="uploadBtn" class="btn btn-outline-primary" type="button" class value='@Html.Resource("SaveFileAttachmentLink")' disabled />
+        <input id="uploadBtn" type="button" class="btn" value='@Html.Resource("SaveFileAttachmentLink")' disabled />
         <input id="mymodel" type="button" value="@Model.JsonData" hidden />
     </div>
     <br />
@@ -30,9 +30,9 @@
         <table class="table">
             <thead>
                 <tr>
-                    <td>File Name</td>
-                    <td>Action</td>
-                    <td>Upload Date</td>
+                    <th>File Name</th>
+                    <th class="date-col">Upload Date</th>
+                    <th class="col-2btn-width">Action</th>
                 </tr>
             </thead>
             <tbody id="resumeTable">
@@ -62,7 +62,7 @@
             $.each(resumes, function (i, item) {
                 
                 var date = item.UploadDateStr;
-                rows += '<tr> ' + '<td>' + item.FileFullName + '</td>' + '<td>' + '<a href="' + item.FileUrl + '" target="_blank">' + viewValue + '</a><a/> <input id="' + item.Id + '" class="deleteresumecls" type="button"  value="' + deleteResume + '"></td>' + '<td>' + date + '</td >' + '</tr>';
+                rows += '<tr> ' + '<td>' + item.FileFullName + '</td>' + '<td>' + date + '</td >' + '<td>' + '<a href="' + item.FileUrl + '" class="btn btn-tag" target="_blank">' + viewValue + '</a> <input id="' + item.Id + '" class="deleteresumecls btn btn-sm btn-tag btn-danger" type="button"  value="' + deleteResume + '"></td>' + '</tr>';
                 
             });
             $('#resumeTable').html(rows);

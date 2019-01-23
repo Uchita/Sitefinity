@@ -1,20 +1,25 @@
 ﻿@using JXTNext.Sitefinity.Widgets.Job.Mvc.Models
 @model JobDetailsViewModel
 @using Telerik.Sitefinity.Frontend.SocialShare.SocialShareHelpers
-
 @using System.Collections.Specialized;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 @using Telerik.Sitefinity.Web;
-
 @using JXTNext.Sitefinity.Common.Helpers
+@using System.Web;
 
 @{
     var isUserLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
+    var defaultLogo = "/ResourcePackages/Hudson/assets/dist/images/defaultLogo.png";
     var isMemberUser = false;
     if (isUserLoggedIn)
     {
         isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
     }
+    var mapsAPIKey = new SiteSettingsHelper().GetCurrentSiteGoogleMapsAPIKey();
+    var srcMap = "https://maps.googleapis.com/maps/api/js?key=" + mapsAPIKey;
+    string domainName = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+    var srcPlugin = domainName + "/Frontend-Assembly/JXTNext.Sitefinity.Widgets.Content/Mvc/Scripts/Maps/jquery.googlemap.js";
+
 }
 
 @if (Model != null)
@@ -35,12 +40,11 @@
         </div>
         <div class="job-offer-details">
             <div class="row job-offer-title">
+            
                 <div class="col-md-12">
                     <h1>@Model.JobDetails.Title</h1>
                 </div>
-                @*<div class="col-md-4">
-                        <img alt="westpac-small" src="/images/default-source/clients/westpac-small.png?sfvrsn=cc5d3f6d_2" title="westpac-small">
-                    </div>*@
+                
             </div><div class="row job-offer-summary">
                 <div class="col-md-12">
                     <table>
@@ -83,7 +87,7 @@
                                         @if (minSal == maxSal)
                                         {
 
-                                            <span class="max-sal">$@maxSal</span>
+                                        <span class="max-sal">$@maxSal <span class="sal-type">@Model.JobDetails.CustomData["Salary.Filters[0].Value"]</span></span>
                                         }
                                         else
                                         {
@@ -96,6 +100,7 @@
                                                 <span class="range-sep">to</span>
                                                 <span class="max-sal">$@maxSal</span>
                                             }
+                                                <span class="sal-type">@Model.JobDetails.CustomData["Salary.Filters[0].Value"]</span>
                                         }
                                     </td>
                                 </tr>
@@ -136,12 +141,18 @@
                     <table>
                         <tbody>
                             <tr>
-                                <td width="160"><strong>Reference Number:</strong></td>
+                                <td width="170"><strong>Reference Number:</strong></td>
                                 <td>
                                     @Model.JobDetails.ReferenceNo
                                 </td>
                             </tr>
-                            <tr><td><strong>Contact Details:</strong></td><td>@Model.JobDetails.CustomData["ApplicationMethod.ApplicationEmail"]</td></tr>
+                            @{
+                                if (Model.JobDetails.CustomData["ContactDetails"] != "")
+                                {
+                                    <tr><td><strong>Contact Details:</strong></td><td>@Model.JobDetails.CustomData["ContactDetails"]</td></tr>
+                                }
+                            }
+
                             <tr>
                                 <td><strong>Profession:&nbsp; </strong></td>
                                 <td>
@@ -157,7 +168,7 @@
             </div>
             @if (ViewBag.IsJobApplied)
             {
-                <div class="alert alert-info">You have already applied</div>
+                  <div class="alert alert-info">@Html.Resource("JobAlreadyAppliedMsg")</div>
             }
             else
             {
@@ -173,15 +184,39 @@
     </div>
 
     <div class="col-md-4 mb-30 jobdetail-sidebar">
+        @if (ViewBag.IsJobApplied)
+        {
+            <div class="row job-offer-apply">
+                <div class="alert alert-info">@Html.Resource("JobAlreadyAppliedMsg")</div>
+            </div>
+        }
+        else
+        {
+            <div class="row job-offer-apply">
+                <div class="col-md-12">
+                    <a id="job-application-lnk" class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID">APPLY NOW</a>
+                </div>
+            </div>
+        }
+        <br />
+        @if (!mapsAPIKey.IsNullOrEmpty())
+        {
+            @Html.Script(Url.Content(srcMap), "bottom")
+            @Html.Script(Url.Content(srcPlugin), "bottom")
+            <div class="map-placeholder hidden" style="width: 100%; height: 250px;">
+                <span data-address="@Model.JobDetails.Address" data-addresslat="@Model.JobDetails.AddressLatitude" data-addresslng="@Model.JobDetails.AddressLongtitude"></span>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger">Google Maps API key is not set. Please set at "Administration->Settings->Custom Site Settings"</div>
+        }
 
-        <div class="map-placeholder hidden" style="width: 100%; height: 250px;">
-            <span data-address="@Model.JobDetails.Address" data-addresslat="@Model.JobDetails.AddressLatitude" data-addresslng="@Model.JobDetails.AddressLongtitude"></span>
-        </div>
 
 
         @{
             var shareUrl = SocialShareButtons.ShareUrl;
-            
+
             var unencodedPageTitle = Model.JobDetails.Title;
             var pageTitle = HttpUtility.UrlEncode(unencodedPageTitle);
         }
@@ -191,7 +226,7 @@
             {
                 <li><a href="#" class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="far fa-save"></em><span class="save-status-txt">Save this job</span></a></li>
             }
-            
+
             <li><a href="javascript:window.print();"><em class="fas fa-print"></em>Print this job</a></li>
             <li>
                 <a href="@ViewBag.EmailJobPageUrl?JobId=@Model.JobDetails.JobID" title="Tell a friend">
@@ -203,7 +238,105 @@
 
     </div>
 }
-    <script type="text/javascript">
+<script type="text/javascript">
+
+    function initMap() {
+
+        // Iterate throgh all the elemetns having class map-placeholder in the page
+        // And it will place the map inside it
+        $(".map-placeholder").each(function (index) {
+
+            if ($(this).children().length > 0) {
+                var markers = [];
+                var zoom = $(this).data('zoom');
+                var zoomLevel = 10;
+                if (zoom != 'undefined' && typeof zoom != 'undefined' && zoom != '')
+                    zoomLevel = Number(zoom);
+
+                $(this).children().each(function (index) {
+                    var addresslat = $(this).data('addresslat');
+                    var addresslng = $(this).data('addresslng');
+                    var address = $(this).data('address');
+                    var icon = $(this).data('icon');
+                    // Pop up information
+                    var popupTitle = 'Hudson Office';
+                    if ($(this).data('popuptitle') != undefined && $(this).data('popuptitle').length) {
+                        popupTitle = $(this).data('popuptitle');
+                    }
+                    var popupText = '<p class="info-text">' + $(this).data('popuptext') + '</p>';
+                    var popupAdditionalInfo = '';
+
+                    if ($(this).data('popupadditionalinfo') != "") {
+                        popupAdditionalInfo = '</span><span class="map-field"><a href="tel: ' + $(this).data('popupadditionalinfo') + '"><span class="fa fa-phone"></span>' + $(this).data('popupadditionalinfo') + '</a></span>';
+                    }
+
+                    var infoWindowContent = '<div class="info-box"><span class="map-field"><span class="fas fa-map-marker-alt"></span>' + address + '</span>' + popupAdditionalInfo + popupText + '</div>';
+
+                    var iconPath = '';
+                    if (icon != 'undefined' && typeof icon != 'undefined' && icon != '')
+                        iconPath = icon;
+
+                    if (addresslat != 'undefined' && addresslng != 'undefined' && typeof addresslat != 'undefined' && typeof addresslng != 'undefined' && addresslat != '' && addresslng != '') {
+                        markers.push({ isLatLng: true, lat: Number(addresslat), lng: Number(addresslng), icon: iconPath, popupTitle: popupTitle, popupText: infoWindowContent });
+                    }
+                    else if (address != null && typeof address != 'undefined' && address != 'undefined' && address.length > 0) {
+                        markers.push({ isLatLng: false, address: address, icon: iconPath, popupTitle: popupTitle, popupText: infoWindowContent });
+                    }
+                });
+                console.log(markers.length);
+                if (markers.length > 0) {
+                    $(this).removeClass('hidden');
+                    $(this).googleMap({
+                        zoom: zoomLevel // Initial zoom level (optional)
+                    });
+                    var showMarker = true;
+                    if (markers.length > 1) {
+                        showMarker = false;
+                    }
+
+                    for (var item of markers) {
+                        if (item.isLatLng) {
+                            $(this).addMarker({
+                                coords: [item.lat, item.lng],
+                                icon: item.icon,
+                                title: item.popupTitle,
+                                text: item.popupText,
+                                showInfoWindow: showMarker
+                            });
+                        }
+                        else {
+                            $(this).addMarker({
+                                address: item.address,
+                                icon: item.icon,
+                                title: item.popupTitle,
+                                showInfoWindow: showMarker
+                            });
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    $(window).on('load', function () {
+        var isLoaded = false;
+        $(".map-placeholder").each(function (index) {
+            console.log($(this).data("called"));
+            var isCalled = $(this).data("called");
+            if (isCalled == false || typeof isCalled == 'undefined') {
+                $(this).data("called", true);
+            }
+            else {
+                isLoaded = true;
+                return false;
+            }
+        });
+        console.log(isLoaded);
+        if (!isLoaded) {
+            initMap();
+        }
+    });
+
     $(document).ready(function () {
         document.title = '@Model.JobDetails.Title';
         var isLoggedIn = '@isUserLoggedIn';
@@ -308,9 +441,8 @@
             });
         });
 
-        var previousUrl = new URL(document.referrer);
-        var urlPath = previousUrl.pathname + previousUrl.search
-        $("#back-to-results").attr("href", urlPath);
+        $("#back-to-results").attr("href", '/job-seekers/search-results');
+        
     });
-    </script>
+</script>
 

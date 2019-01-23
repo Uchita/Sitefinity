@@ -18,7 +18,14 @@
                 <p>
                     @Html.HtmlSanitize(Model.Description)
                 </p>
-                <a target="_blank" href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary mt-4">@Model.ActionName</a>
+                @if (Model.ActionName == "Learn more")
+                {
+                    <a  href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary mt-4">@Model.ActionName</a>
+                }
+                else
+                {
+                    <a target="_blank" href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary mt-4">@Model.ActionName</a>
+                }
             </div>
             <div class="col-12 col-md-6 img-absolute-wrap">
                 <div class="img-absolute bg-image" style="background-image: url('@Model.SelectedSizeUrl');"></div>

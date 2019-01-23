@@ -10,7 +10,8 @@
 </div>
 <div class="custom-select button-sort">
     <select id="sortOrder" class="form-control">
-        <option selected="selected" value="">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
+        <option selected="selected" value="Relevance">@Html.Resource("SortByRelevance", "JobSearchResultsResources")</option>
+        <option value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
         <option value="Old">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
         <option value="AZ">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
         <option value="ZA">@Html.Resource("SortByAlphaZA", "JobSearchResultsResources")</option>

@@ -372,6 +372,10 @@
       <Project>{BF418B44-EBCE-499F-BBD3-6BA98A24E144}</Project>
       <Name>JXTNext.Sitefinity.Connector</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Identity\JXTNext.Sitefinity.Widgets.Authentication.csproj">
+      <Project>{9a208d8f-aa97-4ce5-a42b-71bde987124c}</Project>
+      <Name>JXTNext.Sitefinity.Widgets.Authentication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JXTNext.Sitefinity.Services.Intefaces\JXTNext.Sitefinity.Services.Intefaces.csproj">
       <Project>{94381396-d85e-469c-b828-24cf03548df5}</Project>
       <Name>JXTNext.Sitefinity.Services.Intefaces</Name>
@@ -379,6 +383,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mvc\Scripts\JobApplication\designerview-simple.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="OpenAccessNuget.targets" />

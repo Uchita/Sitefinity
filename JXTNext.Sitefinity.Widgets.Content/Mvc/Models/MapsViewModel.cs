@@ -15,6 +15,8 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models
     public class MapsMarkerModel
     {
         public string Address { get; set; }
+        public string AddressLat { get; set; }
+        public string AddressLng { get; set; }
         public string MarkerIconPath { get; set; }
         public string PopupTitle { get; set; }
         public string PopupText { get; set; }

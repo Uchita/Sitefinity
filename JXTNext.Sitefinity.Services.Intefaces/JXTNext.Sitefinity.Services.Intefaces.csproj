@@ -162,6 +162,7 @@
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="IJobAlertService.cs" />
     <Compile Include="IJobApplicationService.cs" />
+    <Compile Include="Models\JobApplication\JobAlertJsonModelData.cs" />
     <Compile Include="Models\JobApplication\JobAlertModel.cs" />
     <Compile Include="Models\JobApplication\JobApplicationAttachment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

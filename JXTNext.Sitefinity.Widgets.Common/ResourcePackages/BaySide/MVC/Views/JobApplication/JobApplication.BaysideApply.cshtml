@@ -8,98 +8,98 @@
 <aside class="job-sidebar col-12 col-sm-12 col-md-4 pl-lg-4 apply-with-btn">
     @if (Model != null && Model.ApplyWithSocialMediaInfo != null)
     {
-        var siteSettingsHelper = new SiteSettingsHelper();
-        <h3 class="mt-4 h3-heading">Quick Apply</h3>
-        foreach (var item in Model.ApplyWithSocialMediaInfo)
-        {
-            switch (item.Title)
-            {
-                @*<a href="#" class="btn-block"><img src="assets/images/linkedin.jpg" alt=""></a>
-                    <a href="#" class="btn-block"><img src="assets/images/indeed.jpg" alt=""></a>
-                    <a href="#" class="btn-block"><img src="assets/images/seek.jpg" alt=""></a>*@
+    var siteSettingsHelper = new SiteSettingsHelper();
+    <h3 class="mt-4 h3-heading">Quick Apply</h3>
+    foreach (var item in Model.ApplyWithSocialMediaInfo)
+    {
+    switch (item.Title)
+    {
+    @*<a href="#" class="btn-block"><img src="assets/images/linkedin.jpg" alt=""></a>
+    <a href="#" class="btn-block"><img src="assets/images/indeed.jpg" alt=""></a>
+    <a href="#" class="btn-block"><img src="assets/images/seek.jpg" alt=""></a>*@
 
 
-                case "LinkedIn":
-                    <a href="#" class="btn-block" target="_blank"><img src="~/ResourcePackages/BaySide/assets/images/linkedin.jpg" alt=""></a>
-                    break;
+    @*case "LinkedIn":
+    <a href="#" class="btn-block" target="_blank"><img src="~/ResourcePackages/BaySide/assets/images/linkedin.jpg" alt=""></a>
+    break;*@
 
-                case "Indeed":
-                    var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
-                    var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
-                    @*<a id="indeed-btnwrapper" class="btn-block" href="#" target="_blank">
-                            <img src="~/ResourcePackages/BaySide/assets/images/indeed.jpg" alt=""
-                                 data-indeed-apply-apiToken=@indeedAPIToken
-                                 data-indeed-apply-jobId=@Model.JobId
-                                 data-indeed-apply-jobLocation="Australia"
-                                 data-indeed-apply-jobCompanyName="JXT"
-                                 data-indeed-apply-jobTitle="Test Engineer"
-                                 data-indeed-apply-jobUrl=""
-                                 data-indeed-apply-postUrl=@redirectUriSocial
-                                 data-indeed-apply-jobMeta="right-rail-apply-button"
-                                 data-indeed-apply-onapplied="OnIndeedCompleted" />
+    case "Indeed":
+    var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
+    var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
+    @*<a id="indeed-btnwrapper" class="btn-block" href="#" target="_blank">
+        <img src="~/ResourcePackages/BaySide/assets/images/indeed.jpg" alt=""
+             data-indeed-apply-apiToken=@indeedAPIToken
+             data-indeed-apply-jobId=@Model.JobId
+             data-indeed-apply-jobLocation="Australia"
+             data-indeed-apply-jobCompanyName="JXT"
+             data-indeed-apply-jobTitle="Test Engineer"
+             data-indeed-apply-jobUrl=""
+             data-indeed-apply-postUrl=@redirectUriSocial
+             data-indeed-apply-jobMeta="right-rail-apply-button"
+             data-indeed-apply-onapplied="OnIndeedCompleted" />
 
-                            <script>
-                                (function (d, s, id) {
-                                    var js, iajs = d.getElementsByTagName(s)[0];
-                                    if (d.getElementById(id)) { return; }
-                                    js = d.createElement(s); js.id = id; js.async = true;
-                                    js.src = "https://apply.indeed.com/indeedapply/static/scripts/app/bootstrap.js";
-                                    iajs.parentNode.insertBefore(js, iajs);
-                                }(document, 'script', 'indeed-apply-js'));
-                            </script>
-                        </a>*@
-                    <a id="indeed-btnwrapper" class="bayside-indeed_btn">
-                        <span class="indeed-apply-widget"
-                              data-indeed-apply-apiToken=@indeedAPIToken
-                              data-indeed-apply-jobId=@Model.JobId
-                              data-indeed-apply-jobLocation="Australia"
-                              data-indeed-apply-jobCompanyName="JXT"
-                              data-indeed-apply-jobTitle="Test Engineer"
-                              data-indeed-apply-jobUrl=""
-                              data-indeed-apply-postUrl=@redirectUriSocial
-                              data-indeed-apply-jobMeta="right-rail-apply-button"
-                              data-indeed-apply-onapplied="OnIndeedCompleted">
+        <script>
+            (function (d, s, id) {
+                var js, iajs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) { return; }
+                js = d.createElement(s); js.id = id; js.async = true;
+                js.src = "https://apply.indeed.com/indeedapply/static/scripts/app/bootstrap.js";
+                iajs.parentNode.insertBefore(js, iajs);
+            }(document, 'script', 'indeed-apply-js'));
+        </script>
+    </a>*@
+    <a id="indeed-btnwrapper" class="bayside-indeed_btn">
+        <span class="indeed-apply-widget"
+              data-indeed-apply-apiToken=@indeedAPIToken
+              data-indeed-apply-jobId=@Model.JobId
+              data-indeed-apply-jobLocation="Australia"
+              data-indeed-apply-jobCompanyName="JXT"
+              data-indeed-apply-jobTitle="Test Engineer"
+              data-indeed-apply-jobUrl=""
+              data-indeed-apply-postUrl=@redirectUriSocial
+              data-indeed-apply-jobMeta="right-rail-apply-button"
+              data-indeed-apply-onapplied="OnIndeedCompleted">
 
-                        </span>
+        </span>
 
-                        <img src="~/ResourcePackages/BaySide/assets/images/indeed.jpg" alt=""
-                             data-indeed-apply-apiToken=@indeedAPIToken
-                             data-indeed-apply-jobId=@Model.JobId
-                             data-indeed-apply-jobLocation="Australia"
-                             data-indeed-apply-jobCompanyName="JXT"
-                             data-indeed-apply-jobTitle="Test Engineer"
-                             data-indeed-apply-jobUrl=""
-                             data-indeed-apply-postUrl=@redirectUriSocial
-                             data-indeed-apply-jobMeta="right-rail-apply-button"
-                             data-indeed-apply-onapplied="OnIndeedCompleted" />
-                        <script>
-                            (function (d, s, id) {
-                                var js, iajs = d.getElementsByTagName(s)[0];
-                                if (d.getElementById(id)) { return; }
-                                js = d.createElement(s); js.id = id; js.async = true;
-                                js.src = "https://apply.indeed.com/indeedapply/static/scripts/app/bootstrap.js";
-                                iajs.parentNode.insertBefore(js, iajs);
-                            }(document, 'script', 'indeed-apply-js'));
-                        </script>
-                    </a>
-                    break;
-                case "Seek":
+        <img src="~/ResourcePackages/BaySide/assets/images/indeed.jpg" alt=""
+             data-indeed-apply-apiToken=@indeedAPIToken
+             data-indeed-apply-jobId=@Model.JobId
+             data-indeed-apply-jobLocation="Australia"
+             data-indeed-apply-jobCompanyName="JXT"
+             data-indeed-apply-jobTitle="Test Engineer"
+             data-indeed-apply-jobUrl=""
+             data-indeed-apply-postUrl=@redirectUriSocial
+             data-indeed-apply-jobMeta="right-rail-apply-button"
+             data-indeed-apply-onapplied="OnIndeedCompleted" />
+        <script>
+            (function (d, s, id) {
+                var js, iajs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) { return; }
+                js = d.createElement(s); js.id = id; js.async = true;
+                js.src = "https://apply.indeed.com/indeedapply/static/scripts/app/bootstrap.js";
+                iajs.parentNode.insertBefore(js, iajs);
+            }(document, 'script', 'indeed-apply-js'));
+        </script>
+    </a>
+    break;
+    case "Seek":
 
-                    var clientId = siteSettingsHelper.GetCurrentSiteSeekClientId();
-                    var advertiserId = siteSettingsHelper.GetCurrentSiteSeekClientAdvertiserId();
-                    var redirectUri = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
-                    var jobId = Model.JobId;
+    var clientId = siteSettingsHelper.GetCurrentSiteSeekClientId();
+    var advertiserId = siteSettingsHelper.GetCurrentSiteSeekClientAdvertiserId();
+    var redirectUri = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
+    var jobId = Model.JobId;
 
-                    string hrefLink = String.Format("https://www.seek.com.au/api/iam/oauth2/authorize?client_id={0}&redirect_uri={1}&state={2}&scope=r_profile_apply&response_type=code&advertiser_id={3}", clientId, redirectUri, jobId, advertiserId);
+    string hrefLink = String.Format("https://www.seek.com.au/api/iam/oauth2/authorize?client_id={0}&redirect_uri={1}&state={2}&scope=r_profile_apply&response_type=code&advertiser_id={3}", clientId, redirectUri, jobId, advertiserId);
 
-                    <a href=@hrefLink class="btn-block" target="_blank"><img src="~/ResourcePackages/BaySide/assets/images/seek.jpg" alt=""></a>
-                    break;
+    <a href=@hrefLink class="btn-block" target="_blank"><img src="~/ResourcePackages/BaySide/assets/images/seek.jpg" alt=""></a>
+    break;
 
 
-                default:
-                    break;
-            }
-        }
+    default:
+    break;
+    }
+    }
     }
 
     <script type="text/javascript">

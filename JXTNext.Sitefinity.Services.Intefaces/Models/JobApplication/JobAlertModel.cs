@@ -26,6 +26,7 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert
         public string SalaryStringify { get; set; }
         public JobAlertSalaryFilterReceiver Salary { get; set; }
         public JobAlertStatus Status { get; set; }
+        public string Data { get; set; }
     }
 
     public class CreateAsJobAlertFilterModel

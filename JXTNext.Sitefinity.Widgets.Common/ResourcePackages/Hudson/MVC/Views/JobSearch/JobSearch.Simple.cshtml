@@ -64,8 +64,8 @@
                                 <div class="form-group">
                                     <div class="select">
                                        <input type="hidden" name="Filters[@counter].rootId" value='@dropdownControl.FilterType' />
-                                        <select class="form-control" name="Filters[@counter].values">
-                                            <option value="" disabled selected>@dropdownControl.PlaceholderText</option>
+                                        <select class="form-control" name="Filters[@counter].values" id="@dropdownControl.FilterType">
+                                            <option value="" selected>@dropdownControl.PlaceholderText</option>
                                             @foreach (dynamic itemName in _idNamesLevelsPair)
                                             {
                                                 <option value="@itemName.Key">@itemName.Value.name</option>
@@ -106,7 +106,7 @@
                     }
 
                     <div class="col-xs-4 pull-right text-right">
-                        <a href="/advancedsearch" title="Advanced search">Advanced Search</a>
+                        <a href="/advancedsearch" title="Advanced search">Advanced search</a>
 
                     </div>
                     @*<div class="col-xs-2 pull-right text-right">
@@ -198,5 +198,16 @@
                 }
             });
         }
+
+
+        //workout temporary
+        //job search widget
+        if ($('.job-search').length && $('select#CountryLocationArea').length) {
+            if ($('select#CountryLocationArea option:contains(Sydney)').length && $('select#CountryLocationArea option:contains(Perth)').length) {
+                $('select#CountryLocationArea option:contains(Sydney)')
+                    .insertAfter($('select#CountryLocationArea option:contains(Perth)'));
+            }
+        }
+        
    });
 </script>

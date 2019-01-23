@@ -50,6 +50,8 @@
             <label>@Html.Resource("EmailBCC")</label>
             <input type="text" ng-model="properties.EmailTemplateBCC.PropertyValue" class="form-control" /><br /><br />
 
+            <label>@Html.Resource("EmailTemplateIdResource")</label>
+            <input type="text" ng-model="properties.EmailTemplateId.PropertyValue" class="form-control" /><br /><br />
 
 
             <label>@Html.Resource("SelectEmailTemplate")</label>
@@ -57,6 +59,23 @@
                               sf-selected-item-name="properties.EmailTemplateName.PropertyValue"
                               sf-selected-item-id="properties.EmailTemplateId.PropertyValue"
                               sf-provider="properties.EmailTemplateProviderName.PropertyValue" />
+
+
+            <label>@Html.Resource("SelectAdvertiserEmailTemplate")</label>
+            <label>@Html.Resource("EmailSubject")</label>
+            <input type="text" ng-model="properties.AdvertiserEmailTemplateEmailSubject.PropertyValue" class="form-control" /><br /><br />
+
+            <sf-list-selector sf-multiselect="false" sf-dynamic-items-selector sf-item-type="properties.ItemType.PropertyValue"
+                              sf-identifier-field="Title" sf-master="true"
+                              sf-selected-item-name="properties.AdvertiserEmailTemplateName.PropertyValue"
+                              sf-selected-item-id="properties.AdvertiserEmailTemplateId.PropertyValue"
+                              sf-provider="properties.AdvertiserEmailTemplateProviderName.PropertyValue" />
+
+            <label>@Html.Resource("AdvertiserEmailTemplateIdResource")</label>
+            <input type="text" ng-model="properties.AdvertiserEmailTemplateId.PropertyValue" class="form-control" /><br /><br />
+
+
+
         </uib-tab>
         
     </uib-tabset>

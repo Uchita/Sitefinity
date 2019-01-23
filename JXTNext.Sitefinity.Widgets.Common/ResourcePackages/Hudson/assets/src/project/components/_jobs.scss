@@ -127,6 +127,7 @@
     margin-top: 10px;
     margin-right: 15px;
     width: 290px;
+    line-height: 1;
 }
 
 .filter-toggle{
@@ -136,7 +137,7 @@
 .filter-outer-wrapper{
     
     &.lockoverlay{
-        position: relative;
+        
         &::before{
             content: '';
             position: absolute;
@@ -157,11 +158,11 @@
 .featured-job-offer {
     position: relative;
     margin: 0 0 $gap;
-    padding: $gap;
+    padding: 30px $gap $gap;
     background: #fff;
 
     .job-offer-company {
-        margin-bottom: 20px;
+        margin-bottom: 30px;
 
         img {
             max-width: 150px;
@@ -219,6 +220,13 @@
     }
 }
 
+.consultant-jobs {
+    .owl-item{
+        @media (max-width: 767px){
+            margin-right: 0!important;
+        }
+    }
+}
 .job-offer {
 
     &-details {
@@ -313,12 +321,16 @@
                 height: 33px;
                 line-height: 1.1;
                 font-size: 1.4rem;
+                border-color: $global-highlight-color;
             }
         }
 
         .btn {
             margin-top: 10px;
             float: left;
+        }
+        .alert{
+            margin-bottom: 0;
         }
     }
 
@@ -333,8 +345,10 @@
                 padding: 10px 15px;
                 -webkit-transition: .2s;
                 transition: .2s;
+                line-height: 1;
                 h3{
                     margin: 5px 0;
+                    line-height: 1.3;
                 }
                 .search-result-title {
                     font-size: 24px;
@@ -352,6 +366,9 @@
                         color: inherit;
                         text-decoration: underline;
                     }
+                }
+                small{
+                    font-size: 1.4rem;
                 }
             }
 
@@ -411,6 +428,11 @@
 }
 
 .job-offer-actions{
+    li{
+        .save-job{
+            font-size: inherit;
+        }
+    }
     .saved{
         &::before{
             position: absolute;
@@ -426,6 +448,11 @@
 .jobdetail-sidebar{
     @media (min-width:1024){
         padding-left: 40px;
+    }
+    @media (max-width:991px){
+        .job-offer-apply{
+            display: none;
+        }
     }
 }
 
@@ -501,10 +528,12 @@
             position: relative;
             z-index: 1;
             cursor: pointer;
+            line-height: 0.5;
+            font-size: 2.8rem;
         }
         .lbl{
             display: block;
-            margin-top: -20px;
+            margin-top: -7px;
             color: $global-highlight-color;
         }
         input[type="file"]:focus, button:focus{
@@ -517,6 +546,9 @@
         display: block;
         clear: both;
         word-break: break-word;
+    }
+    select{
+        width: 100%;
     }
 }
 .note{
@@ -602,4 +634,8 @@
     clear: left;
     padding: 5px 10px;
     margin-top: 5px;
+}
+
+.k-block, .k-widget{
+    line-height: inherit;
 }

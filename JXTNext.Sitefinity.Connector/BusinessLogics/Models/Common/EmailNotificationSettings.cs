@@ -1,11 +1,33 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common
 {
+    public class MemoryStreamJsonConverter : JsonConverter
+    {
+        public override bool CanConvert(Type objectType)
+        {
+            return typeof(MemoryStream).IsAssignableFrom(objectType);
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            var bytes = serializer.Deserialize<byte[]>(reader);
+            return bytes != null ? new MemoryStream(bytes) : new MemoryStream();
+        }
+
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            var bytes = ((MemoryStream)value).ToArray();
+            serializer.Serialize(writer, bytes);
+        }
+    }
+
     public class EmailNotificationSettings
     {
         private string _from;
@@ -23,8 +45,14 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common
         public List<EmailTarget> CcEmail { get { return _ccEmails; } }
         public List<EmailTarget> BccEmail { get { return _bccEmails; } }
         public string HtmlContent { get { return _htmlContent; } }
+        public List<EmailAttachment> EmailAttachments { get; set; } = new List<EmailAttachment>();
 
-        public EmailNotificationSettings(EmailTarget fromSender, EmailTarget toSender, string subject, string htmlContent)
+        [JsonConverter(typeof(MemoryStreamJsonConverter))]
+        public MemoryStream fileStream { get; set; } 
+
+        
+
+        public EmailNotificationSettings(EmailTarget fromSender, EmailTarget toSender, string subject, string htmlContent, List<dynamic> attachments)
         {
             _to = toSender.Email;
             _from = fromSender.Email;
@@ -33,6 +61,19 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common
             _ccEmails = new List<EmailTarget>();
             _bccEmails = new List<EmailTarget>();
             _htmlContent = htmlContent;
+
+            if(attachments != null)
+            { 
+                foreach (var item in attachments)
+                {
+                    EmailAttachment attachment = new EmailAttachment();
+                    fileStream = new MemoryStream();
+                    item.FileStream.CopyTo(fileStream);
+                    attachment.FileName = item.FileName;
+                    attachment.FileStreamJson = JsonConvert.SerializeObject(fileStream, Formatting.Indented, new MemoryStreamJsonConverter());
+                    EmailAttachments.Add(attachment);
+                }
+            }
         }
 
         public void AddCC(string name, string email)
@@ -45,6 +86,13 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common
             _bccEmails.Add(new EmailTarget(name, email));
         }
 
+    }
+
+    public class EmailAttachment
+    {
+        public string FileName { get; set; }
+        
+        public string FileStreamJson { get; set; }
     }
 
     public class EmailTarget

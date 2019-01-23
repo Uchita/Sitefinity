@@ -406,7 +406,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             {
                 dynamic responseObj = JObject.Parse(response.Response);
 
-                if (responseObj["status"] == 200)
+                if (responseObj["status"] == 200 && responseObj["data"] != null)
                 {
                     return new JXTNext_MemberAppliedJobResponse { Success = true, MemberAppliedJobs = _memberMapper.MemberAppliedJob_ConvertToLocalEntity<MemberAppliedJob>(JsonConvert.DeserializeObject<dynamic>(responseObj["data"].ToString())) };
                 }
@@ -474,6 +474,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         {
             JXTNext_SearchJobsRequest jobSearch = search as JXTNext_SearchJobsRequest;
 
+            jobSearch.FieldSearches = new StatusSearch() { Status = 1 };
             //An extra logic layer should be added to handle this model conversion
             dynamic searchAPIModel = new { search = jobSearch, legacyJobSource = Settings_LegacyJobSource };
 

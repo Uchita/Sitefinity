@@ -129,7 +129,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         applyJobModel.ContactDetails = Request.Form["ContactDetails"];
                         applyJobModel.ApplicationEmail = Request.Form["ApplicationEmail"];
                         applyJobModel.CompanyName = Request.Form["CompanyName"];
-                        
+                        applyJobModel.UrlReferral = Request.Form["UrlReferral"];
+
                         return ApplyJob(applyJobModel);
                     }
 
@@ -199,6 +200,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 jobApplicationViewModel.ContactDetails = jobListingResponse.Job.CustomData["ContactDetails"];
                 ViewBag.CompanyName = jobListingResponse.Job.CustomData["CompanyName"];
                 ViewBag.JobLocation = jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"];
+                jobApplicationViewModel.UrlReferral = Request.QueryString["source"];
             }
 
             if (isUserLoggedIn && !string.IsNullOrEmpty(userEmail))
@@ -356,8 +358,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
 
-            EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
+            EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, ovverideEmail),
                                                                                                 new EmailTarget(applyJobModel.ContactDetails, applyJobModel.ApplicationEmail),
+                                                                                                //new EmailTarget("suresh", "suresh.vpigroup@outlook.com"),
                                                                                                 this.AdvertiserEmailTemplateEmailSubject,
                                                                                                 htmlAdvertiserEmailContent, emailAttachments);
             
@@ -397,6 +400,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 foreach (var ccEmail in this.EmailTemplateCC.Split(';'))
                 {
                     emailNotificationSettings.AddCC(String.Empty, ccEmail);
+                    advertiserEmailNotificationSettings.AddCC(String.Empty, ccEmail);
                 }
             }
 
@@ -405,24 +409,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 foreach (var bccEmail in this.EmailTemplateBCC.Split(';'))
                 {
                     emailNotificationSettings.AddBCC(String.Empty, bccEmail);
-                }
-            }
-
-            if (!this.AdvertiserEmailTemplateCC.IsNullOrEmpty())
-            {
-                foreach (var ccEmail in this.AdvertiserEmailTemplateCC.Split(';'))
-                {
-                    advertiserEmailNotificationSettings.AddCC(String.Empty, ccEmail);
-                }
-            }
-
-            if (!this.AdvertiserEmailTemplateBCC.IsNullOrEmpty())
-            {
-                foreach (var bccEmail in this.AdvertiserEmailTemplateBCC.Split(';'))
-                {
                     advertiserEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
                 }
             }
+
             #endregion
 
             //Create Application 
@@ -436,7 +426,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     EmailNotification = emailNotificationSettings,
                     AdvertiserEmailNotification = advertiserEmailNotificationSettings,
                     AdvertiserName = applyJobModel.ContactDetails,
-                    CompanyName = applyJobModel.CompanyName
+                    CompanyName = applyJobModel.CompanyName,
+                    UrlReferral = applyJobModel.UrlReferral
                 },
                 ovverideEmail);
 
@@ -1095,6 +1086,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             return selectedLinks;
         }
+
+        
 
         private bool AddUploadedResumeToProfileDashBoard(JobApplicationAttachmentUploadItem resume,String Email)
         {

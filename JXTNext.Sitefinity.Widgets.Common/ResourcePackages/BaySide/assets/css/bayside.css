@@ -8330,6 +8330,10 @@ select.hs-input {
     background-image: url(../images/saved-jobs.png);
 }
 
+.applied-icon {
+    background-image: url(../images/applied-icon.png);
+}
+
 .alert-icon {
     background-image: url(../images/alert-icon.png);
 }
@@ -8530,7 +8534,7 @@ select.hs-input {
 
 .page-wrapper .sf-profile h2 {
     /*font-size: 3.2rem;*/
-    margin-top: 1.6rem;
+    /*margin-top: 1.6rem;*/
     margin-bottom: .5rem;
     padding-bottom: 0px !important;
 }

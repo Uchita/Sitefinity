@@ -20,8 +20,8 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
-                    @Html.ActionLink("Search", "ViewResults", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
+                    @Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, new { @class = "btn btn-outline-primary btn-sm btn-tag" })
+                    @Html.ActionLink("Search", "ViewResults", "JobAlert", new { id = item.Id }, new { @class = "btn btn-primary btn-sm btn-tag" })
                     @Html.ActionLink("Delete", "Delete", "JobAlert", new { id = item.Id }, new { onclick = "return confirmAlertDelete();", @class = "btn btn-sm btn-tag btn-danger" })
                 </td>
             </tr>
@@ -48,7 +48,7 @@ else
     }
 }
 <div class="button-wrapper">
-    @Html.ActionLink("Create New Job Alert", "Create", "JobAlert", new { @class = "btn btn-outline-primary mr-3" })
+    @Html.ActionLink("Create New Job Alert", "Create", "JobAlert", new { @class = "btn btn-primary mr-3" })
     <a href="/jobs/advancedsearch" class="btn btn-outline-primary" title="New job search">New search</a>
 </div>
 

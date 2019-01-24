@@ -60,7 +60,7 @@
         $.each(resumes, function (i, item) {
 
             var date = item.UploadDateStr;
-            rows += '<tr> ' + '<td>' + item.FileFullName + '</td>' + '<td>' + date + '</td >' + '<td>' + '<a class="btn btn-outline-primary small-btn" href="' + item.FileUrl + '" target="_blank">' + viewValue + '</a><a/> <input id="' + item.Id + '" class="deleteresumecls btn btn-sm btn-tag btn-danger small-btn" type="button"  value="' + deleteResume + '"></td>' + '</tr>';
+            rows += '<tr> ' + '<td>' + item.FileFullName + '</td>' + '<td>' + date + '</td >' + '<td>' + '<a class="btn btn-primary small-btn" href="' + item.FileUrl + '" target="_blank">' + viewValue + '</a><a/> <input id="' + item.Id + '" class="deleteresumecls btn btn-sm btn-tag btn-danger small-btn" type="button"  value="' + deleteResume + '"></td>' + '</tr>';
 
         });
         $('#resumeTable').html(rows);

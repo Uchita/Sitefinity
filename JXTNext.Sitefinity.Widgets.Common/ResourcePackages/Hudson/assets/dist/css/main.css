@@ -8190,14 +8190,18 @@ header {
         header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu a {
           background: #2e2e2e;
           color: #fff; }
+        header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu.header-top-links span {
+          position: static;
+          line-height: 1; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .timesheet-mnu a {
         padding-bottom: 15px; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .combine-mnu {
         padding: 16px 20px; }
         header .mobile-nav.left-sidebar .nav.navbar-nav .combine-mnu a {
           display: inline;
-          border-bottom: none;
-          background: none; }
+          border: none;
+          background: none;
+          margin-left: 0; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .social-mnu {
         padding-top: 0;
         padding-bottom: 0; }
@@ -9748,6 +9752,9 @@ ul.breadcrumb {
       min-width: 150px; }
   .page-wrapper .basic-form .upload-section {
     margin: 10px 0 20px 0; }
+
+#job-app-form .basic-form {
+  margin-top: 0; }
 
 #officeAddress {
   margin-left: 0;

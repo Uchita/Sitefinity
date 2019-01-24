@@ -1321,6 +1321,12 @@ header {
                     background: $global-headings-color;
                     color: $brightColor;
                 }
+                &.header-top-links{
+                    span{
+                        position: static;
+                        line-height: 1;
+                    }
+                }
             }
             .timesheet-mnu a{
                 padding-bottom: 15px;
@@ -1329,8 +1335,9 @@ header {
                 padding: 16px 20px;
                 a{
                     display: inline;
-                    border-bottom: none;
+                    border: none;
                     background: none;
+                    margin-left: 0;
                 }
             }
             .social-mnu{

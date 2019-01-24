@@ -433,6 +433,21 @@ $(document).ready(function () {
         });
     }
 
+    //hiding consultant job module in consultant page for particular categories
+    if( $('.consultant-page').length ){
+        var hasExcludeCat = ['candidate-profiling-assessment','leadership-assessment-development','outplacement-redeployment'];
+        var filterCat = $('.consultant-page').data('filtersector').split(',');
+        if( filterCat != null && filterCat.length > 0 ){
+            $.each( filterCat, function(key, value){
+                if( hasExcludeCat.indexOf(value) > -1 ){
+                    $('.consultant-jobs').parents('.page-section').hide();
+                }
+            });
+            
+        }
+
+    }
+
 });
 
 $(window).resize(function () {

@@ -7670,7 +7670,7 @@ blockquote {
   .page-wrapper .font-bold {
     font-family: AkzidGroProBol, sans-serif; }
   .page-wrapper .thumbnail.card-rollover {
-    background-color: transparent; }
+    background-color: transparent !important; }
   .page-wrapper .label-none label, .page-wrapper .strong-none strong {
     display: none; }
   .page-wrapper .color-highlight {

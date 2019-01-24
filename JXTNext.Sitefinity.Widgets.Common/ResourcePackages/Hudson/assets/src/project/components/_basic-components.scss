@@ -1961,6 +1961,12 @@ ul.vertical-ul {
         }
     }
 }
+.tbl-pagination{
+    font-size: 1.4rem;
+    margin-top: -15px; 
+    margin-bottom: 25px;
+}
+
 
 /*#region Footer*/
 .page-wrapper {
@@ -2332,7 +2338,10 @@ address.info-box{
     width: 130px;
 }
 .col-2btn-width{
-    width: 123px;
+    width: 23%;
+}
+.col-3btn-width{
+    width: 35%;
 }
 
 

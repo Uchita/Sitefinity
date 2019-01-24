@@ -414,6 +414,16 @@ $(document).ready(function () {
         }
     }
 
+    //using dataTable plugin for pagination in table
+    if( $('table.datatable').length ){
+        $('table.datatable').simplePagination({
+            containerClass: 'pagination tbl-pagination',
+            previousButtonClass: 'btn btn-tag',
+            nextButtonClass: 'btn btn-tag',
+            currentPage: 1,
+            perPage: 10,
+        });
+    }
 
     //office page
     //get in touch toggle collapse

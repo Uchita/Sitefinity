@@ -8608,6 +8608,11 @@ ul.vertical-ul {
       color: #fff;
       border-color: #219fa3; }
 
+.tbl-pagination {
+  font-size: 1.4rem;
+  margin-top: -15px;
+  margin-bottom: 25px; }
+
 /*#region Footer*/
 .page-wrapper footer .brand-logo {
   max-width: 165px; }
@@ -8880,7 +8885,10 @@ address.info-box {
   width: 130px; }
 
 .col-2btn-width {
-  width: 123px; }
+  width: 23%; }
+
+.col-3btn-width {
+  width: 35%; }
 
 @-webkit-keyframes spin {
   0% {

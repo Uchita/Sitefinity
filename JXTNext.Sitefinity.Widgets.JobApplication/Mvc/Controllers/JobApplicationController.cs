@@ -360,7 +360,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, ovverideEmail),
                                                                                                 new EmailTarget(applyJobModel.ContactDetails, applyJobModel.ApplicationEmail),
-                                                                                                //new EmailTarget("suresh", "suresh.vpigroup@outlook.com"),
                                                                                                 this.AdvertiserEmailTemplateEmailSubject,
                                                                                                 htmlAdvertiserEmailContent, emailAttachments);
             

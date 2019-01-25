@@ -6,17 +6,17 @@
             <div class="col-12 text-center">
                 @if (!string.IsNullOrEmpty(Model.Heading))
                 {
-                    <h3 class="text-white wow fadeInUp">@Html.HtmlSanitize(Model.Heading)</h3>
+                    <h2 class="text-white wow fadeInUp">@Html.HtmlSanitize(Model.Heading)</h2>
                     if (!string.IsNullOrEmpty(Model.Description))
                     {
-                        <h3 class="text-white wow fadeInUp">@Html.HtmlSanitize(Model.Description)</h3>
+                        <h2 class="text-white wow fadeInUp">@Html.HtmlSanitize(Model.Description)</h2>
                     }
                 }
                 else
                 {
                     if (!string.IsNullOrEmpty(Model.Description))
                     {
-                        <h3 class="text-white">@Html.HtmlSanitize(Model.Description)</h3>
+                        <h2 class="text-white">@Html.HtmlSanitize(Model.Description)</h2>
                     }
                 }
 

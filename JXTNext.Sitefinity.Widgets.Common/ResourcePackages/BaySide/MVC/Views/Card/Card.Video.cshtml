@@ -11,7 +11,7 @@
                     <a href="javascript:void(0)" class="play-btn">
                         <i class="fa fa-play" aria-hidden="true"></i><span class="sr-only">Play video</span>
                     </a>
-                    <div class="video-title">@Html.HtmlSanitize(Model.Heading)</div>
+                    <h2 class="video-title">@Html.HtmlSanitize(Model.Heading)</h2>
                     <a target="_blank" href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-link">@Model.ActionName</a>
                 </div>
             </div>
@@ -28,7 +28,7 @@ else
                     <a href="javascript:void(0)" class="play-btn">
                         <i class="fa fa-play" aria-hidden="true"></i><span class="sr-only">Play video</span>
                     </a>
-                    <div class="video-title">@Html.HtmlSanitize(Model.Heading)</div>
+                    <h2 class="video-title">@Html.HtmlSanitize(Model.Heading)</h2>
                     <a target="_blank" href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-link">@Model.ActionName</a>
                 </div>
             </div>

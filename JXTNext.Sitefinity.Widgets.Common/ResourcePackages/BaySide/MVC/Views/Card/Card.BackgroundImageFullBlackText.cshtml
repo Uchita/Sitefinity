@@ -4,7 +4,7 @@
 @*<img class="img-absolute" src="@Model.SelectedSizeUrl" alt="@Model.ImageAlternativeText">
     <div class="row h-100 align-items-center">
         <div class="col-12 content-left">
-            <h3>@Html.HtmlSanitize(Model.Heading)</h3>
+            <h2>@Html.HtmlSanitize(Model.Heading)</h2>
             <p>
                 @Html.HtmlSanitize(Model.Description)
             </p>
@@ -16,7 +16,7 @@
 <div class="img-absolute bg-image @Model.CssClass" style="background-image: url('@Model.SelectedSizeUrl')"></div>
 <div class="row full-height align-items-center">
     <div class="col-12 content-on-img">
-        <h3 style="color:black">@Html.HtmlSanitize(Model.Heading)</h3>
+        <h2 style="color:black">@Html.HtmlSanitize(Model.Heading)</h2>
         <p style="color:black">
             @Html.HtmlSanitize(Model.Description)
         </p>

@@ -153,6 +153,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             JobApplicationViewModel jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Available, "Upload your files to Apply");
             ViewBag.CssClass = this.CssClass;
+            ViewBag.SeekResumeError = false;
+            ViewBag.JobRecordExists = false;
             var uploadFileInfo = this.SerializedCloudSettingsParams == null ? null : JsonConvert.DeserializeObject<JobApplicationUploadFilesModel>(this.SerializedCloudSettingsParams);
 
             jobApplicationViewModel.UploadFiles = uploadFileInfo;
@@ -162,6 +164,18 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             string userEmail = String.Empty;
             string userFirstName = String.Empty;
             var currentIdentity = ClaimsManager.GetCurrentIdentity();
+            if(Request.QueryString["error"] == "resume")
+            {
+                ViewBag.SeekResumeError = true;
+                ViewBag.SeekResumeErrorMessage = "Resume is not available in your seek profile. Please upload and reapply for the job.";
+            }
+
+            if (Request.QueryString["error"] == "exists")
+            {
+                ViewBag.JobRecordExists = true;
+                ViewBag.JobRecordExistsErrorMessage = "Job already applied.";
+            }
+
             if (currentIdentity.IsAuthenticated)
             {
                 var currUser = SitefinityHelper.GetUserById(currentIdentity.UserId);
@@ -207,7 +221,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 var response = _blConnector.GetMemberByEmail(userEmail);
                 List<SelectListItem> myResumes = new List<SelectListItem>();
-                myResumes.Add(new SelectListItem { Text = "SELECT YOUR CV", Value = "0" });
+                myResumes.Add(new SelectListItem { Text = "SELECT YOUR RESUME", Value = "0" });
                 if (response.Member?.ResumeFiles != null)
                 {
                     var resumeList = JsonConvert.DeserializeObject<List<ProfileResume>>(response.Member.ResumeFiles);

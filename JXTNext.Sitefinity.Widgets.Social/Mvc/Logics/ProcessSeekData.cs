@@ -63,7 +63,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
 
                     #region Downloading the resume 
                     // Downloading the resume from seek 
-                    if (seekAPIResponse.SocialMediaProcessSuccess)
+                    if (seekAPIResponse.SocialMediaProcessSuccess && seekAPIResponse.SeekApplication.resume != null)
                     {
                         processedResponse.Success = true;
                         processedResponse.Email = seekAPIResponse.SeekApplication.applicantInfo.emailAddress;
@@ -94,8 +94,17 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
                     }
                     else
                     {
-                        processedResponse.Success = false;
-                        processedResponse.Errors = seekAPIResponse.Errors;
+                        if(!seekAPIResponse.SocialMediaProcessSuccess)
+                        {
+                            processedResponse.Success = false;
+                            processedResponse.Errors = seekAPIResponse.Errors;
+                        }
+                        else
+                        {
+                            processedResponse.Success = false;
+                            processedResponse.ResumeLinkNotExists = true;
+                            processedResponse.Errors = new List<string>() { "Seek Resume Link is NULL" };
+                        }
                     }
                 }
                 #endregion

@@ -17,6 +17,7 @@ using System.Text.RegularExpressions;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure;
 using System.Web;
+using Telerik.Sitefinity.Abstractions;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -133,6 +134,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     UrlReferral = this.GetCookieDomain(Request.Cookies["JobsViewed"], jobId.Value);
 
                 viewModel.UrlReferral = UrlReferral;
+                Log.Write($" viewModel.UrlReferral  : " + viewModel.UrlReferral, ConfigurationPolicy.ErrorLog);
 
                 IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = jobId.Value };
                 IGetJobListingResponse jobListingResponse = _BLConnector.GuestGetJob(jobListingRequest);

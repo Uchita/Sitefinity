@@ -142,7 +142,7 @@
                         <tbody>
                             <tr>
                                 <td width="170"><strong>Reference Number:</strong></td>
-                                <td>
+                                <td id="job-refno">
                                     @Model.JobDetails.ReferenceNo
                                 </td>
                             </tr>
@@ -442,7 +442,18 @@
         });
 
         $("#back-to-results").attr("href", '/job-seekers/search-results');
-        
+
+        //removing the timestamp from reference number value
+        //initial value: 2X/06146_153447008279184
+        //final value: 2X/06146
+        if ($("#job-refno").length && $("#job-refno").text() != "") {
+            var jobRef = $("#job-refno");
+            if (jobRef.text().indexOf("_") > 0) {
+                var temp = jobRef.text().split("_");
+                jobRef.text(temp[0]);
+            }
+        }
+
     });
 </script>
 

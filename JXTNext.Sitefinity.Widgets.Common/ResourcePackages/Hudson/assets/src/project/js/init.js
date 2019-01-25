@@ -408,9 +408,9 @@ $(document).ready(function () {
     var windowPath = window.location.pathname.toLowerCase();
     if( windowPath.indexOf('user-dashboard') > -1 ){
         if( windowPath.indexOf('/create') > -1 || windowPath.indexOf('/edit') > -1 || $('.job-alert-message-wrapper').length ){
-            $('body, html').stop().animate({
+            $('html, body').animate({
                 scrollTop: $('#createalert-widget').offset().top - 150
-            },10);
+            },100);
         }
     }
 
@@ -421,7 +421,7 @@ $(document).ready(function () {
             previousButtonClass: 'btn btn-tag',
             nextButtonClass: 'btn btn-tag',
             currentPage: 1,
-            perPage: 10,
+            perPage: 5,
         });
     }
 
@@ -443,11 +443,10 @@ $(document).ready(function () {
                     $('.consultant-jobs').parents('.page-section').hide();
                 }
             });
-            
         }
-
     }
 
+  
 });
 
 $(window).resize(function () {

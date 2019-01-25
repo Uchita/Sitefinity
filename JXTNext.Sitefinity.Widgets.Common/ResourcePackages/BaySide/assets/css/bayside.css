@@ -6659,6 +6659,10 @@ select.hs-input {
         color: #0088CF;
     }
 
+    .sm-col-layout h2 {
+        color: #0088CF;
+    }
+
     .sm-col-layout p {
         color: #fff;
         line-height: 1.3;

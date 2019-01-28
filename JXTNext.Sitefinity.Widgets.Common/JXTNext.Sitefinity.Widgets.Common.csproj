@@ -255,8 +255,12 @@
     <Content Include="ResourcePackages\BaySide\assets\images\logo.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\BaySide\assets\images\next-icon.png" />
-    <Content Include="ResourcePackages\BaySide\assets\images\next-iconH.png" />
+    <Content Include="ResourcePackages\BaySide\assets\images\next-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\BaySide\assets\images\next-iconH.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\assets\images\Our-Services-Icons\1-Talent-Sourcing-Icon.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -281,8 +285,12 @@
     <Content Include="ResourcePackages\BaySide\assets\images\Our-Services-Icons\8-Workplace-Safety-Icon.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\BaySide\assets\images\prev-icon.png" />
-    <Content Include="ResourcePackages\BaySide\assets\images\prev-iconH.png" />
+    <Content Include="ResourcePackages\BaySide\assets\images\prev-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\BaySide\assets\images\prev-iconH.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\assets\images\saved-jobs.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

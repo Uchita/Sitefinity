@@ -4,56 +4,56 @@
 @if (Model != null)
 {
     //visible - hidden
-<div class="filter-outer-wrapper left-sidebar">
-    <div class="form-group keywordfilter">
-        <label><strong>Keywords:</strong></label>
-        <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" placeholder="Search keywords" /></div>
-    </div>
-    <div class="filter-toggle"><span class="btn btn-primary">@Html.Resource("JobFilterToggleBtn")</span></div>
-    @*<div class="search-toggle visible-xs"><i class="fas fa-search"></i></div>*@
-    <div class="sm-wrapper">
-        @foreach (var item in Model)
-        {
-        if (item.Name != "Salary")
-        {
-        <div class="dropdown dropdown-tree navbar-collapse" id=@string.Format("{0}{1}", ViewBag.PrefixIdsText, item.Name)></div>
-        }
-        else if (item.Name == "Salary")
-        {
-        <select class="SalaryRangeSelect">
-            <option value="-1" selected>No Salary Preference</option>
-            @foreach (var salaryItem in item.Filters)
-            {
-            <option value="@salaryItem.ID">@salaryItem.Label</option>
-            }
-        </select>
-        foreach (var salaryItem in item.Filters)
-        {
-        var lower = 15000;
-        var upper = 300000;
-        if (salaryItem.Label == "Hourly Rate")
-        {
-        lower = 18;
-        upper = 200;
-        }
-        <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
-
-            <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
-                 data-cur_min="@lower" data-cur_max="@upper">
-
-                <div class="bar"></div>
-                <div class="leftGrip"></div>
-                <div class="rightGrip"></div>
-            </div>
-            <div class="leftLabel">$<span>@lower</span></div>
-            <div class="rightLabel">$<span>@upper</span></div>
-
+    <div class="filter-outer-wrapper left-sidebar">
+        <div class="form-group keywordfilter">
+            <label><strong>Keywords:</strong></label>
+            <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" placeholder="Search keywords" /></div>
         </div>
-        }
-        }
-        }
+        <div class="filter-toggle"><span class="btn btn-primary">@Html.Resource("JobFilterToggleBtn")</span></div>
+        @*<div class="search-toggle visible-xs"><i class="fas fa-search"></i></div>*@
+        <div class="sm-wrapper">
+            @foreach (var item in Model)
+            {
+                if (item.Name != "Salary")
+                {
+                    <div class="dropdown dropdown-tree navbar-collapse" id=@string.Format("{0}{1}", ViewBag.PrefixIdsText, item.Name)></div>
+                }
+                else if (item.Name == "Salary")
+                {
+                    <select class="SalaryRangeSelect">
+                        <option value="-1" selected>No Salary Preference</option>
+                        @foreach (var salaryItem in item.Filters)
+                        {
+                            <option value="@salaryItem.ID">@salaryItem.Label</option>
+                        }
+                    </select>
+                    foreach (var salaryItem in item.Filters)
+                    {
+                        var lower = 15000;
+                        var upper = 300000;
+                        if (salaryItem.Label == "Hourly Rate")
+                        {
+                            lower = 18;
+                            upper = 200;
+                        }
+                        <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
+
+                            <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
+                                 data-cur_min="@lower" data-cur_max="@upper">
+
+                                <div class="bar"></div>
+                                <div class="leftGrip"></div>
+                                <div class="rightGrip"></div>
+                            </div>
+                            <div class="leftLabel">$<span>@lower</span></div>
+                            <div class="rightLabel">$<span>@upper</span></div>
+
+                        </div>
+                    }
+                }
+            }
+        </div>
     </div>
-</div>
 }
 
 <script type="text/javascript">
@@ -245,20 +245,19 @@
             });
 
 
-            debugger;
-            //var value = $('#input_hidden_field').val(); //retrieve array
-            //value = JSON.parse(value);
-
             var array = $('#hdnClassifcationValues').val();
+
             if (array != null && array != "") {
                 array = JSON.parse(array);
+                //console.table(array);
                 for (var i = 0; i < array.length; i++) {
-                    $('#' + array[i]["id"] + '> a').addClass('active');
-                    $('#' + array[i]["id"] + '> i').removeClass('fa-square-o').addClass('fa-check-square-o');
-
-                    
+                    $('#' + array[i] + '> a').addClass('active');
+                    $('#' + array[i] + '> i').removeClass('fa-square-o').addClass('fa-check-square-o');
                 }
             }
+
+
+
 
             function eachClickFilter() {
                 var filterModel = {};
@@ -296,25 +295,28 @@
                 filterModel.Keywords = encodeURIComponent($("#selectedkeywordsfilter").val());
                 filterModel.SortBy = $("#sortOrder").val();// We need to persist the sort order selected in job search results
                 var data = { filterModel: filterModel }
-                var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
+
+                var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial_WithLeftFilterSelected";
                 var queryStringData = makeQueryString(filterModel, "", false);
+                //console.log(queryStringData);
                 var pushStateUrl = $(location).attr('pathname') + "?" + queryStringData;
-                window.history.pushState(data, "", pushStateUrl);
-                queryStringArr.length = 0;
-                $.ajax({
-                    type: "POST",
-                    cache: false,
-                    url: urlPath,
-                    data: queryStringData,
-                    dataType: 'json',
-                    success: function (response) {
-                        $("#resultsPagePartialContent").empty().html(response.jobResults);
-                        $("#filtersPagePartialContent").empty().html(response.jobResultsFilter);
-                    },
-                    error: function (response) {
-                        console.log(response);
-                    }
-                });
+                window.location.href = '/jobs/advancedsearch/search-result' + "?" + queryStringData;
+                //window.history.pushState(data, "", pushStateUrl);
+                //queryStringArr.length = 0;
+                //$.ajax({
+                //    type: "POST",
+                //    cache: false,
+                //    url: urlPath,
+                //    data: queryStringData,
+                //    dataType: 'json',
+                //    success: function (response) {
+                //        $("#resultsPagePartialContent").empty().html(response.jobResults);
+                //        $("#filtersPagePartialContent").empty().html(response.jobResultsFilter);
+                //    },
+                //    error: function (response) {
+                //        console.log(response);
+                //    }
+                //});
             }
         }
 

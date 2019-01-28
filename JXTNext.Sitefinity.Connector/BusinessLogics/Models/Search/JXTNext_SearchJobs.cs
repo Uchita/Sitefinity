@@ -30,6 +30,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
         public List<JobDetailsFullModel> SearchResults { get; set; }
         [JsonProperty(PropertyName = "searchResultsFilters")]
         public List<JobFilterRoot> SearchResultsFilters { get; set; }
+        [JsonProperty(PropertyName = "SelectedFilters")]
+        public List<String> SelectedFilters { get; set; }
     }
 
     public enum SearchSortBy

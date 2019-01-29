@@ -169,8 +169,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
                     sortBy = SearchSortBy.Salary_Low_to_High;
                     break;
 
-                default:
+                case "Recent":
                     sortBy = SearchSortBy.Recent;
+                    break;
+
+                default:
+                    sortBy = SearchSortBy.Relevance;
                     break;
 
             }
@@ -204,8 +208,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
                     sortBy = "SalaryLowToHigh";
                     break;
 
-                default:
+                case SearchSortBy.Recent:
                     sortBy = "Recent";
+                    break;
+                
+                default:
+                    sortBy = "Relevance";
                     break;
 
             }

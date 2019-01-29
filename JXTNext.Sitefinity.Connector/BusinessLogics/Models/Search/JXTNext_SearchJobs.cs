@@ -11,7 +11,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
     {
         public int PageSize { get; set; }
         public int PageNumber { get; set; }
-
+        public StatusSearch FieldSearches { get; set; }
         public ConsultantIdentitySearch ConsultantSearchIdentity { get; set; }
         public List<KeywordSearch> KeywordsSearchCriteria { get; set; }
         public List<IClassificationSearch> ClassificationsSearchCriteria { get; set; }
@@ -39,7 +39,13 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
         A_to_Z,
         Z_to_A,
         Salary_High_to_Low,
-        Salary_Low_to_High
+        Salary_Low_to_High,
+        Relevance
+    }
+
+    public class StatusSearch
+    {
+        public int Status { get; set; }
     }
 
     public class KeywordSearch

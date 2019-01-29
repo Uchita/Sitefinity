@@ -75,6 +75,9 @@
         var salary = { TargetValue: 'Salary', LowerRange: 15000, UpperRange: 300000 };
         var modelSalary = JSON.parse('@Html.Raw(Json.Encode(ViewBag.Salary))');
 
+        var tempKeyword = $("#selectedkeywordsfilter").val();
+        $("#selectedkeywordsfilter").val('').focus().val(tempKeyword);
+
         if (modelSalary != null && modelSalary != 'undefined') {
             $('.SalaryRangeSelect').val(modelSalary.TargetValue);
             $('#' + modelSalary.TargetValue).removeClass('visible-hidden');
@@ -138,14 +141,11 @@
 
 
 
-        $('#selectedkeywordsfilter').on('keyup', function (e) {
-            clearTimeout(typingTimer);
-            if ($(this).val) {
-                typingTimer = setTimeout(function () {
-                    //getting the loader while the job search is working
-                    $("#selectedkeywordsfilter").parent().addClass('loader');
-                    eachClickFilter();
-                }, doneTypingInterval);
+        $('#selectedkeywordsfilter').on('keydown', function (e) {
+            if ($(this).val && e.which == 13) {
+                //getting the loader while the job search is working
+                $("#selectedkeywordsfilter").parent().addClass('loader');
+                eachClickFilter();
             }
         });
 
@@ -276,8 +276,14 @@
                     }
                 });
 
+
                 if (isSalaryExists && isSlarySelected){
-                    filterModel.Salary = salary;
+                    if (modelSalary != null && modelSalary != undefined && (modelSalary.LowerRange > salary.LowerRange || modelSalary.UpperRange < salary.UpperRange)) {
+                        filterModel.Salary = modelSalary;
+                    }
+                    else {
+                        filterModel.Salary = salary;
+                    }
                 }
 
                 filterModel.Keywords = encodeURIComponent($("#selectedkeywordsfilter").val());

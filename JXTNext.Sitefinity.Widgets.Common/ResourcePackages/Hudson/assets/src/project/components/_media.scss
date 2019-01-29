@@ -955,6 +955,7 @@
 
     .jumbotron-container .jumbotron {
         min-height: 320px;
+        height: 320px;
 
         .h1, h1 {
             font-size: 30px;
@@ -1090,7 +1091,9 @@
     }
     div#filtersPagePartialContent{
         padding-top: 50px;
-        
+        > div{
+            padding-top: 0;
+        }
         .keywordfilter{
             display: none;
             margin-top:10px;
@@ -1536,6 +1539,13 @@
             .caption{
                 min-height: 150px;
             }
+        }
+    }
+
+    .tbl-wrapper{
+        overflow: auto;
+        table{
+            min-width: 500px;
         }
     }
 

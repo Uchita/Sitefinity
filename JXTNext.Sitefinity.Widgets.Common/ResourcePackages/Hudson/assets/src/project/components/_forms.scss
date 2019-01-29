@@ -26,7 +26,6 @@
 .page-wrapper {
     .basic-form {
         margin-top: 50px;
-        font-family: $font-family-regular;
 
         .form-control {
             color: $global-text-color;
@@ -350,10 +349,6 @@
         clear: both;
         margin-bottom: 2rem;
         overflow: hidden;
-        h2{
-            font-size: 3.2rem;
-            margin-bottom: 0.5rem;
-        }
         ul {
             padding-top: 15px;
             li {
@@ -387,7 +382,7 @@
         button.dropdown-toggle{
             width: 100%;
             text-align: left;
-            padding: 12px 10px;
+            padding: 12px 20px 12px 10px;
             color: $global-text-color;
             text-transform: none;
             font: $global-font-size/1 $font-family-regular;
@@ -449,6 +444,7 @@
 
                 .btn {
                     height: 35px;
+                    line-height: 1.2;
                     min-width: 120px;
                     padding: 6px 10px;
                 }

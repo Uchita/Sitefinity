@@ -28,9 +28,9 @@
     $(document).ajaxComplete( function() {
         if ($('.header-top-links').data('sf-role') == 'sf-logged-in-view')
         {
-            var userName = $('.header-top-links a[data-sf-role="sf-logged-in-name"]').text();
+            var userName = $('.header-top-links a[data-sf-role="sf-logged-in-name"]').first().text();
             userFirstName = userName.split(' ')[0];
-            $('.header-top-links a[data-sf-role="sf-logged-in-name"]').text(userFirstName);
+            $('.header-top-links [data-sf-role="sf-logged-in-name"]').text(userFirstName);
         }
     });
 </script>

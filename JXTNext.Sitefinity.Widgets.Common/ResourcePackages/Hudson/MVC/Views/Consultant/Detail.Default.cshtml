@@ -14,25 +14,36 @@
 @using Telerik.Sitefinity.Pages.Model;
 @using Telerik.Sitefinity.Modules.Libraries;
 
+@{
+    List<string> filterValues = new List<string>();
 
-<div class="row consultant-page">
+    if (Model.Item.Fields.Category != null)
+    {
+        foreach (var taxon in Model.Item.GetHierarchicalTaxons("Category"))
+        {
+            filterValues.Add(taxon.Name);
+        }
+    }
+}
 
-	@if(Model.Item.Fields.Pic != null)
-	{
-		<div class="col-md-4">
-            <img class="full-width" src="@MediaContentExtensions.ResolveThumbnailUrl(Model.Item.Fields.Pic.DataItem, "thumb350")" alt="@Model.Item.Fields.Pic.Fields.Title"/>
+<div class="row consultant-page" data-filtersector="@(string.Join(",", filterValues))">
+
+    @if (Model.Item.Fields.Pic != null)
+    {
+        <div class="col-md-4">
+            <img class="full-width" src="@MediaContentExtensions.ResolveThumbnailUrl(Model.Item.Fields.Pic.DataItem, "thumb350")" alt="@Model.Item.Fields.Pic.Fields.Title" />
         </div>
     }
-	
-	<div class="col-md-8">
+
+    <div class="col-md-8">
         <div class="contact-consultant-name color-highlight">@Html.HtmlSanitize((string)Model.Item.Fields.ConsultantName)</div>
-        
-		@if(Model.Item.Fields.Office != null)
+
+        @if (Model.Item.Fields.Office != null)
         {
             var OfficeLocationName = "";
             var OfficeLocationUrl = "";
 
-            
+
             if (Model.Item.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
             {
                 OfficeLocationName = Html.HtmlSanitize((string)Model.Item.Fields.Office.Fields.Name).ToString();
@@ -55,39 +66,41 @@
                 OfficeLocationName = string.Join(", ", OfficeLocationNameList.ToArray());
                 OfficeLocationUrl = string.Join(",", OfficeLocationUrlList.ToArray());
             }
-          
-        <div class="contact-consultant-position">@Html.HtmlSanitize((string)Model.Item.Fields.Position), @OfficeLocationName</div>
+
+            <div class="contact-consultant-position">@Html.HtmlSanitize((string)Model.Item.Fields.Position), @OfficeLocationName</div>
         }
-		else
-		{
-			<div class="contact-consultant-position">@Html.HtmlSanitize((string)Model.Item.Fields.Position)</div>
-		}
-		
-		<div>@Html.HtmlSanitize((string)Model.Item.Fields.Bio)
+        else
+        {
+            <div class="contact-consultant-position">@Html.HtmlSanitize((string)Model.Item.Fields.Position)</div>
+        }
+
+        <div>
+            @Html.HtmlSanitize((string)Model.Item.Fields.Bio)
         </div>
-		
-			
-		<div class="contact-consultant-contacts">
-			@if(!string.IsNullOrWhiteSpace(@Model.Item.Fields.Email))
-			{
-				<em class="far fa-envelope"></em><a href="mailto:@Model.Item.Fields.Email">@Model.Item.Fields.Email</a><br />
-			}
-				
-			@if(!string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber))
-			{
-				<a href="tel:@Model.Item.Fields.PhoneNumber"><em class="fas fa-phone"></em>@Model.Item.Fields.PhoneNumber</a><br />
-			}
-				
-			@if(!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
-			{
-				<a href="@Model.Item.Fields.LinkedInProfileUrl"><em class="fab fa-linkedin-in"></em>@Model.Item.Fields.LinkedInProfileName</a>
-			}
-		</div>
-		
+
+
+        <div class="contact-consultant-contacts">
+            @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.Email))
+            {
+                <em class="far fa-envelope"></em><a href="mailto:@Model.Item.Fields.Email">@Model.Item.Fields.Email</a><br />
+            }
+
+            @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber))
+            {
+                <a href="tel:@Model.Item.Fields.PhoneNumber"><em class="fas fa-phone"></em>@Model.Item.Fields.PhoneNumber</a><br />
+            }
+
+            @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
+            {
+                <a href="@Model.Item.Fields.LinkedInProfileUrl"><em class="fab fa-linkedin-in"></em>@Model.Item.Fields.LinkedInProfileName</a>
+            }
+        </div>
+
     </div>
 </div>
 <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-8">
-        <h3>Contact me</h3></div>
+        <h3>Contact me</h3>
+    </div>
 </div>

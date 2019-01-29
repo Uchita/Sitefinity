@@ -14,16 +14,6 @@
 {
     <br /><div class="alert alert-info">@ViewBag.PostBackMessage</div>
 }
-
-@if (ViewBag.SeekResumeError == true)
-{
-    <br /><div class="alert alert-danger">@ViewBag.SeekResumeErrorMessage</div>
-}
-
-@if (ViewBag.JobRecordExists == true)
-{
-    <br /><div class="alert alert-danger">@ViewBag.JobRecordExistsErrorMessage</div>
-}
 <div class="login-form sign-in-with">
     <form id="job-app-form" action="@Url.Action("ApplyJob","JobApplication")" method="post" enctype="multipart/form-data" autocomplete="off">
 
@@ -41,7 +31,7 @@
                     <div id="check-login" class="form-group">
                         <div class="row">
                             <div class="col-md-4 text-right">
-                                <label class="form-label" for="userid">Email*</label>
+                                <label class="form-label" for="userid">@Html.Resource("Email", "LoginFormResources")*</label>
                             </div>
                             <div class="col-md-8">
                                 <input id="userid" type="text" name="Email" class="form-control" required placeholder="Enter email address to begin" autocomplete="email" aria-describedby="email-verify-message" />
@@ -54,7 +44,7 @@
                         <div id="firstname-lastname">
                             <div class="row">
                                 <div class="col-md-4 text-right">
-                                    <label class="form-label" for="firstname-reg">Name*</label>
+                                    <label class="form-label" for="firstname-reg">@Html.Resource("Name", "LoginFormResources")*</label>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -83,33 +73,32 @@
 
                         <div class="row form-group">
                             <div class="col-md-4 text-right">
-                                <label class="form-label" for="password-reg">Password*</label>
+                                <label class="form-label" for="password-reg">@Html.Resource("Password","Labels")*</label>
                             </div>
                             <div class="col-md-8">
                                 <input id="password-reg" type="password" name="Password" class="form-control" autocomplete="off" placeholder="Choose your password" aria-describedby="password-message" />
                                 <span class="hidden alert alert-danger error-message wrongPassword-message">
-                                    Your password is incorrect!
+                                    @Html.Resource("InvalidPassword", "ErrorMessages")
                                 </span>
                                 <span class="hidden alert alert-danger error-message emptyPassword-message">
-                                    Please enter password.
+                                    @Html.Resource("PasswordCannotBeEmpty", "Labels")
                                 </span>
                                 <span id="password-guide" class="text-muted">
-                                    passwordRequirementMsg
-                                    <em>@Html.Resource("passwordRequirementMsg", "Labels")</em>
+                                    <em>@Html.Resource("passwordRequirementMsg","Labels")</em>
                                 </span>
                                 <div id="forgot-password" class="form-group forgot-password hidden">
-                                    <br /><a href="/sign-in/ForgotPassword/">Forgot password?</a>
+                                    <br /><a href="/sign-in/ForgotPassword/">@Html.Resource("ForgottenPasword", "LoginFormResources")</a>
                                 </div>
 
                                 <div class="form-group" id="rememberme-block">
                                     <div class="checkbox clearfix">
                                         <input checked="checked" id="RememberMe" name="RememberMe" type="checkbox" value="true">
                                         <span class="checkbox-icon fas fa-check"></span>
-                                        Stay signed in
+                                        @Html.Resource("RememberMe", "LoginFormResources")
                                     </div>
                                 </div>
 
-                                <input type="button" id="sign-in-btn" class="form-group hidden btn btn-primary btn-block" data-jobid="@Model.JobId" value="Sign in to continue" />
+                                <input type="button" id="sign-in-btn" class="form-group hidden btn btn-primary btn-block" data-jobid="@Model.JobId" value="@Html.Resource("JobApplicationSignIn", "JobApplicationResources")" />
                             </div>
                         </div>
 
@@ -126,11 +115,11 @@
 
                         <div class="row form-group reg-field hidden">
                             <div class="col-md-4 text-right">
-                                <label class="form-label" for="ReTypePassword">Repeat Password*</label>
+                                <label class="form-label" for="ReTypePassword">@Html.Resource("ReTypePassword", "RegistrationResources")*</label>
                             </div>
                             <div class="col-md-8">
                                 <input id="ReTypePassword" type="password" name="ReTypePassword" class="form-control" placeholder="Retype your password" />
-                                <div class='alert alert-danger error-message hidden'>'Repeat Password' does not match.</div>
+                                <div class='alert alert-danger error-message hidden'>@Html.Resource("ConfirmPasswordErrorMsg", "ErrorMessages")</div>
                             </div>
                         </div>
 
@@ -147,50 +136,19 @@
 
                     var loginElemHide = "";
 
-                    <div id="upload-files-container" hidden>
+                <div id="upload-files-container" hidden>
 
 
-                        @if (ViewBag.IsUserLoggedIn)
-                        {
-                            loginElemHide = "hidden";
+                    @if (ViewBag.IsUserLoggedIn)
+                    {
+                        loginElemHide = "hidden";
 
-                            <div class="form-group row">
-                                <label class="form-label col-xs-12 col-md-4 text-right"></label>
-                                <div class="col-xs-12 col-md-8">
-                                    <div class="list-group">
-                                        <label for="selectresume" class="radiobutton">
-                                            <input id="selectresume" type="radio" name="resume" class="checked" checked />
-                                            <span class="radiobutton-icon fas fa-circle"></span>
-                                            <span class="text-right">Select a resume stored on Hudson</span>
-                                        </label>
-                                        <label for="uploadresume" class="radiobutton">
-                                            <input id="uploadresume" type="radio" name="resume" />
-                                            <span class="radiobutton-icon fas fa-circle"></span>
-                                            <span class="text-right">Upload a resume</span>
-                                        </label>
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                            <div class="form-group row">
-                                <label class="form-label col-xs-12 col-md-4 text-right"></label>
-                                <div class="col-xs-12 col-md-8">
-                                    <div class="list-group select">
-                                        @Html.DropDownList("MySavedResumes", (IEnumerable<SelectListItem>)ViewBag.ResumeList, new { @onchange = "ProcessSavedResume(this.value)" })
-                                    </div><!-- end box -->
-
-                                </div>
-                            </div>
-                        }
-
-                        <div class="form-group row" id="user-profile-resume" hidden>
+                        <div class="form-group row">
                             <label class="form-label col-xs-12 col-md-4 text-right"></label>
                             <div class="col-xs-12 col-md-8">
                                 <div class="list-group">
                                     <label for="selectresume" class="radiobutton">
-                                        <input id="selectresume" type="radio" name="resume" checked />
+                                        <input id="selectresume" type="radio" name="resume" class="checked" checked />
                                         <span class="radiobutton-icon fas fa-circle"></span>
                                         <span class="text-right">Select a resume stored on Hudson</span>
                                     </label>
@@ -202,123 +160,152 @@
                                 </div>
 
                             </div>
+                        </div>
+
+
+                        <div class="form-group row">
                             <label class="form-label col-xs-12 col-md-4 text-right"></label>
                             <div class="col-xs-12 col-md-8">
                                 <div class="list-group select">
-                                    <select id="user-profile-resume-list"></select><!-- end box -->
-                                </div>
-
-                            </div>
-                        </div>
-
-
-                        <!-- Resume -->
-                        <div class="form-group row" id="uploadresumeblock" @loginElemHide>
-                            <label class="form-label col-xs-12 col-md-4 text-right">upload your resume*</label>
-                            <div class="col-xs-12 col-md-8">
-                                <div class="box clearfix text-center">
-                                    <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
-                                    <div class="uploadfield-wrap">
-                                        <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
-
-
-                                        <small class="lbl">Browse</small>
-                                    </div>
-                                    <div class="uploadfield-wrap dropbox-upload">
-                                        <button type="button" id="dropbox-resume-btn">Dropbox Resume</button>
-                                        <small class="lbl">Dropbox</small>
-                                    </div>
-                                    <div class="uploadfield-wrap google-drive-upload">
-                                        <button type="button" id="resume-google-drive-btn">Google Drive Resume</button>
-                                        <small class="lbl">Google Drive</small>
-                                    </div>
-                                    <span class="note resume-name"></span>
+                                    @Html.DropDownList("MySavedResumes", (IEnumerable<SelectListItem>)ViewBag.ResumeList, new { @onchange = "ProcessSavedResume(this.value)" })
                                 </div><!-- end box -->
 
                             </div>
                         </div>
+                    }
 
-                        <!-- Coverletter -->
-                        <div class="form-group row">
-                            <label class="form-label col-xs-12 col-md-4 text-right">upload Cover Letter</label>
-                            <div class="col-xs-12 col-md-8">
-                                <div class="box clearfix text-center">
-                                    <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
-                                    <div class="uploadfield-wrap">
-                                        <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
-                                        <small class="lbl">Browse</small>
-                                    </div>
-                                    <div class="uploadfield-wrap dropbox-upload">
-                                        <button type="button" id="dropbox-coverletter-btn">Dropbox Cover Letter</button>
-                                        <small class="lbl">Dropbox</small>
-                                    </div>
-                                    <div class="uploadfield-wrap google-drive-upload">
-                                        <button type="button" id="coverletter-google-drive-btn">Google Drive CoverLetter</button>
-                                        <small class="lbl">Google Drive</small>
-                                    </div>
-                                    <span class="note coverletter-name"></span>
-                                </div><!-- end box -->
+                    <div class="form-group row" id="user-profile-resume" hidden>
+                        <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                        <div class="col-xs-12 col-md-8">
+                            <div class="list-group">
+                                <label for="selectresume" class="radiobutton">
+                                    <input id="selectresume" type="radio" name="resume" checked />
+                                    <span class="radiobutton-icon fas fa-circle"></span>
+                                    <span class="text-right">Select a resume stored on Hudson</span>
+                                </label>
+                                <label for="uploadresume" class="radiobutton">
+                                    <input id="uploadresume" type="radio" name="resume" />
+                                    <span class="radiobutton-icon fas fa-circle"></span>
+                                    <span class="text-right">Upload a resume</span>
+                                </label>
                             </div>
-                        </div>
 
-                        <!-- Documents -->
-                        <div class="form-group row">
-                            <label class="form-label col-xs-12 col-md-4 text-right">upload documents</label>
-                            <div class="col-xs-12 col-md-8">
-                                <div class="box clearfix text-center">
-                                    <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
-                                    <div class="uploadfield-wrap">
-                                        <input type="file" multiple id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
-                                        <small class="lbl">Browse</small>
-                                    </div>
-                                    <div class="uploadfield-wrap dropbox-upload">
-                                        <button type="button" id="dropbox-documents-btn">Dropbox Documents</button>
-                                        <small class="lbl">Dropbox</small>
-                                    </div>
-                                    <div class="uploadfield-wrap google-drive-upload">
-                                        <button type="button" id="documents-google-drive-btn">Google Drive Documents</button>
-                                        <small class="lbl">Google Drive</small>
-                                    </div>
-                                    <span class="note documents-name"></span>
-                                </div><!-- end box -->
+                        </div>
+                        <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                        <div class="col-xs-12 col-md-8">
+                            <div class="list-group select">
+                                <select id="user-profile-resume-list"></select><!-- end box -->
                             </div>
+
                         </div>
-
-
-                        <input type="hidden" id="uploadResumeJson" name="UploadFilesResume" />
-                        <input type="hidden" id="uploadCoverLetterJson" name="UploadFilesCoverLetter" />
-                        <input type="hidden" id="uploadDocumentsJson" name="UploadFilesDocuments" />
-                        <input type="hidden" id="resume-selected-type" name="ResumeSelectedType" />
-                        <input type="hidden" id="coverletter-selected-type" name="CoverLetterSelectedType" />
-                        <input type="hidden" id="documents-selected-type" name="DocumentsSelectedType" />
-                        <input type="hidden" id="email-selected" name="Email" />
-                        <input type="hidden" id="jobid" name="JobId" value="@Model.JobId" />
-                        <input type="hidden" id="applicationemail" name="ApplicationEmail" value="@Model.ApplicationEmail" />
-                        <input type="hidden" id="contactdetails" name="ContactDetails" value="@Model.ContactDetails" />
-                        <input type="hidden" id="companyname" name="CompanyName" value="@ViewBag.CompanyName" />
-                        <input type="hidden" id="urlReferral" name="UrlReferral" value="@Model.UrlReferral" />
-
-
-
-
-                        <div class="form-group button-wrapper row">
-                            <label class="col-xs-12 col-md-4"></label>
-                            <div class="col-xs-12 col-md-8">
-                                <div class="checkbox clearfix">
-
-                                    <input name="privacypolicy" title="Please agree to Hudson's privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Please agree to Hudson\'s privacy policy');" type="checkbox" value="agree">
-                                    <span class="checkbox-icon fas fa-check"></span>
-                                    I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
-                                </div>
-                                <input id="apply" type="submit" value="Apply Now" class="btn btn-block btn-primary" disabled />
-                            </div>
-                        </div>
-
-                        <div class="hidden alert alert-danger error-message resume-message">
-                            Please upload your resume!
-                        </div>
-
                     </div>
+
+
+                    <!-- Resume -->
+                    <div class="form-group row" id="uploadresumeblock" @loginElemHide>
+                        <label class="form-label col-xs-12 col-md-4 text-right">upload your resume*</label>
+                        <div class="col-xs-12 col-md-8">
+                            <div class="box clearfix text-center">
+                                <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
+                                <div class="uploadfield-wrap">
+                                    <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
+
+
+                                    <small class="lbl">Browse</small>
+                                </div>
+                                <div class="uploadfield-wrap dropbox-upload">
+                                    <button type="button" id="dropbox-resume-btn">Dropbox Resume</button>
+                                    <small class="lbl">Dropbox</small>
+                                </div>
+                                <div class="uploadfield-wrap google-drive-upload">
+                                    <button type="button" id="resume-google-drive-btn">Google Drive Resume</button>
+                                    <small class="lbl">Google Drive</small>
+                                </div>
+                                <span class="note resume-name"></span>
+                            </div><!-- end box -->
+
+                        </div>
+                    </div>
+
+                    <!-- Coverletter -->
+                    <div class="form-group row">
+                        <label class="form-label col-xs-12 col-md-4 text-right">upload Cover Letter</label>
+                        <div class="col-xs-12 col-md-8">
+                            <div class="box clearfix text-center">
+                                <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
+                                <div class="uploadfield-wrap">
+                                    <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
+                                    <small class="lbl">Browse</small>
+                                </div>
+                                <div class="uploadfield-wrap dropbox-upload">
+                                    <button type="button" id="dropbox-coverletter-btn">Dropbox Cover Letter</button>
+                                    <small class="lbl">Dropbox</small>
+                                </div>
+                                <div class="uploadfield-wrap google-drive-upload">
+                                    <button type="button" id="coverletter-google-drive-btn">Google Drive CoverLetter</button>
+                                    <small class="lbl">Google Drive</small>
+                                </div>
+                                <span class="note coverletter-name"></span>
+                            </div><!-- end box -->
+                        </div>
+                    </div>
+
+                    <!-- Documents -->
+                    <div class="form-group row">
+                        <label class="form-label col-xs-12 col-md-4 text-right">upload documents</label>
+                        <div class="col-xs-12 col-md-8">
+                            <div class="box clearfix text-center">
+                                <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
+                                <div class="uploadfield-wrap">
+                                    <input type="file" multiple id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
+                                    <small class="lbl">Browse</small>
+                                </div>
+                                <div class="uploadfield-wrap dropbox-upload">
+                                    <button type="button" id="dropbox-documents-btn">Dropbox Documents</button>
+                                    <small class="lbl">Dropbox</small>
+                                </div>
+                                <div class="uploadfield-wrap google-drive-upload">
+                                    <button type="button" id="documents-google-drive-btn">Google Drive Documents</button>
+                                    <small class="lbl">Google Drive</small>
+                                </div>
+                                <span class="note documents-name"></span>
+                            </div><!-- end box -->
+                        </div>
+                    </div>
+
+
+                    <input type="hidden" id="uploadResumeJson" name="UploadFilesResume" />
+                    <input type="hidden" id="uploadCoverLetterJson" name="UploadFilesCoverLetter" />
+                    <input type="hidden" id="uploadDocumentsJson" name="UploadFilesDocuments" />
+                    <input type="hidden" id="resume-selected-type" name="ResumeSelectedType" />
+                    <input type="hidden" id="coverletter-selected-type" name="CoverLetterSelectedType" />
+                    <input type="hidden" id="documents-selected-type" name="DocumentsSelectedType" />
+                    <input type="hidden" id="email-selected" name="Email" />
+                    <input type="hidden" id="jobid" name="JobId" value="@Model.JobId" />
+                    <input type="hidden" id="applicationemail" name="ApplicationEmail" value="@Model.ApplicationEmail" />
+                    <input type="hidden" id="contactdetails" name="ContactDetails" value="@Model.ContactDetails" />
+                    <input type="hidden" id="companyname" name="CompanyName" value="@ViewBag.CompanyName" />
+
+
+
+                    <div class="form-group button-wrapper row">
+                        <label class="col-xs-12 col-md-4"></label>
+                        <div class="col-xs-12 col-md-8">
+                            <div class="checkbox clearfix">
+
+                                <input name="privacypolicy" title="Please agree to Hudson's privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Please agree to Hudson\'s privacy policy');" type="checkbox" value="agree">
+                                <span class="checkbox-icon fas fa-check"></span>
+                                I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                            </div>
+                            <input id="apply" type="submit" value="Apply Now" class="btn btn-block btn-primary" disabled />
+                        </div>
+                    </div>
+
+                    <div class="hidden alert alert-danger error-message resume-message">
+                        Please upload your resume!
+                    </div>
+
+                </div>
                 }
                 else
                 {

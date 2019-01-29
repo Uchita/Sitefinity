@@ -139,12 +139,24 @@
             });
         });
 
-
+        function checkEspecialChar(str) {
+            var especialCharExp = /[^a-zA-Z 0-9 \-+_,.]+/;
+            
+            if (especialCharExp.test(str)) {
+                alert("The keyword contains special character. Please remove any special characters !#$%^&*?<>[]{}=,|\:/\"' or big gaps when copy/pasted.");
+                return false;
+            }
+        }
 
         $('#selectedkeywordsfilter').on('keydown', function (e) {
             if ($(this).val && e.which == 13) {
                 //getting the loader while the job search is working
                 $("#selectedkeywordsfilter").parent().addClass('loader');
+
+                if (checkEspecialChar($(this).val()) == false) {
+                    return false;
+                }
+
                 eachClickFilter();
             }
         });
@@ -152,7 +164,11 @@
         $("#selectedkeywordsfilter").on("search", function (input) {
             if ($(this).val() == "") {
                 //getting the loader while the job search is working
+
                 $("#selectedkeywordsfilter").parent().addClass('loader');
+                if (checkEspecialChar($(this).val()) == false) {
+                    return false;
+                }
                 eachClickFilter();
             }
 

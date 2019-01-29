@@ -20,6 +20,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Models
         public bool Success { get; set; }
         public List<string> Errors { get; set; }
         public string LoginUserEmail { get; set; }
+        public bool ResumeLinkNotExists { get; set; } = false;
     }
 
     public class SocialMediaJobViewModel

@@ -17,7 +17,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
         public string ClassificationsRootName { get; set; }
         public string LocationsRootName { get; set; }
         public string ClassificationsSEORouteName { get; set; }
-
+        public string UrlReferral { get; set; }
         public string ApplicationEmail { get; set; }
 
         // CustomData is of Flat JSON, so we are getting the values as .Sublevel[0]

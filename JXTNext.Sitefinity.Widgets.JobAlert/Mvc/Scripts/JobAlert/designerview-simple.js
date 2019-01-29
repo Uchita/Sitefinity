@@ -14,6 +14,26 @@
             }
         );
 
+        $scope.$watch(
+            'properties.JobAlertEmailTemplateName.PropertyValue',
+            function (newVal, oldVal) {
+                if (!!newVal && newVal !== oldVal) {
+                    $scope.properties.JobAlertEmailTemplateName.PropertyValue = JSON.stringify(newVal);
+                }
+            },
+            true
+        );
+
+        $scope.$watch(
+            'properties.JobAlertEmailTemplateId.PropertyValue',
+            function (newVal, oldVal) {
+                if (!!newVal && newVal !== oldVal) {
+                    $scope.properties.JobAlertEmailTemplateId.PropertyValue = newVal;
+                }
+            },
+            true
+        );
+
         propertyService.get()
             .then(function (data) {
                 $scope.properties = propertyService.toAssociativeArray(data.Items);

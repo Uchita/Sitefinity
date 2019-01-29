@@ -129,7 +129,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         applyJobModel.ContactDetails = Request.Form["ContactDetails"];
                         applyJobModel.ApplicationEmail = Request.Form["ApplicationEmail"];
                         applyJobModel.CompanyName = Request.Form["CompanyName"];
-                        
+                        applyJobModel.UrlReferral = Request.Form["UrlReferral"];
+
                         return ApplyJob(applyJobModel);
                     }
 
@@ -152,6 +153,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             JobApplicationViewModel jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Available, "Upload your files to Apply");
             ViewBag.CssClass = this.CssClass;
+            ViewBag.SeekResumeError = false;
+            ViewBag.JobRecordExists = false;
             var uploadFileInfo = this.SerializedCloudSettingsParams == null ? null : JsonConvert.DeserializeObject<JobApplicationUploadFilesModel>(this.SerializedCloudSettingsParams);
 
             jobApplicationViewModel.UploadFiles = uploadFileInfo;
@@ -161,6 +164,17 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             string userEmail = String.Empty;
             string userFirstName = String.Empty;
             var currentIdentity = ClaimsManager.GetCurrentIdentity();
+            if(Request.QueryString["error"] == "resume")
+            {
+                ViewBag.SeekResumeError = true;
+                ViewBag.SeekResumeErrorMessage = "Resume is not available in your seek profile. Please upload and reapply for the job.";
+            }
+
+            if (Request.QueryString["error"] == "exists")
+            {
+                ViewBag.JobRecordExists = true;
+                ViewBag.JobRecordExistsErrorMessage = "Job already applied.";
+            }
 
             if (currentIdentity.IsAuthenticated)
             {
@@ -170,6 +184,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     userEmail = currUser.Email;
                     userFirstName = SitefinityHelper.GetUserFirstNameById(currUser.Id);
                 }
+
+                if(jobid.HasValue)
+                    ViewBag.IsJobApplied = _isMemberAppliedJob(jobid.Value);
 
                 isUserLoggedIn = true;
                 ViewBag.isLoggedIn = true;
@@ -197,13 +214,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 jobApplicationViewModel.ContactDetails = jobListingResponse.Job.CustomData["ContactDetails"];
                 ViewBag.CompanyName = jobListingResponse.Job.CustomData["CompanyName"];
                 ViewBag.JobLocation = jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"];
+                jobApplicationViewModel.UrlReferral = Request.QueryString["source"];
             }
 
             if (isUserLoggedIn && !string.IsNullOrEmpty(userEmail))
             {
                 var response = _blConnector.GetMemberByEmail(userEmail);
                 List<SelectListItem> myResumes = new List<SelectListItem>();
-                myResumes.Add(new SelectListItem { Text = "SELECT YOUR CV", Value = "0" });
+                myResumes.Add(new SelectListItem { Text = "SELECT YOUR RESUME", Value = "0" });
                 if (response.Member?.ResumeFiles != null)
                 {
                     var resumeList = JsonConvert.DeserializeObject<List<ProfileResume>>(response.Member.ResumeFiles);
@@ -354,7 +372,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
 
-            EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
+            EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, ovverideEmail),
                                                                                                 new EmailTarget(applyJobModel.ContactDetails, applyJobModel.ApplicationEmail),
                                                                                                 this.AdvertiserEmailTemplateEmailSubject,
                                                                                                 htmlAdvertiserEmailContent, emailAttachments);
@@ -409,7 +427,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
             #endregion
-            
+
             //Create Application 
             IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(
                 new JXTNext_MemberApplicationRequest {
@@ -421,7 +439,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     EmailNotification = emailNotificationSettings,
                     AdvertiserEmailNotification = advertiserEmailNotificationSettings,
                     AdvertiserName = applyJobModel.ContactDetails,
-                    CompanyName = applyJobModel.CompanyName
+                    CompanyName = applyJobModel.CompanyName,
+                    UrlReferral = applyJobModel.UrlReferral
                 },
                 ovverideEmail);
 
@@ -445,12 +464,16 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 {
                     isJobApplicationSuccess = true;
                     jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Applied_Successful, "Your application was successfully processed");
-                    bool profileUploadResult = AddUploadedResumeToProfileDashBoard(attachments.Where(x => x.AttachmentType == JobApplicationAttachmentType.Resume).FirstOrDefault(), ovverideEmail);
-                    if (!profileUploadResult)
+                    if(sourceResume != JobApplicationAttachmentSource.Saved)
                     {
-                        TempData["PostBackMessage"] = "Unable to attach resume to Profile";
-                        return Redirect(Request.UrlReferrer.PathAndQuery);
+                        bool profileUploadResult = AddUploadedResumeToProfileDashBoard(attachments.Where(x => x.AttachmentType == JobApplicationAttachmentType.Resume).FirstOrDefault(), ovverideEmail);
+                        if (!profileUploadResult)
+                        {
+                            TempData["PostBackMessage"] = "Unable to attach resume to Profile";
+                            return Redirect(Request.UrlReferrer.PathAndQuery);
+                        }
                     }
+                    
                 }
 
             }
@@ -551,13 +574,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     {
                         //if you need to get the user instance use the out parameter
                         Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
+
                         SecurityManager.AuthenticateUser(userManager.Provider.Name, email, password, staySignedIn, out userToAuthenticate);
                         if (userToAuthenticate != null)
                         {
                             isUserSignedIn = true;
                             Log.Write($"ValidateUser userToAuthenticate : " + userToAuthenticate, ConfigurationPolicy.ErrorLog);
                         }
-                            
                     }
                 }
                 #endregion
@@ -585,30 +608,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             
         }
 
+
         [HttpPost]
         public JsonResult IsJobApplied(int jobId)
         {
             try
             {
-                bool isJobApplied = false;
-                Log.Write($"IsJobApplied method1", ConfigurationPolicy.ErrorLog);
-                JXTNext_MemberAppliedJobResponse appliedJobresponse = _blConnector.MemberAppliedJobsGet() as JXTNext_MemberAppliedJobResponse;
-                Log.Write($"IsJobApplied method appliedJobresponse.Success = " + appliedJobresponse.Success, ConfigurationPolicy.ErrorLog);
-                Log.Write($"IsJobApplied method appliedJobresponse.MemberAppliedJobs = " + appliedJobresponse.MemberAppliedJobs, ConfigurationPolicy.ErrorLog);
-
-                if (appliedJobresponse.Success)
-                {
-                    foreach (var item in appliedJobresponse.MemberAppliedJobs)
-                    {
-                        if (item.JobId == jobId)
-                        {
-                            isJobApplied = true;
-                            Log.Write($"IsJobApplied isJobApplied 1 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
-                            break;
-                        }
-                    }
-                }
-                Log.Write($"IsJobApplied isJobApplied 2 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
+                bool isJobApplied = _isMemberAppliedJob(jobId);
                 return new JsonResult { Data = isJobApplied };
             }
             catch (Exception ex)
@@ -618,6 +624,31 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
             
         }
+
+        private bool _isMemberAppliedJob(int jobId)
+        {
+            bool isJobApplied = false;
+            Log.Write($"IsJobApplied method1", ConfigurationPolicy.ErrorLog);
+            JXTNext_MemberAppliedJobResponse appliedJobresponse = _blConnector.MemberAppliedJobsGet() as JXTNext_MemberAppliedJobResponse;
+            Log.Write($"IsJobApplied method appliedJobresponse.Success = " + appliedJobresponse.Success, ConfigurationPolicy.ErrorLog);
+            Log.Write($"IsJobApplied method appliedJobresponse.MemberAppliedJobs = " + appliedJobresponse.MemberAppliedJobs, ConfigurationPolicy.ErrorLog);
+
+            if (appliedJobresponse.Success)
+            {
+                foreach (var item in appliedJobresponse.MemberAppliedJobs)
+                {
+                    if (item.JobId == jobId)
+                    {
+                        isJobApplied = true;
+                        Log.Write($"IsJobApplied isJobApplied 1 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
+                        break;
+                    }
+                }
+            }
+
+            return isJobApplied;
+        }
+
         private JobApplicationAttachmentSource GetAttachmentSourceType(string sourceType)
         {
             if (sourceType.ToUpper() == "DROPBOX")
@@ -1068,6 +1099,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             return selectedLinks;
         }
+
+        
 
         private bool AddUploadedResumeToProfileDashBoard(JobApplicationAttachmentUploadItem resume,String Email)
         {

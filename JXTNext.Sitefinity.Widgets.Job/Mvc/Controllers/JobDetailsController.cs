@@ -16,6 +16,8 @@ using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure;
+using System.Web;
+using Telerik.Sitefinity.Abstractions;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -122,6 +124,18 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             JobDetailsViewModel viewModel = new JobDetailsViewModel();
             if (jobId.HasValue)
             {
+
+                // Get job source or url referral
+
+                string UrlReferral = string.Empty;
+                if (!string.IsNullOrWhiteSpace(Request.QueryString["source"]))
+                    UrlReferral = Request.QueryString["source"];
+                else
+                    UrlReferral = this.GetCookieDomain(Request.Cookies["JobsViewed"], jobId.Value);
+
+                viewModel.UrlReferral = UrlReferral;
+                Log.Write($" viewModel.UrlReferral  : " + viewModel.UrlReferral, ConfigurationPolicy.ErrorLog);
+
                 IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = jobId.Value };
                 IGetJobListingResponse jobListingResponse = _BLConnector.GuestGetJob(jobListingRequest);
 
@@ -282,6 +296,41 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             return origin;
         }
+
+        public string GetCookieDomain(HttpCookie httpCookie, int jobid)
+        {
+            string cookieDomain;
+            if (httpCookie != null)
+            {
+                string jobviewedcookie = httpCookie.Value;
+                string[] jobviewed = jobviewedcookie.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] tempjobids = null;
+                string tempjobid = string.Empty;
+                foreach (string viewed in jobviewed)
+                {
+                    // Retrieve Job ID
+                    tempjobids = viewed.Split(new char[] { '|' });
+                    tempjobid = tempjobids[0];
+
+                    // if Job ID matches
+                    if (tempjobid == jobid.ToString())
+                    {
+                        if (tempjobids.Length == 2)
+                        {
+                            // Retrieve Domain
+                            cookieDomain = tempjobids[1];
+                        }
+                    }
+                }
+            }
+
+            // If the referrer doesn't exists then its always the domain the user is in.
+            cookieDomain = HttpContext.Request.Url.Host.ToLower().Replace("www.", string.Empty);
+            // If the referrer doesn't exists then its always the domain the user is in.
+            return cookieDomain;
+        }
+
+
 
         internal const string WidgetIconCssClass = "sfMvcIcn";
         public string CssClass { get; set; }

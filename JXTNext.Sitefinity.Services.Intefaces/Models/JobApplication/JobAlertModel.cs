@@ -1,5 +1,6 @@
 ﻿using JXTNext.FileHandler.FileHandlerServices.Dropbox;
 using JXTNext.FileHandler.Models.Dropbox;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,7 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert
         public string SalaryStringify { get; set; }
         public JobAlertSalaryFilterReceiver Salary { get; set; }
         public JobAlertStatus Status { get; set; }
+        public EmailNotificationSettings JobAlertEmailNotifications { get; set; }
         public string Data { get; set; }
     }
 

@@ -8,7 +8,7 @@
     <span class="header-top-links" data-sf-role="sf-logged-in-view" style="display: none">
         <span>@Html.Resource("LoggedAs", "LoginStatusExtendedResources") </span>
         <a href="@(Model.ProfilePageUrl ?? "#")" data-sf-role="sf-logged-in-name" class="sf-mr-m"></a>
-        <a href="/sitefinity/signout?sts_signout=true">@Html.Resource("Logout")</a>
+        <a href="/Sitefinity/SignOut?redirect_uri=">@Html.Resource("Logout")</a>
     </span>
 
     <span class="header-top-links" data-sf-role="sf-logged-out-view" style="display: none">

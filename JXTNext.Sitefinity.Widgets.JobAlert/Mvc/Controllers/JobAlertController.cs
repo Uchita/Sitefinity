@@ -125,7 +125,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 model.Salary = JsonConvert.DeserializeObject<JobAlertSalaryFilterReceiver>(model.SalaryStringify);
             }
-            
+
+            if(String.IsNullOrEmpty(model.Email))
+                model.Email = SitefinityHelper.GetLoggedInUserEmail();
+
             model.Data = JobAlertUtility.ConvertJobAlertViewModelToSearchModel(model, filtersVMList);
             // Create Email Notification
             EmailNotificationSettings jobAlertEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.JobAlertEmailTemplateSenderName, this.JobAlertEmailTemplateSenderEmailAddress),
@@ -148,7 +151,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
             }
 
-            model.JobAlertEmailNotifications = jobAlertEmailNotificationSettings;
+            model.EmailNotifications = jobAlertEmailNotificationSettings;
             var response = GetUpsertResponse(model);
             var stausMessage = "A Job Alert has been created successfully.";
             var alertStatus = JobAlertStatus.SUCCESS;

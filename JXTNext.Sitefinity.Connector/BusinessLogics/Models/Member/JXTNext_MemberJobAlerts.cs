@@ -16,7 +16,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member
         public long DateCreated { get; set; }
         public string Data { get; set; }
         public string Email { get; set; }
-        public EmailNotificationSettings JobAlertEmailNotifications { get; set; }
+        public EmailNotificationSettings EmailNotification { get; set; }
     }
 
     public class JXTNext_MemberUpsertJobAlertResponse : ConnectorBaseResponse, IMemberUpsertJobAlertResponse

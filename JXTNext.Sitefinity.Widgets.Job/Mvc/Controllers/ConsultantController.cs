@@ -64,9 +64,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             if (item.DoesFieldExist("Email"))
             {
-                var email = item.GetString("Email");
-              
-                JobSearchResultsFilterModel filterModelNew = new JobSearchResultsFilterModel() { ConsultantSearch = new Consultant() { Email = email } };
+                //var email = item.GetString("Email");
+                string consultantFullName = item.GetString("ConsultantName");
+                List<string> consultantNameList = consultantFullName.Split(new char[] { ' '}).ToList();
+                JobSearchResultsFilterModel filterModelNew = new JobSearchResultsFilterModel() { ConsultantSearch = new Consultant() { Email = null, FirstName = consultantNameList.First(),LastName = consultantNameList.Last() } };
 
                 if (!this.PageSize.HasValue || this.PageSize.Value <= 0)
                     this.PageSize = PageSizeDefaultValue;

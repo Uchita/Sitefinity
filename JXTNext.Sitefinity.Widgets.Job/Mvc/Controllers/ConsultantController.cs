@@ -62,7 +62,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             dynamic dynamicJobResultsList = null;
 
-            if (item.DoesFieldExist("Email"))
+            if (item.DoesFieldExist("Email") && item.DoesFieldExist("ConsultantName"))
             {
                 var email = item.GetString("Email");
                 string consultantFullName = item.GetString("ConsultantName");

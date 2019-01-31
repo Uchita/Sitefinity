@@ -477,7 +477,7 @@
                             total: response.Total,
                         });
                         $(".count-num").html(response.Total);
-
+                        highestPage = response.Total / pageSize;
                         var sorttext = getSortOrder();
                         var token = sorttext.split(':');
 

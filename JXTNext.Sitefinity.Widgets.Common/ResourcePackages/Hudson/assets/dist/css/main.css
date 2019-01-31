@@ -11356,8 +11356,6 @@ select.articles-order {
     margin-top: 0; }
     .page-wrapper .reg-form .basic-form .login-border {
       padding-top: 0; }
-  .page-wrapper .basic-form .form-group .text-right {
-    padding-left: 0; }
   .page-section .right-bottom-img img {
     max-width: 43%; }
   .page-section .center-bottom-img img {
@@ -12011,7 +12009,7 @@ select.articles-order {
     padding-right: 35px; }
     .thumbnail.card-rollover .card-rollover-more .btn {
       position: absolute;
-      bottom: 7px;
+      bottom: -2px;
       right: 0; }
   .thumbnail .display-table {
     display: table;
@@ -12234,7 +12232,7 @@ select.articles-order {
       width: 100px;
       vertical-align: middle; }
       .thumbnail.card-rollover .card-rollover-image img {
-        max-width: 90px; }
+        max-width: 80px; }
     .thumbnail.card-rollover .caption {
       display: table-cell;
       vertical-align: middle;

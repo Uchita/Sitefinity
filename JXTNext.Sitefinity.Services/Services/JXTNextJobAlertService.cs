@@ -108,7 +108,7 @@ namespace JXTNext.Sitefinity.Services.Services
                 Status = 1,
                 MemberJobAlertId = memberJobAlertId,
                 Email = jobAlertData.Email,
-                JobAlertEmailNotifications = jobAlertData.JobAlertEmailNotifications
+                EmailNotification = jobAlertData.EmailNotifications
             };
             IMemberUpsertJobAlertResponse response = _BLconnector.MemberUpsertJobAlert(request, SitefinityHelper.IsUserLoggedIn());
 

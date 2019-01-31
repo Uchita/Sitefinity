@@ -62,43 +62,64 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             dynamic dynamicJobResultsList = null;
 
-            if (item.DoesFieldExist("Email") && item.DoesFieldExist("ConsultantName"))
+            JobSearchResultsFilterModel filterModelNew = new JobSearchResultsFilterModel();
+            if (item.DoesFieldExist("ConsultantName"))
             {
-                var email = item.GetString("Email");
+                ViewBag.ConsultantName = item.GetString("ConsultantName");
                 string consultantFullName = item.GetString("ConsultantName");
-                JobSearchResultsFilterModel filterModelNew = null;
+                
                 if (!string.IsNullOrEmpty(consultantFullName))
                 {
                     List<string> consultantNameList = consultantFullName.Split(new char[] { ' ' }).ToList();
-                    filterModelNew = new JobSearchResultsFilterModel() { ConsultantSearch = new Consultant() { Email = null, FirstName = consultantNameList.First(), LastName = consultantNameList.Last() } };
+                    filterModelNew.ConsultantSearch = new Consultant();
+                    filterModelNew.ConsultantSearch.Email = null;
+                    filterModelNew.ConsultantSearch.FirstName = consultantNameList.First();
+                    if (consultantNameList.Count > 1)
+                        filterModelNew.ConsultantSearch.LastName = consultantNameList.Last();
+
+                    if (!this.PageSize.HasValue || this.PageSize.Value <= 0)
+                        this.PageSize = PageSizeDefaultValue;
+
+                    JXTNext_SearchJobsRequest request = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModelNew, this.PageSize, PageSizeDefaultValue);
+
+                    string sortingBy = this.Sorting;
+                    if (filterModelNew != null && !filterModelNew.SortBy.IsNullOrEmpty())
+                        sortingBy = filterModelNew.SortBy;
+
+                    request.SortBy = JobSearchResultsFilterModel.GetSortEnumFromString(sortingBy);
+                    ViewBag.SortOrder = JobSearchResultsFilterModel.GetSortStringFromEnum(request.SortBy);
+
+                    ISearchJobsResponse response = _BLConnector.SearchJobs(request);
+                    JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
+                    dynamicJobResultsList = jobResultsList as dynamic;
                 }
-                else
+            }
+            else if (item.DoesFieldExist("Email"))
+            {
+                var email = item.GetString("Email");
+                if (!string.IsNullOrEmpty(email))
                 {
                     filterModelNew = new JobSearchResultsFilterModel() { ConsultantSearch = new Consultant() { Email = email } };
+
+                    if (!this.PageSize.HasValue || this.PageSize.Value <= 0)
+                        this.PageSize = PageSizeDefaultValue;
+
+                    JXTNext_SearchJobsRequest request = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModelNew, this.PageSize, PageSizeDefaultValue);
+
+                    string sortingBy = this.Sorting;
+                    if (filterModelNew != null && !filterModelNew.SortBy.IsNullOrEmpty())
+                        sortingBy = filterModelNew.SortBy;
+
+                    request.SortBy = JobSearchResultsFilterModel.GetSortEnumFromString(sortingBy);
+                    ViewBag.SortOrder = JobSearchResultsFilterModel.GetSortStringFromEnum(request.SortBy);
+
+                    ISearchJobsResponse response = _BLConnector.SearchJobs(request);
+                    JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
+                    dynamicJobResultsList = jobResultsList as dynamic;
                 }
-                
-                
-
-                if (!this.PageSize.HasValue || this.PageSize.Value <= 0)
-                    this.PageSize = PageSizeDefaultValue;
-
-                JXTNext_SearchJobsRequest request = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModelNew, this.PageSize, PageSizeDefaultValue);
-
-                string sortingBy = this.Sorting;
-                if (filterModelNew != null && !filterModelNew.SortBy.IsNullOrEmpty())
-                    sortingBy = filterModelNew.SortBy;
-
-                request.SortBy = JobSearchResultsFilterModel.GetSortEnumFromString(sortingBy);
-                ViewBag.SortOrder = JobSearchResultsFilterModel.GetSortStringFromEnum(request.SortBy);
-
-                ISearchJobsResponse response = _BLConnector.SearchJobs(request);
-                JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
-                dynamicJobResultsList = jobResultsList as dynamic;
             }
 
 
-            if (item.DoesFieldExist("ConsultantName"))
-                ViewBag.ConsultantName = item.GetString("ConsultantName");
            
             ViewBag.PageSize = (int)this.PageSize;
             ViewBag.CssClass = this.CssClass;

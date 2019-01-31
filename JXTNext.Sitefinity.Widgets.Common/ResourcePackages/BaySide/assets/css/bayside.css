@@ -3536,6 +3536,10 @@ button.bg-dark:focus {
     max-width: none;
 }
 
+    .app-header .col-auto:first-child > div a {
+        display: block;
+    }
+
 .app-content .col-1,
 .app-footer .col-1,
 .app-header .col-1 {
@@ -4899,7 +4903,6 @@ h3,
 h2,
 .h2 {
     color: #000;
-    font-size: 32px;
     line-height: 1.3;
     margin-bottom: 20px
 }
@@ -4910,7 +4913,9 @@ h2,
 
 h2,
 .h2 {
+    color: #000;
     font-weight: 300;
+    font-size: 32px;
     padding-bottom: 10px;
 }
 
@@ -4921,19 +4926,20 @@ h2,
 
 h3,
 .h3 {
-    font-weight: normal;
+    font-weight: 500;
+    font-size: 19px;
 }
 
 h4 {
-    color: #000;
-    font-weight: 600;
+    font-size: 17px;
+    font-weight: 500;
 }
 
 .app-content li,
 p {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.5;
-    font-weight: 400;
+    font-weight: 300;
     color: #333132;
 }
 
@@ -4951,7 +4957,7 @@ p {
 .search-results li, p {
     font-size: 16px;
     line-height: 1.5;
-    font-weight: 400;
+    font-weight: 300;
     color: #333132;
 }
 
@@ -4964,7 +4970,7 @@ p {
 }
 
 .btn {
-    font-size: 1em;
+    font-size: 14px;
     border-radius: 4px;
     font-weight: 400;
     padding: 6px 23px 8px;
@@ -5211,8 +5217,8 @@ p {
         right: 0;
         top: 50%;
         transform: translate(0%, -50%) scale(1);
-        font-size: 22px;
-        font-weight: 400;
+        font-size: 19px;
+        font-weight: 300;
         color: #efefef;
         margin: 0;
     }
@@ -5261,6 +5267,7 @@ p {
 
 .quote-text {
     position: relative;
+    font-size: 19px;
 }
 
     .quote-text:after, .quote-text:before {
@@ -5383,7 +5390,7 @@ p {
 }
 
 .g-section.our-specialist p, .g-section.why-work p {
-    font-weight: 400;
+    font-weight: 300;
 }
 
 .g-section.our-services {
@@ -5409,7 +5416,7 @@ p {
         color: #333132;
         font-size: 14px;
         line-height: 17px;
-        font-weight: 400;
+        font-weight: 300;
         max-width: 225px;
         margin-left: auto;
         margin-right: auto;
@@ -5862,7 +5869,7 @@ select.hs-input {
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: end;
     justify-content: space-between;
     padding: 0.5rem 1rem;
     margin-bottom: 0;
@@ -5959,7 +5966,7 @@ select.hs-input {
     display: inline-block;
     width: auto;
     height: auto;
-    margin-left: 0.255em;
+    /*margin-left: 0.255em;*/
     vertical-align: 0;
     content: "\f107";
     border: none;
@@ -6019,16 +6026,17 @@ select.hs-input {
     font-style: normal;
     cursor: pointer;
     padding: 1px;
-    transition: transform 0.3s;
+    /*transition: transform 0.3s;*/
     color: #333132;
     margin: 0 0 0 2px;
     background: none;
     border: none;
+    min-width: 11px;
 }
 
 .app-header .main-menu .navbar-nav .nav-item:hover .menu-toggle {
     color: #0088CF;
-    transform: rotate(-180deg);
+    transform: rotate(-0deg);
 }
 
 @media (max-width: 991px) {
@@ -6083,9 +6091,9 @@ select.hs-input {
             background-color: #fff;
         }
 
-        .app-header .navbar-nav .dropdown .dropdown-toggle:after {
+        /*.app-header .navbar-nav .dropdown .dropdown-toggle:after {
             transition: transform 0.3s;
-        }
+        }*/
 
         .app-header .navbar-nav .dropdown.show .dropdown-toggle:after, .app-header .navbar-nav .dropdown.open .dropdown-toggle:after, .app-header .navbar-nav .dropdown.focus .dropdown-toggle:after, .app-header .navbar-nav .dropdown:hover .dropdown-toggle:after {
             transform: rotate(-180deg);
@@ -6123,6 +6131,11 @@ select.hs-input {
 @media (max-width: 991px) {
     .navbar.top-navbar {
         display: none;
+    }
+
+    .app-header .main-menu .navbar-nav .nav-item.open .menu-toggle {
+        color: #0088CF;
+        transform: rotate(-180deg);
     }
 }
 
@@ -6857,6 +6870,7 @@ select.hs-input {
 
     .section-graphics .section-heading {
         margin-bottom: 20px;
+        color: #fff;
     }
 
     .section-graphics .section-desc {
@@ -6871,6 +6885,7 @@ select.hs-input {
     .section-graphics p {
         color: #fff;
     }
+
 
     .section-graphics .graphic-col {
         padding-top: 20px;
@@ -8686,3 +8701,16 @@ privacy-policy {
 .black-bg .container .row {
     margin-left: 0px !important;
 }
+
+.left-sidebar .sm-wrapper {
+    display: -webkit-flex;
+    -webkit-flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+    .left-sidebar .sm-wrapper #CompanyName {
+        order: 1;
+        margin-top: 20px;
+    }

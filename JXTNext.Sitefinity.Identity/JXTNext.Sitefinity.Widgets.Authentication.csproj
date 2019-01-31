@@ -122,6 +122,9 @@
     <Reference Include="RazorGenerator.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\RazorGenerator.Mvc.2.3.12\lib\net40\RazorGenerator.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.Text, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.5.0.2\lib\net45\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -247,10 +250,17 @@
   <ItemGroup>
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="Mvc\Controllers\JXTNextResumeController.cs" />
+    <Compile Include="Mvc\Controllers\LoginFormController.cs" />
     <Compile Include="Mvc\Controllers\UsersListExtendedController.cs" />
     <Compile Include="Mvc\Helpers\UsersHelperExtended.cs" />
     <Compile Include="Mvc\Models\JXTNextResume\ProfileResumeJsonModel.cs" />
     <Compile Include="Mvc\Models\JXTNextResume\ProfileResumeViewModel.cs" />
+    <Compile Include="Mvc\Models\LoginForm\ForgotPasswordViewModel.cs" />
+    <Compile Include="Mvc\Models\LoginForm\ILoginFormModel.cs" />
+    <Compile Include="Mvc\Models\LoginForm\LoginFormModel.cs" />
+    <Compile Include="Mvc\Models\LoginForm\LoginFormViewModel.cs" />
+    <Compile Include="Mvc\Models\LoginForm\ResetPasswordInputModel.cs" />
+    <Compile Include="Mvc\Models\LoginForm\ResetPasswordViewModel.cs" />
     <Compile Include="Mvc\Models\UsersListExtended\IUsersListExtendedModel.cs" />
     <Compile Include="Mvc\Models\UsersListExtended\SelectionModeExtended.cs" />
     <Compile Include="Mvc\Models\UsersListExtended\SitefinityProfileItemExtendedViewModel.cs" />
@@ -258,6 +268,9 @@
     <Compile Include="Mvc\Models\UsersListExtended\UsersListExtendedModel.cs" />
     <Compile Include="Mvc\Models\UsersListExtended\UsersListExtendedViewModel.cs" />
     <Compile Include="Mvc\StringResources\JXTNextResumeResources.cs" />
+    <Compile Include="Mvc\StringResources\LoginFormResources.cs" />
+    <Compile Include="Mvc\StringResources\LoginFormStaticResources.cs" />
+    <Compile Include="Mvc\StringResources\LoginStatusExtendedResources.cs" />
     <Compile Include="Mvc\StringResources\UsersListExtendedResources.cs" />
     <Compile Include="UserProfileMvcOutputCacheVariation.cs" />
     <Compile Include="Widgets_AuthenticationModule.cs" />
@@ -266,7 +279,6 @@
     <Compile Include="Mvc\Models\LoginStatusExtended\LoginStatusExtendedModel.cs" />
     <Compile Include="Mvc\Models\LoginStatusExtended\LoginStatusExtendedViewModel.cs" />
     <Compile Include="Mvc\Models\LoginStatusExtended\StatusExtendedViewModel.cs" />
-    <Compile Include="Mvc\StringResources\LoginStatusExtendedResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -282,6 +294,11 @@
     <EmbeddedResource Include="Mvc\Views\JXTNextResume\Resume.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JXTNextResume\DesignerView.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JXTNextResume\DesignerView.Simple.json" />
+    <None Include="Mvc\Views\LoginForm\DesignerView.Simple.cshtml" />
+    <None Include="Mvc\Views\LoginForm\DesignerView.Simple.json" />
+    <None Include="Mvc\Views\LoginForm\ForgotPassword.ForgottenPassword.cshtml" />
+    <None Include="Mvc\Views\LoginForm\LoginForm.LoginForm.cshtml" />
+    <None Include="Mvc\Views\LoginForm\ResetPassword.ResetPassword.cshtml" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -308,7 +325,10 @@
       <Name>JXTNext.Sitefinity.Services.Intefaces</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Mvc\Scripts\LoginForm\designerview-simple.js" />
+    <Content Include="Mvc\Scripts\LoginForm\login-form.js" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mvc\Scripts\JXTNextResume\designerview-simple.js" />
   </ItemGroup>

@@ -5679,7 +5679,6 @@ p {
 
 .feedback_form {
     width: 100%;
-    float: left;
     padding: 60px 0;
     color: #000;
 }
@@ -6270,6 +6269,7 @@ select.hs-input {
     background: #3c4044;
     padding: 90px 0;
     color: #BCBEC0;
+    clear: both;
 }
 
     .app-footer h4 {

@@ -12009,7 +12009,7 @@ select.articles-order {
     padding-right: 35px; }
     .thumbnail.card-rollover .card-rollover-more .btn {
       position: absolute;
-      bottom: 7px;
+      bottom: -2px;
       right: 0; }
   .thumbnail .display-table {
     display: table;
@@ -12232,7 +12232,7 @@ select.articles-order {
       width: 100px;
       vertical-align: middle; }
       .thumbnail.card-rollover .card-rollover-image img {
-        max-width: 90px; }
+        max-width: 80px; }
     .thumbnail.card-rollover .caption {
       display: table-cell;
       vertical-align: middle;

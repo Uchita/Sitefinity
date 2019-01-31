@@ -65,11 +65,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             JobSearchResultsFilterModel filterModelNew = new JobSearchResultsFilterModel();
             if (item.DoesFieldExist("ConsultantName"))
             {
-                ViewBag.ConsultantName = item.GetString("ConsultantName");
+                
                 string consultantFullName = item.GetString("ConsultantName");
                 
                 if (!string.IsNullOrEmpty(consultantFullName))
                 {
+                    ViewBag.ConsultantName = consultantFullName;
                     List<string> consultantNameList = consultantFullName.Split(new char[] { ' ' }).ToList();
                     filterModelNew.ConsultantSearch = new Consultant();
                     filterModelNew.ConsultantSearch.Email = null;

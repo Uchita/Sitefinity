@@ -47,6 +47,26 @@
             }
         );
 
+        $scope.$watch(
+            'properties.JobAlertEmailTemplateName.PropertyValue',
+            function (newVal, oldVal) {
+                if (!!newVal && newVal !== oldVal) {
+                    $scope.properties.JobAlertEmailTemplateName.PropertyValue = JSON.stringify(newVal);
+                }
+            },
+            true
+        );
+
+        $scope.$watch(
+            'properties.JobAlertEmailTemplateId.PropertyValue',
+            function (newVal, oldVal) {
+                if (!!newVal && newVal !== oldVal) {
+                    $scope.properties.JobAlertEmailTemplateId.PropertyValue = newVal;
+                }
+            },
+            true
+        );
+
         $scope.addNewRow = function () {
             var newRowId = $scope.rows.length + 1;
             var newRow = { 'RowId': newRowId, 'ID': '', 'ControlType': '', 'FilterType': '', DefaultValue: '', PlaceholderText: '', Filters: [] };

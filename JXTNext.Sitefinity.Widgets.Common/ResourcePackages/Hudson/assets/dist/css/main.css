@@ -7670,7 +7670,7 @@ blockquote {
   .page-wrapper .font-bold {
     font-family: AkzidGroProBol, sans-serif; }
   .page-wrapper .thumbnail.card-rollover {
-    background-color: transparent; }
+    background-color: transparent !important; }
   .page-wrapper .label-none label, .page-wrapper .strong-none strong {
     display: none; }
   .page-wrapper .color-highlight {
@@ -8190,14 +8190,18 @@ header {
         header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu a {
           background: #2e2e2e;
           color: #fff; }
+        header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu.header-top-links span {
+          position: static;
+          line-height: 1; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .timesheet-mnu a {
         padding-bottom: 15px; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .combine-mnu {
         padding: 16px 20px; }
         header .mobile-nav.left-sidebar .nav.navbar-nav .combine-mnu a {
           display: inline;
-          border-bottom: none;
-          background: none; }
+          border: none;
+          background: none;
+          margin-left: 0; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .social-mnu {
         padding-top: 0;
         padding-bottom: 0; }
@@ -9748,6 +9752,9 @@ ul.breadcrumb {
       min-width: 150px; }
   .page-wrapper .basic-form .upload-section {
     margin: 10px 0 20px 0; }
+
+#job-app-form .basic-form {
+  margin-top: 0; }
 
 #officeAddress {
   margin-left: 0;
@@ -11349,8 +11356,6 @@ select.articles-order {
     margin-top: 0; }
     .page-wrapper .reg-form .basic-form .login-border {
       padding-top: 0; }
-  .page-wrapper .basic-form .form-group .text-right {
-    padding-left: 0; }
   .page-section .right-bottom-img img {
     max-width: 43%; }
   .page-section .center-bottom-img img {
@@ -12004,7 +12009,7 @@ select.articles-order {
     padding-right: 35px; }
     .thumbnail.card-rollover .card-rollover-more .btn {
       position: absolute;
-      bottom: 7px;
+      bottom: -2px;
       right: 0; }
   .thumbnail .display-table {
     display: table;
@@ -12227,7 +12232,7 @@ select.articles-order {
       width: 100px;
       vertical-align: middle; }
       .thumbnail.card-rollover .card-rollover-image img {
-        max-width: 90px; }
+        max-width: 80px; }
     .thumbnail.card-rollover .caption {
       display: table-cell;
       vertical-align: middle;

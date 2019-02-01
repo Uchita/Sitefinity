@@ -18,6 +18,7 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
         public int JobId { get; set; }
         public string ApplicationEmail { get; set; }
         public string ContactDetails { get; set; }
+        public string UrlReferral { get; set; }
         public List<ApplyWithSocialMedia> ApplyWithSocialMediaInfo { get; set; }
     }
 
@@ -46,6 +47,7 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
         public string ApplicationEmail { get; set; }
         public string ContactDetails { get; set; }
         public string CompanyName { get; set; }
+        public string UrlReferral { get; set; }
     }
 
     public class UploadFilesFormPostModel

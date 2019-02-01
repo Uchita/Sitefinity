@@ -4,36 +4,44 @@
 
 <section class="cta job_feature" style="background-color:@Model.BackgroundColor">
     <div class="container">
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col-12 text-center">
                 @if (@Model.BackgroundColor == "#EFEFEF")
                 {
-                    <h3 class="text-black">
+                    <h2 class="text-white">
                         @if (!string.IsNullOrEmpty(Model.GroupHeader))
                         {
-                            @Model.GroupHeader
+                            @Html.HtmlSanitize(@Model.GroupHeader)
                         }
-                    </h3>
+                    </h2>
                 }
                 else
                 {
-                    <h3 class="text-black">
+                    <h2 class="text-white">
                         @if (!string.IsNullOrEmpty(Model.GroupHeader))
                         {
-                            @Model.GroupHeader
+                            @Html.HtmlSanitize(@Model.GroupHeader)
                         }
-                    </h3>
+                    </h2>
                 }
 
                 @if (@Model.Cards.Count == 1)
                 {
-                    <a href="@Html.HtmlSanitize(@Model.Cards[0].ActionUrl)" class="btn btn-primary @Model.Cards[0].Heading">@Html.HtmlSanitize(@Model.Cards[0].ActionName)</a>
+                    <a href="@Html.HtmlSanitize(@Model.Cards[0].ActionUrl)" class="btn btn-outline-primary @Model.Cards[0].Heading">@Html.HtmlSanitize(@Model.Cards[0].ActionName)</a>
                 }
                 else if (@Model.Cards.Count == 2)
                 {
-                    <a href="@Html.HtmlSanitize(@Model.Cards[0].ActionUrl)" class="btn btn-primary mr-4  @Model.Cards[0].Heading">@Html.HtmlSanitize(@Model.Cards[0].ActionName)</a>
-                    <a href="@Html.HtmlSanitize(@Model.Cards[1].ActionUrl)" class="btn btn-primary dark-btn @Model.Cards[1].Heading">@Html.HtmlSanitize(@Model.Cards[1].ActionName)</a>
+                    <a href="@Html.HtmlSanitize(@Model.Cards[0].ActionUrl)" class="btn btn-outline-primary mr-4 @Model.Cards[0].Heading">@Html.HtmlSanitize(@Model.Cards[0].ActionName)</a>
+                    <a href="@Html.HtmlSanitize(@Model.Cards[1].ActionUrl)" class="btn btn-outline-primary @Model.Cards[1].Heading">@Html.HtmlSanitize(@Model.Cards[1].ActionName)</a>
                 }
+
+                <style>
+
+                    .job_feature .btn.btn-outline-primary:hover {
+                        color: @Model.BackgroundColor;
+                    }
+                </style>
+
             </div>
         </div>
     </div>

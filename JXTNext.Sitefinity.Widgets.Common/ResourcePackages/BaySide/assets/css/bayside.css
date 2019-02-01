@@ -5457,7 +5457,7 @@ p {
         }
 
     .video-wrap .video-title {
-        font-size: 34px;
+        /*font-size: 34px;*/
         line-height: 55px;
         margin-top: 20px;
         margin-bottom: 20px;
@@ -5660,7 +5660,7 @@ p {
 
 /*=========IDS=====*/
 .job_feature .text-white {
-    font-size: 28px;
+    /*font-size: 28px;*/
     color: #fff;
     padding: 0px;
     margin: 0 0 25px 0;
@@ -6372,9 +6372,9 @@ select.hs-input {
         .list-item .bg-image:hover, .list-item .bg-image:focus,
         .news-list .bg-image:hover,
         .news-list .bg-image:focus {
-            -webkit-transform: scale3d(1.05, 1.05, 1.05) rotate3d(1, 1, 1, 1deg);
-            -moz-transform: scale3d(1.05, 1.05, 1.05) rotate3d(1, 1, 1, 1deg);
-            transform: scale3d(1.05, 1.05, 1.05) rotate3d(1, 1, 1, 1deg);
+            -webkit-transform: scale(1.05);
+            -moz-transform: scale(1.05);
+            transform: scale(1.05);
         }
 
     .list-item .list-date,
@@ -6714,21 +6714,35 @@ select.hs-input {
 }
 
 .cta {
-    padding-bottom: 64px;
-    padding-top: 64px;
+    padding-bottom: 25px;
+    padding-top: 25px;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
-    .cta h3 + h3 {
-        margin-top: -10px;
-        line-height: 1;
+    .cta .align-items-center {
+        height: 200px;
     }
 
+@media (max-width: 991px) {
+    .cta .align-items-center {
+        height: auto;
+    }
+}
 
-    .cta h2 {
-        padding: 0px;
+.cta h3 + h3 {
+    margin-top: -10px;
+    line-height: 1;
+}
+
+
+.cta h2 {
+    padding: 0px;
+}
+
+    .cta h2.color-white {
+        color: white;
     }
 
 .bg-image {
@@ -7691,7 +7705,7 @@ select.hs-input {
     padding-right: 40px;
 }
 
-.baner_right_space, .text-margin-left, .content-on-img {
+.baner_right_space, .text-margin-left /*, .content-on-img*/ {
     padding-left: 40px !important;
 }
 
@@ -8699,7 +8713,7 @@ privacy-policy {
 
 
 .black-bg .container .row {
-    margin-left: 0px !important;
+    /*margin-left: 0px !important;*/
 }
 
 .left-sidebar .sm-wrapper {
@@ -8714,3 +8728,25 @@ privacy-policy {
         order: 1;
         margin-top: 20px;
     }
+
+.bullet-points {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+    .bullet-points li {
+        position: relative;
+        padding: 0 0 0 15px;
+    }
+
+        .bullet-points li:after {
+            width: 4px;
+            height: 4px;
+            content: "";
+            background: #333132;
+            border-radius: 100%;
+            position: absolute;
+            top: 11px;
+            left: 0px;
+        }

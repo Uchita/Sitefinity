@@ -158,8 +158,8 @@
                                         }
                                         if (childnode.Url == "/jobs/job-application-tool")
                                         {
-
-                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
+                                            @* @childnode.Url *@
+                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="#">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var subchildnode in childnode.ChildNodes)
                                                 {
@@ -188,7 +188,8 @@
 
                                         if (childNode1.Url == "/jobs/specialist-jobs-new")
                                         {
-                                            <a target="@childNode1.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode1)" href="@childNode1.Url">@childNode1.Title</a>
+                                            @* @childNode1.Url *@
+                                            <a target="@childNode1.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode1)" href="#">@childNode1.Title</a>
 
 
                                             if (childNode1.ChildNodes.Count > 10)
@@ -226,7 +227,8 @@
                                                         {
                                                             if (childNode11.Url == "/jobs/learn-more")
                                                             {
-                                                                <a target="@childNode11.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode11)" href="@childNode11.Url">@childNode11.Title</a>
+                                                                @* @childNode11.Url *@
+                                                                <a target="@childNode11.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode11)" href="#">@childNode11.Title</a>
                                                                 <ul>
                                                                     @foreach (var subNode in childNode11.ChildNodes)
                                                                     {

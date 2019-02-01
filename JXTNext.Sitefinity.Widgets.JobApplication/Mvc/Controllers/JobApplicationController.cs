@@ -35,6 +35,7 @@ using JXTNext.Sitefinity.Services.Intefaces;
 using Telerik.Sitefinity.Abstractions;
 using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.JXTNextResume;
 using System.Dynamic;
+using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -573,14 +574,17 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     if (userManager.ValidateUser(email, password))
                     {
                         //if you need to get the user instance use the out parameter
-                        Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
+                        //Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
 
-                        SecurityManager.AuthenticateUser(userManager.Provider.Name, email, password, staySignedIn, out userToAuthenticate);
-                        if (userToAuthenticate != null)
-                        {
-                            isUserSignedIn = true;
-                            Log.Write($"ValidateUser userToAuthenticate : " + userToAuthenticate, ConfigurationPolicy.ErrorLog);
-                        }
+                        //SecurityManager.AuthenticateUser(userManager.Provider.Name, email, password, staySignedIn, out userToAuthenticate);
+                        //if (userToAuthenticate != null)
+                        //{
+                        //    isUserSignedIn = true;
+                        //    Log.Write($"ValidateUser userToAuthenticate : " + userToAuthenticate, ConfigurationPolicy.ErrorLog);
+                        //}
+                        SitefinityClient client = new SitefinityClient();
+                        client.RequestAuthenticate(userManager.Provider.Name, email, password, staySignedIn, true, true);
+                        isUserSignedIn = true;
                     }
                 }
                 #endregion

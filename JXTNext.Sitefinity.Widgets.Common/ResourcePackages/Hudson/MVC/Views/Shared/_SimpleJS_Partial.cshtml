@@ -76,6 +76,7 @@
         var typingTimer;
         var doneTypingInterval = 500;
         var isSalaryExists = false;
+        var isSalaryChanged = false;
         var isSlarySelected = false;
         var salary = { TargetValue: 'Salary', LowerRange: 15000, UpperRange: 300000 };
         var modelSalary = JSON.parse('@Html.Raw(Json.Encode(ViewBag.Salary))');
@@ -99,10 +100,10 @@
 
         $('.SalaryRangeSelect').on('change', function () {
             isSlarySelected = false;
+            isSalaryChanged = true;
             $('.salaryrangewrapper').each(function (i, obj) {
                 $(this).addClass('visible-hidden');
             });
-            debugger;
             if (this.value != -1) {
                 $(this).addClass('changed');
                 isSlarySelected = true;
@@ -131,7 +132,6 @@
                 "user_mouseup_callback": function (leftValue, rightValue, isLeftGripMoved) {
                     salary.LowerRange = leftValue;
                     salary.UpperRange = rightValue;
-                    debugger;
                     $(this).parent().find('.leftLabel span').text(leftValue);
                     $(this).parent().find('.rightLabel span').text(rightValue);
                     if (isSlarySelected) {
@@ -142,6 +142,9 @@
                     if (!$(this).parent().hasClass('visible-hidden')) {
                         $(this).parent().find('.leftLabel span').text(leftValue);
                         $(this).parent().find('.rightLabel span').text(rightValue);
+                        if (cause != 'init') {
+                            isSalaryChanged = true;
+                        }
                     }
                 }
             });
@@ -303,7 +306,7 @@
                 $("#sortOrder").val("Relevance");
 
                 if (isSalaryExists && isSlarySelected){
-                    if (modelSalary != null && modelSalary != undefined && (modelSalary.LowerRange > salary.LowerRange || modelSalary.UpperRange < salary.UpperRange) && modelSalary.TargetValue == $('.SalaryRangeSelect').val() ) {
+                    if (modelSalary != null && modelSalary != undefined && isSalaryChanged == false && (modelSalary.LowerRange > salary.LowerRange || modelSalary.UpperRange < salary.UpperRange) && modelSalary.TargetValue == $('.SalaryRangeSelect').val() ) {
                         filterModel.Salary = modelSalary;
                     }
                     else {

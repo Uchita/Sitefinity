@@ -243,6 +243,9 @@
     <Content Include="ResourcePackages\Hudson\assets\src\project\js\owl.carousel.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Hudson\assets\src\project\js\slimtable.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

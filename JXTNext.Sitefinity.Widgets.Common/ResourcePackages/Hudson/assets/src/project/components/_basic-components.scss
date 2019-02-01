@@ -1968,10 +1968,53 @@ ul.vertical-ul {
         }
     }
 }
-.tbl-pagination{
+.tbl-pagination, .slimtable-paging-div{
     font-size: 1.4rem;
     margin-top: -15px; 
-    margin-bottom: 25px;
+    margin-bottom: 30px;
+}
+.slimtable-paging-div {
+    overflow: hidden;
+}
+.slimtable-paging-btnsdiv{
+    float: left;
+}
+.slimtable-paging-seldiv {
+    float: right;
+}
+.slimtable-page-btn {
+    font-size: 1.4rem;
+    line-height: 1.45;
+    display: inline-block;
+    padding: 0 10px;
+    border: 1px solid $global-highlight-color;
+    margin-right: 3px;
+    &:hover, &.active{
+        background: $global-highlight-color;
+        color: $brightColor;
+    }
+}
+select.slimtable-paging-select {
+    padding: 0;
+    margin-right: 5px;
+    outline: none!important;
+}
+.slimtable th{
+    position: relative!important;
+}
+.slimtable-sprites::after{
+    content: '\f338';
+    font-family: 'Font Awesome 5 Free';
+    font-size: 1rem;
+    position: absolute;
+    right: 5px;
+    top: 13px;
+}
+.slimtable-sprites.slimtable-sortdesc::after {
+    content: '\f309';
+}
+.slimtable-sprites.slimtable-sortasc::after {
+    content: '\f30c';
 }
 
 

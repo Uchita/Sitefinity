@@ -280,8 +280,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             MembershipCreateStatus membershipCreateStatus;
             ViewBag.PostBackMessage = null;
             ViewBag.IsUserLoggedIn = false;
+            EmailNotificationSettings registrationEmailNotificationSettings = null;
 
-            if(applyJobModel != null && !string.IsNullOrEmpty(applyJobModel.Email))
+            if (applyJobModel != null && !string.IsNullOrEmpty(applyJobModel.Email))
             {
                 applyJobModel.Email = applyJobModel.Email.Trim(',');
             }
@@ -343,6 +344,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         }
                         else
                         {
+                            /// Instantiate Registration email template
+                            registrationEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
+                                                                                                new EmailTarget(applyJobModel.FirstName, applyJobModel.Email),
+                                                                                                this.GetRegistrationHtmlEmailTitle(),
+                                                                                                this.GetRegistrationHtmlEmailContent(), null);
+
+
+
                             //instantiate the Sitefinity user manager
                             //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
                             UserManager userManager = UserManager.GetManager();
@@ -469,7 +478,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     AdvertiserEmailNotification = advertiserEmailNotificationSettings,
                     AdvertiserName = applyJobModel.ContactDetails,
                     CompanyName = applyJobModel.CompanyName,
-                    UrlReferral = applyJobModel.UrlReferral
+                    UrlReferral = applyJobModel.UrlReferral,
+                    RegistrationEmailNotification = registrationEmailNotificationSettings
                 },
                 ovverideEmail);
 
@@ -733,6 +743,33 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return htmlEmailContent;
         }
 
+        private string GetRegistrationHtmlEmailContent()
+        {
+            string htmlEmailContent = String.Empty;
+            if (!String.IsNullOrEmpty(this.RegistrationEmailTemplateId))
+            {
+                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
+                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
+                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.RegistrationEmailTemplateId.ToUpper()));
+                htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
+            }
+
+            return htmlEmailContent;
+        }
+
+        private string GetRegistrationHtmlEmailTitle()
+        {
+            string htmlEmailContent = String.Empty;
+            if (!String.IsNullOrEmpty(this.RegistrationEmailTemplateId))
+            {
+                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
+                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
+                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.RegistrationEmailTemplateId.ToUpper()));
+                htmlEmailContent = emailTemplateItem.GetValue("Title").ToString();
+            }
+
+            return htmlEmailContent;
+        }
         private void FetchFromAmazonS3(string providerName, string libraryName, string itemTitle)
         {
             LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);

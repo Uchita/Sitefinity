@@ -1207,6 +1207,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string AdvertiserEmailTemplateSenderEmailAddress { get; set; }
         public string AdvertiserEmailTemplateEmailSubject { get; set; }
 
+        //Member Registration Email template
+        public string RegistrationEmailTemplateProviderName
+        {
+            get { return _emailTemplateProviderName; }
+            set { this._emailTemplateProviderName = value; }
+        }
+        public string RegistrationEmailTemplateId { get; set; }
+        public string RegistrationEmailTemplateName { get; set; }
+        public string RegistrationEmailTemplateCC { get; set; }
+        public string RegistrationEmailTemplateBCC { get; set; }
+        public string RegistrationEmailTemplateSenderName { get; set; }
+        public string RegistrationEmailTemplateSenderEmailAddress { get; set; }
+        public string RegistrationEmailTemplateEmailSubject { get; set; }
 
         public string CssClass { get; set; }
         public string SerializedCloudSettingsParams { get; set; }

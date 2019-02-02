@@ -177,8 +177,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 ViewBag.JobRecordExistsErrorMessage = "Job already applied.";
             }
 
-            if (currentIdentity.IsAuthenticated)
+            var curUserId = currentIdentity.UserId;
+
+            if (curUserId != Guid.Empty)
             {
+                UserProfileManager userMgr = UserProfileManager.GetManager();
+                UserManager mgr = UserManager.GetManager("Default");
+                User user = mgr.GetUser(curUserId);
+
+                SitefinityProfile profile = null;
+                if (user != null)
+                    profile = userMgr.GetUserProfile<SitefinityProfile>(user);
+
+
                 var currUser = SitefinityHelper.GetUserById(currentIdentity.UserId);
                 if (currUser != null)
                 {
@@ -186,13 +197,30 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     userFirstName = SitefinityHelper.GetUserFirstNameById(currUser.Id);
                 }
 
-                if(jobid.HasValue)
+                if (jobid.HasValue)
                     ViewBag.IsJobApplied = _isMemberAppliedJob(jobid.Value);
 
                 isUserLoggedIn = true;
                 ViewBag.isLoggedIn = true;
                 ViewBag.loginEmail = userEmail;
             }
+
+            //if (currentIdentity.IsAuthenticated)
+            //{
+            //    var currUser = SitefinityHelper.GetUserById(currentIdentity.UserId);
+            //    if (currUser != null)
+            //    {
+            //        userEmail = currUser.Email;
+            //        userFirstName = SitefinityHelper.GetUserFirstNameById(currUser.Id);
+            //    }
+
+            //    if(jobid.HasValue)
+            //        ViewBag.IsJobApplied = _isMemberAppliedJob(jobid.Value);
+
+            //    isUserLoggedIn = true;
+            //    ViewBag.isLoggedIn = true;
+            //    ViewBag.loginEmail = userEmail;
+            //}
 
             ViewBag.IsUserLoggedIn = isUserLoggedIn;
             ViewBag.UserEmail = userEmail;
@@ -574,17 +602,22 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     if (userManager.ValidateUser(email, password))
                     {
                         //if you need to get the user instance use the out parameter
-                        //Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
+                        Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
 
-                        //SecurityManager.AuthenticateUser(userManager.Provider.Name, email, password, staySignedIn, out userToAuthenticate);
-                        //if (userToAuthenticate != null)
-                        //{
-                        //    isUserSignedIn = true;
-                        //    Log.Write($"ValidateUser userToAuthenticate : " + userToAuthenticate, ConfigurationPolicy.ErrorLog);
-                        //}
-                        SitefinityClient client = new SitefinityClient();
-                        client.RequestAuthenticate(userManager.Provider.Name, email, password, staySignedIn, true, true);
-                        isUserSignedIn = true;
+                        SecurityManager.AuthenticateUser(userManager.Provider.Name, email, password, staySignedIn, out userToAuthenticate);
+                        if (userToAuthenticate != null)
+                        {
+                            isUserSignedIn = true;
+                            Log.Write($"ValidateUser userToAuthenticate : " + userToAuthenticate, ConfigurationPolicy.ErrorLog);
+                        }
+                        //SitefinityClient client = new SitefinityClient();
+                        //client.RequestAuthenticate(userManager.Provider.Name, email, password, staySignedIn, true, true);
+                        //isUserSignedIn = true;
+                        //var owinContext = this.HttpContext.Request.GetOwinContext();
+                        //var challengeProperties = ChallengeProperties.ForLocalUser(email, password, userManager.Provider.Name, staySignedIn, this.HttpContext.Request.Url.ToString());
+                        ////challengeProperties.RedirectUri = this.GetReturnURL(context);
+                        //challengeProperties.RedirectUri = ClaimsManager.GetLogoutUrl("/home");
+                        //owinContext.Authentication.Challenge(challengeProperties, ClaimsManager.CurrentAuthenticationModule.STSAuthenticationType);
                     }
                 }
                 #endregion

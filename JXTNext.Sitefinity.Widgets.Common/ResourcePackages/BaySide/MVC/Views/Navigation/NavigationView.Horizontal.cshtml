@@ -159,7 +159,7 @@
                                         if (childnode.Url == "/jobs/job-application-tool")
                                         {
                                             @* @childnode.Url *@
-                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="#">@childnode.Title</a>
+                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var subchildnode in childnode.ChildNodes)
                                                 {

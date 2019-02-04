@@ -46,7 +46,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
                 if (!string.IsNullOrEmpty(filterModel.Keywords))
                     request.KeywordsSearchCriteria = new List<KeywordSearch> { new KeywordSearch { Keyword = filterModel.Keywords } };
 
-                if (filterModel.ConsultantSearch != null && !string.IsNullOrEmpty(filterModel.ConsultantSearch.Email))
+                if (filterModel.ConsultantSearch != null && (!string.IsNullOrEmpty(filterModel.ConsultantSearch.Email) || !string.IsNullOrEmpty(filterModel.ConsultantSearch.FirstName) || !string.IsNullOrEmpty(filterModel.ConsultantSearch.LastName)))
                     request.ConsultantSearchCriteria = new ConsultantSearch() { Email = filterModel.ConsultantSearch.Email, FirstName = filterModel.ConsultantSearch.FirstName, LastName = filterModel.ConsultantSearch.LastName };
 
                 List<IClassificationSearch> classificationSearches = new List<IClassificationSearch>();

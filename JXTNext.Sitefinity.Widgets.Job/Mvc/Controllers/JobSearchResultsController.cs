@@ -27,6 +27,10 @@ using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert;
 using JXTNext.Sitefinity.Services.Intefaces;
 using System.Dynamic;
 using Telerik.Sitefinity.Security.Claims;
+using Telerik.Sitefinity.DynamicModules;
+using Telerik.Sitefinity.Utilities.TypeConverters;
+using Telerik.Sitefinity.Model;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -473,6 +477,31 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             alertModel.Name = alertName;
             searchModel.jobAlertViewModelData = alertModel;
             alertModel.Data = JsonConvert.SerializeObject(searchModel);
+
+            // Code for sending email alerts
+            EmailNotificationSettings jobAlertEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.JobAlertEmailTemplateSenderName, this.JobAlertEmailTemplateSenderEmailAddress),
+                                                                                                new EmailTarget(string.Empty, email),
+                                                                                                this.GetJobAlertHtmlEmailTitle(),
+                                                                                                this.GetJobAlertHtmlEmailContent(), null);
+            if (!this.JobAlertEmailTemplateCC.IsNullOrEmpty())
+            {
+                foreach (var ccEmail in this.JobAlertEmailTemplateCC.Split(';'))
+                {
+                    jobAlertEmailNotificationSettings.AddCC(String.Empty, ccEmail);
+                }
+            }
+
+            if (!this.JobAlertEmailTemplateBCC.IsNullOrEmpty())
+            {
+                foreach (var bccEmail in this.JobAlertEmailTemplateBCC.Split(';'))
+                {
+                    jobAlertEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
+                }
+            }
+
+            alertModel.EmailNotifications = jobAlertEmailNotificationSettings;
+
+
             var response = _jobAlertService.MemberJobAlertUpsert(alertModel);
             return new JsonResult { Data = response };
         }
@@ -856,6 +885,35 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return new { search = json };
         }
 
+        private string GetJobAlertHtmlEmailContent()
+        {
+            string htmlEmailContent = String.Empty;
+            if (!String.IsNullOrEmpty(this.JobAlertEmailTemplateId))
+            {
+                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
+                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
+                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.JobAlertEmailTemplateId.ToUpper()));
+                htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
+
+            }
+            return htmlEmailContent;
+        }
+
+        private string GetJobAlertHtmlEmailTitle()
+        {
+            string htmlEmailTitle = String.Empty;
+            if (!String.IsNullOrEmpty(this.JobAlertEmailTemplateId))
+            {
+                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
+                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
+                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.JobAlertEmailTemplateId.ToUpper()));
+                htmlEmailTitle = emailTemplateItem.GetValue("Title").ToString();
+
+            }
+            return htmlEmailTitle;
+        }
+
+
         private string _serializedFilterData;
         public string SerializedFilterData
         {
@@ -885,8 +943,31 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string KeywordsSelectedJobs { get; set; }
         public bool UseConfigFilters { get; set; }
 
+        public string ItemType
+        {
+            get { return this._itemType; }
+            set { this._itemType = value; }
+        }
+
+
+        public string JobAlertEmailTemplateProviderName
+        {
+            get { return _emailTemplateProviderName; }
+            set { this._emailTemplateProviderName = value; }
+        }
+        public string JobAlertEmailTemplateId { get; set; }
+        public string JobAlertEmailTemplateName { get; set; }
+        public string JobAlertEmailTemplateCC { get; set; }
+        public string JobAlertEmailTemplateBCC { get; set; }
+        public string JobAlertEmailTemplateSenderName { get; set; }
+        public string JobAlertEmailTemplateSenderEmailAddress { get; set; }
+        public string JobAlertEmailTemplateEmailSubject { get; set; }
+
+
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private const int PageSizeDefaultValue = 5;
         private string templateName = "JobsAll";
+        private string _emailTemplateProviderName = "OpenAccessProvider";
+        private string _itemType = "Telerik.Sitefinity.DynamicTypes.Model.StandardEmailTemplate.EmailTemplate";
     }
 }

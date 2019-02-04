@@ -8,11 +8,11 @@
                 {
                     if (Model.Heading == "Customer Service Charter")
                     {
-                        <h3 id="CustomerServiceCharter">@Html.HtmlSanitize(Model.Heading)</h3>
+                        <h2 id="CustomerServiceCharter">@Html.HtmlSanitize(Model.Heading)</h2>
                     }
                     else
                     {
-                        <h3>@Html.HtmlSanitize(Model.Heading)</h3>
+                        <h2>@Html.HtmlSanitize(Model.Heading)</h2>
                     }
                 }
                 <p>
@@ -20,7 +20,7 @@
                 </p>
                 @if (Model.ActionName == "Learn more")
                 {
-                    <a  href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary mt-4">@Model.ActionName</a>
+                    <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary mt-4">@Model.ActionName</a>
                 }
                 else
                 {

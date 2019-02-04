@@ -5408,7 +5408,8 @@ p {
         margin-bottom: 23px;
         color: #000;
         font-size: 20px;
-        font-weight: 600;
+        /*font-weight: 600;*/
+        font-weight: 500;
         line-height: 24px;
     }
 
@@ -6539,7 +6540,8 @@ select.hs-input {
     font-size: 14px;
     line-height: 17px;
     color: #FFFFFF;
-    font-weight: 400;
+    /*font-weight: 400;*/
+    font-weight: 300;
     margin-bottom: 20px;
 }
 

@@ -476,7 +476,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
 
             jobSearch.FieldSearches = new StatusSearch() { Status = 1 };
 
-            jobSearch.FieldRanges = new RangeSearch() { ExpiryDate = new DateRange() { LowerRange = (long)DateTime.Now.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds } };
+            jobSearch.FieldRanges = new RangeSearch() { ExpiryDate = new DateRange() { LowerRange = (long)DateTime.Now.ToUniversalTime().Subtract(UnixEpoch).TotalMilliseconds } };
             //An extra logic layer should be added to handle this model conversion
             dynamic searchAPIModel = new { search = jobSearch, legacyJobSource = Settings_LegacyJobSource };
 
@@ -507,6 +507,10 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             else
                 return new JXTNext_SearchJobsResponse { Success = false, Errors = new List<string> { response.Response } };
         }
+
+        #region Private Members
+        private static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        #endregion
 
         #region Private Methods
 

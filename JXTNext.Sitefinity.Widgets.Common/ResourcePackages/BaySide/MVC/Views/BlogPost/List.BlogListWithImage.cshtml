@@ -199,7 +199,7 @@
             catgeoryListDictionary.Add(@taxon.Id, @taxon.Title);
             foreach (var it in hierarchicalTaxon1.Subtaxa)
             {
-                @ProcessCategories_Add(it, catgeoryListDictionary);
+                @;
             }
         }
     }
@@ -209,14 +209,16 @@
 @helper ProcessCategories_Add(HierarchicalTaxon taxon1, Dictionary<Guid, string>
                             catgeoryListDictionary)
 {
-    if (taxon1 != null)
-    {
-        catgeoryListDictionary.Add(taxon1.Id, @taxon1.Title);
-        foreach (var subTaxon in taxon1.Subtaxa)
-        {
-            @ProcessCategories_Add(subTaxon, catgeoryListDictionary);
-        }
-    }
+                    /**/
+
+                    if (taxon1 != null)
+                    {
+                        catgeoryListDictionary.Add(taxon1.Id, @taxon1.Title);
+                        foreach (var subTaxon in taxon1.Subtaxa)
+                        {
+                            @ProcessCategories_Add(subTaxon, catgeoryListDictionary);
+                        }
+                    }
 }
 
 
@@ -255,9 +257,9 @@
 
                         }
                     }
-                    <a href="@navigateUrl" class="btn btn-link">> Read more</a>
+                    <a href="@navigateUrl" class="btn btn-link">Read more</a>
                     <div class="list-footer">
-                        Category <a href="" class="btn-link">@categoriesName</a>
+                        Category <a href="" class="btn-link">@</a>
                     </div>
                 </div>
 
@@ -278,15 +280,17 @@
 
 @helper ProcessCategories(HierarchicalTaxon taxon)
 {
-    if (taxon != null)
-    {
-        <p>@taxon.Title</p>
-        foreach (var subTaxon in taxon.Subtaxa)
-        {
-            //Recursive call
-            @ProcessCategories(subTaxon);
-        }
-    }
+                    /**/
+
+                    if (taxon != null)
+                    {
+                        <p>@taxon.Title</p>
+                        foreach (var subTaxon in taxon.Subtaxa)
+                        {
+                            //Recursive call
+                            @ProcessCategories(subTaxon);
+                        }
+                    }
 }
 
 

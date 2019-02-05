@@ -416,12 +416,14 @@ $(document).ready(function () {
 
     //using dataTable plugin for pagination in table
     if( $('table.datatable').length ){
-        $('table.datatable').simplePagination({
-            containerClass: 'pagination tbl-pagination',
-            previousButtonClass: 'btn btn-tag',
-            nextButtonClass: 'btn btn-tag',
-            currentPage: 1,
-            perPage: 5,
+        $("table.datatable").slimtable({
+            itemsPerPage: 5,
+			ippList: [2,5,10,20],
+        });
+        $("table.datatable").each( function(){
+            if( $(this).find('tbody>tr').length < 6 ){
+                $(this).parent().find('.slimtable-paging-div').hide();
+            }
         });
     }
 

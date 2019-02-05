@@ -35,10 +35,19 @@
 </div>
 <script>
     $(document).ajaxComplete(function () {
-        if ($('.header-top-links').data('sf-role') == 'sf-logged-in-view') {
-            var userName = $('.header-top-links a[data-sf-role="sf-logged-in-name"]').text();
-            userFirstName = userName.split(' ')[0];
-            $('.header-top-links a[data-sf-role="sf-logged-in-name"]').text(userFirstName);
-        }
+
+        $(".header-top-login .login-status>div").each(function () {
+            if ($(this).attr("data-sf-role") == "sf-logged-in-view") {
+                var userName = $('.header-top-login a[data-sf-role="sf-logged-in-name"]').text();
+                userFirstName = userName.split(' ')[0];
+                $('.header-top-login a[data-sf-role="sf-logged-in-name"]').text(userFirstName);
+            }
+        });
+
+        //if ($('.header-top-login').attr('data-sf-role') == 'sf-logged-in-view') {
+        //    var userName = $('.header-top-login a[data-sf-role="sf-logged-in-name"]').text();
+        //    userFirstName = userName.split(' ')[0];
+        //    $('.header-top-login a[data-sf-role="sf-logged-in-name"]').text(userFirstName);
+        //}
     });
 </script>

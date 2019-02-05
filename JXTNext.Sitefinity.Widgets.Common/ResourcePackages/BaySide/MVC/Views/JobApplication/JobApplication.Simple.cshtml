@@ -402,11 +402,15 @@
                 data: parm,
                 dataType: 'Json',
                 success: function (response) {
-                    isUserLoggedIn = 'True';
+                    //isUserLoggedIn = 'True';
                     $('#password-reg').parent().find('.error-message.wrongPassword-message').addClass('hidden');
                     // Once the user signed in , we need to know that the user is already applied for this job.
                     if (response.IsUserSignedIn == true) {
-
+                        isUserLoggedIn = 'True';
+                        $('.header-top-login div[data-sf-role="sf-logged-in-view"]').show();
+                        $('.header-top-login div[data-sf-role="sf-logged-out-view"]').hide();
+                        $('.header-top-login a[data-sf-role="sf-logged-in-name"]').text(response.FirstName);
+                        processProfileResumeJsonData(response.myResumes);
                         $.ajax({
                             type: 'POST',
                             cache: false,
@@ -418,17 +422,18 @@
                                     $('#login-register-container').hide();
                                     $('#appFormState').hide();
                                     $('#already-applied-info').removeClass('hidden');
+                                    $('.ext-provider-form, .loginwith_socialmedia').hide();
                                 }
                                 else {
-                                    window.location.reload();
+                                    //window.location.reload();
                                     // Show upload files section
-                                    //$('#register').hide();
-                                    //$('#userid').attr('disabled', true);
-                                    //$('#apply').removeAttr('disabled');
-                                    //$('#userid').removeAttr('required');
-                                    //$('#upload-files-container').show();
-                                    //$('#appFormState').text('Upload your files');
-                                    //$("#upload-files-container").show();
+                                    $('#register').hide();
+                                    $('#userid').attr('disabled', true);
+                                    $('#apply').removeAttr('disabled');
+                                    $('#userid').removeAttr('required');
+                                    $('#upload-files-container').show();
+                                    $('#appFormState').text('Upload your files');
+                                    $("#upload-files-container").show();
                                 }
                             },
                             error: function (response) {
@@ -547,6 +552,23 @@
                 //runPassword($(this).val());
             }
         });
+
+        function processProfileResumeJsonData(data) {
+            resumes = data;
+            var rows = '';
+
+            $.each(JSON.parse(resumes), function (i, item) {
+
+                rows += '<option value="' + item.Value + '">' + item.Text + '</option>';
+
+            });
+            if (rows.length) {
+                $('#user-profile-resume-list').html(rows);
+            } else {
+                $('#user-profile-resume-list').html('<option val="0">SELECT YOUR CV</option>');
+            }
+        }
+
         $('#ReTypePassword').keydown(function () {
             $(this).next('.alert').addClass('hidden');
         });

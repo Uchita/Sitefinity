@@ -6688,7 +6688,7 @@ select.hs-input {
 }
 
 .content-two-colmun > img {
-    max-width: 98px;
+    max-width: 180px;
     line-break: normal;
     margin-bottom: 25px;
 }
@@ -8779,3 +8779,8 @@ privacy-policy {
             top: 11px;
             left: 0px;
         }
+
+
+.job-detail-row .job-detail {
+    padding-bottom: 40px;
+}

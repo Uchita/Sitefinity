@@ -21,14 +21,15 @@
 
     <div class="tbl-wrapper">
         <table class="table table-bordered datatable">
-
-            <tr>
-                <th>Job ID</th>
-                <th>Job Title</th>
-                <th class="date-col">Date Added</th>
-                <th>Actions</th>
-            </tr>
-
+            <thead>
+                <tr>
+                    <th>Job ID</th>
+                    <th>Job Title</th>
+                    <th class="date-col">Date Added</th>
+                    <th class="act-col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
             @foreach (MemberSavedJobDisplayItem item in Model)
             {
                 <tr>
@@ -40,7 +41,7 @@
                     </td>
                 </tr>
             }
-
+            </tbody>
         </table>
     </div>
 }

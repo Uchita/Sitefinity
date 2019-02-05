@@ -273,6 +273,27 @@
                 $("#" + prefixIdText + item.Name).DropDownTree(optionsArray[prefixIdText + item.Name]);
             });
 
+            //onpage load checking if any filter is selected
+            function checkFilterCheck() {
+                //checking keyword
+                if (tempKeyword != "") {
+                    return true;
+                }
+                //checking checkboxes selected
+                if ($('#filtersPagePartialContent .dropdown-tree >ul>li>a').hasClass('active')) {
+                    return true;
+                }
+                //checking salary selected
+                if ($('.SalaryRangeSelect').val() != -1) {
+                    return true;
+                }
+            }
+
+            if (checkFilterCheck()) {
+                $("#sortOrder").val("Relevance");
+            } else {
+                $("#sortOrder").val("Recent");
+            }
 
             function eachClickFilter() {
                 var filterModel = {};
@@ -303,8 +324,6 @@
                     }
                 });
 
-                $("#sortOrder").val("Relevance");
-
                 if (isSalaryExists && isSlarySelected){
                     if (modelSalary != null && modelSalary != undefined && isSalaryChanged == false && (modelSalary.LowerRange > salary.LowerRange || modelSalary.UpperRange < salary.UpperRange) && modelSalary.TargetValue == $('.SalaryRangeSelect').val() ) {
                         filterModel.Salary = modelSalary;
@@ -315,7 +334,12 @@
                 }
 
                 filterModel.Keywords = encodeURIComponent($("#selectedkeywordsfilter").val());
+                if ($("#pager li a").length) {
+                    filterModel.Page = "1";
+                }
+                
                 filterModel.SortBy = $("#sortOrder").val();// We need to persist the sort order selected in job search results
+                
                 var data = { filterModel: filterModel }
                 var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
                 var queryStringData = makeQueryString(filterModel, "", false);

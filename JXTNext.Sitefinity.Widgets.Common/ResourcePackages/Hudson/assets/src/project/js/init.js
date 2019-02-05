@@ -447,7 +447,18 @@ $(document).ready(function () {
             });
         }
     }
+    
+    //job detail page:: back to result page
+    //in job result page
+    $('#back-to-results').on('click', function(e){
+        e.preventDefault();
+        window.history.back();
+    });
 
+    //window back button detection
+    window.onhashchange = function() {
+        $(document).reload();
+    }
   
 });
 

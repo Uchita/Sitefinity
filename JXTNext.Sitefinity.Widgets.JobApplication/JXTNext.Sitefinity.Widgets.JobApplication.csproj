@@ -347,7 +347,6 @@
     <Compile Include="Mvc\Models\JobApplication\JobApplicationStatus.cs" />
     <Compile Include="Mvc\Models\JobApplication\JobApplicationViewModel.cs" />
     <Compile Include="Mvc\Models\JobApplication\ProfileResume.cs" />
-    <Compile Include="Mvc\Models\JobApplication\SitefinityClient.cs" />
     <Compile Include="Mvc\StringResources\JobApplicationResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

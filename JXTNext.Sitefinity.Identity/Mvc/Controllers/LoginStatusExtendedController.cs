@@ -110,20 +110,22 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
             try
             {
                 var logoutUrl = this.Model.GetLogoutPageUrl() ?? this.GetCurrentPageUrl();
-                Log.Write("Login Status extended SignOut : " + logoutUrl, ConfigurationPolicy.ErrorLog);
-                var owinContext = SystemManager.CurrentHttpContext.Request.GetOwinContext();
-                var authenticationTypes = ClaimsManager.CurrentAuthenticationModule.GetSignOutAuthenticationTypes().ToArray();
 
-                owinContext.Authentication.SignOut(new AuthenticationProperties
+                if (Config.Get<SecurityConfig>().AuthenticationMode == SecConfig.AuthenticationMode.Claims)
                 {
-                    RedirectUri = logoutUrl
-                }, authenticationTypes);
+                    var owinContext = SystemManager.CurrentHttpContext.Request.GetOwinContext();
+                    var authenticationTypes = ClaimsManager.CurrentAuthenticationModule.GetSignOutAuthenticationTypes().ToArray();
 
-                foreach (var item in authenticationTypes)
-                {
-                    Log.Write("Login Status extended after SignOut : " + item, ConfigurationPolicy.ErrorLog);
+                    owinContext.Authentication.SignOut(new AuthenticationProperties
+                    {
+                        RedirectUri = logoutUrl
+                    }, authenticationTypes);
                 }
-                
+                else
+                {
+                    SecurityManager.Logout();
+                }
+
                 return this.Redirect(logoutUrl);
             }
             catch (Exception ex)

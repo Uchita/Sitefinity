@@ -8612,10 +8612,52 @@ ul.vertical-ul {
       color: #fff;
       border-color: #219fa3; }
 
-.tbl-pagination {
+.tbl-pagination, .slimtable-paging-div {
   font-size: 1.4rem;
   margin-top: -15px;
-  margin-bottom: 25px; }
+  margin-bottom: 30px; }
+
+.slimtable-paging-div {
+  overflow: hidden; }
+
+.slimtable-paging-btnsdiv {
+  float: left; }
+
+.slimtable-paging-seldiv {
+  float: right; }
+
+.slimtable-page-btn {
+  font-size: 1.4rem;
+  line-height: 1.45;
+  display: inline-block;
+  padding: 0 10px;
+  border: 1px solid #01a3a4;
+  margin-right: 3px; }
+  .slimtable-page-btn:hover, .slimtable-page-btn.active {
+    background: #01a3a4;
+    color: #fff; }
+
+select.slimtable-paging-select {
+  padding: 0;
+  margin-right: 5px;
+  outline: none !important; }
+
+.slimtable th {
+  position: relative !important; }
+
+.slimtable-sprites::after {
+  content: '\f338';
+  font-family: 'Font Awesome 5 Free';
+  font-size: 1rem;
+  position: absolute;
+  right: 5px;
+  top: 13px; }
+
+.slimtable-sprites.slimtable-sortdesc::after {
+  content: '\f309'; }
+
+.slimtable-sprites.slimtable-sortasc::after {
+  content: '\f30c'; }
 
 /*#region Footer*/
 .page-wrapper footer .brand-logo {
@@ -9880,7 +9922,7 @@ ul.breadcrumb {
     margin-bottom: 2rem;
     overflow: hidden; }
     .page-wrapper .sign-in-with ul, .page-wrapper .ext-provider-form ul {
-      padding-top: 15px; }
+      padding-top: 0; }
       .page-wrapper .sign-in-with ul li, .page-wrapper .ext-provider-form ul li {
         vertical-align: top; }
         .page-wrapper .sign-in-with ul li a::before, .page-wrapper .ext-provider-form ul li a::before {

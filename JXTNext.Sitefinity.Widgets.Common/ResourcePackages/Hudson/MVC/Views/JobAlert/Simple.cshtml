@@ -8,11 +8,13 @@
     {
 
         <table class="table table-bordered datatable">
+            <thead>
             <tr>
                 <th>Name</th>
                 <th class="col-3btn-width">Action</th>
             </tr>
-
+            </thead>
+            <tbody>
             @foreach (var item in Model)
             {
                 <tr>
@@ -27,6 +29,7 @@
                     </td>
                 </tr>
             }
+            </tbody>
 
         </table>
     }

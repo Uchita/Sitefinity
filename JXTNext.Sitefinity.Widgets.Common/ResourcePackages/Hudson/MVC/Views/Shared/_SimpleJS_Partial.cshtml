@@ -20,20 +20,25 @@
             else if (item.Name == "Salary")
             {
                 <div class="select">
-                    <select class="SalaryRangeSelect ss">
+                    <select class="SalaryRangeSelect">
                         <option value="-1" selected>No Salary Preference</option>
                         @foreach (var salaryItem in item.Filters)
                         {
                             <option value="@salaryItem.ID">@salaryItem.Label</option>
                         }
-                    
+
                     </select>
                 </div>
                 foreach (var salaryItem in item.Filters)
                 {
                     var lower = 15000;
                     var upper = 300000;
-                    if (salaryItem.Label == "Hourly Rate")
+                    if (salaryItem.Label == "Daily")
+                    {
+                        lower = 200;
+                        upper = 3000;
+                    }
+                    else if (salaryItem.Label == "Hourly Rate")
                     {
                         lower = 18;
                         upper = 200;
@@ -71,10 +76,10 @@
         var typingTimer;
         var doneTypingInterval = 500;
         var isSalaryExists = false;
+        var isSalaryChanged = false;
         var isSlarySelected = false;
         var salary = { TargetValue: 'Salary', LowerRange: 15000, UpperRange: 300000 };
         var modelSalary = JSON.parse('@Html.Raw(Json.Encode(ViewBag.Salary))');
-
         var tempKeyword = $("#selectedkeywordsfilter").val();
         $("#selectedkeywordsfilter").val('').focus().val(tempKeyword);
 
@@ -95,6 +100,7 @@
 
         $('.SalaryRangeSelect').on('change', function () {
             isSlarySelected = false;
+            isSalaryChanged = true;
             $('.salaryrangewrapper').each(function (i, obj) {
                 $(this).addClass('visible-hidden');
             });
@@ -133,8 +139,13 @@
                     }
                 },
                 "value_changed_callback": function (cause, leftValue, rightValue) {
-                    $(this).parent().find('.leftLabel span').text(leftValue);
-                    $(this).parent().find('.rightLabel span').text(rightValue);
+                    if (!$(this).parent().hasClass('visible-hidden')) {
+                        $(this).parent().find('.leftLabel span').text(leftValue);
+                        $(this).parent().find('.rightLabel span').text(rightValue);
+                        if (cause != 'init') {
+                            isSalaryChanged = true;
+                        }
+                    }
                 }
             });
         });
@@ -262,6 +273,27 @@
                 $("#" + prefixIdText + item.Name).DropDownTree(optionsArray[prefixIdText + item.Name]);
             });
 
+            //onpage load checking if any filter is selected
+            function checkFilterCheck() {
+                //checking keyword
+                if (tempKeyword != "") {
+                    return true;
+                }
+                //checking checkboxes selected
+                if ($('#filtersPagePartialContent .dropdown-tree >ul>li>a').hasClass('active')) {
+                    return true;
+                }
+                //checking salary selected
+                if ($('.SalaryRangeSelect').val() != -1) {
+                    return true;
+                }
+            }
+
+            if (checkFilterCheck()) {
+                $("#sortOrder").val("Relevance");
+            } else {
+                $("#sortOrder").val("Recent");
+            }
 
             function eachClickFilter() {
                 var filterModel = {};
@@ -292,10 +324,8 @@
                     }
                 });
 
-                $("#sortOrder").val("Relevance");
-
                 if (isSalaryExists && isSlarySelected){
-                    if (modelSalary != null && modelSalary != undefined && (modelSalary.LowerRange > salary.LowerRange || modelSalary.UpperRange < salary.UpperRange)) {
+                    if (modelSalary != null && modelSalary != undefined && isSalaryChanged == false && (modelSalary.LowerRange > salary.LowerRange || modelSalary.UpperRange < salary.UpperRange) && modelSalary.TargetValue == $('.SalaryRangeSelect').val() ) {
                         filterModel.Salary = modelSalary;
                     }
                     else {
@@ -304,7 +334,12 @@
                 }
 
                 filterModel.Keywords = encodeURIComponent($("#selectedkeywordsfilter").val());
+                if ($("#pager li a").length) {
+                    filterModel.Page = "1";
+                }
+                
                 filterModel.SortBy = $("#sortOrder").val();// We need to persist the sort order selected in job search results
+                
                 var data = { filterModel: filterModel }
                 var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
                 var queryStringData = makeQueryString(filterModel, "", false);

@@ -35,6 +35,7 @@ using JXTNext.Sitefinity.Services.Intefaces;
 using Telerik.Sitefinity.Abstractions;
 using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.JXTNextResume;
 using System.Dynamic;
+using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -176,8 +177,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 ViewBag.JobRecordExistsErrorMessage = "Job already applied.";
             }
 
-            if (currentIdentity.IsAuthenticated)
+            var curUserId = currentIdentity.UserId;
+
+            if (curUserId != Guid.Empty)
             {
+                UserProfileManager userMgr = UserProfileManager.GetManager();
+                UserManager mgr = UserManager.GetManager("Default");
+                User user = mgr.GetUser(curUserId);
+
+                SitefinityProfile profile = null;
+                if (user != null)
+                    profile = userMgr.GetUserProfile<SitefinityProfile>(user);
+
+
                 var currUser = SitefinityHelper.GetUserById(currentIdentity.UserId);
                 if (currUser != null)
                 {
@@ -185,13 +197,30 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     userFirstName = SitefinityHelper.GetUserFirstNameById(currUser.Id);
                 }
 
-                if(jobid.HasValue)
+                if (jobid.HasValue)
                     ViewBag.IsJobApplied = _isMemberAppliedJob(jobid.Value);
 
                 isUserLoggedIn = true;
                 ViewBag.isLoggedIn = true;
                 ViewBag.loginEmail = userEmail;
             }
+
+            //if (currentIdentity.IsAuthenticated)
+            //{
+            //    var currUser = SitefinityHelper.GetUserById(currentIdentity.UserId);
+            //    if (currUser != null)
+            //    {
+            //        userEmail = currUser.Email;
+            //        userFirstName = SitefinityHelper.GetUserFirstNameById(currUser.Id);
+            //    }
+
+            //    if(jobid.HasValue)
+            //        ViewBag.IsJobApplied = _isMemberAppliedJob(jobid.Value);
+
+            //    isUserLoggedIn = true;
+            //    ViewBag.isLoggedIn = true;
+            //    ViewBag.loginEmail = userEmail;
+            //}
 
             ViewBag.IsUserLoggedIn = isUserLoggedIn;
             ViewBag.UserEmail = userEmail;
@@ -251,8 +280,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             MembershipCreateStatus membershipCreateStatus;
             ViewBag.PostBackMessage = null;
             ViewBag.IsUserLoggedIn = false;
+            EmailNotificationSettings registrationEmailNotificationSettings = null;
 
-            if(applyJobModel != null && !string.IsNullOrEmpty(applyJobModel.Email))
+            if (applyJobModel != null && !string.IsNullOrEmpty(applyJobModel.Email))
             {
                 applyJobModel.Email = applyJobModel.Email.Trim(',');
             }
@@ -314,6 +344,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         }
                         else
                         {
+                            /// Instantiate Registration email template
+                            registrationEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
+                                                                                                new EmailTarget(applyJobModel.FirstName, applyJobModel.Email),
+                                                                                                this.GetRegistrationHtmlEmailTitle(),
+                                                                                                this.GetRegistrationHtmlEmailContent(), null);
+
+
+
                             //instantiate the Sitefinity user manager
                             //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
                             UserManager userManager = UserManager.GetManager();
@@ -440,7 +478,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     AdvertiserEmailNotification = advertiserEmailNotificationSettings,
                     AdvertiserName = applyJobModel.ContactDetails,
                     CompanyName = applyJobModel.CompanyName,
-                    UrlReferral = applyJobModel.UrlReferral
+                    UrlReferral = applyJobModel.UrlReferral,
+                    RegistrationEmailNotification = registrationEmailNotificationSettings
                 },
                 ovverideEmail);
 
@@ -581,6 +620,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                             isUserSignedIn = true;
                             Log.Write($"ValidateUser userToAuthenticate : " + userToAuthenticate, ConfigurationPolicy.ErrorLog);
                         }
+                        //SitefinityClient client = new SitefinityClient();
+                        //client.RequestAuthenticate(userManager.Provider.Name, email, password, staySignedIn, true, true);
+                        //isUserSignedIn = true;
+                        //var owinContext = this.HttpContext.Request.GetOwinContext();
+                        //var challengeProperties = ChallengeProperties.ForLocalUser(email, password, userManager.Provider.Name, staySignedIn, this.HttpContext.Request.Url.ToString());
+                        ////challengeProperties.RedirectUri = this.GetReturnURL(context);
+                        //challengeProperties.RedirectUri = ClaimsManager.GetLogoutUrl("/home");
+                        //owinContext.Authentication.Challenge(challengeProperties, ClaimsManager.CurrentAuthenticationModule.STSAuthenticationType);
                     }
                 }
                 #endregion
@@ -696,6 +743,33 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return htmlEmailContent;
         }
 
+        private string GetRegistrationHtmlEmailContent()
+        {
+            string htmlEmailContent = String.Empty;
+            if (!String.IsNullOrEmpty(this.RegistrationEmailTemplateId))
+            {
+                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
+                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
+                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.RegistrationEmailTemplateId.ToUpper()));
+                htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
+            }
+
+            return htmlEmailContent;
+        }
+
+        private string GetRegistrationHtmlEmailTitle()
+        {
+            string htmlEmailContent = String.Empty;
+            if (!String.IsNullOrEmpty(this.RegistrationEmailTemplateId))
+            {
+                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
+                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
+                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.RegistrationEmailTemplateId.ToUpper()));
+                htmlEmailContent = emailTemplateItem.GetValue("Title").ToString();
+            }
+
+            return htmlEmailContent;
+        }
         private void FetchFromAmazonS3(string providerName, string libraryName, string itemTitle)
         {
             LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
@@ -1170,6 +1244,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string AdvertiserEmailTemplateSenderEmailAddress { get; set; }
         public string AdvertiserEmailTemplateEmailSubject { get; set; }
 
+        //Member Registration Email template
+        public string RegistrationEmailTemplateProviderName
+        {
+            get { return _emailTemplateProviderName; }
+            set { this._emailTemplateProviderName = value; }
+        }
+        public string RegistrationEmailTemplateId { get; set; }
+        public string RegistrationEmailTemplateName { get; set; }
+        public string RegistrationEmailTemplateCC { get; set; }
+        public string RegistrationEmailTemplateBCC { get; set; }
+        public string RegistrationEmailTemplateSenderName { get; set; }
+        public string RegistrationEmailTemplateSenderEmailAddress { get; set; }
+        public string RegistrationEmailTemplateEmailSubject { get; set; }
 
         public string CssClass { get; set; }
         public string SerializedCloudSettingsParams { get; set; }

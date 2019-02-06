@@ -165,7 +165,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             string userEmail = String.Empty;
             string userFirstName = String.Empty;
             var currentIdentity = ClaimsManager.GetCurrentIdentity();
-            if(Request.QueryString["error"] == "resume")
+            
+            Log.Write($"currentIdentity.IsAuthenticated = {currentIdentity.IsAuthenticated}", ConfigurationPolicy.ErrorLog);
+            if (Request.QueryString["error"] == "resume")
             {
                 ViewBag.SeekResumeError = true;
                 ViewBag.SeekResumeErrorMessage = "Resume is not available in your seek profile. Please upload and reapply for the job.";
@@ -183,27 +185,39 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
             var curUserId = currentIdentity.UserId;
-
+            Log.Write($"currentIdentity.UserId = {currentIdentity.UserId}", ConfigurationPolicy.ErrorLog);
             if (curUserId != Guid.Empty)
             {
+                Log.Write($"currentIdentity is not empty", ConfigurationPolicy.ErrorLog);
                 UserProfileManager userMgr = UserProfileManager.GetManager();
                 UserManager mgr = UserManager.GetManager("Default");
                 User user = mgr.GetUser(curUserId);
 
                 SitefinityProfile profile = null;
                 if (user != null)
+                {
+                    Log.Write($"user is not null", ConfigurationPolicy.ErrorLog);
                     profile = userMgr.GetUserProfile<SitefinityProfile>(user);
+                }
+                    
 
 
                 var currUser = SitefinityHelper.GetUserById(currentIdentity.UserId);
                 if (currUser != null)
                 {
+                    Log.Write($"curent user is not null", ConfigurationPolicy.ErrorLog);
                     userEmail = currUser.Email;
                     userFirstName = SitefinityHelper.GetUserFirstNameById(currUser.Id);
+                    Log.Write($"userFirstName = {userFirstName}", ConfigurationPolicy.ErrorLog);
                 }
 
                 if (jobid.HasValue)
+                {
                     ViewBag.IsJobApplied = _isMemberAppliedJob(jobid.Value);
+                    Log.Write($"job id has value", ConfigurationPolicy.ErrorLog);
+                    Log.Write($"IsJobApplied = {ViewBag.IsJobApplied}", ConfigurationPolicy.ErrorLog);
+                }
+                    
 
                 isUserLoggedIn = true;
                 ViewBag.isLoggedIn = true;
@@ -234,7 +248,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ViewBag.PostBackMessage = TempData["PostBackMessage"];
             ViewBag.EmailTemplateId = this.EmailTemplateId;
             ViewBag.AdvertiserEmailTemplateId = this.AdvertiserEmailTemplateId;
-
+            Log.Write($"AdvertiserEmailTemplateId  {ViewBag.AdvertiserEmailTemplateId}", ConfigurationPolicy.ErrorLog);
             if (!this.JobApplicationSuccessPageId.IsNullOrEmpty())
                 ViewBag.SuccessPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationSuccessPageId);
 
@@ -249,10 +263,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 ViewBag.CompanyName = jobListingResponse.Job.CustomData["CompanyName"];
                 ViewBag.JobLocation = jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"];
                 jobApplicationViewModel.UrlReferral = Request.QueryString["source"];
+                Log.Write($"jobApplicationViewModel.UrlReferral  {jobApplicationViewModel.UrlReferral}", ConfigurationPolicy.ErrorLog);
             }
 
             if (isUserLoggedIn && !string.IsNullOrEmpty(userEmail))
             {
+                Log.Write($"isUserLoggedIn  {isUserLoggedIn}", ConfigurationPolicy.ErrorLog);
+                Log.Write($"userEmail  {userEmail}", ConfigurationPolicy.ErrorLog);
                 var response = _blConnector.GetMemberByEmail(userEmail);
                 List<SelectListItem> myResumes = new List<SelectListItem>();
                 myResumes.Add(new SelectListItem { Text = "SELECT YOUR RESUME", Value = "0" });
@@ -267,8 +284,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     }
                 }
                 ViewBag.ResumeList = myResumes;
+                Log.Write($"Resume process is completed ", ConfigurationPolicy.ErrorLog);
             }
-
+            Log.Write($"Index method end ", ConfigurationPolicy.ErrorLog);
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
             return View(fullTemplateName, jobApplicationViewModel);
         }

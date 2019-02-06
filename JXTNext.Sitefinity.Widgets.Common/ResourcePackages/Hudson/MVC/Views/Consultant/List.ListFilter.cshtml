@@ -86,7 +86,7 @@
             </div>
         </div>
 
-        <div class="col-xs-12">
+        <div class="col-xs-12 hidden consultant-count">
             <p>Consultant(s) found: <strong class="const-found">0</strong></p>
         </div>
     </div>
@@ -206,6 +206,7 @@
 
             //except for all add hidden class to unmatched item
             consultantItems.removeClass('hidden');
+            $('.consultant-count').removeClass('hidden');
 
             consultantItems.each(function () {
                 if (!checkFilter($(this).data('filtersector'), $(this).data('filterlocation'), sectorFilter, locationFilter)) {

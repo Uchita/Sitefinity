@@ -84,6 +84,10 @@ namespace JXTNext.Sitefinity.Services.Services
             return null;
         }
 
+        public IBaseResponse UnsubscribeJobAlert(Guid unsubscribeGuid)
+        {
+            return _BLconnector.UnsubscribeJobAlert(unsubscribeGuid);
+        }
 
         public JobAlertViewModel MemberJobAlertGet(int jobAlertId)
         {

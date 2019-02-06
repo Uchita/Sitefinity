@@ -283,6 +283,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return RedirectToAction("");
         }
 
+        [HttpGet]
+        public ActionResult Unsubscribe(Guid AlertId)
+        {
+            var response = _jobAlertService.UnsubscribeJobAlert(AlertId);
+
+            return View("Unsubscribe", response);
+        }
+
         protected override void HandleUnknownAction(string actionName)
         {
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");

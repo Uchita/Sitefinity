@@ -384,7 +384,7 @@
                     lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + (startPage - 1) + '">...</a></li>';
                 }
 
-                for (var i = startPage; i <= highestPage; i++) {
+                for (var i = startPage; i <= highestPage || i - highestPage < 1 ; i++) {
                     if (i < (startPage + pageJumpVal) && highestPage >= parseInt(PageNumber)) {
                         lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + i + '">' + i + '</a></li>';
                         pageJumpNext = true;
@@ -477,7 +477,7 @@
                             total: response.Total,
                         });
                         $(".count-num").html(response.Total);
-                        highestPage = response.Total / pageSize;
+                        highestPage = Math.ceil(response.Total / pageSize);
                         var sorttext = getSortOrder();
                         var token = sorttext.split(':');
 
@@ -491,7 +491,7 @@
 
                         processSavedJobs();
                     } else {
-
+                        $(".count-num").html("0");
                         $(".info-block").removeClass('hidden');
                         $("#sortOrder").parent().hide();
                     }
@@ -595,72 +595,4 @@
     }
 
     </script>
-    <style>
-
-        #listView {
-            border: none;
-        }
-
-            #listView, #listView * {
-                -webkit-box-sizing: inherit;
-                -moz-box-sizing: inherit;
-                box-sizing: inherit;
-            }
-
-        .product {
-            float: left;
-            position: relative;
-            width: 111px;
-            height: 170px;
-            margin: 0 5px;
-            padding: 0;
-        }
-
-            .product img {
-                width: 110px;
-                height: 110px;
-            }
-
-            .product h3 {
-                margin: 0;
-                padding: 3px 5px 0 0;
-                max-width: 96px;
-                overflow: hidden;
-                line-height: 1.1em;
-                font-size: .9em;
-                font-weight: normal;
-                text-transform: uppercase;
-                color: #999;
-            }
-
-            .product p {
-                visibility: hidden;
-            }
-
-            .product:hover p {
-                visibility: visible;
-                position: absolute;
-                width: 110px;
-                height: 110px;
-                top: 0;
-                margin: 0;
-                padding: 0;
-                line-height: 110px;
-                vertical-align: middle;
-                text-align: center;
-                color: #fff;
-                background-color: rgba(0,0,0,0.75);
-                transition: background .2s linear, color .2s linear;
-                -moz-transition: background .2s linear, color .2s linear;
-                -webkit-transition: background .2s linear, color .2s linear;
-                -o-transition: background .2s linear, color .2s linear;
-            }
-
-        .k-listview:after {
-            content: ".";
-            display: block;
-            height: 0;
-            clear: both;
-            visibility: hidden;
-        }
-    </style>
+   

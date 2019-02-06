@@ -22,6 +22,11 @@
 {
     <br /><div class="alert alert-danger">@ViewBag.JobRecordExistsErrorMessage</div>
 }
+@if (ViewBag.SeekAccessError == true)
+{
+    <br /><div class="alert alert-danger">@ViewBag.SeekAccessErrorMessage</div>
+}
+<div id="time-out-error" class="alert alert-danger" hidden>Time out error! Please login again.</div>
 <div class="login-form sign-in-with">
     <form id="job-app-form" action="@Url.Action("ApplyJob","JobApplication")" method="post" enctype="multipart/form-data" autocomplete="off">
 
@@ -512,7 +517,7 @@
                  $('#password-reg').parent().find('.error-message.emptyPassword-message').removeClass('hidden');
                  return true;
              }
-
+             $('#time-out-error').addClass('hidden');
 
              var jobId = $(this).data("jobid");
              var staySignedinFlag = $('#RememberMe').is(':checked') ? true : false;
@@ -549,16 +554,21 @@
                                      }
                                      else {
                                          //Show upload files section
-                                         $('#register').hide();
-                                         $('#userid').attr('disabled',true);
-                                         $('#apply').removeAttr('disabled');
-                                         $('#userid').removeAttr('required');
-                                         $('#upload-files-container').show();
-                                         $('#appFormState').text('Upload your files');
-                                         $("#upload-files-container").show();
-                                         $('#user-profile-resume').removeAttr('hidden');
-                                         $('#uploadresumeblock').hide();
-                                         $('#email-selected').val($('#userid').val());
+                                         if (response.timeouterror == true) {
+                                             $('#time-out-error').removeClass('hidden');
+                                         } else {
+                                             $('#register').hide();
+                                             $('#userid').attr('disabled', true);
+                                             $('#apply').removeAttr('disabled');
+                                             $('#userid').removeAttr('required');
+                                             $('#upload-files-container').show();
+                                             $('#appFormState').text('Upload your files');
+                                             $("#upload-files-container").show();
+                                             $('#user-profile-resume').removeAttr('hidden');
+                                             $('#uploadresumeblock').hide();
+                                             $('#email-selected').val($('#userid').val());
+                                         }
+
                                      }
                                  },
                                  error: function (response) {

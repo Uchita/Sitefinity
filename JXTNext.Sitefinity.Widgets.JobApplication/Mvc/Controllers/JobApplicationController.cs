@@ -176,6 +176,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 ViewBag.JobRecordExists = true;
                 ViewBag.JobRecordExistsErrorMessage = "Job already applied.";
             }
+            if (Request.QueryString["error"] == "denied")
+            {
+                ViewBag.SeekAccessError = true;
+                ViewBag.SeekAccessErrorMessage = "Seek access denied. Please allow access to apply job.";
+            }
 
             var curUserId = currentIdentity.UserId;
 
@@ -620,14 +625,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                             isUserSignedIn = true;
                             Log.Write($"ValidateUser userToAuthenticate : " + userToAuthenticate, ConfigurationPolicy.ErrorLog);
                         }
-                        //SitefinityClient client = new SitefinityClient();
-                        //client.RequestAuthenticate(userManager.Provider.Name, email, password, staySignedIn, true, true);
-                        //isUserSignedIn = true;
-                        //var owinContext = this.HttpContext.Request.GetOwinContext();
-                        //var challengeProperties = ChallengeProperties.ForLocalUser(email, password, userManager.Provider.Name, staySignedIn, this.HttpContext.Request.Url.ToString());
-                        ////challengeProperties.RedirectUri = this.GetReturnURL(context);
-                        //challengeProperties.RedirectUri = ClaimsManager.GetLogoutUrl("/home");
-                        //owinContext.Authentication.Challenge(challengeProperties, ClaimsManager.CurrentAuthenticationModule.STSAuthenticationType);
                     }
                 }
                 #endregion
@@ -662,12 +659,18 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             try
             {
                 bool isJobApplied = _isMemberAppliedJob(jobId);
+
                 return new JsonResult { Data = isJobApplied };
             }
             catch (Exception ex)
             {
                 Log.Write($"IsJobApplied exception = " + ex.Message, ConfigurationPolicy.ErrorLog);
-                throw ex;
+                var result = new
+                {
+                    isJobApplied = false,
+                    timeouterror = true
+                };
+                return new JsonResult { Data = result };
             }
             
         }
@@ -676,23 +679,23 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             bool isJobApplied = false;
             Log.Write($"IsJobApplied method1", ConfigurationPolicy.ErrorLog);
-            JXTNext_MemberAppliedJobResponse appliedJobresponse = _blConnector.MemberAppliedJobsGet() as JXTNext_MemberAppliedJobResponse;
+            JXTNext_MemberAppliedJobByIdResponse appliedJobresponse = _blConnector.MemberAppliedJobGetByJobId(jobId) as JXTNext_MemberAppliedJobByIdResponse;
             Log.Write($"IsJobApplied method appliedJobresponse.Success = " + appliedJobresponse.Success, ConfigurationPolicy.ErrorLog);
-            Log.Write($"IsJobApplied method appliedJobresponse.MemberAppliedJobs = " + appliedJobresponse.MemberAppliedJobs, ConfigurationPolicy.ErrorLog);
+            Log.Write($"IsJobApplied method appliedJobresponse.MemberAppliedJobById = " + appliedJobresponse.MemberAppliedJobById, ConfigurationPolicy.ErrorLog);
 
-            if (appliedJobresponse.Success)
+            if (appliedJobresponse.Success && appliedJobresponse.MemberAppliedJobById != null && appliedJobresponse.MemberAppliedJobById.JobId == jobId)
             {
-                foreach (var item in appliedJobresponse.MemberAppliedJobs)
+                isJobApplied = true;
+            }
+            else if (appliedJobresponse.Errors != null && appliedJobresponse.Errors.Count > 0)
+            {
+                var errorString = appliedJobresponse.Errors.FirstOrDefault();
+                if(errorString != null && errorString.ToLower().Contains("time out"))
                 {
-                    if (item.JobId == jobId)
-                    {
-                        isJobApplied = true;
-                        Log.Write($"IsJobApplied isJobApplied 1 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
-                        break;
-                    }
+                    throw new TimeoutException();
                 }
             }
-
+            Log.Write($"IsJobApplied isJobApplied 1 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
             return isJobApplied;
         }
 

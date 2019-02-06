@@ -16,6 +16,7 @@
 
 @{
     List<string> filterValues = new List<string>();
+    var imageThumbUrl = "";
 
     if (Model.Item.Fields.Category != null)
     {
@@ -30,10 +31,15 @@
 
     @if (Model.Item.Fields.Pic != null)
     {
-        <div class="col-md-4">
-            <img class="full-width" src="@MediaContentExtensions.ResolveThumbnailUrl(Model.Item.Fields.Pic.DataItem, "thumb350")" alt="@Model.Item.Fields.Pic.Fields.Title" />
-        </div>
+        imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(Model.Item.Fields.Pic.DataItem, "thumb350");
     }
+    else
+    {
+        imageThumbUrl = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.jpg";
+    }
+    <div class="col-md-4">
+        <img class="full-width" src="@imageThumbUrl" alt="@Model.Item.Fields.ConsultantName" />
+    </div>
 
     <div class="col-md-8">
         <div class="contact-consultant-name color-highlight">@Html.HtmlSanitize((string)Model.Item.Fields.ConsultantName)</div>

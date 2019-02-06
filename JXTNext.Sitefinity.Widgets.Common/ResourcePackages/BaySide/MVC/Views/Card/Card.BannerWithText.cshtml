@@ -23,11 +23,11 @@
                 </p>
                 @if (Model.ActionName == "Resume Templates")
                 {
-                    <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary mt-4">@Model.ActionName</a>
+                    <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-outline-primary mt-4">@Model.ActionName</a>
                 }
                 else
                 {
-                    <a href="@Html.UrlSanitize(Model.ActionUrl)" target="_blank" class="btn btn-primary mt-4">@Model.ActionName</a>
+                    <a href="@Html.UrlSanitize(Model.ActionUrl)" target="_blank" class="btn btn-outline-primary mt-4">@Model.ActionName</a>
                 }
             </div>
         </div>

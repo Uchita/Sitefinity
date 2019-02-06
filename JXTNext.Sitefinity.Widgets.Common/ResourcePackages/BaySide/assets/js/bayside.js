@@ -1,6 +1,8 @@
 $(document).ready(function () {
     //$(".parallax-mirror").addClass("translate-fixed");
 
+    $('body').removeClass('doc-loading');
+
     if (typeof WOW !== 'undefined') {
         new WOW().init();
     }
@@ -142,5 +144,17 @@ $(document).ready(function () {
         $(this).next('ul').slideToggle();
         $(this).toggleClass('active');
     });
+
+
+    $('.show-contact input[value="Yes"]').click(function () {
+        $('.contacted-show').slideDown();
+    });
+
+    $('.show-contact input[value="No"]').click(function () {
+        $('.contacted-show').slideUp();
+    });
+
+    $('.white-bg-btn .btn').removeClass('btn-outline-white')
+    $('.white-bg-btn .btn').addClass('btn-bg-white')
 
 });

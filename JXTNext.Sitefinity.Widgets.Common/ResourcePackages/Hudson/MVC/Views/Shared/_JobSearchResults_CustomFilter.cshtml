@@ -136,6 +136,7 @@
 
         </div>
     </script>
+    <input type="hidden" id="hdnClassifcationValues" />
 
     <script type="text/javascript">
 
@@ -404,7 +405,7 @@
         function bindJobs(PageNumber) {
 
             var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), pageNumber: PageNumber, sortBy: sortBy };
-            var urlPath = $(location).attr('pathname') + "/GetSearchResults";
+            var urlPath = $(location).attr('pathname') + "/GetSearchResults_WithLeftFiltersSelected";
             var searchPath = $(location).attr('search');
             if (searchPath == null || searchPath == "") {
                 searchPath += ("?" + "Page=" + PageNumber);
@@ -495,6 +496,8 @@
                         $(".info-block").removeClass('hidden');
                         $("#sortOrder").parent().hide();
                     }
+
+                    $('#hdnClassifcationValues').val(JSON.stringify(response.SelectedFilters));
 
                     //check the layout on the base of active
                     //or Retrieve from local storage for checking too

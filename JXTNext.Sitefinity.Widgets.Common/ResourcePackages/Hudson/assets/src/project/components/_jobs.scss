@@ -707,3 +707,9 @@
 .k-block, .k-widget{
     line-height: inherit;
 }
+
+.hide-allsearch_btn{
+    .row-see-more{
+        display: none;
+    }
+}

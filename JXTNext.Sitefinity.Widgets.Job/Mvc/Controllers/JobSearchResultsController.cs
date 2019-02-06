@@ -475,7 +475,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             ISearchJobsResponse response = _BLConnector.SearchJobs(request);
             JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
-            jobResultsList = processClassificationSEORootName(jobResultsList);
+            
 
             ViewBag.Request = JsonConvert.SerializeObject(filterModel);
             ViewBag.FilterModel = JsonConvert.SerializeObject(filterModel);
@@ -505,74 +505,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return response;
         }
 
-        private JXTNext_SearchJobsResponse processClassificationSEORootName(JXTNext_SearchJobsResponse response)
-        {
-            foreach (var item in response.SearchResults)
-            {
-                IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = item.JobID };
-                IGetJobListingResponse jobListingResponse = _BLConnector.GuestGetJob(jobListingRequest);
-                // Processing Classifications
-                OrderedDictionary classifOrdDict = new OrderedDictionary();
-                classifOrdDict.Add(jobListingResponse.Job.CustomData["Classifications[0].Filters[0].ExternalReference"], jobListingResponse.Job.CustomData["Classifications[0].Filters[0].Value"]);
-                string parentClassificationsKey = "Classifications[0].Filters[0].SubLevel[0]";
-                ProcessCustomData(parentClassificationsKey, jobListingResponse.Job.CustomData, classifOrdDict);
-                OrderedDictionary classifParentIdsOrdDict = new OrderedDictionary();
-                AppendParentIds(classifOrdDict, classifParentIdsOrdDict);
-
-                // Getting the SEO route name for classifications
-                List<string> seoString = new List<string>();
-                foreach (var key in classifParentIdsOrdDict.Keys)
-                {
-                    string value = classifParentIdsOrdDict[key].ToString();
-                    string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
-                    seoString.Add(SEOString);
-                }
-                item.ClassificationURL = String.Join("/", seoString);
-
-            }
-            return response;
-        }
-
-        public static void AppendParentIds(OrderedDictionary srcDict, OrderedDictionary destDict)
-        {
-            if (srcDict != null && destDict != null)
-            {
-                int i = 1;
-                string concatKey = String.Empty;
-                foreach (var key in srcDict.Keys)
-                {
-                    if (i == 1)
-                    {
-                        destDict.Add(key, srcDict[key]);
-                        concatKey = key.ToString();
-                    }
-                    else
-                    {
-                        concatKey += "_" + key.ToString();
-                        destDict.Add(concatKey, srcDict[key]);
-                    }
-
-                    i++;
-                }
-            }
-        }
-
-
-        public void ProcessCustomData(string key, Dictionary<string, string> customData, OrderedDictionary ordDict)
-        {
-            if (!customData.ContainsKey(key + ".Value"))
-                return;
-
-            string addOrRemoveText = ".Sublevel[0]";
-            string parentKey = key.Remove(key.Length - addOrRemoveText.Length, addOrRemoveText.Length);
-
-            //string childId = customData[parentKey + ".ExternalReference"] + "_" + customData[key + ".ExternalReference"];
-            ordDict.Add(customData[key + ".ExternalReference"], customData[key + ".Value"]);
-            string nextKey = key + ".SubLevel[0]";
-
-            ProcessCustomData(nextKey, customData, ordDict);
-        }
-
+        
         private JobFiltersData _jobFiltersData;
         private JobFiltersData JobFiltersData
         {

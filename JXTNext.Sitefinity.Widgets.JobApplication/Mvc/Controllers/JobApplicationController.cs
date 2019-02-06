@@ -685,8 +685,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 Log.Write($"IsJobApplied exception = " + ex.Message, ConfigurationPolicy.ErrorLog);
                 var result = new
                 {
-                    isJobApplied = false,
-                    timeouterror = true
+                    Error = true
                 };
                 return new JsonResult { Data = result };
             }
@@ -705,14 +704,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 isJobApplied = true;
             }
-            else if (appliedJobresponse.Errors != null && appliedJobresponse.Errors.Count > 0)
-            {
-                var errorString = appliedJobresponse.Errors.FirstOrDefault();
-                if(errorString != null && errorString.ToLower().Contains("time out"))
-                {
-                    throw new TimeoutException();
-                }
-            }
+            
             Log.Write($"IsJobApplied isJobApplied 1 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
             return isJobApplied;
         }

@@ -10556,6 +10556,9 @@ ul.breadcrumb {
 .k-block, .k-widget {
   line-height: inherit; }
 
+.hide-allsearch_btn .row-see-more {
+  display: none; }
+
 /*#endregion Job offers */
 /*#region Articles/Insights */
 .list-featured-articles {

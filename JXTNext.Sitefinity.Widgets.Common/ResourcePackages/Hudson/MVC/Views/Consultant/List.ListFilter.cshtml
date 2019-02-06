@@ -7,6 +7,7 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Models;
 @using Telerik.Sitefinity.Web.DataResolving;
 @using Telerik.Sitefinity.Model.ContentLinks;
+@*Needed for custom thumbnail*@
 @using Telerik.Sitefinity.Modules.Pages;
 @using Telerik.Sitefinity.Modules.Libraries;
 
@@ -97,6 +98,7 @@
 @foreach (var item in Model.Items)
 {
     var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+    var imageThumbUrl = "";
 
     List<string>
     filterValues = new List<string>
@@ -141,15 +143,21 @@
 
     <div class="contact-consultant row hidden" data-filtersector="@(string.Join(",",filterValues))" data-filterlocation="@OfficeLocationUrl">
 
-        @if (item.Fields.Pic != null)
-        {
-            <div class="col-md-6">
-                <a class="contact-consultant-image" href="@navigateUrl">
-                    <img src="@MediaContentExtensions.ResolveThumbnailUrl(item.Fields.Pic.DataItem, "thumbcrop4")" alt="@item.Fields.Pic.Fields.Title" />
-                    <div class="contact-image-rollover"><div class="display-table"><div class="display-cell">View Profile</div></div></div>
-                </a>
-            </div>
-        }
+        <div class="col-md-6">
+            <a class="contact-consultant-image" href="@navigateUrl">
+                @if (item.Fields.Pic != null)
+                {
+                    imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(item.Fields.Pic.DataItem, "thumbcrop4");
+                }
+                else
+                {
+                    imageThumbUrl = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.jpg";
+
+                }
+                <img src="@imageThumbUrl" alt="@item.Fields.ConsultantName" />
+                <div class="contact-image-rollover"><div class="display-table"><div class="display-cell">View Profile</div></div></div>
+            </a>
+        </div>
 
         <div class="col-md-6">
             <div class="contact-consultant-info">
@@ -177,7 +185,7 @@
                         <a href="@item.Fields.LinkedInProfileUrl" target="_blank" title="Go to LinkedIN Profile"><em class="fab fa-linkedin-in"></em>@item.Fields.LinkedInProfileName</a>
                     }
                 </div>
-               
+
                 <a class="btn btn-primary" href="@navigateUrl">Contact me</a>
             </div>
         </div>
@@ -211,7 +219,7 @@
                 $('.alert').removeClass('hidden');
             } else {
                 $('.alert').addClass('hidden');
-            } 
+            }
 
             $('.const-found').text($('.contact-consultant:not(.hidden)').length);
 

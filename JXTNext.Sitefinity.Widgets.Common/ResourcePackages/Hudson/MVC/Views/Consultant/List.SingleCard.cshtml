@@ -8,28 +8,37 @@
 @using Telerik.Sitefinity.Model.ContentLinks;
 @using Telerik.Sitefinity.Modules.Pages;
 @using Telerik.Sitefinity.Modules.Libraries;
-<div class="single-card">
+<div class="single-card s">
     @foreach (var consultant in Model.Items)
     {
         var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(consultant, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
 
-        if (consultant.Fields.Pic != null && consultant.Fields.Office != null)
-        {
-            var OfficeLocationName = "";
-            var OfficeLocationUrl = "";
+        
+        var OfficeLocationName = "";
+        var OfficeLocationUrl = "";
+        var imageThumbUrl = "";
 
-            
-            <div class="consultant">
-                <a href="@navigateUrl" title="@consultant.Fields.ConsultantName" class="consultant-photo">
-                    <img src="@MediaContentExtensions.ResolveThumbnailUrl(consultant.Fields.Pic.DataItem, "thumb350")" alt="@consultant.Fields.ConsultantName">
-                </a>
-                <a href="@navigateUrl" class="caption">
-                    <h3 class="consultant-name">@consultant.Fields.ConsultantName</h3>
-                    <p class="consultant-sum">
-                        @Html.HtmlSanitize((string)consultant.Fields.Position)
-                    </p>
+        <div class="consultant">
+            @if (consultant.Fields.Pic != null)
+            {
+                imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(consultant.Fields.Pic.DataItem, "thumb350");
+            }
+            else
+            {
+                imageThumbUrl = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.jpg";
+            }
 
-                    @if (consultant.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
+            <a href="@navigateUrl" title="@consultant.Fields.ConsultantName" class="consultant-photo">
+                <img src="@imageThumbUrl" alt="@consultant.Fields.ConsultantName">
+            </a>
+            <a href="@navigateUrl" class="caption">
+                <h3 class="consultant-name">@consultant.Fields.ConsultantName</h3>
+                <p class="consultant-sum">
+                    @Html.HtmlSanitize((string)consultant.Fields.Position)
+                </p>
+                @if (consultant.Fields.Office != null)
+                {
+                    if (consultant.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
                     {
                         OfficeLocationName = Html.HtmlSanitize((string)consultant.Fields.Office.Fields.Name).ToString();
                         OfficeLocationUrl = consultant.Fields.Office.Fields.UrlName.ToString();
@@ -51,15 +60,14 @@
                         OfficeLocationName = string.Join(", ", OfficeLocationNameList.ToArray());
                         OfficeLocationUrl = string.Join(",", OfficeLocationUrlList.ToArray());
                     }
-                    @if (consultant.Fields.Office != null)
-                    {
-                        <span class="consultant-btn">@OfficeLocationName</span>
-                    }
-                </a>
+
+                    <span class="consultant-btn">@OfficeLocationName</span>
+                }
+            </a>
                 
-            </div>
+        </div>
            
-        }
+        
     }
 </div>
 

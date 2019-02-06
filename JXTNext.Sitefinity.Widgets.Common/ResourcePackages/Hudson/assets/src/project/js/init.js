@@ -442,7 +442,7 @@ $(document).ready(function () {
         if( filterCat != null && filterCat.length > 0 ){
             $.each( filterCat, function(key, value){
                 if( hasExcludeCat.indexOf(value) > -1 ){
-                    $('.consultant-jobs').parents('.page-section').hide();
+                    $('.consultant-jobs, .consultant-jobs-title').parents('.page-section').hide();
                 }
             });
         }

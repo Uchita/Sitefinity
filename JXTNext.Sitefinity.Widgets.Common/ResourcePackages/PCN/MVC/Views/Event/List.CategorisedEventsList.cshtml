@@ -14,7 +14,7 @@
     var i = 0;
 }
 
-<h3 class="title-border">Latest Posts</h3>
+@*<h3 class="title-border">Latest Posts</h3>*@
 
 <div class="archive-postlist @Model.CssClass">
     <div class="row">
@@ -36,17 +36,25 @@
 
                         <div class="thumbnail-img overlay">
                             <a href="@navigateUrl" class="image" style="background-image: url(@imageurl);"></a>
-                            <div class="cat-bullet">
-                                @if (item.Fields.Category != null)
-                                {
-                                    foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+                            <div class="upper-img">
+                                <h3>
+                                    <a href="@navigateUrl">@item.Fields.Title</a>
+                                </h3>
+                                <div class="clearfix"></div>
+                                <span class="location">@item.Fields.City</span>
+                                <div class="clearfix"></div>
+                                <div class="cat-bullet">
+                                    @if (item.Fields.Category != null)
                                     {
-                                        var url = "/news/events1/-in-category/categories" + @taxon.FullUrl;
-                                        <span class="cat">
-                                            <a href="@url">@taxon.Title.ToString()</a>
-                                        </span>
+                                        foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+                                        {
+                                            var url = "/news/events1/-in-category/categories" + @taxon.FullUrl;
+                                            <span class="cat">
+                                                <a href="@url">@taxon.Title.ToString()</a>
+                                            </span>
+                                        }
                                     }
-                                }
+                                </div>
                             </div>
                         </div>
 
@@ -59,14 +67,11 @@
 
                             </div>
 
-                            <h3>
-                                <a href="@navigateUrl">@item.Fields.Title</a>
-                            </h3>
                         </div>
 
-                        <div class="entry-excerpt">
-                            <p>@Html.HtmlSanitize((string)item.Fields.Summary)</p>
-                        </div>
+                        @*<div class="entry-excerpt">
+                                <p>@Html.HtmlSanitize((string)item.Fields.Summary)</p>
+                            </div>*@
 
                         <div class="entry-footer">
                             <a class="read_btn" href="@navigateUrl"><span>Read More</span></a>
@@ -78,27 +83,27 @@
             }
             else
             {
-                <div class="items-cat">
+                @*<div class="items-cat">
 
-                    <div class="thumbnail-img overlay">
-                        <a href="@navigateUrl"><img src="@imageurl" alt="image"></a>
-                    </div>
-
-                    <div class="text">
-                        <h3>
-                            <a href="@navigateUrl">@item.Fields.Title</a>
-                        </h3>
-                        <div class="entry-meta">
-                            <span class="author">Posted by <a href="#" title="Posts by Greythorn Australia" rel="author">@DataResolver.Resolve(item.DataItem, "Author", null)</a></span>
-                            <span class="sep">-</span>
-                            <span class="date">@item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
+                        <div class="thumbnail-img overlay">
+                            <a href="@navigateUrl"><img src="@imageurl" alt="image"></a>
                         </div>
-                        <div class="entry-excerpt">
-                            <p>@Html.HtmlSanitize((string)item.Fields.Summary)</p>
-                        </div>
-                    </div>
 
-                </div>
+                        <div class="text">
+                            <h3>
+                                <a href="@navigateUrl">@item.Fields.Title</a>
+                            </h3>
+                            <div class="entry-meta">
+                                <span class="author">Posted by <a href="#" title="Posts by Greythorn Australia" rel="author">@DataResolver.Resolve(item.DataItem, "Author", null)</a></span>
+                                <span class="sep">-</span>
+                                <span class="date">@item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
+                            </div>
+                            <div class="entry-excerpt">
+                                <p>@Html.HtmlSanitize((string)item.Fields.Summary)</p>
+                            </div>
+                        </div>
+
+                    </div>*@
             }
             i++;
 

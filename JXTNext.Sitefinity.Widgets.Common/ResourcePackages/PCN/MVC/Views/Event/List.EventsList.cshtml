@@ -44,17 +44,25 @@
 
                     <div class="thumbnail-img overlay">
                         <a href="@navigateUrl" class="image" style="background-image: url(@imageurl);"></a>
-                        <div class="cat-bullet">
-                            @if (item.Fields.Category != null)
-                            {
-                                foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+                        <div class="upper-img">
+                            <h3>
+                                <a href="@navigateUrl">@item.Fields.Title</a>
+                            </h3>
+                            <div class="clearfix"></div>
+                            <span class="location">@item.Fields.City</span>
+                            <div class="clearfix"></div>
+                            <div class="cat-bullet">
+                                @if (item.Fields.Category != null)
                                 {
-                                    var url = "/news/events1/-in-category/categories" + @taxon.FullUrl;
-                                    <span class="cat">
-                                        <a href="@url">@taxon.Title.ToString()</a>
-                                    </span>
+                                    foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+                                    {
+                                        var url = "/news/events1/-in-category/categories" + @taxon.FullUrl;
+                                        <span class="cat">
+                                            <a href="@url">@taxon.Title.ToString()</a>
+                                        </span>
+                                    }
                                 }
-                            }
+                            </div>
                         </div>
                     </div>
 
@@ -67,14 +75,11 @@
 
                         </div>
 
-                        <h3>
-                            <a href="@navigateUrl">@item.Fields.Title</a>
-                        </h3>
                     </div>
 
-                    <div class="entry-excerpt">
-                        <p>@Html.HtmlSanitize((string)item.Fields.Summary)</p>
-                    </div>
+                    @*<div class="entry-excerpt">
+                            <p>@Html.HtmlSanitize((string)item.Fields.Summary)</p>
+                        </div>*@
 
                     <div class="entry-footer">
                         <a class="read_btn" href="@navigateUrl"><span>Read More</span></a>

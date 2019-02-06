@@ -37,18 +37,22 @@
 
                     <div class="thumbnail-img overlay">
                         <a href="@navigateUrl" class="image" style="background-image: url(@imageurl);"></a>
-                        <div class="cat-bullet">
-                            @if (item.Fields.Category != null)
-                            {
-                                foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+
+                        <div class="upper-img">
+                            <div class="cat-bullet">
+                                @if (item.Fields.Category != null)
                                 {
-                                    var url = "/news/-in-category/categories" + @taxon.FullUrl;
-                                    <span class="cat">
-                                        <a href="@url">@taxon.Title.ToString()</a>
-                                    </span>
+                                    foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+                                    {
+                                        var url = "/news/-in-category/categories" + @taxon.FullUrl;
+                                        <span class="cat">
+                                            <a href="@url">@taxon.Title.ToString()</a>
+                                        </span>
+                                    }
                                 }
-                            }
+                            </div>
                         </div>
+
                     </div>
 
 

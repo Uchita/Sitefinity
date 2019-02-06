@@ -390,6 +390,33 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
                 return new JXTNext_MemberJobAlertDeleteResponse { Success = false, Errors = new List<string> { response.Response } };
         }
 
+        public IMemberAppliedJobResponse MemberAppliedJobGetByJobId(int jobId)
+        {
+            ConnectorGetRequest connectorRequest = new ConnectorGetRequest(HTTP_Requests_MaxWaitTime)
+            {
+                HeaderValues = base.HTTP_Request_HeaderValues,
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/member/job/{jobId}/MemberAppliedJobGetByJobId")
+            };
+            ConnectorResponse response = JXTNext.Common.API.Connector.Get(connectorRequest);
+
+            //parse the response
+            bool actionSuccessful = response.Success;
+
+            if (actionSuccessful)
+            {
+                dynamic responseObj = JObject.Parse(response.Response);
+
+                if (responseObj["status"] == 200 && responseObj["data"] != null)
+                {
+                    return new JXTNext_MemberAppliedJobByIdResponse { Success = true, MemberAppliedJobById = JsonConvert.DeserializeObject<MemberAppliedJob>(responseObj["data"].ToString()) };
+                }
+                else
+                    return new JXTNext_MemberAppliedJobByIdResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };
+            }
+            else
+                return new JXTNext_MemberAppliedJobByIdResponse { Success = false, Errors = new List<string> { response.Response } };
+        }
+
         public IMemberAppliedJobResponse MemberAppliedJobsGet()
         {
             ConnectorGetRequest connectorRequest = new ConnectorGetRequest(HTTP_Requests_MaxWaitTime)

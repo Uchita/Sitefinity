@@ -128,8 +128,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 // Get job source or url referral
 
                 string UrlReferral = string.Empty;
-                if (!string.IsNullOrWhiteSpace(Request.QueryString["source"]))
-                    UrlReferral = Request.QueryString["source"];
+                if (!string.IsNullOrWhiteSpace(Request.QueryString["SRC"]))
+                    UrlReferral = Request.QueryString["SRC"];
+                else if (!string.IsNullOrWhiteSpace(Request.QueryString["src"]))
+                    UrlReferral = Request.QueryString["src"];
                 else
                     UrlReferral = this.GetCookieDomain(Request.Cookies["JobsViewed"], jobId.Value);
 

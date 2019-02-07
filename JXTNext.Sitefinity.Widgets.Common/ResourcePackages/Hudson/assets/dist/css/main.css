@@ -10242,10 +10242,31 @@ ul.breadcrumb {
 .job-offer-apply {
   max-width: 400px; }
 
+.job-offer-contacts {
+  margin-bottom: 30px; }
+  .job-offer-contacts .job-metas .job-meta-label {
+    padding-right: 20px;
+    margin-bottom: 0;
+    width: 180px; }
+  .job-offer-contacts .job-metas .job-meta-value {
+    width: calc(100% - 200px); }
+
 @media (max-width: 991px) {
   .job-offer-details {
     padding-right: 0;
     margin-bottom: 40px; } }
+
+@media (max-width: 500px) {
+  .job-offer-contacts {
+    margin-bottom: 10px; }
+    .job-offer-contacts .job-metas {
+      display: block; }
+      .job-offer-contacts .job-metas .job-meta-label {
+        width: 100%;
+        padding-right: 0; }
+      .job-offer-contacts .job-metas .job-meta-value {
+        margin-bottom: 10px;
+        width: 100%; } }
 
 .page-wrapper .search-top {
   margin: 10px 0 30px 0; }

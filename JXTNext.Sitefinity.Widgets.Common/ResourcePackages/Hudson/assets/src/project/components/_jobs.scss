@@ -288,6 +288,20 @@
     &-apply{
         max-width: 400px;
     }
+    &-contacts{
+        margin-bottom: 30px;
+        .job-metas{
+            .job-meta-label{
+                padding-right: 20px;
+                margin-bottom: 0;
+                width: 180px;
+            }
+            .job-meta-value {
+                width: calc(100% - 200px);
+            }
+        } 
+    }
+
     @media (max-width:991px) {
     
         &-details {
@@ -295,6 +309,23 @@
             margin-bottom: 40px;
         }
     }
+    @media (max-width:500px) {
+        &-contacts{
+            margin-bottom: 10px;
+            .job-metas{
+                display: block;
+                .job-meta-label{
+                    width: 100%;
+                    padding-right: 0;
+                }
+                .job-meta-value{
+                    margin-bottom: 10px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+    
 }
 
 .page-wrapper {

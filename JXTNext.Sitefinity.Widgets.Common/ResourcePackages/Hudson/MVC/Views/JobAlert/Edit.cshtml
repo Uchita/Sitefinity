@@ -83,18 +83,25 @@
                             </div>
                             <div class="col-md-8">
                                 <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden" />
-                                <select class="SalaryRangeSelect form-control">
-                                    <option value="-1" selected>Choose Salary</option>
-                                    @foreach (var salaryItem in item.Filters)
-                                    {
-                                        <option value="@salaryItem.ID">@salaryItem.Label</option>
-                                    }
-                                </select>
+                                <div class="select">
+                                    <select class="SalaryRangeSelect form-control">
+                                        <option value="-1" selected>Choose Salary</option>
+                                        @foreach (var salaryItem in item.Filters)
+                                        {
+                                            <option value="@salaryItem.ID">@salaryItem.Label</option>
+                                        }
+                                    </select>
+                                </div>
                                 @foreach (var salaryItem in item.Filters)
                                 {
                                     var lower = 15000;
                                     var upper = 300000;
-                                    if (salaryItem.Label == "Hourly Rate")
+                                    if (salaryItem.Label == "Daily")
+                                    {
+                                        lower = 200;
+                                        upper = 3000;
+                                    }
+                                    else if (salaryItem.Label == "Hourly Rate")
                                     {
                                         lower = 18;
                                         upper = 200;
@@ -147,6 +154,7 @@
     <script type="text/javascript">
     var optionsArray = {};
     var isSalaryExists = false;
+    var isSalaryChanged = false;
     var isSlarySelected = false;
     var salary = { RootName: 'Salary', TargetValue: '', LowerRange: 15000, UpperRange: 300000 };
 
@@ -205,8 +213,9 @@
             }
         }
 
-        $('select').on('change', function () {
+        $('.SalaryRangeSelect').on('change', function () {
             isSlarySelected = false;
+            isSalaryChanged = true;
             $('.salaryrangewrapper').each(function (i, obj) {
                 $(this).addClass('visible-hidden');
             });
@@ -240,8 +249,13 @@
                     $(this).parent().find('.rightLabel span').text(rightValue);
                 },
                 "value_changed_callback": function (cause, leftValue, rightValue) {
-                    $(this).parent().find('.leftLabel span').text(leftValue);
-                    $(this).parent().find('.rightLabel span').text(rightValue);
+                    if (!$(this).parent().hasClass('visible-hidden')) {
+                        $(this).parent().find('.leftLabel span').text(leftValue);
+                        $(this).parent().find('.rightLabel span').text(rightValue);
+                        if (cause != 'init') {
+                            isSalaryChanged = true;
+                        }
+                    }
                 }
             });
         });

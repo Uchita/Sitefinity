@@ -1,7 +1,9 @@
 ﻿@model dynamic
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 @using Telerik.Sitefinity.Modules.Pages;
-
+@{ 
+    var guid = Guid.NewGuid();
+}
 
 <div class="@ViewBag.CssClass">
 
@@ -11,7 +13,7 @@
 
             @foreach (var result in Model.SearchResults)
             {
-                <li><a href="@ViewBag.JobDetailsPageUrl/@result.ClassificationURL/@result.JobID">@result.Title</a></li>
+                <li><a href="@ViewBag.JobDetailsPageUrl/@result.ClassificationURL/@result.JobID?g=@guid">@result.Title</a></li>
             }
 
         </ul>

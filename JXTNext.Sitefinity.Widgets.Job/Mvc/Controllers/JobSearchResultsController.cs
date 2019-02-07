@@ -368,36 +368,36 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 dynamicJobResultsList = response as dynamic;
             }
 
-            PartialViewResult jobResultsPartialVR = PartialView("_JobSearchResultsBayside", dynamicJobResultsList);
+            PartialViewResult jobResultsPartialVR = PartialView("_JobSearchResultsBayside_FinaAjob", dynamicJobResultsList);
             JobFiltersController jobFiltersController = new JobFiltersController(_bConnectorsList, _oConnectorsList);
             ActionResult filtersActionResult = jobFiltersController.Index(filterModel, SiteMapBase.GetActualCurrentNode().Title, (dynamicJobResultsList != null) ? dynamicJobResultsList.SearchResultsFilters : null);
 
             return new JsonResult { Data = new { jobResults = RenderActionResultToString(jobResultsPartialVR, this.ControllerContext.Controller), jobResultsFilter = RenderActionResultToString(filtersActionResult, jobFiltersController) } };
         }
 
-        //[HttpPost]
-        //[StandaloneResponseFilter]
-        //public JsonResult GetFilterSearchResultsPartial_WithLeftFilterSelected([ModelBinder(typeof(JobSearchResultsFilterBinder))] JobSearchResultsFilterModel filterModel)
-        //{
-        //    dynamic dynamicJobResultsList = null;
+        [HttpPost]
+        [StandaloneResponseFilter]
+        public JsonResult GetFilterSearchResultsPartial_WithLeftFilterSelected([ModelBinder(typeof(JobSearchResultsFilterBinder))] JobSearchResultsFilterModel filterModel)
+        {
+            dynamic dynamicJobResultsList = null;
 
 
-        //    if (filterModel != null)
-        //    {
-        //        if (!string.IsNullOrEmpty(filterModel.Keywords))
-        //        {
-        //            filterModel.Keywords = filterModel.Keywords.Trim(charsToTrim);
-        //        }
-        //        ISearchJobsResponse response = GetJobSearchResultsResponse(filterModel);
-        //        dynamicJobResultsList = response as dynamic;
-        //    }
+            if (filterModel != null)
+            {
+                if (!string.IsNullOrEmpty(filterModel.Keywords))
+                {
+                    filterModel.Keywords = filterModel.Keywords.Trim(charsToTrim);
+                }
+                ISearchJobsResponse response = GetJobSearchResultsResponse(filterModel);
+                dynamicJobResultsList = response as dynamic;
+            }
 
-        //    PartialViewResult jobResultsPartialVR = PartialView("_JobSearchResultsBayside_FinaAjob", dynamicJobResultsList);
-        //    JobFiltersController jobFiltersController = new JobFiltersController(_bConnectorsList, _oConnectorsList);
-        //    ActionResult filtersActionResult = jobFiltersController.Index(filterModel, SiteMapBase.GetActualCurrentNode().Title, (dynamicJobResultsList != null) ? dynamicJobResultsList.SearchResultsFilters : null);
+            PartialViewResult jobResultsPartialVR = PartialView("_JobSearchResultsBayside", dynamicJobResultsList);
+            JobFiltersController jobFiltersController = new JobFiltersController(_bConnectorsList, _oConnectorsList);
+            ActionResult filtersActionResult = jobFiltersController.Index(filterModel, SiteMapBase.GetActualCurrentNode().Title, (dynamicJobResultsList != null) ? dynamicJobResultsList.SearchResultsFilters : null);
 
-        //    return new JsonResult { Data = new { jobResults = RenderActionResultToString(jobResultsPartialVR, this.ControllerContext.Controller), jobResultsFilter = RenderActionResultToString(filtersActionResult, jobFiltersController) } };
-        //}
+            return new JsonResult { Data = new { jobResults = RenderActionResultToString(jobResultsPartialVR, this.ControllerContext.Controller), jobResultsFilter = RenderActionResultToString(filtersActionResult, jobFiltersController) } };
+        }
 
         [HttpPost]
         public JsonResult CreateAnonymousJobAlert(JobSearchResultsFilterModel filterModel, string email)

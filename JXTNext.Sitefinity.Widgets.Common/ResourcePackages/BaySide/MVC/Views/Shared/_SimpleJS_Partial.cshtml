@@ -298,25 +298,47 @@
 
                 var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial_WithLeftFilterSelected";
                 var queryStringData = makeQueryString(filterModel, "", false);
-                //console.log(queryStringData);
                 var pushStateUrl = $(location).attr('pathname') + "?" + queryStringData;
-                window.location.href = '/jobs/advancedsearch/search-result' + "?" + queryStringData;
-                //window.history.pushState(data, "", pushStateUrl);
-                //queryStringArr.length = 0;
-                //$.ajax({
-                //    type: "POST",
-                //    cache: false,
-                //    url: urlPath,
-                //    data: queryStringData,
-                //    dataType: 'json',
-                //    success: function (response) {
-                //        $("#resultsPagePartialContent").empty().html(response.jobResults);
-                //        $("#filtersPagePartialContent").empty().html(response.jobResultsFilter);
-                //    },
-                //    error: function (response) {
-                //        console.log(response);
-                //    }
-                //});
+
+
+                var newFilters = filterModel.Filters[0].values;
+                array = $('#hdnClassifcationValues').val();
+                array = JSON.parse(array);
+                var isSubCategory = false;
+
+                for (var i = 0; i < newFilters.length; i++) {
+                    for (var j = 0; j < array.length; j++) {
+                        if (newFilters[i] == [array[j]]) {
+                            isSubCategory = true;
+                            return;
+                        }
+                    }
+                }
+
+                if (isSubCategory == true) {
+                    window.history.pushState(data, "", pushStateUrl);
+                    queryStringArr.length = 0;
+                    $.ajax({
+                        type: "POST",
+                        cache: false,
+                        url: urlPath,
+                        data: queryStringData,
+                        dataType: 'json',
+                        success: function (response) {
+                            $("#resultsPagePartialContent").empty().html(response.jobResults);
+                            $("#filtersPagePartialContent").empty().html(response.jobResultsFilter);
+                        },
+                        error: function (response) {
+                            console.log(response);
+                        }
+                    });
+                }
+                else {
+                    window.location.href = '/jobs/advancedsearch/search-result' + "?" + queryStringData;
+                }
+
+                //window.location.href = '/jobs/advancedsearch/search-result' + "?" + queryStringData;
+
             }
         }
 

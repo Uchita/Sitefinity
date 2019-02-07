@@ -62,17 +62,10 @@
                         var loggedOutStatusCls = "";
                     }
 
-                    @{
-                        if (currentIdentity.IsAuthenticated)
-                        {
-                            loggedInStatusCls = "";
-                            loggedOutStatusCls = "display: none";
-                        }
-                        else
-                        {
-                            loggedInStatusCls = "display: none";
-                            loggedOutStatusCls = "";
-                        }
+                    @if (currentIdentity.IsAuthenticated)
+                    {
+                        loggedInStatusCls = "";
+                        loggedOutStatusCls = "display: none";
                     }
 
                     @* logged in out menu links *@

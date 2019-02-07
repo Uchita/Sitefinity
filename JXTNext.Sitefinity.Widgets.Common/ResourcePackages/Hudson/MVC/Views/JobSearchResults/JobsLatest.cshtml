@@ -5,7 +5,6 @@
 @{
     int jobOfferIndex = 0;
     var defaultLogo = "/ResourcePackages/Hudson/assets/dist/images/defaultLogo.png";
-    var guid = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 6);
 }
 
 <div class="@ViewBag.CssClass">
@@ -21,7 +20,7 @@
                 <div class="featured-job-offer same-height-box">
                     <div class="job-offer-company text-right"><img alt="" src="@defaultLogo" title="@jobOffer.Title"></div>
                     <div class="job-offer">
-                        <h3><a class="title-link" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID?g=@guid">@jobOffer.Title</a></h3>
+                        <h3><a class="title-link" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">@jobOffer.Title</a></h3>
 
                         @{
                             var summary = Html.HtmlSanitize((string)jobOffer.ShortDescription).ToString();

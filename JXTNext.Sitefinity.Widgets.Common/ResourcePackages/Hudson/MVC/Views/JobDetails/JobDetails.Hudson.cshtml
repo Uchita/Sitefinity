@@ -175,6 +175,7 @@
                 <div class="row job-offer-apply">
                     <div class="col-md-12">
                         <a id="job-application-lnk" class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID?source=@Model.UrlReferral">APPLY NOW</a>
+                        <div id="job-applied-msg" class="alert alert-info" hidden>@Html.Resource("JobAlreadyAppliedMsg")</div>
                     </div>
                 </div>
             }
@@ -195,6 +196,7 @@
             <div class="row job-offer-apply">
                 <div class="col-md-12">
                     <a id="job-application-lnk" class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID?source=@Model.UrlReferral">APPLY NOW</a>
+                    <div id="job-applied-msg" class="alert alert-info" hidden>@Html.Resource("JobAlreadyAppliedMsg")</div>
                 </div>
             </div>
         }
@@ -340,6 +342,27 @@
     $(document).ready(function () {
         document.title = '@Model.JobDetails.Title';
         var isLoggedIn = '@isUserLoggedIn';
+        var jobId = @Model.JobDetails.JobID;
+        console.log("ready method");
+        $.ajax({
+            type: 'POST',
+            cache: false,
+            url: $(location).attr('pathname') + "/IsJobApplied",
+            data: { JobId: jobId },
+            dataType: 'Json',
+            success: function (response) {
+                if (response == true) {
+                    $('#job-application-lnk').addClass("hidden");
+                    $('#job-applied-msg').removeClass("hidden");
+                }
+                else {
+                    $('#job-application-lnk').removeClass("hidden");
+                    $('#job-applied-msg').addClass("hidden");
+                }
+            },
+            error: function (response) {
+            }
+        });
 
         //checking user logged in is member role
         $('#job-application-lnk').click(function (e) {

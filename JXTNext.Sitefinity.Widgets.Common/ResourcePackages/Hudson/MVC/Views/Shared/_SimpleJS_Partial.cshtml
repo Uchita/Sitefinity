@@ -150,6 +150,11 @@
             });
         });
 
+        $(window).resize(function () {
+            $('.nstSlider').nstSlider('refresh');
+        });
+        
+
         $('#selectedkeywordsfilter').on('keydown', function (e) {
             if ($(this).val && e.which == 13) {
                 //getting the loader while the job search is working
@@ -176,7 +181,8 @@
         if ($('.filter-toggle').length) {
             $('.filter-toggle .btn').click(function () {
                 $(this).toggleClass('active');
-                $('.sm-wrapper').fadeToggle('fast');
+                //$('.sm-wrapper').fadeToggle('fast');
+                $('.sm-wrapper').toggleClass('fake-hide-reverse');
             });
         }
 

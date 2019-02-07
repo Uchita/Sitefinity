@@ -12016,8 +12016,17 @@ select.articles-order {
         text-transform: none;
         font-family: AkzidGroProReg, sans-serif; }
   .sm-wrapper {
-    display: none;
-    margin-top: 20px; }
+    margin-top: 20px;
+    position: relative;
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    height: 0; }
+    .sm-wrapper.fake-hide-reverse {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      height: auto; }
   div#filtersPagePartialContent {
     padding-top: 50px; }
     div#filtersPagePartialContent > div {

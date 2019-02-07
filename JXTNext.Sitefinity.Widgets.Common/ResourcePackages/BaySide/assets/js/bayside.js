@@ -55,6 +55,12 @@ $(document).ready(function () {
             str += thisContent;
             str += '</p><a href="javascript:void(0)" class="btn btn-link">Read less</a></div></div>';
             $(this).closest(".md-row").after(str);
+
+            /* tab */
+            // $(this).closest('.leader-list').parents('.md-row').find(".leader-list:nth-child(2n)").after(str);
+
+            /* mobile */
+            $(this).closest(".leader-list").after(str);
         }
     });
 
@@ -69,10 +75,10 @@ $(document).ready(function () {
         $this.addClass("active");
         $(".btn-leader-cat").not($this).removeClass("active");
         if (thisCat != "all") {
-            $(".leader-list-row").not($(thisCat)).slideUp();
-            $(thisCat).slideDown();
+            $(".leader-list-row").not($(thisCat)).slideUp().removeClass('show-list');
+            $(thisCat).slideDown().addClass('show-list');
         } else {
-            $(".leader-list-row").slideDown();
+            $(".leader-list-row").slideDown().removeClass('show-list');
         }
     });
 

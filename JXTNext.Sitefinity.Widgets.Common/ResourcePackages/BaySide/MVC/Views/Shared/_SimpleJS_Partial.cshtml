@@ -304,16 +304,16 @@
                 var newFilters = filterModel.Filters[0].values;
                 array = $('#hdnClassifcationValues').val();
                 array = JSON.parse(array);
-                var isSubCategory = false;
+                var isSubCategory = true;
 
-                for (var i = 0; i < newFilters.length; i++) {
-                    for (var j = 0; j < array.length; j++) {
-                        if (newFilters[i] == [array[j]]) {
-                            isSubCategory = true;
-                            return;
+
+                for (var j = 0; j < newFilters.length; j++) {
+                    if (!array.includes(newFilters[j])) {
+                            isSubCategory = false;
+                            break;
                         }
                     }
-                }
+
 
                 if (isSubCategory == true) {
                     window.history.pushState(data, "", pushStateUrl);

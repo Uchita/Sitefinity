@@ -611,8 +611,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ViewBag.SortOrder = JobSearchResultsFilterModel.GetSortStringFromEnum(request.SortBy);
 
             ISearchJobsResponse response = _BLConnector.SearchJobs(request);
-
             JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
+            
 
             ViewBag.Request = JsonConvert.SerializeObject(filterModel);
             ViewBag.FilterModel = JsonConvert.SerializeObject(filterModel);
@@ -642,7 +642,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return response;
         }
 
-
+        
         private JobFiltersData _jobFiltersData;
         private JobFiltersData JobFiltersData
         {

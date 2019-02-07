@@ -373,7 +373,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 if (seoString != null && seoString.Count > 0)
                 {
                     var urlString = String.Join("/", seoString);
-                    return Redirect(string.Format("job-application/{0}/{1}?error=resume", urlString, int.Parse(state)));
+                    return Redirect(string.Format("job-application/{0}/{1}?error=denied", urlString, int.Parse(state)));
                 }
                 else
                 {

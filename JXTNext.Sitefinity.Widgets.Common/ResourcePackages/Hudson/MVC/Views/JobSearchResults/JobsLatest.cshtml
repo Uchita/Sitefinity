@@ -20,7 +20,7 @@
                 <div class="featured-job-offer same-height-box">
                     <div class="job-offer-company text-right"><img alt="" src="@defaultLogo" title="@jobOffer.Title"></div>
                     <div class="job-offer">
-                        <h3><a class="title-link" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">@jobOffer.Title</a></h3>
+                        <h3><a class="title-link" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">@jobOffer.Title</a></h3>
 
                         @{
                             var summary = Html.HtmlSanitize((string)jobOffer.ShortDescription).ToString();
@@ -30,7 +30,7 @@
                             @trimSummary
                         </p>
                     </div>
-                    <a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID"></a>
+                    <a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID"></a>
                 </div>
 
             </div>

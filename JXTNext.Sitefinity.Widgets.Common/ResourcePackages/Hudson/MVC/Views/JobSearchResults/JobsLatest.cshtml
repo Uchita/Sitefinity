@@ -5,7 +5,7 @@
 @{
     int jobOfferIndex = 0;
     var defaultLogo = "/ResourcePackages/Hudson/assets/dist/images/defaultLogo.png";
-    var guid = Guid.NewGuid();
+    var guid = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 6);
 }
 
 <div class="@ViewBag.CssClass">

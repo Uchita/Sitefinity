@@ -2,7 +2,7 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 @using Telerik.Sitefinity.Modules.Pages;
 @{ 
-    var guid = Guid.NewGuid();
+    var guid = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 6);
 }
 
 <div class="@ViewBag.CssClass">

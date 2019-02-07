@@ -7,7 +7,7 @@
 </div>
 @{
     var defaultLogo = "/ResourcePackages/Hudson/assets/dist/images/defaultLogo.png";
-    var guid = Guid.NewGuid();
+    var guid = Guid.NewGuid().ToString().Replace("-", "").Substring(0,6);
 }
 
 @if (Model != null && Model.SearchResults != null && Model.SearchResults.Count > 0)

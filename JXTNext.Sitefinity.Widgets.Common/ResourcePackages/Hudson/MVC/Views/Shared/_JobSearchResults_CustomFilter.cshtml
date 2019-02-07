@@ -8,7 +8,7 @@
     var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
     bool isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
     var defaultLogo = "/ResourcePackages/Hudson/assets/dist/images/defaultLogo.png";
-    var guid = Guid.NewGuid();
+    var guid = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 6);
 }
 
 <div class="result-meta">

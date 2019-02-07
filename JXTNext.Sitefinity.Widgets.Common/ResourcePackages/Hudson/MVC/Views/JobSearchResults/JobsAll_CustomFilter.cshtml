@@ -1,0 +1,14 @@
+﻿@model dynamic
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.Modules.Pages;
+
+@Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/kendo.common.min.css"), "bottom")
+@Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/kendo.default.min.css"), "bottom")
+@Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/kendo.default.mobile.min.css"), "bottom")
+
+@Html.Script(ScriptRef.KendoAll, "top", false)
+
+
+<div id="resultsPagePartialContent">
+    @Html.Partial("_JobSearchResults_CustomFilter", (object)Model)
+</div>

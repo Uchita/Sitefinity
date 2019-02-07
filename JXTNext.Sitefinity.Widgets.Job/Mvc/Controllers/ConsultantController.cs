@@ -66,7 +66,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             if (item.DoesFieldExist("ConsultantName"))
             {
                 
-                string consultantFullName = item.GetString("ConsultantName");
+                string consultantFullName = item.GetString("ConsultantName"); 
                 
                 if (!string.IsNullOrEmpty(consultantFullName))
                 {
@@ -120,7 +120,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
             }
 
-
+            
            
             ViewBag.PageSize = (int)this.PageSize;
             ViewBag.CssClass = this.CssClass;
@@ -132,6 +132,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
 
+        
         protected override void HandleUnknownAction(string actionName)
         {
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");

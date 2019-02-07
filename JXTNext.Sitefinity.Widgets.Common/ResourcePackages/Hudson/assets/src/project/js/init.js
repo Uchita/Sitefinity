@@ -418,10 +418,10 @@ $(document).ready(function () {
     if( $('table.datatable').length ){
         $("table.datatable").slimtable({
             itemsPerPage: 5,
-			ippList: [2,5,10,20],
+			ippList: [5,10,20],
         });
         $("table.datatable").each( function(){
-            if( $(this).find('tbody>tr').length < 6 ){
+            if( $(this).parent().find('.slimtable-page-btn').length < 2 ){
                 $(this).parent().find('.slimtable-paging-div').hide();
             }
         });
@@ -442,7 +442,7 @@ $(document).ready(function () {
         if( filterCat != null && filterCat.length > 0 ){
             $.each( filterCat, function(key, value){
                 if( hasExcludeCat.indexOf(value) > -1 ){
-                    $('.consultant-jobs').parents('.page-section').hide();
+                    $('.consultant-jobs, .consultant-jobs-title').parents('.page-section').hide();
                 }
             });
         }

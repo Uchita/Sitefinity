@@ -5061,7 +5061,7 @@ p {
 
     .btn-link:focus,
     .btn-link:hover {
-        color: #0088CF;
+        color: #3465B0;
         text-decoration: none;
     }
 
@@ -5432,7 +5432,7 @@ p {
 }
 
 .g-section.our-services {
-    padding-bottom: 0;
+    padding-bottom: 23px;
 }
 
 /*-------Group Section----End------*/
@@ -5507,6 +5507,10 @@ p {
     .video-wrap .btn-link {
         color: inherit;
     }
+
+        .video-wrap .btn-link:hover {
+            color: #0088CF;
+        }
 
     .video-wrap:hover .play-btn, .video-wrap:focus .play-btn {
         background: #0088CF;
@@ -6330,8 +6334,9 @@ select.hs-input {
     .app-footer h4 {
         color: #BCBEC0;
         font-size: 17px;
-        font-weight: 600;
+        font-weight: 500;
         line-height: 1.5;
+        margin-bottom: 12px;
     }
 
     .app-footer ul {
@@ -6342,7 +6347,7 @@ select.hs-input {
         .app-footer ul li {
             list-style: none;
             /*line-height: 2;*/
-            padding: 6px 0;
+            padding: 6px 0 5px 0;
         }
 
             .app-footer ul li a {
@@ -6356,11 +6361,17 @@ select.hs-input {
                 color: #7A8087;
                 font-size: 14px;
                 line-height: normal;
+                font-weight: 300;
             }
 
                 .app-footer ul li a:hover {
                     color: #f1f1f1;
                 }
+
+    .app-footer .divider {
+        margin-top: 10px;
+        margin-bottom: 19px;
+    }
 
     .app-footer .footer_menu_inline {
         margin-bottom: 5px;
@@ -7399,7 +7410,7 @@ select.hs-input {
 }
 
 .btn.btn-link.icon-downarrow:after {
-    /*transition: all 0.5s ease-in-out;*/
+    transition: none;
     display: inline-block;
     width: auto;
     height: auto;
@@ -7412,10 +7423,16 @@ select.hs-input {
     font-family: FontAwesome;
 }
 
-.btn.btn-link.icon-downarrow.active:after, .btn.btn-link.icon-downarrow[aria-expanded="true"]:after {
+.btn.btn-link.icon-downarrow.active:after, .btn.btn-link.icon-downarrow[aria-expanded="true"]:after, .btn.btn-link.icon-downarrow:hover:after {
     -webkit-transform: rotate(-180deg);
     -moz-transform: rotate(-180deg);
     transform: rotate(-180deg);
+}
+
+.btn.btn-link.icon-downarrow.active:hover:after {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
 }
 
 .address-panel .text-bold {

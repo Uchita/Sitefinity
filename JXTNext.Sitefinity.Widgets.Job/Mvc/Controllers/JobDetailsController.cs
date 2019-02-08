@@ -79,6 +79,17 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     {
                         return GetAllSavedJobs();
                     }
+                    else if (routePath.ToUpper().Contains("ISJOBAPPLIED"))
+                    {
+                        if (Request.Form["JobId"] != null)
+                        {
+                            int jobId;
+                            if (Int32.TryParse(Request.Form["JobId"], out jobId))
+                            {
+                                return IsJobApplied(jobId);
+                            }
+                        }
+                    }
                     else if (routePath.ToUpper().Contains("SAVEJOB") || routePath.ToUpper().Contains("REMOVESAVEDJOB"))
                     {
                         if (Request.Form["JobId"] != null)
@@ -253,6 +264,49 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
             return Content("No job has been selected");
+        }
+
+        [HttpPost]
+        public JsonResult IsJobApplied(int jobId)
+        {
+            try
+            {
+                bool isJobApplied = _isMemberAppliedJob(jobId);
+
+                return new JsonResult { Data = isJobApplied };
+            }
+            catch (Exception ex)
+            {
+                Log.Write($"IsJobApplied exception = " + ex.Message, ConfigurationPolicy.ErrorLog);
+                var result = new
+                {
+                    Error = true
+                };
+                return new JsonResult { Data = result };
+            }
+
+        }
+
+        private bool _isMemberAppliedJob(int jobId)
+        {
+            bool isJobApplied = false;
+            Log.Write($"IsJobApplied method1", ConfigurationPolicy.ErrorLog);
+            JXTNext_MemberAppliedJobByIdResponse appliedJobresponse = _BLConnector.MemberAppliedJobGetByJobId(jobId) as JXTNext_MemberAppliedJobByIdResponse;
+            Log.Write($"IsJobApplied method appliedJobresponse.Success = " + appliedJobresponse.Success, ConfigurationPolicy.ErrorLog);
+            Log.Write($"IsJobApplied method appliedJobresponse.MemberAppliedJobById = " + appliedJobresponse.MemberAppliedJobById, ConfigurationPolicy.ErrorLog);
+
+            if (appliedJobresponse.Success)
+            {
+                isJobApplied = true;
+            }
+
+            if (appliedJobresponse.Errors != null && appliedJobresponse.Errors.Count > 0)
+            {
+                Log.Write($"IsJobApplied method error = " + appliedJobresponse.Errors.FirstOrDefault().ToString(), ConfigurationPolicy.ErrorLog);
+            }
+
+            Log.Write($"IsJobApplied isJobApplied 1 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
+            return isJobApplied;
         }
 
         [HttpPost]

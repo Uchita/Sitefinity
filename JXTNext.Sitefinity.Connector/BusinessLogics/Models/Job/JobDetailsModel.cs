@@ -35,7 +35,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job
         public List<OrderedDictionary> Classifications { get; set; }
         public string ClassificationsRootName { get; set; }
         public string ClassificationsSEORouteName { get; set; }
-
+        public string ClassificationURL { get; set; }
         [JsonProperty(PropertyName = "description")]
         public string Description { get; set; }
         public List<JobFilterRoot> Filters { get; set; }

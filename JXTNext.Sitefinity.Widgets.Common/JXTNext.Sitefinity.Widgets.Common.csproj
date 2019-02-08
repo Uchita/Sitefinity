@@ -243,6 +243,9 @@
     <Content Include="ResourcePackages\Hudson\assets\src\project\js\owl.carousel.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Hudson\assets\src\project\js\slimtable.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1596,6 +1599,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Hudson\MVC\Views\LoginStatusExtended\LoginStatusExtended.LoginName.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Shared\_JobSearchResults_CustomFilter.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Shared\_SimpleJS_Partial_CustomFilter.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobSearchResults\JobsAll_CustomFilter.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobFilters\T_MultiSelect_CustomFilter.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">

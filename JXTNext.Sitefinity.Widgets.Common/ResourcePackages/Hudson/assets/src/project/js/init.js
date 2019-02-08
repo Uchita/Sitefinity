@@ -416,12 +416,14 @@ $(document).ready(function () {
 
     //using dataTable plugin for pagination in table
     if( $('table.datatable').length ){
-        $('table.datatable').simplePagination({
-            containerClass: 'pagination tbl-pagination',
-            previousButtonClass: 'btn btn-tag',
-            nextButtonClass: 'btn btn-tag',
-            currentPage: 1,
-            perPage: 5,
+        $("table.datatable").slimtable({
+            itemsPerPage: 5,
+			ippList: [5,10,20],
+        });
+        $("table.datatable").each( function(){
+            if( $(this).parent().find('.slimtable-page-btn').length < 2 ){
+                $(this).parent().find('.slimtable-paging-div').hide();
+            }
         });
     }
 
@@ -440,12 +442,23 @@ $(document).ready(function () {
         if( filterCat != null && filterCat.length > 0 ){
             $.each( filterCat, function(key, value){
                 if( hasExcludeCat.indexOf(value) > -1 ){
-                    $('.consultant-jobs').parents('.page-section').hide();
+                    $('.consultant-jobs, .consultant-jobs-title').parents('.page-section').hide();
                 }
             });
         }
     }
+    
+    //job detail page:: back to result page
+    //in job result page
+    $('#back-to-results').on('click', function(e){
+        e.preventDefault();
+        window.history.back();
+    });
 
+    //window back button detection
+    window.onhashchange = function() {
+        $(document).reload();
+    }
   
 });
 

@@ -2,7 +2,7 @@
 @using Telerik.Sitefinity.Services;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
-<div class="text-center mb-30">
+<div class="text-center mb-30 consultant-jobs-title">
     <h2>@ViewBag.ConsultantName's jobs</h2>
 </div>
 @{
@@ -19,7 +19,7 @@
                 <div class="featured-job-offer same-height-box">
                     <div class="job-offer-company text-right"><img alt="@jobOffer.Title" src="@defaultLogo"></div>
                     <div class="job-offer">
-                        <h3><a class="title-link" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">@jobOffer.Title</a></h3>
+                        <h3><a class="title-link" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">@jobOffer.Title</a></h3>
                         @*@{
                                 var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(Math.Round(jobOffer.DateCreated / 1000d)).ToLocalTime()
                             }*@
@@ -32,7 +32,7 @@
                             @trimSummary
                         </p>
                     </div>
-                    <a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID"></a>
+                    <a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID"></a>
                 </div>
 
             </div>

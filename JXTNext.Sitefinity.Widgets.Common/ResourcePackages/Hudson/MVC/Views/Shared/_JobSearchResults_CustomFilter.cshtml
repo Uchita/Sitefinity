@@ -136,6 +136,7 @@
 
         </div>
     </script>
+    <input type="hidden" id="hdnClassifcationValues" />
 
     <script type="text/javascript">
 
@@ -377,7 +378,7 @@
                 var pageJumpVal = 5;
                 var startPage = (parseInt(PageNumber) / pageJumpVal) > 1 ? pageJumpVal * (Math.ceil(parseInt(PageNumber) / pageJumpVal) - 1) + 1 : 1;
 
-                lis += '<li class="pagePrev pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" data-page="0">Previous</a></li>';
+                lis += '<li class="pagePrev pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" disabled data-page="0">Previous</a></li>';
 
                 //dot page jump previous
                 if (startPage > 1) {
@@ -396,9 +397,7 @@
                     lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + (startPage + pageJumpVal) + '">...</a></li>';
                 }
 
-                if (highestPage != PageNumber) {
-                    lis += '<li class="pageNext pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" data-page="2">Next</a></li>';
-                }
+                lis += '<li class="pageNext pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" data-page="2">Next</a></li>';
                 $('#pager ul').html(lis);
             }
         };
@@ -406,7 +405,7 @@
         function bindJobs(PageNumber) {
 
             var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), pageNumber: PageNumber, sortBy: sortBy };
-            var urlPath = $(location).attr('pathname') + "/GetSearchResults";
+            var urlPath = $(location).attr('pathname') + "/GetSearchResults_WithLeftFiltersSelected";
             var searchPath = $(location).attr('search');
             if (searchPath == null || searchPath == "") {
                 searchPath += ("?" + "Page=" + PageNumber);
@@ -498,6 +497,8 @@
                         $("#sortOrder").parent().hide();
                     }
 
+                    $('#hdnClassifcationValues').val(JSON.stringify(response.SelectedFilters));
+
                     //check the layout on the base of active
                     //or Retrieve from local storage for checking too
                     if ($('.layout-switch .jn_ico.active').hasClass('icon-grid-view')) {
@@ -533,8 +534,9 @@
                 return false;
             }
 
+            bindJobsPages(currPageNumber);
+
             if (currPageNumber != PageNumber) {
-                bindJobsPages(currPageNumber);
                 PageNumber = parseInt(currPageNumber);
                 bindJobs(PageNumber);
                 //changing the prev & next page number attribute

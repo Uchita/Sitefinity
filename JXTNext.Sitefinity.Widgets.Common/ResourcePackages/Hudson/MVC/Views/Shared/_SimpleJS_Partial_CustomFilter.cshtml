@@ -150,15 +150,23 @@
             });
         });
 
-        $(window).resize(function () {
-            $('.nstSlider').nstSlider('refresh');
-        });
-        
+        function checkEspecialChar(str) {
+            var especialCharExp = /[^a-zA-Z 0-9 \-+_,.]+/;
+            
+            if (especialCharExp.test(str)) {
+                alert("The keyword contains special character. Please remove any special characters !#$%^&*?<>[]{}=,|\:/\"' or big gaps when copy/pasted.");
+                return false;
+            }
+        }
 
         $('#selectedkeywordsfilter').on('keydown', function (e) {
             if ($(this).val && e.which == 13) {
                 //getting the loader while the job search is working
                 $("#selectedkeywordsfilter").parent().addClass('loader');
+
+                if (checkEspecialChar($(this).val()) == false) {
+                    return false;
+                }
 
                 eachClickFilter();
             }
@@ -181,8 +189,7 @@
         if ($('.filter-toggle').length) {
             $('.filter-toggle .btn').click(function () {
                 $(this).toggleClass('active');
-                //$('.sm-wrapper').fadeToggle('fast');
-                $('.sm-wrapper').toggleClass('fake-hide-reverse');
+                $('.sm-wrapper').fadeToggle('fast');
             });
         }
 
@@ -288,6 +295,18 @@
                 $("#sortOrder").val("Recent");
             }
 
+            //getting the custom filter selected from the widget in cms
+            var array = $('#hdnClassifcationValues').val();
+
+            if (array != null && array != "") {
+                array = JSON.parse(array);
+                //console.table(array);
+                for (var i = 0; i < array.length; i++) {
+                    $('#' + array[i] + '> a').addClass('active');
+                    $('#' + array[i] + '> i').removeClass('fa-square-o').addClass('fa-check-square-o');
+                }
+            }
+
             function eachClickFilter() {
                 var filterModel = {};
                 filterModel.Filters = [];
@@ -317,7 +336,9 @@
                     }
                 });
 
-                if (isSalaryExists && isSlarySelected){
+                if (isSalaryExists && isSlarySelected) {
+                    //only if condition is true when other filters are selected/changed
+                    //in this case, salary is reset to defult & modelSalary will hold previous salary values
                     if (modelSalary != null && modelSalary != undefined && isSalaryChanged == false && (modelSalary.LowerRange > salary.LowerRange || modelSalary.UpperRange < salary.UpperRange) && modelSalary.TargetValue == $('.SalaryRangeSelect').val() ) {
                         filterModel.Salary = modelSalary;
                     }
@@ -339,6 +360,11 @@
                 var pushStateUrl = $(location).attr('pathname') + "?" + queryStringData;
                 window.history.pushState(data, "", pushStateUrl);
                 queryStringArr.length = 0;
+
+                //checking if category is filtered
+
+
+
                 $.ajax({
                     type: "POST",
                     cache: false,
@@ -357,7 +383,7 @@
         }
 
 
-        //job filter widget only for Hudson
+        //job filter widget
         if ($('#filtersPagePartialContent').length) {
             $('#filtersPagePartialContent #CountryLocationArea li li[data-title="SYDNEY"]')
                 .insertAfter($('#filtersPagePartialContent #CountryLocationArea li li[data-title="PERTH"]'));

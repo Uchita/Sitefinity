@@ -1078,8 +1078,19 @@
         }
     }
     .sm-wrapper{
-        display: none;
+        //display: none;
         margin-top: 20px;
+        position: relative;
+        z-index: -1;
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        &.fake-hide-reverse{
+            position: static;
+            opacity: 1;
+            visibility: visible;
+            height: auto;
+        }
     }
     div#filtersPagePartialContent{
         padding-top: 50px;

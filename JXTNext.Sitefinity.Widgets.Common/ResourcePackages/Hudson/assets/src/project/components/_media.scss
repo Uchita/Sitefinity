@@ -42,6 +42,10 @@
     .md-pull-right{
         float: right!important;
     }
+
+    .signinapply-wrapper{
+        padding-left: 30px;
+    }
 }
 @media (min-width:768px) and (max-width: 1199px) {
 
@@ -151,14 +155,6 @@
                 margin-top: 0;
                 .login-border{
                     padding-top: 0;
-                }
-            }
-        }
-
-        .basic-form{
-            .form-group{
-                .text-right{
-                    padding-left: 0;
                 }
             }
         }
@@ -824,7 +820,7 @@
         text-align: center!important;
     }
     .page-wrapper main{
-        padding-top: 0;
+        padding-top: 0!important;
     }
     
     header {
@@ -951,6 +947,7 @@
 
     .jumbotron-container .jumbotron {
         min-height: 320px;
+        height: 320px;
 
         .h1, h1 {
             font-size: 30px;
@@ -1086,7 +1083,9 @@
     }
     div#filtersPagePartialContent{
         padding-top: 50px;
-        
+        > div{
+            padding-top: 0;
+        }
         .keywordfilter{
             display: none;
             margin-top:10px;
@@ -1263,7 +1262,7 @@
         padding-right:35px;
         .btn{
             position: absolute;
-            bottom:7px;
+            bottom:-2px;
             right:0;
         }
     }
@@ -1535,6 +1534,13 @@
         }
     }
 
+    .tbl-wrapper{
+        overflow: auto;
+        table{
+            min-width: 500px;
+        }
+    }
+
 }
 
 @media screen and (max-width: 767px) {
@@ -1577,10 +1583,14 @@
             padding-right: 20px;
             width: 100px;
             vertical-align: middle;
+            img{
+                max-width: 80px;
+            }
         }
         .caption{
             display: table-cell;
             vertical-align: middle;
+            padding-left: 15px;
             h3{
                 margin-top: 0;
                 margin-bottom: 5px;

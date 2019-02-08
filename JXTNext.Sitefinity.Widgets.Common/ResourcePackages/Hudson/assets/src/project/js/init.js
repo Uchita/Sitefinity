@@ -288,6 +288,21 @@ $(document).ready(function () {
             }
         }
     });
+    $('.consultant-images').owlCarousel({
+        loop: false,
+        margin: 15,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 2
+            },
+            1200: {
+                items: 3
+            }
+        }
+    });
     
     $('.owl-card-basic').each(function (i, obj) {
         if ($(this).children().length > 1) {
@@ -356,7 +371,7 @@ $(document).ready(function () {
     }
 
     if( $('.search-toggle').length ){
-        $('body').on('click', '.search-toggle', function(){
+        $('.main-content').on('click','.search-toggle', function(){
            $('.keywordfilter').toggle(); 
         });
     }
@@ -370,7 +385,7 @@ $(document).ready(function () {
             $(this).removeAttr('readonly').blur().focus();
         });
     }
-    $('#userid').on('focus, touchstart',function(){
+    $('#userid').on('focus touchstart',function(){
         $(this).removeAttr('readonly');
     });
 
@@ -383,6 +398,68 @@ $(document).ready(function () {
         
     }
 
+    //contact form replacement
+    if( $('.get-in-touch').length && $('.contact-form').length  ){
+        $('#officeAddress').html( $('.contact-form iframe') );
+    }
+
+    //user dashboard : job alert create and edit
+    //scroll to the job alert widget
+    var windowPath = window.location.pathname.toLowerCase();
+    if( windowPath.indexOf('user-dashboard') > -1 ){
+        if( windowPath.indexOf('/create') > -1 || windowPath.indexOf('/edit') > -1 || $('.job-alert-message-wrapper').length ){
+            $('html, body').animate({
+                scrollTop: $('#createalert-widget').offset().top - 150
+            },100);
+        }
+    }
+
+    //using dataTable plugin for pagination in table
+    if( $('table.datatable').length ){
+        $("table.datatable").slimtable({
+            itemsPerPage: 5,
+			ippList: [5,10,20],
+        });
+        $("table.datatable").each( function(){
+            if( $(this).parent().find('.slimtable-page-btn').length < 2 ){
+                $(this).parent().find('.slimtable-paging-div').hide();
+            }
+        });
+    }
+
+    //office page
+    //get in touch toggle collapse
+    if( $('#officeAddress, .get-in-touch').length ){
+        $('.get-in-touch h3[data-target="#officeAddress"]').on('click', function(e){
+           $( $(this).data('target') ).toggle();
+        });
+    }
+
+    //hiding consultant job module in consultant page for particular categories
+    if( $('.consultant-page').length ){
+        var hasExcludeCat = ['candidate-profiling-assessment','leadership-assessment-development','outplacement-redeployment'];
+        var filterCat = $('.consultant-page').data('filtersector').split(',');
+        if( filterCat != null && filterCat.length > 0 ){
+            $.each( filterCat, function(key, value){
+                if( hasExcludeCat.indexOf(value) > -1 ){
+                    $('.consultant-jobs, .consultant-jobs-title').parents('.page-section').hide();
+                }
+            });
+        }
+    }
+    
+    //job detail page:: back to result page
+    //in job result page
+    $('#back-to-results').on('click', function(e){
+        e.preventDefault();
+        window.history.back();
+    });
+
+    //window back button detection
+    window.onhashchange = function() {
+        $(document).reload();
+    }
+  
 });
 
 $(window).resize(function () {

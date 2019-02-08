@@ -8,12 +8,6 @@ using System.Threading.Tasks;
 
 namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common
 {
-    public class EmailAttachment
-    {
-        public Stream fileStream { set; get; }
-        public string fileName { set; get; }
-    }
-
     public class MemoryStreamJsonConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
@@ -51,18 +45,14 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common
         public List<EmailTarget> CcEmail { get { return _ccEmails; } }
         public List<EmailTarget> BccEmail { get { return _bccEmails; } }
         public string HtmlContent { get { return _htmlContent; } }
+        public List<EmailAttachment> EmailAttachments { get; set; } = new List<EmailAttachment>();
 
         [JsonConverter(typeof(MemoryStreamJsonConverter))]
-        public MemoryStream ResumeFileStream { get; set; } = new MemoryStream();
-        public string ResumeFileName { get; set; }
-        [JsonConverter(typeof(MemoryStreamJsonConverter))]
-        public MemoryStream CoverLeterFileStream { get; set; } = new MemoryStream();
-        public string CoverLeterFileName { get; set; }
+        public MemoryStream fileStream { get; set; } 
 
-        public string ResumeFileStreamJson { get; set; }
-        public string CoverLeterFileStreamJson { get; set; }
+        
 
-        public EmailNotificationSettings(EmailTarget fromSender, EmailTarget toSender, string subject, string htmlContent, Stream resumeFileStream, string resumeFileName,Stream coverLetterFileStream,string coverLetterFileName)
+        public EmailNotificationSettings(EmailTarget fromSender, EmailTarget toSender, string subject, string htmlContent, List<dynamic> attachments)
         {
             _to = toSender.Email;
             _from = fromSender.Email;
@@ -71,17 +61,19 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common
             _ccEmails = new List<EmailTarget>();
             _bccEmails = new List<EmailTarget>();
             _htmlContent = htmlContent;
-            if(resumeFileStream != null)
-                resumeFileStream.CopyTo(ResumeFileStream);
 
-            ResumeFileName = resumeFileName;
-            if(coverLetterFileStream != null)
-                coverLetterFileStream.CopyTo(CoverLeterFileStream);
-
-            CoverLeterFileName = coverLetterFileName;
-
-            ResumeFileStreamJson = JsonConvert.SerializeObject(ResumeFileStream, Formatting.Indented, new MemoryStreamJsonConverter());
-            CoverLeterFileStreamJson = JsonConvert.SerializeObject(CoverLeterFileStream, Formatting.Indented, new MemoryStreamJsonConverter());
+            if(attachments != null)
+            { 
+                foreach (var item in attachments)
+                {
+                    EmailAttachment attachment = new EmailAttachment();
+                    fileStream = new MemoryStream();
+                    item.FileStream.CopyTo(fileStream);
+                    attachment.FileName = item.FileName;
+                    attachment.FileStreamJson = JsonConvert.SerializeObject(fileStream, Formatting.Indented, new MemoryStreamJsonConverter());
+                    EmailAttachments.Add(attachment);
+                }
+            }
         }
 
         public void AddCC(string name, string email)
@@ -94,6 +86,13 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common
             _bccEmails.Add(new EmailTarget(name, email));
         }
 
+    }
+
+    public class EmailAttachment
+    {
+        public string FileName { get; set; }
+        
+        public string FileStreamJson { get; set; }
     }
 
     public class EmailTarget

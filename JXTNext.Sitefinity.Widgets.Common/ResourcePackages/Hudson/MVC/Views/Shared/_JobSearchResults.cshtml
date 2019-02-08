@@ -38,7 +38,8 @@
         }
         <div class="select">
             <select id="sortOrder" class="default-select">
-                <option selected="selected" value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
+                <option selected="selected" value="Relevance">@Html.Resource("SortByRelevance", "JobSearchResultsResources")</option>
+                <option value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
                 <option value="Old">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
                 <option value="A-Z">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
                 <option value="Z-A">@Html.Resource("SortByAlphaZA", "JobSearchResultsResources")</option>
@@ -93,7 +94,7 @@
                 <div class="row">
                     <div class="col-sm-4 sc-job-meta-group">
                         <span class="meta-location">#:CustomData["CountryLocationArea[0].Filters[0].Value"]#</span><br />
-                                                                                                                   <span class="meta-salary">$#:CustomData["Salary.Filters[0].Min"]# - $#:CustomData["Salary.Filters[0].Max"]# #CustomData["Salary.Filters[0].Value"]#</span><br />
+                                                                                                                   <span class="meta-salary">$#:CustomData["Salary.Filters[0].Min"]# - $#:CustomData["Salary.Filters[0].Max"]# <br /><span class="salary-label">#:CustomData["Salary.Filters[0].Value"]#</span></span><br />
                         <span class="meta-worktype">#:CustomData["WorkType.Filters[0].Value"]#</span>
                     </div>
 
@@ -376,14 +377,14 @@
                 var pageJumpVal = 5;
                 var startPage = (parseInt(PageNumber) / pageJumpVal) > 1 ? pageJumpVal * (Math.ceil(parseInt(PageNumber) / pageJumpVal) - 1) + 1 : 1;
 
-                lis += '<li class="pagePrev pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" disabled data-page="0">Previous</a></li>';
+                lis += '<li class="pagePrev pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" data-page="0">Previous</a></li>';
 
                 //dot page jump previous
                 if (startPage > 1) {
                     lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + (startPage - 1) + '">...</a></li>';
                 }
 
-                for (var i = startPage; i <= highestPage; i++) {
+                for (var i = startPage; i <= highestPage || i - highestPage < 1 ; i++) {
                     if (i < (startPage + pageJumpVal) && highestPage >= parseInt(PageNumber)) {
                         lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + i + '">' + i + '</a></li>';
                         pageJumpNext = true;
@@ -395,7 +396,9 @@
                     lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + (startPage + pageJumpVal) + '">...</a></li>';
                 }
 
-                lis += '<li class="pageNext pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" data-page="2">Next</a></li>';
+                if (highestPage != PageNumber) {
+                    lis += '<li class="pageNext pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" data-page="2">Next</a></li>';
+                }
                 $('#pager ul').html(lis);
             }
         };
@@ -476,7 +479,7 @@
                             total: response.Total,
                         });
                         $(".count-num").html(response.Total);
-
+                        highestPage = Math.ceil(response.Total / pageSize);
                         var sorttext = getSortOrder();
                         var token = sorttext.split(':');
 
@@ -490,7 +493,7 @@
 
                         processSavedJobs();
                     } else {
-
+                        $(".count-num").html("0");
                         $(".info-block").removeClass('hidden');
                         $("#sortOrder").parent().hide();
                     }
@@ -530,9 +533,8 @@
                 return false;
             }
 
-            bindJobsPages(currPageNumber);
-
             if (currPageNumber != PageNumber) {
+                bindJobsPages(currPageNumber);
                 PageNumber = parseInt(currPageNumber);
                 bindJobs(PageNumber);
                 //changing the prev & next page number attribute
@@ -594,72 +596,4 @@
     }
 
     </script>
-    <style>
-
-        #listView {
-            border: none;
-        }
-
-            #listView, #listView * {
-                -webkit-box-sizing: inherit;
-                -moz-box-sizing: inherit;
-                box-sizing: inherit;
-            }
-
-        .product {
-            float: left;
-            position: relative;
-            width: 111px;
-            height: 170px;
-            margin: 0 5px;
-            padding: 0;
-        }
-
-            .product img {
-                width: 110px;
-                height: 110px;
-            }
-
-            .product h3 {
-                margin: 0;
-                padding: 3px 5px 0 0;
-                max-width: 96px;
-                overflow: hidden;
-                line-height: 1.1em;
-                font-size: .9em;
-                font-weight: normal;
-                text-transform: uppercase;
-                color: #999;
-            }
-
-            .product p {
-                visibility: hidden;
-            }
-
-            .product:hover p {
-                visibility: visible;
-                position: absolute;
-                width: 110px;
-                height: 110px;
-                top: 0;
-                margin: 0;
-                padding: 0;
-                line-height: 110px;
-                vertical-align: middle;
-                text-align: center;
-                color: #fff;
-                background-color: rgba(0,0,0,0.75);
-                transition: background .2s linear, color .2s linear;
-                -moz-transition: background .2s linear, color .2s linear;
-                -webkit-transition: background .2s linear, color .2s linear;
-                -o-transition: background .2s linear, color .2s linear;
-            }
-
-        .k-listview:after {
-            content: ".";
-            display: block;
-            height: 0;
-            clear: both;
-            visibility: hidden;
-        }
-    </style>
+   

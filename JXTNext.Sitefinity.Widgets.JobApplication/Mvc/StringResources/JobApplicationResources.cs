@@ -163,7 +163,21 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
         {
             get
             {
-                return this["SelectEmailTemplate"];
+                return this["SelectAdvertiserEmailTemplate"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: This is the page where you have dropped search results widget
+        /// </summary>
+        [ResourceEntry("SelectRegistrationEmailTemplate",
+            Value = "Select Registration E-mail template",
+            Description = "phrase : Select Registration E-mail template")]
+        public string SelectRegistrationEmailTemplate
+        {
+            get
+            {
+                return this["SelectRegistrationEmailTemplate"];
             }
         }
 

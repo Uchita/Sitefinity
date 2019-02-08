@@ -12,7 +12,7 @@
 @Html.Script(ScriptRef.JQuery, "top", false)
 
 
-<div class="testimonials-slider" style="background: url('/images/default-source/banners/banner-2.jpg') center 0px no-repeat; background-size:cover">
+<div class="testimonials-slider @Model.CssClass" style="background: url('/images/default-source/banners/banner-2.jpg') center 0px no-repeat; background-size:cover">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -20,10 +20,10 @@
                     @foreach (var item in Model.Items)
                     {
                         <div>
-                            <div class="quote"><span>&ldquo;</span></div>
+                            <div class="quote"><span></span></div>
                             <div class="testimonial">@item.Fields.Quote</div>
                             <div class="testimonial-author">@item.Fields.By</div>
-                            <div class="quote text-right"><span>&rdquo;</span></div>
+                            <div class="quote text-right"><span></span></div>
                         </div>
                     }
                 </div>

@@ -1,32 +1,37 @@
 @using JXTNext.Sitefinity.Widgets.User.Mvc.Models.MemberAppliedJob
 @model List<MemberAppliedJobItem>
 
+@using JXTNext.Sitefinity.Common.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
 <h2><span class="applied-icon"></span>Applied jobs</h2>
 @if (Model != null && Model.Count > 0)
 {
 
     <div class="tbl-wrapper">
 
-        <table class="table">
-            <tr>
-                <th>Job ID</th>
-                <th>Job Title</th>
-                <th class="date-col">Date Added</th>
-            </tr>
-
-            @foreach (MemberAppliedJobItem item in Model)
-            {
+        <table class="table datatable">
+            <thead>
                 <tr>
-                    <td>@item.JobId</td>
-                    <td><a href="@ViewBag.JobDetailsPageUrl?JobId=@item.JobId">@item.DisplayTitle</a></td>
-                    <td>@String.Format("{0:dd MMM-yyyy}", item.DateAdded)</td>
+                    <th>Job ID</th>
+                    <th>Job Title</th>
+                    <th class="date-col">Date Added</th>
                 </tr>
-            }
-
+            </thead>
+            <tbody>
+                @foreach (MemberAppliedJobItem item in Model)
+                {
+                    <tr>
+                        <td>@item.JobId</td>
+                        <td><a href="@ViewBag.JobDetailsPageUrl/@item.ClassificationURL/@item.JobId">@item.DisplayTitle</a></td>
+                        <td>@String.Format("{0:dd MMM-yyyy}", item.DateAdded)</td>
+                    </tr>
+                }
+            </tbody>
         </table>
     </div>
 }
 else
 {
-    <div class="alert alert-info">You currently don't have any applied jobs</div>
+    <div class="alert alert-info">@Html.Resource("NoAppliedJobMsg", "ErrorMessages")</div>
 }

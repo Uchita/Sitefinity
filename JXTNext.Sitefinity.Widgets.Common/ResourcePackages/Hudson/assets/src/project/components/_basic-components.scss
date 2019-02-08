@@ -8,12 +8,14 @@ blockquote{
     flex-wrap: wrap;
 }
 .flex-center{
-    -webkit-box-pack: center!important;
-    -ms-flex-pack: center!important;
-    justify-content: center!important;
     -webkit-box-align: center!important;
     -ms-flex-align: center!important;
     align-items: center!important;
+}
+.flex-justify-center{
+    -webkit-box-pack: center!important;
+    -ms-flex-pack: center!important;
+    justify-content: center!important;
 }
 
 .width-limit{
@@ -552,7 +554,7 @@ blockquote{
     }
 
     .thumbnail.card-rollover {
-        background-color: transparent;
+        background-color: transparent!important;
     }
 
     .label-none label, .strong-none strong {
@@ -660,6 +662,15 @@ blockquote{
         width: 100%;
         margin-bottom: 15px;
     }
+    .full-height{
+        height: 100%;
+        > div{
+            height: 100%;
+        }
+        > h2 + .thumbnail, h2 + br + .thumbnail{
+            height: calc(100% - 50px)!important;
+        }
+    }
 
     label {
         text-transform: uppercase;
@@ -708,9 +719,9 @@ img, iframe {
     width: 650px;
 }
 .modal-body{
-    .button.close{
+    .button.close, button.close{
         position: relative;
-        top: -5px;
+        top: -8px;
     }
 }
 .dropdown.open > a .fa-angle-down:before {
@@ -1310,6 +1321,12 @@ header {
                     background: $global-headings-color;
                     color: $brightColor;
                 }
+                &.header-top-links{
+                    span{
+                        position: static;
+                        line-height: 1;
+                    }
+                }
             }
             .timesheet-mnu a{
                 padding-bottom: 15px;
@@ -1318,8 +1335,9 @@ header {
                 padding: 16px 20px;
                 a{
                     display: inline;
-                    border-bottom: none;
+                    border: none;
                     background: none;
+                    margin-left: 0;
                 }
             }
             .social-mnu{
@@ -1513,7 +1531,7 @@ main {
 
 //expandable content list
 .sf-list-item{
-    h3[data-sf-role="toggleLink"] {
+    h3[data-role="toggleLink"] {
         padding: 13px 40px 13px 20px;
         background: #eee;
         position: relative;
@@ -1742,7 +1760,11 @@ main {
     }
 }
 .dropdown.dropdown-tree{
-    
+    .arrow{
+        width: 100%;
+        text-align: right;
+        right: 0;
+    }
     >ul{
         white-space: normal;
         padding-left: 0;
@@ -1946,6 +1968,55 @@ ul.vertical-ul {
         }
     }
 }
+.tbl-pagination, .slimtable-paging-div{
+    font-size: 1.4rem;
+    margin-top: -15px; 
+    margin-bottom: 30px;
+}
+.slimtable-paging-div {
+    overflow: hidden;
+}
+.slimtable-paging-btnsdiv{
+    float: left;
+}
+.slimtable-paging-seldiv {
+    float: right;
+}
+.slimtable-page-btn {
+    font-size: 1.4rem;
+    line-height: 1.45;
+    display: inline-block;
+    padding: 0 10px;
+    border: 1px solid $global-highlight-color;
+    margin-right: 3px;
+    &:hover, &.active{
+        background: $global-highlight-color;
+        color: $brightColor;
+    }
+}
+select.slimtable-paging-select {
+    padding: 0;
+    margin-right: 5px;
+    outline: none!important;
+}
+.slimtable th{
+    position: relative!important;
+}
+.slimtable-sprites::after{
+    content: '\f338';
+    font-family: 'Font Awesome 5 Free';
+    font-size: 1rem;
+    position: absolute;
+    right: 5px;
+    top: 13px;
+}
+.slimtable-sprites.slimtable-sortdesc::after {
+    content: '\f309';
+}
+.slimtable-sprites.slimtable-sortasc::after {
+    content: '\f30c';
+}
+
 
 /*#region Footer*/
 .page-wrapper {
@@ -2317,7 +2388,10 @@ address.info-box{
     width: 130px;
 }
 .col-2btn-width{
-    width: 123px;
+    width: 23%;
+}
+.col-3btn-width{
+    width: 35%;
 }
 
 

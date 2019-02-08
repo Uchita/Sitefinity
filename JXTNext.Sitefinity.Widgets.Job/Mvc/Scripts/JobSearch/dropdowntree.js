@@ -54,6 +54,7 @@ var globalTreeIdCounter=0;
                     RenderData(data[i].Filters, $("#" + options.prefixIdText + data[i].ID).find("ul").first());
                     if ((data[i].Selected == true)) {
                         $("#" + options.prefixIdText + data[i].ID).find("ul").show();
+                        $("#" + options.prefixIdText + data[i].ID).find("a").first().find('span i').removeClass('fa-angle-right').addClass('fa-angle-down');
                     }
                  }else if(options.addChildren){
                     $("#" + options.prefixIdText + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');

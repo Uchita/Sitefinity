@@ -19,12 +19,12 @@
 {
 <div class="page-section">
     <div class="container">
-        <div class="row consultant-images">
+        <div class="consultant-images owl-carousel owl-theme">
             @foreach (var imgItem in Model.Item.Fields.ConsultantImages)
             {
 
-                <div class="col-md-4">
-                    <img src="@MediaContentExtensions.ResolveThumbnailUrl(imgItem.DataItem, "thumbArticleCrop360x257")" alt="Alternate Text" />
+                <div class="img-item">
+                    <img src="@MediaContentExtensions.ResolveThumbnailUrl(imgItem.DataItem, "thumb470")" alt="Alternate Text" />
 
                 </div>
 

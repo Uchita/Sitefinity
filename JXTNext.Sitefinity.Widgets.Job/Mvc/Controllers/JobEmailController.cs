@@ -314,11 +314,15 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 replyToCollection.Add(new MailAddress(form.Email, form.Name));
 
                 templateData.Sender = from;
-                if( form.FriendMessage != null )
+
+                if (form.FriendMessage == null)
+                {
+                    templateData.Message = string.Empty;
+                }
+                else
                 {
                     templateData.Message = Regex.Replace(form.FriendMessage, "<.*?>", String.Empty).Replace("\n", "<br />");
                 }
-                
 
                 foreach (var item in form.Friend)
                 {

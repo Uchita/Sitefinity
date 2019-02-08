@@ -316,6 +316,7 @@
     <EmbeddedResource Include="Mvc\Views\JobAlert\DesignerView.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JobAlert\Edit.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JobAlert\Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobAlert\Unsubscribe.cshtml" />
     <None Include="Mvc\Views\JobAlert\DesignerView.Simple.json" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config">

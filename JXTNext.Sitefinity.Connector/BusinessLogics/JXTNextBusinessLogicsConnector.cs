@@ -534,6 +534,36 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             else
                 return new JXTNext_SearchJobsResponse { Success = false, Errors = new List<string> { response.Response } };
         }
+        
+        public IBaseResponse UnsubscribeJobAlert(Guid unsubscribeGuid)
+        {
+            ConnectorPutRequest connectorRequest = new ConnectorPutRequest(HTTP_Requests_MaxWaitTime)
+            {
+                HeaderValues = base.HTTP_Request_HeaderValues,
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/unsubscribe/jobalert/"),
+                Data = new { UnsubscribeGuid = unsubscribeGuid }
+            };
+
+            ConnectorResponse response = JXTNext.Common.API.Connector.Put(connectorRequest);
+
+            if (response.Success)
+            {
+                dynamic responseObj = JObject.Parse(response.Response);
+
+                if (responseObj["status"] == 200)
+                {
+                    return new JXTNext_MemberJobAlertUnsubscribeResponse { Success = true };
+                }
+                else
+                {
+                    return new JXTNext_MemberJobAlertUnsubscribeResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };
+                }
+            }
+            else
+            {
+                return new JXTNext_MemberJobAlertUnsubscribeResponse { Success = false, Errors = new List<string> { response.Response } };
+            }
+        }
 
         #region Private Members
         private static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);

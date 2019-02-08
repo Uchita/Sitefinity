@@ -282,17 +282,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 jobUrl += SitefinityHelper.GetPageUrl(JobDetailsPageId);
 
-                if (job.Classifications != null && job.Classifications.Count > 0)
+                if (job.ClassificationURL != null)
                 {
-                    List<string> seoString = new List<string>();
-                    foreach (var key in job.Classifications[0].Keys)
-                    {
-                        string value = job.Classifications[0][key].ToString();
-                        string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
-                        seoString.Add(SEOString);
-                    }
-
-                    jobUrl += String.Join("/", seoString);
+                    jobUrl += "/" + job.ClassificationURL;
                 }
 
                 jobUrl += "/" + job.JobID;

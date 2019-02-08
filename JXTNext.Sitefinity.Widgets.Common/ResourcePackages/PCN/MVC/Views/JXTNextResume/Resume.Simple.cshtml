@@ -9,19 +9,21 @@
 
 <div>
 
-    
+
     <h2><span class="save-icon"></span>@Html.Resource("AttachResumeLink")</h2>
-    
+
     <input id="myFile" data-sf-role="profile-resume-attachment-upload" type="file" value='@Html.Resource("UploadFileLink")' accept=".pdf,.doc,.docx,.txt,.xls,.xlsx,.rtf" name="profile-resume" />
     <h5 class="text-muted">@Html.Resource("AttachFileConditionsLink")</h5>
     <div class="input-group">
         @*<input data-sf-role="profile-resume-attachment-save" type="submit" value='@Html.Resource("SaveFileAttachmentLink")' />*@
-        <input id="uploadBtn" type="button" class="btn" value='@Html.Resource("SaveFileAttachmentLink")' disabled />
+        <div class="btn-style-corner">
+            <button id="uploadBtn" type="button" class="btn" disabled>@Html.Resource("SaveFileAttachmentLink")</button>
+        </div>
         <input id="mymodel" type="button" value="@Model.JsonData" hidden />
     </div>
-  
+
     <div id="errorMessage">
-        
+
     </div>
     <br />
     <div id="dvResumeResults">
@@ -34,13 +36,13 @@
                     <th class="col-2btn-width">Action</th>
                 </tr>
             </thead>
-            <tbody id="resumeTable">
-
-            </tbody>
+            <tbody id="resumeTable"></tbody>
         </table>
-        
-    </div>
 
+    </div>
+    <div class="loader-wrap" id="resumeLoader">
+        <span class="far fa-spinner fa-spin"></span>
+    </div>
 </div>
 <script type="text/javascript">
         var resumes;
@@ -59,10 +61,10 @@
             resumes = resumeList;
             var rows = '';
             $.each(resumes, function (i, item) {
-                
+
                 var date = item.UploadDateStr;
-                rows += '<tr> ' + '<td>' + item.FileFullName + '</td>' + '<td>' + date + '</td >' + '<td>' + '<a href="' + item.FileUrl + '" class="btn btn-tag" target="_blank">' + viewValue + '</a> <input id="' + item.Id + '" class="deleteresumecls btn btn-sm btn-tag btn-danger" type="button"  value="' + deleteResume + '"></td>' + '</tr>';
-                
+                rows += '<tr> ' + '<td>' + item.FileFullName + '</td>' + '<td>' + date + '</td >' + '<td>' + '<a href="' + item.FileUrl + '" class="read_btn resume-list-btn mr-15" target="_blank"><span>' + viewValue + '</span></a> <a href="javascript:void(0)" id="' + item.Id + '" class="deleteresumecls read_btn resume-list-btn"><span>' + deleteResume + '</span></a></td>' + '</tr>';
+
             });
             $('#resumeTable').html(rows);
         }
@@ -98,9 +100,10 @@
         }
 
     var deleteResumeMethod = function (id) {
-        
+
             if (confirmDelete()) {
                 var urlPath = $(location).attr('pathname') + "/DeleteResume/" + id;
+                $("#resumeLoader").show();
                 $.ajax({
                     url: urlPath,
                     type: 'POST',
@@ -111,13 +114,15 @@
                     success: function (response) {
                         addJsonDataToTable(response.ResumeList);
                         processErrorMessage(response);
+                        $("#resumeLoader").hide();
                     },
                     error: function (response) {
                         processErrorMessage(response);
+                        $("#resumeLoader").hide();
                     }
                 });
             }
- 
+
 
         }
 
@@ -144,7 +149,7 @@
             $.each(resumes, function (key, value) {
                 data.append(key, value);
             });
-            
+            $("#resumeLoader").show();
             var urlPath = $(location).attr('pathname') + "/UploadResume";
             $.ajax({
                 url: urlPath,
@@ -159,9 +164,11 @@
                     processErrorMessage(response);
                     resumeInput.val('');
                     $("#uploadBtn").prop("disabled", true);
+                    $("#resumeLoader").hide();
                 },
                 error: function (response) {
                     processErrorMessage(response);
+                    $("#resumeLoader").hide();
                 }
             });
         });

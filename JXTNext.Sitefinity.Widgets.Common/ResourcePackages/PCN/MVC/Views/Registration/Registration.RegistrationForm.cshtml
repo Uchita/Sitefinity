@@ -18,7 +18,7 @@
 
 
         if ((Request.QueryString["ShowActivationMsg"] == "true") ||
-         (ViewBag.ShowActivationMsg is bool && ViewBag.ShowActivationMsg))
+        (ViewBag.ShowActivationMsg is bool && ViewBag.ShowActivationMsg))
         {
             <h3>
                 @Html.Resource("VisitYourEmail")
@@ -32,10 +32,10 @@
                 <a href="javascript:void(0)" data-sf-role="sendAgainLink" class="btn btn-primary">@Html.Resource("SendAgain")</a>
             </div>
 
-            <input type="hidden" data-sf-role="sf-resend-confirmation-endpoint-url" value="@Url.Action("ResendConfirmationEmail", new { email = Model.Email })" />
+            <input type="hidden" data-sf-role="sf-resend-confirmation-endpoint-url" value="@Url.Action(" ResendConfirmationEmail", new { email=Model.Email })" />
         }
         else if ((Request.QueryString["ShowSuccessfulRegistrationMsg"] == "true") ||
-                 (ViewBag.ShowSuccessfulRegistrationMsg is bool && ViewBag.ShowSuccessfulRegistrationMsg))
+        (ViewBag.ShowSuccessfulRegistrationMsg is bool && ViewBag.ShowSuccessfulRegistrationMsg))
         {
             <h2>@Html.Resource("ThankYou")</h2>
             <p>@Html.Resource("DefaultSuccessfulRegistrationMessage")</p>
@@ -212,6 +212,15 @@
                                         <span class="checkbox-icon fas fa-check"></span>
                                         I agree to  Payments & Cards Network's <a href="/privacy-policy">Privacy Policy</a>
                                     </div>
+                                    <div class="registration-link form-group">
+                                        <div class="row">
+                                            <div class="col-md-12"></div>
+                                            <div class="col-md-12">
+                                                Already have an account?
+                                                <a href="@Model.LoginPageUrl" class="font-regular link-default">@Html.Resource("BackToLogin")</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <div class="btn-style-corner">
                                             @if (SystemManager.IsDesignMode && !SystemManager.IsPreviewMode)
@@ -229,15 +238,6 @@
 
                         </div>
 
-                        <div class="registration-link">
-                            <div class="row">
-                                <div class="col-md-12"></div>
-                                <div class="col-md-12">
-                                    Already have an account?
-                                    <a href="@Model.LoginPageUrl" class="font-regular link-default">@Html.Resource("BackToLogin")</a>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>

@@ -18,5 +18,6 @@ namespace JXTNext.Sitefinity.Services.Intefaces
         IMemberUpsertJobAlertResponse MemberJobAlertUpsert(JobAlertViewModel jobAlertData, bool update = false);
         IBaseResponse MemberJobAlertDelete(int jobAlertId);
         SearchModel GetMemeberJobAlert(int jobAlertId);
+        IBaseResponse UnsubscribeJobAlert(Guid unsubscribeGuid);
     }
 }

@@ -33,6 +33,10 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member
     {
     }
 
+    public class JXTNext_MemberJobAlertUnsubscribeResponse : ConnectorBaseResponse, IBaseResponse
+    {
+    }
+
     public class JXTNext_MemberJobAlerts
     {
         public int Id { get; set; }

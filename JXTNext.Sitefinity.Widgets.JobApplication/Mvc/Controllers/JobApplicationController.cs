@@ -700,11 +700,16 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             Log.Write($"IsJobApplied method appliedJobresponse.Success = " + appliedJobresponse.Success, ConfigurationPolicy.ErrorLog);
             Log.Write($"IsJobApplied method appliedJobresponse.MemberAppliedJobById = " + appliedJobresponse.MemberAppliedJobById, ConfigurationPolicy.ErrorLog);
 
-            if (appliedJobresponse.Success && appliedJobresponse.MemberAppliedJobById != null && appliedJobresponse.MemberAppliedJobById.JobId == jobId)
+            if (appliedJobresponse.Success)
             {
                 isJobApplied = true;
             }
-            
+
+            if (appliedJobresponse.Errors != null && appliedJobresponse.Errors.Count > 0)
+            {
+                Log.Write($"IsJobApplied method error = " + appliedJobresponse.Errors.FirstOrDefault().ToString(), ConfigurationPolicy.ErrorLog);
+            }
+
             Log.Write($"IsJobApplied isJobApplied 1 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
             return isJobApplied;
         }

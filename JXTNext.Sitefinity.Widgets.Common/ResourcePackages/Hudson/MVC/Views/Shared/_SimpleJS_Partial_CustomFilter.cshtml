@@ -150,24 +150,10 @@
             });
         });
 
-        function checkEspecialChar(str) {
-            var especialCharExp = /[^a-zA-Z 0-9 \-+_,.]+/;
-            
-            if (especialCharExp.test(str)) {
-                alert("The keyword contains special character. Please remove any special characters !#$%^&*?<>[]{}=,|\:/\"' or big gaps when copy/pasted.");
-                return false;
-            }
-        }
-
         $('#selectedkeywordsfilter').on('keydown', function (e) {
             if ($(this).val && e.which == 13) {
                 //getting the loader while the job search is working
                 $("#selectedkeywordsfilter").parent().addClass('loader');
-
-                if (checkEspecialChar($(this).val()) == false) {
-                    return false;
-                }
-
                 eachClickFilter();
             }
         });
@@ -175,14 +161,9 @@
         $("#selectedkeywordsfilter").on("search", function (input) {
             if ($(this).val() == "") {
                 //getting the loader while the job search is working
-
                 $("#selectedkeywordsfilter").parent().addClass('loader');
-                if (checkEspecialChar($(this).val()) == false) {
-                    return false;
-                }
                 eachClickFilter();
             }
-
         });
 
         //for mobile only = show hide the filter
@@ -358,27 +339,42 @@
                 var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
                 var queryStringData = makeQueryString(filterModel, "", false);
                 var pushStateUrl = $(location).attr('pathname') + "?" + queryStringData;
-                window.history.pushState(data, "", pushStateUrl);
-                queryStringArr.length = 0;
 
-                //checking if category is filtered
+                var newFilters = filterModel.Filters[0].values;
+                array = $('#hdnClassifcationValues').val();
+                array = JSON.parse(array);
+                var array_init = array[0].split('-');
+                var isSubCategory = true;
 
-
-
-                $.ajax({
-                    type: "POST",
-                    cache: false,
-                    url: urlPath,
-                    data: queryStringData,
-                    dataType: 'json',
-                    success: function (response) {
-                        $("#resultsPagePartialContent").empty().html(response.jobResults);
-                        $("#filtersPagePartialContent").empty().html(response.jobResultsFilter);
-                    },
-                    error: function (response) {
-                       console.log(response);
+                for (var j = 0; j < newFilters.length; j++) {
+                    if (!array.includes(newFilters[j]) && newFilters[j].indexOf(array_init[0]) == -1 ) {
+                        isSubCategory = false;
+                        break;
                     }
-                });
+                }
+
+                if (isSubCategory == true) {
+                    window.history.pushState(data, "", pushStateUrl);
+                    queryStringArr.length = 0;
+                    $.ajax({
+                        type: "POST",
+                        cache: false,
+                        url: urlPath,
+                        data: queryStringData,
+                        dataType: 'json',
+                        success: function (response) {
+                            $("#resultsPagePartialContent").empty().html(response.jobResults);
+                            $("#filtersPagePartialContent").empty().html(response.jobResultsFilter);
+                        },
+                        error: function (response) {
+                            console.log(response);
+                        }
+                    });
+                }
+                else {
+                    window.location.href = '/job-seekers/search-results' + "?" + queryStringData;
+                }
+
             }
         }
 

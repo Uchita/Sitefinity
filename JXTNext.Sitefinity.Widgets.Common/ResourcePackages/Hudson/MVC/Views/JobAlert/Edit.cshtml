@@ -206,7 +206,7 @@
             $('#' + modelSalary.TargetValue).removeClass('visible-hidden');
             $('.SalaryRangeSelect').addClass('changed');
 
-            var salarySliderEle = $('#' + modelSalary.TargetValue).parent().find('.nstSlider');
+            var salarySliderEle = $('#' + modelSalary.TargetValue).find('.nstSlider');
             if (salarySliderEle != null) {
                 $(salarySliderEle).data("cur_min", modelSalary.LowerRange);
                 $(salarySliderEle).data("cur_max", modelSalary.UpperRange);

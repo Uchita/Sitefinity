@@ -325,26 +325,25 @@
         document.title = '@Model.JobDetails.Title';
         var isLoggedIn = '@isUserLoggedIn';
         var jobId = @Model.JobDetails.JobID;
-        // add the time delay of 3 seconds
-        setTimeout(function () {
-            $.ajax({
-                type: 'POST',
-                cache: false,
-                url: $(location).attr('pathname') + "/IsJobApplied",
-                data: { JobId: jobId },
-                dataType: 'Json',
-                success: function (response) {
-                    if (response == true) {
-                        $('.job-apply-btn').html('<div id="job-applied-msg" class="alert alert-info" >@Html.Resource("JobAlreadyAppliedMsg")</div>');
-                    }
-                    else {
-                        $('.job-apply-btn').html('<a id="job-application-lnk" class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID?source=@Model.UrlReferral">APPLY NOW</a>');
-                    }
-                },
-                error: function (response) {
+        
+        $.ajax({
+            type: 'POST',
+            cache: false,
+            url: $(location).attr('pathname') + "/IsJobApplied",
+            data: { JobId: jobId },
+            dataType: 'Json',
+            success: function (response) {
+                if (response == true) {
+                    $('.job-apply-btn').html('<div id="job-applied-msg" class="alert alert-info" >@Html.Resource("JobAlreadyAppliedMsg")</div>');
                 }
-            });
-        }, 3000);
+                else {
+                    $('.job-apply-btn').html('<a id="job-application-lnk" class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID?source=@Model.UrlReferral">APPLY NOW</a>');
+                }
+            },
+            error: function (response) {
+            }
+        });
+      
         
         //checking user logged in is member role
         $('#job-application-lnk').click(function (e) {

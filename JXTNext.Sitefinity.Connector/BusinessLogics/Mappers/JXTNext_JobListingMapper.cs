@@ -43,7 +43,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                 ShortDescription = data["ShortDescription"],
                 Description = data["FullDescription"],
                 ReferenceNo = data["RefNo"],
-                CustomData = (data["CustomData"] != null) ? FlattenJson(JObject.Parse((data["CustomData"]).Value)) : null
+                CustomData = (data["CustomData"] != null) ? FlattenJson(JObject.Parse((data["CustomData"]).Value)) : null,
+                ClassificationURL = ProcessClassificationSEOString((data["CustomData"] != null) ? FlattenJson(JObject.Parse((data["CustomData"]).Value)) : null)
             };
 
             return local as T;

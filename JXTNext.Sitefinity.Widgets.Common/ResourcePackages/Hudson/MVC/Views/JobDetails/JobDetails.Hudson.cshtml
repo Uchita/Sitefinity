@@ -166,40 +166,22 @@
                     </div>
                 </div>
             </div>
-            @if (ViewBag.IsJobApplied)
-            {
-                  <div class="alert alert-info">@Html.Resource("JobAlreadyAppliedMsg")</div>
-            }
-            else
-            {
-                <div class="row job-offer-apply">
-                    <div class="col-md-12">
-                        <a id="job-application-lnk" class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID?source=@Model.UrlReferral">APPLY NOW</a>
-                        <div id="job-applied-msg" class="alert alert-info" hidden>@Html.Resource("JobAlreadyAppliedMsg")</div>
-                    </div>
+                  
+            <div class="row job-offer-apply">
+                <div class="job-apply-btn col-md-12">
                 </div>
-            }
+            </div>
 
         </div>
         @Html.Raw(ViewBag.GoogleForJobs)
     </div>
 
     <div class="col-md-4 mb-30 jobdetail-sidebar">
-        @if (ViewBag.IsJobApplied)
-        {
-            <div class="row job-offer-apply">
-                <div class="alert alert-info">@Html.Resource("JobAlreadyAppliedMsg")</div>
+        <div class="row job-offer-apply">
+            <div class="job-apply-btn col-md-12">
+
             </div>
-        }
-        else
-        {
-            <div class="row job-offer-apply">
-                <div class="col-md-12">
-                    <a id="job-application-lnk" class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID?source=@Model.UrlReferral">APPLY NOW</a>
-                    <div id="job-applied-msg" class="alert alert-info" hidden>@Html.Resource("JobAlreadyAppliedMsg")</div>
-                </div>
-            </div>
-        }
+        </div>
         <br />
         @if (!mapsAPIKey.IsNullOrEmpty())
         {
@@ -343,27 +325,27 @@
         document.title = '@Model.JobDetails.Title';
         var isLoggedIn = '@isUserLoggedIn';
         var jobId = @Model.JobDetails.JobID;
-        console.log("ready method");
-        $.ajax({
-            type: 'POST',
-            cache: false,
-            url: $(location).attr('pathname') + "/IsJobApplied",
-            data: { JobId: jobId },
-            dataType: 'Json',
-            success: function (response) {
-                if (response == true) {
-                    $('#job-application-lnk').addClass("hidden");
-                    $('#job-applied-msg').removeClass("hidden");
+        // add the time delay of 3 seconds
+        setTimeout(function () {
+            $.ajax({
+                type: 'POST',
+                cache: false,
+                url: $(location).attr('pathname') + "/IsJobApplied",
+                data: { JobId: jobId },
+                dataType: 'Json',
+                success: function (response) {
+                    if (response == true) {
+                        $('.job-apply-btn').html('<div id="job-applied-msg" class="alert alert-info" >@Html.Resource("JobAlreadyAppliedMsg")</div>');
+                    }
+                    else {
+                        $('.job-apply-btn').html('<a id="job-application-lnk" class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID?source=@Model.UrlReferral">APPLY NOW</a>');
+                    }
+                },
+                error: function (response) {
                 }
-                else {
-                    $('#job-application-lnk').removeClass("hidden");
-                    $('#job-applied-msg').addClass("hidden");
-                }
-            },
-            error: function (response) {
-            }
-        });
-
+            });
+        }, 3000);
+        
         //checking user logged in is member role
         $('#job-application-lnk').click(function (e) {
             if (isLoggedIn.toLocaleLowerCase() == "true") {

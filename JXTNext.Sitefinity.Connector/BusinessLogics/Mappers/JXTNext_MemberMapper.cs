@@ -41,13 +41,10 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                 advertiserName = jxtAppDetails.AdvertiserName,
                 companyName = jxtAppDetails.CompanyName,
                 advertiserEmailNotification = jxtAppDetails.AdvertiserEmailNotification,
-<<<<<<< HEAD
-                documentsPath = jxtAppDetails.DocumentsPath
-=======
                 documentsPath = jxtAppDetails.DocumentsPath,
-                urlReferral = jxtAppDetails.UrlReferral,
+                //urlReferral = jxtAppDetails.UrlReferral,
                 registrationEmailNotification  = jxtAppDetails.RegistrationEmailNotification
->>>>>>> develop
+
             };
 
             return apiObj;

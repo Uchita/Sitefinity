@@ -1349,10 +1349,10 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\JobFilters\T_JobsMultiSelect.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\JobFilters\T_MultiSelect_FindAjob.cshtml">
+    <None Include="ResourcePackages\BaySide\MVC\Views\JobFilters\T_MultiSelect.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\JobFilters\T_MultiSelect.cshtml">
+    <None Include="ResourcePackages\BaySide\MVC\Views\JobFilters\T_MultiSelectFilters.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\JobFilters\T_Simple.cshtml">
@@ -1361,10 +1361,10 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\JobSearchResults\JobsAll.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\JobSearchResults\JobsAllJobsBayside_FindAJob.cshtml">
+    <None Include="ResourcePackages\BaySide\MVC\Views\JobSearchResults\JobsAllJobsCustom.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\JobSearchResults\JobsAllJobsBayside.cshtml">
+    <None Include="ResourcePackages\BaySide\MVC\Views\JobSearchResults\JobsAllJobsFilters.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\JobSearchResults\JobsFeaturedCarousel.cshtml">
@@ -1419,9 +1419,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Lists\List.SimpleList.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Lists\List.WhiteBoxes.cshtml">
@@ -1658,16 +1655,16 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\Shared\_JobSearchResults.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\Shared\_JobSearchResultsBayside_FinaAjob.cshtml">
+    <None Include="ResourcePackages\BaySide\MVC\Views\Shared\_JobSearchResultsCustom.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\Shared\_JobSearchResultsBayside.cshtml">
+    <None Include="ResourcePackages\BaySide\MVC\Views\Shared\_JobSearchResultsFilters.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\Shared\_SimpleJS_Partial__FindAjob.cshtml">
+    <None Include="ResourcePackages\BaySide\MVC\Views\Shared\_SimpleJS_PartialCustom.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\Shared\_SimpleJS_Partial.cshtml">
+    <None Include="ResourcePackages\BaySide\MVC\Views\Shared\_SimpleJS_PartialFilters.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\SiteSelector\SiteSelector.Default.cshtml">

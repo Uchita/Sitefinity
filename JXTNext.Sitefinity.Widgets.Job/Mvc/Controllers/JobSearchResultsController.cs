@@ -372,7 +372,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 dynamicJobResultsList = response as dynamic;
             }
 
-            PartialViewResult jobResultsPartialVR = PartialView("_JobSearchResultsBayside_FinaAjob", dynamicJobResultsList);
+            PartialViewResult jobResultsPartialVR = PartialView("_JobSearchResultsCustom", dynamicJobResultsList);
             JobFiltersController jobFiltersController = new JobFiltersController(_bConnectorsList, _oConnectorsList);
             ActionResult filtersActionResult = jobFiltersController.Index(filterModel, SiteMapBase.GetActualCurrentNode().Title, (dynamicJobResultsList != null) ? dynamicJobResultsList.SearchResultsFilters : null);
 
@@ -396,11 +396,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 dynamicJobResultsList = response as dynamic;
             }
 
-<<<<<<< HEAD
-            PartialViewResult jobResultsPartialVR = PartialView("_JobSearchResultsBayside", dynamicJobResultsList);
-=======
-            PartialViewResult jobResultsPartialVR = PartialView("_JobSearchResults_CustomFilter", dynamicJobResultsList);
->>>>>>> develop
+
+            PartialViewResult jobResultsPartialVR = PartialView("_JobSearchResultsFilters", dynamicJobResultsList);
+
+            //PartialViewResult jobResultsPartialVR = PartialView("_JobSearchResults_CustomFilter", dynamicJobResultsList);
+
             JobFiltersController jobFiltersController = new JobFiltersController(_bConnectorsList, _oConnectorsList);
             ActionResult filtersActionResult = jobFiltersController.Index(filterModel, SiteMapBase.GetActualCurrentNode().Title, (dynamicJobResultsList != null) ? dynamicJobResultsList.SearchResultsFilters : null);
 
@@ -545,144 +545,144 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return sb.ToString();
         }
 
-        [HttpPost]
-        public JsonResult GetSearchResults_WithLeftFiltersSelected(string jobRequest, int pageNumber, string sortBy)
-        {
-            //Use preconfigured search config from widget settings if available
-            JobSearchResultsFilterModel searchInputs;
+        //[HttpPost]
+        //public JsonResult GetSearchResults_WithLeftFiltersSelected(string jobRequest, int pageNumber, string sortBy)
+        //{
+        //    //Use preconfigured search config from widget settings if available
+        //    JobSearchResultsFilterModel searchInputs;
 
 
 
-            if (SearchConfig != null)
-                searchInputs = JsonConvert.DeserializeObject<JobSearchResultsFilterModel>(SearchConfig);
-            else
-                searchInputs = JsonConvert.DeserializeObject<JobSearchResultsFilterModel>(jobRequest);
+        //    if (SearchConfig != null)
+        //        searchInputs = JsonConvert.DeserializeObject<JobSearchResultsFilterModel>(SearchConfig);
+        //    else
+        //        searchInputs = JsonConvert.DeserializeObject<JobSearchResultsFilterModel>(jobRequest);
 
-            if (this.UseConfigFilters)
-            {
-                var jobFilterComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
+        //    if (this.UseConfigFilters)
+        //    {
+        //        var jobFilterComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
 
-                if (jobFilterComponents != null)
-                {
-                    searchInputs = new JobSearchResultsFilterModel() { Keywords = this.KeywordsSelectedJobs, Filters = new List<JobSearchFilterReceiver>() };
-                    foreach (JobSearchModel item in jobFilterComponents)
-                    {
-                        FilterData(item.Filters);
-                        item.Filters = item.Filters.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
-                    }
+        //        if (jobFilterComponents != null)
+        //        {
+        //            searchInputs = new JobSearchResultsFilterModel() { Keywords = this.KeywordsSelectedJobs, Filters = new List<JobSearchFilterReceiver>() };
+        //            foreach (JobSearchModel item in jobFilterComponents)
+        //            {
+        //                FilterData(item.Filters);
+        //                item.Filters = item.Filters.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
+        //            }
 
-                    foreach (var configItem in jobFilterComponents)
-                    {
-                        var rootFilterItem = new JobSearchFilterReceiver() { values = new List<JobSearchFilterReceiverItem>() };
-                        rootFilterItem.rootId = configItem.FilterType;
+        //            foreach (var configItem in jobFilterComponents)
+        //            {
+        //                var rootFilterItem = new JobSearchFilterReceiver() { values = new List<JobSearchFilterReceiverItem>() };
+        //                rootFilterItem.rootId = configItem.FilterType;
 
-                        foreach (var subFilItem in configItem.Filters)
-                        {
-                            var targetFilterItem = new JobSearchFilterReceiverItem() { SubTargets = new List<JobSearchFilterReceiverItem>() };
-                            ProcessConfigFilterItems(targetFilterItem, subFilItem);
-                            rootFilterItem.values.Add(targetFilterItem);
-                        }
+        //                foreach (var subFilItem in configItem.Filters)
+        //                {
+        //                    var targetFilterItem = new JobSearchFilterReceiverItem() { SubTargets = new List<JobSearchFilterReceiverItem>() };
+        //                    ProcessConfigFilterItems(targetFilterItem, subFilItem);
+        //                    rootFilterItem.values.Add(targetFilterItem);
+        //                }
 
-                        searchInputs.Filters.Add(rootFilterItem);
-                    }
-                }
-            }
+        //                searchInputs.Filters.Add(rootFilterItem);
+        //            }
+        //        }
+        //    }
 
-            searchInputs.Page = pageNumber;
-            searchInputs.SortBy = sortBy;
+        //    searchInputs.Page = pageNumber;
+        //    searchInputs.SortBy = sortBy;
 
-            if (!this.PageSize.HasValue || this.PageSize.Value <= 0)
-                this.PageSize = PageSizeDefaultValue;
+        //    if (!this.PageSize.HasValue || this.PageSize.Value <= 0)
+        //        this.PageSize = PageSizeDefaultValue;
 
-            JXTNext_SearchJobsRequest searchRequest = JobSearchResultsFilterModel.ProcessInputToSearchRequest(searchInputs, this.PageSize, PageSizeDefaultValue);
-
-
-            #region Filter Logic
-
-            List<string> selectedFilterID = new List<string>();
-            List<JobSearchFilterReceiver> selectedFilters = searchInputs.Filters;
-            if (selectedFilters != null)
-            {
-                foreach (var filter in selectedFilters)
-                {
-                    if (filter != null)
-                    {
-                        foreach (var value in filter.values)
-                        {
-                            if (value != null)
-                            {
-                                selectedFilterID.Add(value.ItemID);
-                                if (value.SubTargets != null)
-                                {
-                                    foreach (var subTarget in value.SubTargets)
-                                    {
-                                        selectedFilterID.Add(value.ItemID + "_" + subTarget.ItemID);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        //    JXTNext_SearchJobsRequest searchRequest = JobSearchResultsFilterModel.ProcessInputToSearchRequest(searchInputs, this.PageSize, PageSizeDefaultValue);
 
 
+        //    #region Filter Logic
+
+        //    List<string> selectedFilterID = new List<string>();
+        //    List<JobSearchFilterReceiver> selectedFilters = searchInputs.Filters;
+        //    if (selectedFilters != null)
+        //    {
+        //        foreach (var filter in selectedFilters)
+        //        {
+        //            if (filter != null)
+        //            {
+        //                foreach (var value in filter.values)
+        //                {
+        //                    if (value != null)
+        //                    {
+        //                        selectedFilterID.Add(value.ItemID);
+        //                        if (value.SubTargets != null)
+        //                        {
+        //                            foreach (var subTarget in value.SubTargets)
+        //                            {
+        //                                selectedFilterID.Add(value.ItemID + "_" + subTarget.ItemID);
+        //                            }
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
 
 
-            #endregion
 
 
-            string sortingBy = this.Sorting;
-            if (searchInputs != null && !searchInputs.SortBy.IsNullOrEmpty())
-                sortingBy = searchInputs.SortBy;
+        //    #endregion
 
-            searchRequest.SortBy = JobSearchResultsFilterModel.GetSortEnumFromString(sortingBy);
-            ViewBag.SortOrder = JobSearchResultsFilterModel.GetSortStringFromEnum(searchRequest.SortBy);
 
-            JXTNext_SearchJobsResponse jobResponse = (JXTNext_SearchJobsResponse)_BLConnector.SearchJobs(searchRequest);
+        //    string sortingBy = this.Sorting;
+        //    if (searchInputs != null && !searchInputs.SortBy.IsNullOrEmpty())
+        //        sortingBy = searchInputs.SortBy;
 
-            foreach (var item in jobResponse.SearchResults)
-            {
-                List<OrderedDictionary> classificationItemsList = new List<OrderedDictionary>();
-                item.ClassificationsRootName = "Classifications";
+        //    searchRequest.SortBy = JobSearchResultsFilterModel.GetSortEnumFromString(sortingBy);
+        //    ViewBag.SortOrder = JobSearchResultsFilterModel.GetSortStringFromEnum(searchRequest.SortBy);
 
-                // Assuming the maximum ten parents the job will be posted
-                for (int i = 0; i < 10; i++)
-                {
-                    string key = "Classifications[0].Filters[" + i + "].ExternalReference";
-                    string value = "Classifications[0].Filters[" + i + "].Value";
-                    string parentClassificationsKey = "Classifications[0].Filters[" + i + "].SubLevel[0]";
-                    if (item.CustomData.ContainsKey(key))
-                    {
-                        OrderedDictionary classifOrdDict = new OrderedDictionary();
-                        classifOrdDict.Add(item.CustomData[key], item.CustomData[value]);
-                        JobDetailsViewModel.ProcessCustomData(parentClassificationsKey, item.CustomData, classifOrdDict);
-                        OrderedDictionary classifParentIdsOrdDict = new OrderedDictionary();
-                        JobDetailsViewModel.AppendParentIds(classifOrdDict, classifParentIdsOrdDict);
-                        classificationItemsList.Add(classifParentIdsOrdDict);
-                        item.Classifications = classificationItemsList;
-                    }
-                }
+        //    JXTNext_SearchJobsResponse jobResponse = (JXTNext_SearchJobsResponse)_BLConnector.SearchJobs(searchRequest);
 
-                // Take the first item in the list as SEO route for Job Details page
-                if (item.Classifications.Count > 0)
-                {
-                    List<string> seoString = new List<string>();
-                    foreach (var key in item.Classifications[0].Keys)
-                    {
-                        string value = item.Classifications[0][key].ToString();
-                        string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
-                        seoString.Add(SEOString + "-jobs");
-                    }
-                    seoString.Add(Regex.Replace(item.Title + "-job", @"([^\w]+)", "-"));
+        //    foreach (var item in jobResponse.SearchResults)
+        //    {
+        //        List<OrderedDictionary> classificationItemsList = new List<OrderedDictionary>();
+        //        item.ClassificationsRootName = "Classifications";
 
-                    item.ClassificationsSEORouteName = String.Join("/", seoString);
-                }
-            }
+        //        // Assuming the maximum ten parents the job will be posted
+        //        for (int i = 0; i < 10; i++)
+        //        {
+        //            string key = "Classifications[0].Filters[" + i + "].ExternalReference";
+        //            string value = "Classifications[0].Filters[" + i + "].Value";
+        //            string parentClassificationsKey = "Classifications[0].Filters[" + i + "].SubLevel[0]";
+        //            if (item.CustomData.ContainsKey(key))
+        //            {
+        //                OrderedDictionary classifOrdDict = new OrderedDictionary();
+        //                classifOrdDict.Add(item.CustomData[key], item.CustomData[value]);
+        //                JobDetailsViewModel.ProcessCustomData(parentClassificationsKey, item.CustomData, classifOrdDict);
+        //                OrderedDictionary classifParentIdsOrdDict = new OrderedDictionary();
+        //                JobDetailsViewModel.AppendParentIds(classifOrdDict, classifParentIdsOrdDict);
+        //                classificationItemsList.Add(classifParentIdsOrdDict);
+        //                item.Classifications = classificationItemsList;
+        //            }
+        //        }
 
-            jobResponse.SelectedFilters = selectedFilterID;
+        //        // Take the first item in the list as SEO route for Job Details page
+        //        if (item.Classifications.Count > 0)
+        //        {
+        //            List<string> seoString = new List<string>();
+        //            foreach (var key in item.Classifications[0].Keys)
+        //            {
+        //                string value = item.Classifications[0][key].ToString();
+        //                string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
+        //                seoString.Add(SEOString + "-jobs");
+        //            }
+        //            seoString.Add(Regex.Replace(item.Title + "-job", @"([^\w]+)", "-"));
 
-            return new JsonResult { Data = jobResponse };
-        }
+        //            item.ClassificationsSEORouteName = String.Join("/", seoString);
+        //        }
+        //    }
+
+        //    jobResponse.SelectedFilters = selectedFilterID;
+
+        //    return new JsonResult { Data = jobResponse };
+        //}
 
 
         [HttpPost]

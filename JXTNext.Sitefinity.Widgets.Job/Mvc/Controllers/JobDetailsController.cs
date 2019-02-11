@@ -16,6 +16,7 @@ using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure;
+using Telerik.Sitefinity.Abstractions;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -133,8 +134,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             JobDetailsViewModel viewModel = new JobDetailsViewModel();
             if (jobId.HasValue)
             {
-<<<<<<< HEAD
-=======
+
 
                 // Get job source or url referral
 
@@ -143,13 +143,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     UrlReferral = Request.QueryString["SRC"];
                 else if (!string.IsNullOrWhiteSpace(Request.QueryString["src"]))
                     UrlReferral = Request.QueryString["src"];
-                else
-                    UrlReferral = this.GetCookieDomain(Request.Cookies["JobsViewed"], jobId.Value);
+                //else
+                //    UrlReferral = this.GetCookieDomain(Request.Cookies["JobsViewed"], jobId.Value);
 
-                viewModel.UrlReferral = UrlReferral;
-                Log.Write($" viewModel.UrlReferral  : " + viewModel.UrlReferral, ConfigurationPolicy.ErrorLog);
+                //viewModel.UrlReferral = UrlReferral;
+                //Log.Write($" viewModel.UrlReferral  : " + viewModel.UrlReferral, ConfigurationPolicy.ErrorLog);
 
->>>>>>> develop
+
                 IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = jobId.Value };
                 IGetJobListingResponse jobListingResponse = _BLConnector.GuestGetJob(jobListingRequest);
 

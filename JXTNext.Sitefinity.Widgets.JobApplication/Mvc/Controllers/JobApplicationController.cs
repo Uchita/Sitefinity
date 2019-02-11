@@ -162,8 +162,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             string userEmail = String.Empty;
             string userFirstName = String.Empty;
             var currentIdentity = ClaimsManager.GetCurrentIdentity();
-<<<<<<< HEAD
-=======
             
             Log.Write($"currentIdentity.IsAuthenticated = {currentIdentity.IsAuthenticated}", ConfigurationPolicy.ErrorLog);
             if (Request.QueryString["error"] == "resume")
@@ -182,7 +180,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 ViewBag.SeekAccessError = true;
                 ViewBag.SeekAccessErrorMessage = "Seek access denied. Please allow access to apply job.";
             }
->>>>>>> develop
 
             var curUserId = currentIdentity.UserId;
             Log.Write($"currentIdentity.UserId = {currentIdentity.UserId}", ConfigurationPolicy.ErrorLog);
@@ -211,8 +208,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     Log.Write($"userFirstName = {userFirstName}", ConfigurationPolicy.ErrorLog);
                 }
 
-<<<<<<< HEAD
-=======
+
                 if (jobid.HasValue)
                 {
                     ViewBag.IsJobApplied = _isMemberAppliedJob(jobid.Value);
@@ -221,7 +217,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
                     
 
->>>>>>> develop
+
                 isUserLoggedIn = true;
                 ViewBag.isLoggedIn = true;
                 ViewBag.loginEmail = userEmail;
@@ -265,11 +261,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 jobApplicationViewModel.ContactDetails = jobListingResponse.Job.CustomData["ContactDetails"];
                 ViewBag.CompanyName = jobListingResponse.Job.CustomData["CompanyName"];
                 ViewBag.JobLocation = jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"];
-<<<<<<< HEAD
-=======
-                jobApplicationViewModel.UrlReferral = Request.QueryString["source"];
-                Log.Write($"jobApplicationViewModel.UrlReferral  {jobApplicationViewModel.UrlReferral}", ConfigurationPolicy.ErrorLog);
->>>>>>> develop
+
+                //jobApplicationViewModel.UrlReferral = Request.QueryString["source"];
+                //Log.Write($"jobApplicationViewModel.UrlReferral  {jobApplicationViewModel.UrlReferral}", ConfigurationPolicy.ErrorLog);
+
             }
 
             if (isUserLoggedIn && !string.IsNullOrEmpty(userEmail))
@@ -506,13 +501,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     EmailNotification = emailNotificationSettings,
                     AdvertiserEmailNotification = advertiserEmailNotificationSettings,
                     AdvertiserName = applyJobModel.ContactDetails,
-<<<<<<< HEAD
-                    CompanyName = applyJobModel.CompanyName
-=======
                     CompanyName = applyJobModel.CompanyName,
-                    UrlReferral = applyJobModel.UrlReferral,
+                    //UrlReferral = applyJobModel.UrlReferral,
                     RegistrationEmailNotification = registrationEmailNotificationSettings
->>>>>>> develop
+
                 },
                 ovverideEmail);
 
@@ -681,7 +673,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             try
             {
-<<<<<<< HEAD
+
                 bool isJobApplied = false;
                 Log.Write($"IsJobApplied method1", ConfigurationPolicy.ErrorLog);
                 JXTNext_MemberAppliedJobResponse appliedJobresponse = _blConnector.MemberAppliedJobsGet() as JXTNext_MemberAppliedJobResponse;
@@ -701,10 +693,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     }
                 }
                 Log.Write($"IsJobApplied isJobApplied 2 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
-=======
-                bool isJobApplied = _isMemberAppliedJob(jobId);
 
->>>>>>> develop
+                isJobApplied = _isMemberAppliedJob(jobId);
+
                 return new JsonResult { Data = isJobApplied };
             }
             catch (Exception ex)
@@ -718,8 +709,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
             
         }
-<<<<<<< HEAD
-=======
+
 
         private bool _isMemberAppliedJob(int jobId)
         {
@@ -743,7 +733,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return isJobApplied;
         }
 
->>>>>>> develop
+
         private JobApplicationAttachmentSource GetAttachmentSourceType(string sourceType)
         {
             if (sourceType.ToUpper() == "DROPBOX")

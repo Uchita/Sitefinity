@@ -161,6 +161,9 @@
     <Content Include="ResourcePackages\PCN\assets\dist\js\jquery-3.2.1.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\PCN\assets\dist\js\jquery.rwdImageMaps.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\PCN\assets\dist\js\owl.carousel.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

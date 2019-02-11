@@ -1,9 +1,29 @@
 
 
 $(document).ready(function () {
+
+    $('img[usemap]').rwdImageMaps().resize;
+    $(".map_pin").click(function () {
+        var thisChildren = $(this).parent().children(".tap_text");
+        var allChildren = $(".tap_text");
+        if ($(thisChildren).css('display') == 'block') {
+            $(thisChildren).hide();
+            $(".map_pin").removeClass("active");
+        }
+        else {
+            $(allChildren).hide();
+            $(".map_pin").removeClass("active");
+            $(thisChildren).show();
+            $(this).addClass("active");
+        }
+    });
+
+
     var x = getCookie('concent');
     if (x != '') {
-        $('.cookie-banner-container').remove();
+        //$('.cookie-banner-container').remove();
+    } else {
+        $('.cookie-banner-container').removeClass("hidden");
     }
 
     // Video Auto Play

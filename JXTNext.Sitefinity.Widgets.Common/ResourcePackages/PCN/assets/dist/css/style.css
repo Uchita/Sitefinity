@@ -31,6 +31,10 @@ img {
     vertical-align: middle;
 }
 
+.hidden {
+    display: none;
+}
+
 input[type="submit"], input[type="button"], input[type="text"] {
     appearance: none;
     -webkit-appearance: none;
@@ -136,6 +140,11 @@ a {
         padding: 20px 0;
         position: fixed;
     }
+
+.article-template .header {
+    background: #494949;
+    padding: 20px 0;
+}
 
 .sfPageEditor .header {
     position: relative !important;
@@ -2644,7 +2653,7 @@ ul.team-section {
 }
 
 .team-member-area {
-    margin-top: 65px;
+    /*margin-top: 65px;*/
 }
 
 .consultants .colio-item {
@@ -5024,9 +5033,17 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
             color: #fff;
         }
 
-    .cookie-banner-container + .header {
+    .cookie-banner-container:not(.hidden) + .header {
         top: 25px;
     }
+
+.article-template main.full_width {
+    margin-top: 85px;
+}
+
+.article-template .cookie-banner-container:not(.hidden) ~ main.full_width {
+    margin-top: 110px;
+}
 
 .sfPageEditor .cookie-banner-container {
     position: relative;
@@ -6273,21 +6290,12 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         border-color: #004f6e;
     }
 /* Start: article-template */
-.article-template .header {
-    position: relative;
-    width: 100%;
-    float: left;
-    background: #494949;
-    padding: 15px 0;
-    top: 0px;
-}
-
-.article-template .cookie-banner-container {
+/*.article-template .cookie-banner-container {
     position: relative;
     width: 100%;
     float: left;
     top: 0px;
-}
+}*/
 
 .article-template .select-menu {
     width: 100%;
@@ -6801,3 +6809,92 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
             .jobdetail-sidebar .card-item .text .view-btn:hover {
                 background: #004F6E;
             }
+
+.mapArea {
+    width: 80%;
+    float: left;
+    position: relative;
+}
+
+    .mapArea img {
+        width: 100%;
+        height: auto;
+    }
+
+.tap_area {
+    position: absolute;
+    width: 9.9%;
+    height: 19.7%;
+    border-radius: 100%;
+    z-index: 1;
+}
+
+    .tap_area.sm-r {
+        width: 8.9%;
+        height: 18%;
+    }
+
+    .tap_area .map_pin {
+        width: 100%;
+        height: 100%;
+        display: block;
+        border-radius: 100%;
+        background: none;
+        border: none;
+        outline: none;
+    }
+
+    .tap_area .tap_text {
+        margin-right: 5px;
+        display: none;
+        padding: 15px;
+        min-width: 180px;
+        position: absolute;
+        top: 0px;
+        right: 100%;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+        border-radius: 5px;
+        background: #fff;
+    }
+
+        .tap_area .tap_text p {
+            margin-bottom: 0px;
+            font-size: 12px;
+        }
+
+        .tap_area .tap_text strong {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 7px;
+            color: #004f6e;
+        }
+
+        .tap_area .tap_text:after {
+            position: absolute;
+            position: absolute;
+            left: 100%;
+            top: 20px;
+            content: "";
+            width: 30px;
+            height: 30px;
+            -moz-transform: rotate(42deg);
+            -webkit-transform: rotate(42deg);
+            transform: rotate(42deg);
+            box-shadow: 0 0 7px rgba(0,0,0,0.3);
+            z-index: -1;
+            background: #fff;
+            margin-left: -22px;
+        }
+
+    .tap_area.right .tap_text {
+        margin: 0 0 0 5px;
+        right: auto;
+        left: 100%;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+    }
+
+        .tap_area.right .tap_text:after {
+            right: 100%;
+            left: auto;
+            margin: 0 -22px 0 0;
+        }

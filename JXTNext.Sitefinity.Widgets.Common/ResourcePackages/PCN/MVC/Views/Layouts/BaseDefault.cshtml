@@ -25,7 +25,7 @@
 
 <body>
     @Html.Section("top")
-    <div class="cookie-banner-container">
+    <div class="cookie-banner-container hidden">
         <div class="container">
             By using this website you agree to the use of <a href="/privacy-policy">cookies</a>
             <a class="accept-link" href="javascript:void(0);"><em class="fas fa-window-close"></em></a>
@@ -67,6 +67,7 @@
     }
 
     @Html.Script("/ResourcePackages/PCN/assets/dist/js/owl.carousel.min.js", "bottom")
+    @Html.Script("/ResourcePackages/PCN/assets/dist/js/jquery.rwdImageMaps.js", "bottom")
     @Html.Script("/ResourcePackages/PCN/assets/dist/js/custom.js", "bottom")
     @if (Telerik.Sitefinity.Services.SystemManager.IsDesignMode)
     {

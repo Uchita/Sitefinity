@@ -48,24 +48,39 @@ $(document).ready(function () {
     /**Leaders Page accordion */
     $(".leader-list a").on("click", function (e) {
         e.preventDefault();
+        $(".leader-list a").removeClass("active");
         var thisContent = $(this).attr("data-desc");
         if (thisContent) {
+            $(this).addClass("active");
             $(".leader-content").remove();
             var str = '<div class="md-row leader-content"><div class="col-12 col-sm-12 border-blue"><p>';
             str += thisContent;
             str += '</p><a href="javascript:void(0)" class="btn btn-link">Read less</a></div></div>';
-            $(this).closest(".md-row").after(str);
 
-            /* tab */
-            // $(this).closest('.leader-list').parents('.md-row').find(".leader-list:nth-child(2n)").after(str);
+            var tabView = window.matchMedia('(min-width:577px) and (max-width: 991px)');
+            var desktopView = window.matchMedia('(min-width: 992px)');
+            var mobileView = window.matchMedia('(max-width: 576px)');
 
-            /* mobile */
-            $(this).closest(".leader-list").after(str);
+            if (desktopView.matches) {
+                $(this).closest(".md-row").after(str);
+            }
+            if (tabView.matches) {
+                var activeListEq = $(this).closest('.leader-list').index();
+                if (activeListEq == 0 || activeListEq == 1) {
+                    $(this).closest(".md-row").find(".leader-list:nth-child(2)").after(str);
+                } else {
+                    $(this).closest(".md-row").find(".leader-list:nth-child(4)").after(str);
+                }
+            }
+            if (mobileView.matches) {
+                $(this).closest(".leader-list").after(str);
+            }
         }
     });
 
     $(".g-section").on("click", ".leader-content a", function () {
-        $(this).closest(".leader-content").remove();
+        $(".leader-content").remove();
+        $(".leader-list a").removeClass("active");
     });
 
     // Leaders Categories filter
@@ -160,7 +175,16 @@ $(document).ready(function () {
         $('.contacted-show').slideUp();
     });
 
-    $('.white-bg-btn .btn').removeClass('btn-outline-white')
-    $('.white-bg-btn .btn').addClass('btn-bg-white')
+    $('.white-bg-btn .btn').removeClass('btn-outline-white');
+    $('.white-bg-btn .btn').addClass('btn-bg-white');
+
+    $(".feedback_form .replace-h4 > strong").each(function () {
+        //$(this).html("<h4>" + $(this).text().replace("<strong>", "").replace("</strong>", '') + "</h4>");
+        $(this).replaceWith("<h4>" + $(this).text() + "</h4>");
+    });
+    $(".feedback_form .replace-h4 > label").each(function () {
+        //$(this).html("<h4>" + $(this).text().replace("<strong>", "").replace("</strong>", '') + "</h4>");
+        $(this).replaceWith("<h4>" + $(this).text() + "</h4>");
+    });
 
 });

@@ -43,7 +43,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         IEnumerable<IBusinessLogicsConnector> _bConnectorsList;
         IEnumerable<IOptionsConnector> _oConnectorsList;
         IJobAlertService _jobAlertService;
-        private char[] charsToTrim = { '*', '\'', '"', '~', '!', '@', '#', '$', '%', '^', '&', '(', ')', '-', '_', '+', '=', '{', '}' };
+        private char[] charsToTrim = { '*', '\'', '"', '~', '!', '@', '$', '%', '^', '&', '(', ')', '-', '_', '=', '{', '}' };
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
         /// </summary>
@@ -105,12 +105,16 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
             else if (filterModel != null)
             {
+                filterModel = _processWidgetConfiguredFilter(filterModel);
                 ISearchJobsResponse response = GetJobSearchResultsResponse(filterModel);
                 dynamicJobResultsList = response as dynamic;
             }
 
             return View(this.TemplateName, dynamicJobResultsList);
         }
+
+        
+
 
         [HttpPost]
         public JsonResult GetSearchResults(string jobRequest, int pageNumber, string sortBy)
@@ -909,6 +913,41 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             }
             return htmlEmailTitle;
+        }
+
+        private JobSearchResultsFilterModel _processWidgetConfiguredFilter(JobSearchResultsFilterModel filterModel)
+        {
+            if (this.UseConfigFilters)
+            {
+                var jobFilterComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
+
+                if (jobFilterComponents != null)
+                {
+                    filterModel = new JobSearchResultsFilterModel() { Keywords = this.KeywordsSelectedJobs, Filters = new List<JobSearchFilterReceiver>() };
+                    foreach (JobSearchModel item in jobFilterComponents)
+                    {
+                        FilterData(item.Filters);
+                        item.Filters = item.Filters.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
+                    }
+
+                    foreach (var configItem in jobFilterComponents)
+                    {
+                        var rootFilterItem = new JobSearchFilterReceiver() { values = new List<JobSearchFilterReceiverItem>() };
+                        rootFilterItem.rootId = configItem.FilterType;
+
+                        foreach (var subFilItem in configItem.Filters)
+                        {
+                            var targetFilterItem = new JobSearchFilterReceiverItem() { SubTargets = new List<JobSearchFilterReceiverItem>() };
+                            ProcessConfigFilterItems(targetFilterItem, subFilItem);
+                            rootFilterItem.values.Add(targetFilterItem);
+                        }
+
+                        filterModel.Filters.Add(rootFilterItem);
+                    }
+                }
+            }
+
+            return filterModel;
         }
 
 

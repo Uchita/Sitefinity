@@ -8330,12 +8330,12 @@ main {
   .section-highlight-light .btn {
     border-color: #fff; }
 
-.sf-list-item h3[data-role="toggleLink"] {
+.sf-list-item h3[data-role="toggleLink"], .sf-list-item h3[data-sf-role="toggleLink"] {
   padding: 13px 40px 13px 20px;
   background: #eee;
   position: relative;
   font-size: 1.8rem; }
-  .sf-list-item h3[data-role="toggleLink"] > i {
+  .sf-list-item h3[data-role="toggleLink"] > i, .sf-list-item h3[data-sf-role="toggleLink"] > i {
     position: absolute;
     right: 8px;
     top: 17px; }

@@ -408,9 +408,15 @@ $(document).ready(function () {
     var windowPath = window.location.pathname.toLowerCase();
     if( windowPath.indexOf('user-dashboard') > -1 ){
         if( windowPath.indexOf('/create') > -1 || windowPath.indexOf('/edit') > -1 || $('.job-alert-message-wrapper').length ){
-            $('html, body').animate({
-                scrollTop: $('#createalert-widget').offset().top - 150
-            },100);
+            setTimeout( function(){
+                $('.dash-tbl-wrap').addClass('loading');
+                $('html, body').animate({
+                    scrollTop: $('#createalert-widget').offset().top - 150
+                },100,function(){
+                    $('.dash-tbl-wrap').removeClass('loading');
+                });
+            },1000);
+            
         }
     }
 

@@ -1531,7 +1531,7 @@ main {
 
 //expandable content list
 .sf-list-item{
-    h3[data-role="toggleLink"] {
+    h3[data-role="toggleLink"],  h3[data-sf-role="toggleLink"]{
         padding: 13px 40px 13px 20px;
         background: #eee;
         position: relative;

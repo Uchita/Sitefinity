@@ -24,6 +24,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         IMemberAppliedJobResponse MemberAppliedJobsGet();
         IMemberGetByIdResponse GetMemberByEmail(string email);
         IMemberGetByIdResponse UpdateMember(MemberModel modelData);
+        IBaseResponse UnsubscribeJobAlert(Guid unsubscribeGuid);
+        IMemberAppliedJobResponse MemberAppliedJobGetByJobId(int jobId);
         #endregion
 
         #region Advertiser User Calls

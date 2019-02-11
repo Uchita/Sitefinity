@@ -20,6 +20,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member
         public string CompanyName { get; set; }
         public EmailNotificationSettings EmailNotification { get; set; }
         public EmailNotificationSettings AdvertiserEmailNotification { get; set; }
+        public EmailNotificationSettings RegistrationEmailNotification { get; set; }
     }
 
 

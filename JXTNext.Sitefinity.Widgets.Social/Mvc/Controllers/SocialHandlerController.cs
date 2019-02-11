@@ -324,6 +324,15 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             {
                 return Redirect(string.Format("job-application/{0}",  int.Parse(state)));
                 //return Redirect(string.Format("job-application/{0}/{1}/{2}", "Project-Services", "Business-Transformation", int.Parse(state)));
+                //if (seoString != null && seoString.Count > 0)
+                //{
+                //    var urlString = String.Join("/", seoString);
+                //    return Redirect(string.Format("job-application/{0}/{1}?error=denied", urlString, int.Parse(state)));
+                //}
+                //else
+                //{
+                //    return Redirect(string.Format("job-application/{0}?error=resume", int.Parse(state)));
+                //}
             }
             
 

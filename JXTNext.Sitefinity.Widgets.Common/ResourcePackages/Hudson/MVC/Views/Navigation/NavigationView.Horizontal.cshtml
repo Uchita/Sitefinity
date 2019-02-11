@@ -58,6 +58,7 @@
                     <li class="extra-mnu timesheet-mnu"><a href="/timesheets-and-payroll-process"><em class="far fa-calendar-alt"></em> Timesheets</a></li>
                     @{
                         var currentIdentity = ClaimsManager.GetCurrentIdentity();
+<<<<<<< HEAD
                     }
 
                     @if (currentIdentity.IsAuthenticated)
@@ -70,6 +71,26 @@
                         <li class="extra-mnu combine-mnu"><a href="/register">Register</a> | <a href="/sign-in">Sign in</a></li>
                     }
 
+=======
+                        var loggedInStatusCls = "";
+                        var loggedOutStatusCls = "";
+                        if (currentIdentity.IsAuthenticated)
+                        {
+                            loggedOutStatusCls = "display: none";
+                        }
+                        else
+                        {
+                            loggedInStatusCls = "display: none";
+                        }
+
+                    }
+
+                   
+
+                    @* logged in out menu links *@
+                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="@loggedInStatusCls"><a href="/user-dashboard">@Html.Resource("LoggedAs", "LoginStatusExtendedResources") <span data-sf-role="sf-logged-in-name"></span></a></li>
+                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="@loggedInStatusCls"><a href="/sitefinity/signout?sts_signout=true">Logout</a></li>
+>>>>>>> develop
 
                 </ul>
             </div>

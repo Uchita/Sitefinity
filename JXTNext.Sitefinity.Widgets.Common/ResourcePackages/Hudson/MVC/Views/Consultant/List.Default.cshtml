@@ -18,6 +18,8 @@
             var OfficeLocationName = "";
             var OfficeLocationUrl = "";
 
+            var imageThumbUrl = "";
+
             if (item.Fields.Office != null)
             {
                 if (item.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
@@ -48,12 +50,18 @@
 				
 				@if (item.Fields.Pic != null)
                 {
-					<div class="col-md-6"><a class="contact-consultant-image" href="@navigateUrl">
-                        <img src="@MediaContentExtensions.ResolveThumbnailUrl(item.Fields.Pic.DataItem, "thumb350")" alt="@item.Fields.Pic.Fields.Title" />
-                        <div class="contact-image-rollover"><div class="display-table"><div class="display-cell">View Profile</div></div></div></a>
-					</div>
-				} 
-				
+                    imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(item.Fields.Pic.DataItem, "thumb350");
+                }
+                else
+                {
+                    imageThumbUrl = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.jpg";
+                }
+
+                <div class="col-md-6"><a class="contact-consultant-image" href="@navigateUrl">
+                    <img src="@imageThumbUrl" alt="@item.Fields.ConsultantName" />
+                    <div class="contact-image-rollover"><div class="display-table"><div class="display-cell">View Profile</div></div></div></a>
+				</div>
+
                 <div class="col-md-6">
                     <div class="contact-consultant-info">
                     <div class="color-highlight contact-consultant-name">@Html.HtmlSanitize((string)item.Fields.ConsultantName)</div>

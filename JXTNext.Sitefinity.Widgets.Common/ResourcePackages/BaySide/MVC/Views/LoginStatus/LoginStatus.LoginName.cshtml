@@ -1,9 +1,22 @@
 ﻿@model Telerik.Sitefinity.Frontend.Identity.Mvc.Models.LoginStatus.LoginStatusViewModel
 
+<<<<<<< HEAD:JXTNext.Sitefinity.Widgets.Common/ResourcePackages/BaySide/MVC/Views/LoginStatus/LoginStatus.LoginName.cshtml
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 @using Telerik.Sitefinity.Modules.Pages;
 
 @Html.Script(ScriptRef.JQuery, "top")
+=======
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Mvc.Proxy;
+@using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.LoginStatusExtended
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.Modules.Pages;
+@Html.Script(ScriptRef.JQuery, "top", false)
+
+@{
+    var SignOutUrl = string.Concat(Url.Action("SignOut"), string.Format("?{0}={1}", MvcControllerProxy.ControllerKey, ViewData[MvcControllerProxy.ControllerKey]));
+}
+>>>>>>> develop:JXTNext.Sitefinity.Widgets.Common/ResourcePackages/Hudson/MVC/Views/LoginStatusExtended/LoginStatusExtended.LoginName.cshtml
 
 <div class="header-top-login @Model.CssClass">
     <span class="header-top-links" data-sf-role="sf-logged-in-view" style="display: none">
@@ -30,7 +43,11 @@
 <script>
     $(document).ajaxComplete(function () {
         if ($('.header-top-links').data('sf-role') == 'sf-logged-in-view') {
+<<<<<<< HEAD:JXTNext.Sitefinity.Widgets.Common/ResourcePackages/BaySide/MVC/Views/LoginStatus/LoginStatus.LoginName.cshtml
             var userName = $('.header-top-links a[data-sf-role="sf-logged-in-name"]').text();
+=======
+            var userName = $('.header-top-links a[data-sf-role="sf-logged-in-name"]').first().text();
+>>>>>>> develop:JXTNext.Sitefinity.Widgets.Common/ResourcePackages/Hudson/MVC/Views/LoginStatusExtended/LoginStatusExtended.LoginName.cshtml
             userFirstName = userName.split(' ')[0];
             $('.header-top-links a[data-sf-role="sf-logged-in-name"]').text(userFirstName);
         }

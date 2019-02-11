@@ -14,6 +14,22 @@
 {
     <br /><div class="alert alert-info">@ViewBag.PostBackMessage</div>
 }
+<<<<<<< HEAD
+=======
+@if (ViewBag.SeekResumeError == true)
+{
+    <br /><div class="alert alert-danger">@ViewBag.SeekResumeErrorMessage</div>
+}
+@if (ViewBag.JobRecordExists == true)
+{
+    <br /><div class="alert alert-danger">@ViewBag.JobRecordExistsErrorMessage</div>
+}
+@if (ViewBag.SeekAccessError == true)
+{
+    <br /><div class="alert alert-danger">@ViewBag.SeekAccessErrorMessage</div>
+}
+
+>>>>>>> develop
 <div class="login-form sign-in-with">
     <form id="job-app-form" action="@Url.Action("ApplyJob","JobApplication")" method="post" enctype="multipart/form-data" autocomplete="off">
 
@@ -137,8 +153,13 @@
                     var loginElemHide = "";
 
                 <div id="upload-files-container" hidden>
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> develop
                     @if (ViewBag.IsUserLoggedIn)
                     {
                         loginElemHide = "hidden";
@@ -203,7 +224,11 @@
 
                     <!-- Resume -->
                     <div class="form-group row" id="uploadresumeblock" @loginElemHide>
+<<<<<<< HEAD
                         <label class="form-label col-xs-12 col-md-4 text-right">upload your cv*</label>
+=======
+                        <label class="form-label col-xs-12 col-md-4 text-right">upload your resume*</label>
+>>>>>>> develop
                         <div class="col-xs-12 col-md-8">
                             <div class="box clearfix text-center">
                                 <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
@@ -285,6 +310,10 @@
                     <input type="hidden" id="applicationemail" name="ApplicationEmail" value="@Model.ApplicationEmail" />
                     <input type="hidden" id="contactdetails" name="ContactDetails" value="@Model.ContactDetails" />
                     <input type="hidden" id="companyname" name="CompanyName" value="@ViewBag.CompanyName" />
+<<<<<<< HEAD
+=======
+                    <input type="hidden" id="urlReferral" name="UrlReferral" value="@Model.UrlReferral" />
+>>>>>>> develop
 
 
 
@@ -302,7 +331,14 @@
                     </div>
 
                     <div class="hidden alert alert-danger error-message resume-message">
+<<<<<<< HEAD
                         Please upload your resume!
+=======
+                        @Html.Resource("UploadResumeErrorMsg", "ErrorMessages")
+                    </div>
+                    <div class="hidden alert alert-danger error-message resume-select-message">
+                        @Html.Resource("SelectResumeErrorMsg", "ErrorMessages")
+>>>>>>> develop
                     </div>
 
                 </div>
@@ -407,7 +443,13 @@
              //checking the resume file upload
              if (resumeSelectedType == "" || resumeSelectedType.length == 0) {
                  fileUploadFlag = false;
-                 $(".resume-message").removeClass('hidden');
+                 $(".resume-message, .resume-select-message").addClass('hidden');
+                 if ($("#uploadresume:checked").length) {
+                     $(".resume-message").removeClass('hidden');
+                 } else {
+                     $(".resume-select-message").removeClass('hidden');
+                 }
+                 
                  return false;
              } else {
                  fileUploadFlag = true;
@@ -503,7 +545,7 @@
                  $('#password-reg').parent().find('.error-message.emptyPassword-message').removeClass('hidden');
                  return true;
              }
-
+             
 
              var jobId = $(this).data("jobid");
              var staySignedinFlag = $('#RememberMe').is(':checked') ? true : false;
@@ -541,7 +583,7 @@
                                      else {
                                          //Show upload files section
                                          $('#register').hide();
-                                         $('#userid').attr('disabled',true);
+                                         $('#userid').attr('disabled', true);
                                          $('#apply').removeAttr('disabled');
                                          $('#userid').removeAttr('required');
                                          $('#upload-files-container').show();
@@ -550,6 +592,7 @@
                                          $('#user-profile-resume').removeAttr('hidden');
                                          $('#uploadresumeblock').hide();
                                          $('#email-selected').val($('#userid').val());
+
                                      }
                                  },
                                  error: function (response) {
@@ -702,7 +745,7 @@
                  $('#uploadResumeJson').val($(this).val());
                  $(".resume-name").text('');
                  $("#application-resume").val("");
-                 $(".resume-message").addClass('hidden');
+                 $(".resume-select-message").addClass('hidden');
              }
 
          });

@@ -14,9 +14,16 @@
 @using Telerik.Sitefinity.Pages.Model;
 @using Telerik.Sitefinity.Modules.Libraries;
 
+<<<<<<< HEAD
+=======
+@{
+    List<string> filterValues = new List<string>();
+    var imageThumbUrl = "";
+>>>>>>> develop
 
 <div class="row consultant-page">
 
+<<<<<<< HEAD
 	@if(Model.Item.Fields.Pic != null)
 	{
 		<div class="col-md-4">
@@ -25,6 +32,21 @@
     }
 	
 	<div class="col-md-8">
+=======
+    @if (Model.Item.Fields.Pic != null)
+    {
+        imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(Model.Item.Fields.Pic.DataItem, "thumb350");
+    }
+    else
+    {
+        imageThumbUrl = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.jpg";
+    }
+    <div class="col-md-4">
+        <img class="full-width" src="@imageThumbUrl" alt="@Model.Item.Fields.ConsultantName" />
+    </div>
+
+    <div class="col-md-8">
+>>>>>>> develop
         <div class="contact-consultant-name color-highlight">@Html.HtmlSanitize((string)Model.Item.Fields.ConsultantName)</div>
         
 		@if(Model.Item.Fields.Office != null)

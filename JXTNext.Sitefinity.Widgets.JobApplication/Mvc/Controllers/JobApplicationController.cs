@@ -35,6 +35,7 @@ using JXTNext.Sitefinity.Services.Intefaces;
 using Telerik.Sitefinity.Abstractions;
 using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.JXTNextResume;
 using System.Dynamic;
+using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -161,20 +162,87 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             string userEmail = String.Empty;
             string userFirstName = String.Empty;
             var currentIdentity = ClaimsManager.GetCurrentIdentity();
-
-            if (currentIdentity.IsAuthenticated)
+<<<<<<< HEAD
+=======
+            
+            Log.Write($"currentIdentity.IsAuthenticated = {currentIdentity.IsAuthenticated}", ConfigurationPolicy.ErrorLog);
+            if (Request.QueryString["error"] == "resume")
             {
+                ViewBag.SeekResumeError = true;
+                ViewBag.SeekResumeErrorMessage = "Resume is not available in your seek profile. Please upload and reapply for the job.";
+            }
+
+            if (Request.QueryString["error"] == "exists")
+            {
+                ViewBag.JobRecordExists = true;
+                ViewBag.JobRecordExistsErrorMessage = "Job already applied.";
+            }
+            if (Request.QueryString["error"] == "denied")
+            {
+                ViewBag.SeekAccessError = true;
+                ViewBag.SeekAccessErrorMessage = "Seek access denied. Please allow access to apply job.";
+            }
+>>>>>>> develop
+
+            var curUserId = currentIdentity.UserId;
+            Log.Write($"currentIdentity.UserId = {currentIdentity.UserId}", ConfigurationPolicy.ErrorLog);
+            if (curUserId != Guid.Empty)
+            {
+                Log.Write($"currentIdentity is not empty", ConfigurationPolicy.ErrorLog);
+                UserProfileManager userMgr = UserProfileManager.GetManager();
+                UserManager mgr = UserManager.GetManager("Default");
+                User user = mgr.GetUser(curUserId);
+
+                SitefinityProfile profile = null;
+                if (user != null)
+                {
+                    Log.Write($"user is not null", ConfigurationPolicy.ErrorLog);
+                    profile = userMgr.GetUserProfile<SitefinityProfile>(user);
+                }
+                    
+
+
                 var currUser = SitefinityHelper.GetUserById(currentIdentity.UserId);
                 if (currUser != null)
                 {
+                    Log.Write($"curent user is not null", ConfigurationPolicy.ErrorLog);
                     userEmail = currUser.Email;
                     userFirstName = SitefinityHelper.GetUserFirstNameById(currUser.Id);
+                    Log.Write($"userFirstName = {userFirstName}", ConfigurationPolicy.ErrorLog);
                 }
 
+<<<<<<< HEAD
+=======
+                if (jobid.HasValue)
+                {
+                    ViewBag.IsJobApplied = _isMemberAppliedJob(jobid.Value);
+                    Log.Write($"job id has value", ConfigurationPolicy.ErrorLog);
+                    Log.Write($"IsJobApplied = {ViewBag.IsJobApplied}", ConfigurationPolicy.ErrorLog);
+                }
+                    
+
+>>>>>>> develop
                 isUserLoggedIn = true;
                 ViewBag.isLoggedIn = true;
                 ViewBag.loginEmail = userEmail;
             }
+
+            //if (currentIdentity.IsAuthenticated)
+            //{
+            //    var currUser = SitefinityHelper.GetUserById(currentIdentity.UserId);
+            //    if (currUser != null)
+            //    {
+            //        userEmail = currUser.Email;
+            //        userFirstName = SitefinityHelper.GetUserFirstNameById(currUser.Id);
+            //    }
+
+            //    if(jobid.HasValue)
+            //        ViewBag.IsJobApplied = _isMemberAppliedJob(jobid.Value);
+
+            //    isUserLoggedIn = true;
+            //    ViewBag.isLoggedIn = true;
+            //    ViewBag.loginEmail = userEmail;
+            //}
 
             ViewBag.IsUserLoggedIn = isUserLoggedIn;
             ViewBag.UserEmail = userEmail;
@@ -183,7 +251,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ViewBag.PostBackMessage = TempData["PostBackMessage"];
             ViewBag.EmailTemplateId = this.EmailTemplateId;
             ViewBag.AdvertiserEmailTemplateId = this.AdvertiserEmailTemplateId;
-
+            Log.Write($"AdvertiserEmailTemplateId  {ViewBag.AdvertiserEmailTemplateId}", ConfigurationPolicy.ErrorLog);
             if (!this.JobApplicationSuccessPageId.IsNullOrEmpty())
                 ViewBag.SuccessPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationSuccessPageId);
 
@@ -197,10 +265,17 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 jobApplicationViewModel.ContactDetails = jobListingResponse.Job.CustomData["ContactDetails"];
                 ViewBag.CompanyName = jobListingResponse.Job.CustomData["CompanyName"];
                 ViewBag.JobLocation = jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"];
+<<<<<<< HEAD
+=======
+                jobApplicationViewModel.UrlReferral = Request.QueryString["source"];
+                Log.Write($"jobApplicationViewModel.UrlReferral  {jobApplicationViewModel.UrlReferral}", ConfigurationPolicy.ErrorLog);
+>>>>>>> develop
             }
 
             if (isUserLoggedIn && !string.IsNullOrEmpty(userEmail))
             {
+                Log.Write($"isUserLoggedIn  {isUserLoggedIn}", ConfigurationPolicy.ErrorLog);
+                Log.Write($"userEmail  {userEmail}", ConfigurationPolicy.ErrorLog);
                 var response = _blConnector.GetMemberByEmail(userEmail);
                 List<SelectListItem> myResumes = new List<SelectListItem>();
                 myResumes.Add(new SelectListItem { Text = "SELECT YOUR CV", Value = "0" });
@@ -215,8 +290,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     }
                 }
                 ViewBag.ResumeList = myResumes;
+                Log.Write($"Resume process is completed ", ConfigurationPolicy.ErrorLog);
             }
-
+            Log.Write($"Index method end ", ConfigurationPolicy.ErrorLog);
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
             return View(fullTemplateName, jobApplicationViewModel);
         }
@@ -233,8 +309,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             MembershipCreateStatus membershipCreateStatus;
             ViewBag.PostBackMessage = null;
             ViewBag.IsUserLoggedIn = false;
+            EmailNotificationSettings registrationEmailNotificationSettings = null;
 
-            if(applyJobModel != null && !string.IsNullOrEmpty(applyJobModel.Email))
+            if (applyJobModel != null && !string.IsNullOrEmpty(applyJobModel.Email))
             {
                 applyJobModel.Email = applyJobModel.Email.Trim(',');
             }
@@ -296,6 +373,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         }
                         else
                         {
+                            /// Instantiate Registration email template
+                            registrationEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
+                                                                                                new EmailTarget(applyJobModel.FirstName, applyJobModel.Email),
+                                                                                                this.GetRegistrationHtmlEmailTitle(),
+                                                                                                this.GetRegistrationHtmlEmailContent(), null);
+
+
+
                             //instantiate the Sitefinity user manager
                             //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
                             UserManager userManager = UserManager.GetManager();
@@ -421,7 +506,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     EmailNotification = emailNotificationSettings,
                     AdvertiserEmailNotification = advertiserEmailNotificationSettings,
                     AdvertiserName = applyJobModel.ContactDetails,
+<<<<<<< HEAD
                     CompanyName = applyJobModel.CompanyName
+=======
+                    CompanyName = applyJobModel.CompanyName,
+                    UrlReferral = applyJobModel.UrlReferral,
+                    RegistrationEmailNotification = registrationEmailNotificationSettings
+>>>>>>> develop
                 },
                 ovverideEmail);
 
@@ -590,6 +681,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             try
             {
+<<<<<<< HEAD
                 bool isJobApplied = false;
                 Log.Write($"IsJobApplied method1", ConfigurationPolicy.ErrorLog);
                 JXTNext_MemberAppliedJobResponse appliedJobresponse = _blConnector.MemberAppliedJobsGet() as JXTNext_MemberAppliedJobResponse;
@@ -609,15 +701,49 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     }
                 }
                 Log.Write($"IsJobApplied isJobApplied 2 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
+=======
+                bool isJobApplied = _isMemberAppliedJob(jobId);
+
+>>>>>>> develop
                 return new JsonResult { Data = isJobApplied };
             }
             catch (Exception ex)
             {
                 Log.Write($"IsJobApplied exception = " + ex.Message, ConfigurationPolicy.ErrorLog);
-                throw ex;
+                var result = new
+                {
+                    Error = true
+                };
+                return new JsonResult { Data = result };
             }
             
         }
+<<<<<<< HEAD
+=======
+
+        private bool _isMemberAppliedJob(int jobId)
+        {
+            bool isJobApplied = false;
+            Log.Write($"IsJobApplied method1", ConfigurationPolicy.ErrorLog);
+            JXTNext_MemberAppliedJobByIdResponse appliedJobresponse = _blConnector.MemberAppliedJobGetByJobId(jobId) as JXTNext_MemberAppliedJobByIdResponse;
+            Log.Write($"IsJobApplied method appliedJobresponse.Success = " + appliedJobresponse.Success, ConfigurationPolicy.ErrorLog);
+            Log.Write($"IsJobApplied method appliedJobresponse.MemberAppliedJobById = " + appliedJobresponse.MemberAppliedJobById, ConfigurationPolicy.ErrorLog);
+
+            if (appliedJobresponse.Success)
+            {
+                isJobApplied = true;
+            }
+
+            if (appliedJobresponse.Errors != null && appliedJobresponse.Errors.Count > 0)
+            {
+                Log.Write($"IsJobApplied method error = " + appliedJobresponse.Errors.FirstOrDefault().ToString(), ConfigurationPolicy.ErrorLog);
+            }
+
+            Log.Write($"IsJobApplied isJobApplied 1 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
+            return isJobApplied;
+        }
+
+>>>>>>> develop
         private JobApplicationAttachmentSource GetAttachmentSourceType(string sourceType)
         {
             if (sourceType.ToUpper() == "DROPBOX")
@@ -665,6 +791,33 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return htmlEmailContent;
         }
 
+        private string GetRegistrationHtmlEmailContent()
+        {
+            string htmlEmailContent = String.Empty;
+            if (!String.IsNullOrEmpty(this.RegistrationEmailTemplateId))
+            {
+                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
+                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
+                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.RegistrationEmailTemplateId.ToUpper()));
+                htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
+            }
+
+            return htmlEmailContent;
+        }
+
+        private string GetRegistrationHtmlEmailTitle()
+        {
+            string htmlEmailContent = String.Empty;
+            if (!String.IsNullOrEmpty(this.RegistrationEmailTemplateId))
+            {
+                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
+                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
+                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.RegistrationEmailTemplateId.ToUpper()));
+                htmlEmailContent = emailTemplateItem.GetValue("Title").ToString();
+            }
+
+            return htmlEmailContent;
+        }
         private void FetchFromAmazonS3(string providerName, string libraryName, string itemTitle)
         {
             LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
@@ -1137,6 +1290,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string AdvertiserEmailTemplateSenderEmailAddress { get; set; }
         public string AdvertiserEmailTemplateEmailSubject { get; set; }
 
+        //Member Registration Email template
+        public string RegistrationEmailTemplateProviderName
+        {
+            get { return _emailTemplateProviderName; }
+            set { this._emailTemplateProviderName = value; }
+        }
+        public string RegistrationEmailTemplateId { get; set; }
+        public string RegistrationEmailTemplateName { get; set; }
+        public string RegistrationEmailTemplateCC { get; set; }
+        public string RegistrationEmailTemplateBCC { get; set; }
+        public string RegistrationEmailTemplateSenderName { get; set; }
+        public string RegistrationEmailTemplateSenderEmailAddress { get; set; }
+        public string RegistrationEmailTemplateEmailSubject { get; set; }
 
         public string CssClass { get; set; }
         public string SerializedCloudSettingsParams { get; set; }

@@ -28,7 +28,7 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
         internal const string WidgetIconCssClass = "sfMvcIcn";
         string templateNamePrefix = "MemberSavedJobs.";
         private string templateName = "List";
-
+        IBusinessLogicsConnector _blConnector;
         MemberSavedJobBC _memberSavedJobBC;
 
         /// <summary>
@@ -37,15 +37,40 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
         /// <value></value>
         public string TemplateName { get => this.templateName; set => this.templateName = value; }
 
-        public MemberSavedJobsController(MemberSavedJobBC memberSavedJobBC)
+        public MemberSavedJobsController(MemberSavedJobBC memberSavedJobBC, IBusinessLogicsConnector blConnector)
         {
             _memberSavedJobBC = memberSavedJobBC;
+            _blConnector = blConnector;
         }
 
         // GET: JobDetails
         public ActionResult Index()
         {
             bool GetListSuccess = _memberSavedJobBC.GetList(out List<MemberSavedJobDisplayItem> displayItems);
+
+            foreach (var job in displayItems)
+            {
+                IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = job.JobId };
+                IGetJobListingResponse jobListingResponse = _blConnector.GuestGetJob(jobListingRequest);
+                // Processing Classifications
+                OrderedDictionary classifOrdDict = new OrderedDictionary();
+                classifOrdDict.Add(jobListingResponse.Job.CustomData["Classifications[0].Filters[0].ExternalReference"], jobListingResponse.Job.CustomData["Classifications[0].Filters[0].Value"]);
+                string parentClassificationsKey = "Classifications[0].Filters[0].SubLevel[0]";
+                ProcessCustomData(parentClassificationsKey, jobListingResponse.Job.CustomData, classifOrdDict);
+                OrderedDictionary classifParentIdsOrdDict = new OrderedDictionary();
+                AppendParentIds(classifOrdDict, classifParentIdsOrdDict);
+
+                // Getting the SEO route name for classifications
+                List<string> seoString = new List<string>();
+                foreach (var key in classifParentIdsOrdDict.Keys)
+                {
+                    string value = classifParentIdsOrdDict[key].ToString();
+                    string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
+                    seoString.Add(SEOString);
+                }
+                job.ClassificationURL = String.Join("/", seoString);
+            }
+
             ViewBag.JobDetailsPageUrl = SitefinityHelper.GetPageUrl(this.JobDetailsPageId);
             ViewBag.DeleteMessage = TempData["DeleteMessage"];
             ViewBag.Status = TempData["Status"];
@@ -80,6 +105,46 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
             return RedirectToAction("");
         }
 
+
+        public static void AppendParentIds(OrderedDictionary srcDict, OrderedDictionary destDict)
+        {
+            if (srcDict != null && destDict != null)
+            {
+                int i = 1;
+                string concatKey = String.Empty;
+                foreach (var key in srcDict.Keys)
+                {
+                    if (i == 1)
+                    {
+                        destDict.Add(key, srcDict[key]);
+                        concatKey = key.ToString();
+                    }
+                    else
+                    {
+                        concatKey += "_" + key.ToString();
+                        destDict.Add(concatKey, srcDict[key]);
+                    }
+
+                    i++;
+                }
+            }
+        }
+
+
+        public void ProcessCustomData(string key, Dictionary<string, string> customData, OrderedDictionary ordDict)
+        {
+            if (!customData.ContainsKey(key + ".Value"))
+                return;
+
+            string addOrRemoveText = ".Sublevel[0]";
+            string parentKey = key.Remove(key.Length - addOrRemoveText.Length, addOrRemoveText.Length);
+
+            //string childId = customData[parentKey + ".ExternalReference"] + "_" + customData[key + ".ExternalReference"];
+            ordDict.Add(customData[key + ".ExternalReference"], customData[key + ".Value"]);
+            string nextKey = key + ".SubLevel[0]";
+
+            ProcessCustomData(nextKey, customData, ordDict);
+        }
 
 
         protected override void HandleUnknownAction(string actionName)

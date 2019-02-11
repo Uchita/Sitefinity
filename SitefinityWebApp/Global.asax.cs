@@ -30,6 +30,7 @@ using Telerik.Sitefinity.Configuration;
 using JXTNext.Sitefinity.Widgets.Social.Mvc.Configuration;
 using JXTNext.Sitefinity.Common.Models.Robots;
 using Telerik.Sitefinity.Web.Events;
+using SitefinityWebApp.code;
 
 namespace SitefinityWebApp
 {
@@ -133,6 +134,7 @@ namespace SitefinityWebApp
                 "Instagram/{controller}/{id}",
                 new { id = RouteParameter.Optional });
             //FrontendModule.Current.DependencyResolver.Rebind<IRegistrationModel>().To<JXTNext_MemberRegistrationModel>();
+            FeatherActionInvokerCustom.Register();
         }
 
         private void ApplicationStartHandler(object sender, EventArgs e)

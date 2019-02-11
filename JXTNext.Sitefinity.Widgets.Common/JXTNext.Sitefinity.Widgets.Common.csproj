@@ -1391,7 +1391,9 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\JXTNextResume\Resume.Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml" />
+    <None Include="ResourcePackages\BaySide\MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\LanguageSelector\LanguageSelector.LanguageLinks.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1417,6 +1419,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Lists\List.SimpleList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Lists\List.WhiteBoxes.cshtml">

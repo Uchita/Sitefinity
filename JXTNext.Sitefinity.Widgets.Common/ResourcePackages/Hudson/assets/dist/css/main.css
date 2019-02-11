@@ -8608,6 +8608,56 @@ ul.vertical-ul {
       color: #fff;
       border-color: #219fa3; }
 
+<<<<<<< HEAD
+=======
+.tbl-pagination, .slimtable-paging-div {
+  font-size: 1.4rem;
+  margin-top: -15px;
+  margin-bottom: 30px; }
+
+.slimtable-paging-div {
+  overflow: hidden; }
+
+.slimtable-paging-btnsdiv {
+  float: left; }
+
+.slimtable-paging-seldiv {
+  float: right; }
+
+.slimtable-page-btn {
+  font-size: 1.4rem;
+  line-height: 1.45;
+  display: inline-block;
+  padding: 0 10px;
+  border: 1px solid #01a3a4;
+  margin-right: 3px; }
+  .slimtable-page-btn:hover, .slimtable-page-btn.active {
+    background: #01a3a4;
+    color: #fff; }
+
+select.slimtable-paging-select {
+  padding: 0;
+  margin-right: 5px;
+  outline: none !important; }
+
+.slimtable th {
+  position: relative !important; }
+
+.slimtable-sprites::after {
+  content: '\f338';
+  font-family: 'Font Awesome 5 Free';
+  font-size: 1rem;
+  position: absolute;
+  right: 5px;
+  top: 13px; }
+
+.slimtable-sprites.slimtable-sortdesc::after {
+  content: '\f309'; }
+
+.slimtable-sprites.slimtable-sortasc::after {
+  content: '\f30c'; }
+
+>>>>>>> develop
 /*#region Footer*/
 .page-wrapper footer .brand-logo {
   max-width: 165px; }
@@ -9865,7 +9915,7 @@ ul.breadcrumb {
     margin-bottom: 2rem;
     overflow: hidden; }
     .page-wrapper .sign-in-with ul, .page-wrapper .ext-provider-form ul {
-      padding-top: 15px; }
+      padding-top: 0; }
       .page-wrapper .sign-in-with ul li, .page-wrapper .ext-provider-form ul li {
         vertical-align: top; }
         .page-wrapper .sign-in-with ul li a::before, .page-wrapper .ext-provider-form ul li a::before {
@@ -10185,10 +10235,31 @@ ul.breadcrumb {
 .job-offer-apply {
   max-width: 400px; }
 
+.job-offer-contacts {
+  margin-bottom: 30px; }
+  .job-offer-contacts .job-metas .job-meta-label {
+    padding-right: 20px;
+    margin-bottom: 0;
+    width: 180px; }
+  .job-offer-contacts .job-metas .job-meta-value {
+    width: calc(100% - 200px); }
+
 @media (max-width: 991px) {
   .job-offer-details {
     padding-right: 0;
     margin-bottom: 40px; } }
+
+@media (max-width: 500px) {
+  .job-offer-contacts {
+    margin-bottom: 10px; }
+    .job-offer-contacts .job-metas {
+      display: block; }
+      .job-offer-contacts .job-metas .job-meta-label {
+        width: 100%;
+        padding-right: 0; }
+      .job-offer-contacts .job-metas .job-meta-value {
+        margin-bottom: 10px;
+        width: 100%; } }
 
 .page-wrapper .search-top {
   margin: 10px 0 30px 0; }
@@ -10379,6 +10450,61 @@ ul.breadcrumb {
 .pad-right-30 {
   padding-right: 30px; }
 
+#listView {
+  border: none; }
+
+#listView, #listView * {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit; }
+
+.product {
+  float: left;
+  position: relative;
+  width: 111px;
+  height: 170px;
+  margin: 0 5px;
+  padding: 0; }
+  .product img {
+    width: 110px;
+    height: 110px; }
+  .product h3 {
+    margin: 0;
+    padding: 3px 5px 0 0;
+    max-width: 96px;
+    overflow: hidden;
+    line-height: 1.1em;
+    font-size: .9em;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: #999; }
+  .product p {
+    visibility: hidden; }
+  .product:hover p {
+    visibility: visible;
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    line-height: 110px;
+    vertical-align: middle;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.75);
+    transition: background .2s linear, color .2s linear;
+    -moz-transition: background .2s linear, color .2s linear;
+    -webkit-transition: background .2s linear, color .2s linear;
+    -o-transition: background .2s linear, color .2s linear; }
+
+.k-listview:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden; }
+
 #pager {
   border: none;
   background: none;
@@ -10443,6 +10569,9 @@ ul.breadcrumb {
 
 .k-block, .k-widget {
   line-height: inherit; }
+
+.hide-allsearch_btn .row-see-more {
+  display: none; }
 
 /*#endregion Job offers */
 /*#region Articles/Insights */
@@ -11882,8 +12011,17 @@ select.articles-order {
         text-transform: none;
         font-family: AkzidGroProReg, sans-serif; }
   .sm-wrapper {
-    display: none;
-    margin-top: 20px; }
+    margin-top: 20px;
+    position: relative;
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    height: 0; }
+    .sm-wrapper.fake-hide-reverse {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      height: auto; }
   div#filtersPagePartialContent {
     padding-top: 50px; }
     div#filtersPagePartialContent > div {

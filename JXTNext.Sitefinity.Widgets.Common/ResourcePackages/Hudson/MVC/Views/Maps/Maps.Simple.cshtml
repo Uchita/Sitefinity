@@ -93,7 +93,7 @@ else
                         showMarker = false;
                     }
 
-                    for (var item of markers) {
+                    for (var item in markers) {
                         if (item.isLatLng) {
                             $(this).addMarker({
                                 coords: [item.lat, item.lng],

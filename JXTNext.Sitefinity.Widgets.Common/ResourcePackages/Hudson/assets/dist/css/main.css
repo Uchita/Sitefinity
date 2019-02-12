@@ -8632,10 +8632,13 @@ ul.vertical-ul {
   display: inline-block;
   padding: 0 10px;
   border: 1px solid #01a3a4;
-  margin-right: 3px; }
+  margin-right: 3px;
+  cursor: pointer; }
   .slimtable-page-btn:hover, .slimtable-page-btn.active {
     background: #01a3a4;
     color: #fff; }
+  .slimtable-page-btn.active {
+    cursor: default; }
 
 select.slimtable-paging-select {
   padding: 0;

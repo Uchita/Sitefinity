@@ -8886,6 +8886,7 @@ address.info-box {
     position: absolute;
     top: 0;
     left: 0;
+    display: block;
     height: 100% !important;
     width: 100% !important;
     visibility: visible !important; }
@@ -9917,6 +9918,8 @@ ul.breadcrumb {
     margin-bottom: 20px; }
   .page-wrapper .dash-tbl-wrap div.alert {
     margin-bottom: 30px; }
+  .page-wrapper .dash-tbl-wrap.loading {
+    overflow: hidden; }
   .page-wrapper .sign-in-with, .page-wrapper .ext-provider-form {
     clear: both;
     margin-bottom: 2rem;

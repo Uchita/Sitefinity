@@ -25,6 +25,8 @@ using System.Text;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using System.Web.Routing;
 using System.Dynamic;
+using System.Collections.Specialized;
+using System.Text.RegularExpressions;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 {
@@ -61,7 +63,35 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         public ActionResult Index(string code, string state, int? JobId)
         {
             SocialMediaJobViewModel viewModel = new SocialMediaJobViewModel();
-            
+
+
+            // Fetch job details 
+            string ApplicationEmail = string.Empty;
+            string ContactDetails = string.Empty;
+            string CompanyName = string.Empty;
+            IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = int.Parse(state) };
+            IGetJobListingResponse jobListingResponse = _blConnector.GuestGetJob(jobListingRequest);
+            ViewBag.JobTitle = jobListingResponse.Job.Title;
+            ApplicationEmail = jobListingResponse.Job.CustomData["ApplicationMethod.ApplicationEmail"];
+            ContactDetails = jobListingResponse.Job.CustomData["ContactDetails"];
+            CompanyName = jobListingResponse.Job.CustomData["CompanyName"];
+            var JobLocation = jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"];
+            // Processing Classifications
+            OrderedDictionary classifOrdDict = new OrderedDictionary();
+            classifOrdDict.Add(jobListingResponse.Job.CustomData["Classifications[0].Filters[0].ExternalReference"], jobListingResponse.Job.CustomData["Classifications[0].Filters[0].Value"]);
+            string parentClassificationsKey = "Classifications[0].Filters[0].SubLevel[0]";
+            ProcessCustomData(parentClassificationsKey, jobListingResponse.Job.CustomData, classifOrdDict);
+            OrderedDictionary classifParentIdsOrdDict = new OrderedDictionary();
+            AppendParentIds(classifOrdDict, classifParentIdsOrdDict);
+
+            // Getting the SEO route name for classifications
+            List<string> seoString = new List<string>();
+            foreach (var key in classifParentIdsOrdDict.Keys)
+            {
+                string value = classifParentIdsOrdDict[key].ToString();
+                string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
+                seoString.Add(SEOString);
+            }
             try
             {
                 // Logging this info for Indeed test
@@ -80,7 +110,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 if (_socialHandlerLogics != null)
                 {
                     Log.Write("_socialHandlerLogics not null", ConfigurationPolicy.ErrorLog);
-                    if(Request.InputStream != null)
+                    if (Request.InputStream != null)
                         Request.InputStream.Position = 0;
 
                     StreamReader reader = new StreamReader(Request.InputStream);
@@ -105,13 +135,28 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
                     var result = _socialHandlerLogics.ProcessSocialHandlerData(code, state, indeedJsonStringData);
 
-                    if(result != null)
+                    if (result.ResumeLinkNotExists)
+                    {
+                        if (seoString != null && seoString.Count > 0)
+                        {
+                            var urlString = String.Join("/", seoString);
+                            return Redirect(string.Format("job-application/{0}/{1}?error=resume", urlString, int.Parse(state)));
+                        }
+                        else
+                        {
+                            return Redirect(string.Format("job-application/{0}?error=resume", int.Parse(state)));
+                        }
+
+                    }
+
+                    if (result != null)
                     {
                         Log.Write("_socialHandlerLogics 'result' not null", ConfigurationPolicy.ErrorLog);
                         Log.Write(result.Success + " " + result.JobId, ConfigurationPolicy.ErrorLog);
-                        if(result.Errors != null)
+                        if (result.Errors != null)
                             Log.Write(result.Errors.FirstOrDefault(), ConfigurationPolicy.ErrorLog);
                     }
+
                     if (result != null && result.Success == true && result.JobId.HasValue)
                     {
                         // Logging this info for Indeed test
@@ -144,7 +189,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
                                 }
                                 Log.Write("SitefinityHelper.IsUserLoggedIn() =" + SitefinityHelper.IsUserLoggedIn(), ConfigurationPolicy.ErrorLog);
-                                
+
                             }
                             else if (!string.IsNullOrEmpty(result.LoginUserEmail))
                             {
@@ -173,20 +218,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     Status = "Ready"
                                 };
 
-                                // Fetch job details 
-                                string ApplicationEmail = string.Empty;
-                                string ContactDetails = string.Empty;
-                                string CompanyName = string.Empty;
-                                if (result.JobId.HasValue)
-                                {
-                                    IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = result.JobId.Value };
-                                    IGetJobListingResponse jobListingResponse = _blConnector.GuestGetJob(jobListingRequest);
-                                    ViewBag.JobTitle = jobListingResponse.Job.Title;
-                                    ApplicationEmail = jobListingResponse.Job.CustomData["ApplicationMethod.ApplicationEmail"];
-                                    ContactDetails = jobListingResponse.Job.CustomData["ContactDetails"];
-                                    CompanyName = jobListingResponse.Job.CustomData["CompanyName"];
-                                    var JobLocation = jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"];
-                                }
+
 
                                 // End code for fetch job details
                                 Log.Write("overrideEmail uploadItem object created", ConfigurationPolicy.ErrorLog);
@@ -214,7 +246,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 }
 
 
-                                EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
+                                EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, overrideEmail),
                                                                                                                     new EmailTarget(ContactDetails, ApplicationEmail),
                                                                                                                     this.AdvertiserEmailTemplateEmailSubject,
                                                                                                                     htmlAdvertiserEmailContent, emailAttachments);
@@ -225,7 +257,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                     new EmailTarget(SitefinityHelper.GetUserFirstNameById(SitefinityHelper.GetUserByEmail(overrideEmail).Id), overrideEmail),
                                                                                                     this.EmailTemplateEmailSubject,
-                                                                                                    htmlEmailContent,null);
+                                                                                                    htmlEmailContent, null);
 
                                 Log.Write("emailNotificationSettings after: ", ConfigurationPolicy.ErrorLog);
                                 // CC and BCC emails
@@ -251,7 +283,8 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
                                 //Create Application 
                                 IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(
-                                    new JXTNext_MemberApplicationRequest {
+                                    new JXTNext_MemberApplicationRequest
+                                    {
                                         ApplyResourceID = result.JobId.Value,
                                         MemberID = 2,
                                         ResumePath = resumeAttachmentPath,
@@ -264,7 +297,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     overrideEmail);
 
                                 Log.Write("BL response after: ", ConfigurationPolicy.ErrorLog);
-                                
+
                                 if (response.Success && response.ApplicationID.HasValue)
                                 {
                                     Log.Write("BL response in: ", ConfigurationPolicy.ErrorLog);
@@ -290,6 +323,18 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 }
                                 else
                                 {
+                                    if (response.Errors.FirstOrDefault().ToLower().Contains("already exists"))
+                                    {
+                                        if (seoString != null && seoString.Count > 0)
+                                        {
+                                            var urlString = String.Join("/", seoString);
+                                            return Redirect(string.Format("job-application/{0}/{1}?error=exists", urlString, int.Parse(state)));
+                                        }
+                                        else
+                                        {
+                                            return Redirect(string.Format("job-application/{0}?error=exists", int.Parse(state)));
+                                        }
+                                    }
                                     Log.Write("Member application is : " + response.Errors.FirstOrDefault(), ConfigurationPolicy.ErrorLog);
                                     viewModel.Status = JobApplicationStatus.Technical_Issue;
                                     viewModel.Message = response.Errors.FirstOrDefault();
@@ -312,29 +357,31 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                             Log.Write("_jobApplicationService is null", ConfigurationPolicy.ErrorLog);
                         }
                     }
+
+
                 }
             }
 
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.Write("Social Handler : Exception Caught" + ex.Message, ConfigurationPolicy.ErrorLog);
             }
 
+
+
             if (this.Request.QueryString["error"].ToLower().Contains("denied"))
             {
-                return Redirect(string.Format("job-application/{0}",  int.Parse(state)));
-                //return Redirect(string.Format("job-application/{0}/{1}/{2}", "Project-Services", "Business-Transformation", int.Parse(state)));
-                //if (seoString != null && seoString.Count > 0)
-                //{
-                //    var urlString = String.Join("/", seoString);
-                //    return Redirect(string.Format("job-application/{0}/{1}?error=denied", urlString, int.Parse(state)));
-                //}
-                //else
-                //{
-                //    return Redirect(string.Format("job-application/{0}?error=resume", int.Parse(state)));
-                //}
+                if (seoString != null && seoString.Count > 0)
+                {
+                    var urlString = String.Join("/", seoString);
+                    return Redirect(string.Format("job-application/{0}/{1}?error=denied", urlString, int.Parse(state)));
+                }
+                else
+                {
+                    return Redirect(string.Format("job-application/{0}?error=resume", int.Parse(state)));
+                }
             }
-            
+
 
             if (!this.JobSearchResultsPageId.IsNullOrEmpty())
                 ViewBag.JobSearchResultsUrl = SitefinityHelper.GetPageUrl(this.JobSearchResultsPageId);
@@ -342,6 +389,45 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
 
             return View(fullTemplateName, viewModel);
+        }
+
+        public static void AppendParentIds(OrderedDictionary srcDict, OrderedDictionary destDict)
+        {
+            if (srcDict != null && destDict != null)
+            {
+                int i = 1;
+                string concatKey = String.Empty;
+                foreach (var key in srcDict.Keys)
+                {
+                    if (i == 1)
+                    {
+                        destDict.Add(key, srcDict[key]);
+                        concatKey = key.ToString();
+                    }
+                    else
+                    {
+                        concatKey += "_" + key.ToString();
+                        destDict.Add(concatKey, srcDict[key]);
+                    }
+
+                    i++;
+                }
+            }
+        }
+
+        public void ProcessCustomData(string key, Dictionary<string, string> customData, OrderedDictionary ordDict)
+        {
+            if (!customData.ContainsKey(key + ".Value"))
+                return;
+
+            string addOrRemoveText = ".Sublevel[0]";
+            string parentKey = key.Remove(key.Length - addOrRemoveText.Length, addOrRemoveText.Length);
+
+            //string childId = customData[parentKey + ".ExternalReference"] + "_" + customData[key + ".ExternalReference"];
+            ordDict.Add(customData[key + ".ExternalReference"], customData[key + ".Value"]);
+            string nextKey = key + ".SubLevel[0]";
+
+            ProcessCustomData(nextKey, customData, ordDict);
         }
 
         protected override void HandleUnknownAction(string actionName)
@@ -358,7 +444,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
         private string GetAdevertiserEmailHtmlContent()
         {
-            
+
             //return _jobApplicationService.GetHtmlEmailContent("3DCBDCE5-F190-4FBA-BE51-074F2E034A04", this.AdvertiserEmailTemplateProviderName, this._itemType);
             return _jobApplicationService.GetHtmlEmailContent(this.AdvertiserEmailTemplateId, this.AdvertiserEmailTemplateProviderName, this._itemType);
         }

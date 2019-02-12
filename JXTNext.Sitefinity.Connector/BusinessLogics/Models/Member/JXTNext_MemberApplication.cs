@@ -18,6 +18,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member
         public List<string> DocumentsPath { get; set; }
         public string AdvertiserName { get; set; }
         public string CompanyName { get; set; }
+        public string UrlReferral { get; set; }
         public EmailNotificationSettings EmailNotification { get; set; }
         public EmailNotificationSettings AdvertiserEmailNotification { get; set; }
         public EmailNotificationSettings RegistrationEmailNotification { get; set; }

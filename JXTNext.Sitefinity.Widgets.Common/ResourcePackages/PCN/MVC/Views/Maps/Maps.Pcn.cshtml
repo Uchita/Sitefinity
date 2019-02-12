@@ -1,0 +1,131 @@
+﻿@model JXTNext.Sitefinity.Widgets.Content.Mvc.Models.MapsViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using JXTNext.Sitefinity.Common.Helpers
+@using System.Web;
+
+@{
+    var mapsAPIKey = new SiteSettingsHelper().GetCurrentSiteGoogleMapsAPIKey();
+    var srcMap = "https://maps.googleapis.com/maps/api/js?key=" + mapsAPIKey;
+    string domainName = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+    var srcPlugin = domainName + "/Frontend-Assembly/JXTNext.Sitefinity.Widgets.Content/Mvc/Scripts/Maps/jquery.googlemap.js";
+    int counter = 0;
+}
+
+
+
+@if (!mapsAPIKey.IsNullOrEmpty())
+{
+    @Html.Script(Url.Content(srcMap), "bottom")
+    @Html.Script(Url.Content(srcPlugin), "bottom")
+
+    if (Model != null && Model.MapsMarkers != null)
+    {
+        <div class="map-placeholder pcn-map hidden" data-zoom="@Model.ZoomLevel" data-called=false>
+            @foreach (var marker in Model.MapsMarkers)
+            {
+                <span data-address="@marker.Address" data-addresslat="@marker.AddressLat" data-addresslng="@marker.AddressLng" data-icon="@marker.MarkerIconPath" data-popuptitle="@marker.PopupTitle" data-popuptext="@marker.PopupText" data-popupadditionalinfo="@marker.PopupAdditionalInfo"></span>
+            }
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-danger">Google Maps API key is not set. Please set at "Administration->Settings->Custom Site Settings"</div>
+}
+
+<script type="text/javascript">
+    function mapInit() {
+        var markerColors = ['#004F6E','#8EDD2B']
+        $(".map-placeholder").each(function (index) {
+            var $mapElement = $(this);
+            if ($mapElement.children().length > 0) {
+                var Locations = [];
+                var zoom = $(this).data('zoom');
+                var zoomLevel = 10;
+                if (zoom != 'undefined' && typeof zoom != 'undefined' && zoom != '') {
+                    zoomLevel = Number(zoom);
+                }
+                $(this).children().each(function (index) {
+                    var addresslat = $(this).data('addresslat');
+                    var addresslng = $(this).data('addresslng');
+                    var address = $(this).data('address');
+                    var icon = $(this).data('icon');
+                    // Pop up information
+                    var popupTitle = 'Payment & Cards';
+                    if ($(this).data('popuptitle') != undefined && $(this).data('popuptitle').length) {
+                        popupTitle = $(this).data('popuptitle');
+                    }
+                    var popupText = '<p class="info-text">' + $(this).data('popuptext') + '</p>';
+                    var popupAdditionalInfo = '';
+
+                    if ($(this).data('popupadditionalinfo') != "") {
+                        popupAdditionalInfo = '</span><span class="map-field"><a href="tel: ' + $(this).data('popupadditionalinfo') + '"><span class="fa fa-phone"></span>' + $(this).data('popupadditionalinfo') + '</a></span>';
+                    }
+
+                    var infoWindowContent = '<div class="info-box"><span class="map-field">' + address + '</span>' + popupAdditionalInfo + popupText + '</div>';
+
+                    var iconPath = '';
+                    if (icon != 'undefined' && typeof icon != 'undefined' && icon != '')
+                        iconPath = icon;
+
+                    if (addresslat != 'undefined' && addresslng != 'undefined' && typeof addresslat != 'undefined' && typeof addresslng != 'undefined' && addresslat != '' && addresslng != '') {
+                        Locations.push({ isLatLng: true, lat: Number(addresslat), lng: Number(addresslng), icon: iconPath, popupTitle: popupTitle, popupText: infoWindowContent });
+                    }
+                    else if (address != null && typeof address != 'undefined' && address != 'undefined' && address.length > 0) {
+                        Locations.push({ isLatLng: false, address: address, icon: iconPath, popupTitle: popupTitle, popupText: infoWindowContent });
+                    }
+                });
+
+                if (Locations.length > 0) {
+                    $(this).removeClass('hidden');
+                    var map = new google.maps.Map($mapElement[0], {
+                        zoom: zoomLevel,
+                        minZoom: 1,
+                        scrollwheel: false,
+                        //draggable: false,
+                        center: new google.maps.LatLng(Locations[0]['lat'], Locations[0]['lng']),
+                        styles: [{ "stylers": [{ "visibility": "off" }] }, { "featureType": "water", "stylers": [{ "color": "#e5e5e5" }, { "visibility": "on" }] }]
+                    });
+
+                    var infowindow = new google.maps.InfoWindow();
+                    var markers = Locations.map(function (location, i) {
+                        var Title = location['popupTitle'],
+                            Lat = location['lat'],
+                            Lng = location['lng'],
+                            Description = location['popupText'];
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(Lat, Lng),
+                            //icon: location.icon,
+                            map: map,
+                            icon: {
+                                path: "M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z",
+                                fillColor: markerColors[Math.floor(Math.random() * markerColors.length)],
+                                fillOpacity: 1,
+                                strokeColor: '',
+                                strokeWeight: 0
+                            },
+                            //label: {
+                            //    text: "Singapore",
+                            //    color: "#fff",
+                            //    fontSize: "14px"
+                            //}
+                        });
+                        marker.addListener('click', function () {
+                            var html = "<div class='pcn_map-infowindow'><p><strong>" + Title + "</strong></p>" + Description+"</div>";
+                            infowindow.setContent(html);
+                            infowindow.open(map, this);
+                        });
+                        return marker;
+                    });
+                }
+
+            }
+        });
+    }
+
+    $(window).on('load', function () {
+        mapInit();
+    });
+</script>
+
+

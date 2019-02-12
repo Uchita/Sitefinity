@@ -1531,7 +1531,7 @@ main {
 
 //expandable content list
 .sf-list-item{
-    h3[data-role="toggleLink"] {
+    h3[data-role="toggleLink"],  h3[data-sf-role="toggleLink"]{
         padding: 13px 40px 13px 20px;
         background: #eee;
         position: relative;
@@ -1989,9 +1989,13 @@ ul.vertical-ul {
     padding: 0 10px;
     border: 1px solid $global-highlight-color;
     margin-right: 3px;
+    cursor: pointer;
     &:hover, &.active{
         background: $global-highlight-color;
         color: $brightColor;
+    }
+    &.active{
+        cursor: default;
     }
 }
 select.slimtable-paging-select {
@@ -2328,6 +2332,7 @@ address.info-box{
         position: absolute;
         top: 0;
         left: 0;
+        display: block;
         height: 100%!important;
         width: 100%!important;
         visibility: visible!important;

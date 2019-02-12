@@ -202,7 +202,9 @@
         if (modelSalary != null && modelSalary != 'undefined') {
             salary = modelSalary;
             isSlarySelected = true;
-            $('.SalaryRangeSelect').val(modelSalary.TargetValue);
+            if (modelSalary.TargetValue != null) {
+                $('.SalaryRangeSelect').val(modelSalary.TargetValue);
+            }
             $('#' + modelSalary.TargetValue).removeClass('visible-hidden');
             $('.SalaryRangeSelect').addClass('changed');
 

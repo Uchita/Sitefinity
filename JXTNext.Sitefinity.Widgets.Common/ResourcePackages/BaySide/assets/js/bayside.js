@@ -48,32 +48,38 @@ $(document).ready(function () {
     /**Leaders Page accordion */
     $(".leader-list a").on("click", function (e) {
         e.preventDefault();
-        $(".leader-list a").removeClass("active");
-        var thisContent = $(this).attr("data-desc");
-        if (thisContent) {
-            $(this).addClass("active");
+        if ($(this).hasClass("active")) {
             $(".leader-content").remove();
-            var str = '<div class="md-row leader-content"><div class="col-12 col-sm-12 border-blue"><p>';
-            str += thisContent;
-            str += '</p><a href="javascript:void(0)" class="btn btn-link">Read less</a></div></div>';
+            $(".leader-list a").removeClass("active");
+        } else {
+            $(".leader-list a").removeClass("active");
+            $(this).addClass("active");
+            var thisContent = $(this).attr("data-desc");
+            if (thisContent) {
+                $(this).addClass("active");
+                $(".leader-content").remove();
+                var str = '<div class="md-row leader-content"><div class="col-12 col-sm-12 border-blue"><p>';
+                str += thisContent;
+                str += '</p><a href="javascript:void(0)" class="btn btn-link">Read less</a></div></div>';
 
-            var tabView = window.matchMedia('(min-width:577px) and (max-width: 991px)');
-            var desktopView = window.matchMedia('(min-width: 992px)');
-            var mobileView = window.matchMedia('(max-width: 576px)');
+                var tabView = window.matchMedia('(min-width:577px) and (max-width: 991px)');
+                var desktopView = window.matchMedia('(min-width: 992px)');
+                var mobileView = window.matchMedia('(max-width: 576px)');
 
-            if (desktopView.matches) {
-                $(this).closest(".md-row").after(str);
-            }
-            if (tabView.matches) {
-                var activeListEq = $(this).closest('.leader-list').index();
-                if (activeListEq == 0 || activeListEq == 1) {
-                    $(this).closest(".md-row").find(".leader-list:nth-child(2)").after(str);
-                } else {
-                    $(this).closest(".md-row").find(".leader-list:nth-child(4)").after(str);
+                if (desktopView.matches) {
+                    $(this).closest(".md-row").after(str);
                 }
-            }
-            if (mobileView.matches) {
-                $(this).closest(".leader-list").after(str);
+                if (tabView.matches) {
+                    var activeListEq = $(this).closest('.leader-list').index();
+                    if (activeListEq == 0 || activeListEq == 1) {
+                        $(this).closest(".md-row").find(".leader-list:nth-child(2)").after(str);
+                    } else {
+                        $(this).closest(".md-row").find(".leader-list:nth-child(4)").after(str);
+                    }
+                }
+                if (mobileView.matches) {
+                    $(this).closest(".leader-list").after(str);
+                }
             }
         }
     });

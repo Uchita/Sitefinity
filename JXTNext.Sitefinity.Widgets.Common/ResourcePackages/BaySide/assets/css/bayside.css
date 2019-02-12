@@ -5661,6 +5661,9 @@ p {
         font-weight: 600;
     }
 
+    .readmore-content h4 {
+        margin-top: 20px;
+    }
 /*-------Owl carousel Navigation-----End-----*/
 .hbspot-form {
     padding-bottom: 0px;
@@ -6883,6 +6886,14 @@ select.hs-input {
         color: #fff;
     }
 
+    .squire-box.left-pos {
+        background-position: left top;
+    }
+
+    .squire-box.top-pos {
+        background-position: top center;
+    }
+
     .squire-box a {
         color: #fff;
         position: absolute;
@@ -7006,6 +7017,11 @@ select.hs-input {
         border-right: 1px solid #fff;
         min-height: 100%;
     }
+
+        .section-graphics .graphic-col .title {
+            font-size: 17px;
+            font-weight: 300;
+        }
 
         .section-graphics .graphic-col .item-icon {
             margin-bottom: 15px;
@@ -7132,7 +7148,7 @@ select.hs-input {
 
 .leader-list {
     overflow: hidden;
-    padding-bottom: 20px;
+    padding-bottom: 42px;
 }
 
     .leader-list .leader-image {
@@ -7198,8 +7214,11 @@ select.hs-input {
     }
 
     .leader-list .btn {
-        font-weight: 600;
+        font-weight: 400;
         padding: 0;
+        position: absolute;
+        bottom: 20px;
+        left: 9px;
     }
 
         .leader-list .btn:after {
@@ -7226,7 +7245,7 @@ select.hs-input {
 }
 
     .leader-content .btn {
-        font-weight: 600;
+        font-weight: 400;
         padding: 0;
     }
 
@@ -7483,50 +7502,31 @@ select.hs-input {
         text-decoration: none;
     }
 
-        .address-panel .panel-title a .icon-downarrow:before {
-            margin-left: 0.255em;
-        }
-
-        .address-panel .panel-title a[aria-expanded="false"] .icon-downarrow:before {
-            display: inline-block;
-            width: auto;
-            height: auto;
-            font-size: inherit;
-            position: static;
-            vertical-align: 0;
-            content: "\f107";
-            border: none;
-            font-family: FontAwesome;
-            transition: transform 0.3s;
-        }
-
-        .address-panel .panel-title a[aria-expanded="false"]:hover .icon-downarrow:before {
+        .address-panel .panel-title a.collapsed span.fa {
             transform: rotate(-180deg);
             -webkit-transform: rotate(-180deg);
             -moz-transform: rotate(-180deg);
         }
 
-        .address-panel .panel-title a[aria-expanded="true"] .icon-downarrow:before {
-            transform: rotate(-180deg);
-            -webkit-transform: rotate(-180deg);
-            -moz-transform: rotate(-180deg);
-            display: inline-block;
-            width: auto;
-            height: auto;
-            font-size: inherit;
-            position: static;
-            margin-left: 0.255em;
-            vertical-align: 0;
-            transition: transform 0.3s;
-            content: "\f107";
-            border: none;
-            font-family: FontAwesome;
-        }
-
-        .address-panel .panel-title a[aria-expanded="true"]:hover .icon-downarrow:before {
+        .address-panel .panel-title a.collapsed:hover span.fa {
             transform: rotate(-0deg);
             -webkit-transform: rotate(-0deg);
             -moz-transform: rotate(-0deg);
+        }
+
+        .address-panel .panel-title a span.fa {
+            transform: rotate(-0deg);
+            -webkit-transform: rotate(-0deg);
+            -moz-transform: rotate(-0deg);
+            margin-left: 0.255em;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .address-panel .panel-title a:hover span.fa {
+            transform: rotate(-180deg);
+            -webkit-transform: rotate(-180deg);
+            -moz-transform: rotate(-180deg);
         }
 
     .address-panel .panel-title .icon-downarrow {
@@ -8165,6 +8165,8 @@ select.hs-input {
     margin-top: 0;
 }
 
+
+
     .login-form.sign-in-with .checkbox input[type=checkbox] {
         z-index: 2;
         position: relative;
@@ -8175,27 +8177,39 @@ select.hs-input {
         float: left;
     }
 
-    .login-form.sign-in-with .checkbox .checkbox-icon {
-        width: 20px;
-        height: 20px;
-        border: 1px solid #0088CF;
-        display: inline-block;
-        color: #0088CF;
+.login-form.sign-in-with .upload-section .checkbox {
+    padding: 0 0 0 28px;
+    position: relative;
+    font-weight: normal;
+}
+
+    .login-form.sign-in-with .upload-section .checkbox input[type=checkbox] {
         position: absolute;
-        top: 2px;
-        left: 0;
-        text-align: center;
-        font-size: 13px;
+        opacity: 0;
     }
 
-        .login-form.sign-in-with .checkbox .checkbox-icon:before {
-            content: '';
-        }
+.login-form.sign-in-with .checkbox .checkbox-icon {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #0088CF;
+    display: inline-block;
+    color: #0088CF;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    text-align: center;
+    cursor: pointer;
+    font-size: 13px;
+}
 
-    .login-form.sign-in-with .checkbox input[type=checkbox]:checked + .checkbox-icon:before {
-        content: "\f00c";
-        line-height: 19px;
+    .login-form.sign-in-with .checkbox .checkbox-icon:before {
+        content: '';
     }
+
+.login-form.sign-in-with .checkbox input[type=checkbox]:checked + .checkbox-icon:before {
+    content: "\f00c";
+    line-height: 19px;
+}
 
 .ext-provider-form .apply-with li {
     vertical-align: top;
@@ -8918,7 +8932,7 @@ privacy-policy {
 
 .bullet-points {
     list-style: none;
-    padding: 10px 0;
+    padding: 15px 0;
     margin: 0px;
 }
 
@@ -8970,6 +8984,15 @@ privacy-policy {
     font-weight: 700;
     font-size: 16px;
 }
+
+.image-pos-left + .align-items-center .content-on-img {
+    padding-right: 40px;
+}
+
+.right-space-40 {
+    padding-right: 25px;
+}
+
 /*.leader-list + .leader-content {
     
 }*/
@@ -8995,7 +9018,9 @@ privacy-policy {
 
 @media(max-width: 991px) and (min-width: 768px) {
 
-
+    .app-content .md-row {
+        margin: 0px;
+    }
 
     /*.md-row + .leader-content {
             position: absolute;
@@ -9028,5 +9053,13 @@ privacy-policy {
 
     .app-content .leader-content .border-blue {
         padding: 0.6rem 1.5rem;
+    }
+
+    .image-pos-left + .align-items-center .content-on-img {
+        padding-right: 15px;
+    }
+
+    .right-space-40 {
+        padding-right: 0px;
     }
 }

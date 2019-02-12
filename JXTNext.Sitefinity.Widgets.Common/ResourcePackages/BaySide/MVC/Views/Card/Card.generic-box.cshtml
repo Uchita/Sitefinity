@@ -1,7 +1,7 @@
 @model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
-<div class="squire-box" style="background-image:url('@Model.SelectedSizeUrl')">
+<div class="squire-box @Model.CssClass" style="background-image:url('@Model.SelectedSizeUrl')">
     <div class="squire-overlay"></div>
     <h3>@Html.HtmlSanitize(Model.Heading)</h3>
     <p>

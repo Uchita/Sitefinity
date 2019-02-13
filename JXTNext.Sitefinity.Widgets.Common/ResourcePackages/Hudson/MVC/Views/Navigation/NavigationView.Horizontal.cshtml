@@ -9,6 +9,8 @@
 @using JXTNext.Sitefinity.Common.Helpers;
 
 @using Telerik.Sitefinity.DynamicModules.Model;
+@using Telerik.Sitefinity.Security;
+@using Telerik.Sitefinity.Security.Claims;
 
 @*Add scripts and stylesheets*@
 @Html.Script(ScriptRef.JQuery, "top")
@@ -54,16 +56,28 @@
                         @MobileRootLevelNode(node)
                     }
                     <li class="extra-mnu timesheet-mnu"><a href="/timesheets-and-payroll-process"><em class="far fa-calendar-alt"></em> Timesheets</a></li>
-                    @if (JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn())
-                    {
-                        <li class="extra-mnu"><a href="/home/SignOut">Log out</a></li>
-                    }
-                    else
-                    {
-                        <li class="extra-mnu combine-mnu"><a href="/register">Register</a> | <a href="/sign-in">Sign in</a></li>
+                    @{
+                        var currentIdentity = ClaimsManager.GetCurrentIdentity();
+                        var loggedInStatusCls = "";
+                        var loggedOutStatusCls = "";
+                        if (currentIdentity.IsAuthenticated)
+                        {
+                            loggedOutStatusCls = "display: none";
+                        }
+                        else
+                        {
+                            loggedInStatusCls = "display: none";
+                        }
+
                     }
 
+                   
 
+                    @* logged in out menu links *@
+                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="@loggedInStatusCls"><a href="/user-dashboard">@Html.Resource("LoggedAs", "LoginStatusExtendedResources") <span data-sf-role="sf-logged-in-name"></span></a></li>
+                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="@loggedInStatusCls"><a href="/sitefinity/signout?sts_signout=true">Logout</a></li>
+
+                    <li class="extra-mnu combine-mnu header-top-links" data-sf-role="sf-logged-out-view" style="@loggedOutStatusCls"><a href="/register">Register</a> | <a href="/sign-in">Sign in</a></li>
                 </ul>
             </div>
         </div><!-- /.container-fluid -->
@@ -83,49 +97,49 @@
             <div class="dropdown-menu-container">
                 <div class="dropdown-menu-columns">
                     <div class="dropdown-menu"></div>
-                        <div class="dropdown-menu no-bdr">
-                            <ul>
-                                @RenderSubLevelsRecursive(node, 1)
-                            </ul>
-                        </div>
-                        <div class="dropdown-menu">
-                            @foreach (var flattenedChild in node.ChildNodes)
-                            {
-                                if (flattenedChild.ChildNodes.Count > 0)
-                                {
-                                    <ul style="display:none;" data-parent-id="@flattenedChild.OriginalSiteMapNode.Key.ToLower()">
-                                        @RenderSubLevelsRecursive(flattenedChild, 1)
-                                    </ul>
-                                }
-                            }
-                        </div>
-
-                        <div class="dropdown-menu">
-                            @if (featuredArticle != null)
-                            {
-                                var bestUrl = "";
-                                //var bestUrl = ContentHelper.GetBestArticleUrl(featuredArticle.DataItem);
-                                DynamicContent dynamicVar = featuredArticle.DataItem as DynamicContent;
-                                if (dynamicVar != null)
-                                {
-                                    bestUrl = "/insights/articles/detail" + dynamicVar.ItemDefaultUrl;
-                                }
-
-                                <h4>Featured article</h4>
-                                <a href="@bestUrl" rel="@featuredArticle.DataItem">
-                                    <div>
-                                        <div class="dropdown-menu-featured-image">
-                                            <img src="@Html.Raw(featuredArticle.Fields.HeaderImage.Fields.MediaUrl)" />
-                                        </div>
-                                        <h5>@featuredArticle.Fields.Title</h5>
-
-                                    </div>
-                                </a>
-                            }
-                        </div>
-                        <div class="clearfix">
-                        </div>
+                    <div class="dropdown-menu no-bdr">
+                        <ul>
+                            @RenderSubLevelsRecursive(node, 1)
+                        </ul>
                     </div>
+                    <div class="dropdown-menu">
+                        @foreach (var flattenedChild in node.ChildNodes)
+                        {
+                            if (flattenedChild.ChildNodes.Count > 0)
+                            {
+                                <ul style="display:none;" data-parent-id="@flattenedChild.OriginalSiteMapNode.Key.ToLower()">
+                                    @RenderSubLevelsRecursive(flattenedChild, 1)
+                                </ul>
+                            }
+                        }
+                    </div>
+
+                    <div class="dropdown-menu">
+                        @if (featuredArticle != null)
+                        {
+                            var bestUrl = "";
+                            //var bestUrl = ContentHelper.GetBestArticleUrl(featuredArticle.DataItem);
+                            DynamicContent dynamicVar = featuredArticle.DataItem as DynamicContent;
+                            if (dynamicVar != null)
+                            {
+                                bestUrl = "/insights/articles/detail" + dynamicVar.ItemDefaultUrl;
+                            }
+
+                            <h4>Featured article</h4>
+                            <a href="@bestUrl" rel="@featuredArticle.DataItem">
+                                <div>
+                                    <div class="dropdown-menu-featured-image">
+                                        <img src="@Html.Raw(featuredArticle.Fields.HeaderImage.Fields.MediaUrl)" />
+                                    </div>
+                                    <h5>@featuredArticle.Fields.Title</h5>
+
+                                </div>
+                            </a>
+                        }
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                </div>
             </div>
         </li>
     }

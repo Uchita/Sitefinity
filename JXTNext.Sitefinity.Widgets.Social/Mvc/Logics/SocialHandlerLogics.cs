@@ -30,9 +30,12 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
             foreach (var item in _processSocialMediaData)
             {
                 var result = item.ProcessData(data, state, indeedData);
+                if (result != null && result.ResumeLinkNotExists)
+                    return result;
+
                 if (result != null && result.Success)
                     return result;
-                    
+
             }
 
             return null;

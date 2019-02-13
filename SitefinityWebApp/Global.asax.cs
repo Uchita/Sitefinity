@@ -28,6 +28,9 @@ using Ninject;
 using JXTNext.Sitefinity.Widgets.User.Mvc.StringResources;
 using Telerik.Sitefinity.Configuration;
 using JXTNext.Sitefinity.Widgets.Social.Mvc.Configuration;
+using JXTNext.Sitefinity.Common.Models.Robots;
+using Telerik.Sitefinity.Web.Events;
+using SitefinityWebApp.code;
 
 namespace SitefinityWebApp
 {
@@ -68,9 +71,23 @@ namespace SitefinityWebApp
             {
                 GlobalFilters.Filters.Add(new SocialShareAttribute());
                 SystemManager.RegisterBasicSettings<GenericBasicSettingsView<CustomSiteSettings, CustomSiteSettingsContract>>("CustomSiteSettingsConfig", "Custom Site Settings", "", true);
+                SystemManager.RegisterBasicSettings<GenericBasicSettingsView<RobotSettings, RobotSettingsContract>>("RobotSettingsConfig", "Robot Settings", "", true);
                 FrontendModule.Current.DependencyResolver.Rebind<IDynamicContentModel>().To<CustomDynamicContentModel>();
                 Config.RegisterSection<InstagramConfig>();
+                EventHub.Subscribe<IUnauthorizedPageAccessEvent>(new Telerik.Sitefinity.Services.Events.SitefinityEventHandler<IUnauthorizedPageAccessEvent>(OnUnauthorizedAccess));
             }
+        }
+
+        void OnUnauthorizedAccess(IUnauthorizedPageAccessEvent unauthorizedEvent)
+        {
+            var url = unauthorizedEvent.Page.Url.TrimStart('~');
+            //for this specific page redirect to CustomerLoginPage
+            //if (unauthorizedEvent.Page.Title.Contains("user-dashboard"))
+            unauthorizedEvent.HttpContext.Response.Redirect("~/sign-in");
+            //for all other pages redirect to the Sitefinity login page
+            //if you do not use the else clause you will be redirected to the Sitefinity login page in all other cases different that the above one
+            //else
+            //    unauthorizedEvent.HttpContext.Response.Redirect("~/sitefinity");
         }
 
         protected void Session_Start(object sender, EventArgs e)
@@ -117,6 +134,7 @@ namespace SitefinityWebApp
                 "Instagram/{controller}/{id}",
                 new { id = RouteParameter.Optional });
             //FrontendModule.Current.DependencyResolver.Rebind<IRegistrationModel>().To<JXTNext_MemberRegistrationModel>();
+            FeatherActionInvokerCustom.Register();
         }
 
         private void ApplicationStartHandler(object sender, EventArgs e)

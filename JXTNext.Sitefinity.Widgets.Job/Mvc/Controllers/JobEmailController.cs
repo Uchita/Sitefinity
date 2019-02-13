@@ -205,14 +205,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     }
                 }
 
-                fieldKey = "FriendMessage";
-                if (ModelState.IsValidField(fieldKey))
-                {
-                    if (string.IsNullOrWhiteSpace(form.FriendMessage))
-                    {
-                        ModelState.AddModelError(fieldKey, JobEmailFormModel.RequiredFieldMessage);
-                    }
-                }
             }
 
             // do not proceed if we have errors
@@ -290,17 +282,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 jobUrl += SitefinityHelper.GetPageUrl(JobDetailsPageId);
 
-                if (job.Classifications != null && job.Classifications.Count > 0)
+                if (job.ClassificationURL != null)
                 {
-                    List<string> seoString = new List<string>();
-                    foreach (var key in job.Classifications[0].Keys)
-                    {
-                        string value = job.Classifications[0][key].ToString();
-                        string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
-                        seoString.Add(SEOString);
-                    }
-
-                    jobUrl += String.Join("/", seoString);
+                    jobUrl += "/" + job.ClassificationURL;
                 }
 
                 jobUrl += "/" + job.JobID;
@@ -330,7 +314,15 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 replyToCollection.Add(new MailAddress(form.Email, form.Name));
 
                 templateData.Sender = from;
-                templateData.Message = Regex.Replace(form.FriendMessage, "<.*?>", String.Empty).Replace("\n", "<br />");
+
+                if (form.FriendMessage == null)
+                {
+                    templateData.Message = string.Empty;
+                }
+                else
+                {
+                    templateData.Message = Regex.Replace(form.FriendMessage, "<.*?>", String.Empty).Replace("\n", "<br />");
+                }
 
                 foreach (var item in form.Friend)
                 {
@@ -449,10 +441,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 EmailFriendLabel = string.IsNullOrEmpty(this.EmailFriendLabel) ? "Click here to email this job to a friend" : this.EmailFriendLabel,
                 EmailFriendHelp = this.EmailFriendHelp,
 
-                FriendNameLabel = string.IsNullOrEmpty(this.FriendNameLabel) ? "Your Friend's Name" : this.FriendNameLabel,
+                FriendNameLabel = string.IsNullOrEmpty(this.FriendNameLabel) ? "Friend's Name" : this.FriendNameLabel,
                 FriendNameHelp = this.EmailFriendHelp,
 
-                FriendEmailLabel = string.IsNullOrEmpty(this.FriendEmailLabel) ? "Your Friend's Email" : this.FriendEmailLabel,
+                FriendEmailLabel = string.IsNullOrEmpty(this.FriendEmailLabel) ? "Friend's Email" : this.FriendEmailLabel,
                 FriendEmailHelp = this.EmailFriendHelp,
 
                 FriendMessageLabel = string.IsNullOrEmpty(this.FriendMessageLabel) ? "Message For Your Friend" : this.FriendMessageLabel,

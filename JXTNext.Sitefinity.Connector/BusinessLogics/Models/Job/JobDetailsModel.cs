@@ -26,7 +26,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job
         public int UserId { get; set; }
         public int AdvertiserUserId { get; set; }
         public long DateCreated { get; set; }
-        public string DateCreated_Representation { get => DateCreated == 0 ? string.Empty : ConversionHelper.GetDateTimeFromUnix(DateCreated).ToShortDateString(); }
+        public string DateCreated_Representation { get => DateCreated == 0 ? string.Empty : ConversionHelper.GetDateTimeFromUnix(DateCreated).ToLocalTime().ToString("dd/MM/yyyy"); }
         public long? ExpiryDate { get; set; }
         public int Status { get; set; }
         public string Address { get; set; }
@@ -35,7 +35,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job
         public List<OrderedDictionary> Classifications { get; set; }
         public string ClassificationsRootName { get; set; }
         public string ClassificationsSEORouteName { get; set; }
-
+        public string ClassificationURL { get; set; }
         [JsonProperty(PropertyName = "description")]
         public string Description { get; set; }
         public List<JobFilterRoot> Filters { get; set; }

@@ -84,6 +84,10 @@ namespace JXTNext.Sitefinity.Services.Services
             return null;
         }
 
+        public IBaseResponse UnsubscribeJobAlert(Guid unsubscribeGuid)
+        {
+            return _BLconnector.UnsubscribeJobAlert(unsubscribeGuid);
+        }
 
         public JobAlertViewModel MemberJobAlertGet(int jobAlertId)
         {
@@ -107,7 +111,8 @@ namespace JXTNext.Sitefinity.Services.Services
                 Data = jobAlertData.Data,
                 Status = 1,
                 MemberJobAlertId = memberJobAlertId,
-                Email = jobAlertData.Email
+                Email = jobAlertData.Email,
+                EmailNotification = jobAlertData.EmailNotifications
             };
             IMemberUpsertJobAlertResponse response = _BLconnector.MemberUpsertJobAlert(request, SitefinityHelper.IsUserLoggedIn());
 

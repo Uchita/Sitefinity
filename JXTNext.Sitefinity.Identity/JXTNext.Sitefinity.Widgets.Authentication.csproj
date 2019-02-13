@@ -258,6 +258,7 @@
     <Compile Include="Mvc\Models\UsersListExtended\UsersListExtendedModel.cs" />
     <Compile Include="Mvc\Models\UsersListExtended\UsersListExtendedViewModel.cs" />
     <Compile Include="Mvc\StringResources\JXTNextResumeResources.cs" />
+    <Compile Include="Mvc\StringResources\LoginStatusExtendedResources.cs" />
     <Compile Include="Mvc\StringResources\UsersListExtendedResources.cs" />
     <Compile Include="UserProfileMvcOutputCacheVariation.cs" />
     <Compile Include="Widgets_AuthenticationModule.cs" />
@@ -266,7 +267,6 @@
     <Compile Include="Mvc\Models\LoginStatusExtended\LoginStatusExtendedModel.cs" />
     <Compile Include="Mvc\Models\LoginStatusExtended\LoginStatusExtendedViewModel.cs" />
     <Compile Include="Mvc\Models\LoginStatusExtended\StatusExtendedViewModel.cs" />
-    <Compile Include="Mvc\StringResources\LoginStatusExtendedResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -308,7 +308,6 @@
       <Name>JXTNext.Sitefinity.Services.Intefaces</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Mvc\Scripts\JXTNextResume\designerview-simple.js" />
   </ItemGroup>

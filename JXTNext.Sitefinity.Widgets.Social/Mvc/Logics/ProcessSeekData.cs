@@ -63,7 +63,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
 
                     #region Downloading the resume 
                     // Downloading the resume from seek 
-                    if (seekAPIResponse.SocialMediaProcessSuccess)
+                    if (seekAPIResponse.SocialMediaProcessSuccess && seekAPIResponse.SeekApplication.resume != null)
                     {
                         processedResponse.Success = true;
                         processedResponse.Email = seekAPIResponse.SeekApplication.applicantInfo.emailAddress;
@@ -84,28 +84,27 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
                         string[] splits = webResponse.Headers["Content-Disposition"].Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
                         string resumeFileNameSplit = splits.Where(c => c.Contains("filename=")).FirstOrDefault();
                         string resumeFileName = resumeFileNameSplit.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries).Last();
-                        string responseMessage = null;
+                        
+                        MemoryStream fileStream = new MemoryStream();
 
-                        using (StreamReader resStreamReader = new StreamReader(webResponse.GetResponseStream()))
-                        {
-                            responseMessage = resStreamReader.ReadToEnd();
-                        }
-                                            
-                        MemoryStream fileStream = null;
-
-                        if (!string.IsNullOrWhiteSpace(responseMessage))
-                        {
-                            var fileBytes = Encoding.UTF8.GetBytes(responseMessage);
-                            fileStream = new MemoryStream(fileBytes);
-                        }
-
+                        byte[] fileBytes = GetStreamBytes(webResponse);
+                        fileStream = new MemoryStream(fileBytes);
                         processedResponse.FileStream = fileStream;
                         processedResponse.FileName = resumeFileName;
                     }
                     else
                     {
-                        processedResponse.Success = false;
-                        processedResponse.Errors = seekAPIResponse.Errors;
+                        if(!seekAPIResponse.SocialMediaProcessSuccess)
+                        {
+                            processedResponse.Success = false;
+                            processedResponse.Errors = seekAPIResponse.Errors;
+                        }
+                        else
+                        {
+                            processedResponse.Success = false;
+                            processedResponse.ResumeLinkNotExists = true;
+                            processedResponse.Errors = new List<string>() { "Seek Resume Link is NULL" };
+                        }
                     }
                 }
                 #endregion
@@ -120,6 +119,19 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
             }
 
             return processedResponse;
+        }
+
+
+        private byte[] GetStreamBytes(WebResponse webResponse)
+        {
+            using (var responseStream = webResponse.GetResponseStream())
+            {
+                using (var stream = new MemoryStream())
+                {
+                    responseStream.CopyTo(stream);
+                    return stream.ToArray();
+                }
+            }
         }
     }
 }

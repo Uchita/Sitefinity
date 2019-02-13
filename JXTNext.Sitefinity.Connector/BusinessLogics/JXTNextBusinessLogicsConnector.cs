@@ -390,6 +390,33 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
                 return new JXTNext_MemberJobAlertDeleteResponse { Success = false, Errors = new List<string> { response.Response } };
         }
 
+        public IMemberAppliedJobResponse MemberAppliedJobGetByJobId(int jobId)
+        {
+            ConnectorGetRequest connectorRequest = new ConnectorGetRequest(HTTP_Requests_MaxWaitTime)
+            {
+                HeaderValues = base.HTTP_Request_HeaderValues,
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/member/job/{jobId}/MemberAppliedJobGetByJobId")
+            };
+            ConnectorResponse response = JXTNext.Common.API.Connector.Get(connectorRequest);
+
+            //parse the response
+            bool actionSuccessful = response.Success;
+
+            if (actionSuccessful)
+            {
+                dynamic responseObj = JObject.Parse(response.Response);
+
+                if (responseObj["status"] == 200 && responseObj["data"] != null)
+                {
+                    return new JXTNext_MemberAppliedJobByIdResponse { Success = true, MemberAppliedJobById = JsonConvert.DeserializeObject<MemberAppliedJob>(responseObj["data"].ToString()) };
+                }
+                else
+                    return new JXTNext_MemberAppliedJobByIdResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };
+            }
+            else
+                return new JXTNext_MemberAppliedJobByIdResponse { Success = false, Errors = new List<string> { response.Response } };
+        }
+
         public IMemberAppliedJobResponse MemberAppliedJobsGet()
         {
             ConnectorGetRequest connectorRequest = new ConnectorGetRequest(HTTP_Requests_MaxWaitTime)
@@ -406,7 +433,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             {
                 dynamic responseObj = JObject.Parse(response.Response);
 
-                if (responseObj["status"] == 200)
+                if (responseObj["status"] == 200 && responseObj["data"] != null)
                 {
                     return new JXTNext_MemberAppliedJobResponse { Success = true, MemberAppliedJobs = _memberMapper.MemberAppliedJob_ConvertToLocalEntity<MemberAppliedJob>(JsonConvert.DeserializeObject<dynamic>(responseObj["data"].ToString())) };
                 }
@@ -474,6 +501,9 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         {
             JXTNext_SearchJobsRequest jobSearch = search as JXTNext_SearchJobsRequest;
 
+            jobSearch.FieldSearches = new StatusSearch() { Status = 1 };
+
+            jobSearch.FieldRanges = new RangeSearch() { ExpiryDate = new DateRange() { LowerRange = (long)DateTime.Now.ToUniversalTime().Subtract(UnixEpoch).TotalMilliseconds } };
             //An extra logic layer should be added to handle this model conversion
             dynamic searchAPIModel = new { search = jobSearch, legacyJobSource = Settings_LegacyJobSource };
 
@@ -504,6 +534,40 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             else
                 return new JXTNext_SearchJobsResponse { Success = false, Errors = new List<string> { response.Response } };
         }
+        
+        public IBaseResponse UnsubscribeJobAlert(Guid unsubscribeGuid)
+        {
+            ConnectorPutRequest connectorRequest = new ConnectorPutRequest(HTTP_Requests_MaxWaitTime)
+            {
+                HeaderValues = base.HTTP_Request_HeaderValues,
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/unsubscribe/jobalert/"),
+                Data = new { UnsubscribeGuid = unsubscribeGuid }
+            };
+
+            ConnectorResponse response = JXTNext.Common.API.Connector.Put(connectorRequest);
+
+            if (response.Success)
+            {
+                dynamic responseObj = JObject.Parse(response.Response);
+
+                if (responseObj["status"] == 200)
+                {
+                    return new JXTNext_MemberJobAlertUnsubscribeResponse { Success = true };
+                }
+                else
+                {
+                    return new JXTNext_MemberJobAlertUnsubscribeResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };
+                }
+            }
+            else
+            {
+                return new JXTNext_MemberJobAlertUnsubscribeResponse { Success = false, Errors = new List<string> { response.Response } };
+            }
+        }
+
+        #region Private Members
+        private static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        #endregion
 
         #region Private Methods
 

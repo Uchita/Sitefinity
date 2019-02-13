@@ -29,11 +29,8 @@ namespace JXTNext.Sitefinity.Services.Services
                 var currUser = SitefinityHelper.GetUserById(ClaimsManager.GetCurrentIdentity().UserId);
                 if (currUser != null)
                 {
-                    // Logout the current user and login social media user
-                    if (isSocialMedia && currUser.Email.ToUpper() != applicantInfo.Email.ToUpper())
-                        SitefinityHelper.LogoutCurrentUser();
-                    else
-                        return currUser.Email;
+                    Log.Write("User is already logged In "+ currUser.Email, ConfigurationPolicy.ErrorLog);
+                    return currUser.Email;
                 }
             }
 
@@ -45,6 +42,7 @@ namespace JXTNext.Sitefinity.Services.Services
                 if (existingUser != null)
                 {
                     #region Entered Email exists in Sitefinity User list
+                    Log.Write("User is already exists in portal " + existingUser.Email, ConfigurationPolicy.ErrorLog);
                     ovverideEmail = existingUser.Email;
                     return ovverideEmail;
                     #endregion
@@ -57,6 +55,7 @@ namespace JXTNext.Sitefinity.Services.Services
 
                     if (membershipCreateStatus != MembershipCreateStatus.Success)
                     {
+                        Log.Write("User is created in portal " + existingUser.Email, ConfigurationPolicy.ErrorLog);
                         status = JobApplicationStatus.NotAbleToCreateUser;
                         return ovverideEmail;
                     }

@@ -29,7 +29,12 @@
 /*#region Mobile slider*/
 
 .mobile-owl-carousel {
-
+    .owl-item{
+        [class*="col-"]{
+            width: auto;
+            float: none;
+        }
+    }
     &.owl-loaded {
         margin-left: 0;
         margin-right: 0;
@@ -43,6 +48,13 @@
     }
 }
 
+.mobile-owl-2-items{
+    .owl-item{
+        img{
+            width: auto;
+        }
+    }
+}
 /*#endregion Mobile slider*/
 
 
@@ -84,11 +96,17 @@
         span {
             position: absolute;
             top: 45px;
+            &::before{
+                content: '\201C';
+            }
         }
 
         &.text-right{
             span {
                 right: 10px;
+                &::before{
+                    content: '\201D';
+                }
             }
         }
     }
@@ -188,6 +206,19 @@
             top: 5px;
             left: 5px;
             border: 1px solid $global-highlight-color;
+        }
+    }
+}
+
+.single-quote{
+    .quote{
+        span{
+            &::before{
+                content: '\2018';
+            }
+        }
+        &.text-right span::before{
+            content: '\2019';
         }
     }
 }

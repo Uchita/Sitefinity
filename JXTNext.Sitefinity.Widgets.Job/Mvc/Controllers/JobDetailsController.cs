@@ -16,6 +16,8 @@ using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure;
+using System.Web;
+using Telerik.Sitefinity.Abstractions;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -77,6 +79,17 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     {
                         return GetAllSavedJobs();
                     }
+                    else if (routePath.ToUpper().Contains("ISJOBAPPLIED"))
+                    {
+                        if (Request.Form["JobId"] != null)
+                        {
+                            int jobId;
+                            if (Int32.TryParse(Request.Form["JobId"], out jobId))
+                            {
+                                return IsJobApplied(jobId);
+                            }
+                        }
+                    }
                     else if (routePath.ToUpper().Contains("SAVEJOB") || routePath.ToUpper().Contains("REMOVESAVEDJOB"))
                     {
                         if (Request.Form["JobId"] != null)
@@ -122,12 +135,27 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             JobDetailsViewModel viewModel = new JobDetailsViewModel();
             if (jobId.HasValue)
             {
+
+                // Get job source or url referral
+
+                string UrlReferral = string.Empty;
+                if (!string.IsNullOrWhiteSpace(Request.QueryString["SRC"]))
+                    UrlReferral = Request.QueryString["SRC"];
+                else if (!string.IsNullOrWhiteSpace(Request.QueryString["src"]))
+                    UrlReferral = Request.QueryString["src"];
+                else
+                    UrlReferral = this.GetCookieDomain(Request.Cookies["JobsViewed"], jobId.Value);
+
+                viewModel.UrlReferral = UrlReferral;
+                Log.Write($" viewModel.UrlReferral  : " + viewModel.UrlReferral, ConfigurationPolicy.ErrorLog);
+
                 IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = jobId.Value };
                 IGetJobListingResponse jobListingResponse = _BLConnector.GuestGetJob(jobListingRequest);
 
                 viewModel.JobDetails = jobListingResponse.Job;
 
                 // Getting Consultant Avatar Image Url from Sitefinity 
+                viewModel.ApplicationEmail = jobListingResponse.Job.CustomData["ApplicationMethod.ApplicationEmail"];
                 var user = SitefinityHelper.GetUserByEmail(jobListingResponse.Job.CustomData["ApplicationMethod.ApplicationEmail"]);
                 if (user != null && user.Id != Guid.Empty)
                     viewModel.ApplicationAvatarImageUrl = SitefinityHelper.GetUserAvatarUrlById(user.Id);
@@ -239,6 +267,49 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         [HttpPost]
+        public JsonResult IsJobApplied(int jobId)
+        {
+            try
+            {
+                bool isJobApplied = _isMemberAppliedJob(jobId);
+
+                return new JsonResult { Data = isJobApplied };
+            }
+            catch (Exception ex)
+            {
+                Log.Write($"IsJobApplied exception = " + ex.Message, ConfigurationPolicy.ErrorLog);
+                var result = new
+                {
+                    Error = true
+                };
+                return new JsonResult { Data = result };
+            }
+
+        }
+
+        private bool _isMemberAppliedJob(int jobId)
+        {
+            bool isJobApplied = false;
+            Log.Write($"IsJobApplied method1", ConfigurationPolicy.ErrorLog);
+            JXTNext_MemberAppliedJobByIdResponse appliedJobresponse = _BLConnector.MemberAppliedJobGetByJobId(jobId) as JXTNext_MemberAppliedJobByIdResponse;
+            Log.Write($"IsJobApplied method appliedJobresponse.Success = " + appliedJobresponse.Success, ConfigurationPolicy.ErrorLog);
+            Log.Write($"IsJobApplied method appliedJobresponse.MemberAppliedJobById = " + appliedJobresponse.MemberAppliedJobById, ConfigurationPolicy.ErrorLog);
+
+            if (appliedJobresponse.Success)
+            {
+                isJobApplied = true;
+            }
+
+            if (appliedJobresponse.Errors != null && appliedJobresponse.Errors.Count > 0)
+            {
+                Log.Write($"IsJobApplied method error = " + appliedJobresponse.Errors.FirstOrDefault().ToString(), ConfigurationPolicy.ErrorLog);
+            }
+
+            Log.Write($"IsJobApplied isJobApplied 1 = " + isJobApplied, ConfigurationPolicy.ErrorLog);
+            return isJobApplied;
+        }
+
+        [HttpPost]
         public JsonResult SaveJob(int JobId)
         {
             JXTNext_MemberSaveJobRequest request = new JXTNext_MemberSaveJobRequest() { JobId = JobId };
@@ -281,6 +352,41 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             return origin;
         }
+
+        public string GetCookieDomain(HttpCookie httpCookie, int jobid)
+        {
+            string cookieDomain;
+            if (httpCookie != null)
+            {
+                string jobviewedcookie = httpCookie.Value;
+                string[] jobviewed = jobviewedcookie.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] tempjobids = null;
+                string tempjobid = string.Empty;
+                foreach (string viewed in jobviewed)
+                {
+                    // Retrieve Job ID
+                    tempjobids = viewed.Split(new char[] { '|' });
+                    tempjobid = tempjobids[0];
+
+                    // if Job ID matches
+                    if (tempjobid == jobid.ToString())
+                    {
+                        if (tempjobids.Length == 2)
+                        {
+                            // Retrieve Domain
+                            cookieDomain = tempjobids[1];
+                        }
+                    }
+                }
+            }
+
+            // If the referrer doesn't exists then its always the domain the user is in.
+            cookieDomain = HttpContext.Request.Url.Host.ToLower().Replace("www.", string.Empty);
+            // If the referrer doesn't exists then its always the domain the user is in.
+            return cookieDomain;
+        }
+
+
 
         internal const string WidgetIconCssClass = "sfMvcIcn";
         public string CssClass { get; set; }

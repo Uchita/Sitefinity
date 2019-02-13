@@ -17,10 +17,10 @@
     <div class="row">
         <div class="col-md-12">
             <div class="item">
-                <div class="quote"><span>&ldquo;</span></div>
+                <div class="quote"><span></span></div>
                 <div class="testimonial" @Html.InlineEditingFieldAttributes("Quote", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Quote)</div>
                 <div class="testimonial-author" @Html.InlineEditingFieldAttributes("By", "ShortText")>@Model.Item.Fields.By</div>
-                <div class="quote text-right"><span>&rdquo;</span></div>
+                <div class="quote text-right"><span></span></div>
             </div>
 
         </div>

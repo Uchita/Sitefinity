@@ -127,6 +127,7 @@
     margin-top: 10px;
     margin-right: 15px;
     width: 290px;
+    line-height: 1;
 }
 
 .filter-toggle{
@@ -136,7 +137,7 @@
 .filter-outer-wrapper{
     
     &.lockoverlay{
-        position: relative;
+        
         &::before{
             content: '';
             position: absolute;
@@ -287,6 +288,20 @@
     &-apply{
         max-width: 400px;
     }
+    &-contacts{
+        margin-bottom: 30px;
+        .job-metas{
+            .job-meta-label{
+                padding-right: 20px;
+                margin-bottom: 0;
+                width: 180px;
+            }
+            .job-meta-value {
+                width: calc(100% - 200px);
+            }
+        } 
+    }
+
     @media (max-width:991px) {
     
         &-details {
@@ -294,6 +309,23 @@
             margin-bottom: 40px;
         }
     }
+    @media (max-width:500px) {
+        &-contacts{
+            margin-bottom: 10px;
+            .job-metas{
+                display: block;
+                .job-meta-label{
+                    width: 100%;
+                    padding-right: 0;
+                }
+                .job-meta-value{
+                    margin-bottom: 10px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+    
 }
 
 .page-wrapper {
@@ -320,12 +352,16 @@
                 height: 33px;
                 line-height: 1.1;
                 font-size: 1.4rem;
+                border-color: $global-highlight-color;
             }
         }
 
         .btn {
             margin-top: 10px;
             float: left;
+        }
+        .alert{
+            margin-bottom: 0;
         }
     }
 
@@ -444,6 +480,11 @@
     @media (min-width:1024){
         padding-left: 40px;
     }
+    @media (max-width:991px){
+        .job-offer-apply{
+            display: none;
+        }
+    }
 }
 
 .backtoresult{
@@ -518,6 +559,8 @@
             position: relative;
             z-index: 1;
             cursor: pointer;
+            line-height: 0.5;
+            font-size: 2.8rem;
         }
         .lbl{
             display: block;
@@ -551,6 +594,74 @@
 }
 .pad-left-30{ padding-left: 30px;  }
 .pad-right-30{ padding-right: 30px;  }
+
+
+#listView {
+    border: none;
+}
+
+#listView, #listView * {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+.product {
+    float: left;
+    position: relative;
+    width: 111px;
+    height: 170px;
+    margin: 0 5px;
+    padding: 0;
+    img {
+        width: 110px;
+        height: 110px;
+    }
+
+    h3 {
+        margin: 0;
+        padding: 3px 5px 0 0;
+        max-width: 96px;
+        overflow: hidden;
+        line-height: 1.1em;
+        font-size: .9em;
+        font-weight: normal;
+        text-transform: uppercase;
+        color: #999;
+    }
+
+    p {
+        visibility: hidden;
+    }
+
+    &:hover p {
+        visibility: visible;
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        top: 0;
+        margin: 0;
+        padding: 0;
+        line-height: 110px;
+        vertical-align: middle;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0,0,0,0.75);
+        transition: background .2s linear, color .2s linear;
+        -moz-transition: background .2s linear, color .2s linear;
+        -webkit-transition: background .2s linear, color .2s linear;
+        -o-transition: background .2s linear, color .2s linear;
+    }
+}
+
+.k-listview:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
 
 #pager{
     border: none;
@@ -626,4 +737,10 @@
 
 .k-block, .k-widget{
     line-height: inherit;
+}
+
+.hide-allsearch_btn{
+    .row-see-more{
+        display: none;
+    }
 }

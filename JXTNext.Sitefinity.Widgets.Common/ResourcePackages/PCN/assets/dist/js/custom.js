@@ -1,5 +1,9 @@
 $(document).ready(function () {
-
+    $(".filter-outer-wrapper .dropdowntree-name").each(function () {
+        if ($(this).text() == "Classifications") {
+            $(this).text("Sectors");
+        }
+    });
     var x = getCookie('concent');
     if (x != '') {
         //$('.cookie-banner-container').remove();

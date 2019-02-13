@@ -1617,6 +1617,7 @@ hr {
         border: none !important;
         padding: 0px !important;
         min-width: auto !important;
+        outline: none;
     }
 
         .news_pagination a span {
@@ -1686,12 +1687,25 @@ hr {
             z-index: -1;
         }
 
-        .news_pagination a:hover span {
+        .news_pagination a:hover span,
+        .news_pagination a:focus span,
+        .news_pagination a.active span {
             background: #42A3D9;
             color: #fff;
         }
 
-            .news_pagination a:hover:after, .news_pagination a:hover:before, .news_pagination a:hover span:after, .news_pagination a:hover span:before {
+            .news_pagination a:hover:after,
+            .news_pagination a:hover:before,
+            .news_pagination a:hover span:after,
+            .news_pagination a:hover span:before,
+            .news_pagination a:focus:after,
+            .news_pagination a:focus:before,
+            .news_pagination a:focus span:after,
+            .news_pagination a:focus span:before,
+            .news_pagination a.active:after,
+            .news_pagination a.active:before,
+            .news_pagination a.active span:after,
+            .news_pagination a.active span:before {
                 background: #42A3D9;
             }
 
@@ -4743,6 +4757,8 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     position: relative;
     z-index: 1;
     margin-bottom: 30px;
+    border-top: 1px solid #010101;
+    border-bottom: 1px solid #010101;
 }
 
     .filter_sidebar .filter-outer-wrapper:before {
@@ -4757,18 +4773,21 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         -webkit-transform: rotate(45deg);
         -moz-transform: rotate(45deg);
         z-index: -1;
+        border-left: 1px solid #010101;
     }
 
     .filter_sidebar .filter-outer-wrapper:after {
         width: 22px;
         height: calc(100% - 19px);
         position: absolute;
-        bottom: 0px;
+        bottom: -1px;
         left: -20px;
         content: "";
         background: #e8e9eb;
         border-radius: 0 0 0 15px;
         z-index: -1;
+        border-left: 1px solid #010101;
+        border-bottom: 1px solid #010101;
     }
 
     .filter_sidebar .filter-outer-wrapper .sub:before {
@@ -4783,18 +4802,21 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         -webkit-transform: rotate(45deg);
         -moz-transform: rotate(45deg);
         z-index: -1;
+        border-right: 1px solid #010101;
     }
 
     .filter_sidebar .filter-outer-wrapper .sub:after {
         width: 22px;
         height: calc(100% - 19px);
         position: absolute;
-        top: 0px;
+        top: -1px;
         right: -20px;
         content: "";
         background: #e8e9eb;
         border-radius: 0 15px 0 0;
         z-index: -1;
+        border-right: 1px solid #010101;
+        border-top: 1px solid #010101;
     }
 
 
@@ -6486,7 +6508,8 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         margin: 4px 0 4px 8px;
     }
 
-.job-details-left .job-offer-meta {
+.job-details-left .job-offer-meta,
+.bg-corner {
     margin: 8px 0 24px 20px;
     padding: 24px 5px 20px 5px;
     width: calc(100% - 40px);
@@ -6498,7 +6521,8 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     z-index: 1;
 }
 
-    .job-details-left .job-offer-meta:before {
+    .job-details-left .job-offer-meta:before,
+    .bg-corner:before {
         width: 28px;
         height: 28px;
         position: absolute;
@@ -6510,7 +6534,8 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         transform: rotate(45deg);
     }
 
-    .job-details-left .job-offer-meta:after {
+    .job-details-left .job-offer-meta:after,
+    .bg-corner:after {
         width: 22px;
         height: calc(100% - 18px);
         position: absolute;
@@ -6522,7 +6547,8 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         border-radius: 0 0 0 15px;
     }
 
-    .job-details-left .job-offer-meta .sub:before {
+    .job-details-left .job-offer-meta .sub:before,
+    .bg-corner .bg-corner-inner:before {
         width: 28px;
         height: 28px;
         position: absolute;
@@ -6536,7 +6562,8 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         -moz-transform: rotate(45deg);
     }
 
-    .job-details-left .job-offer-meta .sub:after {
+    .job-details-left .job-offer-meta .sub:after,
+    .bg-corner .bg-corner-inner:after {
         width: 22px;
         height: calc(100% - 18px);
         position: absolute;
@@ -6814,25 +6841,28 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
                 background: #004F6E;
             }
 
-
-.pcn_map-infowindow {
-    box-shadow: -2px 0 5px rgba(0,0,0,0.3);
-    border-radius: 5px;
-    background: #fff;
-    min-width: 200px;
-    max-width: 250px;
+.contact-map .map-placeholder {
+    min-height: 400px;
 }
 
-    .pcn_map-infowindow p {
-        margin-bottom: 0px;
-        font-size: 12px;
-    }
+.pcn_map-infowindow {
+    background: #fff;
+    color: #004f6e;
+}
 
-    .pcn_map-infowindow strong {
+
+
+    .pcn_map-infowindow .info-title {
         font-size: 16px;
         display: block;
         margin-bottom: 7px;
-        color: #004f6e;
+        font-weight: bold;
+    }
+
+    .pcn_map-infowindow .info-box {
+        font-size: 12px;
+        line-height: normal;
+        width: 180px;
     }
 
 .pcn-map > div {

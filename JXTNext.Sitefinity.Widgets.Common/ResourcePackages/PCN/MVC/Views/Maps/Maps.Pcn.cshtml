@@ -3,14 +3,15 @@
 @using JXTNext.Sitefinity.Common.Helpers
 @using System.Web;
 
+
 @{
     var mapsAPIKey = new SiteSettingsHelper().GetCurrentSiteGoogleMapsAPIKey();
     var srcMap = "https://maps.googleapis.com/maps/api/js?key=" + mapsAPIKey;
     string domainName = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
     var srcPlugin = domainName + "/Frontend-Assembly/JXTNext.Sitefinity.Widgets.Content/Mvc/Scripts/Maps/jquery.googlemap.js";
     int counter = 0;
-}
 
+}
 
 
 @if (!mapsAPIKey.IsNullOrEmpty())
@@ -20,6 +21,7 @@
 
     if (Model != null && Model.MapsMarkers != null)
     {
+
         <div class="map-placeholder pcn-map hidden" data-zoom="@Model.ZoomLevel" data-called=false>
             @foreach (var marker in Model.MapsMarkers)
             {
@@ -34,8 +36,11 @@ else
 }
 
 <script type="text/javascript">
+    var allMarkers;
     function mapInit() {
-        var markerColors = ['#004F6E','#8EDD2B']
+        var markerColors = ['#004F6E', '#8EDD2B'];
+        var pathname = window.location.pathname;
+        var mapBgColor = (pathname == "/about/about-us" || pathname == "about" ? "#e5e5e5" : "#ffffff");
         $(".map-placeholder").each(function (index) {
             var $mapElement = $(this);
             if ($mapElement.children().length > 0) {
@@ -83,18 +88,19 @@ else
                         minZoom: 1,
                         scrollwheel: false,
                         //draggable: false,
-                        center: new google.maps.LatLng(Locations[0]['lat'], Locations[0]['lng']),
-                        styles: [{ "stylers": [{ "visibility": "off" }] }, { "featureType": "water", "stylers": [{ "color": "#e5e5e5" }, { "visibility": "on" }] }]
+                        center: new google.maps.LatLng(10, 0),
+                        styles: [{ "stylers": [{ "visibility": "off" }] }, { "featureType": "water", "stylers": [{ "color": mapBgColor }, { "visibility": "on" }] }]
                     });
 
                     var infowindow = new google.maps.InfoWindow();
-                    var markers = Locations.map(function (location, i) {
+                    allMarkers = Locations.map(function (location, i) {
                         var Title = location['popupTitle'],
                             Lat = location['lat'],
                             Lng = location['lng'],
                             Description = location['popupText'];
                         var marker = new google.maps.Marker({
                             position: new google.maps.LatLng(Lat, Lng),
+                            animation: google.maps.Animation.DROP,
                             //icon: location.icon,
                             map: map,
                             icon: {
@@ -111,7 +117,7 @@ else
                             //}
                         });
                         marker.addListener('click', function () {
-                            var html = "<div class='pcn_map-infowindow'><p><strong>" + Title + "</strong></p>" + Description+"</div>";
+                            var html = "<div class='pcn_map-infowindow'><div class='info-title'>" + Title + "</div>" + Description + "</div>";
                             infowindow.setContent(html);
                             infowindow.open(map, this);
                         });
@@ -126,6 +132,14 @@ else
     $(window).on('load', function () {
         mapInit();
     });
+    $(".contact-item a.read_btn").click(function () {
+        var id = $(this).data("id");
+        if (id !== null && id != undefined) {
+            $("body,html").animate({ scrollTop: $(".map-placeholder.pcn-map").offset().top }, 1000, function () {
+                google.maps.event.trigger(allMarkers[id], 'click');
+            });
+        }
+    })
 </script>
 
 

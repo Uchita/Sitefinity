@@ -39,208 +39,213 @@
     <div class="col-md-8 job-details-left">
         <div class="backtoresult">
             @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))<span class="spt">
-                @*|</span><a href="#" id="back-to-results" role="button" title="Back to Results"><span class="prev-btn"></span>Back To Results</a>*@
+                @*|
+                    </span><a href="#" id="back-to-results" role="button" title="Back to Results"><span class="prev-btn"></span>Back To Results</a>*@
 
-            <img alt="westpac-small" src="@defaultLogo" title="PCN">
-    </div>
-    <div class="job-offer-details">
-        <div class="job-offer-title">
-
-            <h1>@Model.JobDetails.Title</h1>
-
+                <img alt="westpac-small" src="@defaultLogo" title="PCN">
         </div>
-        <div class="job-offer-meta">
-            <div class="sub">
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>Location:</th>
-                            <td>
-                                @{
-                                    List<string>
-                                        locationsDisplay = new List<string>
-                                            ();
-                                    foreach (var item in @Model.Locations.Keys)
-                                    {
-                                        string locHREFLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewBag.JobResultsPageUrl, @Model.LocationsRootName, @item.ToString());
-                                        locationsDisplay.Add(@"<a href="" " + locHREFLink + @" "" title="" " + Model.Locations[item] + @" "">" + Model.Locations[item] + @"</a>");
-                                    }
-                                }
-                                <span>@Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", locationsDisplay))</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Work Type:</th>
-                            <td>@Model.JobDetails.CustomData["WorkType.Filters[0].Value"]</td>
-                        </tr>
+        <div class="job-offer-details">
+            <div class="job-offer-title">
 
-                        @{
-                            var minSal = int.Parse(Model.JobDetails.CustomData["Salary.Filters[0].Min"]);
-                            var maxSal = int.Parse(Model.JobDetails.CustomData["Salary.Filters[0].Max"]);
-                        }
+                <h1>@Model.JobDetails.Title</h1>
 
-                        @if (minSal > 0 || maxSal > 0)
-                        {
+            </div>
+            <div class="job-offer-meta">
+                <div class="sub">
+                    <table>
+                        <tbody>
                             <tr>
-                                <th>Salary:</th>
+                                <th>Location:</th>
                                 <td>
-                                    @if (minSal == maxSal)
-                                    {
-
-                                        <span class="max-sal">$@maxSal</span>
-                                    }
-                                    else
-                                    {
-                                        if (minSal > 0)
+                                    @{
+                                        List<string>
+                                            locationsDisplay = new List<string>
+                                                ();
+                                        foreach (var item in @Model.Locations.Keys)
                                         {
-                                            <span class="min-sal">$@minSal</span>
-                                        }
-                                        if (maxSal > 0)
-                                        {
-                                            <span class="range-sep">to</span>
-                                            <span class="max-sal">$@maxSal</span>
+                                            string locHREFLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewBag.JobResultsPageUrl, @Model.LocationsRootName, @item.ToString());
+                                            locationsDisplay.Add(@"<a href="" " + locHREFLink + @" "" title="" " + Model.Locations[item] + @" "">" + Model.Locations[item] + @"</a>");
                                         }
                                     }
+                                    <span>@Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", locationsDisplay))</span>
                                 </td>
                             </tr>
-                        }
+                            <tr>
+                                <th>Work Type:</th>
+                                <td>@Model.JobDetails.CustomData["WorkType.Filters[0].Value"]</td>
+                            </tr>
 
-                    </tbody>
-                </table>
+                            @{
+                                var minSal = int.Parse(Model.JobDetails.CustomData["Salary.Filters[0].Min"]);
+                                var maxSal = int.Parse(Model.JobDetails.CustomData["Salary.Filters[0].Max"]);
+                            }
 
+                            @if (minSal > 0 || maxSal > 0)
+                            {
+                                <tr>
+                                    <th>Salary:</th>
+                                    <td>
+                                        @if (minSal == maxSal)
+                                        {
+
+                                            <span class="max-sal">$@maxSal</span>
+                                        }
+                                        else
+                                        {
+                                            if (minSal > 0)
+                                            {
+                                                <span class="min-sal">$@minSal</span>
+                                            }
+                                            if (maxSal > 0)
+                                            {
+                                                <span class="range-sep">to</span>
+                                                <span class="max-sal">$@maxSal</span>
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
-        </div>
-        <div class="job-offer-summary">
-            @{
-                string cleanContent = GeneralHelper.RemoveInlineStyling((string)Model.JobDetails.Description);
+            <div class="job-offer-summary">
+                @{
+                    string cleanContent = GeneralHelper.RemoveInlineStyling((string)Model.JobDetails.Description);
+                }
+                @Html.HtmlSanitize((string)cleanContent)
+
+                <ul>
+
+                    @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"]))
+                    {
+                        <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"]</li>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"]))
+                    {
+                        <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"]</li>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"]))
+                    {
+                        <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"]</li>
+                    }
+                </ul>
+            </div>
+
+            <div class="job-offer-contacts">
+                <div class="sub">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td width="160"><strong>Reference Number:</strong></td>
+                                <td>
+                                    @Model.JobDetails.ReferenceNo
+                                </td>
+                            </tr>
+                            <tr><td><strong>Contact Details:</strong></td><td>@Model.JobDetails.CustomData["ApplicationMethod.ApplicationEmail"]</td></tr>
+                            <tr>
+                                <td><strong>Profession:&nbsp; </strong></td>
+                                <td>
+
+                                    @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))
+                                </td>
+                            </tr>
+                            <tr><td><strong>Company:</strong></td><td>@Model.JobDetails.CustomData["CompanyName"]</td></tr>
+                            @*
+                                <tr><td><strong>Date:</strong></td><td>18/09/2016&nbsp; -&nbsp; 5:34pm</td></tr>*@
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            @if (ViewBag.IsJobApplied)
+            {
+                <div class="alert alert-info">You have already applied</div>
             }
-            @Html.HtmlSanitize((string)cleanContent)
+            else
+            {
+                <div class="job-offer-apply">
+                    <a id="job-application-lnk" class="read_btn" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID"><span>APPLY NOW</span></a>
 
-            <ul>
+                </div>
+            }
 
-                @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"]))
-                {
-                    <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"]</li>
-                }
-                @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"]))
-                {
-                    <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"]</li>
-                }
-                @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"]))
-                {
-                    <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"]</li>
-                }
-            </ul>
         </div>
+        @Html.Raw(ViewBag.GoogleForJobs)
+    </div>
 
-        <div class="job-offer-contacts">
+    <div class="col-md-3 mb-30 jobdetail-sidebar">
+
+        <div class="card-item">
             <div class="sub">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td width="160"><strong>Reference Number:</strong></td>
-                            <td>
-                                @Model.JobDetails.ReferenceNo
-                            </td>
-                        </tr>
-                        <tr><td><strong>Contact Details:</strong></td><td>@Model.JobDetails.CustomData["ApplicationMethod.ApplicationEmail"]</td></tr>
-                        <tr>
-                            <td><strong>Profession:&nbsp; </strong></td>
-                            <td>
+                <div class="image" style="background-image: url(/images/default-source/home/about-img1);"></div>
 
-                                @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))
-                            </td>
-                        </tr>
-                        <tr><td><strong>Company:</strong></td><td>@Model.JobDetails.CustomData["CompanyName"]</td></tr>
-                        @*
-                            <tr><td><strong>Date:</strong></td><td>18/09/2016&nbsp; -&nbsp; 5:34pm</td></tr>*@
-                    </tbody>
-                </table>
+                <div class="text">
+                    <h3>Vida Castaneda</h3>
+                    <div class="socail">
+                        <a href="javascript:void(0);" title="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="javascript:void(0);" title="twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="job-title">Research Manager / Recruitment USA</div>
+                    <p class="contact"><span>Email</span> : vida@teampcn.com</p>
+                    <p class="contact"><span>Phone</span> : +61 123456566</p>
+                    <div class="clearfix"></div>
+                    <a href="#" class="view-btn">View All My Jobs</a>
+                </div>
             </div>
         </div>
-        @if (ViewBag.IsJobApplied)
+
+        <div class="row job-offer-apply">
+            <div class="col-md-12">
+                <a id="job-application-lnk" class="read_btn" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID"><span>APPLY NOW</span></a>
+            </div>
+        </div>
+        <br />
+        @if (!mapsAPIKey.IsNullOrEmpty())
         {
-            <div class="alert alert-info">You have already applied</div>
+            @Html.Script(Url.Content(srcMap), "bottom")
+            @Html.Script(Url.Content(srcPlugin), "bottom")
+            <div class="map-placeholder hidden" style="width: 100%; height: 250px;">
+                <span data-address="@Model.JobDetails.Address" data-addresslat="@Model.JobDetails.AddressLatitude" data-addresslng="@Model.JobDetails.AddressLongtitude"></span>
+            </div>
         }
         else
         {
-            <div class="job-offer-apply">
-                <a id="job-application-lnk" class="read_btn" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID"><span>APPLY NOW</span></a>
-
-            </div>
+            <div class="alert alert-danger">Google Maps API key is not set. Please set at "Administration->Settings->Custom Site Settings"</div>
         }
 
-    </div>
-    @Html.Raw(ViewBag.GoogleForJobs)
-</div>
 
-<div class="col-md-3 mb-30 jobdetail-sidebar">
 
-    <div class="card-item">
-        <div class="sub">
-            <div class="image" style="background-image: url(/images/default-source/home/about-img1);"></div>
+        @{
+            var shareUrl = SocialShareButtons.ShareUrl;
 
-            <div class="text">
-                <h3>Vida Castaneda</h3>
-                <div class="socail">
-                    <a href="javascript:void(0);" title="linkedin"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="javascript:void(0);" title="twitter"><i class="fab fa-twitter"></i></a>
-                </div>
-                <div class="clearfix"></div>
-                <div class="job-title">Research Manager / Recruitment USA</div>
-                <p class="contact"><span>Email</span> : vida@teampcn.com</p>
-                <p class="contact"><span>Phone</span> : +61 123456566</p>
-                <div class="clearfix"></div>
-                <a href="#" class="view-btn">View All My Jobs</a>
+            var unencodedPageTitle = Model.JobDetails.Title;
+            var pageTitle = HttpUtility.UrlEncode(unencodedPageTitle);
+        }
+        <div class="bg-corner">
+            <div class="bg-corner-inner">
+                <h3>Interested in this job?</h3>
+                <ul class="list-unstyled job-offer-actions">
+                    @if (isUserLoggedIn)
+                    {
+                        <li><a href="#" class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="far fa-save"></em><span class="save-status-txt">Save this job</span></a></li>
+                    }
+
+                    <li><a href="javascript:window.print();"><em class="fas fa-print"></em>Print this job</a></li>
+                    <li>
+                        <a href="@ViewBag.EmailJobPageUrl?JobId=@Model.JobDetails.JobID" title="Tell a friend">
+                            <em class="fas fa-envelope"></em>Email this job
+                        </a>
+                    </li>
+                    @*
+                        <li><span class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="fas fa-save"></em>Save this job</span></li>*@
+                </ul>
             </div>
         </div>
+
     </div>
-
-    <div class="row job-offer-apply">
-        <div class="col-md-12">
-            <a id="job-application-lnk" class="read_btn" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID"><span>APPLY NOW</span></a>
-        </div>
-    </div>
-    <br />
-    @if (!mapsAPIKey.IsNullOrEmpty())
-    {
-        @Html.Script(Url.Content(srcMap), "bottom")
-        @Html.Script(Url.Content(srcPlugin), "bottom")
-        <div class="map-placeholder hidden" style="width: 100%; height: 250px;">
-            <span data-address="@Model.JobDetails.Address" data-addresslat="@Model.JobDetails.AddressLatitude" data-addresslng="@Model.JobDetails.AddressLongtitude"></span>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-danger">Google Maps API key is not set. Please set at "Administration->Settings->Custom Site Settings"</div>
-    }
-
-
-
-    @{
-        var shareUrl = SocialShareButtons.ShareUrl;
-
-        var unencodedPageTitle = Model.JobDetails.Title;
-        var pageTitle = HttpUtility.UrlEncode(unencodedPageTitle);
-    }
-    <h3>Interested in this job?</h3>
-    <ul class="list-unstyled job-offer-actions">
-        @if (isUserLoggedIn)
-        {
-            <li><a href="#" class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="far fa-save"></em><span class="save-status-txt">Save this job</span></a></li>
-        }
-
-        <li><a href="javascript:window.print();"><em class="fas fa-print"></em>Print this job</a></li>
-        <li>
-            <a href="@ViewBag.EmailJobPageUrl?JobId=@Model.JobDetails.JobID" title="Tell a friend">
-                <em class="fas fa-envelope"></em>Email this job
-            </a>
-        </li>
-        @*
-            <li><span class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="fas fa-save"></em>Save this job</span></li>*@
-    </ul>
-
-</div>
 }
 <script type="text/javascript">
 

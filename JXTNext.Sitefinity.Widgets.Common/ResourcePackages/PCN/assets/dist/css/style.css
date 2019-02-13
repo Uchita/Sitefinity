@@ -6841,6 +6841,34 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
                 background: #004F6E;
             }
 
+.bg-corner h3,
+.bg-corner .h3 {
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.jobdetail-sidebar .bg-corner .social-sidebar .h3,
+.jobdetail-sidebar .bg-corner .social-sidebar h3 {
+    margin-top: 15px;
+}
+
+.bg-corner .job-offer-actions li a {
+    color: #8bd4ff;
+}
+
+.social-sidebar {
+    display: none;
+}
+
+.jobdetail-sidebar .social-sidebar {
+    display: block;
+    padding: 0;
+    width: 100%;
+}
+
 .contact-map .map-placeholder {
     min-height: 400px;
 }

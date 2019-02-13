@@ -216,6 +216,7 @@ function equalHeightAp(container) {
 }
 $(window).on("load", function () {
     equalHeightAp('.equalHeight');
+    $(".jobdetail-sidebar .bg-corner-inner").append($(".social-sidebar"));
 });
 
 

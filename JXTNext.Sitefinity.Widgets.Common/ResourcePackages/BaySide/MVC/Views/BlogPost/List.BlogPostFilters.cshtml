@@ -30,9 +30,9 @@
     var _dd_blogIndustries = _sectorTaxon1 as HierarchicalTaxon;
 
     var _dd_blogTypes = _sectorTaxon2 as HierarchicalTaxon;
-    }
+}
 
-    @*@foreach (var newscatitem in _dd_blogCategories.Subtaxa)
+@*@foreach (var newscatitem in _dd_blogCategories.Subtaxa)
     {
     <p>@newscatitem.Name</p>
     foreach (var subcategory in newscatitem.Subtaxa)
@@ -60,29 +60,31 @@
     }*@
 
 
-    <div class="filter-outer-wrapper right-filter-sidebar">
-        <div>
-            <select id="sortOrder" class="jxt-news-filter-summary">
-                <option value="latest">Sort by – Recent</option>
-                <option value="oldest">Sort by – Oldest Posts</option>
-                <option value="az">Sort by – Alphabetical A-Z</option>
-                <option value="za">Sort by – Alphabetical Z-A</option>
-            </select>
-        </div>
+<div class="filter-outer-wrapper right-filter-sidebar">
+    <div>
+        <select id="sortOrder" class="jxt-news-filter-summary">
+            <option value="latest">Sort by – Recent</option>
+            <option value="oldest">Sort by – Oldest Posts</option>
+            <option value="az">Sort by – Alphabetical A-Z</option>
+            <option value="za">Sort by – Alphabetical Z-A</option>
+        </select>
+    </div>
 
-        <div class="keywordfilter">
-            <label>Search Keyword</label>
-            <input type="text" id="txtSearch" />
+    <div class="keywordfilter">
+        <h3>Search Keyword</h3>
+        <input type="text" id="txtSearch" />
 
-        </div>
+    </div>
 
-        <div class="dropdown dropdown-tree navbar-collapse" id="BLOGCATEGORIES" data-prefixidtext="">
+    <div class="dropdown dropdown-tree navbar-collapse" id="BLOGCATEGORIES" data-prefixidtext="">
+        <h3>
             <a href="#lbl-CATEGORIES" class="dropdown-toggle" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="lbl-CATEGORIES">
                 <span class="dropdowntree-name">Categories</span>
             </a>
-            <ul style="max-height:none" class="collapse show in" id="lbl-CATEGORIES">
-                @foreach (var newscatitem in _dd_blogCategories.Subtaxa)
-                {
+        </h3>
+        <ul style="max-height:none" class="collapse show in" id="lbl-CATEGORIES">
+            @foreach (var newscatitem in _dd_blogCategories.Subtaxa)
+            {
                 <li data-title="@newscatitem.Name">
                     <label for="@newscatitem.Id">
                         <input class="parent-blog-category" id="@newscatitem.Id" name="@newscatitem.Name" type="checkbox" />
@@ -92,33 +94,35 @@
                     </label>
                     @if (newscatitem.Subtaxa.Count > 0)
                     {
-                    <span class="ul-dropdown-toggle"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                    <ul>
-                        @foreach (var subcategory in newscatitem.Subtaxa)
-                        {
+                        <span class="ul-dropdown-toggle"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                        <ul>
+                            @foreach (var subcategory in newscatitem.Subtaxa)
+                            {
 
-                        <li data-title="@subcategory.Name">
-                            <input class="child-blog-category" id="@subcategory.Id" name="@subcategory.Name" type="checkbox" />
-                            <span>@subcategory.Title</span>
-                        </li>
+                                <li data-title="@subcategory.Name">
+                                    <input class="child-blog-category" id="@subcategory.Id" name="@subcategory.Name" type="checkbox" />
+                                    <span>@subcategory.Title</span>
+                                </li>
 
-                        }
-                    </ul>
+                            }
+                        </ul>
                     }
                 </li>
 
 
-                }
-            </ul>
-        </div>
+            }
+        </ul>
+    </div>
 
-        <div class="dropdown dropdown-tree navbar-collapse" id="BLOGINDUSTRIES" data-prefixidtext="">
+    <div class="dropdown dropdown-tree navbar-collapse" id="BLOGINDUSTRIES" data-prefixidtext="">
+        <h3>
             <a href="#lbl-INDUSTRIES" class="dropdown-toggle" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="lbl-INDUSTRIES">
                 <span class="dropdowntree-name">Industries</span>
             </a>
-            <ul style="max-height: none" class="collapse show in" id="lbl-INDUSTRIES">
-                @foreach (var newscatitem in _dd_blogIndustries.Subtaxa)
-                {
+        </h3>
+        <ul style="max-height: none" class="collapse show in" id="lbl-INDUSTRIES">
+            @foreach (var newscatitem in _dd_blogIndustries.Subtaxa)
+            {
                 <li data-title="@newscatitem.Name">
                     <label for="@newscatitem.Id">
                         <input class="parent-blog-industry" id="@newscatitem.Id" name="@newscatitem.Name" type="checkbox" />
@@ -128,33 +132,35 @@
                     </label>
                     @if (newscatitem.Subtaxa.Count > 0)
                     {
-                    <span class="ul-dropdown-toggle"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                    <ul>
-                        @foreach (var subcategory in newscatitem.Subtaxa)
-                        {
+                        <span class="ul-dropdown-toggle"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                        <ul>
+                            @foreach (var subcategory in newscatitem.Subtaxa)
+                            {
 
-                        <li data-title="@subcategory.Name">
-                            <input class="child-blog-industry" name="@subcategory.Name" type="checkbox" />
-                            <span>@subcategory.Title</span>
-                        </li>
+                                <li data-title="@subcategory.Name">
+                                    <input class="child-blog-industry" name="@subcategory.Name" type="checkbox" />
+                                    <span>@subcategory.Title</span>
+                                </li>
 
-                        }
-                    </ul>
+                            }
+                        </ul>
                     }
                 </li>
 
 
-                }
-            </ul>
-        </div>
+            }
+        </ul>
+    </div>
 
-        <div class="dropdown dropdown-tree navbar-collapse" id="BLOGTYPES" data-prefixidtext="">
+    <div class="dropdown dropdown-tree navbar-collapse" id="BLOGTYPES" data-prefixidtext="">
+        <h3>
             <a href="#lbl-TYPES" class="dropdown-toggle" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="lbl-TYPES">
                 <span class="dropdowntree-name">TYPE</span>
             </a>
-            <ul style="max-height: none" class="collapse show in" id="lbl-TYPES">
-                @foreach (var newscatitem in _dd_blogTypes.Subtaxa)
-                {
+        </h3>
+        <ul style="max-height: none" class="collapse show in" id="lbl-TYPES">
+            @foreach (var newscatitem in _dd_blogTypes.Subtaxa)
+            {
                 <li data-title="@newscatitem.Name">
                     <label for="@newscatitem.Id">
                         <input type="checkbox" class="parent-blog-type" id="@newscatitem.Id" name="@newscatitem.Name" />
@@ -164,25 +170,25 @@
                     </label>
                     @if (newscatitem.Subtaxa.Count > 0)
                     {
-                    <span class="ul-dropdown-toggle"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                        <span class="ul-dropdown-toggle"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
 
-                    <ul>
-                        @foreach (var subcategory in newscatitem.Subtaxa)
-                        {
+                        <ul>
+                            @foreach (var subcategory in newscatitem.Subtaxa)
+                            {
 
-                        <li data-title="@subcategory.Name">
-                            <input class="child-blog-type" id="@subcategory.Id" name="@subcategory.Name" type="checkbox" />
-                            <span>@subcategory.Title</span>
-                        </li>
+                                <li data-title="@subcategory.Name">
+                                    <input class="child-blog-type" id="@subcategory.Id" name="@subcategory.Name" type="checkbox" />
+                                    <span>@subcategory.Title</span>
+                                </li>
 
-                        }
-                    </ul>
+                            }
+                        </ul>
                     }
                 </li>
 
 
-                }
-            </ul>
-        </div>
+            }
+        </ul>
     </div>
-    <script src="~/ResourcePackages/BaySide/assets/js/blogfilter.js"></script>
+</div>
+<script src="~/ResourcePackages/BaySide/assets/js/blogfilter.js"></script>

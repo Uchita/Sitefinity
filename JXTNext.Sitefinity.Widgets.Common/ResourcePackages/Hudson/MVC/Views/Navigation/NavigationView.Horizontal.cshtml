@@ -58,15 +58,17 @@
                     <li class="extra-mnu timesheet-mnu"><a href="/timesheets-and-payroll-process"><em class="far fa-calendar-alt"></em> Timesheets</a></li>
                     @{
                         var currentIdentity = ClaimsManager.GetCurrentIdentity();
-                        var loggedInStatusCls = "";
+                        var loggedInStatusCls = "display: none";
                         var loggedOutStatusCls = "";
                         if (currentIdentity.IsAuthenticated)
                         {
                             loggedOutStatusCls = "display: none";
+                            loggedInStatusCls = "";
                         }
                         else
                         {
                             loggedInStatusCls = "display: none";
+                            loggedOutStatusCls = "";
                         }
 
                     }

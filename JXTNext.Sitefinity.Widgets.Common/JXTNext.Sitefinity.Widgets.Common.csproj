@@ -327,6 +327,9 @@
     <Content Include="ResourcePackages\BaySide\assets\js\parallax.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\BaySide\assets\js\parlx-bg.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\assets\js\wow.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

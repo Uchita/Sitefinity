@@ -13,7 +13,7 @@
         </div>
 
     </div>
-    <div class="leader-name">@Html.HtmlSanitize(card.Heading)</div>
+    <h3 class="leader-name">@Html.HtmlSanitize(card.Heading)</h3>
     <div class="leader-designation">@Model.GroupHeader</div>
 
     if (card.Description != null && card.Description.Length > 0)

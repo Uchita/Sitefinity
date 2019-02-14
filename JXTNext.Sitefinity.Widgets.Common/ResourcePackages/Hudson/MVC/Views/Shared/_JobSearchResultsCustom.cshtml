@@ -477,6 +477,11 @@
                             data: response.SearchResults,
                             total: response.Total,
                         });
+
+                        if ($('#sortOrder').val() == null) {
+                            $('#sortOrder').val('Recent');
+                        }
+
                         $(".count-num").html(response.Total);
                         highestPage = Math.ceil(response.Total / pageSize);
                         var sorttext = getSortOrder();

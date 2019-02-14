@@ -193,4 +193,11 @@ $(document).ready(function () {
         $(this).replaceWith("<h4>" + $(this).text() + "</h4>");
     });
 
+
+    $(".filter_sidebar .sm-wrapper .dropdown-tree > .dropdown-toggle").wrap("<h3></h3>");
+
+    $(".no-h1 h1").each(function () {
+        $(this).replaceWith("<div class='hero-title'>" + $(this).text() + "</div>");
+    });
+
 });

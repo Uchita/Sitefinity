@@ -88,6 +88,7 @@
                 <li data-title="@newscatitem.Name">
                     <label for="@newscatitem.Id">
                         <input class="parent-blog-category" id="@newscatitem.Id" name="@newscatitem.Name" type="checkbox" />
+                        <i></i>
                         <span>
                             @newscatitem.Title
                         </span>
@@ -126,6 +127,7 @@
                 <li data-title="@newscatitem.Name">
                     <label for="@newscatitem.Id">
                         <input class="parent-blog-industry" id="@newscatitem.Id" name="@newscatitem.Name" type="checkbox" />
+                        <i></i>
                         <span>
                             @newscatitem.Title
                         </span>
@@ -152,43 +154,44 @@
         </ul>
     </div>
 
-    <div class="dropdown dropdown-tree navbar-collapse" id="BLOGTYPES" data-prefixidtext="">
-        <h3>
-            <a href="#lbl-TYPES" class="dropdown-toggle" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="lbl-TYPES">
-                <span class="dropdowntree-name">TYPE</span>
-            </a>
-        </h3>
-        <ul style="max-height: none" class="collapse show in" id="lbl-TYPES">
-            @foreach (var newscatitem in _dd_blogTypes.Subtaxa)
-            {
-                <li data-title="@newscatitem.Name">
-                    <label for="@newscatitem.Id">
-                        <input type="checkbox" class="parent-blog-type" id="@newscatitem.Id" name="@newscatitem.Name" />
-                        <span>
-                            @newscatitem.Title
-                        </span>
-                    </label>
-                    @if (newscatitem.Subtaxa.Count > 0)
-                    {
-                        <span class="ul-dropdown-toggle"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+    @*<div class="dropdown dropdown-tree navbar-collapse" id="BLOGTYPES" data-prefixidtext="">
+            <h3>
+                <a href="#lbl-TYPES" class="dropdown-toggle" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="lbl-TYPES">
+                    <span class="dropdowntree-name">TYPE</span>
+                </a>
+            </h3>
+            <ul style="max-height: none" class="collapse show in" id="lbl-TYPES">
+                @foreach (var newscatitem in _dd_blogTypes.Subtaxa)
+                {
+                    <li data-title="@newscatitem.Name">
+                        <label for="@newscatitem.Id">
+                            <input type="checkbox" class="parent-blog-type" id="@newscatitem.Id" name="@newscatitem.Name" />
+                            <i></i>
+                            <span>
+                                @newscatitem.Title
+                            </span>
+                        </label>
+                        @if (newscatitem.Subtaxa.Count > 0)
+                        {
+                            <span class="ul-dropdown-toggle"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
 
-                        <ul>
-                            @foreach (var subcategory in newscatitem.Subtaxa)
-                            {
+                            <ul>
+                                @foreach (var subcategory in newscatitem.Subtaxa)
+                                {
 
-                                <li data-title="@subcategory.Name">
-                                    <input class="child-blog-type" id="@subcategory.Id" name="@subcategory.Name" type="checkbox" />
-                                    <span>@subcategory.Title</span>
-                                </li>
+                                    <li data-title="@subcategory.Name">
+                                        <input class="child-blog-type" id="@subcategory.Id" name="@subcategory.Name" type="checkbox" />
+                                        <span>@subcategory.Title</span>
+                                    </li>
 
-                            }
-                        </ul>
-                    }
-                </li>
+                                }
+                            </ul>
+                        }
+                    </li>
 
 
-            }
-        </ul>
-    </div>
+                }
+            </ul>
+        </div>*@
 </div>
 <script src="~/ResourcePackages/BaySide/assets/js/blogfilter.js"></script>

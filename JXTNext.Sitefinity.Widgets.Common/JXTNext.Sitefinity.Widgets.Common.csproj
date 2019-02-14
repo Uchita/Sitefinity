@@ -291,6 +291,12 @@
     <Content Include="ResourcePackages\BaySide\assets\images\prev-iconH.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\BaySide\assets\images\Quotation-Marks-Left.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\BaySide\assets\images\Quotation-Marks-Right.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\assets\images\saved-jobs.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

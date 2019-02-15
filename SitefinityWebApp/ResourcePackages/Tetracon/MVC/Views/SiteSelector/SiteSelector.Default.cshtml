@@ -1,0 +1,33 @@
+﻿@model Telerik.Sitefinity.Frontend.Navigation.Mvc.Models.SiteSelector.SiteSelectorViewModel
+
+@using Telerik.Sitefinity.Frontend.Navigation.Mvc.Models.SiteSelector;
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+
+    <div class="header-top-links form-negative">
+        <div class="select">
+            @if (SystemManager.IsDesignMode && !SystemManager.IsInlineEditingMode && !SystemManager.IsPreviewMode)
+            {
+                @:<select class="header-top-links" >
+            }
+            else
+            {
+                @:<select onchange="document.location.href = this.value" class="header-top-links" >
+            }
+            @if (!Model.IncludeCurrentSite)
+            { 
+                <option>@Html.Resource("SelectSite")</option>
+            }
+
+            @{
+                string currentSite = string.Empty;
+             }
+
+            @foreach (var site in Model.Sites)
+            {                
+                <option value="@site.Url">@site.Name<i class="fas fa-angle-down"></i></option>
+            }
+        </select>
+	</div>
+</div>

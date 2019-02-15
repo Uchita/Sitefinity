@@ -25,6 +25,8 @@
     {
         model = model.Where(x => x.Fields.EventEnd.ToString("MMMMM yyyy").Contains(duration.Trim()));
     }
+
+    model = model.OrderBy(x => Convert.ToDateTime(x.Fields.EventStart));
 }
 <div class="archive-postlist @Model.CssClass">
     <div class="row">
@@ -94,13 +96,13 @@
 </div>
 @if (Model.ShowPager)
 {
-    <div class="news_pagination">
+    <div class="news_pagination pcn-pagination">
 
         @Html.Action("Index", "ContentPager", new
         {
-            currentPage = Model.CurrentPage,
-            totalPagesCount = Model.TotalPagesCount.Value,
-            redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
+        currentPage = Model.CurrentPage,
+        totalPagesCount = Model.TotalPagesCount.Value,
+        redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
         })
 
     </div>

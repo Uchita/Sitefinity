@@ -666,6 +666,9 @@
     4. Media(max-width:767px)
 ----------------------------------- */
 @media (max-width: 767px) {
+    .job-details-left .job-offer-apply {
+        margin-bottom: 18px;
+    }
 
     .header .header_right {
         padding: 0 15px;

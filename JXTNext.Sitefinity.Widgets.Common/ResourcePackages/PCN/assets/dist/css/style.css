@@ -549,87 +549,119 @@ a {
         z-index: 1;
     }
 
-        .search_job .corner:before {
-            width: 12px;
-            height: 12px;
-            position: absolute;
-            top: 2px;
-            left: -6px;
-            content: "";
-            background: #fff;
-            transform: rotate(45deg);
-            -webkit-transform: rotate(45deg);
-            -moz-transform: rotate(45deg);
-            z-index: -1;
-        }
+.filter_sidebar .corner {
+    position: relative;
+    z-index: 1;
+    margin-left: 9px;
+    margin-right: 9px;
+}
 
-        .search_job .corner:after {
-            width: 12px;
-            height: calc(100% - 8px);
-            position: absolute;
-            bottom: 0px;
-            left: -9px;
-            content: "";
-            background: #fff;
-            border-radius: 0 0 0 5px;
-            z-index: -1;
-        }
+.search_job .corner:before {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 2px;
+    left: -6px;
+    content: "";
+    background: #fff;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    z-index: -1;
+}
 
-        .search_job .corner .cut:before, .subscribe_sec .corner .form-group:before {
-            width: 12px;
-            height: 12px;
-            position: absolute;
-            bottom: 2px;
-            right: -6px;
-            content: "";
-            background: #fff;
-            transform: rotate(45deg);
-            -webkit-transform: rotate(45deg);
-            -moz-transform: rotate(45deg);
-            z-index: -1;
-        }
+.filter_sidebar .corner:before {
+    background: #004F6E;
+}
 
-        .search_job .corner .cut:after, .subscribe_sec .corner .form-group:after {
-            width: 12px;
-            height: calc(100% - 8px);
-            position: absolute;
-            top: 0px;
-            right: -9px;
-            content: "";
-            background: #fff;
-            border-radius: 0 5px 0 0;
-            z-index: -1;
-        }
+.search_job .corner:after {
+    width: 12px;
+    height: calc(100% - 8px);
+    position: absolute;
+    bottom: 0px;
+    left: -9px;
+    content: "";
+    background: #fff;
+    border-radius: 0 0 0 5px;
+    z-index: -1;
+}
 
+.search_job .corner .cut:before,
+.subscribe_sec .corner .form-group:before,
+.filter_sidebar .corner .cut:before {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    bottom: 2px;
+    right: -6px;
+    content: "";
+    background: #fff;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    z-index: -1;
+}
 
-        .search_job .corner.c-btn:before, .search_job .corner.c-btn:after, .search_job .corner.c-btn .cut:before, .search_job .corner.c-btn .cut:after, .subscribe_sec .corner.c-btn .form-group:before, .subscribe_sec .corner.c-btn .form-group:after {
-            background: #004F6E;
-        }
+.filter_sidebar .corner .cut:before {
+    border-right: 1px solid #004F6E;
+    right: -7px;
+}
 
-        .search_job .corner.c-btn:hover:before, .search_job .corner.c-btn:hover:after, .search_job .corner.c-btn:hover .cut:before, .search_job .corner.c-btn:hover .cut:after, .subscribe_sec .corner.c-btn:hover .form-group:before, .subscribe_sec .corner.c-btn:hover .form-group:after {
-            background: #8EDD2B;
-        }
+.search_job .corner .cut:after,
+.subscribe_sec .corner .form-group:after,
+.filter_sidebar .corner .cut:after {
+    width: 12px;
+    height: calc(100% - 8px);
+    position: absolute;
+    top: 0px;
+    right: -9px;
+    content: "";
+    background: #fff;
+    border-radius: 0 5px 0 0;
+    z-index: -1;
+}
 
-    .search_job .job_btn, .subscribe_sec .btn-primary {
-        /*margin: 0 8px;*/
-        padding: 0 5px;
-        width: 240px;
-        height: 40px;
-        display: inline-block;
-        vertical-align: middle;
-        font-size: 16px;
-        color: #fff;
-        text-align: center;
-        text-transform: uppercase;
-        border: none;
-        /*border-radius: 5px;*/
-        font-family: FuturaBT-Medium;
-        background: #004F6E;
+.filter_sidebar .corner .cut:after {
+    border-right: 1px solid #004F6E;
+    border-top: 1px solid #004F6E;
+}
+
+.filter_sidebar .corner input {
+    border-color: #004F6E;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+    padding: 0 5px;
+}
+
+.search_job .corner.c-btn:before, .search_job .corner.c-btn:after, .search_job .corner.c-btn .cut:before, .search_job .corner.c-btn .cut:after, .subscribe_sec .corner.c-btn .form-group:before, .subscribe_sec .corner.c-btn .form-group:after {
+    background: #004F6E;
+}
+
+.search_job .corner.c-btn:hover:before, .search_job .corner.c-btn:hover:after, .search_job .corner.c-btn:hover .cut:before, .search_job .corner.c-btn:hover .cut:after, .subscribe_sec .corner.c-btn:hover .form-group:before, .subscribe_sec .corner.c-btn:hover .form-group:after {
+    background: #8EDD2B;
+}
+
+.search_job .job_btn, .subscribe_sec .btn-primary {
+    /*margin: 0 8px;*/
+    padding: 0 5px;
+    width: 240px;
+    height: 40px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    border: none;
+    /*border-radius: 5px;*/
+    font-family: FuturaBT-Medium;
+    background: #004F6E;
+}
+
+    .search_job .corner.c-btn:hover .job_btn, .subscribe_sec .btn-primary:hover {
+        background: #8EDD2B;
     }
-
-        .search_job .corner.c-btn:hover .job_btn, .subscribe_sec .btn-primary:hover {
-            background: #8EDD2B;
-        }
 
 .subscribe_sec .btn-primary {
     font-weight: normal;
@@ -1689,6 +1721,7 @@ hr {
 
         .news_pagination a:hover span,
         .news_pagination a:focus span,
+        .news_pagination .active a span,
         .news_pagination a.active span {
             background: #42A3D9;
             color: #fff;
@@ -1708,6 +1741,21 @@ hr {
             .news_pagination a.active span:before {
                 background: #42A3D9;
             }
+
+    .news_pagination li.active a:after,
+    .news_pagination li.active a:before,
+    .news_pagination li.active a span:after,
+    .news_pagination li.active a span:before {
+        background: #42A3D9;
+    }
+
+    .news_pagination a.active,
+    .news_pagination a.active:after,
+    .news_pagination a.active:before,
+    .news_pagination a.active span:after,
+    .news_pagination a.active span:before {
+        background: #42A3D9;
+    }
 
 .blog_sidebar .title {
     padding-bottom: 14px;
@@ -4761,8 +4809,8 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     position: relative;
     z-index: 1;
     margin-bottom: 30px;
-    border-top: 1px solid #010101;
-    border-bottom: 1px solid #010101;
+    /*border-top: 1px solid #010101;
+    border-bottom: 1px solid #010101;*/
 }
 
     .filter_sidebar .filter-outer-wrapper:before {
@@ -4777,7 +4825,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         -webkit-transform: rotate(45deg);
         -moz-transform: rotate(45deg);
         z-index: -1;
-        border-left: 1px solid #010101;
+        /*border-left: 1px solid #010101;*/
     }
 
     .filter_sidebar .filter-outer-wrapper:after {
@@ -4788,10 +4836,10 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         left: -20px;
         content: "";
         background: #e8e9eb;
-        border-radius: 0 0 0 15px;
+        border-radius: 0 0 0 10px;
         z-index: -1;
-        border-left: 1px solid #010101;
-        border-bottom: 1px solid #010101;
+        /*border-left: 1px solid #010101;
+        border-bottom: 1px solid #010101;*/
     }
 
     .filter_sidebar .filter-outer-wrapper .sub:before {
@@ -4806,7 +4854,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         -webkit-transform: rotate(45deg);
         -moz-transform: rotate(45deg);
         z-index: -1;
-        border-right: 1px solid #010101;
+        /*border-right: 1px solid #010101;*/
     }
 
     .filter_sidebar .filter-outer-wrapper .sub:after {
@@ -4817,10 +4865,10 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         right: -20px;
         content: "";
         background: #e8e9eb;
-        border-radius: 0 15px 0 0;
+        border-radius: 0 10px 0 0;
         z-index: -1;
-        border-right: 1px solid #010101;
-        border-top: 1px solid #010101;
+        /*border-right: 1px solid #010101;
+        border-top: 1px solid #010101;*/
     }
 
 
@@ -4903,7 +4951,8 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         position: relative;
     }
 
-        .search-top .srch-email .corner:before {
+        .search-top .srch-email .corner:before,
+        .filter_sidebar .corner:before {
             width: 12px;
             height: 12px;
             position: absolute;
@@ -4918,7 +4967,8 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
             border-left: 1px solid #004F6E;
         }
 
-        .search-top .srch-email .corner:after {
+        .search-top .srch-email .corner:after,
+        .filter_sidebar .corner:after {
             width: 12px;
             height: calc(100% - 8px);
             position: absolute;
@@ -5158,8 +5208,8 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 .filter_sidebar .keywordfilter {
     width: 100%;
     float: left;
-    margin: 0 0 30px 0;
-    display: none;
+    margin: 3px 0 30px 0;
+    /*display: none;*/
 }
 
     .filter_sidebar .keywordfilter label {
@@ -5177,7 +5227,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
     .filter_sidebar .keywordfilter #selectedkeywordsfilter {
         width: 100%;
-        height: 40px;
+        height: 35px;
         padding: 0 10px;
     }
 
@@ -5195,7 +5245,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     font-family: FuturaBT-Heavy;
     text-transform: uppercase;
     font-weight: normal;
-    padding: 0 0 5px 0;
+    padding: 0 0 5px 5px;
     border: none;
     display: block !important;
     text-align: left;
@@ -5224,12 +5274,12 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
     .filter_sidebar .sm-wrapper .dropdown-tree li > i {
         margin-left: 0px;
-        color: #D8D8D8;
-        font-size: 18px;
+        color: #656565;
         position: absolute;
-        display: none;
-        top: 4px;
-        left: 0;
+        top: 9px;
+        left: 5px;
+        background: #fff;
+        font-weight: 100;
     }
 
         .filter_sidebar .sm-wrapper .dropdown-tree li > i.fa-check-square-o {
@@ -5243,6 +5293,11 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         color: #010101;
         background: none !important;
         border-top: 1px solid #d3d3d3;
+        margin-left: 40px;
+    }
+
+    .filter_sidebar .sm-wrapper .dropdown-tree li a {
+        white-space: normal;
     }
 
 .filter_sidebar .sm-wrapper .dropdown-tree ul ul li:first-child a {
@@ -5634,12 +5689,16 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     margin-bottom: 5px;
 }
 
-    .job-offer-actions li a em, .sf-social-share li i {
-        margin-right: 5px;
-    }
+.jobdetail-sidebar .job-offer-actions li {
+    margin-bottom: 10px;
+}
+
+.job-offer-actions li a em, .sf-social-share li i {
+    margin-right: 5px;
+}
 
 .social-sidebar li, .sf-social-share li {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     display: block !important;
 }
 
@@ -5685,6 +5744,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     .article_section h2 {
         margin-top: 0px;
         font-size: 32px;
+        text-transform: uppercase;
     }
 
         .article_section h2 img {
@@ -5973,6 +6033,10 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
             font-size: 14px;
             color: #004F6E;
         }
+
+            .archive-postlist .entry-header .entry-meta .date {
+                font-weight: bold;
+            }
 
             .archive-postlist .entry-header .entry-meta .author {
                 display: inline-block;
@@ -6679,6 +6743,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
     .job-details-left .job-offer-contacts th, .job-details-left .job-offer-contacts td {
         padding: 2px 0;
+        word-break: break-all;
     }
 
     .job-details-left .job-offer-contacts th {
@@ -6825,7 +6890,15 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
             .jobdetail-sidebar .card-item .text .contact span {
                 min-width: 60px;
-                display: inline-block;
+                display: block;
+                float: left;
+            }
+
+            .jobdetail-sidebar .card-item .text .contact > a {
+                display: block;
+                word-break: break-all;
+                width: calc(100% - 60px);
+                float: left;
             }
 
         .jobdetail-sidebar .card-item .text .view-btn {
@@ -6856,17 +6929,38 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     text-transform: uppercase;
 }
 
+.jobdetail-sidebar .bg-corner-inner hr {
+    margin-top: 15px;
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.jobdetail-sidebar .bg-corner-inner li .fab,
+.jobdetail-sidebar .bg-corner-inner li .far,
+.jobdetail-sidebar .bg-corner-inner li .fas {
+    border: 1px solid #fff;
+    border-radius: 3px;
+    min-width: 26px;
+    text-align: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
 .jobdetail-sidebar .bg-corner .social-sidebar .h3,
 .jobdetail-sidebar .bg-corner .social-sidebar h3 {
     margin-top: 15px;
 }
 
 .bg-corner .job-offer-actions li a {
-    color: #8bd4ff;
+    color: #fff;
 }
 
 .social-sidebar {
     display: none;
+}
+
+.sfPageEditor .social-sidebar {
+    display: block;
 }
 
 .jobdetail-sidebar .social-sidebar {

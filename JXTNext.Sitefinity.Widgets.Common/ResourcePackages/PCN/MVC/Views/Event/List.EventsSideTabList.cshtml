@@ -7,10 +7,13 @@
 
 @Html.Script(ScriptRef.JQuery, "top", false)
 
-
+@{
+    var model = Model.Items;
+    model = model = model.OrderBy(x => Convert.ToDateTime(x.Fields.EventStart));
+}
 <div class="post-list">
 
-    @foreach (var item in Model.Items)
+    @foreach (var item in model)
     {
         var imageurl = "";
         foreach (var relatedItem in item.Fields.EventImage)
@@ -30,9 +33,9 @@
                     <a href="@navigateUrl">@item.Fields.Title</a>
                 </h3>
                 <div class="entry-meta">
-                    <span class="author">Posted by <a href="#" title="Posts by Greythorn Australia" rel="author">@DataResolver.Resolve(item.DataItem, "Author", null)</a></span>
-                    <span class="sep">-</span>
-                    <span class="date">@item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
+                    <span class="author hidden">Posted by <a href="#" title="Posts by Greythorn Australia" rel="author">@DataResolver.Resolve(item.DataItem, "Author", null)</a></span>
+                    <span class="sep hidden">-</span>
+                    <span class="date">@item.GetDateTime("EventStart", "MMM d, yyyy") to @item.GetDateTime("EventEnd", "MMM d, yyyy")</span>
                 </div>
             </div>
 

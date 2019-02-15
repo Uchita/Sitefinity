@@ -5,13 +5,13 @@
 
 
 @{
-                /**/
+    /**/
 
-                /**/
+    /**/
 
-                var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
-                bool isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
-                var defaultLogo = "/ResourcePackages/PCN/assets/dist/images/defaultLogo.png";
+    var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
+    bool isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
+    var defaultLogo = "/ResourcePackages/PCN/assets/dist/images/defaultLogo.png";
 }
 
 <div class="result-meta">
@@ -383,7 +383,7 @@
                 var pageJumpVal = 5;
                 var startPage = (parseInt(PageNumber) / pageJumpVal) > 1 ? pageJumpVal * (Math.ceil(parseInt(PageNumber) / pageJumpVal) - 1) + 1 : 1;
 
-                lis += '<li class="pagePrev pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" disabled data-page="0"><span>Previous</span></a></li>';
+                lis += '<li class="pagePrev pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" disabled data-page="0"><span><</span></a></li>';
 
                 //dot page jump previous
                 if (startPage > 1) {
@@ -402,7 +402,7 @@
                     lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + (startPage + pageJumpVal) + '"><span>...</span></a></li>';
                 }
 
-                lis += '<li class="pageNext pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" data-page="2"><span>Next</span></a></li>';
+                lis += '<li class="pageNext pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" data-page="2"><span>></span></a></li>';
                 $('#pager ul').html(lis);
             }
         };

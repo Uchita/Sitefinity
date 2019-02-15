@@ -1,0 +1,58 @@
+﻿@model dynamic
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+@{
+    /**/
+
+    int jobOfferIndex = 0;
+    //var defaultLogo = "/ResourcePackages/Hudson/assets/dist/images/defaultLogo.png";
+    var defaultLogo = "";
+
+}
+
+
+<div class="latest-job">
+    @foreach (var jobOffer in Model.SearchResults)
+    {
+        <div class="job-section">
+            <span class="job-date">@jobOffer.DateCreated_Representation</span>
+            <div class="row">
+                <div class="col-md-4">
+                    <h2><a target="_blank" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">@jobOffer.Title</a></h2>
+                    <p>
+                        <strong>Category</strong><span>@jobOffer.CustomData["Classifications[0].Filters[1].Value"]</span><br>
+                        <strong>Location</strong><span class="rssLocation">@jobOffer.CustomData["CountryLocationArea[0].Filters[0].Value"]</span><br>
+                        <strong>Work Type</strong><span class="rssWorktype">@jobOffer.CustomData["WorkType.Filters[0].Value"]</span>
+                    </p>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                        @{
+                            var summary = Html.HtmlSanitize((string)jobOffer.ShortDescription).ToString();
+                            string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 250 ? summary.Substring(0, 250) + "..." : summary;
+                        }
+                        @trimSummary
+                    </p>
+                    <div class="xmlLocation">
+                        <span class="xmlBoldTitle"><strong>@jobOffer.CustomData["CountryLocationArea[0].Filters[0].Value"]</strong></span>
+                    </div>
+                    <div class="xmlWorktype">
+                        <span class="xmlBoldTitle"><strong>@jobOffer.CustomData["WorkType.Filters[0].Value"]</strong></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    }
+
+
+</div>
+
+@*<div class="row row-see-more">
+        <div class="col-md-12">
+            <div class="text-center"><a class="btn btn-default" href="@ViewBag.JobResultsPageUrl">View all jobs</a></div>
+        </div>
+    </div>*@

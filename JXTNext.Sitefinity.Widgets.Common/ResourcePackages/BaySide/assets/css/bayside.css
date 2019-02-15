@@ -5853,6 +5853,26 @@ p .btn-link {
     color: #000;
 }
 
+    .advanced-search-from form label, .advanced-search-from form h4 {
+        margin: 0px;
+        font-weight: 500;
+        font-size: 17px;
+    }
+
+    .advanced-search-from form .align-lable label, .advanced-search-from form .align-lable h4 {
+        margin: 11px 0 0 0;
+    }
+
+@media (max-width: 767px) {
+    .advanced-search-from form label, .advanced-search-from form h4 {
+        margin: 0 0 10px 0;
+    }
+
+    .advanced-search-from form .align-lable label, .advanced-search-from form .align-lable h4 {
+        margin: 0 0 10px 0;
+    }
+}
+
 .advanced-search-from .col-md-4.text-right {
     max-width: 23%;
     text-align: left !important;
@@ -6491,6 +6511,11 @@ select.hs-input {
         margin-bottom: 24px;
     }
 
+    .list-item .bg-image-wrap {
+        margin-bottom: 0px;
+        height: 170px;
+    }
+
     .list-item .bg-image,
     .news-list .bg-image {
         width: 100%;
@@ -6842,7 +6867,11 @@ select.hs-input {
 }
 
 .content-two-colmun > .btn {
-    margin-top: 28px;
+    margin-top: 28px !important;
+}
+
+.multiple-ideas .btn.btn-outline-primary {
+    margin-top: 18px !important;
 }
 
 .sm-col-layout {
@@ -6930,6 +6959,11 @@ select.hs-input {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+    .bg-image.right-center {
+        background-position: right center;
+    }
+
 
 .g-section.empty-area {
     padding-top: 150px;
@@ -7885,18 +7919,28 @@ select.hs-input {
     color: #7E7E7E;
     font-size: 14px;
     font-weight: 600;
+    text-transform: uppercase;
 }
 
 .blog-detail-col .blog-title {
     font-size: 34px;
     color: #000;
-    margin-top: 30px;
+    margin-top: 38px;
+    text-transform: lowercase;
 }
+
+    .blog-detail-col .blog-title:first-letter {
+        text-transform: uppercase;
+    }
 
 .blog-detail-col p {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+    .blog-detail-col p:empty {
+        display: none;
+    }
 
 .cta-bg {
     padding: 30px;
@@ -7966,6 +8010,7 @@ select.hs-input {
 
 .baner_right_space, .text-margin-left /*, .content-on-img*/ {
     padding-left: 40px !important;
+    padding-bottom: 76px !important;
 }
 
 .left-space .text-margin-left {
@@ -7974,6 +8019,7 @@ select.hs-input {
 
 .left-space .img-full-bg .text-margin-left {
     padding-right: 40px;
+    padding-bottom: 76px !important;
 }
 
 @media (max-width: 767px) {
@@ -9058,21 +9104,29 @@ privacy-policy {
     margin: 0px;
 }
 
-    .bullet-points li {
-        position: relative;
-        padding: 0 0 0 15px;
-    }
+.img-full-bg .bullet-points {
+    padding: 0 0 10px 0;
+}
 
-        .bullet-points li:after {
-            width: 4px;
-            height: 4px;
-            content: "";
-            background: #333132;
-            border-radius: 100%;
-            position: absolute;
-            top: 11px;
-            left: 0px;
-        }
+.img-full-bg p:empty {
+    margin: 0;
+}
+
+.bullet-points li {
+    position: relative;
+    padding: 0 0 0 15px;
+}
+
+    .bullet-points li:after {
+        width: 4px;
+        height: 4px;
+        content: "";
+        background: #333132;
+        border-radius: 100%;
+        position: absolute;
+        top: 11px;
+        left: 0px;
+    }
 
 
 .job-detail-row .job-detail {
@@ -9128,9 +9182,14 @@ privacy-policy {
         font-weight: 500;
     }
 
-.find-talent-it-button {
-    margin-top: 13px !important;
+.img-absolute-wrap + div .btn.mt-4, .img-full-bg .btn.mt-4 {
+    margin-top: 18px !important;
 }
+
+body.payroll .parallax-mirror .parallax-slider {
+    bottom: -20px;
+}
+
 /*.leader-list + .leader-content {
     
 }*/

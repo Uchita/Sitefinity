@@ -200,4 +200,18 @@ $(document).ready(function () {
         $(this).replaceWith("<div class='hero-title'>" + $(this).text() + "</div>");
     });
 
+    //////for add current page class to body 
+    var pageTitle = window.location.pathname.replace(/\//gi, " ").trim().split(" ");
+    if (pageTitle != "") {
+        $("body").addClass(pageTitle[pageTitle.length - 1]);
+        $("body").addClass('inner-pages');
+        if (pageTitle.indexOf('/') > -1) {
+            pageTitle = pageTitle.replace(/\//g, "-");
+            $("body").addClass(pageTitle);
+        }
+    }
+    else {
+        $('body').addClass('home-page');
+    }
+
 });

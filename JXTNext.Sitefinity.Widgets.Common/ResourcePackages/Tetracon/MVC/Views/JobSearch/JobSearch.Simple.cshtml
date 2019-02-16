@@ -44,7 +44,7 @@
                     {
                         <div class="col-xs-6 ol-sm-3 col-md-3">
                             <div class="form-group">
-                                <input class="form-control" placeholder="@textboxControl.PlaceholderText" type="text" name="Keywords">
+                                <input class="form-control" placeholder="@textboxControl.PlaceholderText" type="text" name="Keywords Search">
                             </div>
                         </div>
                         controlCounter++;
@@ -55,7 +55,7 @@
                             <div class="select">
                                 <input type="hidden" name="" value='' />
                                 <select class="form-control" name="" id="">
-                                    <option value="" selected>All Classifications</option>
+                                    <option value="" selected>-All Classifications-</option>
                                    
                                 </select>
                             </div>
@@ -101,30 +101,30 @@
 
 
                 </div>
-                <div class="row">
+                @*<div class="row">
                     <div class="col-md-12">
                         <div class="row-filters"></div>
                     </div>
-                </div>
+                </div>*@
 
                 <div class="row">
                     @foreach (var list in listControls)
                     {
-                        <div class="col-xs-5 col-sm-4 col-md-4">
+                        @*<div class="col-xs-5 col-sm-4 col-md-4">
                             <div class="filter">
                                 <a data-filter-trigger="@list.ID">@list.PlaceholderText <em class="fas fa-angle-down"></em></a>   
                             </div>
-                        </div>
+                        </div>*@
                     }
 
-                    <div class="col-xs-4 pull-right text-right">
+                    @*<div class="col-xs-4 pull-right text-right">
                         <a href="/advancedsearch" title="Advanced search">Advanced search</a>
 
-                    </div>
+                    </div>*@
                     @*<div class="col-xs-2 pull-right text-right">
                         <a class="filter-job-close" data-filter-trigger="close"><em class="fas fa-times"></em></a>
-                    </div>*@
-                </div>
+                    </div>
+                </div>*@
             </div>
 
             @foreach (var list in listControls)
@@ -142,9 +142,9 @@
                         }
 
                         string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewData["JobResultsPageUrl"], list.FilterType, itemName.Key);
-                        <div class="col-sm-3 col-md-3">
+                        @*<div class="col-sm-3 col-md-3">
                             <a href=@hrefLink>@itemName.Value.name</a>
-                        </div>
+                        </div>*@
 
                         if (itemCounter % 4 == 3 || itemCounter == (_idNamesLevelsPair.Count - 1))
                         {

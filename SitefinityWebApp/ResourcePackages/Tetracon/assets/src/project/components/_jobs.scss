@@ -1,11 +1,10 @@
 .job-search {
     position: relative;
-    margin-top: -60px;
+    margin-top: -150px;
     z-index: 9;
 
     & > .container {
         padding: 12px 20px;
-        background: #007077;
 
         &.filter-job-classification {
             position: relative;
@@ -27,14 +26,14 @@
 
     .form-control {
         /*font-style: italic;*/
-        color: $global-text-color;
+        color: $global-text;
     }
 
     .form-control::-moz-placeholder,
     input::-moz-placeholder,
     select::-moz-placeholder,
     textarea::-moz-placeholder {
-        color: $global-text-color;
+        color: $global-text;
         opacity: 1;
     }
 
@@ -42,14 +41,14 @@
     input::-webkit-input-placeholder,
     select::-webkit-input-placeholder,
     textarea::-webkit-input-placeholder {
-        color: $global-text-color;
+        color: $global-text;
     }
 
     .form-control:-ms-input-placeholder,
     input:-ms-input-placeholder,
     select:-ms-input-placeholder,
     textarea:-ms-input-placeholder {
-        color: $global-text-color;
+        color: $global-text;
     }
 
     a {
@@ -116,7 +115,7 @@
 
         a {
             display: block;
-            color: $global-text-color;
+            color: $global-text;
         }
     }
 }

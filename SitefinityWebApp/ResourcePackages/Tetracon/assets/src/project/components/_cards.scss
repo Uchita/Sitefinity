@@ -15,6 +15,7 @@
         -webkit-box-align: center !important;
         -ms-flex-align: center !important;
         align-items: center !important;
+        font-family: $global-font-family;
 
         &:before {
             content: '';
@@ -37,9 +38,10 @@
         }
 
         .h1, h1 {
-            font-size: 48px;
-            font-size: 4.8rem;
+            font-size: 40px;
+            font-size: 4.0rem;
             color: inherit;
+            text-transform:uppercase;
             margin-top: 5px;
         }
 

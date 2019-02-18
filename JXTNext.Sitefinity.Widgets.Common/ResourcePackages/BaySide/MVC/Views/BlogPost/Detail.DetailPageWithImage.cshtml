@@ -21,7 +21,7 @@
         @Html.CommentsCount(string.Empty, @Model.Item.DataItem)
     </p>
 
-    <h4 class="blog-title">@Model.Item.Fields.Title</h4>
+    <h2 class="blog-title">@Model.Item.Fields.Title</h2>
 
 
 
@@ -56,6 +56,44 @@
     <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
 
     @Html.CommentsList(@Model.Item.DataItem)
+</div>
+
+<div class="related-blog">
+
+    <h2>You might also like</h2>
+
+    <div class="md-row">
+        @foreach (var blog in Model.Item.Fields.RelatedBlogs)
+        {
+
+            var imageurl1 = "";
+            foreach (var relatedItem1 in blog.Fields.BlogImage)
+            {
+                imageurl1 = (string)relatedItem1.Fields.ItemDefaultUrl;
+            }
+
+            <div class="news-list col-12 col-sm-6 col-md-4">
+
+                <div class="bg-image-wrap">
+                    <div class="bg-image" style="background-image: url('@imageurl1');"></div>
+                </div>
+
+                <div class="news-date">
+                    <span class="rss-item-pubDate-date">@blog.GetDateTime("PublicationDate", "dd")</span>
+                    <span class="rss-item-pubDate-month">@blog.GetDateTime("PublicationDate", "MMM")</span>,
+                    <span class="rss-item-pubDate-full-year">@blog.GetDateTime("PublicationDate", "yyyy")</span>
+                </div>
+
+                <p class="news-desc">@blog.Fields.Title</p>
+
+                <a href="~/blogs/blog-details/@blog.Fields.ItemDefaultUrl" class="btn btn-link">Read more</a>
+
+            </div>
+
+
+        }
+
+    </div>
 </div>
 
 <style>

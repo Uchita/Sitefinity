@@ -6741,6 +6741,10 @@ select.hs-input {
     margin-bottom: 4px;
 }
 
+.no-safari .hero-banner .job-item h2, .no-safari .hero-banner .job-item p, .no-safari .hero-banner .job-item .btn {
+    font-weight: 200;
+}
+
 .animated.delay-05s {
     -webkit-animation-delay: 0.5s;
     animation-delay: 0.5s;
@@ -7926,7 +7930,11 @@ select.hs-input {
     font-size: 34px;
     color: #000;
     margin-top: 38px;
+    margin-bottom: 10px;
+    font-weight: 500;
     text-transform: lowercase;
+    line-height: 1.1;
+    padding-bottom: 0px;
 }
 
     .blog-detail-col .blog-title:first-letter {
@@ -9186,8 +9194,33 @@ privacy-policy {
     margin-top: 18px !important;
 }
 
-body.payroll .parallax-mirror .parallax-slider {
-    bottom: -20px;
+
+
+body.feedback .parallax-mirror .parallax-slider {
+    bottom: 0px;
+}
+
+
+.related-blog {
+    margin: 42px 0 0 0;
+    width: calc(100% + 115px);
+    float: right;
+    border-top: 1px solid #D8D8D8;
+}
+
+@media(max-width: 348px) {
+
+    .related-blog {
+        width: 100%;
+    }
+}
+
+.related-blog h2 {
+    padding-bottom: 0px;
+}
+
+.related-blog .news-desc {
+    margin-top: 10px;
 }
 
 /*.leader-list + .leader-content {

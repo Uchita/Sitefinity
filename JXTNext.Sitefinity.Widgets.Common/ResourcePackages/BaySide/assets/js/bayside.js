@@ -214,4 +214,15 @@ $(document).ready(function () {
         $('body').addClass('home-page');
     }
 
+    /* safari and chrome */
+    var is_Safari = navigator.userAgent.indexOf("Safari") > -1;
+    var is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
+    if (is_Safari && !is_chrome) {
+        $("body").addClass('safari');
+    }
+    else {
+        $("body").addClass('no-safari');
+
+    }
+
 });

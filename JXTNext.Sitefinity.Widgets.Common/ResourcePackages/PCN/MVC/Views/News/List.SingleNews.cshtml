@@ -31,8 +31,8 @@
             <div class="image" style="background-image: url(@imageurl);"></div>
             <h4 class="sub_title"><a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@featuredNews.Fields.Title</a></h4>
             <div class="entry-meta">
-                <span class="author">By Author <a href="#" title="Posts by Greythorn Australia" rel="author">@DataResolver.Resolve(featuredNews.DataItem, "Author", null)</a></span>
-                <span class="sep">|</span>
+                @*<span class="author">By Author <a href="#" title='@DataResolver.Resolve(featuredNews.DataItem, "Author", null)' rel="author">@DataResolver.Resolve(featuredNews.DataItem, "Author", null)</a></span>
+                    <span class="sep">|</span>*@
                 <span class="date">@featuredNews.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
             </div>
             <p class="blue_text">@summary</p>

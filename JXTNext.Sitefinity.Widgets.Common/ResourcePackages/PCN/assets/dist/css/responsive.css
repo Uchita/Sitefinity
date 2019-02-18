@@ -940,6 +940,14 @@
     .search-top .btn-smc.read_btn span {
         padding: 8px 4px;
     }
+
+    .magazine-cover-img, .magazine-cover-content {
+        width: 100%;
+    }
+
+    .magazine-cover-img {
+        margin-bottom: 25px;
+    }
 }
 
 /* -----------------------------------

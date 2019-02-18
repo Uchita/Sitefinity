@@ -885,6 +885,21 @@
     <Content Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.ArchiveList.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.MagazineHome.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.MagazineHomeLeft.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.MagazineIssue.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.MagazineVolume.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.MagazineVolumeList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.SingleBlogWithImage.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -42,25 +42,13 @@
 
                     @if (textboxControl != null)
                     {
-                        <div class="col-xs-6 ol-sm-3 col-md-3">
+                        <div class="col-xs-6 col-sm-4 col-md-4">
                             <div class="form-group">
-                                <input class="form-control" placeholder="@textboxControl.PlaceholderText" type="text" name="Keywords Search">
+                                <input class="form-control" placeholder="@textboxControl.PlaceholderText" type="text" name="Keywords">
                             </div>
                         </div>
                         controlCounter++;
                     }
-
-                    <div class="col-xs-6 ol-sm-3 col-md-3">
-                        <div class="form-group">
-                            <div class="select">
-                                <input type="hidden" name="" value='' />
-                                <select class="form-control" name="" id="">
-                                    <option value="" selected>-All Classifications-</option>
-                                   
-                                </select>
-                            </div>
-                        </div>
-                    </div>
 
                     @foreach (var dropdownControl in singleDropdownControls)
                     {
@@ -72,7 +60,7 @@
                             _itemsList.Clear();
                             _idNamesLevelsPair.Clear();
                             GetValuesList(dropdownControl.Filters);
-                            <div class="col-xs-6 ol-sm-3 col-md-3">
+                            <div class="col-xs-6 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <div class="select">
                                         <input type="hidden" name="Filters[@counter].rootId" value='@dropdownControl.FilterType' />
@@ -97,34 +85,34 @@
                         controlCounter++;
                     }
 
-                    <div class="col-xs-12 ol-sm-3 col-md-3"><div class="btn-block form-group"><button class="btn btn-primary" type="submit">Search Jobs</button></div></div>
+                    <div class="col-xs-12 col-sm-4 col-md-4"><div class="btn-block form-group"><button class="btn btn-primary" type="submit">Search Jobs</button></div></div>
 
 
                 </div>
-                @*<div class="row">
+                <div class="row">
                     <div class="col-md-12">
                         <div class="row-filters"></div>
                     </div>
-                </div>*@
+                </div>
 
                 <div class="row">
                     @foreach (var list in listControls)
                     {
-                        @*<div class="col-xs-5 col-sm-4 col-md-4">
+                        <div class="col-xs-5 col-sm-4 col-md-4">
                             <div class="filter">
-                                <a data-filter-trigger="@list.ID">@list.PlaceholderText <em class="fas fa-angle-down"></em></a>   
+                                <a data-filter-trigger="@list.ID">@list.PlaceholderText <em class="fas fa-angle-down"></em></a>
                             </div>
-                        </div>*@
+                        </div>
                     }
 
-                    @*<div class="col-xs-4 pull-right text-right">
+                    <div class="col-xs-4 pull-right text-right">
                         <a href="/advancedsearch" title="Advanced search">Advanced search</a>
 
-                    </div>*@
-                    @*<div class="col-xs-2 pull-right text-right">
-                        <a class="filter-job-close" data-filter-trigger="close"><em class="fas fa-times"></em></a>
                     </div>
-                </div>*@
+                    @*<div class="col-xs-2 pull-right text-right">
+                            <a class="filter-job-close" data-filter-trigger="close"><em class="fas fa-times"></em></a>
+                        </div>*@
+                </div>
             </div>
 
             @foreach (var list in listControls)
@@ -139,15 +127,15 @@
                         if (itemCounter % 4 == 0)
                         {
                             @: <div class="row">
-                        }
+                            }
 
-                        string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewData["JobResultsPageUrl"], list.FilterType, itemName.Key);
-                        @*<div class="col-sm-3 col-md-3">
-                            <a href=@hrefLink>@itemName.Value.name</a>
-                        </div>*@
+                            string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewData["JobResultsPageUrl"], list.FilterType, itemName.Key);
+                            <div class="col-sm-3 col-md-3">
+                                <a href=@hrefLink>@itemName.Value.name</a>
+                            </div>
 
-                        if (itemCounter % 4 == 3 || itemCounter == (_idNamesLevelsPair.Count - 1))
-                        {
+                            if (itemCounter % 4 == 3 || itemCounter == (_idNamesLevelsPair.Count - 1))
+                            {
                             @: </div>
                         }
 
@@ -220,6 +208,6 @@
                     .insertAfter($('select#CountryLocationArea option:contains(Perth)'));
             }
         }
-        
+
    });
 </script>

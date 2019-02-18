@@ -66,18 +66,6 @@
     <Content Include="ResourcePackages\Tetracon\assets\dist\css\owl.min.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProBol.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProLig.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProMed.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProReg.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -88,6 +76,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\fa-solid-900.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\Segoe-Bold.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\SegoeUI.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\SegoeUI_1.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\sf-icon-font.svg">
@@ -183,9 +180,15 @@
     <Content Include="ResourcePackages\Tetracon\assets\dist\js\project.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\src\project\fonts\Segoe-Bold.svg" />
-    <Content Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI.svg" />
-    <Content Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI_1.svg" />
+    <Content Include="ResourcePackages\Tetracon\assets\src\project\fonts\Segoe-Bold.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI_1.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Tetracon\assets\src\project\images\indeed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -326,6 +329,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-dark.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-parallax-bg.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-highlight-light.html">
@@ -1917,54 +1923,6 @@
     <Content Include="ResourcePackages\Hudson\MVC\Views\JobFilters\T_MultiSelect_CustomFilter.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProBol.eot">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProBol.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProBol.woff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProBol.woff2">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProLig.eot">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProLig.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProLig.woff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProLig.woff2">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProMed.eot">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProMed.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProMed.woff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProMed.woff2">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProReg.eot">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProReg.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProReg.woff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\AkzidGroProReg.woff2">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -3310,19 +3268,85 @@
     <Content Include="ResourcePackages\Tetracon\MVC\Views\Layouts\TetraconDefault.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\Segoe-Bold.eot" />
-    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\Segoe-Bold.ttf" />
-    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\Segoe-Bold.woff" />
-    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\Segoe-Bold.woff2" />
-    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI.eot" />
-    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI.ttf" />
-    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI.woff" />
-    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI.woff2" />
-    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI_1.eot" />
-    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI_1.ttf" />
-    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI_1.woff" />
-    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI_1.woff2" />
+    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\Segoe-Bold.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\Segoe-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\Segoe-Bold.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\Segoe-Bold.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\SegoeUI.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\SegoeUI.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\SegoeUI.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\SegoeUI.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\SegoeUI_1.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\SegoeUI_1.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\SegoeUI_1.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\SegoeUI_1.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\Segoe-Bold.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\Segoe-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\Segoe-Bold.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\Segoe-Bold.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI_1.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI_1.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI_1.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\Tetracon\assets\src\project\fonts\SegoeUI_1.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="ResourcePackages\Tetracon\MVC\Views\Navigation\NavigationView.Simple.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\Card\Card.JobList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\Card\Card.TitleCallToAction.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

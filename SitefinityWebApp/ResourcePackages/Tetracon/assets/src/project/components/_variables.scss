@@ -25,10 +25,10 @@ $btn-primary-active-bg: #7DC246;
 $btn-primary-active-color: #ffa400;
 
 $btn-secondary-bg: transparent;
-$btn-secondary-color: #007077;
-$btn-secondary-hover-bg: #007077;
+$btn-secondary-color: #7DC246;
+$btn-secondary-hover-bg: $btn-secondary-color;
 $btn-secondary-hover-color: #fff;
-$btn-secondary-active-bg: #007077;
+$btn-secondary-active-bg: $btn-secondary-color;
 $btn-secondary-active-color: #7DC246;
 
 $btn-more-bg: #7DC246;
@@ -53,7 +53,7 @@ $header-top-hover-color: #7DC246;
 $header-overlay-fallback: rgb(0,0,0);
 $header-overlay: rgba(0,0,0,.8);
 
-$navigation-link-color: #fff;
+$navigation-link-color: $global-text;
 $navigation-sublink-color: #808080;
 $navigation-sublink-hover-color: #0abde3;
 

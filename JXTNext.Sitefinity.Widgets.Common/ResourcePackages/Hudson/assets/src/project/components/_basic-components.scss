@@ -554,7 +554,7 @@ blockquote{
     }
 
     .thumbnail.card-rollover {
-        background-color: transparent;
+        background-color: transparent!important;
     }
 
     .label-none label, .strong-none strong {
@@ -1321,6 +1321,12 @@ header {
                     background: $global-headings-color;
                     color: $brightColor;
                 }
+                &.header-top-links{
+                    span{
+                        position: static;
+                        line-height: 1;
+                    }
+                }
             }
             .timesheet-mnu a{
                 padding-bottom: 15px;
@@ -1329,8 +1335,9 @@ header {
                 padding: 16px 20px;
                 a{
                     display: inline;
-                    border-bottom: none;
+                    border: none;
                     background: none;
+                    margin-left: 0;
                 }
             }
             .social-mnu{
@@ -1524,7 +1531,7 @@ main {
 
 //expandable content list
 .sf-list-item{
-    h3[data-role="toggleLink"] {
+    h3[data-role="toggleLink"],  h3[data-sf-role="toggleLink"]{
         padding: 13px 40px 13px 20px;
         background: #eee;
         position: relative;
@@ -1961,8 +1968,6 @@ ul.vertical-ul {
         }
     }
 }
-<<<<<<< HEAD
-=======
 .tbl-pagination, .slimtable-paging-div{
     font-size: 1.4rem;
     margin-top: -15px; 
@@ -1984,9 +1989,13 @@ ul.vertical-ul {
     padding: 0 10px;
     border: 1px solid $global-highlight-color;
     margin-right: 3px;
+    cursor: pointer;
     &:hover, &.active{
         background: $global-highlight-color;
         color: $brightColor;
+    }
+    &.active{
+        cursor: default;
     }
 }
 select.slimtable-paging-select {
@@ -2012,7 +2021,6 @@ select.slimtable-paging-select {
     content: '\f30c';
 }
 
->>>>>>> develop
 
 /*#region Footer*/
 .page-wrapper {
@@ -2324,6 +2332,7 @@ address.info-box{
         position: absolute;
         top: 0;
         left: 0;
+        display: block;
         height: 100%!important;
         width: 100%!important;
         visibility: visible!important;
@@ -2384,7 +2393,10 @@ address.info-box{
     width: 130px;
 }
 .col-2btn-width{
-    width: 123px;
+    width: 23%;
+}
+.col-3btn-width{
+    width: 35%;
 }
 
 

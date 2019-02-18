@@ -10,22 +10,10 @@
 
     <div class="tbl-wrapper">
 
-<<<<<<< HEAD
-        <table class="table">
-            <tr>
-                <th>Job ID</th>
-                <th>Job Title</th>
-                <th class="date-col">Date Added</th>
-            </tr>
-
-            @foreach (MemberAppliedJobItem item in Model)
-            {
-=======
         <table class="table datatable">
             <thead>
->>>>>>> develop
                 <tr>
-                    <th>Job ID</th>
+                    <th width="100">Job ID</th>
                     <th>Job Title</th>
                     <th class="date-col">Date Added</th>
                 </tr>
@@ -36,7 +24,7 @@
                     <tr>
                         <td>@item.JobId</td>
                         <td><a href="@ViewBag.JobDetailsPageUrl/@item.ClassificationURL/@item.JobId">@item.DisplayTitle</a></td>
-                        <td>@String.Format("{0:dd MMM-yyyy}", item.DateAdded)</td>
+                        <td>@String.Format("{0:dd MMM yyyy}", item.DateAdded)</td>
                     </tr>
                 }
             </tbody>

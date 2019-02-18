@@ -19,18 +19,26 @@
             }
             else if (item.Name == "Salary")
             {
-                <select class="SalaryRangeSelect">
-                    <option value="-1" selected>No Salary Preference</option>
-                    @foreach (var salaryItem in item.Filters)
-                    {
-                        <option value="@salaryItem.ID">@salaryItem.Label</option>
-                    }
-                </select>
+                <div class="select">
+                    <select class="SalaryRangeSelect">
+                        <option value="-1" selected>No Salary Preference</option>
+                        @foreach (var salaryItem in item.Filters)
+                        {
+                            <option value="@salaryItem.ID">@salaryItem.Label</option>
+                        }
+
+                    </select>
+                </div>
                 foreach (var salaryItem in item.Filters)
                 {
                     var lower = 15000;
                     var upper = 300000;
-                    if (salaryItem.Label == "Hourly Rate")
+                    if (salaryItem.Label == "Daily")
+                    {
+                        lower = 200;
+                        upper = 3000;
+                    }
+                    else if (salaryItem.Label == "Hourly Rate")
                     {
                         lower = 18;
                         upper = 200;
@@ -68,9 +76,12 @@
         var typingTimer;
         var doneTypingInterval = 500;
         var isSalaryExists = false;
+        var isSalaryChanged = false;
         var isSlarySelected = false;
         var salary = { TargetValue: 'Salary', LowerRange: 15000, UpperRange: 300000 };
         var modelSalary = JSON.parse('@Html.Raw(Json.Encode(ViewBag.Salary))');
+        var tempKeyword = $("#selectedkeywordsfilter").val();
+        $("#selectedkeywordsfilter").val('').focus().val(tempKeyword);
 
         if (modelSalary != null && modelSalary != 'undefined') {
             $('.SalaryRangeSelect').val(modelSalary.TargetValue);
@@ -89,6 +100,7 @@
 
         $('.SalaryRangeSelect').on('change', function () {
             isSlarySelected = false;
+            isSalaryChanged = true;
             $('.salaryrangewrapper').each(function (i, obj) {
                 $(this).addClass('visible-hidden');
             });
@@ -127,22 +139,22 @@
                     }
                 },
                 "value_changed_callback": function (cause, leftValue, rightValue) {
-                    $(this).parent().find('.leftLabel span').text(leftValue);
-                    $(this).parent().find('.rightLabel span').text(rightValue);
+                    if (!$(this).parent().hasClass('visible-hidden')) {
+                        $(this).parent().find('.leftLabel span').text(leftValue);
+                        $(this).parent().find('.rightLabel span').text(rightValue);
+                        if (cause != 'init') {
+                            isSalaryChanged = true;
+                        }
+                    }
                 }
             });
         });
 
-
-
-        $('#selectedkeywordsfilter').on('keyup', function (e) {
-            clearTimeout(typingTimer);
-            if ($(this).val) {
-                typingTimer = setTimeout(function () {
-                    //getting the loader while the job search is working
-                    $("#selectedkeywordsfilter").parent().addClass('loader');
-                    eachClickFilter();
-                }, doneTypingInterval);
+        $('#selectedkeywordsfilter').on('keydown', function (e) {
+            if ($(this).val && e.which == 13) {
+                //getting the loader while the job search is working
+                $("#selectedkeywordsfilter").parent().addClass('loader');
+                eachClickFilter();
             }
         });
 
@@ -152,7 +164,6 @@
                 $("#selectedkeywordsfilter").parent().addClass('loader');
                 eachClickFilter();
             }
-
         });
 
         //for mobile only = show hide the filter
@@ -243,11 +254,44 @@
                 $("#" + prefixIdText + item.Name).DropDownTree(optionsArray[prefixIdText + item.Name]);
             });
 
+            //onpage load checking if any filter is selected
+            function checkFilterCheck() {
+                //checking keyword
+                if (tempKeyword != "") {
+                    return true;
+                }
+                //checking checkboxes selected
+                if ($('#filtersPagePartialContent .dropdown-tree >ul>li>a').hasClass('active')) {
+                    return true;
+                }
+                //checking salary selected
+                if ($('.SalaryRangeSelect').val() != -1) {
+                    return true;
+                }
+            }
+
+            if (checkFilterCheck()) {
+                $("#sortOrder").val("Relevance");
+            } else {
+                $("#sortOrder").val("Recent");
+            }
+
+            //getting the custom filter selected from the widget in cms
+            var array = $('#hdnClassifcationValues').val();
+
+            if (array != null && array != "") {
+                array = JSON.parse(array);
+                //console.table(array);
+                for (var i = 0; i < array.length; i++) {
+                    $('#' + array[i] + '> a').addClass('active');
+                    $('#' + array[i] + '> i').removeClass('fa-square-o').addClass('fa-check-square-o');
+                }
+            }
 
             function eachClickFilter() {
                 var filterModel = {};
                 filterModel.Filters = [];
-
+                
                 //locking the filter till the result loads
                 $('.filter-outer-wrapper').addClass('lockoverlay');
 
@@ -273,33 +317,72 @@
                     }
                 });
 
-                if (isSalaryExists && isSlarySelected){
-                    filterModel.Salary = salary;
+                if (isSalaryExists && isSlarySelected) {
+                    //only if condition is true when other filters are selected/changed
+                    //in this case, salary is reset to defult & modelSalary will hold previous salary values
+                    if (modelSalary != null && modelSalary != undefined && isSalaryChanged == false && (modelSalary.LowerRange > salary.LowerRange || modelSalary.UpperRange < salary.UpperRange) && modelSalary.TargetValue == $('.SalaryRangeSelect').val() ) {
+                        filterModel.Salary = modelSalary;
+                    }
+                    else {
+                        filterModel.Salary = salary;
+                    }
                 }
 
                 filterModel.Keywords = encodeURIComponent($("#selectedkeywordsfilter").val());
+                if ($("#pager li a").length) {
+                    filterModel.Page = "1";
+                }
+                
                 filterModel.SortBy = $("#sortOrder").val();// We need to persist the sort order selected in job search results
+                
                 var data = { filterModel: filterModel }
-                var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
+                var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial_WithLeftFilterSelected";
                 var queryStringData = makeQueryString(filterModel, "", false);
                 var pushStateUrl = $(location).attr('pathname') + "?" + queryStringData;
-                window.history.pushState(data, "", pushStateUrl);
-                queryStringArr.length = 0;
-                $.ajax({
-                    type: "POST",
-                    cache: false,
-                    url: urlPath,
-                    data: queryStringData,
-                    dataType: 'json',
-                    success: function (response) {
-                        $("#resultsPagePartialContent").empty().html(response.jobResults);
-                        $("#filtersPagePartialContent").empty().html(response.jobResultsFilter);
-                    },
-                    error: function (response) {
-                       console.log(response);
+
+                var newFilters = filterModel.Filters[0].values;
+                array = $('#hdnClassifcationValues').val();
+                array = JSON.parse(array);
+                var array_init = array[0].split('-');
+                var isSubCategory = true;
+
+                for (var j = 0; j < newFilters.length; j++) {
+                    if (!array.includes(newFilters[j]) && newFilters[j].indexOf(array_init[0]) == -1 ) {
+                        isSubCategory = false;
+                        break;
                     }
-                });
+                }
+
+                if (isSubCategory == true) {
+                    window.history.pushState(data, "", pushStateUrl);
+                    queryStringArr.length = 0;
+                    $.ajax({
+                        type: "POST",
+                        cache: false,
+                        url: urlPath,
+                        data: queryStringData,
+                        dataType: 'json',
+                        success: function (response) {
+                            $("#resultsPagePartialContent").empty().html(response.jobResults);
+                            $("#filtersPagePartialContent").empty().html(response.jobResultsFilter);
+                        },
+                        error: function (response) {
+                            console.log(response);
+                        }
+                    });
+                }
+                else {
+                    window.location.href = '/job-seekers/search-results' + "?" + queryStringData;
+                }
+
             }
+        }
+
+
+        //job filter widget
+        if ($('#filtersPagePartialContent').length) {
+            $('#filtersPagePartialContent #CountryLocationArea li li[data-title="SYDNEY"]')
+                .insertAfter($('#filtersPagePartialContent #CountryLocationArea li li[data-title="PERTH"]'));
         }
 
     });

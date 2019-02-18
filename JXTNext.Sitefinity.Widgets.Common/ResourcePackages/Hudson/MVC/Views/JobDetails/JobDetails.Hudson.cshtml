@@ -138,21 +138,6 @@
                 </div>
             </div><div class="row job-offer-contacts">
                 <div class="col-md-12">
-<<<<<<< HEAD
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td width="170"><strong>Reference Number:</strong></td>
-                                <td>
-                                    @Model.JobDetails.ReferenceNo
-                                </td>
-                            </tr>
-                            @{
-                                if (Model.JobDetails.CustomData["ContactDetails"] != "")
-                                {
-                                    <tr><td><strong>Contact Details:</strong></td><td>@Model.JobDetails.CustomData["ContactDetails"]</td></tr>
-                                }
-=======
                     <div class="flex sm-flex job-metas">
                        
                         <div class="job-meta-label"><strong>Reference Number:</strong></div>
@@ -165,7 +150,6 @@
                             {
                                 <div class="job-meta-label"><strong>Contact Details:</strong></div>
                                 <div class="job-meta-value">@Model.JobDetails.CustomData["ContactDetails"]</div>
->>>>>>> develop
                             }
                         }
 
@@ -182,22 +166,9 @@
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
-            @if (ViewBag.IsJobApplied)
-            {
-                  <div class="alert alert-info">@Html.Resource("JobAlreadyAppliedMsg")</div>
-            }
-            else
-            {
-                <div class="row job-offer-apply">
-                    <div class="col-md-12">
-                        <a id="job-application-lnk" class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID">APPLY NOW</a>
-                    </div>
-=======
                   
             <div class="row job-offer-apply">
                 <div class="job-apply-btn col-md-12">
->>>>>>> develop
                 </div>
             </div>
 
@@ -206,24 +177,9 @@
     </div>
 
     <div class="col-md-4 mb-30 jobdetail-sidebar">
-<<<<<<< HEAD
-        @if (ViewBag.IsJobApplied)
-        {
-            <div class="row job-offer-apply">
-                <div class="alert alert-info">@Html.Resource("JobAlreadyAppliedMsg")</div>
-            </div>
-        }
-        else
-        {
-            <div class="row job-offer-apply">
-                <div class="col-md-12">
-                    <a id="job-application-lnk" class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID">APPLY NOW</a>
-                </div>
-=======
         <div class="row job-offer-apply">
             <div class="job-apply-btn col-md-12">
 
->>>>>>> develop
             </div>
         </div>
         <br />
@@ -322,7 +278,7 @@
                         showMarker = false;
                     }
 
-                    for (var item of markers) {
+                    for (var item in markers) {
                         if (item.isLatLng) {
                             $(this).addMarker({
                                 coords: [item.lat, item.lng],
@@ -490,7 +446,18 @@
         });
 
         $("#back-to-results").attr("href", '/job-seekers/search-results');
-        
+
+        //removing the timestamp from reference number value
+        //initial value: 2X/06146_153447008279184
+        //final value: 2X/06146
+        if ($("#job-refno").length && $("#job-refno").text() != "") {
+            var jobRef = $("#job-refno");
+            if (jobRef.text().indexOf("_") > 0) {
+                var temp = jobRef.text().split("_");
+                jobRef.text(temp[0]);
+            }
+        }
+
     });
 </script>
 

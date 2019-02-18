@@ -110,7 +110,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 if (_socialHandlerLogics != null)
                 {
                     Log.Write("_socialHandlerLogics not null", ConfigurationPolicy.ErrorLog);
-                    if (Request.InputStream != null)
+                    if(Request.InputStream != null)
                         Request.InputStream.Position = 0;
 
                     StreamReader reader = new StreamReader(Request.InputStream);
@@ -153,7 +153,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                     {
                         Log.Write("_socialHandlerLogics 'result' not null", ConfigurationPolicy.ErrorLog);
                         Log.Write(result.Success + " " + result.JobId, ConfigurationPolicy.ErrorLog);
-                        if (result.Errors != null)
+                        if(result.Errors != null)
                             Log.Write(result.Errors.FirstOrDefault(), ConfigurationPolicy.ErrorLog);
                     }
 
@@ -189,7 +189,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
                                 }
                                 Log.Write("SitefinityHelper.IsUserLoggedIn() =" + SitefinityHelper.IsUserLoggedIn(), ConfigurationPolicy.ErrorLog);
-
+                                
                             }
                             else if (!string.IsNullOrEmpty(result.LoginUserEmail))
                             {
@@ -218,7 +218,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     Status = "Ready"
                                 };
 
-
+                                
 
                                 // End code for fetch job details
                                 Log.Write("overrideEmail uploadItem object created", ConfigurationPolicy.ErrorLog);
@@ -257,7 +257,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                     new EmailTarget(SitefinityHelper.GetUserFirstNameById(SitefinityHelper.GetUserByEmail(overrideEmail).Id), overrideEmail),
                                                                                                     this.EmailTemplateEmailSubject,
-                                                                                                    htmlEmailContent, null);
+                                                                                                    htmlEmailContent,null);
 
                                 Log.Write("emailNotificationSettings after: ", ConfigurationPolicy.ErrorLog);
                                 // CC and BCC emails
@@ -283,8 +283,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
                                 //Create Application 
                                 IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(
-                                    new JXTNext_MemberApplicationRequest
-                                    {
+                                    new JXTNext_MemberApplicationRequest {
                                         ApplyResourceID = result.JobId.Value,
                                         MemberID = 2,
                                         ResumePath = resumeAttachmentPath,
@@ -297,7 +296,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     overrideEmail);
 
                                 Log.Write("BL response after: ", ConfigurationPolicy.ErrorLog);
-
+                                
                                 if (response.Success && response.ApplicationID.HasValue)
                                 {
                                     Log.Write("BL response in: ", ConfigurationPolicy.ErrorLog);
@@ -358,18 +357,18 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                         }
                     }
 
-
+                    
                 }
             }
 
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 Log.Write("Social Handler : Exception Caught" + ex.Message, ConfigurationPolicy.ErrorLog);
             }
 
+            
 
-
-            if (this.Request.QueryString["error"].ToLower().Contains("denied"))
+            if (this.Request.QueryString["error"].ToLower().Contains("denied") )
             {
                 if (seoString != null && seoString.Count > 0)
                 {
@@ -381,7 +380,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                     return Redirect(string.Format("job-application/{0}?error=resume", int.Parse(state)));
                 }
             }
-
+            
 
             if (!this.JobSearchResultsPageId.IsNullOrEmpty())
                 ViewBag.JobSearchResultsUrl = SitefinityHelper.GetPageUrl(this.JobSearchResultsPageId);
@@ -444,7 +443,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
         private string GetAdevertiserEmailHtmlContent()
         {
-
+            
             //return _jobApplicationService.GetHtmlEmailContent("3DCBDCE5-F190-4FBA-BE51-074F2E034A04", this.AdvertiserEmailTemplateProviderName, this._itemType);
             return _jobApplicationService.GetHtmlEmailContent(this.AdvertiserEmailTemplateId, this.AdvertiserEmailTemplateProviderName, this._itemType);
         }

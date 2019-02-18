@@ -111,9 +111,6 @@ namespace JXTNext.Sitefinity.Services.Services
                 Data = jobAlertData.Data,
                 Status = 1,
                 MemberJobAlertId = memberJobAlertId,
-
-                //Email = jobAlertData.Email
-
                 Email = jobAlertData.Email,
                 EmailNotification = jobAlertData.EmailNotifications
             };

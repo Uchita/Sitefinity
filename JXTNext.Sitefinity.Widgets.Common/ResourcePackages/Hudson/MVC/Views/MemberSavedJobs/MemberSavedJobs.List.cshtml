@@ -20,34 +20,22 @@
 {
 
     <div class="tbl-wrapper">
-<<<<<<< HEAD
-        <table class="table">
-
-            <tr>
-                <th>Job ID</th>
-                <th>Job Title</th>
-                <th class="date-col">Date Added</th>
-                <th>Actions</th>
-            </tr>
-
-=======
         <table class="table table-bordered datatable">
             <thead>
                 <tr>
-                    <th>Job ID</th>
+                    <th width="100">Job ID</th>
                     <th>Job Title</th>
                     <th class="date-col">Date Added</th>
                     <th class="act-col">Actions</th>
                 </tr>
             </thead>
             <tbody>
->>>>>>> develop
             @foreach (MemberSavedJobDisplayItem item in Model)
             {
                 <tr>
                     <td>@item.JobId</td>
                     <td><a href="@ViewBag.JobDetailsPageUrl/@item.ClassificationURL/@item.JobId">@item.DisplayTitle</a></td>
-                    <td>@String.Format("{0:dd MMM-yyyy}", item.DateAdded)</td>
+                    <td>@String.Format("{0:dd MMM yyyy}", item.DateAdded)</td>
                     <td>
                         @Html.ActionLink("Remove", "DeleteSavedJob", "MemberSavedJobs", new { savedJobId = item.Id }, new { onclick = "return confirmSaveJobDelete();", @class = "btn btn-sm btn-tag btn-danger" })
                     </td>

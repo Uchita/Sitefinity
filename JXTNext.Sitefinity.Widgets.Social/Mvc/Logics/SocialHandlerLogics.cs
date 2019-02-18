@@ -17,7 +17,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
     {
         IEnumerable<IProcessSocialMediaData> _processSocialMediaData;
         IJobApplicationService _jobApplicationService;
-
+       
         public SocialHandlerLogics(IEnumerable<IProcessSocialMediaData> processSocialMediaData, IJobApplicationService jobApplicationService)
         {
             _processSocialMediaData = processSocialMediaData;

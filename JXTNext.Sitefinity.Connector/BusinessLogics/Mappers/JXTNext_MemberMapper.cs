@@ -44,7 +44,6 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                 documentsPath = jxtAppDetails.DocumentsPath,
                 urlReferral = jxtAppDetails.UrlReferral,
                 registrationEmailNotification  = jxtAppDetails.RegistrationEmailNotification
-
             };
 
             return apiObj;

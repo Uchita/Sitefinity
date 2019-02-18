@@ -2,7 +2,9 @@
 
 @model JobApplicationViewModel
 
-@using JXTNext.Sitefinity.Common.Helpers
+@using JXTNext.Sitefinity.Common.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
 
 @if (ViewBag.ShowFilesUploadMessage != null)
 {
@@ -10,14 +12,21 @@
 }
 @if (ViewBag.PostBackMessage != null)
 {
-    <br /><div class="alert alert-danger">@ViewBag.PostBackMessage</div>
+    <br /><div class="alert alert-info">@ViewBag.PostBackMessage</div>
+}
+@if (ViewBag.SeekResumeError == true)
+{
+    <br /><div class="alert alert-danger">@ViewBag.SeekResumeErrorMessage</div>
+}
+@if (ViewBag.JobRecordExists == true)
+{
+    <br /><div class="alert alert-danger">@ViewBag.JobRecordExistsErrorMessage</div>
+}
+@if (ViewBag.SeekAccessError == true)
+{
+    <br /><div class="alert alert-danger">@ViewBag.SeekAccessErrorMessage</div>
 }
 
-<input type="hidden" value='@TempData["JobTitleTemp"]' id="hdnJobTitle" />
-@*<p>
-        @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model,
-        Newtonsoft.Json.Formatting.Indented))
-    </p>*@
 <div class="login-form sign-in-with">
     <form id="job-app-form" action="@Url.Action(" ApplyJob","JobApplication")" method="post" enctype="multipart/form-data" autocomplete="off">
 
@@ -35,12 +44,11 @@
                     <div id="check-login" class="form-group">
                         <div class="row">
                             <div class="col-md-4 text-right">
-                                @*<label class="form-label" for="userid">Email *</label>*@
+                                <label class="form-label" for="userid">@Html.Resource("Email", "LoginFormResources")*</label>
                             </div>
                             <div class="col-md-8">
-                                @* Enter email address to begin *@
-                                <input id="userid" type="text" name="Email" class="form-control" required placeholder="Email *" autocomplete="email" onfocus="this.removeAttribute('readonly');" readonly />
-                                <small class="welcome-message hidden">Welcome back!</small>
+                                <input id="userid" type="text" name="Email" class="form-control" required placeholder="Enter email address to begin" autocomplete="email" aria-describedby="email-verify-message" />
+                                <small class="welcome-message hidden">@Html.Resource("DashboardWelcomeWidgetTitle", "DashboardResources")</small>
                             </div>
                         </div>
                     </div>
@@ -49,16 +57,16 @@
                         <div id="firstname-lastname">
                             <div class="row">
                                 <div class="col-md-4 text-right">
-                                    <label class="form-label" for="firstname-reg">Name*</label>
+                                    <label class="form-label" for="firstname-reg">@Html.Resource("Name", "LoginFormResources")*</label>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <input id="firstname-reg" type="text" name="FirstName" class="form-control" placeholder="First name" />
+                                        <input id="firstname-reg" type="text" name="FirstName" class="form-control" placeholder="First name" aria-describedby="firstName-message" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <input type="text" id="lastname-reg" name="LastName" class="form-control" placeholder="Last name" />
+                                        <input type="text" id="lastname-reg" name="LastName" class="form-control" placeholder="Last name" aria-describedby="lastName-message" />
                                     </div>
                                 </div>
                             </div>
@@ -70,35 +78,36 @@
                                     </label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" id="PhoneNumber" name="PhoneNumber" pattern="[0-9]*" class="form-control" placeholder="Phone number" />
+                                    <input type="tel" id="PhoneNumber" name="PhoneNumber" pattern="^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})" class="form-control" placeholder="Phone number" aria-describedby="phone-message" />
+                                    <span class="text-muted"><em>@Html.Resource("phoneValidationMsg", "Labels")</em></span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row form-group">
                             <div class="col-md-4 text-right">
-                                <label class="form-label" for="password-reg">Password*</label>
+                                <label class="form-label" for="password-reg">@Html.Resource("Password", "Labels")*</label>
                             </div>
                             <div class="col-md-8">
-                                <input id="password-reg" type="password" name="Password" class="form-control" autocomplete="off" placeholder="Choose your password" />
+                                <input id="password-reg" type="password" name="Password" class="form-control" autocomplete="off" placeholder="Choose your password" aria-describedby="password-message" />
                                 <span class="hidden alert alert-danger error-message wrongPassword-message">
-                                    Your password is incorrect!
+                                    @Html.Resource("InvalidPassword", "ErrorMessages")
                                 </span>
                                 <span class="hidden alert alert-danger error-message emptyPassword-message">
-                                    Please enter password.
+                                    @Html.Resource("PasswordCannotBeEmpty", "Labels")
                                 </span>
                                 <span id="password-guide" class="text-muted">
-                                    <em>Password must contain 8 characters or more, 1 uppercase letter, 1 lowercase letter and 1 number</em>
+                                    <em>@Html.Resource("passwordRequirementMsg", "Labels")</em>
                                 </span>
                                 <div id="forgot-password" class="form-group forgot-password hidden">
-                                    <br /><a href="/login/ForgotPassword/">Forgot password?</a>
+                                    <br /><a href="/login/ForgotPassword/">@Html.Resource("ForgottenPasword", "LoginFormResources")</a>
                                 </div>
 
                                 <div class="form-group" id="rememberme-block">
                                     <div class="checkbox clearfix">
                                         <input checked="checked" id="RememberMe" name="RememberMe" type="checkbox" value="true">
                                         <span class="checkbox-icon fas fa-check"></span>
-                                        Stay signed in
+                                        @Html.Resource("RememberMe", "LoginFormResources")
                                     </div>
                                 </div>
 
@@ -119,18 +128,18 @@
 
                         <div class="row form-group reg-field hidden">
                             <div class="col-md-4 text-right">
-                                <label class="form-label" for="ReTypePassword">Repeat Password*</label>
+                                <label class="form-label" for="ReTypePassword">@Html.Resource("ReTypePassword", "RegistrationResources")*</label>
                             </div>
                             <div class="col-md-8">
                                 <input id="ReTypePassword" type="password" name="ReTypePassword" class="form-control" placeholder="Retype your password" />
-                                <div class='alert alert-danger error-message hidden'>'Repeat Password' does not match.</div>
+                                <div class='alert alert-danger error-message hidden'>@Html.Resource("ConfirmPasswordErrorMsg", "ErrorMessages")</div>
                             </div>
                         </div>
 
                     </div>
 
                 </div>
-                <div class="alert alert-info hidden" id="already-applied-info">You have already applied for this job.</div>
+                <div class="alert alert-info hidden" id="already-applied-info">@Html.Resource("JobAlreadyAppliedMsg", "Labels")</div>
             }
             <!-- Upload section -->
             <div class="upload-section">
@@ -138,16 +147,81 @@
                 @if (Model.ApplicationStatus == JobApplicationStatus.Available)
                 {
 
+                    var loginElemHide = "";
+
                     <div id="upload-files-container" hidden>
 
+
+                        @if (ViewBag.IsUserLoggedIn)
+                        {
+                            loginElemHide = "hidden";
+
+                            <div class="form-group row">
+                                <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                                <div class="col-xs-12 col-md-8">
+                                    <div class="list-group">
+                                        <label for="selectresume" class="radiobutton">
+                                            <input id="selectresume" type="radio" name="resume" class="checked" value="resume" checked />
+                                            <span class="radiobutton-icon fas fa-circle"></span>
+                                            <span class="text-right">Select a resume stored on Bayside</span>
+                                        </label>
+                                        <label for="uploadresume" class="radiobutton">
+                                            <input id="uploadresume" type="radio" name="resume" />
+                                            <span class="radiobutton-icon fas fa-circle"></span>
+                                            <span class="text-right">Upload a resume</span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                                <div class="col-xs-12 col-md-8">
+                                    <div class="list-group select">
+                                        @Html.DropDownList("MySavedResumes", (IEnumerable<SelectListItem>)ViewBag.ResumeList, new { @onchange = "ProcessSavedResume(this.value)" })
+                                    </div><!-- end box -->
+
+                                </div>
+                            </div>
+                        }
+
+                        <div class="form-group row" id="user-profile-resume" hidden style="display: none;">
+                            <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="list-group">
+                                    <label for="selectresume" class="radiobutton">
+                                        <input id="selectresume" type="radio" name="resume" checked />
+                                        <span class="radiobutton-icon fas fa-circle"></span>
+                                        <span class="text-right">Select a resume stored on Bayside</span>
+                                    </label>
+                                    <label for="uploadresume" class="radiobutton">
+                                        <input id="uploadresume" type="radio" name="resume" />
+                                        <span class="radiobutton-icon fas fa-circle"></span>
+                                        <span class="text-right">Upload a resume</span>
+                                    </label>
+                                </div>
+
+                            </div>
+                            <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="list-group select">
+                                    <select id="user-profile-resume-list"></select><!-- end box -->
+                                </div>
+
+                            </div>
+                        </div>
+
+
                         <!-- Resume -->
-                        <div class="form-group row">
-                            <label class="form-label col-xs-12 col-md-4 text-right">upload your cv*</label>
+                        <div class="form-group row" id="uploadresumeblock" @loginElemHide>
+                            <label class="form-label col-xs-12 col-md-4 text-right">upload your resume*</label>
                             <div class="col-xs-12 col-md-8">
                                 <div class="box clearfix text-center">
                                     <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
                                     <div class="uploadfield-wrap">
-                                        <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.html,.htm,.xhtml" />
+                                        <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
 
 
                                         <small class="lbl">Browse</small>
@@ -162,9 +236,7 @@
                                     </div>
                                     <span class="note resume-name"></span>
                                 </div><!-- end box -->
-                                <span class="hidden alert alert-danger error-message resume-message">
-                                    Please upload your resume!
-                                </span>
+
                             </div>
                         </div>
 
@@ -175,7 +247,7 @@
                                 <div class="box clearfix text-center">
                                     <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
                                     <div class="uploadfield-wrap">
-                                        <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.html,.htm,.xhtml" />
+                                        <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
                                         <small class="lbl">Browse</small>
                                     </div>
                                     <div class="uploadfield-wrap dropbox-upload">
@@ -198,7 +270,7 @@
                                 <div class="box clearfix text-center">
                                     <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
                                     <div class="uploadfield-wrap">
-                                        <input type="file" multiple id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.html,.htm,.xhtml" />
+                                        <input type="file" multiple id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
                                         <small class="lbl">Browse</small>
                                     </div>
                                     <div class="uploadfield-wrap dropbox-upload">
@@ -221,20 +293,35 @@
                         <input type="hidden" id="resume-selected-type" name="ResumeSelectedType" />
                         <input type="hidden" id="coverletter-selected-type" name="CoverLetterSelectedType" />
                         <input type="hidden" id="documents-selected-type" name="DocumentsSelectedType" />
+                        <input type="hidden" id="email-selected" name="Email" />
                         <input type="hidden" id="jobid" name="JobId" value="@Model.JobId" />
+                        <input type="hidden" id="applicationemail" name="ApplicationEmail" value="@Model.ApplicationEmail" />
+                        <input type="hidden" id="contactdetails" name="ContactDetails" value="@Model.ContactDetails" />
+                        <input type="hidden" id="companyname" name="CompanyName" value="@ViewBag.CompanyName" />
+                        <input type="hidden" id="urlReferral" name="UrlReferral" value="@Model.UrlReferral" />
+
+
 
                         <div class="form-group button-wrapper row">
                             <label class="col-xs-12 col-md-4"></label>
                             <div class="col-xs-12 col-md-8">
                                 <label class="checkbox clearfix">
-                                    <input name="privacypolicy" title="Please agree to Bayside's privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Please agree to Bayside\'s privacy policy');" type="checkbox" value="agree">
-                                    <span class="checkbox-icon fas fa-check" title="Please agree to Bayside's privacy policy"></span>
+
+                                    <input name="privacypolicy" title="Please agree to Bayside Group privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Please agree to Bayside\'s privacy policy');" type="checkbox" value="agree">
+                                    <span class="checkbox-icon fas fa-check" title="Please agree to Bayside Group privacy policy"></span>
                                     I agree to Bayside Group <a href="/privacy-policy" target="_blank">Privacy Policy</a>
                                 </label>
                                 <input id="apply" type="submit" value="Apply Now" class="btn btn-block btn-primary" disabled />
-
                             </div>
                         </div>
+
+                        <div class="hidden alert alert-danger error-message resume-message">
+                            @Html.Resource("UploadResumeErrorMsg", "ErrorMessages")
+                        </div>
+                        <div class="hidden alert alert-danger error-message resume-select-message">
+                            @Html.Resource("SelectResumeErrorMsg", "ErrorMessages")
+                        </div>
+
                     </div>
                 }
                 else
@@ -271,9 +358,15 @@
 
 <script>
 
+    $(document).ready(function () {
+        $('input:radio[name="resume"]').filter('[value="resume"]').attr('checked', true);
+    });
+
+
     var appStatus = '@Model.ApplicationStatus';
     var isUserLoggedIn = '@ViewBag.IsUserLoggedIn';
     var registerForm = false;
+    var userLoggedInParamFromViewbag = '@ViewBag.IsUserLoggedIn';
 
 
     function validateEmail(elementValue) {
@@ -303,8 +396,32 @@
     var m_strNumber = "0123456789";
     var m_strCharacters = "!@@#$%^&*?_~";
 
+    $("#selectresume").change(function () {
+        $("#uploadresumeblock").hide();
+        $("#selectresume").addClass("checked");
+        if (userLoggedInParamFromViewbag == 'True') {
+            $("#MySavedResumes").parent('div').show();
+        } else {
+            $("#user-profile-resume-list").parent('div').show();
+        }
+
+    });
+
+    $("#uploadresume").change(function () {
+        $("#uploadresumeblock").show();
+        $("#selectresume").removeClass("checked");
+        if (userLoggedInParamFromViewbag == 'True') {
+            $("#MySavedResumes").parent('div').hide();
+        } else {
+            $("#user-profile-resume-list").parent('div').hide();
+        }
+
+    });
+
+
     $(document).ready(function () {
-        $('h1.fadeInUp').html($('#hdnJobTitle').val());
+
+
         $('form').submit(function (e) {
             e.preventDefault();
             var self = this;
@@ -312,13 +429,19 @@
             //checking the resume file upload
             if (resumeSelectedType == "" || resumeSelectedType.length == 0) {
                 fileUploadFlag = false;
-                $(".resume-message").removeClass('hidden');
+                $(".resume-message, .resume-select-message").addClass('hidden');
+                if ($("#uploadresume:checked").length) {
+                    $(".resume-message").removeClass('hidden');
+                } else {
+                    $(".resume-select-message").removeClass('hidden');
+                }
+
                 return false;
             } else {
                 fileUploadFlag = true;
             }
 
-            if ((appStatus == 'Available' && isUserLoggedIn == 'True') && fileUploadFlag || registerForm) {
+            if (appStatus == 'Available' && (fileUploadFlag || registerForm)) {
                 //if (registerForm) {
                 self.submit();
                 //}
@@ -348,6 +471,12 @@
             $("#resume-selected-type").val(resumeSelectedType);
             var resumeBrowseName = document.getElementById("application-resume").files[0].name;
             $(".resume-name").text(resumeBrowseName);
+
+            if (userLoggedInParamFromViewbag == 'True') {
+                $("#MySavedResumes").val('0');
+            } else {
+                $("#user-profile-resume-list").val('0');
+            }
             $(".resume-message").addClass('hidden');
         });
 
@@ -378,6 +507,22 @@
             }
         });
 
+        function processProfileResumeJsonData(data) {
+            resumes = data;
+            var rows = '';
+
+            $.each(JSON.parse(resumes), function (i, item) {
+
+                rows += '<option value="' + item.Value + '">' + item.Text + '</option>';
+
+            });
+            if (rows.length) {
+                $('#user-profile-resume-list').html(rows);
+            } else {
+                $('#user-profile-resume-list').html('<option val="0">SELECT YOUR RESUME</option>');
+            }
+        }
+
         //member sign in continue
         $('#sign-in-btn').click(function () {
             $('#password-reg').parent().find('.error-message.emptyPassword-message').addClass('hidden');
@@ -390,7 +535,6 @@
 
             var jobId = $(this).data("jobid");
             var staySignedinFlag = $('#RememberMe').is(':checked') ? true : false;
-            console.log(staySignedinFlag);
             //for login email address & password check & submit login form
             var parm = { email: $('#userid').val(), password: $('#password-reg').val(), staySignedIn: staySignedinFlag, isUserLoggedIn: false };
             var urlPath = $(location).attr('pathname') + "/ValidateUser";
@@ -401,7 +545,6 @@
                 data: parm,
                 dataType: 'Json',
                 success: function (response) {
-                    //isUserLoggedIn = 'True';
                     $('#password-reg').parent().find('.error-message.wrongPassword-message').addClass('hidden');
                     // Once the user signed in , we need to know that the user is already applied for this job.
                     if (response.IsUserSignedIn == true) {
@@ -424,8 +567,7 @@
                                     $('.ext-provider-form, .loginwith_socialmedia').hide();
                                 }
                                 else {
-                                    //window.location.reload();
-                                    // Show upload files section
+                                    //Show upload files section
                                     $('#register').hide();
                                     $('#userid').attr('disabled', true);
                                     $('#apply').removeAttr('disabled');
@@ -433,6 +575,10 @@
                                     $('#upload-files-container').show();
                                     $('#appFormState').text('Upload your files');
                                     $("#upload-files-container").show();
+                                    $('#user-profile-resume').removeAttr('hidden');
+                                    $('#uploadresumeblock').hide();
+                                    $('#email-selected').val($('#userid').val());
+
                                 }
                             },
                             error: function (response) {
@@ -467,7 +613,6 @@
             var parm = { email: emailId };
             var urlPath = $(location).attr('pathname') + "/CheckUser";
 
-            //$('#upload-files-container').hide();
             if (valid) {
                 $(this).css('color', '#000');
                 $.ajax({
@@ -524,7 +669,7 @@
                             $('#sign-in-btn').removeClass('hidden');
 
                         }
-                        //$('#upload-files-container').show();
+
                         $('#apply').removeAttr('disabled');
                     },
                     error: function (response) {
@@ -533,7 +678,7 @@
             } else {
                 $('.welcome-message').addClass('hidden');
                 $('.loginwith_socialmedia').show();
-
+                $('#upload-files-container').hide();
                 $('#register').hide();
                 $(this).css('color', 'red');
                 $('#password-reg').prop('required', false);
@@ -551,23 +696,6 @@
                 //runPassword($(this).val());
             }
         });
-
-        function processProfileResumeJsonData(data) {
-            resumes = data;
-            var rows = '';
-
-            $.each(JSON.parse(resumes), function (i, item) {
-
-                rows += '<option value="' + item.Value + '">' + item.Text + '</option>';
-
-            });
-            if (rows.length) {
-                $('#user-profile-resume-list').html(rows);
-            } else {
-                $('#user-profile-resume-list').html('<option val="0">SELECT YOUR CV</option>');
-            }
-        }
-
         $('#ReTypePassword').keydown(function () {
             $(this).next('.alert').addClass('hidden');
         });
@@ -586,6 +714,26 @@
                     registerForm = true;
                 }
             }
+        });
+
+
+
+
+        $("#user-profile-resume-list").on("change", function () {
+
+            if ($(this).val() == '0') {
+                resumeSelectedType = '';
+                $("#resume-selected-type").val(resumeSelectedType);
+                $('#uploadResumeJson').val('');
+            } else {
+                resumeSelectedType = 'Saved';
+                $("#resume-selected-type").val(resumeSelectedType);
+                $('#uploadResumeJson').val($(this).val());
+                $(".resume-name").text('');
+                $("#application-resume").val("");
+                $(".resume-select-message").addClass('hidden');
+            }
+
         });
 
         function checkPassword(strPassword) {
@@ -757,6 +905,12 @@
                     $('#application-resume').val('');
                     $("#resume-selected-type").val(resumeSelectedType);
                     $('.resume-name').text(files[0].name);
+                    if (userLoggedInParamFromViewbag == 'True') {
+                        $("#MySavedResumes").val('0');
+                    } else {
+                        $("#user-profile-resume-list").val('0');
+                    }
+
                 }
                 else {
                     if (isDropboxCoverLetter) {
@@ -803,7 +957,7 @@
             // only be able to select files with these extensions. You may also specify
             // file types, such as "video" or "images" in the list. For more information,
             // see File types below. By default, all extensions are allowed.
-            extensions: ['.pdf', '.doc', '.docx'],
+            extensions: ['.pdf', '.doc', '.docx', '.txt', '.rtf', '.html'],
 
             // Optional. A value of false (default) limits selection to files,
             // while true allows the user to select both folders and files.
@@ -860,7 +1014,7 @@
             // only be able to select files with these extensions. You may also specify
             // file types, such as "video" or "images" in the list. For more information,
             // see File types below. By default, all extensions are allowed.
-            extensions: ['.pdf', '.doc', '.docx'],
+            extensions: ['.pdf', '.doc', '.docx', '.txt', '.rtf', '.html'],
 
             // Optional. A value of false (default) limits selection to files,
             // while true allows the user to select both folders and files.
@@ -970,6 +1124,24 @@
             picker.setVisible(true);
         }
     }
+
+    function ProcessSavedResume(resumeId) {
+
+        if (resumeId == '0') {
+            resumeSelectedType = '';
+            $("#resume-selected-type").val(resumeSelectedType);
+            $('#uploadResumeJson').val('');
+        } else {
+            resumeSelectedType = 'Saved';
+            $("#resume-selected-type").val(resumeSelectedType);
+            $('#uploadResumeJson').val(resumeId);
+            $(".resume-name").text('');
+            $("#application-resume").val("");
+            $(".resume-message").addClass('hidden');
+        }
+
+    }
+
     function createPickerMulti() {
         if (pickerApiLoaded && oauthToken) {
             var picker = new google.picker.PickerBuilder().
@@ -989,7 +1161,7 @@
         var name = "";
         var fileId = "";
         var mime = "";
-        debugger;
+
 
         if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
             var doc = data[google.picker.Response.DOCUMENTS][0];
@@ -1038,6 +1210,12 @@
                 $('#application-resume').val('');
                 $("#resume-selected-type").val(resumeSelectedType);
                 $('.resume-name').text(name);
+                if (userLoggedInParamFromViewbag == 'True') {
+                    $("#MySavedResumes").val('0');
+                } else {
+                    $("#user-profile-resume-list").val('0');
+                }
+
             }
             else {
                 if (isGoogleCoverLetter) {

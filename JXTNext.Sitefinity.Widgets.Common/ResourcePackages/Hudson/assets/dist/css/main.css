@@ -7670,7 +7670,7 @@ blockquote {
   .page-wrapper .font-bold {
     font-family: AkzidGroProBol, sans-serif; }
   .page-wrapper .thumbnail.card-rollover {
-    background-color: transparent; }
+    background-color: transparent !important; }
   .page-wrapper .label-none label, .page-wrapper .strong-none strong {
     display: none; }
   .page-wrapper .color-highlight {
@@ -8190,14 +8190,18 @@ header {
         header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu a {
           background: #2e2e2e;
           color: #fff; }
+        header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu.header-top-links span {
+          position: static;
+          line-height: 1; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .timesheet-mnu a {
         padding-bottom: 15px; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .combine-mnu {
         padding: 16px 20px; }
         header .mobile-nav.left-sidebar .nav.navbar-nav .combine-mnu a {
           display: inline;
-          border-bottom: none;
-          background: none; }
+          border: none;
+          background: none;
+          margin-left: 0; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .social-mnu {
         padding-top: 0;
         padding-bottom: 0; }
@@ -8326,12 +8330,12 @@ main {
   .section-highlight-light .btn {
     border-color: #fff; }
 
-.sf-list-item h3[data-role="toggleLink"] {
+.sf-list-item h3[data-role="toggleLink"], .sf-list-item h3[data-sf-role="toggleLink"] {
   padding: 13px 40px 13px 20px;
   background: #eee;
   position: relative;
   font-size: 1.8rem; }
-  .sf-list-item h3[data-role="toggleLink"] > i {
+  .sf-list-item h3[data-role="toggleLink"] > i, .sf-list-item h3[data-sf-role="toggleLink"] > i {
     position: absolute;
     right: 8px;
     top: 17px; }
@@ -8608,8 +8612,6 @@ ul.vertical-ul {
       color: #fff;
       border-color: #219fa3; }
 
-<<<<<<< HEAD
-=======
 .tbl-pagination, .slimtable-paging-div {
   font-size: 1.4rem;
   margin-top: -15px;
@@ -8630,10 +8632,13 @@ ul.vertical-ul {
   display: inline-block;
   padding: 0 10px;
   border: 1px solid #01a3a4;
-  margin-right: 3px; }
+  margin-right: 3px;
+  cursor: pointer; }
   .slimtable-page-btn:hover, .slimtable-page-btn.active {
     background: #01a3a4;
     color: #fff; }
+  .slimtable-page-btn.active {
+    cursor: default; }
 
 select.slimtable-paging-select {
   padding: 0;
@@ -8657,7 +8662,6 @@ select.slimtable-paging-select {
 .slimtable-sprites.slimtable-sortasc::after {
   content: '\f30c'; }
 
->>>>>>> develop
 /*#region Footer*/
 .page-wrapper footer .brand-logo {
   max-width: 165px; }
@@ -8885,6 +8889,7 @@ address.info-box {
     position: absolute;
     top: 0;
     left: 0;
+    display: block;
     height: 100% !important;
     width: 100% !important;
     visibility: visible !important; }
@@ -8930,7 +8935,10 @@ address.info-box {
   width: 130px; }
 
 .col-2btn-width {
-  width: 123px; }
+  width: 23%; }
+
+.col-3btn-width {
+  width: 35%; }
 
 @-webkit-keyframes spin {
   0% {
@@ -9791,6 +9799,9 @@ ul.breadcrumb {
   .page-wrapper .basic-form .upload-section {
     margin: 10px 0 20px 0; }
 
+#job-app-form .basic-form {
+  margin-top: 0; }
+
 #officeAddress {
   margin-left: 0;
   padding: 0; }
@@ -9910,6 +9921,8 @@ ul.breadcrumb {
     margin-bottom: 20px; }
   .page-wrapper .dash-tbl-wrap div.alert {
     margin-bottom: 30px; }
+  .page-wrapper .dash-tbl-wrap.loading {
+    overflow: hidden; }
   .page-wrapper .sign-in-with, .page-wrapper .ext-provider-form {
     clear: both;
     margin-bottom: 2rem;
@@ -11470,8 +11483,6 @@ select.articles-order {
     margin-top: 0; }
     .page-wrapper .reg-form .basic-form .login-border {
       padding-top: 0; }
-  .page-wrapper .basic-form .form-group .text-right {
-    padding-left: 0; }
   .page-section .right-bottom-img img {
     max-width: 43%; }
   .page-section .center-bottom-img img {
@@ -12134,7 +12145,7 @@ select.articles-order {
     padding-right: 35px; }
     .thumbnail.card-rollover .card-rollover-more .btn {
       position: absolute;
-      bottom: 7px;
+      bottom: -2px;
       right: 0; }
   .thumbnail .display-table {
     display: table;
@@ -12357,7 +12368,7 @@ select.articles-order {
       width: 100px;
       vertical-align: middle; }
       .thumbnail.card-rollover .card-rollover-image img {
-        max-width: 90px; }
+        max-width: 80px; }
     .thumbnail.card-rollover .caption {
       display: table-cell;
       vertical-align: middle;

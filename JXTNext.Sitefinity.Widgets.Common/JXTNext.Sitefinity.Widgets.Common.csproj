@@ -48,6 +48,12 @@
     <Compile Include="ViewEngineRoutesConfig.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\assets\css\ajax-loader.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -369,12 +375,6 @@
     <Content Include="ResourcePackages\BaySide\GridSystem\Templates\background-left-image-layout.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\BaySide\GridSystem\Templates\grid-header-layout.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\BaySide\GridSystem\Templates\section.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="ResourcePackages\BaySide\GridSystem\Templates\background-right-image-layout.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -432,6 +432,9 @@
     <Content Include="ResourcePackages\BaySide\GridSystem\Templates\grid-9+3.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\BaySide\GridSystem\Templates\grid-header-layout.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\GridSystem\Templates\header.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -471,6 +474,9 @@
     <Content Include="ResourcePackages\BaySide\GridSystem\Templates\page-section.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\BaySide\GridSystem\Templates\section.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\gruntfile.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -482,12 +488,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="packages.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">
+      <Project>{9ccdbc01-ef02-4d74-9385-5c0f1da2eb7a}</Project>
+      <Name>JXTNext.Sitefinity.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="ResourcePackages\BaySide\assets\dist\fonts\AkzidGroProBol.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1049,13 +1055,13 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\BlogPost\List.BlogPostFilters.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\BlogPost\List.LatestBlogPost.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\BlogPost\List.BlogPostList.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\BlogPost\List.BlogPostListFooter.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\BlogPost\List.LatestBlogPost.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Blog\Detail.DetailPage.cshtml">
@@ -1082,25 +1088,16 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.BackgroundImage.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.BackgroundImageFullBlackText.cshtml">
+    <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.BackgroundImageFull.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.BackgroundImageFull.cshtml">
+    <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.BackgroundImageFullBlackText.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.BackgroundWithSimpleHeadingAndText.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.BannerWithBasic.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.LeftTextWithBanner.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.Image.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.RightBannerWithText.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.BannerWithText.cshtml">
@@ -1148,7 +1145,13 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.Hexagon.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.Image.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.ImageWithSimpleText.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.LeftTextWithBanner.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.LogoWithTextandButton.cshtml">
@@ -1158,6 +1161,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.PageBannerVideoPopup.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.RightBannerWithText.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Card\Card.Section.cshtml">
@@ -1340,15 +1346,15 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\JobDetails\JobDetails.Hudson.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <EmbeddedResource Include="ResourcePackages\BaySide\MVC\Views\JobEmail\Default.cshtml">
+    <None Include="ResourcePackages\BaySide\MVC\Views\JobEmail\Default.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ResourcePackages\BaySide\MVC\Views\JobEmail\DesignerView.Simple.cshtml">
+    </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\JobEmail\DesignerView.Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ResourcePackages\BaySide\MVC\Views\JobEmail\DesignerView.Simple.json">
+    </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\JobEmail\DesignerView.Simple.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\JobFilters\DesignerView.Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1436,10 +1442,10 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\Lists\List.WhiteBoxSingle.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\LoginForm\ForgotPassword.ForgottenPasswordBlank.cshtml">
+    <None Include="ResourcePackages\BaySide\MVC\Views\LoginForm\ForgotPassword.ForgottenPassword.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\LoginForm\ForgotPassword.ForgottenPassword.cshtml">
+    <None Include="ResourcePackages\BaySide\MVC\Views\LoginForm\ForgotPassword.ForgottenPasswordBlank.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\LoginForm\LoginForm.LoginForm.cshtml">
@@ -1493,6 +1499,9 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\MultiCard\Cards.BlackTextWithBackground.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\MultiCard\Cards.ButtonWhiteTextWithBackground.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\MultiCard\Cards.ChevronShapList.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1518,9 +1527,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\MultiCard\Cards.TextWithBackground.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ResourcePackages\BaySide\MVC\Views\MultiCard\Cards.ButtonWhiteTextWithBackground.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\MultiCard\Cards.WhiteTextWithBackground.cshtml">
@@ -1794,12 +1800,5 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">
-      <Project>{9ccdbc01-ef02-4d74-9385-5c0f1da2eb7a}</Project>
-      <Name>JXTNext.Sitefinity.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

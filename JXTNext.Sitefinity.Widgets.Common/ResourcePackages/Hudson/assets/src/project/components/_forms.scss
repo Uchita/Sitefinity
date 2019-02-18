@@ -155,6 +155,12 @@
     }
 }
 
+#job-app-form{
+    .basic-form{
+        margin-top: 0;
+    }
+}
+
 #officeAddress{
     margin-left: 0;
     padding: 0;
@@ -343,6 +349,9 @@
         }
         div.alert{
             margin-bottom: 30px;
+        }
+        &.loading{
+            overflow: hidden;
         }
     }
     .sign-in-with, .ext-provider-form {

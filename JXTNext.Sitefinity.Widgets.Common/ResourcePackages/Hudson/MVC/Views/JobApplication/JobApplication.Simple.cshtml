@@ -44,11 +44,11 @@
                     <div id="check-login" class="form-group">
                         <div class="row">
                             <div class="col-md-4 text-right">
-                                <label class="form-label" for="userid">Email*</label>
+                                <label class="form-label" for="userid">@Html.Resource("Email", "LoginFormResources")*</label>
                             </div>
                             <div class="col-md-8">
                                 <input id="userid" type="text" name="Email" class="form-control" required placeholder="Enter email address to begin" autocomplete="email" aria-describedby="email-verify-message" />
-                                <small class="welcome-message hidden">Welcome back!</small>
+                                <small class="welcome-message hidden">@Html.Resource("DashboardWelcomeWidgetTitle", "DashboardResources")</small>
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                         <div id="firstname-lastname">
                             <div class="row">
                                 <div class="col-md-4 text-right">
-                                    <label class="form-label" for="firstname-reg">Name*</label>
+                                    <label class="form-label" for="firstname-reg">@Html.Resource("Name", "LoginFormResources")*</label>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -86,32 +86,32 @@
 
                         <div class="row form-group">
                             <div class="col-md-4 text-right">
-                                <label class="form-label" for="password-reg">Password*</label>
+                                <label class="form-label" for="password-reg">@Html.Resource("Password", "Labels")*</label>
                             </div>
                             <div class="col-md-8">
                                 <input id="password-reg" type="password" name="Password" class="form-control" autocomplete="off" placeholder="Choose your password" aria-describedby="password-message" />
                                 <span class="hidden alert alert-danger error-message wrongPassword-message">
-                                    Your password is incorrect!
+                                    @Html.Resource("InvalidPassword", "ErrorMessages")
                                 </span>
                                 <span class="hidden alert alert-danger error-message emptyPassword-message">
-                                    Please enter password.
+                                    @Html.Resource("PasswordCannotBeEmpty", "Labels")
                                 </span>
-                                <span id="password-guide" class="text-muted">passwordRequirementMsg
-                                    <em>@Html.Resource("passwordRequirementMsg","Labels")</em>
+                                <span id="password-guide" class="text-muted">
+                                    <em>@Html.Resource("passwordRequirementMsg", "Labels")</em>
                                 </span>
                                 <div id="forgot-password" class="form-group forgot-password hidden">
-                                    <br /><a href="/sign-in/ForgotPassword/">Forgot password?</a>
+                                    <br /><a href="/sign-in/ForgotPassword/">@Html.Resource("ForgottenPasword", "LoginFormResources")</a>
                                 </div>
 
                                 <div class="form-group" id="rememberme-block">
                                     <div class="checkbox clearfix">
                                         <input checked="checked" id="RememberMe" name="RememberMe" type="checkbox" value="true">
                                         <span class="checkbox-icon fas fa-check"></span>
-                                        Stay signed in
+                                        @Html.Resource("RememberMe", "LoginFormResources")
                                     </div>
                                 </div>
 
-                                <input type="button" id="sign-in-btn" class="form-group hidden btn btn-primary btn-block" data-jobid="@Model.JobId" value="Sign in to continue" />
+                                <input type="button" id="sign-in-btn" class="form-group hidden btn btn-primary btn-block" data-jobid="@Model.JobId" value="@Html.Resource("JobApplicationSignIn", "JobApplicationResources")" />
                             </div>
                         </div>
 
@@ -128,18 +128,18 @@
 
                         <div class="row form-group reg-field hidden">
                             <div class="col-md-4 text-right">
-                                <label class="form-label" for="ReTypePassword">Repeat Password*</label>
+                                <label class="form-label" for="ReTypePassword">@Html.Resource("ReTypePassword", "RegistrationResources")*</label>
                             </div>
                             <div class="col-md-8">
                                 <input id="ReTypePassword" type="password" name="ReTypePassword" class="form-control" placeholder="Retype your password" />
-                                <div class='alert alert-danger error-message hidden'>'Repeat Password' does not match.</div>
+                                <div class='alert alert-danger error-message hidden'>@Html.Resource("ConfirmPasswordErrorMsg", "ErrorMessages")</div>
                             </div>
                         </div>
 
                     </div>
 
                 </div>
-                <div class="alert alert-info hidden" id="already-applied-info">You have already applied for this job.</div>
+                <div class="alert alert-info hidden" id="already-applied-info">@Html.Resource("JobAlreadyAppliedMsg", "Labels")</div>
             }
             <!-- Upload section -->
             <div class="upload-section">
@@ -150,6 +150,7 @@
                     var loginElemHide = "";
 
                 <div id="upload-files-container" hidden>
+
 
                     @if (ViewBag.IsUserLoggedIn)
                     {
@@ -215,11 +216,7 @@
 
                     <!-- Resume -->
                     <div class="form-group row" id="uploadresumeblock" @loginElemHide>
-
-                        <label class="form-label col-xs-12 col-md-4 text-right">upload your cv*</label>
-
                         <label class="form-label col-xs-12 col-md-4 text-right">upload your resume*</label>
-
                         <div class="col-xs-12 col-md-8">
                             <div class="box clearfix text-center">
                                 <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
@@ -301,9 +298,7 @@
                     <input type="hidden" id="applicationemail" name="ApplicationEmail" value="@Model.ApplicationEmail" />
                     <input type="hidden" id="contactdetails" name="ContactDetails" value="@Model.ContactDetails" />
                     <input type="hidden" id="companyname" name="CompanyName" value="@ViewBag.CompanyName" />
-
                     <input type="hidden" id="urlReferral" name="UrlReferral" value="@Model.UrlReferral" />
-
 
 
 
@@ -321,14 +316,10 @@
                     </div>
 
                     <div class="hidden alert alert-danger error-message resume-message">
-
-                        Please upload your resume!
-
                         @Html.Resource("UploadResumeErrorMsg", "ErrorMessages")
                     </div>
                     <div class="hidden alert alert-danger error-message resume-select-message">
                         @Html.Resource("SelectResumeErrorMsg", "ErrorMessages")
-
                     </div>
 
                 </div>
@@ -523,7 +514,7 @@
              if (rows.length) {
                  $('#user-profile-resume-list').html(rows);
              } else {
-                 $('#user-profile-resume-list').html('<option val="0">SELECT YOUR CV</option>');
+                 $('#user-profile-resume-list').html('<option val="0">SELECT YOUR RESUME</option>');
              }
          }
 

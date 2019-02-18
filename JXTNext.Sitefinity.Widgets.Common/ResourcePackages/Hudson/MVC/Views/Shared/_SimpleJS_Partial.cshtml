@@ -150,23 +150,18 @@
             });
         });
 
-<<<<<<< HEAD
-
-=======
         $(window).resize(function () {
-            $('.nstSlider').nstSlider('refresh');
+            $('.nstSlider').each(function (i, obj) {
+                $(this).nstSlider('refresh');
+            });
         });
         
->>>>>>> develop
 
         $('#selectedkeywordsfilter').on('keydown', function (e) {
             if ($(this).val && e.which == 13) {
                 //getting the loader while the job search is working
                 $("#selectedkeywordsfilter").parent().addClass('loader');
-<<<<<<< HEAD
-=======
 
->>>>>>> develop
                 eachClickFilter();
             }
         });
@@ -174,7 +169,11 @@
         $("#selectedkeywordsfilter").on("search", function (input) {
             if ($(this).val() == "") {
                 //getting the loader while the job search is working
+
                 $("#selectedkeywordsfilter").parent().addClass('loader');
+                if (checkEspecialChar($(this).val()) == false) {
+                    return false;
+                }
                 eachClickFilter();
             }
 
@@ -257,7 +256,6 @@
                     selectChildren: true,
                     expandChildren: false,
                     expandElement: true,
-                    clickTextSelect: false,
                     dropdownType: "collapse", //dropdown,collapse
                     ariaLabelId: 'lbl-' + prefixIdText + item.Name,
                     displayCount: true,
@@ -321,10 +319,6 @@
                     }
                 });
 
-<<<<<<< HEAD
-
-=======
->>>>>>> develop
                 if (isSalaryExists && isSlarySelected){
                     if (modelSalary != null && modelSalary != undefined && isSalaryChanged == false && (modelSalary.LowerRange > salary.LowerRange || modelSalary.UpperRange < salary.UpperRange) && modelSalary.TargetValue == $('.SalaryRangeSelect').val() ) {
                         filterModel.Salary = modelSalary;

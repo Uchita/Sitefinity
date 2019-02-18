@@ -1,9 +1,16 @@
 ﻿@model LoginStatusExtendedViewModel
 
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Mvc.Proxy;
 @using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.LoginStatusExtended
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 @using Telerik.Sitefinity.Modules.Pages;
 @Html.Script(ScriptRef.JQuery, "top", false)
+
+@{
+    var SignOutUrl = string.Concat(Url.Action("SignOut"), string.Format("?{0}={1}", MvcControllerProxy.ControllerKey, ViewData[MvcControllerProxy.ControllerKey]));
+}
+
 <div class="header-top-login @Model.CssClass">
     <span class="header-top-links" data-sf-role="sf-logged-in-view" style="display: none">
         <span>@Html.Resource("LoggedAs", "LoginStatusExtendedResources") </span>
@@ -25,9 +32,8 @@
 
 
 <script>
-    $(document).ajaxComplete( function() {
-        if ($('.header-top-links').data('sf-role') == 'sf-logged-in-view')
-        {
+    $(document).ajaxComplete(function () {
+        if ($('.header-top-links').data('sf-role') == 'sf-logged-in-view') {
             var userName = $('.header-top-links a[data-sf-role="sf-logged-in-name"]').first().text();
             userFirstName = userName.split(' ')[0];
             $('.header-top-links [data-sf-role="sf-logged-in-name"]').text(userFirstName);

@@ -15,7 +15,7 @@
 
     @if (Model != null)
     {
-        <h2><span class="alert-icon"></span>Create job alert</h2>
+        <h2><span class="alert-icon far fa-bell"></span>Create job alert</h2>
         <h3>Alert details</h3>
         <form method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();">
             @{
@@ -92,7 +92,12 @@
                                 {
                                     var lower = 15000;
                                     var upper = 300000;
-                                    if (salaryItem.Label == "Hourly Rate")
+                                    if (salaryItem.Label == "Daily")
+                                    {
+                                        lower = 200;
+                                        upper = 3000;
+                                    }
+                                    else if (salaryItem.Label == "Hourly Rate")
                                     {
                                         lower = 18;
                                         upper = 200;
@@ -232,9 +237,22 @@
                     $(this).parent().find('.rightLabel span').text(rightValue);
                 },
                 "value_changed_callback": function (cause, leftValue, rightValue) {
-                    $(this).parent().find('.leftLabel span').text(leftValue);
-                    $(this).parent().find('.rightLabel span').text(rightValue);
+                    if (!$(this).parent().hasClass('visible-hidden')) {
+                        $(this).parent().find('.leftLabel span').text(leftValue);
+                        $(this).parent().find('.rightLabel span').text(rightValue);
+                        if (cause != 'init') {
+                            isSalaryChanged = true;
+                        }
+                    }
                 }
+            });
+        });
+
+        //especiallyy for mobile, sliders are not taking the full width / the correct values 
+        //also when changing orientation the width slider width remains same
+        $(window).resize(function () {
+            $('.nstSlider').each(function (i, obj) {
+                $(this).nstSlider('refresh');
             });
         });
 

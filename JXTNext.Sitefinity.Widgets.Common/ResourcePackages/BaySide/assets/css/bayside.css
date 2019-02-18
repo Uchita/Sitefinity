@@ -8187,6 +8187,41 @@ select.hs-input {
         position: relative;
     }
 
+
+
+.login-form.sign-in-with .upload-section .list-group label {
+    padding: 0 0 5px 27px;
+    font-weight: 500;
+}
+
+.login-form.sign-in-with .upload-section .radiobutton .radiobutton-icon {
+    width: 20px;
+    top: 1px;
+    height: 20px;
+    padding: 2px;
+}
+
+.login-form.sign-in-with .upload-section .radiobutton input[type=radio] {
+    position: absolute;
+}
+
+    .login-form.sign-in-with .upload-section .radiobutton input[type=radio]:checked + .radiobutton-icon:before {
+        width: 100%;
+        height: 100%;
+        display: block;
+        background: #0088CF;
+        border-radius: 100%;
+    }
+
+.login-form.sign-in-with .upload-section .select select {
+    -webkit-appearance: menulist;
+    -moz-appearance: menulist;
+    -ms-appearance: menulist;
+    -o-appearance: menulist;
+    appearance: menulist;
+}
+
+
 .login-form.sign-in-with .radiobutton input[type=radio] {
     z-index: 2;
     position: relative;
@@ -8204,7 +8239,7 @@ select.hs-input {
 .login-form.sign-in-with .radiobutton .radiobutton-icon {
     width: 25px;
     height: 25px;
-    border: 1px solid #01a3a4;
+    border: 1px solid #0088CF;
     display: inline-block;
     color: transparent;
     position: absolute;
@@ -8765,9 +8800,13 @@ select.hs-input {
 }
 
 .page-wrapper .sf-profile img {
-    max-width: 200px;
+    max-width: 100%;
+    width: 100%;
     box-shadow: 1px 1px 1px rgba(0,0,0,.2);
 }
+/*.page-wrapper .sf-profile h2 {
+    margin-top: 0px;
+}*/
 
 .sf-Comments-header, .sf-Comments-list, .sf-Comments-more, .sf-Gallery-navigation, .sf-mb-xl {
     margin-bottom: 30px;

@@ -26,7 +26,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
     public class JobDetailsController : Controller
     {
 
-
+       
         // All these properties are bind to the designer form 
         // Same will be displayed in the Advanced section of the designer form as text boxes
         [TypeConverter(typeof(ExpandableObjectConverter))]
@@ -99,7 +99,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                             {
                                 if (routePath.ToUpper().Contains("SAVEJOB"))
                                     return SaveJob(jobId);
-                                else if (routePath.ToUpper().Contains("REMOVESAVEDJOB"))
+                                else if(routePath.ToUpper().Contains("REMOVESAVEDJOB"))
                                     return RemoveSavedJob(jobId);
                             }
                         }
@@ -210,7 +210,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     seoString.Add(SEOString);
                 }
 
-                viewModel.ClassificationsSEORouteName = String.Join("/", seoString);
+                viewModel.ClassificationsSEORouteName = String.Join("/", seoString); 
 
                 ViewBag.CssClass = this.CssClass;
                 ViewBag.JobApplicationPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationPageId);
@@ -241,11 +241,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 #region Check job already applied
                 ViewBag.IsJobApplied = false;
                 JXTNext_MemberAppliedJobResponse response = _BLConnector.MemberAppliedJobsGet() as JXTNext_MemberAppliedJobResponse;
-                if (response.Success)
+                if(response.Success)
                 {
                     foreach (var item in response.MemberAppliedJobs)
                     {
-                        if (item.JobId == jobId.Value)
+                        if(item.JobId == jobId.Value)
                         {
                             ViewBag.IsJobApplied = true;
                             break;
@@ -256,7 +256,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 var meta = new System.Web.UI.HtmlControls.HtmlMeta();
                 meta.Attributes.Add("property", "og:title");
                 meta.Content = jobListingResponse.Job.Title;
-
+                
                 // Get the current page handler in order to access the page header
                 var pageHandler = this.HttpContext.CurrentHandler.GetPageHandler();
                 pageHandler.Header.Controls.Add(meta);

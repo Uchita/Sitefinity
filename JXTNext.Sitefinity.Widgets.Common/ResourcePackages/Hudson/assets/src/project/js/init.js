@@ -408,27 +408,48 @@ $(document).ready(function () {
     var windowPath = window.location.pathname.toLowerCase();
     if( windowPath.indexOf('user-dashboard') > -1 ){
         if( windowPath.indexOf('/create') > -1 || windowPath.indexOf('/edit') > -1 || $('.job-alert-message-wrapper').length ){
-            $('body, html').stop().animate({
-                scrollTop: $('#createalert-widget').offset().top - 150
-            },10);
+            setTimeout( function(){
+                $('.dash-tbl-wrap').addClass('loading');
+                $('html, body').animate({
+                    scrollTop: $('#createalert-widget').offset().top - 150
+                },100,function(){
+                    $('.dash-tbl-wrap').removeClass('loading');
+                });
+            },1000);
+            
         }
     }
 
-<<<<<<< HEAD
-=======
     //using dataTable plugin for pagination in table
     if( $('table.datatable').length ){
-        $("table.datatable").slimtable({
-            itemsPerPage: 5,
-			ippList: [5,10,20],
-        });
         $("table.datatable").each( function(){
-            if( $(this).parent().find('.slimtable-page-btn').length < 2 ){
-                $(this).parent().find('.slimtable-paging-div').hide();
+            var tbl = $(this);
+            var dateColIndex = tbl.find('th.date-col').index();
+            var actColIndex = tbl.find('th.act-col').index();
+            if( dateColIndex < 0 ){
+                dateColIndex = 0;
+            }
+            tbl.slimtable({
+                itemsPerPage: 5,
+                ippList: [5,10,20],
+                sortList: [ dateColIndex ],
+                colSettings: [{
+                    sortDir: "desc",
+                    colNumber: dateColIndex
+                },
+                {
+                    enableSort: false,
+                    colNumber: actColIndex
+                }
+                ],
+            });
+
+            if( tbl.parent().find('.slimtable-page-btn').length < 2 ){
+                tbl.parent().find('.slimtable-paging-div').hide();
             }
         });
+     
     }
->>>>>>> develop
 
     //office page
     //get in touch toggle collapse
@@ -438,8 +459,6 @@ $(document).ready(function () {
         });
     }
 
-<<<<<<< HEAD
-=======
     //hiding consultant job module in consultant page for particular categories
     if( $('.consultant-page').length ){
         var hasExcludeCat = ['candidate-profiling-assessment','leadership-assessment-development','outplacement-redeployment'];
@@ -465,7 +484,6 @@ $(document).ready(function () {
         $(document).reload();
     }
   
->>>>>>> develop
 });
 
 $(window).resize(function () {

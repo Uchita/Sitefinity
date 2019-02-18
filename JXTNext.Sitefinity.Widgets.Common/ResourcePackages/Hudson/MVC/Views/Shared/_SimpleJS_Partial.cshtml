@@ -151,7 +151,9 @@
         });
 
         $(window).resize(function () {
-            $('.nstSlider').nstSlider('refresh');
+            $('.nstSlider').each(function (i, obj) {
+                $(this).nstSlider('refresh');
+            });
         });
         
 

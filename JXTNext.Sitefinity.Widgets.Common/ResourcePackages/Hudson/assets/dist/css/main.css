@@ -12307,7 +12307,11 @@ select.articles-order {
   .tbl-wrapper {
     overflow: auto; }
     .tbl-wrapper table {
-      min-width: 500px; } }
+      min-width: 500px; }
+  .reg-form .basic-form {
+    margin-top: 0; }
+  .home-padding.owl-carousel {
+    z-index: 1050; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron .owl-nav {
@@ -12500,7 +12504,9 @@ select.articles-order {
   .section-ul ul.nav-stacked li {
     width: auto;
     float: none;
-    margin-right: 0; } }
+    margin-right: 0; }
+  .btn-primary, .btn {
+    margin-bottom: 5px; } }
 
 /*#endregion Phones*/
 /*#endregion Media*/

@@ -56,30 +56,13 @@
                         @MobileRootLevelNode(node)
                     }
                     <li class="extra-mnu timesheet-mnu"><a href="/timesheets-and-payroll-process"><em class="far fa-calendar-alt"></em> Timesheets</a></li>
-                    @{
-                        var currentIdentity = ClaimsManager.GetCurrentIdentity();
-                        var loggedInStatusCls = "display: none";
-                        var loggedOutStatusCls = "";
-                        if (currentIdentity.IsAuthenticated)
-                        {
-                            loggedOutStatusCls = "display: none";
-                            loggedInStatusCls = "";
-                        }
-                        else
-                        {
-                            loggedInStatusCls = "display: none";
-                            loggedOutStatusCls = "";
-                        }
-
-                    }
-
                    
 
                     @* logged in out menu links *@
-                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="@loggedInStatusCls"><a href="/user-dashboard">@Html.Resource("LoggedAs", "LoginStatusExtendedResources") <span data-sf-role="sf-logged-in-name"></span></a></li>
-                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="@loggedInStatusCls"><a href="/sitefinity/signout?sts_signout=true">Logout</a></li>
+                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="display:none;"><a href="/user-dashboard">@Html.Resource("LoggedAs", "LoginStatusExtendedResources") <span data-sf-role="sf-logged-in-name"></span></a></li>
+                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="display:none;"><a href="/sitefinity/signout?sts_signout=true">Logout</a></li>
 
-                    <li class="extra-mnu combine-mnu header-top-links" data-sf-role="sf-logged-out-view" style="@loggedOutStatusCls"><a href="/register">Register</a> | <a href="/sign-in">Sign in</a></li>
+                    <li class="extra-mnu combine-mnu header-top-links" data-sf-role="sf-logged-out-view" style="display:none;"><a href="/register">Register</a> | <a href="/sign-in">Sign in</a></li>
                 </ul>
             </div>
         </div><!-- /.container-fluid -->

@@ -19,6 +19,7 @@ using Telerik.Sitefinity.Model;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
 using Telerik.Sitefinity.Web;
 using JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources;
+using Telerik.OpenAccess;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -62,6 +63,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             dynamic dynamicJobResultsList = null;
 
+            JXTNext_SearchJobsRequest request = new JXTNext_SearchJobsRequest();
             JobSearchResultsFilterModel filterModelNew = new JobSearchResultsFilterModel();
             if (item.DoesFieldExist("ConsultantName"))
             {
@@ -81,7 +83,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     if (!this.PageSize.HasValue || this.PageSize.Value <= 0)
                         this.PageSize = PageSizeDefaultValue;
 
-                    JXTNext_SearchJobsRequest request = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModelNew, this.PageSize, PageSizeDefaultValue);
+                    request = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModelNew, this.PageSize, PageSizeDefaultValue);
 
                     string sortingBy = this.Sorting;
                     if (filterModelNew != null && !filterModelNew.SortBy.IsNullOrEmpty())
@@ -105,7 +107,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     if (!this.PageSize.HasValue || this.PageSize.Value <= 0)
                         this.PageSize = PageSizeDefaultValue;
 
-                    JXTNext_SearchJobsRequest request = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModelNew, this.PageSize, PageSizeDefaultValue);
+                    request = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModelNew, this.PageSize, PageSizeDefaultValue);
 
                     string sortingBy = this.Sorting;
                     if (filterModelNew != null && !filterModelNew.SortBy.IsNullOrEmpty())
@@ -120,7 +122,39 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
             }
 
-            
+            if (dynamicJobResultsList.Total == 0 && item.DoesFieldExist("Category"))
+            {
+                JobSearchFilterReceiver classificationSearch = new JobSearchFilterReceiver();
+                classificationSearch.rootId = "Classifications";
+                classificationSearch.searchTarget = "Categories";
+                classificationSearch.values = new List<JobSearchFilterReceiverItem>();
+                TrackedList<Guid> classIds = (TrackedList<Guid>)item.GetValue("Category");
+                if(classIds != null && classIds.Count > 0)
+                {
+                    foreach (var id in classIds)
+                    {
+                        JobSearchFilterReceiverItem filterItem = new JobSearchFilterReceiverItem();
+                        filterItem.ItemID = id.ToString().ToUpper();
+                        filterItem.SubTargets = null;
+                        classificationSearch.values.Add(filterItem);
+                    }
+                }
+                filterModelNew.Filters = new List<JobSearchFilterReceiver>();
+                filterModelNew.Filters.Add(classificationSearch);
+                request  = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModelNew, this.PageSize, PageSizeDefaultValue);
+
+                string sortingBy = this.Sorting;
+                if (filterModelNew != null && !filterModelNew.SortBy.IsNullOrEmpty())
+                    sortingBy = filterModelNew.SortBy;
+
+                request.SortBy = JobSearchResultsFilterModel.GetSortEnumFromString(sortingBy);
+                ViewBag.SortOrder = JobSearchResultsFilterModel.GetSortStringFromEnum(request.SortBy);
+
+                ISearchJobsResponse response = _BLConnector.SearchJobs(request);
+                JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
+                dynamicJobResultsList = jobResultsList as dynamic;
+
+            }
            
             ViewBag.PageSize = (int)this.PageSize;
             ViewBag.CssClass = this.CssClass;

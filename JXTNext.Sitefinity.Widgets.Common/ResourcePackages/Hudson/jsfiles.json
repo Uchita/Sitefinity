@@ -1,7 +1,7 @@
 {
   "concatJsFiles": [
     "assets/src/project/js/owl.carousel.min.js",
-    "assets/src/project/js/slimtable.min.js",
+    "assets/src/project/js/slimtable.js",
     "assets/src/project/js/init.js"
   ]
 }

@@ -874,6 +874,7 @@
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="AzureWebRole.cs" />
     <Compile Include="BlobStorage\AmazonBlobStorageProvider.cs" />
+    <Compile Include="code\FeatherActionInvokerCustom.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -882,6 +883,7 @@
     <Compile Include="Libraries\SfImageHelper.cs" />
     <Compile Include="Models\RequestSession.cs" />
     <Compile Include="Mvc\Attributes\SocialShareAttribute.cs" />
+    <Compile Include="Mvc\Controllers\CustomErrorController.cs" />
     <Compile Include="Mvc\Controllers\MultiCardController.cs" />
     <Compile Include="Mvc\Models\CustomDynamicContent\CustomDynamicContentModel.cs" />
     <Compile Include="Mvc\Models\MultiCard\CardDetails.cs" />
@@ -1162,6 +1164,7 @@
     <Content Include="Mvc\Views\MultiCard\Cards.IconsOverImage.cshtml" />
     <Content Include="Mvc\Views\MultiCard\Cards.PlainText.cshtml" />
     <Content Include="Mvc\Views\MultiCard\DesignerView.Simple.cshtml" />
+    <Content Include="Mvc\Views\CustomError\Index.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

@@ -12,6 +12,11 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member
         public dynamic MemberAppliedJobs { get; set; }
     }
 
+    public class JXTNext_MemberAppliedJobByIdResponse : ConnectorBaseResponse, IMemberAppliedJobResponse
+    {
+        public MemberAppliedJob MemberAppliedJobById { get; set; }
+    }
+
     public class MemberAppliedJob
     {
         public int Id { get; set; }

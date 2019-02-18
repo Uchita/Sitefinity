@@ -150,18 +150,10 @@
             });
         });
 
-        $(window).resize(function () {
-            $('.nstSlider').each(function (i, obj) {
-                $(this).nstSlider('refresh');
-            });
-        });
-        
-
         $('#selectedkeywordsfilter').on('keydown', function (e) {
             if ($(this).val && e.which == 13) {
                 //getting the loader while the job search is working
                 $("#selectedkeywordsfilter").parent().addClass('loader');
-
                 eachClickFilter();
             }
         });
@@ -169,22 +161,16 @@
         $("#selectedkeywordsfilter").on("search", function (input) {
             if ($(this).val() == "") {
                 //getting the loader while the job search is working
-
                 $("#selectedkeywordsfilter").parent().addClass('loader');
-                if (checkEspecialChar($(this).val()) == false) {
-                    return false;
-                }
                 eachClickFilter();
             }
-
         });
 
         //for mobile only = show hide the filter
         if ($('.filter-toggle').length) {
             $('.filter-toggle .btn').click(function () {
                 $(this).toggleClass('active');
-                //$('.sm-wrapper').fadeToggle('fast');
-                $('.sm-wrapper').toggleClass('fake-hide-reverse');
+                $('.sm-wrapper').fadeToggle('fast');
             });
         }
 
@@ -290,6 +276,18 @@
                 $("#sortOrder").val("Recent");
             }
 
+            //getting the custom filter selected from the widget in cms
+            var array = $('#hdnClassifcationValues').val();
+
+            if (array != null && array != "") {
+                array = JSON.parse(array);
+                //console.table(array);
+                for (var i = 0; i < array.length; i++) {
+                    $('#' + array[i] + '> a').addClass('active');
+                    $('#' + array[i] + '> i').removeClass('fa-square-o').addClass('fa-check-square-o');
+                }
+            }
+
             function eachClickFilter() {
                 var filterModel = {};
                 filterModel.Filters = [];
@@ -319,7 +317,9 @@
                     }
                 });
 
-                if (isSalaryExists && isSlarySelected){
+                if (isSalaryExists && isSlarySelected) {
+                    //only if condition is true when other filters are selected/changed
+                    //in this case, salary is reset to defult & modelSalary will hold previous salary values
                     if (modelSalary != null && modelSalary != undefined && isSalaryChanged == false && (modelSalary.LowerRange > salary.LowerRange || modelSalary.UpperRange < salary.UpperRange) && modelSalary.TargetValue == $('.SalaryRangeSelect').val() ) {
                         filterModel.Salary = modelSalary;
                     }
@@ -336,30 +336,50 @@
                 filterModel.SortBy = $("#sortOrder").val();// We need to persist the sort order selected in job search results
                 
                 var data = { filterModel: filterModel }
-                var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
+                var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial_WithLeftFilterSelected";
                 var queryStringData = makeQueryString(filterModel, "", false);
                 var pushStateUrl = $(location).attr('pathname') + "?" + queryStringData;
-                window.history.pushState(data, "", pushStateUrl);
-                queryStringArr.length = 0;
-                $.ajax({
-                    type: "POST",
-                    cache: false,
-                    url: urlPath,
-                    data: queryStringData,
-                    dataType: 'json',
-                    success: function (response) {
-                        $("#resultsPagePartialContent").empty().html(response.jobResults);
-                        $("#filtersPagePartialContent").empty().html(response.jobResultsFilter);
-                    },
-                    error: function (response) {
-                       console.log(response);
+
+                var newFilters = filterModel.Filters[0].values;
+                array = $('#hdnClassifcationValues').val();
+                array = JSON.parse(array);
+                var array_init = array[0].split('-');
+                var isSubCategory = true;
+
+                for (var j = 0; j < newFilters.length; j++) {
+                    if (!array.includes(newFilters[j]) && newFilters[j].indexOf(array_init[0]) == -1 ) {
+                        isSubCategory = false;
+                        break;
                     }
-                });
+                }
+
+                if (isSubCategory == true) {
+                    window.history.pushState(data, "", pushStateUrl);
+                    queryStringArr.length = 0;
+                    $.ajax({
+                        type: "POST",
+                        cache: false,
+                        url: urlPath,
+                        data: queryStringData,
+                        dataType: 'json',
+                        success: function (response) {
+                            $("#resultsPagePartialContent").empty().html(response.jobResults);
+                            $("#filtersPagePartialContent").empty().html(response.jobResultsFilter);
+                        },
+                        error: function (response) {
+                            console.log(response);
+                        }
+                    });
+                }
+                else {
+                    window.location.href = '/job-seekers/search-results' + "?" + queryStringData;
+                }
+
             }
         }
 
 
-        //job filter widget only for Hudson
+        //job filter widget
         if ($('#filtersPagePartialContent').length) {
             $('#filtersPagePartialContent #CountryLocationArea li li[data-title="SYDNEY"]')
                 .insertAfter($('#filtersPagePartialContent #CountryLocationArea li li[data-title="PERTH"]'));

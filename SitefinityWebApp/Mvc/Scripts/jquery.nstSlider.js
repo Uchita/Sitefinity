@@ -1,10 +1,6 @@
-/*
- * jQuery Nestoria Slider
- *
- * Copyright 2014, Lokku Ltd.
- * Free to use and abuse under the MIT license.
- * http://www.opensource.org/licenses/mit-license.php
- */
+/*! Nestoria Slider - v1.0.13 - 2015-07-16
+* http://lokku.github.io/jquery-nstslider/
+* Copyright (c) 2015 Lokku Ltd.; Licensed MIT */
 (function($) {
     /* 
      * These are used for user interaction. This plugin assumes the user can
@@ -1096,7 +1092,7 @@
 
     };
     var methods = {
-        '_m' : function (m) { return _methods[m]; }, // for test, removed by Grunt
+        
         'teardown' : function () {
             var $this = this;
 

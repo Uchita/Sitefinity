@@ -408,23 +408,47 @@ $(document).ready(function () {
     var windowPath = window.location.pathname.toLowerCase();
     if( windowPath.indexOf('user-dashboard') > -1 ){
         if( windowPath.indexOf('/create') > -1 || windowPath.indexOf('/edit') > -1 || $('.job-alert-message-wrapper').length ){
-            $('html, body').animate({
-                scrollTop: $('#createalert-widget').offset().top - 150
-            },100);
+            setTimeout( function(){
+                $('.dash-tbl-wrap').addClass('loading');
+                $('html, body').animate({
+                    scrollTop: $('#createalert-widget').offset().top - 150
+                },100,function(){
+                    $('.dash-tbl-wrap').removeClass('loading');
+                });
+            },1000);
+            
         }
     }
 
     //using dataTable plugin for pagination in table
     if( $('table.datatable').length ){
-        $("table.datatable").slimtable({
-            itemsPerPage: 5,
-			ippList: [2,5,10,20],
-        });
         $("table.datatable").each( function(){
-            if( $(this).find('tbody>tr').length < 6 ){
-                $(this).parent().find('.slimtable-paging-div').hide();
+            var tbl = $(this);
+            var dateColIndex = tbl.find('th.date-col').index();
+            var actColIndex = tbl.find('th.act-col').index();
+            if( dateColIndex < 0 ){
+                dateColIndex = 0;
+            }
+            tbl.slimtable({
+                itemsPerPage: 5,
+                ippList: [5,10,20],
+                sortList: [ dateColIndex ],
+                colSettings: [{
+                    sortDir: "desc",
+                    colNumber: dateColIndex
+                },
+                {
+                    enableSort: false,
+                    colNumber: actColIndex
+                }
+                ],
+            });
+
+            if( tbl.parent().find('.slimtable-page-btn').length < 2 ){
+                tbl.parent().find('.slimtable-paging-div').hide();
             }
         });
+     
     }
 
     //office page
@@ -442,7 +466,7 @@ $(document).ready(function () {
         if( filterCat != null && filterCat.length > 0 ){
             $.each( filterCat, function(key, value){
                 if( hasExcludeCat.indexOf(value) > -1 ){
-                    $('.consultant-jobs').parents('.page-section').hide();
+                    $('.consultant-jobs, .consultant-jobs-title').parents('.page-section').hide();
                 }
             });
         }

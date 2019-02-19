@@ -18,6 +18,7 @@ using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure;
 using System.Web;
 using Telerik.Sitefinity.Abstractions;
+using Telerik.Sitefinity.Security.Claims;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -89,6 +90,18 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                                 return IsJobApplied(jobId);
                             }
                         }
+                    }
+                    else if (routePath.ToUpper().Contains("ISJOBSAVED"))
+                    {
+                        if (Request.Form["JobId"] != null)
+                        {
+                            int jobId;
+                            if (Int32.TryParse(Request.Form["JobId"], out jobId))
+                            {
+                                return IsJobSaved(jobId);
+                            }
+                        }
+                        
                     }
                     else if (routePath.ToUpper().Contains("SAVEJOB") || routePath.ToUpper().Contains("REMOVESAVEDJOB"))
                     {
@@ -281,6 +294,61 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
             return Content("No job has been selected");
+        }
+
+        private MemberSavedJob _getMemberSavedJob(int jobId)
+        {
+            JXTNext_MemberGetSavedJobResponse response = _BLConnector.MemberGetSavedJobs() as JXTNext_MemberGetSavedJobResponse;
+            if (response.Success)
+            {
+                foreach (var item in response.SavedJobs)
+                {
+                    if (item.JobId == jobId)
+                    {
+                        return item;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        [HttpPost]
+        public JsonResult IsJobSaved(int jobId)
+        {
+            try
+            {
+                var currentIdentity = ClaimsManager.GetCurrentIdentity();
+                bool isJobSaved = false;
+                int savedJobId = 0;
+                bool isUserLogged = currentIdentity.IsAuthenticated ? true : false;
+                if (isUserLogged)
+                {
+                    var job = _getMemberSavedJob(jobId);
+                    if(job != null)
+                    {
+                        isJobSaved = true;
+                        savedJobId = job.SavedJobId;
+                    }
+                }
+                var result = new
+                {
+                    IsUserLogged = isUserLogged,
+                    IsJobSaved = isJobSaved,
+                    SavedJobId = savedJobId
+                };
+                return new JsonResult { Data = result };
+            }
+            catch (Exception ex)
+            {
+                Log.Write($"IsJobApplied exception = " + ex.Message, ConfigurationPolicy.ErrorLog);
+                var result = new
+                {
+                    Error = true
+                };
+                return new JsonResult { Data = result };
+            }
+
         }
 
         [HttpPost]

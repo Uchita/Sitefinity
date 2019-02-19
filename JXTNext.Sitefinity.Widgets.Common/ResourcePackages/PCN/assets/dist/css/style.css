@@ -35,6 +35,10 @@ img {
     vertical-align: middle;
 }
 
+.mb-30 {
+    margin-bottom: 30px;
+}
+
 .hidden {
     display: none;
 }
@@ -7319,3 +7323,126 @@ ul.nav.nav-sitemap li > ul {
         background-repeat: no-repeat;
         background-position: center;
     }
+
+.sidebar-latest-events,
+.sidebar-latest-jobs {
+    margin-bottom: 40px;
+}
+
+    .sidebar-latest-jobs .sidebar-cat-title h4,
+    .sidebar-latest-events .sidebar-cat-title h4 {
+        padding-bottom: 8px;
+        font-size: 18px;
+        color: #000;
+        font-family: FuturaBT-Heavy;
+        text-transform: uppercase;
+        border-bottom: 1px solid #8EDD2B;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    .sidebar-latest-jobs .job-list,
+    .sidebar-latest-events .latest-event-list {
+        margin-bottom: 20px;
+        border-bottom: 1px solid #d3d3d3;
+        padding-bottom: 20px;
+    }
+
+    .latest-event-list .event-title,
+    .sidebar-latest-jobs .job-title {
+        margin-bottom: 10px;
+    }
+
+        .latest-event-list .event-title a,
+        .sidebar-latest-jobs .job-title a {
+            font-size: 22px;
+            color: #004F6E;
+            font-family: FuturaPT-bold;
+            line-height: 27px;
+            text-decoration: none;
+        }
+
+.latest-event-list .event-date {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #000;
+}
+
+.sidebar-latest-jobs .btn-link,
+.latest-event-list .btn-link {
+    display: inline-block;
+    color: #4294C4;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-family: FuturaBT-Medium;
+    text-decoration: none;
+}
+
+.sidebar-latest-jobs .job-title h2 {
+    margin-bottom: 0;
+}
+
+.sidebar-latest-jobs .job-location {
+    margin-bottom: 10px;
+}
+
+.horizontal-menu .top-categories {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    position: relative;
+}
+
+.top-categories .prefix_left-navigation {
+    width: 75%;
+    border-right: 1px solid #8EDD2B;
+}
+
+.top-categories .extra-links {
+    width: 25%;
+    position: relative;
+}
+
+.horizontal-menu .top-categories .extra-links a {
+    width: 50%;
+    display: block;
+    float: left;
+    text-transform: uppercase;
+    color: #8EDD2B;
+    font-size: 1.2em;
+    font-weight: 600;
+    position: relative;
+    min-height: 100%;
+}
+
+    .horizontal-menu .top-categories .extra-links a:first-child:after {
+        content: "";
+        width: 1px;
+        height: 100%;
+        background-color: #8EDD2B;
+        right: 0;
+        top: 0;
+        position: absolute;
+    }
+
+    .horizontal-menu .top-categories .extra-links a > span {
+        line-height: 1;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+    }
+
+.archive-postlist.upcoming-events > .row > div {
+    display: none;
+}
+
+    .archive-postlist.upcoming-events > .row > div:nth-child(1),
+    .archive-postlist.upcoming-events > .row > div:nth-child(2) {
+        display: block;
+    }
+/*.archive-postlist.upcoming-events > .row > div.active-list {
+        display: block;
+    }*/

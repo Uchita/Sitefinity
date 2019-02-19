@@ -11,6 +11,8 @@
     var keyword = Request.QueryString["keyword"];
     var location = Request.QueryString["location"];
     var duration = Request.QueryString["duration"];
+    var counter = 0;
+    var listClassName = "";
 
     var model = Model.Items;
     if (keyword + "" != "")
@@ -41,7 +43,17 @@
             }
             var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
 
-            <div class="col-xs-12 col-sm-12 col-md-6">
+            if (counter <= 1)
+            {
+                listClassName = "active-list";
+            }
+            else
+            {
+                listClassName = "";
+            }
+            counter++;
+
+            <div class="col-xs-12 col-sm-12 col-md-6 @listClassName">
                 <div class="sub">
 
                     <div class="thumbnail-img overlay">

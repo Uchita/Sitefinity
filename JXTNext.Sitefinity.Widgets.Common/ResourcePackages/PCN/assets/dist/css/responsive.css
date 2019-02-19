@@ -659,6 +659,25 @@
     .footer_top ul li {
         margin: 0 10px;
     }
+
+    .top-categories .prefix_left-navigation {
+        width: 100%;
+        border-right: none;
+    }
+
+    .top-categories .extra-links {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .horizontal-menu .top-categories .extra-links a > span {
+        transform: translate(0, 0);
+        -webkit-transform: translate(0, 0);
+        -moz-transform: translate(0, 0);
+        position: relative;
+        left: 0;
+        top: 0;
+    }
 }
 
 

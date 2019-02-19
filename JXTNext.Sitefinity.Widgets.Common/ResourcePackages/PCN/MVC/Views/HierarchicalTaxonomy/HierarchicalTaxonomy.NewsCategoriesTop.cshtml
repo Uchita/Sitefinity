@@ -5,18 +5,22 @@
 
 <div class="horizontal-menu">
     <div class="container">
-        <div class="prefix_left-navigation">
-            <nav id="main-menu" class="navbar " role="navigation">
-                <ul class="menu">
-                    @foreach (var taxon in Model.Taxa)
-                    {
-                        <li class=""><a href="@taxon.Url" target="_self">@taxon.Title</a></li>
-                    }
-                </ul>
-            </nav>
+        <div class="top-categories">
+            <div class="prefix_left-navigation">
+                <nav id="main-menu" class="navbar " role="navigation">
+                    <ul class="menu">
+                        @foreach (var taxon in Model.Taxa)
+                        {
+                            <li class=""><a href="@taxon.Url" target="_self">@taxon.Title</a></li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+            <div class="extra-links">
+                <a href="/magazine" title="Magazine"><span>Magazine</span></a>
+                <a href="/news/events1" title="Events"><span>Events</span></a>
+            </div>
         </div>
-
-
     </div>
 </div>
 

@@ -1017,6 +1017,9 @@
     <Content Include="ResourcePackages\PCN\MVC\Views\Navigation\NavigationView.Magazine.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\JobSearchResults\JobsFeatured_left.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\PCN\MVC\Views\News\List.NewsListCarousel.cshtml" />
     <None Include="ResourcePackages\PCN\MVC\Views\Testimonial\Detail.TestimonialCompact.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

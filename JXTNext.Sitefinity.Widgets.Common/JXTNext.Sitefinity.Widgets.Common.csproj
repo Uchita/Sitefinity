@@ -160,6 +160,9 @@
     <Content Include="ResourcePackages\PCN\assets\dist\js\bootstrap.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\PCN\assets\dist\js\sidebar-sticky.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\PCN\assets\dist\js\custom.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

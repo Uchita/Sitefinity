@@ -7272,3 +7272,18 @@ ul.magazine-headlines {
     .magazine-horizontal-menu .prefix_left-navigation li:last-child {
         padding-right: 0px;
     }
+
+iframe.registerjob {
+    width: 100%;
+    border: none;
+    min-height: 1850px;
+}
+
+.sandbox-register-wrap {
+    background-color: #eeeeee;
+    padding-top: 0 !important;
+}
+
+ul.nav.nav-sitemap li > ul {
+    padding-left: 24px;
+}

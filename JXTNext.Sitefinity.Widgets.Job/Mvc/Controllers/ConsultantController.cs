@@ -73,15 +73,18 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 
                 for (int i = 0; i < locArr.Length; i++)
                 {
-                    var locationDetails = GetLocationGuid(locArr[i]);
-                    if (locationDict.ContainsKey(locationDetails.Key))
+                    var locationDetails = GetLocationGuid(locArr[i].Trim(new char[] { ' '}));
+                    if(locationDetails.Key != null)
                     {
-                        locationDict[locationDetails.Key].Add(locationDetails.Value);
-                    }
-                    else
-                    {
-                        locationDict[locationDetails.Key] = new List<string>();
-                        locationDict[locationDetails.Key].Add(locationDetails.Value);
+                        if (locationDict.ContainsKey(locationDetails.Key))
+                        {
+                            locationDict[locationDetails.Key].Add(locationDetails.Value);
+                        }
+                        else
+                        {
+                            locationDict[locationDetails.Key] = new List<string>();
+                            locationDict[locationDetails.Key].Add(locationDetails.Value);
+                        }
                     }
                 }
             }
@@ -145,6 +148,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
             }
 
+            filterModelNew.ConsultantSearch = null;
+            filterModelNew.Filters = new List<JobSearchFilterReceiver>();
+
             if (dynamicJobResultsList.Total == 0 && item.DoesFieldExist("Category"))
             {
                 JobSearchFilterReceiver classificationSearch = new JobSearchFilterReceiver();
@@ -162,55 +168,47 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         classificationSearch.values.Add(filterItem);
                     }
                 }
-                filterModelNew.ConsultantSearch = null;
-                filterModelNew.Filters = new List<JobSearchFilterReceiver>();
+
                 filterModelNew.Filters.Add(classificationSearch);
-                request  = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModelNew, this.PageSize, PageSizeDefaultValue);
-                
-                
             }
 
-            //if (locationDict.Count > 0)
-            //{
-            //    JobSearchFilterReceiver classificationSearch = new JobSearchFilterReceiver();
-            //    classificationSearch.rootId = "CountryLocationArea";
-            //    classificationSearch.searchTarget = "Categories";
-            //    classificationSearch.values = new List<JobSearchFilterReceiverItem>();
-            //    foreach (var location in locationDict)
-            //    {
-            //        JobSearchFilterReceiverItem filterItem = new JobSearchFilterReceiverItem();
-            //        filterItem.ItemID = location.Key.ToString().ToUpper();
-            //        location.Value.foreach (x => {
+            if (locationDict.Count > 0)
+            {
+                JobSearchFilterReceiver locationSearch = new JobSearchFilterReceiver();
+                locationSearch.rootId = "CountryLocationArea";
+                locationSearch.searchTarget = "Categories";
+                locationSearch.values = new List<JobSearchFilterReceiverItem>();
+                foreach (var cnsltLocation in locationDict)
+                {
+                    JobSearchFilterReceiverItem filterItem = new JobSearchFilterReceiverItem();
+                    filterItem.ItemID = cnsltLocation.Key.ToString().ToUpper();
+                    filterItem.SubTargets = new List<JobSearchFilterReceiverItem>();
+                    var subLocations = cnsltLocation.Value;
+                    foreach (string subLocation in subLocations)
+                    {
+                        JobSearchFilterReceiverItem jobSearchFilterReceiverItem = new JobSearchFilterReceiverItem();
+                        jobSearchFilterReceiverItem.ItemID = subLocation;
+                        jobSearchFilterReceiverItem.SubTargets = null;
+                        filterItem.SubTargets.Add(jobSearchFilterReceiverItem);
+                    }
+                    locationSearch.values.Add(filterItem);
+                }
+                filterModelNew.Filters.Add(locationSearch);
+            }
 
-            //        }) ;
-                    
-            //        filterItem.SubTargets = null;
-            //        classificationSearch.values.Add(filterItem);
-            //    }
-            //    foreach (var id in classIds)
-            //    {
-            //        JobSearchFilterReceiverItem filterItem = new JobSearchFilterReceiverItem();
-            //        filterItem.ItemID = id.ToString().ToUpper();
-            //        filterItem.SubTargets = null;
-            //        classificationSearch.values.Add(filterItem);
-            //    }
-            //    filterModelNew.ConsultantSearch = null;
-            //    filterModelNew.Filters = new List<JobSearchFilterReceiver>();
-            //    filterModelNew.Filters.Add(classificationSearch);
-            //    request = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModelNew, this.PageSize, PageSizeDefaultValue);
 
-            //}
+            request = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModelNew, this.PageSize, PageSizeDefaultValue);
 
-            string sortingBy = this.Sorting;
+            string sortBy = this.Sorting;
             if (filterModelNew != null && !filterModelNew.SortBy.IsNullOrEmpty())
-                sortingBy = filterModelNew.SortBy;
+                sortBy = filterModelNew.SortBy;
 
-            request.SortBy = JobSearchResultsFilterModel.GetSortEnumFromString(sortingBy);
+            request.SortBy = JobSearchResultsFilterModel.GetSortEnumFromString(sortBy);
             ViewBag.SortOrder = JobSearchResultsFilterModel.GetSortStringFromEnum(request.SortBy);
 
-            ISearchJobsResponse response = _BLConnector.SearchJobs(request);
-            JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
-            dynamicJobResultsList = jobResultsList as dynamic;
+            ISearchJobsResponse searchResponse = _BLConnector.SearchJobs(request);
+            JXTNext_SearchJobsResponse relatedJobResultsList = searchResponse as JXTNext_SearchJobsResponse;
+            dynamicJobResultsList = relatedJobResultsList as dynamic;
 
 
             ViewBag.PageSize = (int)this.PageSize;
@@ -240,33 +238,18 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 foreach (var filterVMRootItem in filtersVMList)
                 {
-                    if (filterVMRootItem.Filters != null && filterVMRootItem.Filters.Count > 0)
+                    if (filterVMRootItem.Filters != null && filterVMRootItem.Name == "CountryLocationArea" && filterVMRootItem.Filters.Count > 0)
                     {
                         foreach (var filterItem in filterVMRootItem.Filters)
                         {
-                            if(filterItem.Label == "CountryLocationArea")
-                            {
-                                filterItem.Filters.ForEach(x => {
-                                    if(x.Label.ToLower() == location.ToLower())
-                                    {
-                                        found = true;
-                                        guid = x.ID;
-                                        rootId = filterItem.ID;
-                                    }
-                                    else
-                                    {
-                                        x.Filters.ForEach(child => {
-                                            if(child.Label.ToLower() == location.ToLower())
-                                            {
-                                                found = true;
-                                                guid = child.ID;
-                                                rootId = x.ID;
-                                            }
-                                        });
-                                    }
-                                });
-                            }
-                            
+                            filterItem.Filters?.ForEach(x => {
+                                if (x.Label.ToLower() == location.ToLower())
+                                {
+                                    found = true;
+                                    guid = x.ID;
+                                    rootId = filterItem.ID;
+                                }
+                            });
                         }
                     }
                 }
@@ -275,7 +258,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             KeyValuePair<string, string> key = new KeyValuePair<string, string>();
             if (found)
             {
-                key.SetFieldValue<string>(rootId, guid);
+                key = new KeyValuePair<string, string>(rootId,guid);
             }
 
             return key;

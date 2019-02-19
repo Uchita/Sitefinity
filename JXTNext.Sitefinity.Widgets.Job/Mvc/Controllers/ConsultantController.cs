@@ -139,6 +139,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         classificationSearch.values.Add(filterItem);
                     }
                 }
+                filterModelNew.ConsultantSearch = null;
                 filterModelNew.Filters = new List<JobSearchFilterReceiver>();
                 filterModelNew.Filters.Add(classificationSearch);
                 request  = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModelNew, this.PageSize, PageSizeDefaultValue);

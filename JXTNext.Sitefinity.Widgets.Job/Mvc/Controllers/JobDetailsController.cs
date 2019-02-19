@@ -151,116 +151,133 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
                 IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = jobId.Value };
                 IGetJobListingResponse jobListingResponse = _BLConnector.GuestGetJob(jobListingRequest);
-
-                viewModel.JobDetails = jobListingResponse.Job;
-
-                // Getting Consultant Avatar Image Url from Sitefinity 
-                viewModel.ApplicationEmail = jobListingResponse.Job.CustomData["ApplicationMethod.ApplicationEmail"];
-                var user = SitefinityHelper.GetUserByEmail(jobListingResponse.Job.CustomData["ApplicationMethod.ApplicationEmail"]);
-                if (user != null && user.Id != Guid.Empty)
-                    viewModel.ApplicationAvatarImageUrl = SitefinityHelper.GetUserAvatarUrlById(user.Id);
-
-                if (this.Model.IsJobApplyAvailable())
-                    viewModel.JobApplyAvailable = true;
-
-                // Processing Classifications
-                OrderedDictionary classifOrdDict = new OrderedDictionary();
-                classifOrdDict.Add(jobListingResponse.Job.CustomData["Classifications[0].Filters[0].ExternalReference"], jobListingResponse.Job.CustomData["Classifications[0].Filters[0].Value"]);
-                string parentClassificationsKey = "Classifications[0].Filters[0].SubLevel[0]";
-                JobDetailsViewModel.ProcessCustomData(parentClassificationsKey, jobListingResponse.Job.CustomData, classifOrdDict);
-                OrderedDictionary classifParentIdsOrdDict = new OrderedDictionary();
-                JobDetailsViewModel.AppendParentIds(classifOrdDict, classifParentIdsOrdDict);
-
-                var bull = jobListingResponse.Job.CustomData["Bulletpoints.BulletPoint1"];
-
-                // Processing Locations
-                OrderedDictionary locOrdDict = new OrderedDictionary();
-                locOrdDict.Add(jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].ExternalReference"], jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"]);
-                string parentLocKey = "CountryLocationArea[0].Filters[0].SubLevel[0]";
-                JobDetailsViewModel.ProcessCustomData(parentLocKey, jobListingResponse.Job.CustomData, locOrdDict);
-                OrderedDictionary locParentIdsOrdDict = new OrderedDictionary();
-                JobDetailsViewModel.AppendParentIds(locOrdDict, locParentIdsOrdDict);
-
-                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.DateCreated), TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time"));
-                DateTime utcTime = ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.DateCreated);
-                DateTime elocalTime;
-                DateTime eutcTime = new DateTime();
-                TimeSpan offset = localTime - utcTime;
-                TimeSpan eoffset = new TimeSpan();
-
-
-                if (jobListingResponse.Job.ExpiryDate.HasValue)
+                long expiryDate = (long)DateTime.Now.ToUniversalTime().Subtract(UnixEpoch).TotalMilliseconds;
+                if (jobListingResponse.Job != null && jobListingResponse.Job.ExpiryDate > expiryDate)
                 {
-                    elocalTime = TimeZoneInfo.ConvertTimeFromUtc(ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.ExpiryDate.Value), TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time"));
-                    eutcTime = ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.ExpiryDate.Value);
-                    eoffset = elocalTime - eutcTime;
-                }
 
-                viewModel.Classifications = classifParentIdsOrdDict;
-                viewModel.Locations = locParentIdsOrdDict;
-                viewModel.ClassificationsRootName = "Classifications";
-                viewModel.LocationsRootName = "CountryLocationArea";
+                    viewModel.JobDetails = jobListingResponse.Job;
 
-                // Getting the SEO route name for classifications
-                List<string> seoString = new List<string>();
-                foreach (var key in classifParentIdsOrdDict.Keys)
-                {
-                    string value = classifParentIdsOrdDict[key].ToString();
-                    string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
-                    seoString.Add(SEOString);
-                }
+                    // Getting Consultant Avatar Image Url from Sitefinity 
+                    viewModel.ApplicationEmail = jobListingResponse.Job.CustomData["ApplicationMethod.ApplicationEmail"];
+                    var user = SitefinityHelper.GetUserByEmail(jobListingResponse.Job.CustomData["ApplicationMethod.ApplicationEmail"]);
+                    if (user != null && user.Id != Guid.Empty)
+                        viewModel.ApplicationAvatarImageUrl = SitefinityHelper.GetUserAvatarUrlById(user.Id);
 
-                viewModel.ClassificationsSEORouteName = String.Join("/", seoString); 
+                    if (this.Model.IsJobApplyAvailable())
+                        viewModel.JobApplyAvailable = true;
 
-                ViewBag.CssClass = this.CssClass;
-                ViewBag.JobApplicationPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationPageId);
-                ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.JobResultsPageId);
-                ViewBag.EmailJobPageUrl = SitefinityHelper.GetPageUrl(this.EmailJobPageId);
-                ViewBag.GoogleForJobs = ReplaceToken(GoogleForJobsTemplate, JsonConvert.SerializeObject(new
-                {
-                    CurrencySymbol = "$",
-                    SalaryLowerBand = jobListingResponse.Job.CustomData.ContainsKey("Salaries[0].Filters[0].Min") ? jobListingResponse.Job.CustomData["Salaries[0].Filters[0].Min"] : null,
-                    SalaryUpperBand = jobListingResponse.Job.CustomData.ContainsKey("Salaries[0].Filters[0].Max") ? jobListingResponse.Job.CustomData["Salaries[0].Filters[0].Max"] : null,
-                    FullDescription = jobListingResponse.Job.Description,
-                    Description = jobListingResponse.Job.ShortDescription,
-                    AdvertiserCompanyName = jobListingResponse.Job.CustomData.ContainsKey("CompanyName") ? jobListingResponse.Job.CustomData["CompanyName"] : null,
-                    ProfessionName = jobListingResponse.Job.CustomData.ContainsKey("Classifications[0].Filters[0].Value") ? jobListingResponse.Job.CustomData["Classifications[0].Filters[0].Value"] : null,
-                    LocationName = jobListingResponse.Job.CustomData.ContainsKey("CountryLocationArea[0].Filters[0].Value") ? jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"] : null,
-                    AreaName = jobListingResponse.Job.CustomData.ContainsKey("CountryLocationArea[0].Filters[0].SubLevel[0].Value") ? jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].Value"] : null,
-                    JobName = jobListingResponse.Job.Title,
-                    DatePosted = string.Format("|{0}+{1}|", utcTime.ToString("yyyy-MM-ddThh:mm:ss"), offset.Hours.ToString("00") + ":" + offset.Minutes.ToString("00")),
-                    ExpiryDate = (jobListingResponse.Job.ExpiryDate.HasValue) ? string.Format("|{0}+{1}|", eutcTime.ToString("yyyy-MM-ddThh:mm:ss"), eoffset.Hours.ToString("00") + ":" + eoffset.Minutes.ToString("00")) : string.Empty,
-                    Address = jobListingResponse.Job.Address
-                }));
-                var fullTemplateName = this.templateNamePrefix + this.TemplateName;
-                // If it is null make sure that pass empty string , because html attrubutes will not work properly.
-                viewModel.JobDetails.Address = viewModel.JobDetails.Address == null ? "" : viewModel.JobDetails.Address;
-                viewModel.JobDetails.AddressLatitude = viewModel.JobDetails.AddressLatitude == null ? "" : viewModel.JobDetails.AddressLatitude;
-                viewModel.JobDetails.AddressLongtitude = viewModel.JobDetails.AddressLongtitude == null ? "" : viewModel.JobDetails.AddressLongtitude;
+                    // Processing Classifications
+                    OrderedDictionary classifOrdDict = new OrderedDictionary();
+                    classifOrdDict.Add(jobListingResponse.Job.CustomData["Classifications[0].Filters[0].ExternalReference"], jobListingResponse.Job.CustomData["Classifications[0].Filters[0].Value"]);
+                    string parentClassificationsKey = "Classifications[0].Filters[0].SubLevel[0]";
+                    JobDetailsViewModel.ProcessCustomData(parentClassificationsKey, jobListingResponse.Job.CustomData, classifOrdDict);
+                    OrderedDictionary classifParentIdsOrdDict = new OrderedDictionary();
+                    JobDetailsViewModel.AppendParentIds(classifOrdDict, classifParentIdsOrdDict);
 
-                #region Check job already applied
-                ViewBag.IsJobApplied = false;
-                JXTNext_MemberAppliedJobResponse response = _BLConnector.MemberAppliedJobsGet() as JXTNext_MemberAppliedJobResponse;
-                if(response.Success)
-                {
-                    foreach (var item in response.MemberAppliedJobs)
+                    var bull = jobListingResponse.Job.CustomData["Bulletpoints.BulletPoint1"];
+
+                    // Processing Locations
+                    OrderedDictionary locOrdDict = new OrderedDictionary();
+                    locOrdDict.Add(jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].ExternalReference"], jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"]);
+                    string parentLocKey = "CountryLocationArea[0].Filters[0].SubLevel[0]";
+                    JobDetailsViewModel.ProcessCustomData(parentLocKey, jobListingResponse.Job.CustomData, locOrdDict);
+                    OrderedDictionary locParentIdsOrdDict = new OrderedDictionary();
+                    JobDetailsViewModel.AppendParentIds(locOrdDict, locParentIdsOrdDict);
+
+                    DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.DateCreated), TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time"));
+                    DateTime utcTime = ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.DateCreated);
+                    DateTime elocalTime;
+                    DateTime eutcTime = new DateTime();
+                    TimeSpan offset = localTime - utcTime;
+                    TimeSpan eoffset = new TimeSpan();
+
+
+                    if (jobListingResponse.Job.ExpiryDate.HasValue)
                     {
-                        if(item.JobId == jobId.Value)
+                        elocalTime = TimeZoneInfo.ConvertTimeFromUtc(ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.ExpiryDate.Value), TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time"));
+                        eutcTime = ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.ExpiryDate.Value);
+                        eoffset = elocalTime - eutcTime;
+                    }
+
+                    viewModel.Classifications = classifParentIdsOrdDict;
+                    viewModel.Locations = locParentIdsOrdDict;
+                    viewModel.ClassificationsRootName = "Classifications";
+                    viewModel.LocationsRootName = "CountryLocationArea";
+
+                    // Getting the SEO route name for classifications
+                    List<string> seoString = new List<string>();
+                    foreach (var key in classifParentIdsOrdDict.Keys)
+                    {
+                        string value = classifParentIdsOrdDict[key].ToString();
+                        string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
+                        seoString.Add(SEOString);
+                    }
+
+                    viewModel.ClassificationsSEORouteName = String.Join("/", seoString);
+
+                    ViewBag.CssClass = this.CssClass;
+                    ViewBag.JobApplicationPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationPageId);
+                    ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.JobResultsPageId);
+                    ViewBag.EmailJobPageUrl = SitefinityHelper.GetPageUrl(this.EmailJobPageId);
+                    ViewBag.GoogleForJobs = ReplaceToken(GoogleForJobsTemplate, JsonConvert.SerializeObject(new
+                    {
+                        CurrencySymbol = "$",
+                        SalaryLowerBand = jobListingResponse.Job.CustomData.ContainsKey("Salaries[0].Filters[0].Min") ? jobListingResponse.Job.CustomData["Salaries[0].Filters[0].Min"] : null,
+                        SalaryUpperBand = jobListingResponse.Job.CustomData.ContainsKey("Salaries[0].Filters[0].Max") ? jobListingResponse.Job.CustomData["Salaries[0].Filters[0].Max"] : null,
+                        FullDescription = jobListingResponse.Job.Description,
+                        Description = jobListingResponse.Job.ShortDescription,
+                        AdvertiserCompanyName = jobListingResponse.Job.CustomData.ContainsKey("CompanyName") ? jobListingResponse.Job.CustomData["CompanyName"] : null,
+                        ProfessionName = jobListingResponse.Job.CustomData.ContainsKey("Classifications[0].Filters[0].Value") ? jobListingResponse.Job.CustomData["Classifications[0].Filters[0].Value"] : null,
+                        LocationName = jobListingResponse.Job.CustomData.ContainsKey("CountryLocationArea[0].Filters[0].Value") ? jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"] : null,
+                        AreaName = jobListingResponse.Job.CustomData.ContainsKey("CountryLocationArea[0].Filters[0].SubLevel[0].Value") ? jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].Value"] : null,
+                        JobName = jobListingResponse.Job.Title,
+                        DatePosted = string.Format("|{0}+{1}|", utcTime.ToString("yyyy-MM-ddThh:mm:ss"), offset.Hours.ToString("00") + ":" + offset.Minutes.ToString("00")),
+                        ExpiryDate = (jobListingResponse.Job.ExpiryDate.HasValue) ? string.Format("|{0}+{1}|", eutcTime.ToString("yyyy-MM-ddThh:mm:ss"), eoffset.Hours.ToString("00") + ":" + eoffset.Minutes.ToString("00")) : string.Empty,
+                        Address = jobListingResponse.Job.Address
+                    }));
+                    var fullTemplateName = this.templateNamePrefix + this.TemplateName;
+                    // If it is null make sure that pass empty string , because html attrubutes will not work properly.
+                    viewModel.JobDetails.Address = viewModel.JobDetails.Address == null ? "" : viewModel.JobDetails.Address;
+                    viewModel.JobDetails.AddressLatitude = viewModel.JobDetails.AddressLatitude == null ? "" : viewModel.JobDetails.AddressLatitude;
+                    viewModel.JobDetails.AddressLongtitude = viewModel.JobDetails.AddressLongtitude == null ? "" : viewModel.JobDetails.AddressLongtitude;
+
+                    #region Check job already applied
+                    ViewBag.IsJobApplied = false;
+                    JXTNext_MemberAppliedJobResponse response = _BLConnector.MemberAppliedJobsGet() as JXTNext_MemberAppliedJobResponse;
+                    if (response.Success)
+                    {
+                        foreach (var item in response.MemberAppliedJobs)
                         {
-                            ViewBag.IsJobApplied = true;
-                            break;
+                            if (item.JobId == jobId.Value)
+                            {
+                                ViewBag.IsJobApplied = true;
+                                break;
+                            }
                         }
                     }
+                    #endregion
+                    var meta = new System.Web.UI.HtmlControls.HtmlMeta();
+                    meta.Attributes.Add("property", "og:title");
+                    meta.Content = jobListingResponse.Job.Title;
+
+                    // Get the current page handler in order to access the page header
+                    var pageHandler = this.HttpContext.CurrentHandler.GetPageHandler();
+                    pageHandler.Header.Controls.Add(meta);
+                    return View(fullTemplateName, viewModel);
                 }
-                #endregion
-                var meta = new System.Web.UI.HtmlControls.HtmlMeta();
-                meta.Attributes.Add("property", "og:title");
-                meta.Content = jobListingResponse.Job.Title;
+                else
+                {
+                    if(jobListingResponse.Job!= null && jobListingResponse.Job.ExpiryDate <= expiryDate)
+                    {
+                        return Content("Job is Expired");
+                    }
+                    else
+                    {
+                        return Content("No job has been found");
+                    }
+                    
+                }
                 
-                // Get the current page handler in order to access the page header
-                var pageHandler = this.HttpContext.CurrentHandler.GetPageHandler();
-                pageHandler.Header.Controls.Add(meta);
-                return View(fullTemplateName, viewModel);
             }
 
             return Content("No job has been selected");
@@ -395,7 +412,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string JobResultsPageId { get; set; }
         public string EmailJobPageId { get; set; }
         public object GetDateTimeFromUnix { get; private set; }
-
+        private static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         private string templateName = "Simple";
         private string templateNamePrefix = "JobDetails.";
         internal const string GoogleForJobsTemplate = @"<script type='application/ld+json'>

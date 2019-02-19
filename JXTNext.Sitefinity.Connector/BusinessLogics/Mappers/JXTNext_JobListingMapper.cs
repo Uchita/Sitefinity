@@ -44,7 +44,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                 Description = data["FullDescription"],
                 ReferenceNo = data["RefNo"],
                 CustomData = (data["CustomData"] != null) ? FlattenJson(JObject.Parse((data["CustomData"]).Value)) : null,
-                ClassificationURL = ProcessClassificationSEOString(data)
+                ClassificationURL = ProcessClassificationSEOString((data["CustomData"] != null) ? FlattenJson(JObject.Parse((data["CustomData"]).Value)) : null, Convert.ToString(data["Name"]))
             };
 
             return local as T;
@@ -86,16 +86,15 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                     Description = jobItem["FullDescription"],
                     ReferenceNo = jobItem["RefNo"],
                     CustomData = (jobItem["CustomData"] != null) ? FlattenJson(new JObject(jobItem["CustomData"])) : null,
-                    ClassificationURL = ProcessClassificationSEOString(jobItem)
+                    ClassificationURL = ProcessClassificationSEOString((jobItem["CustomData"] != null) ? FlattenJson(new JObject(jobItem["CustomData"])) : null, Convert.ToString(jobItem["Name"]))
                 };
                 jobFullDetails.Add(local);
             }
             return jobFullDetails as List<T>;
         }
 
-        private string ProcessClassificationSEOString(dynamic jobItem)
+        private string ProcessClassificationSEOString(Dictionary<string, string> CustomData,string title)
         {
-            Dictionary<string, string> CustomData = (jobItem["CustomData"] != null) ? FlattenJson(new JObject(jobItem["CustomData"])) : new Dictionary<string, string>();
             OrderedDictionary classifOrdDict = new OrderedDictionary();
             classifOrdDict.Add(CustomData["Classifications[0].Filters[0].ExternalReference"], CustomData["Classifications[0].Filters[0].Value"]);
             string parentClassificationsKey = "Classifications[0].Filters[0].SubLevel[0]";
@@ -111,7 +110,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                 string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
                 seoString.Add(SEOString + "-jobs");
             }
-            seoString.Add(Regex.Replace(jobItem["Name"] + "-job", @"([^\w]+)", "-"));
+            seoString.Add(Regex.Replace(title + "-job", @"([^\w]+)", "-"));
             return String.Join("/", seoString);
 
         }

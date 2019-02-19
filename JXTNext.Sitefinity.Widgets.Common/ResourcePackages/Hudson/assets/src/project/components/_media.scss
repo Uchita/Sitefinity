@@ -1551,6 +1551,12 @@
             min-width: 500px;
         }
     }
+    .reg-form .basic-form {
+        margin-top: 0;
+    }
+    .home-padding.owl-carousel{
+        z-index: 1050;
+    }
 
 }
 
@@ -1850,6 +1856,10 @@
             margin-right: 0;
         }
     }   
+    .btn-primary, .btn {
+        margin-bottom: 5px;
+    }
+
 
 }
 

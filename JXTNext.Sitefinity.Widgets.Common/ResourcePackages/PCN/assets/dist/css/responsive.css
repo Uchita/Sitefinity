@@ -948,6 +948,10 @@
     .magazine-cover-img {
         margin-bottom: 25px;
     }
+
+    .insta-gallery > div > a {
+        width: 50%;
+    }
 }
 
 /* -----------------------------------
@@ -995,5 +999,9 @@
 
     .search-top .select {
         float: left;
+    }
+
+    .insta-gallery .insta-img {
+        min-height: 200px;
     }
 }

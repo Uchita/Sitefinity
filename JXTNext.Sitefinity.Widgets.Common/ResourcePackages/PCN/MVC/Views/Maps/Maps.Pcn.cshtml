@@ -5,13 +5,13 @@
 
 
 @{
-                /**/
+    /**/
 
-                var mapsAPIKey = new SiteSettingsHelper().GetCurrentSiteGoogleMapsAPIKey();
-                var srcMap = "https://maps.googleapis.com/maps/api/js?key=" + mapsAPIKey;
-                string domainName = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
-                var srcPlugin = domainName + "/Frontend-Assembly/JXTNext.Sitefinity.Widgets.Content/Mvc/Scripts/Maps/jquery.googlemap.js";
-                int counter = 0;
+    var mapsAPIKey = new SiteSettingsHelper().GetCurrentSiteGoogleMapsAPIKey();
+    var srcMap = "https://maps.googleapis.com/maps/api/js?key=" + mapsAPIKey;
+    string domainName = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+    var srcPlugin = domainName + "/Frontend-Assembly/JXTNext.Sitefinity.Widgets.Content/Mvc/Scripts/Maps/jquery.googlemap.js";
+    int counter = 0;
 
 }
 
@@ -90,7 +90,7 @@ else
                         minZoom: 1,
                         scrollwheel: false,
                         //draggable: false,
-                        center: new google.maps.LatLng(10, 0),
+                        center: new google.maps.LatLng(Locations[1]['lat'], Locations[1]['lng']),
                         styles: [{ "stylers": [{ "visibility": "off" }] }, { "featureType": "water", "stylers": [{ "color": mapBgColor }, { "visibility": "on" }] }]
                     });
 

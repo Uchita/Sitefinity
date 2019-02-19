@@ -7086,6 +7086,11 @@ ul.magazine-headlines {
     padding-top: 15px;
 }
 
+    .magazine-headlines li a,
+    .magazine-headlines li a:hover {
+        color: #fff;
+    }
+
     .magazine-headlines li:first-child {
         padding-top: 0;
     }
@@ -7095,12 +7100,18 @@ ul.magazine-headlines {
         padding-bottom: 0;
     }
 
-.magazine-headline {
-    font-size: 20px;
-    color: #8edd2b;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-}
+    .magazine-headlines li.magazine-headline,
+    .magazine-headlines li.magazine-headline a {
+        font-size: 20px;
+        color: #8edd2b;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+    }
+
+        .magazine-headlines li.magazine-headline a:hover,
+        .magazine-headlines li.magazine-headline a:focus {
+            color: #8edd2b;
+        }
 
 .magazine-cover-content .btn-link {
     color: #fff;
@@ -7173,6 +7184,10 @@ ul.magazine-headlines {
 .magazine-issue:focus .magazine-overlay {
     opacity: 1;
     visibility: visible;
+}
+
+.magazine-cover-wrap .col-md-8 {
+    margin-bottom: 30px;
 }
 
 .magazine-issue .magazine-title {
@@ -7287,3 +7302,20 @@ iframe.registerjob {
 ul.nav.nav-sitemap li > ul {
     padding-left: 24px;
 }
+
+.insta-gallery {
+}
+
+    .insta-gallery > div > a {
+        float: left;
+        width: 33.33%;
+        display: block;
+    }
+
+    .insta-gallery .insta-img {
+        min-height: 300px;
+        width: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }

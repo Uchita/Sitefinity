@@ -12,36 +12,36 @@
 @{
     var Json = JsonConvert.SerializeObject(Model);
 }
+<div class="tab-content news_side_search">
+    <div class="post-list">
 
-<div class="post-list">
-
-    @foreach (var item in Model.Items)
-    {
-        var imageurl = "";
-        foreach (var relatedItem in item.Fields.NewsImage)
+        @foreach (var item in Model.Items)
         {
-            imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
-        }
-        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+            var imageurl = "";
+            foreach (var relatedItem in item.Fields.NewsImage)
+            {
+                imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+            }
+            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
 
-        <div class="items">
+            <div class="items">
 
-            <div class="thumbnail-img overlay">
-                <a href="@navigateUrl"><img src="@imageurl" alt="image"></a>
-            </div>
-
-            <div class="text">
-                <h3>
-                    <a href="@navigateUrl">@item.Fields.Title</a>
-                </h3>
-                <div class="entry-meta">
-                    <span class="author">Posted by <a href="#" title="Posts by Greythorn Australia" rel="author">@DataResolver.Resolve(item.DataItem, "Author", null)</a></span>
-                    <span class="sep">-</span>
-                    <span class="date">@item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
+                <div class="thumbnail-img overlay">
+                    <a href="@navigateUrl"><img src="@imageurl" alt="image"></a>
                 </div>
+
+                <div class="text">
+                    <h3>
+                        <a href="@navigateUrl">@item.Fields.Title</a>
+                    </h3>
+                    <div class="entry-meta">
+                        <span class="author">Posted by <a href="#" title="Posts by Greythorn Australia" rel="author">@DataResolver.Resolve(item.DataItem, "Author", null)</a></span>
+                        <span class="sep">-</span>
+                        <span class="date">@item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
+                    </div>
+                </div>
+
             </div>
-
-        </div>
-    }
-
+        }
+    </div>
 </div>

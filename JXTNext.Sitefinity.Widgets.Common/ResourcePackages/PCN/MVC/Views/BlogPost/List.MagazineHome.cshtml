@@ -51,6 +51,7 @@
 
                     if (@volume == @volume && @issue == issue)
                     {
+                        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
                         if (@counter == 0)
                         {
                             foreach (var relatedItem in item.Fields.CoverImage)
@@ -71,7 +72,7 @@
                                     volume = @taxonvolume.Title.ToString().ToLower().Replace(" ", "-"); ;
                                 }
                             }
-                            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+
 
 
                             <div class="magazine-cover-img">
@@ -81,11 +82,11 @@
                                 <div class="magazine-vol-name">@volume - @issue</div>
                                 <div class="magazine-vol-date">@item.GetDateTime("PublicationDate", "MMM, yyyy")</div>
                                 @:<ul class="magazine-headlines">
-                                    <li class="magazine-headline">@item.Fields.Title</li>
+                                    <li class="magazine-headline"><a class="magazine-headline" href="@navigateUrl">@item.Fields.Title</a></li>
                                 }
-                                else
+                                else if (@counter < 5)
                                 {
-                                    <li class="magazine-sub-headline">@item.Fields.Title</li>
+                                    <li class="magazine-sub-headline"><a class="magazine-sub-headline" href="@navigateUrl">@item.Fields.Title</a></li>
                                 }
                             }
 
@@ -93,7 +94,7 @@
                         }
                     }
         </ul>
-        <a href="/issue?vol=@volume&issue=@issue" class="btn-link">View issue</a>
+        <a href="/magazine/issue?vol=@volume&issue=@issue" class="btn-link">View issue</a>
     </div>
 </div>
 </div>

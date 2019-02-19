@@ -19,15 +19,14 @@
 @using Telerik.Sitefinity.DynamicModules.Model;
 @{
     BlogsManager blogsManager = BlogsManager.GetManager();
-    var volval = Request.QueryString["ref"].ToString();
-  
+    var volval = Request.QueryString["vol"].ToString();
+    var issueval = Request.QueryString["issue"].ToString();
+    int counter = 0;
 }
+
 <div class="@Model.CssClass">
     <div class="container magazine-cover-wrap">
-        <div class="row">
-            <div class="col-sm-12">
-                <h2>@volval.Replace("-", " ").ToUpper()</h2>
-            </div>
+        <div class="row">          
             @foreach (var item in Model.Items)
             {
                 if (@item.Fields.ItemDefaultUrl.Contains("magazine"))
@@ -51,9 +50,11 @@
                         }
 
                         var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
-                        if (@volval == @volume)
+                        if (@volval == @volume && @issueval == @issue)
                         {
-                            <div class="col-md-4">
+                            if (@counter>4)
+                            {
+                            <div class="col-md-6">
                                 <div class="magazine-issue">
                                     <div class="bg-corner border-corner">
                                         <div class="bg-corner-inner">
@@ -72,6 +73,8 @@
                                     </div>
                                 </div>
                             </div>
+                            }
+                            counter++;
                         }
                     }
                 }

@@ -1,0 +1,36 @@
+﻿@model dynamic
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+<div class="latest-job">
+    @foreach (var jobOffer in Model.SearchResults)
+    {
+        <div class="job-section">
+            <span class="job-date">@jobOffer.DateCreated_Representation</span>
+            <div class="row">
+                <div>
+                    <h2><a target="_blank" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">@jobOffer.Title</a></h2>
+                    <p>
+                        <strong>Location</strong><span class="rssLocation">@jobOffer.CustomData["CountryLocationArea[0].Filters[0].Value"]</span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        @{
+                            var summary = Html.HtmlSanitize((string)jobOffer.ShortDescription).ToString();
+                            string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 250 ? summary.Substring(0, 250) + "..." : summary;
+                        }
+                        @trimSummary
+                    </p>
+
+                </div>
+                <div class="action_link">
+                    <a href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">VIEW JOB</a>
+                </div>
+            </div>
+
+        </div>
+    }
+
+</div>
+

@@ -1,0 +1,49 @@
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web.DataResolving;
+@Html.Script(ScriptRef.JQuery, "top", false)
+@using Newtonsoft.Json;
+@using Telerik.Sitefinity.Blogs.Model;
+@using Telerik.Sitefinity.Frontend.Search.Mvc.Models;
+@using Telerik.Sitefinity.Modules.Libraries;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Modules.Blogs;
+@using Telerik.Sitefinity.RelatedData;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.DynamicModules.Model;
+
+<div class="horizontal-menu magazine-horizontal-menu">
+    <div class="container">
+        <div class="prefix_left-navigation">
+            <nav class="navbar" role="navigation">
+                <div class="container-fluid">
+                    <ul>
+                        <li class="current"><a href="/magazine"><i class="fa fa-home"></i></a></li>
+                        @{
+                            TaxonomyManager manager = TaxonomyManager.GetManager();
+                            var taxonomy = manager.GetTaxonomies
+                            <FlatTaxonomy>
+                                ().Where(t => t.Name == "Volume").FirstOrDefault();
+                            if (taxonomy != null)
+                            {
+                                var orderedTags = taxonomy.Taxa.OrderByDescending(t => t.Name);
+                                foreach (var tag in orderedTags)
+                                {
+
+                                    <li>
+                                        <a href="/magazine/volume?ref=@tag.UrlName">@tag.Title </a>
+                                    </li>
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>

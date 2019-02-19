@@ -888,10 +888,16 @@
     <Content Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.ArchiveList.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\BlogPost\Detail.DetailPage_Magazine .cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.MagazineHome.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.MagazineHomeLeft.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.MagazineIssueList.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.MagazineIssue.cshtml">
@@ -997,6 +1003,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\PCN\MVC\Views\JobSearchResults\JobsFeatured.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\Event\List.LatestEvents.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\JobSearchResults\JobsLatest_Magazine.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\PCN\MVC\Views\Navigation\NavigationView.Magazine.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ResourcePackages\PCN\MVC\Views\News\List.NewsListCarousel.cshtml" />

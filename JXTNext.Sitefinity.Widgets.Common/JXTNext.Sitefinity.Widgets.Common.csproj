@@ -328,10 +328,10 @@
     <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\jobdetail-sidebar.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-dark.html">
+    <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-bg-image.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-parallax-bg.html">
+    <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-dark.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-highlight-light.html">
@@ -3347,6 +3347,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Tetracon\MVC\Views\Card\Card.TitleCallToAction.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\Card\Card.Icon.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\Card\Card.Team-List.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

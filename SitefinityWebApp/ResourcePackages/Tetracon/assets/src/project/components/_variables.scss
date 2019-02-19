@@ -22,7 +22,7 @@ $btn-primary-color: #fff;
 $btn-primary-hover-bg: #7DC246;
 $btn-primary-hover-color: #fff;
 $btn-primary-active-bg: #7DC246;
-$btn-primary-active-color: #ffa400;
+$btn-primary-active-color: $btn-primary-hover-color;
 
 $btn-secondary-bg: transparent;
 $btn-secondary-color: #7DC246;
@@ -33,9 +33,9 @@ $btn-secondary-active-color: #7DC246;
 
 $btn-more-bg: #7DC246;
 $btn-more-color: #fff;
-$btn-more-hover-bg: #007077;
+$btn-more-hover-bg: #7DC246;
 $btn-more-hover-color: #fff;
-$btn-more-active-bg: #007077;
+$btn-more-active-bg: #7DC246;
 $btn-more-active-color: #7DC246;
 
 $btn-banner-bg: transparent;
@@ -64,6 +64,7 @@ $quick-links-hover-color: #80cbc4;
 // Banner
 $banner-overlay-fallback: rgb(37, 37, 37);
 $banner-overlay: rgba(255, 255, 255, 0.7);
+$caption-overlay: rgba(102, 102, 102, 0.7);
 $banner-color: #fff;
 
 // Page sections 
@@ -73,7 +74,7 @@ $page-section-bg-lighter: #f0f0f0;
 $page-section-bg-lighter-color: inherit; 
 $page-section-bg-light: #ababab;
 $page-section-bg-light-color: inherit;
-$page-section-bg-dark: #2e2e2e;
+$page-section-bg-dark: #0f0f0f;
 $page-section-bg-dark-color: #fff;
 $page-section-bg-highlight: #7DC246;
 $page-section-bg-highlight-color: #fff;

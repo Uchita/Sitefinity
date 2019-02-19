@@ -1,0 +1,15 @@
+@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+<div class="@Model.CssClass">
+    <div class="thumbnail icon-caption">
+
+        <img src="@Model.SelectedSizeUrl" title="@Model.ImageTitle" alt="@Model.ImageAlternativeText">
+
+        <div class="caption">
+            <h2>@Html.HtmlSanitize(Model.Heading)</h2>
+            <p>@Html.HtmlSanitize(Model.Description)</p>
+            </div>
+        </div>
+
+    </div>

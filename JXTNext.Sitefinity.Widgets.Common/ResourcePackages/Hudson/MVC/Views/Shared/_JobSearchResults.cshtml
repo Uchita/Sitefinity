@@ -94,8 +94,17 @@
                 <div class="row">
                     <div class="col-sm-4 sc-job-meta-group">
                         <span class="meta-location">#:CustomData["CountryLocationArea[0].Filters[0].Value"]#</span><br />
-                                                                                                                   <span class="meta-salary">$#:CustomData["Salary.Filters[0].Min"]# - $#:CustomData["Salary.Filters[0].Max"]# <br /><span class="salary-label">#:CustomData["Salary.Filters[0].Value"]#</span></span><br />
-                        <span class="meta-worktype">#:CustomData["WorkType.Filters[0].Value"]#</span>
+
+                        # if( CustomData["Salary.Filters[0].Min"] != 0 && CustomData["Salary.Filters[0].Max"] != 0 ){
+                            if( CustomData["Salary.Filters[0].Min"] == CustomData["Salary.Filters[0].Max"] ){
+                                #<span class="meta-salary">$#:CustomData["Salary.Filters[0].Max"]#<br />#
+                            }
+                            else{
+                                #<span class="meta-salary">$#:CustomData["Salary.Filters[0].Min"]# - $#:CustomData["Salary.Filters[0].Max"]# <br />#
+                            }
+                            #<span class="salary-label">#:CustomData["Salary.Filters[0].Value"]#</span></span><br />#
+                         }#
+                         <span class="meta-worktype">#:CustomData["WorkType.Filters[0].Value"]#</span>
                     </div>
 
                     <div class="col-sm-5 col-md-6">

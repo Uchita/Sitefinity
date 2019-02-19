@@ -9247,8 +9247,37 @@ body.feedback .parallax-mirror .parallax-slider {
     border-top: 1px solid #D8D8D8;
 }
 
-@media(max-width: 348px) {
+.blog-container ul.pagination a[aria-label="Next"] span,
+.blog-container ul.pagination a[aria-label="Previous"] span {
+    display: none;
+}
 
+.blog-container ul.pagination a[aria-label="Next"],
+.blog-container ul.pagination a[aria-label="Previous"] {
+    border: 1px solid #0088CF;
+    height: 35px;
+    width: 35px;
+}
+
+.blog-container ul.pagination a[aria-label="Next"] {
+    background: url(../images/next-icon.png) no-repeat center center;
+}
+
+    .blog-container ul.pagination a[aria-label="Next"]:hover,
+    .blog-container ul.pagination a[aria-label="Next"]:focus {
+        background: #0088CF url(../images/next-iconH.png) no-repeat center center;
+    }
+
+.blog-container ul.pagination a[aria-label="Previous"] {
+    background: url(../images/prev-icon.png) no-repeat center center;
+}
+
+    .blog-container ul.pagination a[aria-label="Previous"]:hover,
+    .blog-container ul.pagination a[aria-label="Previous"]:focus {
+        background: #0088CF url(../images/prev-iconH.png) no-repeat center center;
+    }
+
+@media(max-width: 348px) {
     .related-blog {
         width: 100%;
     }

@@ -89,12 +89,15 @@ else
                         zoom: zoomLevel,
                         minZoom: 1,
                         scrollwheel: false,
-                        //draggable: false,
+                        zoomControl: false,
+                        draggable: false,
                         center: new google.maps.LatLng(Locations[1]['lat'], Locations[1]['lng']),
                         styles: [{ "stylers": [{ "visibility": "off" }] }, { "featureType": "water", "stylers": [{ "color": mapBgColor }, { "visibility": "on" }] }]
                     });
 
-                    var infowindow = new google.maps.InfoWindow();
+                    var infowindow = new google.maps.InfoWindow({
+                        //pixelOffset: new google.maps.Size(100, 100)
+                    });
                     allMarkers = Locations.map(function (location, i) {
                         var Title = location['popupTitle'],
                             Lat = location['lat'],

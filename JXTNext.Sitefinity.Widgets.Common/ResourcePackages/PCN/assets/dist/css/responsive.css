@@ -678,6 +678,14 @@
         left: 0;
         top: 0;
     }
+    /*.sticky-wrapper {
+        height: auto !important;
+        width: 100% !important;
+    }
+        .sticky-wrapper .jobdetail-sidebar-inner {
+            position: static !important;
+            top: 0 !important;
+        }*/
 }
 
 
@@ -1022,5 +1030,11 @@
 
     .insta-gallery .insta-img {
         min-height: 200px;
+    }
+}
+
+@media print {
+    .jobdetail-sidebar {
+        display: none;
     }
 }

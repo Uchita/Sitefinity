@@ -13,7 +13,6 @@
 -----------------------------------*/
 html {
     line-height: 1.5;
-    overflow-x: hidden;
 }
 
 .map-placeholder {
@@ -2225,7 +2224,6 @@ hr {
 
 .article-template .horizontal-menu {
     border-top: 1px solid #8EDD2B;
-    border-bottom: 1px solid #8EDD2B;
 }
 
 .horizontal-menu .navbar {
@@ -5182,7 +5180,6 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     .testimonial_section .author-name {
         display: inline-block;
         color: #4293C4;
-        margin-bottom: 10px;
     }
 
 .author-img {
@@ -6422,9 +6419,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 }
 
 .article-template .horizontal-menu {
-    text-align: left;
-    padding-top: 0;
-    padding-bottom: 0;
+    text-align: center;
 }
 
 .article-template .prefix_left-navigation li {
@@ -7069,10 +7064,9 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 }
 
 .magazine-vol-name {
-    font-size: 30px;
+    font-size: 25px;
+    font-weight: bold;
     letter-spacing: 0.3px;
-    font-family: FuturaPT-bold;
-    line-height: 1;
 }
 
 ul.magazine-headlines {
@@ -7251,13 +7245,11 @@ ul.magazine-headlines {
 
 .magazine-issue .magazine-vol-date {
     color: #000;
-    margin-top: 15px;
+    margin-top: 8px;
 }
 
 .magazine-issue .issue-desc {
     color: #42A3D9;
-    font-weight: bold;
-    letter-spacing: 0.3px;
 }
 
 .contact-map .pcn-map {
@@ -7401,9 +7393,7 @@ ul.nav.nav-sitemap li > ul {
 
 .top-categories .prefix_left-navigation {
     width: 75%;
-    /*border-right: 1px solid #8EDD2B;*/
-    padding-top: 20px;
-    padding-bottom: 20px;
+    border-right: 1px solid #8EDD2B;
 }
 
 .top-categories .extra-links {
@@ -7421,13 +7411,9 @@ ul.nav.nav-sitemap li > ul {
     font-weight: 600;
     position: relative;
     min-height: 100%;
-    border-right: 1px solid #8EDD2B;
 }
 
-    .horizontal-menu .top-categories .extra-links a:first-child {
-        border-left: 1px solid #8EDD2B;
-    }
-    /*.horizontal-menu .top-categories .extra-links a:first-child:after {
+    .horizontal-menu .top-categories .extra-links a:first-child:after {
         content: "";
         width: 1px;
         height: 100%;
@@ -7435,7 +7421,8 @@ ul.nav.nav-sitemap li > ul {
         right: 0;
         top: 0;
         position: absolute;
-    }*/
+    }
+
     .horizontal-menu .top-categories .extra-links a > span {
         line-height: 1;
         transform: translate(-50%, -50%);

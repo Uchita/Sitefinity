@@ -44,7 +44,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                 Description = data["FullDescription"],
                 ReferenceNo = data["RefNo"],
                 CustomData = (data["CustomData"] != null) ? FlattenJson(JObject.Parse((data["CustomData"]).Value)) : null,
-                ClassificationURL = ProcessClassificationSEOString((data["CustomData"] != null) ? FlattenJson(JObject.Parse((data["CustomData"]).Value)) : null)
+                ClassificationURL = ProcessClassificationSEOString((data["CustomData"] != null) ? FlattenJson(JObject.Parse((data["CustomData"]).Value)) : null, Convert.ToString(data["Name"]))
             };
 
             return local as T;
@@ -86,14 +86,14 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                     Description = jobItem["FullDescription"],
                     ReferenceNo = jobItem["RefNo"],
                     CustomData = (jobItem["CustomData"] != null) ? FlattenJson(new JObject(jobItem["CustomData"])) : null,
-                    ClassificationURL = ProcessClassificationSEOString((jobItem["CustomData"] != null) ? FlattenJson(new JObject(jobItem["CustomData"])) : null)
+                    ClassificationURL = ProcessClassificationSEOString((jobItem["CustomData"] != null) ? FlattenJson(new JObject(jobItem["CustomData"])) : null, Convert.ToString(jobItem["Name"]))
                 };
                 jobFullDetails.Add(local);
             }
             return jobFullDetails as List<T>;
         }
 
-        private string ProcessClassificationSEOString(Dictionary<string, string> CustomData)
+        private string ProcessClassificationSEOString(Dictionary<string, string> CustomData,string title)
         {
             OrderedDictionary classifOrdDict = new OrderedDictionary();
             classifOrdDict.Add(CustomData["Classifications[0].Filters[0].ExternalReference"], CustomData["Classifications[0].Filters[0].Value"]);
@@ -108,8 +108,9 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
             {
                 string value = classifParentIdsOrdDict[key].ToString();
                 string SEOString = Regex.Replace(value, @"([^\w]+)", "-");
-                seoString.Add(SEOString);
+                seoString.Add(SEOString + "-jobs");
             }
+            seoString.Add(Regex.Replace(title + "-job", @"([^\w]+)", "-"));
             return String.Join("/", seoString);
 
         }

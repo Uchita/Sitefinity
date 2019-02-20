@@ -20,22 +20,8 @@
 @{
     BlogsManager blogsManager = BlogsManager.GetManager();
     var issue = "";
-    var volume = "";
-    var modelfirst = Model.Items.FirstOrDefault();
-    if (modelfirst.Fields.issue != null)
-    {
-        foreach (var taxonissue in modelfirst.GetFlatTaxons("issue"))
-        {
-            issue = @taxonissue.Title.ToString().ToLower().Replace(" ", "-"); ;
-        }
-    }
-    if (modelfirst.Fields.volume != null)
-    {
-        foreach (var taxonvolume in modelfirst.GetFlatTaxons("volume"))
-        {
-            volume = @taxonvolume.Title.ToString().ToLower().Replace(" ", "-"); ;
-        }
-    }
+    var volume = "";    
+    
 }
 
 <div class="@Model.CssClass">
@@ -48,6 +34,20 @@
             foreach (var relatedItem in item.Fields.BlogImage)
             {
                 imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+            }
+            if (@item.Fields.issue != null)
+            {
+                foreach (var taxonissue in @item.GetFlatTaxons("issue"))
+                {
+                    issue = @taxonissue.Title.ToString() ;
+                }
+            }
+            if (@item.Fields.volume != null)
+            {
+                foreach (var taxonvolume in @item.GetFlatTaxons("volume"))
+                {
+                    volume = @taxonvolume.Title.ToString();
+                }
             }
 
             var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);

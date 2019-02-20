@@ -38,6 +38,8 @@
                         var coverimageurl = "";
                         var issue = "";
                         var volume = "";
+                        var issuetext = "";
+                        var volumetext = "";
                         foreach (var relatedItem in item.Fields.BlogImage)
                         {
                             imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
@@ -50,14 +52,16 @@
                         {
                             foreach (var taxonissue in item.GetFlatTaxons("issue"))
                             {
-                                issue = @taxonissue.Title.ToString().ToLower().Replace(" ", "-"); ;
+                                issue = @taxonissue.Title.ToString().ToLower().Replace(" ", "-");
+                                issuetext = @taxonissue.Title.ToString();
                             }
                         }
                         if (item.Fields.volume != null)
                         {
                             foreach (var taxonvolume in item.GetFlatTaxons("volume"))
                             {
-                                volume = @taxonvolume.Title.ToString().ToLower().Replace(" ", "-"); ;
+                                volume = @taxonvolume.Title.ToString().ToLower().Replace(" ", "-");
+                                volumetext = @taxonvolume.Title.ToString();
                             }
                         }
 
@@ -66,14 +70,14 @@
                             var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
 
 
-                                 if (@counter == 0)
-                                  {
+                            if (@counter == 0)
+                            {
 
                                 <div class="magazine-cover-img">
                                     <img src="@coverimageurl" alt="@item.Fields.Title" />
                                 </div>
                                 @:<div class="magazine-cover-content">
-                                    <div class="magazine-vol-name">@volume - @issue</div>
+                                    <div class="magazine-vol-name">@volumetext - @issuetext</div>
                                     <div class="magazine-vol-date">@item.GetDateTime("PublicationDate", "MMM, yyyy")</div>
                                     @:<ul class="magazine-headlines">
                                         <li class="magazine-headline"><a class="magazine-headline" href="@navigateUrl">@item.Fields.Title</a></li>

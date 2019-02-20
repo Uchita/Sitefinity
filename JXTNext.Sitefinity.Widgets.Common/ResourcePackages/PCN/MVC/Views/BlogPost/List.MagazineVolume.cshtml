@@ -20,7 +20,7 @@
 @{
     BlogsManager blogsManager = BlogsManager.GetManager();
     var volval = Request.QueryString["ref"].ToString();
-  
+
 }
 <div class="@Model.CssClass">
     <div class="container magazine-cover-wrap">
@@ -37,6 +37,8 @@
                         var imageurl = "";
                         var volume = "";
                         var issue = "";
+                        var volumetext = "";
+                        var issuetext = "";
                         foreach (var relatedItem in item.Fields.BlogImage)
                         {
                             imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
@@ -44,10 +46,12 @@
                         foreach (var taxonvolume in item.GetFlatTaxons("volume"))
                         {
                             volume = @taxonvolume.Title.ToString().ToLower().Replace(" ", "-");
+                            volumetext = @taxonvolume.Title.ToString();
                         }
                         foreach (var taxonvolume in item.GetFlatTaxons("issue"))
                         {
                             issue = @taxonvolume.Title.ToString().ToLower().Replace(" ", "-");
+                            issuetext = @taxonvolume.Title.ToString();
                         }
 
                         var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
@@ -64,7 +68,7 @@
                                                 </div>
                                             </div>
                                             <div class="magazine-cover-content">
-                                                <a href="@navigateUrl" class="magazine-vol-name">@volume - @issue</a>
+                                                <a href="@navigateUrl" class="magazine-vol-name">@volumetext - @issuetext</a>
                                                 <div class="magazine-vol-date">@item.GetDateTime("PublicationDate", "MMM, yyyy")</div>
                                                 <div class="issue-desc">@Html.HtmlSanitize((string)item.Fields.Summary)</div>
                                             </div>

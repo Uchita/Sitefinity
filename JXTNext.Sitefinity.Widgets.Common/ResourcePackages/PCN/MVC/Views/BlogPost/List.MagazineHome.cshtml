@@ -23,19 +23,23 @@
     var imageurl = "";
     var issue = "";
     var volume = "";
+    var issuetext = "";
+    var volumetext = "";
     var modelfirst = Model.Items.FirstOrDefault();
     if (modelfirst.Fields.issue != null)
     {
         foreach (var taxonissue in modelfirst.GetFlatTaxons("issue"))
         {
-            issue = @taxonissue.Title.ToString().ToLower().Replace(" ", "-"); ;
+            issue = @taxonissue.Title.ToString().ToLower().Replace(" ", "-");
+            issuetext = @taxonissue.Title.ToString();
         }
     }
     if (modelfirst.Fields.volume != null)
     {
         foreach (var taxonvolume in modelfirst.GetFlatTaxons("volume"))
         {
-            volume = @taxonvolume.Title.ToString().ToLower().Replace(" ", "-"); ;
+            volume = @taxonvolume.Title.ToString().ToLower().Replace(" ", "-");
+            volumetext = @taxonvolume.Title.ToString();
         }
     }
 }
@@ -79,7 +83,7 @@
                                 <img src="@imageurl" alt="@item.Fields.Title" />
                             </div>
                             @:<div class="magazine-cover-content">
-                                <div class="magazine-vol-name">@volume - @issue</div>
+                                <div class="magazine-vol-name">@volumetext - @issuetext</div>
                                 <div class="magazine-vol-date">@item.GetDateTime("PublicationDate", "MMM, yyyy")</div>
                                 @:<ul class="magazine-headlines">
                                     <li class="magazine-headline"><a class="magazine-headline" href="@navigateUrl">@item.Fields.Title</a></li>

@@ -2224,6 +2224,7 @@ hr {
 
 .article-template .horizontal-menu {
     border-top: 1px solid #8EDD2B;
+    border-bottom: 1px solid #8EDD2B;
 }
 
 .horizontal-menu .navbar {
@@ -2785,7 +2786,7 @@ ul.team-section {
     }
 
 .consultant-detail {
-    padding: 109px 0 44px;
+    padding: 54px 0 44px;
 }
 
     .consultant-detail h3 {
@@ -5689,7 +5690,9 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 }
 
 .upload-section select {
-    width: 100%
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .job-offer-details {
@@ -6420,6 +6423,8 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
 .article-template .horizontal-menu {
     text-align: center;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .article-template .prefix_left-navigation li {
@@ -7393,7 +7398,9 @@ ul.nav.nav-sitemap li > ul {
 
 .top-categories .prefix_left-navigation {
     width: 75%;
-    border-right: 1px solid #8EDD2B;
+    /*border-right: 1px solid #8EDD2B;*/
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .top-categories .extra-links {
@@ -7411,9 +7418,10 @@ ul.nav.nav-sitemap li > ul {
     font-weight: 600;
     position: relative;
     min-height: 100%;
+    border-right: 1px solid #8EDD2B;
 }
 
-    .horizontal-menu .top-categories .extra-links a:first-child:after {
+    /*.horizontal-menu .top-categories .extra-links a:first-child:after {
         content: "";
         width: 1px;
         height: 100%;
@@ -7421,7 +7429,7 @@ ul.nav.nav-sitemap li > ul {
         right: 0;
         top: 0;
         position: absolute;
-    }
+    }*/
 
     .horizontal-menu .top-categories .extra-links a > span {
         line-height: 1;
@@ -7431,6 +7439,10 @@ ul.nav.nav-sitemap li > ul {
         position: absolute;
         left: 50%;
         top: 50%;
+    }
+
+    .horizontal-menu .top-categories .extra-links a:first-child {
+        border-left: 1px solid #8EDD2B;
     }
 
 .archive-postlist.upcoming-events > .row > div {
@@ -7534,4 +7546,13 @@ ul.nav.nav-sitemap li > ul {
 
 .btn-style-corner #mc-embedded-subscribe {
     margin-left: 0;
+}
+
+.meet-team-goback-btn {
+    margin-bottom: 54px;
+}
+
+.upload-section .alert-danger {
+    display: inline-block;
+    margin-top: 10px;
 }

@@ -255,12 +255,14 @@ function getCookie(c_name) {
 
 // Events load on window scroll
 var $eventsWrap = $(".archive-postlist.upcoming-events");
-var eventsWrapTop = $eventsWrap.offset().top;
-var $win = $(window);
-$(window).scroll(function () {
-    var currentScroll = $win.scrollTop();
-    var calcHeight = (eventsWrapTop + $eventsWrap.height()) - 130;
-    if (currentScroll > calcHeight) {
-        $(".archive-postlist.upcoming-events>.row>div:not(.active-list):lt(2)").addClass("active-list").slideDown("slow");
-    }
-});
+if ($eventsWrap.length > 0) {
+    var eventsWrapTop = $eventsWrap.offset().top;
+    var $win = $(window);
+    $(window).scroll(function () {
+        var currentScroll = $win.scrollTop();
+        var calcHeight = (eventsWrapTop + $eventsWrap.height()) - 130;
+        if (currentScroll > calcHeight) {
+            $(".archive-postlist.upcoming-events>.row>div:not(.active-list):lt(2)").addClass("active-list").slideDown("slow");
+        }
+    });
+}

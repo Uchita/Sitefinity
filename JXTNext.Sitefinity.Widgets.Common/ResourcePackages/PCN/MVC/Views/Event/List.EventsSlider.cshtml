@@ -48,7 +48,10 @@
 
                 <div class="more">
                     <a href="@navigateUrl">Read more</a>
-                    <a target="_blank" href="#">Get Tickets</a>
+                    @if (item.Fields.TicketURL != null)
+                    {
+                        <a target="_blank" href="@item.Fields.TicketURL">Get Tickets</a>
+                    }
                 </div>
 
             </div>
@@ -56,3 +59,7 @@
         </li>
     }
 </ul>
+@if (Model.Items.Count() == 0)
+{
+    <div class="alert alert-warning"><strong>No results found.</strong></div>
+}

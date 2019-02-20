@@ -21,6 +21,14 @@
 
         <div class="row">
 
+            <div class="col-sm-12">
+                <div class="btn-style-corner meet-team-goback-btn">
+                    <a class="btn btn-primary" href="/about/meet-the-team" title="Go Back">
+                        <span>< GO BACK</span>
+                    </a>
+                </div>
+            </div>
+
             <div class="col-md-3">
                 @if (Model.Item.Fields.Pic != null)
                 {
@@ -80,12 +88,6 @@
                 <p class="job-title">@Html.HtmlSanitize((string)Model.Item.Fields.Position)</p>
 
                 <p>@Html.HtmlSanitize((string)Model.Item.Fields.Bio)</p>
-
-                <a class="button" href="/about/meet-the-team" title="Go Back">
-                    <i aria-hidden="true" class="fa fa-angle-left"><!-- --></i> GO BACK
-                </a>
-
-
             </div>
 
 

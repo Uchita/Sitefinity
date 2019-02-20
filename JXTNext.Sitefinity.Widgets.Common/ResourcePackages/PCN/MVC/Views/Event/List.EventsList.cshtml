@@ -106,7 +106,12 @@
                 </div>
             </div>
         }
-
+        @if (model.Count() == 0)
+        {
+            <div class="col-sm-12">
+                <div class="alert alert-warning"><strong>No results found.</strong></div>
+            </div>
+        }
     </div>
 </div>
 @if (Model.ShowPager)

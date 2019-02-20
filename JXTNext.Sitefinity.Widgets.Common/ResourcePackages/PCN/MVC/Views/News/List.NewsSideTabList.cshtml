@@ -43,5 +43,9 @@
 
             </div>
         }
+        @if (Model.Items.Count() == 0)
+        {
+            <div class="alert alert-warning"><strong>No results found.</strong></div>
+        }
     </div>
 </div>

@@ -171,9 +171,7 @@
                 //getting the loader while the job search is working
 
                 $("#selectedkeywordsfilter").parent().addClass('loader');
-                if (checkEspecialChar($(this).val()) == false) {
-                    return false;
-                }
+                
                 eachClickFilter();
             }
 
@@ -285,9 +283,9 @@
             }
 
             if (checkFilterCheck()) {
-                $("#sortOrder").val("Relevance");
+                $("#sortOrder").val("Relevance").trigger('change');;
             } else {
-                $("#sortOrder").val("Recent");
+                $("#sortOrder").val("Recent").trigger('change');;
             }
 
             function eachClickFilter() {

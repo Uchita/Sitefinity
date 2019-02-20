@@ -3346,12 +3346,6 @@
     <Content Include="ResourcePackages\Tetracon\MVC\Views\Card\Card.JobList.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Tetracon\MVC\Views\Card\Card.TitleCallToAction.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Tetracon\MVC\Views\Card\Card.Icon.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="ResourcePackages\Tetracon\MVC\Views\Card\Card.Team-List.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -7510,7 +7510,7 @@ blockquote {
   .page-wrapper select, .page-wrapper textarea {
     -webkit-box-shadow: none;
     box-shadow: none;
-    border: 1px solid #7DC246;
+    border: 1px solid #666666;
     -webkit-border-radius: 0;
     border-radius: 0;
     padding: 9px 12px 11px; }
@@ -7535,8 +7535,8 @@ blockquote {
     .page-wrapper select:focus, .page-wrapper textarea:hover, .page-wrapper textarea:focus {
       -webkit-box-shadow: none;
       box-shadow: none;
-      border-color: #7DC246;
-      outline: 1px solid #7DC246; }
+      border-color: #666666;
+      outline: 1px solid #666666; }
   .page-wrapper input[type="file"],
   .page-wrapper input[type="file"].form-control {
     border: 0;
@@ -7964,13 +7964,13 @@ header {
       padding-left: 15px;
       padding-right: 15px; }
     header .main-nav .nav.navbar-nav {
-      float: right;
+      /*float: right;*/
       padding: 0;
       /*width: 75%;*/
       text-align: right; }
     header .main-nav .navbar-nav > li.dropdown {
       position: static;
-      float: none;
+      float: left;
       display: inline-block; }
       header .main-nav .navbar-nav > li.dropdown:hover a:after, header .main-nav .navbar-nav > li.dropdown:focus a:after {
         content: '';
@@ -9384,41 +9384,41 @@ ul.breadcrumb {
   .thumbnail.card-basic h4 a:hover, .thumbnail.card-basic h4 a:focus {
     color: #7DC246;
     text-decoration: none; }
-  .thumbnail.card-titleaction {
+  .thumbnail.card-title-action {
     text-align: center;
     background: #666666; }
-    .thumbnail.card-titleaction img, .thumbnail.card-titleaction a > img {
+    .thumbnail.card-title-action img, .thumbnail.card-title-action a > img {
       margin: 0;
       width: 100%; }
-    .thumbnail.card-titleaction .img-wrap {
+    .thumbnail.card-title-action .img-wrap {
       display: block;
       height: 255px;
       overflow: hidden;
       position: relative;
       left: -15px; }
-      .thumbnail.card-titleaction .img-wrap img {
+      .thumbnail.card-title-action .img-wrap img {
         width: auto;
         max-width: 150%;
         min-width: 100%;
         min-height: 100%; }
-    .thumbnail.card-titleaction .caption {
+    .thumbnail.card-title-action .caption {
       padding: 20px !important;
       line-height: 1.3; }
-      .thumbnail.card-titleaction .caption h3 {
+      .thumbnail.card-title-action .caption h3 {
         margin-top: 0;
         margin-bottom: 30px;
         color: #fff; }
-      .thumbnail.card-titleaction .caption .btn {
+      .thumbnail.card-title-action .caption .btn {
         position: absolute;
         left: 23%;
         bottom: -10px; }
-        .thumbnail.card-titleaction .caption .btn.btn-more {
+        .thumbnail.card-title-action .caption .btn.btn-more {
           position: absolute;
           bottom: 0;
           right: 0; }
-      .thumbnail.card-titleaction .caption p:last-of-type {
+      .thumbnail.card-title-action .caption p:last-of-type {
         margin-bottom: 0; }
-    .thumbnail.card-titleaction h4 a:hover, .thumbnail.card-titleaction h4 a:focus {
+    .thumbnail.card-title-action h4 a:hover, .thumbnail.card-title-action h4 a:focus {
       color: #7DC246;
       text-decoration: none; }
   .thumbnail.icon-caption {
@@ -9832,7 +9832,7 @@ ul.breadcrumb {
     height: 115px;
     resize: none; }
   .page-wrapper .basic-form .form-label {
-    color: #7DC246;
+    color: #666666;
     text-transform: uppercase;
     font-family: SegoeUI, sans-serif;
     text-align: right;
@@ -9841,9 +9841,9 @@ ul.breadcrumb {
   .page-wrapper .basic-form .checkbox .checkbox-icon {
     width: 20px;
     height: 20px;
-    border: 1px solid #7DC246;
+    border: 1px solid #666666;
     display: inline-block;
-    color: #7DC246;
+    color: #666666;
     position: absolute;
     top: 2px;
     left: 0;
@@ -9872,7 +9872,7 @@ ul.breadcrumb {
     .page-wrapper .basic-form .radiobutton .radiobutton-icon {
       width: 25px;
       height: 25px;
-      border: 1px solid #7DC246;
+      border: 1px solid #666666;
       display: inline-block;
       color: transparent;
       position: absolute;
@@ -10926,14 +10926,29 @@ select.articles-order {
       clear: both; }
     .board-members-row h4 {
       line-height: 1.3; }
+    .board-members-row .caption {
+      position: absolute;
+      padding: 12px 0;
+      bottom: 0;
+      left: 15px;
+      width: calc(100% - 30px);
+      text-align: center;
+      background: rgba(102, 102, 102, 0.7); }
+      .board-members-row .caption h3 {
+        color: #fff;
+        margin-bottom: 5px;
+        margin-top: 0px; }
+      .board-members-row .caption h4 {
+        color: #fff;
+        margin-top: 0; }
   .board-members-item {
     display: inline-block;
     vertical-align: top;
     width: 28%; }
     .board-members-item-image {
       position: relative;
-      -webkit-clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);
-      clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0); }
+      /*-webkit-clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);
+            clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);*/ }
       .board-members-item-image img {
         width: 100%; }
       .board-members-item-image .link-overlay {

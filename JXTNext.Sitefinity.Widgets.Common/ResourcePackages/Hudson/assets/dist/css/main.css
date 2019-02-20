@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -9719,7 +9719,8 @@ ul.breadcrumb {
   .page-wrapper .basic-form textarea {
     height: 115px;
     resize: none; }
-  .page-wrapper .basic-form .form-label {
+  .page-wrapper .basic-form .
+  {
     color: #01a3a4;
     text-transform: uppercase;
     font-family: AkzidGroProMed, sans-serif;

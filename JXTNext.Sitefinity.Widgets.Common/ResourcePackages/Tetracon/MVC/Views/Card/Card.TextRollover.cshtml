@@ -1,13 +1,14 @@
 @model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
-<div class="thumbnail card-rollover @Model.CssClass">
+<div class="thumbnail icon-caption @Model.CssClass">
     <div class="card-rollover-image">
         <img src="@Model.SelectedSizeUrl" title="@Model.ImageTitle" alt="@Model.ImageAlternativeText">
     </div>
     <div class="caption">
-        <h3>@Html.HtmlSanitize(Model.Heading)</h3>
-        <div class="card-description">
+        <h2>@Html.HtmlSanitize(Model.Heading)</h2>
+        <p>@Html.HtmlSanitize(Model.Description)</p>
+        @*<div class="card-description">
             <div class="display-table">
                 <div class="card-description-content @(!string.IsNullOrEmpty(Model.ActionUrl) && string.IsNullOrEmpty(Model.ActionName)? "card-rollover-more":"")">
                     @if (string.IsNullOrEmpty(Model.ActionUrl))
@@ -31,6 +32,6 @@
                     }
                 </div>
             </div>
-        </div>
+        </div>*@
     </div>
 </div>

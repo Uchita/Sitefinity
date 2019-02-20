@@ -152,4 +152,14 @@
     <comment>Name label field</comment>
     <lastModified>2019-01-24T07:06:07</lastModified>
   </data>
+  <data name="ForgotPasswordEmail">
+    <value>EMAIL ADDRESS</value>
+    <comment>phrase : Email</comment>
+    <lastModified>2019-02-20T11:48:21</lastModified>
+  </data>
+  <data name="Email">
+    <value>EMAIL ADDRESS</value>
+    <comment>phrase: Email</comment>
+    <lastModified>2019-02-20T11:49:00</lastModified>
+  </data>
 </root>

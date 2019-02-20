@@ -971,7 +971,7 @@ header {
         }
 
         .nav.navbar-nav {
-            float: right;
+            /*float: right;*/
             padding: 0;
             /*width: 75%;*/
             text-align: right;
@@ -979,7 +979,7 @@ header {
 
         .navbar-nav > li.dropdown {
             position: static;
-            float: none;
+            float: left;
             display: inline-block;
 
             &:hover, &:focus {

@@ -12,8 +12,31 @@
             height: 0;
             clear: both;
         }
-        h4{
-            line-height:1.3;
+
+        h4 {
+            line-height: 1.3;
+        }
+
+        .caption {
+            position: absolute;
+            padding: 12px 0;
+            bottom: 0;
+            left: 15px;
+            width: calc(100% - 30px);
+            text-align: center;
+            background: $caption-overlay;
+
+
+            h3 {
+                color: $brightColor;
+                margin-bottom: 5px;
+                margin-top: 0px;
+            }
+
+            h4 {
+                color: $brightColor;
+                margin-top: 0;
+            }
         }
     }
 
@@ -24,9 +47,8 @@
 
         &-image {
             position: relative;
-            -webkit-clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);
-            clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);
-
+            /*-webkit-clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);
+            clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);*/
             img {
                 width: 100%;
             }

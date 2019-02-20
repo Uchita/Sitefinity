@@ -22,6 +22,7 @@ using JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources;
 using Telerik.OpenAccess;
 using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert;
+using Telerik.Sitefinity.Abstractions;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -117,7 +118,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
                     request.SortBy = JobSearchResultsFilterModel.GetSortEnumFromString(sortingBy);
                     ViewBag.SortOrder = JobSearchResultsFilterModel.GetSortStringFromEnum(request.SortBy);
-
+                    Log.Write($"Job Search by Consultant name request json : " + JsonConvert.SerializeObject(request), ConfigurationPolicy.ErrorLog);
                     ISearchJobsResponse response = _BLConnector.SearchJobs(request);
                     JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
                     dynamicJobResultsList = jobResultsList as dynamic;
@@ -141,7 +142,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
                     request.SortBy = JobSearchResultsFilterModel.GetSortEnumFromString(sortingBy);
                     ViewBag.SortOrder = JobSearchResultsFilterModel.GetSortStringFromEnum(request.SortBy);
-
+                    Log.Write($"Job Search by Consultant Email request json : " + JsonConvert.SerializeObject(request), ConfigurationPolicy.ErrorLog);
                     ISearchJobsResponse response = _BLConnector.SearchJobs(request);
                     JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
                     dynamicJobResultsList = jobResultsList as dynamic;
@@ -151,64 +152,67 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             filterModelNew.ConsultantSearch = null;
             filterModelNew.Filters = new List<JobSearchFilterReceiver>();
 
-            if (dynamicJobResultsList.Total == 0 && item.DoesFieldExist("Category"))
+            if(dynamicJobResultsList.Total == 0)
             {
-                JobSearchFilterReceiver classificationSearch = new JobSearchFilterReceiver();
-                classificationSearch.rootId = "Classifications";
-                classificationSearch.searchTarget = "Categories";
-                classificationSearch.values = new List<JobSearchFilterReceiverItem>();
-                TrackedList<Guid> classIds = (TrackedList<Guid>)item.GetValue("Category");
-                if(classIds != null && classIds.Count > 0)
+                if (item.DoesFieldExist("Category"))
                 {
-                    foreach (var id in classIds)
+                    JobSearchFilterReceiver classificationSearch = new JobSearchFilterReceiver();
+                    classificationSearch.rootId = "Classifications";
+                    classificationSearch.searchTarget = "Categories";
+                    classificationSearch.values = new List<JobSearchFilterReceiverItem>();
+                    TrackedList<Guid> classIds = (TrackedList<Guid>)item.GetValue("Category");
+                    if (classIds != null && classIds.Count > 0)
+                    {
+                        foreach (var id in classIds)
+                        {
+                            JobSearchFilterReceiverItem filterItem = new JobSearchFilterReceiverItem();
+                            filterItem.ItemID = id.ToString().ToUpper();
+                            filterItem.SubTargets = null;
+                            classificationSearch.values.Add(filterItem);
+                        }
+                    }
+
+                    filterModelNew.Filters.Add(classificationSearch);
+                }
+
+                if (locationDict.Count > 0)
+                {
+                    JobSearchFilterReceiver locationSearch = new JobSearchFilterReceiver();
+                    locationSearch.rootId = "CountryLocationArea";
+                    locationSearch.searchTarget = "Categories";
+                    locationSearch.values = new List<JobSearchFilterReceiverItem>();
+                    foreach (var cnsltLocation in locationDict)
                     {
                         JobSearchFilterReceiverItem filterItem = new JobSearchFilterReceiverItem();
-                        filterItem.ItemID = id.ToString().ToUpper();
-                        filterItem.SubTargets = null;
-                        classificationSearch.values.Add(filterItem);
+                        filterItem.ItemID = cnsltLocation.Key.ToString().ToUpper();
+                        filterItem.SubTargets = new List<JobSearchFilterReceiverItem>();
+                        var subLocations = cnsltLocation.Value;
+                        foreach (string subLocation in subLocations)
+                        {
+                            JobSearchFilterReceiverItem jobSearchFilterReceiverItem = new JobSearchFilterReceiverItem();
+                            jobSearchFilterReceiverItem.ItemID = subLocation;
+                            jobSearchFilterReceiverItem.SubTargets = null;
+                            filterItem.SubTargets.Add(jobSearchFilterReceiverItem);
+                        }
+                        locationSearch.values.Add(filterItem);
                     }
+                    filterModelNew.Filters.Add(locationSearch);
                 }
 
-                filterModelNew.Filters.Add(classificationSearch);
+                
+                request = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModelNew, this.PageSize, PageSizeDefaultValue);
+                
+                string sortBy = this.Sorting;
+                if (filterModelNew != null && !filterModelNew.SortBy.IsNullOrEmpty())
+                    sortBy = filterModelNew.SortBy;
+
+                request.SortBy = JobSearchResultsFilterModel.GetSortEnumFromString(sortBy);
+                ViewBag.SortOrder = JobSearchResultsFilterModel.GetSortStringFromEnum(request.SortBy);
+                Log.Write($"Job Search by Consultant related classification and location request json : " + JsonConvert.SerializeObject(request), ConfigurationPolicy.ErrorLog);
+                ISearchJobsResponse searchResponse = _BLConnector.SearchJobs(request);
+                JXTNext_SearchJobsResponse relatedJobResultsList = searchResponse as JXTNext_SearchJobsResponse;
+                dynamicJobResultsList = relatedJobResultsList as dynamic;
             }
-
-            if (locationDict.Count > 0)
-            {
-                JobSearchFilterReceiver locationSearch = new JobSearchFilterReceiver();
-                locationSearch.rootId = "CountryLocationArea";
-                locationSearch.searchTarget = "Categories";
-                locationSearch.values = new List<JobSearchFilterReceiverItem>();
-                foreach (var cnsltLocation in locationDict)
-                {
-                    JobSearchFilterReceiverItem filterItem = new JobSearchFilterReceiverItem();
-                    filterItem.ItemID = cnsltLocation.Key.ToString().ToUpper();
-                    filterItem.SubTargets = new List<JobSearchFilterReceiverItem>();
-                    var subLocations = cnsltLocation.Value;
-                    foreach (string subLocation in subLocations)
-                    {
-                        JobSearchFilterReceiverItem jobSearchFilterReceiverItem = new JobSearchFilterReceiverItem();
-                        jobSearchFilterReceiverItem.ItemID = subLocation;
-                        jobSearchFilterReceiverItem.SubTargets = null;
-                        filterItem.SubTargets.Add(jobSearchFilterReceiverItem);
-                    }
-                    locationSearch.values.Add(filterItem);
-                }
-                filterModelNew.Filters.Add(locationSearch);
-            }
-
-
-            request = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModelNew, this.PageSize, PageSizeDefaultValue);
-
-            string sortBy = this.Sorting;
-            if (filterModelNew != null && !filterModelNew.SortBy.IsNullOrEmpty())
-                sortBy = filterModelNew.SortBy;
-
-            request.SortBy = JobSearchResultsFilterModel.GetSortEnumFromString(sortBy);
-            ViewBag.SortOrder = JobSearchResultsFilterModel.GetSortStringFromEnum(request.SortBy);
-
-            ISearchJobsResponse searchResponse = _BLConnector.SearchJobs(request);
-            JXTNext_SearchJobsResponse relatedJobResultsList = searchResponse as JXTNext_SearchJobsResponse;
-            dynamicJobResultsList = relatedJobResultsList as dynamic;
 
 
             ViewBag.PageSize = (int)this.PageSize;

@@ -55,7 +55,7 @@
     <div id="pager" class="k-pager-wrap k-widget k-floatwrap" data-role="]">
         <ul class="k-pager-numbers k-reset"></ul>
     </div>
-    <input id="loginVar" value="@isLoggedIn" type="text" hidden/>
+    <input id="loginVar" value="@ViewBag.IsMember" type="text" hidden/>
     <div class="popup-overlay">
         <div class="container">
             <div class="popup-box">
@@ -156,7 +156,10 @@
          var invalidMsg = "Please enter your valid email address.";
          
       }
-        var islogged = $("#loginVar").val(); //used in kendo template
+        var islogged = $("#loginVar").val(); //used in kendo template     
+        if (islogged === 'False') {
+            islogged = '';
+        }
 
     $(document).ready(function () {
         $(document).on('click', '.save-job', function (e) {
@@ -193,14 +196,16 @@
                         }
                     }
                     else { // Job failed to save
-                        if ((response.Errors[0].indexOf("(401)") > -1) || (response.Errors[0].indexOf("(403)") > -1))
+                        if ((response.Errors[0].indexOf("(401)") > -1) || (response.Errors[0].indexOf("(403)") > -1)) {
                             //alert("Please sign-in or register as a member to save a job.");
                             if ($('.popup-overlay').length) {
                                 $('.popup-overlay .info span').text('save a job');
                                 $('.popup-overlay').fadeIn('fast');
                             }
-                        else
+                        }
+                        else {
                             alert(response.Errors[0]);
+                        }
                     }
                 },
                 error: function (response) { // Error
@@ -417,6 +422,7 @@
             var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), pageNumber: PageNumber, sortBy: sortBy };
             var urlPath = $(location).attr('pathname') + "/GetSearchResults";
             var searchPath = $(location).attr('search');
+            
             if (searchPath == null || searchPath == "") {
                 searchPath += ("?" + "Page=" + PageNumber);
             }

@@ -64,7 +64,7 @@
                 var dateItm = new Date(date);
                 const monthAbvrNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                 if (dateItm != undefined) {
-                    date = dateItm.getDay() + ' ' + monthAbvrNames[dateItm.getMonth()] + ' ' + dateItm.getFullYear();  
+                    date = dateItm.getDate() + ' ' + monthAbvrNames[dateItm.getMonth()] + ' ' + dateItm.getFullYear();  
                 }
                 rows += '<tr> ' + '<td>' + item.FileFullName + '</td>' + '<td>' + date + '</td >' + '<td>' + '<a href="' + item.FileUrl + '" class="btn btn-tag" target="_blank">' + viewValue + '</a> <input id="' + item.Id + '" class="deleteresumecls btn btn-sm btn-tag btn-danger" type="button"  value="' + deleteResume + '"></td>' + '</tr>';
                 

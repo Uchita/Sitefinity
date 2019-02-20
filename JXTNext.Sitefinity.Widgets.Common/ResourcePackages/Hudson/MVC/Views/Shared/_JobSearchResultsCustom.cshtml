@@ -55,7 +55,7 @@
     <div id="pager" class="k-pager-wrap k-widget k-floatwrap" data-role="]">
         <ul class="k-pager-numbers k-reset"></ul>
     </div>
-    <input id="loginVar" value="@isLoggedIn" type="text" hidden/>
+    <input id="loginVar" value="@ViewBag.IsMember" type="text" hidden/>
     <div class="popup-overlay">
         <div class="container">
             <div class="popup-box">
@@ -161,6 +161,9 @@
          
       }
         var islogged = $("#loginVar").val(); //used in kendo template
+        if (islogged === 'False') {
+            islogged = '';
+        }
 
     $(document).ready(function () {
         $(document).on('click', '.save-job', function (e) {

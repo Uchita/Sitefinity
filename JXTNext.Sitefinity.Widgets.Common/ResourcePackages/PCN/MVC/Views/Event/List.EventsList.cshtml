@@ -97,7 +97,10 @@
 
                     <div class="entry-footer">
                         <a class="read_btn" href="@navigateUrl"><span>Read More</span></a>
-                        <a class="read_btn pull-right" target="_blank" href="#"><span>Get Tickets</span></a>
+                        @if (item.Fields.TicketURL != null)
+                        {
+                            <a class="read_btn pull-right" target="_blank" href="@item.Fields.TicketURL"><span>Get Tickets</span></a>
+                        }
                     </div>
 
                 </div>

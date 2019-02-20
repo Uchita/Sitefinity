@@ -82,6 +82,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             dynamic dynamicJobResultsList = null;
             if(filterModel != null && !string.IsNullOrEmpty(filterModel.Keywords))
             {
+                filterModel.Keywords = filterModel.Keywords.Trim();
                 filterModel.Keywords = filterModel.Keywords.Trim(charsToTrim);
             }
             

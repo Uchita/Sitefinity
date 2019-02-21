@@ -6,12 +6,16 @@
 @using Telerik.Sitefinity.Web.DataResolving
 
 @Html.Script(ScriptRef.JQuery, "top", false)
+@using Newtonsoft.Json;
 
 
 @{
     var model = Model.Items;
-    var location = Model.Items.Select(c => c.Fields.City).Distinct().ToList();
-    var eventdate = Model.Items.OrderByDescending(x => x.Fields.PublicationDate).Select(x => x.Fields.PublicationDate.ToString("MMMMM yyyy")).Distinct().ToList();
+    var location = Model.Items.Select(c => c.Fields.City.Trim());
+    location = location.Distinct().ToList();
+    var eventdate = Model.Items.OrderByDescending(x => x.Fields.EventStart).Select(x => x.Fields.EventStart.ToString("MMMMM yyyy").Trim());
+    eventdate = eventdate.Distinct().ToList();
+    var YearString = "";
 }
 <div class="event-search">
 
@@ -46,7 +50,14 @@
                 }
                 else
                 {
-                    <option value="@arr[1]">@arr[1]</option>
+                    if (YearString.Contains(arr[1]))
+                    {
+                    }
+                    else
+                    {
+                        <option value="@arr[1]">@arr[1]</option>
+                    }
+                    YearString = YearString + "," + arr[1];
                     @*<li><a href="/news/events1?archivedate=@arr[1]">@arr[1]</a></li>*@
                 }
             }

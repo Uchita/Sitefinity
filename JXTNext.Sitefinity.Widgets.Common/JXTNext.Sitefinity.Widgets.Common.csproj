@@ -906,6 +906,9 @@
     <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.MagazineIssue.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.MagazineSingle.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\PCN\MVC\Views\BlogPost\List.MagazineVolume.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

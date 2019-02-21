@@ -1058,8 +1058,3 @@
         min-height: 200px;
     }
 }
-@media print {
-  .jobdetail-sidebar {
-        display: none;
-    }
-}

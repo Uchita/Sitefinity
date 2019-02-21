@@ -66,11 +66,11 @@ else
                     {
                         if (Model.CssClass == "_blank")
                         {
-                            <a href="@Html.UrlSanitize(Model.ActionUrl)" target="@Model.CssClass" class="btn btn-outline-white" role="button">@Model.ActionName</a>
+                            <a href="@Html.UrlSanitize(Model.ActionUrl)" target="@Model.CssClass" class="btn btn-primary" role="button">@Model.ActionName</a>
                         }
                         else
                         {
-                            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-outline-white" role="button">@Model.ActionName</a>
+                            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary" role="button">@Model.ActionName</a>
                         }
                     }
 

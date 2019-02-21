@@ -5822,10 +5822,10 @@ p .btn-link {
 
     .feedback_form .form-group .checkbox input[type="checkbox"] {
         position: absolute;
-        top: 0px;
+        top: 3px;
         left: 0px;
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
         margin: 0px;
     }
 
@@ -7098,8 +7098,8 @@ select.hs-input {
     }
 
 .section-graphics {
-    padding-top: 104px;
-    padding-bottom: 79px;
+    padding-top: 79px;
+    padding-bottom: 107px;
     color: #fff;
     text-align: center;
 }
@@ -7235,6 +7235,10 @@ select.hs-input {
 
             .img-absolute-wrap .img-absolute.image-pos-left.bg-bottom-center {
                 background-position: center bottom;
+            }
+
+            .img-absolute-wrap .img-absolute.image-pos-left.image-pos-right {
+                background-position: center right;
             }
 
 
@@ -9165,6 +9169,10 @@ privacy-policy {
     padding: 0 0 10px 0;
 }
 
+.why-work .bullet-points {
+    padding: 10px 0 0 0;
+}
+
 .img-full-bg p:empty {
     margin: 0;
 }
@@ -9243,6 +9251,14 @@ privacy-policy {
     margin-top: 18px !important;
 }
 
+.btn-t34 p {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.btn-t34 .btn.mt-4 {
+    margin-top: 18px !important;
+}
 
 
 body.feedback .parallax-mirror .parallax-slider {

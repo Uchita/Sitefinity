@@ -9292,6 +9292,12 @@ ul.breadcrumb {
   padding: 0;
   width: 100%;
   max-width: 100%; }
+  .jumbotron-container.inner_hero_banner .jumbotron {
+    background-size: cover;
+    min-height: 365px;
+    height: 365px; }
+    .jumbotron-container.inner_hero_banner .jumbotron:before {
+      height: 100%; }
   .jumbotron-container .jumbotron {
     position: relative;
     margin-bottom: 0;

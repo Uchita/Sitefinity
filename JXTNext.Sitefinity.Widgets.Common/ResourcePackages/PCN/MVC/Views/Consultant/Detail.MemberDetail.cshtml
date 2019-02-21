@@ -17,82 +17,68 @@
 @using Telerik.Sitefinity.Taxonomies.Model;
 
 <div class="consultant-detail full_width">
-    <div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            @if (Model.Item.Fields.Pic != null)
+            {
+                <figure>
+                    <img class="consultant-img img-responsive" src="@MediaContentExtensions.ResolveThumbnailUrl(Model.Item.Fields.Pic.DataItem, " thumb350")">
+                    <figcaption>
+                        <a class="btn-small" href="javascript:void(0)" title="Follow this recruiter">Follow this recruiter</a>
+                    </figcaption>
+                </figure>
+            }
 
-        <div class="row">
+            <div class="clearfix"></div>
 
-            <div class="col-sm-12">
-                <div class="btn-style-corner meet-team-goback-btn">
-                    <a class="btn btn-primary" href="/about/meet-the-team" title="Go Back">
-                        <span>< GO BACK</span>
-                    </a>
-                </div>
+            <div class="contact">
+                @*<h4>RECRUITMENT CONSULTANT:</h4>*@
+                <p>
+                    @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber))
+                    {
+                        <a href="tel:@Model.Item.Fields.PhoneNumber" title="Call Us"><i aria-hidden="true" class="fa fa-phone"></i>@Model.Item.Fields.PhoneNumber</a>
+                    }<br />
+
+                    @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.Email))
+                    {
+                        <a href="mailto:@Model.Item.Fields.Email" title="Mail Us"><i aria-hidden="true" class="fa fa-envelope"></i>@Model.Item.Fields.Email</a>
+
+                    }
+                    <br />
+                    @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
+                    {
+                        <a href="@Model.Item.Fields.LinkedInProfileUrl" rel="noopener" target="_blank" title="Linkedin"><i aria-hidden="true" class="fab fa-linkedin-in"><span class="hidden">icon</span></i> </a>
+                    }
+                </p>
+
             </div>
-
-            <div class="col-md-3">
-                @if (Model.Item.Fields.Pic != null)
-                {
-                    <figure>
-                        <img class="img-responsive" src="@MediaContentExtensions.ResolveThumbnailUrl(Model.Item.Fields.Pic.DataItem, "thumb350")">
-                        <figcaption>
-                            <a class="btn-small" href="/my-jobs" title="VIEW ALL MY JOBS">VIEW ALL MY JOBS</a>
-                        </figcaption>
-                    </figure>
-                }
-
-                <div class="clearfix"></div>
-
-                <div class="contact">
-                    @*<h4>RECRUITMENT CONSULTANT:</h4>*@
-                    <p>
-                        @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber))
-                        {
-                            <a href="tel:@Model.Item.Fields.PhoneNumber" title="Call Us"><i aria-hidden="true" class="fa fa-phone"></i>@Model.Item.Fields.PhoneNumber</a>
-                        }<br />
-
-                        @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.Email))
-                        {
-                            <a href="mailto:@Model.Item.Fields.Email" title="Mail Us"><i aria-hidden="true" class="fa fa-envelope"></i>@Model.Item.Fields.Email</a>
-
-                        }
-                        <br />
-                        @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
-                        {
-                            <a href="@Model.Item.Fields.LinkedInProfileUrl" rel="noopener" target="_blank" title="Linkedin"><i aria-hidden="true" class="fab fa-linkedin-in"><span class="hidden">icon</span></i> </a>
-                        }
-                    </p>
-
-                </div>
-            </div>
-            <div class="col-md-9 consultant-decription">
-
-                <h3>@Html.HtmlSanitize((string)Model.Item.Fields.ConsultantName)</h3>
-                @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
-                {
-                    <span><a href="@Model.Item.Fields.LinkedInProfileUrl" target="_blank" title="linkedin"><i class="fab fa-linkedin-in"><!-- linkedin --></i></a></span>
-                }
-                else
-                {
-                    <span><a href="javascript:void(0);" title="linkedin"><i class="fab fa-linkedin-in"><!-- linkedin --></i></a></span>
-                }
-
-                @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.TwitterProfileUrl))
-                {
-                    <span><a href="@Model.Item.Fields.TwitterProfileUrl" target="_blank" title="twitter"><i class="fab fa-twitter"><!-- twitter --></i></a></span>
-                }
-                else
-                {
-                    <span><a href="javascript:void(0);" title="twitter"><i class="fab fa-twitter"><!-- twitter --></i></a></span>
-                }
-
-                <p class="job-title">@Html.HtmlSanitize((string)Model.Item.Fields.Position)</p>
-
-                <p>@Html.HtmlSanitize((string)Model.Item.Fields.Bio)</p>
-            </div>
-
-
-
         </div>
+        <div class="col-md-7 consultant-decription">
+
+            <h3>@Html.HtmlSanitize((string)Model.Item.Fields.ConsultantName)</h3>
+            @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
+            {
+                <span><a href="@Model.Item.Fields.LinkedInProfileUrl" target="_blank" title="linkedin"><i class="fab fa-linkedin-in"><!-- linkedin --></i></a></span>
+            }
+            else
+            {
+                <span><a href="javascript:void(0);" title="linkedin"><i class="fab fa-linkedin-in"><!-- linkedin --></i></a></span>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.TwitterProfileUrl))
+            {
+                <span><a href="@Model.Item.Fields.TwitterProfileUrl" target="_blank" title="twitter"><i class="fab fa-twitter"><!-- twitter --></i></a></span>
+            }
+            else
+            {
+                <span><a href="javascript:void(0);" title="twitter"><i class="fab fa-twitter"><!-- twitter --></i></a></span>
+            }
+
+            <p class="job-title">@Html.HtmlSanitize((string)Model.Item.Fields.Position)</p>
+
+            <p>@Html.HtmlSanitize((string)Model.Item.Fields.Bio)</p>
+        </div>
+
 
 
     </div>

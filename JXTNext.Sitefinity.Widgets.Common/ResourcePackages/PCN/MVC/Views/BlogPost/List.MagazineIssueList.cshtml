@@ -59,7 +59,7 @@
                             if (@counter > 4)
                             {
                                 <div class="col-md-6">
-                                    <div class="magazine-issue">
+                                    <div class="magazine-issue magazine-issue-list">
                                         <div class="bg-corner border-corner">
                                             <div class="bg-corner-inner">
                                                 <div class="magazine-cover-img">
@@ -72,6 +72,14 @@
                                                     <a href="@navigateUrl" class="magazine-vol-name">@volumetext - @issuetext</a>
                                                     <div class="magazine-vol-date">@item.GetDateTime("PublicationDate", "MMM, yyyy")</div>
                                                     <div class="issue-desc">@Html.HtmlSanitize((string)item.Fields.Summary)</div>
+                                                    <div class="action-links">
+                                                        <div class="readmore-btn">
+                                                            <a href="@navigateUrl" title="Read more" class="btn-link">Read more</a>
+                                                        </div>
+                                                        <div class="leavecomment-btn">
+                                                            <a href="@navigateUrl" title="Leave comment" class="btn-link">Leave comment</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

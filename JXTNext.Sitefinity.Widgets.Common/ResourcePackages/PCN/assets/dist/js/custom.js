@@ -53,6 +53,7 @@ $(document).ready(function () {
     $('.testimonial_slider').owlCarousel({
         loop: true,
         nav: false,
+        dots: false,
         autoplay: true,
         items: 1
     });
@@ -82,6 +83,30 @@ $(document).ready(function () {
         autoplayTimeout: 2000,
         nav: false,
         dots: false,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 2
+            },
+            992: {
+                items: 3
+            },
+            1200: {
+                items: 4
+            }
+        }
+    });
+
+    // Consultant Jobs Slider
+    $('#consultantJobs_slider').owlCarousel({
+        loop: false,
+        margin: 30,
+        autoplay: true,
+        autoplayTimeout: 2000,
+        nav: false,
+        dots: true,
         responsive: {
             0: {
                 items: 1

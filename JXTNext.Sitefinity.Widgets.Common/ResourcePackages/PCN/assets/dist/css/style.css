@@ -13,10 +13,15 @@
 -----------------------------------*/
 html {
     line-height: 1.5;
+    overflow-x: hidden;
 }
 
 .map-placeholder {
     min-height: 300px;
+}
+
+main.full_width {
+    min-height: calc(100vh - 155px);
 }
 
 body {
@@ -27,6 +32,10 @@ body {
     line-height: 1.3;
     min-width: 2px !important;
     margin: 0;
+}
+
+.container {
+    clear: both;
 }
 
 img {
@@ -48,6 +57,13 @@ input[type="submit"], input[type="button"], input[type="text"] {
     -webkit-appearance: none;
     -o-appearance: none;
     -moz-appearance: none;
+    box-shadow: 0 0 0 30px #ffffff inset !important;
+    -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+    -moz-box-shadow: 0 0 0 30px #ffffff inset !important;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
 input:focus, button:focus, textarea, select, input[type="submit"] {
@@ -2685,6 +2701,8 @@ ul.team-section {
     margin-top: 60px;
     text-align: center;
     list-style: none;
+    display: flex;
+    flex-wrap: wrap;
 }
 
     .consultants .thumb {
@@ -2708,7 +2726,7 @@ ul.team-section {
     }
 
         .consultants .job-title:after {
-            content: "";
+            /*content: "";
             background: #4e4e4f;
             width: 80px;
             height: 2px;
@@ -2717,7 +2735,7 @@ ul.team-section {
             position: absolute;
             bottom: 0;
             left: 0;
-            right: 0;
+            right: 0;*/
         }
 
 .team-member {
@@ -2732,6 +2750,19 @@ ul.team-section {
 .consultants .colio-item {
     margin-bottom: 60px;
 }
+
+    .consultants .colio-item:after {
+        content: "";
+        background: #4e4e4f;
+        width: 80px;
+        height: 2px;
+        display: block;
+        margin: 0 auto;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
 
     .consultants .colio-item:nth-of-type(4n+5) {
         clear: both;
@@ -2785,26 +2816,42 @@ ul.team-section {
         line-height: 1.3;
     }
 
-.consultant-detail {
-    padding: 54px 0 44px;
+.consultant-detail-wrap {
+    padding-top: 54px;
 }
 
-    .consultant-detail h3 {
-        font-size: 25px;
-        display: inline-block;
-        margin-right: 19px;
-        margin-bottom: 4px;
-        vertical-align: middle;
-        text-transform: uppercase;
-        margin-top: 0px;
+.consultant-detail {
+    padding-bottom: 44px;
+}
+
+    .consultant-detail .consultant-img {
+        width: 100%;
     }
 
-    .consultant-detail .job-title {
-        font-size: 15px;
-        text-transform: uppercase;
-        color: #4294C4;
-        font-weight: 700;
-    }
+.consultant-detail-wrap iframe {
+    border: none;
+    margin-bottom: 30px;
+}
+
+.consultant-detail h3 {
+    font-size: 25px;
+    display: inline-block;
+    margin-right: 19px;
+    margin-bottom: 4px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    margin-top: 0px;
+}
+
+.consultant-detail .job-title {
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #4294C4;
+    font-weight: 700;
+    font-family: FuturaBT-Heavy;
+    margin-top: 6px;
+    margin-bottom: 20px;
+}
 
 .consultant-decription span {
     height: 28px;
@@ -2892,7 +2939,7 @@ ul.team-section {
 }
 
 .job-heading:after {
-    position: absolute;
+    /*position: absolute;
     content: " ";
     width: 0;
     height: 0;
@@ -2900,26 +2947,63 @@ ul.team-section {
     border-right: 20px solid transparent;
     border-top: 20px solid #262626;
     top: 100%;
-    margin-left: -10px;
+    margin-left: -10px;*/
+}
+
+.latest-job-area.internal-job {
+    /*background-color: #ddd;*/
+    background-image: url("../images/three-colmun-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    padding-top: 70px;
+    padding-bottom: 70px;
 }
 
 .job-heading {
-    padding: 23px 0;
-    background: #262626;
     position: relative;
+    text-align: left;
 }
 
-    .job-heading h2 {
-        color: #fff;
-    }
+.latest-job-area.internal-job .job-heading h2 {
+    color: #004F6E;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 50px;
+    font-size: 25px;
+    font-weight: 400;
+    font-family: FuturaBT-Heavy;
+}
+
+.latest-job-area.internal-job .white_panel {
+    text-align: left;
+}
+
+.latest-job-area .row-see-more {
+    margin-top: 30px;
+}
 
 .dynamic-content-holder .job-heading h2, #content-container .job-heading h2 {
-    color: #fff;
+    /*color: #fff;*/
+}
+
+.latest-job-area .owl-carousel {
+    margin-bottom: 56px;
+}
+
+.owl-carousel .owl-nav button.owl-prev,
+.owl-carousel .owl-nav button.owl-next,
+.owl-carousel button.owl-dot {
+    border: solid 1px #4294C4;
+}
+
+.owl-carousel .owl-dots .owl-dot:hover,
+.owl-carousel .owl-dots .owl-dot.active {
+    background: #4294C4;
 }
 
 .team-intro-section h2 span, .job-heading h2 span {
-    display: block;
-    color: #4294C4;
+    /*display: block;
+    color: #4294C4;*/
 }
 
 .consultant-testimonials {
@@ -4279,9 +4363,9 @@ i.submenu-i, .sub-submenu-i {
         padding: 30px 0 30px;
     }
 
-    .consultant-detail {
+    /*.consultant-detail {
         padding: 60px 0 40px;
-    }
+    }*/
 
     .team-banner {
         padding: 13px 0 55px;
@@ -4363,9 +4447,9 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         width: 100%;
     }
 
-    .consultant-detail {
+    /*.consultant-detail {
         padding: 40px 0 40px;
-    }
+    }*/
 
     .inner-banner {
         height: 260px;
@@ -5053,9 +5137,10 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
 .advertise-logo {
     margin: 0 0 30px 0;
-    border: 1px solid #8EDD2B;
+    border-bottom: 1px solid #8EDD2B;
     width: 100%;
     float: left;
+    border-right: 1px solid #8EDD2B;
 }
 
     .advertise-logo + div {
@@ -5066,6 +5151,8 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         width: 25%;
         float: left;
         border: 1px solid #8EDD2B;
+        border-bottom: none;
+        border-right: none;
     }
 
     .advertise-logo a {
@@ -5181,6 +5268,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     .testimonial_section .author-name {
         display: inline-block;
         color: #4293C4;
+        margin-bottom: 10px;
     }
 
 .author-img {
@@ -7548,6 +7636,10 @@ ul.nav.nav-sitemap li > ul {
     padding-bottom: 15px;
 }
 
+.sandbox-register-wrap #mc_embed_signup div#mce-responses {
+    margin-left: 0;
+}
+
 .btn-style-corner #mc-embedded-subscribe {
     margin-left: 0;
 }
@@ -7559,4 +7651,42 @@ ul.nav.nav-sitemap li > ul {
 .upload-section .alert-danger {
     display: inline-block;
     margin-top: 10px;
+}
+
+.magazine-issue-list .magazine-cover-content .btn-link {
+    position: static;
+}
+
+.magazine-issue-list .magazine-cover-content .action-links {
+    margin-top: 30px;
+}
+
+    .magazine-issue-list .magazine-cover-content .action-links > div {
+        width: 50%;
+        float: left;
+    }
+
+.magazine-issue-list .magazine-cover-content .readmore-btn .btn-link,
+.magazine-issue-list .magazine-cover-content .leavecomment-btn .btn-link {
+    display: inline-block;
+    color: #4294C4;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-family: FuturaBT-Medium;
+    text-decoration: none;
+}
+
+.magazine-issue-list .magazine-cover-content .leavecomment-btn {
+    text-align: right;
+}
+
+    .magazine-issue-list .magazine-cover-content .leavecomment-btn .btn-link {
+        color: #666666;
+    }
+
+.sandbox-register-wrap #mc_embed_signup {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
 }

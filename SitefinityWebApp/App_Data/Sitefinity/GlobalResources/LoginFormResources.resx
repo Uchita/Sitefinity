@@ -152,4 +152,9 @@
     <comment>Name label field</comment>
     <lastModified>2019-01-24T07:06:07</lastModified>
   </data>
+  <data name="ForgotPasswordSendButton">
+    <value>Reset</value>
+    <comment>phrase : Send</comment>
+    <lastModified>2019-02-21T11:05:55</lastModified>
+  </data>
 </root>

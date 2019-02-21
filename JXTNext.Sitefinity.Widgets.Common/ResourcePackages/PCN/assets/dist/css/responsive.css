@@ -666,6 +666,8 @@
     .top-categories .prefix_left-navigation {
         width: 100%;
         border-right: none;
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
 
     .article-template .horizontal-menu {
@@ -674,14 +676,17 @@
 
     .top-categories .extra-links {
         width: 100%;
-        margin-top: 15px;
+        margin-top: 0;
         text-align: center;
         border-top: 1px solid #8EDD2B;
+        margin-bottom: 15px;
     }
 
     .horizontal-menu .top-categories .extra-links a {
-        padding-top: 15px;
-        padding-bottom: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #8EDD2B;
+        font-size: 1em;
     }
 
         .horizontal-menu .top-categories .extra-links a > span {
@@ -700,6 +705,13 @@
             position: static !important;
             top: 0 !important;
         }*/
+    .news-cat-desktop {
+        display: none;
+    }
+
+    .article-template .select-menu {
+        display: block;
+    }
 }
 
 

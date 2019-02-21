@@ -20,9 +20,9 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
-                    @Html.ActionLink("Search", "ViewResults", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
-                    @Html.ActionLink("Delete", "Delete", "JobAlert", new { id = item.Id }, new { onclick = "return confirmAlertDelete();", @class = "btn btn-sm btn-tag btn-danger" })
+                    <span class="btn-style-corner">@Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, new { @class = "btn btn-primary btn-sm btn-tag" })</span>
+                    <span class="btn-style-corner">@Html.ActionLink("Search", "ViewResults", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })</span>
+                    <span class="btn-style-corner">@Html.ActionLink("Delete", "Delete", "JobAlert", new { id = item.Id }, new { onclick = "return confirmAlertDelete();", @class = "btn btn-sm btn-tag btn-danger" })</span>
                 </td>
             </tr>
         }

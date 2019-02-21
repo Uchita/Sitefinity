@@ -31,15 +31,15 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
                 if (subTargets != null && subTargets.Count > 0)
                 {
                     classification.TargetClassifications = subTargets;
+                    return classification;
                 }
+                
 
-                return classification;
+                
             }
-            else
-            {
-                return null;
-            }
-            
+
+            return null;
+
         }
 
 

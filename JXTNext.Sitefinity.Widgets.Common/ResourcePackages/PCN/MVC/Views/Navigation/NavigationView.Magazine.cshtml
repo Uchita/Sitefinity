@@ -16,14 +16,28 @@
 @using Telerik.Sitefinity.Taxonomies.Model;
 @using Telerik.Sitefinity.Web.DataResolving;
 @using Telerik.Sitefinity.DynamicModules.Model;
+@{
+    var volval = "";
+    if (Request.QueryString["vol"] != null)
+    {
+        volval = Request.QueryString["vol"].ToString();
+    }
 
+}
 <div class="horizontal-menu magazine-horizontal-menu">
     <div class="container">
         <div class="prefix_left-navigation">
             <nav class="navbar" role="navigation">
                 <div class="container-fluid">
                     <ul>
-                        <li class="current"><a href="/magazine"><i class="fa fa-home"></i></a></li>
+                        @if (volval == "")
+                        {
+                            <li class="current"><a href="/magazine"><i class="fa fa-home"></i></a></li>
+                        }
+                        else
+                        {
+                            <li><a href="/magazine"><i class="fa fa-home"></i></a></li>
+                        }
                         @{
                             TaxonomyManager manager = TaxonomyManager.GetManager();
                             var taxonomy = manager.GetTaxonomies
@@ -34,10 +48,18 @@
                                 var orderedTags = taxonomy.Taxa.OrderByDescending(t => t.Name);
                                 foreach (var tag in orderedTags)
                                 {
-
-                                    <li>
-                                        <a href="/magazine/volume?ref=@tag.UrlName">@tag.Title </a>
-                                    </li>
+                                    if (volval == @tag.UrlName)
+                                    {
+                                        <li class="current">
+                                            <a href="/magazine/volume?vol=@tag.UrlName">@tag.Title </a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a href="/magazine/volume?vol=@tag.UrlName">@tag.Title </a>
+                                        </li>
+                                    }
                                 }
                             }
                         }

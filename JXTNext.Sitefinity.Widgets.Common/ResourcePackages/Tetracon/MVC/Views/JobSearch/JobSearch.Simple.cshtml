@@ -89,9 +89,28 @@
 
 
                 </div>
-               
+                @*<div class="row">
+                    <div class="col-md-12">
+                        <div class="row-filters"></div>
+                    </div>
+                </div>*@
 
-              
+                @*<div class="row">
+                    @foreach (var list in listControls)
+                    {
+                        <div class="col-xs-5 col-sm-4 col-md-4">
+                            <div class="filter">
+                                <a data-filter-trigger="@list.ID">@list.PlaceholderText <em class="fas fa-angle-down"></em></a>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="col-xs-4 pull-right text-right">
+                        <a href="/advancedsearch" title="Advanced search">Advanced search</a>
+
+                    </div>
+                  
+                </div>*@
             </div>
 
             @foreach (var list in listControls)

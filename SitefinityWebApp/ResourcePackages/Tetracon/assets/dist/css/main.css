@@ -10163,6 +10163,9 @@ ul.breadcrumb {
 .col-wrap {
   margin-bottom: 5px; }
 
+.hidden-label label {
+  display: none; }
+
 /*#endregion Forms*/
 /*#region Customers */
 .customer-logo {

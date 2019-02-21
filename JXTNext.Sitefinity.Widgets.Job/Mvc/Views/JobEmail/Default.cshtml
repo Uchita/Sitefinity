@@ -138,7 +138,7 @@
                 </div>
 
                 <div class="form-group form-group-FriendMessage">
-                    <label>@Html.Raw(Model.Widget.FriendMessageLabel)<span class="required">*</span></label>
+                    <label>@Html.Raw(Model.Widget.FriendMessageLabel)</label>
                     <div class="controls">
                         @Html.TextArea("FriendMessage", null, new { @class = "form-control", Rows = 5 })
                         @if (Model.Widget.FriendMessageHelp != null)

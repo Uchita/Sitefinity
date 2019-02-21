@@ -96,7 +96,7 @@
             <a href="@node.Url" target="@node.LinkTarget">@node.Title<span class="decoration"></span></a>
             <div class="dropdown-menu-container">
                 <div class="dropdown-menu-columns">
-                    <div class="dropdown-menu"></div>
+                    @*<div class="dropdown-menu"></div>*@
                     <div class="dropdown-menu no-bdr">
                         <ul>
                             @RenderSubLevelsRecursive(node, 1)
@@ -114,7 +114,7 @@
                         }
                     </div>
 
-                    <div class="dropdown-menu">
+                    @*<div class="dropdown-menu">
                         @if (featuredArticle != null)
                         {
                             var bestUrl = "";
@@ -136,7 +136,7 @@
                                 </div>
                             </a>
                         }
-                    </div>
+                    </div>*@
                     <div class="clearfix">
                     </div>
                 </div>

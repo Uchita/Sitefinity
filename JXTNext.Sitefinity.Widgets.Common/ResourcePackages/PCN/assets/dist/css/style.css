@@ -6272,7 +6272,8 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
                 .widget_categories .list li a:hover,
                 .widget_categories .list li a:focus,
-                .widget_categories .list li a.active {
+                .widget_categories .list li a.active,
+                .widget_categories .list li.current a {
                     color: #62b001;
                 }
 

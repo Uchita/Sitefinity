@@ -787,15 +787,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 if (filterData != null && filterData.Count > 0)
                 {
                     classification.TargetClassifications = filterData;
+                    return classification;
                 }
+            }
 
-                return classification;
-            }
-            else
-            {
-                return null;
-            }
-            
+            return null;
+
         }
 
         private string GetClassificationNameById(string classificationId)

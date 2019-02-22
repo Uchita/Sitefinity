@@ -41,6 +41,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job
         public List<JobFilterRoot> Filters { get; set; }
         public string ReferenceNo { get; set; }
         public Dictionary<string, string> CustomData { get; set; }
+        public bool IsDeleted { get; set; }
 
         public bool FakeSearch(string rootID, string ID)
         {

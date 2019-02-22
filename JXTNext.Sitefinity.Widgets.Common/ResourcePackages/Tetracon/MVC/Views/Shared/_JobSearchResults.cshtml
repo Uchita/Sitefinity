@@ -24,7 +24,7 @@
         @if (ViewBag.IsMember)
         {
             <input type="email" id="anonycreatejobalert" value="@ViewBag.Email" hidden />
-            <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+            <a id="anon-job-alert" class="btn btn-sm ml-5 btn-primary" href="#" title="Create your job alert">CREATE JOB ALERT</a>
             <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
             <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
         }
@@ -32,11 +32,11 @@
         {
             <div>Receive new jobs for this search by email.</div>
             <input type="email" id="anonycreatejobalert" value="" placeholder="Enter email address" class="jobalert-field" />
-            <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+            <a id="anon-job-alert" class="btn btn-sm ml-5 btn-primary" href="#" title="Create your job alert">CREATE JOB ALERT</a>
             <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
             <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
         }
-        <div class="select">
+        <div class="select pull-right">
             <select id="sortOrder" class="default-select">
                 <option selected="selected" value="Relevance">@Html.Resource("SortByRelevance", "JobSearchResultsResources")</option>
                 <option value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
@@ -111,9 +111,9 @@
                         #}#
 
                     </div>
-                    <div class="col-sm-2 pull-right">
+                    @*<div class="col-sm-2 pull-right">
                         <img src="@defaultLogo" alt="Hudson" />
-                    </div>
+                    </div>*@
                 </div>
                 <div class="row jobCatHirarchy">
                     <div class="col-xs-12">

@@ -68,8 +68,8 @@
                 font-size: 24px;
                 font-size: 2.4rem;
                 text-decoration: none;
-                background: rgb(1, 163,164);
-                background: rgba(1, 163,164, .9);
+                background: $global-highlight-color;
+                background: rgba(125, 194, 70, .9);
                 color: $brightColor;
                 z-index: 1;
             }

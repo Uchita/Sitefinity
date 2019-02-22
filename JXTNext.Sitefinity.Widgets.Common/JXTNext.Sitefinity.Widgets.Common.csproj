@@ -1028,6 +1028,15 @@
     <Content Include="ResourcePackages\PCN\MVC\Views\JobSearchResults\JobsFeatured_left.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="ResourcePackages\PCN\MVC\Views\JobEmail\Default.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourcePackages\PCN\MVC\Views\JobEmail\DesignerView.Simple.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourcePackages\PCN\MVC\Views\JobEmail\DesignerView.Simple.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="ResourcePackages\PCN\MVC\Views\News\List.NewsListCarousel.cshtml" />
     <None Include="ResourcePackages\PCN\MVC\Views\Testimonial\Detail.TestimonialCompact.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

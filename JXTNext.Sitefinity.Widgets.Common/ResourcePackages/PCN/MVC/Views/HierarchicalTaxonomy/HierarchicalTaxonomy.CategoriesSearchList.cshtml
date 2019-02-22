@@ -1,12 +1,28 @@
 ﻿@model Telerik.Sitefinity.Frontend.Taxonomies.Mvc.Models.TaxonomyViewModel
 
-
+@{
+    var uri = "";
+    var fullUrl = Request.Url.ToString();
+    var topic_start = fullUrl.LastIndexOf("/") + 1;
+    uri = fullUrl.Substring(topic_start, fullUrl.Length - topic_start);
+}
 <h3 class="title">Categories</h3>
 <div class="category">
     @foreach (var taxon in Model.Taxa)
     {
+        var uri1 = "";
+        var fullUrl1 = taxon.Url;
+        var topic_start1 = fullUrl1.LastIndexOf("/") + 1;
+        uri1 = fullUrl1.Substring(topic_start1, fullUrl1.Length - topic_start1);
+        if (uri == uri1)
+        {
+            <label><i class="fa fa-check-square-o" aria-hidden="true"></i> <a href="@taxon.Url">@taxon.Title</a></label>
+        }
+        else
+        {
+            <label><i class="fa fa-square-o" aria-hidden="true"></i> <a href="@taxon.Url">@taxon.Title</a></label>
 
-        <label><input type="checkbox" class="blog-categories" name="category" data-title="@taxon.Title"><span class="check"></span> <a href="@taxon.Url">@taxon.Title</a></label>
+        }
         if (Model.ShowItemCount)
         {
             <span class="text-muted">@Html.Raw(string.Format("({0})", taxon.Count))</span>

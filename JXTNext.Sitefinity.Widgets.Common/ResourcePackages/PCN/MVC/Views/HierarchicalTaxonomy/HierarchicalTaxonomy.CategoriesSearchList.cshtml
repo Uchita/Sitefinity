@@ -16,11 +16,11 @@
         uri1 = fullUrl1.Substring(topic_start1, fullUrl1.Length - topic_start1);
         if (uri == uri1)
         {
-            <label><i class="fa fa-check-square-o" aria-hidden="true"></i> <a href="@taxon.Url">@taxon.Title</a></label>
+            <label><a href="@taxon.Url"><span class="check"><i class="checkbox-icon fas fa-check" aria-hidden="true"></i></span> @taxon.Title</a></label>
         }
         else
         {
-            <label><i class="fa fa-square-o" aria-hidden="true"></i> <a href="@taxon.Url">@taxon.Title</a></label>
+            <label><a href="@taxon.Url"><span class="check"></span> @taxon.Title</a></label>
 
         }
         if (Model.ShowItemCount)

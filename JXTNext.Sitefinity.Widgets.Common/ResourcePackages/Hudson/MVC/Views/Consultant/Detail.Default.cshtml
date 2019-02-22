@@ -88,17 +88,19 @@
         <div class="contact-consultant-contacts">
             @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.Email))
             {
-                <em class="far fa-envelope"></em><a href="mailto:@Model.Item.Fields.Email">@Model.Item.Fields.Email</a><br />
+                <em class="far fa-envelope"></em><a href="mailto:@Model.Item.Fields.Email" title="Email at @Model.Item.Fields.Email">@Model.Item.Fields.Email</a><br />
             }
 
             @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber))
             {
-                <a href="tel:@Model.Item.Fields.PhoneNumber"><em class="fas fa-phone"></em>@Model.Item.Fields.PhoneNumber</a><br />
+                var consultantPhone = Model.Item.Fields.PhoneNumber.ToString().Replace(" ", "");
+
+                <a href="tel:@consultantPhone" title="Call at @Model.Item.Fields.PhoneNumber"><em class="fas fa-phone"></em>@Model.Item.Fields.PhoneNumber</a><br />
             }
 
             @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
             {
-                <a href="@Model.Item.Fields.LinkedInProfileUrl"><em class="fab fa-linkedin-in"></em>@Model.Item.Fields.LinkedInProfileName</a>
+                <a href="@Model.Item.Fields.LinkedInProfileUrl" title="Go to LinkedIN Profile"><em class="fab fa-linkedin-in"></em>@Model.Item.Fields.LinkedInProfileName</a>
             }
         </div>
 

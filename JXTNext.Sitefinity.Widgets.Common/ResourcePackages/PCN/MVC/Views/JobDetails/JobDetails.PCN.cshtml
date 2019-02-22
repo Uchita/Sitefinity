@@ -162,7 +162,9 @@
                 </div>
                 @if (ViewBag.IsJobApplied)
                 {
-                    <div class="alert alert-info">You have already applied</div>
+                    <div class="full_width mt-15">
+                        <div class="alert alert-info">You have already applied</div>
+                    </div>
                 }
                 else
                 {
@@ -206,7 +208,16 @@
                 <div class="job-apply hidden">
                     <div class="row job-offer-apply">
                         <div class="col-md-12">
-                            <a id="job-application-lnk" class="read_btn" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID"><span>APPLY NOW</span></a>
+                            @if (ViewBag.IsJobApplied)
+                            {
+                                <div class="full_width">
+                                    <div class="alert alert-info">You have already applied</div>
+                                </div>
+                            }
+                            else
+                            {
+                                <a id="job-application-lnk" class="read_btn" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID"><span>APPLY NOW</span></a>
+                            }
                         </div>
                     </div>
                 </div>

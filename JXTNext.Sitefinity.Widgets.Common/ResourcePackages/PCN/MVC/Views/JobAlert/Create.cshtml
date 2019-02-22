@@ -9,134 +9,134 @@
 
 @if (!ViewBag.IsMemberUser)
 {
-<div class="alert alert-info">Please login as Member to create job alert.</div>
+    <div class="alert alert-info">Please login as Member to create job alert.</div>
 }
 
 @if (Model != null)
 {
-<h2><span class="alert-icon far fa-bell"></span>Create job alert</h2>
-<h3>Alert details</h3>
-<form method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();" class="jn_search">
-    @{
-    int counter = 0;
-    var privacyErrMsg = "Please agree to Payment and Card\'s privacy policy";
-    }
-    <div class="field-wrapper basic-form no-marg-top">
-        <div class="alert alert-warning filter-madatory-message hidden">@Html.Resource("nofilterselectedmessage", "Labels")</div>
-        <div class="row form-group">
-            <div class="col-md-4 text-right">
-                <label for="name">Job alert name*</label>
-            </div>
-            <div class="col-md-8">
-                <input type="text" name="Name" id="name" required class="form-control" />
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col-md-4 text-right">
-                <label for="keywords">Keywords</label>
-            </div>
-            <div class="col-md-8">
-                <input type="text" name="Keywords" id="keywords" class="form-control" value="@Model.Keywords" />
-            </div>
-        </div>
-
-
-        @foreach (var item in Model.Filters)
-        {
-        if (item.Name != "Salary" && item.Name != "CompanyName")
-        {
-        <div class="row form-group">
-            <div class="col-md-4 text-right">
-                @{
-                var displayTitle = item.Name;
-                if (displayTitle == "CountryLocationArea")
-                {
-                displayTitle = "Location";
-                }
-                else if (displayTitle == "WorkType")
-                {
-                displayTitle = "Work Type";
-                }
-                else if (displayTitle == "CompanyName")
-                {
-                displayTitle = "Company Name";
-                }
-                }
-                <label>@displayTitle</label>
-            </div>
-            <div class="col-md-8">
-                <input type="hidden" name="Filters[@counter].RootId" value='@item.Name' />
-                <select id=@string.Format("selected-{0}", item.Name) name="Filters[@counter].Values" style="display:none" multiple class="form-control"></select>
-                <div class="dropdown dropdown-tree" id=@item.Name></div>
-            </div>
-        </div>
-        counter++;
+    <h2><span class="alert-icon far fa-bell"></span>Create job alert</h2>
+    <h3>Alert details</h3>
+    <form method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();" class="jn_search">
+        @{
+            int counter = 0;
+            var privacyErrMsg = "Please agree to Payment and Card\'s privacy policy";
         }
-        else if (item.Name == "Salary")
-        {
-        <div class="row form-group">
-            <div class="col-md-4 text-right">
-                <label>@item.Name</label>
+        <div class="field-wrapper basic-form no-marg-top">
+            <div class="alert alert-warning filter-madatory-message hidden">@Html.Resource("nofilterselectedmessage", "Labels")</div>
+            <div class="row form-group">
+                <div class="col-md-4 text-right">
+                    <label for="name">Job alert name*</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" name="Name" id="name" required class="form-control" />
+                </div>
             </div>
-            <div class="col-md-8">
-                <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden" />
-                <select class="SalaryRangeSelect form-control">
-                    <option value="-1" selected>Choose Salary</option>
-                    @foreach (var salaryItem in item.Filters)
-                    {
-                    <option value="@salaryItem.ID">@salaryItem.Label</option>
-                    }
-                </select>
-                @foreach (var salaryItem in item.Filters)
-                {
-                var lower = 15000;
-                var upper = 200000;
-                if (salaryItem.Label == "Hourly Rate")
-                {
-                lower = 18;
-                upper = 200;
-                }
-                <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
+            <div class="row form-group">
+                <div class="col-md-4 text-right">
+                    <label for="keywords">Keywords</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" name="Keywords" id="keywords" class="form-control" value="@Model.Keywords" />
+                </div>
+            </div>
 
-                    <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
-                         data-cur_min="@lower" data-cur_max="@upper">
 
-                        <div class="bar"></div>
-                        <div class="leftGrip"></div>
-                        <div class="rightGrip"></div>
+            @foreach (var item in Model.Filters)
+            {
+                if (item.Name != "Salary" && item.Name != "CompanyName")
+                {
+                    <div class="row form-group">
+                        <div class="col-md-4 text-right">
+                            @{
+                                var displayTitle = item.Name;
+                                if (displayTitle == "CountryLocationArea")
+                                {
+                                    displayTitle = "Location";
+                                }
+                                else if (displayTitle == "WorkType")
+                                {
+                                    displayTitle = "Work Type";
+                                }
+                                else if (displayTitle == "CompanyName")
+                                {
+                                    displayTitle = "Company Name";
+                                }
+                            }
+                            <label>@displayTitle</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="hidden" name="Filters[@counter].RootId" value='@item.Name' />
+                            <select id=@string.Format("selected-{0}", item.Name) name="Filters[@counter].Values" style="display:none" multiple class="form-control"></select>
+                            <div class="dropdown dropdown-tree" id=@item.Name></div>
+                        </div>
                     </div>
-                    <div class="leftLabel">$<span>@lower</span></div>
-                    <div class="rightLabel">$<span>@upper</span></div>
+                    counter++;
+                }
+                else if (item.Name == "Salary")
+                {
+                    <div class="row form-group">
+                        <div class="col-md-4 text-right">
+                            <label>@item.Name</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden" />
+                            <select class="SalaryRangeSelect form-control">
+                                <option value="-1" selected>Choose Salary</option>
+                                @foreach (var salaryItem in item.Filters)
+                                {
+                                    <option value="@salaryItem.ID">@salaryItem.Label</option>
+                                }
+                            </select>
+                            @foreach (var salaryItem in item.Filters)
+                            {
+                                var lower = 15000;
+                                var upper = 200000;
+                                if (salaryItem.Label == "Hourly Rate")
+                                {
+                                    lower = 18;
+                                    upper = 200;
+                                }
+                                <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
 
+                                    <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
+                                         data-cur_min="@lower" data-cur_max="@upper">
+
+                                        <div class="bar"></div>
+                                        <div class="leftGrip"></div>
+                                        <div class="rightGrip"></div>
+                                    </div>
+                                    <div class="leftLabel">$<span>@lower</span></div>
+                                    <div class="rightLabel">$<span>@upper</span></div>
+
+                                </div>
+
+                            } @*end of for each*@
+                        </div>
+                    </div>
+                }
+            }
+
+            <div class="row form-group">
+                <div class="col-md-4 text-right"></div>
+                <div class="col-md-8">
+                    <div class="checkbox clearfix">
+                        <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid='this.setCustomValidity("@privacyErrMsg")'>
+                        <span class="checkbox-icon fas fa-check"></span>
+                        I agree to Payment and Card's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                    </div>
                 </div>
-
-                } @*end of for each*@
+            </div>
+            <div class="row form-group">
+                <div class="col-md-4 text-right"></div>
+                <div class="col-md-8 dubble-btn">
+                    <div class="btn-style-corner mr-15">
+                        <button id="create-job-alert-submit-btn" class="btn btn-primary" type="submit"><span>Save</span></button>
+                    </div>
+                    <a href="/user-dashboard" class="read_btn"><span>Cancel</span></a>
+                </div>
             </div>
         </div>
-        }
-        }
-
-        <div class="row form-group">
-            <div class="col-md-4 text-right"></div>
-            <div class="col-md-8">
-                <div class="checkbox clearfix">
-                    <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid='this.setCustomValidity("@privacyErrMsg")'>
-                    <span class="checkbox-icon fas fa-check"></span>
-                    I agree to Payment and Card's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
-                </div>
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col-md-4 text-right"></div>
-            <div class="col-md-8 dubble-btn">
-                <div class="btn-style-corner">
-                    <button id="create-job-alert-submit-btn" class="btn btn-primary" type="submit"><span>Save</span></button>
-                </div>
-                <a href="/user-dashboard" class="read_btn"><span>Cancel</span></a>
-            </div>
-        </div>
-    </div>
-</form>
+    </form>
 }
 
 
@@ -274,6 +274,11 @@
             });
         }
 
+    });
+    $(window).load(function () {
+        $("ul.dropdown-menu").each(function () {
+            $(this).find("ul").hide();
+        });
     });
 </script>
 

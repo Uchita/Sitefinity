@@ -6436,7 +6436,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 }
 
     .archive-list .title, .widget_categories h4, .event-search h4 {
-        padding-bottom: 8px;
+        padding-bottom: 10px;
         font-size: 18px;
         color: #000;
         font-family: FuturaBT-Heavy;
@@ -6444,24 +6444,29 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         border-bottom: 1px solid #8EDD2B;
     }
 
-    .archive-list ul {
-        list-style: none;
+.widget.widget_categories h4 {
+    margin-top: 3px;
+    line-height: 1;
+}
+
+.archive-list ul {
+    list-style: none;
+}
+
+.archive-list li {
+    margin-bottom: 10px;
+}
+
+    .archive-list li a {
+        display: block;
+        font-size: 14px;
+        color: #000;
+        text-decoration: none;
     }
 
-    .archive-list li {
-        margin-bottom: 10px;
-    }
-
-        .archive-list li a {
-            display: block;
-            font-size: 14px;
-            color: #000;
-            text-decoration: none;
+        .archive-list li a:hover {
+            color: #62b001;
         }
-
-            .archive-list li a:hover {
-                color: #62b001;
-            }
 
 
 .search-result-description ul {
@@ -7689,4 +7694,144 @@ ul.nav.nav-sitemap li > ul {
     margin-left: auto;
     margin-right: auto;
     margin-top: 30px;
+}
+
+.dropdown > .btn {
+    white-space: normal;
+}
+
+.basic-form .form-control {
+    color: #000;
+    border-color: #004F6E;
+}
+
+.user-profile-dash .image-placeholder img {
+    width: 100%;
+}
+
+.user-dashboard {
+}
+
+    .user-dashboard .btn-sm span {
+        font-size: 0.8em;
+    }
+
+    .user-dashboard table .btn-style-corner {
+        margin-right: 10px;
+    }
+
+.btn-style-corner .btn-danger.btn:before,
+.btn-style-corner .btn-danger.btn:after,
+.btn-style-corner .btn-danger.btn > span,
+.btn-style-corner .btn-danger.btn > span:after,
+.btn-style-corner .btn-danger.btn > span:before {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+.btn-style-corner .btn-danger.btn:hover:before,
+.btn-style-corner .btn-danger.btn:hover:after,
+.btn-style-corner .btn-danger.btn:hover > span,
+.btn-style-corner .btn-danger.btn:hover > span:after,
+.btn-style-corner .btn-danger.btn:hover > span:before,
+.btn-style-corner .btn-danger.btn:focus:before,
+.btn-style-corner .btn-danger.btn:focus:after,
+.btn-style-corner .btn-danger.btn:focus > span,
+.btn-style-corner .btn-danger.btn:focus > span:after,
+.btn-style-corner .btn-danger.btn:focus > span:before {
+    background-color: #c9302c;
+    border-color: #c9302c;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.user-dashboard .read_btn.resume-list-btn {
+    margin-left: 8px;
+}
+
+.user-dashboard table tr > td,
+.user-dashboard table tr > th {
+    border-right: 1px solid #ddd;
+}
+
+    .user-dashboard table tr > td:last-child,
+    .user-dashboard table tr > th:last-child {
+        border-right: none;
+    }
+/*.user-dashboard table {
+    border: 1px solid #ddd;
+}*/
+.user-dashboard .table-responsive table th {
+    border-top: none;
+}
+
+.table-responsive {
+    border: 1px solid #ddd;
+}
+
+.user-dashboard .btn-style-corner,
+.user-dashboard .read_btn.resume-list-btn {
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.user-dashboard .table-responsive table {
+    margin-bottom: 0;
+}
+
+.user-dashboard .table-responsive {
+    margin-bottom: 20px;
+}
+
+.user-dashboard .table > thead > tr > th {
+    border-bottom: 1px solid #ddd;
+}
+
+.user-dashboard .far {
+    margin-right: 10px;
+}
+
+@media print {
+    a[href]:after {
+        content: "";
+        display: none;
+    }
+
+    abbr[title]:after {
+        content: "";
+        display: none;
+    }
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+        display: none;
+    }
+
+    .jobdetail-sidebar {
+        float: left;
+    }
+
+    .jobdetail-sidebar-inner {
+        position: static !important;
+    }
+
+    header.header,
+    header.header.stickyheader {
+        display: none;
+    }
+
+    a {
+        color: #000000 !important;
+    }
+
+    .prefix_left-navigation,
+    .search_job,
+    .read_btn,
+    .btn-style-corner,
+    .btn {
+        display: none;
+    }
 }

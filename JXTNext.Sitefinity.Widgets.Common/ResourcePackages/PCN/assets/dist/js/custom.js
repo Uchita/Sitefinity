@@ -100,7 +100,7 @@ $(document).ready(function () {
     });
 
     // Consultant Jobs Slider
-    $('#consultantJobs_slider').owlCarousel({
+    $('#consultantJobs_slider,#consultantPosts_slider').owlCarousel({
         loop: false,
         margin: 30,
         autoplay: true,

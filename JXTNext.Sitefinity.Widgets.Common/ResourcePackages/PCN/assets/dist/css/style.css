@@ -2986,10 +2986,6 @@ ul.team-section {
     /*color: #fff;*/
 }
 
-.latest-job-area .owl-carousel {
-    margin-bottom: 56px;
-}
-
 .owl-carousel .owl-nav button.owl-prev,
 .owl-carousel .owl-nav button.owl-next,
 .owl-carousel button.owl-dot {
@@ -6491,13 +6487,13 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         padding-right: 8px;
     }
 
-        .event-search .btn-style-corner .btn {
-            float: right;
-        }
+    .event-search .btn-style-corner {
+        text-align: center;
+    }
 
-            .event-search .btn-style-corner .btn span {
-                padding: 6px 28px;
-            }
+        .event-search .btn-style-corner .btn span {
+            padding: 6px 28px;
+        }
 
     .event-search .form-control {
         border-color: #004f6e;
@@ -7248,7 +7244,8 @@ ul.magazine-headlines {
     margin-bottom: 25px;
 }
 
-.magazine-issue .magazine-cover-img, .magazine-issue .magazine-cover-content {
+.magazine-issue .magazine-cover-img,
+.magazine-issue .magazine-cover-content {
     width: 100%;
     padding-left: 0;
     padding-right: 0;
@@ -7801,8 +7798,34 @@ table td .btn-style-corner {
     margin-right: 10px;
 }
 
+.consultant-latest-posts {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+    .consultant-latest-posts .heading-consultant {
+        color: #004F6E;
+        text-transform: uppercase;
+        margin-top: 0;
+        margin-bottom: 50px;
+        font-size: 25px;
+        font-weight: 400;
+        font-family: FuturaBT-Heavy;
+    }
+
+    .consultant-latest-posts .row-see-more {
+        margin-top: 30px;
+    }
+
+    .consultant-latest-posts .owl-dots,
+    .latest-job-area .owl-dots {
+        position: relative;
+        margin-top: 56px;
+        bottom: 0;
+    }
+
 @media print {
-    a[href]:after {
+    a [href]:after {
         content: "";
         display: none;
     }

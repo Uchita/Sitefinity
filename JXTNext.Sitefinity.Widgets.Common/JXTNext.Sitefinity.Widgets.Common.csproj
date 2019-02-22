@@ -939,6 +939,9 @@
     <None Include="ResourcePackages\PCN\MVC\Views\Consultant\Detail.MemberDetail.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="ResourcePackages\PCN\MVC\Views\Consultant\Detail.RelativeBlog.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\PCN\MVC\Views\Consultant\List.MeetTheTeamLandingPage.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -1,0 +1,43 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+
+@using System.Collections;
+@using System.Linq;
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Localization;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Pages.Model;
+@using Telerik.Sitefinity.Modules.Libraries;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Newtonsoft.Json;
+
+@if (Model.Item.Fields.RelatedBlog != null && Model.Item.Fields.RelatedBlog.Length > 0)
+{
+    <div>
+        <ul class="list-unstyled">
+
+            @foreach (var Blog in Model.Item.Fields.RelatedBlog)
+            {
+                <li @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Blog.Fields.Id)>
+                    <h3>
+                        <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@Blog.DefaultUrl">@Blog.Fields.Title</a>
+                    </h3>
+                    <div class="text-muted">
+                        @Blog.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")
+                        @Html.Resource("By")
+                        @DataResolver.Resolve(Blog.DataItem, "Author", null)
+                    </div>
+
+                    <div @Html.InlineEditingFieldAttributes("Summary", "ShortText")>@Html.HtmlSanitize((string)Blog.Fields.Summary)</div>
+
+                </li>
+            }
+
+        </ul>
+    </div>
+}

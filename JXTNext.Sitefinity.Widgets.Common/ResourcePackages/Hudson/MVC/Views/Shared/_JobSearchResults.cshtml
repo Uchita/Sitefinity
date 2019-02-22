@@ -162,11 +162,13 @@
         }
 
     $(document).ready(function () {
-        $(document).on('click', '.save-job', function (e) {
+        $(document).off('click').on('click', '.save-job', function (e) {
+            console.log('save job clicked');
             e.preventDefault();
             var unSaveJob = false;
             var ajaxActionName = "/SaveJob";
             var jobid = $(this).data('jobid');
+            console.log(jobid);
             if ($(this).hasClass('saved')) {
                 unSaveJob = true;
                 ajaxActionName = "/RemoveSavedJob";

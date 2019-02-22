@@ -7793,6 +7793,14 @@ ul.nav.nav-sitemap li > ul {
     margin-right: 10px;
 }
 
+.btn-sm, .btn-sm > span, .btn.btn-sm > span {
+    font-size: 0.8em;
+}
+
+table td .btn-style-corner {
+    margin-right: 10px;
+}
+
 @media print {
     a[href]:after {
         content: "";

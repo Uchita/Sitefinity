@@ -2,7 +2,12 @@
 
 @using Newtonsoft.Json;
 
-
+@{
+    var uri = "";
+    var fullUrl = Request.Url.ToString();
+    var topic_start = fullUrl.LastIndexOf("/") + 1;
+    uri = fullUrl.Substring(topic_start, fullUrl.Length - topic_start);
+}
 <div class="horizontal-menu">
     <div class="container">
         <div class="top-categories">
@@ -11,7 +16,18 @@
                     <ul class="menu news-cat-desktop">
                         @foreach (var taxon in Model.Taxa)
                         {
-                            <li class=""><a href="@taxon.Url" target="_self">@taxon.Title</a></li>
+                            var uri1 = "";
+                            var fullUrl1 = taxon.Url;
+                            var topic_start1 = fullUrl1.LastIndexOf("/") + 1;
+                            uri1 = fullUrl1.Substring(topic_start1, fullUrl1.Length - topic_start1);
+                            if (uri == uri1)
+                            {
+                                <li class="current"><a href="@taxon.Url" target="_self">@taxon.Title</a></li>
+                            }
+                            else
+                            {
+                                <li class=""><a href="@taxon.Url" target="_self">@taxon.Title</a></li>
+                            }
                         }
                     </ul>
                 </nav>

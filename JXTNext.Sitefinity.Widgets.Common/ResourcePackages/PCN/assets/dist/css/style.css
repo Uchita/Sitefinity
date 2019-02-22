@@ -6270,7 +6270,9 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
                 color: #000;
             }
 
-                .widget_categories .list li a:hover {
+                .widget_categories .list li a:hover,
+                .widget_categories .list li a:focus,
+                .widget_categories .list li a.active {
                     color: #62b001;
                 }
 
@@ -7823,6 +7825,10 @@ table td .btn-style-corner {
         margin-top: 56px;
         bottom: 0;
     }
+
+.media-list.sf-Comments-list {
+    margin-top: 15px;
+}
 
 @media print {
     a [href]:after {

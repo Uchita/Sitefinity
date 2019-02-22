@@ -144,7 +144,7 @@
     <div class="contact-consultant row hidden" data-filtersector="@(string.Join(",",filterValues))" data-filterlocation="@OfficeLocationUrl">
 
         <div class="col-md-6">
-            <a class="contact-consultant-image" href="@navigateUrl">
+            <a class="contact-consultant-image" href="@navigateUrl?location=@OfficeLocationName">
                 @if (item.Fields.Pic != null)
                 {
                     imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(item.Fields.Pic.DataItem, "thumbcrop4");
@@ -186,7 +186,7 @@
                     }
                 </div>
 
-                <a class="btn btn-primary" href="@navigateUrl">Contact me</a>
+                <a class="btn btn-primary" href="@navigateUrl?location=@OfficeLocationName">Contact me</a>
             </div>
         </div>
 

@@ -226,11 +226,16 @@
 
         function updateQueryStringParameter(uri, key, value) {
             var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+            var pageReWithSort = new RegExp("([1-9]{1,3}[?])");
+            var pageRe = new RegExp("([1-9]{1,3})$");
             var separator = uri.indexOf('?') !== -1 ? "&" : "?";
             if (uri.match(re)) {
+                uri = uri.replace(pageReWithSort, '1?');
                 return uri.replace(re, '$1' + key + "=" + value + '$2');
             }
-            else {
+            else if (uri.match(pageRe)) {
+                return uri.replace(pageRe, '1') + separator + key + "=" + value;
+            } else {
                 return uri + separator + key + "=" + value;
             }
         }

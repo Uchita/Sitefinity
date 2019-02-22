@@ -271,9 +271,9 @@
             }
 
             if (checkFilterCheck()) {
-                $("#sortOrder").val("Relevance");
+                $("#sortOrder").val("Relevance").trigger('change');;
             } else {
-                $("#sortOrder").val("Recent");
+                $("#sortOrder").val("Recent").trigger('change');;
             }
 
             //getting the custom filter selected from the widget in cms
@@ -336,7 +336,7 @@
                 filterModel.SortBy = $("#sortOrder").val();// We need to persist the sort order selected in job search results
                 
                 var data = { filterModel: filterModel }
-                var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
+                var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial_WithLeftFilterSelected";
                 var queryStringData = makeQueryString(filterModel, "", false);
                 var pushStateUrl = $(location).attr('pathname') + "?" + queryStringData;
 

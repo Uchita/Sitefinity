@@ -110,7 +110,7 @@
                                         </div>
                                     }
                                     <span class="text-muted">
-                                        <em>Password must contain 8 characters or more, 1 uppercase letter, 1 lowercase letter and 1 number</em><br />&nbsp;
+                                        <em>Password must contain 8 characters or more, 1 uppercase letter, 1 lowercase letter and 1 number</em><br />
                                     </span>
 
                                     @if (Html.ValidationMessageFor(m => m.Password) != null)
@@ -212,6 +212,7 @@
     }
 </div>
 @Html.Script(Url.WidgetContent("Mvc/Scripts/Registration/registration-form.js"), "bottom")
+
 
 <script>
     jQuery(document).ready(function ($) {

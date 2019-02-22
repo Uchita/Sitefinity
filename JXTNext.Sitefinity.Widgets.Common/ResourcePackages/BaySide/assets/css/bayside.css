@@ -6775,7 +6775,7 @@ select.hs-input {
     background-size: cover;
     background-position: center bottom;
     border-radius: 3px;
-    transition: all 0.30s cubic-bezier(0.35, -0.05, 0.45, 1.2);
+    /*transition: all 0.30s cubic-bezier(0.35, -0.05, 0.45, 1.2);*/
 }
 
     .featured-carousel .carousel-content p {
@@ -7945,7 +7945,6 @@ select.hs-input {
     color: #000;
     margin-top: 38px;
     margin-bottom: 10px;
-    font-weight: 500;
     text-transform: lowercase;
     line-height: 1.1;
     padding-bottom: 0px;
@@ -7956,8 +7955,8 @@ select.hs-input {
     }
 
 .blog-detail-col p {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 0px;
 }
 
     .blog-detail-col p:empty {
@@ -8692,7 +8691,7 @@ select.hs-input {
 }
 
     .bayside-form a, .bayside-form .btn {
-        font-weight: 600;
+        font-weight: 400;
     }
 
     .bayside-form .br-1 {
@@ -8701,48 +8700,71 @@ select.hs-input {
 
     .bayside-form h2 {
         margin-top: 0px;
-        font-weight: 500;
     }
 
-    .bayside-form .form-group input[type="checkbox"] {
-        margin: 0px;
-        position: static;
+    .bayside-form .form-group .checkbox {
+        padding: 0 0 0 22px;
+        font-weight: 400;
     }
 
-    .bayside-form .basic-form {
-        padding-right: 12%;
+.fw-400 {
+    font-weight: 400;
+}
+
+.bayside-form .form-group input[type="checkbox"] {
+    margin: 0px;
+    position: absolute;
+    top: 2px;
+    left: 0px;
+    width: 16px;
+    height: 16px;
+}
+
+.bayside-form .basic-form .text-muted {
+    padding-top: 8px;
+    display: block;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.bayside-form .basic-form .text-muted {
+    line-height: normal;
+}
+
+.bayside-form .basic-form {
+    padding-right: 12%;
+}
+
+.bayside-form .sign-in-with .btn {
+    color: #fff;
+}
+
+.bayside-form .sign-in-with .btn-google {
+    background-color: #d34836;
+}
+
+    .bayside-form .sign-in-with .btn-google:after {
+        content: "\f0d5";
+        font-family: FontAwesome;
+        margin-left: 5px;
+        font-weight: normal;
     }
 
-    .bayside-form .sign-in-with .btn {
-        color: #fff;
+.bayside-form .sign-in-with .btn-linkedin {
+    background-color: #0077B5;
+}
+
+    .bayside-form .sign-in-with .btn-linkedin:after {
+        content: "\f0e1";
+        font-family: FontAwesome;
+        margin-left: 5px;
+        font-weight: normal;
     }
 
-    .bayside-form .sign-in-with .btn-google {
-        background-color: #d34836;
-    }
-
-        .bayside-form .sign-in-with .btn-google:after {
-            content: "\f0d5";
-            font-family: FontAwesome;
-            margin-left: 5px;
-            font-weight: normal;
-        }
-
-    .bayside-form .sign-in-with .btn-linkedin {
-        background-color: #0077B5;
-    }
-
-        .bayside-form .sign-in-with .btn-linkedin:after {
-            content: "\f0e1";
-            font-family: FontAwesome;
-            margin-left: 5px;
-            font-weight: normal;
-        }
-
-    .bayside-form .sign-in-with div {
-        display: inline-block;
-        margin-right: 8px;
-    }
+.bayside-form .sign-in-with div {
+    display: inline-block;
+    margin-right: 8px;
+}
 
 .page-wrapper #indeed-btnwrapper .indeed-apply-button {
     background: url(../images/indeedBtn.png) 50% 50% no-repeat #fd6001 !important;
@@ -9161,7 +9183,7 @@ privacy-policy {
 
 .bullet-points {
     list-style: none;
-    padding: 15px 0;
+    padding: 10px 0 0 0;
     margin: 0px;
 }
 
@@ -9249,6 +9271,19 @@ privacy-policy {
 
 .img-absolute-wrap + div .btn.mt-4, .img-full-bg .btn.mt-4 {
     margin-top: 18px !important;
+}
+
+.content-two-block .g-section {
+    padding-bottom: 87px;
+}
+
+.content-two-block .btn.mt-4 {
+    margin-top: 18px !important;
+}
+
+.content-two-block p {
+    margin-top: 0px;
+    margin-bottom: 10px;
 }
 
 .btn-t34 p {

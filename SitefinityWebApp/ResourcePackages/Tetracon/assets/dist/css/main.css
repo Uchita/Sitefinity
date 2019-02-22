@@ -8309,7 +8309,7 @@ main {
     color: inherit; }
   .page-section.section-dark {
     padding: 40px 0;
-    background: #0f0f0f;
+    background: #666666;
     color: #fff; }
     .page-section.section-dark .h1, .page-section.section-dark h1,
     .page-section.section-dark .h2, .page-section.section-dark h2,
@@ -8352,7 +8352,7 @@ main {
   background: #ababab; }
 
 .bg-dark {
-  background: #0f0f0f; }
+  background: #666666; }
 
 .bg-highlight {
   background: #7DC246; }
@@ -8986,7 +8986,8 @@ address.info-box {
 
 .prefooter-content .section-dark {
   color: #666666 !important;
-  padding: 50px 0; }
+  padding: 50px 0;
+  background: #000000; }
 
 .half-block-shade {
   position: relative; }

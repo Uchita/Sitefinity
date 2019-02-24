@@ -228,7 +228,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 if (!string.IsNullOrEmpty(filterModel.Keywords))
                 {
-                    filterModel.Keywords = filterModel.Keywords.Trim(charsToTrim);
+                    filterModel.Keywords = filterModel.Keywords.Trim();
                 }
                 ISearchJobsResponse response = GetJobSearchResultsResponse(filterModel);
                 dynamicJobResultsList = response as dynamic;
@@ -252,7 +252,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 if (!string.IsNullOrEmpty(filterModel.Keywords))
                 {
-                    filterModel.Keywords = filterModel.Keywords.Trim(charsToTrim);
+                    filterModel.Keywords = filterModel.Keywords.Trim();
                 }
                 ISearchJobsResponse response = GetJobSearchResultsResponse(filterModel);
                 dynamicJobResultsList = response as dynamic;

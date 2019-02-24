@@ -532,11 +532,12 @@
              var staySignedinFlag = $('#RememberMe').is(':checked') ? true : false;
              //for login email address & password check & submit login form
              var parm = { email: $('#userid').val(), password: $('#password-reg').val(), staySignedIn: staySignedinFlag, isUserLoggedIn: false };
-             var urlPath = $(location).attr('pathname') + "/ValidateUser";
+             var urlPath = $(location).attr('pathname');
+             var validateUserPathUrl = urlPath + "/ValidateUser";
              $.ajax({
                  type: 'POST',
                  cache: false,
-                 url: urlPath,
+                 url: validateUserPathUrl,
                  data: parm,
                  dataType: 'Json',
                  success: function (response) {
@@ -547,15 +548,17 @@
                          $('.header-top-links[data-sf-role="sf-logged-in-view"]').show();
                          $('.header-top-links[data-sf-role="sf-logged-out-view"]').hide();
                          $('.header-top-links [data-sf-role="sf-logged-in-name"]').text(response.FirstName);
-                          processProfileResumeJsonData(response.myResumes);
+                         processProfileResumeJsonData(response.myResumes);
+                         var isAppliedPathUrl = urlPath + "/IsJobApplied";
                              $.ajax({
                                  type: 'POST',
                                  cache: false,
-                                 url: $(location).attr('pathname') + "/IsJobApplied",
+                                 url: isAppliedPathUrl,
                                  data: { jobId: jobId},
                                  dataType: 'Json',
                                  success: function (response) {
-                                     if (response == true) {
+                                     console.log(response);
+                                     if (response.IsJobApplied == true) {
                                          $('#login-register-container').hide();
                                          $('#appFormState').hide();
                                          $('#already-applied-info').removeClass('hidden');

@@ -43,7 +43,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         IEnumerable<IBusinessLogicsConnector> _bConnectorsList;
         IEnumerable<IOptionsConnector> _oConnectorsList;
         IJobAlertService _jobAlertService;
-        private char[] charsToTrim = { '*', '\'', '"', '~', '!', '@', '$', '%', '^', '&', '(', ')', '-', '_', '=', '{', '}' };
+        //private char[] charsToTrim = { '*', '\'', '"', '~', '!', '@', '$', '%', '^', '&', '(', ')', '-', '_', '=', '{', '}' };
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
         /// </summary>
@@ -83,7 +83,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             if(filterModel != null && !string.IsNullOrEmpty(filterModel.Keywords))
             {
                 filterModel.Keywords = filterModel.Keywords.Trim();
-                filterModel.Keywords = filterModel.Keywords.Trim(charsToTrim);
+                //filterModel.Keywords = filterModel.Keywords.Trim(charsToTrim);
             }
             
             if (jobId.HasValue)
@@ -228,7 +228,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 if (!string.IsNullOrEmpty(filterModel.Keywords))
                 {
-                    filterModel.Keywords = filterModel.Keywords.Trim(charsToTrim);
+                    filterModel.Keywords = filterModel.Keywords.Trim();
                 }
                 ISearchJobsResponse response = GetJobSearchResultsResponse(filterModel);
                 dynamicJobResultsList = response as dynamic;
@@ -252,7 +252,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 if (!string.IsNullOrEmpty(filterModel.Keywords))
                 {
-                    filterModel.Keywords = filterModel.Keywords.Trim(charsToTrim);
+                    filterModel.Keywords = filterModel.Keywords.Trim();
                 }
                 ISearchJobsResponse response = GetJobSearchResultsResponse(filterModel);
                 dynamicJobResultsList = response as dynamic;
@@ -787,15 +787,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 if (filterData != null && filterData.Count > 0)
                 {
                     classification.TargetClassifications = filterData;
+                    return classification;
                 }
+            }
 
-                return classification;
-            }
-            else
-            {
-                return null;
-            }
-            
+            return null;
+
         }
 
         private string GetClassificationNameById(string classificationId)

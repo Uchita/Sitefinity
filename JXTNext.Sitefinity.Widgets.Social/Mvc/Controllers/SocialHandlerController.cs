@@ -64,7 +64,10 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         {
             SocialMediaJobViewModel viewModel = new SocialMediaJobViewModel();
 
-
+            Log.Write("Social Handler code : "+ code, ConfigurationPolicy.ErrorLog);
+            Log.Write("Social Handler state : " + state, ConfigurationPolicy.ErrorLog);
+            Log.Write("Social Handler JobId.hasvalue : " + JobId.HasValue, ConfigurationPolicy.ErrorLog);
+            Log.Write("Social Handler JobId : " + JobId, ConfigurationPolicy.ErrorLog);
             // Fetch job details 
             string ApplicationEmail = string.Empty;
             string ContactDetails = string.Empty;

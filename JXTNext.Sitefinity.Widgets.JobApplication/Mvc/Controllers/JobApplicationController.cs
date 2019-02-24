@@ -676,9 +676,15 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             try
             {
+                IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = jobId };
+                IGetJobListingResponse jobListingResponse = _blConnector.GuestGetJob(jobListingRequest);
+                long expiryDate = (long)DateTime.Now.ToUniversalTime().Subtract(UnixEpoch).TotalMilliseconds;
+                bool isJobExpired = false;
+                if (jobListingResponse.Job != null && jobListingResponse.Job.ExpiryDate <= expiryDate)
+                    isJobExpired = true;
                 bool isJobApplied = _isMemberAppliedJob(jobId);
-
-                return new JsonResult { Data = isJobApplied };
+                var result = new { IsJobExpired = isJobExpired, IsJobApplied = isJobApplied };
+                return new JsonResult { Data = result };
             }
             catch (Exception ex)
             {
@@ -1287,5 +1293,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         private string templateNamePrefix = "JobApplication.";
         private string _itemType = "Telerik.Sitefinity.DynamicTypes.Model.StandardEmailTemplate.EmailTemplate";
         private string _emailTemplateProviderName = "OpenAccessProvider";
+        private static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
     }
 }

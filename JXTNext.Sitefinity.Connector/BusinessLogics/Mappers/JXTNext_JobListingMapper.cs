@@ -39,7 +39,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                 Address = data["Address"],
                 AddressLatitude = data["AddressLatitude"],
                 AddressLongtitude = data["AddressLongtitude"],
-
+                IsDeleted = data["IsDeleted"],
                 ShortDescription = data["ShortDescription"],
                 Description = data["FullDescription"],
                 ReferenceNo = data["RefNo"],

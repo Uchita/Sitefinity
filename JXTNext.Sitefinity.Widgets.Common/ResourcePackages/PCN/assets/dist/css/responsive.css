@@ -712,6 +712,10 @@
     .article-template .select-menu {
         display: block;
     }
+
+    .text-right.forgot-pass-label {
+        text-align: left;
+    }
 }
 
 

@@ -107,14 +107,16 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                     {
                         result = _processSocialMediaSeekData.ProcessData(code, state, indeedJsonStringData);
                     }
-                    else
+                    else if(code.IsNullOrEmpty() && !indeedJsonStringData.IsNullOrEmpty())
                     {
                         result = _processSocialMediaIndeedData.ProcessData(code, state, indeedJsonStringData);
                     }
+                    else
+                    {
+                        Log.Write("Social Handler code,sate and indeed data is null", ConfigurationPolicy.ErrorLog);
+                    }
                      
                     //var result = _socialHandlerLogics.ProcessSocialHandlerData(code, state, indeedJsonStringData);
-
-                    
 
                     if (result != null && result.Success == true && result.JobId.HasValue)
                     {
@@ -333,7 +335,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 Log.Write("Social Handler : Exception Caught" + ex.Message, ConfigurationPolicy.ErrorLog);
             }
 
-
+            // To catch access denied error for seek
             int jobId;
             if (this.Request.QueryString["error"].ToLower().Contains("denied") && state != null && int.TryParse(state, out jobId))
             {

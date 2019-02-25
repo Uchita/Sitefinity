@@ -103,20 +103,16 @@ else
                         var marker = new google.maps.Marker({
                             position: new google.maps.LatLng(Lat, Lng),
                             animation: google.maps.Animation.DROP,
-                            icon: location.icon,
+                            optimized: false,
+                            icon: {
+                                url: location.icon,
+                                scaledSize: new google.maps.Size(80, 135),
+                                size: new google.maps.Size(80, 135),
+                                origin: new google.maps.Point(0, 0),
+                                anchor: new google.maps.Point(40, 65)
+                            },
+                            //icon: location.icon,
                             map: map,
-                            //icon: {
-                            //    path: "M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z",
-                            //    fillColor: markerColors[Math.floor(Math.random() * markerColors.length)],
-                            //    fillOpacity: 1,
-                            //    strokeColor: '',
-                            //    strokeWeight: 0
-                            //},
-                            //label: {
-                            //    text: "Singapore",
-                            //    color: "#fff",
-                            //    fontSize: "14px"
-                            //}
                         });
                         marker.addListener('click', function () {
                             var html = "<div class='pcn_map-infowindow'><div class='info-title'>" + Title + "</div>" + Description + "</div>";

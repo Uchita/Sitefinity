@@ -317,6 +317,7 @@
     <Compile Include="Mvc\Logics\ProcessSeekData.cs" />
     <Compile Include="Mvc\Logics\SocialHandlerLogics.cs" />
     <Compile Include="Mvc\Models\InstagramModel.cs" />
+    <Compile Include="Mvc\Models\JobDetailsModel.cs" />
     <Compile Include="Mvc\Models\SocialLinkModel.cs" />
     <Compile Include="Mvc\Models\SocialMediaProcessedResponse.cs" />
     <Compile Include="Mvc\Models\SocialViewModel.cs" />

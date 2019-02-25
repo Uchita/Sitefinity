@@ -1175,6 +1175,7 @@ header {
                     .decoration {
                         width: 100%;
                     }
+                  
                 }
             }
 
@@ -2527,6 +2528,16 @@ address.info-box{
         padding: 50px 0;
         background: $darkColor;
     }
+
+   
+        ul {
+            padding-left: 0;
+
+            li {
+                list-style-type: none;
+            }
+        }
+    
 }
 
 .half-block-shade {
@@ -2545,6 +2556,20 @@ address.info-box{
         top: 0;
     }
 }
+footer {
+    font-size: 16px;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    .footer-bar{
+        padding: 15px 0 !important;
+    }
+}
 
 @import 'hexagon-item';
 @import 'chevronShape';
+
+body{
+    background:#f5f5f5 ;
+    /*vasavi changes*/
+}
+

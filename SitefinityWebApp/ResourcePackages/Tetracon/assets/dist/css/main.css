@@ -7437,9 +7437,10 @@ blockquote {
     width: 100%; }
   .page-wrapper .btn-primary {
     border: 0;
-    padding: 8px 20px;
+    padding: 10px 20px;
     background: #7DC246;
-    color: #fff; }
+    color: #fff;
+    line-height: 25px; }
     .page-wrapper .btn-primary:hover, .page-wrapper .btn-primary:focus {
       background: #7DC246;
       color: #fff; }
@@ -7665,9 +7666,11 @@ blockquote {
   .page-wrapper .text-muted {
     font-size: 14px;
     font-size: 1.4rem;
-    color: #aaa; }
+    color: #b5b5b5; }
     .page-wrapper .text-muted a {
       text-decoration: underline; }
+    .page-wrapper .text-muted em {
+      font-style: normal; }
   .page-wrapper .font-light {
     font-family: SegoeUI, sans-serif; }
   .page-wrapper .font-regular {
@@ -9875,14 +9878,15 @@ ul.breadcrumb {
 .page-wrapper .basic-form {
   margin-top: 50px; }
   .page-wrapper .basic-form .form-control {
-    color: #7DC246; }
+    color: #7DC246;
+    border: 1px solid #666666; }
   .page-wrapper .basic-form select {
     padding-left: 6px; }
   .page-wrapper .basic-form textarea {
     height: 115px;
     resize: none; }
   .page-wrapper .basic-form .form-label {
-    color: #7DC246;
+    color: #666666;
     text-transform: uppercase;
     font-family: SegoeUI, sans-serif;
     text-align: right;
@@ -9891,9 +9895,9 @@ ul.breadcrumb {
   .page-wrapper .basic-form .checkbox .checkbox-icon {
     width: 20px;
     height: 20px;
-    border: 1px solid #7DC246;
+    border: 1px solid #666666;
     display: inline-block;
-    color: #7DC246;
+    color: #666666;
     position: absolute;
     top: 2px;
     left: 0;
@@ -9922,7 +9926,7 @@ ul.breadcrumb {
     .page-wrapper .basic-form .radiobutton .radiobutton-icon {
       width: 25px;
       height: 25px;
-      border: 1px solid #7DC246;
+      border: 1px solid #666666;
       display: inline-block;
       color: transparent;
       position: absolute;
@@ -10011,12 +10015,23 @@ ul.breadcrumb {
     margin-top: 10px; }
   .page-wrapper .login-form .basic-form .checkbox {
     margin-left: 0;
-    margin-top: 0; }
+    margin-top: 0;
+    color: #666666;
+    font-size: 14px;
+    font-size: 1.4rem; }
     .page-wrapper .login-form .basic-form .checkbox input[type=checkbox]:checked + input + .checkbox-icon:before {
       content: "\f00c";
       line-height: 19px; }
+    .page-wrapper .login-form .basic-form .checkbox a {
+      text-decoration: underline; }
   .page-wrapper .login-form .basic-form .login-border {
     margin-bottom: 10px; }
+  .page-wrapper .login-form .basic-form .registration-link {
+    color: #666666;
+    font-size: 14px;
+    font-size: 1.4rem; }
+    .page-wrapper .login-form .basic-form .registration-link a {
+      color: #7DC246; }
   .page-wrapper .login-form .privacy-policy, .page-wrapper .login-form .privacy-policy:hover, .page-wrapper .login-form .privacy-policy:focus {
     color: #000;
     text-decoration: underline; }

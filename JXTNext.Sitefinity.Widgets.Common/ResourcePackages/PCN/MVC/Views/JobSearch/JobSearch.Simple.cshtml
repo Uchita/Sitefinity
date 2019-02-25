@@ -41,7 +41,7 @@
     var singleDropdownControls = Model.Where(m => m.ControlType == "DropDown Single");
     var listControls = Model.Where(m => m.ControlType == "List").Take(2).ToList();
 
-    <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();" class="@ViewData[" CssClass"]">
+    <form action="@ViewData[" JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();" class="@ViewData[" CssClass"]">
         <div class="full_width search_job">
             <div class="container">
 
@@ -76,15 +76,18 @@
                     _itemsList.Clear();
                     _idNamesLevelsPair.Clear();
                     GetValuesList(dropdownControl.Filters);
-
-                    <input type="hidden" name="Filters[@counter].rootId" value='@dropdownControl.FilterType' />
-                    <select class="input-style" name="Filters[@counter].values">
-                        <option value="" disabled selected>@dropdownControl.PlaceholderText</option>
-                        @foreach (dynamic itemName in _idNamesLevelsPair)
-                        {
-                            <option value="@itemName.Key">@itemName.Value.name</option>
-                        }
-                    </select>
+                    <div class="corner">
+                        <div class="cut">
+                            <input type="hidden" name="Filters[@counter].rootId" value='@dropdownControl.FilterType' />
+                            <select class="input-style" name="Filters[@counter].values">
+                                <option value="" disabled selected>@dropdownControl.PlaceholderText</option>
+                                @foreach (dynamic itemName in _idNamesLevelsPair)
+                                {
+                                    <option value="@itemName.Key">@itemName.Value.name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
 
 
 
@@ -215,5 +218,5 @@
                                         }
                                     });
                                 }
-                                                                                                                   });
+                                                                                                                                               });
 </script>

@@ -7510,7 +7510,7 @@ blockquote {
   .page-wrapper select, .page-wrapper textarea {
     -webkit-box-shadow: none;
     box-shadow: none;
-    border: 1px solid #666666;
+    border: 1px solid #7DC246;
     -webkit-border-radius: 0;
     border-radius: 0;
     padding: 9px 12px 11px; }
@@ -7535,8 +7535,8 @@ blockquote {
     .page-wrapper select:focus, .page-wrapper textarea:hover, .page-wrapper textarea:focus {
       -webkit-box-shadow: none;
       box-shadow: none;
-      border-color: #666666;
-      outline: 1px solid #666666; }
+      border-color: #7DC246;
+      outline: 1px solid #7DC246; }
   .page-wrapper input[type="file"],
   .page-wrapper input[type="file"].form-control {
     border: 0;
@@ -8050,11 +8050,11 @@ header {
           background: transparent;
           color: #7DC246; }
       header .main-nav .dropdown-menu li.active a {
-        color: #0abde3; }
+        color: #7DC246; }
     header .main-nav .dropdown-menu a:hover, header .main-nav .dropdown-menu a:focus {
       text-decoration: none; }
       header .main-nav .dropdown-menu a:hover h5, header .main-nav .dropdown-menu a:focus h5 {
-        color: #0abde3 !important; }
+        color: #7DC246 !important; }
     header .main-nav .dropdown-submenu {
       position: static;
       padding-right: 30px; }
@@ -8989,6 +8989,11 @@ address.info-box {
   padding: 50px 0;
   background: #000000; }
 
+.prefooter-content ul {
+  padding-left: 0; }
+  .prefooter-content ul li {
+    list-style-type: none; }
+
 .half-block-shade {
   position: relative; }
   .half-block-shade:after {
@@ -9002,6 +9007,13 @@ address.info-box {
     width: calc(100% - 50%);
     z-index: -1;
     top: 0; }
+
+footer {
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 1.4; }
+  footer .footer-bar {
+    padding: 15px 0 !important; }
 
 .blue-1-bg {
   background: #14b3f2; }
@@ -9855,7 +9867,7 @@ ul.breadcrumb {
     height: 115px;
     resize: none; }
   .page-wrapper .basic-form .form-label {
-    color: #666666;
+    color: #7DC246;
     text-transform: uppercase;
     font-family: SegoeUI, sans-serif;
     text-align: right;
@@ -9864,9 +9876,9 @@ ul.breadcrumb {
   .page-wrapper .basic-form .checkbox .checkbox-icon {
     width: 20px;
     height: 20px;
-    border: 1px solid #666666;
+    border: 1px solid #7DC246;
     display: inline-block;
-    color: #666666;
+    color: #7DC246;
     position: absolute;
     top: 2px;
     left: 0;
@@ -9895,7 +9907,7 @@ ul.breadcrumb {
     .page-wrapper .basic-form .radiobutton .radiobutton-icon {
       width: 25px;
       height: 25px;
-      border: 1px solid #666666;
+      border: 1px solid #7DC246;
       display: inline-block;
       color: transparent;
       position: absolute;

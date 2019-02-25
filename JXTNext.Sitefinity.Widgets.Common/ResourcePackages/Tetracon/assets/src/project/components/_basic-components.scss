@@ -2542,6 +2542,8 @@ address.info-box{
 
 .half-block-shade {
     position: relative;
+    z-index: 1;
+
 
     &:after {
         content: "";
@@ -2554,6 +2556,40 @@ address.info-box{
         width: calc(100% - 50%);
         z-index: -1;
         top: 0;
+    }
+
+    .custom-column {
+        padding: 0 70px;
+
+        h2 {
+            color: $brightColor;
+        }
+    }
+
+    .custom-job-widget {
+        [class*="col-"] {
+            width: 100%;
+        }
+
+        .featured-job-offer {
+            a {
+                color: $brightColor;
+            }
+
+            p {
+                color: $brightColor;
+            }
+        }
+
+        .btn-default {
+            display: none;
+        }
+
+        .board-members-row {
+            [class*="col-"]{
+                padding:0;
+            }
+        }
     }
 }
 footer {
@@ -2568,8 +2604,5 @@ footer {
 @import 'hexagon-item';
 @import 'chevronShape';
 
-body{
-    background:#f5f5f5 ;
-    /*vasavi changes*/
-}
+
 

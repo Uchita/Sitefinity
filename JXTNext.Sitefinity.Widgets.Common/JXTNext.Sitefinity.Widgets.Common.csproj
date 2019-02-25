@@ -331,6 +331,9 @@
     <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-bg-image.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-full-bg.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-dark.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

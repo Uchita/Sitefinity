@@ -8995,7 +8995,8 @@ address.info-box {
     list-style-type: none; }
 
 .half-block-shade {
-  position: relative; }
+  position: relative;
+  z-index: 1; }
   .half-block-shade:after {
     content: "";
     background: #666666;
@@ -9007,6 +9008,20 @@ address.info-box {
     width: calc(100% - 50%);
     z-index: -1;
     top: 0; }
+  .half-block-shade .custom-column {
+    padding: 0 70px; }
+    .half-block-shade .custom-column h2 {
+      color: #fff; }
+  .half-block-shade .custom-job-widget [class*="col-"] {
+    width: 100%; }
+  .half-block-shade .custom-job-widget .featured-job-offer a {
+    color: #fff; }
+  .half-block-shade .custom-job-widget .featured-job-offer p {
+    color: #fff; }
+  .half-block-shade .custom-job-widget .btn-default {
+    display: none; }
+  .half-block-shade .custom-job-widget .board-members-row [class*="col-"] {
+    padding: 0; }
 
 footer {
   font-size: 16px;
@@ -9295,10 +9310,6 @@ footer {
     background: #585958; }
   .chevron-list.green-1-bg li::before, .chevron-list.green-1-bg li::after {
     background: #007077; }
-
-body {
-  background: #f5f5f5;
-  /*vasavi changes*/ }
 
 /*#endregion Basic components */
 /*#region Breadcrumbs */

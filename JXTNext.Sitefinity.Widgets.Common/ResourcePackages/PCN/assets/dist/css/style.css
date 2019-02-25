@@ -7831,6 +7831,15 @@ table td .btn-style-corner {
     margin-top: 15px;
 }
 
+#mc_embed_signup .datefield input {
+    min-width: 40px;
+    min-height: 34px;
+}
+
+.sandbox-register-wrap #mc_embed_signup .mc-field-group.size1of2 {
+    width: 96%;
+}
+
 @media print {
     a [href]:after {
         content: "";

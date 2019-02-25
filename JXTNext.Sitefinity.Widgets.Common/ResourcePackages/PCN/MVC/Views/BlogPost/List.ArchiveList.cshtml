@@ -13,23 +13,23 @@
 @{
     var model = Model.Items.OrderByDescending(x => x.Fields.PublicationDate).Select(x => x.Fields.PublicationDate.ToString("MMMMM yyyy")).Distinct().ToList();
 }
-
-<h3 class="title">ARCHIVE</h3>
-<div class="archive">
-    <ul>
-        @foreach (var item in model)
-        {
-            var arr = item.ToString().Split(' ');
-            if (arr[1] == DateTime.Now.ToString("yyyy"))
+@if (model.Count() > 0)
+{
+    <h3 class="title">ARCHIVE</h3>
+    <div class="archive">
+        <ul>
+            @foreach (var item in model)
             {
-                <li><a href="/news/blog?archivedate=@item">@item</a></li>
+                var arr = item.ToString().Split(' ');
+                if (arr[1] == DateTime.Now.ToString("yyyy"))
+                {
+                    <li><a href="/news/blog?archivedate=@item">@item</a></li>
+                }
+                else
+                {
+                    <li><a href="/news/blog?archivedate=@arr[1]">@arr[1]</a></li>
+                }
             }
-            else
-            {
-                <li><a href="/news/blog?archivedate=@arr[1]">@arr[1]</a></li>
-            }
-        }
-    </ul>
-</div>
-
-
+        </ul>
+    </div>
+}

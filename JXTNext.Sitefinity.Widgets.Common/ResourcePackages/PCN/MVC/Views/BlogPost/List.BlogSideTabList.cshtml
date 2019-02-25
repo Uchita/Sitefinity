@@ -24,9 +24,8 @@
         <a href="@navigateUrl" class="action_link">Read More</a>
     </div>
 }
-
-
-
-
-
+@if (Model.Items.Count() == 0)
+{
+    <div class="alert alert-warning mt-15"><strong>No results found.</strong></div>
+}
 

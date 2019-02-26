@@ -2596,11 +2596,50 @@ address.info-box{
         }
     }
 }
+.left-block-shade {
+    position: relative;
+    z-index: 1;
+   &.page-section {
+       padding:0;
+   }
+
+
+    &:after {
+        content: "";
+        background: $global-text;
+        position: absolute;
+        bottom: 0;
+        height: 100%;
+        display: block;
+        left: 0;
+        width: calc(100% - 75%);
+        z-index: -1;
+        top: 0;
+    }
+
+    .row {
+        display: flex;
+    }
+
+    .caption {
+        padding: 50px 0 50px 50px;
+    }
+
+    .bg-col {
+        padding: 50px 0;
+        background: $page-section-bg-dark;
+    }
+
+    .no-padding {
+        padding: 0;
+    }
+}
 footer {
     font-size: 16px;
     font-size: 1.6rem;
     line-height: 1.4;
-    .footer-bar{
+
+    .footer-bar {
         padding: 15px 0 !important;
     }
 }

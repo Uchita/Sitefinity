@@ -9026,6 +9026,32 @@ address.info-box {
   .half-block-shade .custom-job-widget .board-members-row [class*="col-"] {
     padding: 0; }
 
+.left-block-shade {
+  position: relative;
+  z-index: 1; }
+  .left-block-shade.page-section {
+    padding: 0; }
+  .left-block-shade:after {
+    content: "";
+    background: #666666;
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    display: block;
+    left: 0;
+    width: calc(100% - 75%);
+    z-index: -1;
+    top: 0; }
+  .left-block-shade .row {
+    display: flex; }
+  .left-block-shade .caption {
+    padding: 50px 0 50px 50px; }
+  .left-block-shade .bg-col {
+    padding: 50px 0;
+    background: #666666; }
+  .left-block-shade .no-padding {
+    padding: 0; }
+
 footer {
   font-size: 16px;
   font-size: 1.6rem;

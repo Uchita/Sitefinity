@@ -7523,12 +7523,6 @@ ul.nav.nav-sitemap li > ul {
     border-right: 1px solid #8EDD2B;
 }
 
-    .horizontal-menu .top-categories .extra-links a:hover,
-    .horizontal-menu .top-categories .extra-links a.active,
-    .horizontal-menu .top-categories .extra-links a:focus {
-        color: #fff;
-        background-color: rgba(142, 221, 43, 0.60);
-    }
     /*.horizontal-menu .top-categories .extra-links a:first-child:after {
         content: "";
         width: 1px;
@@ -7546,6 +7540,23 @@ ul.nav.nav-sitemap li > ul {
         position: absolute;
         left: 50%;
         top: 50%;
+    }
+
+    .horizontal-menu .top-categories .extra-links a span:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        bottom: -1px;
+        left: 0;
+        opacity: 0;
+        background: #8EDD2B;
+    }
+
+    .horizontal-menu .top-categories .extra-links a:hover span:after,
+    .horizontal-menu .top-categories .extra-links a.active span:after,
+    .horizontal-menu .top-categories .extra-links a:focus span:after {
+        opacity: 1;
     }
 
     .horizontal-menu .top-categories .extra-links a:first-child {

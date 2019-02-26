@@ -709,8 +709,10 @@ blockquote{
 
 img, iframe {
     max-width: 100%;
-    width: 100%;
     border: none;
+}
+iframe {
+    width: 100%;
 }
 .responsive-img{
     width: 100%;
@@ -1911,7 +1913,7 @@ ul.vertical-ul {
             text-decoration: underline;
         }
     }
-
+    
     ul {
         position: relative;
         -webkit-box-shadow: none;
@@ -1923,7 +1925,6 @@ ul.vertical-ul {
         z-index: 1;
 
         li {
-
             &, a, a:focus, &:focus {
                 color: #8e8e8e;
             }
@@ -1940,6 +1941,9 @@ ul.vertical-ul {
                 color: $global-highlight-color;
             }
         }
+    }
+    .dropdown-menu{
+        font-size: inherit;
     }
 }
 /*#endregion Vertical navigation*/
@@ -1974,11 +1978,22 @@ ul.vertical-ul {
     margin-top: -15px; 
     margin-bottom: 30px;
 }
+.slimtable-container-div{
+    overflow: hidden;
+}
+.slimtable-wrapper{
+    overflow: auto;
+    margin-bottom: 30px;
+    .table{
+        margin-bottom: 0;
+    }
+}
 .slimtable-paging-div {
     overflow: hidden;
 }
 .slimtable-paging-btnsdiv{
     float: left;
+    margin-bottom: 10px;
 }
 .slimtable-paging-seldiv {
     float: right;
@@ -2384,7 +2399,7 @@ address.info-box{
 }
 
 .map-placeholder{
-    height: 425px;
+    height: 550px;
     width: unset !important;
 }
 

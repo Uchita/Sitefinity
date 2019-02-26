@@ -1243,7 +1243,6 @@
 
             .caption {
                 padding: 9px 0;
-                position: relative;
                 .h3, h3 {
                     font-size: 18px;
                     font-size: 1.8rem;
@@ -1269,12 +1268,23 @@
         }
     }
     .thumbnail.card-rollover .card-rollover-more{
-        position:relative;
         padding-right:35px;
         .btn{
             position: absolute;
             bottom:-2px;
             right:0;
+            &.btn-more{
+                width: 100%;
+                left: 0;
+                bottom: auto;
+                top: 0;
+                height: 100%;
+                &:after{
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                }
+            }
         }
     }
     .thumbnail{

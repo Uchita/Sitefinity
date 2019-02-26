@@ -1,23 +1,19 @@
 @model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 <div class="@Model.CssClass">
-    <div class="container">
-        <div class="row">
-            @*<div class="col-md-6">
-                    <img src="@Model.SelectedSizeUrl" title="@Model.ImageTitle" alt="@Model.ImageAlternativeText" class="img-responsive">
-                </div>*@
-            <div class="col-md-6 ">
-                <div class="caption">
-                    <h2>@Html.HtmlSanitize(Model.Heading)</h2>
-                    <p>@Html.HtmlSanitize(Model.Description)</p>
+    <div class="row">
+        <div class="col-md-4 bg-col">
+            <img src="@Model.SelectedSizeUrl" title="@Model.ImageTitle" alt="@Model.ImageAlternativeText" class="img-responsive">
+        </div>
+        <div class="col-md-8 no-padding">
+            <div class="caption">
+                <h2>@Html.HtmlSanitize(Model.Heading)</h2>
+                <p>@Html.HtmlSanitize(Model.Description)</p>
 
-
-                    <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-default" role="button">@Model.ActionName</a>
-
-                </div>
-                <div class="col-md-6">
-
-                </div>
+                @if (!string.IsNullOrEmpty(Model.ActionName))
+                {
+                    <p><a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary" role="button">@Model.ActionName</a></p>
+                }
             </div>
         </div>
     </div>

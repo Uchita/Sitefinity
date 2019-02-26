@@ -373,6 +373,7 @@ a {
     float: right;
     width: 35px;
     color: #fff;
+    cursor: pointer;
 }
 
     .menu_toogle em {
@@ -7522,6 +7523,12 @@ ul.nav.nav-sitemap li > ul {
     border-right: 1px solid #8EDD2B;
 }
 
+    .horizontal-menu .top-categories .extra-links a:hover,
+    .horizontal-menu .top-categories .extra-links a.active,
+    .horizontal-menu .top-categories .extra-links a:focus {
+        color: #fff;
+        background-color: rgba(142, 221, 43, 0.60);
+    }
     /*.horizontal-menu .top-categories .extra-links a:first-child:after {
         content: "";
         width: 1px;
@@ -7531,7 +7538,6 @@ ul.nav.nav-sitemap li > ul {
         top: 0;
         position: absolute;
     }*/
-
     .horizontal-menu .top-categories .extra-links a > span {
         line-height: 1;
         transform: translate(-50%, -50%);

@@ -34,7 +34,14 @@
             </div>
             <div class="extra-links">
                 <a href="/magazine" title="Magazine"><span>Magazine</span></a>
-                <a href="/news/events1" title="Events"><span>Events</span></a>
+                @if (uri == "events1")
+                {
+                    <a href="/news/events1" class="active" title="Events"><span>Events</span></a>
+                }
+                else
+                {
+                    <a href="/news/events1" title="Events"><span>Events</span></a>
+                }
             </div>
         </div>
     </div>

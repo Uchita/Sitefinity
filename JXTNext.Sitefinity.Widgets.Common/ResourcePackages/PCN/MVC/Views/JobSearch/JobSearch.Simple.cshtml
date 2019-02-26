@@ -80,7 +80,7 @@
                         <div class="cut">
                             <input type="hidden" name="Filters[@counter].rootId" value='@dropdownControl.FilterType' />
                             <select class="input-style" name="Filters[@counter].values">
-                                <option value="" disabled selected>@dropdownControl.PlaceholderText</option>
+                                <option value="" selected>@dropdownControl.PlaceholderText</option>
                                 @foreach (dynamic itemName in _idNamesLevelsPair)
                                 {
                                     <option value="@itemName.Key">@itemName.Value.name</option>

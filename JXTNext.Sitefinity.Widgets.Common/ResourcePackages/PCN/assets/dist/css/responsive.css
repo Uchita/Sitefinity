@@ -716,6 +716,14 @@
     .text-right.forgot-pass-label {
         text-align: left;
     }
+
+    .advancedsearch .basic-form .text-right {
+        text-align: left;
+    }
+
+    .advancedsearch .basic-form .form-group {
+        margin-bottom: 15px;
+    }
 }
 
 

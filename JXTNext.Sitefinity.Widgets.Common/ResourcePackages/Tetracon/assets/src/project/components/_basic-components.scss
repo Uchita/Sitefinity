@@ -255,9 +255,10 @@ blockquote{
 
     .btn-primary {
         border: 0;
-        padding: 8px 20px;
+        padding: 10px 20px;
         background: $btn-primary-bg;
         color: $btn-primary-color;
+        line-height:25px;
 
         &:hover, &:focus {
             background: $btn-primary-hover-bg;
@@ -366,7 +367,7 @@ blockquote{
     select, textarea {
         -webkit-box-shadow: none;
         box-shadow: none;
-        border: 1px solid $forms-element-border;
+        border: 1px solid $forms-search-border;
         -webkit-border-radius: 0;
         border-radius: 0;
         padding: 9px 12px 11px;
@@ -375,8 +376,8 @@ blockquote{
         &:focus {
             -webkit-box-shadow: none;
             box-shadow: none;
-            border-color: $forms-element-border;
-            outline: 1px solid $forms-element-border;
+            border-color: $forms-search-border;
+            outline: 1px solid $forms-search-border;
         }
     }
 
@@ -538,10 +539,14 @@ blockquote{
     .text-muted {
         font-size: 14px;
         font-size: 1.4rem;
-        color: #aaa;
+        color: $forms-placeholder-color;
 
         a {
             text-decoration: underline;
+        }
+
+        em {
+            font-style: normal;
         }
     }
 

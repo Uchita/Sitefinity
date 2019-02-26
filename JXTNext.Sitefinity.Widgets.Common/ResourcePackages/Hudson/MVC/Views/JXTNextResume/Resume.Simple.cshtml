@@ -31,7 +31,7 @@
                 <tr>
                     <th>File Name</th>
                     <th class="date-col">Upload Date</th>
-                    <th class="col-2btn-width">Action</th>
+                    <th class="col-2btn-width act-col">Action</th>
                 </tr>
             </thead>
             <tbody id="resumeTable">
@@ -61,6 +61,11 @@
             $.each(resumes, function (i, item) {
                 
                 var date = item.UploadDateStr;
+                var dateItm = new Date(date);
+                const monthAbvrNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                if (dateItm != undefined) {
+                    date = dateItm.getDate() + ' ' + monthAbvrNames[dateItm.getMonth()] + ' ' + dateItm.getFullYear();  
+                }
                 rows += '<tr> ' + '<td>' + item.FileFullName + '</td>' + '<td>' + date + '</td >' + '<td>' + '<a href="' + item.FileUrl + '" class="btn btn-tag" target="_blank">' + viewValue + '</a> <input id="' + item.Id + '" class="deleteresumecls btn btn-sm btn-tag btn-danger" type="button"  value="' + deleteResume + '"></td>' + '</tr>';
                 
             });

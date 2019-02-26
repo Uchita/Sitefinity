@@ -167,7 +167,6 @@
         if (isSlarySelected) {
             salary.RootName = 'Salary';
             $('#salary-model-bind-hidden').val(JSON.stringify(salary));
-            console.log($('#salary-model-bind-hidden').val());
         }
 
         return true;
@@ -245,6 +244,14 @@
                         }
                     }
                 }
+            });
+        });
+
+        //especiallyy for mobile, sliders are not taking the full width / the correct values 
+        //also when changing orientation the width slider width remains same
+        $(window).resize(function () {
+            $('.nstSlider').each(function (i, obj) {
+                $(this).nstSlider('refresh');
             });
         });
 

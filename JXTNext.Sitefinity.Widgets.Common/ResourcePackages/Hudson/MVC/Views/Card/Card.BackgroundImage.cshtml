@@ -5,7 +5,7 @@
 
     @if (!string.IsNullOrEmpty(Model.ActionName))
     {
-        <a href="@Html.UrlSanitize(Model.ActionUrl)">
+        <a href="@Html.UrlSanitize(Model.ActionUrl)" title="@Model.ActionName">
             @RenderCard(Model)
             <span class="btn btn-more"></span>
         </a>

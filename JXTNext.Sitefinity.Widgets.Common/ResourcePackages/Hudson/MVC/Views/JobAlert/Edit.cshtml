@@ -262,6 +262,14 @@
             });
         });
 
+        //especiallyy for mobile, sliders are not taking the full width / the correct values 
+        //also when changing orientation the width slider width remains same
+        $(window).resize(function () {
+            $('.nstSlider').each(function (i, obj) {
+                $(this).nstSlider('refresh');
+            });
+        });
+
 
         if (model != null && model != "undefined") {
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');

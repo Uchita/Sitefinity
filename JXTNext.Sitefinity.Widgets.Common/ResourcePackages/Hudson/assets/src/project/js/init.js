@@ -422,15 +422,33 @@ $(document).ready(function () {
 
     //using dataTable plugin for pagination in table
     if( $('table.datatable').length ){
-        $("table.datatable").slimtable({
-            itemsPerPage: 5,
-			ippList: [5,10,20],
-        });
         $("table.datatable").each( function(){
-            if( $(this).parent().find('.slimtable-page-btn').length < 2 ){
-                $(this).parent().find('.slimtable-paging-div').hide();
+            var tbl = $(this);
+            var dateColIndex = tbl.find('th.date-col').index();
+            var actColIndex = tbl.find('th.act-col').index();
+            if( dateColIndex < 0 ){
+                dateColIndex = 0;
+            }
+            tbl.slimtable({
+                itemsPerPage: 5,
+                ippList: [5,10,20],
+                sortList: [ dateColIndex ],
+                colSettings: [{
+                    sortDir: "desc",
+                    colNumber: dateColIndex
+                },
+                {
+                    enableSort: false,
+                    colNumber: actColIndex
+                }
+                ],
+            });
+
+            if( tbl.parent().find('.slimtable-page-btn').length < 2 ){
+                tbl.parent().find('.slimtable-paging-div').hide();
             }
         });
+     
     }
 
     //office page

@@ -30,6 +30,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 throw new NullReferenceException();
 
             emailRequest.EmailBody = GenerateEmailBody(emailRequest.EmailBody, emailContent);
+            emailRequest.Subject = GenerateEmailBody(emailRequest.Subject, emailContent);
 
             return SendEmail(emailRequest, smtpSettings);
         }

@@ -1914,16 +1914,22 @@
     <Content Include="ResourcePackages\Hudson\MVC\Views\LoginStatusExtended\LoginStatusExtended.LoginName.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Hudson\MVC\Views\Shared\_JobSearchResults_CustomFilter.cshtml">
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Shared\_JobSearchResultsCustom.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Hudson\MVC\Views\Shared\_SimpleJS_Partial_CustomFilter.cshtml">
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Shared\_SimpleJS_PartialCustom.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Hudson\MVC\Views\JobSearchResults\JobsAll_CustomFilter.cshtml">
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobSearchResults\JobsAllJobsCustom.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Hudson\MVC\Views\JobFilters\T_MultiSelect_CustomFilter.cshtml">
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobFilters\T_MultiSelectCustom.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\Detail.TestimonialWithTitle.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\Detail.TestimonialBackground.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot">

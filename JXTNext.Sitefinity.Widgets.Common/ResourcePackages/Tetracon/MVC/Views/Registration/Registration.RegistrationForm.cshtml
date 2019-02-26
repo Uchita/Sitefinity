@@ -118,7 +118,8 @@
                                     @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Choose password", required = "required", pattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title = Html.Resource("passwordRequirementMsg", "Labels") })
 
                                     <span class="text-muted">
-                                        <em>@Html.Resource("passwordRequirementMsg", "Labels")</em><br />&nbsp;
+                                        <em>Password must contain 8 characters or more, 1 uppercase letter, 1 lowercase letter and 1 number</em><br />&nbsp;
+                                        @*<em>@Html.Resource("passwordRequirementMsg", "Labels")</em><br />&nbsp;*@
                                     </span>
 
                                     @if (Html.ValidationMessageFor(m => m.Password) != null)
@@ -147,7 +148,7 @@
                                         </p>
                                     </div>
                                     <div class="col-md-8">
-                                        @Html.PasswordFor(m => m.ReTypePassword, new { @class = "form-control", placeholder = "Retype your password", required = "required" })
+                                        @Html.PasswordFor(m => m.ReTypePassword, new { @class = "form-control", placeholder = "Repeat password", required = "required" })
                                         @if (Html.ValidationMessageFor(m => m.ReTypePassword) != null)
                                         {
                                             <div class="has-error">

@@ -57,7 +57,6 @@
 
         var optionsArray = {};
         var queryStringArr = [];
-        console.log("Startig of script");
 
         function makeQueryString(obj, prefix, isArray) {
 
@@ -99,7 +98,6 @@
         if (model != null && model != "undefined") {
             var filterModel = JSON.parse('@Html.Raw(@ViewBag.FilterModel)');
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
-            console.log("filterModel.Filters.Keywords: " + filterModel.Keywords);
 
             // Adding Keywords to selected keywords div
             if (filterModel.Keywords != null && filterModel.Keywords != "undefined" && filterModel.Keywords !== "") {

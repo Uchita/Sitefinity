@@ -36,7 +36,7 @@
 
             var categoryPageUrl = string.Format("{0}{1}{2}{3}", articlesUrl, parentUrlName, taxon.UrlName.ToString(), sortExpression);
 
-            <li><a href="@categoryPageUrl" data-filter="@taxon.Title">@taxon.Title</a></li>
+            <li><a href="@categoryPageUrl" data-filter="@taxon.Title" title="@taxon.Title">@taxon.Title</a></li>
 
             if (taxon.Subtaxa != null && taxon.Subtaxa.Count > 0)
             {
@@ -98,7 +98,7 @@
                             var taxonPageUrl = string.Format("{0}{1}{2}", articlesUrl, taxon.UrlName.ToString(), sortExpression);
 
                             <li class="@dropCls" data-itemid="@taxon.Id.ToString()">
-                                <a href="@taxonPageUrl" data-filter="@taxon.Title">@taxon.Title</a>
+                                <a href="@taxonPageUrl" data-filter="@taxon.Title" title="@taxon.Title">@taxon.Title</a>
                                 @if (hierarchicalTaxon != null)
                                 {
                                     if (hierarchicalTaxon.Subtaxa != null && hierarchicalTaxon.Subtaxa.Count > 0)
@@ -115,7 +115,7 @@
                         }
                     }
 
-                    <li><a href="@allArticlesUrl">show all</a></li>
+                    <li><a href="@allArticlesUrl" title="Show all">show all</a></li>
                 }
             </ul>
         </div>
@@ -213,7 +213,7 @@
                     stripPath.pop();
                 }
                 curTaxonName = stripPath[stripPath.length - 1];
-                //console.log(curTaxonName);
+                
                 if (stripPath.length > 2 && stripPath[stripPath.length - 2] == "career-advice") {
                     parentTaxon = stripPath[stripPath.length - 2];
                     $('.press-release-filter > ul > li > a[href$="' + parentTaxon + '"]').first().parent('li').addClass('filter-active');

@@ -268,7 +268,7 @@
                         markers.push({ isLatLng: false, address: address, icon: iconPath, popupTitle: popupTitle, popupText: infoWindowContent });
                     }
                 });
-                console.log(markers.length);
+                
                 if (markers.length > 0) {
                     $(this).removeClass('hidden');
                     $(this).googleMap({
@@ -306,7 +306,6 @@
     $(window).on('load', function () {
         var isLoaded = false;
         $(".map-placeholder").each(function (index) {
-            console.log($(this).data("called"));
             var isCalled = $(this).data("called");
             if (isCalled == false || typeof isCalled == 'undefined') {
                 $(this).data("called", true);
@@ -316,7 +315,6 @@
                 return false;
             }
         });
-        console.log(isLoaded);
         if (!isLoaded) {
             initMap();
         }
@@ -360,7 +358,6 @@
             data: { JobId: jobId },
             dataType: 'Json',
             success: function (response) {
-                console.log(response);
                 if (response.IsUserLogged == true) {
                     $('li.save-job-wrapper').html('<a href="#" class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="far fa-save"></em><span class="save-status-txt">Save this job</span></a>');
                     if (response.IsJobSaved == true) {

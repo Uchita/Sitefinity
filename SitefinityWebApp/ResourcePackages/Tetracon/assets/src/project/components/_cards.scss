@@ -727,7 +727,8 @@
 
 .jumbotron-container, .owl-carousel-jumbotron {
     .jumbotron {
-        background: bottom center no-repeat;
+        background: top center no-repeat;
+        /*background: bottom center no-repeat;*/
         background-size: contain;
     }
 }

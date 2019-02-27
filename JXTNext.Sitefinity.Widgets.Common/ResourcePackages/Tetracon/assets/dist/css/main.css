@@ -11116,6 +11116,24 @@ select.articles-order {
   max-width: 450px;
   margin: 0 auto 20px; }
 
+.our-expertise {
+  padding-left: 72px; }
+  .our-expertise h2 {
+    color: #fff; }
+  .our-expertise a {
+    color: #fff; }
+  .our-expertise p {
+    color: #fff; }
+  .our-expertise .row-see-more {
+    display: none; }
+  .our-expertise .col-sm-4 {
+    width: 100%; }
+  .our-expertise .board-members-row {
+    margin-left: -15px;
+    margin-right: -15px; }
+    .our-expertise .board-members-row .col-md-3 {
+      width: 50%; }
+
 /*#endregion Board members*/
 /*#region Press release*/
 .contact-box {

@@ -331,6 +331,9 @@
     <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-bg-image.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-half-shade.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-left-bg.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -352,9 +355,7 @@
     <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-lighter.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section.html" />
     <Content Include="ResourcePackages\Tetracon\gruntfile.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

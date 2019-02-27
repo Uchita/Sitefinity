@@ -20,7 +20,7 @@
             var imageThumbUrl = "";
 
             <div class="item">
-                <div class="consultant same-height-box">
+                <div class="consultant">
                     @if (consultant.Fields.Pic != null)
                     {
                         imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(consultant.Fields.Pic.DataItem, "thumb350");
@@ -38,7 +38,7 @@
                             @Html.HtmlSanitize((string)consultant.Fields.Position)
                         </p>
                     </div>
-                    @if (consultant.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
+                    @*@if (consultant.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
                     {
                         OfficeLocationName = Html.HtmlSanitize((string)consultant.Fields.Office.Fields.Name).ToString();
                         OfficeLocationUrl = consultant.Fields.Office.Fields.UrlName.ToString();
@@ -63,7 +63,7 @@
                     @if (consultant.Fields.Office != null)
                     {
                         <a class="consultant-btn" href="@navigateUrl">@OfficeLocationName</a>
-                    }
+                    }*@
 
                 </div>
             </div>

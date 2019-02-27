@@ -11237,9 +11237,9 @@ select.articles-order {
     .owl-consultants .owl-stage .consultant {
       box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.16);
       text-align: center;
-      padding-bottom: 50px;
-      position: relative;
-      margin: 12px 5px; }
+      /*padding-bottom: 50px;
+            position: relative;
+            margin: 12px 5px;*/ }
       .owl-consultants .owl-stage .consultant .consultant-photo {
         background-size: cover;
         background-position: center;
@@ -11248,12 +11248,20 @@ select.articles-order {
         width: 100%; }
 
 .consultant .caption {
-  padding: 0 20px; }
+  /*padding: 0 20px;*/
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background: rgba(102, 102, 102, 0.7); }
   .consultant .caption .consultant-sum {
-    font-family: SegoeUI, sans-serif; }
+    font-family: SegoeUI, sans-serif;
+    color: #fff; }
   .consultant .caption .consultant-name {
     margin-top: 15px;
-    color: #7DC246; }
+    color: #fff;
+    /*color: $global-highlight-color;*/ }
 
 .consultant .consultant-btn {
   color: #ababab !important;

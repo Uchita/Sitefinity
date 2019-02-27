@@ -7,9 +7,9 @@
         .consultant {
             box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.16);
             text-align: center;
-            padding-bottom: 50px;
+            /*padding-bottom: 50px;
             position: relative;
-            margin: 12px 5px;
+            margin: 12px 5px;*/
 
             .consultant-photo {
                 background-size: cover;
@@ -23,19 +23,28 @@
 }
 .consultant {
     .caption {
-        padding: 0 20px;
+        /*padding: 0 20px;*/
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        background: $caption-overlay;
 
         .consultant-sum {
             font-family: $font-family-regular;
+            color: $brightColor;
         }
 
         .consultant-name {
             margin-top: 15px;
-            color: $global-highlight-color;
+            color: $brightColor;
+            /*color: $global-highlight-color;*/
         }
     }
+
     .consultant-btn {
-        color: $page-section-bg-light!important;
+        color: $page-section-bg-light !important;
         text-decoration: none;
         display: block;
         display: -webkit-box;
@@ -79,7 +88,8 @@
         }
 
         &:hover {
-            color: $global-highlight-color!important;
+            color: $global-highlight-color !important;
+
             &:before {
                 background: $btn-more-hover-bg;
             }

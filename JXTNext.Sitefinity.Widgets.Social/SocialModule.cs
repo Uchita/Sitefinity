@@ -18,8 +18,8 @@ namespace JXTNext.Sitefinity.Widgets.Social
         public override void Load()
         {
             Bind<SocialHandlerLogics>().To<SocialHandlerLogics>();
-            Bind<IProcessSocialMediaData>().To<ProcessIndeedData>();
-            Bind<IProcessSocialMediaData>().To<ProcessSeekData>();
+            Bind<IProcessSocialMediaData>().To<ProcessIndeedData>().Named("Indeed");
+            Bind<IProcessSocialMediaData>().To<ProcessSeekData>().Named("Seek");
         }
     }
 }

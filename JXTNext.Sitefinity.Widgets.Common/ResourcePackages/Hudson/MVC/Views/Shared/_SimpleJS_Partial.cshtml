@@ -151,7 +151,9 @@
         });
 
         $(window).resize(function () {
-            $('.nstSlider').nstSlider('refresh');
+            $('.nstSlider').each(function (i, obj) {
+                $(this).nstSlider('refresh');
+            });
         });
         
 
@@ -169,9 +171,7 @@
                 //getting the loader while the job search is working
 
                 $("#selectedkeywordsfilter").parent().addClass('loader');
-                if (checkEspecialChar($(this).val()) == false) {
-                    return false;
-                }
+                
                 eachClickFilter();
             }
 
@@ -227,9 +227,6 @@
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
             prefixIdText = @Html.Raw(Json.Encode(ViewBag.PrefixIdsText));
 
-            console.log(filterData);
-            console.log(prefixIdText);
-
             $.each(filterData, function (index, item) {
                 if (item.Name == 'Salary') {
                     isSalaryExists = true;
@@ -269,7 +266,7 @@
             //onpage load checking if any filter is selected
             function checkFilterCheck() {
                 //checking keyword
-                if (tempKeyword != "") {
+                if ($("#selectedkeywordsfilter").val() != "") {
                     return true;
                 }
                 //checking checkboxes selected
@@ -280,12 +277,6 @@
                 if ($('.SalaryRangeSelect').val() != -1) {
                     return true;
                 }
-            }
-
-            if (checkFilterCheck()) {
-                $("#sortOrder").val("Relevance");
-            } else {
-                $("#sortOrder").val("Recent");
             }
 
             function eachClickFilter() {
@@ -327,10 +318,15 @@
                 }
 
                 filterModel.Keywords = encodeURIComponent($("#selectedkeywordsfilter").val());
-                if ($("#pager li a").length) {
-                    filterModel.Page = "1";
-                }
+                filterModel.Page = "1"; //by default page to be 1 if new filter data changes
                 
+
+                if (checkFilterCheck()) {
+                    $("#sortOrder").val("Relevance");
+                } else {
+                    $("#sortOrder").val("Recent");
+                }
+
                 filterModel.SortBy = $("#sortOrder").val();// We need to persist the sort order selected in job search results
                 
                 var data = { filterModel: filterModel }

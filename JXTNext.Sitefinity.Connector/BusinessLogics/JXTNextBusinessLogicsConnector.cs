@@ -51,8 +51,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
 
                 return new JXTNext_MemberGetByIdResponse { Success = false, Errors = new List<string> { ex.Message } };
             }
-           
-            
+
+
         }
 
         public IMemberGetByIdResponse UpdateMember(MemberModel modelData)
@@ -67,7 +67,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
 
             //parse the response
             bool actionSuccessful = response.Success;
-            
+
             if (actionSuccessful)
             {
                 dynamic responseObj = JObject.Parse(response.Response);
@@ -296,7 +296,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             else
                 return new JXTNext_MemberSaveJobResponse { Success = false, Errors = new List<string> { response.Response } };
         }
-        
+
         public IMemberUpsertJobAlertResponse MemberUpsertJobAlert(IMemberUpsertJobAlertRequest jobAlert, bool isUserLoggedIn)
         {
             JXTNext_MemberUpsertJobAlertRequest createJobAlert = jobAlert as JXTNext_MemberUpsertJobAlertRequest;
@@ -527,14 +527,14 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
 
                 if (responseObj["status"] == 200)
                     return new JXTNext_SearchJobsResponse { Success = true, Total = responseObjDataSearchResults.total, SearchResults = _jobMapper.ConvertSearchResultsToLocal<JobDetailsFullModel>(responseObjDataSearchResults.searchResults), SearchResultsFilters = _jobMapper.ConvertSearchResultsFiltersToLocal<JobFilterRoot>(responseObjDataSearchResultsFilters.Data) };
-            
+
                 else
                     return new JXTNext_SearchJobsResponse { Success = false, Errors = responseObj.errors };
             }
             else
                 return new JXTNext_SearchJobsResponse { Success = false, Errors = new List<string> { response.Response } };
         }
-        
+
         public IBaseResponse UnsubscribeJobAlert(Guid unsubscribeGuid)
         {
             ConnectorPutRequest connectorRequest = new ConnectorPutRequest(HTTP_Requests_MaxWaitTime)
@@ -587,7 +587,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         private IMemberUpsertJobAlertResponse MemberCreateJobAlert(JXTNext_MemberUpsertJobAlertRequest jobAlert, bool isUserLoggedIn)
         {
             string path = $"/api/member/email/{jobAlert.Email}/jobalert";
-            if(!isUserLoggedIn)
+            if (!isUserLoggedIn)
                 path = $"/api/guest/email/{jobAlert.Email}/jobalert";
 
             ConnectorPostRequest connectorRequest = new ConnectorPostRequest(HTTP_Requests_MaxWaitTime)

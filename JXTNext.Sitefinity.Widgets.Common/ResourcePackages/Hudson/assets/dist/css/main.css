@@ -7763,6 +7763,7 @@ blockquote {
 
 img, iframe {
   max-width: 100%;
+  width: 100%;
   border: none; }
 
 .responsive-img {
@@ -10208,9 +10209,9 @@ ul.breadcrumb {
   .consultant-jobs .owl-item {
     margin-right: 0 !important; } }
 
-.job-offer-details {
+.job-offer-details, .job-mini.disabled-block .jobdetail-sidebar {
   padding-right: 40px; }
-  .job-offer-details table {
+  .job-offer-details table, .job-mini.disabled-block .jobdetail-sidebar table {
     margin: 30px 0;
     width: 100%; }
 
@@ -10259,7 +10260,7 @@ ul.breadcrumb {
     width: calc(100% - 200px); }
 
 @media (max-width: 991px) {
-  .job-offer-details {
+  .job-offer-details, .job-mini.disabled-block .jobdetail-sidebar {
     padding-right: 0;
     margin-bottom: 40px; } }
 
@@ -10586,6 +10587,20 @@ ul.breadcrumb {
 
 .hide-allsearch_btn .row-see-more {
   display: none; }
+
+.job-mini.disabled-block .job-offer-details, .job-mini.disabled-block .jobdetail-sidebar {
+  opacity: 0.5;
+  position: relative; }
+  .job-mini.disabled-block .job-offer-details:after, .job-mini.disabled-block .jobdetail-sidebar:after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 1; }
 
 /*#endregion Job offers */
 /*#region Articles/Insights */
@@ -12308,7 +12323,11 @@ select.articles-order {
   .tbl-wrapper {
     overflow: auto; }
     .tbl-wrapper table {
-      min-width: 500px; } }
+      min-width: 500px; }
+  .reg-form .basic-form {
+    margin-top: 0; }
+  .home-padding.owl-carousel {
+    z-index: 1050; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron .owl-nav {
@@ -12501,7 +12520,9 @@ select.articles-order {
   .section-ul ul.nav-stacked li {
     width: auto;
     float: none;
-    margin-right: 0; } }
+    margin-right: 0; }
+  .btn-primary, .btn {
+    margin-bottom: 5px; } }
 
 /*#endregion Phones*/
 /*#endregion Media*/

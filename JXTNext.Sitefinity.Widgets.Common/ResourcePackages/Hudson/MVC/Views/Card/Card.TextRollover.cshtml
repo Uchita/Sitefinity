@@ -20,13 +20,13 @@
                         {
 
                             <p>@Html.HtmlSanitize(Model.Description)</p>
-                            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn" role="button">@Model.ActionName</a>
+                            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn" role="button" title="@Model.ActionName">@Model.ActionName</a>
                         }
                         else
                         {
-                            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="hidden-xs card-rollover-sum">@Html.HtmlSanitize(Model.Description)</a>
+                            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="hidden-xs card-rollover-sum" title="Read more">@Html.HtmlSanitize(Model.Description)</a>
                             <p class="visible-xs">@Html.HtmlSanitize(Model.Description)</p>
-                            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-more visible-xs" role="button"></a>
+                            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-more visible-xs" role="button" title="Read more"></a>
                         }
                     }
                 </div>

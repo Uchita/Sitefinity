@@ -204,9 +204,6 @@
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
             prefixIdText = @Html.Raw(Json.Encode(ViewBag.PrefixIdsText));
 
-            console.log(filterData);
-            console.log(prefixIdText);
-
             $.each(filterData, function (index, item) {
                 if (item.Name == 'Salary') {
                     isSalaryExists = true;

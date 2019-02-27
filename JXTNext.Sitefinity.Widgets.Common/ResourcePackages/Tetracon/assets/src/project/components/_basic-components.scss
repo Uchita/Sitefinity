@@ -996,7 +996,7 @@ header {
                     left: 48%;
                     display: block;
                     border: 10px solid transparent;
-                    border-bottom-color: $global-text-color;
+                    border-bottom-color: $header-top-color;
                 }
 
                 & > .dropdown-menu-container,
@@ -1011,7 +1011,7 @@ header {
                     border: 0;
                     border-radius: 0;
                     padding: 20px 30px 20px 0;
-                    width: 25%;
+                    width: 50%;
                     min-height: 200px;
                     background: none;
 
@@ -1043,7 +1043,7 @@ header {
             padding: 30px 15px;
             width: 100%;
             min-height: 250px;
-            background: #ebebeb;
+            background: $header-top-color;
             z-index: 1000;
             -webkit-clip-path: polygon(100% 0, 100% 90%, 98% 100%, 0 100%, 0 0);
             clip-path: polygon(100% 0, 100% 90%, 98% 100%, 0 100%, 0 0);
@@ -1180,7 +1180,6 @@ header {
                     .decoration {
                         width: 100%;
                     }
-                  
                 }
             }
 
@@ -2597,11 +2596,50 @@ address.info-box{
         }
     }
 }
+.left-block-shade {
+    position: relative;
+    z-index: 1;
+   &.page-section {
+       padding:0;
+   }
+
+
+    &:after {
+        content: "";
+        background: $global-text;
+        position: absolute;
+        bottom: 0;
+        height: 100%;
+        display: block;
+        left: 0;
+        width: calc(100% - 75%);
+        z-index: -1;
+        top: 0;
+    }
+
+    .row {
+        display: flex;
+    }
+
+    .caption {
+        padding: 50px 0 50px 50px;
+    }
+
+    .bg-col {
+        padding: 50px 0;
+        background: $page-section-bg-dark;
+    }
+
+    .no-padding {
+        padding: 0;
+    }
+}
 footer {
     font-size: 16px;
     font-size: 1.6rem;
     line-height: 1.4;
-    .footer-bar{
+
+    .footer-bar {
         padding: 15px 0 !important;
     }
 }
@@ -2611,3 +2649,9 @@ footer {
 
 
 
+
+
+.test{
+    color:red;
+
+}

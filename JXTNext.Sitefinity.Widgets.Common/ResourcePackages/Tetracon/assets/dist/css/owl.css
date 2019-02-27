@@ -227,13 +227,14 @@
 /*was: #7cccbf*/
 .owl-theme .owl-dots .owl-dot span {
   margin: 5px 3px;
-  width: 8px;
-  height: 8px;
-  background: #d7d7d7; }
+  width: 10px;
+  height: 10px;
+  background: transparent;
+  border: 1px solid #7DC246; }
 
 .owl-theme .owl-dots .owl-dot.active span,
 .owl-theme .owl-dots .owl-dot:hover span {
-  background: #464646; }
+  background: #7DC246; }
 
 .owl-nav button {
   top: 20px !important; }

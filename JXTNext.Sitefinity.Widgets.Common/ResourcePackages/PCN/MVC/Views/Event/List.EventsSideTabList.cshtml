@@ -9,6 +9,7 @@
 
 @{
     var model = Model.Items;
+    model = model.Where(x => x.Fields.EventEnd > DateTime.Now);
     model = model = model.OrderByDescending(x => Convert.ToDateTime(x.Fields.EventStart));
 }
 <div class="post-list">

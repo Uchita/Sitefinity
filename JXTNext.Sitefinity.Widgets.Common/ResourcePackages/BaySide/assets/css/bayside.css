@@ -5104,9 +5104,9 @@ p .btn-link {
 }
 
     .filter_sidebar .keywordfilter label, .filter_sidebar .keywordfilter h3 {
-        font-size: 20px;
+        font-size: 19px;
         color: #000;
-        font-weight: 600;
+        font-weight: 500;
         margin: 0 0 10px 0;
     }
 
@@ -5130,15 +5130,16 @@ p .btn-link {
 }
 
     .filter_sidebar .sm-wrapper .dropdown-tree > .dropdown-toggle, .filter_sidebar .sm-wrapper .dropdown-tree h3 > .dropdown-toggle {
-        font-size: 20px;
+        font-size: 19px;
         color: #000;
         padding: 0 0 10px 0;
-        font-weight: 600;
+        font-weight: 500;
         border: none;
         display: block !important;
         text-align: left;
         border-radius: 0px;
         border-bottom: 1px solid #D8D8D8;
+        box-shadow: none !important;
     }
 
         .filter_sidebar .sm-wrapper .dropdown-tree > .dropdown-toggle .caret, .filter_sidebar .sm-wrapper .dropdown-tree h3 > .dropdown-toggle .caret {
@@ -6420,7 +6421,7 @@ select.hs-input {
         font-size: 17px;
         font-weight: 500;
         line-height: 1.5;
-        margin-bottom: 12px;
+        margin-bottom: 11px;
     }
 
     .app-footer ul {
@@ -6431,29 +6432,35 @@ select.hs-input {
         .app-footer ul li {
             list-style: none;
             /*line-height: 2;*/
-            padding: 6px 0 5px 0;
+            padding: 6px 0px 5px 0;
         }
 
-            .app-footer ul li a {
-                text-decoration: none;
-                transition: all 0.4s ease;
-                -webkit-transition: all 0.4s ease;
-                -ms-transition: all 0.4s ease;
-                -moz-transition: all 0.4s ease;
-                position: relative;
-                display: inline-block;
-                color: #7A8087;
-                font-size: 14px;
-                line-height: normal;
-                font-weight: 300;
-            }
+    .app-footer .footer_menu li {
+        list-style: none;
+        /*line-height: 2;*/
+        padding: 4px 0;
+    }
 
-                .app-footer ul li a:hover {
-                    color: #f1f1f1;
-                }
+    .app-footer ul li a {
+        text-decoration: none;
+        transition: all 0.4s ease;
+        -webkit-transition: all 0.4s ease;
+        -ms-transition: all 0.4s ease;
+        -moz-transition: all 0.4s ease;
+        position: relative;
+        display: inline-block;
+        color: #7A8087;
+        font-size: 14px;
+        line-height: normal;
+        font-weight: 300;
+    }
+
+        .app-footer ul li a:hover {
+            color: #f1f1f1;
+        }
 
     .app-footer .divider {
-        margin-top: 10px;
+        margin-top: 11px;
         margin-bottom: 19px;
     }
 
@@ -6556,7 +6563,7 @@ select.hs-input {
 
     .news-list .news-desc {
         text-transform: lowercase;
-        min-height: 48px;
+        min-height: 72px;
     }
 
         .news-list .news-desc:first-letter {
@@ -6899,7 +6906,7 @@ select.hs-input {
     }
 
     .sm-col-layout .row.multicol-row .col-12 {
-        margin-bottom: 30px;
+        margin-bottom: 27px;
     }
 
 @media (min-width: 992px) {
@@ -7288,6 +7295,7 @@ select.hs-input {
 
         .leader-list .leader-image img {
             width: 100%;
+            max-height: 50px;
         }
 
         .leader-list .leader-image .leader-thumb {
@@ -7941,7 +7949,6 @@ select.hs-input {
 }
 
 .blog-detail-col .blog-title {
-    font-size: 34px;
     color: #000;
     margin-top: 38px;
     margin-bottom: 10px;
@@ -8857,10 +8864,10 @@ select.hs-input {
 }
 
 .right-filter-sidebar .dropdown-toggle {
-    font-size: 20px;
+    font-size: 19px;
     color: #000;
     padding: 0 0 10px 0;
-    font-weight: 600;
+    font-weight: 500;
     border: none;
     display: block !important;
     text-align: left;
@@ -8888,9 +8895,9 @@ select.hs-input {
 }
 
     .right-filter-sidebar .keywordfilter label, .right-filter-sidebar .keywordfilter h3 {
-        font-size: 20px;
+        font-size: 19px;
         color: #000;
-        font-weight: 600;
+        font-weight: 500;
         margin: 0 0 10px 0;
     }
 
@@ -9243,10 +9250,10 @@ privacy-policy {
         display: flex !important;
     }
 
-.replace-h4 h4 {
+/*.replace-h4 h4 {
     font-weight: 700;
     font-size: 16px;
-}
+}*/
 
 .image-pos-left + .align-items-center .content-on-img {
     padding-right: 40px;
@@ -9262,7 +9269,7 @@ privacy-policy {
 }
 
 .address-panel p {
-    margin-bottom: 21px;
+    margin-bottom: 35px;
 }
 
     .address-panel p strong {

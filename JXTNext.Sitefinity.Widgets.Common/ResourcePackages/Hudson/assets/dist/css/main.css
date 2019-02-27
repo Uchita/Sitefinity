@@ -7763,8 +7763,10 @@ blockquote {
 
 img, iframe {
   max-width: 100%;
-  width: 100%;
   border: none; }
+
+iframe {
+  width: 100%; }
 
 .responsive-img {
   width: 100%; }
@@ -8593,6 +8595,8 @@ ul.vertical-ul {
       background-color: transparent; }
     ul.vertical-ul ul li:hover, ul.vertical-ul ul li a:hover {
       color: #01a3a4; }
+  ul.vertical-ul .dropdown-menu {
+    font-size: inherit; }
 
 /*#endregion Vertical navigation*/
 .dropdown > a:hover, .dropdown > a:focus {
@@ -8618,11 +8622,21 @@ ul.vertical-ul {
   margin-top: -15px;
   margin-bottom: 30px; }
 
+.slimtable-container-div {
+  overflow: hidden; }
+
+.slimtable-wrapper {
+  overflow: auto;
+  margin-bottom: 30px; }
+  .slimtable-wrapper .table {
+    margin-bottom: 0; }
+
 .slimtable-paging-div {
   overflow: hidden; }
 
 .slimtable-paging-btnsdiv {
-  float: left; }
+  float: left;
+  margin-bottom: 10px; }
 
 .slimtable-paging-seldiv {
   float: right; }
@@ -8929,7 +8943,7 @@ address.info-box {
     width: 100%; }
 
 .map-placeholder {
-  height: 425px;
+  height: 550px;
   width: unset !important; }
 
 .date-col {
@@ -12136,8 +12150,7 @@ select.articles-order {
     margin-bottom: 0;
     text-align: left; }
     .thumbnail.card-rollover .caption {
-      padding: 9px 0;
-      position: relative; }
+      padding: 9px 0; }
       .thumbnail.card-rollover .caption .h3, .thumbnail.card-rollover .caption h3 {
         font-size: 18px;
         font-size: 1.8rem;
@@ -12156,12 +12169,21 @@ select.articles-order {
       .thumbnail.card-rollover .card-description .card-description-content {
         padding: 0; }
   .thumbnail.card-rollover .card-rollover-more {
-    position: relative;
     padding-right: 35px; }
     .thumbnail.card-rollover .card-rollover-more .btn {
       position: absolute;
       bottom: -2px;
       right: 0; }
+      .thumbnail.card-rollover .card-rollover-more .btn.btn-more {
+        width: 100%;
+        left: 0;
+        bottom: auto;
+        top: 0;
+        height: 100%; }
+        .thumbnail.card-rollover .card-rollover-more .btn.btn-more:after {
+          position: absolute;
+          bottom: 0;
+          right: 0; }
   .thumbnail .display-table {
     display: table;
     width: 100%; }

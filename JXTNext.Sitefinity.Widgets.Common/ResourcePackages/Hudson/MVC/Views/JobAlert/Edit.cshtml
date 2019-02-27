@@ -94,18 +94,10 @@
                                 </div>
                                 @foreach (var salaryItem in item.Filters)
                                 {
-                                    var lower = 15000;
-                                    var upper = 300000;
-                                    if (salaryItem.Label == "Daily")
+                                    var lower = salaryItem.Filters[1].Value;
+                                    var upper = salaryItem.Filters[0].Value;
+                                    if (salaryItem.Label != "NA")
                                     {
-                                        lower = 200;
-                                        upper = 3000;
-                                    }
-                                    else if (salaryItem.Label == "Hourly Rate")
-                                    {
-                                        lower = 18;
-                                        upper = 200;
-                                    }
                                     <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
 
                                         <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
@@ -119,7 +111,7 @@
                                         <div class="rightLabel">$<span>@upper</span></div>
 
                                     </div>
-
+                                    }
                                 }
                             </div>
                         </div>
@@ -151,7 +143,7 @@
     }
 
 
-    <script type="text/javascript">
+    <script>
     var optionsArray = {};
     var isSalaryExists = false;
     var isSalaryChanged = false;

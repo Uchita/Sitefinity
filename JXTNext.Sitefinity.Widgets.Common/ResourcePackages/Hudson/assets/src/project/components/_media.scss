@@ -1571,6 +1571,9 @@
 }
 
 @media screen and (max-width: 767px) {
+    .owl-carousel-jumbotron{
+        height: 320px;
+    }
     .owl-carousel-jumbotron .owl-nav {
         display: none;
     }

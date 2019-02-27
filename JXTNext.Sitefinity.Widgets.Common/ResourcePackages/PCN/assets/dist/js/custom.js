@@ -1,4 +1,12 @@
 $(document).ready(function () {
+
+    $(".btn-style-dropdown a").click(function () {
+        $(this).closest(".dropdown").find(".selected-text").text($(this).text());
+        $(".btn-style-dropdown a").removeClass("active-sort");
+        $(this).addClass("active-sort");
+        $(this).closest(".dropdown").removeClass("open");
+        $(this).closest(".dropdown").find(".btn").attr("aria-expanded", false);
+    });
     $('.jobdetail-sidebar-inner').append($('.job-apply'));
     $('.job-apply').removeClass("hidden");
 

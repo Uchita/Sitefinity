@@ -7190,10 +7190,14 @@ ul.magazine-headlines {
     padding-top: 15px;
 }
 
-    .magazine-headlines li a,
-    .magazine-headlines li a:hover {
+    .magazine-headlines li a {
         color: #fff;
     }
+
+        .magazine-headlines li a:hover,
+        .magazine-headlines li a:focus {
+            color: #8edd2b;
+        }
 
     .magazine-headlines li:first-child {
         padding-top: 0;
@@ -7902,4 +7906,56 @@ table td .btn-style-corner {
     .btn {
         display: none;
     }
+}
+
+.alert-danger {
+    display: inline-block;
+}
+
+.btn-style-dropdown .btn.btn-primary {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px 15px;
+    color: #555;
+    font-weight: 500;
+    background-color: transparent;
+    outline: none;
+}
+
+    .btn-style-dropdown .btn.btn-primary:hover,
+    .btn-style-dropdown .btn.btn-primary:focus {
+        background-color: transparent;
+        color: #555;
+    }
+
+    .btn-style-dropdown .btn.btn-primary .caret {
+        margin-left: 5px;
+    }
+
+.btn-style-dropdown ul.dropdown-menu {
+    padding: 0;
+}
+
+    .btn-style-dropdown ul.dropdown-menu a {
+        display: block;
+        width: 100%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+        .btn-style-dropdown ul.dropdown-menu a:hover,
+        .btn-style-dropdown ul.dropdown-menu a:focus {
+            background-color: transparent;
+        }
+
+        .btn-style-dropdown ul.dropdown-menu a.active-sort {
+            background-color: #f5f5f5;
+        }
+
+.sf-Comments-header h3 {
+    margin-top: 0;
+}
+
+.sf-Comments-header .btn-style-dropdown {
+    margin-top: 4px;
 }

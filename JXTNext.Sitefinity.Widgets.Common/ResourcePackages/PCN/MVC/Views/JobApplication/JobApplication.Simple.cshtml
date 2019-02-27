@@ -100,7 +100,7 @@
                                     <em>@Html.Resource("passwordRequirementMsg", "Labels")</em>
                                 </span>
                                 <div id="forgot-password" class="form-group forgot-password hidden">
-                                    <br /><a href="/sign-in/ForgotPassword/">@Html.Resource("ForgottenPasword", "LoginFormResources")</a>
+                                    <br /><a href="/login/ForgotPassword/">@Html.Resource("ForgottenPasword", "LoginFormResources")</a>
                                 </div>
 
                                 <div class="form-group" id="rememberme-block">
@@ -111,7 +111,9 @@
                                     </div>
                                 </div>
 
-                                <input type="button" id="sign-in-btn" class="form-group hidden btn btn-primary btn-block" data-jobid="@Model.JobId" value="@Html.Resource("JobApplicationSignIn", "JobApplicationResources" )" />
+                                <div class="btn-style-corner form-group">
+                                    <button type="button" id="sign-in-btn" class="hidden btn btn-primary btn-block" data-jobid="@Model.JobId"><span>@Html.Resource("JobApplicationSignIn", "JobApplicationResources")</span></button>
+                                </div>
                             </div>
                         </div>
 

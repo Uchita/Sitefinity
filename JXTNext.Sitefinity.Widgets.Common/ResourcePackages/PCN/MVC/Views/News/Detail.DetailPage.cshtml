@@ -63,6 +63,10 @@
                 </li>
             }
         </ul>
+        @if (Model.Item.Fields.RelatedNews.Length == 0)
+        {
+            <div class="alert alert-warning"><strong>No results found.</strong></div>
+        }
     </div>
 
     <hr class="space" />

@@ -80,13 +80,13 @@
 
 
                             <div class="magazine-cover-img">
-                                <img src="@imageurl" alt="@item.Fields.Title" />
+                                <a title="@item.Fields.Title" href="@navigateUrl"><img src="@imageurl" alt="@item.Fields.Title" /></a>
                             </div>
                             @:<div class="magazine-cover-content">
                                 <div class="magazine-vol-name">@volumetext - @issuetext</div>
                                 <div class="magazine-vol-date">@item.GetDateTime("PublicationDate", "MMM, yyyy")</div>
                                 @:<ul class="magazine-headlines">
-                                    <li class="magazine-headline"><a class="magazine-headline" href="@navigateUrl">@item.Fields.Title</a></li>
+                                    <li class="magazine-headline"><a title="@item.Fields.Title" class="magazine-headline" href="@navigateUrl">@item.Fields.Title</a></li>
                                 }
                                 else if (@counter < 5)
                                 {

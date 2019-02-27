@@ -74,7 +74,7 @@
                             {
 
                                 <div class="magazine-cover-img">
-                                    <img src="@coverimageurl" alt="@item.Fields.Title" />
+                                    <a title="@item.Fields.Title" href="@navigateUrl"><img src="@coverimageurl" alt="@item.Fields.Title" /></a>
                                 </div>
                                 @:<div class="magazine-cover-content">
                                     <div class="magazine-vol-name">@volumetext - @issuetext</div>
@@ -87,11 +87,11 @@
                                         <li class="magazine-sub-headline"><a class="magazine-sub-headline" href="@navigateUrl">@item.Fields.Title</a></li>
                                     }
 
-                                    }
-                                    counter++;
-                                    }
-                                    }
-                                    }
+                                }
+                                counter++;
+                            }
+                        }
+                    }
 
         </ul>
     </div>

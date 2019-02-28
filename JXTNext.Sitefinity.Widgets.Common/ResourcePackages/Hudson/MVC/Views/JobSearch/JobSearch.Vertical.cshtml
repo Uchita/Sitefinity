@@ -102,17 +102,27 @@
                                     </div>
                                     @foreach (var salaryItem in item.Filters)
                                     {
-                                        var lower = 15000;
-                                        var upper = 300000;
+                                        var lower = 0;
+                                        var upper = 250000;
                                         if (salaryItem.Label == "Daily")
                                         {
-                                            lower = 200;
-                                            upper = 3000;
+                                            lower = 0;
+                                            upper = 1265;
                                         }
                                         else if (salaryItem.Label == "Hourly Rate")
                                         {
-                                            lower = 18;
+                                            lower = 0;
                                             upper = 200;
+                                        }
+                                        else if (salaryItem.Label == "Weekly")
+                                        {
+                                            lower = 0;
+                                            upper = 8000;
+                                        }
+                                        else if (salaryItem.Label == "Monthly")
+                                        {
+                                            lower = 0;
+                                            upper = 20000;
                                         }
                                         <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
 

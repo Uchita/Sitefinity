@@ -8623,7 +8623,8 @@ ul.vertical-ul {
   margin-bottom: 30px; }
 
 .slimtable-container-div {
-  overflow: hidden; }
+  overflow: hidden;
+  max-width: 100%; }
 
 .slimtable-wrapper {
   overflow: auto;
@@ -8763,7 +8764,7 @@ select.slimtable-paging-select {
   top: 200px;
   font-family: AkzidGroProReg, sans-serif;
   color: #fff;
-  z-index: 999; }
+  z-index: 1055; }
   .page-wrapper .quick-links a {
     color: #fff; }
     .page-wrapper .quick-links a:hover, .page-wrapper .quick-links a:focus {
@@ -8954,6 +8955,43 @@ address.info-box {
 
 .col-3btn-width {
   width: 35%; }
+
+#videoModal {
+  padding-right: 0; }
+  #videoModal .modal-dialog {
+    display: table;
+    max-width: 940px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto; }
+  #videoModal .modal-content {
+    display: table-cell;
+    vertical-align: middle;
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-box-shadow: none; }
+  #videoModal .modal-body {
+    position: relative;
+    padding: 0;
+    padding-top: 56.25%;
+    height: 0;
+    background-color: #000; }
+    #videoModal .modal-body iframe {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      left: 0; }
+    #videoModal .modal-body button.close {
+      position: absolute;
+      top: -4rem;
+      right: -6px;
+      color: #fff;
+      font-size: 4rem;
+      font-weight: normal;
+      opacity: 1; }
 
 @-webkit-keyframes spin {
   0% {
@@ -12215,6 +12253,8 @@ select.articles-order {
     height: auto; }
   .xs-no-bdr-right {
     border-right: none; }
+  .bdr-right, .pad-right-30 {
+    padding-right: 15px; }
   .xs-pad-right-15 {
     padding-right: 15px; }
   .xs-marg-btm {
@@ -12352,7 +12392,18 @@ select.articles-order {
   .reg-form .basic-form {
     margin-top: 0; }
   .home-padding.owl-carousel {
-    z-index: 1050; } }
+    z-index: 1050; }
+  .slimtable-wrapper {
+    overflow-x: scroll; }
+  .slimtable-wrapper::-webkit-scrollbar {
+    width: 10px;
+    height: 10px; }
+  .slimtable-wrapper::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #C3C3C3;
+    border: 0px solid #eee; }
+  #videoModal .modal-dialog {
+    background: rgba(0, 0, 0, 0.5); } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron {

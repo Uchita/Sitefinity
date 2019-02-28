@@ -8320,6 +8320,9 @@ main {
     .page-section.section-dark .h4, .page-section.section-dark h4,
     .page-section.section-dark a, .page-section.section-dark p {
       color: inherit; }
+  .page-section.section-black {
+    color: #666666;
+    background: #000000; }
   .page-section .heading-margin {
     margin-top: 50px; }
   .page-section.section-highlight {
@@ -8715,15 +8718,19 @@ select.slimtable-paging-select {
       background: #E0E0E0; }
   .page-wrapper footer a {
     /*font-family: $font-family-medium;*/
-    color: #2e2e2e; }
+    color: #666666; }
     .page-wrapper footer a:hover, .page-wrapper footer a:focus {
       text-decoration: none;
       color: #7DC246; }
   .page-wrapper footer h3 {
     margin-top: 30px;
-    margin-bottom: 15px; }
+    margin-bottom: 15px;
+    color: #666666; }
   .page-wrapper footer p {
-    margin: 0; }
+    margin: 0;
+    font-size: 14px;
+    font-size: 1.4rem;
+    line-height: 24px; }
   .page-wrapper footer .footer-social {
     display: block;
     margin-top: 42px; }
@@ -8743,7 +8750,8 @@ select.slimtable-paging-select {
     border-radius: 0;
     padding: 0;
     background: none;
-    color: #2e2e2e; }
+    color: #666666;
+    line-height: 24px; }
   .page-wrapper footer .nav-pills > li > a:hover,
   .page-wrapper footer .nav-pills > li.active > a:hover,
   .page-wrapper footer .nav-pills > li > a:focus,
@@ -8986,16 +8994,6 @@ address.info-box {
     -moz-transform: rotate(0deg); }
   100% {
     -moz-transform: rotate(360deg); } }
-
-.prefooter-content .section-dark {
-  color: #666666 !important;
-  padding: 50px 0;
-  background: #000000; }
-
-.prefooter-content ul {
-  padding-left: 0; }
-  .prefooter-content ul li {
-    list-style-type: none; }
 
 .half-block-shade {
   position: relative;
@@ -9339,9 +9337,6 @@ footer {
     background: #585958; }
   .chevron-list.green-1-bg li::before, .chevron-list.green-1-bg li::after {
     background: #007077; }
-
-.test {
-  color: red; }
 
 /*#endregion Basic components */
 /*#region Breadcrumbs */
@@ -12119,11 +12114,11 @@ select.articles-order {
     height: 100%;
     background: #007077; }
   header .brand-logo {
-    height: 23px;
+    height: 50px;
     width: 150px;
     display: block;
     margin: 10px auto;
-    background-image: url("../images/logo-sm.png");
+    background-image: url("../images/TetraconLogo-outlines.svg");
     background-size: auto 100%;
     background-position: center; }
   header .navbar-fixed-top .brand-logo {
@@ -12166,7 +12161,7 @@ select.articles-order {
         header .main-nav .navbar-default .navbar-toggle:hover.collapsed .icon-bar, header .main-nav .navbar-default .navbar-toggle:active.collapsed .icon-bar, header .main-nav .navbar-default .navbar-toggle:focus.collapsed .icon-bar {
           background-color: #fff; }
   .main-content {
-    padding-top: 44px; }
+    padding-top: 70px; }
   .mobile-owl-carousel .thumbnail {
     max-width: 400px;
     margin-left: auto;

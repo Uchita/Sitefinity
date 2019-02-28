@@ -1541,6 +1541,11 @@ main {
         }
     }
 
+    &.section-black {
+        color: $global-text;
+        background: $darkColor;
+    }
+
     .heading-margin {
         margin-top: $gap;
     }
@@ -2123,6 +2128,7 @@ select.slimtable-paging-select {
 /*#region Footer*/
 .page-wrapper {
     font-family: $global-font-family;
+
     footer {
         .brand-logo {
             max-width: 165px;
@@ -2152,10 +2158,14 @@ select.slimtable-paging-select {
         h3 {
             margin-top: 30px;
             margin-bottom: 15px;
+            color: $global-text;
         }
 
         p {
             margin: 0;
+            font-size: 14px;
+            font-size: 1.4rem;
+            line-height: 24px;
         }
 
         .footer-social {
@@ -2188,6 +2198,7 @@ select.slimtable-paging-select {
                 padding: 0;
                 background: none;
                 color: $footer-nav-links;
+                line-height: 24px;
             }
 
             & > a:hover,
@@ -2526,24 +2537,6 @@ address.info-box{
         -moz-transform: rotate(360deg);
     }
 }
-.prefooter-content {
-    .section-dark {
-        color: $global-text !important;
-        padding: 50px 0;
-        background: $darkColor;
-    }
-
-   
-        ul {
-            padding-left: 0;
-
-            li {
-                list-style-type: none;
-            }
-        }
-    
-}
-
 .half-block-shade {
     position: relative;
     z-index: 1;
@@ -2646,12 +2639,3 @@ footer {
 
 @import 'hexagon-item';
 @import 'chevronShape';
-
-
-
-
-
-.test{
-    color:red;
-
-}

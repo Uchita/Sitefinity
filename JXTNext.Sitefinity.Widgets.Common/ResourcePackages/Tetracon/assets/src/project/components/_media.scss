@@ -837,11 +837,12 @@
     .page-wrapper main{
         padding-top: 0!important;
     }
-    
+
     header {
-        .navbar{
+        .navbar {
             min-height: 10px;
         }
+
         .navbar-fixed-top:before {
             content: '';
             position: absolute;
@@ -852,21 +853,24 @@
             height: 100%;
             background: #007077;
         }
+
         .brand-logo {
-            height: 23px;
+            height: 50px;
             width: 150px;
             display: block;
             margin: 10px auto;
-            background-image: url('../images/logo-sm.png');
+            background-image: url('../images/TetraconLogo-outlines.svg');
             background-size: auto 100%;
             background-position: center;
         }
-        .navbar-fixed-top{
+
+        .navbar-fixed-top {
             .brand-logo {
                 height: 23px;
                 text-align: center;
             }
-            .main-nav{
+
+            .main-nav {
                 top: 8px;
             }
         }
@@ -888,7 +892,8 @@
 
                 .icon-bar {
                     background: none;
-                    &::before{
+
+                    &::before {
                         font: 900 2rem 'Font Awesome 5 Free';
                         content: '\f00d';
                         color: $brightColor;
@@ -896,18 +901,21 @@
                         left: 2px;
                         top: -2px;
                     }
-                    & + .icon-bar{
+
+                    & + .icon-bar {
                         display: none;
                     }
                 }
 
-                &.collapsed{
-                    .icon-bar{
+                &.collapsed {
+                    .icon-bar {
                         background-color: $btn-primary-color;
-                        &::before{
+
+                        &::before {
                             display: none;
                         }
-                        & + .icon-bar{
+
+                        & + .icon-bar {
                             display: block;
                         }
                     }
@@ -915,7 +923,8 @@
 
                 &:hover, &:active, &:focus {
                     background: none;
-                    &.collapsed{
+
+                    &.collapsed {
                         .icon-bar {
                             background-color: $btn-primary-color;
                         }
@@ -923,10 +932,9 @@
                 }
             }
         }
-        
     }
     .main-content{
-        padding-top: 44px;
+        padding-top: 70px;
     }
     .mobile-owl-carousel {
         .thumbnail{

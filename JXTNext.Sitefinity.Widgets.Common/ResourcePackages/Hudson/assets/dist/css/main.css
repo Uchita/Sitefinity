@@ -8205,6 +8205,8 @@ header {
         header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu.header-top-links span {
           position: static;
           line-height: 1; }
+        header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu li a {
+          background: none; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .timesheet-mnu a {
         padding-bottom: 15px; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .combine-mnu {

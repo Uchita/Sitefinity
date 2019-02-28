@@ -7,7 +7,7 @@
         <div class="@Model.CssClass jumbotron-container">
             <div class="jumbotron" style="background-image: url('@card.SelectedSizeUrl');">
                 <div class="jumbotron-content">
-                    <h3 class="h1">@Html.HtmlSanitize(card.Heading)</h3>
+                    <div class="h1">@Html.HtmlSanitize(card.Heading)</div>
                     <p>@Html.HtmlSanitize(card.Description)</p>
                     @if (!string.IsNullOrEmpty(card.ActionName))
                     {

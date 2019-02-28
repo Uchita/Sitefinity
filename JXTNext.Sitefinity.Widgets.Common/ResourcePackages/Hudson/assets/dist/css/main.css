@@ -7291,6 +7291,9 @@ blockquote {
   clear: both;
   height: 3rem; }
 
+.float-right {
+  float: right; }
+
 .page-wrapper {
   font-size: 18px;
   font-size: 1.8rem;
@@ -7891,19 +7894,25 @@ pre {
   .header-top-links.form-negative {
     display: inline-block;
     border-left: 1px solid #fff;
-    margin-left: 5px;
+    margin-left: 8px;
     line-height: 1.4; }
     .header-top-links.form-negative select {
       border: 0;
-      padding: 0 25px 0 5px;
+      padding: 0 22px 0 7px;
       font-size: 12px;
       font-size: 1.2rem;
       line-height: 1.4;
       font-family: AkzidGroProMed, sans-serif;
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      height: auto; }
       .header-top-links.form-negative select:hover, .header-top-links.form-negative select:focus {
         outline: none;
         border: 0; }
+      .header-top-links.form-negative select::before {
+        margin-right: 0; }
+      .header-top-links.form-negative select option {
+        background: #000;
+        color: #fff; }
 
 header {
   position: absolute;
@@ -8196,6 +8205,8 @@ header {
         header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu.header-top-links span {
           position: static;
           line-height: 1; }
+        header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu li a {
+          background: none; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .timesheet-mnu a {
         padding-bottom: 15px; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .combine-mnu {
@@ -8623,7 +8634,8 @@ ul.vertical-ul {
   margin-bottom: 30px; }
 
 .slimtable-container-div {
-  overflow: hidden; }
+  overflow: hidden;
+  max-width: 100%; }
 
 .slimtable-wrapper {
   overflow: auto;
@@ -8763,7 +8775,7 @@ select.slimtable-paging-select {
   top: 200px;
   font-family: AkzidGroProReg, sans-serif;
   color: #fff;
-  z-index: 999; }
+  z-index: 1055; }
   .page-wrapper .quick-links a {
     color: #fff; }
     .page-wrapper .quick-links a:hover, .page-wrapper .quick-links a:focus {
@@ -8954,6 +8966,43 @@ address.info-box {
 
 .col-3btn-width {
   width: 35%; }
+
+#videoModal {
+  padding-right: 0; }
+  #videoModal .modal-dialog {
+    display: table;
+    max-width: 940px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto; }
+  #videoModal .modal-content {
+    display: table-cell;
+    vertical-align: middle;
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-box-shadow: none; }
+  #videoModal .modal-body {
+    position: relative;
+    padding: 0;
+    padding-top: 56.25%;
+    height: 0;
+    background-color: #000; }
+    #videoModal .modal-body iframe {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      left: 0; }
+    #videoModal .modal-body button.close {
+      position: absolute;
+      top: -4rem;
+      right: -6px;
+      color: #fff;
+      font-size: 4rem;
+      font-weight: normal;
+      opacity: 1; }
 
 @-webkit-keyframes spin {
   0% {
@@ -9628,39 +9677,43 @@ ul.breadcrumb {
     .banner-with-basic .thumbnail .caption {
       padding-bottom: 3.5rem; }
 
-.owl-carousel-jumbotron .owl-nav {
-  width: 100%;
-  height: 100%;
-  left: 0;
-  right: 0; }
-  .owl-carousel-jumbotron .owl-nav, .owl-carousel-jumbotron .owl-nav button {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto; }
-  .owl-carousel-jumbotron .owl-nav button {
-    width: 20px;
-    height: 20px;
-    outline: none !important; }
-    .owl-carousel-jumbotron .owl-nav button span {
-      font-size: 0;
-      color: transparent;
+.owl-carousel-jumbotron {
+  height: 550px;
+  display: block !important;
+  overflow: hidden; }
+  .owl-carousel-jumbotron .owl-nav {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0; }
+    .owl-carousel-jumbotron .owl-nav, .owl-carousel-jumbotron .owl-nav button {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto; }
+    .owl-carousel-jumbotron .owl-nav button {
       width: 20px;
       height: 20px;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      display: inline-block;
-      position: relative;
-      top: -5px; }
-  .owl-carousel-jumbotron .owl-nav .owl-prev {
-    left: 18%; }
-    .owl-carousel-jumbotron .owl-nav .owl-prev span {
-      background-image: url("../images/owl/owl-arrow-left.png"); }
-  .owl-carousel-jumbotron .owl-nav .owl-next {
-    right: 18%; }
-    .owl-carousel-jumbotron .owl-nav .owl-next span {
-      background-image: url("../images/owl/owl-arrow-right.png"); }
+      outline: none !important; }
+      .owl-carousel-jumbotron .owl-nav button span {
+        font-size: 0;
+        color: transparent;
+        width: 20px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        display: inline-block;
+        position: relative;
+        top: -5px; }
+    .owl-carousel-jumbotron .owl-nav .owl-prev {
+      left: 18%; }
+      .owl-carousel-jumbotron .owl-nav .owl-prev span {
+        background-image: url("../images/owl/owl-arrow-left.png"); }
+    .owl-carousel-jumbotron .owl-nav .owl-next {
+      right: 18%; }
+      .owl-carousel-jumbotron .owl-nav .owl-next span {
+        background-image: url("../images/owl/owl-arrow-right.png"); }
 
 .jumbotron-container .jumbotron, .owl-carousel-jumbotron .jumbotron {
   background: top center no-repeat;
@@ -12211,6 +12264,8 @@ select.articles-order {
     height: auto; }
   .xs-no-bdr-right {
     border-right: none; }
+  .bdr-right, .pad-right-30 {
+    padding-right: 15px; }
   .xs-pad-right-15 {
     padding-right: 15px; }
   .xs-marg-btm {
@@ -12348,9 +12403,22 @@ select.articles-order {
   .reg-form .basic-form {
     margin-top: 0; }
   .home-padding.owl-carousel {
-    z-index: 1050; } }
+    z-index: 1050; }
+  .slimtable-wrapper {
+    overflow-x: scroll; }
+  .slimtable-wrapper::-webkit-scrollbar {
+    width: 10px;
+    height: 10px; }
+  .slimtable-wrapper::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #C3C3C3;
+    border: 0px solid #eee; }
+  #videoModal .modal-dialog {
+    background: rgba(0, 0, 0, 0.5); } }
 
 @media screen and (max-width: 767px) {
+  .owl-carousel-jumbotron {
+    height: 320px; }
   .owl-carousel-jumbotron .owl-nav {
     display: none; } }
 

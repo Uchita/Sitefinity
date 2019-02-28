@@ -201,6 +201,15 @@ $(document).ready(function () {
             $(this).addClass("active");
         }
     });
+
+    // Blog sidebar redirect to blog page if filter checked
+    $(".blog_sidebar .category a").click(function (e) {
+        if ($(this).hasClass("active-link")) {
+            e.preventDefault();
+            window.location.href = "/news/blog/";
+        }
+    });
+
 });
 
 

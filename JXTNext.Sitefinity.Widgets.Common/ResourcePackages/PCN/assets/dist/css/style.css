@@ -849,6 +849,20 @@ hr {
     z-index: 1;
 }
 
+button.read_btn {
+    background: #004F6E;
+    border: none;
+}
+
+.form-group-Friends .read_btn {
+    margin-left: 8px;
+    margin-top: 5px;
+}
+
+button.read_btn:hover {
+    background-color: #8EDD2B;
+}
+
 .btn-style-corner {
     padding-left: 8px;
 }
@@ -2230,6 +2244,11 @@ hr {
         color: #2e2e2e;
     }
 
+        .job-holder a:hover,
+        .job-holder a:focus {
+            color: #8EDD2B;
+            text-decoration: underline;
+        }
 /* Left */
 .horizontal-menu {
     width: 100%;
@@ -2705,6 +2724,11 @@ ul.team-section {
     display: flex;
     flex-wrap: wrap;
 }
+
+    .consultants.row:after,
+    .consultants.row:before {
+        display: none;
+    }
 
     .consultants .thumb {
         margin-bottom: 20px;
@@ -4823,7 +4847,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 }
 
 .checkbox {
-    padding-left: 20px;
+    padding-left: 25px;
 }
 
     .checkbox .checkbox-icon {
@@ -5006,7 +5030,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 }
 
 .search-top .srch-email {
-    padding: 0 18px 0 9px;
+    padding: 0 18px 0 0;
 }
 
     .search-top .srch-email .jobalert-field {
@@ -5033,6 +5057,8 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     .search-top .srch-email .corner {
         float: left;
         position: relative;
+        overflow: hidden;
+        padding-left: 9px;
     }
 
         .search-top .srch-email .corner:before,
@@ -5064,6 +5090,14 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
             border-left: 1px solid #004F6E;
             border-bottom: 1px solid #004F6E;
             z-index: -1;
+        }
+
+        .search-top .srch-email .corner:after {
+            left: 0;
+        }
+
+        .search-top .srch-email .corner:before {
+            left: 2px;
         }
 
 .search-top .rss-feed {
@@ -5694,6 +5728,10 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         min-width: 150px
     }
 
+    .basic-form .form-group .btn-style-corner .btn {
+        min-width: 30px;
+    }
+
 .basic-form .upload-section {
     margin: 10px 0 20px
 }
@@ -6166,7 +6204,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
 
     .archive-postlist .entry-excerpt {
         margin-bottom: 20px;
-        min-height: 40px;
+        min-height: 57px;
     }
 
     .archive-postlist .entry-footer {
@@ -6978,6 +7016,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
             margin: 0px;
             float: left;
             width: calc(100% - 50px);
+            word-break: break-all;
         }
 
         .jobdetail-sidebar .card-item .text .socail {
@@ -7865,49 +7904,6 @@ table td .btn-style-corner {
     width: 96%;
 }
 
-@media print {
-    a [href]:after {
-        content: "";
-        display: none;
-    }
-
-    abbr[title]:after {
-        content: "";
-        display: none;
-    }
-
-    a[href^="#"]:after,
-    a[href^="javascript:"]:after {
-        content: "";
-        display: none;
-    }
-
-    .jobdetail-sidebar {
-        float: left;
-    }
-
-    .jobdetail-sidebar-inner {
-        position: static !important;
-    }
-
-    header.header,
-    header.header.stickyheader {
-        display: none;
-    }
-
-    a {
-        color: #000000 !important;
-    }
-
-    .prefix_left-navigation,
-    .search_job,
-    .read_btn,
-    .btn-style-corner,
-    .btn {
-        display: none;
-    }
-}
-
 .alert-danger {
     display: inline-block;
 }
@@ -7958,4 +7954,75 @@ table td .btn-style-corner {
 
 .sf-Comments-header .btn-style-dropdown {
     margin-top: 4px;
+}
+
+.friends-list .btn-danger {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.advancedsearch .col-md-8.btn-style-corner button.btn.btn-primary {
+    margin-left: 15px;
+}
+
+.login-form.sign-in-with .error-message {
+    margin-top: 5px;
+}
+
+.checkbox input[type=checkbox],
+.checkbox-inline input[type=checkbox],
+.radio input[type=radio],
+.radio-inline input[type=radio] {
+    margin-left: 0;
+    left: 0;
+    top: -3px;
+    width: 16px;
+    height: 16px;
+}
+
+hr.space.mt-10 {
+    margin-top: 10px;
+}
+
+@media print {
+    a [href]:after {
+        content: "" !important;
+        display: none !important;
+    }
+
+    body abbr[title]:after {
+        content: "" !important;
+        display: none !important;
+    }
+
+    body a[href^="#"]:after,
+    body a[href^="javascript:"]:after {
+        content: "" !important;
+        display: none !important;
+    }
+
+    body .jobdetail-sidebar {
+        float: left;
+    }
+
+    body .jobdetail-sidebar-inner {
+        position: static !important;
+    }
+
+    body header.header,
+    body header.header.stickyheader {
+        display: none;
+    }
+
+    body a {
+        color: #000000 !important;
+    }
+
+    .prefix_left-navigation,
+    .search_job,
+    .read_btn,
+    .btn-style-corner,
+    .btn {
+        display: none;
+    }
 }

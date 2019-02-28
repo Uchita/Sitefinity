@@ -19,7 +19,7 @@
     <form method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();" class="jn_search">
         @{
             int counter = 0;
-            var privacyErrMsg = "Please agree to Payment and Card\'s privacy policy";
+            var privacyErrMsg = "Please agree to PCN\'s privacy policy";
         }
         <div class="field-wrapper basic-form no-marg-top">
             <div class="alert alert-warning filter-madatory-message hidden">@Html.Resource("nofilterselectedmessage", "Labels")</div>
@@ -122,7 +122,7 @@
                     <div class="checkbox clearfix">
                         <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid='this.setCustomValidity("@privacyErrMsg")'>
                         <span class="checkbox-icon fas fa-check"></span>
-                        I agree to Payment and Card's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                        I agree to PCN's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
                     </div>
                 </div>
             </div>

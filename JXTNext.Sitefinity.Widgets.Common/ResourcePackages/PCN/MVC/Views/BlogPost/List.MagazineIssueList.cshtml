@@ -56,7 +56,8 @@
                         var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
                         if (@volval == @volume && @issueval == @issue)
                         {
-                            if (@counter > 4)
+                            //if (@counter > 4) // chnage for client request on TD
+                            if (@counter < 5)
                             {
                                 <div class="col-md-6">
                                     <div class="magazine-issue magazine-issue-list">
@@ -69,7 +70,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="magazine-cover-content">
-                                                    <a href="@navigateUrl" class="magazine-vol-name">@volumetext - @issuetext</a>
+                                                    <a href="@navigateUrl" class="magazine-vol-name">@item.Fields.Title</a>
                                                     <div class="magazine-vol-date">@item.GetDateTime("PublicationDate", "MMM, yyyy")</div>
                                                     <div class="issue-desc">@Html.HtmlSanitize((string)item.Fields.Summary)</div>
                                                     <div class="action-links">

@@ -486,7 +486,7 @@ $(document).ready(function () {
   
 //temporary site selection for manual links added    
     $('select.header-top-links').change( function(){
-        window.location = $(this).val();
+        window.open( $(this).val() );
     });
 
 });

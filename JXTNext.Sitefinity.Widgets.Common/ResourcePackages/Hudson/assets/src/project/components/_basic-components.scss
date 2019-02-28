@@ -34,7 +34,9 @@ blockquote{
     clear: both;
     height: 3rem;
 }
-
+.float-right{
+    float: right;
+}
 .page-wrapper {
     //page wrapper class will prevent general styles leaking into page designer styles when not needed
     font-size: $global-font-size-px;
@@ -870,22 +872,29 @@ pre{
         &.form-negative {
             display: inline-block;
             border-left: 1px solid $header-top-color;
-            margin-left: 5px;
+            margin-left: 8px;
             line-height: 1.4;
 
             select {
                 border: 0;
-                padding: 0 25px 0 5px;
+                padding: 0 22px 0 7px;
                 font-size: 12px;
                 font-size: 1.2rem;
                 line-height: 1.4;
                 font-family: $font-family-medium;
                 text-transform: uppercase;
-
+                height: auto;
                 &:hover,
                 &:focus {
                     outline: none;
                     border: 0;
+                }
+                &::before{
+                    margin-right: 0;
+                }
+                option{
+                    background: $global-text-color;
+                    color: $brightColor;
                 }
             }
         }

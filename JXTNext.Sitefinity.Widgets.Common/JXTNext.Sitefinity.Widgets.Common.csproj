@@ -331,6 +331,9 @@
     <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-bg-image.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-black.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\page-section-half-shade.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -3362,6 +3365,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Tetracon\MVC\Views\Card\Card.Team-List.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\Navigation\NavigationView.Vertical.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

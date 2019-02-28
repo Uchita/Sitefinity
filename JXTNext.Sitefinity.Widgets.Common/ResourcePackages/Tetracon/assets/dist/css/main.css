@@ -7873,7 +7873,7 @@ pre {
     font-size: 1.6rem; }
   .header-top-social {
     display: inline-block;
-    padding: 40px 0;
+    padding: 50px 0;
     padding-right: 5px; }
     .header-top-social ul {
       margin: 0;
@@ -7956,7 +7956,7 @@ header {
   header .main-nav {
     position: relative;
     display: block;
-    padding: 40px 0;
+    padding: 50px 0;
     width: 100%;
     z-index: 9; }
     header .main-nav ul {
@@ -8102,7 +8102,7 @@ header {
       header .navbar.navbar-default .navbar-nav > li {
         padding-bottom: 15px;
         padding-left: 15px;
-        padding-top: 2px;
+        padding-top: 5px;
         padding-right: 15px;
         margin-bottom: 0; }
         header .navbar.navbar-default .navbar-nav > li a {
@@ -9057,6 +9057,7 @@ footer {
   footer .footer-bar {
     padding: 15px 0 !important; }
 
+/*Grid Changes*/
 .blue-1-bg {
   background: #14b3f2; }
 
@@ -11680,7 +11681,7 @@ select.articles-order {
 
 @media (min-width: 768px) and (max-width: 1199px) {
   header .navbar.navbar-default .navbar-nav > li > a {
-    padding: 0 5px; }
+    padding: 0 4px; }
   header .navbar.navbar-default .navbar-nav > li > a,
   header .navbar.navbar-default .navbar-nav > .active > a,
   header .navbar.navbar-default .navbar-nav > .active > a:focus,
@@ -11895,7 +11896,7 @@ select.articles-order {
     .page-wrapper .display-table {
       width: auto; }
   header .navbar.navbar-default .navbar-nav {
-    width: 77%; }
+    /*width: 77%;*/ }
     header .navbar.navbar-default .navbar-nav > li {
       padding-left: 3px;
       padding-right: 3px; }

@@ -7291,6 +7291,9 @@ blockquote {
   clear: both;
   height: 3rem; }
 
+.float-right {
+  float: right; }
+
 .page-wrapper {
   font-size: 18px;
   font-size: 1.8rem;
@@ -7891,19 +7894,25 @@ pre {
   .header-top-links.form-negative {
     display: inline-block;
     border-left: 1px solid #fff;
-    margin-left: 5px;
+    margin-left: 8px;
     line-height: 1.4; }
     .header-top-links.form-negative select {
       border: 0;
-      padding: 0 25px 0 5px;
+      padding: 0 22px 0 7px;
       font-size: 12px;
       font-size: 1.2rem;
       line-height: 1.4;
       font-family: AkzidGroProMed, sans-serif;
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      height: auto; }
       .header-top-links.form-negative select:hover, .header-top-links.form-negative select:focus {
         outline: none;
         border: 0; }
+      .header-top-links.form-negative select::before {
+        margin-right: 0; }
+      .header-top-links.form-negative select option {
+        background: #000;
+        color: #fff; }
 
 header {
   position: absolute;

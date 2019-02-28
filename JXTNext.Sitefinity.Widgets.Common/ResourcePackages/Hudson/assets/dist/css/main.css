@@ -8623,7 +8623,8 @@ ul.vertical-ul {
   margin-bottom: 30px; }
 
 .slimtable-container-div {
-  overflow: hidden; }
+  overflow: hidden;
+  max-width: 100%; }
 
 .slimtable-wrapper {
   overflow: auto;
@@ -12215,6 +12216,8 @@ select.articles-order {
     height: auto; }
   .xs-no-bdr-right {
     border-right: none; }
+  .bdr-right, .pad-right-30 {
+    padding-right: 15px; }
   .xs-pad-right-15 {
     padding-right: 15px; }
   .xs-marg-btm {
@@ -12352,7 +12355,16 @@ select.articles-order {
   .reg-form .basic-form {
     margin-top: 0; }
   .home-padding.owl-carousel {
-    z-index: 1050; } }
+    z-index: 1050; }
+  .slimtable-wrapper {
+    overflow-x: scroll; }
+  .slimtable-wrapper::-webkit-scrollbar {
+    width: 10px;
+    height: 10px; }
+  .slimtable-wrapper::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #C3C3C3;
+    border: 0px solid #eee; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron {

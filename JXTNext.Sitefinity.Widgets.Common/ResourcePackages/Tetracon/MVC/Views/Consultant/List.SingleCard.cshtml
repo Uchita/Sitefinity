@@ -36,7 +36,7 @@
                 <p class="consultant-sum">
                     @Html.HtmlSanitize((string)consultant.Fields.Position)
                 </p>
-                @if (consultant.Fields.Office != null)
+                @*@if (consultant.Fields.Office != null)
                 {
                     if (consultant.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
                     {
@@ -62,7 +62,7 @@
                     }
 
                     <span class="consultant-btn">@OfficeLocationName</span>
-                }
+                }*@
             </a>
                 
         </div>

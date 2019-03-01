@@ -59,6 +59,12 @@ blockquote{
                 content: "\2713\0020";
             }
         }
+
+        li {
+            font-size: 16px;
+            font-size: 1.6rem;
+            color: $global-text;
+        }
     }
 
     ol {
@@ -127,9 +133,10 @@ blockquote{
     }
 
     p {
-        margin-bottom: 20px;
+        margin-bottom: 40px;
         color: $global-text;
         font-size: 16px;
+        line-height: 24px;
     }
     /* Buttons */
     .btn {
@@ -258,7 +265,7 @@ blockquote{
         padding: 10px 20px;
         background: $btn-primary-bg;
         color: $btn-primary-color;
-        line-height:25px;
+        line-height: 25px;
 
         &:hover, &:focus {
             background: $btn-primary-hover-bg;
@@ -1234,6 +1241,7 @@ header {
             overflow: auto;
             z-index: 1000;
             display: block;
+            top: 80px;
             transition: left 0.2s ease-in-out;
 
             &.in {
@@ -1479,7 +1487,7 @@ main {
 
     h2 {
         margin-top: 0;
-        margin-bottom: $gap / 2;
+        margin-bottom: 35px;
     }
 
     .home-h2 h2 {
@@ -1530,7 +1538,7 @@ main {
     &.section-dark {
         padding: 40px 0;
         background: $page-section-bg-dark;
-        color: $page-section-bg-dark-color;
+        color: $page-section-bg-dark-color !important;
 
         .h1, h1,
         .h2, h2,

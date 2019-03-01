@@ -189,7 +189,7 @@
                                         if (childNode1.Url == "/jobs/specialist-jobs-new")
                                         {
                                             @* @childNode1.Url *@
-                                            <a target="@childNode1.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode1)" href="#">@childNode1.Title</a>
+                                            <a target="@childNode1.LinkTarget" href="@childNode1.Url" class="dropdown-item menu-heading @GetClass(childNode1)" href="#">@childNode1.Title</a>
 
 
                                             if (childNode1.ChildNodes.Count > 10)
@@ -228,7 +228,7 @@
                                                             if (childNode11.Url == "/jobs/learn-more")
                                                             {
                                                                 @* @childNode11.Url *@
-                                                                <a target="@childNode11.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode11)" href="#">@childNode11.Title</a>
+                                                                <a target="@childNode11.LinkTarget" href="@childNode11.Url" class="dropdown-item menu-heading @GetClass(childNode11)" href="#">@childNode11.Title</a>
                                                                 <ul>
                                                                     @foreach (var subNode in childNode11.ChildNodes)
                                                                     {

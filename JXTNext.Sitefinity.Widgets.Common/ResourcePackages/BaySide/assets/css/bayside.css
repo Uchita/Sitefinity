@@ -6421,12 +6421,12 @@ select.hs-input {
         font-size: 17px;
         font-weight: 500;
         line-height: 1.5;
-        margin-bottom: 11px;
+        margin-bottom: 19px;
     }
 
     .app-footer ul {
         padding-left: 0;
-        margin-bottom: 20px;
+        margin-bottom: 19px;
     }
 
         .app-footer ul li {
@@ -6460,8 +6460,8 @@ select.hs-input {
         }
 
     .app-footer .divider {
-        margin-top: 11px;
-        margin-bottom: 19px;
+        margin-top: 0px;
+        margin-bottom: 16px;
     }
 
     .app-footer .footer_menu_inline {
@@ -6777,7 +6777,7 @@ select.hs-input {
     bottom: 20px;
     left: 20px;
     right: 20px;
-    background-image: url("../images/Box1-Latest-Features-70-Transparency.svg");
+    background-image: url("../images/Box1-Latest-Features-70-Transparency-new.svg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center bottom;
@@ -6874,7 +6874,7 @@ select.hs-input {
 .content-two-colmun > img {
     max-width: 180px;
     line-break: normal;
-    margin-bottom: 25px;
+    margin-bottom: 24px;
 }
 
 .content-two-colmun > .btn {
@@ -7298,50 +7298,54 @@ select.hs-input {
             max-height: 50px;
         }
 
-        .leader-list .leader-image .leader-thumb {
-            width: 100%;
-            height: 240px;
-            background-color: rgba(37, 130, 176, 0.7);
-            position: relative;
-        }
+    .leader-list.bridge .leader-image img {
+        max-height: 41px;
+    }
 
-            .leader-list .leader-image .leader-thumb .default-logo {
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                transition: all 0.4s ease;
-            }
+    .leader-list .leader-image .leader-thumb {
+        width: 100%;
+        height: 240px;
+        background-color: rgba(37, 130, 176, 0.7);
+        position: relative;
+    }
 
-        .leader-list .leader-image::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            background: rgba(37, 130, 176, 0.7);
-            opacity: 0;
-            transition: all 0.4s ease;
-        }
-
-        .leader-list .leader-image .leader_logo {
+        .leader-list .leader-image .leader-thumb .default-logo {
             position: absolute;
             left: 50%;
             top: 50%;
-            transform: translate(-50%, 100%);
-            transition: all 0.4s ease;
-            opacity: 0;
-        }
-
-        .leader-list .leader-image:hover .leader_logo {
             transform: translate(-50%, -50%);
-            opacity: 1;
+            transition: all 0.4s ease;
         }
 
-        .leader-list .leader-image:hover::before {
-            opacity: 1;
-        }
+    .leader-list .leader-image::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background: rgba(37, 130, 176, 0.7);
+        opacity: 0;
+        transition: all 0.4s ease;
+    }
+
+    .leader-list .leader-image .leader_logo {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 100%);
+        transition: all 0.4s ease;
+        opacity: 0;
+    }
+
+    .leader-list .leader-image:hover .leader_logo {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+
+    .leader-list .leader-image:hover::before {
+        opacity: 1;
+    }
 
     .leader-list .leader-name {
         color: #000000;
@@ -7951,10 +7955,10 @@ select.hs-input {
 .blog-detail-col .blog-title {
     color: #000;
     margin-top: 38px;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
     text-transform: lowercase;
     line-height: 1.1;
-    padding-bottom: 0px;
+    /*padding-bottom: 0px;*/
 }
 
     .blog-detail-col .blog-title:first-letter {
@@ -8545,10 +8549,27 @@ select.hs-input {
 }
 
 .top-menus > div {
-    float: right;
+    float: left;
+}
+
+.app-header .top-menus > div .navbar-nav {
+    flex-direction: unset;
+    display: block;
+}
+
+    .app-header .top-menus > div .navbar-nav li {
+        float: right;
+    }
+
+.app-header .top-menus .navbar-nav .nav-item:last-child .nav-link {
+    padding-right: 12px;
 }
 
 .top-menus .login-status {
+    float: right;
+}
+
+.app-header .top-menus .login-status .navbar-nav li {
     float: left;
 }
 
@@ -8563,7 +8584,7 @@ select.hs-input {
         background: #ececec;
         position: absolute;
         top: 0px;
-        right: 0px;
+        left: 0px;
     }
 
 .jn_search .dropdown-menu li a {

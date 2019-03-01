@@ -5,23 +5,47 @@
 
 @if (!Telerik.Sitefinity.Services.SystemManager.IsDesignMode || Telerik.Sitefinity.Services.SystemManager.IsPreviewMode)
 {
-    <section class="hero-banner hero-banner-sm @Model.CssClass" data-parallax="scroll" data-image-src="@Model.SelectedSizeUrl">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 text-center">
-                    <h1 class="animated fadeInUp">@Html.HtmlSanitize(Model.Heading)</h1>
-                    @if (!string.IsNullOrEmpty(Model.Description))
-                    {
-                        <p>@Html.HtmlSanitize(Model.Description)</p>
-                    }
-                    @if (!string.IsNullOrEmpty(Model.ActionName))
-                    {
-                        <p><a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-lg" role="button">@Model.ActionName</a></p>
-                    }
+    if (Model.CssClass == "small-banner no-h1")
+    {
+        <section class="hero-banner hero-banner-sm @Model.CssClass" data-parallax="scroll" data-image-src="@Model.SelectedSizeUrl">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 text-center">
+                        <div class="hero-title default-title">@Html.HtmlSanitize(Model.Heading)</div>
+                        @if (!string.IsNullOrEmpty(Model.Description))
+                        {
+                            <p>@Html.HtmlSanitize(Model.Description)</p>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.ActionName))
+                        {
+                            <p><a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-lg" role="button">@Model.ActionName</a></p>
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    }
+    else
+    {
+        <section class="hero-banner hero-banner-sm @Model.CssClass" data-parallax="scroll" data-image-src="@Model.SelectedSizeUrl">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 text-center">
+                        <h1 class="animated fadeInUp">@Html.HtmlSanitize(Model.Heading)</h1>
+                        @if (!string.IsNullOrEmpty(Model.Description))
+                        {
+                            <p>@Html.HtmlSanitize(Model.Description)</p>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.ActionName))
+                        {
+                            <p><a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-lg" role="button">@Model.ActionName</a></p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+
 }
 else
 {

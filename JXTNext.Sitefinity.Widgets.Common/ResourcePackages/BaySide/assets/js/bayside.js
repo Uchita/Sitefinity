@@ -196,9 +196,9 @@ $(document).ready(function () {
 
     $(".filter_sidebar .sm-wrapper .dropdown-tree > .dropdown-toggle").wrap("<h3></h3>");
 
-    $(".no-h1 h1").each(function () {
+    /*$(".no-h1 h1").each(function () {
         $(this).replaceWith("<div class='hero-title'>" + $(this).text() + "</div>");
-    });
+    });*/
 
     //////for add current page class to body 
     var pageTitle = window.location.pathname.replace(/\//gi, " ").trim().split(" ");

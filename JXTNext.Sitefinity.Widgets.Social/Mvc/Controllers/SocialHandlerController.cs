@@ -73,7 +73,8 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             {
                 // Logging this info for Indeed test
                 Log.Write("Social Handler Index Action Start : ", ConfigurationPolicy.ErrorLog);
-
+                string UrlReferral = null;
+                
                 // This is the CSS classes enter from More Options
                 ViewBag.CssClass = this.CssClass;
 
@@ -106,10 +107,13 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                     if (!code.IsNullOrEmpty())
                     {
                         result = _processSocialMediaSeekData.ProcessData(code, state, indeedJsonStringData);
+                        if (TempData["source"] != null && !string.IsNullOrWhiteSpace(TempData["source"].ToString()))
+                            UrlReferral = TempData["source"].ToString();
                     }
                     else if(code.IsNullOrEmpty() && !indeedJsonStringData.IsNullOrEmpty())
                     {
                         result = _processSocialMediaIndeedData.ProcessData(code, state, indeedJsonStringData);
+                        UrlReferral = result.JobSource;
                     }
                     else
                     {
@@ -262,7 +266,8 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                         EmailNotification = emailNotificationSettings,
                                         AdvertiserEmailNotification = advertiserEmailNotificationSettings,
                                         AdvertiserName = jobDetails.ContactDetails,
-                                        CompanyName = jobDetails.CompanyName
+                                        CompanyName = jobDetails.CompanyName,
+                                        UrlReferral = UrlReferral
                                     },
                                     overrideEmail);
 

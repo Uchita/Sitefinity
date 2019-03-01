@@ -21,9 +21,9 @@
 
                         case "Indeed":
                             @*<li><a href="#" target="_blank" title=@item.Title role="button">Apply With @item.Title</a></li>*@
-                            var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
-                            var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
-                            var indeedJobCompanyNameAndLoginUserEmail = "right-rail-apply-button;" + ViewBag.loginEmail;
+                var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
+                var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
+                var indeedJobCompanyNameAndLoginUserEmail = "right-rail-apply-button;" + ViewBag.loginEmail+";"+ Model.UrlReferral;
                             <li id="indeed-btnwrapper">
                                 <span class="indeed-apply-widget"
                                       data-indeed-apply-apiToken=@indeedAPIToken
@@ -51,10 +51,11 @@
 
                             var clientId = siteSettingsHelper.GetCurrentSiteSeekClientId();
                             var advertiserId = siteSettingsHelper.GetCurrentSiteSeekClientAdvertiserId();
-                            var redirectUri = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
+                            var redirectUri = siteSettingsHelper.GetCurrentSiteSeekRedirectUri() /*+ "?source=" + @Model.UrlReferral*/;
                             var jobId = Model.JobId;
+                            var urlReferral = Model.UrlReferral;
 
-                            string hrefLink = String.Format("https://www.seek.com.au/api/iam/oauth2/authorize?client_id={0}&redirect_uri={1}&state={2}&scope=r_profile_apply&response_type=code&advertiser_id={3}", clientId, redirectUri, jobId, advertiserId);
+                            string hrefLink = String.Format("https://www.seek.com.au/api/iam/oauth2/authorize?client_id={0}&redirect_uri={1}&state={2}&scope=r_profile_apply&response_type=code&advertiser_id={3}&source={4}", clientId, redirectUri, jobId, advertiserId, urlReferral);
 
                             <li> <a href=@hrefLink title=@item.Title role="button" class="btn btn-seek">@item.Title</a></li>
                             break;

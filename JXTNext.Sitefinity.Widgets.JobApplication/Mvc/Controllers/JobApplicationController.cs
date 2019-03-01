@@ -263,6 +263,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 ViewBag.CompanyName = jobListingResponse.Job.CustomData["CompanyName"];
                 ViewBag.JobLocation = jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"];
                 jobApplicationViewModel.UrlReferral = Request.QueryString["source"];
+                TempData["source"] = jobApplicationViewModel.UrlReferral;
                 Log.Write($"jobApplicationViewModel.UrlReferral  {jobApplicationViewModel.UrlReferral}", ConfigurationPolicy.ErrorLog);
             }
 

@@ -44,7 +44,6 @@ namespace SitefinityWebApp
             ViewEngines.Engines.Add(new SFViewEngine());
             Bootstrapper.Bootstrapped += Bootstrapper_Bootstrapped;
             Bootstrapper.Initialized += new EventHandler<ExecutedEventArgs>(Bootstrapper_Initialized);
-            ObjectFactory.Initialized += new EventHandler<ExecutedEventArgs>(StopSitefinityLogging);
 
             //Profile created event             
             _profileEventHandler = new JXTNext_ProfileEventHandler();

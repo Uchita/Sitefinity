@@ -86,11 +86,17 @@
                                 <div class="magazine-vol-name">@volumetext - @issuetext</div>
                                 <div class="magazine-vol-date">@item.GetDateTime("PublicationDate", "MMM, yyyy")</div>
                                 @:<ul class="magazine-headlines">
-                                    <li class="magazine-headline"><a title="@item.Fields.Title" class="magazine-headline" href="@navigateUrl">@item.Fields.Title</a></li>
+                                    <li class="magazine-headline">
+                                        <a title="@item.Fields.Title" class="magazine-headline" href="@navigateUrl">@item.Fields.Title</a>
+                                        <div class="short-summary">@Html.HtmlSanitize((string)item.Fields.Summary)</div>
+                                    </li>
                                 }
                                 else if (@counter < 5)
                                 {
-                                    <li class="magazine-sub-headline"><a class="magazine-sub-headline" href="@navigateUrl">@item.Fields.Title</a></li>
+                                    <li class="magazine-sub-headline">
+                                        <a class="magazine-sub-headline" href="@navigateUrl">@item.Fields.Title</a>
+                                        <div class="short-summary">@Html.HtmlSanitize((string)item.Fields.Summary)</div>
+                                    </li>
                                 }
                             }
 

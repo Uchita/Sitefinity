@@ -27,7 +27,8 @@
             {
                 foreach (var taxon in Model.Item.GetHierarchicalTaxons("Category"))
                 {
-                    <span class="main-color-bg cat6"><a href="#">@taxon.Title.ToString()</a></span>
+                    var url = "/news/blogs/-in-category/categories" + @taxon.FullUrl;
+                    <span class="main-color-bg cat6"><a href="@url">@taxon.Title.ToString()</a></span>
                 }
             }
 

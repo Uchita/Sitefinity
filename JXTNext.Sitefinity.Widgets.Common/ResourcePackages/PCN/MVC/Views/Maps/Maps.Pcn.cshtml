@@ -94,7 +94,9 @@ else
                         styles: [{ "stylers": [{ "visibility": "off" }] }, { "featureType": "water", "stylers": [{ "color": mapBgColor }, { "visibility": "on" }] }]
                     });
 
-                    var infowindow = new google.maps.InfoWindow();
+                    var infowindow = new google.maps.InfoWindow({
+                        pixelOffset: new google.maps.Size(157, 145)
+                    });
                     allMarkers = Locations.map(function (location, i) {
                         var Title = location['popupTitle'],
                             Lat = location['lat'],
@@ -105,10 +107,10 @@ else
                             animation: google.maps.Animation.DROP,
                             icon: {
                                 url: location.icon,
-                                scaledSize: new google.maps.Size(80, 135),
-                                size: new google.maps.Size(80, 135),
+                                scaledSize: new google.maps.Size(80, 125),
+                                size: new google.maps.Size(80, 125),
                                 origin: new google.maps.Point(0, 0),
-                                anchor: new google.maps.Point(40, 135)
+                                anchor: new google.maps.Point(40, 125)
                             },
                             //icon: location.icon,
                             map: map,

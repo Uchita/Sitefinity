@@ -9,10 +9,14 @@
 @using Telerik.Sitefinity.Model.ContentLinks;
 @using Telerik.Sitefinity.Modules.Pages;
 
-@{ int officesCounter = 0;}
+@{
+    int officesCounter = 0;
+    var model = Model.Items;
+    model = model.OrderByDescending(x => Convert.ToDateTime(x.Fields.LastModified));
+}
 
 <div class="@Model.CssClass">
-    @foreach (var item in Model.Items)
+    @foreach (var item in model)
     {
         var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
         var heroImageStyleRule = (item.Fields.HeroImage != null) ? $"background-image: url({item.Fields.HeroImage.Fields.MediaUrl})" : "background-color: rgba(0,112,119,.9)";

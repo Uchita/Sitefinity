@@ -7314,6 +7314,10 @@ blockquote {
       list-style: none; }
       .page-wrapper ul.check-list li:before {
         content: "\2713\0020"; }
+    .page-wrapper ul li {
+      font-size: 16px;
+      font-size: 1.6rem;
+      color: #666666; }
   .page-wrapper ol {
     padding-left: 15px; }
   .page-wrapper dt {
@@ -7354,9 +7358,10 @@ blockquote {
       color: #7DC246;
       text-decoration: unset; }
   .page-wrapper p {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     color: #666666;
-    font-size: 16px; }
+    font-size: 16px;
+    line-height: 24px; }
   .page-wrapper .btn {
     border: 1px solid #7DC246;
     border-radius: 0;
@@ -8136,6 +8141,7 @@ header {
       overflow: auto;
       z-index: 1000;
       display: block;
+      top: 80px;
       transition: left 0.2s ease-in-out; }
       header .mobile-nav.left-sidebar .navbar-collapse.in {
         left: 0; }
@@ -8280,7 +8286,7 @@ main {
   color: inherit; }
   .page-section h2 {
     margin-top: 0;
-    margin-bottom: 25px; }
+    margin-bottom: 35px; }
   .page-section .home-h2 h2 {
     margin-bottom: 50px; }
   .page-section .thumbnail {
@@ -8313,7 +8319,7 @@ main {
   .page-section.section-dark {
     padding: 40px 0;
     background: #666666;
-    color: #fff; }
+    color: #fff !important; }
     .page-section.section-dark .h1, .page-section.section-dark h1,
     .page-section.section-dark .h2, .page-section.section-dark h2,
     .page-section.section-dark .h3, .page-section.section-dark h3,
@@ -9418,7 +9424,7 @@ ul.breadcrumb {
   padding: 0px;
   position: relative;
   background: #f0f0f0;
-  width: calc(100% - 30px);
+  /*width: calc(100% - 30px);*/
   margin: 0 auto;
   height: 100%; }
   .thumbnail.card-basic > a {
@@ -9489,7 +9495,8 @@ ul.breadcrumb {
         position: absolute;
         left: 50%;
         bottom: -10px;
-        margin-left: -66px; }
+        margin-left: -66px;
+        padding: 8px 20px; }
         .thumbnail.card-title-action .caption .btn.btn-more {
           position: absolute;
           bottom: 0;
@@ -9505,6 +9512,10 @@ ul.breadcrumb {
     background: transparent; }
     .thumbnail.icon-caption img {
       margin-bottom: 30px; }
+    .thumbnail.icon-caption .caption {
+      padding: 0; }
+      .thumbnail.icon-caption .caption h2 {
+        margin-bottom: 25px; }
   .thumbnail.teamlist {
     text-align: center;
     background: transparent;
@@ -10767,7 +10778,7 @@ ul.breadcrumb {
   background-size: 40px auto;
   position: relative;
   top: 7px;
-  color: #219fa3; }
+  color: #7DC246; }
 
 .save-icon {
   background-image: url("../images/saved-jobs.png"); }
@@ -11472,14 +11483,21 @@ select.articles-order {
       .single-card .consultant .consultant-photo img {
         width: 100%; }
     .single-card .consultant .caption {
-      position: relative;
-      display: block;
-      min-height: 200px;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-      width: 40%;
+      /*position: relative;
+            display: block;
+            min-height: 200px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            width: 40%;
+            text-align: center;
+            padding: 60px;
+            flex-grow: 1;*/
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      max-width: 300px;
+      width: 100%;
       text-align: center;
-      padding: 60px;
-      flex-grow: 1; }
+      background: rgba(102, 102, 102, 0.7); }
     .single-card .consultant .consultant-name {
       margin-bottom: 0; }
     .single-card .consultant .consultant-sum {
@@ -12117,6 +12135,7 @@ select.articles-order {
   header .brand-logo {
     height: 50px;
     width: 150px;
+    float: left;
     display: block;
     margin: 10px auto;
     background-image: url("../images/TetraconLogo-outlines.svg");
@@ -12134,25 +12153,27 @@ select.articles-order {
     margin: 0;
     height: 0;
     width: auto;
-    min-width: 42px; }
+    min-width: 42px;
+    padding: 20px 0; }
     header .main-nav .navbar-default .navbar-toggle {
       float: left;
       border: 0;
       margin: 0;
-      padding: 7px 10px; }
+      padding: 9px 10px;
+      color: #7DC246; }
       header .main-nav .navbar-default .navbar-toggle .icon-bar {
         background: none; }
         header .main-nav .navbar-default .navbar-toggle .icon-bar::before {
           font: 900 2rem 'Font Awesome 5 Free';
           content: '\f00d';
-          color: #fff;
+          color: #7DC246;
           position: relative;
           left: 2px;
           top: -2px; }
         header .main-nav .navbar-default .navbar-toggle .icon-bar + .icon-bar {
           display: none; }
       header .main-nav .navbar-default .navbar-toggle.collapsed .icon-bar {
-        background-color: #fff; }
+        background-color: #7DC246; }
         header .main-nav .navbar-default .navbar-toggle.collapsed .icon-bar::before {
           display: none; }
         header .main-nav .navbar-default .navbar-toggle.collapsed .icon-bar + .icon-bar {
@@ -12160,7 +12181,7 @@ select.articles-order {
       header .main-nav .navbar-default .navbar-toggle:hover, header .main-nav .navbar-default .navbar-toggle:active, header .main-nav .navbar-default .navbar-toggle:focus {
         background: none; }
         header .main-nav .navbar-default .navbar-toggle:hover.collapsed .icon-bar, header .main-nav .navbar-default .navbar-toggle:active.collapsed .icon-bar, header .main-nav .navbar-default .navbar-toggle:focus.collapsed .icon-bar {
-          background-color: #fff; }
+          background-color: #7DC246; }
   .main-content {
     padding-top: 70px; }
   .mobile-owl-carousel .thumbnail {
@@ -12565,7 +12586,9 @@ select.articles-order {
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron .owl-nav {
-    display: none; }
+    display: none; } }
+
+@media screen and (max-width: 991px) {
   .thumbnail.card-title-action {
     margin-bottom: 40px; } }
 

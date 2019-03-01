@@ -739,18 +739,9 @@
             &:last-child{
                 margin-bottom:0;
             }
+        }   
         }
 
-     
-        
-        
-        
-        }
-
-
-    .card-title-action {
-        
-    }
 
     .page-wrapper .form-control,
     .left-sidebar .container-fluid,
@@ -857,6 +848,7 @@
         .brand-logo {
             height: 50px;
             width: 150px;
+            float: left;
             display: block;
             margin: 10px auto;
             background-image: url('../images/TetraconLogo-outlines.svg');
@@ -883,12 +875,14 @@
             height: 0;
             width: auto;
             min-width: 42px;
+            padding: 20px 0;
 
             .navbar-default .navbar-toggle {
                 float: left;
                 border: 0;
                 margin: 0;
-                padding: 7px 10px;
+                padding: 9px 10px;
+                color: $global-highlight-color;
 
                 .icon-bar {
                     background: none;
@@ -896,7 +890,7 @@
                     &::before {
                         font: 900 2rem 'Font Awesome 5 Free';
                         content: '\f00d';
-                        color: $brightColor;
+                        color: $global-text-color;
                         position: relative;
                         left: 2px;
                         top: -2px;
@@ -909,7 +903,7 @@
 
                 &.collapsed {
                     .icon-bar {
-                        background-color: $btn-primary-color;
+                        background-color: $global-text-color;
 
                         &::before {
                             display: none;
@@ -926,7 +920,7 @@
 
                     &.collapsed {
                         .icon-bar {
-                            background-color: $btn-primary-color;
+                            background-color: $global-text-color;
                         }
                     }
                 }
@@ -1581,305 +1575,341 @@
     .owl-carousel-jumbotron .owl-nav {
         display: none;
     }
-
-    .thumbnail.card-title-action{
-        margin-bottom:40px;
-    }
 }
-
-@media (min-width: 500px) and (max-width:767px) {
-    .col-xs-6:nth-child(2n+1) {
-        clear: left;
+@media screen and (max-width: 991px) {
+    .thumbnail.card-title-action {
+        margin-bottom: 40px;
     }
-}
-
-@media (max-width:499px) {
-    
-    .left-sidebar{
-        margin-bottom: 30px;
+    }
+    @media (min-width: 500px) and (max-width:767px) {
+        .col-xs-6:nth-child(2n+1) {
+            clear: left;
+        }
     }
 
-    $grid-prefix: col-xs !default
+    @media (max-width:499px) {
 
-    @for $i from 1 through 12 {
-        .#{$grid-prefix}-#{$i} {
-            float: none;
+        .left-sidebar {
+            margin-bottom: 30px;
+        }
+
+        $grid-prefix: col-xs !default
+
+        @for $i from 1 through 12 {
+            .#{$grid-prefix}-#{$i} {
+                float: none;
+                width: 100%;
+            }
+        }
+
+        .hide-sub-xs {
+            display: none !important;
+        }
+
+        .thumbnail.card-rollover {
+            margin-top: 5px;
+            padding: 10px;
+            display: tablet;
+
+            .card-rollover-image {
+                display: table-cell;
+                padding-right: 20px;
+                width: 100px;
+                vertical-align: middle;
+
+                img {
+                    max-width: 80px;
+                }
+            }
+
+            .caption {
+                display: table-cell;
+                vertical-align: middle;
+                padding-left: 15px;
+
+                h3 {
+                    margin-top: 0;
+                    margin-bottom: 5px;
+                }
+            }
+        }
+
+        .thumbnail {
+            &.fixed-width {
+                width: 100%;
+                margin: 0 0 20px;
+            }
+        }
+
+        .page-wrapper {
+            footer {
+                .col-xs-3, .col-xs-9 {
+                    float: left;
+                    width: auto;
+                }
+
+                .brand-logo {
+                    height: 45px;
+                }
+
+                .footer-social {
+                    .fab {
+                        margin: 0 3px;
+                    }
+                }
+
+                .postfooter-links {
+                    a {
+                        white-space: nowrap;
+                    }
+                }
+            }
+
+            .apply-with, .sign-in-with {
+                ul {
+                    li {
+                        float: none;
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        .job-search {
+
+            .filter-active a:after {
+                content: none;
+            }
+
+            .filter-job-classification {
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    left: 48%;
+                    top: -18px;
+                    display: block;
+                    border: 10px solid transparent;
+                    border-bottom-color: #ebebeb;
+                }
+
+                .row {
+
+                    & > div {
+                        float: none;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        .board-members-row {
+            padding-bottom: 0;
+        }
+
+        .board-members-item {
             width: 100%;
-        }
-    }
+            margin-bottom: 30px;
 
-    .hide-sub-xs {
-        display: none !important;
-    }
-
-    .thumbnail.card-rollover {
-        margin-top: 5px;
-        padding: 10px;
-        display: tablet;
-        .card-rollover-image{
-            display: table-cell;
-            padding-right: 20px;
-            width: 100px;
-            vertical-align: middle;
-            img{
-                max-width: 80px;
-            }
-        }
-        .caption{
-            display: table-cell;
-            vertical-align: middle;
-            padding-left: 15px;
-            h3{
-                margin-top: 0;
-                margin-bottom: 5px;
+            & + .board-members-item {
+                margin-left: 0;
             }
         }
 
-    }
-
-    .thumbnail{
-        &.fixed-width{
-            width: 100%;
-            margin: 0 0 20px;
-        }
-    }
-    .page-wrapper {
-        footer{
-            .col-xs-3, .col-xs-9{
-                float: left;
-                width: auto;
-            }
-            .brand-logo{
-                height: 45px;
-            }
-            .footer-social{
-                .fab{
-                    margin: 0 3px;
-                }
-            }
-            .postfooter-links{
-                a{
-                    white-space: nowrap;
-                }
-            } 
-        }
-
-        .apply-with, .sign-in-with{
-            ul {
-                li {
-                    float: none;
-                    margin-right: 0;
-                }
+        .owl-carousel.owl-drag {
+            .owl-item, .testimonial {
+                padding-left: 15px;
+                padding-right: 15px;
             }
         }
-    }
 
-    .job-search {
-
-        .filter-active a:after {
-            content: none;
-        }
-
-        .filter-job-classification {
-
-            &:before {
-                content: '';
-                position: absolute;
-                left: 48%;
-                top: -18px;
-                display: block;
-                border: 10px solid transparent;
-                border-bottom-color: #ebebeb;
-            }
-
-            .row {
-
-                & > div {
-                    float: none;
-                    width: 100%;
-                }
-            }
-        }
-    }
-    .board-members-row{
-        padding-bottom: 0;
-    }
-    .board-members-item {
-        width: 100%;
-        margin-bottom: 30px;
-
-        & + .board-members-item {
-            margin-left: 0;
-        }
-    }
-
-    .owl-carousel.owl-drag{
-        .owl-item, .testimonial{
-            padding-left: 15px;
-            padding-right: 15px;
-        }
-    }
-    .owl-carousel-jumbotron.owl-drag{
-        .owl-item{
-            padding: 0;
-        }
-    }
-    .owl-consultants .owl-stage .consultant .consultant-photo{
-        height: 300px;
-    }
-    .featured-job-offer .job-offer-sum:after,
-    .list-featured-articles h3+div:after{
-        display: none;
-    }
-    .featured-job-offer, 
-    .home-padding .thumbnail.card-basic .caption{
-        padding-right:18px; 
-        padding-left:18px;
-    }
-    .mobile-owl-carousel {
-        .owl-item{
-            padding: 0!important;
-            >div{
+        .owl-carousel-jumbotron.owl-drag {
+            .owl-item {
                 padding: 0;
             }
         }
-    }
-    .mobile-owl-2-items{
-        .owl-item{
-            >div{
-                padding: 0 15px;
+
+        .owl-consultants .owl-stage .consultant .consultant-photo {
+            height: 300px;
+        }
+
+        .featured-job-offer .job-offer-sum:after,
+        .list-featured-articles h3 + div:after {
+            display: none;
+        }
+
+        .featured-job-offer,
+        .home-padding .thumbnail.card-basic .caption {
+            padding-right: 18px;
+            padding-left: 18px;
+        }
+
+        .mobile-owl-carousel {
+            .owl-item {
+                padding: 0 !important;
+
+                > div {
+                    padding: 0;
+                }
             }
         }
-    }
 
-    .list-featured-articles{
-
-        li:first-child{
-            padding-top: 200px;
-            .featured-article-image{
-                max-height: 200px;
+        .mobile-owl-2-items {
+            .owl-item {
+                > div {
+                    padding: 0 15px;
+                }
             }
         }
-    }
-    .testimonials-slider{
-        .testimonial-title{
-            padding: 0;
+
+        .list-featured-articles {
+
+            li:first-child {
+                padding-top: 200px;
+
+                .featured-article-image {
+                    max-height: 200px;
+                }
+            }
         }
-    }
-    .testimonials-slider.testimonials-simple{
-        
-        .item, .owl-item>div{
-            padding-bottom: 50px;
+
+        .testimonials-slider {
+            .testimonial-title {
+                padding: 0;
+            }
         }
-        .testimonial{
-            padding: 50px 0 10px;
-        }
-        .testimonial-author{
-            padding: 10px;
-        }
-        .owl-dots{
-            position: absolute;
-            bottom: 0;
-        }
-        .quote{
-            top: 3px;
-            left: 5px;
-            &.text-right{
+
+        .testimonials-slider.testimonials-simple {
+
+            .item, .owl-item > div {
+                padding-bottom: 50px;
+            }
+
+            .testimonial {
+                padding: 50px 0 10px;
+            }
+
+            .testimonial-author {
+                padding: 10px;
+            }
+
+            .owl-dots {
+                position: absolute;
                 bottom: 0;
-                right: 0;
-                left: auto;
-                span{
+            }
+
+            .quote {
+                top: 3px;
+                left: 5px;
+
+                &.text-right {
+                    bottom: 0;
                     right: 0;
-                }
-            }
-        }
-        &.with-side-image{
-            .img-holder{
-                max-width: 150px;
-            }
-            .owl-item>div{
-                padding-bottom: 0;
-            }
-            
-            .quote{
-                .text-right span{
-                    bottom: -10px;
-                }
-            }
-            
-        }
-    }
-    .testimonials-slider{
-        .owl-item{
-            padding-left: 25px;
-            padding-right: 25px;
-            padding-bottom: 50px; 
-        }
-        .testimonial{
-            padding-left: 0;
-            padding-right: 0; 
-        }
-        .owl-dots{
-            bottom: 25px;
-        }
-        
-    }
-    .job-offer-contacts{
-        table, tbody{
-            display: block;
-        }
-        tr{
-            display: block;
-            margin-bottom: 10px;
-        }
-        td{
-            display: block;
-            margin-bottom: 5px;
-            word-break: break-word;
-        }
-    }
-    .consultant-minimal{
-        .consultant{
-            .item{
-                width:auto; 
-                margin: 12px 15px;  
-            }
-        }
-    }
-    .popup-overlay{
-        .container{
-            max-width:100%;
-            margin-left: 0;
-            left: 0;
-        }
-    }
-    .risk-measurement .risk-wrapper {
-        width: 100%;
-        float: none;
-    }
-    .map-placeholder{
-        height: 350px;
-    }
-    .gm-style-iw{
-        max-width: 100%!important;
-    }
-    .info-box .map-field {
-        font-size: 1.5rem
-    }
-}
+                    left: auto;
 
-@media (max-width:400px){
-    
-    .section-ul ul.nav-stacked{
-        li{
-            width: auto;
+                    span {
+                        right: 0;
+                    }
+                }
+            }
+
+            &.with-side-image {
+                .img-holder {
+                    max-width: 150px;
+                }
+
+                .owl-item > div {
+                    padding-bottom: 0;
+                }
+
+                .quote {
+                    .text-right span {
+                        bottom: -10px;
+                    }
+                }
+            }
+        }
+
+        .testimonials-slider {
+            .owl-item {
+                padding-left: 25px;
+                padding-right: 25px;
+                padding-bottom: 50px;
+            }
+
+            .testimonial {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .owl-dots {
+                bottom: 25px;
+            }
+        }
+
+        .job-offer-contacts {
+            table, tbody {
+                display: block;
+            }
+
+            tr {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            td {
+                display: block;
+                margin-bottom: 5px;
+                word-break: break-word;
+            }
+        }
+
+        .consultant-minimal {
+            .consultant {
+                .item {
+                    width: auto;
+                    margin: 12px 15px;
+                }
+            }
+        }
+
+        .popup-overlay {
+            .container {
+                max-width: 100%;
+                margin-left: 0;
+                left: 0;
+            }
+        }
+
+        .risk-measurement .risk-wrapper {
+            width: 100%;
             float: none;
-            margin-right: 0;
         }
-    }   
 
-}
+        .map-placeholder {
+            height: 350px;
+        }
 
-/*#endregion Phones*/
+        .gm-style-iw {
+            max-width: 100% !important;
+        }
+
+        .info-box .map-field {
+            font-size: 1.5rem
+        }
+    }
+
+    @media (max-width:400px) {
+
+        .section-ul ul.nav-stacked {
+            li {
+                width: auto;
+                float: none;
+                margin-right: 0;
+            }
+        }
+    }
+
+    /*#endregion Phones*/
 
 

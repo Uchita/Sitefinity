@@ -1,13 +1,8 @@
 ﻿using JXTNext.Sitefinity.Common.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using Telerik.Sitefinity.Security;
 using Telerik.Sitefinity.Security.Claims;
-using Telerik.Sitefinity.Security.Model;
 
 namespace Jxt.Sitefinity.Jobs.Model
 {
@@ -43,6 +38,5 @@ namespace Jxt.Sitefinity.Jobs.Model
                 return _userEmail;
             }
         }
-
     }
 }

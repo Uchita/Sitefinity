@@ -19,6 +19,46 @@
         );
 
         $scope.$watch(
+            'properties.AdvertiserEmailTemplateName.PropertyValue',
+            function (newVal, oldVal) {
+                if (!!newVal && newVal !== oldVal) {
+                    $scope.properties.AdvertiserEmailTemplateName.PropertyValue = JSON.stringify(newVal);
+                }
+            },
+            true
+        );
+
+        $scope.$watch(
+            'properties.AdvertiserEmailTemplateId.PropertyValue',
+            function (newVal, oldVal) {
+                if (!!newVal && newVal !== oldVal) {
+                    $scope.properties.AdvertiserEmailTemplateId.PropertyValue = newVal;
+                }
+            },
+            true
+        );
+
+        $scope.$watch(
+            'properties.RegistrationEmailTemplateName.PropertyValue',
+            function (newVal, oldVal) {
+                if (!!newVal && newVal !== oldVal) {
+                    $scope.properties.RegistrationEmailTemplateName.PropertyValue = JSON.stringify(newVal);
+                }
+            },
+            true
+        );
+
+        $scope.$watch(
+            'properties.RegistrationEmailTemplateId.PropertyValue',
+            function (newVal, oldVal) {
+                if (!!newVal && newVal !== oldVal) {
+                    $scope.properties.RegistrationEmailTemplateId.PropertyValue = newVal;
+                }
+            },
+            true
+        );
+
+        $scope.$watch(
             'properties.EmailTemplateName.PropertyValue',
             function (newVal, oldVal) {
                 if (!!newVal && newVal !== oldVal) {

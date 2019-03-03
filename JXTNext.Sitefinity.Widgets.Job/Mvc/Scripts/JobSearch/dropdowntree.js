@@ -2,8 +2,8 @@
 var dropDownOptions = {
     title : "Dropdown",
     data : [],
-    closedArrow : '<i class="fa fa-caret-right" aria-hidden="true"></i>',
-    openedArrow : '<i class="fa fa-caret-down" aria-hidden="true"></i>',
+    closedArrow: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+    openedArrow: '<i class="fa fa-angle-down" aria-hidden="true"></i>',
     maxHeight : 300,
     multiSelect : false,
     selectChildren : false,
@@ -54,6 +54,7 @@ var globalTreeIdCounter=0;
                     RenderData(data[i].Filters, $("#" + options.prefixIdText + data[i].ID).find("ul").first());
                     if ((data[i].Selected == true)) {
                         $("#" + options.prefixIdText + data[i].ID).find("ul").show();
+                        $("#" + options.prefixIdText + data[i].ID).find("a").first().find('span i').removeClass('fa-angle-right').addClass('fa-angle-down');
                     }
                  }else if(options.addChildren){
                     $("#" + options.prefixIdText + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
@@ -73,8 +74,8 @@ var globalTreeIdCounter=0;
 		
 		if(options.expandChildren == true ){
 			$(options.element).children("ul").find("ul").css('display','block');
-			$(options.element).children("ul").find('span').children('i').removeClass('fa-caret-right');
-			$(options.element).children("ul").find('span').children('i').addClass('fa-caret-down');
+			$(options.element).children("ul").find('span').children('i').removeClass('fa-angle-right');
+			$(options.element).children("ul").find('span').children('i').addClass('fa-angle-down');
 		}
     }
 
@@ -121,8 +122,8 @@ var globalTreeIdCounter=0;
 		
         if ($(this).val().length > 0) {
             $(options.element).children("ul").find("ul").css('display', 'block');
-            $(options.element).children("ul").find('span').children('i').removeClass('fa-caret-right');
-            $(options.element).children("ul").find('span').children('i').addClass('fa-caret-down');
+            $(options.element).children("ul").find('span').children('i').removeClass('fa-angle-right');
+            $(options.element).children("ul").find('span').children('i').addClass('fa-angle-down');
         }
     });
 	
@@ -148,6 +149,7 @@ var globalTreeIdCounter=0;
     //arrow click handler close/open
     $(options.element).on("click",".arrow",function(e){
         e.stopPropagation();
+        e.preventDefault();
         $(this).empty();
         var expanded;
         if($(this).parents("li").first().find("ul").first().is(":visible")){
@@ -207,8 +209,8 @@ var globalTreeIdCounter=0;
 
     if(options.rtl){
         $(options.element).addClass("rtl-dropdown-tree");
-        if(options.closedArrow.indexOf("fa-caret-right")>-1){
-            options.closedArrow = options.closedArrow.replace("fa-caret-right","fa-caret-left");
+        if(options.closedArrow.indexOf("fa-angle-right")>-1){
+            options.closedArrow = options.closedArrow.replace("fa-angle-right","fa-angle-left");
         } 
     }
 

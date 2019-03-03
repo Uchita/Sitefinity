@@ -301,5 +301,95 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             }
         }
         #endregion
+
+        #region Instagram
+        /// <summary>
+        /// Gets or sets the Instagram API Token
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("instagramClientIdToken")]
+        [DescriptionResource(typeof(ConfigDescriptions), "InstagramClientIdToken")]
+
+        [DataMember]
+        public virtual String CurrentInstagramClientIdToken
+        {
+            get
+            {
+                return (String)this["instagramClientIdToken"];
+            }
+            set
+            {
+                this["instagramClientIdToken"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Instagram Client Secret
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("instagramClientSecret")]
+        [DescriptionResource(typeof(ConfigDescriptions), "InstagramClientSecret")]
+
+        [DataMember]
+        public virtual String CurrentInstagramClientSecret
+        {
+            get
+            {
+                return (String)this["instagramClientSecret"];
+            }
+            set
+            {
+                this["instagramClientSecret"] = value;
+            }
+        }
+
+        [ConfigurationProperty("instagramAccessToken")]
+        [DescriptionResource(typeof(ConfigDescriptions), "InstagramAccessToken")]
+
+        [DataMember]
+        public virtual String CurrentInstagramAccessToken
+        {
+            get
+            {
+                return (String)this["instagramAccessToken"];
+            }
+            set
+            {
+                this["instagramAccessToken"] = value;
+            }
+        }
+
+        [ConfigurationProperty("instagramExpiration")]
+        [DescriptionResource(typeof(ConfigDescriptions), "InstagramExpiration")]
+
+        [DataMember]
+        public virtual int CurrentInstagramExpiration
+        {
+            get
+            {
+                return (int)this["instagramExpiration"];
+            }
+            set
+            {
+                this["instagramExpiration"] = value;
+            }
+        }
+
+        [ConfigurationProperty("instagramMaxItems")]
+        [DescriptionResource(typeof(ConfigDescriptions), "InstagramMaxItems")]
+
+        [DataMember]
+        public virtual int CurrentInstagramMaxItems
+        {
+            get
+            {
+                return (int)this["instagramMaxItems"];
+            }
+            set
+            {
+                this["instagramMaxItems"] = value;
+            }
+        }
+        #endregion
     }
 }

@@ -28,7 +28,7 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
         internal const string WidgetIconCssClass = "sfMvcIcn";
         string templateNamePrefix = "MemberSavedJobs.";
         private string templateName = "List";
-
+        IBusinessLogicsConnector _blConnector;
         MemberSavedJobBC _memberSavedJobBC;
 
         /// <summary>
@@ -37,15 +37,24 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
         /// <value></value>
         public string TemplateName { get => this.templateName; set => this.templateName = value; }
 
-        public MemberSavedJobsController(MemberSavedJobBC memberSavedJobBC)
+        public MemberSavedJobsController(MemberSavedJobBC memberSavedJobBC, IBusinessLogicsConnector blConnector)
         {
             _memberSavedJobBC = memberSavedJobBC;
+            _blConnector = blConnector;
         }
 
         // GET: JobDetails
         public ActionResult Index()
         {
             bool GetListSuccess = _memberSavedJobBC.GetList(out List<MemberSavedJobDisplayItem> displayItems);
+
+            foreach (var job in displayItems)
+            {
+                IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = job.JobId };
+                IGetJobListingResponse jobListingResponse = _blConnector.GuestGetJob(jobListingRequest);
+                job.ClassificationURL = jobListingResponse.Job?.ClassificationURL;
+            }
+
             ViewBag.JobDetailsPageUrl = SitefinityHelper.GetPageUrl(this.JobDetailsPageId);
             ViewBag.DeleteMessage = TempData["DeleteMessage"];
             ViewBag.Status = TempData["Status"];
@@ -79,7 +88,6 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
             // Will definity call defaut action i,.e Index
             return RedirectToAction("");
         }
-
 
 
         protected override void HandleUnknownAction(string actionName)

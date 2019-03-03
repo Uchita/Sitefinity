@@ -169,6 +169,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         newFilter.ID = backendFilterItem.ID;
                         newFilter.Label = backendFilterItem.Label;
                         newFilter.Count = backendFilterItem.Count;
+                        newFilter.Value = backendFilterItem.Value;
                         newFilter.Selected = backendFilterItem.Selected;
 
                         foreach (var configSubFilterItem in configFilterItem.Filters)

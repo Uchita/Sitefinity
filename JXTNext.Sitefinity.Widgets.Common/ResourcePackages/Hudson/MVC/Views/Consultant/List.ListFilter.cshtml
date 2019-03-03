@@ -7,6 +7,7 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Models;
 @using Telerik.Sitefinity.Web.DataResolving;
 @using Telerik.Sitefinity.Model.ContentLinks;
+@*Needed for custom thumbnail*@
 @using Telerik.Sitefinity.Modules.Pages;
 @using Telerik.Sitefinity.Modules.Libraries;
 
@@ -34,7 +35,7 @@
                 </label>
                 <div class="select">
                     <select id="SectorFilter" name="SectorFilter" required="required" class="form-control">
-                        <option value="all">All Specialisation</option>
+                        <option value="all">All Specialisations</option>
                         @{
                             List
                             <Taxon>
@@ -61,7 +62,7 @@
                 </label>
                 <div class="select">
                     <select id="LocationFilter" name="LocationFilter" required="required" class="form-control">
-                        <option value="all">All Location</option>
+                        <option value="all">All Locations</option>
                         @{
                             var manager = DynamicModuleManager.GetManager("OpenAccessProvider");
                             var officeType = TypeResolutionService.ResolveType("Telerik.Sitefinity.DynamicTypes.Model.Offices.Office");
@@ -84,6 +85,10 @@
                 <button type="button" id="consultantSearch" class="sf-SubmitButton btn btn-primary">SEARCH</button>
             </div>
         </div>
+
+        <div class="col-xs-12 hidden consultant-count">
+            <p>Consultant(s) found: <strong class="const-found">0</strong></p>
+        </div>
     </div>
     <!-- End of Specialisation filter list -->
 
@@ -93,6 +98,7 @@
 @foreach (var item in Model.Items)
 {
     var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+    var imageThumbUrl = "";
 
     List<string>
     filterValues = new List<string>
@@ -135,17 +141,23 @@
         }
     }
 
-    <div class="contact-consultant row" data-filtersector="@(string.Join(",",filterValues))" data-filterlocation="@OfficeLocationUrl">
+    <div class="contact-consultant row hidden" data-filtersector="@(string.Join(",",filterValues))" data-filterlocation="@OfficeLocationUrl">
 
-        @if (item.Fields.Pic != null)
-        {
-            <div class="col-md-6">
-                <a class="contact-consultant-image" href="@navigateUrl">
-                    <img src="@MediaContentExtensions.ResolveThumbnailUrl(item.Fields.Pic.DataItem, "thumbcrop4")" alt="@item.Fields.Pic.Fields.Title" />
-                    <div class="contact-image-rollover"><div class="display-table"><div class="display-cell">View Profile</div></div></div>
-                </a>
-            </div>
-        }
+        <div class="col-md-6">
+            <a class="contact-consultant-image" href="@navigateUrl?location=@OfficeLocationName" title="@item.Fields.ConsultantName">
+                @if (item.Fields.Pic != null)
+                {
+                    imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(item.Fields.Pic.DataItem, "thumbcrop4");
+                }
+                else
+                {
+                    imageThumbUrl = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.jpg";
+
+                }
+                <img src="@imageThumbUrl" alt="@item.Fields.ConsultantName" />
+                <div class="contact-image-rollover"><div class="display-table"><div class="display-cell">View Profile</div></div></div>
+            </a>
+        </div>
 
         <div class="col-md-6">
             <div class="contact-consultant-info">
@@ -159,28 +171,27 @@
                     <div class="contact-consultant-position">@Html.HtmlSanitize((string)item.Fields.Position)</div>
                 }
 
-                @if (!string.IsNullOrWhiteSpace(@item.Fields.Email)
-                && !string.IsNullOrWhiteSpace(@item.Fields.PhoneNumber)
-                && !string.IsNullOrWhiteSpace(@item.Fields.LinkedInProfileUrl))
+                @if (!string.IsNullOrWhiteSpace(item.Fields.Email) || !string.IsNullOrWhiteSpace(item.Fields.PhoneNumber) || !string.IsNullOrWhiteSpace(item.Fields.LinkedInProfileUrl))
                 {
                     <div class="contact-consultant-contacts">
-                        @if (!string.IsNullOrWhiteSpace(@item.Fields.Email))
+                        @if (!string.IsNullOrWhiteSpace(item.Fields.Email))
                         {
-                            <em class="far fa-envelope"></em>@item.Fields.Email<br />
+                            <em class="far fa-envelope"></em><a href="mailto:@item.Fields.Email" title="Email at @item.Fields.Email">@item.Fields.Email</a><br />
+                        }
+                        @if (!string.IsNullOrWhiteSpace(item.Fields.PhoneNumber))
+                        {
+                            var consultantPhone = item.Fields.PhoneNumber.ToString().Replace(" ", "");
+                            <a href="tel:@consultantPhone" title="Call at @item.Fields.PhoneNumber"><em class="fas fa-phone"></em>@item.Fields.PhoneNumber</a><br />
                         }
 
-                        @if (!string.IsNullOrWhiteSpace(@item.Fields.PhoneNumber))
+                        @if (!string.IsNullOrWhiteSpace(item.Fields.LinkedInProfileUrl))
                         {
-                            <em class="fas fa-phone"></em> @item.Fields.PhoneNumber<br />
-                        }
-
-                        @if (!string.IsNullOrWhiteSpace(@item.Fields.LinkedInProfileUrl))
-                        {
-                            <a href="@item.Fields.LinkedInProfileUrl"><em class="fab fa-linkedin-in"></em></a>@item.Fields.LinkedInProfileName
+                            <a href="@item.Fields.LinkedInProfileUrl" target="_blank" title="Go to LinkedIN Profile"><em class="fab fa-linkedin-in"></em>@item.Fields.LinkedInProfileName</a>
                         }
                     </div>
                 }
-                <a class="btn btn-primary" href="@navigateUrl">Contact me</a>
+
+                <a class="btn btn-primary" href="@navigateUrl?location=@OfficeLocationName title="Contact me">Contact me</a>
             </div>
         </div>
 
@@ -200,6 +211,7 @@
 
             //except for all add hidden class to unmatched item
             consultantItems.removeClass('hidden');
+            $('.consultant-count').removeClass('hidden');
 
             consultantItems.each(function () {
                 if (!checkFilter($(this).data('filtersector'), $(this).data('filterlocation'), sectorFilter, locationFilter)) {
@@ -214,6 +226,8 @@
             } else {
                 $('.alert').addClass('hidden');
             }
+
+            $('.const-found').text($('.contact-consultant:not(.hidden)').length);
 
         }); //end of click function
 

@@ -20,5 +20,16 @@ namespace JXTNext.Sitefinity.Common.Helpers
             string resString = Regex.Replace(content, @"<([^>]*)(\sstyle="".+?""(\s|))(.*?)>", "<$1$3>");
             return resString;
         }
+
+        public static string GeneratePassword(int passwordLength)
+        {
+            var chars = "abcdefghijklmnopqrstuvwxyz@#$&ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            var result = new string(
+                Enumerable.Repeat(chars, passwordLength)
+                          .Select(s => s[random.Next(s.Length)])
+                          .ToArray());
+            return result;
+        }
     }
 }

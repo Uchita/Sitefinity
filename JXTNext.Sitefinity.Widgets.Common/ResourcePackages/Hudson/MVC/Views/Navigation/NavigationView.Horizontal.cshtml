@@ -9,6 +9,8 @@
 @using JXTNext.Sitefinity.Common.Helpers;
 
 @using Telerik.Sitefinity.DynamicModules.Model;
+@using Telerik.Sitefinity.Security;
+@using Telerik.Sitefinity.Security.Claims;
 
 @*Add scripts and stylesheets*@
 @Html.Script(ScriptRef.JQuery, "top")
@@ -17,11 +19,11 @@
 <div class="main-nav @Model.CssClass">
     @* @Html.Action("GetView", new { viewName = "Dropdown",  model= Model}) *@
 
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default">
 
         <div class="">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mobile-nav">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mobile-nav">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -53,16 +55,27 @@
                     {
                         @MobileRootLevelNode(node)
                     }
+                    <li class="extra-mnu timesheet-mnu"><a href="/timesheets-and-payroll-process" title="Timesheets"><em class="far fa-calendar-alt"></em> Timesheets</a></li>
+                   
 
-                    @if (JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn())
-                    {
-                        <li class="extra-mnu"><a href="/home/SignOut">Log out</a></li>
-                    }
-                    else
-                    {
-                        <li class="extra-mnu combine-mnu"><a href="/sign-in">Login</a> | <a href="/register">Register</a></li>
-                    }
-                    <li class="extra-mnu"><a href="/timesheets-and-payroll-process"><em class="far fa-calendar-alt"></em> Timesheets</a></li>
+                    @* logged in out menu links *@
+                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="display:none;"><a href="/user-dashboard" title="User Dashboard">@Html.Resource("LoggedAs", "LoginStatusExtendedResources") <span data-sf-role="sf-logged-in-name"></span></a></li>
+                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="display:none;"><a href="/sitefinity/signout?sts_signout=true" title="Log out">Logout</a></li>
+
+                    <li class="extra-mnu combine-mnu header-top-links" data-sf-role="sf-logged-out-view" style="display:none;"><a href="/register" title="Register">Register</a> | <a href="/sign-in" title="Sign in">Sign in</a></li>
+
+
+                    <!-- site selector -->
+                    <li class="dropdown extra-mnu">
+                        <a href="https://nz.hudson.com/" title="Hudson Australia">Hudson AU</a>
+                        <span class="fas fa-angle-right custom-expander"></span>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://nz.hudson.com/" title="Hudson New Zealand" target="_blank">NZ</a></li>
+                            <li><a href="https://www.hudson.sg/" title="Hudson Singapore" target="_blank">SG</a></li>
+                            <li><a href="https://www.hudson.hk/" title="Hudson Hong kong" target="_blank">HK</a></li>
+                            <li><a href="https://www.hudson.cn/en-gb/" title="Hudson China" target="_blank">CN</a></li>
+                        </ul>
+                    </li>
 
                 </ul>
             </div>
@@ -79,59 +92,59 @@
     if (node.ChildNodes.Count > 0)
     {
         <li class="dropdown @GetClass(node)">
-            <a href="@node.Url" target="@node.LinkTarget">@node.Title<span class="decoration"></span></a>
+            <a href="@node.Url" target="@node.LinkTarget" title="@node.Title">@node.Title<span class="decoration"></span></a>
             <div class="dropdown-menu-container">
                 <div class="dropdown-menu-columns">
                     <div class="dropdown-menu"></div>
-                        <div class="dropdown-menu no-bdr">
-                            <ul>
-                                @RenderSubLevelsRecursive(node, 1)
-                            </ul>
-                        </div>
-                        <div class="dropdown-menu">
-                            @foreach (var flattenedChild in node.ChildNodes)
-                            {
-                                if (flattenedChild.ChildNodes.Count > 0)
-                                {
-                                    <ul style="display:none;" data-parent-id="@flattenedChild.OriginalSiteMapNode.Key.ToLower()">
-                                        @RenderSubLevelsRecursive(flattenedChild, 1)
-                                    </ul>
-                                }
-                            }
-                        </div>
-
-                        <div class="dropdown-menu">
-                            @if (featuredArticle != null)
-                            {
-                                var bestUrl = "";
-                                //var bestUrl = ContentHelper.GetBestArticleUrl(featuredArticle.DataItem);
-                                DynamicContent dynamicVar = featuredArticle.DataItem as DynamicContent;
-                                if (dynamicVar != null)
-                                {
-                                    bestUrl = "/insights/articles/detail" + dynamicVar.SystemUrl;
-                                }
-
-                                <h4>Featured article</h4>
-                                <a href="@bestUrl" rel="@featuredArticle.DataItem">
-                                    <div>
-                                        <div class="dropdown-menu-featured-image">
-                                            <img src="@Html.Raw(featuredArticle.Fields.HeaderImage.Fields.MediaUrl)" />
-                                        </div>
-                                        <h5>@featuredArticle.Fields.Title</h5>
-
-                                    </div>
-                                </a>
-                            }
-                        </div>
-                        <div class="clearfix">
-                        </div>
+                    <div class="dropdown-menu no-bdr">
+                        <ul>
+                            @RenderSubLevelsRecursive(node, 1)
+                        </ul>
                     </div>
+                    <div class="dropdown-menu">
+                        @foreach (var flattenedChild in node.ChildNodes)
+                        {
+                            if (flattenedChild.ChildNodes.Count > 0)
+                            {
+                                <ul style="display:none;" data-parent-id="@flattenedChild.OriginalSiteMapNode.Key.ToLower()">
+                                    @RenderSubLevelsRecursive(flattenedChild, 1)
+                                </ul>
+                            }
+                        }
+                    </div>
+
+                    <div class="dropdown-menu">
+                        @if (featuredArticle != null)
+                        {
+                            var bestUrl = "";
+                            //var bestUrl = ContentHelper.GetBestArticleUrl(featuredArticle.DataItem);
+                            DynamicContent dynamicVar = featuredArticle.DataItem as DynamicContent;
+                            if (dynamicVar != null)
+                            {
+                                bestUrl = "/insights/articles/detail" + dynamicVar.ItemDefaultUrl;
+                            }
+
+                            <h4>Featured article</h4>
+                            <a href="@bestUrl" title="@featuredArticle.Fields.Title">
+                                <div>
+                                    <div class="dropdown-menu-featured-image">
+                                        <img src="@Html.Raw(featuredArticle.Fields.HeaderImage.Fields.MediaUrl)" alt="@featuredArticle.Fields.Title" />
+                                    </div>
+                                    <h5>@featuredArticle.Fields.Title</h5>
+
+                                </div>
+                            </a>
+                        }
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                </div>
             </div>
         </li>
     }
     else
     {
-        <li class="@GetClass(node)"><a href="@node.Url" target="@node.LinkTarget">@node.Title</a></li>
+        <li class="@GetClass(node)"><a href="@node.Url" target="@node.LinkTarget" title="@node.Title">@node.Title</a></li>
     }
 }
 
@@ -143,7 +156,7 @@
         if (childNode.ChildNodes.Count > 0 && dept > 0)
         {
             <li class="dropdown-submenu @GetClass(childNode)" data-self-id="@childNode.OriginalSiteMapNode.Key.ToLower()">
-                <a href="@childNode.Url" target="@childNode.LinkTarget">
+                <a href="@childNode.Url" target="@childNode.LinkTarget" title="@childNode.Title">
                     @childNode.Title
                     <span class="right-caret"></span>
                 </a>
@@ -158,7 +171,7 @@
         else if (dept > 0)
         {
             <li class="@GetClass(childNode)">
-                <a href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
+                <a href="@childNode.Url" target="@childNode.LinkTarget" title="@childNode.Title">@childNode.Title</a>
             </li>
         }
     }
@@ -170,15 +183,15 @@
     <li class="dropdown @GetClass(node)">
         @if (node.ChildNodes.Count > 0)
         {
-            <a href="@node.Url" target="@node.LinkTarget">@node.Title</a>
-            <span class="fas fa-angle-down custom-expander"></span>
+            <a href="@node.Url" target="@node.LinkTarget" title="@node.Title">@node.Title</a>
+            <span class="fas fa-angle-right custom-expander"></span>
             <ul class="dropdown-menu">
                 @MobileSubLevelsRecursive(node)
             </ul>
         }
         else
         {
-            <a href="@node.Url" target="@node.LinkTarget">@node.Title</a>
+            <a href="@node.Url" target="@node.LinkTarget" title="@node.Title">@node.Title</a>
         }
     </li>
 }
@@ -190,10 +203,10 @@
         if (childNode.ChildNodes.Count > 0)
         {
             <li class="dropdown dropdown-@GetClass(childNode)">
-                <a href="@childNode.Url" target="@childNode.LinkTarget">
+                <a href="@childNode.Url" target="@childNode.LinkTarget" title="@childNode.Title">
                     @childNode.Title
                 </a>
-                <span class="fas fa-angle-down custom-expander"></span>
+                <span class="fas fa-angle-right custom-expander"></span>
                 <ul class="dropdown-menu">
                     @MobileSubLevelsRecursive(childNode)
                 </ul>
@@ -202,7 +215,7 @@
         else
         {
             <li class="@GetClass(childNode)">
-                <a href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
+                <a href="@childNode.Url" target="@childNode.LinkTarget" title="@childNode.Title">@childNode.Title</a>
             </li>
         }
     }
@@ -240,6 +253,8 @@
             }
         });
 
+        $('.dropdown').removeClass('open');
+
         $(".dropdown").mouseleave(function (e) {
             $(this).find("a.link-active").removeClass("link-active");
             $(ulSelector).hide();
@@ -254,5 +269,11 @@
                 closestParent.find(".dropdown.open").removeClass("open");
             }
         });
+
+        //get the social links
+        if ($(".header-top-social").length) {
+            $('.mobile-nav li.extra-mnu.timesheet-mnu').after('<li class="extra-mnu social-mnu"></li>');
+            $('.mobile-nav li.social-mnu').append($(".header-top-social").clone());
+        }
     });
 </script>

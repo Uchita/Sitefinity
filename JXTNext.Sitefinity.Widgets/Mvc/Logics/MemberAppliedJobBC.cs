@@ -42,7 +42,7 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Logics
                 Id = c.Id,
                 DisplayTitle = c.JobName,
                 JobId = c.JobId,
-                DateAdded = ConversionHelper.GetDateTimeFromUnix(c.DateCreated)
+                DateAdded = ConversionHelper.GetDateTimeFromUnix(c.DateCreated).ToLocalTime()
             }).ToList();
         }
 

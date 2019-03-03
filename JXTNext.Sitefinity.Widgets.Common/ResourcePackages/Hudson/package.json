@@ -17,7 +17,8 @@
     "grunt-webfont": "^1.0.0",
     "load-grunt-tasks": "^3.2.0",
     "magnific-popup": "^1.0.0",
-    "node-sass": "^4.9.3",
+    "node-sass": "^4.9.4",
+    "sass": "^1.14.3",
     "time-grunt": "^1.2.1"
   },
   "author": {
@@ -25,6 +26,7 @@
     "email": "SitefinityUX@telerik.com"
   },
   "dependencies": {
-    "grunt-cli": "^1.2.0"
+    "grunt-cli": "^1.2.0",
+    "ruby": "^0.6.1"
   }
 }

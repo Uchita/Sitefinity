@@ -10,10 +10,19 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
     public class JobApplicationAttachmentSettings
     {
         public static string APPLICATION_RESUME_UPLOAD_KEY = "application-resume";
-        public static string APPLICATION_RESUME_UPLOAD_LIBRARY = "application-resume";
+        public static string APPLICATION_RESUME_UPLOAD_LIBRARY = "application-resume";       
 
         public static string APPLICATION_COVERLETTER_UPLOAD_KEY = "application-coverletter";
         public static string APPLICATION_COVERLETTER_UPLOAD_LIBRARY = "application-coverletter";
+
+        public static string APPLICATION_DOCUMENTS_UPLOAD_KEY = "application-documents";
+        public static string APPLICATION_DOCUMENTS_UPLOAD_LIBRARY = "application-documents";
+
+        public static string PROFILE_RESUME_UPLOAD_KEY = "profile-resume";
+        public static string PROFILE_RESUME_UPLOAD_LIBRARY = "profile-resume";
+
+        public static string PROFILE_COVERLETTER_UPLOAD_KEY = "profile-coverletter";
+        public static string PROFILE_COVERLETTER_UPLOAD_LIBRARY = "profile-coverletter";
     }
 
     public class JobApplicationAttachmentItem
@@ -42,19 +51,22 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
         public Stream FileStream { get; set; }
         public string FileName { get; set; }
         public string PathToAttachment { get; set; }
+        public string FileUrl { get; set; }
     }
 
     public enum JobApplicationAttachmentType
     {
         Resume = 1,
-        Coverletter = 2
+        Coverletter = 2,
+        Documents = 3
     }
 
     public enum JobApplicationAttachmentSource
     {
         Local = 1,
         GoogleDrive = 2,
-        Dropbox = 3
+        Dropbox = 3,
+        Saved = 4
     }
 
 }

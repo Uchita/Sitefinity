@@ -49,6 +49,9 @@
     <Reference Include="IdentityServer3.AccessTokenValidation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
       <HintPath>..\packages\Progress.Sitefinity.IdentityServer3.AccessTokenValidation.1.3.0\lib\net45\IdentityServer3.AccessTokenValidation.dll</HintPath>
     </Reference>
+    <Reference Include="JXTNext.Common.Communications, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Common.Communications.1.0.3\lib\netstandard2.0\JXTNext.Common.Communications.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.IdentityModel.Protocol.Extensions, Version=1.0.2.33, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Protocol.Extensions.1.0.2.206221351\lib\net45\Microsoft.IdentityModel.Protocol.Extensions.dll</HintPath>
     </Reference>
@@ -303,6 +306,7 @@
     <Compile Include="Mvc\Logics\JobAlertsBC.cs" />
     <Compile Include="Mvc\Models\JobAlertModel.cs" />
     <Compile Include="Mvc\StringResources\JobAlertResources.cs" />
+    <Compile Include="Mvc\Utility\JobAlertUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Widgets_JobAlertModule.cs" />
   </ItemGroup>
@@ -312,8 +316,12 @@
     <EmbeddedResource Include="Mvc\Views\JobAlert\DesignerView.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JobAlert\Edit.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JobAlert\Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobAlert\Unsubscribe.cshtml" />
+    <None Include="Mvc\Views\JobAlert\DesignerView.Simple.json" />
     <None Include="OpenAccessNuGet.targets" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mvc\Scripts\JobAlert\designerview-simple.js" />
@@ -326,6 +334,10 @@
     <ProjectReference Include="..\JXTNext.Sitefinity.Connector\JXTNext.Sitefinity.Connector.csproj">
       <Project>{bf418b44-ebce-499f-bbd3-6ba98a24e144}</Project>
       <Name>JXTNext.Sitefinity.Connector</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Services.Intefaces\JXTNext.Sitefinity.Services.Intefaces.csproj">
+      <Project>{94381396-d85e-469c-b828-24cf03548df5}</Project>
+      <Name>JXTNext.Sitefinity.Services.Intefaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

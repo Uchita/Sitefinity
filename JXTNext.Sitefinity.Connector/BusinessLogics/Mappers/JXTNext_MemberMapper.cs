@@ -37,7 +37,13 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                 jobId = jxtAppDetails.ApplyResourceID,
                 resumePath = jxtAppDetails.ResumePath,
                 coverletterPath = jxtAppDetails.CoverletterPath,
-                emailNotification = jxtAppDetails.EmailNotification
+                emailNotification = jxtAppDetails.EmailNotification,
+                advertiserName = jxtAppDetails.AdvertiserName,
+                companyName = jxtAppDetails.CompanyName,
+                advertiserEmailNotification = jxtAppDetails.AdvertiserEmailNotification,
+                documentsPath = jxtAppDetails.DocumentsPath,
+                urlReferral = jxtAppDetails.UrlReferral,
+                registrationEmailNotification  = jxtAppDetails.RegistrationEmailNotification
             };
 
             return apiObj;
@@ -66,21 +72,64 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
         public List<T> MemberAppliedJob_ConvertToLocalEntity<T>(dynamic data) where T : class
         {
             List<MemberAppliedJob> appliedJobs = new List<MemberAppliedJob>();
-            foreach (var d in data)
+            if(data != null &&  data.Count > 0)
             {
-                MemberAppliedJob local = new MemberAppliedJob
+                foreach (var d in data)
                 {
-                    //{\"Id\":1,\"SiteId\":10,\"MemberId\":3,\"JobId\":17584,\"_JobTitle\":\"Redundant\",\"DateAdded\":153245}
-                    Id = d["Id"],
-                    //= d["MemberId"],
-                    JobId = d["JobId"],
-                    JobName = d["JobName"],
-                    DateCreated = d["DateCreated"]
-                };
+                    MemberAppliedJob local = new MemberAppliedJob
+                    {
+                        //{\"Id\":1,\"SiteId\":10,\"MemberId\":3,\"JobId\":17584,\"_JobTitle\":\"Redundant\",\"DateAdded\":153245}
+                        Id = d["Id"],
+                        //= d["MemberId"],
+                        JobId = d["JobId"],
+                        JobName = d["JobName"],
+                        DateCreated = d["DateCreated"]
+                    };
 
-                appliedJobs.Add(local);
+                    appliedJobs.Add(local);
+                }
             }
+            
             return appliedJobs as List<T>;
+        }
+
+        public T Member_ConvertToLocalEntity<T>(dynamic data) where T : class
+        {
+            MemberModel local = new MemberModel();
+            local.Id = data["id"];
+            local.SiteId = data["siteId"];
+            //Type = data["Type"],
+            local.FirstName = data["firstName"];
+            local.Surname = data["surname"];
+            local.Email = data["email"];
+            local.DateCreated = data["dateCreated"];
+            local.Status = data["status"];
+            local.UserId = data["userId"];
+            local.Data = data["data"];
+            local.ResumeFiles = data["resumeFiles"];
+
+            return local as T;
+        }
+
+        public dynamic Member_ConvertToAPIEntity(MemberModel local)
+        {
+            
+            dynamic apiObj = new
+            {
+                id = local.Id,
+                siteId = local.SiteId,
+                //Type = data["Type"],
+                firstName  = local.FirstName,
+                surname = local.Surname,
+                email = local.Email,
+                dateCreated = local.DateCreated,
+            status = local.Status,
+            userId = local.UserId,
+            data = local.Data,
+                resumeFiles = local.ResumeFiles
+        };
+
+            return apiObj;
         }
 
     }

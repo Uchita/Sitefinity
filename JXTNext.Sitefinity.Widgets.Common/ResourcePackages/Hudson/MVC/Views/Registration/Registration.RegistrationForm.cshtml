@@ -51,7 +51,7 @@
                     <div class="login-border">
                         <div class="width-limit">
                             <h2>@Html.Resource("Registration")</h2>
-                            <p>Create an account to receive job alerts to track your applications!</p>
+                            <p>@Html.Resource("RegistrationResourcesDescription")</p>
                         </div>
 
                         @if (!string.IsNullOrEmpty(ViewBag.Error))
@@ -75,7 +75,7 @@
                         <div class="field-wrapper">
                             <div class="row">
                                 <div class="col-md-4 text-right">
-                                    <p class="form-label">Name *</p>
+                                    <p class="form-label">@Html.Resource("Name", "LoginFormResources")*</p>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -92,7 +92,7 @@
                             <div class="row">
                                 <div class="col-md-4 text-right">
                                     <p class="form-label">
-                                        Email*
+                                        @Html.Resource("Email", "LoginFormResources")*
                                     </p>
                                 </div>
                                 <div class="col-md-8">
@@ -111,14 +111,14 @@
                             <div class="row">
                                 <div class="col-md-4 text-right">
                                     <p class="form-label">
-                                        @Html.Resource("Password")<span>*</span>
+                                        @Html.Resource("Password","Labels")<span>*</span>
                                     </p>
                                 </div>
                                 <div class="col-md-8">
-                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Choose password", required = "required", pattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title = "Your password must contain at least one number, one uppercase and lowercase letter, and 8 or more characters." })
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Choose password", required = "required", pattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title = Html.Resource("passwordRequirementMsg", "Labels") })
 
                                     <span class="text-muted">
-                                        <em>Password must contain 8 characters or more, 1 uppercase letter, 1 lowercase letter and 1 number</em><br />&nbsp;
+                                        <em>@Html.Resource("passwordRequirementMsg", "Labels")</em><br />&nbsp;
                                     </span>
 
                                     @if (Html.ValidationMessageFor(m => m.Password) != null)
@@ -143,7 +143,7 @@
                                 <div class="row">
                                     <div class="col-md-4 text-right">
                                         <p class="form-label">
-                                            @Html.Resource("ReTypePassword") *
+                                            @Html.Resource("ReTypePassword")*
                                         </p>
                                     </div>
                                     <div class="col-md-8">
@@ -151,7 +151,7 @@
                                         @if (Html.ValidationMessageFor(m => m.ReTypePassword) != null)
                                         {
                                             <div class="has-error">
-                                                <span class="help-block">@Html.ValidationMessageFor(m => m.ReTypePassword)</span>
+                                                <span class="help-block alert alert-danger">@Html.ValidationMessageFor(m => m.ReTypePassword, Html.Resource("ConfirmPasswordErrorMsg", "ErrorMessages"))</span>
                                             </div>
                                         }
                                     </div>
@@ -207,7 +207,7 @@
                                 <div class="col-md-4"></div>
                                 <div class="col-md-8">
                                     <div class="checkbox clearfix">
-                                        <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required="" title="Please agree to our privacy policy" oninput="setCustomValidity(''); setCustomValidity('Please agree to our privacy policy');">
+                                        <input name="privacypolicy" title="Please agree to Hudson's privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Please agree to Hudson\'s privacy policy');" type="checkbox" value="agree">
                                         <span class="checkbox-icon fas fa-check"></span>
                                         I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
                                     </div>

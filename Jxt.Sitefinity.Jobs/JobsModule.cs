@@ -61,7 +61,7 @@ namespace Jxt.Sitefinity.Jobs
         {
             base.Install(initializer);
         }
-        
+
         public override void Upgrade(SiteInitializer initializer, Version upgradeFrom)
         {
         }

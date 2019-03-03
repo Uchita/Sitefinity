@@ -22,18 +22,18 @@
 
     <div class="form-group" data-ng-repeat="row in rows">
         <div class="row">
-            <div>
+            <div class="col-sm-6">
                 <select class="form-control" ng-model="row.ControlType" ng-options="x for x in componentTypeList" ng-change="onControlTypeChange(row)">
                     <option value="" disabled selected ng-show="!row.ControlType">-- Select Control Type --</option>
                 </select>
             </div>
-            <div>
+            <div class="col-sm-6">
                 <select class="form-control" ng-model="row.FilterType" ng-options="x for x in FilterTypes" ng-change="onFilterChange(row)" ng-disabled="row.ControlType == 'Map Search' || row.ControlType == 'TextBox'">
                     <option value="" disabled selected ng-show="!row.FilterType">-- Select Filter Type --</option>
                 </select>
             </div>
 
-            <div>
+            <div class="col-sm-6">
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle form-control text-left" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-disabled="row.ControlType == 'Map Search' || row.ControlType == 'TextBox'">
                         --- Select Values ---
@@ -45,14 +45,14 @@
                     </ul>
                 </div>
             </div>
-            <div>
+            <div class="col-sm-6">
                 <select class="form-control" ng-model="row.DefaultValue" ng-options="x for x in row.ddlList" ng-change="onDefaultValueChange()" ng-show="false" ng-disabled="row.ControlType == 'Map Search' || row.ControlType == 'TextBox'"></select>
             </div>
-            <div>
+            <div class="col-sm-6">
                 <input type="text" ng-model="row.PlaceholderText" class="form-control" placeholder="Enter Placeholder text" ng-disabled="row.ControlType == 'Map Search'" />
             </div>
 
-            <div>
+            <div class="button-wrapper col-sm-12">
                 <button class="btn btn-danger" id="row.ID" ng-click="removeRow(row.RowId)">
                     @Html.Resource("JobParamDelete", "JobSearchResources")
                 </button>

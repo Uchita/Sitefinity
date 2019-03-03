@@ -11,7 +11,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
     {
         public int PageSize { get; set; }
         public int PageNumber { get; set; }
-
+        public StatusSearch FieldSearches { get; set; }
+        public RangeSearch FieldRanges { get; set; }
         public ConsultantIdentitySearch ConsultantSearchIdentity { get; set; }
         public List<KeywordSearch> KeywordsSearchCriteria { get; set; }
         public List<IClassificationSearch> ClassificationsSearchCriteria { get; set; }
@@ -30,6 +31,9 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
         public List<JobDetailsFullModel> SearchResults { get; set; }
         [JsonProperty(PropertyName = "searchResultsFilters")]
         public List<JobFilterRoot> SearchResultsFilters { get; set; }
+
+        [JsonProperty(PropertyName = "SelectedFilters")]
+        public List<String> SelectedFilters { get; set; }
     }
 
     public enum SearchSortBy
@@ -39,7 +43,25 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
         A_to_Z,
         Z_to_A,
         Salary_High_to_Low,
-        Salary_Low_to_High
+        Salary_Low_to_High,
+        Relevance
+    }
+
+
+    public class DateRange
+    {
+        public long LowerRange { get; set; }
+    }
+
+
+    public class RangeSearch
+    {
+        public DateRange ExpiryDate { get; set; }
+    }
+
+    public class StatusSearch
+    {
+        public int Status { get; set; }
     }
 
     public class KeywordSearch

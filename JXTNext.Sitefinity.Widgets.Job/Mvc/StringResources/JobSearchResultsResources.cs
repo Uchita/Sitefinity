@@ -84,6 +84,34 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets phrase: Where to display email job?
+        /// </summary>
+        [ResourceEntry("DisplayEmailJob",
+            Value = "Where to display email job?",
+            Description = "phrase : Where to display email job?")]
+        public string DisplayEmailJob
+        {
+            get
+            {
+                return this["DisplayEmailJob"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: This is the page where you have dropped email job widget
+        /// </summary>
+        [ResourceEntry("DropEmailJob",
+            Value = "This is the page where you have dropped email job widget",
+            Description = "phrase : This is the page where you have dropped email job widget")]
+        public string DropEmailJob
+        {
+            get
+            {
+                return this["DropEmailJob"];
+            }
+        }
+
+        /// <summary>
         /// Gets phrase: Page Size for the job search results
         /// </summary>
         [ResourceEntry("PageSize",
@@ -110,6 +138,21 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
                 return this["SortOrder"];
             }
         }
+
+        /// <summary>
+        /// Gets phrase: Sort By Relevance for the job search results
+        /// </summary>
+        [ResourceEntry("SortByRelevance",
+            Value = "Sort by – Relevance",
+            Description = "phrase : Sort job search results by relevance")]
+        public string SortByRelevance
+        {
+            get
+            {
+                return this["SortByRelevance"];
+            }
+        }
+
 
         /// <summary>
         /// Gets phrase: Page Size for the job search results

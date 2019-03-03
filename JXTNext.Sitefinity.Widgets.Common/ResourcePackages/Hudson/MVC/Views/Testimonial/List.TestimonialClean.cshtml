@@ -35,7 +35,7 @@
             background:transparent;
         }
 </style>
-<div class="testimonials-slider clean-slider" style="">
+<div class="testimonials-slider clean-slider @Model.CssClass" style="">
     <div class="">
         <div class="row">
             <div class="col-md-12">
@@ -43,10 +43,10 @@
                     @foreach (var item in Model.Items)
                     {
                         <div>
-                            <div class="quote"><span>&ldquo;</span></div>
+                            <div class="quote"><span></span></div>
                             <div class="testimonial">@item.Fields.Quote</div>
                             <div class="testimonial-author">@item.Fields.By</div>
-                            <div class="quote text-right"><span>&rdquo;</span></div>
+                            <div class="quote text-right"><span></span></div>
                         </div>
                     }
                 </div>

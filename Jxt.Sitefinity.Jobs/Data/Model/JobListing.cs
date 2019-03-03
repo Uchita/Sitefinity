@@ -1,8 +1,4 @@
-﻿using System;
-using System.Runtime.Serialization;
-using Telerik.OpenAccess;
-using Telerik.Sitefinity;
-using Telerik.Sitefinity.GenericContent.Model;
+﻿using Telerik.Sitefinity;
 
 namespace Jxt.Sitefinity.Jobs.Data.Model
 {

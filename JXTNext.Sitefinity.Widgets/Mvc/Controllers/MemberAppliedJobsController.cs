@@ -30,7 +30,7 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
         private string templateName = "List";
 
         MemberAppliedJobBC _memberAppliedJobBC;
-
+        IBusinessLogicsConnector _blConnector;
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
         /// </summary>
@@ -38,15 +38,24 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
         public string TemplateName { get => this.templateName; set => this.templateName = value; }
         public string JobDetailsPageId { get; set; }
 
-        public MemberAppliedJobsController(MemberAppliedJobBC memberAppliedJobBC)
+        public MemberAppliedJobsController(MemberAppliedJobBC memberAppliedJobBC, IBusinessLogicsConnector blConnector)
         {
             _memberAppliedJobBC = memberAppliedJobBC;
+            _blConnector = blConnector;
         }
 
         // GET: Applied Jobs
         public ActionResult Index()
         {
             bool GetListSuccess = _memberAppliedJobBC.GetList(out List<MemberAppliedJobItem> displayItems);
+
+            foreach (var job in displayItems)
+            {
+                IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = job.JobId };
+                IGetJobListingResponse jobListingResponse = _blConnector.GuestGetJob(jobListingRequest);
+                
+                job.ClassificationURL = jobListingResponse.Job?.ClassificationURL;
+            }
             ViewBag.JobDetailsPageUrl = SitefinityHelper.GetPageUrl(this.JobDetailsPageId);
 
             if (GetListSuccess)
@@ -58,6 +67,7 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
             return null;
         }
 
+       
         protected override void HandleUnknownAction(string actionName)
         {
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");

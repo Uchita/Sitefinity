@@ -1287,7 +1287,7 @@ header {
                 &.open, &.active, .active {
                     > a {
                         //background: #e1e1e1;
-                        color: $global-text-color;
+                        color: $brightColor;
                     }
                 }
 
@@ -1326,7 +1326,7 @@ header {
                         padding: 15px 30px 16px 0;
                         color: $brightColor;
                         font: 1.75rem/1.2 $font-family-regular;
-                        border-bottom: 1px solid $brightColor;
+                        /*border-bottom: 1px solid $brightColor;*/
                         letter-spacing: 0.05rem;
                     }
 
@@ -1374,6 +1374,7 @@ header {
                 a {
                     background: $global-headings-color;
                     color: $brightColor;
+                    border-bottom:none;
                 }
 
                 &.header-top-links {
@@ -1406,7 +1407,7 @@ header {
                 .header-top-social {
                     display: block;
                     padding: 16px 0;
-                    border-bottom: 1px solid $brightColor;
+                    /*border-bottom: 1px solid $brightColor;*/
                 }
 
                 ul {
@@ -2597,6 +2598,7 @@ address.info-box{
         }
     }
 }
+
 .left-block-shade {
     position: relative;
     z-index: 1;
@@ -2622,9 +2624,9 @@ address.info-box{
         display: flex;
     }
 
-    .caption {
+    /*.caption {
         padding: 50px 0 50px 50px;
-    }
+    }*/
 
     .bg-col {
         padding: 50px 0;
@@ -2642,6 +2644,54 @@ footer {
 
     .footer-bar {
         padding: 15px 0 !important;
+    }
+}
+/*About us Page*/
+.inside-left {
+    background-color: $global-text;
+    padding: 62px 62px 62px 0;
+
+    h2, p {
+        color: $brightColor;
+    }
+}
+
+.inside-right {
+    padding-top: 62px;
+    padding-left: 40px;
+}
+
+//Blog page styles
+
+.blog-post {
+    .list-unstyled {
+        padding-left: 0;
+    }
+
+    li {
+        margin-bottom: 71px;
+    }
+
+    h3 {
+        font-size: 30px;
+        margin: 0 0 20px 0;
+        font-family: $global-font-family;
+    }
+
+    .blog-text {
+        margin-bottom: 32px;
+    }
+}
+
+.blog-details {
+
+    h2 {
+        margin-bottom: 16px;
+    }
+
+    .text-muted {
+        margin-bottom: 19px;
+        font-size: 12px;
     }
 }
 

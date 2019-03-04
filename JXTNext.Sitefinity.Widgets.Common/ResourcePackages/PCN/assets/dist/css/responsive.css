@@ -730,6 +730,10 @@
         margin-top: 8px;
         margin-bottom: 15px;
     }
+
+    .login-form.sign-in-with .upload-section .text-right {
+        text-align: left;
+    }
 }
 
 
@@ -1022,6 +1026,11 @@
 
     .insta-gallery > div > a {
         width: 50%;
+    }
+
+    .applyjob-border {
+        border-right: none;
+        border-bottom: 1px solid #ccc;
     }
 }
 

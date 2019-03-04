@@ -2250,9 +2250,12 @@ button.read_btn:hover {
     }
 
         .job-holder a:hover,
-        .job-holder a:focus {
+        .job-holder a:focus,
+        .job-holder .save-job:hover,
+        .job-holder .save-job:focus {
             color: #8EDD2B;
             text-decoration: underline;
+            cursor: pointer;
         }
 /* Left */
 .horizontal-menu {
@@ -8003,8 +8006,8 @@ hr.space.mt-10 {
     top: -83px;
 }
 
-.btn-style-corner,
-.read_btn {
+body.doc-ready .btn-style-corner,
+body.doc-ready .read_btn {
     opacity: 1;
 }
 
@@ -8048,6 +8051,30 @@ hr.space.mt-10 {
 
 .search-top .alert {
     margin-bottom: 0;
+}
+
+.applyjob-border {
+    border-right: 1px solid #ccc;
+}
+
+.applyjob-socials .list-inline > li {
+    padding-left: 0;
+}
+
+.apply-with ul.list-inline li {
+    display: block;
+    margin-top: 15px;
+}
+
+.apply-with .btn-linkedin {
+    background-image: url(../images/logo-linkedin-84x21-21dp.png);
+    text-indent: -999px;
+    overflow: hidden;
+    width: 84px;
+    height: 21px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
 }
 
 @media print {

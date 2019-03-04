@@ -120,6 +120,9 @@
     <Content Include="ResourcePackages\PCN\assets\dist\images\icon-plus.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\PCN\assets\dist\images\logo-linkedin-84x21-21dp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\PCN\assets\dist\images\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    $("body").addClass("doc-ready");
     $(".btn-style-dropdown a").click(function () {
         $(this).closest(".dropdown").find(".selected-text").text($(this).text());
         $(".btn-style-dropdown a").removeClass("active-sort");

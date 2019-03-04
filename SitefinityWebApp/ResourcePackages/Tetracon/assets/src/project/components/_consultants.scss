@@ -315,9 +315,9 @@
 
 
 //
-.single-card {
+/*.single-card {
     max-width: 700px;
-    margin: 0 auto 3rem;
+    margin: 0 auto 3rem;*/
 
     .consultant {
         display: flex;
@@ -327,9 +327,9 @@
 
         .consultant-photo {
             display: block;
-            width: 60%;
+            /*width: 60%;*/
             max-width: 371px;
-            height: 371px;
+            /*height: 371px;*/
 
             img {
                 width: 100%;
@@ -386,7 +386,7 @@
             }
         }
     }
-}
+/*}*/
 
 .consultant-images{
     overflow: hidden;

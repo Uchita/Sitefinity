@@ -56,6 +56,26 @@
             true
         );
 
+        $scope.$watch(
+            'properties.RegistrationEmailTemplateName.PropertyValue',
+            function (newVal, oldVal) {
+                if (!!newVal && newVal !== oldVal) {
+                    $scope.properties.RegistrationEmailTemplateName.PropertyValue = JSON.stringify(newVal);
+                }
+            },
+            true
+        );
+
+        $scope.$watch(
+            'properties.RegistrationEmailTemplateId.PropertyValue',
+            function (newVal, oldVal) {
+                if (!!newVal && newVal !== oldVal) {
+                    $scope.properties.RegistrationEmailTemplateId.PropertyValue = newVal;
+                }
+            },
+            true
+        );
+
         propertyService.get()
             .then(function (data) {
                 $scope.properties = propertyService.toAssociativeArray(data.Items);

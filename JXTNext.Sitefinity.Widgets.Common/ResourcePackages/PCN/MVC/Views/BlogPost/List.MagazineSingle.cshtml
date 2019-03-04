@@ -77,11 +77,18 @@
                 <div class="white_panel">
                     <div class="sub">
                         <div class="image" style="background-image: url(@imageurl);"></div>
-                        <h4 class="sub_title"><a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a></h4>
-                        <div class="entry-meta">
+                        <h4 class="sub_title">
+                            <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">
+                                @Html.HtmlSanitize((string)item.Fields.Title).ToString().Substring(0, (item.Fields.Title.Length > 24) ? 24 : item.Fields.Title.Length)
+                            </a>
+                        </h4>
+                        <div class="entry-meta hidden">
                             <span class="date">@item.GetDateTime("PublicationDate", "MMM, yyyy")</span>
                         </div>
-                        <p class="blue_text">@Html.HtmlSanitize((string)item.Fields.Summary)</p>
+                        @*<p class="blue_text">@Html.HtmlSanitize((string)item.Fields.Summary)</p>*@
+                        <p class="blue_text">
+                            @Html.HtmlSanitize((string)item.Fields.Summary).ToString().Substring(0, (item.Fields.Summary.Length > 127) ? 127 : item.Fields.Summary.Length)
+                        </p>
 
                     </div>
                 </div>

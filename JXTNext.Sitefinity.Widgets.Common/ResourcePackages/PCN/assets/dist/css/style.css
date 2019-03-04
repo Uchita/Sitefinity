@@ -8042,6 +8042,14 @@ hr.space.mt-10 {
     display: block;
 }
 
+.filter_sidebar .dropdown-tree li:hover ul {
+    background-color: transparent;
+}
+
+.search-top .alert {
+    margin-bottom: 0;
+}
+
 @media print {
     body a[href]:after {
         content: "" !important;

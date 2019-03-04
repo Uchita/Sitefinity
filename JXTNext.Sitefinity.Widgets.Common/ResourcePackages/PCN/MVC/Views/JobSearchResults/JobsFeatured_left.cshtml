@@ -12,9 +12,9 @@
                         <a href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">@jobOffer.Title</a>
                     </h3>
                     <div class="entry-meta">
-                        <span class="author">Posted by @jobOffer.CustomData["CountryLocationArea[0].Filters[0].Value"]</span>
-                        <span class="sep">-</span>
-                        <span class="date">@jobOffer.DateCreated_Representation</span>
+                        <span class="author">@jobOffer.CustomData["CountryLocationArea[0].Filters[0].Value"]</span>
+                        @*<span class="sep">-</span>*@
+                        <div><span class="date">@jobOffer.DateCreated_Representation</span></div>
                     </div>
                 </div>
 

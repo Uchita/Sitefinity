@@ -47,8 +47,8 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
                         Log.Write("ProcessData Indeed indeedAPIResponse.SocialMediaProcessSuccess : ", ConfigurationPolicy.ErrorLog);
                         processedResponse.Success = true;
                         processedResponse.Email = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.Email;
-                        processedResponse.FirstName = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.FirstName;
-                        processedResponse.LastName = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.LastName;
+                        processedResponse.FirstName = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.FullName?.Split(' ').FirstOrDefault(); 
+                        processedResponse.LastName = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.FullName?.Split(' ').LastOrDefault();
                         processedResponse.PhoneNumber = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.PhoneNumber;
                         processedResponse.FileStream = indeedAPIResponse.IndeedJobApplication.IndeedResume.data;
                         processedResponse.FileName = indeedAPIResponse.IndeedJobApplication.IndeedResume.fileName;
@@ -61,7 +61,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
                                 string email = metaData[1];
                                 if (!string.IsNullOrEmpty(email))
                                 {
-                                    email = email.Trim(' ');
+                                    email = email.Trim();
                                     Log.Write("ProcessData Indeed this.isValidEmail(email): " + this.isValidEmail(email), ConfigurationPolicy.ErrorLog);
                                     Log.Write("ProcessData Indeed email: " + email, ConfigurationPolicy.ErrorLog);
                                     processedResponse.LoginUserEmail = this.isValidEmail(email) ? email : null;

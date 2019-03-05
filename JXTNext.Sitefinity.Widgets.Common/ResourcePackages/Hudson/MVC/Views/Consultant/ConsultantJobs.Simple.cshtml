@@ -19,7 +19,7 @@
                 <div class="featured-job-offer same-height-box">
                     <div class="job-offer-company text-right"><img alt="@jobOffer.Title" src="@defaultLogo"></div>
                     <div class="job-offer">
-                        <h3><a class="title-link" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">@jobOffer.Title</a></h3>
+                        <h3><a class="title-link" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID" title="@jobOffer.Title">@jobOffer.Title</a></h3>
                         @*@{
                                 var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(Math.Round(jobOffer.DateCreated / 1000d)).ToLocalTime()
                             }*@
@@ -32,7 +32,7 @@
                             @trimSummary
                         </p>
                     </div>
-                    <a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID"></a>
+                    <a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID" title="Read more"></a>
                 </div>
 
             </div>
@@ -47,6 +47,6 @@ else
 
 <div class="row row-see-more">
     <div class="col-md-12">
-        <div class="text-center"><a class="btn btn-default" href="@ViewBag.JobResultsPageUrl">View all jobs</a></div>
+        <div class="text-center"><a class="btn btn-default" href="@ViewBag.JobResultsPageUrl" title="View all jobs">View all jobs</a></div>
     </div>
 </div>

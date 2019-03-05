@@ -144,7 +144,7 @@
     <div class="contact-consultant row hidden" data-filtersector="@(string.Join(",",filterValues))" data-filterlocation="@OfficeLocationUrl">
 
         <div class="col-md-6">
-            <a class="contact-consultant-image" href="@navigateUrl?location=@OfficeLocationName">
+            <a class="contact-consultant-image" href="@navigateUrl?location=@OfficeLocationName" title="@item.Fields.ConsultantName">
                 @if (item.Fields.Pic != null)
                 {
                     imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(item.Fields.Pic.DataItem, "thumbcrop4");
@@ -171,22 +171,27 @@
                     <div class="contact-consultant-position">@Html.HtmlSanitize((string)item.Fields.Position)</div>
                 }
 
-                <div class="contact-consultant-contacts">
-                    @if (!string.IsNullOrWhiteSpace(item.Fields.Email))
-                    {
-                        <em class="far fa-envelope"></em><a href="mailto:@item.Fields.Email">@item.Fields.Email</a><br />
-                    }
-                    @if (!string.IsNullOrWhiteSpace(item.Fields.PhoneNumber))
-                    {
-                        <em class="fas fa-phone"></em><tel>@item.Fields.PhoneNumber</tel><br />
-                    }
-                    @if (!string.IsNullOrWhiteSpace(item.Fields.LinkedInProfileUrl))
-                    {
-                        <a href="@item.Fields.LinkedInProfileUrl" target="_blank" title="Go to LinkedIN Profile"><em class="fab fa-linkedin-in"></em>@item.Fields.LinkedInProfileName</a>
-                    }
-                </div>
+                @if (!string.IsNullOrWhiteSpace(item.Fields.Email) || !string.IsNullOrWhiteSpace(item.Fields.PhoneNumber) || !string.IsNullOrWhiteSpace(item.Fields.LinkedInProfileUrl))
+                {
+                    <div class="contact-consultant-contacts">
+                        @if (!string.IsNullOrWhiteSpace(item.Fields.Email))
+                        {
+                            <em class="far fa-envelope"></em><a href="mailto:@item.Fields.Email" title="Email at @item.Fields.Email">@item.Fields.Email</a><br />
+                        }
+                        @if (!string.IsNullOrWhiteSpace(item.Fields.PhoneNumber))
+                        {
+                            var consultantPhone = item.Fields.PhoneNumber.ToString().Replace(" ", "");
+                            <a href="tel:@consultantPhone" title="Call at @item.Fields.PhoneNumber"><em class="fas fa-phone"></em>@item.Fields.PhoneNumber</a><br />
+                        }
 
-                <a class="btn btn-primary" href="@navigateUrl?location=@OfficeLocationName">Contact me</a>
+                        @if (!string.IsNullOrWhiteSpace(item.Fields.LinkedInProfileUrl))
+                        {
+                            <a href="@item.Fields.LinkedInProfileUrl" target="_blank" title="Go to LinkedIN Profile"><em class="fab fa-linkedin-in"></em>@item.Fields.LinkedInProfileName</a>
+                        }
+                    </div>
+                }
+
+                <a class="btn btn-primary" href="@navigateUrl?location=@OfficeLocationName title="Contact me">Contact me</a>
             </div>
         </div>
 

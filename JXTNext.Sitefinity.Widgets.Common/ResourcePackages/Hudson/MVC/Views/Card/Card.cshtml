@@ -33,12 +33,12 @@ else if (!string.IsNullOrEmpty(Model.ActionName))
         {
             if (string.IsNullOrEmpty(Model.ActionName))
             {
-                <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-more" role="button"></a>
+                <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-more" role="button" title="Read more"></a>
             }
             else
             {
                 
-                <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn" role="button">@Model.ActionName</a>
+                <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn" role="button" title="Read more">@Model.ActionName</a>
             }
         }
     </div>

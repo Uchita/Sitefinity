@@ -19,7 +19,7 @@
 <div class="main-nav @Model.CssClass">
     @* @Html.Action("GetView", new { viewName = "Dropdown",  model= Model}) *@
 
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default">
 
         <div class="">
             <div class="navbar-header">
@@ -55,14 +55,28 @@
                     {
                         @MobileRootLevelNode(node)
                     }
-                    <li class="extra-mnu timesheet-mnu"><a href="/timesheets-and-payroll-process"><em class="far fa-calendar-alt"></em> Timesheets</a></li>
+                    <li class="extra-mnu timesheet-mnu"><a href="/timesheets-and-payroll-process" title="Timesheets"><em class="far fa-calendar-alt"></em> Timesheets</a></li>
                    
 
                     @* logged in out menu links *@
-                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="display:none;"><a href="/user-dashboard">@Html.Resource("LoggedAs", "LoginStatusExtendedResources") <span data-sf-role="sf-logged-in-name"></span></a></li>
-                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="display:none;"><a href="/sitefinity/signout?sts_signout=true">Logout</a></li>
+                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="display:none;"><a href="/user-dashboard" title="User Dashboard">@Html.Resource("LoggedAs", "LoginStatusExtendedResources") <span data-sf-role="sf-logged-in-name"></span></a></li>
+                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="display:none;"><a href="/sitefinity/signout?sts_signout=true" title="Log out">Logout</a></li>
 
-                    <li class="extra-mnu combine-mnu header-top-links" data-sf-role="sf-logged-out-view" style="display:none;"><a href="/register">Register</a> | <a href="/sign-in">Sign in</a></li>
+                    <li class="extra-mnu combine-mnu header-top-links" data-sf-role="sf-logged-out-view" style="display:none;"><a href="/register" title="Register">Register</a> | <a href="/sign-in" title="Sign in">Sign in</a></li>
+
+
+                    <!-- site selector -->
+                    <li class="dropdown extra-mnu">
+                        <a href="https://au.hudson.com/" title="Hudson Australia">Hudson AU</a>
+                        <span class="fas fa-angle-right custom-expander"></span>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://nz.hudson.com/" title="Hudson New Zealand" target="_blank">NZ</a></li>
+                            <li><a href="https://www.hudson.sg/" title="Hudson Singapore" target="_blank">SG</a></li>
+                            <li><a href="https://www.hudson.hk/" title="Hudson Hong kong" target="_blank">HK</a></li>
+                            <li><a href="https://www.hudson.cn/en-gb/" title="Hudson China" target="_blank">CN</a></li>
+                        </ul>
+                    </li>
+
                 </ul>
             </div>
         </div><!-- /.container-fluid -->
@@ -78,7 +92,7 @@
     if (node.ChildNodes.Count > 0)
     {
         <li class="dropdown @GetClass(node)">
-            <a href="@node.Url" target="@node.LinkTarget">@node.Title<span class="decoration"></span></a>
+            <a href="@node.Url" target="@node.LinkTarget" title="@node.Title">@node.Title<span class="decoration"></span></a>
             <div class="dropdown-menu-container">
                 <div class="dropdown-menu-columns">
                     <div class="dropdown-menu"></div>
@@ -111,10 +125,10 @@
                             }
 
                             <h4>Featured article</h4>
-                            <a href="@bestUrl" rel="@featuredArticle.DataItem">
+                            <a href="@bestUrl" title="@featuredArticle.Fields.Title">
                                 <div>
                                     <div class="dropdown-menu-featured-image">
-                                        <img src="@Html.Raw(featuredArticle.Fields.HeaderImage.Fields.MediaUrl)" />
+                                        <img src="@Html.Raw(featuredArticle.Fields.HeaderImage.Fields.MediaUrl)" alt="@featuredArticle.Fields.Title" />
                                     </div>
                                     <h5>@featuredArticle.Fields.Title</h5>
 
@@ -130,7 +144,7 @@
     }
     else
     {
-        <li class="@GetClass(node)"><a href="@node.Url" target="@node.LinkTarget">@node.Title</a></li>
+        <li class="@GetClass(node)"><a href="@node.Url" target="@node.LinkTarget" title="@node.Title">@node.Title</a></li>
     }
 }
 
@@ -142,7 +156,7 @@
         if (childNode.ChildNodes.Count > 0 && dept > 0)
         {
             <li class="dropdown-submenu @GetClass(childNode)" data-self-id="@childNode.OriginalSiteMapNode.Key.ToLower()">
-                <a href="@childNode.Url" target="@childNode.LinkTarget">
+                <a href="@childNode.Url" target="@childNode.LinkTarget" title="@childNode.Title">
                     @childNode.Title
                     <span class="right-caret"></span>
                 </a>
@@ -157,7 +171,7 @@
         else if (dept > 0)
         {
             <li class="@GetClass(childNode)">
-                <a href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
+                <a href="@childNode.Url" target="@childNode.LinkTarget" title="@childNode.Title">@childNode.Title</a>
             </li>
         }
     }
@@ -169,7 +183,7 @@
     <li class="dropdown @GetClass(node)">
         @if (node.ChildNodes.Count > 0)
         {
-            <a href="@node.Url" target="@node.LinkTarget">@node.Title</a>
+            <a href="@node.Url" target="@node.LinkTarget" title="@node.Title">@node.Title</a>
             <span class="fas fa-angle-right custom-expander"></span>
             <ul class="dropdown-menu">
                 @MobileSubLevelsRecursive(node)
@@ -177,7 +191,7 @@
         }
         else
         {
-            <a href="@node.Url" target="@node.LinkTarget">@node.Title</a>
+            <a href="@node.Url" target="@node.LinkTarget" title="@node.Title">@node.Title</a>
         }
     </li>
 }
@@ -189,7 +203,7 @@
         if (childNode.ChildNodes.Count > 0)
         {
             <li class="dropdown dropdown-@GetClass(childNode)">
-                <a href="@childNode.Url" target="@childNode.LinkTarget">
+                <a href="@childNode.Url" target="@childNode.LinkTarget" title="@childNode.Title">
                     @childNode.Title
                 </a>
                 <span class="fas fa-angle-right custom-expander"></span>
@@ -201,7 +215,7 @@
         else
         {
             <li class="@GetClass(childNode)">
-                <a href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
+                <a href="@childNode.Url" target="@childNode.LinkTarget" title="@childNode.Title">@childNode.Title</a>
             </li>
         }
     }

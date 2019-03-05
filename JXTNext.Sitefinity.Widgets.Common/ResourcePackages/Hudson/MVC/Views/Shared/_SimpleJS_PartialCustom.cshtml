@@ -5,7 +5,7 @@
 {
 <div class="filter-outer-wrapper left-sidebar visible-hidden">
     <div class="form-group keywordfilter">
-        <label><strong>Keywords:</strong></label>
+        <label for="selectedkeywordsfilter"><strong>Keywords:</strong></label>
         <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" placeholder="Search keywords" /></div>
     </div>
     <div class="filter-toggle"><span class="btn btn-primary">@Html.Resource("JobFilterToggleBtn")</span></div>
@@ -215,9 +215,6 @@
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
             prefixIdText = @Html.Raw(Json.Encode(ViewBag.PrefixIdsText));
 
-            console.log(filterData);
-            console.log(prefixIdText);
-
             $.each(filterData, function (index, item) {
                 if (item.Name == 'Salary') {
                     isSalaryExists = true;
@@ -257,7 +254,7 @@
             //onpage load checking if any filter is selected
             function checkFilterCheck() {
                 //checking keyword
-                if (tempKeyword != "") {
+                if ($("#selectedkeywordsfilter").val() != "") {
                     return true;
                 }
                 //checking checkboxes selected
@@ -268,12 +265,6 @@
                 if ($('.SalaryRangeSelect').val() != -1) {
                     return true;
                 }
-            }
-
-            if (checkFilterCheck()) {
-                $("#sortOrder").val("Relevance");
-            } else {
-                $("#sortOrder").val("Recent");
             }
 
             //getting the custom filter selected from the widget in cms
@@ -329,8 +320,13 @@
                 }
 
                 filterModel.Keywords = encodeURIComponent($("#selectedkeywordsfilter").val());
-                if ($("#pager li a").length) {
-                    filterModel.Page = "1";
+                filterModel.Page = "1";
+                
+
+                if (checkFilterCheck()) {
+                    $("#sortOrder").val("Relevance");
+                } else {
+                    $("#sortOrder").val("Recent");
                 }
                 
                 filterModel.SortBy = $("#sortOrder").val();// We need to persist the sort order selected in job search results

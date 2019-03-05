@@ -164,8 +164,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
                 IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = jobId.Value };
                 IGetJobListingResponse jobListingResponse = _BLConnector.GuestGetJob(jobListingRequest);
-                long expiryDate = (long)DateTime.Now.ToUniversalTime().Subtract(UnixEpoch).TotalMilliseconds;
-                if (jobListingResponse.Job != null && jobListingResponse.Job.ExpiryDate > expiryDate)
+                
+                if (jobListingResponse.Job != null && !jobListingResponse.Job.IsDeleted)
                 {
 
                     viewModel.JobDetails = jobListingResponse.Job;
@@ -280,9 +280,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
                 else
                 {
-                    if(jobListingResponse.Job!= null && jobListingResponse.Job.ExpiryDate <= expiryDate)
+                    if(jobListingResponse.Job!= null && jobListingResponse.Job.IsDeleted)
                     {
-                        return Content("Job is Expired");
+                        return Content("This Job is no longer available!");
                     }
                     else
                     {
@@ -356,9 +356,15 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             try
             {
+                IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = jobId };
+                IGetJobListingResponse jobListingResponse = _BLConnector.GuestGetJob(jobListingRequest);
+                long expiryDate = (long)DateTime.Now.ToUniversalTime().Subtract(UnixEpoch).TotalMilliseconds;
+                bool isJobExpired = false;
+                if (jobListingResponse.Job != null && jobListingResponse.Job.ExpiryDate <= expiryDate)
+                    isJobExpired = true;
                 bool isJobApplied = _isMemberAppliedJob(jobId);
-
-                return new JsonResult { Data = isJobApplied };
+                var result = new { IsJobExpired  = isJobExpired, IsJobApplied = isJobApplied};
+                return new JsonResult { Data = result };
             }
             catch (Exception ex)
             {

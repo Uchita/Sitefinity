@@ -2550,6 +2550,20 @@ address.info-box{
     position: relative;
     z-index: 1;
 
+    .left-col {
+        padding-right: 52px;
+    }
+
+    .right-col {
+        padding-left: 52px;
+
+        &.inverse{
+            p, h2 {
+                color:#fff;
+            }
+        }
+    }
+
 
     &:after {
         content: "";
@@ -2592,8 +2606,8 @@ address.info-box{
         }
 
         .board-members-row {
-            [class*="col-"]{
-                padding:0;
+            [class*="col-"] {
+                padding: 0;
             }
         }
     }
@@ -2614,7 +2628,7 @@ address.info-box{
         bottom: 0;
         height: 100%;
         display: block;
-        left: 0;
+        right: 0;
         width: calc(100% - 75%);
         z-index: -1;
         top: 0;
@@ -2648,17 +2662,19 @@ footer {
 }
 /*About us Page*/
 .inside-left {
-    background-color: $global-text;
     padding: 62px 62px 62px 0;
+
+    
+}
+
+.inside-right {
+    background-color: $global-text;
+    padding-top: 62px;
+    padding-left: 40px;
 
     h2, p {
         color: $brightColor;
     }
-}
-
-.inside-right {
-    padding-top: 62px;
-    padding-left: 40px;
 }
 
 //Blog page styles

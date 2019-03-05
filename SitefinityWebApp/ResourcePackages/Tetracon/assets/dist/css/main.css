@@ -9005,6 +9005,12 @@ address.info-box {
 .half-block-shade {
   position: relative;
   z-index: 1; }
+  .half-block-shade .left-col {
+    padding-right: 52px; }
+  .half-block-shade .right-col {
+    padding-left: 52px; }
+    .half-block-shade .right-col.inverse p, .half-block-shade .right-col.inverse h2 {
+      color: #fff; }
   .half-block-shade:after {
     content: "";
     background: #666666;
@@ -9046,7 +9052,7 @@ address.info-box {
     bottom: 0;
     height: 100%;
     display: block;
-    left: 0;
+    right: 0;
     width: calc(100% - 75%);
     z-index: -1;
     top: 0; }
@@ -9067,14 +9073,14 @@ footer {
 
 /*About us Page*/
 .inside-left {
-  background-color: #666666;
   padding: 62px 62px 62px 0; }
-  .inside-left h2, .inside-left p {
-    color: #fff; }
 
 .inside-right {
+  background-color: #666666;
   padding-top: 62px;
   padding-left: 40px; }
+  .inside-right h2, .inside-right p {
+    color: #fff; }
 
 .blog-post .list-unstyled {
   padding-left: 0; }

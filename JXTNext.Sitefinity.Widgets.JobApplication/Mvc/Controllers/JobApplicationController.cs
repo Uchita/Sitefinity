@@ -434,11 +434,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
 
-            EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, ovverideEmail),
-                                                                                                new EmailTarget(applyJobModel.ContactDetails, applyJobModel.ApplicationEmail),
-                                                                                                this.AdvertiserEmailTemplateEmailSubject,
-                                                                                                htmlAdvertiserEmailContent, emailAttachments);
-            
+            EmailNotificationSettings advertiserEmailNotificationSettings = null;
 
             Log.Write($"currentIdentity.IsAuthenticated value is {currentIdentity.IsAuthenticated}", ConfigurationPolicy.ErrorLog);
             if (currentIdentity.IsAuthenticated)
@@ -448,6 +444,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                                                                                                 new EmailTarget(SitefinityHelper.GetUserFirstNameById(currentIdentity.UserId), ovverideEmail),
                                                                                                 this._emailTemplateTitle,
                                                                                                 htmlEmailContent,null);
+
+                advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(SitefinityHelper.GetUserFullNameById(currentIdentity.UserId), ovverideEmail),
+                                                                                                new EmailTarget(applyJobModel.ContactDetails, applyJobModel.ApplicationEmail),
+                                                                                                this.AdvertiserEmailTemplateEmailSubject,
+                                                                                                htmlAdvertiserEmailContent, emailAttachments);
+
             }
             else
             {
@@ -458,15 +460,27 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                                                                                                 new EmailTarget(SitefinityHelper.GetUserFirstNameById(ClaimsManager.GetCurrentIdentity().UserId), ovverideEmail),
                                                                                                 this._emailTemplateTitle,
                                                                                                 htmlEmailContent, null);
+
+                    advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(SitefinityHelper.GetUserFullNameById(ClaimsManager.GetCurrentIdentity().UserId), ovverideEmail),
+                                                                                                new EmailTarget(applyJobModel.ContactDetails, applyJobModel.ApplicationEmail),
+                                                                                                this.AdvertiserEmailTemplateEmailSubject,
+                                                                                                htmlAdvertiserEmailContent, emailAttachments);
+
                 }
                 else
                 {
-                    new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
+                    emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(string.Empty, ovverideEmail),
                                                                                                 this._emailTemplateTitle,
                                                                                                 htmlEmailContent, null);
+
+                    advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, ovverideEmail),
+                                                                                                new EmailTarget(applyJobModel.ContactDetails, applyJobModel.ApplicationEmail),
+                                                                                                this.AdvertiserEmailTemplateEmailSubject,
+                                                                                                htmlAdvertiserEmailContent, emailAttachments);
+
                 }
-                
+
             }
             
             // CC and BCC emails

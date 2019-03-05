@@ -8063,18 +8063,22 @@ body.doc-ready .read_btn {
 
 .apply-with ul.list-inline li {
     display: block;
-    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .apply-with .btn-linkedin {
     background-image: url(../images/logo-linkedin-84x21-21dp.png);
     text-indent: -999px;
     overflow: hidden;
-    width: 84px;
+    min-width: 189px;
     height: 21px;
-    background-size: cover;
+    background-size: auto;
     background-repeat: no-repeat;
     display: inline-block;
+    border: 1px solid #004f6e;
+    padding: 15px;
+    background-position: center;
+    border-radius: 5px;
 }
 
 @media print {

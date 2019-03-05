@@ -513,8 +513,12 @@
     }
 }
 
-.backtoresult{
+.backtoresult {
     margin-bottom: 25px;
+
+    a {
+        color: $global-text-color;
+    }
 } 
 
 .spt{

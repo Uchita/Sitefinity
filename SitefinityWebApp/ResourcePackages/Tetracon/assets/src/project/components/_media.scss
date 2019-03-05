@@ -865,14 +865,31 @@
 /*#region Phones*/
 @media (max-width: 767px) {
     //About-Us
+    .half-block-shade {
+        &:after {
+            display: none;
+        }
+
+        .row {
+            display: block;
+        }
+        .left-col {
+        padding: 20px;
+    }
+
+    .right-col {
+        padding: 20px;
+        }
+    }
     .left-block-shade {
         &:after {
-            display:none;
+            display: none;
         }
+
         .row {
-            display:block;
+            display: block;
         }
-        }
+    }
     .inside-right {
         padding: 20px;
     }

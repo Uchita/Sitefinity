@@ -9005,11 +9005,17 @@ address.info-box {
 .half-block-shade {
   position: relative;
   z-index: 1; }
+  .half-block-shade.page-section {
+    padding: 0; }
   .half-block-shade .left-col {
-    padding-right: 52px; }
+    padding: 50px 50px 50px 10px; }
   .half-block-shade .right-col {
-    padding-left: 52px; }
-    .half-block-shade .right-col.inverse p, .half-block-shade .right-col.inverse h2 {
+    padding: 50px 10px 50px 50px;
+    background: #666666; }
+    .half-block-shade .right-col.inverse p {
+      color: #fff;
+      margin-bottom: 10px; }
+    .half-block-shade .right-col.inverse h2 {
       color: #fff; }
   .half-block-shade:after {
     content: "";
@@ -10638,6 +10644,8 @@ ul.breadcrumb {
 
 .backtoresult {
   margin-bottom: 25px; }
+  .backtoresult a {
+    color: #7DC246; }
 
 .spt {
   margin: 0 10px; }
@@ -12178,6 +12186,14 @@ select.articles-order {
 
 /*#region Phones*/
 @media (max-width: 767px) {
+  .half-block-shade:after {
+    display: none; }
+  .half-block-shade .row {
+    display: block; }
+  .half-block-shade .left-col {
+    padding: 20px; }
+  .half-block-shade .right-col {
+    padding: 20px; }
   .left-block-shade:after {
     display: none; }
   .left-block-shade .row {

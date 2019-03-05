@@ -2550,16 +2550,26 @@ address.info-box{
     position: relative;
     z-index: 1;
 
+    &.page-section {
+        padding: 0;
+    }
+
     .left-col {
-        padding-right: 52px;
+        padding: 50px 50px 50px 10px;
     }
 
     .right-col {
-        padding-left: 52px;
+        padding: 50px 10px 50px 50px;
+        background: $page-section-bg-dark;
 
-        &.inverse{
-            p, h2 {
-                color:#fff;
+        &.inverse {
+            p {
+                color: $brightColor;
+                margin-bottom: 10px;
+            }
+
+            h2 {
+                color: $brightColor;
             }
         }
     }

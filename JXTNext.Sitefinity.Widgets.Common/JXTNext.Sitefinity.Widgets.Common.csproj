@@ -301,6 +301,9 @@
     <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\grid-3+3+3+3.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\grid-2+8+2.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\grid-3+6+3.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

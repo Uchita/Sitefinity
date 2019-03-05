@@ -5212,6 +5212,10 @@ p .btn-link {
     background: none !important;
 }
 
+    .filter_sidebar .sm-wrapper .dropdown-tree li a:hover {
+        color: #0088CF;
+    }
+
 .filter_sidebar .sm-wrapper .dropdown-tree ul ul li a {
     font-weight: 300;
     font-size: 13px;
@@ -5653,11 +5657,13 @@ p .btn-link {
     .owl-nav .owl-prev {
         left: -115px;
         background: url(../images/prev-icon.png) no-repeat center center;
+        background-size: 12px auto !important;
     }
 
     .owl-nav .owl-next {
         right: -115px;
         background: url(../images/next-icon.png) no-repeat center center;
+        background-size: 12px auto !important;
     }
 
     .featured-carousel .owl-dots {
@@ -5667,10 +5673,12 @@ p .btn-link {
 
 .owl-nav .owl-prev:hover, .owl-nav .owl-prev:focus {
     background: #0088CF url(../images/prev-iconH.png) no-repeat center center;
+    background-size: 12px auto !important;
 }
 
 .owl-nav .owl-next:hover, .owl-nav .owl-next:focus {
     background: #0088CF url(../images/next-iconH.png) no-repeat center center;
+    background-size: 12px auto !important;
 }
 
 .text-italic {
@@ -6330,6 +6338,11 @@ select.hs-input {
     font-size: 14px;
 }
 
+    .navbar.top-navbar .top-menus span.fa-linkedin {
+        position: relative;
+        top: -1px;
+    }
+
 .navbar.top-navbar .top-menus a:hover, .navbar.top-navbar .top-menus a:hover span {
     color: #0088CF !important;
 }
@@ -6421,7 +6434,7 @@ select.hs-input {
         font-size: 17px;
         font-weight: 500;
         line-height: 1.5;
-        margin-bottom: 19px;
+        margin-bottom: 11px;
     }
 
     .app-footer ul {
@@ -7298,6 +7311,10 @@ select.hs-input {
             max-height: 50px;
         }
 
+    .leader-list.alitis .leader-image img, .leader-list.cozwine .leader-image img {
+        max-width: 102px;
+    }
+
     .leader-list.bridge .leader-image img {
         max-height: 41px;
     }
@@ -7791,6 +7808,7 @@ select.hs-input {
         border-color: #0088CF;
         min-width: 40px;
         text-align: center;
+        border-radius: 3px;
     }
 
         .pagination > li > span.active, .pagination > li > span:hover, .pagination > li > span:focus,
@@ -7828,7 +7846,7 @@ select.hs-input {
     .pagination > li:last-child > span,
     .pagination > li:last-child > a, .pagination > li:first-child > span,
     .pagination > li:first-child > a {
-        border-radius: 0;
+        border-radius: 3px;
     }
 
 .dropdown-select .btn {
@@ -7965,6 +7983,10 @@ select.hs-input {
         text-transform: uppercase;
     }
 
+.blog-detail-col h4 {
+    margin-top: 20px;
+}
+
 .blog-detail-col p {
     margin-top: 10px;
     margin-bottom: 0px;
@@ -8010,6 +8032,28 @@ select.hs-input {
     font-weight: 600;
     margin-top: 0;
 }
+
+    .jobs-list h2 a {
+        color: #000;
+    }
+
+        .jobs-list h2 a:hover {
+            color: #0088CF;
+        }
+
+    .jobs-list h2 .new-serch {
+        display: block;
+        font-size: 16px;
+        padding-top: 13px;
+    }
+
+        .jobs-list h2 .new-serch a {
+            color: #0088CF;
+        }
+
+            .jobs-list h2 .new-serch a:hover {
+                color: #3465B0;
+            }
 
 .job-list {
     margin-bottom: 20px;
@@ -8964,6 +9008,10 @@ select.hs-input {
             cursor: pointer;
         }
 
+            .right-filter-sidebar .dropdown-tree ul li label:hover {
+                color: #0088CF;
+            }
+
             .right-filter-sidebar .dropdown-tree ul li label input[type="checkbox"] {
                 visibility: hidden;
                 opacity: 0;
@@ -9346,24 +9394,29 @@ body.feedback .parallax-mirror .parallax-slider {
     border: 1px solid #0088CF;
     height: 35px;
     width: 35px;
+    border-radius: 3px;
 }
 
 .blog-container ul.pagination a[aria-label="Next"] {
     background: url(../images/next-icon.png) no-repeat center center;
+    background-size: 12px auto !important;
 }
 
     .blog-container ul.pagination a[aria-label="Next"]:hover,
     .blog-container ul.pagination a[aria-label="Next"]:focus {
         background: #0088CF url(../images/next-iconH.png) no-repeat center center;
+        background-size: 12px auto !important;
     }
 
 .blog-container ul.pagination a[aria-label="Previous"] {
     background: url(../images/prev-icon.png) no-repeat center center;
+    background-size: 12px auto !important;
 }
 
     .blog-container ul.pagination a[aria-label="Previous"]:hover,
     .blog-container ul.pagination a[aria-label="Previous"]:focus {
         background: #0088CF url(../images/prev-iconH.png) no-repeat center center;
+        background-size: 12px auto !important;
     }
 
 @media(max-width: 348px) {

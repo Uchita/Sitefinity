@@ -231,9 +231,21 @@
 
     &-details {
         padding-right: 40px;
+
         table {
             margin: 30px 0;
             width: 100%;
+
+            td {
+                color: $global-text;
+                font-size: 16px;
+                font-size: 1.6rem;
+
+
+                span {
+                    color: $global-text-color;
+                }
+            }
         }
     }
 
@@ -244,12 +256,18 @@
             margin-bottom: 0;
         }
     }
-    &-advantages{
+
+    &-advantages {
         margin-bottom: 15px;
+        ul{
+            li {
+                list-style:disc;
+            }
+        }
     }
 
     &-sidebar {
-        
+
         h4 {
             margin-top: 30px;
             font-size: 16px;
@@ -264,9 +282,11 @@
     &-actions {
         padding-left: 0 !important;
         margin-bottom: 0;
-        li{
+
+        li {
             margin-bottom: 4px;
         }
+
         &.sf-social-share li {
             display: block;
         }
@@ -285,47 +305,53 @@
         }
     }
 
-    &-apply{
-        max-width: 400px;
+    &-apply {
+        /*max-width: 400px;*/
     }
-    &-contacts{
+
+    &-contacts {
         margin-bottom: 30px;
-        .job-metas{
-            .job-meta-label{
+
+        .job-metas {
+            .job-meta-label {
                 padding-right: 20px;
                 margin-bottom: 0;
                 width: 180px;
             }
+
             .job-meta-value {
                 width: calc(100% - 200px);
             }
-        } 
+        }
     }
 
     @media (max-width:991px) {
-    
+
         &-details {
             padding-right: 0;
             margin-bottom: 40px;
         }
     }
+
     @media (max-width:500px) {
-        &-contacts{
+        &-contacts {
             margin-bottom: 10px;
-            .job-metas{
+
+            .job-metas {
                 display: block;
-                .job-meta-label{
+
+                .job-meta-label {
                     width: 100%;
                     padding-right: 0;
                 }
-                .job-meta-value{
+
+                .job-meta-value {
                     margin-bottom: 10px;
                     width: 100%;
                 }
             }
         }
     }
-    
 }
 
 .page-wrapper {

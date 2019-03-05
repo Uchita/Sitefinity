@@ -42,7 +42,7 @@
             <div class="row job-offer-title">
             
                 <div class="col-md-12">
-                    <h1>@Model.JobDetails.Title</h1>
+                    <h2>@Model.JobDetails.Title</h2>
                 </div>
                 
             </div><div class="row job-offer-summary">
@@ -51,7 +51,8 @@
                         <tbody>
                             <tr>
                                 <td width="160">
-                                    <strong>Location</strong><strong>:</strong>
+                                    @*<strong>Location</strong><strong>:</strong>*@
+                                    Location:
                                 </td>
                                 <td>
                                     @{
@@ -67,7 +68,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <strong>Work type:</strong>
+                                    Work type:
                                 </td>
                                 <td>@Model.JobDetails.CustomData["WorkType.Filters[0].Value"]</td>
                             </tr>
@@ -81,7 +82,7 @@
                             {
                                 <tr>
                                     <td>
-                                        <strong>Salary:</strong>
+                                        Salary:
                                     </td>
                                     <td>
                                         @if (minSal == maxSal)

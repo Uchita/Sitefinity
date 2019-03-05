@@ -2520,7 +2520,7 @@
     <Content Include="ResourcePackages\Tetracon\MVC\Views\JobDetails\JobDetails.AppPage.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Tetracon\MVC\Views\JobDetails\JobDetails.Hudson.cshtml">
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\JobDetails\JobDetails.Tetracon.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Tetracon\MVC\Views\JobEmail\Default.cshtml">

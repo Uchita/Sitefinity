@@ -1,4 +1,5 @@
-﻿using JXTNext.Sitefinity.Common.Helpers;
+﻿using JXTNext.Sitefinity.Common.Extensions;
+using JXTNext.Sitefinity.Common.Helpers;
 using JXTNext.Sitefinity.Common.Models.Communications;
 using JXTNext.Sitefinity.Connector.BusinessLogics;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
@@ -297,7 +298,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             templateData.Job.Id = job.JobID;
             templateData.Job.Title = job.Title;
             templateData.Job.Url = jobUrl;
-            templateData.Domain = GeneralHelper.GetCurrentDomain(HttpContext);
+            templateData.Domain = HttpContext.GetCurrentDomain();
 
             var result = false;
 

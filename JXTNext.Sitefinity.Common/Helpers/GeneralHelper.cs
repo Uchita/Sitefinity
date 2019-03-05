@@ -32,11 +32,5 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return result;
         }
 
-        
-
-        public static string GetCurrentDomain(HttpContextBase httpContext)
-        {
-            return httpContext.Request.Url.Host.ToLower().Replace("www.", string.Empty);
-        }
     }
 }

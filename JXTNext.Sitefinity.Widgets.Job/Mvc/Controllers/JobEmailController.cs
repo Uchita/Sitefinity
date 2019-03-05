@@ -289,13 +289,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
                 jobUrl += "/" + job.JobID;
             }
-
+            string siteDomain = HttpContext.Request.Url.Host.ToLower().Replace("www.", string.Empty);
             dynamic templateData = new ExpandoObject();
 
             templateData.Job = new ExpandoObject();
             templateData.Job.Id = job.JobID;
             templateData.Job.Title = job.Title;
             templateData.Job.Url = jobUrl;
+            templateData.Domain = siteDomain;
 
             var result = false;
 

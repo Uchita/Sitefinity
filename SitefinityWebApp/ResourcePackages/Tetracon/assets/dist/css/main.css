@@ -10645,7 +10645,9 @@ ul.breadcrumb {
 .backtoresult {
   margin-bottom: 25px; }
   .backtoresult a {
-    color: #7DC246; }
+    color: #7DC246;
+    font-size: 16px;
+    font-size: 1.6rem; }
 
 .spt {
   margin: 0 10px; }

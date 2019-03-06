@@ -72,25 +72,29 @@
         {
             <img data-displaymode="Original" style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 50px; margin-top: 50px; width:100%;" src='@Model.Item.Fields.HeaderImage.Fields.MediaUrl' alt='@Model.Item.Fields.HeaderImage.Fields.AlternativeText' title='@Model.Item.Fields.HeaderImage.Fields.Title' />
         }
-        <div>
-            @{
-                if (Model.EnableSocialSharing)
-                {
-                    var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
-                    @Html.SocialShareOptions(item);
+            <div>
+                @{
+                    if (Model.EnableSocialSharing)
+                    {
+                        var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
+                        @Html.SocialShareOptions(item);
+                    }
                 }
-            }
-
-            <div class="article-description" @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
-
-            @{
-                if (Model.EnableSocialSharing)
-                {
-                    var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
-                    @Html.SocialShareOptions(item);
+                @using Telerik.Sitefinity.Modules.GenericContent;
+                @{
+                    DynamicLinksParser dynamicLinksParser = new DynamicLinksParser(false, true);
+                    var val = dynamicLinksParser.Apply(Model.Item.Fields.Content);
                 }
-            }
-        </div>
+                <div class="article-description" @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize(val)</div>               
+
+                @{
+                    if (Model.EnableSocialSharing)
+                    {
+                        var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
+                        @Html.SocialShareOptions(item);
+                    }
+                }
+            </div>
     </div>
 </div>
 

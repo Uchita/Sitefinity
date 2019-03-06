@@ -73,7 +73,8 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             {
                 // Logging this info for Indeed test
                 Log.Write("Social Handler Index Action Start : ", ConfigurationPolicy.ErrorLog);
-
+                string UrlReferral = null;
+                
                 // This is the CSS classes enter from More Options
                 ViewBag.CssClass = this.CssClass;
 
@@ -106,10 +107,13 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                     if (!code.IsNullOrEmpty())
                     {
                         result = _processSocialMediaSeekData.ProcessData(code, state, indeedJsonStringData);
+                        if (TempData["source"] != null && !string.IsNullOrWhiteSpace(TempData["source"].ToString()))
+                            UrlReferral = TempData["source"].ToString();
                     }
                     else if(code.IsNullOrEmpty() && !indeedJsonStringData.IsNullOrEmpty())
                     {
                         result = _processSocialMediaIndeedData.ProcessData(code, state, indeedJsonStringData);
+                        UrlReferral = result.JobSource;
                     }
                     else
                     {
@@ -142,7 +146,8 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 LastName = result.LastName,
                                 Email = result.Email,
                                 Password = "Password123",
-                                PhoneNumber = result.PhoneNumber
+                                PhoneNumber = result.PhoneNumber,
+                                IsNewUser = false
                             };
 
                             string overrideEmail = string.Empty;
@@ -157,7 +162,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 else
                                 {
                                     Log.Write("CurUser is null", ConfigurationPolicy.ErrorLog);
-                                    overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
+                                    overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, ref applicantInfo, true);
                                 }
                                 Log.Write("SitefinityHelper.IsUserLoggedIn() =" + SitefinityHelper.IsUserLoggedIn(), ConfigurationPolicy.ErrorLog);
                                 
@@ -170,7 +175,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                             {
 
                                 Log.Write("SitefinityHelper.IsUserLoggedIn() is false ", ConfigurationPolicy.ErrorLog);
-                                overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, applicantInfo, true);
+                                overrideEmail = _jobApplicationService.GetOverrideEmail(ref status, ref applicantInfo, true);
                             }
 
                             Log.Write("overrideEmail is : " + overrideEmail, ConfigurationPolicy.ErrorLog);
@@ -201,8 +206,11 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 string coverletterAttachmentPath = JobApplicationAttachmentUploadItem.GetAttachmentPath(attachments, JobApplicationAttachmentType.Coverletter);
                                 Log.Write("After cover letter GetAttachmentPath", ConfigurationPolicy.ErrorLog);
 
-                                string htmlEmailContent = this.GetEmailHtmlContent();
-                                string htmlAdvertiserEmailContent = this.GetAdevertiserEmailHtmlContent();
+                                string htmlEmailContent = this.GetEmailHtmlContent(this.EmailTemplateId);
+                                string htmlEmailSubject = this.GetEmailSubject(this.EmailTemplateId);
+                                string htmlAdvertiserEmailContent = this.GetEmailHtmlContent(this.AdvertiserEmailTemplateId);
+                                string htmlAdvertiserEmailSubject = this.GetEmailSubject(this.AdvertiserEmailTemplateId);
+                                
                                 Log.Write("After GetHtmlEmailContent", ConfigurationPolicy.ErrorLog);
                                 // Email notification settings
 
@@ -217,7 +225,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 }
 
 
-                                EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, overrideEmail),
+                                EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(result.FirstName+" "+ result.LastName, overrideEmail),
                                                                                                                     new EmailTarget(jobDetails.ContactDetails, jobDetails.ApplicationEmail),
                                                                                                                     this.AdvertiserEmailTemplateEmailSubject,
                                                                                                                     htmlAdvertiserEmailContent, emailAttachments);
@@ -230,6 +238,15 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                                                                                     this.EmailTemplateEmailSubject,
                                                                                                     htmlEmailContent,null);
 
+                                EmailNotificationSettings registrationNotificationsSettings = null;
+                                if (applicantInfo.IsNewUser && this.RegistrationEmailTemplateId != null)
+                                {
+                                    registrationNotificationsSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
+                                                                                                new EmailTarget(applicantInfo.FirstName, applicantInfo.Email),
+                                                                                                this.GetEmailSubject(this.RegistrationEmailTemplateId),
+                                                                                                this.GetEmailHtmlContent(this.RegistrationEmailTemplateId), null);
+                                }
+
                                 Log.Write("emailNotificationSettings after: ", ConfigurationPolicy.ErrorLog);
                                 // CC and BCC emails
                                 if (!this.EmailTemplateCC.IsNullOrEmpty())
@@ -238,6 +255,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     {
                                         emailNotificationSettings.AddCC(String.Empty, ccEmail);
                                         advertiserEmailNotificationSettings.AddCC(String.Empty, ccEmail);
+                                        registrationNotificationsSettings.AddCC(String.Empty, ccEmail);
                                     }
                                 }
 
@@ -247,6 +265,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     {
                                         emailNotificationSettings.AddBCC(String.Empty, bccEmail);
                                         advertiserEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
+                                        registrationNotificationsSettings.AddBCC(String.Empty, bccEmail);
                                     }
                                 }
 
@@ -262,7 +281,9 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                         EmailNotification = emailNotificationSettings,
                                         AdvertiserEmailNotification = advertiserEmailNotificationSettings,
                                         AdvertiserName = jobDetails.ContactDetails,
-                                        CompanyName = jobDetails.CompanyName
+                                        CompanyName = jobDetails.CompanyName,
+                                        UrlReferral = UrlReferral,
+                                        RegistrationEmailNotification = registrationNotificationsSettings
                                     },
                                     overrideEmail);
 
@@ -380,18 +401,19 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         }
 
 
-        private string GetEmailHtmlContent()
+        private string GetEmailHtmlContent(string emailTemplateId)
         {
             //return _jobApplicationService.GetHtmlEmailContent("6AB317D4-D674-4636-8481-014BC6F861E1", this.EmailTemplateProviderName, this._itemType);
-            return _jobApplicationService.GetHtmlEmailContent(this.EmailTemplateId, this.EmailTemplateProviderName, this._itemType);
+            return _jobApplicationService.GetHtmlEmailContent(emailTemplateId, this.EmailTemplateProviderName, this._itemType);
         }
 
-        private string GetAdevertiserEmailHtmlContent()
+        private string GetEmailSubject(string emailTemplateId)
         {
-            
-            //return _jobApplicationService.GetHtmlEmailContent("3DCBDCE5-F190-4FBA-BE51-074F2E034A04", this.AdvertiserEmailTemplateProviderName, this._itemType);
-            return _jobApplicationService.GetHtmlEmailContent(this.AdvertiserEmailTemplateId, this.AdvertiserEmailTemplateProviderName, this._itemType);
+            //return _jobApplicationService.GetHtmlEmailContent("6AB317D4-D674-4636-8481-014BC6F861E1", this.EmailTemplateProviderName, this._itemType);
+            return _jobApplicationService.GetHtmlEmailSubject(emailTemplateId, this.EmailTemplateProviderName, this._itemType);
         }
+
+        
 
         public string ItemType
         {
@@ -427,6 +449,15 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         public string AdvertiserEmailTemplateSenderName { get; set; }
         public string AdvertiserEmailTemplateSenderEmailAddress { get; set; }
         public string AdvertiserEmailTemplateEmailSubject { get; set; }
+
+
+        public string RegistrationEmailTemplateId { get; set; }
+        public string RegistrationEmailTemplateName { get; set; }
+        public string RegistrationEmailTemplateCC { get; set; }
+        public string RegistrationEmailTemplateBCC { get; set; }
+        public string RegistrationEmailTemplateSenderName { get; set; }
+        public string RegistrationEmailTemplateSenderEmailAddress { get; set; }
+        public string RegistrationEmailTemplateEmailSubject { get; set; }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private string templateName = "Simple";

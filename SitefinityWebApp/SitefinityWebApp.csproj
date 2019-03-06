@@ -1427,7 +1427,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>60876</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:30000/</IISUrl>
+          <IISUrl>http://localhost:60876/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

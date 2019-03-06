@@ -31,5 +31,6 @@ namespace JXTNext.Sitefinity.Common.Helpers
                           .ToArray());
             return result;
         }
+
     }
 }

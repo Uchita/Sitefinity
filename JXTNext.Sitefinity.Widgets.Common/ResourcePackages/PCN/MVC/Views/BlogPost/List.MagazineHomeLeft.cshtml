@@ -23,6 +23,7 @@
     var imageurl = "";
     var issue = "";
     var volume = "";
+    var volumematch = "";
     var volumenew = "";
     var issuenew = "";
     var issuetext = "";
@@ -51,7 +52,7 @@
     @foreach (var item in Model.Items)
     {
 
-        if (item.Fields.ItemDefaultUrl.Contains("magazine"))
+        if (item.Fields.ItemDefaultUrl.Contains("issues"))
         {
 
             foreach (var relatedItem in item.Fields.BlogImage)
@@ -69,31 +70,38 @@
             if (volume != volumenew)
             {
 
-                if (item.Fields.issue != null)
+                if (counter == 0)
                 {
-                    foreach (var taxonissue in item.GetFlatTaxons("issue"))
-                    {
-                        issuenew = taxonissue.Title.ToString().ToLower().Replace(" ", "-"); ;
-                    }
+                    volumematch = volumenew;
                 }
-                <div class="magazine-issue">
-                    <div class="bg-corner border-corner">
-                        <div class="bg-corner-inner">
-                            <div class="magazine-cover-img">
-                                <img src="@imageurl" alt="@item.Fields.Title">
-                                <div class="magazine-overlay">
-                                    <a class="magazine-title" @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a>
+                if (volumenew == volumematch)
+                {
+                    if (item.Fields.issue != null)
+                    {
+                        foreach (var taxonissue in item.GetFlatTaxons("issue"))
+                        {
+                            issuenew = taxonissue.Title.ToString().ToLower().Replace(" ", "-"); ;
+                        }
+                    }
+                    <div class="magazine-issue">
+                        <div class="bg-corner border-corner">
+                            <div class="bg-corner-inner">
+                                <div class="magazine-cover-img">
+                                    <img src="@imageurl" alt="@item.Fields.Title">
+                                    <div class="magazine-overlay">
+                                        <a class="magazine-title" @Html.InlineEditingFieldAttributes("Title", "ShortText") href="/magazine/issue?vol=@volume&issue=@issue">@item.Fields.Title</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="magazine-cover-content">
-                                <a href="@navigateUrl" class="magazine-vol-name">@volumenew - @issuenew</a>
-                                <div class="magazine-vol-date">@item.GetDateTime("PublicationDate", "MMM, yyyy")</div>
-                                <div class="issue-desc">@Html.HtmlSanitize((string)item.Fields.Summary)</div>
+                                <div class="magazine-cover-content">
+                                    <a href="/magazine/issue?vol=@volumenew&issue=@issuenew" class="magazine-vol-name" style="text-transform: capitalize;">@volumenew.ToLower().Replace("-", " ") - @issuenew.ToLower().Replace("-", " ")</a>
+                                    <div class="magazine-vol-date">@item.GetDateTime("PublicationDate", "MMM, yyyy")</div>
+                                    <div class="issue-desc">@Html.HtmlSanitize((string)item.Fields.Summary)</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
+                }
+                counter++;
             }
         }
     }

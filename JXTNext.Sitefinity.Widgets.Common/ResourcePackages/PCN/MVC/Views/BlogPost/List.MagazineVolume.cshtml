@@ -20,7 +20,7 @@
 @{
     BlogsManager blogsManager = BlogsManager.GetManager();
     var volval = Request.QueryString["vol"].ToString();
-
+    int counter = 0;
 }
 <div class="@Model.CssClass">
     <div class="container magazine-cover-wrap">
@@ -30,7 +30,7 @@
             </div>
             @foreach (var item in Model.Items)
             {
-                if (@item.Fields.ItemDefaultUrl.Contains("magazine"))
+                if (@item.Fields.ItemDefaultUrl.Contains("issues"))
                 {
                     if (item.Fields.volume != null)
                     {
@@ -64,11 +64,11 @@
                                             <div class="magazine-cover-img">
                                                 <img src="@imageurl" alt="@item.Fields.Title">
                                                 <div class="magazine-overlay">
-                                                    <a class="magazine-title" @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a>
+                                                    <a class="magazine-title" @Html.InlineEditingFieldAttributes("Title", "ShortText") href="/magazine/issue?vol=@volume&issue=@issue">@item.Fields.Title</a>
                                                 </div>
                                             </div>
                                             <div class="magazine-cover-content">
-                                                <a href="@navigateUrl" class="magazine-vol-name">@volumetext - @issuetext</a>
+                                                <a href="/magazine/issue?vol=@volume&issue=@issue" class="magazine-vol-name">@volumetext - @issuetext</a>
                                                 <div class="magazine-vol-date">@item.GetDateTime("PublicationDate", "MMM, yyyy")</div>
                                                 <div class="issue-desc">@Html.HtmlSanitize((string)item.Fields.Summary)</div>
                                             </div>
@@ -76,9 +76,16 @@
                                     </div>
                                 </div>
                             </div>
+                            counter++;
                         }
                     }
                 }
+            }
+            @if (counter == 0)
+            {
+                <div class="col-sm-12">
+                    <div class="alert alert-warning"><strong>No results found.</strong></div>
+                </div>
             }
         </div>
     </div>

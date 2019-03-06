@@ -9087,6 +9087,11 @@ footer {
   padding-left: 40px; }
   .inside-right h2, .inside-right p {
     color: #fff; }
+  .inside-right.inverse ul li {
+    list-style-type: none;
+    color: #fff; }
+    .inside-right.inverse ul li a {
+      color: #fff; }
 
 .blog-post .list-unstyled {
   padding-left: 0; }

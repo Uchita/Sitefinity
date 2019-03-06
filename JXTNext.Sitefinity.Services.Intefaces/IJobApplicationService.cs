@@ -10,11 +10,12 @@ namespace JXTNext.Sitefinity.Services.Intefaces
 {
     public interface IJobApplicationService
     {
-        string GetOverrideEmail(ref JobApplicationStatus status, ApplicantInfo applicantInfo, bool isSocialMedia = false);
+        string GetOverrideEmail(ref JobApplicationStatus status, ref ApplicantInfo applicantInfo, bool isSocialMedia = false);
         bool UploadFiles(List<JobApplicationAttachmentUploadItem> attachments);
         string GetHtmlEmailContent(string emailTemplateId, string emailTemplateProviderName, string itemType);
         List<JobApplicationAttachmentUploadItem> GetFiles(List<JobApplicationAttachmentUploadItem> attachments);
         bool DeleteFile(JobApplicationAttachmentUploadItem deletefile);
         Stream GetFileStreamFromAmazonS3(string srcLibName, int attachmentType, string id);
+        string GetHtmlEmailSubject(string emailTemplateId, string emailTemplateProviderName, string itemType);
     }
 }

@@ -253,9 +253,12 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 {
                                     foreach (var ccEmail in this.EmailTemplateCC.Split(';'))
                                     {
-                                        emailNotificationSettings.AddCC(String.Empty, ccEmail);
-                                        advertiserEmailNotificationSettings.AddCC(String.Empty, ccEmail);
-                                        registrationNotificationsSettings.AddCC(String.Empty, ccEmail);
+                                        if(emailNotificationSettings != null)
+                                            emailNotificationSettings.AddCC(String.Empty, ccEmail);
+                                        if (advertiserEmailNotificationSettings != null)
+                                            advertiserEmailNotificationSettings.AddCC(String.Empty, ccEmail);
+                                        if (registrationNotificationsSettings != null)
+                                            registrationNotificationsSettings.AddCC(String.Empty, ccEmail);
                                     }
                                 }
 
@@ -263,9 +266,12 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 {
                                     foreach (var bccEmail in this.EmailTemplateBCC.Split(';'))
                                     {
-                                        emailNotificationSettings.AddBCC(String.Empty, bccEmail);
-                                        advertiserEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
-                                        registrationNotificationsSettings.AddBCC(String.Empty, bccEmail);
+                                        if (emailNotificationSettings != null)
+                                            emailNotificationSettings.AddBCC(String.Empty, bccEmail);
+                                        if (advertiserEmailNotificationSettings != null)
+                                            advertiserEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
+                                        if (registrationNotificationsSettings != null)
+                                            registrationNotificationsSettings.AddBCC(String.Empty, bccEmail);
                                     }
                                 }
 

@@ -115,7 +115,7 @@
                 <div class="col-md-12">
                     <div class="flex sm-flex job-metas">
 
-                        <div class="job-meta-label"><strong>Reference Number:</strong></div>
+                        <div class="job-meta-label">Reference Number:</div>
                         <div id="job-refno" class="job-meta-value">
                             @Model.JobDetails.ReferenceNo
                         </div>
@@ -123,18 +123,18 @@
                         @{
                             if (Model.JobDetails.CustomData["ContactDetails"] != "")
                             {
-                                <div class="job-meta-label"><strong>Contact Details:</strong></div>
+                                <div class="job-meta-label">Contact Details:</div>
                                 <div class="job-meta-value">@Model.JobDetails.CustomData["ContactDetails"]</div>
                             }
                         }
 
 
-                        <div class="job-meta-label"><strong>Profession:&nbsp; </strong></div>
+                        <div class="job-meta-label">Profession:&nbsp;</div>
                         <div class="job-meta-value">
                             @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))
                         </div>
 
-                        <div class="job-meta-label"><strong>Company:</strong></div>
+                        <div class="job-meta-label">Company:</div>
                         <div class="job-meta-value">@Model.JobDetails.CustomData["CompanyName"]</div>
                         @*<tr><td><strong>Date:</strong></td><td>18/09/2016&nbsp; -&nbsp; 5:34pm</td></tr>*@
 

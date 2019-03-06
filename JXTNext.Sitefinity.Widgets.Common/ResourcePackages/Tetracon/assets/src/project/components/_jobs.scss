@@ -229,11 +229,27 @@
 }
 .job-offer {
 
+
     &-details {
         padding-right: 40px;
+        font-size: 16px;
+        font-size: 1.6rem;
+
         table {
-            margin: 30px 0;
+            /*margin: 30px 0;*/
             width: 100%;
+
+            td {
+                span {
+                    a {
+                        color: $global-text-color;
+                    }
+                }
+            }
+        }
+
+        p {
+            margin-bottom: 10px;
         }
     }
 
@@ -244,12 +260,13 @@
             margin-bottom: 0;
         }
     }
-    &-advantages{
+
+    &-advantages {
         margin-bottom: 15px;
     }
 
     &-sidebar {
-        
+
         h4 {
             margin-top: 30px;
             font-size: 16px;
@@ -264,9 +281,11 @@
     &-actions {
         padding-left: 0 !important;
         margin-bottom: 0;
-        li{
+
+        li {
             margin-bottom: 4px;
         }
+
         &.sf-social-share li {
             display: block;
         }
@@ -285,47 +304,58 @@
         }
     }
 
-    &-apply{
-        max-width: 400px;
+    &-apply {
+        /*max-width: 400px;*/
+        margin-top: 20px;
     }
-    &-contacts{
-        margin-bottom: 30px;
-        .job-metas{
-            .job-meta-label{
-                padding-right: 20px;
+
+    &-contacts {
+        margin-bottom: 10px;
+
+        .job-metas {
+            .job-meta-label {
+                padding-right: 0px;
                 margin-bottom: 0;
-                width: 180px;
+                width: 160px;
             }
+
             .job-meta-value {
                 width: calc(100% - 200px);
+
+                a {
+                    color: $global-text-color;
+                }
             }
-        } 
+        }
     }
 
     @media (max-width:991px) {
-    
+
         &-details {
             padding-right: 0;
             margin-bottom: 40px;
         }
     }
+
     @media (max-width:500px) {
-        &-contacts{
+        &-contacts {
             margin-bottom: 10px;
-            .job-metas{
+
+            .job-metas {
                 display: block;
-                .job-meta-label{
+
+                .job-meta-label {
                     width: 100%;
                     padding-right: 0;
                 }
-                .job-meta-value{
+
+                .job-meta-value {
                     margin-bottom: 10px;
                     width: 100%;
                 }
             }
         }
     }
-    
 }
 
 .page-wrapper {
@@ -352,7 +382,7 @@
                 height: 33px;
                 line-height: 1.1;
                 font-size: 1.4rem;
-                border-color: $global-highlight-color;
+                border-color: $global-links-color;
             }
         }
 
@@ -368,7 +398,7 @@
 
     .search-results {
         .job-holder {
-            border: 1px solid $global-highlight-color;
+            border: 1px solid $global-links-color;
             margin-top: 15px;
             transition: .2s;
             -webkit-transition: .2s;
@@ -391,7 +421,7 @@
                 }
 
                 .save-job {
-                    color: $global-highlight-color;
+                    color: $global-links-color;
                 }
 
                 a {
@@ -415,7 +445,7 @@
                 font-size: 1.6rem;
                 color: $global-text;
 
-               
+
 
                 .link-default {
                     font-size: 1.4rem;
@@ -548,14 +578,14 @@
 
 .upload-section{
     .box{
-        border: 1px solid $global-highlight-color;
+        border: 1px solid $global-links-color;
         padding: 10px;
         margin: 0;
     }
     .uploadfield-wrap{
         padding: 15px 0 5px;
         position: relative;
-        color: $global-highlight-color;
+        color: $global-links-color;
         text-align: center;
         width: 33%;
         float: left;
@@ -582,7 +612,7 @@
         }
         &:hover, &:focus{
             &::before{
-                color: $global-highlight-color;
+                color: $global-links-color;
             }
         }
         input[type="file"], button{
@@ -597,7 +627,7 @@
         .lbl{
             display: block;
             margin-top: -7px;
-            color: $global-highlight-color;
+            color: $global-links-color;
         }
         input[type="file"]:focus, button:focus{
             + .lbl{
@@ -710,16 +740,16 @@
             margin: 0 1px;
 
             a {
-                border: 1px solid $global-text-color;
-                color: $global-text-color;
+                border: 1px solid $global-links-color;
+                color: $global-links-color;
                 border-radius: 0 !important;
                 min-width: 2em;
                 display: inline-block;
 
                 &:hover, &:focus, &.active {
-                    background: $global-text-color;
+                    background: $global-links-color;
                     color: #fff;
-                    border-color: $global-text-color;
+                    border-color: $global-links-color;
                 }
 
                 &[disabled] {

@@ -142,7 +142,7 @@ blockquote{
     .btn {
         border: 1px solid $btn-secondary-color;
         border-radius: 0;
-        padding: 10px 25px;
+        padding: 8px 25px;
         font-size: 16px;
         font-size: 1.6rem;
         font-family: $font-family-bold;
@@ -262,10 +262,10 @@ blockquote{
 
     .btn-primary {
         border: 0;
-        padding: 10px 20px;
+        padding: 8px 20px;
         background: $btn-primary-bg;
         color: $btn-primary-color;
-        line-height: 25px;
+        line-height: 24px;
 
         &:hover, &:focus {
             background: $btn-primary-hover-bg;
@@ -356,7 +356,7 @@ blockquote{
     }
 
     .form-control {
-        height: 45px;
+        height: 40px;
         color: #000;
         font-family: $font-family-regular;
         font-size: 1.4rem;
@@ -465,7 +465,7 @@ blockquote{
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            height: 44px;
+            height: 40px;
             background: white;
 
             &::-ms-expand {
@@ -871,7 +871,8 @@ pre{
 
     &-login {
         display: inline-block;
-        padding: 40px 0;
+        padding: 50px 0;
+        float:right;
         font-family: $font-family-bold;
     }
 
@@ -1537,7 +1538,7 @@ main {
     }
 
     &.section-dark {
-        padding: 40px 0;
+        padding: 50px 0;
         background: $page-section-bg-dark;
         color: $page-section-bg-dark-color !important;
 

@@ -170,14 +170,14 @@
 
             h3 {
                 margin-top: 0;
-                margin-bottom: 30px;
+                margin-bottom: 20px;
                 color: $brightColor;
             }
 
             .btn {
                 position: absolute;
                 left: 50%;
-                bottom: -10px;
+                bottom: -20px;
                 margin-left: -66px;
                 padding: 8px 20px;
 
@@ -278,7 +278,7 @@
 
     &.small-caption {
         .caption {
-            padding: 30px;
+            padding: 20px;
 
             h4 {
                 min-height: 45px;

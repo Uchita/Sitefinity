@@ -1282,6 +1282,8 @@ header {
                 left: 100%;
                 transition: left 0.2s ease-in-out;
                 display: block;
+                overflow: auto;
+                padding-bottom: 100px;
                 li{
                     padding: 0 20px;
                     a {

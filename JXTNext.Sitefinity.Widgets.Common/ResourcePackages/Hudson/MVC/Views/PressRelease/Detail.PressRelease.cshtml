@@ -18,19 +18,14 @@
     <h1 class="article-detail-title text-center" @Html.InlineEditingFieldAttributes("Title", "ShortText")>
         @Model.Item.Fields.Title
     </h1>
-
+    
     @if (!string.IsNullOrEmpty(Model.Item.Fields.AuthorName))
     {
         <p class="article-detail-author text-center">by @Model.Item.Fields.AuthorName</p>
     }
 
     @*Start Content field*@
-    @using Telerik.Sitefinity.Modules.GenericContent;
-    @{
-        DynamicLinksParser dynamicLinksParser = new DynamicLinksParser(false, true);
-        var val = dynamicLinksParser.Apply(Model.Item.Fields.Content);
-    }
-    <div class="article-description" @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize(val)</div>
+    <div class="article-description" @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
     @*End Content field*@
 
     @*<div>

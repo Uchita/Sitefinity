@@ -7365,7 +7365,7 @@ blockquote {
   .page-wrapper .btn {
     border: 1px solid #7DC246;
     border-radius: 0;
-    padding: 10px 25px;
+    padding: 8px 25px;
     font-size: 16px;
     font-size: 1.6rem;
     font-family: Segoe, sans-serif;
@@ -7442,10 +7442,10 @@ blockquote {
     width: 100%; }
   .page-wrapper .btn-primary {
     border: 0;
-    padding: 10px 20px;
+    padding: 8px 20px;
     background: #7DC246;
     color: #fff;
-    line-height: 25px; }
+    line-height: 24px; }
     .page-wrapper .btn-primary:hover, .page-wrapper .btn-primary:focus {
       background: #7DC246;
       color: #fff; }
@@ -7500,7 +7500,7 @@ blockquote {
   .page-wrapper .form-group.label-hide label {
     visibility: hidden; }
   .page-wrapper .form-control {
-    height: 45px;
+    height: 40px;
     color: #000;
     font-family: SegoeUI, sans-serif;
     font-size: 1.4rem; }
@@ -7602,7 +7602,7 @@ blockquote {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      height: 44px;
+      height: 40px;
       background: white; }
       .page-wrapper .select select::-ms-expand {
         display: none; }
@@ -7894,7 +7894,8 @@ pre {
       font-size: 1.6rem; }
   .header-top-login {
     display: inline-block;
-    padding: 40px 0;
+    padding: 50px 0;
+    float: right;
     font-family: Segoe, sans-serif; }
   .header-top-links {
     padding: 10px;
@@ -8318,7 +8319,7 @@ main {
     background: #ababab;
     color: inherit; }
   .page-section.section-dark {
-    padding: 40px 0;
+    padding: 50px 0;
     background: #666666;
     color: #fff !important; }
     .page-section.section-dark .h1, .page-section.section-dark h1,
@@ -9540,12 +9541,12 @@ ul.breadcrumb {
       line-height: 1.3; }
       .thumbnail.card-title-action .caption h3 {
         margin-top: 0;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         color: #fff; }
       .thumbnail.card-title-action .caption .btn {
         position: absolute;
         left: 50%;
-        bottom: -10px;
+        bottom: -20px;
         margin-left: -66px;
         padding: 8px 20px; }
         .thumbnail.card-title-action .caption .btn.btn-more {
@@ -9608,7 +9609,7 @@ ul.breadcrumb {
         position: absolute;
         bottom: 0; }
   .thumbnail.small-caption .caption {
-    padding: 30px; }
+    padding: 20px; }
     .thumbnail.small-caption .caption h4 {
       min-height: 45px; }
   .thumbnail.card-rollover {
@@ -9967,6 +9968,7 @@ ul.breadcrumb {
   margin-top: 50px; }
   .page-wrapper .basic-form .form-control {
     color: #7DC246;
+    height: 35px;
     border: 1px solid #666666; }
   .page-wrapper .basic-form select {
     padding-left: 6px; }
@@ -9979,7 +9981,12 @@ ul.breadcrumb {
     font-family: SegoeUI, sans-serif;
     text-align: right;
     font-size: 1.4rem;
-    font-size: 14px; }
+    font-size: 14px;
+    padding-top: 5px;
+    line-height: 14px;
+    margin-bottom: 20px; }
+  .page-wrapper .basic-form .input-padding {
+    padding: 0 0 0 5px; }
   .page-wrapper .basic-form .checkbox .checkbox-icon {
     width: 20px;
     height: 20px;
@@ -10064,7 +10071,12 @@ ul.breadcrumb {
 
 .login-form h2 {
   font-size: 3.6rem;
-  margin-bottom: 2rem; }
+  margin-bottom: 5rem;
+  line-height: 45px; }
+
+.login-form p {
+  margin-bottom: 10px;
+  line-height: 22px; }
 
 .list-group label {
   color: #7DC246;
@@ -10102,11 +10114,10 @@ ul.breadcrumb {
   .page-wrapper .login-form .btn-block {
     margin-top: 10px; }
   .page-wrapper .login-form .basic-form .checkbox {
-    margin-left: 0;
-    margin-top: 0;
+    margin: 20px 0;
     color: #666666;
-    font-size: 14px;
-    font-size: 1.4rem; }
+    font-size: 12px;
+    font-size: 1.2rem; }
     .page-wrapper .login-form .basic-form .checkbox input[type=checkbox]:checked + input + .checkbox-icon:before {
       content: "\f00c";
       line-height: 19px; }
@@ -10159,7 +10170,9 @@ ul.breadcrumb {
     padding-top: 0; }
   .page-wrapper .login-form .text-muted {
     margin-top: 10px;
-    display: block; }
+    display: block;
+    line-height: 14px;
+    font-size: 12px; }
   .page-wrapper .sf-registration-link {
     font-size: 1.4rem; }
   .page-wrapper .login-form h1 {
@@ -10167,9 +10180,11 @@ ul.breadcrumb {
   .page-wrapper .sf-profile {
     margin-bottom: 2rem; }
     .page-wrapper .sf-profile h2 {
-      font-size: 3.2rem;
-      margin-top: 1.6rem;
-      margin-bottom: 0.8rem; }
+      font-size: 3.0rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem; }
+    .page-wrapper .sf-profile p {
+      margin-bottom: 25px; }
     .page-wrapper .sf-profile img {
       max-width: 200px;
       box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); }
@@ -10178,10 +10193,13 @@ ul.breadcrumb {
   .page-wrapper .user-profile-dash {
     border-bottom: 1px solid #7DC246;
     padding-bottom: 50px;
-    margin-bottom: 30px; }
+    margin-bottom: 30px;
+    padding-top: 20px; }
     .page-wrapper .user-profile-dash img {
       width: 100%;
       height: auto; }
+    .page-wrapper .user-profile-dash h1 {
+      margin-bottom: 5rem; }
   .page-wrapper .dash-tbl-wrap h2 {
     margin-bottom: 20px; }
   .page-wrapper .dash-tbl-wrap div.alert {
@@ -10448,7 +10466,7 @@ ul.breadcrumb {
             font-family: $font-family-regular;
         }*/ }
     .featured-job-offer .job-offer h3 {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       /*font-family: $font-family-medium;*/ }
     .featured-job-offer .job-offer .text-muted {
       line-height: 1;

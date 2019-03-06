@@ -29,6 +29,7 @@
 
         .form-control {
             color: $global-text-color;
+            height: 35px;
             border: 1px solid $forms-element-border;
         }
 
@@ -48,6 +49,9 @@
             text-align: right;
             font-size: $forms-label-size;
             font-size: $forms-label-size-px;
+            padding-top: 5px;
+            line-height: 14px;
+            margin-bottom:20px;
         }
 
         .checkbox {
@@ -180,10 +184,16 @@
 }
 
 
-.login-form{
-    h2{
+.login-form {
+    h2 {
         font-size: 3.6rem;
-        margin-bottom: 2rem;
+        margin-bottom: 5rem;
+        line-height: 45px;
+    }
+
+    p {
+        margin-bottom: 10px;
+        line-height: 22px;
     }
 }
 
@@ -243,11 +253,10 @@
         .basic-form {
 
             .checkbox {
-                margin-left: 0;
-                margin-top: 0;
+                margin: 20px 0;
                 color: $global-text;
-                font-size: 14px;
-                font-size: 1.4rem;
+                font-size: 12px;
+                font-size: 1.2rem;
 
                 input[type=checkbox]:checked + input + .checkbox-icon:before {
                     content: "\f00c";
@@ -336,6 +345,8 @@
         .text-muted {
             margin-top: 10px;
             display: block;
+            line-height: 14px;
+            font-size: 12px;
         }
     }
 
@@ -354,9 +365,13 @@
         margin-bottom: 2rem;
 
         h2 {
-            font-size: 3.2rem;
-            margin-top: 1.6rem;
-            margin-bottom: 0.8rem;
+            font-size: 3.0rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        p {
+            margin-bottom: 25px;
         }
 
         img {
@@ -373,10 +388,15 @@
         border-bottom: 1px solid $global-text-color;
         padding-bottom: 50px;
         margin-bottom: 30px;
+        padding-top: 20px;
 
         img {
             width: 100%;
             height: auto;
+        }
+
+        h1 {
+            margin-bottom: 5rem;
         }
     }
 

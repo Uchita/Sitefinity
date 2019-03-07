@@ -11,8 +11,7 @@
 
 
 
-<input title="@Html.Resource(" SearchInput")" placeholder="@Model.BackgroundHint" onfocus="this.placeholder = ''"
-       onblur="this.placeholder = '@Model.BackgroundHint'" id="@searchTextBoxId" value="@(ViewBag.SearchQuery)" class="form-control" type="search" aria-label="Search" />
+<input title="@Html.Resource(" SearchInput")" placeholder="@Model.BackgroundHint" id="@searchTextBoxId" value="@(ViewBag.SearchQuery)" class="form-control" type="search" aria-label="Search" />
 <button class="btn" type="submit" aria-label="Search" id="@(searchButtonId)">
     <span class="fa fa-search"></span>
 </button>

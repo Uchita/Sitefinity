@@ -9,6 +9,7 @@ $(document).ready(function () {
     $("#featuredInsights,#internalJobs1").owlCarousel({
         margin: 18,
         nav: true,
+        autoplayTimeout: 5000,
         dots: true,
         navText: [],
         responsive: {
@@ -29,7 +30,7 @@ $(document).ready(function () {
         dots: true,
         autoplay: true,
         autoplayTimeout: 5000
-        
+
     });
 
     $(".news-slider-mobile").owlCarousel({

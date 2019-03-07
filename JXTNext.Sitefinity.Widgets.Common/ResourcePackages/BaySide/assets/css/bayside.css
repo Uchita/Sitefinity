@@ -7063,7 +7063,7 @@ select.hs-input {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 0;
 }
 
     .testimonial-content .user-name {
@@ -7285,7 +7285,7 @@ select.hs-input {
     .bayside-btns .btn {
         margin-left: 10px;
         margin-right: 10px;
-        font-weight: 600;
+        font-weight: 400;
     }
 
 @media (max-width: 767px) {
@@ -7763,7 +7763,7 @@ select.hs-input {
 
 .list-item .list-footer {
     border-top: 1px solid #D8D8D8;
-    padding-top: 20px;
+    padding-top: 18px;
     margin-top: 20px;
     font-size: 14px;
 }
@@ -9502,4 +9502,22 @@ body.feedback .parallax-mirror .parallax-slider {
     .right-space-40 {
         padding-right: 0px;
     }
+}
+
+
+.cta-btn-white-outline .btn {
+    color: #fff;
+    background-color: transparent;
+    background-image: none;
+    border-color: #fff;
+}
+
+.white-bg-btn .btn {
+    color: #0088CF;
+    background-color: #fff;
+    border-color: #fff;
+}
+
+.list-item .list-date {
+    margin-bottom: 10px;
 }

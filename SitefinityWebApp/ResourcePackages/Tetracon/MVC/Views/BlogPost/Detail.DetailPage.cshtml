@@ -5,18 +5,18 @@
 @using Telerik.Sitefinity.Web.DataResolving;
 
 <div class="@Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
-    <h2>
+    <h3>
         <span @Html.InlineEditingFieldAttributes("Title", "ShortText")>@Model.Item.Fields.Title</span>
-    </h2>
+    </h3>
 
-    <div class="text-muted">
-        @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")
+    <div>
+        @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy")
         @Html.Resource("By")
         @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)
         @Html.CommentsCount(string.Empty, @Model.Item.DataItem)
     </div>
 
-    <p @Html.InlineEditingFieldAttributes("Summary", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</p>
+    <div @Html.InlineEditingFieldAttributes("Summary", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</div>
 
     <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
 
@@ -30,3 +30,6 @@
 
     @Html.CommentsList(@Model.Item.DataItem)
 </div>
+
+
+

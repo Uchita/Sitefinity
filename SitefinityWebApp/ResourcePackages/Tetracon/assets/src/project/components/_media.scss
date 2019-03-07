@@ -911,112 +911,112 @@
             padding-top: 0 !important;
         }
 
-        header {
-            .navbar {
-                min-height: 10px;
-            }
+    header {
+        .navbar {
+            min-height: 10px;
+        }
 
-            .navbar-fixed-top:before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                display: block;
-                width: 100%;
-                height: 100%;
-                background: #007077;
-            }
+        .navbar-fixed-top:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: #007077;
+        }
 
+        .brand-logo {
+            height: 50px;
+            width: 150px;
+            float: left;
+            display: block;
+            margin: 10px 0 10px 70px;
+            background-image: url('../images/TetraconLogo-outlines.svg');
+            background-size: auto 100%;
+            background-position: center;
+        }
+
+        .navbar-fixed-top {
             .brand-logo {
-                height: 50px;
-                width: 150px;
-                float: left;
-                display: block;
-                margin: 10px auto;
-                background-image: url('../images/TetraconLogo-outlines.svg');
-                background-size: auto 100%;
-                background-position: center;
-            }
-
-            .navbar-fixed-top {
-                .brand-logo {
-                    height: 23px;
-                    text-align: center;
-                }
-
-                .main-nav {
-                    top: 8px;
-                }
+                height: 23px;
+                text-align: center;
             }
 
             .main-nav {
-                position: absolute;
                 top: 8px;
-                right: 10px;
+            }
+        }
+
+        .main-nav {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            margin: 0;
+            height: 0;
+            width: auto;
+            min-width: 42px;
+            padding: 20px 0;
+
+            .navbar-default .navbar-toggle {
+                float: left;
+                border: 0;
                 margin: 0;
-                height: 0;
-                width: auto;
-                min-width: 42px;
-                padding: 20px 0;
+                padding: 9px 10px;
+                color: $global-highlight-color;
 
-                .navbar-default .navbar-toggle {
-                    float: left;
-                    border: 0;
-                    margin: 0;
-                    padding: 9px 10px;
-                    color: $global-highlight-color;
+                .icon-bar {
+                    background: none;
 
+                    &::before {
+                        font: 900 2.2rem 'Font Awesome 5 Free';
+                        content: '\f00d';
+                        color: $global-text-color;
+                        position: relative;
+                        left: 2px;
+                        top: -8px;
+                    }
+
+                    & + .icon-bar {
+                        display: none;
+                    }
+                }
+
+                &.collapsed {
                     .icon-bar {
-                        background: none;
+                        background-color: $global-text-color;
 
                         &::before {
-                            font: 900 2.2rem 'Font Awesome 5 Free';
-                            content: '\f00d';
-                            color: $global-text-color;
-                            position: relative;
-                            left: 2px;
-                            top: -8px;
+                            display: none;
                         }
 
                         & + .icon-bar {
-                            display: none;
+                            display: block;
                         }
                     }
+                }
+
+                &:hover, &:active, &:focus {
+                    background: none;
 
                     &.collapsed {
                         .icon-bar {
                             background-color: $global-text-color;
-
-                            &::before {
-                                display: none;
-                            }
-
-                            & + .icon-bar {
-                                display: block;
-                            }
-                        }
-                    }
-
-                    &:hover, &:active, &:focus {
-                        background: none;
-
-                        &.collapsed {
-                            .icon-bar {
-                                background-color: $global-text-color;
-                            }
                         }
                     }
                 }
             }
-
-            .header-top-social {
-                display: none;
-            }
-
-            .header-top-login {
-                display: none;
-            }
         }
+
+        .header-top-social {
+            display: none;
+        }
+
+        .header-top-login {
+            display: none;
+        }
+    }
 
         .main-content {
             padding-top: 70px;

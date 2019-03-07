@@ -8209,7 +8209,8 @@ header {
       header .mobile-nav.left-sidebar .nav.navbar-nav .open > .custom-expander::before {
         content: '\f104'; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .open > .dropdown-menu {
-        left: 0; }
+        left: 0;
+        top: 80px; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu {
         background: #2e2e2e;
         color: #fff; }
@@ -8248,8 +8249,8 @@ header {
   header .back-mnu {
     position: fixed;
     left: 20px;
-    color: #fff;
-    top: 14px;
+    color: #7DC246;
+    top: 30px;
     text-transform: uppercase;
     font-family: SegoeUI, sans-serif; }
     header .back-mnu::before {
@@ -9009,6 +9010,8 @@ address.info-box {
     padding: 0; }
   .half-block-shade .left-col {
     padding: 50px 50px 50px 10px; }
+    .half-block-shade .left-col ul {
+      margin-bottom: 30px; }
   .half-block-shade .right-col {
     padding: 50px 10px 50px 50px;
     background: #666666; }
@@ -9017,6 +9020,8 @@ address.info-box {
       margin-bottom: 10px; }
     .half-block-shade .right-col.inverse h2 {
       color: #fff; }
+    .half-block-shade .right-col.inverse .consultant {
+      display: inline-block; }
   .half-block-shade:after {
     content: "";
     background: #666666;
@@ -9075,7 +9080,8 @@ footer {
   font-size: 1.6rem;
   line-height: 1.4; }
   footer .footer-bar {
-    padding: 15px 0 !important; }
+    padding: 15px 0 !important;
+    font-size: 14px; }
 
 /*About us Page*/
 .inside-left {
@@ -10337,6 +10343,21 @@ ul.breadcrumb {
 .hidden-label label {
   display: none; }
 
+.job-email-widget .checkbox {
+  line-height: 20px;
+  font-size: 14px;
+  font-size: 1.4rem;
+  color: #666666; }
+
+.job-email-widget .form-group-Job .form-control-static {
+  color: #666666; }
+
+.registercv-form .checkbox {
+  line-height: 20px;
+  font-size: 14px;
+  font-size: 1.4rem;
+  color: #666666; }
+
 /*#endregion Forms*/
 /*#region Customers */
 .customer-logo {
@@ -11556,7 +11577,8 @@ select.articles-order {
   display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center; }
+  align-items: center;
+  position: relative; }
   .consultant .consultant-photo {
     display: block;
     /*width: 60%;*/
@@ -11616,6 +11638,13 @@ select.articles-order {
     max-width: 400px;
     padding: 0;
     margin: 0 auto; }
+
+.meet-team {
+  text-align: center; }
+  .meet-team .consultant {
+    display: inline-block;
+    margin: 0 20px 30px;
+    position: relative; }
 
 /*#endregion Consultans*/
 /*#region risk measurement*/
@@ -12258,7 +12287,7 @@ select.articles-order {
     width: 150px;
     float: left;
     display: block;
-    margin: 10px auto;
+    margin: 10px 0 10px 70px;
     background-image: url("../images/TetraconLogo-outlines.svg");
     background-size: auto 100%;
     background-position: center; }

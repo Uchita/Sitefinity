@@ -8,7 +8,7 @@
 @using Telerik.Sitefinity.Model.ContentLinks;
 @using Telerik.Sitefinity.Modules.Pages;
 @using Telerik.Sitefinity.Modules.Libraries;
-<div class="single-card s">
+<div class="single-card  @Model.CssClass">
     @foreach (var consultant in Model.Items)
     {
         var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(consultant, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
@@ -18,7 +18,7 @@
         var OfficeLocationUrl = "";
         var imageThumbUrl = "";
 
-        <div class="consultant col-sm-6">
+        <div class="consultant">
             @if (consultant.Fields.Pic != null)
             {
                 imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(consultant.Fields.Pic.DataItem, "thumb350");

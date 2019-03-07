@@ -3373,6 +3373,21 @@
     <Content Include="ResourcePackages\Tetracon\MVC\Views\Navigation\NavigationView.Vertical.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\BlogPost\Detail.DetailPageWithImage.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\BlogPost\List.BlogListWithImage.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\BlogPost\List.BlogPostFilters.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\BlogPost\List.BlogPostListFooter.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\BlogPost\List.LatestBlogPost.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">

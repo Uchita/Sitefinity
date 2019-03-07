@@ -27,6 +27,9 @@ $(document).ready(function () {
         navText: [],
         items: 1,
         dots: true,
+        autoplay: true,
+        autoplayTimeout: 5000
+        
     });
 
     $(".news-slider-mobile").owlCarousel({

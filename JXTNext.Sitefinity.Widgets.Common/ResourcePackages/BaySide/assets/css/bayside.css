@@ -5374,6 +5374,7 @@ p .btn-link {
     .quote-text:after {
         content: "";
         margin-left: 13px;
+        margin-right: -20px;
         top: 0px;
         width: 15px;
         height: 20px;
@@ -6306,6 +6307,10 @@ select.hs-input {
         top: 4px;
         color: #767676;
     }
+
+        .header-search_form .btn:hover {
+            color: #0088CF;
+        }
 
     .header-search_form input::-webkit-input-placeholder {
         color: #d8d8d8;
@@ -7346,6 +7351,10 @@ select.hs-input {
         transition: all 0.4s ease;
     }
 
+    .leader-list .leader-image h1 {
+        margin: 0px;
+    }
+
     .leader-list .leader-image .leader_logo {
         position: absolute;
         left: 50%;
@@ -7802,11 +7811,11 @@ select.hs-input {
 
     .pagination > li > span,
     .pagination > li > a {
-        padding-left: 14px;
-        padding-right: 14px;
+        padding-left: 3px;
+        padding-right: 3px;
         color: #0088CF;
         border-color: #0088CF;
-        min-width: 40px;
+        min-width: 35px;
         text-align: center;
         border-radius: 3px;
     }
@@ -9183,6 +9192,10 @@ privacy-policy {
     margin: 16px 0;
 }
 
+    .privacy-policy h2 strong, .privacy-policy h2 b {
+        font-weight: 300;
+    }
+
 .privacy-policy p {
     margin-bottom: 24px;
 }
@@ -9512,11 +9525,23 @@ body.feedback .parallax-mirror .parallax-slider {
     border-color: #fff;
 }
 
+    .cta-btn-white-outline .btn:hover {
+        color: #0088CF;
+        background-color: #fff;
+        border-color: #fff;
+    }
+
 .white-bg-btn .btn {
     color: #0088CF;
     background-color: #fff;
     border-color: #fff;
 }
+
+    .white-bg-btn .btn:hover, .white-bg-btn .btn:focus, .white-bg-btn .btn:active {
+        color: #fff;
+        background-color: transparent;
+        border-color: #fff;
+    }
 
 .list-item .list-date {
     margin-bottom: 10px;

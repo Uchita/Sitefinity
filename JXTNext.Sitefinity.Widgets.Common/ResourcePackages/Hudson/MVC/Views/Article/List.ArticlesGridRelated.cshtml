@@ -50,7 +50,8 @@
                                 {
                                     Guid articleID = new Guid(taxonItem.ToString());
                                     var taxonManager = TaxonomyManager.GetManager();
-                                    var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
+                                    var taxon = taxonManager.GetSiteTaxonomy<HierarchicalTaxonomy>(TaxonomyManager.CategoriesTaxonomyId, SystemManager.CurrentContext.CurrentSite.Id).Taxa.Where(t => t.Id == articleID).SingleOrDefault();
+                                    //var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
                                     filterValues.Add(taxon.Title);
                                 }
                             }

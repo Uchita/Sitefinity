@@ -56,7 +56,11 @@
             <ul class="list-unstyled clearfix">
                 @{
                     var managerArticle = TaxonomyManager.GetManager();
-                    var articleTaxonomy = managerArticle.GetTaxonomies<HierarchicalTaxonomy>().Where(t => t.Name == "Articles").SingleOrDefault();
+
+                    var articleCategory = managerArticle.GetTaxonomies<HierarchicalTaxonomy>().Where(t => t.Name == "Articles").SingleOrDefault();
+
+                    var articleTaxonomy = managerArticle.GetSiteTaxonomy<HierarchicalTaxonomy>(articleCategory.Id, SystemManager.CurrentContext.CurrentSite.Id);
+
                     List<Taxon> topLovelTaxa = new List<Taxon>();
 
 
@@ -163,7 +167,8 @@
                                         {
                                             Guid articleID = new Guid(taxonItem.ToString());
                                             var taxonManager = TaxonomyManager.GetManager();
-                                            var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
+                                            var taxon = taxonManager.GetSiteTaxonomy<HierarchicalTaxonomy>(TaxonomyManager.CategoriesTaxonomyId, SystemManager.CurrentContext.CurrentSite.Id).Taxa.Where(t => t.Id == articleID).FirstOrDefault();
+                                            //var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
                                             filterValues.Add(taxon.Title);
                                         }
                                     }

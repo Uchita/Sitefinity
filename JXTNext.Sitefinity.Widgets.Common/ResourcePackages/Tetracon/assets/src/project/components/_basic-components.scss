@@ -2764,3 +2764,8 @@ footer {
 }
 @import 'hexagon-item';
 @import 'chevronShape';
+
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}

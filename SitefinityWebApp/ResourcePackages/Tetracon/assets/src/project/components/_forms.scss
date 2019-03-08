@@ -645,3 +645,9 @@ label{
         color: $global-text;
     }
 }
+
+.git-about, footer {
+    textarea.form-control {
+        height: 100px !important;
+    }
+}

@@ -9404,6 +9404,9 @@ footer {
   .chevron-list.green-1-bg li::before, .chevron-list.green-1-bg li::after {
     background: #007077; }
 
+.dropdown:hover .dropdown-menu {
+  display: block; }
+
 /*#endregion Basic components */
 /*#region Breadcrumbs */
 ul.breadcrumb {
@@ -10357,6 +10360,9 @@ ul.breadcrumb {
   font-size: 14px;
   font-size: 1.4rem;
   color: #666666; }
+
+.git-about textarea.form-control, footer textarea.form-control {
+  height: 100px !important; }
 
 /*#endregion Forms*/
 /*#region Customers */

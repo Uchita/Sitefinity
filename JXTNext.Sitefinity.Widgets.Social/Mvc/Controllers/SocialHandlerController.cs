@@ -255,7 +255,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     {
                                         emailNotificationSettings.AddCC(String.Empty, ccEmail);
                                         advertiserEmailNotificationSettings.AddCC(String.Empty, ccEmail);
-                                        registrationNotificationsSettings.AddCC(String.Empty, ccEmail);
+                                        registrationNotificationsSettings?.AddCC(String.Empty, ccEmail);
                                     }
                                 }
 
@@ -265,7 +265,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                     {
                                         emailNotificationSettings.AddBCC(String.Empty, bccEmail);
                                         advertiserEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
-                                        registrationNotificationsSettings.AddBCC(String.Empty, bccEmail);
+                                        registrationNotificationsSettings?.AddBCC(String.Empty, bccEmail);
                                     }
                                 }
 

@@ -361,7 +361,7 @@
                                     {
 
                                         <div class="col-12 col-lg-4">
-                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
+                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode) custom-active" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
@@ -370,7 +370,10 @@
                                                         {
                                                             <a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="/blogs?BlogParentCategories=60542298-20b7-4bbe-a899-7b3296cd86fd&BlogChildCategories=&BlogParentIndustries=&BlogParentTypes=&sortby=undefined&keyword=undefined">@node.Title</a>
                                                         }
-
+                                                        else if (node.Url == "/workplace-relations-advice")
+                                                        {
+                                                            <a target="@node.LinkTarget" class="dropdown-item @GetClass(node) custom-active" href="@node.Url">@node.Title</a>
+                                                        }
                                                         else
                                                         {
                                                             <a target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a>
@@ -609,15 +612,17 @@
 
 @helper GetClass(NodeViewModel node)
 {
+                    /**/
 
-    if (node.IsCurrentlyOpened)
-    {
-        @Html.Raw("active");
-    }
-    else if (node.HasChildOpen)
-    {
-        @Html.Raw("active");
-    }
+
+                    if (node.IsCurrentlyOpened)
+                    {
+                        @Html.Raw("active");
+                    }
+                    else if (node.HasChildOpen)
+                    {
+                        @Html.Raw("active");
+                    }
 }
 
 

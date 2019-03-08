@@ -5116,7 +5116,26 @@ p .btn-link {
         border: 1px solid #D8D8D8;
         padding: 0 10px;
         border-radius: 5px;
+        font-size: 14px;
     }
+
+        .filter_sidebar .keywordfilter #selectedkeywordsfilter::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+            color: #d8d8d8;
+        }
+
+        .filter_sidebar .keywordfilter #selectedkeywordsfilter::-moz-placeholder { /* Firefox 19+ */
+            color: #d8d8d8;
+        }
+
+        .filter_sidebar .keywordfilter #selectedkeywordsfilter:-ms-input-placeholder { /* IE 10+ */
+            color: #d8d8d8;
+        }
+
+        .filter_sidebar .keywordfilter #selectedkeywordsfilter:-moz-placeholder { /* Firefox 18- */
+            color: #d8d8d8;
+        }
+
+
 
 .filter_sidebar .sm-wrapper .navbar-collapse {
     padding: 0px;
@@ -6592,6 +6611,7 @@ select.hs-input {
 .blog-list-item .list-desc {
     min-height: 75px;
     text-transform: lowercase;
+    margin-bottom: 20px;
 }
 
     .blog-list-item .list-desc:first-letter {
@@ -7314,6 +7334,7 @@ select.hs-input {
         .leader-list .leader-image img {
             width: 100%;
             max-height: 50px;
+            display: block;
         }
 
     .leader-list.alitis .leader-image img, .leader-list.cozwine .leader-image img {
@@ -7353,6 +7374,8 @@ select.hs-input {
 
     .leader-list .leader-image h1 {
         margin: 0px;
+        line-height: normal;
+        padding: 0;
     }
 
     .leader-list .leader-image .leader_logo {
@@ -8626,6 +8649,10 @@ select.hs-input {
     float: left;
 }
 
+    .app-header .top-menus .login-status .navbar-nav li.logged {
+        padding-left: 12px;
+    }
+
 .top-menus .navbar-nav .rb-1 {
     position: relative;
 }
@@ -8981,7 +9008,26 @@ select.hs-input {
         border: 1px solid #D8D8D8;
         padding: 0 10px;
         border-radius: 5px;
+        font-family: 'Muli', sans-serif;
+        font-size: 14px;
     }
+
+        .right-filter-sidebar .keywordfilter #txtSearch::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+            color: #d8d8d8;
+        }
+
+        .right-filter-sidebar .keywordfilter #txtSearch::-moz-placeholder { /* Firefox 19+ */
+            color: #d8d8d8;
+        }
+
+        .right-filter-sidebar .keywordfilter #txtSearch:-ms-input-placeholder { /* IE 10+ */
+            color: #d8d8d8;
+        }
+
+        .right-filter-sidebar .keywordfilter #txtSearch:-moz-placeholder { /* Firefox 18- */
+            color: #d8d8d8;
+        }
+
 
 .right-filter-sidebar #sortOrder {
     margin-bottom: 30px;
@@ -9189,16 +9235,20 @@ privacy-policy {
 }
 
 .privacy-policy h2 {
-    margin: 16px 0;
+    margin-top: 20px;
 }
 
-    .privacy-policy h2 strong, .privacy-policy h2 b {
-        font-weight: 300;
-    }
+.privacy-policy table {
+    margin: 10px 0 0 0;
+}
 
-.privacy-policy p {
+.privacy-policy h2 strong, .privacy-policy h2 b {
+    font-weight: 300;
+}
+
+/*.privacy-policy p {
     margin-bottom: 24px;
-}
+}*/
 
 /*21/01/2019*/
 

@@ -229,4 +229,8 @@ $(document).ready(function () {
 
     }
 
+
+    if ($(location).attr('pathname') == "/workplace-relations-resources") {
+        $('.custom-active').addClass('active');
+    }
 });

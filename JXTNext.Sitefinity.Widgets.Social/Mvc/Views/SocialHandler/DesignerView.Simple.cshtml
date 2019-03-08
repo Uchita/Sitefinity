@@ -73,7 +73,15 @@
 
             <label>@Html.Resource("AdvertiserEmailTemplateIdResource")</label>
             <input type="text" ng-model="properties.AdvertiserEmailTemplateId.PropertyValue" class="form-control" /><br /><br />
+            <label>@Html.Resource("SelectRegistrationEmailTemplate")</label>
+            <label>@Html.Resource("EmailSubject")</label>
+            <input type="text" ng-model="properties.RegistrationEmailTemplateEmailSubject.PropertyValue" class="form-control" /><br /><br />
 
+            <sf-list-selector sf-multiselect="false" sf-dynamic-items-selector sf-item-type="properties.ItemType.PropertyValue"
+                              sf-identifier-field="Title" sf-master="true"
+                              sf-selected-item-name="properties.RegistrationEmailTemplateName.PropertyValue"
+                              sf-selected-item-id="properties.RegistrationEmailTemplateId.PropertyValue"
+                              sf-provider="properties.RegistrationEmailTemplateProviderName.PropertyValue" />
 
 
         </uib-tab>

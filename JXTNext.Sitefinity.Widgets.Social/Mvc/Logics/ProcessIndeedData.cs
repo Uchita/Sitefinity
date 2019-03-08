@@ -47,24 +47,38 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
                         Log.Write("ProcessData Indeed indeedAPIResponse.SocialMediaProcessSuccess : ", ConfigurationPolicy.ErrorLog);
                         processedResponse.Success = true;
                         processedResponse.Email = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.Email;
-                        processedResponse.FirstName = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.FirstName;
-                        processedResponse.LastName = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.LastName;
+                        processedResponse.FirstName = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.FullName?.Split(' ').FirstOrDefault(); 
+                        processedResponse.LastName = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.FullName?.Split(' ').LastOrDefault();
                         processedResponse.PhoneNumber = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.PhoneNumber;
                         processedResponse.FileStream = indeedAPIResponse.IndeedJobApplication.IndeedResume.data;
                         processedResponse.FileName = indeedAPIResponse.IndeedJobApplication.IndeedResume.fileName;
                         if (!string.IsNullOrEmpty(indeedAPIResponse.IndeedJobApplication.JXTNextJob.jobMeta))
                         {
-                            string email = indeedAPIResponse.IndeedJobApplication.JXTNextJob.jobMeta.Split(new char[] { ';'}).Last();
-                            Log.Write("ProcessData Indeed email: " + email, ConfigurationPolicy.ErrorLog);
-
-                            if (!string.IsNullOrEmpty(email))
+                            string[] metaData = indeedAPIResponse.IndeedJobApplication.JXTNextJob.jobMeta.Split(new char[] { ';'});
+                            
+                            if(metaData.Count() >= 1)
                             {
-                                email = email.Trim(' ');
-                                Log.Write("ProcessData Indeed this.isValidEmail(email): " + this.isValidEmail(email), ConfigurationPolicy.ErrorLog);
-                                Log.Write("ProcessData Indeed email: " + email, ConfigurationPolicy.ErrorLog);
-                                processedResponse.LoginUserEmail = this.isValidEmail(email) ? email : null;
-                                processedResponse.LoginUserEmail = email;
+                                string email = metaData[1];
+                                if (!string.IsNullOrEmpty(email))
+                                {
+                                    email = email.Trim();
+                                    Log.Write("ProcessData Indeed this.isValidEmail(email): " + this.isValidEmail(email), ConfigurationPolicy.ErrorLog);
+                                    Log.Write("ProcessData Indeed email: " + email, ConfigurationPolicy.ErrorLog);
+                                    processedResponse.LoginUserEmail = this.isValidEmail(email) ? email : null;
+                                    processedResponse.LoginUserEmail = email;
+                                }
                             }
+                            if(metaData.Count() >= 2)
+                            {
+                                string source = metaData[2];
+                                if (!string.IsNullOrEmpty(source))
+                                {
+                                    source = source.Trim();
+                                    Log.Write("ProcessData Indeed source: " + source, ConfigurationPolicy.ErrorLog);
+                                    processedResponse.JobSource = source;
+                                }
+                            }
+                            
                         }
                         if (Int32.TryParse(indeedAPIResponse.IndeedJobApplication.JXTNextJob.jobId, out int jobId))
                         {

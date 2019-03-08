@@ -122,7 +122,7 @@
 
 .jobalert-field{
     float: left;
-    height: 33px;
+    height: 30px;
     margin-top: 10px;
     margin-right: 15px;
     width: 290px;
@@ -263,6 +263,19 @@
 
     &-advantages {
         margin-bottom: 15px;
+
+        ul {
+            li {
+                list-style: disc;
+            }
+        }
+    }
+
+    &-summary {
+        h3 {
+            margin-top: 0;
+            color: $global-text;
+        }
     }
 
     &-sidebar {
@@ -310,7 +323,7 @@
     }
 
     &-contacts {
-        margin-bottom: 10px;
+        margin-bottom: 30px;
 
         .job-metas {
             .job-meta-label {
@@ -379,8 +392,8 @@
             select {
                 display: block;
                 width: 100%;
-                height: 33px;
-                line-height: 1.1;
+                height: 30px;
+                /*line-height: 1.1;*/
                 font-size: 1.4rem;
                 border-color: $global-links-color;
             }
@@ -389,6 +402,10 @@
         .btn {
             margin-top: 10px;
             float: left;
+        }
+
+        .btn-sm {
+            padding: 3px 10px;
         }
 
         .alert {
@@ -445,7 +462,11 @@
                 font-size: 1.6rem;
                 color: $global-text;
 
-
+                ul {
+                    li {
+                        list-style: disc;
+                    }
+                }
 
                 .link-default {
                     font-size: 1.4rem;
@@ -465,11 +486,13 @@
 
                 .jobCatItem {
                     display: block;
+                    font-size: 14px;
 
                     a {
                         &::after {
                             content: ">";
                             padding-left: 4px;
+                            color: $global-text;
                         }
 
                         &:last-child::after {
@@ -576,13 +599,14 @@
 
 //appilication apge
 
-.upload-section{
-    .box{
+.upload-section {
+    .box {
         border: 1px solid $global-links-color;
         padding: 10px;
         margin: 0;
     }
-    .uploadfield-wrap{
+
+    .uploadfield-wrap {
         padding: 15px 0 5px;
         position: relative;
         color: $global-links-color;
@@ -590,9 +614,10 @@
         width: 33%;
         float: left;
         overflow: hidden;
-        &::before{
+
+        &::before {
             content: "\f07c";
-            color: #2e2e2e;
+            color: $global-text-color;
             font-family: 'Font Awesome 5 Free';
             font-weight: 900;
             font-size: 3rem;
@@ -602,20 +627,24 @@
             width: 100%;
             left: 0;
         }
-        &.dropbox-upload::before{
+
+        &.dropbox-upload::before {
             font-family: 'Font Awesome 5 Brands';
             content: "\f16b";
         }
-        &.google-drive-upload::before{
+
+        &.google-drive-upload::before {
             font-family: 'Font Awesome 5 Brands';
             content: "\f3aa";
         }
-        &:hover, &:focus{
-            &::before{
-                color: $global-links-color;
+
+        &:hover, &:focus {
+            &::before {
+                color: $global-text-color;
             }
         }
-        input[type="file"], button{
+
+        input[type="file"], button {
             opacity: 0;
             height: 50px;
             position: relative;
@@ -624,23 +653,27 @@
             line-height: 0.5;
             font-size: 2.8rem;
         }
-        .lbl{
+
+        .lbl {
             display: block;
             margin-top: -7px;
-            color: $global-links-color;
+            color: $global-text-color;
         }
-        input[type="file"]:focus, button:focus{
-            + .lbl{
+
+        input[type="file"]:focus, button:focus {
+            + .lbl {
                 font-weight: bold;
             }
         }
     }
-    .note{
+
+    .note {
         display: block;
         clear: both;
         word-break: break-word;
     }
-    select{
+
+    select {
         width: 100%;
     }
 }
@@ -766,6 +799,9 @@
 .result-meta{
     p{
         margin-bottom: 0;
+        a{
+            color: $global-text-color;
+        }
     } 
 }
 .save-icon, .applied-icon, .alert-icon {

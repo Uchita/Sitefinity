@@ -3388,6 +3388,9 @@
     <Content Include="ResourcePackages\Tetracon\MVC\Views\BlogPost\List.LatestBlogPost.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\JobApplication\JobApplication.JobDetailWithSocialMedia.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">

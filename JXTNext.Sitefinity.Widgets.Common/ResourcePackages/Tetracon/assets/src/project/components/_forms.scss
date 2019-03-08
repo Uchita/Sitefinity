@@ -35,6 +35,7 @@
 
         select {
             padding-left: 6px;
+            font-size:14px;
         }
 
         textarea {
@@ -187,8 +188,8 @@
 .login-form {
     h2 {
         font-size: 3.6rem;
-        margin-bottom: 5rem;
-        line-height: 45px;
+        margin-bottom: 2rem;
+        /*line-height: 45px;*/
     }
 
     p {
@@ -365,7 +366,7 @@
         margin-bottom: 2rem;
 
         h2 {
-            font-size: 3.0rem;
+            font-size: 2.4rem;
             margin-top: 2rem;
             margin-bottom: 2rem;
         }
@@ -492,6 +493,14 @@
             &.btn-seek {
                 background: #e61977 url(../images/seekBtn.png) no-repeat 50% 50%;
                 text-indent: -9em;
+            }
+        }
+
+        .list-inline {
+            li {
+                display: block;
+                margin-bottom: 20px;
+                float:none;
             }
         }
     }

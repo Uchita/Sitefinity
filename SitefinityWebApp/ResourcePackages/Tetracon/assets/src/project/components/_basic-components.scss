@@ -1697,11 +1697,9 @@ main {
 
     > a {
         font-family: $font-family-medium;
-        color: $sidebar-link-color;
-        text-transform: uppercase;
+        color: $brightColor;
         display: block !important;
         border: none;
-        border-bottom: 2px solid $sidebar-link-color;
         padding: 0 0 5px;
         text-align: left;
         margin-top: 0 !important;
@@ -1744,7 +1742,7 @@ main {
         span {
             &.dropdowntree-name {
                 font-family: $font-family-bold;
-                font-size:18px;
+                font-size: 18px;
             }
         }
     }
@@ -2724,10 +2722,10 @@ footer {
         ul {
             li {
                 list-style-type: none;
-                color: $brightColor;
+                color: $brightColor !important;
 
                 a {
-                    color: $brightColor;
+                    color: $brightColor !important;
                 }
             }
         }
@@ -2772,6 +2770,18 @@ footer {
 
 .detail-padding {
     padding: 40px 15px;
+}
+.ext-provider-form {
+    h3 {
+        color: $global-text;
+        font-size: 24px;
+    }
+}
+.sign-in-with {
+    h3 {
+        color: $global-text;
+        font-size: 24px;
+    }
 }
 @import 'hexagon-item';
 @import 'chevronShape';

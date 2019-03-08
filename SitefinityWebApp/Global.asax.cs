@@ -31,6 +31,7 @@ using JXTNext.Sitefinity.Widgets.Social.Mvc.Configuration;
 using JXTNext.Sitefinity.Common.Models.Robots;
 using Telerik.Sitefinity.Web.Events;
 using SitefinityWebApp.code;
+using Telerik.Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 
 namespace SitefinityWebApp
 {
@@ -76,6 +77,19 @@ namespace SitefinityWebApp
                 Config.RegisterSection<InstagramConfig>();
                 EventHub.Subscribe<IUnauthorizedPageAccessEvent>(new Telerik.Sitefinity.Services.Events.SitefinityEventHandler<IUnauthorizedPageAccessEvent>(OnUnauthorizedAccess));
             }
+        }
+
+        protected void StopSitefinityLogging(object s, ExecutedEventArgs args)
+        {
+            if (args.CommandName == "ConfigureLogging")
+            {
+                var builder = args.Data as ConfigurationSourceBuilder;
+
+                ((Telerik.Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.LoggingSettings)builder.Get("loggingConfiguration")).TraceListeners.Remove("ErrorLog");
+                ((Telerik.Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.LoggingSettings)builder.Get("loggingConfiguration")).TraceSources.Remove("ErrorLog");
+
+            }
+
         }
 
         void OnUnauthorizedAccess(IUnauthorizedPageAccessEvent unauthorizedEvent)

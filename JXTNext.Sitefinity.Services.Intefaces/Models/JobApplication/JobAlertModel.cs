@@ -65,6 +65,7 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert
     {
         public string ID { get; set; }
         public string Label { get; set; }
+        public string Value { get; set; }
         public bool Selected { get; set; }
         public List<JobAlertEditFilterItem> Filters { get; set; }
     }

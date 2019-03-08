@@ -5,7 +5,7 @@
 {
 <div class="filter-outer-wrapper left-sidebar visible-hidden">
     <div class="form-group keywordfilter">
-        <label><strong>Keywords:</strong></label>
+        <label for="selectedkeywordsfilter"><strong>Keywords:</strong></label>
         <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" placeholder="Search keywords" /></div>
     </div>
     <div class="filter-toggle"><span class="btn btn-primary">@Html.Resource("JobFilterToggleBtn")</span></div>
@@ -31,18 +31,11 @@
                 </div>
                 foreach (var salaryItem in item.Filters)
                 {
-                    var lower = 15000;
-                    var upper = 300000;
-                    if (salaryItem.Label == "Daily")
+                    var lower = salaryItem.Filters[1].Value;
+                    var upper = salaryItem.Filters[0].Value;
+                    if (salaryItem.Label != "NA")
                     {
-                        lower = 200;
-                        upper = 3000;
-                    }
-                    else if (salaryItem.Label == "Hourly Rate")
-                    {
-                        lower = 18;
-                        upper = 200;
-                    }
+
                     <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
 
                         <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
@@ -56,6 +49,7 @@
                         <div class="rightLabel">$<span>@upper</span></div>
 
                     </div>
+                    }
                 }
             }
         }

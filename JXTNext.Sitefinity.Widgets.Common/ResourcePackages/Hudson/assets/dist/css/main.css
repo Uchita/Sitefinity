@@ -9545,10 +9545,11 @@ ul.breadcrumb {
   height: auto !important; }
   .col-md-3 .thumbnail.card-basic .img-wrap img {
     width: 100%; }
-  .col-md-3 .thumbnail.card-basic .img-wrap .btn {
-    left: 10px; }
-    .col-md-3 .thumbnail.card-basic .img-wrap .btn.btn-more {
-      left: auto; }
+
+.col-md-3 .thumbnail.pagelinknormalbtn .caption .btn {
+  left: 10px !important; }
+  .col-md-3 .thumbnail.pagelinknormalbtn .caption .btn.btn-more {
+    left: auto !important; }
 
 .card-bg-image-dark .thumbnail {
   margin-bottom: 30px; }

@@ -1,4 +1,6 @@
-﻿using JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.Registration;
+﻿using JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.ChangePassword;
+using JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.LoginForm;
+using JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.Registration;
 using Ninject.Modules;
 using System;
 using System.Collections.Generic;
@@ -16,7 +18,8 @@ namespace JXTNext.Sitefinity.Widgets.Identity
         public override void Load()
         {
             Bind<IRegistrationModel>().To<RegistrationModel>();
-            
+            Bind<ILoginFormModel>().To<LoginFormModel>();
+            Bind<IChangePasswordModel>().To<ChangePasswordModel>();
         }
     }
 }

@@ -32,13 +32,18 @@ using Microsoft.Owin.Security;
 using ServiceStack.Text;
 using Telerik.Sitefinity.Security.Events;
 using System.Web.Script.Serialization;
+using JXTNext.Sitefinity.Connector.BusinessLogics;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 
 namespace JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.Registration
 {
     public class RegistrationModel : IRegistrationModel
     {
-        #region Public Properties
 
+
+
+        #region Public Properties
+        public IBusinessLogicsConnector blConnector { get; set; }
         /// <inheritDoc/>
         public Guid? LoginPageId { get; set; }
 
@@ -278,6 +283,30 @@ namespace JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.Registration
 
                     this.ConfirmRegistration(userManager, user);
                     //this.ExecuteUserProfileSuccessfullUpdateActions();
+                }
+
+                if(status == MembershipCreateStatus.DuplicateUserName)
+                {
+                    
+                    var res = blConnector.GetMemberByEmail(viewModel.Email);
+                    if(res.Member == null)
+                    {
+                        Telerik.Sitefinity.Security.Model.User existingUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.GetUserByEmail(viewModel.Email);
+                        UserProfileManager userProfileManager = UserProfileManager.GetManager();
+                        UserProfile profile = userProfileManager.GetUserProfile(existingUser.Id, typeof(SitefinityProfile).FullName);
+                        var fName = Telerik.Sitefinity.Model.DataExtensions.GetValue(profile, "FirstName");
+                        var lName = Telerik.Sitefinity.Model.DataExtensions.GetValue(profile, "LastName");
+                        JXTNext_MemberRegister memberReg = new JXTNext_MemberRegister
+                        {
+                            Email = existingUser.Email,
+                            FirstName = fName.ToString(),
+                            LastName = lName.ToString(),
+                            Password = existingUser.Password
+                        };
+
+                        blConnector.MemberRegister(memberReg,out string errorMessage);
+                    }
+                        
                 }
             }
 

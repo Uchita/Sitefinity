@@ -28,7 +28,7 @@
         margin-top: 50px;
 
         .form-control {
-            color: $global-text-color;
+            color: $global-text;
             height: 35px;
             border: 1px solid $forms-element-border;
         }
@@ -51,11 +51,11 @@
             font-size: $forms-label-size-px;
             padding-top: 5px;
             line-height: 14px;
-            margin-bottom:20px;
+            margin-bottom: 20px;
         }
 
         .checkbox {
-
+            font-size:14px;
 
             .checkbox-icon {
                 width: 20px;

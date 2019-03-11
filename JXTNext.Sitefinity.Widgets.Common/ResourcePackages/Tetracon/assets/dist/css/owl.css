@@ -230,11 +230,11 @@
   width: 10px;
   height: 10px;
   background: transparent;
-  border: 1px solid #7DC246; }
+  border: 1px solid #7DC245; }
 
 .owl-theme .owl-dots .owl-dot.active span,
 .owl-theme .owl-dots .owl-dot:hover span {
-  background: #7DC246; }
+  background: #7DC245; }
 
 .owl-nav button {
   top: 20px !important; }
@@ -267,7 +267,7 @@
   display: block;
   padding: 70px 0;
   width: 100%;
-  color: #7DC246 !important; }
+  color: #7DC245 !important; }
   .testimonials-slider .owl-stage-outer {
     background: white;
     background: rgba(255, 255, 255, 0.9);
@@ -337,7 +337,7 @@
     font-size: 24px;
     font-size: 2.4rem;
     line-height: 1.3;
-    color: #7DC246;
+    color: #7DC245;
     margin: 0 auto;
     max-width: 900px;
     /*font-family: $font-family-regular;*/ }
@@ -367,7 +367,7 @@
       content: '';
       top: 5px;
       left: 5px;
-      border: 1px solid #7DC246; }
+      border: 1px solid #7DC245; }
 
 .single-quote .quote span::before {
   content: '\2018'; }

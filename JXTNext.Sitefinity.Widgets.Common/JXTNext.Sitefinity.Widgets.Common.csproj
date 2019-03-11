@@ -177,6 +177,9 @@
     <Content Include="ResourcePackages\Tetracon\assets\dist\images\TetraconLogo-outlines.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\js\blogfilter.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Tetracon\assets\dist\js\project.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

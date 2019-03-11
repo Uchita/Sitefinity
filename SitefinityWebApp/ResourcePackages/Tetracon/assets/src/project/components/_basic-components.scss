@@ -51,6 +51,7 @@ blockquote{
     ul {
         padding-left: 20px;
         list-style: square outside none;
+        
 
         &.check-list {
             list-style: none;
@@ -1504,6 +1505,9 @@ main {
         margin-top: 0;
         margin-bottom: 0;
     }
+    ul{
+        margin-bottom:30px;
+    }
 
     .form-container {
         .basic-form {
@@ -1697,12 +1701,15 @@ main {
 
     > a {
         font-family: $font-family-medium;
-        color: $brightColor;
+        color: $global-text-color;
         display: block !important;
         border: none;
         padding: 0 0 5px;
         text-align: left;
         margin-top: 0 !important;
+        font-weight: bold;
+        text-transform:uppercase;
+        border-bottom:2px solid $global-text-color;
 
         &:hover, &:focus, &:active {
             background: none;
@@ -1756,6 +1763,7 @@ main {
 
             a {
                 padding: 20px 15px 0px 0;
+                font-size:14px;
 
                 &.link-inline-block {
                     display: inline-block;
@@ -1814,6 +1822,7 @@ main {
                     font-family: $font-family-regular;
                     font-size: $sidebar-font-size;
                     white-space: normal;
+                    font-size:14px;
 
                     &:hover, &:focus {
                         color: $sidebar-link-color;
@@ -2713,6 +2722,7 @@ footer {
     background-color: $global-text;
     padding-top: 62px;
     padding-left: 40px;
+    min-height: 570px;
 
     h2, p {
         color: $brightColor;
@@ -2728,6 +2738,24 @@ footer {
                     color: $brightColor !important;
                 }
             }
+        }
+
+        .left-sidebar .container-fluid > a, .left-sidebar .navbar-collapse > a {
+            border-bottom: none;
+            color: #fff;
+            padding:0;
+            font-weight:bold;
+            text-transform:none;
+        }
+
+        .left-sidebar .container-fluid .nav > li > a, .left-sidebar .navbar-collapse .nav > li > a {
+            padding: 15px 15px 0 0;
+            color: #fff;
+            font-size:18px;
+        }
+
+        .left-sidebar .container-fluid .nav li.current > a {
+            color: #7DC246 !important;
         }
     }
 }
@@ -2786,7 +2814,3 @@ footer {
 @import 'hexagon-item';
 @import 'chevronShape';
 
-
-.dropdown:hover .dropdown-menu {
-    display: block;
-}

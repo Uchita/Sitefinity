@@ -5,33 +5,35 @@
     <div class="card-rollover-image">
         <img src="@Model.SelectedSizeUrl" title="@Model.ImageTitle" alt="@Model.ImageAlternativeText">
     </div>
-    <div class="caption">
-        <h2>@Html.HtmlSanitize(Model.Heading)</h2>
-        <p>@Html.HtmlSanitize(Model.Description)</p>
-        @*<div class="card-description">
-            <div class="display-table">
-                <div class="card-description-content @(!string.IsNullOrEmpty(Model.ActionUrl) && string.IsNullOrEmpty(Model.ActionName)? "card-rollover-more":"")">
-                    @if (string.IsNullOrEmpty(Model.ActionUrl))
-                    {
-                        <p>@Html.HtmlSanitize(Model.Description)</p>
-                    }
-                    else
-                    {
-                        if (!string.IsNullOrEmpty(Model.ActionName))
-                        {
+    <a href="@Html.UrlSanitize(Model.ActionUrl)">
+        <div class="caption">
+            <h2>@Html.HtmlSanitize(Model.Heading)</h2>
+            <p>@Html.HtmlSanitize(Model.Description)</p>
+            @*<div class="card-description">
+                    <div class="display-table">
+                        <div class="card-description-content @(!string.IsNullOrEmpty(Model.ActionUrl) && string.IsNullOrEmpty(Model.ActionName)? "card-rollover-more":"")">
+                            @if (string.IsNullOrEmpty(Model.ActionUrl))
+                            {
+                                <p>@Html.HtmlSanitize(Model.Description)</p>
+                            }
+                            else
+                            {
+                                if (!string.IsNullOrEmpty(Model.ActionName))
+                                {
 
-                            <p>@Html.HtmlSanitize(Model.Description)</p>
-                            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn" role="button">@Model.ActionName</a>
-                        }
-                        else
-                        {
-                            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="hidden-xs card-rollover-sum">@Html.HtmlSanitize(Model.Description)</a>
-                            <p class="visible-xs">@Html.HtmlSanitize(Model.Description)</p>
-                            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-more visible-xs" role="button"></a>
-                        }
-                    }
-                </div>
-            </div>
-        </div>*@
-    </div>
+                                    <p>@Html.HtmlSanitize(Model.Description)</p>
+                                    <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn" role="button">@Model.ActionName</a>
+                                }
+                                else
+                                {
+                                    <a href="@Html.UrlSanitize(Model.ActionUrl)" class="hidden-xs card-rollover-sum">@Html.HtmlSanitize(Model.Description)</a>
+                                    <p class="visible-xs">@Html.HtmlSanitize(Model.Description)</p>
+                                    <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-more visible-xs" role="button"></a>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>*@
+        </div>
+        </a>
 </div>

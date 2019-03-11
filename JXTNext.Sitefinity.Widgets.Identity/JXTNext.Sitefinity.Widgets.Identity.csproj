@@ -136,6 +136,9 @@
     <Reference Include="Telerik.Sitefinity.Frontend.Data, Version=11.0.6726.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
       <HintPath>..\packages\Telerik.Sitefinity.Feather.Core.11.0.6726\lib\net471\Telerik.Sitefinity.Frontend.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Sitefinity.Frontend.Identity">
+      <HintPath>..\JXTNext.Sitefinity.Widgets.Job\Bin\Telerik.Sitefinity.Frontend.Identity.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.Sitefinity.Model, Version=11.0.6726.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
       <HintPath>..\packages\Telerik.Sitefinity.Core.11.0.6726\lib\net471\Telerik.Sitefinity.Model.dll</HintPath>
     </Reference>
@@ -179,20 +182,8 @@
   <ItemGroup>
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="InterfaceMappings.cs" />
-    <Compile Include="Mvc\Controllers\ChangePasswordController.cs" />
-    <Compile Include="Mvc\Controllers\LoginFormController.cs" />
     <Compile Include="Mvc\Controllers\RegistrationController.cs" />
-    <Compile Include="Mvc\Models\ChangePassword\ChangePasswordCompleteAction.cs" />
-    <Compile Include="Mvc\Models\ChangePassword\ChangePasswordInputModel.cs" />
-    <Compile Include="Mvc\Models\ChangePassword\ChangePasswordModel.cs" />
-    <Compile Include="Mvc\Models\ChangePassword\ChangePasswordViewModel.cs" />
-    <Compile Include="Mvc\Models\ChangePassword\IChangePasswordModel.cs" />
-    <Compile Include="Mvc\Models\LoginForm\ForgotPasswordViewModel.cs" />
-    <Compile Include="Mvc\Models\LoginForm\ILoginFormModel.cs" />
-    <Compile Include="Mvc\Models\LoginForm\LoginFormModel.cs" />
-    <Compile Include="Mvc\Models\LoginForm\LoginFormViewModel.cs" />
-    <Compile Include="Mvc\Models\LoginForm\ResetPasswordInputModel.cs" />
-    <Compile Include="Mvc\Models\LoginForm\ResetPasswordViewModel.cs" />
+    <Compile Include="Mvc\Models\LoginForm\CustomLoginFormModel.cs" />
     <Compile Include="Mvc\Models\Profile\ProfileBindingsContract.cs" />
     <Compile Include="Mvc\Models\Registration\ActivationMethod.cs" />
     <Compile Include="Mvc\Models\Registration\IRegistrationModel.cs" />
@@ -218,14 +209,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <EmbeddedResource Include="Mvc\Views\ChangePassword\ChangePassword.ChangePassword.cshtml" />
-    <EmbeddedResource Include="Mvc\Views\ChangePassword\DesignerView.Simple.cshtml" />
-    <EmbeddedResource Include="Mvc\Views\ChangePassword\DesignerView.Simple.json" />
-    <EmbeddedResource Include="Mvc\Views\LoginForm\DesignerView.Simple.cshtml" />
-    <EmbeddedResource Include="Mvc\Views\LoginForm\DesignerView.Simple.json" />
-    <EmbeddedResource Include="Mvc\Views\LoginForm\ForgotPassword.ForgottenPassword.cshtml" />
-    <EmbeddedResource Include="Mvc\Views\LoginForm\LoginForm.LoginForm.cshtml" />
-    <EmbeddedResource Include="Mvc\Views\LoginForm\ResetPassword.ResetPassword.cshtml" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -237,11 +220,10 @@
       <Project>{bf418b44-ebce-499f-bbd3-6ba98a24e144}</Project>
       <Name>JXTNext.Sitefinity.Connector</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mvc\Scripts\ChangePassword\designerview-simple.js" />
-    <EmbeddedResource Include="Mvc\Scripts\LoginForm\designerview-simple.js" />
-    <EmbeddedResource Include="Mvc\Scripts\LoginForm\login-form.js" />
+    <ProjectReference Include="..\JXTNext.Sitefinity.Widgets\JXTNext.Sitefinity.Widgets.User.csproj">
+      <Project>{676b052f-ef99-420d-bb22-16b287818a60}</Project>
+      <Name>JXTNext.Sitefinity.Widgets.User</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

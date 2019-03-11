@@ -20,7 +20,7 @@ namespace JXTNext.Sitefinity.Services.Services
     public class JXTNextJobApplicationService : IJobApplicationService
     {
         private static readonly string awsProvider = "private-amazon-s3-provider";
-        public string GetOverrideEmail(ref JobApplicationStatus status, ApplicantInfo applicantInfo, bool isSocialMedia = false)
+        public string GetOverrideEmail(ref JobApplicationStatus status, ref ApplicantInfo applicantInfo, bool isSocialMedia = false)
         {
             string ovverideEmail = null;
           
@@ -52,7 +52,7 @@ namespace JXTNext.Sitefinity.Services.Services
                     #region Entered email does not exists in sitefinity User list
                     var membershipCreateStatus = SitefinityHelper.CreateUser(applicantInfo.Email, applicantInfo.Password, applicantInfo.FirstName, applicantInfo.LastName, applicantInfo.Email, applicantInfo.PhoneNumber,
                     null, null, true, true);
-
+                    applicantInfo.IsNewUser = true;
                     if (membershipCreateStatus != MembershipCreateStatus.Success)
                     {
                         Log.Write("User is created in portal " + existingUser.Email, ConfigurationPolicy.ErrorLog);
@@ -135,6 +135,20 @@ namespace JXTNext.Sitefinity.Services.Services
             return htmlEmailContent;
         }
 
-        
+        public string GetHtmlEmailSubject(string emailTemplateId, string emailTemplateProviderName, string itemType)
+        {
+            string htmlEmailSubject = String.Empty;
+            if (!String.IsNullOrEmpty(emailTemplateId))
+            {
+                var dynamicModuleManager = DynamicModuleManager.GetManager(emailTemplateProviderName);
+                var emailTemplateType = TypeResolutionService.ResolveType(itemType);
+                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(emailTemplateId.ToUpper()));
+                htmlEmailSubject = emailTemplateItem.GetValue("Title").ToString();
+            }
+            Log.Write("Inside GetHtmlEmailContent method ", ConfigurationPolicy.ErrorLog);
+            return htmlEmailSubject;
+        }
+
+
     }
 }

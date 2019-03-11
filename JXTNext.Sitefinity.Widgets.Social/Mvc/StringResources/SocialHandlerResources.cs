@@ -228,6 +228,17 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.StringResources
             }
         }
 
+        [ResourceEntry("SelectRegistrationEmailTemplate",
+            Value = "Select Registration E-mail template",
+            Description = "phrase : Select Registration E-mail template")]
+        public string SelectRegistrationEmailTemplate
+        {
+            get
+            {
+                return this["SelectRegistrationEmailTemplate"];
+            }
+        }
+
         #endregion
     }
 }

@@ -155,6 +155,19 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return firstName;
         }
 
+        public static string GetUserFullNameById(Guid userId)
+        {
+            var userManager = UserManager.GetManager();
+            User user = userManager.GetUser(userId);
+            UserProfileManager profileManager = UserProfileManager.GetManager();
+            SitefinityProfile profile = profileManager.GetUserProfile<SitefinityProfile>(user);
+            string fullName = "";
+            if (profile != null)
+                fullName = profile.FirstName + " "+ profile.LastName;
+
+            return fullName;
+        }
+
         public static User GetUserById(Guid userId)
         {
             var userManager = UserManager.GetManager();

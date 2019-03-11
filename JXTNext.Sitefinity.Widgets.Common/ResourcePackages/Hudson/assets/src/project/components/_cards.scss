@@ -310,16 +310,23 @@
 }
 
 .col-md-3{
-    .thumbnail.card-basic{
-        .img-wrap{
-            height: auto!important;
-            img{
-                width: 100%;
+    .thumbnail{
+        &.card-basic{
+            .img-wrap{
+                height: auto!important;
+                img{
+                    width: 100%;
+                }
+                
             }
-            .btn{
-                left: 10px;
-                &.btn-more{
-                    left: auto;
+        }
+        &.pagelinknormalbtn{
+            .caption{
+                .btn{
+                    left: 10px!important;
+                    &.btn-more{
+                        left: auto!important;
+                    }
                 }
             }
         }

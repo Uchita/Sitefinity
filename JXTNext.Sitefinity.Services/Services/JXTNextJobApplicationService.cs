@@ -1,4 +1,6 @@
 ﻿using JXTNext.Sitefinity.Common.Helpers;
+using JXTNext.Sitefinity.Connector.BusinessLogics;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using JXTNext.Sitefinity.Services.Intefaces;
 using JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication;
 using System;
@@ -13,12 +15,18 @@ using Telerik.Sitefinity.DynamicModules;
 using Telerik.Sitefinity.Model;
 using Telerik.Sitefinity.Security;
 using Telerik.Sitefinity.Security.Claims;
+using Telerik.Sitefinity.Security.Model;
 using Telerik.Sitefinity.Utilities.TypeConverters;
 
 namespace JXTNext.Sitefinity.Services.Services
 {
     public class JXTNextJobApplicationService : IJobApplicationService
     {
+        IBusinessLogicsConnector _blConnector;
+        public JXTNextJobApplicationService(IBusinessLogicsConnector blConnector)
+        {
+            _blConnector = blConnector;
+        }
         private static readonly string awsProvider = "private-amazon-s3-provider";
         public string GetOverrideEmail(ref JobApplicationStatus status, ref ApplicantInfo applicantInfo, bool isSocialMedia = false)
         {
@@ -44,6 +52,27 @@ namespace JXTNext.Sitefinity.Services.Services
                     #region Entered Email exists in Sitefinity User list
                     Log.Write("User is already exists in portal " + existingUser.Email, ConfigurationPolicy.ErrorLog);
                     ovverideEmail = existingUser.Email;
+                    // check user exists in the JXT next DB
+                    var memberResponse = _blConnector.GetMemberByEmail(applicantInfo.Email);
+                    if (memberResponse.Member == null)
+                    {
+                        UserProfileManager userProfileManager = UserProfileManager.GetManager();
+                        UserProfile profile = userProfileManager.GetUserProfile(existingUser.Id, typeof(SitefinityProfile).FullName);
+                        var fName = Telerik.Sitefinity.Model.DataExtensions.GetValue(profile, "FirstName");
+                        var lName = Telerik.Sitefinity.Model.DataExtensions.GetValue(profile, "LastName");
+                        JXTNext_MemberRegister memberReg = new JXTNext_MemberRegister
+                        {
+                            Email = existingUser.Email,
+                            FirstName = fName.ToString(),
+                            LastName = lName.ToString(),
+                            Password = existingUser.Password
+                        };
+
+                        if (_blConnector.MemberRegister(memberReg, out string errorMessage))
+                        {
+                            Log.Write("User created JXT next DB" + existingUser.Email, ConfigurationPolicy.ErrorLog);
+                        }
+                    }
                     return ovverideEmail;
                     #endregion
                 }

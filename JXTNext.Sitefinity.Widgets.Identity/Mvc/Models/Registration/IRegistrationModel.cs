@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JXTNext.Sitefinity.Connector.BusinessLogics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ namespace JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.Registration
 {
     public interface IRegistrationModel
     {
+
+        IBusinessLogicsConnector blConnector { get; set; }
         /// <summary>
         /// Gets or sets the login page identifier.
         /// </summary>

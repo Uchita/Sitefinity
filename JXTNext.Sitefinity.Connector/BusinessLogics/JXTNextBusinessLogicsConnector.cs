@@ -11,6 +11,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Dynamic;
 using System.Linq;
 
 namespace JXTNext.Sitefinity.Connector.BusinessLogics
@@ -504,7 +505,12 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         {
             JXTNext_SearchJobsRequest jobSearch = search as JXTNext_SearchJobsRequest;
 
-            jobSearch.FieldSearches = new StatusSearch() { Status = 1 };
+            if (jobSearch.FieldSearches == null)
+            {
+                dynamic fieldSearch = new ExpandoObject();
+                fieldSearch.Status = 1;
+                jobSearch.FieldSearches = fieldSearch;
+            }
 
             jobSearch.FieldRanges = new RangeSearch() { ExpiryDate = new DateRange() { LowerRange = (long)DateTime.Now.ToUniversalTime().Subtract(UnixEpoch).TotalMilliseconds } };
             //An extra logic layer should be added to handle this model conversion

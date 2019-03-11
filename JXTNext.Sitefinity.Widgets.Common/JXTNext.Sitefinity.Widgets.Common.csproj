@@ -3426,6 +3426,9 @@
     <None Include="ResourcePackages\Winston\assets\src\sitefinity\sass\components\icons\feather-icons.json" />
     <None Include="ResourcePackages\Winston\assets\src\sitefinity\sass\components\icons\_icons.scss" />
     <None Include="ResourcePackages\Winston\assets\src\sitefinity\sass\components\icons\_sf-icon-font.scss" />
+    <Content Include="ResourcePackages\Winston\MVC\Views\Card\Card.BgIcon.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">

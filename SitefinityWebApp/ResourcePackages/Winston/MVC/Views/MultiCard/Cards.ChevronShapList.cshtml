@@ -1,0 +1,17 @@
+@model SitefinityWebApp.Mvc.Models.MultiCard.MultiCardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+<div class="chevron-list @Model.CssClass">
+    @if (!string.IsNullOrEmpty(Model.GroupHeader))
+    {
+        <h2>@Model.GroupHeader</h2>
+    }
+    <ul>
+        @foreach (var card in Model.Cards)
+        {
+
+            <li><span>@Html.HtmlSanitize(card.Heading)</span></li>
+
+        }
+    </ul>
+</div>

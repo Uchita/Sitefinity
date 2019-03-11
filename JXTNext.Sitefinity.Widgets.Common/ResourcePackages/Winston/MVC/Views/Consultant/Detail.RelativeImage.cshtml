@@ -1,0 +1,36 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+
+@using System.Collections;
+@using System.Linq;
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Localization;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Pages.Model;
+@using Telerik.Sitefinity.Modules.Libraries;
+
+
+@if (Model.Item.Fields.ConsultantImages != null && Model.Item.Fields.ConsultantImages.Length > 0)
+{
+<div class="page-section">
+    <div class="container">
+        <div class="consultant-images owl-carousel owl-theme">
+            @foreach (var imgItem in Model.Item.Fields.ConsultantImages)
+            {
+
+                <div class="img-item">
+                    <img src="@MediaContentExtensions.ResolveThumbnailUrl(imgItem.DataItem, "thumb470")" alt="Alternate Text" />
+
+                </div>
+
+            }
+
+        </div>
+    </div>
+</div>
+}

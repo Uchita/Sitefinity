@@ -1,0 +1,12 @@
+﻿@using JXTNext.Sitefinity.Common.Helpers
+
+@{
+    var googleTagMangerKey = new SiteSettingsHelper().GetCurrentSiteGoogleTagManagerKey();
+}
+@if (!string.IsNullOrEmpty(googleTagMangerKey))
+{
+    <!-- Google Tag Manager in Body tag -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-@googleTagMangerKey" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager Body -->
+}
+

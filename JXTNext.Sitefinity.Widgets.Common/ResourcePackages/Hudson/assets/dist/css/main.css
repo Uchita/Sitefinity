@@ -8378,6 +8378,9 @@ main {
 .left-sidebar .dropdown.dropdown-current .dropdown-menu {
   display: block; }
 
+.left-sidebar .dropdown.dropdown-current .dropdown-toggle::before {
+  content: '\f107'; }
+
 .left-sidebar .container-fluid, .left-sidebar .navbar-collapse {
   font-size: 18px;
   font-size: 1.8rem;

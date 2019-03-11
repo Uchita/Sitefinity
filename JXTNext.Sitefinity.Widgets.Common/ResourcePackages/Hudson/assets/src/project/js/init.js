@@ -481,7 +481,7 @@ $(document).ready(function () {
 
     //window back button detection
     window.onhashchange = function() {
-        $(document).reload();
+        location.reload();
     }
   
 //temporary site selection for manual links added    

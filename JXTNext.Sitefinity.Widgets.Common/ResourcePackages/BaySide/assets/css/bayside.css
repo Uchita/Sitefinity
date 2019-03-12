@@ -8573,6 +8573,11 @@ select.hs-input {
         display: inline-block;
     }
 
+        .nav-sitemap ul li a strong, ul.nav-sitemap li a strong {
+            font-size: 17px !important;
+            font-weight: 500;
+        }
+
         .nav-sitemap ul li a::before, ul.nav-sitemap li a::before {
             content: '';
             position: absolute;
@@ -9621,7 +9626,10 @@ body.feedback .parallax-mirror .parallax-slider {
 .right-filter-sidebar .keywordfilte input:-moz-placeholder {
     color: #d8d8d8;
 }
-
+.g-section p strong {
+    font-size: 17px !important;
+    font-weight: 500;
+}
 .filter-outer-wrapper #sortOrder {
     display: block !important;
     line-height: 1.42857143;
@@ -9629,4 +9637,10 @@ body.feedback .parallax-mirror .parallax-slider {
     white-space: nowrap;
     position: relative;
     font-weight: 500;
+}
+.bg-color-darkblue a.btn.btn-primary {
+    text-transform: lowercase;
+}
+.video-wrap .btn-link:hover {
+    color: #fff;
 }

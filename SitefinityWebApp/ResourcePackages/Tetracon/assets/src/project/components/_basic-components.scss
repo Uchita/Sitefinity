@@ -2811,6 +2811,89 @@ footer {
         font-size: 24px;
     }
 }
-@import 'hexagon-item';
-@import 'chevronShape';
+//Member-Profile
+.consultant-banner {
+    min-height: 340px;
+    position: relative;
+
+    &:before {
+        position: absolute;
+        display: block;
+        content: '';
+        background: $global-text;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .contact-consultant-name {
+        position: absolute;
+        display: block;
+        transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        -moz-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        -o-transform: translate(-50%,-50%);
+        left: 50%;
+        top: 50%;
+        border: 2px solid $brightColor;
+        color: $brightColor;
+        padding: 14px 80px;
+    }
+}
+.consultant-cardsocial {
+    img {
+        &.full-width {
+            margin-bottom: 0;
+            box-shadow: none;
+        }
+    }
+
+    .consultant-social {
+
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                width: 50%;
+                float: left;
+                display: inline-flex;
+
+                a {
+                    font-size: 24px;
+                    width: 100%;
+                    text-align: center;
+                    background: $global-text;
+                    color: $global-text-color;
+                    padding: 54px 0;
+
+                    &:hover {
+                        background: $global-text-color;
+                        color: $global-text;
+                    }
+                }
+
+                &:first-child {
+                    border-right: 1px solid $brightColor;
+                }
+
+                &:last-child {
+                    width: 100%;
+                    border-top: 1px solid $brightColor;
+                }
+            }
+        }
+    }
+}
+
+    .widget-padding {
+        padding: 30px 15px;
+    }
+
+    @import 'hexagon-item';
+    @import 'chevronShape';
 

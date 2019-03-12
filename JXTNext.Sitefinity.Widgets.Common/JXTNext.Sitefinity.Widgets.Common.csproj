@@ -301,6 +301,9 @@
     <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\grid-2+3+2+3+2.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\grid-5+3+4.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Tetracon\GridSystem\Templates\grid-3+3+3+3.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -3392,6 +3395,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Tetracon\MVC\Views\JobApplication\JobApplication.JobDetailWithSocialMedia.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\Consultant\Detail.ConsultantCard.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\Consultant\Detail.ConsultantCardSocial.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\JobSearchResults\JobsLatestList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\Consultant\Detail.DefaultAddress.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

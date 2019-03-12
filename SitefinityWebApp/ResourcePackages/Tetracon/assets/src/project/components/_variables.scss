@@ -32,6 +32,13 @@ $btn-secondary-hover-color: #fff;
 $btn-secondary-active-bg: $btn-secondary-color;
 $btn-secondary-active-color: #7DC245;
 
+$btn-black-bg: transparent;
+$btn-black-color: #2e2e2e;
+$btn-black-hover-bg: $btn-black-color;
+$btn-black-hover-color: #fff;
+$btn-black-active-bg: $btn-black-color;
+$btn-black-active-color: #7DC245;
+
 $btn-more-bg: #7DC245;
 $btn-more-color: #fff;
 $btn-more-hover-bg: #7DC245;
@@ -96,8 +103,8 @@ $forms-negative-element-border: #fff;
 $forms-label-size: 1.4rem;
 $forms-label-size-px: 14px;
 //Slideshows
-$testimonial-quote-color: #84d2d3;
-$testimonial-dot-color: #d7d7d7;
+$testimonial-quote-color: #7DC245;
+$testimonial-dot-color: #7DC245;
 $testimonial-dot-active-color: #7DC245;
 
 // Footer

@@ -20,9 +20,10 @@
 }
 
 .owl-nav button {
-    top: 20px!important;
+    top: 20px !important;
 }
-.owl-carousel .owl-stage{
+
+.owl-carousel .owl-stage {
     margin-left: auto;
     margin-right: auto;
 }
@@ -30,12 +31,13 @@
 /*#region Mobile slider*/
 
 .mobile-owl-carousel {
-    .owl-item{
-        [class*="col-"]{
+    .owl-item {
+        [class*="col-"] {
             width: auto;
             float: none;
         }
     }
+
     &.owl-loaded {
         margin-left: 0;
         margin-right: 0;
@@ -49,9 +51,9 @@
     }
 }
 
-.mobile-owl-2-items{
-    .owl-item{
-        img{
+.mobile-owl-2-items {
+    .owl-item {
+        img {
             width: auto;
         }
     }
@@ -63,28 +65,42 @@
 .testimonials-slider {
     display: block;
     padding: 70px 0;
-    width: 100%;    
-    color: $global-text-color!important;
+    width: 100%;
+    color: $global-text-color !important;
+    position: relative;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: $banner-color;
+        background: $banner-overlay;
+    }
+
     .owl-stage-outer {
-        background: rgb(255,255,255);
+        /*background: rgb(255,255,255);
         background: rgba(255,255,255,.9);
         -webkit-clip-path: padding-box polygon(100% 0, 100% 90%, 95% 100%, 0 100%, 0 0);
-        clip-path: padding-box polygon(100% 0, 100% 90%, 95% 100%, 0 100%, 0 0);
+        clip-path: padding-box polygon(100% 0, 100% 90%, 95% 100%, 0 100%, 0 0);*/
     }
 
     .owl-item {
-        padding: 55px 60px;
-        min-height: 450px;
+        /*padding: 55px 60px;*/
+        min-height: 295px;
     }
 
     .owl-dots {
         position: absolute;
         right: 0;
-        bottom: 45px;
+        bottom: -30px;
         left: 0;
         z-index: 99;
     }
-    
+
     .quote {
         position: relative;
         height: 60px;
@@ -93,77 +109,90 @@
         line-height: 60px;
         font-family: $font-family-medium;
         color: $testimonial-quote-color;
+        text-align: center;
 
         span {
             position: absolute;
             top: 45px;
-            &::before{
+
+            &::before {
                 content: '\201C';
             }
         }
-
-        &.text-right{
+        /*&.text-right{
             span {
                 right: 10px;
                 &::before{
                     content: '\201D';
                 }
             }
-        }
+        }*/
     }
 
-    &.with-top-image{
+    &.with-top-image {
         padding: 60px 0 20px;
+
         .owl-item {
             padding: 20px 60px;
         }
-        .item{
+
+        .item {
             position: relative;
             padding-bottom: 35px;
         }
-        .testimonial-title{
-            margin-top:45px;
+
+        .testimonial-title {
+            margin-top: 45px;
         }
+
         .owl-dots {
             bottom: 10px;
         }
+
         .quote {
             height: auto;
-            span{
+
+            span {
                 top: 80px;
                 left: -50px;
             }
-            &.text-right{
+
+            &.text-right {
                 position: absolute;
                 bottom: 50px;
                 top: auto;
                 right: 0;
-                span{
+
+                span {
                     top: 0;
                 }
             }
         }
     }
+
     .testimonial,
     .testimonial-author, .testimonial-title {
         text-align: center;
     }
 
     .testimonial-title {
-        font-size: 36px;
-        font-size: 3.6rem;
-        font-family: $font-family-light;
-        margin: -45px auto 0 auto;
+        font-size: 30px;
+        font-size: 3rem;
+        font-family: $font-family-bold;
+        margin: 30px auto 0 auto;
         line-height: 1;
         padding: 0 80px;
+        text-transform: uppercase;
+        font-weight: 500;
+        margin-bottom: 30px;
     }
 
     .testimonial {
-        padding: 40px 40px 15px;
-        font-size: 24px;
-        font-size: 2.4rem;
-        line-height: 1.3;
-        color: $global-text-color;
+        padding: 0px 40px 15px;
+        font-size: 16px;
+        font-size: 1.6rem;
+        line-height: 24px;
+        color: $global-text;
         margin: 0 auto;
         max-width: 900px;
         /*font-family: $font-family-regular;*/
@@ -174,6 +203,7 @@
         font-size: $global-font-size;
         font-family: $font-family-bold;
         text-transform: uppercase;
+        color: $global-text;
     }
 
     &.bg-highlight {
@@ -211,14 +241,15 @@
     }
 }
 
-.single-quote{
-    .quote{
-        span{
-            &::before{
+.single-quote {
+    .quote {
+        span {
+            &::before {
                 content: '\2018';
             }
         }
-        &.text-right span::before{
+
+        &.text-right span::before {
             content: '\2019';
         }
     }
@@ -228,22 +259,27 @@
     margin: 0 auto;
     padding: 0;
     max-width: 900px;
-    &.with-side-image{
+
+    &.with-side-image {
         max-width: 100%;
-        .item{
+
+        .item {
             position: relative;
             padding-bottom: 20px;
         }
-        .img-holder{
+
+        .img-holder {
             background: #eee;
         }
-        .owl-dots{
+
+        .owl-dots {
             position: absolute;
             width: 66.67%;
             left: auto;
             right: 0;
         }
     }
+
     &.bg-highlight {
         padding: 30px 0;
         max-width: 100%;
@@ -299,25 +335,28 @@
         font-family: $font-family-medium;
     }
 }
-.section-highlight{
+
+.section-highlight {
     .testimonials-slider {
-        color: $brightColor!important;
-        .testimonial{
+        color: $brightColor !important;
+
+        .testimonial {
             color: $brightColor;
         }
     }
-    
 }
 
-.with-top-image{
-    padding:0;
+.with-top-image {
+    padding: 0;
+
     .quote {
-        height:0px;
-        span{
-            top:0;
+        height: 0px;
+
+        span {
+            top: 0;
         }
     }
-} 
+}
 /*#endregion Testimonials slider*/
 
 /*#region Life at hudson*/
@@ -356,8 +395,8 @@
             transition: all 0.5s;
             -webkit-transition: all 0.5s;
         }
-        
-        &::before{
+
+        &::before {
             content: attr(data-instagram-likes);
             color: #fff;
             z-index: 1;
@@ -366,15 +405,17 @@
             box-sizing: border-box;
             -moz-box-sizing: border-box;
         }
-        &::after{
+
+        &::after {
             content: '\A';
             background: rgba(0,0,0,0.6);
         }
-        &:hover::before, &:hover::after{
+
+        &:hover::before, &:hover::after {
             opacity: 1;
         }
     }
- 
+
     .owl-stage-outer {
         margin-bottom: 40px;
     }
@@ -382,13 +423,16 @@
 
 .owl-card-basic {
     margin: 40px 0;
-    &.flex{
-        display: flex!important;
+
+    &.flex {
+        display: flex !important;
     }
-    &.flex-center{
+
+    &.flex-center {
         align-items: center;
         justify-content: center;
-        .item{
+
+        .item {
             max-width: 370px;
         }
     }
@@ -411,7 +455,7 @@
 
 
 .item-centered {
-    .owl-stage{
+    .owl-stage {
         margin: 0 auto;
     }
 }

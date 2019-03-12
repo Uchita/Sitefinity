@@ -309,6 +309,23 @@
     }
 }
 
+.col-md-3{
+    .thumbnail.card-basic{
+        .img-wrap{
+            height: auto!important;
+            img{
+                width: 100%;
+            }
+            .btn{
+                left: 10px;
+                &.btn-more{
+                    left: auto;
+                }
+            }
+        }
+    }
+}
+
 .card-bg-image-dark{
     .thumbnail{
         margin-bottom: 30px;

@@ -8174,7 +8174,9 @@ header {
         top: 45px;
         left: 100%;
         transition: left 0.2s ease-in-out;
-        display: block; }
+        display: block;
+        overflow: auto;
+        padding-bottom: 100px; }
         header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu li {
           padding: 0 20px; }
           header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu li a {
@@ -9538,6 +9540,15 @@ ul.breadcrumb {
     .thumbnail.card-rollover-bg:hover .card-description {
       background: #219fa3;
       background: rgba(33, 159, 163, 0.9); }
+
+.col-md-3 .thumbnail.card-basic .img-wrap {
+  height: auto !important; }
+  .col-md-3 .thumbnail.card-basic .img-wrap img {
+    width: 100%; }
+  .col-md-3 .thumbnail.card-basic .img-wrap .btn {
+    left: 10px; }
+    .col-md-3 .thumbnail.card-basic .img-wrap .btn.btn-more {
+      left: auto; }
 
 .card-bg-image-dark .thumbnail {
   margin-bottom: 30px; }

@@ -181,32 +181,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
-    <Compile Include="InterfaceMappings.cs" />
-    <Compile Include="Mvc\Controllers\RegistrationController.cs" />
     <Compile Include="Mvc\Models\LoginForm\CustomLoginFormModel.cs" />
-    <Compile Include="Mvc\Models\Profile\ProfileBindingsContract.cs" />
-    <Compile Include="Mvc\Models\Registration\ActivationMethod.cs" />
     <Compile Include="Mvc\Models\RegistrationExtended\CustomRegistrationModel.cs" />
-    <Compile Include="Mvc\Models\Registration\IRegistrationModel.cs" />
-    <Compile Include="Mvc\Models\Registration\RegistrationModel.cs" />
-    <Compile Include="Mvc\Models\Registration\RegistrationViewModel.cs" />
-    <Compile Include="Mvc\Models\Registration\SuccessfulRegistrationAction.cs" />
-    <Compile Include="Mvc\StringResources\ChangePasswordResources.cs" />
-    <Compile Include="Mvc\StringResources\LoginFormResources.cs" />
-    <Compile Include="Mvc\StringResources\LoginFormStaticResources.cs" />
-    <Compile Include="Mvc\StringResources\RegistrationResources.cs" />
-    <Compile Include="Mvc\StringResources\RegistrationStaticResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mvc\Scripts\Registration\designerview-simple.js" />
-    <EmbeddedResource Include="Mvc\Scripts\Registration\registration-form.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mvc\Views\Registration\DesignerView.Simple.cshtml" />
-    <EmbeddedResource Include="Mvc\Views\Registration\DesignerView.Simple.json" />
-    <EmbeddedResource Include="Mvc\Views\Registration\ProfileBindings.json" />
-    <EmbeddedResource Include="Mvc\Views\Registration\Registration.RegistrationForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -225,6 +202,12 @@
       <Project>{676b052f-ef99-420d-bb22-16b287818a60}</Project>
       <Name>JXTNext.Sitefinity.Widgets.User</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mvc\Controllers\" />
+    <Folder Include="Mvc\Scripts\" />
+    <Folder Include="Mvc\StringResources\" />
+    <Folder Include="Mvc\Views\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

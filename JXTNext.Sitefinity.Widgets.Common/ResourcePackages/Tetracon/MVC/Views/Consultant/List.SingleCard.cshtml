@@ -28,9 +28,10 @@
                 imageThumbUrl = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.jpg";
             }
 
-            <a href="@navigateUrl" title="@consultant.Fields.ConsultantName" class="consultant-photo">
+            <div @*href="@navigateUrl" title="@consultant.Fields.ConsultantName"*@ class="consultant-photo">
                 <img src="@imageThumbUrl" alt="@consultant.Fields.ConsultantName">
-            </a>
+                <a class="link-overlay" href="@navigateUrl"></a>
+            </div>
             <a href="@navigateUrl" class="caption">
                 <h3 class="consultant-name">@consultant.Fields.ConsultantName</h3>
                 <p class="consultant-sum">

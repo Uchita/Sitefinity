@@ -2811,7 +2811,7 @@ address.info-box {
         height: 100%;
         display: block;
         right: 0;
-        width: calc(100% - 75%);
+        width: calc(100% - 72%);
         z-index: -1;
         top: 0;
     }
@@ -3025,6 +3025,7 @@ footer {
 .widget-padding {
     padding: 30px 15px;
 }
+
 
 @import 'hexagon-item';
 @import 'chevronShape';

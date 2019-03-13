@@ -9099,7 +9099,7 @@ address.info-box {
     height: 100%;
     display: block;
     right: 0;
-    width: calc(100% - 75%);
+    width: calc(100% - 72%);
     z-index: -1;
     top: 0; }
   .left-block-shade .row {
@@ -10502,6 +10502,12 @@ ul.breadcrumb {
 
 .git-about textarea.form-control, footer textarea.form-control {
   height: 100px !important; }
+
+#createalert-widget h3 {
+  color: #666666; }
+
+#createalert-widget .basic-form label {
+  color: #666666; }
 
 /*#endregion Forms*/
 /*#region Customers */

@@ -652,3 +652,15 @@ label{
         height: 100px !important;
     }
 }
+
+#createalert-widget {
+    h3 {
+        color: $global-text;
+    }
+
+    .basic-form {
+        label {
+            color: $global-text;
+        }
+    }
+}

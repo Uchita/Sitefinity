@@ -362,6 +362,7 @@
     margin-bottom: 40px;
     .thumbnail{
         height: 100%; 
+        margin-bottom: 0;
         &.nopagelink{
             .caption{
                 
@@ -427,6 +428,7 @@
 
 .card-basic-small-icon {
     &.thumbnail.card-basic {
+        z-index: 1;
         a > img, img {
             width: auto;
             margin: 0 auto;

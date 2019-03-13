@@ -136,6 +136,9 @@
     <Reference Include="Telerik.Sitefinity.Frontend.Data, Version=11.0.6726.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
       <HintPath>..\packages\Telerik.Sitefinity.Feather.Core.11.0.6726\lib\net471\Telerik.Sitefinity.Frontend.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Sitefinity.Frontend.Identity">
+      <HintPath>..\JXTNext.Sitefinity.Widgets.Job\Bin\Telerik.Sitefinity.Frontend.Identity.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.Sitefinity.Model, Version=11.0.6726.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
       <HintPath>..\packages\Telerik.Sitefinity.Core.11.0.6726\lib\net471\Telerik.Sitefinity.Model.dll</HintPath>
     </Reference>
@@ -180,12 +183,16 @@
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="InterfaceMappings.cs" />
     <Compile Include="Mvc\Controllers\RegistrationController.cs" />
+    <Compile Include="Mvc\Models\LoginForm\CustomLoginFormModel.cs" />
     <Compile Include="Mvc\Models\Profile\ProfileBindingsContract.cs" />
     <Compile Include="Mvc\Models\Registration\ActivationMethod.cs" />
     <Compile Include="Mvc\Models\Registration\IRegistrationModel.cs" />
     <Compile Include="Mvc\Models\Registration\RegistrationModel.cs" />
     <Compile Include="Mvc\Models\Registration\RegistrationViewModel.cs" />
     <Compile Include="Mvc\Models\Registration\SuccessfulRegistrationAction.cs" />
+    <Compile Include="Mvc\StringResources\ChangePasswordResources.cs" />
+    <Compile Include="Mvc\StringResources\LoginFormResources.cs" />
+    <Compile Include="Mvc\StringResources\LoginFormStaticResources.cs" />
     <Compile Include="Mvc\StringResources\RegistrationResources.cs" />
     <Compile Include="Mvc\StringResources\RegistrationStaticResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -203,6 +210,20 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">
+      <Project>{9ccdbc01-ef02-4d74-9385-5c0f1da2eb7a}</Project>
+      <Name>JXTNext.Sitefinity.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Connector\JXTNext.Sitefinity.Connector.csproj">
+      <Project>{bf418b44-ebce-499f-bbd3-6ba98a24e144}</Project>
+      <Name>JXTNext.Sitefinity.Connector</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Widgets\JXTNext.Sitefinity.Widgets.User.csproj">
+      <Project>{676b052f-ef99-420d-bb22-16b287818a60}</Project>
+      <Name>JXTNext.Sitefinity.Widgets.User</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

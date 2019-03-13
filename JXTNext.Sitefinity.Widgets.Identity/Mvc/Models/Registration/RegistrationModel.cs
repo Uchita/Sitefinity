@@ -32,13 +32,18 @@ using Microsoft.Owin.Security;
 using ServiceStack.Text;
 using Telerik.Sitefinity.Security.Events;
 using System.Web.Script.Serialization;
+using JXTNext.Sitefinity.Connector.BusinessLogics;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 
 namespace JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.Registration
 {
     public class RegistrationModel : IRegistrationModel
     {
-        #region Public Properties
 
+
+
+        #region Public Properties
+        public IBusinessLogicsConnector blConnector { get; set; }
         /// <inheritDoc/>
         public Guid? LoginPageId { get; set; }
 
@@ -264,7 +269,7 @@ namespace JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.Registration
         public virtual MembershipCreateStatus RegisterUser(RegistrationViewModel viewModel)
         {
             var userManager = UserManager.GetManager(this.MembershipProviderName);
-            User user;
+            Telerik.Sitefinity.Security.Model.User user;
             MembershipCreateStatus status;
             using (new ElevatedModeRegion(userManager))
             {
@@ -278,6 +283,30 @@ namespace JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.Registration
 
                     this.ConfirmRegistration(userManager, user);
                     //this.ExecuteUserProfileSuccessfullUpdateActions();
+                }
+
+                if(status == MembershipCreateStatus.DuplicateUserName)
+                {
+                    
+                    var res = blConnector.GetMemberByEmail(viewModel.Email);
+                    if(res.Member == null)
+                    {
+                        Telerik.Sitefinity.Security.Model.User existingUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.GetUserByEmail(viewModel.Email);
+                        UserProfileManager userProfileManager = UserProfileManager.GetManager();
+                        UserProfile profile = userProfileManager.GetUserProfile(existingUser.Id, typeof(SitefinityProfile).FullName);
+                        var fName = Telerik.Sitefinity.Model.DataExtensions.GetValue(profile, "FirstName");
+                        var lName = Telerik.Sitefinity.Model.DataExtensions.GetValue(profile, "LastName");
+                        JXTNext_MemberRegister memberReg = new JXTNext_MemberRegister
+                        {
+                            Email = existingUser.Email,
+                            FirstName = fName.ToString(),
+                            LastName = lName.ToString(),
+                            Password = existingUser.Password
+                        };
+
+                        blConnector.MemberRegister(memberReg,out string errorMessage);
+                    }
+                        
                 }
             }
 
@@ -293,7 +322,7 @@ namespace JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.Registration
         {
             var isSend = false;
             var userManager = UserManager.GetManager(this.MembershipProviderName);
-            User user = userManager.GetUserByEmail(email);
+            Telerik.Sitefinity.Security.Model.User user = userManager.GetUserByEmail(email);
             if (user != null)
             {
                 this.SendRegistrationConfirmationEmail(userManager, user);
@@ -405,7 +434,7 @@ namespace JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.Registration
         /// Assigns the specified roles to the newly created user.
         /// </summary>
         /// <param name="user">The user.</param>
-        protected virtual void AssignRolesToUser(User user)
+        protected virtual void AssignRolesToUser(Telerik.Sitefinity.Security.Model.User user)
         {
             if (this.selectedRoles != null)
             {
@@ -476,7 +505,7 @@ namespace JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.Registration
         /// <param name="manager">The manager.</param>
         /// <param name="user">The user.</param>
         /// <param name="status">The status that will be set depending on the creation outcome.</param>
-        protected virtual bool TryCreateUser(UserManager manager, RegistrationViewModel userData, out User user, out MembershipCreateStatus status)
+        protected virtual bool TryCreateUser(UserManager manager, RegistrationViewModel userData, out Telerik.Sitefinity.Security.Model.User user, out MembershipCreateStatus status)
         {
             if (userData.RequiresQuestionAndAnswer)
             {
@@ -494,7 +523,7 @@ namespace JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.Registration
         /// Executes any user confirmations steps.
         /// </summary>
         /// <param name="user">The user.</param>
-        protected virtual void ConfirmRegistration(UserManager userManager, User user)
+        protected virtual void ConfirmRegistration(UserManager userManager, Telerik.Sitefinity.Security.Model.User user)
         {
             if (this.ActivationMethod == Registration.ActivationMethod.AfterConfirmation)
             {
@@ -513,7 +542,7 @@ namespace JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.Registration
         /// </summary>
         /// <param name="userManager">The user manager.</param>
         /// <param name="user">The user.</param>
-        protected virtual void SendSuccessfulRegistrationEmail(UserManager userManager, User user)
+        protected virtual void SendSuccessfulRegistrationEmail(UserManager userManager, Telerik.Sitefinity.Security.Model.User user)
         {
             var registrationSuccessEmail =
                 UserRegistrationEmailGenerator.GenerateSuccessfulRegistrationEmail(
@@ -533,7 +562,7 @@ namespace JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.Registration
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="profileProperties">A dictionary containing the profile properties.</param>
-        protected virtual void CreateUserProfiles(User user, IDictionary<string, string> profileProperties)
+        protected virtual void CreateUserProfiles(Telerik.Sitefinity.Security.Model.User user, IDictionary<string, string> profileProperties)
         {
             if (string.IsNullOrEmpty(this.ProfileBindings))
             {
@@ -570,7 +599,7 @@ namespace JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.Registration
         /// <summary>
         /// Sends the registration confirmation email.
         /// </summary>
-        protected virtual void SendRegistrationConfirmationEmail(UserManager userManager, User user)
+        protected virtual void SendRegistrationConfirmationEmail(UserManager userManager, Telerik.Sitefinity.Security.Model.User user)
         {
             string confirmationPageUrl = this.GetConfirmationPageUrl(user);
 
@@ -594,7 +623,7 @@ namespace JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.Registration
         /// </summary>
         /// <param name="user">The user.</param>
         /// <returns></returns>
-        protected virtual string GetConfirmationPageUrl(User user)
+        protected virtual string GetConfirmationPageUrl(Telerik.Sitefinity.Security.Model.User user)
         {
             if (!this.ConfirmationPageId.HasValue)
             {

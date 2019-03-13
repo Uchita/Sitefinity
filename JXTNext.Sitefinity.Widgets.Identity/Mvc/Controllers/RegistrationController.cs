@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
+using JXTNext.Sitefinity.Connector.BusinessLogics;
 using JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.Registration;
 using JXTNext.Sitefinity.Widgets.Identity.Mvc.StringResources;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers;
@@ -32,8 +33,16 @@ namespace JXTNext.Sitefinity.Widgets.Identity.Mvc.Controllers
                 if (this.model == null)
                     this.model = this.InitializeModel();
 
+                this.model.blConnector = _blConnector;
                 return this.model;
             }
+        }
+
+        IBusinessLogicsConnector _blConnector;
+
+        public RegistrationController(IBusinessLogicsConnector blConnector)
+        {
+            _blConnector = blConnector;
         }
 
         /// <summary>

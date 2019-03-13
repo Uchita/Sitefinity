@@ -22,6 +22,7 @@
 @using Telerik.Sitefinity.DynamicModules;
 @using Telerik.Sitefinity.DynamicModules.Model;
 @using Telerik.Sitefinity.Utilities.TypeConverters;
+@using JXTNext.Sitefinity.Common.Helpers;
 
 <div class="@Model.CssClass consultant-minimal">
 
@@ -65,10 +66,7 @@
                     <select id="LocationFilter" name="LocationFilter" required="required" class="form-control">
                         <option value="all">All Locations</option>
                         @{
-                            var manager = DynamicModuleManager.GetManager("OpenAccessProvider");
-                            var officeType = TypeResolutionService.ResolveType("Telerik.Sitefinity.DynamicTypes.Model.Offices.Office");
-                            var officeItems = manager.GetDataItems(officeType).Where(x => x.Status == Telerik.Sitefinity.GenericContent.Model.ContentLifecycleStatus.Live).ToList();
-
+                            var officeItems = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.GetCurrentSiteItems("Telerik.Sitefinity.DynamicTypes.Model.Offices.Office","Offices");
                             foreach (var office in officeItems)
                             {
                                 var officeId = office.Id;

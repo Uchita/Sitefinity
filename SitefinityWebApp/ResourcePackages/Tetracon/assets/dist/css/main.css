@@ -7479,6 +7479,24 @@ blockquote {
       background: #7DC245; }
       .page-wrapper .btn-more:active:after {
         color: #7DC245; }
+  .page-wrapper .btn-black {
+    border: 1px solid #666666;
+    border-radius: 0;
+    padding: 8px 25px;
+    font-size: 16px;
+    font-size: 1.6rem;
+    font-family: Segoe, sans-serif;
+    text-transform: uppercase;
+    background: transparent;
+    color: #666666; }
+    .page-wrapper .btn-black:hover, .page-wrapper .btn-black:focus {
+      border-color: #666666;
+      background: #666666;
+      color: #fff; }
+    .page-wrapper .btn-black:active {
+      border-color: #666666;
+      background: #666666;
+      color: #ffffff; }
   .page-wrapper .row-see-more {
     margin-bottom: 0; }
     .page-wrapper .row-see-more .btn {
@@ -9522,25 +9540,6 @@ header .dropdown:hover .dropdown-menu {
 
 header .main-nav .navbar-nav > li.dropdown {
   position: relative; }
-
-.btn-black {
-  border: 1px solid #666666;
-  border-radius: 0;
-  padding: 8px 25px;
-  font-size: 16px;
-  font-size: 1.6rem;
-  font-family: Segoe, sans-serif;
-  text-transform: uppercase;
-  background: transparent;
-  color: #666666; }
-  .btn-black:hover, .btn-black:focus {
-    border-color: #666666;
-    background: #666666;
-    color: #fff; }
-  .btn-black:active {
-    border-color: #666666;
-    background: #666666;
-    color: #ffffff; }
 
 /*#endregion Basic components */
 /*#region Breadcrumbs */

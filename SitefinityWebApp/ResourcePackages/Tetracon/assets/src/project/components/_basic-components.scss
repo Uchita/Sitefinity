@@ -324,6 +324,30 @@ blockquote {
             }
         }
     }
+    //New-Button
+    .btn-black {
+        border: 1px solid $btn-black-color;
+        border-radius: 0;
+        padding: 8px 25px;
+        font-size: 16px;
+        font-size: 1.6rem;
+        font-family: $font-family-bold;
+        text-transform: uppercase;
+        background: $btn-black-bg;
+        color: $btn-black-color;
+
+        &:hover, &:focus {
+            border-color: $btn-black-hover-bg;
+            background: $btn-black-hover-bg;
+            color: $btn-black-hover-color;
+        }
+
+        &:active {
+            border-color: $btn-black-hover-bg;
+            background: $btn-black-active-bg;
+            color: $btn-black-active-color;
+        }
+    }
 
     .row-see-more {
         margin-bottom: 0;
@@ -3040,27 +3064,3 @@ header .main-nav .navbar-nav > li.dropdown {
     position: relative;
 }
 
-//New-Button
-.btn-black {
-    border: 1px solid $btn-black-color;
-    border-radius: 0;
-    padding: 8px 25px;
-    font-size: 16px;
-    font-size: 1.6rem;
-    font-family: $font-family-bold;
-    text-transform: uppercase;
-    background: $btn-black-bg;
-    color: $btn-black-color;
-
-    &:hover, &:focus {
-        border-color: $btn-black-hover-bg;
-        background: $btn-black-hover-bg;
-        color: $btn-black-hover-color;
-    }
-
-    &:active {
-        border-color: $btn-black-hover-bg;
-        background: $btn-black-active-bg;
-        color: $btn-black-active-color;
-    }
-}

@@ -24,15 +24,20 @@
         {
             summary = (@Html.HtmlSanitize((string)item.Fields.Summary)).ToString().Substring(0, 128);
         }
-    <div class="white_panel">
-        <div class="sub">
-            <p class="blue_text"><a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a></p>
-            <p>@summary</p>
-            <div class="action_link">
-                <a href="@navigateUrl">Read Events</a>
+        var title = (@Html.HtmlSanitize((string)item.Fields.Title)).ToString();
+        if (@Html.HtmlSanitize((string)item.Fields.Title).ToString().Length > 40)
+        {
+            title = (@Html.HtmlSanitize((string)item.Fields.Summary)).ToString().Substring(0, 40);
+        }
+        <div class="white_panel">
+            <div class="sub">
+                <p class="blue_text"><a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@title</a></p>
+                <p>@summary</p>
+                <div class="action_link">
+                    <a href="@navigateUrl">Read Events</a>
+                </div>
             </div>
         </div>
-    </div>
     }
 </div>
 

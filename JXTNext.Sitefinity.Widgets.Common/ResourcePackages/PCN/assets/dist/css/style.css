@@ -1623,6 +1623,7 @@ button.read_btn:hover {
             font-size: 30px;
             color: #004F6E;
             font-family: FuturaPT-bold;
+            min-height: 66px;
         }
 
             .blog_section .latest_news .sub_title a {

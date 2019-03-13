@@ -6,8 +6,10 @@ $global-font-family-heading: 'Playfair Display', serif;
 $global-font-family: 'Open Sans', sans-serif;
 $font-family-light: 'Open Sans', sans-serif;
 $font-family-regular: 'Open Sans', sans-serif;
-$font-family-medium: 'Open Sans', sans-serif;
-$font-family-bold: 'Open Sans', sans-serif;
+$font-family-medium: 600;
+$font-family-bold: 700;
+$font-weight-medium: 600;
+$font-weight-bold: 700;
 
 $global-text-color: #000;
 $global-headings-color: #2e2e2e;
@@ -49,6 +51,7 @@ $btn-banner-active-color: #2dc3ea;
 $header-top-bg: #2e2e2e;
 $header-top-color: #fff;
 $header-top-hover-color: #2dc3ea;
+$header-dropdown-bg-color: #19366A;
 
 $header-overlay-fallback: rgb(0,0,0);
 $header-overlay: rgba(0,0,0,.8);
@@ -93,16 +96,19 @@ $forms-negative-element-border: #fff;
 
 $forms-label-size: 1.4rem;
 $forms-label-size-px: 14px;
+$forms-select-text: #9d9c9c;
+
 //Slideshows
 $testimonial-quote-color: #84d2d3;
 $testimonial-dot-color: #d7d7d7;
 $testimonial-dot-active-color: #464646;
 
 // Footer
+$footer-subhead-text: #969595;
 $footer-nav-links: #ffffff;
 $footer-nav-links-hover: #2dc3ea;
 $postfooter-bg: #E0E0E0;
-$postfooter-links-color: #A4A4A4;
+$postfooter-links-color: #969595;
 
 //Left sidebar
 $sidebar-link-color: #2dc3ea;
@@ -145,3 +151,10 @@ $orange-1: #ff8f00;
 $black-2: #232323;
 
 $gap: 50px;
+
+ 
+@mixin transition() {
+    transition: all 0.3s ease-in-out;
+}
+
+

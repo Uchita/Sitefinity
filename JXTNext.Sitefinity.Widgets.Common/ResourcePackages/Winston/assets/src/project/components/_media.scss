@@ -7,15 +7,13 @@
             position: relative !important;
             /*top: 15px;*/
             z-index: 100;
-
-            &:after {
+            /*&:after {
                 position: absolute;
                 right: -100px;
                 height: 100%;
                 content: '';
                 border: 1px solid $brightColor;
-            }
-
+            }*/
             a {
 
                 img {
@@ -27,7 +25,7 @@
 
         .main-nav .collapse.navbar-collapse,
         .main-nav .dropdown-menu-container .dropdown-menu-columns {
-            width: 750px;
+            /*width: 750px;*/
         }
 
         .mobile-nav {
@@ -261,12 +259,12 @@
 
 /*#region Large desktop*/
 @media (min-width:1200px) {
-    
+
     header {
 
         .main-nav .collapse.navbar-collapse,
         .main-nav .dropdown-menu-container .dropdown-menu-columns {
-            width: 1170px;
+            /*width: 1170px;*/
         }
     }
 

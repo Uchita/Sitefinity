@@ -2,6 +2,11 @@
     position: relative;
     top: -120px;
     z-index: 9;
+    @media(max-width:767px){
+        top:0;
+    }
+
+
 
     & > .container {
 

@@ -287,7 +287,7 @@
     font-size: 220px;
     font-size: 22rem;
     line-height: 60px;
-    font-family: "Open Sans", sans-serif;
+    font-family: 600;
     color: #84d2d3; }
     .testimonials-slider .quote span {
       position: absolute;
@@ -343,7 +343,7 @@
   .testimonials-slider .testimonial-author {
     padding: 10px 40px;
     font-size: 1.6rem;
-    font-family: "Open Sans", sans-serif;
+    font-family: 700;
     text-transform: uppercase; }
   .testimonials-slider.bg-highlight {
     color: #fff; }
@@ -422,7 +422,7 @@
     line-height: 1.4; }
   .testimonials-slider.testimonials-simple .testimonial-author {
     padding: 10px 100px;
-    font-family: "Open Sans", sans-serif; }
+    font-family: 600; }
 
 .section-highlight .testimonials-slider {
   color: #fff !important; }

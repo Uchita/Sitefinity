@@ -32,7 +32,7 @@
     var listControls = Model.Where(m => m.ControlType == "List").Take(2).ToList();
 
     <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();" class="@ViewData["CssClass"]">
-        <div class="job-search">
+        <div class="job-search transparent-data">
             <div class="container">
                 <div class="row">
                     @{
@@ -87,7 +87,9 @@
                         controlCounter++;
                     }
 
-                    <div class="col-xs-12 col-sm-3 col-md-3"><div class="btn-block form-group"><button class="btn btn-default" type="submit">Job Search</button></div></div>
+                    <div class="col-xs-12 col-sm-3 col-md-3"><div class="btn-block form-group"><button class="btn btn-default flip-interaction" type="submit"><span data-hover="Job Search">Job Search</span></button></div></div>
+
+                 
 
 
                 </div>

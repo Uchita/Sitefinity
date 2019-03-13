@@ -7370,6 +7370,7 @@ select.hs-input {
         background: rgba(37, 130, 176, 0.7);
         opacity: 0;
         transition: all 0.4s ease;
+        z-index: 1;
     }
 
     .leader-list .leader-image h1 {
@@ -7385,6 +7386,7 @@ select.hs-input {
         transform: translate(-50%, 100%);
         transition: all 0.4s ease;
         opacity: 0;
+        z-index: 2;
     }
 
     .leader-list .leader-image:hover .leader_logo {

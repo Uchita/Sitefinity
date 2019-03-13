@@ -8007,7 +8007,6 @@ header {
         display: block; }
       header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu, header .main-nav .navbar-nav > li.dropdown:focus .dropdown-menu {
         position: absolute;
-        box-shadow: none;
         margin: 0;
         border: 0;
         border-radius: 0;
@@ -8033,7 +8032,8 @@ header {
             color: #666;
             background-color: transparent; }
             header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu .dropdown-submenu .dropdown-menu li a:hover, header .main-nav .navbar-nav > li.dropdown:focus .dropdown-menu .dropdown-submenu .dropdown-menu li a:hover {
-              color: #7DC245; }
+              color: #fff;
+              background-color: #7DC245; }
       header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu + .dropdown-menu, header .main-nav .navbar-nav > li.dropdown:focus .dropdown-menu + .dropdown-menu {
         border-left: 1px solid #d7d7d7; }
     header .main-nav .dropdown-menu-container {
@@ -8083,7 +8083,8 @@ header {
           background: #7DC245;
           color: #fff; }
       header .main-nav .dropdown-menu li.active a {
-        color: #7DC245; }
+        color: #fff;
+        background-color: #7DC245; }
     header .main-nav .dropdown-menu a:hover, header .main-nav .dropdown-menu a:focus {
       text-decoration: none; }
       header .main-nav .dropdown-menu a:hover h5, header .main-nav .dropdown-menu a:focus h5 {
@@ -8100,7 +8101,8 @@ header {
         border-radius: 0;
         background: none; }
       header .main-nav .dropdown-submenu .dropdown-menu {
-        padding-left: 30px; }
+        padding-left: 30px;
+        box-shadow: none; }
   header .navbar {
     margin-bottom: 0;
     border: 0; }
@@ -9520,6 +9522,25 @@ header .dropdown:hover .dropdown-menu {
 
 header .main-nav .navbar-nav > li.dropdown {
   position: relative; }
+
+.btn-black {
+  border: 1px solid #666666;
+  border-radius: 0;
+  padding: 8px 25px;
+  font-size: 16px;
+  font-size: 1.6rem;
+  font-family: Segoe, sans-serif;
+  text-transform: uppercase;
+  background: transparent;
+  color: #666666; }
+  .btn-black:hover, .btn-black:focus {
+    border-color: #666666;
+    background: #666666;
+    color: #fff; }
+  .btn-black:active {
+    border-color: #666666;
+    background: #666666;
+    color: #ffffff; }
 
 /*#endregion Basic components */
 /*#region Breadcrumbs */

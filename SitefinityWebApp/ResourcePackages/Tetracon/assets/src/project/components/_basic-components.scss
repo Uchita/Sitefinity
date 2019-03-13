@@ -1004,7 +1004,6 @@ header {
     }
 
     .navbar-fixed-top {
-
         &:before {
             content: '';
             position: absolute;
@@ -1016,7 +1015,6 @@ header {
             background: $header-overlay-fallback;
             background: $header-overlay;
         }
-
         .brand-logo {
             width: 156px;
             height: 70px;
@@ -1078,7 +1076,6 @@ header {
 
                 .dropdown-menu {
                     position: absolute;
-                    box-shadow: none;
                     margin: 0;
                     border: 0;
                     border-radius: 0;
@@ -1119,7 +1116,8 @@ header {
                                     background-color: transparent;
 
                                     &:hover {
-                                        color: #7DC245;
+                                        color: #fff;
+                                        background-color: #7DC245;
                                     }
                                 }
                             }
@@ -1199,7 +1197,8 @@ header {
 
             &.active {
                 a {
-                    color: $navigation-sublink-hover-color;
+                    color: #fff;
+                    background-color: $navigation-sublink-hover-color;
                 }
             }
         }
@@ -1230,6 +1229,7 @@ header {
 
             .dropdown-menu {
                 padding-left: 30px;
+                box-shadow:none;
             }
         }
     }
@@ -3037,4 +3037,29 @@ header .dropdown:hover .dropdown-menu {
 
 header .main-nav .navbar-nav > li.dropdown {
     position: relative;
+}
+
+//New-Button
+.btn-black {
+    border: 1px solid $btn-black-color;
+    border-radius: 0;
+    padding: 8px 25px;
+    font-size: 16px;
+    font-size: 1.6rem;
+    font-family: $font-family-bold;
+    text-transform: uppercase;
+    background: $btn-black-bg;
+    color: $btn-black-color;
+
+    &:hover, &:focus {
+        border-color: $btn-black-hover-bg;
+        background: $btn-black-hover-bg;
+        color: $btn-black-hover-color;
+    }
+
+    &:active {
+        border-color: $btn-black-hover-bg;
+        background: $btn-black-active-bg;
+        color: $btn-black-active-color;
+    }
 }

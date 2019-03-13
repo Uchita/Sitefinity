@@ -26,7 +26,8 @@ else
     <script type="text/javascript">
         ;
         $(document).ready(function () {
-            $(".page-wrapper main").css({ "padding-top": $("#header").outerHeight() });
+            //$(".page-wrapper main").css({ "padding-top": $("#header").height() });
+            $(".page-wrapper main").css("padding-top", 100);
         });
     </script>
 }
@@ -41,7 +42,7 @@ else
         }
 
     header .navbar-fixed-top:before {
-        background: rgb(25, 126, 132);
+        background: #e2e2e2;
         /*background: rgba(25, 126, 132,.8);*/
     }
 

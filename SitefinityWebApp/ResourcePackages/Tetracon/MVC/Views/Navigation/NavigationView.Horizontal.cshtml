@@ -16,6 +16,8 @@
 @Html.Script(ScriptRef.JQuery, "top")
 @Html.Script(Url.WidgetContent("Mvc/Scripts/Bootstrap/js/bootstrap.min.js"), "top", false)
 
+<div class="visible-xs"><a href="/" class="brand-logo">logo</a></div>
+
 <div class="main-nav @Model.CssClass">
     @* @Html.Action("GetView", new { viewName = "Dropdown",  model= Model}) *@
 
@@ -93,16 +95,16 @@
     if (node.ChildNodes.Count > 0)
     {
         <li class="dropdown @GetClass(node)">
-            <a href="@node.Url" target="@node.LinkTarget">@node.Title<span class="decoration"></span></a>
-            <div class="dropdown-menu-container">
-                <div class="dropdown-menu-columns">
+            <a href="@node.Url" target="@node.LinkTarget" class="dropdown-toggle" data-toggle="dropdown">@node.Title<span class="decoration"></span></a>
+            @*<div class="dropdown-menu-container">
+                <div class="dropdown-menu-columns">*@
                     @*<div class="dropdown-menu"></div>*@
-                    <div class="dropdown-menu no-bdr">
-                        <ul>
+                    @*<div class="dropdown-menu no-bdr">*@
+                        <ul class="dropdown-menu">
                             @RenderSubLevelsRecursive(node, 1)
                         </ul>
-                    </div>
-                    <div class="dropdown-menu">
+                    @*</div>*@
+                    @*<div class="dropdown-menu">
                         @foreach (var flattenedChild in node.ChildNodes)
                         {
                             if (flattenedChild.ChildNodes.Count > 0)
@@ -112,7 +114,7 @@
                                 </ul>
                             }
                         }
-                    </div>
+                    </div>*@
 
                     @*<div class="dropdown-menu">
                         @if (featuredArticle != null)
@@ -139,8 +141,8 @@
                     </div>*@
                     <div class="clearfix">
                     </div>
-                </div>
-            </div>
+                @*</div>
+            </div>*@
         </li>
     }
     else
@@ -156,18 +158,27 @@
     {
         if (childNode.ChildNodes.Count > 0 && dept > 0)
         {
-            <li class="dropdown-submenu @GetClass(childNode)" data-self-id="@childNode.OriginalSiteMapNode.Key.ToLower()">
-                <a href="@childNode.Url" target="@childNode.LinkTarget">
-                    @childNode.Title
-                    <span class="right-caret"></span>
-                </a>
-                @*@if (dept > 0) // Do not render the UL as well if no children are requested.
-                    {
-                        <ul>
-                            @RenderSubLevelsRecursive(childNode, --dept)
-                        </ul>
-                    }*@
-            </li>
+        <li class="dropdown-submenu @GetClass(childNode)" data-self-id="@childNode.OriginalSiteMapNode.Key.ToLower()">
+            <a href="@childNode.Url" target="@childNode.LinkTarget" class="dropdown-toggle" data-toggle="dropdown">
+                @childNode.Title
+                @*<span class="right-caret"></span>*@
+            </a>
+            @foreach (var flattenedChild in node.ChildNodes)
+            {
+                if (flattenedChild.ChildNodes.Count > 0)
+                {
+                    <ul class="dropdown-menu" data-parent-id="@flattenedChild.OriginalSiteMapNode.Key.ToLower()">
+                        @RenderSubLevelsRecursive(flattenedChild, 1)
+                    </ul>
+                }
+            }
+            @*@if (dept > 0) // Do not render the UL as well if no children are requested.
+        {
+            <ul>
+                @RenderSubLevelsRecursive(childNode, --dept)
+            </ul>
+        }*@
+        </li>
         }
         else if (dept > 0)
         {
@@ -237,29 +248,45 @@
 }
 <script>
     $(document).ready(function () {
-        var ulSelector = "ul[data-parent-id]";
-        var liSelector = "li[data-self-id]";
 
-        $(liSelector).mouseenter(function () {
-            $(".dropdown").find("a.link-active").removeClass("link-active");
-            $(this).find("a").addClass("link-active");
-            $("ul[data-parent-id='" + $(this).data("selfId") + "']").siblings().hide();
-            $("ul[data-parent-id='" + $(this).data("selfId") + "']").show();
-        });
-        $(liSelector).mouseleave(function (e) {
-            var nextEl = e.toElement || e.relatedTarget
-            if (nextEl && $(nextEl).is(liSelector)) {
-                $(this).find("a").addClass("link-active");
-                $(ulSelector).hide();
+        $('.dropdown-toggle').click(function (e) {
+            if ($(document).width() > 768) {
+                e.preventDefault();
+
+                var url = $(this).attr('href');
+
+
+                if (url !== '#') {
+
+                    window.location.href = url;
+                }
+
             }
         });
 
-        $('.dropdown').removeClass('open');
+        var ulSelector = "ul[data-parent-id]";
+        var liSelector = "li[data-self-id]";
 
-        $(".dropdown").mouseleave(function (e) {
-            $(this).find("a.link-active").removeClass("link-active");
-            $(ulSelector).hide();
-        });
+        //$(liSelector).mouseenter(function () {
+        //    $(".dropdown").find("a.link-active").removeClass("link-active");
+        //    $(this).find("a").addClass("link-active");
+        //    $("ul[data-parent-id='" + $(this).data("selfId") + "']").siblings().hide();
+        //    $("ul[data-parent-id='" + $(this).data("selfId") + "']").show();
+        //});
+        //$(liSelector).mouseleave(function (e) {
+        //    var nextEl = e.toElement || e.relatedTarget
+        //    if (nextEl && $(nextEl).is(liSelector)) {
+        //        $(this).find("a").addClass("link-active");
+        //        $(ulSelector).hide();
+        //    }
+        //});
+
+        //$('.dropdown').removeClass('open');
+
+        //$(".dropdown").mouseleave(function (e) {
+        //    $(this).find("a.link-active").removeClass("link-active");
+        //    $(ulSelector).hide();
+        //});
 
         //mobile
 

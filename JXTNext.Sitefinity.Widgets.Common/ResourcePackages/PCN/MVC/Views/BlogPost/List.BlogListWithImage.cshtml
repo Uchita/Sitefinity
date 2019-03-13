@@ -51,7 +51,7 @@
                         <h4 class="sub_title"><a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a></h4>
 
                         <div class="date_author">
-                            By <strong> @DataResolver.Resolve(item.DataItem, "Author", null)</strong> | @item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")
+                            By <strong>@Html.HtmlSanitize((string)item.Fields.AuthorName)</strong> | @item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")
                         </div>
                         <p>@Html.HtmlSanitize((string)item.Fields.Summary)</p>
                         <a href="@navigateUrl" class="action_link">Read More</a>

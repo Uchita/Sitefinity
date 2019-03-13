@@ -3,8 +3,8 @@
 
 <div class="thumbnail icon-caption @Model.CssClass">
     <div class="card-rollover-image">
-        <img src="@Model.SelectedSizeUrl" title="@Model.ImageTitle" alt="@Model.ImageAlternativeText">
-    </div>
+        <a href="@Html.UrlSanitize(Model.ActionUrl)"> <img src="@Model.SelectedSizeUrl" title="@Model.ImageTitle" alt="@Model.ImageAlternativeText"></a>
+</div>
     <a href="@Html.UrlSanitize(Model.ActionUrl)">
         <div class="caption">
             <h2>@Html.HtmlSanitize(Model.Heading)</h2>

@@ -311,10 +311,17 @@
             }
         }*/ }
     .testimonials-slider .quote span {
+      content: '';
       position: absolute;
-      top: 45px; }
-      .testimonials-slider .quote span::before {
-        content: '\201C'; }
+      width: 100px;
+      height: 70px;
+      top: 0px;
+      left: 46%;
+      background: url("../images/quote-icon.png") no-repeat;
+      /*&::before {
+                content: '\201C';
+                background: url('../images/indeed.png');
+            }*/ }
   .testimonials-slider.with-top-image {
     padding: 60px 0 20px; }
     .testimonials-slider.with-top-image .owl-item {

@@ -112,12 +112,17 @@
         text-align: center;
 
         span {
+            content: '';
             position: absolute;
-            top: 45px;
-
-            &::before {
+            width: 100px;
+            height: 70px;
+            top: 0px;
+            left: 46%;
+            background: url('../images/quote-icon.png') no-repeat;
+            /*&::before {
                 content: '\201C';
-            }
+                background: url('../images/indeed.png');
+            }*/
         }
         /*&.text-right{
             span {

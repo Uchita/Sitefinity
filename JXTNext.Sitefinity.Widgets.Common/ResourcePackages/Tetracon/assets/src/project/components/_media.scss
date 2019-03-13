@@ -640,9 +640,10 @@
         padding: 30px;
         height: 64%;
     }
-    .featured-job-offer{
-        .job-offer-sum{
+    .featured-job-offer {
+        .job-offer-sum {
             height: 125px;
+            margin-bottom: 20px;
         }
     }
 
@@ -889,9 +890,21 @@
         .row {
             display: block;
         }
+
+        .left-sidebar {
+            display: block;
+            margin-bottom: 0;
+            .navbar {
+                margin-bottom:0;
+            }
+        }
     }
     .inside-right {
         padding: 20px;
+        min-height: auto;
+        .navbar-nav {
+            margin:0;
+        }
     }
 
 
@@ -1061,6 +1074,10 @@
             .jumbotron {
                 min-height: 200px;
                 height: 200px;
+
+                .jumbotron-content {
+                    top: 35px;
+                }
             }
         }
 
@@ -1093,6 +1110,7 @@
         .featured-job-offer {
             .job-offer-sum {
                 height: auto;
+                margin-bottom: 5px;
             }
         }
 

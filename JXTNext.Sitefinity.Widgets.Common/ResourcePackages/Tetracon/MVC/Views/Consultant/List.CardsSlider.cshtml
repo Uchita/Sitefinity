@@ -31,12 +31,12 @@
                     }
                     <a href="@navigateUrl" title="@consultant.Fields.ConsultantName" class="consultant-photo" style="background-image:url('@imageThumbUrl');">
                     </a>
-                    <div class="caption">
+                    <a href="@navigateUrl" class="caption">
                         <h3 class="consultant-name">@consultant.Fields.ConsultantName</h3>
                         <p class="consultant-sum">
                             @Html.HtmlSanitize((string)consultant.Fields.Position)
                         </p>
-                    </div>
+                    </a>
                     @*@if (consultant.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
                     {
                         OfficeLocationName = Html.HtmlSanitize((string)consultant.Fields.Office.Fields.Name).ToString();

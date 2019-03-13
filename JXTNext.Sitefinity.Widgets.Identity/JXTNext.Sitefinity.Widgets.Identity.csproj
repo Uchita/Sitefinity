@@ -186,6 +186,7 @@
     <Compile Include="Mvc\Models\LoginForm\CustomLoginFormModel.cs" />
     <Compile Include="Mvc\Models\Profile\ProfileBindingsContract.cs" />
     <Compile Include="Mvc\Models\Registration\ActivationMethod.cs" />
+    <Compile Include="Mvc\Models\RegistrationExtended\CustomRegistrationModel.cs" />
     <Compile Include="Mvc\Models\Registration\IRegistrationModel.cs" />
     <Compile Include="Mvc\Models\Registration\RegistrationModel.cs" />
     <Compile Include="Mvc\Models\Registration\RegistrationViewModel.cs" />

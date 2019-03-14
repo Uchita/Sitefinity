@@ -5,16 +5,20 @@
 @using Telerik.Sitefinity.Web.DataResolving;
 
 <div class="col blog-detail-col">
+    @{var imageurl = ""; }
+    @foreach (var relatedItem in Model.Item.Fields.BlogImage)
+    {
+        imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+    }
 
-    <h3 class="posted-by">
-        By
-        @{var authorName = @DataResolver.Resolve(@Model.Item.DataItem, "Author", null); }
-        @if (authorName == "JXT Admin")
-        {
-            authorName = "Bayside Group";
-        }
-        @authorName
-    </h3>
+    <div class="row">
+        <div class="col-12 mt-4 mb-4">
+            <div class="cta-bg" data-parallax="scroll" data-image-src="@imageurl">
+
+            </div>
+        </div>
+    </div>
+
 
     <p class="posted-date">
         @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy")
@@ -31,19 +35,6 @@
 
 
 
-    @{var imageurl = ""; }
-    @foreach (var relatedItem in Model.Item.Fields.BlogImage)
-    {
-        imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
-    }
-
-    <div class="row">
-        <div class="col-12 mt-4 mb-4">
-            <div class="cta-bg" data-parallax="scroll" data-image-src="@imageurl">
-
-            </div>
-        </div>
-    </div>
 
     @{
         if (Model.EnableSocialSharing)

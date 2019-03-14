@@ -324,30 +324,6 @@ blockquote {
             }
         }
     }
-    //New-Button
-    .btn-black {
-        border: 1px solid $btn-black-color;
-        border-radius: 0;
-        padding: 8px 25px;
-        font-size: 16px;
-        font-size: 1.6rem;
-        font-family: $font-family-bold;
-        text-transform: uppercase;
-        background: $btn-black-bg;
-        color: $btn-black-color;
-
-        &:hover, &:focus {
-            border-color: $btn-black-hover-bg;
-            background: $btn-black-hover-bg;
-            color: $btn-black-hover-color;
-        }
-
-        &:active {
-            border-color: $btn-black-hover-bg;
-            background: $btn-black-active-bg;
-            color: $btn-black-active-color;
-        }
-    }
 
     .row-see-more {
         margin-bottom: 0;
@@ -2766,6 +2742,8 @@ address.info-box {
             .consultant {
                 display: inline-block;
             }
+
+           
         }
     }
 
@@ -2835,14 +2813,20 @@ address.info-box {
         height: 100%;
         display: block;
         right: 0;
-        width: calc(100% - 72%);
+        width: calc(100% - 75%);
         z-index: -1;
         top: 0;
     }
 
     .row {
         display: flex;
+
+        .row {
+            display: inherit;
+        }
     }
+
+  
     /*.caption {
         padding: 50px 0 50px 50px;
     }*/
@@ -2909,6 +2893,16 @@ footer {
 
         .left-sidebar .container-fluid .nav li.current > a {
             color: #7DC246 !important;
+        }
+
+        h3 {
+            a {
+                color: #fff;
+
+                &:hover {
+                    color: #7DC245;
+                }
+            }
         }
     }
 }
@@ -3050,7 +3044,6 @@ footer {
     padding: 30px 15px;
 }
 
-
 @import 'hexagon-item';
 @import 'chevronShape';
 
@@ -3062,5 +3055,52 @@ header .dropdown:hover .dropdown-menu {
 
 header .main-nav .navbar-nav > li.dropdown {
     position: relative;
+}
+
+//New-Button
+.btn-black {
+    border: 1px solid $btn-black-color;
+    border-radius: 0;
+    padding: 8px 25px;
+    font-size: 16px;
+    font-size: 1.6rem;
+    font-family: $font-family-bold;
+    text-transform: uppercase;
+    background: $btn-black-bg;
+    color: $btn-black-color;
+
+    &:hover, &:focus {
+        border-color: $btn-black-hover-bg;
+        background: $btn-black-hover-bg;
+        color: $btn-black-hover-color;
+    }
+
+    &:active {
+        border-color: $btn-black-hover-bg;
+        background: $btn-black-active-bg;
+        color: $btn-black-active-color;
+    }
+}
+
+//blog page styles
+
+.right-filter-sidebar {
+    .keywordfilter {
+        margin-bottom: 50px;
+    }
+
+    .dropdown-tree {
+        padding-left: 0;
+        padding-right: 30px;
+
+       
+    }
+
+    a.dropdown-toggle {
+        color: #7DC245;
+        display: block;
+        border-bottom: 2px solid #fff;
+        padding-bottom: 20px;
+    }
 }
 

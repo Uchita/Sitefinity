@@ -27,7 +27,7 @@
         var title = (@Html.HtmlSanitize((string)item.Fields.Title)).ToString();
         if (@Html.HtmlSanitize((string)item.Fields.Title).ToString().Length > 40)
         {
-            title = (@Html.HtmlSanitize((string)item.Fields.Summary)).ToString().Substring(0, 40);
+            title = (@Html.HtmlSanitize((string)item.Fields.Title)).ToString().Substring(0, 40);
         }
         <div class="white_panel">
             <div class="sub">

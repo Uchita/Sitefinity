@@ -55,16 +55,16 @@
     <div id="pager" class="k-pager-wrap k-widget k-floatwrap" data-role="]">
         <ul class="k-pager-numbers k-reset"></ul>
     </div>
-    <input id="loginVar" value="@isLoggedIn" type="text" hidden/>
+    <input id="loginVar" value="@ViewBag.IsMember" type="text" hidden/>
     <div class="popup-overlay">
         <div class="container">
             <div class="popup-box">
                 <p class="info">Please sign-in or register as a member to <span>create job alert</span>.</p>
                 <div class="button-wrapper">
-                    <a href="/register" class="btn btn-primary">Register</a>
-                    <a href="/sign-in" class="btn btn-primary">Sign in</a>
+                    <a href="/register" class="btn btn-primary" title="Register">Register</a>
+                    <a href="/sign-in" class="btn btn-primary" title="Sign in">Sign in</a>
                 </div>
-                <a href="javascript:void(0)" class="fa fa-times"></a>
+                <a href="javascript:void(0)" class="fa fa-times" title="close"></a>
             </div>
         </div>
     </div>
@@ -76,13 +76,13 @@
 
                 <div class="row">
                     <div class="col-sm-8 col-xs-12">
-                        <h3><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="search-result-title">#:Title#</a></h3>
+                        <h3><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="search-result-title" title="#:Title#">#:Title#</a></h3>
                     </div>
                     <div class="col-sm-4 col-xs-12 text-right">
                         # if ( islogged ){ #
                         <span class="save-job" data-jobid="#:JobID#">Save job</span> |
                         # } #
-                        <a href='@ViewBag.EmailJobPageUrl?JobId=#:JobID#'>Send email</a><br />
+                        <a href='@ViewBag.EmailJobPageUrl?JobId=#:JobID#' title="Send email">Send email</a><br />
                         <small>#:DateCreated_Representation#</small>
 
                     </div>
@@ -94,8 +94,17 @@
                 <div class="row">
                     <div class="col-sm-4 sc-job-meta-group">
                         <span class="meta-location">#:CustomData["CountryLocationArea[0].Filters[0].Value"]#</span><br />
-                                                                                                                   <span class="meta-salary">$#:CustomData["Salary.Filters[0].Min"]# - $#:CustomData["Salary.Filters[0].Max"]# <br /><span class="salary-label">#:CustomData["Salary.Filters[0].Value"]#</span></span><br />
-                        <span class="meta-worktype">#:CustomData["WorkType.Filters[0].Value"]#</span>
+
+                        # if( CustomData["Salary.Filters[0].Min"] != 0 && CustomData["Salary.Filters[0].Max"] != 0 ){
+                            if( CustomData["Salary.Filters[0].Min"] == CustomData["Salary.Filters[0].Max"] ){
+                                #<span class="meta-salary">$#:CustomData["Salary.Filters[0].Max"]#<br />#
+                            }
+                            else{
+                                #<span class="meta-salary">$#:CustomData["Salary.Filters[0].Min"]# - $#:CustomData["Salary.Filters[0].Max"]# <br />#
+                            }
+                            #<span class="salary-label">#:CustomData["Salary.Filters[0].Value"]#</span></span><br />#
+                         }#
+                         <span class="meta-worktype">#:CustomData["WorkType.Filters[0].Value"]#</span>
                     </div>
 
                     <div class="col-sm-5 col-md-6">
@@ -125,7 +134,7 @@
                             # var hrefLink = '';#
 
                             # hrefLink = '@ViewBag.CurrentPageUrl' + '?Filters[0].rootId=' + ClassificationsRootName + '&Filters[0].values=' + key;#
-                            <a href=#:hrefLink#>#:item[key]#</a>
+                            <a href=#:hrefLink# title="#:item[key]#">#:item[key]#</a>
                             #}#
                             #}#
                         </small>
@@ -147,10 +156,13 @@
          var invalidMsg = "Please enter your valid email address.";
          
       }
-        var islogged = $("#loginVar").val(); //used in kendo template
+        var islogged = $("#loginVar").val(); //used in kendo template     
+        if (islogged === 'False') {
+            islogged = '';
+        }
 
     $(document).ready(function () {
-        $(document).on('click', '.save-job', function (e) {
+        $(document).off('click').on('click', '.save-job', function (e) {
             e.preventDefault();
             var unSaveJob = false;
             var ajaxActionName = "/SaveJob";
@@ -184,14 +196,16 @@
                         }
                     }
                     else { // Job failed to save
-                        if ((response.Errors[0].indexOf("(401)") > -1) || (response.Errors[0].indexOf("(403)") > -1))
+                        if ((response.Errors[0].indexOf("(401)") > -1) || (response.Errors[0].indexOf("(403)") > -1)) {
                             //alert("Please sign-in or register as a member to save a job.");
                             if ($('.popup-overlay').length) {
                                 $('.popup-overlay .info span').text('save a job');
                                 $('.popup-overlay').fadeIn('fast');
                             }
-                        else
+                        }
+                        else {
                             alert(response.Errors[0]);
+                        }
                     }
                 },
                 error: function (response) { // Error
@@ -309,7 +323,6 @@
                 data: alertData,
                 dataType: 'Json',
                 success: function (response) {
-                    console.log(response);
                     if (response.Success == true) {
                         $('#anonycreatejobalert, #anon-job-alert').hide();
                         //$(this).hide();
@@ -408,6 +421,7 @@
             var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), pageNumber: PageNumber, sortBy: sortBy };
             var urlPath = $(location).attr('pathname') + "/GetSearchResults";
             var searchPath = $(location).attr('search');
+            
             if (searchPath == null || searchPath == "") {
                 searchPath += ("?" + "Page=" + PageNumber);
             }

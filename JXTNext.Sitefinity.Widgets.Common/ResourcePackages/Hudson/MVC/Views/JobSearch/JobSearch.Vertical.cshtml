@@ -52,7 +52,7 @@
                                 <label for="Keywords" class="form-label">@item.PlaceholderText</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" placeholder="@item.PlaceholderText" name="Keywords" />
+                                <input type="text" class="form-control" placeholder="@item.PlaceholderText" name="Keywords" id="Keywords" />
                             </div>
                         </div>
                         break;
@@ -68,7 +68,7 @@
                                 </label>
                             </div>
                             <div class="col-md-8">
-                                <select class="form-control" name="Filters[@counter].values">
+                                <select class="form-control" name="Filters[@counter].values" id="Filters[@counter].values">
                                     <option value="" disabled selected>@item.PlaceholderText</option>
                                     @foreach (dynamic itemName in _idNamesLevelsPair)
                                     {
@@ -87,12 +87,12 @@
                             @if (item.FilterType == "Salary")
                             {
                                 <div class="col-md-4 text-right">
-                                    <label class="form-label">@item.FilterType</label>
+                                    <label class="form-label" for="salaryFilter">@item.FilterType</label>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="hidden" id="divSalary"></div>
                                     <div class="select">
-                                        <select class="SalaryRangeSelect form-control">
+                                        <select class="SalaryRangeSelect form-control" id="salaryFilter">
                                             <option value="-1" selected>Choose Salary</option>
                                             @foreach (var salaryItem in item.Filters)
                                             {
@@ -102,12 +102,27 @@
                                     </div>
                                     @foreach (var salaryItem in item.Filters)
                                     {
-                                        var lower = 15000;
-                                        var upper = 300000;
-                                        if (salaryItem.Label == "Hourly Rate")
+                                        var lower = 0;
+                                        var upper = 250000;
+                                        if (salaryItem.Label == "Daily")
                                         {
-                                            lower = 18;
+                                            lower = 0;
+                                            upper = 1265;
+                                        }
+                                        else if (salaryItem.Label == "Hourly Rate")
+                                        {
+                                            lower = 0;
                                             upper = 200;
+                                        }
+                                        else if (salaryItem.Label == "Weekly")
+                                        {
+                                            lower = 0;
+                                            upper = 8000;
+                                        }
+                                        else if (salaryItem.Label == "Monthly")
+                                        {
+                                            lower = 0;
+                                            upper = 20000;
                                         }
                                         <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
 

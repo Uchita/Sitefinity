@@ -31,7 +31,7 @@
             <a href="@navigateUrl" title="@consultant.Fields.ConsultantName" class="consultant-photo">
                 <img src="@imageThumbUrl" alt="@consultant.Fields.ConsultantName">
             </a>
-            <a href="@navigateUrl" class="caption">
+            <a href="@navigateUrl" class="caption" title="@consultant.Fields.ConsultantName">
                 <h3 class="consultant-name">@consultant.Fields.ConsultantName</h3>
                 <p class="consultant-sum">
                     @Html.HtmlSanitize((string)consultant.Fields.Position)

@@ -53,7 +53,7 @@
                 }
 
                 <h3>
-                    <a href="@navigateUrl">
+                    <a href="@navigateUrl" title="@item.Fields.Title">
 
                         @Html.HtmlSanitize((string)item.Fields.Title)
                     </a>
@@ -66,7 +66,7 @@
                    @trimSummary
                 </div>
 
-                <a class="btn btn-more" href="@navigateUrl"></a>
+                <a class="btn btn-more" href="@navigateUrl" title="Read more"></a>
             </div>
 
             @if (item.Fields.HeaderImage != null)

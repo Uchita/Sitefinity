@@ -11575,6 +11575,8 @@ select.articles-order {
     margin-top: 15px;
     color: #fff;
     /*color: $global-highlight-color;*/ }
+  .consultant .caption:hover .consultant-sum, .consultant .caption:hover .consultant-name {
+    color: #7DC245 !important; }
 
 .consultant .consultant-btn {
   color: #ababab !important;

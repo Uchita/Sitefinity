@@ -41,6 +41,12 @@
             color: $brightColor;
             /*color: $global-highlight-color;*/
         }
+
+        &:hover {
+            .consultant-sum, .consultant-name {
+                color: $global-highlight-color !important;
+            }
+        }
     }
 
     .consultant-btn {

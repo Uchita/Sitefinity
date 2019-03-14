@@ -4963,6 +4963,7 @@ p {
     line-height: 1.5;
     font-weight: 300;
     color: #333132;
+    list-style-type: disc;
 }
 
 .divider {
@@ -5227,7 +5228,7 @@ p .btn-link {
     display: block !important;
     font-size: 14px;
     color: #000;
-    font-weight: 500;
+    font-weight: 600;
     background: none !important;
 }
 
@@ -5236,7 +5237,7 @@ p .btn-link {
     }
 
 .filter_sidebar .sm-wrapper .dropdown-tree ul ul li a {
-    font-weight: 300;
+    font-weight: 600;
     font-size: 13px;
 }
 
@@ -6802,7 +6803,9 @@ select.hs-input {
     font-weight: 500;
     line-height: 1.2;
 }
-
+    .featured-carousel h3 a {
+        color: #000000;
+    }
 
 
 
@@ -9700,4 +9703,7 @@ p.sent-request {
 
 .dynamic-content-holder p {
     margin-top: 0;
+}
+.privacy-policy .dynamic-content-holder h4 {
+    margin-top: 20px;
 }

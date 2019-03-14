@@ -14,7 +14,7 @@
 
             <div class="item">
                 <h3>
-                    @jobOffer.Title
+                    <a href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">@jobOffer.Title</a>
                 </h3>
                 <p>
                     @if (jobOffer.ShortDescription.Length > 180)

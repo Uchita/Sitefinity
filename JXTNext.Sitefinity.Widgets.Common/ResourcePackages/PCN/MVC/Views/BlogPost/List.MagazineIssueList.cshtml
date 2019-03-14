@@ -71,7 +71,7 @@
                                             <div class="magazine-cover-content">
                                                 <a href="@navigateUrl" class="magazine-vol-name">@item.Fields.Title</a>
                                                 <div class="magazine-vol-date">
-                                                    <p>By <b>@DataResolver.Resolve(item.DataItem, "Author", null)</b> |  @item.GetDateTime("PublicationDate", "MMM d, yyyy")</p>
+                                                    <p>By <b>@DataResolver.Resolve(item.DataItem, "Author", null)</b> |  @item.GetDateTime("PublicationDate", "MMM, d yyyy")</p>
                                                 </div>
                                                 @*<div class="magazine-vol-date">@item.GetDateTime("PublicationDate", "MMM, yyyy")</div>*@
                                                 <div class="issue-desc">@Html.HtmlSanitize((string)item.Fields.Summary)</div>

@@ -20,7 +20,7 @@
     var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
     <div class="item_news">
         <h4 class="sub_title"><a href="#">@item.Fields.Title</a></h4>
-        <div class="date_author">By <strong>Author</strong> | @item.GetDateTime("PublicationDate", "MMM d, yyyy")</div>
+        <div class="date_author">By <strong>Author</strong> | @item.GetDateTime("PublicationDate", "MMM, d yyyy")</div>
         <a href="@navigateUrl" class="action_link">Read More</a>
     </div>
 }

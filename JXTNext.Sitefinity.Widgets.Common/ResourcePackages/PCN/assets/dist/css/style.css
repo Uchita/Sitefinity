@@ -5970,7 +5970,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
         left: 0px;
     }
 
-    #wt-slider li .image {
+    #wt-slider .image {
         width: 100%;
         min-height: 320px;
         float: left;

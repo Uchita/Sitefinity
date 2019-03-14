@@ -7,7 +7,7 @@
 
 @Html.Script(ScriptRef.JQuery, "top", false)
 
-<ul id="wt-slider" class="owl-carousel">
+<div id="wt-slider" class="owl-carousel">
     @foreach (var item in Model.Items)
     {
 
@@ -17,7 +17,7 @@
             imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
         }
         var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
-        <li>
+        <div>
             <a href="@navigateUrl" class="image" style="background-image: url(@imageurl);"></a>
 
             <div class="post-info">
@@ -56,9 +56,9 @@
 
             </div>
 
-        </li>
+        </div>
     }
-</ul>
+</div>
 @if (Model.Items.Count() == 0)
 {
     <div class="alert alert-warning"><strong>No results found.</strong></div>

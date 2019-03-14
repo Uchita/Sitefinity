@@ -34,6 +34,7 @@ using SitefinityWebApp.code;
 using Telerik.Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.LoginForm;
 using JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.LoginForm;
+using JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.RegistrationExtended;
 
 namespace SitefinityWebApp
 {
@@ -150,6 +151,7 @@ namespace SitefinityWebApp
                 "Instagram/{controller}/{id}",
                 new { id = RouteParameter.Optional });
             FrontendModule.Current.DependencyResolver.Rebind<ILoginFormModel>().To<CustomLoginFormModel>();
+            FrontendModule.Current.DependencyResolver.Rebind<IRegistrationModel>().To<CustomRegistrationModel>();
             FeatherActionInvokerCustom.Register();
         }
 

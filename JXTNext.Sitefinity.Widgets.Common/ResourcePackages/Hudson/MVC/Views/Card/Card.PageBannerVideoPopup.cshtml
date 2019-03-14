@@ -9,7 +9,7 @@
                     <h3>@Html.HtmlSanitize(Model.Description)</h3>
                     @if (!string.IsNullOrEmpty(Model.ActionUrl))
                     {
-                        <p><a href="javascript:void(0);" class="btn btn-lg" role="button" data-toggle="modal" data-target="#videoModal" data-theVideo="@Model.ActionUrl">@Model.ActionName</a></p>
+                        <p><a href="javascript:void(0);" class="btn btn-lg" role="button" data-toggle="modal" data-target="#videoModal" data-theVideo="@Model.ActionUrl" title="@Model.ActionName">@Model.ActionName</a></p>
 
                         <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
                             <div class="modal-dialog">
@@ -17,7 +17,7 @@
                                     <div class="modal-body">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                         <div>
-                                            <iframe width="100%" height="350" src=""></iframe>
+                                            <iframe height="350" src=""></iframe>
                                         </div>
                                     </div>
                                 </div>
@@ -27,7 +27,7 @@
                     }
                     else
                     {
-                        <p><a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-lg" role="button">@Model.ActionName</a></p>
+                        <p><a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-lg" role="button" title="@Model.ActionName">@Model.ActionName</a></p>
                     }
                 </div>
 

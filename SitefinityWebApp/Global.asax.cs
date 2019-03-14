@@ -28,6 +28,8 @@ using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Security.Events;
 using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.Web.Events;
+using SitefinityWebApp.code;
+using Telerik.Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 
 namespace SitefinityWebApp
 {
@@ -75,6 +77,19 @@ namespace SitefinityWebApp
                 EventHub.Subscribe<IUnauthorizedPageAccessEvent>(new Telerik.Sitefinity.Services.Events.SitefinityEventHandler<IUnauthorizedPageAccessEvent>(OnUnauthorizedAccess));
                 EventHub.Subscribe<IFormEntryCreatedEvent>(evt => FormsEventHandler(evt));
             }
+        }
+
+        protected void StopSitefinityLogging(object s, ExecutedEventArgs args)
+        {
+            if (args.CommandName == "ConfigureLogging")
+            {
+                var builder = args.Data as ConfigurationSourceBuilder;
+
+                ((Telerik.Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.LoggingSettings)builder.Get("loggingConfiguration")).TraceListeners.Remove("ErrorLog");
+                ((Telerik.Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.LoggingSettings)builder.Get("loggingConfiguration")).TraceSources.Remove("ErrorLog");
+
+            }
+
         }
 
         void OnUnauthorizedAccess(IUnauthorizedPageAccessEvent unauthorizedEvent)

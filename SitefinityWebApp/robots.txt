@@ -1,1 +1,22 @@
-﻿
+﻿User-agent: *
+Disallow: /sitefinity/
+Disallow: /job-alert-afmelden
+Disallow: /error-404
+Disallow: /error-410
+Disallow: /error-500
+Disallow: /sitemap/sitemap-index.xml
+Disallow: /sitemap/sitemap.xml
+
+# Yahoo!
+User-agent: Slurp
+Crawl-delay: 20
+
+# Bing
+User-agent: msnbot/2.0b
+Crawl-Delay: 100
+
+# Google
+User-agent: Googlebot
+
+# All other agents
+User-agent: *

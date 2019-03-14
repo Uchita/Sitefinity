@@ -9104,6 +9104,8 @@ address.info-box {
     top: 0; }
   .left-block-shade .row {
     display: flex; }
+    .left-block-shade .row .row {
+      display: inherit; }
   .left-block-shade .bg-col {
     padding: 50px 0;
     background: #666666; }
@@ -9146,6 +9148,10 @@ footer {
     font-size: 18px; }
   .inside-right.inverse .left-sidebar .container-fluid .nav li.current > a {
     color: #7DC246 !important; }
+  .inside-right.inverse h3 a {
+    color: #fff; }
+    .inside-right.inverse h3 a:hover {
+      color: #7DC245; }
 
 .blog-post .list-unstyled {
   padding-left: 0; }
@@ -9541,6 +9547,19 @@ header .main-nav .navbar-nav > li.dropdown {
     border-color: #666666;
     background: #666666;
     color: #ffffff; }
+
+.right-filter-sidebar .keywordfilter {
+  margin-bottom: 50px; }
+
+.right-filter-sidebar .dropdown-tree {
+  padding-left: 0;
+  padding-right: 30px; }
+
+.right-filter-sidebar a.dropdown-toggle {
+  color: #7DC245;
+  display: block;
+  border-bottom: 2px solid #fff;
+  padding-bottom: 20px; }
 
 /*#endregion Basic components */
 /*#region Breadcrumbs */

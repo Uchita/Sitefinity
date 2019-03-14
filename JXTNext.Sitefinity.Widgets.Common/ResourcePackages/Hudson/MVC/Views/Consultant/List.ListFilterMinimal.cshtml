@@ -144,7 +144,7 @@
                     }
                 }
 
-                <a class="contact-consultant-image" href="@navigateUrl?location=@OfficeLocationName">
+                <a class="contact-consultant-image" href="@navigateUrl?location=@OfficeLocationName" title="@item.Fields.ConsultantName">
                     <div class="consultant-photo" style="background-image:url('@testimonialImage');"></div>
                 </a>
                 <div class="caption">
@@ -155,7 +155,7 @@
                 </div>
                 @if (item.Fields.Office != null)
                 {
-                <a class="consultant-btn" href="@navigateUrl?location=@OfficeLocationName">@OfficeLocationName</a>
+                <a class="consultant-btn" href="@navigateUrl?location=@OfficeLocationName" title="@OfficeLocationName">@OfficeLocationName</a>
                 }
             </div>
         }

@@ -64,7 +64,7 @@
                             string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 90 ? summary.Substring(0, 90) + "..." : summary;
                         }
                         <p>@trimSummary</p>
-                        <a class="btn btn-more" href="@navigateUrl"></a>
+                        <a class="btn btn-more" href="@navigateUrl" title="Read more"></a>
                     </div>
 
                 </div>
@@ -73,6 +73,6 @@
 
     </div>
 
-    <div class="text-center"><a class="btn btn-default" href="@SiteMapBase.GetActualCurrentNode().Url.ToString().Substring(1)/-in-article/articles/">VIEW ALL COVER LETTERS</a></div>
+    <div class="text-center"><a class="btn btn-default" href="@SiteMapBase.GetActualCurrentNode().Url.ToString().Substring(1)/-in-article/articles/" title="View all">VIEW ALL COVER LETTERS</a></div>
 
 </div>

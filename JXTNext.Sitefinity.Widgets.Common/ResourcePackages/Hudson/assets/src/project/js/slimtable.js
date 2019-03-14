@@ -465,6 +465,7 @@
 
 		tblObj.before(tObj2);
 		tblObj.insertBefore(tObj1);
+		tblObj.wrap('<div class="slimtable-wrapper"></div>');
 	},
 
 	/* ******************************************************************* *

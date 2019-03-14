@@ -48,7 +48,7 @@
                 {
                     foreach (var taxon in singleblog.GetHierarchicalTaxons("Category"))
                     {<br /><br />
-                        var url = "/news/blogs/-in-category/categories" + @taxon.FullUrl;
+                        var url = "/news/blog/-in-category/categories" + @taxon.FullUrl;
                         <span class="cat">
                             <span class="main-color-bg cat5"></span><a href="@url">@taxon.Title.ToString()</a>
                         </span>

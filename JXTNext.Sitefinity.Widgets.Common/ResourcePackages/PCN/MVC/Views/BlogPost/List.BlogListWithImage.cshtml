@@ -66,7 +66,7 @@
                         {
                             foreach (var taxon in item.GetHierarchicalTaxons("Category"))
                             {<br /><br />
-                                var url = "/news/blogs/-in-category/categories" + @taxon.FullUrl;
+                                var url = "/news/blog/-in-category/categories" + @taxon.FullUrl;
                                 <span class="cat">
                                     <span class="main-color-bg cat5"></span><a href="@url">@taxon.Title.ToString()</a>
                                 </span>
@@ -90,7 +90,7 @@
 
 @if (Model.ShowPager)
 {
-    <div class="news_pagination">
+    <div class="news_pagination pcn-pagination">
 
         @Html.Action("Index", "ContentPager", new
         {

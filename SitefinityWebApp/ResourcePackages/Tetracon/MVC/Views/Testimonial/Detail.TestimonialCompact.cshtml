@@ -13,15 +13,18 @@
 @using Telerik.Sitefinity.Modules.Pages;
 @using Telerik.Sitefinity.Pages.Model;
 
-<div class="testimonials-slider testimonials-simple @Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
+<div class="testimonials-slider testimonials-team @Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
     <div class="row">
         <div class="col-md-12">
-            <div class="item">
-                <div class="quote"><span></span></div>
-                <div class="testimonial" @Html.InlineEditingFieldAttributes("Quote", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Quote)</div>
-                <div class="testimonial-author" @Html.InlineEditingFieldAttributes("By", "ShortText")>@Model.Item.Fields.By</div>
-                <div class="quote text-right"><span></span></div>
-            </div>
+            <h2>Testimonials</h2>
+            <ul class="item">
+                <li>
+                    @*<div class="quote"><span></span></div>*@
+                    <div class="testimonial" @Html.InlineEditingFieldAttributes("Quote", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Quote)</div>
+                    <div class="testimonial-author" @Html.InlineEditingFieldAttributes("By", "ShortText")>@Model.Item.Fields.By</div>
+                    @*<div class="quote text-right"><span></span></div>*@
+                </li>
+            </ul>
 
         </div>
     </div>

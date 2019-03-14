@@ -437,7 +437,7 @@
                 font-size: 2.4rem;
                 text-decoration: none;
                 background: $global-highlight-color;
-                /*background: rgba(125, 194, 70, .9);*/
+                background: rgba(125, 194, 70, .9);
                 color: $brightColor;
                 z-index: 1;
             }
@@ -467,5 +467,84 @@
                 margin-bottom: 0;
             }
         }
+    }
+}
+.testimonials-slider {
+    &.testimonials-team {
+        padding: 30px 0;
+
+        &:before {
+            display: none;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .testimonial-content {
+            padding: 10px 14px;
+            position: relative;
+            border: 2px solid $global-text-color;
+
+            &:before {
+                position: absolute;
+                display: block;
+                background-image: url(../images/plus.jpg);
+                background-size: contain;
+                background-position: center;
+                top: -16px;
+                left: -15px;
+                width: 30px;
+                height: 33px;
+                content: '';
+            }
+
+            &:after {
+                position: absolute;
+                display: block;
+                background-image: url(../images/down-arrow.jpg);
+                background-size: contain;
+                background-position: center;
+                bottom: -37px;
+                right: 15px;
+                width: 45px;
+                height: 40px;
+                content: '';
+            }
+
+            ul {
+                list-style: disc;
+
+                li {
+                    .testimonial {
+                        padding: 0;
+                        text-align: left;
+                    }
+
+                    .testimonial-author {
+                        text-align: right;
+                        font-size: 16px;
+                        text-transform: none;
+                        font-style: italic;
+                        padding: 10px 0;
+                        font-family: SegoeUI,sans-serif;
+                    }
+                }
+            }
+        }
+    }
+}
+.team-joblist {
+    h3 {
+        text-transform: uppercase;
+    }
+
+    .job-offer-sum {
+        margin-bottom:20px;
+    }
+}
+.custom-form-widget {
+    h3 {
+        text-transform: uppercase;
     }
 }

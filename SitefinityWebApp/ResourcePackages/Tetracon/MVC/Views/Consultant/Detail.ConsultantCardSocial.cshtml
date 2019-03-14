@@ -45,13 +45,13 @@
             <li>
                 @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.Email))
                 {
-                    <a href=""><em class="fab fa-facebook-f"></em></a>
+                <a href="mailto:@Model.Item.Fields.Email"><em class="far fa-envelope"></em></a>
                 }
             </li>
             <li>
                 @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber))
                 {
-                    <a href="tel:@Model.Item.Fields.PhoneNumber"><em class="fab fa-twitter"></em></a><br />
+                    <a href="tel:@Model.Item.Fields.PhoneNumber"><em class="fas fa-phone"></em></a><br />
                 }
             </li>
             <li>

@@ -16,16 +16,16 @@
                     switch (item.Title)
                     {
                         case "LinkedIn":
-                            <li><a href="#" class="btn btn-linkedin" target="_blank" title="@item.Title">Apply with @item.Title</a></li>
+                            <li><a href="#" class="btn btn-linkedin" title="@item.Title">Apply with @item.Title</a></li>
                             break;
 
                         case "Indeed":
-                            <li><a href="#" class="btn btn-indeed" target="_blank" title=@item.Title role="button">Apply With @item.Title</a></li>
-                            //var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
-                            //var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
-                            //var indeedJobCompanyNameAndLoginUserEmail = "right-rail-apply-button;" + ViewBag.loginEmail;
-                            @*<li id="indeed-btnwrapper">*@
-                                @*<span class="indeed-apply-widget"
+                            @*<li><a href="#" class="btn btn-indeed" title=@item.Title role="button">Apply With @item.Title</a></li>*@
+                            var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
+                            var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
+                            var indeedJobCompanyNameAndLoginUserEmail = "right-rail-apply-button;" + ViewBag.loginEmail;
+                            <li id="indeed-btnwrapper">
+                                <span class="indeed-apply-widget"
                                       data-indeed-apply-apiToken=@indeedAPIToken
                                       data-indeed-apply-jobId=@Model.JobId
                                       data-indeed-apply-jobLocation='@ViewBag.JobLocation'
@@ -35,8 +35,8 @@
                                       data-indeed-apply-postUrl=@redirectUriSocial
                                       data-indeed-apply-jobMeta="@indeedJobCompanyNameAndLoginUserEmail"
                                       data-indeed-apply-onapplied="OnIndeedCompleted">
-                                </span>*@
-                                @*<script>
+                                </span>
+                                <script>
                                     (function (d, s, id) {
                                         var js, iajs = d.getElementsByTagName(s)[0];
                                         if (d.getElementById(id)) { return; }
@@ -44,8 +44,8 @@
                                         js.src = "https://apply.indeed.com/indeedapply/static/scripts/app/bootstrap.js";
                                         iajs.parentNode.insertBefore(js, iajs);
                                     }(document, 'script', 'indeed-apply-js'));
-                                </script>*@
-                            @*</li>*@
+                                </script>
+                            </li>
                             break;
                         case "Seek":
 

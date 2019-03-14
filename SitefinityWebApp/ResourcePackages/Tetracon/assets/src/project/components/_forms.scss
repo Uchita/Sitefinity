@@ -662,5 +662,26 @@ label{
         label {
             color: $global-text;
         }
+
+        .form-control {
+            height: 44px;
+        }
+
+        .dropdown-tree {
+            button {
+                .dropdown-toggle {
+                    padding: 9px 20px 9px 10px;
+                    color: $global-text;
+                    font: 1.4rem SegoeUI,sans-serif;
+                    border-color: $global-text;
+                }
+            }
+        }
+
+        .btn {
+            &.btn-black {
+                border-color: $global-text;
+            }
+        }
     }
 }

@@ -117,11 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LoginFormLogInLegendHeader">
-    <value>Sign in</value>
-    <comment>phrase : Log in</comment>
-    <lastModified>2015-03-01T22:00:00</lastModified>
-  </data>
   <data name="NotRegisteredYet">
     <value>Don't have an account?</value>
     <comment>phrase : Not registered yet?</comment>
@@ -130,11 +125,6 @@
   <data name="LoginFormRegisterNow">
     <value>Register</value>
     <comment>phrase : Register now</comment>
-    <lastModified>2015-03-01T22:00:00</lastModified>
-  </data>
-  <data name="LoginFormLogInButton">
-    <value>Sign in</value>
-    <comment>phrase : Log in</comment>
     <lastModified>2015-03-01T22:00:00</lastModified>
   </data>
   <data name="RememberMe">
@@ -161,5 +151,15 @@
     <value>EMAIL ADDRESS</value>
     <comment>phrase: Email</comment>
     <lastModified>2019-02-20T11:49:00</lastModified>
+  </data>
+  <data name="LoginFormLogInLegendHeader">
+    <value>Sign in</value>
+    <comment>phrase : Log in</comment>
+    <lastModified>2019-03-14T12:58:32</lastModified>
+  </data>
+  <data name="LoginFormLogInButton">
+    <value>Sign in</value>
+    <comment>phrase : Log in</comment>
+    <lastModified>2019-03-14T12:58:19</lastModified>
   </data>
 </root>

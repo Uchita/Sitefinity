@@ -1433,24 +1433,6 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\Lists\List.ExpandedList.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Content Include="ResourcePackages\Hudson\MVC\Views\Shared\_JobSearchResultsCustom.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Hudson\MVC\Views\Shared\_SimpleJS_PartialCustom.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Hudson\MVC\Views\JobSearchResults\JobsAllJobsCustom.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Hudson\MVC\Views\JobFilters\T_MultiSelectCustom.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\Detail.TestimonialWithTitle.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\Detail.TestimonialBackground.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="ResourcePackages\BaySide\MVC\Views\Lists\List.PagesList.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

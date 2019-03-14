@@ -6449,7 +6449,7 @@ select.hs-input {
 /*-------Footer----------*/
 .app-footer {
     background: #3c4044;
-    padding: 90px 0;
+    padding: 60px 0 75px;
     color: #BCBEC0;
     clear: both;
 }
@@ -6802,7 +6802,9 @@ select.hs-input {
     font-size: 19px;
     font-weight: 500;
     line-height: 1.2;
+    margin-top: 0;
 }
+
     .featured-carousel h3 a {
         color: #000000;
     }
@@ -7336,22 +7338,26 @@ select.hs-input {
         .leader-list .leader-image img {
             width: 100%;
             display: block;
-            max-width: 100% !important;
-            max-height: 100% !important;
+            max-width: 100%;
+            max-height: 100%;
         }
 
-    .leader-list.alitis .leader-image img, .leader-list.cozwine .leader-image img {
+        .leader-list .leader-image .leader_logo img {
+            max-height: 50px;
+        }
+
+    .leader-list.alitis .leader-image .leader_logo img, .leader-list.cozwine .leader-image .leader_logo img {
         max-width: 102px;
     }
 
-    .leader-list.bridge .leader-image img {
+    .leader-list.bridge .leader-image .leader_logo img {
         max-height: 41px;
     }
 
     .leader-list .leader-image .leader-thumb {
         width: 100%;
         /*height: 240px;*/
-        background-color: rgba(37, 130, 176, 0.7);
+        background-color: rgba(0, 136, 207, 0.7);
         position: relative;
     }
 
@@ -7370,7 +7376,8 @@ select.hs-input {
         top: 0;
         bottom: 0;
         right: 0;
-        background: rgba(37, 130, 176, 0.7);
+        background: rgba(0, 136, 207, 0.7);
+        /*background: rgba(37, 130, 176, 0.7);*/
         opacity: 0;
         transition: all 0.4s ease;
         z-index: 1;
@@ -9453,10 +9460,6 @@ privacy-policy {
 }
 
 
-body.feedback .parallax-mirror .parallax-slider {
-    bottom: 0px;
-}
-
 
 .related-blog {
     margin: 42px 0 0 0;
@@ -9704,6 +9707,21 @@ p.sent-request {
 .dynamic-content-holder p {
     margin-top: 0;
 }
+
 .privacy-policy .dynamic-content-holder h4 {
     margin-top: 20px;
+}
+
+.sitemap ul.nav.nav-stacked li a {
+    font-size: 14px;
+    padding: 3px 15px;
+}
+
+ul.nav.nav-stacked li:before {
+    top: 11px;
+    bottom: 15px;
+}
+
+ul.nav.nav-stacked li a:before {
+    top: 11px;
 }

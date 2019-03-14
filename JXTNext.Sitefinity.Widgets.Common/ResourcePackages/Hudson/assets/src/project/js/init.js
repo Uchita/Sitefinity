@@ -479,11 +479,6 @@ $(document).ready(function () {
         window.history.back();
     });
 
-    //window back button detection
-    window.onhashchange = function() {
-        location.reload();
-    }
-  
 //temporary site selection for manual links added    
     $('select.header-top-links').change( function(){
         window.open( $(this).val() );

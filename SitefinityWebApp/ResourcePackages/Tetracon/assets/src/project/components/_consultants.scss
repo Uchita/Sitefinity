@@ -421,7 +421,7 @@
             position: relative;
 
 
-            .link-overlay {
+            /*.link-overlay {
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -447,7 +447,7 @@
                 opacity: 1;
                 filter: alpha(opacity = 100);
                 color: $brightColor;
-            }
+            }*/
         }
         .caption {
             z-index:999;
@@ -546,5 +546,17 @@
 .custom-form-widget {
     h3 {
         text-transform: uppercase;
+    }
+}
+.user-profile-dash {
+    .sf-profile {
+        label {
+            font-size: 14px;
+            color: $global-text;
+        }
+
+        input {
+            border-color: $global-text;
+        }
     }
 }

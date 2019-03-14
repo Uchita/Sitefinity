@@ -1013,8 +1013,9 @@ header {
             width: 100%;
             height: 100%;
             background: $header-overlay-fallback;
-            background: $header-overlay;
+            background: $header-overlay-fallback;
         }
+
         .brand-logo {
             width: 156px;
             height: 70px;
@@ -1229,7 +1230,7 @@ header {
 
             .dropdown-menu {
                 padding-left: 30px;
-                box-shadow:none;
+                box-shadow: none;
             }
         }
     }

@@ -103,7 +103,7 @@ blockquote{
     .h4, h4 {
         font-size: 20px;
         font-size: 2.0rem;
-        color: $global-highlight-color;
+        /*color: $global-highlight-color;*/
     }
 
     .h1, h1,
@@ -876,8 +876,11 @@ pre{
 
 /*#endregion General */
 
-header {
+.header {
     border-bottom: 1px solid $brightColor;
+    .header{
+        border:0;
+    }
 }
 /*#region Header */
 .header-top {
@@ -1008,19 +1011,18 @@ header {
             display: block;
             width: 100%;
             height: 100%;
-            background: $header-overlay-fallback;
             background: $header-overlay;
         }
 
         .brand-logo {
-            width: 127px;
+            /*width: 127px;
             height: 50px;
-            top: 20px;
+            top: 20px;*/
         }
 
-        .main-nav {
+        /*.main-nav {
             top: -22px;
-        }
+        }*/
     }
 
     .main-nav {
@@ -1099,6 +1101,9 @@ header {
                         &::after {
                             display: none;
                         }
+                        &:hover{
+                            background:rgba(25,54,106,0.75);
+                        }
                     }
                 }
 
@@ -1114,6 +1119,7 @@ header {
             top: 100%;
             left: 0;
             display: none;
+            margin-top:15px;
             background: $btn-secondary-bg;
             z-index: 1000;
 
@@ -1154,7 +1160,9 @@ header {
         }
 
         .dropdown-menu li {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
+            font-weight:400;
+            font-weight:400;
 
             & > a {
                 padding: 0;
@@ -1227,9 +1235,9 @@ header {
                 font-weight: $font-family-medium;
                 background: none;
                 color: $navigation-link-color;
-
+                @include transition();
                 &:hover {
-                    color: $$header-top-hover-color;
+                    color: $header-top-hover-color;
                 }
 
                 &:focus {
@@ -1261,17 +1269,20 @@ header {
             .navbar-nav {
 
                 & > li {
-                    margin-top: 12px;
+                    /*margin-top: 12px;
                     padding-bottom: 15px;
                     padding-left: 0px;
-                    padding-right: 15px;
+                    padding-right: 35px;*/
                     position: relative;
-                    margin-bottom: 0;
+                    /*margin-bottom: 0;*/
 
                     a {
                         padding-left: 0;
-                        padding-right: 0;
+                        padding-right: 35px;
                         border-bottom-color: transparent;
+                    }
+                    &:last-child{
+                        padding-right:0;
                     }
                 }
 
@@ -2353,6 +2364,7 @@ select.slimtable-paging-select {
     }
 
     .quick-links {
+        display:none;
         position: fixed;
         left: 0;
         top: 200px;
@@ -2798,9 +2810,6 @@ address.info-box{
 
 
 
-/*h2 {
-    color: greenyellow !important;
-}*/
 
 
 
@@ -2871,6 +2880,9 @@ address.info-box{
                     a {
                         color: $global-links-color;
                         @include transition();
+                        &:hover{
+                            color:white;
+                        }
                     }
                 }
             }
@@ -2894,3 +2906,44 @@ address.info-box{
     }
 }
 
+h2 {
+    color: pink !important;
+}
+
+.header-top-links {
+    a {
+        @include transition();
+    }
+}
+
+
+/*.open > .dropdown-menu {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+    opacity: 1;
+}*/
+
+/*.dropdown-menu {
+    opacity: .3;
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-transform: scale(1, 0);
+    transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+}*/
+
+/*.caret-up {
+    width: 0;
+    height: 0;
+    border-left: 4px solid rgba(0, 0, 0, 0);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    border-bottom: 4px solid;
+    display: inline-block;
+    margin-left: 2px;
+    vertical-align: middle;
+}*/
+h1{
+    color:red; !important;
+}

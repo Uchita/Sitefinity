@@ -56,17 +56,17 @@
 
                         @if (!string.IsNullOrEmpty(ViewBag.Error))
                         {
-                        <div class="alert alert-danger">
-                            @if(ViewBag.Error == "Please enter a different email.")
-                            {
-                            <span>This email address is already registered. Click <a href="/sign-in" title="Please sign in">here</a> to sign in using this account</span>
-                            }
-                            else
-                            {
-                                <span>@ViewBag.Error</span>
-                            }
+                            <div class="alert alert-danger">
+                                @if (ViewBag.Error == "Please enter a different email.")
+                                {
+                                    <span>This email address is already registered. Click <a href="/sign-in" title="Please sign in">here</a> to sign in using this account</span>
+                                }
+                                else
+                                {
+                                    <span>@ViewBag.Error</span>
+                                }
 
-                        </div>
+                            </div>
                         }
 
                         @Html.HiddenFor(m => m.RequiresQuestionAndAnswer)
@@ -111,7 +111,7 @@
                             <div class="row">
                                 <div class="col-md-4 text-right">
                                     <p class="form-label">
-                                        @Html.Resource("Password","Labels")<span>*</span>
+                                        @Html.Resource("Password", "Labels")<span>*</span>
                                     </p>
                                 </div>
                                 <div class="col-md-8">

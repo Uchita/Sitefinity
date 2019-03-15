@@ -5237,7 +5237,7 @@ p .btn-link {
     }
 
 .filter_sidebar .sm-wrapper .dropdown-tree ul ul li a {
-    font-weight: 600;
+    font-weight: normal;
     font-size: 13px;
 }
 
@@ -9256,7 +9256,7 @@ privacy-policy {
 }
 
 .privacy-policy h2 {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .privacy-policy table {
@@ -9671,7 +9671,7 @@ p.sent-request {
 }
 
 .ohs-policy-statement .ohs-policy-content h4 {
-    margin-top: 20px;
+    margin-top: 20px !important;
 }
 
 .other-buss {

@@ -76,7 +76,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
                         {
                             if (filter.rootId == CompanyFilterRootIdString)
                             {
-                                request.FieldValues = new List<dynamic>();
                                 List<int> companyIds = new List<int>();
                                 foreach (var company in filter.values)
                                 {
@@ -84,7 +83,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
                                     companyIds.Add(int.Parse(company.ItemID));
                                 }
 
-                                request.FieldValues.Add(new { CompanyId = companyIds });
+                                List<FieldValue> fieldValues = new List<FieldValue>();
+                                fieldValues.Add(new FieldValue() { CompanyId = companyIds });
+                                request.FieldValues = fieldValues;
                             }
                             else
                             {

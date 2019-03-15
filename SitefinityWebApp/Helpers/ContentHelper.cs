@@ -9,7 +9,6 @@ using Telerik.Sitefinity.Model;
 using Telerik.Sitefinity.Taxonomies;
 using Telerik.Sitefinity.Taxonomies.Model;
 using Telerik.OpenAccess;
-using Telerik.Sitefinity.ContentLocations;
 using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.GenericContent.Model;
 using Telerik.Sitefinity.Utilities.TypeConverters;
@@ -25,6 +24,36 @@ namespace SitefinityWebApp.Helpers
 {
     public static class ContentHelper
     {
+        public static string FindPageNodeType(string urlName)
+        {
+            PageManager pageManager = PageManager.GetManager();
+            //List<PageData> pages = pageManager.GetPageDataList().Where(pData => pData.Status == ContentLifecycleStatus.Live).ToList();
+            List<PageNode> pagesNodes = App.WorkWith().Pages().LocatedIn(PageLocation.Frontend).Get().ToList<PageNode>();
+            foreach (var node in pagesNodes)
+            {
+                if (node.UrlName.Value.Replace("~", "").Replace("/", "") == urlName.Replace("/", ""))
+                {
+                    if (node.NodeType == NodeType.InnerRedirect)
+                    {
+                        PageNode linkedPageNode = pageManager.GetPageNode(node.LinkedNodeId);
+                        return node.NodeType.ToString() + " | " + linkedPageNode.UrlName.Value;
+                    }
+
+                    else
+                    {
+                        return node.NodeType.ToString();
+                    }
+
+                }
+            }
+            return null;
+            //PageNode selectedNode = pageNodes.Where(node => node.UrlName.ToString().Replace("~", "").Replace("/", "") == urlName.Replace("/", "")).FirstOrDefault();
+
+            //if (selectedNode != null)
+            //    return selectedNode.NodeType.ToString();
+            //else
+            //    return null;
+        }
 
         public static string FindPagebyUrlNativeAPI(string urlName, string parentNodeUrl)
         {
@@ -245,5 +274,7 @@ namespace SitefinityWebApp.Helpers
                 return message;
             }
         }
+
     }
 }
+

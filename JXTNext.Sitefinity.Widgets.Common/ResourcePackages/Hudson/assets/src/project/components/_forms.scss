@@ -548,3 +548,11 @@
 .col-wrap{
     margin-bottom: 5px;
 }
+
+#linkedin-widget-holder{
+    .btn-linkedin-signin{
+        img{
+            max-width: 195px;
+        }        
+    }
+}

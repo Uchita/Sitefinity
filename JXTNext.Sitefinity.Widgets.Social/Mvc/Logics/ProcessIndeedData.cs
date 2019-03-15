@@ -29,7 +29,6 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
             if (data.IsNullOrEmpty() && !indeedData.IsNullOrEmpty())
             {
                 Log.Write("ProcessData Indeed Intial Condtion pass : ", ConfigurationPolicy.ErrorLog);
-                Log.Write("ProcessData Indeed, indeedData : " + indeedData, ConfigurationPolicy.ErrorLog);
                 processedResponse = new SocialMediaProcessedResponse();
                 try
                 {

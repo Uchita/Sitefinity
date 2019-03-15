@@ -17,7 +17,7 @@
             var fullUrl1 = taxon.Url;
             var topic_start1 = fullUrl1.LastIndexOf("/") + 1;
             uri1 = fullUrl1.Substring(topic_start1, fullUrl1.Length - topic_start1);
-            if (uri == uri1)
+            if (fullUrl.Contains(uri1))
             {
                 <li class="current">
                     <span class="main-color-bg cat cat3"></span>

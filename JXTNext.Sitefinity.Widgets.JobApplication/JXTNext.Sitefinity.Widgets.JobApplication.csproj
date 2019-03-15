@@ -380,6 +380,10 @@
       <Project>{94381396-d85e-469c-b828-24cf03548df5}</Project>
       <Name>JXTNext.Sitefinity.Services.Intefaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.Social\JXTNext.Sitefinity.Widgets.Social.csproj">
+      <Project>{21a841b2-6b3a-46cd-b0c0-7f40ca812686}</Project>
+      <Name>JXTNext.Sitefinity.Widgets.Social</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mvc\Scripts\JobApplication\designerview-simple.js" />

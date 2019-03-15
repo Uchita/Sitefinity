@@ -311,13 +311,19 @@
     <Compile Include="Mvc\Controllers\InstagramController.cs" />
     <Compile Include="Mvc\Controllers\OAuthController.cs" />
     <Compile Include="Mvc\Controllers\SocialHandlerController.cs" />
+    <Compile Include="Mvc\Controllers\LinkedInCustomerConfigurationController.cs" />
     <Compile Include="Mvc\Controllers\SocialLinkController.cs" />
+    <Compile Include="Mvc\Helpers\LinkedInHelper.cs" />
     <Compile Include="Mvc\Logics\IProcessSocialMediaData.cs" />
     <Compile Include="Mvc\Logics\ProcessIndeedData.cs" />
     <Compile Include="Mvc\Logics\ProcessSeekData.cs" />
     <Compile Include="Mvc\Logics\SocialHandlerLogics.cs" />
     <Compile Include="Mvc\Models\InstagramModel.cs" />
     <Compile Include="Mvc\Models\JobDetailsModel.cs" />
+    <Compile Include="Mvc\Models\LinkedInAccessTokenResponse.cs" />
+    <Compile Include="Mvc\Models\LinkedInSignInResponse.cs" />
+    <Compile Include="Mvc\Models\LinkedInProfileModel.cs" />
+    <Compile Include="Mvc\Models\LinkedInSignInViewModel.cs" />
     <Compile Include="Mvc\Models\SocialLinkModel.cs" />
     <Compile Include="Mvc\Models\SocialMediaProcessedResponse.cs" />
     <Compile Include="Mvc\Models\SocialViewModel.cs" />
@@ -335,8 +341,10 @@
     <None Include="Mvc\Views\Instagram\Default.cshtml" />
     <None Include="Mvc\Views\Instagram\DesignerView.Simple.cshtml" />
     <None Include="Mvc\Views\Instagram\DesignerView.Simple.json" />
+    <EmbeddedResource Include="Mvc\Views\LinkedInCustomerConfiguration\Index.cshtml" />
     <None Include="Mvc\Views\SocialHandler\DesignerView.Simple.cshtml" />
     <None Include="Mvc\Views\SocialHandler\DesignerView.Simple.json" />
+    <EmbeddedResource Include="Mvc\Views\SocialHandler\LinkedInSignIn.cshtml" />
     <None Include="Mvc\Views\Web.config" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />
@@ -359,6 +367,7 @@
       <Name>JXTNext.Sitefinity.Services.Intefaces</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="OpenAccessNuget.targets" />
   <Import Project="..\packages\RazorGenerator.MsBuild.2.4.1\build\RazorGenerator.MsBuild.targets" Condition="Exists('..\packages\RazorGenerator.MsBuild.2.4.1\build\RazorGenerator.MsBuild.targets')" />

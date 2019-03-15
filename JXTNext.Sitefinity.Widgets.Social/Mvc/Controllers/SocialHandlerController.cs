@@ -28,6 +28,10 @@ using System.Dynamic;
 using System.Collections.Specialized;
 using System.Text.RegularExpressions;
 using Ninject;
+using JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers;
+using Telerik.Sitefinity.Security;
+using Telerik.Sitefinity.Security.Model;
+using System.Web.Security;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 {
@@ -380,6 +384,183 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             return View(fullTemplateName, viewModel);
         }
 
+        #region LinkedIn
+
+        public ActionResult LinkedInSignIn(LinkedInSignInResponse response)
+        {
+            LinkedInSignInViewModel viewModel;
+
+            if (string.IsNullOrEmpty(response.Error))
+            {
+                viewModel = _HandleLinkedInSignIn(response);
+
+                if (viewModel.Error == null && !string.IsNullOrEmpty(response.Data) && int.TryParse(response.Data, out int jobId))
+                {
+                    return Redirect(_GetJobDetailsUrl(jobId));
+                }
+            }
+            else
+            {
+                // check the error codes and act accordingly
+                if (response.Error == "user_cancelled_login" || response.Error == "user_cancelled_authorize")
+                {
+                    if (!string.IsNullOrEmpty(response.Data) && int.TryParse(response.Data, out int jobId))
+                    {
+                        return Redirect(_GetJobDetailsUrl(jobId));
+                    }
+                }
+
+                viewModel = new LinkedInSignInViewModel();
+
+                viewModel.Error = response.ErrorDescription;
+            }
+
+            // set the back url based on the action
+            if (response.LiAction == LinkedInHelper.ActionJobApply)
+            {
+                if (!string.IsNullOrEmpty(response.Data) && int.TryParse(response.Data, out int jobId))
+                {
+                    viewModel.BackUrl = _GetJobDetailsUrl(jobId);
+                }
+            }
+
+            return View(viewModel);
+        }
+
+        private LinkedInSignInViewModel _HandleLinkedInSignIn(LinkedInSignInResponse response)
+        {
+            var viewModel = new LinkedInSignInViewModel();
+
+            if (SitefinityHelper.IsUserLoggedIn())
+            {
+                return viewModel;
+            }
+
+            if (!LinkedInHelper.IsValidState(response.State))
+            {
+                viewModel.Error = "The response from LinkedIn is in invalid state. Please go back and try again.";
+
+                return viewModel;
+            }
+
+            var redirectUrl = LinkedInHelper.CreateRedirectUrl(response.LiAction, response.Data);
+
+            try
+            {
+                var accessTokenResponse = LinkedInHelper.GetAccessTokenFromAuthorisationCode(response.Code, redirectUrl);
+
+                if (string.IsNullOrEmpty(accessTokenResponse.Error))
+                {
+                    if (!_CreateUserFromLinkedInProfileData(accessTokenResponse.AccessToken))
+                    {
+                        viewModel.Error = "There was some problem while sign-in. Please go back and try again.";
+                    }
+                }
+                else
+                {
+                    viewModel.Error = accessTokenResponse.Error;
+                }
+            }
+            catch (Exception err)
+            {
+                viewModel.Error = "There was some problem during authentication with LinkedIn. Please go back and try again.";
+
+                Log.Write(err);
+            }
+
+            return viewModel;
+        }
+
+        private bool _CreateUserFromLinkedInProfileData(string accessToken)
+        {
+            // todo - create account and login the user.
+
+            // get the email address from the profile
+            var emailAddress = LinkedInHelper.GetProfileEmailAddress(accessToken);
+            if (string.IsNullOrEmpty(emailAddress))
+            {
+                Log.Write("LinkedIn: Email address not present in the response.");
+
+                return false;
+            }
+
+            // if an account already exist then authenticate
+            var existingUser = SitefinityHelper.GetUserByEmail(emailAddress);
+            if (existingUser != null)
+            {
+                if (!_AuthenticateUser(emailAddress))
+                {
+                    Log.Write("LinkedIn: Unable to authenticate user using the email address.");
+
+                    return false;
+                }
+
+                return true;
+            }
+
+            // at this point create a new account
+
+            var profile = LinkedInHelper.GetProfile(accessToken);
+
+            var membershipCreateStatus = SitefinityHelper.CreateUser(
+                emailAddress,
+                System.Web.Security.Membership.GeneratePassword(12, 2),
+                profile.FirstName,
+                profile.LastName,
+                emailAddress,
+                null,
+                null,
+                null,
+                true,
+                true
+            );
+
+            if (membershipCreateStatus != MembershipCreateStatus.Success)
+            {
+                Log.Write("LinkedIn: Unable to create user account.");
+
+                return false;
+            }
+
+            if (!_AuthenticateUser(emailAddress))
+            {
+                Log.Write("LinkedIn: Unable to authenticate user using the email address after registration.");
+
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool _AuthenticateUser(string emailAddress)
+        {
+            var userManager = UserManager.GetManager();
+
+            SecurityManager.AuthenticateUser(userManager.Provider.Name, emailAddress, false, out User user);
+
+            return user != null;
+        }
+
+        #endregion
+
+        private string _GetJobDetailsUrl(int jobId, string query = null)
+        {
+            if (query != null)
+            {
+                query = "?" + query;
+            }
+
+            var jobDetails = GetJobDetails(jobId);
+
+            if (jobDetails.JobSEOUrl.IsNullOrEmpty())
+            {
+                return string.Format("/job-application/{0}{1}", jobId, query);
+            }
+            else
+            {
+                return string.Format("/job-application/{0}/{1}{2}", jobDetails.JobSEOUrl, jobId, query);
+            }
+        }
 
         private JobDetailsModel GetJobDetails(int jobid)
         {

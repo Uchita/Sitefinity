@@ -321,6 +321,7 @@
     <Compile Include="Mvc\Models\InstagramModel.cs" />
     <Compile Include="Mvc\Models\JobDetailsModel.cs" />
     <Compile Include="Mvc\Models\LinkedInAccessTokenResponse.cs" />
+    <Compile Include="Mvc\Models\LinkedInMemberProfile.cs" />
     <Compile Include="Mvc\Models\LinkedInSignInResponse.cs" />
     <Compile Include="Mvc\Models\LinkedInProfileModel.cs" />
     <Compile Include="Mvc\Models\LinkedInSignInViewModel.cs" />

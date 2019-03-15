@@ -289,9 +289,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 Log.Write($"Resume process is completed ", ConfigurationPolicy.ErrorLog);
             }            
 
-            // urls for linked-in
-            var linkedInRedirectUrl = LinkedInHelper.CreateRedirectUrl(LinkedInHelper.ActionJobApply, jobApplicationViewModel.JobId.ToString());
-            ViewBag.LinkedInSignInUrl = LinkedInHelper.CreateSignInUrl(linkedInRedirectUrl);
+            // linked-in data
+            ViewBag.CustomerClientId = LinkedInHelper.CustomerClientId;
+            ViewBag.CustomerIntegrationContext = LinkedInHelper.CustomerIntegrationContext;
+            ViewBag.LinkedInSignInUrl = LinkedInHelper.CreateSignInUrl(LinkedInHelper.ActionJobApply, jobApplicationViewModel.JobId.ToString());
+            ViewBag.LinkedInApplyUrl = LinkedInHelper.CreateApplyUrl();
 
             Log.Write($"Index method end ", ConfigurationPolicy.ErrorLog);
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;

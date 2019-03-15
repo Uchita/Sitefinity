@@ -91,16 +91,30 @@
                             </script>
                             <script type="IN/AwliWidget"
                                     data-company-job-code="@Model.JobId"
-                                    data-integration-context="urn:li:organization:33228603"
+                                    data-integration-context="@ViewBag.CustomerIntegrationContext"
                                     data-mode="BUTTON_DATA"
-                                    data-callback-method="onProfileData"
-                                    data-api-key="81pt4wt8kyw007"
+                                    data-callback-method="onLinkedInProfileData"
+                                    data-api-key="@ViewBag.CustomerClientId"
                                     data-allow-sign-in="true">
                             </script>
                             <script>
-                                function onProfileData(profileData) {
-                                    alert(profileData);
+                                function onLinkedInProfileData(profileData) {
                                     console.log(profileData);
+
+                                    jQuery.ajax({
+                                        method: "POST",
+                                        url: "@ViewBag.LinkedInApplyUrl",
+                                        data: profileData
+                                    })
+                                    .done(function () {
+                                        alert("success");
+                                    })
+                                    .fail(function () {
+                                        alert("error");
+                                    })
+                                    .always(function () {
+                                        alert("complete");
+                                    });
                                 }
                             </script>
                         }

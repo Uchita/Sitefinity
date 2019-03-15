@@ -64,26 +64,28 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
             }
         }
 
-        public static string RedirectUri
+        public static string SocialHandlerUrl
         {
             get
             {
                 // todo - following should come from admin settings
-                return "http://localhost:60876/job-seekers/job-application/socialhandler/linkedinsignin";
+                var url = "http://localhost:60876/job-seekers/job-application/socialhandler";
+
+                return url.TrimEnd('/');
             }
         }
 
         /// <summary>
-        /// Create a redirect URL.
+        /// Create redirect url for signin.
         /// </summary>
-        /// <param name="action">Custom data</param>
-        /// <param name="data">Custom data</param>
+        /// <param name="action">Custom data.</param>
+        /// <param name="data">Custom data.</param>
         /// <returns></returns>
-        public static string CreateRedirectUrl(string action, string data)
+        public static string CreateSignInRedirectUrl(string action, string data)
         {
             return string.Format(
                 "{0}?liaction={1}&data={2}",
-                RedirectUri,
+                SocialHandlerUrl + "/linkedinsignin",
                 HttpUtility.UrlEncode(action),
                 HttpUtility.UrlEncode(data)
             );
@@ -92,10 +94,13 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
         /// <summary>
         /// Create a signin URL.
         /// </summary>
-        /// <param name="redirectUrl">URL where to redirect after signin.</param>
+        /// <param name="action">Custom data.</param>
+        /// <param name="data">Custom data.</param>
         /// <returns></returns>
-        public static string CreateSignInUrl(string redirectUrl)
+        public static string CreateSignInUrl(string action, string data)
         {
+            var redirectUrl = CreateSignInRedirectUrl(action, data);
+
             return string.Format(
                 "{0}?redirect_uri={1}&client_id={2}&scope={3}&state={4}&response_type=code",
                 AuthorisationUrl,
@@ -104,6 +109,17 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
                 HttpUtility.UrlEncode("r_liteprofile r_emailaddress"),
                 HttpUtility.UrlEncode(Guid.NewGuid().ToString())
             );
+        }
+
+        /// <summary>
+        /// Create a apply URL.
+        /// </summary>
+        /// <param name="action">Custom data.</param>
+        /// <param name="data">Custom data.</param>
+        /// <returns></returns>
+        public static string CreateApplyUrl()
+        {
+            return SocialHandlerUrl + "/linkedinapply";
         }
 
         /// <summary>

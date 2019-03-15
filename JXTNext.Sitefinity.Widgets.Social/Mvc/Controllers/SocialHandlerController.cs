@@ -427,6 +427,14 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        public ActionResult LinkedInApply(LinkedInMemberProfile profile)
+        {
+            dynamic result = new ExpandoObject();
+
+            return Json(profile);
+        }
+
         private LinkedInSignInViewModel _HandleLinkedInSignIn(LinkedInSignInResponse response)
         {
             var viewModel = new LinkedInSignInViewModel();
@@ -443,7 +451,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 return viewModel;
             }
 
-            var redirectUrl = LinkedInHelper.CreateRedirectUrl(response.LiAction, response.Data);
+            var redirectUrl = LinkedInHelper.CreateSignInRedirectUrl(response.LiAction, response.Data);
 
             try
             {

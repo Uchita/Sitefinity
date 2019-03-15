@@ -1,8 +1,13 @@
 ﻿@model dynamic
 @using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
 
 @using JXTNext.Sitefinity.Common.Helpers
+
+@{
+    var hasLinkedIn = false;
+}
 
 @if (Model != null && Model.ApplyWithSocialMediaInfo != null)
 {
@@ -16,8 +21,23 @@
                     switch (item.Title)
                     {
                         case "LinkedIn":
-                            <li><a href="#" class="btn-linkedin" target="_blank" title="@item.Title">@item.Title</a></li>
-                            break;
+                            hasLinkedIn = true;
+
+                            <li>
+                                <a href="javascript:;" onclick="showHideLinkedInWidgetHolder();" class="btn btn-linkedin" title="@item.Title">@item.Title</a>
+
+                                <script type="text/javascript">
+                                    function showHideLinkedInWidgetHolder() {
+                                        var el = jQuery('#linkedin-widget-holder');
+                                        if (el.is(':visible')) {
+                                            el.slideUp();
+                                        }
+                                        else {
+                                            el.slideDown();
+                                        }
+                                    }
+                                </script>
+                            </li>
 
                         case "Indeed":
                             @*<li><a href="#" target="_blank" title=@item.Title role="button">Apply With @item.Title</a></li>*@
@@ -67,6 +87,49 @@
                 }
 
             </ul>
+            
+            @if (hasLinkedIn)
+            {
+                <div id="linkedin-widget-holder" style="display: none;">
+                    <hr>
+
+                    <div name="widget-holder">
+                        @if (ViewBag.IsUserLoggedIn)
+                        {
+                            <script type="text/javascript"
+                                    src="https://www.linkedin.com/mjobs/awli/awliWidget">
+                            </script>
+                            <script type="IN/AwliWidget"
+                                    data-company-job-code="@Model.JobId"
+                                    data-integration-context="urn:li:organization:33228603"
+                                    data-mode="BUTTON_DATA"
+                                    data-callback-method="onProfileData"
+                                    data-api-key="81pt4wt8kyw007"
+                                    data-allow-sign-in="true">
+                            </script>
+                            <script>
+                                function onProfileData(profileData) {
+                                    alert(profileData);
+                                    console.log(profileData);
+                                }
+                            </script>
+                        }
+                        else
+                        {
+                            <p>
+                                <a href="@ViewBag.LinkedInSignInUrl" class="btn-linkedin-signin" title="Sign in with LinkedIn">
+                                    <img src="~/ResourcePackages/Hudson/assets/dist/images/sign-in-linkedin.svg" class="img-responsive" />
+                                </a>
+                            </p>
+
+                            <p class="small">
+                                By signing-in you agree to create an account with us if you don't have already.
+                                After sign-in you will be able to apply for the job.
+                            </p>
+                        }
+                    </div>
+                </div>
+            }
         </div>
     </div>
 }

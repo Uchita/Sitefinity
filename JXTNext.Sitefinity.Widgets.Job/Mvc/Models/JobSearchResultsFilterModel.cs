@@ -86,6 +86,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
                                 List<FieldValue> fieldValues = new List<FieldValue>();
                                 fieldValues.Add(new FieldValue() { CompanyId = companyIds });
                                 request.FieldValues = fieldValues;
+
                             }
                             else
                             {

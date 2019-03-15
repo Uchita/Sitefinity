@@ -11,7 +11,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
     {
         public int PageSize { get; set; }
         public int PageNumber { get; set; }
-        public StatusSearch FieldSearches { get; set; }
+        public dynamic FieldSearches { get; set; }
         public RangeSearch FieldRanges { get; set; }
         public List<FieldValue> FieldValues { get; set; }
         public ConsultantIdentitySearch ConsultantSearchIdentity { get; set; }
@@ -69,6 +69,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
     public class StatusSearch
     {
         public int Status { get; set; }
+        public int CompanyId { get; set; }
     }
 
     public class KeywordSearch

@@ -310,16 +310,23 @@
 }
 
 .col-md-3{
-    .thumbnail.card-basic{
-        .img-wrap{
-            height: auto!important;
-            img{
-                width: 100%;
+    .thumbnail{
+        &.card-basic{
+            .img-wrap{
+                height: auto!important;
+                img{
+                    width: 100%;
+                }
+                
             }
-            .btn{
-                left: 10px;
-                &.btn-more{
-                    left: auto;
+        }
+        &.pagelinknormalbtn{
+            .caption{
+                .btn{
+                    left: 10px!important;
+                    &.btn-more{
+                        left: auto!important;
+                    }
                 }
             }
         }
@@ -355,6 +362,7 @@
     margin-bottom: 40px;
     .thumbnail{
         height: 100%; 
+        margin-bottom: 0;
         &.nopagelink{
             .caption{
                 
@@ -420,6 +428,7 @@
 
 .card-basic-small-icon {
     &.thumbnail.card-basic {
+        z-index: 1;
         a > img, img {
             width: auto;
             margin: 0 auto;

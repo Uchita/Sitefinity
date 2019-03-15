@@ -1,6 +1,7 @@
 ﻿using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
         public int Page { get; set; }
         public JobSearchSalaryFilterReceiver Salary { get; set; }
         public string SortBy { get; set; }
+        private static readonly string CompanyFilterRootIdString = "CompanyName";
 
         public static bool HasFilters(JobSearchResultsFilterModel filterModel)
         {
@@ -72,20 +74,36 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
                         var filter = filterModel.Filters[i];
                         if (filter != null && filter.values != null && filter.values.Count > 0)
                         {
-                            Classification_CategorySearch cateSearch = new Classification_CategorySearch
+                            if (filter.rootId == CompanyFilterRootIdString)
                             {
-                                ClassificationRootName = filter.rootId,
-                                TargetClassifications = new List<Classification_CategorySearchTarget>()
-                            };
+                                request.FieldValues = new List<dynamic>();
+                                List<int> companyIds = new List<int>();
+                                foreach (var company in filter.values)
+                                {
+                                    if(int.TryParse(company.ItemID, out int result))
+                                    companyIds.Add(int.Parse(company.ItemID));
+                                }
 
-                            foreach (var filterItem in filter.values)
-                            {
-                                var targetCategory = new Classification_CategorySearchTarget() { SubTargets = new List<Classification_CategorySearchTarget>() };
-                                ProcessFilterLevels(targetCategory, filterItem);
-                                cateSearch.TargetClassifications.Add(targetCategory);
+                                request.FieldValues.Add(new { CompanyId = companyIds });
                             }
+                            else
+                            {
+                                Classification_CategorySearch cateSearch = new Classification_CategorySearch
+                                {
+                                    ClassificationRootName = filter.rootId,
+                                    TargetClassifications = new List<Classification_CategorySearchTarget>()
+                                };
 
-                            classificationSearches.Add(cateSearch);
+                                foreach (var filterItem in filter.values)
+                                {
+                                    var targetCategory = new Classification_CategorySearchTarget() { SubTargets = new List<Classification_CategorySearchTarget>() };
+                                    ProcessFilterLevels(targetCategory, filterItem);
+                                    cateSearch.TargetClassifications.Add(targetCategory);
+                                }
+
+                                classificationSearches.Add(cateSearch);
+                            }
+                            
                         }
                     }
                 }

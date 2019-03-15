@@ -13,6 +13,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
         public int PageNumber { get; set; }
         public StatusSearch FieldSearches { get; set; }
         public RangeSearch FieldRanges { get; set; }
+        public List<dynamic> FieldValues { get; set; }
         public ConsultantIdentitySearch ConsultantSearchIdentity { get; set; }
         public List<KeywordSearch> KeywordsSearchCriteria { get; set; }
         public List<IClassificationSearch> ClassificationsSearchCriteria { get; set; }

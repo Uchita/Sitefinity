@@ -396,7 +396,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
                 if (viewModel.Error == null && !string.IsNullOrEmpty(response.Data) && int.TryParse(response.Data, out int jobId))
                 {
-                    return Redirect(_GetJobDetailsUrl(jobId));
+                    return Redirect(_GetJobDetailsUrl(jobId, "ShowLinkedIn=1"));
                 }
             }
             else

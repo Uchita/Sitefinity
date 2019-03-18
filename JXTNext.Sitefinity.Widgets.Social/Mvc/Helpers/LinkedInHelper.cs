@@ -156,7 +156,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
 
             try
             {
-                var webResponse = _DoPostRequest(AccessTokenUrl, _CreateQueryString(data), "application/x-www-form-urlencoded");
+                var webResponse = DoPostRequest(AccessTokenUrl, CreateQueryString(data), "application/x-www-form-urlencoded");
 
                 var jObject = JObject.Parse(webResponse);
 
@@ -194,12 +194,12 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
 
         /// <summary>
         /// Get email address from the profile.
-        /// </summary>
+        /// </summary>f
         /// <param name="accessToken"></param>
         /// <returns></returns>
         public static string GetProfileEmailAddress(string accessToken)
         {
-            var response = _DoGetRequest(ProfileEmailAddressUrl, accessToken);
+            var response = DoGetRequest(ProfileEmailAddressUrl, accessToken);
 
             var jObject = JObject.Parse(response);
 
@@ -213,7 +213,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
         /// <returns></returns>
         public static LinkedInProfileModel GetProfile(string accessToken)
         {
-            var response = _DoGetRequest(ProfileUrl, accessToken);
+            var response = DoGetRequest(ProfileUrl, accessToken);
 
             var jObject = JObject.Parse(response);
 
@@ -232,7 +232,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
         /// <param name="url"></param>
         /// <param name="accessToken"></param>
         /// <returns></returns>
-        private static string _DoGetRequest(string url, string accessToken = null)
+        private static string DoGetRequest(string url, string accessToken = null)
         {
             var request = WebRequest.Create(url);
             request.Method = "GET";
@@ -265,7 +265,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
         /// <param name="contentType"></param>
         /// <param name="accessToken"></param>
         /// <returns></returns>
-        private static string _DoPostRequest(string url, string data, string contentType, string accessToken = null)
+        private static string DoPostRequest(string url, string data, string contentType, string accessToken = null)
         {
             var request = WebRequest.Create(url);
             request.Method = "POST";
@@ -306,7 +306,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        private static string _CreateQueryString(Dictionary<string, string> data)
+        private static string CreateQueryString(Dictionary<string, string> data)
         {
             var list = new List<string>();
 

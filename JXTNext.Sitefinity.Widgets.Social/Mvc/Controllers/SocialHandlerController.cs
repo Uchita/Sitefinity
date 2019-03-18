@@ -280,58 +280,141 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
         #region LinkedIn
 
-        public ActionResult LinkedInSignIn(LinkedInSignInResponse response)
+        /// <summary>
+        /// Action to handle LinkedIn sign-in.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public ActionResult LinkedInSignIn(LinkedInSignInRequest request)
         {
             LinkedInSignInViewModel viewModel;
 
-            if (string.IsNullOrEmpty(response.Error))
+            if (string.IsNullOrEmpty(request.Error))
             {
-                viewModel = _HandleLinkedInSignIn(response);
+                viewModel = HandleLinkedInSignIn(request);
 
-                if (viewModel.Error == null && !string.IsNullOrEmpty(response.Data) && int.TryParse(response.Data, out int jobId))
+                if (viewModel.Error == null)
                 {
-                    return Redirect(_GetJobDetailsUrl(jobId, "ShowLinkedIn=1"));
+                    // try to redirect to the job application page
+                    if (request.LiAction == LinkedInHelper.ActionJobApply)
+                    {
+                        if (int.TryParse(request.Data, out int jobId))
+                        {
+                            return Redirect(GetJobApplicationUrl(jobId, "ShowLinkedIn=1"));
+                        }
+                    }
+
+                    // redirect to home page
+                    return Redirect("/");
                 }
             }
             else
             {
-                // check the error codes and act accordingly
-                if (response.Error == "user_cancelled_login" || response.Error == "user_cancelled_authorize")
+                if (request.Error == "user_cancelled_login" || request.Error == "user_cancelled_authorize")
                 {
-                    if (!string.IsNullOrEmpty(response.Data) && int.TryParse(response.Data, out int jobId))
+                    // try to redirect to the job application page.
+                    if (request.LiAction == LinkedInHelper.ActionJobApply)
                     {
-                        return Redirect(_GetJobDetailsUrl(jobId));
+                        if (int.TryParse(request.Data, out int jobId))
+                        {
+                            return Redirect(GetJobApplicationUrl(jobId));
+                        }
                     }
                 }
 
                 viewModel = new LinkedInSignInViewModel();
 
-                viewModel.Error = response.ErrorDescription;
+                viewModel.Error = request.ErrorDescription;
             }
 
-            // set the back url based on the action
-            if (response.LiAction == LinkedInHelper.ActionJobApply)
+            // set the back url based on the action.
+            // this will handle the unexpected errors.
+            if (request.LiAction == LinkedInHelper.ActionJobApply)
             {
-                if (!string.IsNullOrEmpty(response.Data) && int.TryParse(response.Data, out int jobId))
+                if (int.TryParse(request.Data, out int jobId))
                 {
-                    viewModel.BackUrl = _GetJobDetailsUrl(jobId);
+                    viewModel.BackUrl = GetJobApplicationUrl(jobId);
                 }
             }
 
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Action to handle job application with LinkedIn.
+        /// </summary>
+        /// <param name="jobId"></param>
+        /// <param name="profileJson"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult LinkedInApply(string profileData)
+        public ActionResult LinkedInApply(int jobId, string profileJson)
         {
-            dynamic result = new ExpandoObject();
+            var response = new LinkedInApplyResponse();
 
-            var linkedInService = new LinkedInSocialMediaService();
+            // user must be logged in to apply for a job
+            if (!SitefinityHelper.IsUserLoggedIn())
+            {
+                response.Errors.Add("You must be logged in to apply for a job.");
 
-            return Json(result);
+                return Json(response);
+            }
+
+            // check whether requested job exist or not
+            var jobDetails = GetJobDetails(jobId);
+            if (jobDetails == null)
+            {
+                response.Errors.Add("Job does not exist.");
+
+                return Json(response);
+            }
+
+            // process the submitted LinkedIn data
+            var processLinkedInData = new ProcessLinkedInData();
+            var result = processLinkedInData.ProcessData(null, null, profileJson);
+            if (result == null || !result.Success)
+            {
+                response.Errors = result.Errors;
+
+                return Json(response);
+            }
+
+            result.JobId = jobId;
+
+            var viewModel = new SocialMediaJobViewModel
+            {
+                Status = JobApplicationStatus.Available
+            };
+
+            ApplicantInfo applicantInfo = new ApplicantInfo()
+            {
+                FirstName = result.FirstName,
+                LastName = result.LastName,
+                Email = result.Email,
+                PhoneNumber = result.PhoneNumber,
+                IsNewUser = false
+            };
+
+            // create the job application and redirect to success page if possible
+            var applicationResponse = CreateJobApplication(result, jobDetails, applicantInfo, result.Email);
+            if (applicationResponse.Status == JobApplicationStatus.Applied_Successful)
+            {
+                response.Success = true;
+                response.Messages.Add(applicationResponse.Message);
+
+                if (!string.IsNullOrEmpty(this.JobApplicationSuccessPageId))
+                {
+                    response.RedirectUrl = SitefinityHelper.GetPageUrl(this.JobApplicationSuccessPageId);
+                }
+            }
+            else
+            {
+                response.Errors.Add(applicationResponse.Message);
+            }
+
+            return Json(response);
         }
 
-        private LinkedInSignInViewModel _HandleLinkedInSignIn(LinkedInSignInResponse response)
+        private LinkedInSignInViewModel HandleLinkedInSignIn(LinkedInSignInRequest response)
         {
             var viewModel = new LinkedInSignInViewModel();
 
@@ -355,7 +438,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
                 if (string.IsNullOrEmpty(accessTokenResponse.Error))
                 {
-                    if (!_CreateUserFromLinkedInProfileData(accessTokenResponse.AccessToken))
+                    if (!CreateUserFromLinkedInProfileData(accessTokenResponse.AccessToken))
                     {
                         viewModel.Error = "There was some problem while sign-in. Please go back and try again.";
                     }
@@ -375,7 +458,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             return viewModel;
         }
 
-        private bool _CreateUserFromLinkedInProfileData(string accessToken)
+        private bool CreateUserFromLinkedInProfileData(string accessToken)
         {
             // todo - create account and login the user.
 
@@ -392,7 +475,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             var existingUser = SitefinityHelper.GetUserByEmail(emailAddress);
             if (existingUser != null)
             {
-                if (!_AuthenticateUser(emailAddress))
+                if (!AuthenticateUser(emailAddress))
                 {
                     Log.Write("LinkedIn: Unable to authenticate user using the email address.");
 
@@ -426,7 +509,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 return false;
             }
 
-            if (!_AuthenticateUser(emailAddress))
+            if (!AuthenticateUser(emailAddress))
             {
                 Log.Write("LinkedIn: Unable to authenticate user using the email address after registration.");
 
@@ -436,7 +519,9 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             return true;
         }
 
-        private bool _AuthenticateUser(string emailAddress)
+        #endregion
+
+        private bool AuthenticateUser(string emailAddress)
         {
             var userManager = UserManager.GetManager();
 
@@ -445,9 +530,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             return user != null;
         }
 
-        #endregion
-
-        private string _GetJobDetailsUrl(int jobId, string query = null)
+        private string GetJobApplicationUrl(int jobId, string query = null)
         {
             if (query != null)
             {

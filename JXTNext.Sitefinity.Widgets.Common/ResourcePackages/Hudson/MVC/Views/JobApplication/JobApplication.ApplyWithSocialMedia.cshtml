@@ -24,7 +24,7 @@
                             hasLinkedIn = true;
 
                             <li>
-                                <a href="javascript:;" onclick="showHideLinkedInWidgetHolder();" class="btn btn-linkedin" title="@item.Title">@item.Title</a>
+                                <a href="javascript:;" class="btn btn-linkedin" data-linkedin-toggle="#linkedin-widget-holder" title="@item.Title">@item.Title</a>
                             </li>
 
                             break;
@@ -80,8 +80,10 @@
 
             @if (hasLinkedIn)
             {
-                <div id="linkedin-widget-holder" style="display: none;">
+                <div id="linkedin-widget-holder" class="linkedin-widget-holder" data-apply-url="@ViewBag.LinkedInApplyUrl" style="display: none;">
                     <hr>
+
+                    <div class="linkedin-alerts"></div>
 
                     <div name="widget-holder">
                         @if (ViewBag.IsUserLoggedIn)
@@ -99,29 +101,14 @@
                             </script>
                             <script>
                                 function onLinkedInProfileData(profileData) {
-                                    console.log(profileData);
-
-                                    jQuery.ajax({
-                                        method: "POST",
-                                        url: "@ViewBag.LinkedInApplyUrl",
-                                        data: profileData
-                                    })
-                                    .done(function () {
-                                        alert("success");
-                                    })
-                                    .fail(function () {
-                                        alert("error");
-                                    })
-                                    .always(function () {
-                                        alert("complete");
-                                    });
+                                    linkedInHandler.submitJobApplyData('#linkedin-widget-holder', @Model.JobId, profileData);
                                 }
-                            </script>
+                            </script>                            
                         }
                         else
                         {
                             <p>
-                                <a href="@ViewBag.LinkedInSignInUrl" class="btn-linkedin-signin" title="Sign in with LinkedIn" onclick="setShowHideLinkedInWidgetHolderOnLoad(1);">
+                                <a href="@ViewBag.LinkedInSignInUrl" class="btn-linkedin-signin" title="Sign in with LinkedIn" data-widget-holder="#linkedin-widget-holder">
                                     <img src="~/ResourcePackages/Hudson/assets/dist/images/sign-in-linkedin.svg" class="img-responsive" />
                                 </a>
                             </p>
@@ -132,34 +119,9 @@
                             </p>
                         }
                     </div>
+
+                    <div class="linkedin-processing" style="display: none;">Applying with LinkedIn. Please wait...</div>
                 </div>
-
-                <script type="text/javascript">
-                    var linkedInWidgetHolder = jQuery('#linkedin-widget-holder');
-
-                    function setShowHideLinkedInWidgetHolderOnLoad(value) {
-                        sessionStorage.setItem('showLinkedIn', value);
-                    }
-
-                    function getShowHideLinkedInWidgetHolderOnLoad() {
-                        return sessionStorage.getItem('showLinkedIn');
-                    }
-
-                    function showHideLinkedInWidgetHolder() {
-                        if (linkedInWidgetHolder.is(':visible')) {
-                            linkedInWidgetHolder.slideUp();
-
-                            setShowHideLinkedInWidgetHolderOnLoad(0);
-                        }
-                        else {
-                            linkedInWidgetHolder.slideDown();
-                        }
-                    }
-
-                    if (getShowHideLinkedInWidgetHolderOnLoad() === '1') {
-                        linkedInWidgetHolder.slideDown();
-                    }
-                </script>
             }
         </div>
     </div>

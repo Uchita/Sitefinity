@@ -1,15 +1,19 @@
-﻿using JXTNext.Sitefinity.Common.Helpers;
-using JXTNext.Sitefinity.Widgets.Social.Mvc.Models;
-using JXTNext.SocialMedia.Models.Indeed;
-using JXTNext.SocialMedia.Services.Indeed;
+﻿using JXTNext.Sitefinity.Widgets.Social.Mvc.Models;
+using JXTNext.SocialMedia.Models.LinkedIn;
+using JXTNext.SocialMedia.Services.LinkedIn;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Net.Mail;
 using System.Text;
-using System.Threading.Tasks;
 using Telerik.Sitefinity.Abstractions;
+using Newtonsoft.Json;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Wordprocessing;
+using System.Web;
+using HtmlToOpenXml;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
 {
@@ -22,68 +26,38 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
         }
 
         // Interface method
-        public SocialMediaProcessedResponse ProcessData(string data, string state, string indeedData)
+        public SocialMediaProcessedResponse ProcessData(string data, string state, string linkedInJson)
         {
             SocialMediaProcessedResponse processedResponse = null;
 
-            if (data.IsNullOrEmpty() && !indeedData.IsNullOrEmpty())
+            if (!linkedInJson.IsNullOrEmpty())
             {
                 processedResponse = new SocialMediaProcessedResponse();
 
                 try
-                {
-                    IndeedSocialMediaRequest indeedReq = new IndeedSocialMediaRequest();
-                    indeedReq.IndeedApplicationJson = indeedData;
+                {                   
+                    var linkedInRequest = new LinkedInSocialMediaRequest();
+                    linkedInRequest.LinkedInApplicationJson = linkedInJson;
 
-                    IndeedSocialMediaService indeedSocialMediaService = new IndeedSocialMediaService();
+                    var linkedInSocialMediaService = new LinkedInSocialMediaService();
 
-                    var indeedAPIResponse = indeedSocialMediaService.ProcessSocialMediaIntegration<IndeedSocialMediaResponse, IndeedSocialMediaRequest>(indeedReq);
+                    var linkedInSocialMediaResponse = linkedInSocialMediaService.ProcessSocialMediaIntegration<LinkedInSocialMediaResponse, LinkedInSocialMediaRequest>(linkedInRequest);
 
-                    if (indeedAPIResponse.SocialMediaProcessSuccess)
+                    if (linkedInSocialMediaResponse.SocialMediaProcessSuccess)
                     {
                         processedResponse.Success = true;
-                        processedResponse.Email = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.Email;
-                        processedResponse.FirstName = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.FullName?.Split(' ').FirstOrDefault();
-                        processedResponse.LastName = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.FullName?.Split(' ').LastOrDefault();
-                        processedResponse.PhoneNumber = indeedAPIResponse.IndeedJobApplication.IndeedApplicant.PhoneNumber;
-                        processedResponse.FileStream = indeedAPIResponse.IndeedJobApplication.IndeedResume.data;
-                        processedResponse.FileName = indeedAPIResponse.IndeedJobApplication.IndeedResume.fileName;
-                        if (!string.IsNullOrEmpty(indeedAPIResponse.IndeedJobApplication.JXTNextJob.jobMeta))
-                        {
-                            string[] metaData = indeedAPIResponse.IndeedJobApplication.JXTNextJob.jobMeta.Split(new char[] { ';' });
+                        processedResponse.Email = linkedInSocialMediaResponse.LinkedInJobApplication.emailAddress;
+                        processedResponse.FirstName = linkedInSocialMediaResponse.LinkedInJobApplication.firstName;
+                        processedResponse.LastName = linkedInSocialMediaResponse.LinkedInJobApplication.lastName;
+                        processedResponse.PhoneNumber = linkedInSocialMediaResponse.LinkedInJobApplication.phoneNumber;
 
-                            if (metaData.Count() >= 1)
-                            {
-                                string email = metaData[1];
-                                if (!string.IsNullOrEmpty(email))
-                                {
-                                    email = email.Trim();
-                                    processedResponse.LoginUserEmail = this.isValidEmail(email) ? email : null;
-                                    processedResponse.LoginUserEmail = email;
-                                }
-                            }
-
-                            if (metaData.Count() >= 2)
-                            {
-                                string source = metaData[2];
-                                if (!string.IsNullOrEmpty(source))
-                                {
-                                    source = source.Trim();
-                                    processedResponse.JobSource = source;
-                                }
-                            }
-
-                        }
-
-                        if (Int32.TryParse(indeedAPIResponse.IndeedJobApplication.JXTNextJob.jobId, out int jobId))
-                        {
-                            processedResponse.JobId = jobId;
-                        }
+                        processedResponse.FileStream = GenerateWordResumeStream(linkedInSocialMediaResponse.HTMLResumeFile);
+                        processedResponse.FileName = processedResponse.FirstName.ToLower() + "-" + processedResponse.LastName.ToLower() + "-" + DateTime.Now.ToFileTime() + ".docx";
                     }
                     else
                     {
                         processedResponse.Success = false;
-                        processedResponse.Errors = indeedAPIResponse.Errors;
+                        processedResponse.Errors = linkedInSocialMediaResponse.Errors;
                     }
                 }
                 catch (Exception ex)
@@ -100,18 +74,44 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
             return processedResponse;
         }
 
-        private bool isValidEmail(string email)
+        /// <summary>
+        /// This Method Generates Word File Stream using the HTML resume
+        /// </summary>
+        /// <param name="htmlResume">Generated HTML Resume using the LinkedIn JobApplication</param>
+        /// <returns>Applicant Resume as a MemoryStream</returns>
+        private MemoryStream GenerateWordResumeStream(string htmlResume)
         {
-            try
-            {
-                MailAddress eamilValue = new MailAddress(email);
-                return true;
-            }
-            catch (Exception)
-            {
+            MemoryStream generatedResume = null;
 
-                return false;
+            if (!string.IsNullOrWhiteSpace(htmlResume))
+            {
+                generatedResume = new MemoryStream();
+
+                using (MemoryStream generatedDocument = new MemoryStream(Encoding.UTF8.GetBytes(htmlResume)))
+                {
+                    /*using (WordprocessingDocument package = WordprocessingDocument.Create(generatedDocument, WordprocessingDocumentType.Document))
+                    {
+                        MainDocumentPart mainPart = package.MainDocumentPart;
+
+                        if (mainPart == null)
+                        {
+                            mainPart = package.AddMainDocumentPart();
+                            new Document(new Body()).Save(mainPart);
+                        }
+
+                        HtmlConverter converter = new HtmlConverter(mainPart);
+                        converter.ParseHtml(htmlResume);
+
+                        mainPart.Document.Save();
+                    }*/
+
+                    generatedDocument.CopyTo(generatedResume);
+                }
+
+                generatedResume.Position = 0;
             }
+
+            return generatedResume;
         }
     }
 }

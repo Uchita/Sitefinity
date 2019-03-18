@@ -457,13 +457,15 @@
     <Compile Include="Mvc\Helpers\LinkedInHelper.cs" />
     <Compile Include="Mvc\Logics\IProcessSocialMediaData.cs" />
     <Compile Include="Mvc\Logics\ProcessIndeedData.cs" />
+    <Compile Include="Mvc\Logics\ProcessLinkedInData.cs" />
     <Compile Include="Mvc\Logics\ProcessSeekData.cs" />
     <Compile Include="Mvc\Logics\SocialHandlerLogics.cs" />
+    <Compile Include="Mvc\Models\CreateJobApplicationResponse.cs" />
     <Compile Include="Mvc\Models\InstagramModel.cs" />
     <Compile Include="Mvc\Models\JobDetailsModel.cs" />
     <Compile Include="Mvc\Models\LinkedInAccessTokenResponse.cs" />
-    <Compile Include="Mvc\Models\LinkedInMemberProfile.cs" />
-    <Compile Include="Mvc\Models\LinkedInSignInResponse.cs" />
+    <Compile Include="Mvc\Models\LinkedInApplyResponse.cs" />
+    <Compile Include="Mvc\Models\LinkedInSignInRequest.cs" />
     <Compile Include="Mvc\Models\LinkedInProfileModel.cs" />
     <Compile Include="Mvc\Models\LinkedInSignInViewModel.cs" />
     <Compile Include="Mvc\Models\SocialLinkModel.cs" />

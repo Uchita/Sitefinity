@@ -1,6 +1,6 @@
 ﻿namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Models
 {
-    public class LinkedInSignInResponse
+    public class LinkedInSignInRequest
     {
         public string Error { get; set; }
         public string ErrorDescription { get; set; }

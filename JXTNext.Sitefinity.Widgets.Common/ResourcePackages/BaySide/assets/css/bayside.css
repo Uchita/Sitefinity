@@ -10,21 +10,21 @@
 }
 
 /*@font-face {
-    font-family: 'Proxima Nova';
-    src: url("../fonts/web/proxima_nova_regular-webfont.eot") format("embedded-opentype"), url("../fonts/web/proxima_nova_regular-webfont.svg") format("svg"), url("../fonts/web/proxima_nova_regular-webfont.ttf") format("truetype"), url("../fonts/web/proxima_nova_regular-webfont.woff") format("woff");
-}
+        font-family: 'Proxima Nova';
+        src: url("../fonts/web/proxima_nova_regular-webfont.eot") format("embedded-opentype"), url("../fonts/web/proxima_nova_regular-webfont.svg") format("svg"), url("../fonts/web/proxima_nova_regular-webfont.ttf") format("truetype"), url("../fonts/web/proxima_nova_regular-webfont.woff") format("woff");
+    }
 
-@font-face {
-    font-family: 'Proxima Nova';
-    src: url("../fonts/web/proxima_nova_light-webfont.eot") format("embedded-opentype"), url("../fonts/web/proxima_nova_light-webfont.svg") format("svg"), url("../fonts/web/proxima_nova_light-webfont.ttf") format("truetype"), url("../fonts/web/proxima_nova_light-webfont.woff") format("woff");
-    font-weight: 100;
-}
+    @font-face {
+        font-family: 'Proxima Nova';
+        src: url("../fonts/web/proxima_nova_light-webfont.eot") format("embedded-opentype"), url("../fonts/web/proxima_nova_light-webfont.svg") format("svg"), url("../fonts/web/proxima_nova_light-webfont.ttf") format("truetype"), url("../fonts/web/proxima_nova_light-webfont.woff") format("woff");
+        font-weight: 100;
+    }
 
-@font-face {
-    font-family: 'Proxima Nova';
-    src: url("../fonts/web/proxima_nova_semibold-webfont.eot") format("embedded-opentype"), url("../fonts/web/proxima_nova_semibold-webfont.svg") format("svg"), url("../fonts/web/proximanova-semibold-webfont.ttf") format("truetype"), url("../fonts/web/proximanova-semibold-webfont.woff") format("woff"), url("../fonts/web/proximanova-semibold-webfont.woff2") format("woff2");
-    font-weight: 500;
-}*/
+    @font-face {
+        font-family: 'Proxima Nova';
+        src: url("../fonts/web/proxima_nova_semibold-webfont.eot") format("embedded-opentype"), url("../fonts/web/proxima_nova_semibold-webfont.svg") format("svg"), url("../fonts/web/proximanova-semibold-webfont.ttf") format("truetype"), url("../fonts/web/proximanova-semibold-webfont.woff") format("woff"), url("../fonts/web/proximanova-semibold-webfont.woff2") format("woff2");
+        font-weight: 500;
+    }*/
 
 body, html {
     font-family: 'Muli', sans-serif;
@@ -3257,12 +3257,12 @@ button.bg-dark:focus {
 }
 
 /*@media (min-width: 1200px) {
-    .app-content .container,
-    .app-footer .container,
-    .app-header .container {
-        max-width: 990px;
-    }
-}*/
+        .app-content .container,
+        .app-footer .container,
+        .app-header .container {
+            max-width: 990px;
+        }
+    }*/
 
 .app-content .container-fluid,
 .app-footer .container-fluid,
@@ -6248,8 +6248,8 @@ select.hs-input {
         }
 
         /*.app-header .navbar-nav .dropdown .dropdown-toggle:after {
-            transition: transform 0.3s;
-        }*/
+                transition: transform 0.3s;
+            }*/
 
         .app-header .navbar-nav .dropdown.show .dropdown-toggle:after, .app-header .navbar-nav .dropdown.open .dropdown-toggle:after, .app-header .navbar-nav .dropdown.focus .dropdown-toggle:after, .app-header .navbar-nav .dropdown:hover .dropdown-toggle:after {
             transform: rotate(-180deg);
@@ -6436,15 +6436,15 @@ select.hs-input {
 /* ------App header__End------ */
 
 /*:root {
-    --blue: #0088CF;
-    --green: #54b948;
-    --sage: #f0f7ee;
-    --dark-blue: #304e6b;
-    --white: #fff;
-    --black: #333;
-    --red: #ea232a;
-    --dark: #414141;
-}*/
+        --blue: #0088CF;
+        --green: #54b948;
+        --sage: #f0f7ee;
+        --dark-blue: #304e6b;
+        --white: #fff;
+        --black: #333;
+        --red: #ea232a;
+        --dark: #414141;
+    }*/
 
 /*-------Footer----------*/
 .app-footer {
@@ -6741,15 +6741,15 @@ select.hs-input {
 
 @media (max-width: 991px) {
     /*.job-item {
-        margin-right: auto;
-        width: calc(50% - 20px);
-        max-width: 100%;
-        float: left;
-    }*/
+            margin-right: auto;
+            width: calc(50% - 20px);
+            max-width: 100%;
+            float: left;
+        }*/
 
     /*.job-item:first-child {
-            margin-right: 40px;
-        }*/
+                margin-right: 40px;
+            }*/
 }
 
 @media (max-width: 767px) {
@@ -7363,9 +7363,9 @@ select.hs-input {
 
         .leader-list .leader-image .leader-thumb .default-logo {
             /*position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);*/
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);*/
             transition: all 0.4s ease;
         }
 
@@ -7550,7 +7550,7 @@ select.hs-input {
 }
 
 .job-detail h2 {
-    font-size: 34px;
+    font-size: 32px;
     color: #000000;
 }
 
@@ -7566,11 +7566,11 @@ select.hs-input {
 }
 
 .job-detail .btn {
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .job-sidebar .btn {
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .job-sidebar .action-link {
@@ -7817,10 +7817,10 @@ select.hs-input {
 }
 
 /*.list-item .btn {
-    left: 20px;
-    bottom: 20px;
-    position: absolute;
-}*/
+        left: 20px;
+        bottom: 20px;
+        position: absolute;
+    }*/
 
 .blog-container {
     margin-top: 50px;
@@ -8104,8 +8104,8 @@ select.hs-input {
 }
 
 /*.job-list:nth-last-child(2) {
-        margin-bottom: 20px;
-    }*/
+            margin-bottom: 20px;
+        }*/
 
 .margin-container {
     margin-top: 70px;
@@ -8537,16 +8537,16 @@ select.hs-input {
     background: rgba(0,0,0,.8);
 }
 /*.ext-provider-form .apply-with .indeed-apply-button {
-    background: url(../images/indeedBtn.png) 50% 50% no-repeat #fd6001 !important;
-    width: 120px;
-    border-radius: 0 !important;
-    height: 35px !important;
-    padding: 0 !important;
-    border: 0 !important;
-    text-decoration: none !important;
-    display: inline-block !important;
-    cursor: pointer !important;
-}*/
+        background: url(../images/indeedBtn.png) 50% 50% no-repeat #fd6001 !important;
+        width: 120px;
+        border-radius: 0 !important;
+        height: 35px !important;
+        padding: 0 !important;
+        border: 0 !important;
+        text-decoration: none !important;
+        display: inline-block !important;
+        cursor: pointer !important;
+    }*/
 
 /*10jan2019*/
 .dropdown-menu li i {
@@ -8892,7 +8892,7 @@ select.hs-input {
 }
 
 .page-wrapper #indeed-btnwrapper .indeed-apply-button {
-    background: url(../images/indeedBtn.png) 50% 50% no-repeat #fd6001 !important;
+    background: url(../images/indeed-btn.jpg) 50% 50% no-repeat #fd6001 !important;
     width: 120px;
     border-radius: 0 !important;
     height: 35px !important;
@@ -8966,8 +8966,8 @@ select.hs-input {
     box-shadow: 1px 1px 1px rgba(0,0,0,.2);
 }
 /*.page-wrapper .sf-profile h2 {
-    margin-top: 0px;
-}*/
+        margin-top: 0px;
+    }*/
 
 .sf-Comments-header, .sf-Comments-list, .sf-Comments-more, .sf-Gallery-navigation, .sf-mb-xl {
     margin-bottom: 30px;
@@ -9217,9 +9217,9 @@ select.hs-input {
 }
 
 /*#privacypolicy {
-    position: static;
-    margin-left: 0px;
-}*/
+        position: static;
+        margin-left: 0px;
+    }*/
 
 privacy-policy {
     position: static;
@@ -9268,8 +9268,8 @@ privacy-policy {
 }
 
 /*.privacy-policy p {
-    margin-bottom: 24px;
-}*/
+        margin-bottom: 24px;
+    }*/
 
 /*21/01/2019*/
 
@@ -9408,9 +9408,9 @@ privacy-policy {
     }
 
 /*.replace-h4 h4 {
-    font-weight: 700;
-    font-size: 16px;
-}*/
+        font-weight: 700;
+        font-size: 16px;
+    }*/
 
 .image-pos-left + .align-items-center .content-on-img {
     padding-right: 40px;
@@ -9519,25 +9519,25 @@ privacy-policy {
 
 /*.leader-list + .leader-content {
     
-}*/
+    }*/
 /*.leader-content:last-child {
-    position: absolute;
-    opacity: 0;
-    visibility: hidden;
-}
-
-.leader-list:nth-child(4) + .leader-content {
-    position: relative;
-    opacity: 1;
-    visibility: visible;
-    margin: 0px;
-}*/
-@media(min-width: 992px) {
-    /*.leader-list:nth-child(2n) + .leader-content {
-           position: absolute;
+        position: absolute;
         opacity: 0;
         visibility: hidden;
+    }
+
+    .leader-list:nth-child(4) + .leader-content {
+        position: relative;
+        opacity: 1;
+        visibility: visible;
+        margin: 0px;
     }*/
+@media(min-width: 992px) {
+    /*.leader-list:nth-child(2n) + .leader-content {
+               position: absolute;
+            opacity: 0;
+            visibility: hidden;
+        }*/
 }
 
 @media(max-width: 991px) and (min-width: 768px) {
@@ -9547,16 +9547,16 @@ privacy-policy {
     }
 
     /*.md-row + .leader-content {
-            position: absolute;
-            opacity: 0;
-            visibility: hidden;
-        }
+                position: absolute;
+                opacity: 0;
+                visibility: hidden;
+            }
 
-        .leader-content:nth-child(4), .leader-content:nth-child(3) {
-            position: relative;
-            opacity: 1;
-            visibility: visible;
-        }*/
+            .leader-content:nth-child(4), .leader-content:nth-child(3) {
+                position: relative;
+                opacity: 1;
+                visibility: visible;
+            }*/
 
 }
 
@@ -9570,10 +9570,10 @@ privacy-policy {
     }
 
     /*.md-row + .leader-content {
-        position: absolute;
-        opacity: 0;
-        visibility: hidden;
-    }*/
+            position: absolute;
+            opacity: 0;
+            visibility: hidden;
+        }*/
 
     .app-content .leader-content .border-blue {
         padding: 0.6rem 1.5rem;
@@ -9724,4 +9724,158 @@ ul.nav.nav-stacked li:before {
 
 ul.nav.nav-stacked li a:before {
     top: 11px;
+}
+
+.advancedsearch .jn_jobSearch .btn-primary:focus {
+    outline: none
+}
+
+#indeed-btnwrapper img {
+    width: 190px;
+}
+
+.login-form.sign-in-with #login-register-container label,
+.login-form.sign-in-with .upload-section label {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.job-detail ul.inline-list li,
+.location-text li {
+    transition: all 500ms ease;
+    transform: scale(1);
+}
+
+    .job-detail ul.inline-list li:hover i.fa-map-marker,
+    .job-detail ul.inline-list li:hover i.fa-dollar,
+    .location-text li:hover i.fa-dollar,
+    .location-text li:hover i.fa-map-marker {
+        transform: scale(1.3);
+        transition: all 500ms ease;
+    }
+
+    .job-detail ul.inline-list li:hover i.fa-clock-o,
+    .location-text li:hover i.fa-clock-o {
+        transform: rotate(360deg) !important;
+        transition: all 500ms ease;
+    }
+
+.job-detail div ul li span strong {
+    font-weight: 500;
+}
+
+#resultsPagePartialContent .search-results ul > ul > li:before {
+    content: "";
+    background: #000;
+    width: 4px;
+    height: 4px;
+    position: absolute;
+    top: 10px;
+    left: -17px;
+    border-radius: 50%;
+}
+
+.bayside-listing {
+    padding: 0;
+}
+
+.search-results ul > ul > li {
+    position: relative;
+    list-style-type: none;
+    margin-left: 17px;
+}
+
+#resultsPagePartialContent .search-results ul > ul {
+    padding: 0 6px;
+}
+
+.jobCatHirarchy small a {
+    color: #333132;
+}
+
+    .jobCatHirarchy small a:hover {
+        color: #0088CF;
+    }
+
+.location-text li::first-letter {
+    text-transform: uppercase;
+}
+
+#anon-job-alert {
+    text-transform: lowercase;
+}
+
+    #anon-job-alert:first-letter {
+        text-transform: capitalize
+    }
+
+.pagination > li > a > span > svg {
+    display: none;
+}
+
+.pagePrev a span {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 35px;
+    width: 35px;
+    border-radius: 2px;
+    text-align: center;
+    right: -1px;
+    background: url(../images/prev-icon.png) no-repeat center center;
+    background-size: 12px auto !important;
+}
+
+.pagePrev a:hover span,
+.pagePrev a:focus span {
+    background: #0088CF url(../images/prev-iconH.png) no-repeat center center;
+    background-size: 12px auto !important;
+}
+
+.pagination > li > a {
+    display: block;
+    height: 36px;
+}
+
+.pageNext a span {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 35px;
+    width: 35px;
+    border-radius: 2px;
+    text-align: center;
+    right: -1px;
+    background: url(../images/next-icon.png) no-repeat center center;
+    background-size: 12px auto !important;
+}
+
+.pageNext a:hover span,
+.pageNext a:focus span {
+    background: #0088CF url(../images/next-iconH.png) no-repeat center center;
+    background-size: 12px auto !important;
+}
+
+.job-sidebar .h3-heading {
+    font-weight: 500;
+    font-size: 19px;
+}
+
+
+@media (max-width: 767px) {
+    .squire-box-row div:first-child {
+        order: 1;
+    }
+
+    .squire-box-row div:nth-child(2) {
+        order: 2;
+    }
+
+    .squire-box-row div:nth-child(3) {
+        order: 4;
+    }
+
+    .squire-box-row div:nth-child(4) {
+        order: 3;
+    }
 }

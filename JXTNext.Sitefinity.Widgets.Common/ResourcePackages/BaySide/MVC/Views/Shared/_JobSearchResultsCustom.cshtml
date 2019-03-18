@@ -49,18 +49,18 @@
             </div>
             <div class="col-12 col-lg-6">
                 <div class="form-group text-right">
-                    <a id="anon-job-alert" class="btn btn-outline-primary btn-block" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+                    <a id="anon-job-alert" class="btn btn-outline-primary btn-block" href="#" title="Create your job alert">Create Job Alert</a>
 
 
 
                     @*@if (isLoggedIn)
-                        {
-                        <a class="btn btn-outline-primary btn-block jobalert-btn" href="/user-dashboard/Create" title="Create you job alert">CREATE JOB ALERT</a>
-                        }
-                        else
-                        {
-                        <a id="anon-job-alert" class="btn btn-block btn-outline-primary" href="#" title="Create you job alert">CREATE JOB ALERT</a>
-                        }*@
+        {
+        <a class="btn btn-outline-primary btn-block jobalert-btn" href="/user-dashboard/Create" title="Create you job alert">Create Job Alert</a>
+        }
+        else
+        {
+        <a id="anon-job-alert" class="btn btn-block btn-outline-primary" href="#" title="Create you job alert">Create Job Alert</a>
+        }*@
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@
         <img src="/ResourcePackages/BaySide/assets/images/bayside-logo-black.png" class="float-right"
              alt="">
         <h2 class="mt-2"><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#">#:Title#</a></h2>
-        <ul class="border border-top-0 border-right-0 border-left-0 pb-4">
+        <ul class="border border-top-0 border-right-0 border-left-0 pb-4 bayside-listing">
             # if(data.CustomData["Bulletpoints.BulletPoint1"] != "" || data.CustomData["Bulletpoints.BulletPoint2"] != "" || data.CustomData["Bulletpoints.BulletPoint3"] != ""){#
             <ul>
                 <li>#:CustomData["Bulletpoints.BulletPoint1"]#</li>

@@ -78,7 +78,6 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             {
                 // Logging this info for Indeed test
                 Log.Write("Social Handler Index Action Start : ", ConfigurationPolicy.ErrorLog);
-                string UrlReferral = null;
                 
                 // This is the CSS classes enter from More Options
                 ViewBag.CssClass = this.CssClass;
@@ -113,18 +112,18 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                     {
                         result = _processSocialMediaSeekData.ProcessData(code, state, indeedJsonStringData);
                         if (TempData["source"] != null && !string.IsNullOrWhiteSpace(TempData["source"].ToString()))
-                            UrlReferral = TempData["source"].ToString();
+                            result.UrlReferral = TempData["source"].ToString();
                     }
-                    else if(code.IsNullOrEmpty() && !indeedJsonStringData.IsNullOrEmpty())
+                    else if (code.IsNullOrEmpty() && !indeedJsonStringData.IsNullOrEmpty())
                     {
                         result = _processSocialMediaIndeedData.ProcessData(code, state, indeedJsonStringData);
-                        UrlReferral = result.JobSource;
+                        result.UrlReferral = result.JobSource;
                     }
                     else
                     {
                         Log.Write("Social Handler code,sate and indeed data is null", ConfigurationPolicy.ErrorLog);
                     }
-                     
+
                     //var result = _socialHandlerLogics.ProcessSocialHandlerData(code, state, indeedJsonStringData);
 
                     if (result != null && result.Success == true && result.JobId.HasValue)
@@ -186,128 +185,22 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                             Log.Write("overrideEmail is : " + overrideEmail, ConfigurationPolicy.ErrorLog);
                             if (overrideEmail != null && status == JobApplicationStatus.Available)
                             {
-                                Log.Write("overrideEmail is in: ", ConfigurationPolicy.ErrorLog);
-                                // Gather Attachments
-                                Guid identifier = Guid.NewGuid();
-                                JobApplicationAttachmentUploadItem uploadItem = new JobApplicationAttachmentUploadItem()
-                                {
-                                    Id = identifier.ToString(),
-                                    AttachmentType = JobApplicationAttachmentType.Resume,
-                                    FileName = result.FileName,
-                                    FileStream = result.FileStream,
-                                    PathToAttachment = identifier.ToString() + "_" + result.FileName,
-                                    Status = "Ready"
-                                };
-
-                                
-
-                                // End code for fetch job details
-                                Log.Write("overrideEmail uploadItem object created", ConfigurationPolicy.ErrorLog);
-                                List<JobApplicationAttachmentUploadItem> attachments = new List<JobApplicationAttachmentUploadItem>();
-                                attachments.Add(uploadItem);
-                                Log.Write("overrideEmail uploadItem attachment added", ConfigurationPolicy.ErrorLog);
-                                string resumeAttachmentPath = JobApplicationAttachmentUploadItem.GetAttachmentPath(attachments, JobApplicationAttachmentType.Resume);
-                                Log.Write("After resume GetAttachmentPath", ConfigurationPolicy.ErrorLog);
-                                string coverletterAttachmentPath = JobApplicationAttachmentUploadItem.GetAttachmentPath(attachments, JobApplicationAttachmentType.Coverletter);
-                                Log.Write("After cover letter GetAttachmentPath", ConfigurationPolicy.ErrorLog);
-
-                                string htmlEmailContent = this.GetEmailHtmlContent(this.EmailTemplateId);
-                                string htmlEmailSubject = this.GetEmailSubject(this.EmailTemplateId);
-                                string htmlAdvertiserEmailContent = this.GetEmailHtmlContent(this.AdvertiserEmailTemplateId);
-                                string htmlAdvertiserEmailSubject = this.GetEmailSubject(this.AdvertiserEmailTemplateId);
-                                
-                                Log.Write("After GetHtmlEmailContent", ConfigurationPolicy.ErrorLog);
-                                // Email notification settings
-
-
-                                List<dynamic> emailAttachments = new List<dynamic>();
-                                foreach (var item in attachments)
-                                {
-                                    dynamic emailAttachment = new ExpandoObject();
-                                    emailAttachment.FileStream = item.FileStream;
-                                    emailAttachment.FileName = item.FileName;
-                                    emailAttachments.Add(emailAttachment);
-                                }
-
-
-                                EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(result.FirstName+" "+ result.LastName, overrideEmail),
-                                                                                                                    new EmailTarget(jobDetails.ContactDetails, jobDetails.ApplicationEmail),
-                                                                                                                    this.AdvertiserEmailTemplateEmailSubject,
-                                                                                                                    htmlAdvertiserEmailContent, emailAttachments);
-
-
-
-
-                                EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
-                                                                                                    new EmailTarget(SitefinityHelper.GetUserFirstNameById(SitefinityHelper.GetUserByEmail(overrideEmail).Id), overrideEmail),
-                                                                                                    this.EmailTemplateEmailSubject,
-                                                                                                    htmlEmailContent,null);
-
-                                EmailNotificationSettings registrationNotificationsSettings = null;
-                                if (applicantInfo.IsNewUser && this.RegistrationEmailTemplateId != null)
-                                {
-                                    registrationNotificationsSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
-                                                                                                new EmailTarget(applicantInfo.FirstName, applicantInfo.Email),
-                                                                                                this.GetEmailSubject(this.RegistrationEmailTemplateId),
-                                                                                                this.GetEmailHtmlContent(this.RegistrationEmailTemplateId), null);
-                                }
-
-                                Log.Write("emailNotificationSettings after: ", ConfigurationPolicy.ErrorLog);
-                                // CC and BCC emails
-                                if (!this.EmailTemplateCC.IsNullOrEmpty())
-                                {
-                                    foreach (var ccEmail in this.EmailTemplateCC.Split(';'))
-                                    {
-                                        emailNotificationSettings?.AddCC(String.Empty, ccEmail);
-                                        advertiserEmailNotificationSettings?.AddCC(String.Empty, ccEmail);
-                                        registrationNotificationsSettings?.AddCC(String.Empty, ccEmail);
-                                    }
-                                }
-
-                                if (!this.EmailTemplateBCC.IsNullOrEmpty())
-                                {
-                                    foreach (var bccEmail in this.EmailTemplateBCC.Split(';'))
-                                    {
-                                        emailNotificationSettings?.AddBCC(String.Empty, bccEmail);
-                                        advertiserEmailNotificationSettings?.AddBCC(String.Empty, bccEmail);
-                                        registrationNotificationsSettings?.AddBCC(String.Empty, bccEmail);
-                                    }
-                                }
-
-                                Log.Write("BL response before: ", ConfigurationPolicy.ErrorLog);
+                                Log.Write("overrideEmail is in: ", ConfigurationPolicy.ErrorLog);                                
 
                                 //Create Application 
-                                IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(
-                                    new JXTNext_MemberApplicationRequest {
-                                        ApplyResourceID = result.JobId.Value,
-                                        MemberID = 2,
-                                        ResumePath = resumeAttachmentPath,
-                                        CoverletterPath = coverletterAttachmentPath,
-                                        EmailNotification = emailNotificationSettings,
-                                        AdvertiserEmailNotification = advertiserEmailNotificationSettings,
-                                        AdvertiserName = jobDetails.ContactDetails,
-                                        CompanyName = jobDetails.CompanyName,
-                                        UrlReferral = UrlReferral,
-                                        RegistrationEmailNotification = registrationNotificationsSettings
-                                    },
-                                    overrideEmail);
-
-                                Log.Write("BL response after: ", ConfigurationPolicy.ErrorLog);
+                                var response = CreateJobApplication(result, jobDetails, applicantInfo, overrideEmail);
                                 
-                                if (response.Success && response.ApplicationID.HasValue)
+                                if (response.MemberApplicationResponse.Success && response.MemberApplicationResponse.ApplicationID.HasValue)
                                 {
-                                    Log.Write("BL response in: ", ConfigurationPolicy.ErrorLog);
-                                    var hasFailedUpload = _jobApplicationService.UploadFiles(attachments);
-                                    Log.Write("file upload is : " + hasFailedUpload, ConfigurationPolicy.ErrorLog);
-                                    if (hasFailedUpload)
+                                    if (!response.FilesUploaded)
                                     {
-                                        viewModel.Status = JobApplicationStatus.Technical_Issue; // Unable to attach files
-                                        viewModel.Message = "Unable to attach files to application";
+                                        viewModel.Status = response.Status; // Unable to attach files
+                                        viewModel.Message = response.Message;
                                     }
                                     else
                                     {
-                                        viewModel.Status = JobApplicationStatus.Applied_Successful;
-                                        viewModel.Message = "Your application was successfully processed.";
+                                        viewModel.Status = response.Status;
+                                        viewModel.Message = response.Message;
                                         if (!this.JobApplicationSuccessPageId.IsNullOrEmpty())
                                         {
                                             Log.Write("JobApplicationSuccessPageId is not null: ", ConfigurationPolicy.ErrorLog);
@@ -319,7 +212,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                 }
                                 else
                                 {
-                                    if (response.Errors.FirstOrDefault().ToLower().Contains("already exists"))
+                                    if (viewModel.Status == JobApplicationStatus.Already_Applied)
                                     {
                                         if (!jobDetails.JobSEOUrl.IsNullOrEmpty())
                                         {
@@ -330,8 +223,8 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                                             return Redirect(string.Format("job-application/{0}?error=exists", result.JobId.Value));
                                         }
                                     }
-                                    viewModel.Status = JobApplicationStatus.Technical_Issue;
-                                    viewModel.Message = response.Errors.FirstOrDefault();
+                                    viewModel.Status = response.Status;
+                                    viewModel.Message = response.Message;
                                 }
                             }
                             else
@@ -586,12 +479,164 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             jobDetails.JobSEOUrl = jobListingResponse.Job?.ClassificationURL;
             return jobDetails;
         }
-        
+
         protected override void HandleUnknownAction(string actionName)
         {
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
         }
 
+        private CreateJobApplicationResponse CreateJobApplication(
+            SocialMediaProcessedResponse result, 
+            JobDetailsModel jobDetails, 
+            ApplicantInfo applicantInfo,
+            string overrideEmail)
+        {
+            // Gather Attachments
+            Guid identifier = Guid.NewGuid();
+            JobApplicationAttachmentUploadItem uploadItem = new JobApplicationAttachmentUploadItem()
+            {
+                Id = identifier.ToString(),
+                AttachmentType = JobApplicationAttachmentType.Resume,
+                FileName = result.FileName,
+                FileStream = result.FileStream,
+                PathToAttachment = identifier.ToString() + "_" + result.FileName,
+                Status = "Ready"
+            };
+
+
+
+            // End code for fetch job details
+            Log.Write("overrideEmail uploadItem object created", ConfigurationPolicy.ErrorLog);
+            List<JobApplicationAttachmentUploadItem> attachments = new List<JobApplicationAttachmentUploadItem>();
+            attachments.Add(uploadItem);
+            Log.Write("overrideEmail uploadItem attachment added", ConfigurationPolicy.ErrorLog);
+            string resumeAttachmentPath = JobApplicationAttachmentUploadItem.GetAttachmentPath(attachments, JobApplicationAttachmentType.Resume);
+            Log.Write("After resume GetAttachmentPath", ConfigurationPolicy.ErrorLog);
+            string coverletterAttachmentPath = JobApplicationAttachmentUploadItem.GetAttachmentPath(attachments, JobApplicationAttachmentType.Coverletter);
+            Log.Write("After cover letter GetAttachmentPath", ConfigurationPolicy.ErrorLog);
+
+            string htmlEmailContent = this.GetEmailHtmlContent(this.EmailTemplateId);
+            string htmlEmailSubject = this.GetEmailSubject(this.EmailTemplateId);
+            string htmlAdvertiserEmailContent = this.GetEmailHtmlContent(this.AdvertiserEmailTemplateId);
+            string htmlAdvertiserEmailSubject = this.GetEmailSubject(this.AdvertiserEmailTemplateId);
+
+            Log.Write("After GetHtmlEmailContent", ConfigurationPolicy.ErrorLog);
+            // Email notification settings
+
+
+            List<dynamic> emailAttachments = new List<dynamic>();
+            foreach (var item in attachments)
+            {
+                dynamic emailAttachment = new ExpandoObject();
+                emailAttachment.FileStream = item.FileStream;
+                emailAttachment.FileName = item.FileName;
+                emailAttachments.Add(emailAttachment);
+            }
+
+
+            EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(result.FirstName + " " + result.LastName, overrideEmail),
+                                                                                                new EmailTarget(jobDetails.ContactDetails, jobDetails.ApplicationEmail),
+                                                                                                this.AdvertiserEmailTemplateEmailSubject,
+                                                                                                htmlAdvertiserEmailContent, emailAttachments);
+
+
+
+
+            EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
+                                                                                new EmailTarget(SitefinityHelper.GetUserFirstNameById(SitefinityHelper.GetUserByEmail(overrideEmail).Id), overrideEmail),
+                                                                                this.EmailTemplateEmailSubject,
+                                                                                htmlEmailContent, null);
+
+            EmailNotificationSettings registrationNotificationsSettings = null;
+            if (applicantInfo.IsNewUser && this.RegistrationEmailTemplateId != null)
+            {
+                registrationNotificationsSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
+                                                                            new EmailTarget(applicantInfo.FirstName, applicantInfo.Email),
+                                                                            this.GetEmailSubject(this.RegistrationEmailTemplateId),
+                                                                            this.GetEmailHtmlContent(this.RegistrationEmailTemplateId), null);
+            }
+
+            Log.Write("emailNotificationSettings after: ", ConfigurationPolicy.ErrorLog);
+            // CC and BCC emails
+            if (!this.EmailTemplateCC.IsNullOrEmpty())
+            {
+                foreach (var ccEmail in this.EmailTemplateCC.Split(';'))
+                {
+                    emailNotificationSettings?.AddCC(String.Empty, ccEmail);
+                    advertiserEmailNotificationSettings?.AddCC(String.Empty, ccEmail);
+                    registrationNotificationsSettings?.AddCC(String.Empty, ccEmail);
+                }
+            }
+
+            if (!this.EmailTemplateBCC.IsNullOrEmpty())
+            {
+                foreach (var bccEmail in this.EmailTemplateBCC.Split(';'))
+                {
+                    emailNotificationSettings?.AddBCC(String.Empty, bccEmail);
+                    advertiserEmailNotificationSettings?.AddBCC(String.Empty, bccEmail);
+                    registrationNotificationsSettings?.AddBCC(String.Empty, bccEmail);
+                }
+            }
+
+            Log.Write("BL response before: ", ConfigurationPolicy.ErrorLog);
+
+            //Create Application 
+            var response = _blConnector.MemberCreateJobApplication(
+                new JXTNext_MemberApplicationRequest
+                {
+                    ApplyResourceID = result.JobId.Value,
+                    MemberID = 2,
+                    ResumePath = resumeAttachmentPath,
+                    CoverletterPath = coverletterAttachmentPath,
+                    EmailNotification = emailNotificationSettings,
+                    AdvertiserEmailNotification = advertiserEmailNotificationSettings,
+                    AdvertiserName = jobDetails.ContactDetails,
+                    CompanyName = jobDetails.CompanyName,
+                    UrlReferral = result.UrlReferral,
+                    RegistrationEmailNotification = registrationNotificationsSettings
+                },
+                overrideEmail);
+
+            Log.Write("BL response after: ", ConfigurationPolicy.ErrorLog);
+
+            var createJobApplicationResponse = new CreateJobApplicationResponse {
+                MemberApplicationResponse = response
+            };
+
+            if (response.Success && response.ApplicationID.HasValue)
+            {
+                Log.Write("BL response in: ", ConfigurationPolicy.ErrorLog);
+                var hasFailedUpload = _jobApplicationService.UploadFiles(attachments);
+                Log.Write("file upload is : " + hasFailedUpload, ConfigurationPolicy.ErrorLog);
+                if (hasFailedUpload)
+                {
+                    createJobApplicationResponse.FilesUploaded = false;
+                    createJobApplicationResponse.Status = JobApplicationStatus.Technical_Issue; // Unable to attach files
+                    createJobApplicationResponse.Message = "Unable to attach files to application";
+                }
+                else
+                {
+                    createJobApplicationResponse.FilesUploaded = true;
+                    createJobApplicationResponse.Status = JobApplicationStatus.Applied_Successful;
+                    createJobApplicationResponse.Message = "Your application was successfully processed.";                    
+                }
+            }
+            else
+            {
+                if (response.Errors.FirstOrDefault().ToLower().Contains("already exists"))
+                {
+                    createJobApplicationResponse.Status = JobApplicationStatus.Already_Applied;
+                    createJobApplicationResponse.Message = "You have already applied to this job.";
+                }
+                else
+                {
+                    createJobApplicationResponse.Status = JobApplicationStatus.Technical_Issue;
+                    createJobApplicationResponse.Message = response.Errors.FirstOrDefault();
+                }
+            }
+
+            return createJobApplicationResponse;
+        }
 
         private string GetEmailHtmlContent(string emailTemplateId)
         {

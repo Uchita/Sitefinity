@@ -8086,12 +8086,12 @@ header {
           padding: 10px;
           background: #19366A;
           transition: all 0.3s ease-in-out;
-          margin: 0 0 2px 0;
+          margin: 0 0 1px 0;
           border: 1px solid #fff; }
           header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu a::after, header .main-nav .navbar-nav > li.dropdown:focus .dropdown-menu a::after {
             display: none; }
           header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu a:hover, header .main-nav .navbar-nav > li.dropdown:focus .dropdown-menu a:hover {
-            background: rgba(25, 54, 106, 0.75); }
+            background: rgba(45, 195, 234, 0.9); }
       header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu + .dropdown-menu, header .main-nav .navbar-nav > li.dropdown:focus .dropdown-menu + .dropdown-menu {
         padding-left: 30px;
         border-left: 1px solid #d7d7d7; }
@@ -8100,7 +8100,6 @@ header {
       top: 100%;
       left: 0;
       display: none;
-      margin-top: 15px;
       background: transparent;
       z-index: 1000; }
       header .main-nav .dropdown-menu-container .dropdown-menu-columns {
@@ -8204,7 +8203,8 @@ header {
         position: relative; }
       header .navbar.navbar-default .navbar-nav > li > a {
         padding-top: 0;
-        padding-bottom: 0; }
+        padding-bottom: 0;
+        line-height: 48px; }
   header .mobile-nav.left-sidebar {
     margin: 0; }
     header .mobile-nav.left-sidebar .navbar-collapse {
@@ -9462,7 +9462,6 @@ address.info-box {
   .img-inside-border:before {
     content: "";
     border: 1px solid #fff;
-    z-index: 9999;
     position: absolute;
     top: 20px;
     right: 35px;
@@ -9547,9 +9546,9 @@ address.info-box {
     border-bottom: 1px solid white;
     left: 0; }
 
-h2 {
-  color: pink !important; }
-
+/*h2 {
+    color: pink !important;
+}*/
 .header-top-links a {
   transition: all 0.3s ease-in-out; }
 
@@ -9578,6 +9577,9 @@ h2 {
     margin-left: 2px;
     vertical-align: middle;
 }*/
+.inner-search-panel .job-search {
+  top: calc(-45px + -32px); }
+
 /*#endregion Basic components */
 /*#region Breadcrumbs */
 ul.breadcrumb {

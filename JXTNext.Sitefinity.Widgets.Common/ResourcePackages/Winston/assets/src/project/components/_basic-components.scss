@@ -1019,7 +1019,6 @@ header {
             height: 50px;
             top: 20px;*/
         }
-
         /*.main-nav {
             top: -22px;
         }*/
@@ -1095,14 +1094,15 @@ header {
                         padding: 10px;
                         background: $header-dropdown-bg-color;
                         @include transition();
-                        margin: 0 0 2px 0;
+                        margin: 0 0 1px 0;
                         border: 1px solid $brightColor;
 
                         &::after {
                             display: none;
                         }
-                        &:hover{
-                            background:rgba(25,54,106,0.75);
+
+                        &:hover {
+                            background: rgba(45,195,234,.9);
                         }
                     }
                 }
@@ -1119,8 +1119,7 @@ header {
             top: 100%;
             left: 0;
             display: none;
-            margin-top:15px;
-            background: $btn-secondary-bg;
+                        background: $btn-secondary-bg;
             z-index: 1000;
 
 
@@ -1161,8 +1160,8 @@ header {
 
         .dropdown-menu li {
             font-size: 1.4rem;
-            font-weight:400;
-            font-weight:400;
+            font-weight: 400;
+            font-weight: 400;
 
             & > a {
                 padding: 0;
@@ -1236,6 +1235,7 @@ header {
                 background: none;
                 color: $navigation-link-color;
                 @include transition();
+
                 &:hover {
                     color: $header-top-hover-color;
                 }
@@ -1275,14 +1275,14 @@ header {
                     padding-right: 35px;*/
                     position: relative;
                     /*margin-bottom: 0;*/
-
                     a {
                         padding-left: 0;
                         padding-right: 35px;
                         border-bottom-color: transparent;
                     }
-                    &:last-child{
-                        padding-right:0;
+
+                    &:last-child {
+                        padding-right: 0;
                     }
                 }
 
@@ -1296,6 +1296,7 @@ header {
                 & > li > a {
                     padding-top: 0;
                     padding-bottom: 0;
+                    line-height: 48px;
                 }
             }
         }
@@ -2761,7 +2762,7 @@ address.info-box{
         &:before {
         content: "";
         border: 1px solid $brightColor;
-        z-index: 9999;
+     
         position: absolute;
         top: 20px;
         right: 35px;
@@ -2906,9 +2907,9 @@ address.info-box{
     }
 }
 
-h2 {
+/*h2 {
     color: pink !important;
-}
+}*/
 
 .header-top-links {
     a {
@@ -2944,6 +2945,9 @@ h2 {
     margin-left: 2px;
     vertical-align: middle;
 }*/
-h1{
-    color:red; !important;
+
+.inner-search-panel {
+    .job-search {
+        top: calc(-45px + -32px);
+    }
 }

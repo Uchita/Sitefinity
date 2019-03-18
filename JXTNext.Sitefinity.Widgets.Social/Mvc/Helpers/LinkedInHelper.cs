@@ -26,9 +26,6 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
         {
             get
             {
-                // todo - following should come from admin settings
-                //return "81pt4wt8kyw007";
-
                 return _siteSettingsHelper.GetCurrentSiteLinkedInCustomerClientId();
             }
         }
@@ -37,9 +34,6 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
         {
             get
             {
-                // todo - following should come from admin settings
-                //return "GqULbqgtAYbitkBD";
-
                 return _siteSettingsHelper.GetCurrentSiteLinkedInCustomerClientSecret();
             }
         }
@@ -48,9 +42,6 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
         {
             get
             {
-                // todo - following should come from admin settings
-                //return "urn:li:organization:33228603";
-
                 return _siteSettingsHelper.GetCurrentSiteLinkedInCustomerIntegrationContext();
             }
         }
@@ -59,9 +50,6 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
         {
             get
             {
-                // todo - following should come from admin settings
-                //return "759biwr89yb18m";
-
                 return _siteSettingsHelper.GetCurrentSiteLinkedInClientId();
             }
         }
@@ -70,9 +58,6 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
         {
             get
             {
-                // todo - following should come from admin settings
-                //return "xh78INdkluzXB1Lb";
-
                 return _siteSettingsHelper.GetCurrentSiteLinkedInClientSecret();
             }
         }
@@ -81,9 +66,6 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
         {
             get
             {
-                // todo - following should come from admin settings
-                //var url = "http://localhost:60876/job-seekers/job-application/socialhandler";
-
                 var url = _siteSettingsHelper.GetCurrentSiteLinkedInSocialHandlerUrl();
 
                 return url.TrimEnd('/');

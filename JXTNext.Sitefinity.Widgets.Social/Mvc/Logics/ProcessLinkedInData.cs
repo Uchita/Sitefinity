@@ -1,19 +1,14 @@
-﻿using JXTNext.Sitefinity.Widgets.Social.Mvc.Models;
+﻿using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
+using HtmlToOpenXml;
+using JXTNext.Sitefinity.Widgets.Social.Mvc.Models;
 using JXTNext.SocialMedia.Models.LinkedIn;
 using JXTNext.SocialMedia.Services.LinkedIn;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Text;
 using Telerik.Sitefinity.Abstractions;
-using Newtonsoft.Json;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Wordprocessing;
-using System.Web;
-using HtmlToOpenXml;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
 {
@@ -81,15 +76,15 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
         /// <returns>Applicant Resume as a MemoryStream</returns>
         private MemoryStream GenerateWordResumeStream(string htmlResume)
         {
-            MemoryStream generatedResume = null;
+            MemoryStream linkedInResumeResponse = null;
 
             if (!string.IsNullOrWhiteSpace(htmlResume))
             {
-                generatedResume = new MemoryStream();
+                linkedInResumeResponse = new MemoryStream();
 
-                using (MemoryStream generatedDocument = new MemoryStream(Encoding.UTF8.GetBytes(htmlResume)))
+                using (MemoryStream generatedDocument = new MemoryStream())
                 {
-                    /*using (WordprocessingDocument package = WordprocessingDocument.Create(generatedDocument, WordprocessingDocumentType.Document))
+                    using (WordprocessingDocument package = WordprocessingDocument.Create(generatedDocument, WordprocessingDocumentType.Document))
                     {
                         MainDocumentPart mainPart = package.MainDocumentPart;
 
@@ -100,18 +95,25 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
                         }
 
                         HtmlConverter converter = new HtmlConverter(mainPart);
-                        converter.ParseHtml(htmlResume);
+                        Body body = mainPart.Document.Body;
+
+                        var paragraphs = converter.Parse(htmlResume);
+
+                        for (int i = 0; i < paragraphs.Count; i++)
+                        {
+                            body.Append(paragraphs[i]);
+                        }
 
                         mainPart.Document.Save();
-                    }*/
+                    }
 
-                    generatedDocument.CopyTo(generatedResume);
+                    generatedDocument.Position = 0;
+                    generatedDocument.CopyTo(linkedInResumeResponse);
+                    linkedInResumeResponse.Position = 0;
                 }
-
-                generatedResume.Position = 0;
             }
 
-            return generatedResume;
+            return linkedInResumeResponse;
         }
     }
 }

@@ -322,9 +322,10 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                     }
                 }
 
-                viewModel = new LinkedInSignInViewModel();
-
-                viewModel.Error = request.ErrorDescription;
+                viewModel = new LinkedInSignInViewModel
+                {
+                    Error = request.ErrorDescription ?? Request.QueryString.Get("error_description")
+                };
             }
 
             // set the back url based on the action.
@@ -414,7 +415,12 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             return Json(response);
         }
 
-        private LinkedInSignInViewModel HandleLinkedInSignIn(LinkedInSignInRequest response)
+        /// <summary>
+        /// Handle sign-in with LinkedIn.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        private LinkedInSignInViewModel HandleLinkedInSignIn(LinkedInSignInRequest request)
         {
             var viewModel = new LinkedInSignInViewModel();
 
@@ -423,18 +429,18 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 return viewModel;
             }
 
-            if (!LinkedInHelper.IsValidState(response.State))
+            if (!LinkedInHelper.IsValidState(request.State))
             {
                 viewModel.Error = "The response from LinkedIn is in invalid state. Please go back and try again.";
 
                 return viewModel;
             }
 
-            var redirectUrl = LinkedInHelper.CreateSignInRedirectUrl(response.LiAction, response.Data);
+            var redirectUrl = LinkedInHelper.CreateSignInRedirectUrl(request.LiAction, request.Data);
 
             try
             {
-                var accessTokenResponse = LinkedInHelper.GetAccessTokenFromAuthorisationCode(response.Code, redirectUrl);
+                var accessTokenResponse = LinkedInHelper.GetAccessTokenFromAuthorisationCode(request.Code, redirectUrl);
 
                 if (string.IsNullOrEmpty(accessTokenResponse.Error))
                 {
@@ -458,10 +464,13 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             return viewModel;
         }
 
+        /// <summary>
+        /// Create user from the LinkedIn profile data.
+        /// </summary>
+        /// <param name="accessToken"></param>
+        /// <returns></returns>
         private bool CreateUserFromLinkedInProfileData(string accessToken)
         {
-            // todo - create account and login the user.
-
             // get the email address from the profile
             var emailAddress = LinkedInHelper.GetProfileEmailAddress(accessToken);
             if (string.IsNullOrEmpty(emailAddress))
@@ -521,6 +530,11 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
         #endregion
 
+        /// <summary>
+        /// Authenticate a user by email address.
+        /// </summary>
+        /// <param name="emailAddress"></param>
+        /// <returns></returns>
         private bool AuthenticateUser(string emailAddress)
         {
             var userManager = UserManager.GetManager();
@@ -530,6 +544,12 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             return user != null;
         }
 
+        /// <summary>
+        /// Get the URL of the job application.
+        /// </summary>
+        /// <param name="jobId"></param>
+        /// <param name="query"></param>
+        /// <returns></returns>
         private string GetJobApplicationUrl(int jobId, string query = null)
         {
             if (query != null)

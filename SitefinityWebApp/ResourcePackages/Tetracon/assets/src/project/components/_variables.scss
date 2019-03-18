@@ -1,0 +1,156 @@
+// General(fonts, sizes in em/rem, etc.) - fill in later?
+$global-font-size: 1.8rem;
+$global-font-size-px: 18px;
+$global-line-height: 1.6;
+$global-font-family: SegoeUI, sans-serif;
+$font-family-light: SegoeUI, sans-serif;
+$font-family-regular: SegoeUI, sans-serif;
+$font-family-medium: SegoeUI, sans-serif;
+$font-family-bold: Segoe, sans-serif;
+
+$global-text-color: #7DC245;
+$global-headings-color: #2e2e2e;
+$highlighted-headings-color: #7DC245;
+$brightColor: #fff;
+$global-text: #666666;
+$darkColor:#000000;
+
+$global-highlight-color: #7DC245;
+$global-links-color: #666666;
+
+$btn-primary-bg: #7DC245;
+$btn-primary-color: #fff;
+$btn-primary-hover-bg: #78bb42;
+$btn-primary-hover-color: #fff;
+$btn-primary-active-bg: #7DC245;
+$btn-primary-active-color: $btn-primary-hover-color;
+
+$btn-secondary-bg: transparent;
+$btn-secondary-color: #7DC245;
+$btn-secondary-hover-bg: $btn-secondary-color;
+$btn-secondary-hover-color: #fff;
+$btn-secondary-active-bg: $btn-secondary-color;
+$btn-secondary-active-color: #7DC245;
+
+$btn-black-bg: transparent;
+$btn-black-color: #666666;
+$btn-black-hover-bg: $btn-black-color;
+$btn-black-hover-color: #fff;
+$btn-black-active-bg: $btn-black-color;
+$btn-black-active-color: #ffffff;
+
+$btn-more-bg: #7DC245;
+$btn-more-color: #fff;
+$btn-more-hover-bg: #7DC245;
+$btn-more-hover-color: #fff;
+$btn-more-active-bg: #7DC245;
+$btn-more-active-color: #7DC245;
+
+$btn-banner-bg: transparent;
+$btn-banner-color: #fff;
+$btn-banner-hover-bg: #007077;
+$btn-banner-hover-color: #fff;
+$btn-banner-active-bg: #007077;
+$btn-banner-active-color: #7DC245;
+
+// Header
+$header-top-bg: #2e2e2e;
+$header-top-color: #fff;
+$header-top-hover-color: #7DC245;
+
+$header-overlay-fallback: rgb(255,255,255);
+$header-overlay: rgba(255,255,255,.8);
+
+$navigation-link-color: $global-text;
+$navigation-sublink-color: #808080;
+$navigation-sublink-hover-color: #7DC245;
+
+$quick-links-bg: rgba(0,112,119,.9); 
+$quick-links-color: #fff;
+$quick-links-hover-color: #80cbc4;
+
+// Banner
+$banner-overlay-fallback: rgb(37, 37, 37);
+$banner-overlay: rgba(255, 255, 255, 0.7);
+$caption-overlay: rgba(102, 102, 102, 0.7);
+$banner-color: #fff;
+
+// Page sections 
+$page-section-bg-base: #fff;
+$page-section-bg-base-color: inherit;
+$page-section-bg-lighter: #f0f0f0;
+$page-section-bg-lighter-color: inherit; 
+$page-section-bg-light: #ababab;
+$page-section-bg-light-color: inherit;
+$page-section-bg-dark: #666666;
+$page-section-bg-dark-color: #fff;
+$page-section-bg-highlight: #7DC245;
+$page-section-bg-highlight-color: #fff;
+$page-section-bg-highlight-light: #7DC245; /*was: #7cccbf*/
+$page-section-bg-highlight-light-color: #fff;
+
+//Breadcrumbs
+$breadcrubms-link-color: #7DC245;
+$breadcrubms-link-separator: #2e2e2e;
+
+// Forms
+$forms-placeholder-color: #b5b5b5;
+$forms-element-border: #666666;
+$forms-search-border: #7DC245;
+$forms-negative-placeholder-color: #fff;
+$forms-negative-element-border: #fff;
+
+$forms-label-size: 1.4rem;
+$forms-label-size-px: 14px;
+//Slideshows
+$testimonial-quote-color: #7DC245;
+$testimonial-dot-color: #7DC245;
+$testimonial-dot-active-color: #7DC245;
+
+// Footer
+$footer-nav-links: #666666;
+$footer-nav-links-hover: #7DC245;
+$postfooter-bg: #E0E0E0;
+$postfooter-links-color: #A4A4A4;
+
+//Left sidebar
+$sidebar-link-color: #7DC245;
+$sidebar-font-size: 1.8rem;
+$sidebar-font-size-px: 18px;
+$sidebar-default-color: #666666;
+
+//Job details sidebar
+$job-sidebar-link-color: #2e2e2e;
+$job-sidebar-icon-color: #7DC245;
+
+//Press releases
+$press-filters-color: #a3a3a3;
+$press-filters-active-color: #7DC245;
+$press-filters-separator-color: #2e2e2e;
+$press-table-links-color: #2e2e2e;
+
+//Article details
+$article-detail-text-color: #2e2e2e;
+$article-detail-highlight-color: #7DC245;
+$article-detail-advice-background: #2e2e2e;
+$article-detail-advice-color: #fff;
+$article-detail-social-link: #197e84;
+
+
+//background colors
+//used in hexagon items
+$blue-1: #14b3f2;
+$blue-2: #46c2f5;
+$blue-3: #75d2f8;
+$blue-4: #a3e1fa;
+$blue-5: #0abde3;
+$green-1: #007077;
+$green-2: #7DC245;
+$green-3: #7DC245;
+$grey-1: #585958;
+$grey-2: #e6ebe8;
+$orange-1: #ff8f00;
+
+$black-2: #232323;
+
+$gap: 50px;

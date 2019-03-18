@@ -1,0 +1,51 @@
+@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+@if (!string.IsNullOrEmpty(Model.SelectedSizeUrl))
+{
+    <div class="@Model.CssClass jumbotron-container">
+        <div class="jumbotron" style="background: url('@Model.SelectedSizeUrl') top center no-repeat; background-size: 100% auto;">
+            <div class="jumbotron-content">
+                <h1>@Html.HtmlSanitize(Model.Heading)</h1>
+                <p>@Html.HtmlSanitize(Model.Description)</p>
+                @if (!string.IsNullOrEmpty(Model.ActionName))
+                {
+                    <p><a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-lg" role="button">@Model.ActionName</a></p>
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <style type="text/css">
+        .page-wrapper main {
+            padding-top: 195px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$(".page-wrapper main").css({ "padding-top": $("#header").height() });
+            $(".page-wrapper main").css("padding-top", 100);
+        });
+    </script>
+}
+
+<style type="text/css">
+    header .header {
+        background: #e2e2e2;
+    }
+
+        header .header.navbar-fixed-top {
+            background: #e2e2e2;
+        }
+
+    header .navbar-fixed-top:before {
+        background: #e2e2e2;
+        /*background: rgba(25, 126, 132,.8);*/
+    }
+
+    header .navbar.navbar-default .navbar-nav > li .decoration {
+        background: #7DC246;
+    }
+</style>

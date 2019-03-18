@@ -1,0 +1,208 @@
+﻿@model JXTNext.Sitefinity.Widgets.Job.Mvc.Models.JobEmailViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.UI.MVC
+@using Telerik.Sitefinity.Web;
+@using Telerik.Sitefinity.Modules.Pages
+@using System.Web.Mvc
+
+@Html.Script(ScriptRef.JQuery, "bottom")
+@Html.Script(Url.WidgetContent("Mvc/Scripts/JobEmail/script.js"), "bottom")
+
+<div class="job-email-widget page-section">
+    @if (Model.Job == null)
+    {
+        <div class="alert alert-danger">@Model.Widget.JobNotFoundMessage</div>
+    }
+    else
+    {
+        if (Model.Sent)
+        {
+            <div class="alert alert-success">@Model.Widget.EmailSentMessage</div>
+        }
+
+        using (Html.BeginFormSitefinity("", "JobEmailForm", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" });
+            <div class="field-wrapper basic-form no-marg-top">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-4">
+                        <h2>@Html.Resource("emailjobSenderHeading")</h2>
+                    </div>
+                </div>
+
+                <div class="row form-group form-group-Job">
+                    <div class="col-sm-4 text-right">
+                        <label class="form-label">@Html.Raw(Model.Widget.JobLabel)</label>
+                    </div>
+                    <div class="col-sm-8 controls">
+                        <span class="form-control-static">@Model.Job.Title</span>
+                        @if (Model.Widget.JobHelp != null)
+                        {
+                            <p class="help-block">@Html.Raw(Model.Widget.JobHelp)</p>
+                        }
+                        @Html.ValidationMessage("Job", new { @class = "help-block help-block-error" })
+                        @Html.ValidationMessage("JobId", new { @class = "help-block help-block-error" })
+                    </div>
+                </div>
+
+                <div class="row form-group form-group-Name">
+                    <div class="col-sm-4 text-right">
+                        <label class="form-label">@Html.Raw(Model.Widget.NameLabel)<span class="required">*</span></label>
+                    </div>
+                    <div class="col-sm-8 controls">
+                        @Html.TextBox("Name", null, new { @class = "form-control" })
+                        @if (Model.Widget.NameHelp != null)
+                        {
+                            <p class="help-block">@Html.Raw(Model.Widget.NameHelp)</p>
+                        }
+                        @Html.ValidationMessage("Name", new { @class = "help-block help-block-error" })
+                    </div>
+                </div>
+
+                <div class="row form-group form-group-Email">
+                    <div class="col-sm-4 text-right">
+                        <label class="form-label">@Html.Raw(Model.Widget.EmailLabel)<span class="required">*</span></label>
+                    </div>
+                    <div class="col-sm-8 controls">
+                        @Html.TextBox("Email", null, new { @class = "form-control" })
+                        @if (Model.Widget.EmailHelp != null)
+                        {
+                            <p class="help-block">@Html.Raw(Model.Widget.EmailHelp)</p>
+                        }
+                        @Html.ValidationMessage("Email", new { @class = "help-block help-block-error" })
+                    </div>
+                </div>
+
+                <hr />
+                <div class="row form-group form-group-EmailFriend">
+                    <div class="col-sm-8 col-sm-push-4 controls">
+                        <div class="checkbox clearfix">
+                            @Html.CheckBox("EmailFriend", null)
+                            <span class="checkbox-icon fas fa-check"></span>
+                            @Html.Raw(Model.Widget.EmailFriendLabel)
+                        </div>
+                        @if (Model.Widget.EmailFriendHelp != null)
+                        {
+                            <p class="help-block">@Html.Raw(Model.Widget.EmailFriendHelp)</p>
+                        }
+                        @Html.ValidationMessage("EmailFriend", new { @class = "help-block help-block-error" })
+                    </div>
+                </div>
+
+                <div class="form-group-Friends" style="@if (!Model.Form.EmailFriend){ <text>display: none;</text> } ">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3>@Html.Resource("emailjobSenderFriendHeading")</h3>
+                        </div>
+                    </div>
+
+                    @{
+                        var colNameWidth = Model.Form.Friend.Count > 1 ? 5 : 6;
+                        var colActionStyle = Model.Form.Friend.Count > 1 ? "" : "display: none;";
+                    }
+                    <div class="row form-group">
+                        <div class="col-sm-12 controls">
+                            <div class="row hidden">
+                                <div class="col-name col-sm-@colNameWidth">
+                                    <label>@Html.Raw(Model.Widget.FriendNameLabel)<span class="required">*</span></label>
+                                    @if (Model.Widget.FriendNameHelp != null)
+                                    {
+                                        <p class="help-block">@Html.Raw(Model.Widget.FriendNameHelp)</p>
+                                    }
+                                </div>
+
+                                <div class="col-email col-sm-6">
+                                    <label class="form-label">@Html.Raw(Model.Widget.FriendEmailLabel)<span class="required">*</span></label>
+                                    @if (Model.Widget.FriendEmailHelp != null)
+                                    {
+                                        <p class="help-block">@Html.Raw(Model.Widget.FriendEmailHelp)</p>
+                                    }
+                                </div>
+
+                                <div class="col-action col-sm-1" style="@colActionStyle"></div>
+                            </div>
+
+                            <div class="friends-list" data-max="@Model.Widget.MaxFriends">
+                                @{
+                                    var idx = 0;
+
+                                    foreach (var item in Model.Form.Friend)
+                                    {
+                                        <div class="row">
+                                            <div class="col-name col-wrap clearfix">
+                                                <div class="col-sm-4 text-right">
+                                                    <label class="form-label">@Html.Raw(Model.Widget.FriendNameLabel)<span class="required">*</span></label>
+                                                </div>
+                                                <div class="col-sm-7 controls">
+                                                    @Html.TextBox("Friend[" + idx + "][Name]", item.Name, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="col-email col-wrap clearfix">
+                                                <div class="col-sm-4 text-right">
+                                                    <label class="form-label">@Html.Raw(Model.Widget.FriendEmailLabel)<span class="required">*</span></label>
+                                                </div>
+                                                <div class="col-sm-7 controls">
+                                                    @Html.TextBox("Friend[" + idx + "][Email]", item.Email, new { @class = "form-control" })
+                                                </div>
+
+                                                <div class="col-action col-sm-1" style="@colActionStyle">
+                                                    <button type="button" class="btn btn-danger btn-remove" onclick="jobEmailWidget.removeFriend(this);">@Html.Raw(Model.Widget.RemoveFriendButtonLabel)</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        idx++;
+                                    }
+                                }
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8 col-sm-push-4">
+                                    <button type="button" class="btn btn-default btn-add" onclick="jobEmailWidget.addFriend(this);">@Html.Raw(Model.Widget.AddFriendButtonLabel)</button>
+                                </div>
+                            </div>
+
+                            @Html.ValidationMessage("Friend", new { @class = "help-block help-block-error" })
+                            @Html.ValidationMessage("Friend.Name", new { @class = "help-block help-block-error" })
+                            @Html.ValidationMessage("Friend.Email", new { @class = "help-block help-block-error" })
+                        </div>
+                    </div>
+
+                    <div class="row form-group form-group-FriendMessage">
+                        <div class="col-sm-4 text-right">
+                            <label class="form-label">@Html.Raw(Model.Widget.FriendMessageLabel)</label>
+                        </div>
+                        <div class="col-sm-8 controls">
+                            @Html.TextArea("FriendMessage", null, new { @class = "form-control", Rows = 5 })
+                            @if (Model.Widget.FriendMessageHelp != null)
+                            {
+                                <p class="help-block">@Html.Raw(Model.Widget.FriendMessageHelp)</p>
+                            }
+                            @Html.ValidationMessage("FriendMessage", new { @class = "help-block help-block-error" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-sm-8 col-sm-push-4"><button type="submit" class="btn btn-primary btn-submit">@Html.Raw(Model.Widget.SubmitButtonLabel)</button></div>
+
+                    <span class="loader container-loader" style="display: none;"></span>
+                </div>
+
+                @Html.Hidden("JobId", Model.Form.JobId)
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" name="JobEmailFriendAction" value="submit" />
+            </div>
+        }
+    }
+</div>
+
+<style type="text/css">
+    .friends-list > .row {
+        margin-bottom: 5px;
+    }
+
+    .help-block-error {
+        color: #a94442;
+    }
+</style>

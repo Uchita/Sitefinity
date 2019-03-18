@@ -1,0 +1,66 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+
+@using System.Collections;
+@using System.Linq;
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Localization;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Pages.Model;
+@using Telerik.Sitefinity.Modules.Libraries;
+
+@{
+    List<string> filterValues = new List<string>();
+    var imageThumbUrl = "";
+
+    if (Model.Item.Fields.Category != null)
+    {
+        foreach (var taxon in Model.Item.GetHierarchicalTaxons("Category"))
+        {
+            filterValues.Add(taxon.Name);
+        }
+    }
+}
+
+<div class="consultant-page" data-filtersector="@(string.Join(",", filterValues))">
+   
+   @if (Model.Item.Fields.Pic != null)
+    {
+        imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(Model.Item.Fields.Pic.DataItem, "thumb350");
+    }
+    else
+    {
+        imageThumbUrl = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.jpg";
+    }
+   
+    <div class="consultant-cardsocial">
+        <img class="full-width" src="@imageThumbUrl" alt="@Model.Item.Fields.ConsultantName" />
+        <div class="consultant-social">
+        <ul>
+            <li>
+                @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.Email))
+                {
+                <a href="mailto:@Model.Item.Fields.Email"><em class="far fa-envelope"></em></a>
+                }
+            </li>
+            <li>
+                @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber))
+                {
+                    <a href="tel:@Model.Item.Fields.PhoneNumber"><em class="fas fa-phone"></em></a><br />
+                }
+            </li>
+            <li>
+            @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
+            {
+                <a href="@Model.Item.Fields.LinkedInProfileUrl"><em class="fab fa-linkedin-in"></em></a>
+            }
+            </li>
+        </ul>
+        </div>
+    </div>
+</div>

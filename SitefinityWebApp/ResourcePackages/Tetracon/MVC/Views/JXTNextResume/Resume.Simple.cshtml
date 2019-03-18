@@ -1,0 +1,168 @@
+﻿@model JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.JXTNextResume.ProfileResumeViewModel
+
+@using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.JXTNextResume;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.UI.MVC;
+@using Telerik.Sitefinity.Utilities;
+@using Telerik.Sitefinity.Services;
+
+<div>
+
+    
+    <h2><span class="save-icon"></span>@Html.Resource("AttachResumeLink")</h2>
+    
+    <input id="myFile" data-sf-role="profile-resume-attachment-upload" type="file" value='@Html.Resource("UploadFileLink")' accept=".pdf,.doc,.docx,.txt,.xls,.xlsx,.rtf" name="profile-resume" />
+    <h5 class="text-muted">@Html.Resource("AttachFileConditionsLink")</h5>
+    <div class="input-group">
+        @*<input data-sf-role="profile-resume-attachment-save" type="submit" value='@Html.Resource("SaveFileAttachmentLink")' />*@
+        <input id="uploadBtn" type="button" class="btn btn-black" value='@Html.Resource("SaveFileAttachmentLink")' disabled />
+        <input id="mymodel" type="button" value="@Model.JsonData" hidden />
+    </div>
+  
+    <div id="errorMessage">
+        
+    </div>
+    <br />
+    <div id="dvResumeResults">
+
+        <table class="table table-bordered datatable">
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th class="date-col">Upload Date</th>
+                    <th class="col-2btn-width">Action</th>
+                </tr>
+            </thead>
+            <tbody id="resumeTable">
+
+            </tbody>
+        </table>
+        
+    </div>
+
+</div>
+<script type="text/javascript">
+        var resumes;
+
+        $(document).ready(function () {
+            var jsonData = $("#mymodel").val();
+            var model =  JSON.parse(jsonData);
+            addJsonDataToTable(model.ResumeList);
+            processErrorMessage(model);
+        });
+
+
+        var addJsonDataToTable = function (resumeList) {
+            var viewValue = '@Html.Resource("ViewResume")';
+            var deleteResume = '@Html.Resource("DeleteResume")';
+            resumes = resumeList;
+            var rows = '';
+            $.each(resumes, function (i, item) {
+                
+                var date = item.UploadDateStr;
+                rows += '<tr> ' + '<td>' + item.FileFullName + '</td>' + '<td>' + date + '</td >' + '<td>' + '<a href="' + item.FileUrl + '" class="btn btn-tag" target="_blank">' + viewValue + '</a> <input id="' + item.Id + '" class="deleteresumecls btn btn-sm btn-tag btn-danger" type="button"  value="' + deleteResume + '"></td>' + '</tr>';
+                
+            });
+            $('#resumeTable').html(rows);
+        }
+
+        $(document).on("click", "tr .deleteresumecls", function () {
+
+            deleteResumeMethod($(this).attr("id"));
+
+        });
+
+        function confirmDelete() {
+            if (confirm("Are you sure you want to delete this resume?")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
+
+        var processErrorMessage = function (error) {
+            var errorMessage = '';
+            if (error.UploadError == true) {
+                errorMessage = '<h4>Upload Error! Review the uploaded document.</h4>';
+            }
+            if (error.FetchError == true) {
+                errorMessage = '<h4>Error while fetching the resume files.</h4>'
+            }
+            if (error.DeleteError == true) {
+                errorMessage = '<h4>Delete Error! Try again.</h4>'
+            }
+
+            $('#errorMessage').html(errorMessage);
+        }
+
+    var deleteResumeMethod = function (id) {
+        
+            if (confirmDelete()) {
+                var urlPath = $(location).attr('pathname') + "/DeleteResume/" + id;
+                $.ajax({
+                    url: urlPath,
+                    type: 'POST',
+                    cache: false,
+                    dataType: 'json',
+                    processData: false, // Don't process the files
+                    contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+                    success: function (response) {
+                        addJsonDataToTable(response.ResumeList);
+                        processErrorMessage(response);
+                    },
+                    error: function (response) {
+                        processErrorMessage(response);
+                    }
+                });
+            }
+ 
+
+        }
+
+        var resumeInput = $('[data-sf-role=profile-resume-attachment-upload]');
+
+        resumeInput.on('change', function (e) {
+            resumes = e.target.files;
+        });
+
+        $("#myFile").change(function () {
+            if ($(this).val()) {
+                $("#uploadBtn").prop("disabled", false);
+            }
+            else {
+                $("#uploadBtn").prop("disabled", true);
+            }
+        });
+
+
+        $('#uploadBtn').click(function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            var data = new FormData();
+            $.each(resumes, function (key, value) {
+                data.append(key, value);
+            });
+            
+            var urlPath = $(location).attr('pathname') + "/UploadResume";
+            $.ajax({
+                url: urlPath,
+                type: 'POST',
+                data: data,
+                cache: false,
+                dataType: 'json',
+                processData: false, // Don't process the files
+                contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+                success: function (response) {
+                    addJsonDataToTable(response.ResumeList);
+                    processErrorMessage(response);
+                    resumeInput.val('');
+                    $("#uploadBtn").prop("disabled", true);
+                },
+                error: function (response) {
+                    processErrorMessage(response);
+                }
+            });
+        });
+</script>

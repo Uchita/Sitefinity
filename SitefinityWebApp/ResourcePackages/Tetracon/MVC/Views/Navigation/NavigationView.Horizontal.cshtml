@@ -1,0 +1,307 @@
+@model Telerik.Sitefinity.Frontend.Navigation.Mvc.Models.INavigationModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Navigation.Mvc.Models;
+@using Telerik.Sitefinity.Modules.Pages;
+@using SitefinityWebApp.Helpers;
+
+@*For user login check*@
+@using JXTNext.Sitefinity.Common.Helpers;
+
+@using Telerik.Sitefinity.DynamicModules.Model;
+@using Telerik.Sitefinity.Security;
+@using Telerik.Sitefinity.Security.Claims;
+
+@*Add scripts and stylesheets*@
+@Html.Script(ScriptRef.JQuery, "top")
+@Html.Script(Url.WidgetContent("Mvc/Scripts/Bootstrap/js/bootstrap.min.js"), "top", false)
+
+<div class="visible-xs"><a href="/" class="brand-logo">logo</a></div>
+
+<div class="main-nav @Model.CssClass">
+    @* @Html.Action("GetView", new { viewName = "Dropdown",  model= Model}) *@
+
+    <nav class="navbar navbar-default" role="navigation">
+
+        <div class="">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mobile-nav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    @foreach (var node in Model.Nodes)
+                    {
+                        @RenderRootLevelNode(node);
+                    }
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+
+<div class="mobile-nav left-sidebar">
+    @* @Html.Action("GetView", new { viewName = "Dropdown",  model= Model}) *@
+
+    <nav class="">
+
+        <div class="">
+            <div class="collapse navbar-collapse" id="mobile-nav">
+                <ul class="nav navbar-nav">
+                    @foreach (var node in Model.Nodes)
+                    {
+                        @MobileRootLevelNode(node)
+                    }
+                    <li class="extra-mnu timesheet-mnu">@*<a href="/timesheets-and-payroll-process"><em class="far fa-calendar-alt"></em> Timesheets</a>*@</li>
+                    @{
+                        var currentIdentity = ClaimsManager.GetCurrentIdentity();
+                        var loggedInStatusCls = "";
+                        var loggedOutStatusCls = "";
+                        if (currentIdentity.IsAuthenticated)
+                        {
+                            loggedOutStatusCls = "display: none";
+                        }
+                        else
+                        {
+                            loggedInStatusCls = "display: none";
+                        }
+
+                    }
+
+                   
+
+                    @* logged in out menu links *@
+                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="@loggedInStatusCls"><a href="/user-dashboard">@Html.Resource("LoggedAs", "LoginStatusExtendedResources") <span data-sf-role="sf-logged-in-name"></span></a></li>
+                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="@loggedInStatusCls"><a href="/sitefinity/signout?sts_signout=true">Logout</a></li>
+
+                    <li class="extra-mnu combine-mnu header-top-links" data-sf-role="sf-logged-out-view" style="@loggedOutStatusCls"><a href="/register">Register</a> | <a href="/sign-in">Sign in</a></li>
+                </ul>
+            </div>
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+
+@*Here is specified the rendering for the root level*@
+@helper RenderRootLevelNode(NodeViewModel node)
+{
+    var featuredArticle = ContentHelper.GetFeaturedArticle();
+    var lastInsight = ContentHelper.GetLastInsight();
+
+    if (node.ChildNodes.Count > 0)
+    {
+        <li class="dropdown @GetClass(node)">
+            <a href="@node.Url" target="@node.LinkTarget" class="dropdown-toggle" data-toggle="dropdown">@node.Title<span class="decoration"></span></a>
+            @*<div class="dropdown-menu-container">
+                <div class="dropdown-menu-columns">*@
+                    @*<div class="dropdown-menu"></div>*@
+                    @*<div class="dropdown-menu no-bdr">*@
+                        <ul class="dropdown-menu">
+                            @RenderSubLevelsRecursive(node, 1)
+                        </ul>
+                    @*</div>*@
+                    @*<div class="dropdown-menu">
+                        @foreach (var flattenedChild in node.ChildNodes)
+                        {
+                            if (flattenedChild.ChildNodes.Count > 0)
+                            {
+                                <ul style="display:none;" data-parent-id="@flattenedChild.OriginalSiteMapNode.Key.ToLower()">
+                                    @RenderSubLevelsRecursive(flattenedChild, 1)
+                                </ul>
+                            }
+                        }
+                    </div>*@
+
+                    @*<div class="dropdown-menu">
+                        @if (featuredArticle != null)
+                        {
+                            var bestUrl = "";
+                            //var bestUrl = ContentHelper.GetBestArticleUrl(featuredArticle.DataItem);
+                            DynamicContent dynamicVar = featuredArticle.DataItem as DynamicContent;
+                            if (dynamicVar != null)
+                            {
+                                bestUrl = "/insights/articles/detail" + dynamicVar.ItemDefaultUrl;
+                            }
+
+                            <h4>Featured article</h4>
+                            <a href="@bestUrl" rel="@featuredArticle.DataItem">
+                                <div>
+                                    <div class="dropdown-menu-featured-image">
+                                        <img src="@Html.Raw(featuredArticle.Fields.HeaderImage.Fields.MediaUrl)" />
+                                    </div>
+                                    <h5>@featuredArticle.Fields.Title</h5>
+
+                                </div>
+                            </a>
+                        }
+                    </div>*@
+                    <div class="clearfix">
+                    </div>
+                @*</div>
+            </div>*@
+        </li>
+    }
+    else
+    {
+        <li class="@GetClass(node)"><a href="@node.Url" target="@node.LinkTarget">@node.Title</a></li>
+    }
+}
+
+@*Here is specified the rendering for all child levels*@
+@helper RenderSubLevelsRecursive(NodeViewModel node, int dept = -1)
+{
+    foreach (var childNode in node.ChildNodes)
+    {
+        if (childNode.ChildNodes.Count > 0 && dept > 0)
+        {
+        <li class="dropdown-submenu @GetClass(childNode)" data-self-id="@childNode.OriginalSiteMapNode.Key.ToLower()">
+            <a href="@childNode.Url" target="@childNode.LinkTarget" class="dropdown-toggle" data-toggle="dropdown">
+                @childNode.Title
+                @*<span class="right-caret"></span>*@
+            </a>
+            @foreach (var flattenedChild in node.ChildNodes)
+            {
+                if (flattenedChild.ChildNodes.Count > 0)
+                {
+                    <ul class="dropdown-menu" data-parent-id="@flattenedChild.OriginalSiteMapNode.Key.ToLower()">
+                        @RenderSubLevelsRecursive(flattenedChild, 1)
+                    </ul>
+                }
+            }
+            @*@if (dept > 0) // Do not render the UL as well if no children are requested.
+        {
+            <ul>
+                @RenderSubLevelsRecursive(childNode, --dept)
+            </ul>
+        }*@
+        </li>
+        }
+        else if (dept > 0)
+        {
+            <li class="@GetClass(childNode)">
+                <a href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
+            </li>
+        }
+    }
+}
+
+@*Here is specified the rendering for the root level*@
+@helper MobileRootLevelNode(NodeViewModel node)
+{
+    <li class="dropdown @GetClass(node)">
+        @if (node.ChildNodes.Count > 0)
+        {
+            <a href="@node.Url" target="@node.LinkTarget">@node.Title</a>
+            <span class="fas fa-angle-right custom-expander"></span>
+            <ul class="dropdown-menu">
+                @MobileSubLevelsRecursive(node)
+            </ul>
+        }
+        else
+        {
+            <a href="@node.Url" target="@node.LinkTarget">@node.Title</a>
+        }
+    </li>
+}
+
+@helper MobileSubLevelsRecursive(NodeViewModel node)
+{
+    foreach (var childNode in node.ChildNodes)
+    {
+        if (childNode.ChildNodes.Count > 0)
+        {
+            <li class="dropdown dropdown-@GetClass(childNode)">
+                <a href="@childNode.Url" target="@childNode.LinkTarget">
+                    @childNode.Title
+                </a>
+                <span class="fas fa-angle-right custom-expander"></span>
+                <ul class="dropdown-menu">
+                    @MobileSubLevelsRecursive(childNode)
+                </ul>
+            </li>
+        }
+        else
+        {
+            <li class="@GetClass(childNode)">
+                <a href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
+            </li>
+        }
+    }
+}
+
+@*Resolves the class that will be added for each node depending whether it is selected*@
+@helper GetClass(NodeViewModel node)
+{
+
+    if (node.IsCurrentlyOpened)
+    {
+        @Html.Raw("active");
+    }
+    else if (node.HasChildOpen)
+    {
+        @Html.Raw("active");
+    }
+}
+<script>
+    $(document).ready(function () {
+
+        $('.dropdown-toggle').click(function (e) {
+            if ($(document).width() > 768) {
+                e.preventDefault();
+
+                var url = $(this).attr('href');
+
+
+                if (url !== '#') {
+
+                    window.location.href = url;
+                }
+
+            }
+        });
+
+        var ulSelector = "ul[data-parent-id]";
+        var liSelector = "li[data-self-id]";
+
+        //$(liSelector).mouseenter(function () {
+        //    $(".dropdown").find("a.link-active").removeClass("link-active");
+        //    $(this).find("a").addClass("link-active");
+        //    $("ul[data-parent-id='" + $(this).data("selfId") + "']").siblings().hide();
+        //    $("ul[data-parent-id='" + $(this).data("selfId") + "']").show();
+        //});
+        //$(liSelector).mouseleave(function (e) {
+        //    var nextEl = e.toElement || e.relatedTarget
+        //    if (nextEl && $(nextEl).is(liSelector)) {
+        //        $(this).find("a").addClass("link-active");
+        //        $(ulSelector).hide();
+        //    }
+        //});
+
+        //$('.dropdown').removeClass('open');
+
+        //$(".dropdown").mouseleave(function (e) {
+        //    $(this).find("a.link-active").removeClass("link-active");
+        //    $(ulSelector).hide();
+        //});
+
+        //mobile
+
+        $(".custom-expander").on("click", function () {
+            var closestParent = $(this).parent(".dropdown")
+            closestParent.toggleClass("open");
+            if (!closestParent.hasClass("open")) {
+                closestParent.find(".dropdown.open").removeClass("open");
+            }
+        });
+
+        //get the social links
+        if ($(".header-top-social").length) {
+            $('.mobile-nav li.extra-mnu.timesheet-mnu').after('<li class="extra-mnu social-mnu"></li>');
+            $('.mobile-nav li.social-mnu').append($(".header-top-social").clone());
+        }
+    });
+</script>

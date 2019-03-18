@@ -1,0 +1,58 @@
+@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+<div class="@Model.CssClass page-banner-container">
+    <div class="page-section page-banner paralax-image" style="background: url('@Model.SelectedSizeUrl') top center no-repeat; background-size: cover;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>@Html.HtmlSanitize(Model.Heading)</h2>
+                    <h3>@Html.HtmlSanitize(Model.Description)</h3>
+                    @if (!string.IsNullOrEmpty(Model.ActionUrl))
+                    {
+                        <p><a href="javascript:void(0);" class="btn btn-lg" role="button" data-toggle="modal" data-target="#videoModal" data-theVideo="@Model.ActionUrl">@Model.ActionName</a></p>
+
+                        <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <div>
+                                            <iframe width="100%" height="350" src=""></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <p><a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-lg" role="button">@Model.ActionName</a></p>
+                    }
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+@if (!string.IsNullOrEmpty(Model.ActionUrl))
+{
+    <script>
+        autoPlayYouTubeModal();
+
+        //FUNCTION TO GET AND AUTO PLAY YOUTUBE VIDEO FROM DATATAG
+        function autoPlayYouTubeModal() {
+            var trigger = $("body").find('[data-toggle="modal"]');
+            trigger.click(function () {
+                var theModal = $(this).data("target"),
+                    videoSRC = $(this).attr("data-theVideo"),
+                    videoSRCauto = videoSRC + "?autoplay=1";
+                $(theModal + ' iframe').attr('src', videoSRCauto);
+                $(theModal + ' button.close').click(function () {
+                    $(theModal + ' iframe').attr('src', videoSRC);
+                });
+            });
+        }
+    </script>
+}

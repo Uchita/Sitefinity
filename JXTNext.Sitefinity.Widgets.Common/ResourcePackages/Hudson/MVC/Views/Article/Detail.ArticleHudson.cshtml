@@ -48,8 +48,7 @@
         <h1 class="article-detail-title text-center" @Html.InlineEditingFieldAttributes("Title", "ShortText")>
             @Model.Item.Fields.Title
         </h1>
-
-        @if (Model.Item.Fields.AuthorName != null)
+        @*@if (Model.Item.Fields.AuthorName != null)
         {
             authorName = Model.Item.Fields.AuthorName.Fields.ConsultantName;
             authorUrl = Model.Item.Fields.AuthorName.Fields.UrlName.ToString();
@@ -62,9 +61,9 @@
             <p class="article-detail-author text-center">by <a href="/about-us/the-board/@authorUrl">@authorName</a></p>
         }
         else
-        {
-            <p class="article-detail-author text-center">by @authorName</p>
-        }
+        {*@
+        <p class="article-detail-author text-center">by @authorName</p>
+        @*}*@
 
         <!-- TODO -->
         @*Start HeaderImage field*@

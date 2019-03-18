@@ -32,6 +32,7 @@ using JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers;
 using Telerik.Sitefinity.Security;
 using Telerik.Sitefinity.Security.Model;
 using System.Web.Security;
+using JXTNext.SocialMedia.Services.LinkedIn;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 {
@@ -428,11 +429,13 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         }
 
         [HttpPost]
-        public ActionResult LinkedInApply(LinkedInMemberProfile profile)
+        public ActionResult LinkedInApply(string profileData)
         {
             dynamic result = new ExpandoObject();
 
-            return Json(profile);
+            var linkedInService = new LinkedInSocialMediaService();
+
+            return Json(result);
         }
 
         private LinkedInSignInViewModel _HandleLinkedInSignIn(LinkedInSignInResponse response)

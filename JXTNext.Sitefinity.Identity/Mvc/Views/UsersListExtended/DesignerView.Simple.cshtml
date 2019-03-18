@@ -54,8 +54,8 @@
 
                 @{
                     var manager = TaxonomyManager.GetManager();
-
-                    var departmentsTaxonomy = manager.GetTaxonomies<HierarchicalTaxonomy>().Where(t => t.Name == "Departments").SingleOrDefault();
+                    var departmentsTaxonomy = manager.GetSiteTaxonomy<HierarchicalTaxonomy>(TaxonomyManager.DepartmentsTaxonomyId, SystemManager.CurrentContext.CurrentSite.Id).Taxa.Where(t => t.Name == "Departments").SingleOrDefault();
+                    //var departmentsTaxonomy = manager.GetTaxonomies<HierarchicalTaxonomy>().Where(t => t.Name == "Departments").SingleOrDefault();
                     string departmentsId = "";
                     if (departmentsTaxonomy != null)
                     {

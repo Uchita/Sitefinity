@@ -1,4 +1,5 @@
-﻿using JXTNext.Sitefinity.Widgets.Social.Mvc.Models;
+﻿using JXTNext.Sitefinity.Common.Helpers;
+using JXTNext.Sitefinity.Widgets.Social.Mvc.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -19,12 +20,16 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
         public const string ProfileUrl = "https://api.linkedin.com/v2/me";
         public const string ProfileEmailAddressUrl = "https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))";
 
+        private static SiteSettingsHelper _siteSettingsHelper = new SiteSettingsHelper();
+
         public static string CustomerClientId
         {
             get
             {
                 // todo - following should come from admin settings
-                return "81pt4wt8kyw007";
+                //return "81pt4wt8kyw007";
+
+                return _siteSettingsHelper.GetCurrentSiteLinkedInCustomerClientId();
             }
         }
 
@@ -33,7 +38,9 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
             get
             {
                 // todo - following should come from admin settings
-                return "GqULbqgtAYbitkBD";
+                //return "GqULbqgtAYbitkBD";
+
+                return _siteSettingsHelper.GetCurrentSiteLinkedInCustomerClientSecret();
             }
         }
 
@@ -42,7 +49,9 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
             get
             {
                 // todo - following should come from admin settings
-                return "urn:li:organization:33228603";
+                //return "urn:li:organization:33228603";
+
+                return _siteSettingsHelper.GetCurrentSiteLinkedInCustomerIntegrationContext();
             }
         }
 
@@ -51,7 +60,9 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
             get
             {
                 // todo - following should come from admin settings
-                return "759biwr89yb18m";
+                //return "759biwr89yb18m";
+
+                return _siteSettingsHelper.GetCurrentSiteLinkedInClientId();
             }
         }
 
@@ -60,7 +71,9 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
             get
             {
                 // todo - following should come from admin settings
-                return "xh78INdkluzXB1Lb";
+                //return "xh78INdkluzXB1Lb";
+
+                return _siteSettingsHelper.GetCurrentSiteLinkedInClientSecret();
             }
         }
 
@@ -69,7 +82,9 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
             get
             {
                 // todo - following should come from admin settings
-                var url = "http://localhost:60876/job-seekers/job-application/socialhandler";
+                //var url = "http://localhost:60876/job-seekers/job-application/socialhandler";
+
+                var url = _siteSettingsHelper.GetCurrentSiteLinkedInSocialHandlerUrl();
 
                 return url.TrimEnd('/');
             }

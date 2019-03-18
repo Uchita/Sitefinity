@@ -27,7 +27,7 @@
     {
         model = model.Where(x => x.Fields.EventEnd.ToString("MMMMM yyyy").Contains(duration.Trim()));
     }
-    model = model.Where(x => x.Fields.EventEnd > DateTime.Now);
+    //model = model.Where(x => x.Fields.EventEnd > DateTime.Now);
     model = model.OrderBy(x => Convert.ToDateTime(x.Fields.EventStart));
 }
 <div class="archive-postlist @Model.CssClass">
@@ -85,7 +85,14 @@
                         <div class="entry-meta">
                             <span class="author hidden">Posted by <a href="#" title="Posts by Greythorn Australia" rel="author">@DataResolver.Resolve(item.DataItem, "Author", null)</a></span>
                             <span class="sep hidden">-</span>
-                            <span class="date">@item.GetDateTime("EventStart", "MMM d, yyyy") to @item.GetDateTime("EventEnd", "MMM d, yyyy")</span>
+                            @if (item.GetDateTime("EventStart", "MMM d, yyyy") == item.GetDateTime("EventEnd", "MMM d, yyyy"))
+                            {
+                                <span class="date">@item.GetDateTime("EventStart", "MMM d, yyyy")</span>
+                            }
+                            else
+                            {
+                                <span class="date">@item.GetDateTime("EventStart", "MMM d, yyyy") to @item.GetDateTime("EventEnd", "MMM d, yyyy")</span>
+                            }
 
                         </div>
 

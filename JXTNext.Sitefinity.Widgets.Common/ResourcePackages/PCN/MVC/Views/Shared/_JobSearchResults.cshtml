@@ -86,7 +86,7 @@
                     <div class="row">
                         <div class="col-sm-8 col-xs-12">
                             @*<h3><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="search-result-title">#:Title#</a></h3>*@
-                            <h3><a href="@ViewBag.JobDetailsPageUrl?JobId=#:JobID#" class="search-result-title">#:Title#</a></h3>
+                            <h3><a href="@ViewBag.JobDetailsPageUrl?JobId=#:JobID#" class="search-result-title">#=Title#</a></h3>
 
                             <div class="data-job">
                                 <span class="meta-location">#:CustomData["CountryLocationArea[0].Filters[0].Value"]#</span> |
@@ -113,13 +113,13 @@
                         <div class="col-sm-12 col-md-12">
                             # if(data.CustomData["Bulletpoints.BulletPoint1"] != "" || data.CustomData["Bulletpoints.BulletPoint2"] != "" || data.CustomData["Bulletpoints.BulletPoint3"] != ""){#
                             <ul>
-                                <li>#:CustomData["Bulletpoints.BulletPoint1"]#</li>
-                                <li>#:CustomData["Bulletpoints.BulletPoint2"]#</li>
-                                <li>#:CustomData["Bulletpoints.BulletPoint3"]#</li>
+                                <li>#=CustomData["Bulletpoints.BulletPoint1"]#</li>
+                                <li>#=CustomData["Bulletpoints.BulletPoint2"]#</li>
+                                <li>#=CustomData["Bulletpoints.BulletPoint3"]#</li>
                             </ul>#
                             }
                             else{#
-                            <p>#:ShortDescription#</p>
+                            <p>#=ShortDescription#</p>
                             #}#
 
                         </div>

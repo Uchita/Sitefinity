@@ -1691,7 +1691,7 @@ button.read_btn:hover {
         outline: none;
     }
 
-        .news_pagination a> span {
+        .news_pagination a > span {
             padding: 9px 7px;
             display: block;
             font-family: FuturaBT-Medium;
@@ -6070,20 +6070,23 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     width: 100%;
     float: left;
 }
-.latest_news .row,
-.archive-postlist > .row {
-    display: flex;
-    flex-wrap: wrap;
-}
-    .latest_news .row:after,
-    .latest_news .row:before,
-    .archive-postlist > .row:after,
-    .archive-postlist > .row:before {
-        display: none;
+
+    .latest_news .row,
+    .archive-postlist > .row {
+        display: flex;
+        flex-wrap: wrap;
     }
-        .archive-postlist .col-xs-12 {
-            padding-bottom: 30px;
+
+        .latest_news .row:after,
+        .latest_news .row:before,
+        .archive-postlist > .row:after,
+        .archive-postlist > .row:before {
+            display: none;
         }
+
+    .archive-postlist .col-xs-12 {
+        padding-bottom: 30px;
+    }
 
     .archive-postlist .thumbnail-img {
         margin-bottom: 10px;
@@ -6128,7 +6131,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
             float: left;
             background-position: top center;
             background-repeat: no-repeat;
-            background-size: cover;
+            background-size: contain;
         }
 
 

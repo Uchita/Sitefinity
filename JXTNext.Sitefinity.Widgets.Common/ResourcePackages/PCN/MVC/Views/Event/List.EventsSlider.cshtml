@@ -37,10 +37,18 @@
                         <a href="@navigateUrl">@item.Fields.Title</a>
                     </h3>
                 </div>
-
-                <div class="post-excerpt">
-                    @item.GetDateTime("EventStart", "MMM d, yyyy") to @item.GetDateTime("EventEnd", "MMM d, yyyy")
-                </div>
+                @if (item.GetDateTime("EventStart", "MMM d, yyyy") == item.GetDateTime("EventEnd", "MMM d, yyyy"))
+                {
+                    <div class="post-excerpt">
+                        @item.GetDateTime("EventStart", "MMM d, yyyy") to @item.GetDateTime("EventEnd", "MMM d, yyyy")
+                    </div>
+                }
+                else
+                {
+                    <div class="post-excerpt">
+                        @item.GetDateTime("EventStart", "MMM d, yyyy")
+                    </div>
+                }
 
                 <div class="post-excerpt">
                     @item.Fields.City

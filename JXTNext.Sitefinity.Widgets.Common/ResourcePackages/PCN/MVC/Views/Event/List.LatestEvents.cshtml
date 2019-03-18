@@ -23,7 +23,15 @@
             <div class="event-title">
                 <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a>
             </div>
-            <div class="event-date">@item.GetDateTime("EventStart", "MMM d, yyyy") to @item.GetDateTime("EventEnd", "MMM d, yyyy")</div>
+
+            @if (item.GetDateTime("EventStart", "MMM d, yyyy") == item.GetDateTime("EventEnd", "MMM d, yyyy"))
+            {
+                <div class="event-date">@item.GetDateTime("EventStart", "MMM d, yyyy")</div>
+            }
+            else
+            {
+                <div class="event-date">@item.GetDateTime("EventStart", "MMM d, yyyy") to @item.GetDateTime("EventEnd", "MMM d, yyyy")</div>
+            }
             <a class="btn-link" href="@navigateUrl">VIEW LINK</a>
         </div>
     }

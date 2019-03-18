@@ -32,11 +32,6 @@
             }
             var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
 
-            var title = (@Html.HtmlSanitize((string)item.Fields.Title)).ToString();
-            if (@Html.HtmlSanitize((string)item.Fields.Title).ToString().Length > 40)
-            {
-                title = (@Html.HtmlSanitize((string)item.Fields.Title)).ToString().Substring(0, 40);
-            }
 
             <div class="col-xs-12 col-sm-12 col-md-6">
                 <div class="sub">
@@ -71,7 +66,7 @@
                         </div>
 
                         <h3>
-                            <a href="@navigateUrl">@title</a>
+                            <a href="@navigateUrl">@Html.HtmlSanitize((string)item.Fields.Title)</a>
                         </h3>
                     </div>
 

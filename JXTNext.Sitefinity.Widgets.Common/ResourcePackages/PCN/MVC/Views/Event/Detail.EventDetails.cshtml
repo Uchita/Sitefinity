@@ -29,23 +29,45 @@
             <h3>Date</h3>
         </div>
 
-        <div class="col-md-6 col-xs-12 col-sm-12">
-            <div class="alert alert-success bar-bg-1 marginTop20">
-                <div class="inner">
 
-                    <h3>From:</h3> <h2>@Model.Item.Fields.EventStart.ToString("dddd MMM d, yyyy")</h2>
+        @if (Model.Item.Fields.EventStart.ToString("dddd MMM d, yyyy") == Model.Item.Fields.EventEnd.ToString("dddd MMM d, yyyy"))
+        {
+            <div class="col-md-6 col-xs-12 col-sm-12">
+                <div class="alert alert-success bar-bg-1 marginTop20">
+                    <div class="inner">
 
+                        <h2>@Model.Item.Fields.EventStart.ToString("dddd MMM d, yyyy")</h2>
+
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="col-md-6 col-xs-12 col-sm-12"></div>
+        }
+        else
+        {
 
-        <div class="col-md-6 col-xs-12 col-sm-12">
-            <div class="alert alert-success bar-bg-1 marginTop20">
-                <div class="inner">
-                    <h3>To:</h3> <h2>@Model.Item.Fields.EventEnd.ToString("dddd MMM d, yyyy")</h2>
+            <div class="col-md-6 col-xs-12 col-sm-12">
+                <div class="alert alert-success bar-bg-1 marginTop20">
+                    <div class="inner">
+
+                        <h3>From:</h3> <h2>@Model.Item.Fields.EventStart.ToString("dddd MMM d, yyyy")</h2>
+
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <div class="col-md-6 col-xs-12 col-sm-12">
+                <div class="alert alert-success bar-bg-1 marginTop20">
+                    <div class="inner">
+                        <h3>To:</h3> <h2>@Model.Item.Fields.EventEnd.ToString("dddd MMM d, yyyy")</h2>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+
+
 
     </div>
 

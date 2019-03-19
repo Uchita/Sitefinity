@@ -409,7 +409,14 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             }
             else
             {
-                response.Errors.Add(applicationResponse.Message);
+                if (string.IsNullOrWhiteSpace(applicationResponse.Message))
+                {
+                    response.Errors.Add("An unexpected error occurred while processing your request. Please try again.");
+                }
+                else
+                {
+                    response.Errors.Add(applicationResponse.Message);
+                }
             }
 
             return Json(response);

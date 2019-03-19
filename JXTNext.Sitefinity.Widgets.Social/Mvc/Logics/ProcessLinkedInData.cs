@@ -65,6 +65,10 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
                     processedResponse.Errors = errors;
                 }
             }
+            else
+            {
+                processedResponse.Errors.Add("LinkedIn profile data is empty.");
+            }
 
             return processedResponse;
         }

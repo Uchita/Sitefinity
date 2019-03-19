@@ -15,11 +15,11 @@
     {
         using (Html.BeginFormSitefinity(@Request.Url.Query, null, null, FormMethod.Post, null, true))
         {
-            <div class="sign-in-with">
-                <h2>Sign in with</h2>
+            <div class="sign-in-with clearfix">
+                <p class="pull-left">Sign in with</p>
                 @if (Model.ExternalProviders != null && Model.ExternalProviders.Count() > 0)
                 { 
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled pull-left">
 
                     @foreach (var provider in Model.ExternalProviders)
                     {   

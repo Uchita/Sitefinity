@@ -20,7 +20,7 @@ $brightColor: #fff;
 $global-highlight-color: #2dc3ea;
 $global-links-color: #2dc3ea;
 
-$btn-primary-bg: #ff9000;
+$btn-primary-bg: #2dc3ea;
 $btn-primary-color: #fff;
 $btn-primary-hover-bg: #ffa700;
 $btn-primary-hover-color: #fff;
@@ -90,7 +90,7 @@ $breadcrubms-link-separator: #2e2e2e;
 
 // Forms
 $forms-placeholder-color: #b5b5b5;
-$forms-element-border: #2dc3ea;
+$forms-element-border: #2e2e2e;
 
 $forms-negative-placeholder-color: #fff;
 $forms-negative-element-border: #fff;
@@ -110,9 +110,12 @@ $footer-nav-links: #ffffff;
 $footer-nav-links-hover: #2dc3ea;
 $postfooter-bg: #E0E0E0;
 $postfooter-links-color: #969595;
+//Separator
+$dark-separator-color: #2e2e2e;
+$separator-color: #bebebe;
 
 //Left sidebar
-$sidebar-link-color: #2dc3ea;
+$sidebar-link-color: #2e2e2e;
 $sidebar-font-size: 1.8rem;
 $sidebar-font-size-px: 18px;
 $sidebar-default-color: #333;
@@ -157,5 +160,6 @@ $gap: 50px;
 @mixin transition() {
     transition: all 0.3s ease-in-out;
 }
+
 
 

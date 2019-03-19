@@ -30,9 +30,11 @@
         .form-control {
             color: $global-text-color;
         }
-        select{
+
+        select {
             padding-left: 6px;
         }
+
         textarea {
             height: 115px;
             resize: none;
@@ -45,10 +47,11 @@
             text-align: right;
             font-size: $forms-label-size;
             font-size: $forms-label-size-px;
+            font-weight: $font-weight-medium;
         }
 
         .checkbox {
-            
+
 
             .checkbox-icon {
                 width: 20px;
@@ -77,8 +80,7 @@
                 float: left;
 
                 &:checked + .checkbox-icon:before,
-                &:checked + input + .checkbox-icon:before
-                {
+                &:checked + input + .checkbox-icon:before {
                     content: "\f00c";
                     line-height: 19px;
                 }
@@ -86,15 +88,16 @@
                 &:hover {
                     cursor: pointer;
                 }
-                &:focus + span{
+
+                &:focus + span {
                     outline: $highlighted-headings-color solid 1px;
                 }
             }
-            
         }
 
-        .radiobutton{
+        .radiobutton {
             position: relative;
+
             .radiobutton-icon {
                 width: 25px;
                 height: 25px;
@@ -107,7 +110,8 @@
                 text-align: center;
                 font-size: 13px;
                 border-radius: 50%;
-                &::before{
+
+                &::before {
                     font-size: 1.75rem;
                     line-height: 1.27;
                     padding-right: 1px;
@@ -126,25 +130,31 @@
 
                 &:hover {
                     cursor: pointer;
-                    & + .radiobutton-icon{
+
+                    & + .radiobutton-icon {
                         color: #eee;
                     }
                 }
+
                 &:checked + .radiobutton-icon, &:checked:hover + .radiobutton-icon,
-                &.checked + .radiobutton-icon, &.checked:hover + .radiobutton-icon{
+                &.checked + .radiobutton-icon, &.checked:hover + .radiobutton-icon {
                     color: $global-highlight-color;
                 }
             }
         }
-        .sf-FileField{
+
+        .sf-FileField {
             margin-top: 8px;
         }
-        .btn{
-            border-color: $global-highlight-color;
+
+        .btn {
+            border-color: $forms-element-border;
         }
+
         .form-group {
             margin-bottom: 10px;
-            .btn{
+
+            .btn {
                 min-width: 150px;
             }
         }
@@ -204,35 +214,39 @@
 .page-wrapper {
     /*#region Forms*/
     .login-form {
-        .forgot-password{
+        .forgot-password {
             padding-left: 0px;
+
             a {
                 font-size: 1.4rem;
                 // font-style: italic;
                 // color: #858585;
-
+                color: #b5b5b5;
                 &:hover, &:focus {
                     color: $global-highlight-color;
                 }
             }
         }
+
         .checkbox {
-            a{
+            a {
                 // color: #858585;
                 &:hover, &:focus {
                     color: $global-highlight-color;
                 }
             }
         }
-        .btn-block{
+
+        .btn-block {
             margin-top: 10px;
         }
-        
+
         .basic-form {
 
             .checkbox {
                 margin-left: 0;
-                margin-top: 0;
+                margin-top: 15px;
+                margin-bottom: 20px;
 
                 input[type=checkbox]:checked + input + .checkbox-icon:before {
                     content: "\f00c";
@@ -309,66 +323,80 @@
             display: block;
         }
     }
-    .sf-registration-link{
-        font-size: 1.4rem;   
+
+    .sf-registration-link {
+        font-size: 1.4rem;
     }
     /*#endregion Forms*/
     /*#region Social*/
-    .login-form{
-        h1{
+    .login-form {
+        h1 {
             margin-bottom: 2rem;
         }
     }
-    .sf-profile{
+
+    .sf-profile {
         margin-bottom: 2rem;
-        h2{
+
+        h2 {
             font-size: 3.2rem;
             margin-top: 1.6rem;
             margin-bottom: 0.8rem;
         }
-        img{
+
+        img {
             max-width: 200px;
             box-shadow: 1px 1px 1px rgba(0,0,0,.2);
         }
-        label{
+
+        label {
             padding-top: 0;
         }
     }
-    .user-profile-dash{
+
+    .user-profile-dash {
         border-bottom: 1px solid $global-text-color;
         padding-bottom: 50px;
         margin-bottom: 30px;
-        img{
-           width: 100%; 
-           height: auto;
+
+        img {
+            width: 100%;
+            height: auto;
         }
     }
-    .dash-tbl-wrap{
-        h2{
+
+    .dash-tbl-wrap {
+        h2 {
             margin-bottom: 20px;
         }
-        div.alert{
+
+        div.alert {
             margin-bottom: 30px;
         }
-        &.loading{
+
+        &.loading {
             overflow: hidden;
         }
     }
+
     .sign-in-with, .ext-provider-form {
         clear: both;
         margin-bottom: 2rem;
         overflow: hidden;
+
         ul {
             padding-top: 0;
+
             li {
                 vertical-align: top;
-                a{
-                    &::before{
+
+                a {
+                    &::before {
                         font-family: 'Font Awesome 5 Brands';
                         margin-right: 10px;
                     }
-    
-                    &:hover, &:focus{
+
+                    &:hover, &:focus {
                         opacity: 0.9;
                     }
                 }
@@ -376,6 +404,7 @@
                 .btn {
                     text-align: left;
                     margin-bottom: 0;
+
                     em {
                         margin-right: 10px;
                     }
@@ -384,11 +413,12 @@
         }
     }
 
-    .field-wrapper{
+    .field-wrapper {
         padding-top: 16px;
     }
-    .dropdown-tree{
-        button.dropdown-toggle{
+
+    .dropdown-tree {
+        button.dropdown-toggle {
             width: 100%;
             text-align: left;
             padding: 12px 20px 12px 10px;
@@ -398,11 +428,13 @@
             position: relative;
             text-overflow: ellipsis;
             overflow: hidden;
-            &:hover, &:focus{
+
+            &:hover, &:focus {
                 background: none;
                 color: $global-text-color;
             }
-            .caret{
+
+            .caret {
                 position: absolute;
                 right: 10px;
                 top: 17px;
@@ -411,7 +443,7 @@
     }
 
     .apply-with {
-        
+
         .btn {
             &.btn-indeed {
                 background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50%;
@@ -428,20 +460,23 @@
             }
         }
     }
-    #indeed-btnwrapper .indeed-apply-button-container{
+
+    #indeed-btnwrapper .indeed-apply-button-container {
         height: 35px;
     }
-    #indeed-btnwrapper .indeed-apply-button{
-        background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50%!important;
+
+    #indeed-btnwrapper .indeed-apply-button {
+        background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50% !important;
         width: 120px;
-        border-radius: 0!important;
-        height: 35px!important;
-        padding: 0!important;
-        span{
-            display: none!important;
+        border-radius: 0 !important;
+        height: 35px !important;
+        padding: 0 !important;
+
+        span {
+            display: none !important;
         }
     }
-  
+
     .apply-with, .sign-in-with {
         ul {
             padding-left: 0;
@@ -459,7 +494,7 @@
                 }
             }
 
-            &::after{
+            &::after {
                 content: '';
                 display: table;
                 clear: both;

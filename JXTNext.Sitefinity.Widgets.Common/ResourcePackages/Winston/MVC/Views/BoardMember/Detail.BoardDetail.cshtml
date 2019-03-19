@@ -21,6 +21,7 @@
                     @if (Model.Item.Fields.Image != null)
                     {
                         <img src='@Model.Item.Fields.Image.Fields.MediaUrl' alt='@Model.Item.Fields.Image.Fields.AlternativeText' title='@Model.Item.Fields.Image.Fields.Title' />
+                        <h2>@Model.Item.Fields.Position</h2>
                     }
                     <div>
                         <div>
@@ -34,7 +35,7 @@
             <div class="col-md-8">
                 <div class="board-member-details @Model.CssClass">
                     <h1 class="highlighted-heading">@Model.Item.Fields.Name</h1>
-                    <h2>@Model.Item.Fields.Position</h2>
+                    
                     <div>
                         @Html.HtmlSanitize((string)Model.Item.Fields.Bio)
                     </div>

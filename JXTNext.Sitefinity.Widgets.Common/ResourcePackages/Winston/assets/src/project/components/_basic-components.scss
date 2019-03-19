@@ -143,7 +143,8 @@ blockquote{
         white-space: normal;
         overflow: hidden;
         transition: all 0.3s ease-in-out;
-                &.flip-interaction {
+
+        &.flip-interaction {
             span {
                 position: relative;
                 display: inline-block;
@@ -323,15 +324,17 @@ blockquote{
         padding: 10px 55px;
         background: $btn-primary-bg;
         color: $btn-primary-color;
+        border: 1px solid #2e2e2e;
+        color: #2e2e2e;
 
         &:hover, &:focus {
-            background: $btn-primary-hover-bg;
-            color: $btn-primary-hover-color;
-        }
+            background: rgba(45,195,234,0.8);
+            color: $btn-primary-color;
+                    }
 
         &:active {
             background: $btn-primary-active-bg;
-            color: $btn-primary-active-color;
+            /*color: $btn-primary-active-color;*/
         }
     }
 
@@ -1563,6 +1566,11 @@ main {
     background: $page-section-bg-base;
     color: $page-section-bg-base-color;
 
+    &.transparent-bg{
+        background:red;
+
+    }
+
     h2 {
         margin-top: 0;
         margin-bottom: $gap / 2;
@@ -1740,15 +1748,16 @@ main {
     }
 
     > a {
-        font-family: $font-family-medium;
+        font-family: $global-font-family-heading;
         color: $sidebar-link-color;
         text-transform: uppercase;
         display: block !important;
         border: none;
-        border-bottom: 2px solid #01a3a4;
+        border-bottom: 2px solid $dark-separator-color;
         padding: 0 0 5px;
         text-align: left;
         margin-top: 0 !important;
+        font-size: 30px;
 
         &:hover, &:focus, &:active {
             background: none;
@@ -1792,9 +1801,12 @@ main {
 
         li {
             width: 100%;
+            border-bottom: 1px solid $separator-color;
 
             a {
                 padding: 20px 15px 0px 0;
+                font-family: $global-font-family-heading;
+                font-size: 20px;
 
                 &.link-inline-block {
                     display: inline-block;
@@ -1855,7 +1867,7 @@ main {
                     white-space: normal;
 
                     &:hover, &:focus {
-                        color:white;
+                        color: white;
                         background: $sidebar-link-color;
                     }
                 }
@@ -2953,7 +2965,7 @@ address.info-box{
 }
 
 
-.signin-form-block {
+.signin-form-block{
     h2 {
         color: $global-headings-color;
         font-family: inherit;
@@ -2969,16 +2981,63 @@ address.info-box{
             color: $global-highlight-color;
         }
     }
+
+
+
+
+
+
+
+
+    input {
+        &.form-control {
+            border-color: $global-headings-color;
+        }
+    }
+
+    p {
+        &.form-label {
+        }
+    }
 }
 
 
+.reg-form {
+    h2 {
+        color: $global-headings-color;
+        font-family: inherit;
+        font-size: 36px;
+        margin: 0;
+        position: relative;
+        font-weight: $font-weight-light;
 
 
-.page-wrapper .basic-form .form-label {
-    color: $global-headings-color;
-    font-weight:500;
+        &:before {
+            content: "\f234";
+            
+            font-family: FontAwesome;
+            padding-right: 10px;
+            color: $global-highlight-color;
+        }
+    }
 }
+/*content: "\f234";*/
+
+
 .page-wrapper .login-form .basic-form .checkbox{
     font-size:14px;
+
+
+}
+
+
+
+.sign-in-with{
+    margin-top:15px;
+    p{
+        line-height:35px;
+        margin-right:10px;
+        color:#2e2e2e;
+    }
 
 }

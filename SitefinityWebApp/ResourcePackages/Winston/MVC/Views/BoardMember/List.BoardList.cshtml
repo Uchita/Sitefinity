@@ -32,6 +32,8 @@
                 </div>
                 <h3 class="highlighted-heading"><a href="@navigateUrl" title="@member.Fields.Name">@member.Fields.Name</a></h3>
                 <h4><a href="@navigateUrl" title="@member.Fields.Name">@member.Fields.Position</a></h4>
+                @*
+                    <div><p>  @Html.HtmlSanitize((string)Model.Item.Fields.Bio)</p></div>*@
             </div>
 
             if (countOfMembers % 3 == 2 || countOfMembers == (Model.Items.Count() - 1))

@@ -3,9 +3,9 @@
 
 <div class="thumbnail card-rollover-bg @Model.CssClass">
 
-    @if (!string.IsNullOrEmpty(Model.ActionName))
+    @if (!string.IsNullOrEmpty(Model.ActionUrl))
     {
-        <a href="@Html.UrlSanitize(Model.ActionUrl)" title="@Model.ActionName">
+        <a href="@Html.UrlSanitize(Model.ActionUrl)" title="@Model.Heading">
             @RenderCard(Model)
             <span class="btn btn-more"></span>
         </a>

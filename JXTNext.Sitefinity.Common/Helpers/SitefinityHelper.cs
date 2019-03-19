@@ -34,7 +34,14 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return sitefinityTimeZoneInfo;
         }
 
-        
+        public static HierarchicalTaxon GetCurrentSiteTaxons(string dataSource)
+        {
+            var manager = TaxonomyManager.GetManager();
+            var categoriesTaxonomy = manager.GetSiteTaxonomy<HierarchicalTaxonomy>(TaxonomyManager.CategoriesTaxonomyId, SystemManager.CurrentContext.CurrentSite.Id);
+            var taxa = categoriesTaxonomy.Taxa.Where(t => t.Title == dataSource).FirstOrDefault() as HierarchicalTaxon;
+            
+            return taxa;
+        }
 
         public static List<DynamicContent> GetCurrentSiteItems(string dynamicType, string dataSource)
         {

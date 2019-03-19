@@ -4952,9 +4952,9 @@ p {
 }
 
 .job-detail li, p {
-    font-size: 16px;
+    font-size: 14px !important;
     line-height: 1.5;
-    font-weight: 400;
+    font-weight: 300;
     color: #333132;
 }
 
@@ -5736,6 +5736,7 @@ p .btn-link {
 }
 
 .readmore-content {
+    padding: 1.5rem 0 !important;
     max-width: 850px;
     margin-left: auto;
     margin-right: auto;
@@ -6075,8 +6076,8 @@ select.hs-input {
 
 .app-header .navbar-toggler {
     border: 1px solid transparent;
-    background: #0088CF;
-    border-color: #0088CF;
+    background: transparent;
+    border-color: transparent;
     padding: 0.25rem 0.75rem;
     font-size: 1.25rem;
     line-height: 1;
@@ -6091,7 +6092,7 @@ select.hs-input {
     content: "";
     background: no-repeat center center;
     background-size: 100% 100%;
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
 .app-header .dropdown-item {
@@ -6610,7 +6611,7 @@ select.hs-input {
 
 
 .blog-list-item .list-desc {
-    min-height: 75px;
+    min-height: 72px;
     text-transform: lowercase;
 }
 
@@ -7561,7 +7562,6 @@ select.hs-input {
 }
 
 .job-detail p {
-    font-size: 16px;
     color: #333132;
 }
 
@@ -8079,6 +8079,8 @@ select.hs-input {
 
     .jobs-list h2 a {
         color: #000;
+        font-size: 26px;
+        font-weight: 300;
     }
 
         .jobs-list h2 a:hover {
@@ -9740,21 +9742,21 @@ ul.nav.nav-stacked li a:before {
     font-weight: 400;
 }
 
-.job-detail ul.inline-list li,
+.location-hover li,
 .location-text li {
     transition: all 500ms ease;
     transform: scale(1);
 }
 
-    .job-detail ul.inline-list li:hover i.fa-map-marker,
-    .job-detail ul.inline-list li:hover i.fa-dollar,
+    .location-hover li:hover i.fa-map-marker,
+    .location-hover li:hover i.fa-dollar,
     .location-text li:hover i.fa-dollar,
     .location-text li:hover i.fa-map-marker {
         transform: scale(1.3);
         transition: all 500ms ease;
     }
 
-    .job-detail ul.inline-list li:hover i.fa-clock-o,
+    .location-hover li:hover i.fa-clock-o,
     .location-text li:hover i.fa-clock-o {
         transform: rotate(360deg) !important;
         transition: all 500ms ease;
@@ -9861,6 +9863,100 @@ ul.nav.nav-stacked li a:before {
     font-size: 19px;
 }
 
+.induction-onboarding .img-absolute-wrap {
+    order: 2;
+}
+
+.induction-onboarding .text-margin-left {
+    order: 1;
+}
+
+.job-detail .border a {
+    color: #333132 !important;
+}
+
+    .job-detail .border a:hover {
+        color: #3465B0 !important;
+    }
+
+.location-hover li {
+    text-transform: lowercase;
+    font-size: 13px;
+}
+
+    .location-hover li div {
+        float: right;
+    }
+
+        .location-hover li div:first-letter {
+            text-transform: uppercase;
+            display: inline-block;
+        }
+
+.toggle-content {
+    display: none;
+}
+
+.new-serch {
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 6px;
+}
+
+    .new-serch a {
+        position: relative;
+        display: inline-block;
+        margin-right: 13px;
+    }
+
+        .new-serch a:after {
+            display: inline-block;
+            content: "\f105";
+            font-size: 16px;
+            line-height: normal;
+            position: absolute;
+            top: 1px;
+            right: -10px;
+            font-weight: normal;
+            transition: .15s ease 0s;
+            font-family: FontAwesome;
+        }
+
+        .new-serch a:focus:after,
+        .new-serch a:hover:after {
+            right: -15px;
+            transition: .15s ease 0s;
+        }
+
+.bayside-listing > ul > li {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.jobCatItem {
+    font-size: 13px;
+}
+
+.home-page .hero-banner .job-item a:focus {
+    background-color: #0088CF;
+    border-color: #0088CF;
+    color: #fff;
+    outline: none !important;
+}
+
+.blogimg {
+    padding: 0;
+    margin-top: 30px;
+}
+
+.job-detail h3 span strong,
+.job-detail p strong,
+.job-detail h3 {
+    font-size: 17px;
+    font-weight: 500;
+    margin-top: 20px !important;
+    display: block;
+}
 
 @media (max-width: 767px) {
     .squire-box-row div:first-child {

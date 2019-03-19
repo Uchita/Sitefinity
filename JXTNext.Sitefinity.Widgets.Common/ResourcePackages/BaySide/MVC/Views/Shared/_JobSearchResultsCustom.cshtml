@@ -14,10 +14,10 @@
     <div class="col-12">
         <div class="row">
             <div class="col-12 col-md-6">
-                <h2>
+                <h3>
                     <span class="count-num">@ViewBag.TotalCount</span> job(s) found
-                    <span class="new-serch"><a href="/jobs/advancedsearch">> New search</a></span>
-                </h2>
+                    <span class="new-serch"><a class="btn-link" href="/jobs/advancedsearch"> New search</a></span>
+                </h3>
             </div>
             <div class="col-12 col-lg-6">
                 <div class="form-group">
@@ -54,13 +54,13 @@
 
 
                     @*@if (isLoggedIn)
-        {
-        <a class="btn btn-outline-primary btn-block jobalert-btn" href="/user-dashboard/Create" title="Create you job alert">Create Job Alert</a>
-        }
-        else
-        {
-        <a id="anon-job-alert" class="btn btn-block btn-outline-primary" href="#" title="Create you job alert">Create Job Alert</a>
-        }*@
+                        {
+                        <a class="btn btn-outline-primary btn-block jobalert-btn" href="/user-dashboard/Create" title="Create you job alert">Create Job Alert</a>
+                        }
+                        else
+                        {
+                        <a id="anon-job-alert" class="btn btn-block btn-outline-primary" href="#" title="Create you job alert">Create Job Alert</a>
+                        }*@
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@
         <img src="/ResourcePackages/BaySide/assets/images/bayside-logo-black.png" class="float-right"
              alt="">
         <h2 class="mt-2"><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#">#:Title#</a></h2>
-        <ul class="border border-top-0 border-right-0 border-left-0 pb-4 bayside-listing">
+        <ul class=" bayside-listing">
             # if(data.CustomData["Bulletpoints.BulletPoint1"] != "" || data.CustomData["Bulletpoints.BulletPoint2"] != "" || data.CustomData["Bulletpoints.BulletPoint3"] != ""){#
             <ul>
                 <li>#:CustomData["Bulletpoints.BulletPoint1"]#</li>
@@ -103,7 +103,7 @@
             <p>#:ShortDescription#</p>
             #}#
         </ul>
-        <div class="row jobCatHirarchy">
+        <div class="row jobCatHirarchy border border-top-0 border-right-0 border-left-0 pb-4">
             <div class="col-xs-12">
                 # $.each(Classifications, function(index, item){#
                 <small class="jobCatItem">
@@ -126,16 +126,16 @@
 
 
 
-                </small><br />
+                </small>
                 #});#
             </div>
         </div>
         <div class="row align-items-center mt-4">
             <div class="col">
-                <ul class="inline-list p-0 mb-0">
-                    <li class="mr-3"><i class="fa fa-map-marker"></i> #:CustomData["CountryLocationArea[0].Filters[0].Value"]#</li>
-                    <li class="mr-3"><i class="fa fa-dollar"></i> #:CustomData["Salary.Filters[0].Value"]#</li>
-                    <li class="mr-3"><i class="fa fa-clock-o"></i> #:CustomData["WorkType.Filters[0].Value"]#</li>
+                <ul class="inline-list p-0 mb-0 location-hover">
+                    <li class="mr-3"><i class="fa fa-map-marker"></i><div> #:CustomData["CountryLocationArea[0].Filters[0].Value"]# </div></li>
+                    <li class="mr-3"><i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
+                    <li class="mr-3"><i class="fa fa-clock-o"></i><div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>
                 </ul>
             </div>
             <div class="col-auto text-right">

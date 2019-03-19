@@ -22,6 +22,13 @@ $(document).ready(function () {
             }
         }
     });
+
+
+    $(".toggle-btn").on("click", function (e) {
+        e.preventDefault();
+        $($(this).attr("href")).slideToggle("slow");
+    });
+
     $(".testimonial-carousel").owlCarousel({
         //margin: 20,
         nav: true,
@@ -233,4 +240,6 @@ $(document).ready(function () {
     if ($(location).attr('pathname') == "/workplace-relations-resources") {
         $('.custom-active').addClass('active');
     }
+
+
 });

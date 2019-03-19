@@ -36,9 +36,9 @@
 
     <div class="col-12 mt-5 ">
 
-        <p>
-            <a href="/jobs/advancedsearch"> > New Search  </a>
-            <a href="#" id="back-to-results" role="button" title="Back to Results">  > Back To Results</a>
+        <p class="new-serch">
+            <a href="/jobs/advancedsearch">New Search  </a>
+            <a href="#" id="back-to-results" role="button" title="Back to Results">Back To Results</a>
         </p>
 
         @*<nav class="mt-5" aria-label="breadcrumb">
@@ -74,7 +74,7 @@
                 }
             </ul>
 
-            <ul class="inline-list p-0 mb-4">
+            <ul class="inline-list p-0 mb-4 location-hover">
 
 
                 @*Sydney*@
@@ -86,10 +86,10 @@
                 {
                     location = (string)@Model.Locations[item];
                 }
-                <li class="mr-5"><i class="fa fa-map-marker"></i>location</li>
+                <li class="mr-5"><i class="fa fa-map-marker"></i><div>LOCATION</div></li>
 
-                <li class="mr-5"><i class="fa fa-dollar"></i> Annual</li>
-                <li class="mr-5"><i class="fa fa-clock-o"></i> @Model.JobDetails.CustomData["WorkType.Filters[0].Value"]</li>
+                <li class="mr-5"><i class="fa fa-dollar"></i> <div>Annual</div></li>
+                <li class="mr-5"><i class="fa fa-clock-o"></i><div> @Model.JobDetails.CustomData["WorkType.Filters[0].Value"]</div></li>
             </ul>
 
 

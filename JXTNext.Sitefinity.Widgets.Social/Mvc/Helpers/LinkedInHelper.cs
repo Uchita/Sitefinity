@@ -68,7 +68,12 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
             {
                 var url = _siteSettingsHelper.GetCurrentSiteLinkedInSocialHandlerUrl();
 
-                return url.TrimEnd('/');
+                if (url != null)
+                {
+                    url = url.TrimEnd('/');
+                }
+
+                return url;
             }
         }
 

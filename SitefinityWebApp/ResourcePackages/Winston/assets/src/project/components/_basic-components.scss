@@ -2948,6 +2948,37 @@ address.info-box{
 
 .inner-search-panel {
     .job-search {
-        top: calc(-45px + -32px);
+        top: calc(-45px + -25px);
     }
+}
+
+
+.signin-form-block {
+    h2 {
+        color: $global-headings-color;
+        font-family: inherit;
+        font-size: 36px;
+        margin: 0;
+        position: relative;
+        font-weight: $font-weight-light;
+
+        &:before {
+            content: "\f023";
+            font-family: FontAwesome;
+            padding-right: 10px;
+            color: $global-highlight-color;
+        }
+    }
+}
+
+
+
+
+.page-wrapper .basic-form .form-label {
+    color: $global-headings-color;
+    font-weight:500;
+}
+.page-wrapper .login-form .basic-form .checkbox{
+    font-size:14px;
+
 }

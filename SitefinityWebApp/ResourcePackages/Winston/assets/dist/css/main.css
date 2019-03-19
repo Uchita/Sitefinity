@@ -5,7 +5,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
 @import url("https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900");
 html {
   font-family: sans-serif;
@@ -9578,7 +9578,27 @@ address.info-box {
     vertical-align: middle;
 }*/
 .inner-search-panel .job-search {
-  top: calc(-45px + -32px); }
+  top: calc(-45px + -25px); }
+
+.signin-form-block h2 {
+  color: #2e2e2e;
+  font-family: inherit;
+  font-size: 36px;
+  margin: 0;
+  position: relative;
+  font-weight: 300; }
+  .signin-form-block h2:before {
+    content: "\f023";
+    font-family: FontAwesome;
+    padding-right: 10px;
+    color: #2dc3ea; }
+
+.page-wrapper .basic-form .form-label {
+  color: #2e2e2e;
+  font-weight: 500; }
+
+.page-wrapper .login-form .basic-form .checkbox {
+  font-size: 14px; }
 
 /*#endregion Basic components */
 /*#region Breadcrumbs */
@@ -9607,6 +9627,8 @@ ul.breadcrumb {
   max-width: 100%; }
   .jumbotron-container.innerbanner-source .jumbotron {
     height: 200px; }
+  .jumbotron-container.innerbanner-source.micro-banner .jumbotron {
+    height: 97px; }
   .jumbotron-container .jumbotron {
     position: relative;
     margin-bottom: 0;

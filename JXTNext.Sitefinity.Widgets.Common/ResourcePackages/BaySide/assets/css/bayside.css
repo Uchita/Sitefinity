@@ -4951,7 +4951,10 @@ p {
     font-size: 16px;
 }
 
-.job-detail li, p {
+.job-detail li,
+.job-detail p,
+.job-list p,
+.job-list li {
     font-size: 14px !important;
     line-height: 1.5;
     font-weight: 300;
@@ -8487,6 +8490,24 @@ select.hs-input {
         opacity: 0;
     }
 
+#login-register-container #register #rememberme-block .checkbox {
+    font-size: 14px;
+    padding: 0 0 0 22px;
+    font-weight: 400;
+}
+
+    #login-register-container #register #rememberme-block .checkbox input {
+        z-index: 2;
+        position: absolute;
+        opacity: 1;
+        height: 16px;
+        width: 16px;
+        margin: 0 10px 0 0;
+        float: left;
+        top: 2px;
+        left: 0;
+    }
+
 .login-form.sign-in-with .checkbox .checkbox-icon {
     width: 20px;
     height: 20px;
@@ -8495,6 +8516,7 @@ select.hs-input {
     color: #0088CF;
     position: absolute;
     top: 2px;
+    display: none;
     left: 0;
     text-align: center;
     cursor: pointer;
@@ -8503,6 +8525,7 @@ select.hs-input {
 
     .login-form.sign-in-with .checkbox .checkbox-icon:before {
         content: '';
+        display: none;
     }
 
 .login-form.sign-in-with .checkbox input[type=checkbox]:checked + .checkbox-icon:before {
@@ -8523,7 +8546,7 @@ select.hs-input {
 
     .ext-provider-form .apply-with .btn.btn-seek {
         background: url(../images/seekBtn.png) 50% 50% no-repeat #e61977;
-        text-indent: -9em;
+        text-indent: -12em;
         border-radius: 0px;
     }
 
@@ -9748,19 +9771,26 @@ ul.nav.nav-stacked li a:before {
     transform: scale(1);
 }
 
-    .location-hover li:hover i.fa-map-marker,
-    .location-hover li:hover i.fa-dollar,
-    .location-text li:hover i.fa-dollar,
-    .location-text li:hover i.fa-map-marker {
+    .location-hover li img,
+    .location-text img {
+        width: 12px;
+        margin-top: -3px;
+        margin-right: 2px;
+    }
+
+    .location-hover li:hover img,
+    .location-text li:hover img {
         transform: scale(1.3);
         transition: all 500ms ease;
     }
 
-    .location-hover li:hover i.fa-clock-o,
-    .location-text li:hover i.fa-clock-o {
+
+    .location-hover li.clock-icon:hover i,
+    .location-text li.clock-icon:hover i {
         transform: rotate(360deg) !important;
         transition: all 500ms ease;
     }
+
 
 .job-detail div ul li span strong {
     font-weight: 500;
@@ -9959,6 +9989,23 @@ ul.nav.nav-stacked li a:before {
     display: block;
 }
 
+.forgot-password a {
+    font-weight: 400 !important;
+    font-size: 14px;
+}
+
+.rb-1.logged a {
+    padding: 0;
+}
+
+.about-us .latest-news .list-footer {
+    margin-bottom: 10px;
+}
+
+.job-detail .border.border-top-0, .job-detail ul {
+    padding-left: 20px;
+}
+
 @media (max-width: 767px) {
     .squire-box-row div:first-child {
         order: 1;
@@ -9974,5 +10021,9 @@ ul.nav.nav-stacked li a:before {
 
     .squire-box-row div:nth-child(4) {
         order: 3;
+    }
+
+    .hero-banner {
+        background-attachment: inherit;
     }
 }

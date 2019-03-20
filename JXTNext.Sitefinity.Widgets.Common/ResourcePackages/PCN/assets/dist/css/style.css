@@ -275,6 +275,13 @@ a {
         -moz-transform: translate(-50%,-50%);
     }
 
+
+
+.magazine-cover-wrap > .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 @media (min-width: 992px) {
     .header .main_menu ul ul {
         visibility: hidden;

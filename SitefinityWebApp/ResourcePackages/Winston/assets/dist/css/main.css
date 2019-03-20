@@ -7333,8 +7333,7 @@ blockquote {
   /* table layout */
   /* muted text */ }
   .page-wrapper b, .page-wrapper strong {
-    font-weight: normal;
-    font-family: 600; }
+    font-weight: 600; }
   .page-wrapper ul {
     padding-left: 20px;
     list-style: square outside none; }
@@ -8482,7 +8481,6 @@ main {
   .left-sidebar .container-fluid > a, .left-sidebar .navbar-collapse > a {
     font-family: "Playfair Display", serif;
     color: #2e2e2e;
-    text-transform: uppercase;
     display: block !important;
     border: none;
     border-bottom: 2px solid #2e2e2e;
@@ -8516,7 +8514,8 @@ main {
       width: 100%;
       border-bottom: 1px solid #bebebe; }
       .left-sidebar .container-fluid .nav li a, .left-sidebar .navbar-collapse .nav li a {
-        padding: 20px 15px 0px 0;
+        padding: 0;
+        line-height: 46px;
         font-family: "Playfair Display", serif;
         font-size: 20px; }
         .left-sidebar .container-fluid .nav li a.link-inline-block, .left-sidebar .navbar-collapse .nav li a.link-inline-block {
@@ -8535,10 +8534,10 @@ main {
       .left-sidebar .container-fluid .nav li > span, .left-sidebar .navbar-collapse .nav li > span {
         color: #333; }
         .left-sidebar .container-fluid .nav li > span:hover, .left-sidebar .container-fluid .nav li > span:focus, .left-sidebar .navbar-collapse .nav li > span:hover, .left-sidebar .navbar-collapse .nav li > span:focus {
-          color: #2e2e2e;
+          color: #2dc3ea;
           cursor: pointer; }
       .left-sidebar .container-fluid .nav li.dropdown-current > a, .left-sidebar .container-fluid .nav li.current > a, .left-sidebar .navbar-collapse .nav li.dropdown-current > a, .left-sidebar .navbar-collapse .nav li.current > a {
-        color: #2e2e2e; }
+        color: #2dc3ea; }
     .left-sidebar .container-fluid .nav .dropdown-menu, .left-sidebar .navbar-collapse .nav .dropdown-menu {
       position: relative;
       -webkit-box-shadow: none;
@@ -9627,6 +9626,69 @@ address.info-box {
     line-height: 35px;
     margin-right: 10px;
     color: #2e2e2e; }
+
+.transparent-data input[type="text"].form-control::-moz-placeholder {
+  color: #9d9c9c !important; }
+
+.transparent-data input[type="text"].form-control:-ms-input-placeholder {
+  color: #9d9c9c !important; }
+
+.transparent-data input[type="text"].form-control::-webkit-input-placeholder {
+  color: #9d9c9c !important; }
+
+.flip-card {
+  height: 180px;
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer; }
+  .flip-card .brand_blk {
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: cover;
+    height: 100%; }
+    .flip-card .brand_blk:before {
+      content: "";
+      position: absolute;
+      background: rgba(0, 0, 0, 0.3);
+      width: 100%;
+      top: 0;
+      left: 0;
+      height: 100%; }
+  .flip-card .blk_card {
+    margin: 0 auto;
+    padding-top: 40px;
+    position: relative;
+    z-index: 1; }
+    .flip-card .blk_card svg, .flip-card .blk_card img {
+      width: 54px; }
+    .flip-card .blk_card h4 {
+      color: white;
+      font-size: 2rem;
+      font-weight: 600; }
+
+.left-nav-data {
+  margin-bottom: 60px; }
+  .left-nav-data h3 {
+    font-family: "Playfair Display", serif;
+    margin-top: 10px;
+    text-transform: uppercase; }
+  .left-nav-data h4 {
+    font-family: "Playfair Display", serif; }
+  @media (max-width: 767px) {
+    .left-nav-data {
+      margin-bottom: 30px; } }
+
+.innerpage-form label {
+  color: #2e2e2e;
+  font-weight: 600;
+  text-transform: none; }
+
+.innerpage-form h4 {
+  margin-top: 40px;
+  font-weight: bold; }
+
+.job-search {
+  top: -75px !important; }
 
 /*#endregion Basic components */
 /*#region Breadcrumbs */
@@ -11238,8 +11300,8 @@ select.articles-order {
     width: 28%; }
     .board-members-item-image {
       position: relative;
-      -webkit-clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);
-      clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0); }
+      /*-webkit-clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);*/
+      /*clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);*/ }
       .board-members-item-image img {
         width: 100%; }
       .board-members-item-image .link-overlay {

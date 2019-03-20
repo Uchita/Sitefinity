@@ -1,17 +1,22 @@
 @model SitefinityWebApp.Mvc.Models.MultiCard.MultiCardViewModel
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 
-<div class="chevron-list @Model.CssClass">
-    @if (!string.IsNullOrEmpty(Model.GroupHeader))
-    {
-        <h2>@Model.GroupHeader</h2>
-    }
-    <ul>
-        @foreach (var card in Model.Cards)
-        {
 
-            <li><span>@Html.HtmlSanitize(card.Heading)</span></li>
+@foreach (var card in Model.Cards)
+{
+    <a href="@Model.GroupActionUrl">
+        <div class="flip-card">
+            
 
-        }
-    </ul>
-</div>
+                <div class="brand_blk" style="background-image:url('@Model.SelectedSizeUrl')">
+
+                    <div class="blk_card">
+                        <img src="@card.SelectedSizeUrl" class="icon-img" alt="@card.ImageAlternativeText">
+                        <h4>@Html.HtmlSanitize(card.Heading)</h4>
+                    </div>
+                </div>
+ 
+            
+            </div>
+</a>
+}

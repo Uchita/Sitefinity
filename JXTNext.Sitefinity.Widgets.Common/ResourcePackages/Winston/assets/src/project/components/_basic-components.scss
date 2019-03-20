@@ -48,8 +48,7 @@ blockquote{
     color: $global-text-color;
 
     b, strong {
-        font-weight: normal;
-        font-family: $font-family-medium;
+        font-weight: $font-family-medium;
     }
 
     ul {
@@ -330,7 +329,7 @@ blockquote{
         &:hover, &:focus {
             background: rgba(45,195,234,0.8);
             color: $btn-primary-color;
-                    }
+        }
 
         &:active {
             background: $btn-primary-active-bg;
@@ -1750,7 +1749,7 @@ main {
     > a {
         font-family: $global-font-family-heading;
         color: $sidebar-link-color;
-        text-transform: uppercase;
+        
         display: block !important;
         border: none;
         border-bottom: 2px solid $dark-separator-color;
@@ -1803,8 +1802,11 @@ main {
             width: 100%;
             border-bottom: 1px solid $separator-color;
 
+
+
             a {
-                padding: 20px 15px 0px 0;
+                padding: 0;
+                line-height: 46px;
                 font-family: $global-font-family-heading;
                 font-size: 20px;
 
@@ -1834,13 +1836,13 @@ main {
                 color: $sidebar-default-color;
 
                 &:hover, &:focus {
-                    color: $sidebar-link-color;
+                    color: #2dc3ea;
                     cursor: pointer;
                 }
             }
 
             &.dropdown-current > a, &.current > a {
-                color: $sidebar-link-color;
+                color: $global-highlight-color;
             }
         }
         // .dropdown-current > ul{
@@ -3039,5 +3041,104 @@ address.info-box{
         margin-right:10px;
         color:#2e2e2e;
     }
+
+}
+
+
+
+.transparent-data input[type="text"].form-control::-moz-placeholder {
+    color: #9d9c9c !important;
+}
+
+.transparent-data input[type="text"].form-control:-ms-input-placeholder {
+    color: #9d9c9c !important;
+}
+
+.transparent-data input[type="text"].form-control::-webkit-input-placeholder {
+    color: #9d9c9c !important;
+}
+
+
+
+
+
+.flip-card {
+    height: 180px;
+    text-align: center;
+    overflow: hidden;
+    cursor: pointer;
+
+    .brand_blk {
+        background-repeat: no-repeat;
+        position: relative;
+        background-size: cover;
+        height: 100%;
+
+        &:before {
+            content: "";
+            position: absolute;
+            background: rgba(0,0,0,.3);
+            width: 100%;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
+    }
+
+    .blk_card {
+        margin: 0 auto;
+        padding-top: 40px;
+        position: relative;
+        z-index: 1;
+
+        svg, img {
+            width: 54px;
+        }
+
+        h4 {
+            color: white;
+            font-size: 2rem;
+            font-weight: $font-family-medium;
+        }
+    }
+
+
+
+    &:hover {
+    }
+}
+
+
+.left-nav-data {
+    h3 {
+        font-family: $global-font-family-heading;
+        margin-top: 10px;
+        text-transform: uppercase;
+    }
+
+    h4 {
+        font-family: $global-font-family-heading;
+    }
+
+    margin-bottom: 60px;
+
+    @media(max-width:767px) {
+        margin-bottom: 30px;
+    }
+}
+
+.innerpage-form {
+    label {
+        color: $forms-element-border;
+        font-weight: $font-family-medium;
+        text-transform:none;
+    }
+    h4{
+        margin-top:40px;
+        font-weight:bold;
+    }
+}
+.job-search {
+    top: -75px !important;
 
 }

@@ -19,9 +19,57 @@
 
                 <div class="featured-job-offer same-height-box">
                     @*<div class="job-offer-company text-right"><img alt="" src="@defaultLogo" title="@jobOffer.Title"></div>*@
-                    
+
                     <div class="job-offer">
                         <h3><a class="title-link" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">@jobOffer.Title</a></h3>
+                        <script type="text/x-kendo-template" id="template">
+
+                            <div class="job-holder search-result">
+
+                                <div class="search-result-description">
+                                    <div class="row">
+                                        <div class="col-sm-4 sc-job-meta-group">
+                                            <span class="meta-location">#:CustomData["CountryLocationArea[0].Filters[0].Value"]#</span><br />
+
+                                            # if( CustomData["Salary.Filters[0].Min"] != 0 && CustomData["Salary.Filters[0].Max"] != 0 ){
+                                            if( CustomData["Salary.Filters[0].Min"] == CustomData["Salary.Filters[0].Max"] ){
+                                            #<span class="meta-salary">
+                                                $#:CustomData["Salary.Filters[0].Max"]#<br />#
+                                                }
+                                                else{
+                                                #<span class="meta-salary">
+                                                    $#:CustomData["Salary.Filters[0].Min"]# - $#:CustomData["Salary.Filters[0].Max"]# <br />#
+                                                    }
+                                                    #<span class="salary-label">#:CustomData["Salary.Filters[0].Value"]#</span>
+                                                </span><br />#
+                                                }#
+                                                <span class="meta-worktype">#:CustomData["WorkType.Filters[0].Value"]#</span>
+                                        </div>
+
+                                        <div class="col-sm-5 col-md-6">
+                                            # if(data.CustomData["Bulletpoints.BulletPoint1"] != "" || data.CustomData["Bulletpoints.BulletPoint2"] != "" || data.CustomData["Bulletpoints.BulletPoint3"] != ""){#
+                                            <ul>
+                                                <li>#:CustomData["Bulletpoints.BulletPoint1"]#</li>
+                                                <li>#:CustomData["Bulletpoints.BulletPoint2"]#</li>
+                                                <li>#:CustomData["Bulletpoints.BulletPoint3"]#</li>
+                                            </ul>#
+                                            }
+                                            else{#
+                                            <p>#:ShortDescription#</p>
+                                            #}#
+
+                                        </div>
+                                        <div class="col-sm-2 pull-right">
+                                            <img src="@defaultLogo" alt="Hudson" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </script>
+
 
                         @{
                             var summary = Html.HtmlSanitize((string)jobOffer.ShortDescription).ToString();
@@ -36,13 +84,17 @@
 
             </div>
 
+
+
             if (jobOfferIndex % 3 != 0)
             {
-            @: </div>
-        }
+                @:
 
-        jobOfferIndex++;
-    }
+
+            }
+
+            jobOfferIndex++;
+        }
 
     <div class="row row-see-more">
         <div class="col-md-12">
@@ -50,3 +102,473 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+     @{
+         var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+         var json = serializer.Serialize(Model);
+         var emailPattern = "^[a-zA-Z0-9_][a-zA-Z0-9!#$%&amp;'*+/=?_`{|}~-]*(?:.[a-zA-Z0-9!#$%&amp;';*+/=?_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?.)+(?:[a-zA-Z]{2,})$";
+         var emptyMsg = "Please enter your email address.";
+         var invalidMsg = "Please enter your valid email address.";
+
+      }
+        var islogged = $("#loginVar").val(); //used in kendo template
+        if (islogged === 'False') {
+            islogged = '';
+        }
+
+    $(document).ready(function () {
+        $(document).off('click').on('click', '.save-job', function (e) {
+            e.preventDefault();
+            var unSaveJob = false;
+            var ajaxActionName = "/SaveJob";
+            var jobid = $(this).data('jobid');
+            if ($(this).hasClass('saved')) {
+                unSaveJob = true;
+                ajaxActionName = "/RemoveSavedJob";
+                jobid = $(this).attr('data-savedjobid');
+            }
+
+            var parm = { JobId: jobid };
+            var urlPath = $(location).attr('pathname') + ajaxActionName;
+            var self = $(this);
+            $.ajax({
+                type: 'POST',
+                cache: false,
+                url: urlPath,
+                data: parm,
+                dataType: 'Json',
+                success: function (response) {
+
+                    if (response.Success == true) { // Job Saved
+                        if (unSaveJob) {
+                            self.removeClass("saved");
+                            self.text("Save job");
+                        }
+                        else {
+                            self.addClass("saved");
+                            self.text("Job saved");
+                            self.attr('data-savedjobid', response.SavedJobId);
+                        }
+                    }
+                    else { // Job failed to save
+                        if ((response.Errors[0].indexOf("(401)") > -1) || (response.Errors[0].indexOf("(403)") > -1)) {
+                            //alert("Please sign-in or register as a member to save a job.");
+                            if ($('.popup-overlay').length) {
+                                $('.popup-overlay .info span').text('save a job');
+                                $('.popup-overlay').fadeIn('fast');
+                            }
+                        }
+                        else {
+                            alert(response.Errors[0]);
+                        }
+                    }
+                },
+                error: function (response) { // Error
+                }
+            });
+        });
+
+        var memberStatus = '@ViewBag.IsMember';
+        //checking user logged in is member role
+        $('.jobalert-btn').click(function (e) {
+
+            if (memberStatus.toLocaleLowerCase() != "true") {
+                e.preventDefault();
+                //alert('Please sign-in or register as a member to create job alert.');
+                if ($('.popup-overlay').length) {
+                    $('.popup-overlay .info span').text('create job alert');
+                    $('.popup-overlay').fadeIn('fast');
+                }
+            }
+        });
+
+        $('.popup-overlay .fa-times').click(function () {
+            $('.popup-overlay').fadeOut('fast');
+        });
+
+    });
+
+    var model = @Html.Raw(json);
+    var isDesignMode = @Html.Raw(Json.Encode(@SystemManager.IsDesignMode));
+    var jobContainer = $("#listView");
+
+    if (model != null && model != "undefined" && !isDesignMode) {
+        var pageSize = @ViewBag.PageSize;
+        var totalCount = @ViewBag.TotalCount;
+        var filterModel = JSON.parse('@Html.Raw(@ViewBag.FilterModel)');
+        var PageNumber = filterModel.Page;
+        var highestPage = Math.ceil(totalCount / pageSize);
+        var dataSource;
+        var queryStringArr = [];
+
+        var sortBy = '@ViewBag.SortOrder';
+        $("#sortOrder").val(sortBy);
+        bindJobsPages(PageNumber);
+        bindJobs(PageNumber);
+
+        function processSavedJobs() {
+            var parm = { };
+            var urlPath = $(location).attr('pathname') + "/GetAllSavedJobs";
+            var self = $(this);
+            $.ajax({
+                type: 'POST',
+                cache: false,
+                url: urlPath,
+                data: parm,
+                dataType: 'Json',
+                success: function (response) {
+
+                    if (response.Success == true) { // Getting the all saved jobs
+                        $('.save-job').each(function () {
+                            var jobid = $(this).data('jobid');
+                            var selfJob = $(this);
+
+                            $.each(response.SavedJobs, function (index, saveJobInfo) {
+
+                                if (saveJobInfo.JobId == jobid) {
+
+                                    $(selfJob).addClass("saved");
+                                    $(selfJob).text("Job saved");
+                                    $(selfJob).attr('data-savedjobid', saveJobInfo.SavedJobId);
+                                }
+                            });
+                        });
+                    }
+                    else {
+
+                    }
+                },
+                error: function (response) { // Error
+                }
+            });
+
+
+        };
+
+
+        $('#anon-job-alert').on("click",function () {
+            var email = $('#anonycreatejobalert').val();
+
+            var pattern = new RegExp('@emailPattern');
+            if (email.length < 1) {
+                $('.jobalert-error-message').removeClass('hidden').text('@emptyMsg');
+                return false;
+            }
+            else if (!pattern.test(email)) {
+                $('.jobalert-error-message').removeClass('hidden').text('@invalidMsg');
+                return false;
+            }
+
+            if (filterModel.Filters !== null && filterModel.Filters.length === 0) {
+                var filter = {};
+                filter.rootId = "CountryLocationArea";
+                searchTarget = null;
+                values = [];
+                filterModel.Filters.push(filter);
+            }
+
+
+            var alertData = { filterModel: filterModel, email: email };
+            var urlPath = $(location).attr('pathname') + "/CreateAnonymousJobAlert";
+
+            $.ajax({
+                type: 'POST',
+                cache: false,
+                url: urlPath,
+                data: alertData,
+                dataType: 'Json',
+                success: function (response) {
+                    if (response.Success == true) {
+                        $('#anonycreatejobalert, #anon-job-alert').hide();
+                        //$(this).hide();
+                        $('.jobalert-error-message').addClass('hidden');
+                        $('.jobalert-message').removeClass('hidden');
+                    }
+                    else {
+                        $('.jobalert-error-message').removeClass('hidden');
+                    }
+                },
+                error: function (response) { // Error
+                }
+            });
+        });
+
+
+        $("#sortOrder").change(function () {
+            sortBy = $(this).val();
+            PageNumber = 1;
+            bindJobs(PageNumber);
+        });
+
+        layoutSwitch();
+
+        function makeQueryString(obj, prefix, isArray) {
+
+            for (var p in obj) {
+                if (obj.hasOwnProperty(p)) {
+                    var k, v;
+                    if (isArray)
+                        k = prefix ? prefix + "%5B" + p + "%5D" : p, v = obj[p];
+                    else {
+                        if (prefix.match(".values$"))
+                            k = prefix ? prefix : p, v = obj[p];
+                        else
+                            k = prefix ? prefix + "." + p + "" : p, v = obj[p];
+                    }
+
+                    if (v !== null && typeof v === "object") {
+                        if (Array.isArray(v)) {
+                            if (k.match(".values$"))
+                                makeQueryString(v, k, false);
+                            else
+                                makeQueryString(v, k, true);
+                        } else {
+                            makeQueryString(v, k, false);
+                        }
+                    } else {
+                        if (v === null || v === "undefined")
+                            v = "";
+
+                        var query = k + "=" + v;
+                        queryStringArr.push(query);
+                    }
+                }
+            }
+            return queryStringArr.join("&");
+        };
+
+        function bindJobsPages(PageNumber)
+        {
+            if (highestPage > 1) {
+                var lis = '';
+                var pageJumpNext = false;
+                var pageJumpVal = 5;
+                var startPage = (parseInt(PageNumber) / pageJumpVal) > 1 ? pageJumpVal * (Math.ceil(parseInt(PageNumber) / pageJumpVal) - 1) + 1 : 1;
+
+                lis += '<li class="pagePrev pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" data-page="0">Previous</a></li>';
+
+                //dot page jump previous
+                if (startPage > 1) {
+                    lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + (startPage - 1) + '">...</a></li>';
+                }
+
+                for (var i = startPage; i <= highestPage || i - highestPage < 1 ; i++) {
+                    if (i < (startPage + pageJumpVal) && highestPage >= parseInt(PageNumber)) {
+                        lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + i + '">' + i + '</a></li>';
+                        pageJumpNext = true;
+                    }
+                }
+
+                //dot page jump next
+                if (highestPage >= parseInt(PageNumber) + 1 && highestPage >= (startPage + pageJumpVal)) {
+                    lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + (startPage + pageJumpVal) + '">...</a></li>';
+                }
+
+                if (highestPage != PageNumber) {
+                    lis += '<li class="pageNext pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" data-page="2">Next</a></li>';
+                }
+                $('#pager ul').html(lis);
+            }
+        };
+
+        function bindJobs(PageNumber) {
+
+            var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), pageNumber: PageNumber, sortBy: sortBy };
+            var urlPath = $(location).attr('pathname') + "/GetSearchResults";
+            var searchPath = $(location).attr('search');
+
+            if (searchPath == null || searchPath == "") {
+                searchPath += ("?" + "Page=" + PageNumber);
+            }
+            else if (searchPath.indexOf("Page=") > -1) {
+                let pageIndex = searchPath.indexOf("Page=");
+                searchPath = searchPath.slice(0, pageIndex);
+                searchPath += ("Page=" + PageNumber);
+            }
+            else {
+                searchPath += ("&Page=" + PageNumber);
+            }
+
+            if (searchPath.indexOf("SortBy=") > -1) {
+                let pageIndex = searchPath.indexOf("SortBy=");
+                searchPath = searchPath.slice(0, pageIndex);
+                searchPath += ("SortBy=" + sortBy);
+            }
+            else {
+                searchPath += ("&SortBy=" + sortBy);
+            }
+
+            queryStringArr.length = 0;
+            filterModel.Page = PageNumber;
+            filterModel.SortBy = sortBy;
+            var pushStateUrl = $(location).attr('pathname') + searchPath;
+            var data = { filterModel: filterModel }
+            window.history.pushState(data, "", pushStateUrl);
+
+            $('.jobalert-btn').prop('href', '/user-dashboard/Create' + searchPath);
+
+            //pager status
+            $('#pager li:not(.pageController) a').removeClass('active');
+            $('#pager li:not(.pageController) a[data-page="' + (PageNumber == 0 ? 1 : PageNumber) + '"]').addClass('active');
+            //prev next status
+            if (PageNumber <= 1) {
+                $('#pager li.pagePrev a').attr('disabled', true);
+            } else {
+                $('#pager li.pagePrev a').removeAttr('disabled');
+                $('#pager li.pagePrev a').attr('data-page', parseInt(PageNumber) - 1);
+            }
+
+            if (parseInt(PageNumber) + 1 <= highestPage) {
+                $('#pager li.pageNext a').attr('data-page', parseInt(PageNumber) + 1);
+            }
+            if (parseInt(PageNumber) >= highestPage) {
+                $('#pager li.pageNext a').attr('disabled', true);
+            } else {
+                $('#pager li.pageNext a').removeAttr('disabled');
+            }
+            $('html,body').animate({
+                scrollTop: 0
+            }, 0);
+            //adding loader
+            if (!jobContainer.hasClass('loading')) {
+                jobContainer.addClass('loading');
+            }
+
+            $.ajax({
+                type: 'POST',
+                cache: false,
+                url: urlPath,
+                data: parm,
+                dataType: 'Json',
+                success: function (response) {
+
+                    if (response.Total > 0) {
+                        dataSource = new kendo.data.DataSource({
+                            data: response.SearchResults,
+                            total: response.Total,
+                        });
+
+                        if ($('#sortOrder').val() == null) {
+                            $('#sortOrder').val('Recent');
+                        }
+
+                        $(".count-num").html(response.Total);
+                        highestPage = Math.ceil(response.Total / pageSize);
+                        var sorttext = getSortOrder();
+                        var token = sorttext.split(':');
+
+                        //dataSource.sort({ field: token[0], dir: token[1] });
+
+                        jobContainer.kendoListView({
+                            dataSource: dataSource,
+                            template: kendo.template($("#template").html()),
+
+                        });
+
+                        processSavedJobs();
+                    } else {
+                        $(".count-num").html("0");
+                        $(".info-block").removeClass('hidden');
+                        $("#sortOrder").parent().hide();
+                    }
+
+                    //check the layout on the base of active
+                    //or Retrieve from local storage for checking too
+                    if ($('.layout-switch .jn_ico.active').hasClass('icon-grid-view')) {
+                        $('#resultsPagePartialContent').removeClass('list-view').addClass('grid-view');
+                        $('.job-holder').addClass('col-lg-6');
+                    }
+                    //in case of taking from local storage, when data is loaded on filter selection
+                    else if (typeof (Storage) !== "undefined" && localStorage.getItem("resultLayout") == 'grid') {
+                        $('#resultsPagePartialContent').removeClass('list-view').addClass('grid-view');
+                        $('.layout-switch .jn_ico').removeClass('active');
+                        $('.layout-switch .icon-grid-view').addClass('active');
+                        $('.job-holder').addClass('col-lg-6');
+                    }
+
+                    //removing the loader in the job result widget
+                    jobContainer.removeClass('loading');
+
+                    //removing the loader in the search keyword - job filter widget
+                    $("#selectedkeywordsfilter").parent().removeClass('loader');
+                    //removing the loading in the filter widget itself
+                    $('.filter-outer-wrapper').removeClass('lockoverlay visible-hidden');
+                },
+                error: function (response) {
+                    console.log(response);
+                }
+            });
+        };
+
+        function pageChange(pageObj) {
+            var currPageNumber = $(pageObj).attr('data-page');
+            var disableFlag = $(pageObj).attr('disabled');
+            if (disableFlag == "disabled") {
+                return false;
+            }
+
+            if (currPageNumber != PageNumber) {
+                bindJobsPages(currPageNumber);
+                PageNumber = parseInt(currPageNumber);
+                bindJobs(PageNumber);
+                //changing the prev & next page number attribute
+                $('.pagePrev a').attr('data-page', PageNumber - 1);
+                if (PageNumber + 1 <= highestPage ) {
+                    $('.pageNext a').attr('data-page', PageNumber + 1);
+                }
+            }
+
+        };
+
+        function getSortOrder() {
+            var sortValue = $("#sortOrder").val();
+            switch (sortValue) {
+                case 'Old':
+                    return 'DatePosted:desc';
+                    break;
+                case 'AZ':
+                    return 'Title:asc';
+                    break;
+                case 'ZA':
+                    return 'Title:desc';
+                    break;
+                case 'SalaryHighToLow':
+                    return 'CustomData["Salary.Filters[0].Min"]:desc';
+                    break;
+                case 'SalaryLowToHigh':
+                    return 'CustomData["Salary.Filters[0].Max"]:asc';
+                    break;
+                default:
+                    return 'DatePosted:asc';
+                    break;
+            }
+        };
+
+        function layoutSwitch() {
+            if ($('.layout-switch').length) {
+                $('.layout-switch span.jn_ico').click(function () {
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+
+                    if ($(this).hasClass('icon-grid-view')) {
+                        //browser local Store
+                        if (typeof (Storage) !== "undefined") {
+                            localStorage.setItem("resultLayout", "grid");
+                        }
+                        $('.list-view').removeClass('list-view').addClass('grid-view');
+                        $('.job-holder').addClass('col-lg-6');
+                    } else {
+                        if (typeof (Storage) !== "undefined") {
+                            localStorage.setItem("resultLayout", "list");
+                        }
+                        $('.grid-view').removeClass('grid-view').addClass('list-view');
+                        $('.job-holder').removeClass('col-lg-6');
+                    }
+                });
+            }
+        }
+    }
+
+</script>

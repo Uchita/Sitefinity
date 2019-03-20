@@ -87,8 +87,9 @@
     </div>
 </div>
 <script type="text/x-kendo-template" id="template">
-    <div class="job-list border rounded p-4">
-        <img src="/ResourcePackages/BaySide/assets/images/bayside-logo-black.png" class="float-right"
+    <div class="job-list border rounded p-4 fadeInUp wow">
+        <p class="company-hidden" style="display:none">#:CustomData["CompanyName"]#</p>
+        <img src="/ResourcePackages/BaySide/assets/images/bayside-logo-black.png" style="width:105px" class="float-right"
              alt="">
         <h2 class="mt-2"><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#">#:Title#</a></h2>
         <ul class="border border-top-0 border-right-0 border-left-0 pb-4">
@@ -536,6 +537,8 @@
 
 
                     processSavedJobs();
+
+                    processCustomFunction();
                 } else {
                     $(".count-num").html("0");
                     $(".info-block").removeClass('hidden');
@@ -571,6 +574,37 @@
             }
         });
     };
+
+        function processCustomFunction() {
+            $('p.hidden-salary').each(function (i, obj) {
+                var li = $(this).next();
+                if ($(li).find('div').html().trim().toLowerCase() == "")
+                    $(li).find('i.fa-dollar').removeClass('fa-dollar');
+            });
+
+            $('p.company-hidden').each(function (i, obj) {
+                var text = $(this).html().trim().toLowerCase();
+                var img = $(this).next();
+                if (text != "" && text != undefined)
+                    if (text == "alitis")
+                        $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/alitis-logo.svg");
+                    else if (text == "austra health")
+                        $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/austra-health-logo.svg");
+                    else if (text == "bayside group")
+                        $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-group-automotive-logo.svg");
+                    else if (text == "bayside personnel")
+                        $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-personnel-logo.svg");
+                    else if (text == "baytech")
+                        $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/baytech-logo.svg");
+                    else if (text == "bridge consulting")
+                        $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bridge-consulting-logo.svg");
+                    else if (text == "cozWine")
+                        $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/cozwine-logo.svg");
+                    else if (text == "techstaff")
+                        $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/techstaff-logo.svg");
+            });
+
+        }
 
     //function SelectLeftFilter(response) {
     //    var myArray = [];

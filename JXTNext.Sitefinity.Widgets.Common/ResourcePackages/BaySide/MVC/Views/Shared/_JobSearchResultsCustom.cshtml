@@ -9,7 +9,7 @@
     var isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
 }
 
-
+@*<p>@Newtonsoft.Json.JsonConvert.SerializeObject(Model)</p>*@
 <div class="row">
     <div class="col-12">
         <div class="row">
@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="display:none;">
             <div class="col-12 col-lg-12 mb-2">Receive new jobs for this search by email.</div>
         </div>
         <div class="row">
@@ -88,7 +88,8 @@
 </div>
 <script type="text/x-kendo-template" id="template">
     <div class="job-list border rounded p-4 fadeInUp wow">
-        <img src="/ResourcePackages/BaySide/assets/images/bayside-logo-black.png" class="float-right"
+        <p class="company-hidden" style="display:none">#:CustomData["CompanyName"]#</p>
+        <img src="/ResourcePackages/BaySide/assets/images/bayside-logo-black.png" style="width:105px" class="float-right"
              alt="">
         <h2 class="mt-2"><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#">#:Title#</a></h2>
         <ul class=" bayside-listing">
@@ -97,6 +98,7 @@
                 <li>#:CustomData["Bulletpoints.BulletPoint1"]#</li>
                 <li>#:CustomData["Bulletpoints.BulletPoint2"]#</li>
                 <li>#:CustomData["Bulletpoints.BulletPoint3"]#</li>
+
             </ul>#
             }
             else{#
@@ -132,9 +134,13 @@
         </div>
         <div class="row align-items-center mt-4">
             <div class="col">
+
                 <ul class="inline-list p-0 mb-0 location-hover">
                     <li class="mr-3"><i class="fa fa-map-marker"></i><div> #:CustomData["CountryLocationArea[0].Filters[0].Value"]# </div></li>
-                    <li class="mr-3"><i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
+                    <p class="hidden-salary" style="display:none;">#:CustomData["Salary.Filters[0].Value"]# </p>
+                    <li class="mr-3">
+                        <i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div>
+                    </li>
                     <li class="mr-3"><i class="fa fa-clock-o"></i><div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>
                 </ul>
             </div>
@@ -534,6 +540,8 @@
 
 
                     processSavedJobs();
+
+                    processCustomFunction();
                 } else {
 
                     $(".info-block").removeClass('hidden');
@@ -567,6 +575,37 @@
             }
         });
     };
+
+    function processCustomFunction() {
+        $('p.hidden-salary').each(function (i, obj) {
+            var li = $(this).next();
+            if ($(li).find('div').html().trim().toLowerCase() == "")
+                $(li).find('i.fa-dollar').removeClass('fa-dollar');
+        });
+
+        $('p.company-hidden').each(function (i, obj) {
+            var text = $(this).html().trim().toLowerCase();
+            var img = $(this).next();
+            if (text != "" && text != undefined)
+                if (text == "alitis")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/alitis-logo.svg");
+                else if (text == "austra health")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/austra-health-logo.svg");
+                else if (text == "bayside group")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-group-automotive-logo.svg");
+                else if (text == "bayside personnel")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-personnel-logo.svg");
+                else if (text == "baytech")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/baytech-logo.svg");
+                else if (text == "bridge consulting")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bridge-consulting-logo.svg");
+                else if (text == "cozWine")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/cozwine-logo.svg");
+                else if (text == "techstaff")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/techstaff-logo.svg");
+        });
+
+    }
 
     function SelectLeftFilter(response) {
         var myArray = [];

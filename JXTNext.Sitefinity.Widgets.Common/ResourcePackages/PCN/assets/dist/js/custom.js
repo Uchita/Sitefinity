@@ -26,8 +26,27 @@ $(document).ready(function () {
         $('.cookie-banner-container').removeClass("hidden");
     }
 
-    // Sticky Sidebar
+    // Sticky Sidebar's
     $(".jobdetail-sidebar-inner").sticky({ topSpacing: 120, center: true, bottomSpacing: 175 });
+    $(".news-sidebar").sticky({ topSpacing: 120, center: true, bottomSpacing: 175 });
+    var mobMedia = window.matchMedia("(max-width: 767px)").matches;
+    // Unsticky sidebar's on Mobile
+    if (mobMedia) {
+        $(".jobdetail-sidebar-inner").unstick();
+        $(".news-sidebar").unstick();
+    }
+
+    $(window).resize(function () {
+        var mobMedia = window.matchMedia("(max-width: 767px)").matches;
+        if (mobMedia) {
+            $(".jobdetail-sidebar-inner").unstick();
+            $(".news-sidebar").unstick();
+        } else {
+            $(".jobdetail-sidebar-inner").sticky({ topSpacing: 120, center: true, bottomSpacing: 175 });
+            $(".news-sidebar").sticky({ topSpacing: 120, center: true, bottomSpacing: 175 });
+        }
+    });
+
 
     // Video Auto Play
     var video = $(".bg-video video")[0];

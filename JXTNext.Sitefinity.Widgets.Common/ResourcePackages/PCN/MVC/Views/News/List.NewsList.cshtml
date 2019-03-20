@@ -18,6 +18,7 @@
     {
         model = model.Where(x => x.Fields.PublicationDate.ToString("MMMMM yyyy").Contains(archiveddate.Trim()));
     }
+    model = model.OrderByDescending(x => Convert.ToDateTime(x.Fields.PublicationDate));
 }
 
 <div class="archive-postlist @Model.CssClass">
@@ -58,7 +59,7 @@
 
 
                     <div class="entry-header">
-                        <div class="entry-meta">
+                        <div class="entry-meta hidden">
                             <span class="author">Posted by <a href="#" title="Posts by Greythorn Australia" rel="author">@DataResolver.Resolve(item.DataItem, "Author", null)</a></span>
                             <span class="sep">-</span>
                             <span class="date">@item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>

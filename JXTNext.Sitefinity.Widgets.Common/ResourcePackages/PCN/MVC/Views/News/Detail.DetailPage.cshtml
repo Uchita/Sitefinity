@@ -33,9 +33,9 @@
             }
         </span>
         <div class="clearfix"></div>
-        <span class="author">Posted by <a href="#" title="Posts by @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)" rel="author">@DataResolver.Resolve(@Model.Item.DataItem, "Author", null)</a></span>
-        <span class="sep">-</span>
-        <span class="date">@Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
+        <span class="author hidden">Posted by <a href="#" title="Posts by @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)" rel="author">@DataResolver.Resolve(@Model.Item.DataItem, "Author", null)</a></span>
+        <span class="sep hidden">-</span>
+        <span class="date hidden">@Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
     </div>
 
     <h3>

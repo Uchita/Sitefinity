@@ -34,7 +34,7 @@
                     <h3>
                         <a href="@navigateUrl">@item.Fields.Title</a>
                     </h3>
-                    <div class="entry-meta">
+                    <div class="entry-meta hidden">
                         <span class="author">Posted by <a href="#" title="Posts by Greythorn Australia" rel="author">@DataResolver.Resolve(item.DataItem, "Author", null)</a></span>
                         <span class="sep">-</span>
                         <span class="date">@item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>

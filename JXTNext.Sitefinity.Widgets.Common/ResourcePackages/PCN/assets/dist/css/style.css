@@ -1616,7 +1616,7 @@ button.read_btn:hover {
                 float: left;
                 background-position: top center;
                 background-repeat: no-repeat;
-                background-size: cover;
+                background-size: contain;
             }
 
         .blog_section .latest_news .text {

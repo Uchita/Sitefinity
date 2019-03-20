@@ -16,7 +16,7 @@
             <div class="col-12 col-md-6">
                 <h2>
                     <span class="count-num">@ViewBag.TotalCount</span> job(s) found
-                    <span class="new-serch"><a href="/jobs/advancedsearch">> New search</a></span>
+                    <span class="new-serch"><a href="/jobs/advancedsearch"> New search</a></span>
                 </h2>
             </div>
             <div class="col-12 col-lg-6">
@@ -133,10 +133,14 @@
         </div>
         <div class="row align-items-center mt-4">
             <div class="col">
-                <ul class="inline-list p-0 mb-0">
-                    <li class="mr-3"><i class="fa fa-map-marker"></i> #:CustomData["CountryLocationArea[0].Filters[0].Value"]#</li>
-                    <li class="mr-3"><i class="fa fa-dollar"></i> #:CustomData["Salary.Filters[0].Value"]#</li>
-                    <li class="mr-3"><i class="fa fa-clock-o"></i> #:CustomData["WorkType.Filters[0].Value"]#</li>
+                <ul class="inline-list p-0 mb-0 location-hover">
+                    <li class="mr-3"><i class="fa fa-map-marker"></i><div> #:CustomData["CountryLocationArea[0].Filters[0].Value"]# </div></li>
+                    <p class="hidden-salary" style="display:none;">#:CustomData["Salary.Filters[0].Value"]# </p>
+                    @*<li class="mr-3"><i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
+            <li class="mr-3"><i class="fa fa-clock-o"></i><div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>*@
+                    <li class="mr-3"> <img src="/ResourcePackages/BaySide/assets/images/location.png"> <div> #:CustomData["CountryLocationArea[0].Filters[0].Value"]# </div></li>
+                    <li class="mr-3"> <img class="dollar" src="/ResourcePackages/BaySide/assets/images/doller.png"> <div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
+                    <li class="mr-3 clock-icon"><i class="fa fa-clock-o"></i> <div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>
                 </ul>
             </div>
             <div class="col-auto text-right">
@@ -579,7 +583,7 @@
             $('p.hidden-salary').each(function (i, obj) {
                 var li = $(this).next();
                 if ($(li).find('div').html().trim().toLowerCase() == "")
-                    $(li).find('i.fa-dollar').removeClass('fa-dollar');
+                    $(li).find('img.dollar').attr("src", "");
             });
 
             $('p.company-hidden').each(function (i, obj) {

@@ -138,10 +138,11 @@
                 <ul class="inline-list p-0 mb-0 location-hover">
                     <li class="mr-3"><i class="fa fa-map-marker"></i><div> #:CustomData["CountryLocationArea[0].Filters[0].Value"]# </div></li>
                     <p class="hidden-salary" style="display:none;">#:CustomData["Salary.Filters[0].Value"]# </p>
-                    <li class="mr-3">
-                        <i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div>
-                    </li>
-                    <li class="mr-3"><i class="fa fa-clock-o"></i><div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>
+                    @*<li class="mr-3"><i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
+                    <li class="mr-3"><i class="fa fa-clock-o"></i><div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>*@
+                    <li class="mr-3"> <img src="/ResourcePackages/BaySide/assets/images/location.png"> <div> #:CustomData["CountryLocationArea[0].Filters[0].Value"]# </div></li>
+                    <li class="mr-3"> <img class="dollar" src="/ResourcePackages/BaySide/assets/images/doller.png"> <div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
+                    <li class="mr-3 clock-icon"><i class="fa fa-clock-o"></i> <div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>
                 </ul>
             </div>
             <div class="col-auto text-right">
@@ -580,7 +581,7 @@
         $('p.hidden-salary').each(function (i, obj) {
             var li = $(this).next();
             if ($(li).find('div').html().trim().toLowerCase() == "")
-                $(li).find('i.fa-dollar').removeClass('fa-dollar');
+                $(li).find('img.dollar').attr("src", "");
         });
 
         $('p.company-hidden').each(function (i, obj) {

@@ -302,7 +302,7 @@ if ($eventsWrap.length > 0) {
     var $win = $(window);
     $(window).scroll(function () {
         var currentScroll = $win.scrollTop();
-        var calcHeight = (eventsWrapTop + $eventsWrap.height()) - 130;
+        var calcHeight = (eventsWrapTop + $eventsWrap.height()) - 350;
         if (currentScroll > calcHeight) {
             $(".archive-postlist.upcoming-events>.row>div:not(.active-list):lt(2)").addClass("active-list").slideDown("slow");
         }

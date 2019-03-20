@@ -20,7 +20,11 @@
     }
     model = model.OrderByDescending(x => Convert.ToDateTime(x.Fields.PublicationDate));
 }
-
+<style>
+    h3.title-border {
+        display: none;
+    }
+</style>
 <div class="archive-postlist @Model.CssClass">
     <div class="row">
 
@@ -108,3 +112,18 @@
 
     </div>
 }
+<script>
+    // For selected category show on title
+    $(document).ready(function () {
+        var pathName = window.location.pathname;
+        if (pathName.search("news-categor") > -1) {
+            var currentCatText = $(".news-cat-desktop li.current a").text();
+            $("h3.title-border").each(function () {
+                if ($(this).text() == "Latest News") {
+                    $(this).text(currentCatText);
+                }
+            });
+        }
+        $("h3.title-border").show();
+    });
+</script>

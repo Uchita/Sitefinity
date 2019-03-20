@@ -6242,6 +6242,7 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     border-bottom: 5px solid #004F6E;
     padding-bottom: 7px;
     margin-bottom: 20px;
+    text-transform: capitalize;
 }
 
 

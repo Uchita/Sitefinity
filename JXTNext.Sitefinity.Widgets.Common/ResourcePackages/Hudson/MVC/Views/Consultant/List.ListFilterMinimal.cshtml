@@ -45,7 +45,7 @@
                             var dd = sectorTaxon as HierarchicalTaxon;
                             foreach (var item in dd.Subtaxa)
                             {
-                                <option value="@item.Name">@item.Title</option>
+                                <option value="@item.UrlName">@item.Title</option>
                             }
                         }
                     </select>
@@ -97,7 +97,7 @@
             {
                 foreach (var taxon in item.GetHierarchicalTaxons("Category"))
                 {
-                    filterValues.Add(taxon.Name);
+                    filterValues.Add(taxon.UrlName);
                 }
             }
 

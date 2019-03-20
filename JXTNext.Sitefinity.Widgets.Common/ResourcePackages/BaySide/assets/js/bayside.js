@@ -23,6 +23,9 @@ $(document).ready(function () {
         }
     });
 
+    $(function () {
+        $('.left-sidebar').addClass('fadeInLeft wow');
+    });
 
     $(".toggle-btn").on("click", function (e) {
         e.preventDefault();

@@ -9881,7 +9881,7 @@ ul.nav.nav-stacked li a:before {
 
 .location-hover li {
     text-transform: lowercase;
-    font-size: 13px;
+    font-size: 13px !important;
 }
 
     .location-hover li div {
@@ -9907,6 +9907,7 @@ ul.nav.nav-stacked li a:before {
         position: relative;
         display: inline-block;
         margin-right: 13px;
+        transition: .15s ease 0s;
     }
 
         .new-serch a:after {

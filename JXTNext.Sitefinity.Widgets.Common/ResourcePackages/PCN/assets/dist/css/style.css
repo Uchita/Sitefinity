@@ -7322,6 +7322,9 @@ ul.magazine-headlines {
 
 .magazine-issue .magazine-cover-img {
     margin-bottom: 25px;
+    min-height: 170px;
+    background-size: contain;
+    background-position: center;
 }
 
     .magazine-issue .magazine-cover-img img {

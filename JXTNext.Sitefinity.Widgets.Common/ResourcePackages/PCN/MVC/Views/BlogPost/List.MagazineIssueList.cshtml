@@ -62,8 +62,7 @@
                                 <div class="magazine-issue magazine-issue-list">
                                     <div class="bg-corner border-corner">
                                         <div class="bg-corner-inner">
-                                            <div class="magazine-cover-img">
-                                                <img src="@imageurl" alt="@item.Fields.Title">
+                                            <div class="magazine-cover-img" style="background-image: url('@imageurl')">
                                                 <div class="magazine-overlay">
                                                     <a class="magazine-title" @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a>
                                                 </div>

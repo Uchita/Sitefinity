@@ -218,10 +218,11 @@
             padding-left: 0px;
 
             a {
-                font-size: 1.4rem;
+                font-size: 1.2rem;
                 // font-style: italic;
                 // color: #858585;
                 color: #b5b5b5;
+
                 &:hover, &:focus {
                     color: $global-highlight-color;
                 }
@@ -355,13 +356,21 @@
     }
 
     .user-profile-dash {
-        border-bottom: 1px solid $global-text-color;
+        border-bottom: 1px solid $btn-primary-bg;
         padding-bottom: 50px;
         margin-bottom: 30px;
 
         img {
             width: 100%;
             height: auto;
+        }
+
+        h1 {
+            font-family: $global-font-family;
+        }
+
+        h2 {
+            font-family: $global-font-family;
         }
     }
 
@@ -488,9 +497,9 @@
 
                 .btn {
                     height: 35px;
-                    line-height: 1.2;
-                    min-width: 120px;
-                    padding: 6px 10px;
+                    line-height: 35px;
+                    min-width: inherit;
+                    padding: 0px 12px;
                 }
             }
 

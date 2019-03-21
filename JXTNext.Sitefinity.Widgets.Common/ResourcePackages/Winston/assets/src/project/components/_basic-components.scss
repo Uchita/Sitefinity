@@ -69,8 +69,7 @@ blockquote{
     }
 
     dt {
-        font-weight: normal;
-        font-family: $font-family-medium;
+        font-weight: $font-family-bold;
     }
 
     ul, ol {
@@ -3037,6 +3036,7 @@ address.info-box{
 .sign-in-with{
     margin-top:15px;
     p{
+        font-size:1.4rem;
         line-height:35px;
         margin-right:10px;
         color:#2e2e2e;
@@ -3138,14 +3138,12 @@ address.info-box{
         font-weight:bold;
     }
 }
-.job-search {
-    top: -75px !important;
 
-}
-.btn {
-    border-color: #2dc3ea !important;
-}
 
-h2{
-    color:red !important;
+
+
+
+.alert-info {
+background:#d7edf6;
+    color: #669ab2;
 }

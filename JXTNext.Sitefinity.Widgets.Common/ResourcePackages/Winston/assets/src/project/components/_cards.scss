@@ -3,6 +3,27 @@
     width: 100%;
     max-width: 100%;
 
+
+    &.solid-banner-text {
+        .jumbotron {
+            height: 350px;
+
+            @media(max-width:767px) {
+                height: 300px;
+            }
+
+            h1 {
+                margin-bottom: 15px;
+                margin-top: 90px;
+
+                @media(max-width:767px) {
+                    margin-top: 60px;
+                }
+            }
+        }
+    }
+
+
     &.innerbanner-source {
 
         .jumbotron {
@@ -11,7 +32,8 @@
 
         &.micro-banner {
             .jumbotron {
-                height: 97px; padding:0;
+                height: 97px;
+                padding: 0;
             }
         }
     }

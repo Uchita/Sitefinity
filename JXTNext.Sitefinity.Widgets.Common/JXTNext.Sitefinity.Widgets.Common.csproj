@@ -2462,9 +2462,6 @@
     <Content Include="ResourcePackages\Winston\MVC\Views\Card\Card.Empty.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Winston\MVC\Views\Card\Card.Hero.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="ResourcePackages\Winston\MVC\Views\Card\Card.HeroSolid.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -3427,6 +3424,12 @@
     <None Include="ResourcePackages\Winston\assets\src\sitefinity\sass\components\icons\_icons.scss" />
     <None Include="ResourcePackages\Winston\assets\src\sitefinity\sass\components\icons\_sf-icon-font.scss" />
     <Content Include="ResourcePackages\Winston\MVC\Views\Card\Card.BgIcon.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Winston\MVC\Views\Card\Card.Hero.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Winston\MVC\Views\Card\Card.BannerInner.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

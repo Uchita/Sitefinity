@@ -133,13 +133,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             // Create Email Notification
             EmailNotificationSettings jobAlertEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.JobAlertEmailTemplateSenderName, this.JobAlertEmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(string.Empty, model.Email),
-                                                                                                this.GetJobAlertHtmlEmailTitle(),
-                                                                                                this.GetJobAlertHtmlEmailContent(), null);
+                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.JobAlertEmailTemplateId),
+                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.JobAlertEmailTemplateId), null);
             if (!this.JobAlertEmailTemplateCC.IsNullOrEmpty())
             {
                 foreach (var ccEmail in this.JobAlertEmailTemplateCC.Split(';'))
                 {
-                    jobAlertEmailNotificationSettings.AddCC(String.Empty, ccEmail);
+                    jobAlertEmailNotificationSettings?.AddCC(String.Empty, ccEmail);
                 }
             }
 
@@ -147,7 +147,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 foreach (var bccEmail in this.JobAlertEmailTemplateBCC.Split(';'))
                 {
-                    jobAlertEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
+                    jobAlertEmailNotificationSettings?.AddBCC(String.Empty, bccEmail);
                 }
             }
 
@@ -411,34 +411,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
-        private string GetJobAlertHtmlEmailContent()
-        {
-            string htmlEmailContent = String.Empty;
-            if (!String.IsNullOrEmpty(this.JobAlertEmailTemplateId))
-            {
-                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
-                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
-                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.JobAlertEmailTemplateId.ToUpper()));
-                htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
-                
-            }
-            return htmlEmailContent;
-        }
-
-        private string GetJobAlertHtmlEmailTitle()
-        {
-            string htmlEmailTitle = String.Empty;
-            if (!String.IsNullOrEmpty(this.JobAlertEmailTemplateId))
-            {
-                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
-                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
-                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.JobAlertEmailTemplateId.ToUpper()));
-                htmlEmailTitle = emailTemplateItem.GetValue("Title").ToString();
-                
-            }
-            return htmlEmailTitle;
-        }
-
+        
         private static void RemoveUnderScore(List<string> values)
         {
             if (values != null && values.Count > 0)
@@ -462,8 +435,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         public string JobAlertEmailTemplateProviderName
         {
-            get { return _emailTemplateProviderName; }
-            set { this._emailTemplateProviderName = value; }
+            get { return SitefinityHelper.GetCurrentSiteEmailTemplateProviderName(); }
         }
         public string JobAlertEmailTemplateId { get; set; }
         public string JobAlertEmailTemplateName { get; set; }

@@ -28,6 +28,8 @@ using System.Dynamic;
 using System.Collections.Specialized;
 using System.Text.RegularExpressions;
 using Ninject;
+using Telerik.Sitefinity.Services;
+using Telerik.Sitefinity.Multisite;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 {
@@ -404,13 +406,13 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         private string GetEmailHtmlContent(string emailTemplateId)
         {
             //return _jobApplicationService.GetHtmlEmailContent("6AB317D4-D674-4636-8481-014BC6F861E1", this.EmailTemplateProviderName, this._itemType);
-            return _jobApplicationService.GetHtmlEmailContent(emailTemplateId, this.EmailTemplateProviderName, this._itemType);
+            return SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(emailTemplateId);
         }
 
         private string GetEmailSubject(string emailTemplateId)
         {
             //return _jobApplicationService.GetHtmlEmailContent("6AB317D4-D674-4636-8481-014BC6F861E1", this.EmailTemplateProviderName, this._itemType);
-            return _jobApplicationService.GetHtmlEmailSubject(emailTemplateId, this.EmailTemplateProviderName, this._itemType);
+            return SitefinityHelper.GetCurrentSiteEmailTemplateTitle(emailTemplateId);
         }
 
         
@@ -422,8 +424,10 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         }
         public string EmailTemplateProviderName
         {
-            get { return _emailTemplateProviderName; }
-            set { this._emailTemplateProviderName = value; }
+            get {
+                return SitefinityHelper.GetCurrentSiteEmailTemplateProviderName();
+            }
+            
         }
         public string EmailTemplateId { get; set; }
         public string EmailTemplateName { get; set; }

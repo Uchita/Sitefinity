@@ -51,7 +51,7 @@ namespace JXTNext.Sitefinity.Connector
         {
             _headerValues = new Dictionary<string, string>();
             //_headerValues.Add(API_HTTP_HEADER_DOMAIN_KEY, session.Domain);
-            _headerValues.Add(API_HTTP_HEADER_DOMAIN_KEY, "winstonfox.jxtnext.net");
+            _headerValues.Add(API_HTTP_HEADER_DOMAIN_KEY, "www.jxtnext.io");
             if ( session.UserEmail != null)
                 _headerValues.Add(API_HTTP_HEADER_USER_KEY, session.UserEmail);
         }

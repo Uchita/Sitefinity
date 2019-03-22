@@ -1050,7 +1050,7 @@ header {
 
         .navbar-nav > li.dropdown {
             position: static;
-            float: none;
+            float: left;
             display: inline-block;
 
             &:hover, &:focus {

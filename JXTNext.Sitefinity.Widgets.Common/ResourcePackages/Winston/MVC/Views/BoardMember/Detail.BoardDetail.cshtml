@@ -13,8 +13,8 @@
 @using Telerik.Sitefinity.Modules.Pages;
 @using Telerik.Sitefinity.Pages.Model;
 
-<div class="page-section">
-    <div class="container">
+@*<div class="page-section">
+    <div class="container">*@
         <div class="row">
             <div class="col-md-4">
                 <div class="board-member-sidebar">
@@ -26,7 +26,9 @@
                     <div>
                         <div>
                             <div class="board-member-social">
-                                <a href="@Model.Item.Fields.LinkedinUrl" target="_blank">Connect on <span class="linkedin-logo"></span></a>
+                                @*<a href="@Model.Item.Fields.LinkedinUrl" target="_blank">Connect on <span class="linkedin-logo"></span></a>*@
+                                
+                                <a href="mailto:@Model.Item.Fields.EmailUrl" target="_blank">@Model.Item.Fields.EmailUrl@*Connect on <span class="linkedin-logo"></span>*@</a>
                             </div>
                         </div>
                     </div>
@@ -42,5 +44,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    @*</div>
+</div>*@

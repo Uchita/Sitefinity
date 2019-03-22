@@ -11,24 +11,18 @@
         imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
     }
 
-    <div class="row">
-        <div class="col-12 mt-4 mb-4">
-            <div class="cta-bg" data-parallax="scroll" data-image-src="@imageurl">
 
-            </div>
-        </div>
-    </div>
+    <p><img src="@imageurl" alt="@Model.Item.Fields.Title" ></p>
+
+
+
+    <h2 class="blog-title">@Model.Item.Fields.Title</h2>
 
 
     <p class="posted-date">
         @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy")
         @Html.CommentsCount(string.Empty, @Model.Item.DataItem)
     </p>
-
-    <h2 class="blog-title">@Model.Item.Fields.Title</h2>
-
-
-
 
 
     <div @Html.InlineEditingFieldAttributes("Summary", "LongText")><p>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</p></div>
@@ -49,7 +43,7 @@
     @Html.CommentsList(@Model.Item.DataItem)
 </div>
 
-<div class="related-blog">
+@*<div class="related-blog">
 
     <h2>You might also like</h2>
 
@@ -85,7 +79,7 @@
         }
 
     </div>
-</div>
+</div>*@
 
 <style>
 

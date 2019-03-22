@@ -93,7 +93,7 @@ function redirectHref() {
         }
     });
 
-    window.location.href = "/blogs?BlogParentCategories=" + BlogParentCategories.join() + "&BlogChildCategories=" + BlogChildCategories.join() + "&BlogParentIndustries=" + BlogParentIndustries.join() + "&BlogParentTypes=" + BlogParentTypes.join() + "&sortby=" + sortBy + "&keyword=" + keyword;
+    window.location.href = "/news?BlogParentCategories=" + BlogParentCategories.join() + "&BlogChildCategories=" + BlogChildCategories.join() + "&BlogParentIndustries=" + BlogParentIndustries.join() + "&BlogParentTypes=" + BlogParentTypes.join() + "&sortby=" + sortBy + "&keyword=" + keyword;
 
 }
 

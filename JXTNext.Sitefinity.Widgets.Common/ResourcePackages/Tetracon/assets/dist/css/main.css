@@ -9192,6 +9192,25 @@ footer {
   margin-bottom: 19px;
   font-size: 12px; }
 
+.right-filter-sidebar {
+  padding-bottom: 40px; }
+
+.blog-list-item {
+  margin-bottom: 4em; }
+  .blog-list-item h2 {
+    color: #666666;
+    text-transform: unset;
+    margin-bottom: 20px;
+    padding: 0 15px; }
+  .blog-list-item .list-desc {
+    margin-bottom: 30px; }
+  .blog-list-item .bg-image-wrap {
+    height: 140px; }
+    .blog-list-item .bg-image-wrap .bg-image {
+      height: 100%;
+      width: auto;
+      background-repeat: no-repeat; }
+
 .detail-padding {
   padding: 40px 15px; }
 

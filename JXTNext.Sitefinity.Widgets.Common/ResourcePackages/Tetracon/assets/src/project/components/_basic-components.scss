@@ -2870,6 +2870,9 @@ address.info-box {
     }
 }
 
+
+
+
 footer {
     font-size: 16px;
     font-size: 1.6rem;
@@ -2971,8 +2974,37 @@ footer {
     }
 }
 
-//Job-Detail
 
+.right-filter-sidebar {
+    padding-bottom: 40px;
+}
+
+.blog-list-item {
+    margin-bottom: 4em;
+
+    h2 {
+        color: #666666;
+        text-transform: unset;
+        margin-bottom: 20px;
+        padding: 0 15px;
+    }
+
+    .list-desc {
+        margin-bottom: 30px;
+    }
+
+
+    .bg-image-wrap {
+        height: 140px;
+
+        .bg-image {
+            height: 100%;
+            width: auto;
+            background-repeat: no-repeat;
+        }
+    }
+}
+//Job-Detail
 .detail-padding {
     padding: 40px 15px;
 }

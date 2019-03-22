@@ -232,12 +232,20 @@
         }
         var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
 
-        <div class="list-item blog-list-item col-12 col-sm-6">
+        <div class="list-item blog-list-item col-12 col-sm-12">
             <div class="list-item-inner">
-                <div class="bg-image-wrap"><div class="bg-image" style="background-image: url('@imageurl');"></div></div>
-                <div class="list-content">
-                    <div class="list-date">@item.GetDateTime("PublicationDate", "MMM d, yyyy")</div>
-                    <p class="list-desc">@item.Fields.Title</p>
+                <h2 class="list-title col-md-8 col-sm-12">@item.Fields.Title</h2>
+                <div class="list-content col-md-8 col-sm-12">
+                    @*<div class="list-date">@item.GetDateTime("PublicationDate", "MMM d, yyyy")</div>*@
+
+                    <div class="list-desc">
+                        @{
+                            var summary = Html.HtmlSanitize((string)item.Fields.Summary).ToString();
+                            string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 200 ? summary.Substring(0, 200) + "..." : summary;
+                        }
+                        @trimSummary
+                    </div>
+
                     @{
                         var categoriesName = "";
                     }
@@ -257,11 +265,13 @@
 
                         }
                     }
-                    <a href="@navigateUrl" class="btn btn-link">Read more</a>
-                    <div class="list-footer">
-                        Category <a href="" class="btn-link">@categoriesName</a>
-                    </div>
+                    <a href="@navigateUrl" class="btn btn-primary">Read more</a>
+                    @*<div class="list-footer">
+                Category <a href="" class="btn-link">@categoriesName</a>
+            </div>*@
                 </div>
+
+                <div class="bg-image-wrap col-md-4 col-sm-12"><div class="bg-image" style="background-image: url('@imageurl');"></div></div>
 
             </div>
         </div>

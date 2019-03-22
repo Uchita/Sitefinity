@@ -1974,8 +1974,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+     </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Layouts\HudsonAlt.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    
     <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

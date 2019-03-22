@@ -78,7 +78,7 @@
                                     </label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="tel" id="PhoneNumber" name="PhoneNumber" pattern="^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})" class="form-control" placeholder="Phone number" aria-describedby="phone-message" />
+                                    <input type="tel" id="PhoneNumber" name="PhoneNumber" pattern="@Html.Resource("regExpPhoneNumber", "Labels")" class="form-control" placeholder="Phone number" aria-describedby="phone-message" />
                                     <span class="text-muted"><em>@Html.Resource("phoneValidationMsg", "Labels")</em></span>
                                 </div>
                             </div>

@@ -1040,6 +1040,12 @@
     <EmbeddedResource Include="ResourcePackages\PCN\MVC\Views\JobEmail\DesignerView.Simple.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <None Include="ResourcePackages\PCN\MVC\Views\Event\List.EventsSingleWithImage.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\PCN\MVC\Views\News\List.NewsSingleWithImage.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\PCN\MVC\Views\News\List.NewsListCarousel.cshtml" />
     <None Include="ResourcePackages\PCN\MVC\Views\Testimonial\Detail.TestimonialCompact.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

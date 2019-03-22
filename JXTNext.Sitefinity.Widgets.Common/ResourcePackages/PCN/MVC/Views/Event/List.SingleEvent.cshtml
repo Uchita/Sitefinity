@@ -23,22 +23,38 @@
     }
     var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(featuredEvent, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
     var summary = (@Html.HtmlSanitize((string)featuredEvent.Fields.Summary)).ToString();
+
+    var title = (@Html.HtmlSanitize((string)featuredEvent.Fields.Title)).ToString();
+
     if (@Html.HtmlSanitize((string)featuredEvent.Fields.Summary).ToString().Length > 130)
     {
-        summary = (@Html.HtmlSanitize((string)featuredEvent.Fields.Summary)).ToString().Substring(0, 128);
+        summary = (@Html.HtmlSanitize((string)featuredEvent.Fields.Summary)).ToString().Substring(0, 128) + "...";
+    }
+    if (@Html.HtmlSanitize((string)featuredEvent.Fields.Title).ToString().Length > 24)
+    {
+        title = (@Html.HtmlSanitize((string)featuredEvent.Fields.Title)).ToString().Substring(0, 23) + "...";
     }
     <div class="white_panel">
         <div class="sub">
             <div class="image" style="background-image: url(@imageurl);"></div>
             <h4 class="sub_title">
                 <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">
-                    @Html.HtmlSanitize((string)featuredEvent.Fields.Title).ToString().Substring(0, (featuredEvent.Fields.Title.Length > 24) ? 24 : featuredEvent.Fields.Title.Length)
+                    @title
                 </a>
             </h4>
-            <div class="entry-meta hidden">
+            <div class="entry-meta">
                 @*<span class="author">By Author <a href="#" title='@DataResolver.Resolve(featuredEvent.DataItem, "Author", null)' rel="author">@DataResolver.Resolve(featuredEvent.DataItem, "Author", null)</a></span>
                     <span class="sep">|</span>*@
-                <span class="date">@featuredEvent.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
+
+
+                @if (featuredEvent.GetDateTime("EventStart", "MMM d, yyyy") == featuredEvent.GetDateTime("EventEnd", "MMM d, yyyy"))
+                {
+                    <span class="date">@featuredEvent.Fields.City | @featuredEvent.GetDateTime("EventStart", "MMM d, yyyy")</span>
+                }
+                else
+                {
+                    <span class="date">@featuredEvent.Fields.City | @featuredEvent.GetDateTime("EventStart", "MMM d, yyyy") to @featuredEvent.GetDateTime("EventEnd", "MMM d, yyyy")</span>
+                }
             </div>
             <p class="blue_text">
                 @summary.ToString().Substring(0, (summary.Length > 127) ? 127 : summary.Length)

@@ -22,16 +22,21 @@
     }
     var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(featuredNews, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
     var summary = (@Html.HtmlSanitize((string)featuredNews.Fields.Summary)).ToString();
+    var title = (@Html.HtmlSanitize((string)featuredNews.Fields.Title)).ToString();
     if (@Html.HtmlSanitize((string)featuredNews.Fields.Summary).ToString().Length > 130)
     {
-        summary = (@Html.HtmlSanitize((string)featuredNews.Fields.Summary)).ToString().Substring(0, 128);
+        summary = (@Html.HtmlSanitize((string)featuredNews.Fields.Summary)).ToString().Substring(0, 128) + "...";
+    }
+    if (@Html.HtmlSanitize((string)featuredNews.Fields.Title).ToString().Length > 24)
+    {
+        title = (@Html.HtmlSanitize((string)featuredNews.Fields.Title)).ToString().Substring(0, 23) + "...";
     }
     <div class="white_panel">
         <div class="sub">
             <div class="image" style="background-image: url(@imageurl);"></div>
             <h4 class="sub_title">
                 <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">
-                    @Html.HtmlSanitize((string)featuredNews.Fields.Title).ToString().Substring(0, (featuredNews.Fields.Title.Length > 24) ? 24 : featuredNews.Fields.Title.Length)
+                    @title
                 </a>
             </h4>
             <div class="entry-meta hidden">

@@ -9002,22 +9002,22 @@ select.hs-input {
     margin-bottom: 4.8rem;
 }
 
-.right-filter-sidebar .dropdown-tree h3 {
+.right-filter-sidebar .dropdown-tree h3, .blog-right-h3 {
     margin: 0px;
 }
 
-.right-filter-sidebar .dropdown-toggle {
-    font-size: 19px;
-    color: #000;
-    padding: 0 0 10px 0;
-    font-weight: 500;
-    border: none;
-    display: block !important;
-    text-align: left;
-    border-radius: 0px;
-    border-bottom: 1px solid #D8D8D8;
-    white-space: normal !important;
-}
+    .right-filter-sidebar .dropdown-toggle, .blog-right-h3 .dropdown-toggle {
+        font-size: 19px;
+        color: #000;
+        padding: 0 0 10px 0;
+        font-weight: 500;
+        border: none;
+        display: block !important;
+        text-align: left;
+        border-radius: 0px;
+        border-bottom: 1px solid #D8D8D8;
+        white-space: normal !important;
+    }
 
 .right-filter-sidebar ul {
     list-style: none;
@@ -9091,6 +9091,10 @@ select.hs-input {
         padding: 3px 0;
         position: relative;
     }
+
+        .right-filter-sidebar .dropdown-tree ul li a {
+            color: #000;
+        }
 
         .right-filter-sidebar .dropdown-tree ul li ul {
             padding: 0 0 0 15px;
@@ -10027,3 +10031,19 @@ ul.nav.nav-stacked li a:before {
         background-attachment: inherit;
     }
 }
+
+.salaryrangewrapper {
+    width: 100%;
+}
+
+    .salaryrangewrapper .leftLabel {
+        top: 27px !important;
+    }
+
+    .salaryrangewrapper .rightLabel {
+        top: 27px !important;
+    }
+
+    .salaryrangewrapper .nstSlider .rightGrip, .salaryrangewrapper .nstSlider .leftGrip, .salaryrangewrapper .nstSlider .bar {
+        background: #0088CF !important;
+    }

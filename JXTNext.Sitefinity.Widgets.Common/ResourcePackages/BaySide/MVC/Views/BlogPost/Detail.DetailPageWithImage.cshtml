@@ -8,12 +8,13 @@
 
     <h3 class="posted-by">
         By
-        @{var authorName = @DataResolver.Resolve(@Model.Item.DataItem, "Author", null); }
+        @*@{var authorName = @DataResolver.Resolve(@Model.Item.DataItem, "Author", null); }
         @if (authorName == "JXT Admin")
         {
             authorName = "Bayside Group";
         }
-        @authorName
+        @authorName*@
+        @Model.Item.Fields.AuthorName
     </h3>
 
     <p class="posted-date">

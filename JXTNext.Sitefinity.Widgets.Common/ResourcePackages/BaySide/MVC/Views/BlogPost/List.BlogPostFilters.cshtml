@@ -30,9 +30,9 @@
     var _dd_blogIndustries = _sectorTaxon1 as HierarchicalTaxon;
 
     var _dd_blogTypes = _sectorTaxon2 as HierarchicalTaxon;
-    }
+}
 
-    @*@foreach (var newscatitem in _dd_blogCategories.Subtaxa)
+@*@foreach (var newscatitem in _dd_blogCategories.Subtaxa)
     {
     <p>@newscatitem.Name</p>
     foreach (var subcategory in newscatitem.Subtaxa)
@@ -60,24 +60,24 @@
     }*@
 
 
-    <div class="filter-outer-wrapper right-filter-sidebar fadeInRight wow">
-        <div>
-            <select id="sortOrder" class="jxt-news-filter-summary">
-                <option value="latest">Sort by – Recent</option>
-                <option value="oldest">Sort by – Oldest Posts</option>
-                <option value="az">Sort by – Alphabetical A-Z</option>
-                <option value="za">Sort by – Alphabetical Z-A</option>
-            </select>
-        </div>
+<div class="filter-outer-wrapper right-filter-sidebar fadeInRight wow">
+    <div>
+        <select id="sortOrder" class="jxt-news-filter-summary">
+            <option value="latest">Sort by – Recent</option>
+            <option value="oldest">Sort by – Oldest Posts</option>
+            <option value="az">Sort by – Alphabetical A-Z</option>
+            <option value="za">Sort by – Alphabetical Z-A</option>
+        </select>
+    </div>
 
 
-        <div class="keywordfilter">
-            <h3>Search Keyword</h3>
-            <input type="text" id="txtSearch" placeholder="Search" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search'" />
+    <div class="keywordfilter">
+        <h3>Search Keyword</h3>
+        <input type="text" id="txtSearch" placeholder="Search" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search'" />
 
-        </div>
+    </div>
 
-        <div class="dropdown dropdown-tree navbar-collapse" id="BLOGCATEGORIES" data-prefixidtext="">
+    @*<div class="dropdown dropdown-tree navbar-collapse" id="BLOGCATEGORIES" data-prefixidtext="">
             <h3>
                 <a href="#lbl-CATEGORIES" class="dropdown-toggle" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="lbl-CATEGORIES">
                     <span class="dropdowntree-name">Categories</span>
@@ -114,9 +114,9 @@
 
                 }
             </ul>
-        </div>
+        </div>*@
 
-        <div class="dropdown dropdown-tree navbar-collapse" id="BLOGINDUSTRIES" data-prefixidtext="">
+    @*<div class="dropdown dropdown-tree navbar-collapse" id="BLOGINDUSTRIES" data-prefixidtext="">
             <h3>
                 <a href="#lbl-INDUSTRIES" class="dropdown-toggle" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="lbl-INDUSTRIES">
                     <span class="dropdowntree-name">Industries</span>
@@ -153,9 +153,9 @@
 
                 }
             </ul>
-        </div>
+        </div>*@
 
-        @*<div class="dropdown dropdown-tree navbar-collapse" id="BLOGTYPES" data-prefixidtext="">
+    @*<div class="dropdown dropdown-tree navbar-collapse" id="BLOGTYPES" data-prefixidtext="">
             <h3>
                 <a href="#lbl-TYPES" class="dropdown-toggle" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="lbl-TYPES">
                     <span class="dropdowntree-name">TYPE</span>
@@ -194,5 +194,5 @@
                 }
             </ul>
         </div>*@
-    </div>
-    <script src="~/ResourcePackages/BaySide/assets/js/blogfilter.js"></script>
+</div>
+<script src="~/ResourcePackages/BaySide/assets/js/blogfilter.js"></script>

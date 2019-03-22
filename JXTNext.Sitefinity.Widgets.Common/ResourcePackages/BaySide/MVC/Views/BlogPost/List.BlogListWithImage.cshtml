@@ -220,8 +220,6 @@
         }
     }
 }
-
-
 <div class="row">
     @foreach (var item in blogList)
     {
@@ -268,15 +266,22 @@
         <!-- .list-item/ -->
     }
 </div>
-@if (Model.ShowPager)
+@*<p>Total Items  : @Model.Items.Count()</p>*@
+@*<p>@Newtonsoft.Json.JsonConvert.SerializeObject(Model)</p>*@
+@*<p>Filtered Items : @blogList.Count()</p>*@
+@if (blogList.Count() == Model.Items.Count())
 {
-    @Html.Action("Index", "ContentPager", new
+    if (Model.ShowPager)
     {
-    currentPage = Model.CurrentPage,
-    totalPagesCount = Model.TotalPagesCount.Value,
-    redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
-    })
+        @Html.Action("Index", "ContentPager", new
+        {
+        currentPage = Model.CurrentPage,
+        totalPagesCount = Model.TotalPagesCount.Value,
+        redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
+        })
+    }
 }
+
 
 @helper ProcessCategories(HierarchicalTaxon taxon)
 {
@@ -311,49 +316,66 @@
             $("#txtSearch").val(unescape(keyword));
         }
 
-        var BlogParentCategories = GetQueryStringParams("BlogParentCategories");
-        if (BlogParentCategories != "undefined" && BlogParentCategories != null && BlogParentCategories + "" != "") {
-            var arr = BlogParentCategories.split(",");
-            for (var i = 0; i < arr.length; i++) {
-                // Trim the excess whitespace.
-                var id = arr[i].replace(/^\s*/, "").replace(/\s*$/, "");
-                // Add additional code here, such as:
-                $('#' + id).prop("checked", true);
+        var url = window.location.href;
+        var checkboxClass = url.substring(url.lastIndexOf("/") + 1);
+        if (checkboxClass != undefined && checkboxClass != "")
+            if (!isNaN(checkboxClass)) {
+                url = url.substring(0, url.lastIndexOf("/"));
+                checkboxClass = url.substring(url.lastIndexOf("/") + 1);
+                $('.' + checkboxClass).attr('checked', true);
             }
-        }
+            else {
+                if (checkboxClass.indexOf("?") > -1) {
+                    checkboxClass = checkboxClass.split("?")[0];
+                    $('.' + checkboxClass).attr('checked', true);
+                }
+                else {
+                    $('.' + checkboxClass).attr('checked', true);
+                }
+            }
+        //var BlogParentCategories = GetQueryStringParams("BlogParentCategories");
+        //if (BlogParentCategories != "undefined" && BlogParentCategories != null && BlogParentCategories + "" != "") {
+        //    var arr = BlogParentCategories.split(",");
+        //    for (var i = 0; i < arr.length; i++) {
+        //        // Trim the excess whitespace.
+        //        var id = arr[i].replace(/^\s*/, "").replace(/\s*$/, "");
+        //        // Add additional code here, such as:
+        //        $('#' + id).prop("checked", true);
+        //    }
+        //}
 
-        var BlogParentIndustries = GetQueryStringParams("BlogParentIndustries");
-        if (BlogParentIndustries != "undefined" && BlogParentIndustries != null && BlogParentIndustries + "" != "") {
-            var arr = BlogParentIndustries.split(",");
-            for (var i = 0; i < arr.length; i++) {
-                // Trim the excess whitespace.
-                var id = arr[i].replace(/^\s*/, "").replace(/\s*$/, "");
-                // Add additional code here, such as:
-                $('#' + id).prop("checked", true);
-            }
-        }
+        //var BlogParentIndustries = GetQueryStringParams("BlogParentIndustries");
+        //if (BlogParentIndustries != "undefined" && BlogParentIndustries != null && BlogParentIndustries + "" != "") {
+        //    var arr = BlogParentIndustries.split(",");
+        //    for (var i = 0; i < arr.length; i++) {
+        //        // Trim the excess whitespace.
+        //        var id = arr[i].replace(/^\s*/, "").replace(/\s*$/, "");
+        //        // Add additional code here, such as:
+        //        $('#' + id).prop("checked", true);
+        //    }
+        //}
 
-        var BlogParentTypes = GetQueryStringParams("BlogParentTypes");
-        if (BlogParentTypes != "undefined" && BlogParentTypes != null && BlogParentTypes + "" != "") {
-            var arr = BlogParentTypes.split(",");
-            for (var i = 0; i < arr.length; i++) {
-                // Trim the excess whitespace.
-                var id = arr[i].replace(/^\s*/, "").replace(/\s*$/, "");
-                // Add additional code here, such as:
-                $('#' + id).prop("checked", true);
-            }
-        }
+        //var BlogParentTypes = GetQueryStringParams("BlogParentTypes");
+        //if (BlogParentTypes != "undefined" && BlogParentTypes != null && BlogParentTypes + "" != "") {
+        //    var arr = BlogParentTypes.split(",");
+        //    for (var i = 0; i < arr.length; i++) {
+        //        // Trim the excess whitespace.
+        //        var id = arr[i].replace(/^\s*/, "").replace(/\s*$/, "");
+        //        // Add additional code here, such as:
+        //        $('#' + id).prop("checked", true);
+        //    }
+        //}
 
-        var BlogChildCategories = GetQueryStringParams("BlogChildCategories");
-        if (BlogChildCategories != "undefined" && BlogChildCategories != null && BlogChildCategories + "" != "") {
-            var arr = BlogChildCategories.split(",");
-            for (var i = 0; i < arr.length; i++) {
-                // Trim the excess whitespace.
-                var id = arr[i].replace(/^\s*/, "").replace(/\s*$/, "");
-                // Add additional code here, such as:
-                $('#' + id).prop("checked", true);
-            }
-        }
+        //var BlogChildCategories = GetQueryStringParams("BlogChildCategories");
+        //if (BlogChildCategories != "undefined" && BlogChildCategories != null && BlogChildCategories + "" != "") {
+        //    var arr = BlogChildCategories.split(",");
+        //    for (var i = 0; i < arr.length; i++) {
+        //        // Trim the excess whitespace.
+        //        var id = arr[i].replace(/^\s*/, "").replace(/\s*$/, "");
+        //        // Add additional code here, such as:
+        //        $('#' + id).prop("checked", true);
+        //    }
+        //}
 
     });
 

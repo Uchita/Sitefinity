@@ -2,14 +2,14 @@
 
 var sortBy;
 var keyword;
-var BlogParentCategories = [];
-var BlogChildCategories = [];
+//var BlogParentCategories = [];
+//var BlogChildCategories = [];
 
-var BlogParentIndustries = [];
-var BlogChildIndustries = [];
+//var BlogParentIndustries = [];
+//var BlogChildIndustries = [];
 
-var BlogParentTypes = [];
-var BlogChildTypes = [];
+//var BlogParentTypes = [];
+//var BlogChildTypes = [];
 //$(document).ready(function () {
 
 //    var sortvalue = getParameterByName("sortby");
@@ -33,72 +33,78 @@ $("#txtSearch").on('change', function (e) {
 
 function redirectHref() {
 
-    $('.parent-blog-category').each(function () {
-        if ($(this).is(":checked")) {
-            var index1 = BlogParentCategories.indexOf(this.id);
-            if (index1 < 0) {
-                BlogParentCategories.push(this.id);
-            }
-        }
-        else {
-            var index = BlogParentCategories.indexOf(this.id);
-            if (index > -1) {
-                BlogParentCategories.splice(index, 1);
-            }
-        }
-    });
+    //$('.parent-blog-category').each(function () {
+    //    if ($(this).is(":checked")) {
+    //        var index1 = BlogParentCategories.indexOf(this.id);
+    //        if (index1 < 0) {
+    //            BlogParentCategories.push(this.id);
+    //        }
+    //    }
+    //    else {
+    //        var index = BlogParentCategories.indexOf(this.id);
+    //        if (index > -1) {
+    //            BlogParentCategories.splice(index, 1);
+    //        }
+    //    }
+    //});
 
-    $('.child-blog-category').each(function () {
-        if ($(this).is(":checked")) {
-            var index1 = BlogChildCategories.indexOf(this.id);
-            if (index1 < 0) {
-                BlogChildCategories.push(this.id);
-            }
-        }
-        else {
-            var index = BlogChildCategories.indexOf(this.id);
-            if (index > -1) {
-                BlogChildCategories.splice(index, 1);
-            }
-        }
-    });
+    //$('.child-blog-category').each(function () {
+    //    if ($(this).is(":checked")) {
+    //        var index1 = BlogChildCategories.indexOf(this.id);
+    //        if (index1 < 0) {
+    //            BlogChildCategories.push(this.id);
+    //        }
+    //    }
+    //    else {
+    //        var index = BlogChildCategories.indexOf(this.id);
+    //        if (index > -1) {
+    //            BlogChildCategories.splice(index, 1);
+    //        }
+    //    }
+    //});
 
-    $('.parent-blog-industry').each(function () {
-        if ($(this).is(":checked")) {
-            var index1 = BlogParentIndustries.indexOf(this.id);
-            if (index1 < 0) {
-                BlogParentIndustries.push(this.id);
-            }
-        }
-        else {
-            var index = BlogParentIndustries.indexOf(this.id);
-            if (index > -1) {
-                BlogParentIndustries.splice(index, 1);
-            }
-        }
-    });
+    //$('.parent-blog-industry').each(function () {
+    //    if ($(this).is(":checked")) {
+    //        var index1 = BlogParentIndustries.indexOf(this.id);
+    //        if (index1 < 0) {
+    //            BlogParentIndustries.push(this.id);
+    //        }
+    //    }
+    //    else {
+    //        var index = BlogParentIndustries.indexOf(this.id);
+    //        if (index > -1) {
+    //            BlogParentIndustries.splice(index, 1);
+    //        }
+    //    }
+    //});
 
-    $('.parent-blog-type').each(function () {
-        if ($(this).is(":checked")) {
-            var index1 = BlogParentTypes.indexOf(this.id);
-            if (index1 < 0) {
-                BlogParentTypes.push(this.id);
-            }
-        }
-        else {
-            var index = BlogParentTypes.indexOf(this.id);
-            if (index > -1) {
-                BlogParentTypes.splice(index, 1);
-            }
-        }
-    });
+    //$('.parent-blog-type').each(function () {
+    //    if ($(this).is(":checked")) {
+    //        var index1 = BlogParentTypes.indexOf(this.id);
+    //        if (index1 < 0) {
+    //            BlogParentTypes.push(this.id);
+    //        }
+    //    }
+    //    else {
+    //        var index = BlogParentTypes.indexOf(this.id);
+    //        if (index > -1) {
+    //            BlogParentTypes.splice(index, 1);
+    //        }
+    //    }
+    //});
 
-    window.location.href = "/blogs?BlogParentCategories=" + BlogParentCategories.join() + "&BlogChildCategories=" + BlogChildCategories.join() + "&BlogParentIndustries=" + BlogParentIndustries.join() + "&BlogParentTypes=" + BlogParentTypes.join() + "&sortby=" + sortBy + "&keyword=" + keyword;
-
+    //window.location.href = "/blogs?BlogParentCategories=" + BlogParentCategories.join() + "&BlogChildCategories=" + BlogChildCategories.join() + "&BlogParentIndustries=" + BlogParentIndustries.join() + "&BlogParentTypes=" + BlogParentTypes.join() + "&sortby=" + sortBy + "&keyword=" + keyword;
+    var url = "";
+    if (window.location.href.indexOf("?") > -1) {
+        url = window.location.href.split("?")[0];
+    }
+    else {
+        url = window.location.href;
+    }
+    window.location.href = url + "?sortby=" + sortBy + "&keyword=" + keyword;
 }
 
 function refreshFilterSummary() {
-
     redirectHref();
 }
 
@@ -107,69 +113,69 @@ $('#sortOrder').on('change', function (e) {
     refreshFilterSummary();
 });
 
-$('.parent-blog-category').on('change', function (e) {
+//$('.parent-blog-category').on('change', function (e) {
 
-    if ($(this).is(":checked")) {
+//    if ($(this).is(":checked")) {
 
-        BlogParentCategories.push(this.id);
-    }
-    else {
-        var index = BlogParentCategories.indexOf(this.id);
-        if (index > -1) {
-            BlogParentCategories.splice(index, 1);
-        }
-    }
+//        BlogParentCategories.push(this.id);
+//    }
+//    else {
+//        var index = BlogParentCategories.indexOf(this.id);
+//        if (index > -1) {
+//            BlogParentCategories.splice(index, 1);
+//        }
+//    }
 
-    redirectHref();
-});
+//    redirectHref();
+//});
 
-$('.parent-blog-industry').on('change', function (e) {
+//$('.parent-blog-industry').on('change', function (e) {
 
-    if ($(this).is(":checked")) {
+//    if ($(this).is(":checked")) {
 
-        BlogParentIndustries.push(this.id);
-    }
-    else {
-        var index = BlogParentIndustries.indexOf(this.id);
-        if (index > -1) {
-            BlogParentIndustries.splice(index, 1);
-        }
-    }
+//        BlogParentIndustries.push(this.id);
+//    }
+//    else {
+//        var index = BlogParentIndustries.indexOf(this.id);
+//        if (index > -1) {
+//            BlogParentIndustries.splice(index, 1);
+//        }
+//    }
 
-    redirectHref();
-});
+//    redirectHref();
+//});
 
-$('.parent-blog-type').on('change', function (e) {
+//$('.parent-blog-type').on('change', function (e) {
 
-    if ($(this).is(":checked")) {
+//    if ($(this).is(":checked")) {
 
-        BlogParentTypes.push(this.id);
-    }
-    else {
-        var index = BlogParentTypes.indexOf(this.id);
-        if (index > -1) {
-            BlogParentTypes.splice(index, 1);
-        }
-    }
+//        BlogParentTypes.push(this.id);
+//    }
+//    else {
+//        var index = BlogParentTypes.indexOf(this.id);
+//        if (index > -1) {
+//            BlogParentTypes.splice(index, 1);
+//        }
+//    }
 
-    redirectHref();
-});
+//    redirectHref();
+//});
 
 
-$('.child-blog-category').on('change', function (e) {
+//$('.child-blog-category').on('change', function (e) {
 
-    if ($(this).is(":checked")) {
-        BlogChildCategories.push(this.id);
-    }
-    else {
-        var index = BlogChildCategories.indexOf(this.id);
-        if (index > -1) {
-            BlogChildCategories.splice(index, 1);
-        }
-    }
+//    if ($(this).is(":checked")) {
+//        BlogChildCategories.push(this.id);
+//    }
+//    else {
+//        var index = BlogChildCategories.indexOf(this.id);
+//        if (index > -1) {
+//            BlogChildCategories.splice(index, 1);
+//        }
+//    }
 
-    redirectHref();
-});
+//    redirectHref();
+//});
 
 
 

@@ -1,18 +1,35 @@
 ﻿@model Telerik.Sitefinity.Frontend.Taxonomies.Mvc.Models.TaxonomyViewModel
+@*<p><p>@Newtonsoft.Json.JsonConvert.SerializeObject(Model)</p></p>*@
 
-<ul class="@Model.CssClass list-unstyled">
-    @foreach (var taxon in Model.Taxa)
-    {
-        <li>
-            <a href="@taxon.Url">@taxon.Title</a>
+<div class="dropdown-tree">
+    <ul class="@Model.CssClass">
 
-            @if (Model.ShowItemCount)
-            {
-                
-                <span class="text-muted">@Html.Raw(string.Format("({0})", taxon.Count))</span>
-                
-            }
-        </li>
+        @foreach (var taxon in Model.Taxa)
+        {
 
-    }
-</ul>
+            var className = taxon.Url;
+            className = className.Substring(className.LastIndexOf("/") + 1);
+            <li>
+                <label for="@taxon.Title" onclick="window.location='@taxon.Url';">
+                    <input class="parent-blog-category @className" id="@taxon.Title" name="" type="checkbox" />
+                    <i></i>
+                    <span>
+                        @taxon.Title
+                    </span>
+                </label>
+            </li>
+            @*
+                <li>
+                    <a href="@taxon.Url" style="white-space: normal; display: block;">@taxon.Title</a>
+
+                    @if (Model.ShowItemCount)
+                    {
+
+                    <span class="text-muted">@Html.Raw(string.Format("({0})", taxon.Count))</span>
+
+                    }
+                </li>*@
+
+        }
+    </ul>
+</div>

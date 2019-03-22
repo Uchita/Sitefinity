@@ -3147,3 +3147,37 @@ address.info-box{
 background:#d7edf6;
     color: #669ab2;
 }
+
+h2 {
+    &.loc-title-head {
+        font-family: $global-font-family-heading;
+        
+        border-bottom: 2px solid $breadcrubms-link-separator;
+        padding: 0 0 5px;
+        margin-top:10px;
+        line-height: 48px;
+    }
+}
+
+.contactfrom {
+    background: $custom-for-bg;
+    padding: 10px 20px;
+    margin-bottom: 30px;
+
+    label {
+        color: white;
+    }
+}
+.contact-text-indent{
+    h4{
+        margin-left:30px;
+        &:first-child{
+            margin-bottom:30px;
+        }
+        @media(max-width:1024){
+            margin-left:0;
+
+        }
+    }
+
+}

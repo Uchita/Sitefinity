@@ -9691,6 +9691,28 @@ address.info-box {
   background: #d7edf6;
   color: #669ab2; }
 
+h2.loc-title-head {
+  font-family: "Playfair Display", serif;
+  border-bottom: 2px solid #2e2e2e;
+  padding: 0 0 5px;
+  margin-top: 10px;
+  line-height: 48px; }
+
+.contactfrom {
+  background: #11223e;
+  padding: 10px 20px;
+  margin-bottom: 30px; }
+  .contactfrom label {
+    color: white; }
+
+.contact-text-indent h4 {
+  margin-left: 30px; }
+  .contact-text-indent h4:first-child {
+    margin-bottom: 30px; }
+  @media (max-width: 1024) {
+    .contact-text-indent h4 {
+      margin-left: 0; } }
+
 /*#endregion Basic components */
 /*#region Breadcrumbs */
 ul.breadcrumb {

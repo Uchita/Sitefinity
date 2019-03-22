@@ -27,7 +27,7 @@
     }
 }
 
-<div class="row consultant-page" data-filtersector="@(string.Join(",", filterValues))">
+<div class="consultant-page consultant-address-widget @Model.CssClass" data-filtersector="@(string.Join(",", filterValues))">
 
     @if (Model.Item.Fields.Pic != null)
     {
@@ -41,7 +41,7 @@
         <img class="full-width" src="@imageThumbUrl" alt="@Model.Item.Fields.ConsultantName" />
     </div>*@
 
-    <div class="col-md-12 text-center">
+    <div class="text-center">
         <h2>Consultant</h2>
         @*<div class="contact-consultant-name color-highlight">@Html.HtmlSanitize((string)Model.Item.Fields.ConsultantName)</div>*@
 
@@ -87,20 +87,28 @@
 
 
         <div class="contact-consultant-contacts">
-            @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.Email))
-            {
-                <em class="far fa-envelope"></em><a href="mailto:@Model.Item.Fields.Email">@Model.Item.Fields.Email</a><br />
-            }
+
 
             @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber))
             {
                 <a href="tel:@Model.Item.Fields.PhoneNumber"><em class="fas fa-phone"></em>@Model.Item.Fields.PhoneNumber</a><br />
             }
 
-            @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
+
+            @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.MobilePhoneNumber))
             {
-                <a href="@Model.Item.Fields.LinkedInProfileUrl"><em class="fab fa-linkedin-in"></em>@Model.Item.Fields.LinkedInProfileName</a>
+                <a href="tel:@Model.Item.Fields.MobilePhoneNumber"><em class="fa fa-mobile"></em>@Model.Item.Fields.MobilePhoneNumber</a><br />
             }
+
+            @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.Email))
+            {
+                <em class="far fa-envelope"></em><a href="mailto:@Model.Item.Fields.Email">@Model.Item.Fields.Email</a><br />
+            }
+
+            @*@if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
+        {
+            <a href="@Model.Item.Fields.LinkedInProfileUrl"><em class="fab fa-linkedin-in"></em>@Model.Item.Fields.LinkedInProfileName</a>
+        }*@
         </div>
 
     </div>

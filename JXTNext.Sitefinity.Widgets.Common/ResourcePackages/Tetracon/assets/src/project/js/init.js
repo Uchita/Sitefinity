@@ -227,6 +227,22 @@ $(document).ready(function () {
         autoplay: true,
         autoplayTimeout: 7000,
     });
+
+ 
+    if ($(".vertical-scroll").length) {
+    $(".vertical-scroll").bxSlider({
+        infiniteLoop: true,
+        slideMargin: 40,
+        speed: 7000,
+        minSlides: 3,
+        maxSlides: 3,
+        mode: 'vertical',
+        controls: false,
+        ticker: true,
+        /*nextText: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+        prevText: '<i class="fa fa-angle-left" aria-hidden="true"></i>'*/
+        });
+    }
     
     $('.owl-consultants').owlCarousel({
         margin: 25,

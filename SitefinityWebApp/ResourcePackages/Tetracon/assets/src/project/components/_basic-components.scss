@@ -2,6 +2,8 @@
 blockquote {
     border-left-width: 1px;
 }
+
+
 // Felx layout
 .flex {
     display: flex;
@@ -68,7 +70,8 @@ blockquote {
         li {
             font-size: 16px;
             font-size: 1.6rem;
-            color: $global-text;
+            color: #666666;
+           
         }
     }
 
@@ -106,7 +109,7 @@ blockquote {
 
     .h3, h3 {
         font-size: 18px;
-        font-size: 1.8rem;
+        font-size: 2rem;
         font-family: $font-family-bold;
     }
 
@@ -1091,7 +1094,7 @@ header {
                     a {
                         font-family: $font-family-medium;
                         padding: 4px 20px;
-
+                        font-weight: bold;
 
                         &::after {
                             display: none;
@@ -1113,8 +1116,9 @@ header {
                             li {
                                 a {
                                     padding-left: 40px;
-                                    color: #666;
-                                    background-color: transparent;
+                                    color: #fff;
+                                    background: #666666;
+                                    opacity: 0.7;
 
                                     &:hover {
                                         color: #fff;
@@ -1181,11 +1185,13 @@ header {
         }
 
         .dropdown-menu li {
-            padding: 3px 0;
+            padding: 1px 0;
 
             & > a {
                 padding: 0;
-                color: $navigation-sublink-color;
+                color: #fff;
+                background: #666666;
+                opacity: 0.7;
 
                 &:hover,
                 &:focus,
@@ -1193,6 +1199,7 @@ header {
                     text-decoration: none;
                     background: $global-text-color;
                     color: #fff;
+
                 }
             }
 
@@ -1404,7 +1411,7 @@ header {
                 padding-right: 0;
                 padding-left: 0;
                 position: fixed;
-                background: $global-highlight-color;
+                background: $brightColor;
                 height: 100%;
                 top: 45px;
                 left: 100%;
@@ -1595,7 +1602,29 @@ main {
         margin-bottom: 0;
     }
 
-    ul {
+
+
+    .inside-left ul {
+        list-style: none;
+    }
+
+    .inside-left ul li:before {
+        content: "\25A0";
+        color: #7DC245;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+        top: -1px;
+        left: -3px;
+        position: relative;
+    }
+
+    .inside-left ul.list-unstyled li:before {
+        content: none;
+    }
+
+    list-unstyled ul {
+        list-style: none;
         margin-bottom: 30px;
     }
 

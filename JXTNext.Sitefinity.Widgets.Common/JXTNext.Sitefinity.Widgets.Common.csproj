@@ -251,6 +251,9 @@
     <Content Include="ResourcePackages\Tetracon\assets\src\project\js\init.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\src\project\js\jquery.bxslider.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Tetracon\assets\src\project\js\jquery.simplePagination.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -3430,6 +3433,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Tetracon\MVC\Views\Testimonial\List.TestimonialWithTeam.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\JobSearchResults\JobsLatestListScroll.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\MVC\Views\Testimonial\List.TestimonialWithTitleClients.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

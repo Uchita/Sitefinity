@@ -50,7 +50,7 @@ namespace JXTNext.Sitefinity.Connector
         private void ProcessHeaderValuesForSession(IRequestSession session)
         {
             _headerValues = new Dictionary<string, string>();
-            _headerValues.Add(API_HTTP_HEADER_DOMAIN_KEY, "au.hudson.com");
+            _headerValues.Add(API_HTTP_HEADER_DOMAIN_KEY, "tetracon.jxtnext.net");
             if( session.UserEmail != null)
                 _headerValues.Add(API_HTTP_HEADER_USER_KEY, session.UserEmail);
         }

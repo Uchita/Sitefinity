@@ -44,75 +44,70 @@
     }
 }
 
-<div>
-
-    @foreach (var item in Model.Items)
+@foreach (var item in Model.Items)
+{
+    if (@item.Fields.ItemDefaultUrl.Contains("magazine"))
     {
-        if (@item.Fields.ItemDefaultUrl.Contains("magazine"))
+
+
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+        if (@counter == 0)
         {
-
-
-            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
-            if (@counter == 0)
+            foreach (var relatedItem in item.Fields.BlogImage)
             {
-                foreach (var relatedItem in item.Fields.BlogImage)
-                {
-                    imageurl = (string)relatedItem.Fields.MediaUrl;
-                }
-                if (item.Fields.issue != null)
-                {
-                    foreach (var taxonissue in item.GetFlatTaxons("issue"))
-                    {
-                        issue = @taxonissue.Title.ToString().ToLower().Replace(" ", "-"); ;
-                    }
-                }
-                if (item.Fields.volume != null)
-                {
-                    foreach (var taxonvolume in item.GetFlatTaxons("volume"))
-                    {
-                        volume = @taxonvolume.Title.ToString().ToLower().Replace(" ", "-"); ;
-                    }
-                }
-
-                var summary = (@Html.HtmlSanitize((string)item.Fields.Summary)).ToString();
-                var title = (@Html.HtmlSanitize((string)item.Fields.Title)).ToString();
-                if (@Html.HtmlSanitize((string)item.Fields.Summary).ToString().Length > 130)
-                {
-                    summary = (@Html.HtmlSanitize((string)item.Fields.Summary)).ToString().Substring(0, 128) + "...";
-                }
-                if (@Html.HtmlSanitize((string)item.Fields.Title).ToString().Length > 24)
-                {
-                    title = (@Html.HtmlSanitize((string)item.Fields.Title)).ToString().Substring(0, 23) + "...";
-                }
-
-                <div class="white_panel">
-                    <div class="sub">
-                        <div class="image" style="background-image: url(@imageurl);"></div>
-                        <h4 class="sub_title">
-                            <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">
-                                @title
-                            </a>
-                        </h4>
-                        <div class="entry-meta hidden">
-                            <span class="date">@item.GetDateTime("PublicationDate", "MMM, yyyy")</span>
-                        </div>
-                        @*<p class="blue_text">@Html.HtmlSanitize((string)item.Fields.Summary)</p>*@
-                        <p class="blue_text">
-                            @summary
-                        </p>
-
-                    </div>
-                </div>
-
-
+                imageurl = (string)relatedItem.Fields.MediaUrl;
             }
+            if (item.Fields.issue != null)
+            {
+                foreach (var taxonissue in item.GetFlatTaxons("issue"))
+                {
+                    issue = @taxonissue.Title.ToString().ToLower().Replace(" ", "-"); ;
+                }
+            }
+            if (item.Fields.volume != null)
+            {
+                foreach (var taxonvolume in item.GetFlatTaxons("volume"))
+                {
+                    volume = @taxonvolume.Title.ToString().ToLower().Replace(" ", "-"); ;
+                }
+            }
+
+            var summary = (@Html.HtmlSanitize((string)item.Fields.Summary)).ToString();
+            var title = (@Html.HtmlSanitize((string)item.Fields.Title)).ToString();
+            if (@Html.HtmlSanitize((string)item.Fields.Summary).ToString().Length > 130)
+            {
+                summary = (@Html.HtmlSanitize((string)item.Fields.Summary)).ToString().Substring(0, 128) + "...";
+            }
+            if (@Html.HtmlSanitize((string)item.Fields.Title).ToString().Length > 24)
+            {
+                title = (@Html.HtmlSanitize((string)item.Fields.Title)).ToString().Substring(0, 23) + "...";
+            }
+
+            <div class="white_panel">
+                <div class="sub">
+                    <div class="image" style="background-image: url(@imageurl);"></div>
+                    <h4 class="sub_title">
+                        <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">
+                            @title
+                        </a>
+                    </h4>
+                    <div class="entry-meta hidden">
+                        <span class="date">@item.GetDateTime("PublicationDate", "MMM, yyyy")</span>
+                    </div>
+                    @*<p class="blue_text">@Html.HtmlSanitize((string)item.Fields.Summary)</p>*@
+                    <p class="blue_text">
+                        @summary
+                    </p>
+
+                </div>
+            </div>
+
 
         }
 
-        counter++;
     }
 
-
-</div>
+    counter++;
+}
 
 

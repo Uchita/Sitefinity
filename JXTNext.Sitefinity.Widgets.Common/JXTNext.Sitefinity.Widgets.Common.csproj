@@ -644,6 +644,9 @@
     <None Include="ResourcePackages\BaySide\assets\dist\fonts\sf-icon-font.woff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\BaySide\assets\doc\Bayside-Group-Ultimate-Interview-Guide.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\BaySide\assets\doc\BG-Customer-Service-Charter.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

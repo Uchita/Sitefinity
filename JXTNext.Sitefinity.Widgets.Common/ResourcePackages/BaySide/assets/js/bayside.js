@@ -240,9 +240,48 @@ $(document).ready(function () {
     }
 
 
-    if ($(location).attr('pathname') == "/workplace-relations-resources") {
-        $('.custom-active').addClass('active');
-    }
-
-
+    MakeActiveLinks($(location).attr('pathname'));
 });
+
+function MakeActiveLinks(currentLinkPath) {
+    if (currentLinkPath == "/workplace-relations-resources")
+        $('.custom-active').addClass('active');
+    else if (currentLinkPath == "/specialist-recruitment/our-industries")
+        $('.our-industries-active').addClass('active');
+    else if (currentLinkPath == "/contact")
+        $('.contact-active').addClass('active');
+    else if (currentLinkPath == "/resources/resume-templates")
+        $('.resume-template-active').addClass('active');
+    else if (currentLinkPath == "/resource/interview-tips")
+        $('.ultimate-interview-guide-active').addClass('active');
+    else if (currentLinkPath == "/resources/social-media-job-applicants")
+        $('.social-media-guide-active').addClass('active');
+    else if (currentLinkPath == "/employer-services")
+        $('.our-services-active').addClass('active');
+    else if (currentLinkPath == "/resources/career-new")
+        $('.career-new-active').addClass('active');
+    else if (currentLinkPath == "/career-resources")
+        $('.career-resources-active').addClass('active');
+    else if (currentLinkPath == "/blogs/-in-category/categories/blog-categories/careers")
+        $('.careers-news-active').addClass('active');
+    else if (currentLinkPath == "/blogs/-in-category/categories/blog-categories/workplace-relations")
+        $('.workplace-relations-news').addClass('active');
+    else if (currentLinkPath == "/blogs/-in-category/categories/blog-categories/employers")
+        $('.employer-news-active').addClass('active');
+    else if (currentLinkPath == "/employer-resources")
+        $('.employer-resources-active').addClass('active');
+    else if (currentLinkPath == "/about/learn-more")
+        $('.contact-active').addClass('active');
+    else if (currentLinkPath == "/find-talent")
+        $('.find-talent-active').addClass('active');
+    else if (currentLinkPath == "/jobs/advancedsearch")
+        $('.find-a-job-active').addClass('active');
+    else if (currentLinkPath == "/feedback")
+        $('.feedback-active').addClass('active');
+    else if (currentLinkPath == "/blogs")
+        $('.blog-class').addClass('active');
+    else if (currentLinkPath == "/register")
+        $('.register-class').addClass('active');
+    else if (currentLinkPath == "/login")
+        $('.login-class').addClass('active');
+}

@@ -22,7 +22,6 @@
                             <h2 class="text-white">@Html.HtmlSanitize(Model.Description)</h2>
                         }
                     }
-
                     @if (!string.IsNullOrEmpty(Model.ActionName))
                     {
                         if (Model.CssClass == "_blank")
@@ -31,7 +30,15 @@
                         }
                         else
                         {
-                            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary" role="button">@Model.ActionName</a>
+
+                            if (Model.Description == "Put your best foot forward. Download the Ultimate Interview Guide." && Model.ActionName == "Download")
+                            {
+                                <a href="/ResourcePackages/BaySide/assets/doc/Bayside-Group-Ultimate-Interview-Guide.pdf" class="btn btn-primary" role="button" download>@Model.ActionName</a>
+                            }
+                            else
+                            {
+                                <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-primary" role="button">@Model.ActionName</a>
+                            }
                         }
                     }
 

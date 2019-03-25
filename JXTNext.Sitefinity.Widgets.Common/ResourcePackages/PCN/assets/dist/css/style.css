@@ -1377,14 +1377,6 @@ button.read_btn:hover {
     padding: 40px 0;
 }
 
-    .blog_section h2,
-    h2.feature_article-heading {
-        margin-bottom: 25px;
-        font-size: 25px;
-        color: #42A3D9;
-        font-family: FuturaBT-Heavy;
-        text-transform: uppercase;
-    }
 
 .feature_article {
     margin-bottom: 55px;
@@ -5927,6 +5919,14 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
             vertical-align: top;
         }
 
+.blog_section h2,
+h2.feature_article-heading {
+    margin-bottom: 25px;
+    font-size: 25px;
+    color: #42A3D9;
+    font-family: FuturaBT-Heavy;
+    text-transform: uppercase;
+}
 /*-- News Page Slider --*/
 #wt-slider {
     width: 100%;

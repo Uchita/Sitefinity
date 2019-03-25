@@ -9,11 +9,11 @@
     <h3 class="posted-by">
         By
         @*@{var authorName = @DataResolver.Resolve(@Model.Item.DataItem, "Author", null); }
-        @if (authorName == "JXT Admin")
-        {
+            @if (authorName == "JXT Admin")
+            {
             authorName = "Bayside Group";
-        }
-        @authorName*@
+            }
+            @authorName*@
         @Model.Item.Fields.AuthorName
     </h3>
 
@@ -103,3 +103,15 @@
         top: -28%;
     }
 </style>
+
+<script>
+
+    $(document).ready(function () {
+        if ($('.cta-bg.blogimg img').attr('src') != "") {
+            $(".hero-banner").attr("data-image-src", $('.cta-bg.blogimg img').attr('src'));
+        }
+        $('h1.fadeInUp').html('');
+        //$('.br-1').removeClass("br-1");
+        $(".hero-banner").addClass('small-banner');
+    });
+</script>

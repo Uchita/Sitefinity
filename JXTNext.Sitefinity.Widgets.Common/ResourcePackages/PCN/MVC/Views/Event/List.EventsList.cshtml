@@ -27,7 +27,10 @@
     {
         model = model.Where(x => x.Fields.EventEnd.ToString("MMMMM yyyy").Contains(duration.Trim()));
     }
-    //model = model.Where(x => x.Fields.EventEnd > DateTime.Now);
+    else
+    {
+        model = model.Where(x => x.Fields.EventEnd > DateTime.Now);
+    }
     model = model.OrderBy(x => Convert.ToDateTime(x.Fields.EventStart));
 }
 <div class="archive-postlist @Model.CssClass">

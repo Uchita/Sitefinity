@@ -278,8 +278,10 @@ function MakeActiveLinks(currentLinkPath) {
         $('.find-a-job-active').addClass('active');
     else if (currentLinkPath == "/feedback")
         $('.feedback-active').addClass('active');
-    else if (currentLinkPath == "/blogs")
-        $('.blog-class').addClass('active');
+    else if (currentLinkPath == "/blogs") {
+        $('.blog-class-top').addClass('active');
+        $('.blog-class').addClass('fadeInRight wow');
+    }
     else if (currentLinkPath == "/register")
         $('.register-class').addClass('active');
     else if (currentLinkPath == "/login")

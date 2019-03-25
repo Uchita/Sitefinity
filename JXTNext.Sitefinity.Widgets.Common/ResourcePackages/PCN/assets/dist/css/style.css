@@ -6250,8 +6250,17 @@ h2.feature_article-heading {
         min-height: 57px;
     }
 
+    .archive-postlist .sub {
+        min-height: 100%;
+        padding-bottom: 40px;
+        position: relative;
+    }
+
     .archive-postlist .entry-footer {
         padding: 0 8px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
     }
 
         .archive-postlist .entry-footer .read_btn span {

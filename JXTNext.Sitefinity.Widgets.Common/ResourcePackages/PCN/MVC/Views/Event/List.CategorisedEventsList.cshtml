@@ -13,8 +13,8 @@
     var Json = JsonConvert.SerializeObject(Model);
     var i = 0;
     var model = Model.Items;
-    // model = model.Where(x => x.Fields.EventEnd > DateTime.Now);
-    model = model = model.OrderByDescending(x => Convert.ToDateTime(x.Fields.EventStart));
+    model = model.Where(x => x.Fields.EventEnd > DateTime.Now);
+    model = model.OrderByDescending(x => Convert.ToDateTime(x.Fields.EventStart));
 }
 
 @*<h3 class="title-border">Latest Posts</h3>*@

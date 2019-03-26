@@ -31,7 +31,7 @@
 @{
     Dictionary<Guid, string> catgeoryListDictionary = new Dictionary<Guid, string>();
     var managerArticle1 = TaxonomyManager.GetManager();
-    var articleTaxonomy1 = managerArticle1.GetTaxonomies<HierarchicalTaxonomy>().Where(t => t.Name == "Categories").SingleOrDefault();
+    var articleTaxonomy1 = managerArticle1.GetTaxonomies<HierarchicalTaxonomy>().Where(t => t.Name.ToLower() == "Categories").FirstOrDefault();
     List<Taxon> topLovelTaxa1 = new List<Taxon>();
     if (articleTaxonomy1 != null)
     {

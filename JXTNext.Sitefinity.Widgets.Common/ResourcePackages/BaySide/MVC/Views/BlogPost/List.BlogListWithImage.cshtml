@@ -1,5 +1,4 @@
 @model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
-
 @using Telerik.Sitefinity;
 @using Telerik.Sitefinity.Frontend.Blogs.Mvc.Helpers;
 @using Telerik.Sitefinity.Frontend.Blogs.Mvc.Models.Blog;
@@ -8,11 +7,6 @@
 @using Telerik.Sitefinity.Model;
 @using Telerik.Sitefinity.Taxonomies;
 @using Telerik.Sitefinity.Taxonomies.Model;
-
-
-
-
-
 @using Telerik.Sitefinity.Web.DataResolving;
 
 @using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
@@ -32,126 +26,19 @@
 
 
 @Html.Script(ScriptRef.JQuery, "top", false)
-@{
-    List<Taxon>
-    _cates = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.GetTopLevelCategories();
-
-    Taxon _sectorTaxon = _cates.Where(c => c.Title.ToUpper() == "BLOG CATEGORIES").FirstOrDefault();
-
-    Taxon _sectorTaxon1 = _cates.Where(c => c.Title.ToUpper() == "BLOG INDUSTRIES").FirstOrDefault();
-
-    Taxon _sectorTaxon2 = _cates.Where(c => c.Title.ToUpper() == "BLOG TYPE").FirstOrDefault();
-
-    var _dd_blogCategories = _sectorTaxon as HierarchicalTaxon;
-
-    var _dd_blogIndustries = _sectorTaxon1 as HierarchicalTaxon;
-
-    var _dd_blogTypes = _sectorTaxon2 as HierarchicalTaxon;
-}
-
-
 
 @{
-
-    var BlogParentCategories = Request.QueryString["BlogParentCategories"];
-    var BlogChildCategories = Request.QueryString["BlogChildCategories"];
-
-    var BlogParentIndustries = Request.QueryString["BlogParentIndustries"];
-    var BlogParentTypes = Request.QueryString["BlogParentTypes"];
 
     var sortby = Request.QueryString["sortby"];
     var reqkeywords = Request.QueryString["keyword"];
 
-
-
     IEnumerable<ItemViewModel> blogList = Model.Items;
-
-
-    if (BlogParentTypes != "undefined" && BlogParentTypes + "" != "")
-    {
-        List<ItemViewModel> filteredBlogList = new List<ItemViewModel>();
-        List<string>
-        BlogParentTypesGuid = BlogParentTypes.Split(',').ToList();
-
-        foreach (var blog in blogList)
-        {
-            foreach (var c in blog.Fields.Category)
-            {
-                if (BlogParentTypesGuid.Any(str => str.Contains(c.ToString())))
-                {
-                    filteredBlogList.Add(blog);
-                }
-            }
-        }
-
-        blogList = filteredBlogList.AsEnumerable();
-    }
-
-    if (BlogParentIndustries != "undefined" && BlogParentIndustries + "" != "")
-    {
-        List<ItemViewModel> filteredBlogList = new List<ItemViewModel>();
-        List<string>
-        BlogParentIndustriesGuid = BlogParentIndustries.Split(',').ToList();
-
-        foreach (var blog in blogList)
-        {
-            foreach (var c in blog.Fields.Category)
-            {
-                if (BlogParentIndustriesGuid.Any(str => str.Contains(c.ToString())))
-                {
-                    filteredBlogList.Add(blog);
-                }
-            }
-        }
-
-        blogList = filteredBlogList.AsEnumerable();
-    }
-
-    if (BlogParentCategories != "undefined" && BlogParentCategories + "" != "")
-    {
-        List<ItemViewModel> filteredBlogList = new List<ItemViewModel>();
-        List<string>
-        BlogParentCategoriessGuid = BlogParentCategories.Split(',').ToList();
-
-        foreach (var blog in blogList)
-        {
-            foreach (var c in blog.Fields.Category)
-            {
-
-                if (BlogParentCategoriessGuid.Any(str => str.Contains(c.ToString())))
-                {
-                    filteredBlogList.Add(blog);
-                }
-            }
-        }
-
-        blogList = filteredBlogList.AsEnumerable();
-    }
-
-    if (BlogChildCategories != "undefined" && BlogChildCategories + "" != "")
-    {
-        List<ItemViewModel> filteredBlogList = new List<ItemViewModel>();
-        List<string>
-        BlogChildCategoriesGuid = BlogChildCategories.Split(',').ToList();
-
-        foreach (var blog in blogList)
-        {
-            foreach (var c in blog.Fields.Category)
-            {
-                if (BlogChildCategoriesGuid.Any(str => str.Contains(c.ToString())))
-                {
-                    filteredBlogList.Add(blog);
-                }
-            }
-        }
-
-        blogList = filteredBlogList.AsEnumerable();
-    }
 
     if (reqkeywords != "undefined" && reqkeywords + "" != "")
     {
         blogList = blogList.Where(c => c.Fields.Title.ToString().ToLower().Contains(reqkeywords.ToString().ToLower()) || c.Fields.Summary.ToString().ToLower().Contains(reqkeywords.ToString().ToLower()));
     }
+
     if (sortby != "undefined" && sortby + "" != "")
     {
         switch (sortby)
@@ -174,15 +61,10 @@
         }
     }
 
-    Dictionary<Guid, string>
-        catgeoryListDictionary = new Dictionary<Guid, string>
-            ();
+    Dictionary<Guid, string> catgeoryListDictionary = new Dictionary<Guid, string>();
     var managerArticle1 = TaxonomyManager.GetManager();
-    var articleTaxonomy1 = managerArticle1.GetTaxonomies<HierarchicalTaxonomy>
-        ().Where(t => t.Name == "Categories").SingleOrDefault();
-    List<Taxon>
-        topLovelTaxa1 = new List<Taxon>
-            ();
+    var articleTaxonomy1 = managerArticle1.GetTaxonomies<HierarchicalTaxonomy>().Where(t => t.Name.ToLower() == "Categories").FirstOrDefault();
+    List<Taxon> topLovelTaxa1 = new List<Taxon>();
     if (articleTaxonomy1 != null)
     {
         foreach (var taxon in articleTaxonomy1.Taxa)
@@ -194,7 +76,6 @@
         }
         foreach (var taxon in topLovelTaxa1)
         {
-
             var hierarchicalTaxon1 = taxon as HierarchicalTaxon;
             catgeoryListDictionary.Add(@taxon.Id, @taxon.Title);
             foreach (var it in hierarchicalTaxon1.Subtaxa)
@@ -220,52 +101,59 @@
         }
     }
 }
-<div class="row">
-    @foreach (var item in blogList)
-    {
-        var imageurl = "";
-        foreach (var relatedItem in item.Fields.BlogImage)
+@if (blogList.Count() > 0)
+{
+    <div class="row">
+        @foreach (var item in blogList)
         {
-            imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
-        }
-        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+            var imageurl = "";
+            foreach (var relatedItem in item.Fields.BlogImage)
+            {
+                imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+            }
+            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
 
-        <div class="list-item blog-list-item col-12 col-sm-6 fadeInUp wow">
-            <div class="list-item-inner">
-                <div class="bg-image-wrap"><div class="bg-image" style="background-image: url('@imageurl');"></div></div>
-                <div class="list-content">
-                    <div class="list-date">@item.GetDateTime("PublicationDate", "MMM d, yyyy")</div>
-                    <p class="list-desc">@item.Fields.Title</p>
-                    @{
-                        var categoriesName = "";
-                    }
-                    @foreach (var c in item.Fields.Category)
-                    {
-
-                        if (catgeoryListDictionary.ContainsKey((Guid)c))
-                        {
-                            if (string.IsNullOrEmpty(categoriesName))
-                            {
-                                categoriesName = @catgeoryListDictionary[c];
-                            }
-                            else
-                            {
-                                categoriesName += ", " + @catgeoryListDictionary[c];
-                            }
-
+            <div class="list-item blog-list-item col-12 col-sm-6 fadeInUp wow">
+                <div class="list-item-inner">
+                    <div class="bg-image-wrap"><div class="bg-image" style="background-image: url('@imageurl');"></div></div>
+                    <div class="list-content">
+                        <div class="list-date">@item.GetDateTime("PublicationDate", "MMM d, yyyy")</div>
+                        <p class="list-desc">@item.Fields.Title</p>
+                        @{
+                            var categoriesName = "";
                         }
-                    }
-                    <a href="@navigateUrl" class="btn btn-link">Read more</a>
-                    <div class="list-footer">
-                        Category <a href="" class="btn-link">@categoriesName</a>
-                    </div>
-                </div>
+                        @foreach (var c in item.Fields.Category)
+                        {
 
+                            if (catgeoryListDictionary.ContainsKey((Guid)c))
+                            {
+                                if (string.IsNullOrEmpty(categoriesName))
+                                {
+                                    categoriesName = @catgeoryListDictionary[c];
+                                }
+                                else
+                                {
+                                    categoriesName += ", " + @catgeoryListDictionary[c];
+                                }
+
+                            }
+                        }
+                        <a href="@navigateUrl" class="btn btn-link">Read more</a>
+                        <div class="list-footer">
+                            Category <a href="" class="btn-link">@categoriesName</a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </div>
-        <!-- .list-item/ -->
-    }
-</div>
+            <!-- .list-item/ -->
+        }
+    </div>
+}
+else
+{
+    <div class="row">No Records Found</div>
+}
 @*<p>Total Items  : @Model.Items.Count()</p>*@
 @*<p>@Newtonsoft.Json.JsonConvert.SerializeObject(Model)</p>*@
 @*<p>Filtered Items : @blogList.Count()</p>*@
@@ -279,22 +167,6 @@
         totalPagesCount = Model.TotalPagesCount.Value,
         redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
         })
-    }
-}
-
-
-@helper ProcessCategories(HierarchicalTaxon taxon)
-{
-    /**/
-
-    if (taxon != null)
-    {
-        <p>@taxon.Title</p>
-        foreach (var subTaxon in taxon.Subtaxa)
-        {
-            //Recursive call
-            @ProcessCategories(subTaxon);
-        }
     }
 }
 

@@ -241,6 +241,12 @@ $(document).ready(function () {
 
 
     MakeActiveLinks($(location).attr('pathname'));
+
+
+    $('a.social-download').attr('download', '');
+    $('a.resume-templates-btn1').attr('download', '');
+    $('a.resume-templates-btn2').attr('download', '');
+    $('a.resume-templates-btn3').attr('download', '');
 });
 
 function MakeActiveLinks(currentLinkPath) {

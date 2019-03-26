@@ -371,7 +371,7 @@
                                                         }
                                                         else if (node.Url == "/resources/career-new/career-advice")
                                                         {
-                                                            <a type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) career-resources-active" href="/blogs/-in-category/categories/blog-categories/careers">@node.Title</a>
+                                                            <a type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) career-resources-active" href="@childnode.Url">@node.Title</a>
                                                         }
                                                         else
                                                         {

@@ -297,6 +297,7 @@
                     success: function (response) {
                         $("#resultsPagePartialContent").empty().html(response.jobResults);
                         $("#filtersPagePartialContent").empty().html(response.jobResultsFilter);
+                        processCustomFunction();
                     },
                     error: function (response) {
                         console.log(response);

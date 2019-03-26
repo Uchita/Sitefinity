@@ -24,18 +24,21 @@
             {
                 <div class="item">
                     <div class="testimonial-content">
-                        @if (item.Fields.Quote.Length > 180)
-                        {
+                        @*@if (item.Fields.Quote.Length > 270)
+                            {
                             <p>
-                                @item.Fields.Quote.Substring(0, 180)...
+                                @item.Fields.Quote.Substring(0, 270)...
                             </p>
-                        }
-                        else
-                        {
+                            }
+                            else
+                            {
                             <p>
                                 @item.Fields.Quote
                             </p>
-                        }
+                            }*@
+                        <p>
+                            @item.Fields.Quote
+                        </p>
                         <h4 class="user-name">@item.Fields.By</h4>
                     </div>
                 </div>

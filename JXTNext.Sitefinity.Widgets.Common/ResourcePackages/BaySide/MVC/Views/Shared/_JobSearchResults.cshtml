@@ -29,8 +29,8 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-lg-12 mb-2">Receive new jobs for this search by email.</div>
+        <div class="row" style="display:none;">
+            <div class="col-12 col-lg-12 mb-2" style="display:none;">Receive new jobs for this search by email.</div>
         </div>
         <div class="row">
             <div class="col-12 col-lg-6">
@@ -414,10 +414,10 @@
 
                 lis += '<li class="pagePrev pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link prev-btn" disabled data-page="0"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M10.02 6L8.61 7.41 13.19 12l-4.58 4.59L10.02 18l6-6-6-6z"></path></svg ></span ></a></li>';
 
-                //dot page jump previous
-                if (startPage > 1) {
-                    lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + (startPage - 1) + '">...</a></li>';
-                }
+                ////dot page jump previous
+                //if (startPage > 1) {
+                //    lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + (startPage - 1) + '">...</a></li>';
+                //}
 
                 for (var i = startPage; i <= highestPage; i++) {
                     if (i < (startPage + pageJumpVal) && highestPage >= parseInt(PageNumber)) {
@@ -426,10 +426,10 @@
                     }
                 }
 
-                //dot page jump next
-                if (highestPage >= parseInt(PageNumber) + 1 && highestPage >= (startPage + pageJumpVal)) {
-                    lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + (startPage + pageJumpVal) + '">...</a></li>';
-                }
+                ////dot page jump next
+                //if (highestPage >= parseInt(PageNumber) + 1 && highestPage >= (startPage + pageJumpVal)) {
+                //    lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + (startPage + pageJumpVal) + '">...</a></li>';
+                //}
 
                 lis += '<li class="pageNext pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link next-btn" data-page="2"><span aria-hidden="true"><svg xmlns = "http://www.w3.org/2000/svg" width = "20" height = "20" viewBox = "0 0 24 24" ><path d="M10.02 6L8.61 7.41 13.19 12l-4.58 4.59L10.02 18l6-6-6-6z"></path></svg ></span ></a></li>';
                 $('#pager ul').html(lis);

@@ -21,12 +21,15 @@
         <div class="col-md-5">
             @if (Model.Item.Fields.Pic != null)
             {
-            <figure>
-                <img class="consultant-img img-responsive" src="@MediaContentExtensions.ResolveThumbnailUrl(Model.Item.Fields.Pic.DataItem, "thumb350")">
-                <figcaption>
-                    <a class="btn-small" href="javascript:void(0)" title="Follow this recruiter">CONNECT ME ON LINKEDIN</a>
-                </figcaption>
-            </figure>
+                <figure>
+                    <img class="consultant-img img-responsive" src="@MediaContentExtensions.ResolveThumbnailUrl(Model.Item.Fields.Pic.DataItem, "thumb350")">
+                    @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
+                    {
+                        <figcaption>
+                            <a class="btn-small" href="@Model.Item.Fields.LinkedInProfileUrl" rel="noopener" target="_blank" title="Follow this recruiter">CONNECT WITH ME ON LINKEDIN</a>
+                        </figcaption>
+                    }
+                </figure>
             }
 
             <div class="clearfix"></div>
@@ -36,18 +39,18 @@
                 <p>
                     @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber))
                     {
-                    <a href="tel:@Model.Item.Fields.PhoneNumber" title="Call Us"><i aria-hidden="true" class="fa fa-phone"></i>@Model.Item.Fields.PhoneNumber</a>
+                        <a href="tel:@Model.Item.Fields.PhoneNumber" title="Call Us"><i aria-hidden="true" class="fa fa-phone"></i>@Model.Item.Fields.PhoneNumber</a>
                     }<br />
 
                     @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.Email))
                     {
-                    <a href="mailto:@Model.Item.Fields.Email" title="Mail Us"><i aria-hidden="true" class="fa fa-envelope"></i>@Model.Item.Fields.Email</a>
+                        <a href="mailto:@Model.Item.Fields.Email" title="Mail Us"><i aria-hidden="true" class="fa fa-envelope"></i>@Model.Item.Fields.Email</a>
 
                     }
                     <br />
                     @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
                     {
-                    <a href="@Model.Item.Fields.LinkedInProfileUrl" rel="noopener" target="_blank" title="Linkedin"><i aria-hidden="true" class="fab fa-linkedin-in"><span class="hidden">icon</span></i> </a>
+                        <a href="@Model.Item.Fields.LinkedInProfileUrl" rel="noopener" target="_blank" title="Linkedin"><i aria-hidden="true" class="fab fa-linkedin-in"><span class="hidden">icon</span></i> </a>
                     }
                 </p>
 
@@ -58,20 +61,12 @@
             <h3>@Html.HtmlSanitize((string)Model.Item.Fields.ConsultantName)</h3>
             @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
             {
-            <span><a href="@Model.Item.Fields.LinkedInProfileUrl" target="_blank" title="linkedin"><i class="fab fa-linkedin-in"><!-- linkedin --></i></a></span>
-            }
-            else
-            {
-            <span><a href="javascript:void(0);" title="linkedin"><i class="fab fa-linkedin-in"><!-- linkedin --></i></a></span>
+                <span><a href="@Model.Item.Fields.LinkedInProfileUrl" target="_blank" title="linkedin"><i class="fab fa-linkedin-in"><!-- linkedin --></i></a></span>
             }
 
             @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.TwitterProfileUrl))
             {
-            <span><a href="@Model.Item.Fields.TwitterProfileUrl" target="_blank" title="twitter"><i class="fab fa-twitter"><!-- twitter --></i></a></span>
-            }
-            else
-            {
-            @*<span><a href="javascript:void(0);" title="twitter"><i class="fab fa-twitter"><!-- twitter --></i></a></span>*@
+                <span><a href="@Model.Item.Fields.TwitterProfileUrl" target="_blank" title="twitter"><i class="fab fa-twitter"><!-- twitter --></i></a></span>
             }
 
             <p class="job-title">@Html.HtmlSanitize((string)Model.Item.Fields.Position)</p>

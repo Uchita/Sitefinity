@@ -88,7 +88,7 @@
                     <div class="image" style="background-image: url(@imageurl);"></div>
                     <h4 class="sub_title">
                         <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">
-                            @title
+                            @Html.HtmlSanitize((string)item.Fields.Title)
                         </a>
                     </h4>
                     <div class="entry-meta hidden">
@@ -96,7 +96,7 @@
                     </div>
                     @*<p class="blue_text">@Html.HtmlSanitize((string)item.Fields.Summary)</p>*@
                     <p class="blue_text">
-                        @summary
+                        @Html.HtmlSanitize((string)item.Fields.Summary)
                     </p>
 
                 </div>

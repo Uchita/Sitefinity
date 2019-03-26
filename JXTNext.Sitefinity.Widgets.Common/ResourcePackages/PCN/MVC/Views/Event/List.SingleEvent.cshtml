@@ -39,7 +39,7 @@
             <div class="image" style="background-image: url(@imageurl);"></div>
             <h4 class="sub_title">
                 <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">
-                    @title
+                    @Html.HtmlSanitize((string)featuredEvent.Fields.Title)
                 </a>
             </h4>
             <div class="entry-meta">
@@ -57,7 +57,7 @@
                 }
             </div>
             <p class="blue_text">
-                @summary.ToString().Substring(0, (summary.Length > 127) ? 127 : summary.Length)
+                @Html.HtmlSanitize((string)featuredEvent.Fields.Summary)
             </p>
             @*<div class="action_link">
                     <a href="@navigateUrl">Read Events</a>

@@ -14,6 +14,52 @@
 
 @Html.Script(ScriptRef.JQuery, "top", false)
 
+
+@{
+    List<Taxon>
+    _cates = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.GetTopLevelCategories();
+
+    Taxon _sectorTaxon = _cates.Where(c => c.Title.ToUpper() == "BLOG CATEGORIES").FirstOrDefault();
+
+    Taxon _sectorTaxon1 = _cates.Where(c => c.Title.ToUpper() == "BLOG INDUSTRIES").FirstOrDefault();
+
+    Taxon _sectorTaxon2 = _cates.Where(c => c.Title.ToUpper() == "BLOG TYPE").FirstOrDefault();
+
+    var _dd_blogCategories = _sectorTaxon as HierarchicalTaxon;
+
+    var _dd_blogIndustries = _sectorTaxon1 as HierarchicalTaxon;
+
+    var _dd_blogTypes = _sectorTaxon2 as HierarchicalTaxon;
+}
+
+@*@foreach (var newscatitem in _dd_blogCategories.Subtaxa)
+    {
+    <p>@newscatitem.Name</p>
+    foreach (var subcategory in newscatitem.Subtaxa)
+    {
+    <p>@subcategory.Name</p>
+    }
+    }
+
+    @foreach (var newscatitem in _dd_blogIndustries.Subtaxa)
+    {
+    <p>@newscatitem.Name</p>
+    foreach (var subcategory in newscatitem.Subtaxa)
+    {
+    <p>@subcategory.Name</p>
+    }
+    }
+
+    @foreach (var newscatitem in _dd_blogTypes.Subtaxa)
+    {
+    <p>@newscatitem.Name</p>
+    foreach (var subcategory in newscatitem.Subtaxa)
+    {
+    <p>@subcategory.Name</p>
+    }
+    }*@
+
+
 <div>
     <div>
         <select id="sortOrder" class="jxt-news-filter-summary">

@@ -6,25 +6,25 @@
             <div class="col-12 col-md-6 pt-5 pb-5 text-margin-left fadeInLeft wow">
                 @if (!string.IsNullOrEmpty(Model.Heading))
                 {
-                    if (Model.Heading == "Customer Service Charter")
-                    {
-                        <h2 id="CustomerServiceCharter">@Html.HtmlSanitize(Model.Heading)</h2>
-                    }
-                    else
-                    {
-                        <h2>@Html.HtmlSanitize(Model.Heading)</h2>
-                    }
+                if (Model.Heading == "Customer Service Charter")
+                {
+                <h2 id="CustomerServiceCharter">@Html.HtmlSanitize(Model.Heading)</h2>
+                }
+                else
+                {
+                <h2>@Html.HtmlSanitize(Model.Heading)</h2>
+                }
                 }
                 <p>
                     @Html.HtmlSanitize(Model.Description)
                 </p>
                 @if (Model.ActionName == "Learn more")
                 {
-                    <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-outline-primary mt-4">@Model.ActionName</a>
+                <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-outline-primary mt-4">@Model.ActionName</a>
                 }
                 else
                 {
-                    <a target="_blank" href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-outline-primary mt-4">@Model.ActionName</a>
+                <a target="_blank" href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-outline-primary mt-4">@Model.ActionName</a>
                 }
             </div>
             <div class="col-12 col-md-6 img-absolute-wrap">

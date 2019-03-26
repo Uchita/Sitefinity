@@ -5975,6 +5975,7 @@ select.hs-input {
 
 .hbspt-form {
     padding-top: 60px;
+    margin-bottom: 17px;
 }
 
 .mt-30 {
@@ -6249,6 +6250,9 @@ select.hs-input {
             border-radius: 0;
             border: 1px solid #D8D8D8;
             background-color: #fff;
+            border-right: none;
+            border-bottom: none;
+            border-left: none;
         }
 
         /*.app-header .navbar-nav .dropdown .dropdown-toggle:after {
@@ -7835,7 +7839,7 @@ select.hs-input {
     }
 
     .blog-container .list-footer {
-        font-weight: 600;
+        font-weight: 500;
     }
 
     .blog-container .list-item .bg-image {
@@ -7851,7 +7855,7 @@ select.hs-input {
     .pagination > li > a {
         padding-left: 3px;
         padding-right: 3px;
-        color: #0088CF;
+        color: #0088CF !important;
         border-color: #0088CF;
         min-width: 35px;
         text-align: center;
@@ -7863,7 +7867,7 @@ select.hs-input {
         .pagination > li > a:hover,
         .pagination > li > a:focus {
             background-color: #0088CF;
-            color: #fff;
+            color: #fff !important;
             border-color: #0088CF;
         }
 
@@ -8098,7 +8102,12 @@ select.hs-input {
 
         .jobs-list h2 .new-serch a {
             color: #0088CF;
+            font-size: 14px;
+            font-weight: 400;
         }
+
+            .jobs-list h2 .new-serch a:after {
+            }
 
             .jobs-list h2 .new-serch a:hover {
                 color: #3465B0;
@@ -8693,6 +8702,7 @@ select.hs-input {
 
     .app-header .top-menus .login-status .navbar-nav li.logged {
         padding-left: 12px;
+        margin-right: 8px;
     }
 
 .top-menus .navbar-nav .rb-1 {
@@ -9408,6 +9418,26 @@ privacy-policy {
         left: 0px;
     }
 
+.ul-custom li {
+    position: relative;
+    padding: 0 0 0 15px;
+}
+
+.ul-custom {
+    list-style-type: none;
+    padding-left: 0 !important;
+}
+
+    .ul-custom li:after {
+        width: 4px;
+        height: 4px;
+        content: "";
+        background: #333132;
+        border-radius: 100%;
+        position: absolute;
+        top: 8px;
+        left: 0px;
+    }
 
 .job-detail-row .job-detail {
     padding-bottom: 40px;
@@ -9806,7 +9836,7 @@ ul.nav.nav-stacked li a:before {
     width: 4px;
     height: 4px;
     position: absolute;
-    top: 10px;
+    top: 7px;
     left: -17px;
     border-radius: 50%;
 }
@@ -9897,20 +9927,14 @@ ul.nav.nav-stacked li a:before {
     font-size: 19px;
 }
 
-.induction-onboarding .img-absolute-wrap {
-    order: 2;
-}
-
-.induction-onboarding .text-margin-left {
-    order: 1;
-}
 
 .job-detail .border a {
     color: #333132 !important;
+    margin-right: 5px;
 }
 
     .job-detail .border a:hover {
-        color: #3465B0 !important;
+        color: #0088CF !important;
     }
 
 .location-hover li {
@@ -9932,9 +9956,10 @@ ul.nav.nav-stacked li a:before {
 }
 
 .new-serch {
-    font-size: 14px;
+    font-size: 14px !important;
     font-weight: 400;
     margin-left: 6px;
+    display: inline-block !important
 }
 
     .new-serch a {
@@ -9950,18 +9975,22 @@ ul.nav.nav-stacked li a:before {
             font-size: 16px;
             line-height: normal;
             position: absolute;
-            top: 1px;
+            top: 1px !important;
             right: -10px;
             font-weight: normal;
-            transition: .15s ease 0s;
+            transition: all 500ms ease;
             font-family: FontAwesome;
         }
 
         .new-serch a:focus:after,
         .new-serch a:hover:after {
             right: -15px;
-            transition: .15s ease 0s;
+            transition: all 500ms ease;
         }
+
+#resultsPagePartialContent .new-serch a:after {
+    top: 10px;
+}
 
 .bayside-listing > ul > li {
     font-size: 14px;
@@ -9991,6 +10020,7 @@ ul.nav.nav-stacked li a:before {
     font-weight: 500;
     margin-top: 20px !important;
     display: block;
+    margin-bottom: 10px;
 }
 
 .forgot-password a {
@@ -10002,7 +10032,7 @@ ul.nav.nav-stacked li a:before {
     padding: 0;
 }
 
-.about-us .latest-news .list-footer {
+.news-list .list-footer {
     margin-bottom: 10px;
 }
 
@@ -10030,6 +10060,30 @@ ul.nav.nav-stacked li a:before {
     .hero-banner {
         background-attachment: inherit;
     }
+
+    .image-order .img-absolute-wrap {
+        order: 2;
+    }
+
+    .image-order .text-margin-left {
+        order: 1;
+    }
+
+    .induction-onboarding .img-absolute-wrap {
+        order: 2;
+    }
+
+    .induction-onboarding .text-margin-left {
+        order: 1;
+    }
+
+    .induction-onboarding .img-absolute-wrap {
+        order: 2;
+    }
+
+    .induction-onboarding .text-margin-left {
+        order: 1;
+    }
 }
 
 .salaryrangewrapper {
@@ -10047,3 +10101,65 @@ ul.nav.nav-stacked li a:before {
     .salaryrangewrapper .nstSlider .rightGrip, .salaryrangewrapper .nstSlider .leftGrip, .salaryrangewrapper .nstSlider .bar {
         background: #0088CF !important;
     }
+
+.job-list .jobCatHirarchy {
+    width: 100%;
+    margin: 0px auto;
+}
+
+    .job-list .jobCatHirarchy .col-xs-12 {
+        padding: 0
+    }
+
+.jobCatHirarchy .jobCatItem {
+    position: relative;
+    margin-right: 4px;
+}
+
+    .jobCatHirarchy .jobCatItem:not(:first-child):before {
+        content: ",";
+        position: absolute;
+        top: 0;
+        left: -6px;
+    }
+
+.blog-detail-col p b i {
+    font-weight: 500;
+}
+
+.ohs-policy-content h4 {
+    padding-top: 10px;
+}
+
+    .ohs-policy-content h4 + ul {
+        padding: 0;
+        vertical-align: top;
+        margin-top: -4px;
+    }
+
+.pagination li.active a {
+    background-color: #0088CF !important;
+    color: #fff !important;
+    border-color: #0088CF !important;
+}
+
+.login-status ul.navbar-nav li.active a {
+    color: #0088CF !important;
+}
+
+.upload-section #upload-files-container .checkbox input[type=checkbox] {
+    position: absolute;
+    opacity: 1;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    top: 1px;
+}
+
+.search-result .new-serch a:after {
+    top: 1px !important;
+}
+
+.location-hover li:first-child div {
+    text-transform: capitalize;
+}

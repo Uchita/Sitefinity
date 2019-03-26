@@ -26,21 +26,26 @@
 @using Telerik.Sitefinity.Modules.Libraries;
 @using Telerik.Sitefinity.RelatedData;
 @using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Web.Utilities;
+@using Telerik.Sitefinity.Modules.GenericContent;
+@using System.Text.RegularExpressions;
 @*Common JXT build functions*@
 @using JXTNext.Sitefinity.Common.Helpers;
 @{
-    List<string> filterValues = new List<string>();
-    var articleIds = Model.Item.Fields.articles;
-    var authorName = "Hudson";
-    var authorUrl = "";
+                /**/
 
-    foreach (var taxonItem in articleIds)
-    {
-        Guid articleID = new Guid(taxonItem.ToString());
-        var taxonManager = TaxonomyManager.GetManager();
-        var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
-        filterValues.Add(taxon.Title);
-    }
+                List<string> filterValues = new List<string>();
+                var articleIds = Model.Item.Fields.articles;
+                var authorName = "Hudson";
+                var authorUrl = "";
+
+                foreach (var taxonItem in articleIds)
+                {
+                    Guid articleID = new Guid(taxonItem.ToString());
+                    var taxonManager = TaxonomyManager.GetManager();
+                    var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
+                    filterValues.Add(taxon.Title);
+                }
 }
 <div class="article-details">
     <div class="@Model.CssClass article-container" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
@@ -48,23 +53,7 @@
         <h1 class="article-detail-title text-center" @Html.InlineEditingFieldAttributes("Title", "ShortText")>
             @Model.Item.Fields.Title
         </h1>
-
-        @if (Model.Item.Fields.AuthorName != null)
-        {
-            authorName = Model.Item.Fields.AuthorName.Fields.ConsultantName;
-            authorUrl = Model.Item.Fields.AuthorName.Fields.UrlName.ToString();
-            <p class="article-detail-author text-center">by <a href="/contact-us/find-a-hudson-consultant/consultant/@authorUrl">@authorName</a></p>
-        }
-        else if (Model.Item.Fields.BoardMember != null)
-        {
-            authorName = Model.Item.Fields.BoardMember.Fields.Name;
-            authorUrl = Model.Item.Fields.BoardMember.Fields.UrlName.ToString();
-            <p class="article-detail-author text-center">by <a href="/about-us/the-board/@authorUrl">@authorName</a></p>
-        }
-        else
-        {
-            <p class="article-detail-author text-center">by @authorName</p>
-        }
+        <p class="article-detail-author text-center">by @authorName</p>
 
         <!-- TODO -->
         @*Start HeaderImage field*@
@@ -80,8 +69,18 @@
                     @Html.SocialShareOptions(item);
                 }
             }
+            @{
+                // TODO temporary solution to route article links to the correct pages
+                var fixedHtml = LinkParser.UnresolveLinks((string)Model.Item.Fields.Content);
+                fixedHtml = LinkParser.ResolveLinks(fixedHtml, DynamicLinksParser.GetContentUrl, null, SystemManager.IsInlineEditingMode, false);
 
-            <div class="article-description" @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
+                // TODO until we have a solution for implementing from Sitefinity support, replace AU huson
+                if (fixedHtml.Contains("//au.hudson.com/"))
+                {
+                    fixedHtml = Regex.Replace(fixedHtml, @"[a-z]+://au.hudson.com/", "/", RegexOptions.IgnoreCase);
+                }
+            }
+            <div class="article-description" @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize(fixedHtml)</div>
 
             @{
                 if (Model.EnableSocialSharing)

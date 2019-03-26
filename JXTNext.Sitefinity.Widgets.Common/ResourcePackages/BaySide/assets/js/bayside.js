@@ -9,6 +9,7 @@ $(document).ready(function () {
     $("#featuredInsights,#internalJobs1").owlCarousel({
         margin: 18,
         nav: true,
+        autoplay: true,
         autoplayTimeout: 5000,
         dots: true,
         navText: [],

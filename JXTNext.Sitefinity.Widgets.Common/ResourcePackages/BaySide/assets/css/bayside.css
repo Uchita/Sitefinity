@@ -5975,6 +5975,7 @@ select.hs-input {
 
 .hbspt-form {
     padding-top: 60px;
+    margin-bottom: 17px;
 }
 
 .mt-30 {
@@ -8101,7 +8102,12 @@ select.hs-input {
 
         .jobs-list h2 .new-serch a {
             color: #0088CF;
+            font-size: 14px;
+            font-weight: 400;
         }
+
+            .jobs-list h2 .new-serch a:after {
+            }
 
             .jobs-list h2 .new-serch a:hover {
                 color: #3465B0;
@@ -8696,6 +8702,7 @@ select.hs-input {
 
     .app-header .top-menus .login-status .navbar-nav li.logged {
         padding-left: 12px;
+        margin-right: 8px;
     }
 
 .top-menus .navbar-nav .rb-1 {
@@ -9829,7 +9836,7 @@ ul.nav.nav-stacked li a:before {
     width: 4px;
     height: 4px;
     position: absolute;
-    top: 10px;
+    top: 7px;
     left: -17px;
     border-radius: 50%;
 }
@@ -9920,13 +9927,6 @@ ul.nav.nav-stacked li a:before {
     font-size: 19px;
 }
 
-.induction-onboarding .img-absolute-wrap {
-    order: 2;
-}
-
-.induction-onboarding .text-margin-left {
-    order: 1;
-}
 
 .job-detail .border a {
     color: #333132 !important;
@@ -9956,9 +9956,10 @@ ul.nav.nav-stacked li a:before {
 }
 
 .new-serch {
-    font-size: 14px;
+    font-size: 14px !important;
     font-weight: 400;
     margin-left: 6px;
+    display: inline-block !important
 }
 
     .new-serch a {
@@ -9974,7 +9975,7 @@ ul.nav.nav-stacked li a:before {
             font-size: 16px;
             line-height: normal;
             position: absolute;
-            top: 1px;
+            top: 1px !important;
             right: -10px;
             font-weight: normal;
             transition: all 500ms ease;
@@ -10059,6 +10060,30 @@ ul.nav.nav-stacked li a:before {
     .hero-banner {
         background-attachment: inherit;
     }
+
+    .image-order .img-absolute-wrap {
+        order: 2;
+    }
+
+    .image-order .text-margin-left {
+        order: 1;
+    }
+
+    .induction-onboarding .img-absolute-wrap {
+        order: 2;
+    }
+
+    .induction-onboarding .text-margin-left {
+        order: 1;
+    }
+
+    .induction-onboarding .img-absolute-wrap {
+        order: 2;
+    }
+
+    .induction-onboarding .text-margin-left {
+        order: 1;
+    }
 }
 
 .salaryrangewrapper {
@@ -10129,4 +10154,12 @@ ul.nav.nav-stacked li a:before {
     width: 16px;
     height: 16px;
     top: 1px;
+}
+
+.search-result .new-serch a:after {
+    top: 1px !important;
+}
+
+.location-hover li:first-child div {
+    text-transform: capitalize;
 }

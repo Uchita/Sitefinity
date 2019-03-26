@@ -8,7 +8,7 @@
             <div class="col-12 text-center">
                 @if (@Model.BackgroundColor == "#EFEFEF")
                 {
-                    <h2 class="text-white">
+                    <h2 class="text-white fadeInUp wow">
                         @if (!string.IsNullOrEmpty(Model.GroupHeader))
                         {
                             @Html.HtmlSanitize(@Model.GroupHeader)
@@ -17,7 +17,7 @@
                 }
                 else
                 {
-                    <h2 class="text-white">
+                    <h2 class="text-white fadeInUp wow">
                         @if (!string.IsNullOrEmpty(Model.GroupHeader))
                         {
                             @Html.HtmlSanitize(@Model.GroupHeader)

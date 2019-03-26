@@ -8037,6 +8037,16 @@ table td .btn-style-corner {
     margin-top: 5px;
 }
 
+.form-validate .error {
+    color: #fa4848;
+}
+
+.form-validate .form-control.error {
+    background-color: rgba(250,72,72,.11);
+    border-color: #fa4848;
+    box-shadow: none !important;
+}
+
 .checkbox input[type=checkbox],
 .checkbox-inline input[type=checkbox],
 .radio input[type=radio],

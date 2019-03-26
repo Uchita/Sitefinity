@@ -7382,14 +7382,19 @@ blockquote {
     border: 1px solid;
     border-radius: 0;
     padding: 10px 35px;
-    font-size: 1.4rem;
-    font-weight: 600;
+    font-size: 1.6rem;
+    font-weight: 700;
     text-transform: uppercase;
     background: transparent;
     color: #000;
     white-space: normal;
     overflow: hidden;
-    transition: all 0.3s ease-in-out; }
+    transition: all 0.3s ease-in-out;
+    min-width: 164px;
+    border-color: #2dc3ea; }
+    @media (max-width: 1024px) {
+      .page-wrapper .btn {
+        min-width: inherit; } }
     .page-wrapper .btn.flip-interaction span {
       position: relative;
       display: inline-block;
@@ -7974,7 +7979,7 @@ pre {
     color: #2dc3ea; }
   .header-top-links a + a {
     margin-left: 10px;
-    border-left: 1px solid #2dc3ea;
+    border-left: 1px solid #3ea9ed;
     padding-left: 10px; }
   .header-top-links .sf-mr-m {
     margin-right: 0; }
@@ -8513,8 +8518,8 @@ main {
       width: 100%;
       border-bottom: 1px solid #bebebe; }
       .left-sidebar .container-fluid .nav li a, .left-sidebar .navbar-collapse .nav li a {
-        padding: 0;
-        line-height: 46px;
+        line-height: normal;
+        padding: 10px 0;
         font-family: "Playfair Display", serif;
         font-size: 20px; }
         .left-sidebar .container-fluid .nav li a.link-inline-block, .left-sidebar .navbar-collapse .nav li a.link-inline-block {
@@ -8789,6 +8794,14 @@ select.slimtable-paging-select {
   content: '\f30c'; }
 
 /*#region Footer*/
+@media (min-width: 1025px) {
+  .page-wrapper footer .col-lg-3 {
+    width: 17.5%; } }
+
+@media (min-width: 1025px) {
+  .page-wrapper footer .col-lg-9 {
+    width: 82.5%; } }
+
 .page-wrapper footer .brand-logo {
   width: 85px;
   left: -10px;
@@ -9042,7 +9055,7 @@ address.info-box {
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite; }
   .loading::after {
-    content: "" !important;
+    content: '' !important;
     background: rgba(255, 255, 255, 0.8);
     position: absolute;
     top: 0;
@@ -9456,15 +9469,25 @@ address.info-box {
 .footer-contact-form label {
   display: none; }
 
+.footer-contact-form input[type=text].form-control, .footer-contact-form input[type=email].form-control {
+  border-color: #fff;
+  color: white; }
+
 .footer-contact-form input {
   background: transparent;
   border-color: #fff; }
 
-.footer-contact-form textarea {
-  border-color: #fff; }
-  .footer-contact-form textarea.form-control {
-    background: transparent;
-    height: 95px; }
+.footer-contact-form textarea.form-control {
+  background: transparent;
+  height: 95px;
+  border-color: #fff;
+  color: white; }
+  .footer-contact-form textarea.form-control:focus {
+    border-color: #fff; }
+
+.footer-contact-form button.btn {
+  color: white !important;
+  min-width: 160px; }
 
 .img-inside-border {
   position: relative; }
@@ -9480,6 +9503,8 @@ address.info-box {
 .transparent-data input[type='text'], .transparent-data select.form-control {
   background: transparent;
   border: 1px solid #fff; }
+  .transparent-data input[type='text']:hover, .transparent-data input[type='text']:focus, .transparent-data select.form-control:hover, .transparent-data select.form-control:focus {
+    border-color: white; }
 
 .transparent-data .select:before {
   color: #9d9c9c; }
@@ -9495,7 +9520,10 @@ address.info-box {
   padding-top: 0;
   padding-bottom: 0;
   line-height: 42px;
-  color: #fff; }
+  color: #fff;
+  border-color: white; }
+  .transparent-data .btn-block button.btn:hover {
+    border-color: transparent; }
 
 ::-webkit-input-placeholder {
   color: white; }
@@ -9511,6 +9539,8 @@ address.info-box {
 
 .intro-block {
   margin-top: -60px; }
+  .intro-block p:last-child {
+    margin-bottom: 30px; }
 
 .top-level-bar {
   height: 47px;
@@ -9530,7 +9560,7 @@ address.info-box {
     .top-level-bar .contact-tel-info i.fas, .top-level-bar .contact-tel-info em.fas {
       margin-right: 10px;
       font-size: 16px;
-      color: #2dc3ea;
+      color: #3ea9ed;
       -webkit-transform: rotate(90deg);
       -moz-transform: rotate(90deg);
       -o-transform: rotate(90deg);
@@ -9539,7 +9569,7 @@ address.info-box {
   .top-level-bar .contact-social-info {
     border-right: 1px solid #fff; }
     .top-level-bar .contact-social-info .header-top-social ul li a {
-      color: #2dc3ea;
+      color: #3ea9ed;
       transition: all 0.3s ease-in-out; }
       .top-level-bar .contact-social-info .header-top-social ul li a:hover {
         color: white; }
@@ -9675,7 +9705,7 @@ address.info-box {
       width: 54px; }
     .flip-card .blk_card h4 {
       color: white;
-      font-size: 2rem;
+      font-size: 2.4rem;
       font-weight: 600; }
   .flip-card:hover .flip-card-inner {
     transform: rotateY(180deg); }
@@ -9706,26 +9736,38 @@ address.info-box {
     bottom: 15px;
     right: 15px; }
 
+.right-widget-form form label, .right-widget-form form .sf-FileField {
+  color: #2e2e2e;
+  font-weight: 600;
+  text-transform: none;
+  font-size: 1.4rem; }
+
+.right-widget-form form input.form-control {
+  border-color: #d3d3d3; }
+
+.right-widget-form form textarea.form-control {
+  height: inherit;
+  border-color: #d3d3d3; }
+
 .left-nav-data {
   margin-bottom: 40px; }
-  .left-nav-data h3 {
-    font-family: "Playfair Display", serif;
-    margin-top: 10px;
-    text-transform: uppercase; }
   .left-nav-data h4 {
     font-family: "Playfair Display", serif; }
   @media (max-width: 767px) {
     .left-nav-data {
       margin-bottom: 30px; } }
-
-.innerpage-form label {
-  color: #2e2e2e;
-  font-weight: 600;
-  text-transform: none; }
-
-.innerpage-form h4 {
-  margin-top: 40px;
-  font-weight: bold; }
+  .left-nav-data .text-widget img {
+    margin-bottom: 30px; }
+  .left-nav-data .text-widget H4 {
+    margin-top: 0;
+    margin-bottom: 10px; }
+  .left-nav-data .text-widget p {
+    line-height: 2.4rem; }
+  .left-nav-data .text-widget h3 {
+    font-family: "Playfair Display", serif;
+    margin-top: 10px;
+    text-transform: uppercase;
+    margin-bottom: 20px; }
 
 .alert-info {
   background: #d7edf6;
@@ -9740,9 +9782,16 @@ h2.loc-title-head {
 
 .contactfrom {
   background: #11223e;
-  padding: 10px 20px;
+  padding: 20px;
   margin-bottom: 30px; }
   .contactfrom label {
+    color: white;
+    display: none; }
+  .contactfrom .form-group {
+    margin-bottom: 20px; }
+  .contactfrom textarea.form-control {
+    height: auto; }
+  .contactfrom .btn {
     color: white; }
 
 .contact-text-indent h4 {
@@ -9754,6 +9803,26 @@ h2.loc-title-head {
       margin-left: 0; } }
 
 /*latest*/
+.float-none-v-center {
+  display: flex;
+  align-items: center; }
+  .float-none-v-center h4 {
+    font-family: "Playfair Display", serif; }
+
+.contact-consultant-name h4 {
+  font-family: "Playfair Display", serif; }
+
+.contact-consultant-position p:empty {
+  display: none; }
+
+.retained-search-overlay {
+  position: relative; }
+  @media (min-width: 1024px) {
+    .retained-search-overlay .overlay-editor-text {
+      position: absolute;
+      top: 30px;
+      left: 15px; } }
+
 /*#endregion Basic components */
 /*#region Breadcrumbs */
 ul.breadcrumb {
@@ -9826,8 +9895,8 @@ ul.breadcrumb {
       padding: 0 40px;
       width: 100%; }
     .jumbotron-container .jumbotron .h1, .jumbotron-container .jumbotron h1 {
-      font-size: 48px;
-      font-size: 4.8rem;
+      font-size: 40px;
+      font-size: 4rem;
       color: inherit;
       margin-top: 5px; }
     .jumbotron-container .jumbotron .h2, .jumbotron-container .jumbotron h2 {
@@ -10711,8 +10780,8 @@ ul.breadcrumb {
 
 .featured-job-offer {
   position: relative;
-  margin: 0 0 50px;
-  padding: 30px 50px 50px;
+  margin: 0;
+  padding: 0;
   background: #fff; }
   .featured-job-offer .job-offer-company {
     margin-bottom: 30px; }
@@ -10720,6 +10789,8 @@ ul.breadcrumb {
       max-width: 150px; }
   .featured-job-offer h3 {
     margin-top: 0; }
+  .featured-job-offer h4 {
+    font-family: "Playfair Display", serif; }
   .featured-job-offer .job-offer {
     /*p {
             font-family: $font-family-regular;
@@ -10730,6 +10801,8 @@ ul.breadcrumb {
     .featured-job-offer .job-offer .text-muted {
       line-height: 1;
       font-family: "Open Sans", sans-serif; }
+    .featured-job-offer .job-offer h4 a {
+      color: inherit; }
   .featured-job-offer .btn-more {
     position: absolute;
     bottom: 0;
@@ -11666,9 +11739,9 @@ select.articles-order {
   .contact-consultant .contact-consultant-image {
     position: relative;
     display: block;
-    margin: 0 30px 0 0;
-    -webkit-clip-path: polygon(100% 0, 100% 90%, 93% 100%, 0 100%, 0 0);
-    clip-path: polygon(100% 0, 100% 90%, 93% 100%, 0 100%, 0 0); }
+    margin: 0 0px 0 0;
+    /*-webkit-clip-path: polygon(100% 0,100% 90%,93% 100%,0 100%,0 0);
+        clip-path: polygon(100% 0,100% 90%,93% 100%,0 100%,0 0);*/ }
     .contact-consultant .contact-consultant-image img {
       width: 100%; }
     .contact-consultant .contact-consultant-image .contact-image-rollover {
@@ -12091,8 +12164,8 @@ select.articles-order {
     width: 50%; }
   .contact-consultant .contact-consultant-info {
     position: relative;
-    min-height: 325px;
-    padding-bottom: 70px; }
+    /*min-height: 325px;*/
+    padding-bottom: 40px; }
     .contact-consultant .contact-consultant-info .btn {
       position: absolute;
       left: 0;
@@ -12113,7 +12186,7 @@ select.articles-order {
   .risk-measurement .risk-wrapper {
     width: 20%; }
   .contact-consultant .contact-consultant-info {
-    min-height: 370px; }
+    /*min-height: 370px;*/ }
   .right-bottom-below img {
     max-width: 115%; } }
 

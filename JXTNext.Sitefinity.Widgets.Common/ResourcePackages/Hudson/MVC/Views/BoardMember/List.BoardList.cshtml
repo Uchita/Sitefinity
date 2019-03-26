@@ -15,7 +15,7 @@
 <div class="board-members @Model.CssClass">
     @foreach (var member in Model.Items)
     {
-        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(member, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(member, ViewBag.DetailsPageId, false, Model.UrlKeyPrefix);
 
         if (countOfMembers % 3 == 0)
         {

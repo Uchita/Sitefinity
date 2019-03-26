@@ -19,6 +19,7 @@ $brightColor: #fff;
 
 $global-highlight-color: #2dc3ea;
 $global-links-color: #2dc3ea;
+$social-links-color: #3ea9ed;
 
 $btn-primary-bg: #2dc3ea;
 $btn-primary-color: #fff;
@@ -160,6 +161,7 @@ $gap: 50px;
 @mixin transition() {
     transition: all 0.3s ease-in-out;
 }
+
 
 
 

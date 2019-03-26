@@ -13,7 +13,7 @@
 
         @foreach (var item in Model.Items)
         {
-            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, false , Model.UrlKeyPrefix);
 
             var OfficeLocationName = "";
             var OfficeLocationUrl = "";

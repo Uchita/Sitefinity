@@ -58,15 +58,19 @@
             }
 
             <div class="col-md-4">
-                <a class="contact-consultant-image" href="@navigateUrl" title="@item.Fields.ConsultantName">
+                <a class="" href="@navigateUrl" title="@item.Fields.ConsultantName">
                     <img src="@imageThumbUrl" alt="@item.Fields.ConsultantName" />
-                    <div class="contact-image-rollover"><div class="display-table"><div class="display-cell">View Profile</div></div></div>
+                    <div class="contact-image-rollover"><div class="display-table">
+                        @*<div class="display-cell">View Profile</div>*@
+                         </div></div>
                 </a>
             </div>
 
             <div class="col-md-8">
-                <div class="contact-consultant-info">
-                    <div class="color-highlight contact-consultant-name">@Html.HtmlSanitize((string)item.Fields.ConsultantName)</div>
+                <div class="contact-consultant-info xyz">
+                    <div class="contact-consultant-name">
+                        <h4>@Html.HtmlSanitize((string)item.Fields.ConsultantName)</h4>
+                    </div>
                     @*@if (item.Fields.Office != null)
                         {
                             @*<div class="contact-consultant-position">@Html.HtmlSanitize((string)item.Fields.Position), @OfficeLocationName</div>
@@ -75,11 +79,13 @@
                                         {
 
                                         }*@
-                    <div class="contact-consultant-position">@Html.HtmlSanitize((string)item.Fields.Position)</div>
+                    <div class="contact-consultant-position">
+                        <h5>                    @Html.HtmlSanitize((string)item.Fields.Position)</h5>
+                    </div>
                     <div>
                         <p>
                             @{ var summary = @Html.HtmlSanitize((string)item.Fields.Bio).ToString();
-                                string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 220 ? summary.Substring(0, 220) + "..." : summary;
+                                string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 180 ? summary.Substring(0, 180) + "..." : summary;
                             }
                             @Html.HtmlSanitize(trimSummary)
                         </p>
@@ -106,7 +112,7 @@
                                 }
                             </div>
                         }*@
-                    <a class="btn btn-primary" href="@navigateUrl" title="Read More">READ MORE</a>
+                    <a class="btn btn-default" href="@item.Fields.URLField" title="Read More">READ MORE</a>
                     @*<a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID" title="Read more"></a>*@
                 </div>
             </div>

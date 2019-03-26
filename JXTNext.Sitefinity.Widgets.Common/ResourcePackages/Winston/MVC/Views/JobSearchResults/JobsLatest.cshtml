@@ -10,14 +10,14 @@
 <div class="@ViewBag.CssClass">
     @foreach (var jobOffer in Model.SearchResults)
     {
-        if (jobOfferIndex % 3 == 0)
+        if (jobOfferIndex % 4 == 0)
         {
             @: <div class="row- same-height-wrapper">
             }
 
-            <div class="col-sm-4">
+            <div class="col-sm-3">
 
-                <div class="featured-job-offer same-height-box">
+                <div class="featured-job-offer same-height-box-">
                     @*<div class="job-offer-company text-right"><img alt="" src="@defaultLogo" title="@jobOffer.Title"></div>*@
 
                     <div class="job-offer">
@@ -88,9 +88,11 @@
 
 
 
-            if (jobOfferIndex % 3 != 0)
+            if (jobOfferIndex % 4 != 0)
             {
                 @:
+
+
 
 
             }
@@ -100,9 +102,10 @@
 
     <div class="row row-see-more">
         <div class="col-md-12">
-            <div class="text-center"><a class="btn btn-default" href="@ViewBag.JobResultsPageUrl">View all jobs</a></div>
+            <div class="text-center"><a class="btn btn-default" href="@ViewBag.JobResultsPageUrl">View all</a></div>
         </div>
     </div>
+</div>
 </div>
 
 <script type="text/javascript">

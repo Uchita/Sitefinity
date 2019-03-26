@@ -239,8 +239,8 @@
 
     .contact-consultant .contact-consultant-info {
         position: relative;
-        min-height: 325px;
-        padding-bottom: 70px;
+        /*min-height: 325px;*/
+        padding-bottom: 40px;
 
         .btn {
             position: absolute;
@@ -288,10 +288,10 @@
         //     left: 15px;
         // }
     }
-    
+
     .contact-consultant {
         .contact-consultant-info {
-            min-height: 370px;
+            /*min-height: 370px;*/
         }
     }
     

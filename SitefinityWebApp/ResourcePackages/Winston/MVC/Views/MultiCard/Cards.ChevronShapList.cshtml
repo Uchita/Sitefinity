@@ -4,19 +4,32 @@
 
 @foreach (var card in Model.Cards)
 {
-    <a href="@Model.GroupActionUrl">
-        <div class="flip-card">
-            
+<a href="@Model.GroupActionUrl">
 
+
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
                 <div class="brand_blk" style="background-image:url('@Model.SelectedSizeUrl')">
-
                     <div class="blk_card">
                         <img src="@card.SelectedSizeUrl" class="icon-img" alt="@card.ImageAlternativeText">
                         <h4>@Html.HtmlSanitize(card.Heading)</h4>
                     </div>
                 </div>
- 
-            
             </div>
+            <div class="flip-card-back">
+                <div class="brand_blk" style="background-image:url('@Model.SelectedSizeUrl')">
+                    <div class="blk_card">
+                        <img src="@card.SelectedSizeUrl" class="icon-img" alt="@card.ImageAlternativeText">
+                        <h4>@Html.HtmlSanitize(card.Heading)</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
 </a>
 }

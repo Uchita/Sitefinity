@@ -3432,6 +3432,7 @@
     <Content Include="ResourcePackages\Winston\MVC\Views\Card\Card.BannerInner.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="ResourcePackages\Winston\MVC\Views\JobDetails\JobDetails.ApplyButton.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">

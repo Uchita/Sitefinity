@@ -22,31 +22,37 @@
             @: <div class="board-members-row">
             }
 
-                   <div class="col-md-4">
-                       <div class="board-members-item-image">
-                           @if (member.Fields.Image != null)
-                           {
-                               <img src='@member.Fields.Image.Fields.MediaUrl' alt='@member.Fields.Image.Fields.AlternativeText' title='@member.Fields.Image.Fields.Title' />
-                           }
-                           <a class="link-overlay" href="@navigateUrl" title="View profile">View profile</a>
-                       </div>
-                       <h3 class="highlighted-heading"><a href="@navigateUrl" title="@member.Fields.Name">@member.Fields.Name</a></h3>
-                       <h4><a href="@navigateUrl" title="@member.Fields.Name">@member.Fields.Position</a></h4>
+                   <div class="col-sm-6">
 
-                       @*<div @Html.InlineEditingFieldAttributes("Bio", "LongText")>@Html.HtmlSanitize((string)member.Fields.Bio)</div>
+                       <div class="row">
+                           <div class="col-sm-6">
+                               <div class="board-members-item-image">
+                                   @if (member.Fields.Image != null)
+                                   {
+                                       <img src='@member.Fields.Image.Fields.MediaUrl' alt='@member.Fields.Image.Fields.AlternativeText' title='@member.Fields.Image.Fields.Title' />
+                                   }
+                                   <a class="link-overlay" href="@navigateUrl" title="View profile">View profile</a>
+                               </div>
+                           </div>
+                           <div class="col-sm-6">
 
-                       <div>
-                           @Html.HtmlSanitize((string)member.Fields.Bio)
-                       </div>*@
+                               <h4 class="highlighted-heading"><a href="@navigateUrl" title="@member.Fields.Name">@member.Fields.Name</a></h4>
+                               <h4><a href="@navigateUrl" title="@member.Fields.Name">@member.Fields.Position</a></h4>
 
-                       @{ var summary = @Html.HtmlSanitize((string)member.Fields.Bio).ToString();
-                           string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 150 ? summary.Substring(0, 150) + "..." : summary;
-                       }
+                               @*<div @Html.InlineEditingFieldAttributes("Bio", "LongText")>@Html.HtmlSanitize((string)member.Fields.Bio)</div>
 
-                       <div>@Html.HtmlSanitize(trimSummary)</div>
+        <div>
+            @Html.HtmlSanitize((string)member.Fields.Bio)
+        </div>*@
+
+                               @{ var summary = @Html.HtmlSanitize((string)member.Fields.Bio).ToString();
+                                   string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 150 ? summary.Substring(0, 150) + "..." : summary;
+                               }
+
+                               <div>@Html.HtmlSanitize(trimSummary)</div>
 
 
-                       @*<p>
+                               @*<p>
             @{ var summary = @Html.HtmlSanitize((string)item.Fields.Bio).ToString();
                 string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 140 ? summary.Substring(0, 140) + "..." : summary;
             }
@@ -56,12 +62,16 @@
 
 
 
-                       <a class="btn btn-primary" href="@navigateUrl" title="Read More">READ MORE</a>
+                               <a class="btn btn-primary" href="@navigateUrl" title="Read More">READ MORE</a>
+                           </div>
+
+                       </div>
+                         
 
 
-                       @*
+                           @*
         <div><p>  @Html.HtmlSanitize((string)Model.Item.Fields.Bio)</p></div>*@
-                   </div>
+                       </div>
 
             if (countOfMembers % 3 == 2 || countOfMembers == (Model.Items.Count() - 1))
             {

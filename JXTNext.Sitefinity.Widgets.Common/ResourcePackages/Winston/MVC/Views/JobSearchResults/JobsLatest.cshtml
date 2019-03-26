@@ -21,7 +21,7 @@
                     @*<div class="job-offer-company text-right"><img alt="" src="@defaultLogo" title="@jobOffer.Title"></div>*@
 
                     <div class="job-offer">
-                        <h3><a class="title-link" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">@jobOffer.Title</a></h3>
+                        <h4><a class="title-link" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">@jobOffer.Title</a></h4>
                         <script type="text/x-kendo-template" id="template">
 
                             <div class="job-holder search-result">
@@ -48,14 +48,16 @@
 
                                         <div class="col-sm-5 col-md-6">
                                             # if(data.CustomData["Bulletpoints.BulletPoint1"] != "" || data.CustomData["Bulletpoints.BulletPoint2"] != "" || data.CustomData["Bulletpoints.BulletPoint3"] != ""){#
+                                            <p>#:ShortDescription#</p>
+                                            #
+                                            }
+                                            else{#
+
                                             <ul>
                                                 <li>#:CustomData["Bulletpoints.BulletPoint1"]#</li>
                                                 <li>#:CustomData["Bulletpoints.BulletPoint2"]#</li>
                                                 <li>#:CustomData["Bulletpoints.BulletPoint3"]#</li>
-                                            </ul>#
-                                            }
-                                            else{#
-                                            <p>#:ShortDescription#</p>
+                                            </ul>
                                             #}#
 
                                         </div>
@@ -79,7 +81,7 @@
                             @trimSummary
                         </p>
                     </div>
-                    <a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID"></a>
+                    @*<a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID"></a>*@
                 </div>
 
             </div>

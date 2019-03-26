@@ -321,6 +321,8 @@
     padding: 15px 15px 1px;
 }
 
+
+
 .job-dark-bg {
     background: #222222;
     padding: 33px 28px;
@@ -337,6 +339,16 @@
         color: #fff;
     }
 }
+
+.consultant-job {
+    display: none;
+}
+
+.consultant-address-widget[data-role*="Consultant"] + .consultant-job {
+    display: block;
+}
+
+
 //consultant filter in contact landing page
 //this is minimal filter with minimal details and few consultant listed
 .consultant-minimal {

@@ -132,10 +132,16 @@
     <Content Include="ResourcePackages\Tetracon\assets\dist\images\icons\safari-pinned-tab.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\images\indeed-apply.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Tetracon\assets\dist\images\indeed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Tetracon\assets\dist\images\indeedBtn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\images\linkedin-apply.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Tetracon\assets\dist\images\linkkedinBtn.png">
@@ -169,6 +175,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Tetracon\assets\dist\images\saved-jobs.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\images\seek-apply.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Tetracon\assets\dist\images\seek-white.png">
@@ -1974,12 +1983,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-     </Content>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Hudson\MVC\Views\Layouts\HudsonAlt.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    
     <Content Include="ResourcePackages\Tetracon\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

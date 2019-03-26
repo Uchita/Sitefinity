@@ -230,7 +230,8 @@
             a {
                 font-size: 1.4rem;
                 // font-style: italic;
-               color: #858585 !important;
+                color: #858585 !important;
+
                 &:hover, &:focus {
                     color: $global-highlight-color;
                 }
@@ -369,11 +370,9 @@
             margin-top: 2rem;
             margin-bottom: 2rem;
         }
-
         /*p {
             margin-bottom: 25px;
         }*/
-
         img {
             max-width: 200px;
             box-shadow: 1px 1px 1px rgba(0,0,0,.2);
@@ -501,7 +500,7 @@
     }
 
     #indeed-btnwrapper .indeed-apply-button {
-        background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50% !important;
+        background: url(../images/indeedBtn.png) 50% !important;
         width: 120px;
         border-radius: 0 !important;
         height: 35px !important;
@@ -512,6 +511,41 @@
         }
     }
 
+
+    .job-desc-apply #indeed-btnwrapper .indeed-apply-button {
+        background: url(../images/indeed-apply.png) no-repeat !important;
+        width: 190px;
+
+
+        span {
+            display: none !important;
+        }
+    }
+
+
+    .job-desc-apply .btn.btn-linkedin {
+        /* background: #005b89; */
+        background: url(../images/linkedin-apply.png) no-repeat !important;
+        width: 190px;
+        min-width: unset;
+    }
+
+    .job-desc-apply .btn.btn-linkedin:before {
+        content: "";
+    }
+
+
+    .job-desc-apply .btn.btn-seek {
+        /* background: #005b89; */
+        background: url(../images/seek-apply.png) no-repeat !important;
+        width: 190px;
+        min-width: unset;
+    }
+
+    .job-desc-apply .btn.btn-seek:before {
+        content: "";
+    }
+
     .apply-with, .sign-in-with {
         ul {
             padding-left: 0;
@@ -520,7 +554,7 @@
                 margin-bottom: 10px;
                 margin-right: 10px;
                 /*float: left;*/
-                display:block;
+                display: block;
 
                 .btn {
                     height: 35px;

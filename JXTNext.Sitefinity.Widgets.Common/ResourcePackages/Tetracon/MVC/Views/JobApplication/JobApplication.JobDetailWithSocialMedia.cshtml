@@ -7,7 +7,7 @@
 @if (Model != null && Model.ApplyWithSocialMediaInfo != null)
 {
     var siteSettingsHelper = new SiteSettingsHelper();
-    <div class="ext-provider-form">
+    <div class="ext-provider-form job-desc-apply">
         @*<h2>Apply with</h2>*@
         <div> @*class="apply-with"*@
             <ul class="list-inline job-offer-actions">
@@ -16,7 +16,7 @@
                     switch (item.Title)
                     {
                         case "LinkedIn":
-                            <li><a href="#" class="btn btn-linkedin" title="@item.Title">Apply with @item.Title</a></li>
+                            <li><a href="#" class="btn btn-linkedin" title="@item.Title"></a></li>
                             break;
 
                         case "Indeed":
@@ -56,7 +56,7 @@
 
                             string hrefLink = String.Format("https://www.seek.com.au/api/iam/oauth2/authorize?client_id={0}&redirect_uri={1}&state={2}&scope=r_profile_apply&response_type=code&advertiser_id={3}", clientId, redirectUri, jobId, advertiserId);
 
-                            <li> <a href=@hrefLink title=@item.Title role="button" class="btn btn-seek">Apply with @item.Title</a></li>
+                            <li> <a href=@hrefLink title=@item.Title role="button" class="btn btn-seek"></a></li>
                             break;
 
 

@@ -10459,13 +10459,32 @@ ul.breadcrumb {
   .page-wrapper #indeed-btnwrapper .indeed-apply-button-container {
     height: 35px; }
   .page-wrapper #indeed-btnwrapper .indeed-apply-button {
-    background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50% !important;
+    background: url(../images/indeedBtn.png) 50% !important;
     width: 120px;
     border-radius: 0 !important;
     height: 35px !important;
     padding: 0 !important; }
     .page-wrapper #indeed-btnwrapper .indeed-apply-button span {
       display: none !important; }
+  .page-wrapper .job-desc-apply #indeed-btnwrapper .indeed-apply-button {
+    background: url(../images/indeed-apply.png) no-repeat !important;
+    width: 190px; }
+    .page-wrapper .job-desc-apply #indeed-btnwrapper .indeed-apply-button span {
+      display: none !important; }
+  .page-wrapper .job-desc-apply .btn.btn-linkedin {
+    /* background: #005b89; */
+    background: url(../images/linkedin-apply.png) no-repeat !important;
+    width: 190px;
+    min-width: unset; }
+  .page-wrapper .job-desc-apply .btn.btn-linkedin:before {
+    content: ""; }
+  .page-wrapper .job-desc-apply .btn.btn-seek {
+    /* background: #005b89; */
+    background: url(../images/seek-apply.png) no-repeat !important;
+    width: 190px;
+    min-width: unset; }
+  .page-wrapper .job-desc-apply .btn.btn-seek:before {
+    content: ""; }
   .page-wrapper .apply-with ul, .page-wrapper .sign-in-with ul {
     padding-left: 0; }
     .page-wrapper .apply-with ul li, .page-wrapper .sign-in-with ul li {
@@ -11830,6 +11849,12 @@ select.articles-order {
   .job-dark-bg .team-joblist a,
   .job-dark-bg .team-joblist p {
     color: #fff; }
+
+.consultant-job {
+  display: none; }
+
+.consultant-address-widget[data-role*="Consultant"] + .consultant-job {
+  display: block; }
 
 .consultant-minimal > .filters-wrapper {
   max-width: 900px;

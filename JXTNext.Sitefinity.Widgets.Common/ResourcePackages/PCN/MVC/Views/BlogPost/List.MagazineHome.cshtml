@@ -88,14 +88,14 @@
         <div class="bg-corner-inner">
 
             <div class="magazine-cover-img">
-                <a title="@issueTitile" href="@navigateUrlmail"><img src="@imageurl" alt="@issueTitile" /></a>
+                <a title="@issueTitile" href="/magazine/issue?vol=@volume&issue=@issue"><img src="@imageurl" alt="@issueTitile" /></a>
             </div>
             <div class="magazine-cover-content">
                 <div class="magazine-vol-name">@volumetext - @issuetext</div>
                 <div class="magazine-vol-date">@issuepublicationdate</div>
                 <ul class="magazine-headlines">
                     <li class="magazine-headline">
-                        <a title="" class="magazine-headline" href="@navigateUrlmail">@issueTitile</a>
+                        <a title="" class="magazine-headline" href="/magazine/issue?vol=@volume&issue=@issue">@issueTitile</a>
                         <div class="short-summary">@Html.HtmlSanitize((string)issueSummary)</div>
                     </li>
                     @foreach (var item in Model.Items)

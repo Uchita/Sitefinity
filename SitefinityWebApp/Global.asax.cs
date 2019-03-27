@@ -33,6 +33,7 @@ using Telerik.Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.LoginForm;
 using JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.LoginForm;
 using JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.RegistrationExtended;
+using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Registration;
 
 namespace SitefinityWebApp
 {

@@ -4961,7 +4961,7 @@ p {
     color: #333132;
 }
 
-.search-results li, p {
+.bayside-listing li, p {
     font-size: 16px;
     line-height: 1.5;
     font-weight: 300;
@@ -8222,7 +8222,7 @@ select.hs-input {
 .search-results h1 {
     margin-top: 0;
     margin-bottom: 0;
-    font-size: 22px;
+    /*  font-size: 22px;*/
 }
 
     .search-results h1 em {
@@ -10164,6 +10164,9 @@ ul.nav.nav-stacked li a:before {
     text-transform: capitalize;
 }
 
+.jobCatItem em {
+    font-style: normal;
+}
 
 
 /*===== Job Loading =====*/

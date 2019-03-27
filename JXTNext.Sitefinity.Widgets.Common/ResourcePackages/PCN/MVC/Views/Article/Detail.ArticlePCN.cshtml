@@ -31,7 +31,7 @@
 @{
     List<string> filterValues = new List<string>();
     var articleIds = Model.Item.Fields.articles;
-    var authorName = "Hudson";
+    var authorName = "PCN";
     var authorUrl = "";
 
     foreach (var taxonItem in articleIds)
@@ -53,7 +53,7 @@
         {
             authorName = Model.Item.Fields.AuthorName.Fields.ConsultantName;
             authorUrl = Model.Item.Fields.AuthorName.Fields.UrlName.ToString();
-            <p class="article-detail-author text-center">by <a href="/contact-us/find-a-hudson-consultant/consultant/@authorUrl">@authorName</a></p>
+            <p class="article-detail-author text-center">by <a href="/contact-us/find-a-PCN-consultant/consultant/@authorUrl">@authorName</a></p>
         }
         else if (Model.Item.Fields.BoardMember != null)
         {

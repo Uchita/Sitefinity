@@ -10163,3 +10163,59 @@ ul.nav.nav-stacked li a:before {
 .location-hover li:first-child div {
     text-transform: capitalize;
 }
+
+
+
+/*===== Job Loading =====*/
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0)
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg)
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@-moz-keyframes spin {
+    0% {
+        -moz-transform: rotate(0)
+    }
+
+    100% {
+        -moz-transform: rotate(360deg)
+    }
+}
+
+.loading:before {
+    content: '';
+    display: inline-block;
+    border: 3px solid #00599d;
+    border-radius: 50%;
+    border-top: 3px solid transparent;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 11;
+    margin: -26px 0 0 -26px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+.loading#listView::before {
+    top: 100px;
+}
+
+/*===== Job Loading:: End =====*/

@@ -1127,7 +1127,7 @@ header {
             top: 100%;
             left: 0;
             display: none;
-                        background: $btn-secondary-bg;
+            background: $btn-secondary-bg;
             z-index: 1000;
 
 
@@ -1186,6 +1186,7 @@ header {
             &.active {
                 a {
                     color: $navigation-sublink-hover-color;
+                    color: white;
                 }
             }
         }
@@ -3378,3 +3379,29 @@ select.slimtable-paging-select {
         }
     }
 }
+
+.caption-text-widget{
+    h3{
+        margin-top:0;
+    }
+
+}
+
+.profile-detail-view {
+    .profile-media {
+        img {
+            margin-bottom: 0;
+        }
+
+        .consultant-sum {
+            font-family: $global-font-family-heading;
+            margin-bottom: 10px;
+        }
+
+        .email-stamp {
+            color: $global-highlight-color;
+        }
+    }
+    margin-bottom:30px;
+}
+

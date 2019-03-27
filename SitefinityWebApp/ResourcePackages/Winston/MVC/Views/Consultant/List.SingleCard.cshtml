@@ -10,18 +10,18 @@
 @using Telerik.Sitefinity.Modules.Libraries;
 
  
-<div class="row">
-    <div class="">
-        @foreach (var consultant in Model.Items)
-        {
-            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(consultant, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+ 
+<div class="profile-detail-view">
+    @foreach (var consultant in Model.Items)
+    {
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(consultant, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
 
 
-            var OfficeLocationName = "";
-            var OfficeLocationUrl = "";
-            var imageThumbUrl = "";
+        var OfficeLocationName = "";
+        var OfficeLocationUrl = "";
+        var imageThumbUrl = "";
 
-        <div class="consultant-">
+        <div class="row">
             @if (consultant.Fields.Pic != null)
             {
                 imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(consultant.Fields.Pic.DataItem, "thumb350");
@@ -31,42 +31,36 @@
                 imageThumbUrl = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.jpg";
             }
             <div class="col-sm-4">
-                <a href="@consultant.Fields.URLField" title="@consultant.Fields.ConsultantName" class="consultant-photo-">
-                    <img src="@imageThumbUrl" alt="@consultant.Fields.ConsultantName">
-                </a>
-                <p class="consultant-sum">
-                    @Html.HtmlSanitize((string)consultant.Fields.Position)
-                </p>
+                <div class="profile-media">
+                    <a href="@consultant.Fields.URLField" title="@consultant.Fields.ConsultantName" class="consultant-photo-">
+                        <img src="@imageThumbUrl" alt="@consultant.Fields.ConsultantName">
+                    </a>
+                    <p class="consultant-sum">
+                        @Html.HtmlSanitize((string)consultant.Fields.Position)
+                    </p>
+                    <p class="email-stamp">
+                        @if (!string.IsNullOrWhiteSpace(@consultant.Fields.Email))
+                        {
+                            <em class="far fa-envelope"></em><a href="mailto:@consultant.Fields.Email" title="Email at @consultant.Fields.Email">@consultant.Fields.Email</a><br />
+                        }
+                    </p>
+                </div>
 
-                <p>
-                    @if (!string.IsNullOrWhiteSpace(@consultant.Fields.Email))
-                    {
-                        <em class="far fa-envelope"></em><a href="mailto:@consultant.Fields.Email" title="Email at @consultant.Fields.Email">@consultant.Fields.Email</a><br />
-                    }
-                            </p>
             </div>
 
 
             <div class="col-sm-8">
-                <a href="@consultant.Fields.URLField" class="caption-" title="@consultant.Fields.ConsultantName">
+                <div class="caption-text-widget" title="@consultant.Fields.ConsultantName">
                     <h3 class="consultant-name">@consultant.Fields.ConsultantName</h3>
-                    
-
                     <div>
                         @Html.HtmlSanitize((string)@consultant.Fields.Bio)
                     </div>
-                    
-
-                   
-                </a>
+                </div>
             </div>
 
-     
+
         </div>
 
 
-        }
-    </div>
+    }
 </div>
-
-

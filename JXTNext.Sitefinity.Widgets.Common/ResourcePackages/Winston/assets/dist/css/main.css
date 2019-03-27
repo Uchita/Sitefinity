@@ -8145,7 +8145,8 @@ header {
           background: #0abde3;
           color: white; }
       header .main-nav .dropdown-menu li.active a {
-        color: #0abde3; }
+        color: #0abde3;
+        color: white; }
     header .main-nav .dropdown-menu a:hover, header .main-nav .dropdown-menu a:focus {
       text-decoration: none; }
       header .main-nav .dropdown-menu a:hover h5, header .main-nav .dropdown-menu a:focus h5 {
@@ -9822,6 +9823,19 @@ h2.loc-title-head {
       position: absolute;
       top: 30px;
       left: 15px; } }
+
+.caption-text-widget h3 {
+  margin-top: 0; }
+
+.profile-detail-view {
+  margin-bottom: 30px; }
+  .profile-detail-view .profile-media img {
+    margin-bottom: 0; }
+  .profile-detail-view .profile-media .consultant-sum {
+    font-family: "Playfair Display", serif;
+    margin-bottom: 10px; }
+  .profile-detail-view .profile-media .email-stamp {
+    color: #2dc3ea; }
 
 /*#endregion Basic components */
 /*#region Breadcrumbs */

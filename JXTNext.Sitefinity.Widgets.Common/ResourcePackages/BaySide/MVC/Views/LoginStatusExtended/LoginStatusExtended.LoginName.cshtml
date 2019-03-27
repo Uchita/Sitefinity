@@ -17,7 +17,7 @@
                     <a class="nav-link" href="/blogs">Blog</a>
                 </li>
                 <li class="rb-1 logged">
-                    <span>@Html.Resource("LoggedAs", "LoginStatusExtendedResources") </span>
+                    <span>@Html.Resource("LoggedAs", "LoginStatusExtendedResources")</span>
                     <a href="@(Model.ProfilePageUrl ?? " #")" data-sf-role="sf-logged-in-name"></a>
                 </li>
                 <li class="rb-1"> @Html.ActionLink(Html.Resource("Logout", "LoginStatusExtendedResources"), "SignOut")</li>

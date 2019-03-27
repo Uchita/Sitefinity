@@ -5,10 +5,10 @@
 
 
 @{
-                /**/
+    /**/
 
-                var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
-                var isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
+    var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
+    var isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
 }
 
 
@@ -91,7 +91,7 @@
 <script type="text/x-kendo-template" id="template">
     <div class="job-list border rounded p-4 fadeInUp wow">
         <p class="company-hidden" style="display:none">#:CustomData["CompanyName"]#</p>
-        <img src="" style="width:105px" class="float-right"
+        <img src="" class="float-right"
              alt="">
         <h2 class="mt-2"><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#">#:Title#</a></h2>
         <ul class="bayside-listing">
@@ -558,6 +558,17 @@
                     processSavedJobs();
 
                     processCustomFunction();
+
+                    $('em.em-link').each(function (i, obj) {
+                        var href = $(this).attr('href');
+                        if (href != undefined && href != "") {
+                            $(this).removeAttr('href');
+                            var aHref = $(this).parent()
+                            if (aHref != undefined && href != "")
+                                $(aHref).attr('href', href);
+                        }
+                    });
+
                 } else {
                     $(".count-num").html("0");
                     $(".info-block").removeClass('hidden');
@@ -594,36 +605,36 @@
         });
     };
 
-        function processCustomFunction() {
-            $('p.hidden-salary').each(function (i, obj) {
-                var li = $(this).next();
-                if ($(li).find('div').html().trim().toLowerCase() == "")
-                    $(li).find('img.dollar').attr("src", "");
-            });
+    function processCustomFunction() {
+        $('p.hidden-salary').each(function (i, obj) {
+            var li = $(this).next();
+            if ($(li).find('div').html().trim().toLowerCase() == "")
+                $(li).find('img.dollar').attr("src", "");
+        });
 
-            $('p.company-hidden').each(function (i, obj) {
-                var text = $(this).html().trim().toLowerCase();
-                var img = $(this).next();
-                if (text != "" && text != undefined)
-                    if (text == "alitis")
-                        $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/alitis-logo.svg");
-                    else if (text == "austra health")
-                        $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/austra-health-logo.svg");
-                    else if (text == "bayside group")
-                        $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-group-automotive-logo.svg");
-                    else if (text == "bayside personnel")
-                        $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-personnel-logo.svg");
-                    else if (text == "baytech")
-                        $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/baytech-logo.svg");
-                    else if (text == "bridge consulting")
-                        $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bridge-consulting-logo.svg");
-                    else if (text == "cozWine")
-                        $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/cozwine-logo.svg");
-                    else if (text == "techstaff")
-                        $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/techstaff-logo.svg");
-            });
-
-        }
+        $('p.company-hidden').each(function (i, obj) {
+            var text = $(this).html().trim().toLowerCase();
+            var img = $(this).next();
+            if (text != "" && text != undefined)
+                if (text == "alitis")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/alitis-logo.svg");
+                else if (text == "austra health")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/austra-health-logo.svg");
+                else if (text == "bayside group")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-group-automotive-logo.svg");
+                else if (text == "bayside personnel")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-personnel-logo.svg");
+                else if (text == "baytech")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/baytech-logo.png");
+                else if (text == "bridge consulting")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bridge-consulting-logo.svg");
+                else if (text == "cozWine")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/cozwine-logo.svg");
+                else if (text == "techstaff")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/techstaff-logo.svg");
+                else if (text == "payments &amp;amp; cards network")
+                    $(img).attr("src", "https://teampcn.jxtnext.net/ResourcePackages/PCN/assets/dist/images/logo.png");
+        });
 
     //function SelectLeftFilter(response) {
     //    var myArray = [];

@@ -89,7 +89,7 @@
 <script type="text/x-kendo-template" id="template">
     <div class="job-list border rounded p-4 fadeInUp wow">
         <p class="company-hidden" style="display:none">#:CustomData["CompanyName"]#</p>
-        <img src="" style="width:105px" class="float-right"
+        <img src="" class="float-right"
              alt="">
         <h2 class="mt-2"><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#">#:Title#</a></h2>
         <ul class="bayside-listing">
@@ -140,8 +140,8 @@
                 <ul class="inline-list p-0 mb-0 location-hover">
                     <p class="hidden-salary" style="display:none;">#:CustomData["Salary.Filters[0].Value"]# </p>
                     @*<li class="mr-3"><i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
-                    @*<li class="mr-3"><i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
-                        <li class="mr-3"><i class="fa fa-clock-o"></i><div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>*@
+                        @*<li class="mr-3"><i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
+                            <li class="mr-3"><i class="fa fa-clock-o"></i><div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>*@
                     <li class="mr-3"> <img src="/ResourcePackages/BaySide/assets/images/location.png"> <div> #:CustomData["CountryLocationArea[0].Filters[0].Value"]# </div></li>
                     <p class="hidden-salary" style="display:none;">#:CustomData["Salary.Filters[0].Value"]# </p>
                     <li class="mr-3"> <img class="dollar" src="/ResourcePackages/BaySide/assets/images/doller.png"> <div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
@@ -557,6 +557,18 @@
                     processSavedJobs();
 
                     processCustomFunction();
+
+
+                    $('em.em-link').each(function (i, obj) {
+                        var href = $(this).attr('href');
+                        if (href != undefined && href != "") {
+                            $(this).removeAttr('href');
+                            var aHref = $(this).parent()
+                            if (aHref != undefined && href != "")
+                                $(aHref).attr('href', href);
+                        }
+                    });
+
                 } else {
 
                     $(".info-block").removeClass('hidden');
@@ -611,13 +623,15 @@
                 else if (text == "bayside personnel")
                     $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-personnel-logo.svg");
                 else if (text == "baytech")
-                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/baytech-logo.svg");
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/baytech-logo.png");
                 else if (text == "bridge consulting")
                     $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bridge-consulting-logo.svg");
                 else if (text == "cozWine")
                     $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/cozwine-logo.svg");
                 else if (text == "techstaff")
                     $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/techstaff-logo.svg");
+                else if (text == "payments &amp;amp; cards network")
+                    $(img).attr("src", "https://teampcn.jxtnext.net/ResourcePackages/PCN/assets/dist/images/logo.png");
         });
 
     }

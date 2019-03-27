@@ -243,6 +243,9 @@
     <Content Include="ResourcePackages\BaySide\assets\images\brand\logo\bayside-personnel-logo.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\BaySide\assets\images\brand\logo\baytech-logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\assets\images\brand\logo\baytech-logo.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

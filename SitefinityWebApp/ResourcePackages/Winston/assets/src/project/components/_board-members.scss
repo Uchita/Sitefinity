@@ -120,3 +120,28 @@
     max-width: 450px;
     margin: 0 auto 20px;
 }
+
+.profile-detail-view {
+    .profile-media {
+        img {
+            margin-bottom: 0;
+        }
+
+        .consultant-sum {
+            font-family: $global-font-family-heading;
+            margin-bottom: 10px;
+        }
+
+        .email-stamp {
+            color: $global-highlight-color;
+        }
+    }
+
+    margin-bottom: 30px;
+    .caption-text-widget{
+        h3{
+            margin-top:0;
+        }
+
+    }
+}

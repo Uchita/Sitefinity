@@ -9827,16 +9827,6 @@ h2.loc-title-head {
 .caption-text-widget h3 {
   margin-top: 0; }
 
-.profile-detail-view {
-  margin-bottom: 30px; }
-  .profile-detail-view .profile-media img {
-    margin-bottom: 0; }
-  .profile-detail-view .profile-media .consultant-sum {
-    font-family: "Playfair Display", serif;
-    margin-bottom: 10px; }
-  .profile-detail-view .profile-media .email-stamp {
-    color: #2dc3ea; }
-
 /*#endregion Basic components */
 /*#region Breadcrumbs */
 ul.breadcrumb {
@@ -11532,6 +11522,18 @@ select.articles-order {
 .board-member-sidebar {
   max-width: 450px;
   margin: 0 auto 20px; }
+
+.profile-detail-view {
+  margin-bottom: 30px; }
+  .profile-detail-view .profile-media img {
+    margin-bottom: 0; }
+  .profile-detail-view .profile-media .consultant-sum {
+    font-family: "Playfair Display", serif;
+    margin-bottom: 10px; }
+  .profile-detail-view .profile-media .email-stamp {
+    color: #2dc3ea; }
+  .profile-detail-view .caption-text-widget h3 {
+    margin-top: 0; }
 
 /*#endregion Board members*/
 /*#region Press release*/

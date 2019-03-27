@@ -9435,7 +9435,7 @@ privacy-policy {
         background: #333132;
         border-radius: 100%;
         position: absolute;
-        top: 8px;
+        top: 7px;
         left: 0px;
     }
 
@@ -9836,7 +9836,7 @@ ul.nav.nav-stacked li a:before {
     width: 4px;
     height: 4px;
     position: absolute;
-    top: 7px;
+    top: 6px;
     left: -17px;
     border-radius: 50%;
 }

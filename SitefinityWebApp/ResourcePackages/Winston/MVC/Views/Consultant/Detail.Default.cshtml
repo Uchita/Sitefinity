@@ -26,84 +26,91 @@
         }
     }
 }
+<div class="profile-detail-view">
+    <div class="row" data-filtersector="@(string.Join(",", filterValues))">
 
-<div class="row consultant-page" data-filtersector="@(string.Join(",", filterValues))">
-
-    @if (Model.Item.Fields.Pic != null)
-    {
-        imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(Model.Item.Fields.Pic.DataItem, "thumb350");
-    }
-    else
-    {
-        imageThumbUrl = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.jpg";
-    }
-    <div class="col-md-4">
-        <img class="full-width" src="@imageThumbUrl" alt="@Model.Item.Fields.ConsultantName" />
-    </div>
-
-    <div class="col-md-8">
-        <div class="contact-consultant-name color-highlight">@Html.HtmlSanitize((string)Model.Item.Fields.ConsultantName)</div>
-
-        @if (Model.Item.Fields.Office != null)
+        @if (Model.Item.Fields.Pic != null)
         {
-            var OfficeLocationName = "";
-            var OfficeLocationUrl = "";
-
-
-            if (Model.Item.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
-            {
-                OfficeLocationName = Html.HtmlSanitize((string)Model.Item.Fields.Office.Fields.Name).ToString();
-                OfficeLocationUrl = Model.Item.Fields.Office.Fields.UrlName.ToString();
-            }
-            else
-            {
-                List<string> OfficeLocationNameList = new List<string>();
-                List<string> OfficeLocationUrlList = new List<string>();
-
-                foreach (var office in Model.Item.Fields.Office)
-                {
-                    if (!OfficeLocationNameList.Contains((string)office.Fields.Name))
-                    {
-                        OfficeLocationNameList.Add((string)office.Fields.Name);
-                        OfficeLocationUrlList.Add(office.Fields.UrlName.ToString());
-                    }
-                }
-
-                OfficeLocationName = string.Join(", ", OfficeLocationNameList.ToArray());
-                OfficeLocationUrl = string.Join(",", OfficeLocationUrlList.ToArray());
-            }
-
-            <div class="contact-consultant-position">@Html.HtmlSanitize((string)Model.Item.Fields.Position), @OfficeLocationName</div>
+            imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(Model.Item.Fields.Pic.DataItem, "thumb350");
         }
         else
         {
-            <div class="contact-consultant-position">@Html.HtmlSanitize((string)Model.Item.Fields.Position)</div>
+            imageThumbUrl = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.jpg";
         }
+        <div class="col-md-4">
+            <div class="profile-media">
+                <img class="full-width" src="@imageThumbUrl" alt="@Model.Item.Fields.ConsultantName" />
+                <div class="contact-consultant-name color-highlight">@Html.HtmlSanitize((string)Model.Item.Fields.ConsultantName)</div>
+                @if (Model.Item.Fields.Office != null)
+                {
+                    var OfficeLocationName = "";
+                    var OfficeLocationUrl = "";
 
-        <div>
-            @Html.HtmlSanitize((string)Model.Item.Fields.Bio)
+
+                    if (Model.Item.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
+                    {
+                        OfficeLocationName = Html.HtmlSanitize((string)Model.Item.Fields.Office.Fields.Name).ToString();
+                        OfficeLocationUrl = Model.Item.Fields.Office.Fields.UrlName.ToString();
+                    }
+                    else
+                    {
+                        List<string> OfficeLocationNameList = new List<string>();
+                        List<string> OfficeLocationUrlList = new List<string>();
+
+                        foreach (var office in Model.Item.Fields.Office)
+                        {
+                            if (!OfficeLocationNameList.Contains((string)office.Fields.Name))
+                            {
+                                OfficeLocationNameList.Add((string)office.Fields.Name);
+                                OfficeLocationUrlList.Add(office.Fields.UrlName.ToString());
+                            }
+                        }
+
+                        OfficeLocationName = string.Join(", ", OfficeLocationNameList.ToArray());
+                        OfficeLocationUrl = string.Join(",", OfficeLocationUrlList.ToArray());
+                    }
+
+                    <div class="contact-consultant-position">@Html.HtmlSanitize((string)Model.Item.Fields.Position), @OfficeLocationName</div>
+                }
+                else
+                {
+                    <div class="contact-consultant-position">@Html.HtmlSanitize((string)Model.Item.Fields.Position)</div>
+                }
+                <div class="contact-consultant-contacts">
+                    @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.Email))
+                    {
+                        <em class="far fa-envelope"></em><a href="mailto:@Model.Item.Fields.Email" title="Email at @Model.Item.Fields.Email">@Model.Item.Fields.Email</a><br />
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber))
+                    {
+                        var consultantPhone = Model.Item.Fields.PhoneNumber.ToString().Replace(" ", "");
+
+                        <a href="tel:@consultantPhone" title="Call at @Model.Item.Fields.PhoneNumber"><em class="fas fa-phone"></em>@Model.Item.Fields.PhoneNumber</a><br />
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
+                    {
+                        <a href="@Model.Item.Fields.LinkedInProfileUrl" title="Go to LinkedIN Profile"><em class="fab fa-linkedin-in"></em>@Model.Item.Fields.LinkedInProfileName</a>
+                    }
+                </div>
+            </div>
+            
         </div>
 
+        <div class="col-md-8">
+            
 
-        <div class="contact-consultant-contacts">
-            @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.Email))
-            {
-                <em class="far fa-envelope"></em><a href="mailto:@Model.Item.Fields.Email" title="Email at @Model.Item.Fields.Email">@Model.Item.Fields.Email</a><br />
-            }
+           
 
-            @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.PhoneNumber))
-            {
-                var consultantPhone = Model.Item.Fields.PhoneNumber.ToString().Replace(" ", "");
+            <div>
+                @Html.HtmlSanitize((string)Model.Item.Fields.Bio)
+            </div>
 
-                <a href="tel:@consultantPhone" title="Call at @Model.Item.Fields.PhoneNumber"><em class="fas fa-phone"></em>@Model.Item.Fields.PhoneNumber</a><br />
-            }
 
-            @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
-            {
-                <a href="@Model.Item.Fields.LinkedInProfileUrl" title="Go to LinkedIN Profile"><em class="fab fa-linkedin-in"></em>@Model.Item.Fields.LinkedInProfileName</a>
-            }
+          
+
         </div>
-
     </div>
 </div>
 @*<div class="row">

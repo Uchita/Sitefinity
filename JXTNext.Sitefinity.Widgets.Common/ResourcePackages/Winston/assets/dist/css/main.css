@@ -8522,7 +8522,7 @@ main {
         line-height: normal;
         padding: 10px 0;
         font-family: "Playfair Display", serif;
-        font-size: 20px; }
+        font-size: 18px; }
         .left-sidebar .container-fluid .nav li a.link-inline-block, .left-sidebar .navbar-collapse .nav li a.link-inline-block {
           display: inline-block; }
       .left-sidebar .container-fluid .nav li span, .left-sidebar .navbar-collapse .nav li span {
@@ -9483,7 +9483,7 @@ address.info-box {
   height: 95px;
   border-color: #fff;
   color: white; }
-  .footer-contact-form textarea.form-control:focus {
+  .footer-contact-form textarea.form-control:hover, .footer-contact-form textarea.form-control:focus {
     border-color: #fff; }
 
 .footer-contact-form button.btn {
@@ -9676,6 +9676,9 @@ address.info-box {
   overflow: hidden;
   cursor: pointer;
   perspective: 1000px; }
+  @media (max-width: 767px) {
+    .flip-card {
+      margin-bottom: 30px; } }
   .flip-card .flip-card-inner {
     position: relative;
     width: 100%;
@@ -9811,6 +9814,9 @@ h2.loc-title-head {
     font-family: "Playfair Display", serif; }
 
 .contact-consultant-name h4 {
+  font-family: "Playfair Display", serif; }
+
+.contact-consultant-position h5 {
   font-family: "Playfair Display", serif; }
 
 .contact-consultant-position p:empty {
@@ -10255,7 +10261,7 @@ ul.breadcrumb {
         background-image: url("../images/owl/owl-arrow-right.png"); }
 
 .jumbotron-container .jumbotron, .owl-carousel-jumbotron .jumbotron {
-  background: top center no-repeat;
+  background: top bottom no-repeat;
   background-size: cover; }
 
 .process-card-holder .process-card {
@@ -10807,6 +10813,8 @@ ul.breadcrumb {
       font-family: "Open Sans", sans-serif; }
     .featured-job-offer .job-offer h4 a {
       color: inherit; }
+      .featured-job-offer .job-offer h4 a:hover {
+        color: #2dc3ea; }
   .featured-job-offer .btn-more {
     position: absolute;
     bottom: 0;
@@ -11524,14 +11532,20 @@ select.articles-order {
   margin: 0 auto 20px; }
 
 .profile-detail-view {
-  margin-bottom: 30px; }
+  margin-bottom: 60px; }
   .profile-detail-view .profile-media img {
     margin-bottom: 0; }
   .profile-detail-view .profile-media .consultant-sum {
     font-family: "Playfair Display", serif;
-    margin-bottom: 10px; }
+    margin-bottom: 5px; }
   .profile-detail-view .profile-media .email-stamp {
     color: #2dc3ea; }
+    .profile-detail-view .profile-media .email-stamp em {
+      margin-right: 10px;
+      font-size: 14px; }
+  @media (max-width: 767px) {
+    .profile-detail-view {
+      margin-bottom: 30px; } }
   .profile-detail-view .caption-text-widget h3 {
     margin-top: 0; }
 
@@ -11751,7 +11765,11 @@ select.articles-order {
     width: 100%; }
 
 .contact-consultant {
-  margin-top: 30px; }
+  background: white;
+  border: 1px solid #2e2e2e; }
+  @media (max-width: 1023px) {
+    .contact-consultant {
+      margin-bottom: 30px; } }
   .contact-consultant .contact-consultant-image {
     position: relative;
     display: block;
@@ -11790,10 +11808,25 @@ select.articles-order {
   .contact-consultant .contact-consultant-name {
     font-size: 36px;
     font-size: 3.6rem;
-    line-height: 1;
-    margin-top: 10px; }
+    line-height: 1; }
   .contact-consultant .contact-consultant-info .btn {
     margin-top: 30px; }
+  .contact-consultant .contact-consultant-info {
+    display: block;
+    overflow: hidden; }
+    @media (max-width: 767px) {
+      .contact-consultant .contact-consultant-info {
+        padding-left: 15px; } }
+    @media (max-width: 1024px) {
+      .contact-consultant .contact-consultant-info p {
+        font-size: 1.4rem; } }
+  .contact-consultant .consultant-thumb-image {
+    float: left; }
+    .contact-consultant .consultant-thumb-image img {
+      width: 212px; }
+      @media (max-width: 767px) {
+        .contact-consultant .consultant-thumb-image img {
+          width: 100px; } }
 
 .contact-consultant-name {
   font-size: 36px;
@@ -11820,8 +11853,6 @@ select.articles-order {
   margin-bottom: 25px; }
   .consultant-page h2, .consultant-page h3 {
     margin: 30px 0 20px; }
-  .consultant-page img {
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.32); }
   .consultant-page .contact-me {
     font-size: 24px;
     font-size: 2.4rem; }
@@ -11881,6 +11912,7 @@ select.articles-order {
       margin-bottom: 0; }
     .single-card .consultant .consultant-sum {
       margin-bottom: 15px;
+      margin-top: 10px;
       color: #000; }
     .single-card .consultant .consultant-btn {
       position: static;
@@ -12180,12 +12212,12 @@ select.articles-order {
     width: 50%; }
   .contact-consultant .contact-consultant-info {
     position: relative;
-    /*min-height: 325px;*/
-    padding-bottom: 40px; }
+    min-height: 210px;
+    padding: 10px 10px 40px 15px; }
     .contact-consultant .contact-consultant-info .btn {
       position: absolute;
-      left: 0;
-      bottom: 0; }
+      right: 10px;
+      bottom: 10px; }
   .white-box-single .white-box .white-box-ul li {
     width: 33.3333333333%; } }
 

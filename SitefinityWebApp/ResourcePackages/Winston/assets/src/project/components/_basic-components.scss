@@ -1816,7 +1816,7 @@ main {
                 line-height: normal;
                 padding:10px 0;
                 font-family: $global-font-family-heading;
-                font-size: 20px;
+                font-size: 18px;
 
                 &.link-inline-block {
                     display: inline-block;
@@ -2816,7 +2816,7 @@ select.slimtable-paging-select {
             border-color: #fff;
             color: white;
 
-            &:focus {
+            &:hover, &:focus {
                 border-color: #fff;
             }
         }
@@ -3134,7 +3134,9 @@ select.slimtable-paging-select {
         overflow: hidden;
         cursor: pointer;
         perspective: 1000px;
-
+        @media(max-width:767px){
+            margin-bottom:30px;
+        }
 
         .flip-card-inner {
             position: relative;
@@ -3359,14 +3361,16 @@ select.slimtable-paging-select {
         font-family: $global-font-family-heading;
     }
 }
-.contact-consultant-position{
-    p{
-        &:empty{
-            display:none;
-        }
-
+.contact-consultant-position {
+    h5 {
+        font-family: $global-font-family-heading;
     }
 
+    p {
+        &:empty {
+            display: none;
+        }
+    }
 }
 .retained-search-overlay {
     position: relative;

@@ -239,13 +239,13 @@
 
     .contact-consultant .contact-consultant-info {
         position: relative;
-        /*min-height: 325px;*/
-        padding-bottom: 40px;
+        min-height: 210px;
+        padding:10px 10px 40px 15px;
 
         .btn {
             position: absolute;
-            left: 0;
-            bottom: 0;
+            right: 10px;
+            bottom: 10px;
         }
     }
 

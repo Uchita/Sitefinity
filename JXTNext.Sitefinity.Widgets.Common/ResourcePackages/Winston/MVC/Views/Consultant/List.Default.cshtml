@@ -45,8 +45,10 @@
             OfficeLocationUrl = string.Join(",", OfficeLocationUrlList.ToArray());
         }
     }
-    <div class="col-md-6">
-        <div class="contact-consultant row">
+<div class="col-md-6">
+    <div class="contact-consultant">
+        <div class="row">
+
 
             @if (item.Fields.Pic != null)
             {
@@ -57,17 +59,22 @@
                 imageThumbUrl = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.jpg";
             }
 
-            <div class="col-md-4">
-                <a class="" href="@navigateUrl" title="@item.Fields.ConsultantName">
-                    <img src="@imageThumbUrl" alt="@item.Fields.ConsultantName" />
-                    <div class="contact-image-rollover"><div class="display-table">
-                        @*<div class="display-cell">View Profile</div>*@
-                         </div></div>
-                </a>
-            </div>
+            
+               
+            
 
-            <div class="col-md-8">
-                <div class="contact-consultant-info xyz">
+            <div class="col-md-12">
+                <div class="consultant-thumb-image">
+                    <a class="" href="@item.Fields.URLField" title="@item.Fields.ConsultantName">
+                        <img src="@imageThumbUrl" alt="@item.Fields.ConsultantName" />
+                        <div class="contact-image-rollover">
+                            <div class="display-table">
+                                @*<div class="display-cell">View Profile</div>*@
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="contact-consultant-info">
                     <div class="contact-consultant-name">
                         <h4>@Html.HtmlSanitize((string)item.Fields.ConsultantName)</h4>
                     </div>
@@ -83,9 +90,9 @@
                         <h5>                    @Html.HtmlSanitize((string)item.Fields.Position)</h5>
                     </div>
                     <div>
-                        <p>
+                        <p class="hidden-xs">
                             @{ var summary = @Html.HtmlSanitize((string)item.Fields.Bio).ToString();
-                                string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 180 ? summary.Substring(0, 180) + "..." : summary;
+                                string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 80 ? summary.Substring(0, 80) + "..." : summary;
                             }
                             @Html.HtmlSanitize(trimSummary)
                         </p>
@@ -112,12 +119,13 @@
                                 }
                             </div>
                         }*@
-                    <a class="btn btn-default" href="@item.Fields.URLField" title="Read More">READ MORE</a>
+                    <a class="btn btn-default hidden-xs" href="@item.Fields.URLField" title="Read More">READ MORE</a>
                     @*<a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID" title="Read more"></a>*@
                 </div>
             </div>
         </div>
     </div>
+</div>
 }
 
 

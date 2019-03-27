@@ -161,7 +161,13 @@
 }
 
 .contact-consultant {
-    margin-top: 30px;
+    background: white;
+    border: 1px solid #2e2e2e;
+
+    @media(max-width:1023px) {
+        margin-bottom: 30px;
+    }
+
 
     .contact-consultant-image {
         position: relative;
@@ -215,11 +221,37 @@
         font-size: 36px;
         font-size: 3.6rem;
         line-height: 1;
-        margin-top: 10px;
     }
 
     .contact-consultant-info .btn {
         margin-top: 30px;
+    }
+
+    .contact-consultant-info {
+        display: block;
+        overflow: hidden;
+
+        @media(max-width:767px) {
+            padding-left: 15px;
+        }
+
+        p {
+            @media(max-width:1024px) {
+                font-size: 1.4rem;
+            }
+        }
+    }
+
+    .consultant-thumb-image {
+        float: left;
+
+        img {
+            width: 212px;
+
+            @media(max-width:767px) {
+                width:100px;
+            }
+        }
     }
 }
 
@@ -255,9 +287,7 @@
         margin: 30px 0 20px;
     }
 
-    img {
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.32);
-    }
+    
 
     .contact-me {
         font-size: 24px;
@@ -336,6 +366,7 @@
         }
         .consultant-sum{
             margin-bottom: 15px;
+            margin-top:10px;
             color: $global-text-color;
         }
         .consultant-btn{

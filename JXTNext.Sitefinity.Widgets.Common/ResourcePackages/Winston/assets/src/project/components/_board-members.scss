@@ -129,15 +129,22 @@
 
         .consultant-sum {
             font-family: $global-font-family-heading;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .email-stamp {
             color: $global-highlight-color;
+            em{
+                margin-right:10px;
+                font-size:14px;
+            }
         }
     }
 
-    margin-bottom: 30px;
+    margin-bottom: 60px;
+    @media(max-width:767px){
+	margin-bottom:30px;
+}
     .caption-text-widget{
         h3{
             margin-top:0;

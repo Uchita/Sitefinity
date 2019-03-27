@@ -22,7 +22,8 @@
             <div class="col-12 col-lg-6">
                 <div class="form-group">
                     <select id="sortOrder" class="form-control">
-                        <option selected="selected" value="Relevance">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
+                        <option selected="selected" value="Relevance">@Html.Resource("SortByRelevance", "JobSearchResultsResources")</option>
+                        <option value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
                         <option value="Old">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
                         <option value="A-Z">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
                         <option value="Z-A">@Html.Resource("SortByAlphaZA", "JobSearchResultsResources")</option>
@@ -142,7 +143,7 @@
                     @*<li class="mr-3"><i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
                         @*<li class="mr-3"><i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
                             <li class="mr-3"><i class="fa fa-clock-o"></i><div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>*@
-                    <li class="mr-3"> <img src="/ResourcePackages/BaySide/assets/images/location.png"> <div> #:CustomData["CountryLocationArea[0].Filters[0].Value"]# </div></li>
+                    <li class="mr-3"> <img src="/ResourcePackages/BaySide/assets/images/location.png"> <div> #:CustomData["CountryLocationArea[0].Filters[0].Value"]# > #:CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].SubLevel[0].Value"]#</div></li>
                     <p class="hidden-salary" style="display:none;">#:CustomData["Salary.Filters[0].Value"]# </p>
                     <li class="mr-3"> <img class="dollar" src="/ResourcePackages/BaySide/assets/images/doller.png"> <div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
                     <li class="mr-3 clock-icon"><i class="fa fa-clock-o"></i> <div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>

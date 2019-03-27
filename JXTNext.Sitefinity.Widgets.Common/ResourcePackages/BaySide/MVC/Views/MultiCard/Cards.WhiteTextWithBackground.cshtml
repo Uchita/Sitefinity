@@ -10,7 +10,7 @@
                 <div class="col-12 text-center">
                     @if (@Model.BackgroundColor == "#EFEFEF")
                     {
-                        <h2 class="text-white">
+                        <h2 class="text-white fadeInUp wow">
                             @if (!string.IsNullOrEmpty(Model.GroupHeader))
                             {
                                 @Html.HtmlSanitize(@Model.GroupHeader)
@@ -19,7 +19,7 @@
                     }
                     else
                     {
-                        <h2 class="text-white">
+                        <h2 class="text-white fadeInUp wow">
                             @if (!string.IsNullOrEmpty(Model.GroupHeader))
                             {
                                 @Html.HtmlSanitize(@Model.GroupHeader)
@@ -33,8 +33,8 @@
                     }
                     else if (@Model.Cards.Count == 2)
                     {
-                        <a href="@Html.HtmlSanitize(@Model.Cards[0].ActionUrl)" class="btn btn-primary mr-4 @Model.Cards[0].Heading">@Html.HtmlSanitize(@Model.Cards[0].ActionName)</a>
-                        <a href="@Html.HtmlSanitize(@Model.Cards[1].ActionUrl)" class="btn btn-primary dark-btn @Model.Cards[1].Heading">@Html.HtmlSanitize(@Model.Cards[1].ActionName)</a>
+                        <a href="@Html.HtmlSanitize(@Model.Cards[0].ActionUrl)" class="fadeInUp wow btn btn-primary mr-4 @Model.Cards[0].Heading">@Html.HtmlSanitize(@Model.Cards[0].ActionName)</a>
+                        <a href="@Html.HtmlSanitize(@Model.Cards[1].ActionUrl)" class="fadeInUp wow btn btn-primary dark-btn @Model.Cards[1].Heading">@Html.HtmlSanitize(@Model.Cards[1].ActionName)</a>
                     }
                 </div>
             </div>
@@ -49,7 +49,7 @@ else
                 <div class="col-12 text-center">
                     @if (@Model.BackgroundColor == "#EFEFEF")
                     {
-                        <h2 class="text-white">
+                        <h2 class="text-white fadeInUp wow">
                             @if (!string.IsNullOrEmpty(Model.GroupHeader))
                             {
                                 @Html.HtmlSanitize(@Model.GroupHeader)
@@ -58,7 +58,7 @@ else
                     }
                     else
                     {
-                        <h2 class="text-white">
+                        <h2 class="text-white fadeInUp wow">
                             @if (!string.IsNullOrEmpty(Model.GroupHeader))
                             {
                                 @Html.HtmlSanitize(@Model.GroupHeader)
@@ -68,12 +68,12 @@ else
 
                     @if (@Model.Cards.Count == 1)
                     {
-                        <a href="@Html.HtmlSanitize(@Model.Cards[0].ActionUrl)" class="btn btn-primary @Model.Cards[0].Heading">@Html.HtmlSanitize(@Model.Cards[0].ActionName)</a>
+                        <a href="@Html.HtmlSanitize(@Model.Cards[0].ActionUrl)" class="fadeInUp wow btn btn-primary @Model.Cards[0].Heading">@Html.HtmlSanitize(@Model.Cards[0].ActionName)</a>
                     }
                     else if (@Model.Cards.Count == 2)
                     {
-                        <a href="@Html.HtmlSanitize(@Model.Cards[0].ActionUrl)" class="btn btn-primary mr-4 @Model.Cards[0].Heading">@Html.HtmlSanitize(@Model.Cards[0].ActionName)</a>
-                        <a href="@Html.HtmlSanitize(@Model.Cards[1].ActionUrl)" class="btn btn-primary dark-btn @Model.Cards[1].Heading">@Html.HtmlSanitize(@Model.Cards[1].ActionName)</a>
+                        <a href="@Html.HtmlSanitize(@Model.Cards[0].ActionUrl)" class="fadeInUp wow btn btn-primary mr-4 @Model.Cards[0].Heading">@Html.HtmlSanitize(@Model.Cards[0].ActionName)</a>
+                        <a href="@Html.HtmlSanitize(@Model.Cards[1].ActionUrl)" class="fadeInUp wow btn btn-primary dark-btn @Model.Cards[1].Heading">@Html.HtmlSanitize(@Model.Cards[1].ActionName)</a>
                     }
                 </div>
             </div>

@@ -27,7 +27,12 @@
 
         @if (isLoggedIn)
         {
-            <a class="btn-smc read_btn" href="/user-dashboard" title="Create your job alert"><span>CREATE JOB ALERT</span></a>
+            <input type="email" id="anonycreatejobalert" value="@ViewBag.Email" hidden />
+            <a id="anon-job-alert" class="btn-smc read_btn" href="javascript:void(0);" title="Create your job alert">
+                <span>CREATE JOB ALERT</span>
+            </a>
+            <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
+            <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
         }
         else
         {
@@ -42,8 +47,8 @@
             <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
         }
         @*<a class="btn-smc read_btn rss-feed" href="#">
-                <span>RSS Feed</span>
-            </a>*@
+            <span>RSS Feed</span>
+        </a>*@
         <div class="select">
             <select id="sortOrder" class="default-select">
                 <option selected="selected" value="Relevance">@Html.Resource("SortByRelevance", "JobSearchResultsResources")</option>

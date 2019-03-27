@@ -345,25 +345,30 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             alertModel.Data = JsonConvert.SerializeObject(searchModel);
 
             // Code for sending email alerts
-            EmailNotificationSettings jobAlertEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.JobAlertEmailTemplateSenderName, this.JobAlertEmailTemplateSenderEmailAddress),
+            EmailNotificationSettings jobAlertEmailNotificationSettings = null;
+            if (JobAlertEmailTemplateId != null)
+            {
+                jobAlertEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.JobAlertEmailTemplateSenderName, this.JobAlertEmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(string.Empty, email),
                                                                                                 this.GetJobAlertHtmlEmailTitle(),
                                                                                                 this.GetJobAlertHtmlEmailContent(), null);
-            if (!this.JobAlertEmailTemplateCC.IsNullOrEmpty())
-            {
-                foreach (var ccEmail in this.JobAlertEmailTemplateCC.Split(';'))
+                if (!this.JobAlertEmailTemplateCC.IsNullOrEmpty())
                 {
-                    jobAlertEmailNotificationSettings.AddCC(String.Empty, ccEmail);
+                    foreach (var ccEmail in this.JobAlertEmailTemplateCC.Split(';'))
+                    {
+                        jobAlertEmailNotificationSettings.AddCC(String.Empty, ccEmail);
+                    }
                 }
-            }
 
-            if (!this.JobAlertEmailTemplateBCC.IsNullOrEmpty())
-            {
-                foreach (var bccEmail in this.JobAlertEmailTemplateBCC.Split(';'))
+                if (!this.JobAlertEmailTemplateBCC.IsNullOrEmpty())
                 {
-                    jobAlertEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
+                    foreach (var bccEmail in this.JobAlertEmailTemplateBCC.Split(';'))
+                    {
+                        jobAlertEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
+                    }
                 }
             }
+            
 
             alertModel.EmailNotifications = jobAlertEmailNotificationSettings;
 

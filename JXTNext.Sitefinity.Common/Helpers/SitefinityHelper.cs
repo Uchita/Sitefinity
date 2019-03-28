@@ -13,6 +13,13 @@ using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.Taxonomies;
 using Telerik.Sitefinity.Taxonomies.Model;
 using Telerik.Sitefinity.Web;
+using Telerik.Sitefinity.Multisite;
+using Telerik.Sitefinity.DynamicModules.Model;
+using Telerik.Sitefinity.DynamicModules;
+using Telerik.Sitefinity.Utilities.TypeConverters;
+using Telerik.Sitefinity.GenericContent.Model;
+using System.Threading;
+using System.Globalization;
 
 namespace JXTNext.Sitefinity.Common.Helpers
 {
@@ -25,6 +32,40 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 sitefinityTimeZoneInfo = UserManager.GetManager().GetUserTimeZone();
 
             return sitefinityTimeZoneInfo;
+        }
+
+        public static HierarchicalTaxon GetCurrentSiteTaxons(string dataSource)
+        {
+            var manager = TaxonomyManager.GetManager();
+            var categoriesTaxonomy = manager.GetSiteTaxonomy<HierarchicalTaxonomy>(TaxonomyManager.CategoriesTaxonomyId, SystemManager.CurrentContext.CurrentSite.Id);
+            var taxa = categoriesTaxonomy.Taxa.Where(t => t.Title == dataSource).FirstOrDefault() as HierarchicalTaxon;
+            
+            return taxa;
+        }
+
+        public static List<DynamicContent> GetCurrentSiteItems(string dynamicType, string dataSource)
+        {
+            Type itemType = TypeResolutionService.ResolveType(dynamicType);
+            var managerArticle = TaxonomyManager.GetManager();
+            
+            MultisiteContext multisiteContext = SystemManager.CurrentContext as MultisiteContext;
+            var providerName = multisiteContext.CurrentSite.GetProviders(dataSource).Select(p => p.ProviderName);
+            
+            // Set a transaction name
+            var transactionName = Guid.NewGuid(); // I often using Guid.NewGuid()
+
+
+            // Set the culture name for the multilingual fields
+            var cultureName = "";
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultureName);
+
+            DynamicModuleManager dynamicModuleManager = DynamicModuleManager.GetManager(providerName.FirstOrDefault(), transactionName.ToString());
+            Type type = TypeResolutionService.ResolveType(dynamicType);
+
+            // This is how we get the consultant items through filtering
+            var myFilteredCollection = dynamicModuleManager.GetDataItems(type).Where(c => c.Status == ContentLifecycleStatus.Live & c.Visible);
+            
+            return myFilteredCollection.ToList();
         }
 
         public static DateTime GetSitefinityApplicationTime()
@@ -112,7 +153,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
         public static List<Taxon> GetTopLevelCategories()
         {
             var manager = TaxonomyManager.GetManager();
-            var categoriesTaxonomy = manager.GetTaxonomy<HierarchicalTaxonomy>(TaxonomyManager.CategoriesTaxonomyId);
+            var categoriesTaxonomy = manager.GetSiteTaxonomy<HierarchicalTaxonomy>(TaxonomyManager.CategoriesTaxonomyId,SystemManager.CurrentContext.CurrentSite.Id);
             var ind = categoriesTaxonomy.Taxa.Where(t => t.Name == "Inustry").FirstOrDefault() as HierarchicalTaxon;
             List<Taxon> topLovelTaxa = new List<Taxon>();
             foreach (var taxon in categoriesTaxonomy.Taxa)

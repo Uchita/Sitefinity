@@ -803,7 +803,20 @@
     <Content Include="ResourcePackages\PCN\MVC\Views\Layouts\BaseDefault.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+
     <None Include="ResourcePackages\PCN\assets\dist\webfonts\fa-brands-400.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Layouts\HudsonAlt.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.woff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\PCN\assets\dist\webfonts\fa-brands-400.ttf">

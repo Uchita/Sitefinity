@@ -4955,8 +4955,6 @@ p {
 .job-detail p,
 .job-list p,
 .job-list li {
-    font-size: 14px !important;
-    line-height: 1.5;
     font-weight: 300;
     color: #333132;
 }
@@ -9262,7 +9260,7 @@ select.hs-input {
         margin-left: 0px;
     }*/
 
-privacy-policy {
+#privacy-policy {
     position: static;
     margin-left: 0px;
 }
@@ -9437,7 +9435,7 @@ privacy-policy {
         background: #333132;
         border-radius: 100%;
         position: absolute;
-        top: 7px;
+        top: 11px;
         left: 0px;
     }
 

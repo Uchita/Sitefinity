@@ -277,20 +277,20 @@ a {
 
 
 
-.row.row-flex > .row {
+.row.row-flex {
     display: flex;
     flex-wrap: wrap;
 }
 
-.row.row-flex:after,
-.row.row-flex:before {
-    display: none;
-}
+    .row.row-flex:after,
+    .row.row-flex:before {
+        display: none;
+    }
 
-.row.row-flex > .col-md-6,
-.row.row-flex > .row > .col-md-4 {
-    margin-bottom: 24px;
-}
+    .row.row-flex > .col-md-6,
+    .row.row-flex > .col-md-4 {
+        margin-bottom: 24px;
+    }
 
 @media (min-width: 992px) {
     .header .main_menu ul ul {

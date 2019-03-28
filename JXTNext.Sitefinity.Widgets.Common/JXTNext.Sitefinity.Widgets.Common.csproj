@@ -310,7 +310,7 @@
     <Content Include="ResourcePackages\PCN\MVC\Views\AccountActivation\AccountActivation.AccountActivation.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\PCN\MVC\Views\Article\Detail.ArticleHudson.cshtml">
+    <Content Include="ResourcePackages\PCN\MVC\Views\Article\Detail.ArticlePCN.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\PCN\MVC\Views\Article\List.ArticleFilters.cshtml">

@@ -3,6 +3,15 @@
 @using Telerik.Sitefinity;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 @using Telerik.Sitefinity.Web.DataResolving;
+@using SitefinityWebApp.Mvc.Attributes;
+@using SitefinityWebApp.Helpers;
+@using Telerik.Sitefinity.Modules.Blogs;
+@using Telerik.Sitefinity.DynamicModules.Model;
+@using Telerik.Sitefinity.GenericContent.Model;
+@using Telerik.Sitefinity.Model;
+@using Telerik.OpenAccess;
+@using Telerik.Sitefinity.Blogs.Model;
+@using Newtonsoft.Json;
 
 @{
     var imageurl = "";
@@ -10,6 +19,7 @@
     {
         imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
     }
+    var CategoryIds = Model.Item.Fields.Category;
 }
 
 <div class="article-details @Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
@@ -50,24 +60,50 @@
     <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
     <hr class="space" />
 
-    <div class="yarpp-related">
-        <h3>Related blogs:</h3>
-        <ul>
-            @foreach (var relatedItem in Model.Item.Fields.RelatedBlogs)
-            {
-                var navigateUrl = "/news/blog/blog-details" + @relatedItem.Fields.ItemDefaultUrl;
-                <li>
-                    <a href="@navigateUrl" rel="bookmark" title="@relatedItem.Fields.Title">
-                        @relatedItem.Fields.Title
-                    </a>
-                </li>
-            }
-        </ul>
-        @if (Model.Item.Fields.RelatedBlogs.Length == 0)
+    @{
+
+        BlogsManager blogsManager = BlogsManager.GetManager();
+        var allItems = blogsManager.GetBlogPosts().Where(n => n.Status == ContentLifecycleStatus.Live && n.Visible == true).ToList();
+        List<BlogPost> relatedItems = new List<BlogPost>();
+        foreach (var item in allItems)
         {
-            <div class="alert alert-warning"><strong>No results found.</strong></div>
+            var articleTaxonIds = item.GetValue<TrackedList<Guid>>("Category");
+            if (articleTaxonIds.Any(x => CategoryIds.Contains(x)))
+            {
+
+                // Skip the current loaded item in the details page
+                if (item.Id != Model.Item.Fields.Id)
+                {
+                    relatedItems.Add(item);
+                }
+            }
         }
-    </div>
+        var related = relatedItems.Take(3).ToList();
+        if (related.Count > 0)
+        {
+            <div class="yarpp-related">
+                <h3>Related blogs:</h3>
+                <ul>
+                    @foreach (var relatedItem in related)
+                    {
+                        var navigateUrl = "/news/blog/blog-details" + @relatedItem.ItemDefaultUrl;
+                        <li>
+                            <a href="@navigateUrl" rel="bookmark" title="@relatedItem.Title">
+                                @relatedItem.Title
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+
+    }
+
+
+
+
+
+
     <hr class="space" />
 
 
@@ -75,7 +111,7 @@
         if (Model.EnableSocialSharing)
         {
             var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
-            @Html.SocialShareOptions(item);
+            @Html.SocialShareOptions(item, "SocialShareArticleDetails");
         }
     }
     <hr class="space" />

@@ -133,7 +133,7 @@
     float: left;
     height: 33px;
     margin-top: 10px;
-    margin-right: 15px;
+    margin-right:5px;
     width: 290px;
     line-height: 1;
 }
@@ -254,7 +254,7 @@
     &-details {
         padding-right: 40px;
         table {
-            margin: 30px 0;
+            margin-top:30px;
             width: 100%;
         }
     }
@@ -263,6 +263,8 @@
 
         h1 {
             margin-top: 0;
+            font-size:3.6rem;
+            font-family:inherit;
             margin-bottom: 0;
         }
     }
@@ -308,7 +310,7 @@
     }
 
     &-apply{
-        max-width: 400px;
+        /*max-width: 400px;*/
     }
     &-contacts{
         margin-bottom: 30px;
@@ -363,6 +365,10 @@
             margin-right: 20px;
             color: $global-highlight-color;
             border-color: $forms-element-border;
+
+            &:hover, &:focus {
+                color: white;
+            }
         }
 
         .select {
@@ -377,7 +383,7 @@
                 height: 33px;
                 line-height: 1.1;
                 font-size: 1.4rem;
-                border-color: $global-highlight-color;
+                border-color: $forms-element-border;
             }
         }
 
@@ -393,7 +399,7 @@
 
     .search-results {
         .job-holder {
-            border: 1px solid $global-highlight-color;
+            border: 1px solid $dark-separator-color;
             margin-top: 15px;
             transition: .2s;
             -webkit-transition: .2s;
@@ -407,6 +413,10 @@
                 h3 {
                     margin: 5px 0;
                     line-height: 1.3;
+
+                    a {
+                        color: $dark-separator-color;
+                    }
                 }
 
                 .search-result-title {
@@ -416,7 +426,7 @@
                 }
 
                 .save-job {
-                    color: $global-highlight-color;
+                    color: $dark-separator-color;
                 }
 
                 a {
@@ -431,6 +441,10 @@
 
                 small {
                     font-size: 1.4rem;
+                }
+
+                a {
+                    color: $sidebar-link-color;
                 }
             }
 
@@ -452,6 +466,7 @@
                         &::after {
                             content: ">";
                             padding-left: 4px;
+                            color: $forms-element-border;
                         }
 
                         &:last-child::after {
@@ -468,8 +483,12 @@
                     color: #fff;
                     background-color: $global-highlight-color;
 
+                    small {
+                        color: #2e2e2e;
+                    }
+
                     a, a:hover, a:focus {
-                        color: #fff;
+                        color: $forms-element-border;
                     }
 
                     h3 a {
@@ -477,11 +496,11 @@
                     }
 
                     .save-job {
-                        color: $brightColor;
+                        color: #2e2e2e;
                     }
 
                     .saved::before {
-                        color: $brightColor;
+                        color: #2e2e2e;
                     }
                 }
             }
@@ -496,37 +515,57 @@
  }   
 }
 
-.job-offer-actions{
-    li{
-        .save-job{
-            font-size: inherit;
+.job-offer-actions {
+    li {
+        font-size: 14px;;
+
+        .save-job {
         }
     }
-    .saved{
-        &::before{
+
+    .saved {
+        &::before {
             position: absolute;
             left: 0;
             top: 4px;
         }
+
         .fa-save {
             display: none;
         }
     }
 }
 
-.jobdetail-sidebar{
-    @media (min-width:1024){
+.jobdetail-sidebar {
+    @media (min-width:1024) {
         padding-left: 40px;
     }
-    @media (max-width:991px){
-        .job-offer-apply{
+
+    @media (max-width:991px) {
+        .job-offer-apply {
             display: none;
         }
     }
+
+    h4 {
+        font-size: 16px;
+        color: $global-highlight-color;
+    }
 }
 
-.backtoresult{
+.backtoresult {
     margin-bottom: 25px;
+
+    &.detail-result {
+        padding: 5px 15px;
+        border: 1px solid #2e2e2e;
+    }
+
+    a {
+        span {
+            color: $global-highlight-color;
+        }
+    }
 } 
 
 .spt{
@@ -701,35 +740,42 @@
 }
 
 
-#pager{
+#pager {
     border: none;
-    background:none;
+    background: none;
     text-align: center;
-    margin: 10px auto;
-    ul{
+    margin: 30px auto;
+
+    ul {
         list-style: none;
-        li{
+
+        li {
             float: none;
             display: inline-block;
             margin: 0 1px;
-            a{
-                border: 1px solid #219fa3;
-                color: #219fa3;
-                border-radius: 0!important;
+
+            a {
+                border: 1px solid $page-section-bg-dark;
+                color: $page-section-bg-dark;
+                border-radius: 0 !important;
                 min-width: 2em;
                 display: inline-block;
-                &:hover, &:focus, &.active{
-                    background: #219fa3;
+
+                font-weight: $font-weight-medium;
+                &:hover, &:focus, &.active {
+                    background: $btn-primary-bg;
                     color: #fff;
-                    border-color: #219fa3;
+                    border-color: $btn-primary-bg;
                 }
-                &[disabled]{
+
+                &[disabled] {
                     display: none;
                 }
             }
         }
     }
-    .pagePrev a, .pageNext a{
+
+    .pagePrev a, .pageNext a {
         padding: 0 10px;
     }
 }
@@ -789,6 +835,7 @@
     .job-offer-details {
         opacity: 0.5;
         position: relative;
+        
         &:after{
             content: '';
             display: block;
@@ -805,4 +852,32 @@
         @extend .job-offer-details;
     }
 
+}
+
+.job-offer-details {
+
+    h1 {
+        font-size: 3.6rem;
+        font-family: inherit;
+    }
+}
+.apply-job-title{
+    margin-top:15px;
+    margin-bottom:20px;
+
+}
+h2 {
+    &.dashboard-head-title {
+        font-family: inherit;
+        font-weight: $font-weight-light;
+        font-size:3.6rem;
+    }
+}
+
+.job-alert-form {
+    label {
+        font-size: 14px;
+        color: $global-headings-color;
+        font-weight: $font-weight-medium;
+    }
 }

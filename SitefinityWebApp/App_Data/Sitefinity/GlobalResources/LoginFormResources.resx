@@ -157,9 +157,4 @@
     <comment>phrase: Password</comment>
     <lastModified>2019-03-19T04:16:08</lastModified>
   </data>
-  <data name="Email">
-    <value>Email Address</value>
-    <comment>phrase: Email</comment>
-    <lastModified>2019-03-19T09:43:10</lastModified>
-  </data>
 </root>

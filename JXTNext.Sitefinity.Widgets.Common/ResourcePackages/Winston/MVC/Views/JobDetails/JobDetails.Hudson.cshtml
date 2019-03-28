@@ -35,16 +35,16 @@
 
 
     <div class="col-md-8">
-        <div class="backtoresult">
+        <div class="backtoresult detail-result">
             @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))<span class="spt">|</span><a href="#" id="back-to-results" role="button" title="Back to Results"><span class="prev-btn"></span>Back To Results</a>
         </div>
         <div class="job-offer-details">
             <div class="row job-offer-title">
-            
+
                 <div class="col-md-12">
                     <h1>@Model.JobDetails.Title</h1>
                 </div>
-                
+
             </div><div class="row job-offer-summary">
                 <div class="col-md-12">
                     <table>
@@ -87,7 +87,7 @@
                                         @if (minSal == maxSal)
                                         {
 
-                                        <span class="max-sal">$@maxSal <span class="sal-type">@Model.JobDetails.CustomData["Salary.Filters[0].Value"]</span></span>
+                                            <span class="max-sal">$@maxSal <span class="sal-type">@Model.JobDetails.CustomData["Salary.Filters[0].Value"]</span></span>
                                         }
                                         else
                                         {
@@ -100,7 +100,7 @@
                                                 <span class="range-sep">to</span>
                                                 <span class="max-sal">$@maxSal</span>
                                             }
-                                                <span class="sal-type">@Model.JobDetails.CustomData["Salary.Filters[0].Value"]</span>
+                                            <span class="sal-type">@Model.JobDetails.CustomData["Salary.Filters[0].Value"]</span>
                                         }
                                     </td>
                                 </tr>
@@ -110,6 +110,37 @@
                     </table>
                 </div>
             </div>
+            <div class="row job-offer-contacts">
+                <div class="col-md-12">
+                    <div class="flex sm-flex job-metas">
+
+                        <div class="job-meta-label"><strong>Reference Number:</strong></div>
+                        <div id="job-refno" class="job-meta-value">
+                            @Model.JobDetails.ReferenceNo
+                        </div>
+
+                        @{
+                            if (Model.JobDetails.CustomData["ContactDetails"] != "")
+                            {
+                                <div class="job-meta-label"><strong>Contact Details:</strong></div>
+                                <div class="job-meta-value">@Model.JobDetails.CustomData["ContactDetails"]</div>
+                            }
+                        }
+
+
+                        <div class="job-meta-label"><strong>Profession:&nbsp; </strong></div>
+                        <div class="job-meta-value">
+                            @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))
+                        </div>
+
+                        <div class="job-meta-label"><strong>Company:</strong></div>
+                        <div class="job-meta-value">@Model.JobDetails.CustomData["CompanyName"]</div>
+                        @*<tr><td><strong>Date:</strong></td><td>18/09/2016&nbsp; -&nbsp; 5:34pm</td></tr>*@
+
+                    </div>
+                </div>
+            </div>
+
             <div class="row job-offer-advantages">
                 <div class="col-md-12">
                     <ul>
@@ -136,37 +167,8 @@
                     }
                     @Html.HtmlSanitize((string)cleanContent)
                 </div>
-            </div><div class="row job-offer-contacts">
-                <div class="col-md-12">
-                    <div class="flex sm-flex job-metas">
-                       
-                        <div class="job-meta-label"><strong>Reference Number:</strong></div>
-                        <div id="job-refno" class="job-meta-value">
-                            @Model.JobDetails.ReferenceNo
-                        </div>
-                            
-                        @{
-                            if (Model.JobDetails.CustomData["ContactDetails"] != "")
-                            {
-                                <div class="job-meta-label"><strong>Contact Details:</strong></div>
-                                <div class="job-meta-value">@Model.JobDetails.CustomData["ContactDetails"]</div>
-                            }
-                        }
-
-                            
-                        <div class="job-meta-label"><strong>Profession:&nbsp; </strong></div>
-                        <div class="job-meta-value">
-                            @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))
-                        </div>
-                            
-                        <div class="job-meta-label"><strong>Company:</strong></div>
-                        <div class="job-meta-value">@Model.JobDetails.CustomData["CompanyName"]</div>
-                            @*<tr><td><strong>Date:</strong></td><td>18/09/2016&nbsp; -&nbsp; 5:34pm</td></tr>*@
-                        
-                    </div>
-                </div>
             </div>
-                  
+
             <div class="row job-offer-apply">
                 <div class="job-apply-btn col-md-12">
                     <div class="col-md-12">
@@ -225,6 +227,7 @@
             </li>
             @*<li><span class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="fas fa-save"></em>Save this job</span></li>*@
         </ul>
+
 
     </div>
 }

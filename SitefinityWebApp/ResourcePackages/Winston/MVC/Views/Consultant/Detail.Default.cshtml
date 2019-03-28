@@ -40,7 +40,7 @@
         <div class="col-md-4">
             <div class="profile-media">
                 <img class="full-width" src="@imageThumbUrl" alt="@Model.Item.Fields.ConsultantName" />
-                <div class="contact-consultant-name color-highlight">@Html.HtmlSanitize((string)Model.Item.Fields.ConsultantName)</div>
+                
                 @if (Model.Item.Fields.Office != null)
                 {
                     var OfficeLocationName = "";
@@ -70,13 +70,13 @@
                         OfficeLocationUrl = string.Join(",", OfficeLocationUrlList.ToArray());
                     }
 
-                    <div class="contact-consultant-position">@Html.HtmlSanitize((string)Model.Item.Fields.Position), @OfficeLocationName</div>
+                    <p class="consultant-sum">@Html.HtmlSanitize((string)Model.Item.Fields.Position), @OfficeLocationName</p>
                 }
                 else
                 {
                     <div class="contact-consultant-position">@Html.HtmlSanitize((string)Model.Item.Fields.Position)</div>
                 }
-                <div class="contact-consultant-contacts">
+                <p class="email-stamp">
                     @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.Email))
                     {
                         <em class="far fa-envelope"></em><a href="mailto:@Model.Item.Fields.Email" title="Email at @Model.Item.Fields.Email">@Model.Item.Fields.Email</a><br />
@@ -93,18 +93,19 @@
                     {
                         <a href="@Model.Item.Fields.LinkedInProfileUrl" title="Go to LinkedIN Profile"><em class="fab fa-linkedin-in"></em>@Model.Item.Fields.LinkedInProfileName</a>
                     }
-                </div>
+                </p>
             </div>
             
         </div>
 
         <div class="col-md-8">
-            
+            <div class="caption-text-widget">
 
-           
+                <h3 class="consultant-name">@Html.HtmlSanitize((string)Model.Item.Fields.ConsultantName)</h3>
 
-            <div>
-                @Html.HtmlSanitize((string)Model.Item.Fields.Bio)
+                <div>
+                    @Html.HtmlSanitize((string)Model.Item.Fields.Bio)
+                </div>
             </div>
 
 

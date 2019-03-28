@@ -15,14 +15,14 @@
 
     @if (Model != null)
     {
-        <h2><span class="alert-icon far fa-bell"></span>Create job alert</h2>
+        <h2 class="dashboard-head-title"><span class="alert-icon far fa-bell"></span>Create job alert</h2>
         <h3>Alert details</h3>
         <form method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();">
             @{
                 int counter = 0;
                 var privacyErrMsg = "Please agree to Hudson\'s privacy policy";
             }
-            <div class="field-wrapper basic-form no-marg-top">
+            <div class="field-wrapper basic-form no-marg-top job-alert-form">
                 <div class="alert alert-danger filter-madatory-message hidden">@Html.Resource("nofilterselectedmessage", "Labels")</div>
                 <div class="row form-group">
                     <div class="col-md-4 text-right">

@@ -340,9 +340,11 @@
         margin-bottom: 2rem;
 
         h2 {
-            font-size: 3.2rem;
+            font-size: 3.6rem;
             margin-top: 1.6rem;
             margin-bottom: 0.8rem;
+            font-weight: $font-weight-light;
+            font-family:inherit;
         }
 
         img {

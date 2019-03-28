@@ -19,6 +19,10 @@
             }
             else if (item.Name == "Salary")
             {
+                <div class="dropdown dropdown-tree navbar-collapse">
+                    <a href="#" class="btn btn-default dropdown-toggle"><span class="dropdowntree-name">Salary</span></a>
+                </div>
+
                 <div class="select">
                     <select class="SalaryRangeSelect">
                         <option value="-1" selected>No Salary Preference</option>
@@ -36,19 +40,19 @@
                     if (salaryItem.Label != "NA")
                     {
 
-                    <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
+                        <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
 
-                        <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
-                             data-cur_min="@lower" data-cur_max="@upper">
+                            <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
+                                 data-cur_min="@lower" data-cur_max="@upper">
 
-                            <div class="bar"></div>
-                            <div class="leftGrip"></div>
-                            <div class="rightGrip"></div>
+                                <div class="bar"></div>
+                                <div class="leftGrip"></div>
+                                <div class="rightGrip"></div>
+                            </div>
+                            <div class="leftLabel">$<span>@lower</span></div>
+                            <div class="rightLabel">$<span>@upper</span></div>
+
                         </div>
-                        <div class="leftLabel">$<span>@lower</span></div>
-                        <div class="rightLabel">$<span>@upper</span></div>
-
-                    </div>
                     }
                 }
             }

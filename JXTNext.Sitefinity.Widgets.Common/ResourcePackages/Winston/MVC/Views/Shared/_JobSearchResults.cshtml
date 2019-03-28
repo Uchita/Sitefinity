@@ -33,8 +33,7 @@
             <div>Receive new jobs for this search by email.</div>
             <input type="email" id="anonycreatejobalert" value="" placeholder="Enter email address" class="jobalert-field" />
             <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">CREATE JOB ALERT</a>
-            <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
-            <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
+
         }
         <div class="select">
             <select id="sortOrder" class="default-select">
@@ -47,6 +46,8 @@
                 <option value="SalaryLowToHigh">@Html.Resource("SortBySalLowToHigh", "JobSearchResultsResources")</option>
             </select>
         </div>
+        <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
+        <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
     </div>
     </div>
 

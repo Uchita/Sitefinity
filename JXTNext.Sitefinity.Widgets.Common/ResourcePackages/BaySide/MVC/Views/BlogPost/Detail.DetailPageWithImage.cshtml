@@ -23,7 +23,9 @@
 
 
 @{
-    var CategoryIds = Model.Item.Fields.Category;
+                /**/
+
+                var CategoryIds = Model.Item.Fields.Category;
 }
 
 <div class="col blog-detail-col">
@@ -109,12 +111,17 @@
         {
 
             Image imageField = blog.GetRelatedItems<Image>("BlogImage").FirstOrDefault();
-            var cats = (Telerik.OpenAccess.TrackedList<System.Guid>)blog.GetValue("Category");
+            if (imageField != null)
+                var url = "";
+            {
+                url = imageField.ThumbnailUrl;
+            }
+            @*var cats = (Telerik.OpenAccess.TrackedList<System.Guid>)blog.GetValue("Category");*@
 
 
             <div class="news-list col-12 col-sm-6 col-md-4">
                 <div class="bg-image-wrap">
-                    <div class="bg-image" style="background-image: url('@imageField.ThumbnailUrl');"></div>
+                    <div class="bg-image" style="background-image: url('@url');"></div>
                 </div>
 
                 <div class="news-date">
@@ -126,11 +133,7 @@
                 <p class="news-desc">@blog.Title</p>
 
                 <a href="~/blogs/blog-details/@blog.ItemDefaultUrl" class="btn btn-link">Read more</a>
-
             </div>
-
-
-
 
         }
 

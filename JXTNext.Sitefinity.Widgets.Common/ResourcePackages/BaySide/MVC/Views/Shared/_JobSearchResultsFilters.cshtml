@@ -140,7 +140,8 @@
             <div class="col">
                 <ul class="inline-list p-0 mb-0 location-hover">
 
-                    @*<li class="mr-3"><i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
+                    @*
+                        <li class="mr-3"><i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
                         <li class="mr-3"><i class="fa fa-clock-o"></i><div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>*@
                     <li class="mr-3"> <img src="/ResourcePackages/BaySide/assets/images/location.png"> <div> #:CustomData["CountryLocationArea[0].Filters[0].Value"]# > #:CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].SubLevel[0].Value"]#</div></li>
                     <p class="hidden-salary" style="display:none;">#:CustomData["Salary.Filters[0].Value"]# </p>
@@ -636,118 +637,118 @@
                 else if (text == "payments &amp;amp; cards network")
                     $(img).attr("src", "https://teampcn.jxtnext.net/ResourcePackages/PCN/assets/dist/images/logo.png");
         });
+    }
+        //function SelectLeftFilter(response) {
+        //    var myArray = [];
+        //    if (response.SearchResults.length > 0) {
+        //        var pageName = $(location).attr('href');
+        //        pageName = pageName.substr(pageName.lastIndexOf("/") + 1)
+        //        pageName = pageName.split("?")[0];
+        //        for (var i = 0; i < response.SearchResults.length; i++) {
+        //            var jobDetail = response.SearchResults[i];
+        //            if (jobDetail.Classifications.length > 0) {
+        //                for (var j = 0; j < jobDetail.Classifications.length; j++) {
+        //                    var classification = jobDetail.Classifications[j];
+        //                    var result = Object.keys(classification).map(function (key) {
+        //                        return [String(key), classification[key]];
+        //                    });
+        //                    if (result.length > 0) {
+        //                        for (var k = 0; k < result.length; k++) {
 
-    //function SelectLeftFilter(response) {
-    //    var myArray = [];
-    //    if (response.SearchResults.length > 0) {
-    //        var pageName = $(location).attr('href');
-    //        pageName = pageName.substr(pageName.lastIndexOf("/") + 1)
-    //        pageName = pageName.split("?")[0];
-    //        for (var i = 0; i < response.SearchResults.length; i++) {
-    //            var jobDetail = response.SearchResults[i];
-    //            if (jobDetail.Classifications.length > 0) {
-    //                for (var j = 0; j < jobDetail.Classifications.length; j++) {
-    //                    var classification = jobDetail.Classifications[j];
-    //                    var result = Object.keys(classification).map(function (key) {
-    //                        return [String(key), classification[key]];
-    //                    });
-    //                    if (result.length > 0) {
-    //                        for (var k = 0; k < result.length; k++) {
+        //                            if (result.length > 0) {
+        //                                myArray = GetPageCategoryArray(result, pageName);
+        //                            }
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
 
-    //                            if (result.length > 0) {
-    //                                myArray = GetPageCategoryArray(result, pageName);
-    //                            }
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
+        //    return myArray;
+        //}
 
-    //    return myArray;
-    //}
+        function GetPageCategoryArray() {
+            if (result[0][1].toUpperCase() == "ENGINEERING" && pageName == "engineering-jobs") {
+                var classiifcationSingle = result[k];
+                if (classiifcationSingle.length == 2) {
+                    myArray.push({
+                        id: classiifcationSingle[0],
+                        value: classiifcationSingle[1].toUpperCase()
+                    });
+                }
+            }
+        }
 
-    function GetPageCategoryArray() {
-        if (result[0][1].toUpperCase() == "ENGINEERING" && pageName == "engineering-jobs") {
-            var classiifcationSingle = result[k];
-            if (classiifcationSingle.length == 2) {
-                myArray.push({
-                    id: classiifcationSingle[0],
-                    value: classiifcationSingle[1].toUpperCase()
+
+        function pageChange(pageObj) {
+            var currPageNumber = $(pageObj).attr('data-page');
+            var disableFlag = $(pageObj).attr('disabled');
+            if (disableFlag == "disabled") {
+                return false;
+            }
+
+            bindJobsPages(currPageNumber);
+
+            if (currPageNumber != PageNumber) {
+                PageNumber = parseInt(currPageNumber);
+                bindJobs(PageNumber);
+                //changing the prev & next page number attribute
+                $('.pagePrev a').attr('data-page', PageNumber - 1);
+                if (PageNumber + 1 <= highestPage) {
+                    $('.pageNext a').attr('data-page', PageNumber + 1);
+                }
+            }
+
+        };
+
+        function getSortOrder() {
+            var sortValue = $("#sortOrder").val();
+            switch (sortValue) {
+                case 'Old':
+                    return 'DatePosted:desc';
+                    break;
+                case 'AZ':
+                    return 'Title:asc';
+                    break;
+                case 'ZA':
+                    return 'Title:desc';
+                    break;
+                case 'SalaryHighToLow':
+                    return 'CustomData["Salary.Filters[0].Min"]:desc';
+                    break;
+                case 'SalaryLowToHigh':
+                    return 'CustomData["Salary.Filters[0].Max"]:asc';
+                    break;
+                default:
+                    return 'DatePosted:asc';
+                    break;
+            }
+        };
+
+        function layoutSwitch() {
+            if ($('.layout-switch').length) {
+                $('.layout-switch span.jn_ico').click(function () {
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+
+                    if ($(this).hasClass('icon-grid-view')) {
+                        //browser local Store
+                        if (typeof (Storage) !== "undefined") {
+                            localStorage.setItem("resultLayout", "grid");
+                        }
+                        $('.list-view').removeClass('list-view').addClass('grid-view');
+                        $('.job-holder').addClass('col-lg-6');
+                    } else {
+                        if (typeof (Storage) !== "undefined") {
+                            localStorage.setItem("resultLayout", "list");
+                        }
+                        $('.grid-view').removeClass('grid-view').addClass('list-view');
+                        $('.job-holder').removeClass('col-lg-6');
+                    }
                 });
             }
         }
-    }
-
-
-    function pageChange(pageObj) {
-        var currPageNumber = $(pageObj).attr('data-page');
-        var disableFlag = $(pageObj).attr('disabled');
-        if (disableFlag == "disabled") {
-            return false;
-        }
-
-        bindJobsPages(currPageNumber);
-
-        if (currPageNumber != PageNumber) {
-            PageNumber = parseInt(currPageNumber);
-            bindJobs(PageNumber);
-            //changing the prev & next page number attribute
-            $('.pagePrev a').attr('data-page', PageNumber - 1);
-            if (PageNumber + 1 <= highestPage) {
-                $('.pageNext a').attr('data-page', PageNumber + 1);
-            }
-        }
-
-    };
-
-    function getSortOrder() {
-        var sortValue = $("#sortOrder").val();
-        switch (sortValue) {
-            case 'Old':
-                return 'DatePosted:desc';
-                break;
-            case 'AZ':
-                return 'Title:asc';
-                break;
-            case 'ZA':
-                return 'Title:desc';
-                break;
-            case 'SalaryHighToLow':
-                return 'CustomData["Salary.Filters[0].Min"]:desc';
-                break;
-            case 'SalaryLowToHigh':
-                return 'CustomData["Salary.Filters[0].Max"]:asc';
-                break;
-            default:
-                return 'DatePosted:asc';
-                break;
-        }
-    };
-
-    function layoutSwitch() {
-        if ($('.layout-switch').length) {
-            $('.layout-switch span.jn_ico').click(function () {
-                $(this).siblings().removeClass('active');
-                $(this).addClass('active');
-
-                if ($(this).hasClass('icon-grid-view')) {
-                    //browser local Store
-                    if (typeof (Storage) !== "undefined") {
-                        localStorage.setItem("resultLayout", "grid");
-                    }
-                    $('.list-view').removeClass('list-view').addClass('grid-view');
-                    $('.job-holder').addClass('col-lg-6');
-                } else {
-                    if (typeof (Storage) !== "undefined") {
-                        localStorage.setItem("resultLayout", "list");
-                    }
-                    $('.grid-view').removeClass('grid-view').addClass('list-view');
-                    $('.job-holder').removeClass('col-lg-6');
-                }
-            });
-        }
-    }
     }
 
 </script>

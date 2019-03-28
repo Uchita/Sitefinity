@@ -8230,8 +8230,8 @@ select.hs-input {
     }
 
 .search-results h3 {
-    font-size: 24px;
-    margin-bottom: 2px;
+    /*font-size: 24px;
+    margin-bottom: 2px;*/
 }
 
 .search-results .search-list {

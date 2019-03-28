@@ -360,7 +360,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
             // To catch access denied error for seek
             int jobId;
-            if (this.Request.QueryString["error"].ToLower().Contains("denied") && state != null && int.TryParse(state, out jobId))
+            if (!string.IsNullOrEmpty(this.Request.QueryString["error"])  && this.Request.QueryString["error"].ToLower().Contains("denied") && state != null && int.TryParse(state, out jobId))
             {
                 var jobDetails = GetJobDetails(jobId);
                 if (!jobDetails.JobSEOUrl.IsNullOrEmpty())

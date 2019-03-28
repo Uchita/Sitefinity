@@ -806,6 +806,15 @@
     <None Include="ResourcePackages\PCN\assets\dist\webfonts\fa-brands-400.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\PCN\assets\dist\webfonts\fa-brands-400.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

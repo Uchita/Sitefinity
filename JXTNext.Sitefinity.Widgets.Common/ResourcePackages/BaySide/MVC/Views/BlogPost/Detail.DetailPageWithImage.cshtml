@@ -23,9 +23,9 @@
 
 
 @{
-                /**/
+    /**/
 
-                var CategoryIds = Model.Item.Fields.Category;
+    var CategoryIds = Model.Item.Fields.Category;
 }
 
 <div class="col blog-detail-col">
@@ -109,10 +109,9 @@
     <div class="md-row">
         @foreach (var blog in relatedItems)
         {
-
             Image imageField = blog.GetRelatedItems<Image>("BlogImage").FirstOrDefault();
+            var url = "";
             if (imageField != null)
-                var url = "";
             {
                 url = imageField.ThumbnailUrl;
             }

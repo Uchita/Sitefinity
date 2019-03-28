@@ -107,7 +107,7 @@
 
     }
     <div class="md-row">
-        @foreach (var blog in relatedItems)
+        @foreach (var blog in relatedItems.Take(3))
         {
             Image imageField = blog.GetRelatedItems<Image>("BlogImage").FirstOrDefault();
             var url = "";

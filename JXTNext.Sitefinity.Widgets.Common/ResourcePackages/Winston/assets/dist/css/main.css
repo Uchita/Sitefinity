@@ -9627,11 +9627,13 @@ address.info-box {
   margin: 0;
   position: relative;
   font-weight: 300; }
+  .signin-form-block h2 .fa {
+    color: #2dc3ea; }
   .signin-form-block h2:before {
+    display: none;
     content: "\f023";
     font-family: FontAwesome;
-    padding-right: 10px;
-    color: #2dc3ea; }
+    padding-right: 10px; }
 
 .signin-form-block input.form-control {
   border-color: #2e2e2e; }
@@ -9643,7 +9645,10 @@ address.info-box {
   margin: 0;
   position: relative;
   font-weight: 300; }
+  .reg-form h2 .fa {
+    color: #2dc3ea; }
   .reg-form h2:before {
+    display: none;
     content: "\f234";
     font-family: FontAwesome;
     padding-right: 10px;

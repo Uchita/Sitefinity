@@ -3037,61 +3037,69 @@ select.slimtable-paging-select {
     }
 
 
-    .signin-form-block {
-        h2 {
-            color: $global-headings-color;
-            font-family: inherit;
-            font-size: 36px;
-            margin: 0;
-            position: relative;
-            font-weight: $font-weight-light;
+.signin-form-block {
+    h2 {
+        color: $global-headings-color;
+        font-family: inherit;
+        font-size: 36px;
+        margin: 0;
+        position: relative;
+        font-weight: $font-weight-light;
 
-            &:before {
-                content: "\f023";
-                font-family: FontAwesome;
-                padding-right: 10px;
-                color: $global-highlight-color;
-            }
+        .fa {
+            color: $global-highlight-color;
         }
 
-
-
-
-
-
-
-
-        input {
-            &.form-control {
-                border-color: $global-headings-color;
-            }
-        }
-
-        p {
-            &.form-label {
-            }
+        &:before {
+            display: none;
+            content: "\f023";
+            font-family: FontAwesome;
+            padding-right: 10px;
         }
     }
 
 
-    .reg-form {
-        h2 {
-            color: $global-headings-color;
-            font-family: inherit;
-            font-size: 36px;
-            margin: 0;
-            position: relative;
-            font-weight: $font-weight-light;
 
 
-            &:before {
-                content: "\f234";
-                font-family: FontAwesome;
-                padding-right: 10px;
-                color: $global-highlight-color;
-            }
+
+
+
+
+    input {
+        &.form-control {
+            border-color: $global-headings-color;
         }
     }
+
+    p {
+        &.form-label {
+        }
+    }
+}
+
+
+.reg-form {
+    h2 {
+        color: $global-headings-color;
+        font-family: inherit;
+        font-size: 36px;
+        margin: 0;
+        position: relative;
+        font-weight: $font-weight-light;
+
+        .fa {
+            color: $global-highlight-color;
+        }
+
+        &:before {
+            display: none;
+            content: "\f234";
+            font-family: FontAwesome;
+            padding-right: 10px;
+            color: $global-highlight-color;
+        }
+    }
+}
     /*content: "\f234";*/
     .page-wrapper .login-form .basic-form .checkbox {
         font-size: 14px;

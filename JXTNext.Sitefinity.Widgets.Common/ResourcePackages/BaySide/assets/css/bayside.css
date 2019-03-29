@@ -10222,3 +10222,8 @@ ul.nav.nav-stacked li a:before {
 }
 
 /*===== Job Loading:: End =====*/
+
+#linkedin-widget-holder .btn-linkedin-signin img
+{
+    max-width: 195px;
+}

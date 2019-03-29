@@ -24,8 +24,9 @@
     break;*@
 
     case "Indeed":
-    var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
-    var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
+        var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
+        var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
+        var indeedJobCompanyNameAndLoginUserEmail = "right-rail-apply-button;" + ViewBag.loginEmail;
     @*<a id="indeed-btnwrapper" class="btn-block" href="#" target="_blank">
         <img src="~/ResourcePackages/BaySide/assets/images/indeed.jpg" alt=""
              data-indeed-apply-apiToken=@indeedAPIToken
@@ -57,7 +58,7 @@
               data-indeed-apply-jobTitle="Test Engineer"
               data-indeed-apply-jobUrl=""
               data-indeed-apply-postUrl=@redirectUriSocial
-              data-indeed-apply-jobMeta="right-rail-apply-button"
+              data-indeed-apply-jobMeta="@indeedJobCompanyNameAndLoginUserEmail"
               data-indeed-apply-onapplied="OnIndeedCompleted">
 
         </span>

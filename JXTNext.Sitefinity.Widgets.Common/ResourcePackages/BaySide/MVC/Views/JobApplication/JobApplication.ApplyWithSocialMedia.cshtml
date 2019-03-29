@@ -20,8 +20,9 @@
 
                         case "Indeed":
                             @*<li><a href="#" target="_blank" title=@item.Title role="button">Apply With @item.Title</a></li>*@
-                            var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
-                            var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
+                var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
+                var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
+                var indeedJobCompanyNameAndLoginUserEmail = "right-rail-apply-button;" + ViewBag.loginEmail;
                             <li id="indeed-btnwrapper">
                                 <span class="indeed-apply-widget"
                                       data-indeed-apply-apiToken=@indeedAPIToken
@@ -31,7 +32,7 @@
                                       data-indeed-apply-jobTitle="Test Engineer"
                                       data-indeed-apply-jobUrl=""
                                       data-indeed-apply-postUrl=@redirectUriSocial
-                                      data-indeed-apply-jobMeta="right-rail-apply-button"
+                                      data-indeed-apply-jobMeta="@indeedJobCompanyNameAndLoginUserEmail"
                                       data-indeed-apply-onapplied="OnIndeedCompleted">
                                 </span>
                                 <script>

@@ -10,8 +10,8 @@
             var className = taxon.Url;
             className = className.Substring(className.LastIndexOf("/") + 1);
             <li>
-                <label for="@taxon.Title" onclick="window.location='@taxon.Url';">
-                    <input class="parent-blog-category @className" id="@taxon.Title" name="" type="checkbox" />
+                <label for="@taxon.Title" >
+                    <input class="parent-blog-category @className" id="@taxon.Title" name="" type="checkbox" data-url="@taxon.Url" />
                     <i></i>
                     <span>
                         @taxon.Title
@@ -33,3 +33,16 @@
         }
     </ul>
 </div>
+<script>
+    if ($('.parent-blog-category').length) {
+        $('.parent-blog-category').on('click', function () {
+            if ($('.parent-blog-category').is(':checked')) {
+                window.location = $(this).data('url');
+            } else {
+                var blogPath = $(this).data('url').substring(0, $(this).data('url').indexOf('-in-'));
+                window.location = blogPath;
+            }
+        });
+    }
+    
+</script>

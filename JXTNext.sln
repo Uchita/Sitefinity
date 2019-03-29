@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTNext.Sitefinity.Services
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTNext.Sitefinity.Widgets.Identity", "JXTNext.Sitefinity.Widgets.Identity\JXTNext.Sitefinity.Widgets.Identity.csproj", "{D867DD9C-FDE3-433F-A21E-8DE0C3477325}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTNext.Sitefinity.Custom", "JXTNext.Sitefinity.Custom\JXTNext.Sitefinity.Custom.csproj", "{8CA26CDD-CC22-4E2E-BA08-7982171C9D1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -138,6 +140,12 @@ Global
 		{D867DD9C-FDE3-433F-A21E-8DE0C3477325}.Release Pro|Any CPU.Build.0 = Release|Any CPU
 		{D867DD9C-FDE3-433F-A21E-8DE0C3477325}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D867DD9C-FDE3-433F-A21E-8DE0C3477325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CA26CDD-CC22-4E2E-BA08-7982171C9D1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CA26CDD-CC22-4E2E-BA08-7982171C9D1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CA26CDD-CC22-4E2E-BA08-7982171C9D1E}.Release Pro|Any CPU.ActiveCfg = Release|Any CPU
+		{8CA26CDD-CC22-4E2E-BA08-7982171C9D1E}.Release Pro|Any CPU.Build.0 = Release|Any CPU
+		{8CA26CDD-CC22-4E2E-BA08-7982171C9D1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CA26CDD-CC22-4E2E-BA08-7982171C9D1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

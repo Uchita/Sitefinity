@@ -33,12 +33,11 @@
         {
             if (string.IsNullOrEmpty(Model.ActionName))
             {
-                <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-more" role="button" title="Read more"></a>
+                <a href="javascript:void(0);" role="button" data-toggle="modal" data-target="#videoModal" data-theVideo="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-more" title="@Model.Heading"></a>
             }
             else
             {
-
-                <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn" role="button" title="Read more">@Model.ActionName</a>
+                <a href="javascript:void(0);" role="button" data-toggle="modal" data-target="#videoModal" data-theVideo="@Html.UrlSanitize(Model.ActionUrl)" class="btn" title="@Model.Heading">@Model.ActionName</a>
             }
         }
     </div>

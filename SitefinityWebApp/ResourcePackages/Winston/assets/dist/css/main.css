@@ -8219,6 +8219,7 @@ header {
       position: fixed;
       left: 100%;
       width: 100%;
+      top: -50px;
       max-height: 100%;
       height: calc(100% - 95px) !important;
       background: #2e2e2e;
@@ -8227,13 +8228,15 @@ header {
       display: block;
       transition: left 0.2s ease-in-out; }
       header .mobile-nav.left-sidebar .navbar-collapse.in {
-        left: 0; }
+        left: 0;
+        top: -50px; }
     header .mobile-nav.left-sidebar .nav.navbar-nav {
       margin: 0;
       padding: 0; }
       header .mobile-nav.left-sidebar .nav.navbar-nav > li {
         background: #2dc3ea;
-        padding: 0 20px; }
+        padding: 0 20px;
+        border-color: white; }
       header .mobile-nav.left-sidebar .nav.navbar-nav > li:nth-last-child(4) > a {
         border-bottom: none; }
       header .mobile-nav.left-sidebar .nav.navbar-nav > li > a,
@@ -8241,12 +8244,13 @@ header {
         text-transform: uppercase;
         background: #2dc3ea;
         color: #fff;
-        border-bottom: 1px solid #fff;
+        /*border-bottom: 1px solid $brightColor;*/
         font-size: 1.6rem;
         letter-spacing: 0.05rem; }
       header .mobile-nav.left-sidebar .nav.navbar-nav li > a,
       header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown > a {
-        padding: 16px 0; }
+        padding: 16px 0;
+        font-family: inherit; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown > a {
         padding-right: 40px; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown.open > a, header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown.active > a, header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown .active > a {
@@ -8269,17 +8273,18 @@ header {
         position: fixed;
         background: #2dc3ea;
         height: 100%;
-        top: 45px;
+        top: 50px;
         left: 100%;
         transition: left 0.2s ease-in-out;
         display: block; }
         header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu li {
-          padding: 0 20px; }
+          padding: 0 20px;
+          border-color: white; }
           header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu li a {
             padding: 15px 30px 16px 0;
             color: #fff;
             font: 1.75rem/1.2 "Open Sans", sans-serif;
-            border-bottom: 1px solid #fff;
+            /*border-bottom: 1px solid $brightColor;*/
             letter-spacing: 0.05rem; }
           header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu li:last-child > a {
             border-bottom: none; }
@@ -8332,9 +8337,9 @@ header {
           margin-right: 20px; }
   header .back-mnu {
     position: fixed;
-    left: 20px;
+    left: 15px;
     color: #fff;
-    top: 14px;
+    top: 0px;
     text-transform: uppercase;
     font-family: 600; }
     header .back-mnu::before {
@@ -8344,10 +8349,11 @@ header {
       margin-right: 5px; }
 
 .menu-opened .mobile-nav.left-sidebar .navbar-collapse {
-  left: 0; }
+  left: 0;
+  position: relative; }
 
 .menu-opened .main-content {
-  left: -100%; }
+  /*left: -100%;*/ }
 
 /*#endregion Header */
 /*#region Main */
@@ -9551,6 +9557,10 @@ address.info-box {
   height: 47px;
   line-height: 47px;
   position: relative; }
+  @media (max-width: 767px) {
+    .top-level-bar {
+      line-height: 50px;
+      height: 50px; } }
   .top-level-bar:after {
     content: '';
     position: absolute;
@@ -9559,6 +9569,9 @@ address.info-box {
     right: -100vw;
     height: 1px;
     background: white; }
+    @media (max-width: 767px) {
+      .top-level-bar:after {
+        display: none; } }
   .top-level-bar .contact-tel-info {
     border-right: 1px solid #fff;
     font-weight: 600; }
@@ -9582,6 +9595,10 @@ address.info-box {
 .header-right-component {
   border-left: 1px solid white;
   position: relative; }
+  @media (max-width: 767px) {
+    .header-right-component {
+      padding-left: 0;
+      padding-right: 0; } }
   .header-right-component:before {
     position: absolute;
     content: "";
@@ -9589,6 +9606,9 @@ address.info-box {
     bottom: 47px;
     border-bottom: 1px solid white;
     left: 0; }
+  @media (max-width: 767px) {
+    .header-right-component:before {
+      display: none; } }
 
 /*h2 {
     color: pink !important;
@@ -9854,6 +9874,19 @@ h2.loc-title-head {
 
 .profile-head-title {
   font-family: inherit; }
+
+.news-list-widget {
+  margin-bottom: 60px; }
+  @media (max-width: 767px) {
+    .news-list-widget {
+      margin-bottom: 30px; } }
+  .news-list-widget h3 a {
+    color: #2e2e2e; }
+    .news-list-widget h3 a:hover {
+      color: #2dc3ea; }
+
+h2 {
+  color: red !important; }
 
 /*#endregion Basic components */
 /*#region Breadcrumbs */
@@ -12392,7 +12425,7 @@ select.articles-order {
     .page-wrapper .display-table {
       width: auto; }
   header .navbar.navbar-default .navbar-nav {
-    width: 77%; }
+    /*width: 77%;*/ }
     header .navbar.navbar-default .navbar-nav > li {
       padding-left: 3px;
       padding-right: 3px; }
@@ -12607,23 +12640,23 @@ select.articles-order {
     display: block;
     width: 100%;
     height: 100%;
-    background: #007077; }
+    background: rgba(0, 0, 0, 0.75); }
   header .brand-logo {
-    height: 23px;
-    width: 150px;
+    height: 40px;
+    width: 200px;
     display: block;
-    margin: 10px auto;
-    background-image: url("../images/logo-sm.png");
+    margin: 5px auto;
+    /*background-image: url('../images/logo-sm.png');*/
     background-size: auto 100%;
     background-position: center; }
   header .navbar-fixed-top .brand-logo {
-    height: 23px;
+    height: 40px;
     text-align: center; }
   header .navbar-fixed-top .main-nav {
-    top: 8px; }
+    top: -30px; }
   header .main-nav {
     position: absolute;
-    top: 8px;
+    top: -80px;
     right: 10px;
     margin: 0;
     height: 0;
@@ -12633,7 +12666,7 @@ select.articles-order {
       float: left;
       border: 0;
       margin: 0;
-      padding: 7px 10px; }
+      padding: 0px 10px; }
       header .main-nav .navbar-default .navbar-toggle .icon-bar {
         background: none; }
         header .main-nav .navbar-default .navbar-toggle .icon-bar::before {
@@ -12642,7 +12675,7 @@ select.articles-order {
           color: #fff;
           position: relative;
           left: 2px;
-          top: -2px; }
+          top: -22px; }
         header .main-nav .navbar-default .navbar-toggle .icon-bar + .icon-bar {
           display: none; }
       header .main-nav .navbar-default .navbar-toggle.collapsed .icon-bar {

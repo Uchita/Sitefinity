@@ -1320,6 +1320,7 @@ header {
             position: fixed;
             left: 100%;
             width: 100%;
+            top: -50px;
             max-height: 100%;
             height: calc(100% - 95px) !important;
             background: $global-headings-color;
@@ -1330,6 +1331,7 @@ header {
 
             &.in {
                 left: 0;
+                top: -50px;
             }
         }
 
@@ -1340,6 +1342,7 @@ header {
             & > li {
                 background: $global-highlight-color;
                 padding: 0 20px;
+                border-color: white;
             }
 
             & > li:nth-last-child(4) > a {
@@ -1352,7 +1355,7 @@ header {
                 text-transform: uppercase;
                 background: $global-highlight-color;
                 color: $brightColor;
-                border-bottom: 1px solid $brightColor;
+                /*border-bottom: 1px solid $brightColor;*/
                 font-size: 1.6rem;
                 letter-spacing: 0.05rem;
             }
@@ -1360,6 +1363,7 @@ header {
             li > a,
             .dropdown > a {
                 padding: 16px 0;
+                font-family: inherit;
             }
 
             .dropdown {
@@ -1398,19 +1402,20 @@ header {
                 position: fixed;
                 background: $global-highlight-color;
                 height: 100%;
-                top: 45px;
+                top: 50px;
                 left: 100%;
                 transition: left 0.2s ease-in-out;
                 display: block;
 
                 li {
                     padding: 0 20px;
+                    border-color: white;
 
                     a {
                         padding: 15px 30px 16px 0;
                         color: $brightColor;
                         font: 1.75rem/1.2 $font-family-regular;
-                        border-bottom: 1px solid $brightColor;
+                        /*border-bottom: 1px solid $brightColor;*/
                         letter-spacing: 0.05rem;
                     }
 
@@ -1515,9 +1520,9 @@ header {
 
     .back-mnu {
         position: fixed;
-        left: 20px;
+        left: 15px;
         color: $brightColor;
-        top: 14px;
+        top: 0px;
         text-transform: uppercase;
         font-family: $font-family-medium;
 
@@ -1529,14 +1534,16 @@ header {
         }
     }
 }
-.menu-opened{
-    .mobile-nav.left-sidebar{
-        .navbar-collapse{
+.menu-opened {
+    .mobile-nav.left-sidebar {
+        .navbar-collapse {
             left: 0;
+            position: relative;
         }
     }
-    .main-content{
-        left: -100%;
+
+    .main-content {
+        /*left: -100%;*/
     }
 }
 
@@ -2949,6 +2956,10 @@ select.slimtable-paging-select {
     line-height: 47px;
     position: relative;
 
+    @media(max-width:767px){
+        line-height:50px;
+        height:50px;
+    }
 
     &:after {
         content: '';
@@ -2958,6 +2969,9 @@ select.slimtable-paging-select {
         right: -100vw;
         height: 1px;
         background: white;
+        @media(max-width:767px){
+            display:none;
+        }
     }
 
     .contact-tel-info {
@@ -3001,19 +3015,28 @@ select.slimtable-paging-select {
     }
 }
 
-    .header-right-component {
-        border-left: 1px solid white;
-        position: relative;
+.header-right-component {
+    border-left: 1px solid white;
+    position: relative;
+    @media(max-width:767px){
+        padding-left:0;
+        padding-right:0;
+    }
+    &:before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        bottom: 47px;
+        border-bottom: 1px solid white;
+        left: 0
+    }
 
+    @media(max-width:767px) {
         &:before {
-            position: absolute;
-            content: "";
-            width: 100%;
-            bottom: 47px;
-            border-bottom: 1px solid white;
-            left: 0
+            display: none;
         }
     }
+}
     /*h2 {
     color: pink !important;
 }*/
@@ -3435,4 +3458,26 @@ select.slimtable-paging-select {
 .profile-head-title{
     font-family:inherit; 
 
+}
+.news-list-widget {
+    margin-bottom: 60px;
+
+    @media(max-width:767px) {
+        margin-bottom: 30px;
+    }
+
+    h3 {
+        a {
+            color: #2e2e2e;
+
+            &:hover {
+                color: $global-highlight-color;
+            }
+        }
+    }
+}
+
+
+h2{
+    color:red !important;
 }

@@ -465,16 +465,18 @@
     }
 
     header {
-        .navbar.navbar-default .navbar-nav{
-            width: 77%;
-            > li{
+        .navbar.navbar-default .navbar-nav {
+            /*width: 77%;*/
+            > li {
                 padding-left: 3px;
                 padding-right: 3px;
             }
-            > li + li > a:before{
+
+            > li + li > a:before {
                 left: -6px;
             }
         }
+
         .main-nav .navbar-nav > li.dropdown:hover {
 
             .dropdown-menu {
@@ -827,11 +829,12 @@
     .page-wrapper main{
         padding-top: 0!important;
     }
-    
+
     header {
-        .navbar{
+        .navbar {
             min-height: 10px;
         }
+
         .navbar-fixed-top:before {
             content: '';
             position: absolute;
@@ -840,30 +843,33 @@
             display: block;
             width: 100%;
             height: 100%;
-            background: #007077;
+            background: rgba(0,0,0,0.75);
         }
+
         .brand-logo {
-            height: 23px;
-            width: 150px;
+            height: 40px;
+            width: 200px;
             display: block;
-            margin: 10px auto;
-            background-image: url('../images/logo-sm.png');
+            margin: 5px auto;
+            /*background-image: url('../images/logo-sm.png');*/
             background-size: auto 100%;
             background-position: center;
         }
-        .navbar-fixed-top{
+
+        .navbar-fixed-top {
             .brand-logo {
-                height: 23px;
+                height: 40px;
                 text-align: center;
             }
-            .main-nav{
-                top: 8px;
+
+            .main-nav {
+                top: -30px;
             }
         }
 
         .main-nav {
             position: absolute;
-            top: 8px;
+            top: -80px;
             right: 10px;
             margin: 0;
             height: 0;
@@ -874,30 +880,34 @@
                 float: left;
                 border: 0;
                 margin: 0;
-                padding: 7px 10px;
+                padding: 0px 10px;
 
                 .icon-bar {
                     background: none;
-                    &::before{
+
+                    &::before {
                         font: 900 2rem 'Font Awesome 5 Free';
                         content: '\f00d';
                         color: $brightColor;
                         position: relative;
                         left: 2px;
-                        top: -2px;
+                        top: -22px;
                     }
-                    & + .icon-bar{
+
+                    & + .icon-bar {
                         display: none;
                     }
                 }
 
-                &.collapsed{
-                    .icon-bar{
+                &.collapsed {
+                    .icon-bar {
                         background-color: $btn-primary-color;
-                        &::before{
+
+                        &::before {
                             display: none;
                         }
-                        & + .icon-bar{
+
+                        & + .icon-bar {
                             display: block;
                         }
                     }
@@ -905,7 +915,8 @@
 
                 &:hover, &:active, &:focus {
                     background: none;
-                    &.collapsed{
+
+                    &.collapsed {
                         .icon-bar {
                             background-color: $btn-primary-color;
                         }
@@ -913,7 +924,6 @@
                 }
             }
         }
-        
     }
     .main-content {
         /*padding-top: 44px;*/

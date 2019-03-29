@@ -5,10 +5,6 @@
 
 
 @{
-    /**/
-
-    /**/
-
     var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
     bool isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
     var defaultLogo = "/ResourcePackages/PCN/assets/dist/images/defaultLogo.png";
@@ -25,7 +21,7 @@
 
     <div>
 
-        @if (isLoggedIn)
+        @if (ViewBag.IsMember)
         {
             <input type="email" id="anonycreatejobalert" value="@ViewBag.Email" hidden />
             <a id="anon-job-alert" class="btn-smc read_btn" href="javascript:void(0);" title="Create your job alert">
@@ -91,7 +87,7 @@
 
                     <div class="row">
                         <div class="col-sm-8 col-xs-12">
-                            <h3><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="search-result-title">#:Title#</a></h3>
+                            <h3><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="search-result-title">#:sanitizeHtml(Title)#</a></h3>
                             @*<h3><a href="@ViewBag.JobDetailsPageUrl?JobId=#:JobID#" class="search-result-title">#=Title#</a></h3>*@
 
                             <div class="data-job">
@@ -157,6 +153,7 @@
             </div>
         </div>
     </div>
+
 </script>
 
 <script type="text/javascript">
@@ -331,7 +328,6 @@
                 data: alertData,
                 dataType: 'Json',
                 success: function (response) {
-                    console.log(response);
                     if (response.Success == true) {
                         $('#anonycreatejobalert, #anon-job-alert').hide();
                         //$(this).hide();
@@ -614,6 +610,11 @@
             });
         }
     }
+    }
+
+    //function to remove the html asci character to proper text. For ex. &amp; => &
+    function sanitizeHtml(s) {
+        return (new DOMParser()).parseFromString(s, 'text/html').body.textContent;
     }
 
 </script>

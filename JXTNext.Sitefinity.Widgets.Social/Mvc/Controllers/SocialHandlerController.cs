@@ -121,24 +121,24 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                     {
                         Log.Write("Social Handler code,sate and indeed data is null", ConfigurationPolicy.ErrorLog);
                     }
-                     
+
+                    var jobDetails = GetJobDetails(result.JobId.Value);
                     //var result = _socialHandlerLogics.ProcessSocialHandlerData(code, state, indeedJsonStringData);
+                    if (result != null && result.ResumeLinkNotExists)
+                    {
+                        if (!jobDetails.JobSEOUrl.IsNullOrEmpty())
+                        {
+                            return Redirect(string.Format("job-application/{0}/{1}?error=resume", jobDetails.JobSEOUrl, int.Parse(state)));
+                        }
+                        else
+                        {
+                            return Redirect(string.Format("job-application/{0}?error=resume", int.Parse(state)));
+                        }
+                    }
+
 
                     if (result != null && result.Success == true && result.JobId.HasValue)
                     {
-                        var jobDetails = GetJobDetails(result.JobId.Value);
-                        if (result.ResumeLinkNotExists)
-                        {
-                            if (!jobDetails.JobSEOUrl.IsNullOrEmpty())
-                            {
-                                return Redirect(string.Format("job-application/{0}/{1}?error=resume", jobDetails.JobSEOUrl, int.Parse(state)));
-                            }
-                            else
-                            {
-                                return Redirect(string.Format("job-application/{0}?error=resume", int.Parse(state)));
-                            }
-                        }
-
                         JobApplicationStatus status = JobApplicationStatus.Available;
                         if (_jobApplicationService != null)
                         {
@@ -358,6 +358,8 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 Log.Write("Social Handler : Exception Caught" + ex.Message, ConfigurationPolicy.ErrorLog);
             }
 
+
+            
             // To catch access denied error for seek
             int jobId;
             if (!string.IsNullOrEmpty(this.Request.QueryString["error"])  && this.Request.QueryString["error"].ToLower().Contains("denied") && state != null && int.TryParse(state, out jobId))

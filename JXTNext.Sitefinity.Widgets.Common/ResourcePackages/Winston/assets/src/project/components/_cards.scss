@@ -25,15 +25,28 @@
 
 
     &.innerbanner-source {
+        .jumbotron-content{
+            display:none;
+        }
 
-        .jumbotron {
+            .jumbotron {
             height: 200px;
+            @media(max-width:767px){
+                height:50px;
+                min-height:inherit;
+                padding-top:0px;
+            }
         }
 
         &.micro-banner {
             .jumbotron {
                 height: 97px;
                 padding: 0;
+
+                @media(max-width:767px) {
+                    height: 50px;
+                    min-height: inherit;
+                }
             }
         }
     }
@@ -52,7 +65,7 @@
         align-items: center !important;
 
         @media(min-width:1366px) {
-            height: 698px;
+            height: 628px;
         }
 
 
@@ -80,6 +93,7 @@
             font-size: 4rem;
             color: inherit;
             margin-top: 5px;
+            line-height:normal;
         }
 
         .h2, h2 {

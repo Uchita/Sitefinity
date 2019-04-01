@@ -3432,6 +3432,9 @@
     <Content Include="ResourcePackages\Winston\MVC\Views\Card\Card.BannerInner.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Winston\MVC\Views\Card\Card.HeaderNormal.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\Winston\MVC\Views\JobDetails\JobDetails.ApplyButton.cshtml" />
   </ItemGroup>
   <ItemGroup>

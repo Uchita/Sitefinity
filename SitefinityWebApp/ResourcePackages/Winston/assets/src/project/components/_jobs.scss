@@ -1,9 +1,13 @@
 .job-search {
     position: relative;
-    top: -120px;
+    top: -110px;
     z-index: 9;
-    @media(max-width:767px){
-        top:0;
+
+    @media(max-width:767px) {
+        top: 0;
+        background: $global-highlight-color;
+        padding:15px;
+        margin-bottom:30px;
     }
 
 
@@ -238,7 +242,8 @@
 
     @media (max-width: 767px) {
         margin: 0 auto 15px;
-        max-width: 400px;
+        /*max-width: 400px;*/
+        padding:0;
     }
 }
 
@@ -879,5 +884,10 @@ h2 {
         font-size: 14px;
         color: $global-headings-color;
         font-weight: $font-weight-medium;
+    }
+}
+.home-search-jobs-form {
+    @media(max-width:767px) {
+        margin-bottom: 50px;
     }
 }

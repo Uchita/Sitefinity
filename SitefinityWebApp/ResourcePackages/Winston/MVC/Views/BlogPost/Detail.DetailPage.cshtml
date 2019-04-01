@@ -5,28 +5,60 @@
 @using Telerik.Sitefinity.Web.DataResolving;
 
 <div class="@Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
-    <h3>
-        <span @Html.InlineEditingFieldAttributes("Title", "ShortText")>@Model.Item.Fields.Title</span>
-    </h3>
 
-    <div>
-        @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")
-        @Html.Resource("By")
-        @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)
-        @Html.CommentsCount(string.Empty, @Model.Item.DataItem)
+    <div class="news-list-widget">
+
+        <div class="news-detail-view">
+            <div class="news-detail-media">
+                <img src="/images/default-source/theme-images/client-philosophy.jpg" class="img-responsive" alt="Alternate Text" />
+            </div>
+
+
+
+
+
+
+
+            <div class="row">
+                <div class="col-sm-10">
+                    <h3>
+                        <span @Html.InlineEditingFieldAttributes("Title", "ShortText")>@Model.Item.Fields.Title</span>
+                    </h3>
+
+                    <div class="post-stamp">
+                        @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")
+                        @Html.Resource("By")
+                        @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)
+                        @Html.CommentsCount(string.Empty, @Model.Item.DataItem)
+                    </div>
+
+                    <div @Html.InlineEditingFieldAttributes("Summary", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</div>
+
+                    <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
+
+                    @{
+                        if (Model.EnableSocialSharing)
+                        {
+                            var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
+                            @Html.SocialShareOptions(item);
+                        }
+                    }
+
+                    @Html.CommentsList(@Model.Item.DataItem)
+                </div>
+
+
+                <div class="col-lg-12">
+                    <a href="#" class="goback">< GO BACK</a>
+                    <div class="clearfix">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
-    
-    <div @Html.InlineEditingFieldAttributes("Summary", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</div>
-
-    <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
-    
-    @{        
-        if (Model.EnableSocialSharing)
-        {
-            var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
-            @Html.SocialShareOptions(item);
-        }
-    }
-
-    @Html.CommentsList(@Model.Item.DataItem)
 </div>
+
+
+

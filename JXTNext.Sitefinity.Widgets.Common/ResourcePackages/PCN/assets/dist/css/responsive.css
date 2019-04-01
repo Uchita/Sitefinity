@@ -1084,4 +1084,12 @@
     .insta-gallery .insta-img {
         min-height: 200px;
     }
+
+    .upload-section .uploadfield-wrap button {
+        line-height: 50px;
+    }
+
+    .upload-section .uploadfield-wrap .lbl {
+        margin-top: 0;
+    }
 }

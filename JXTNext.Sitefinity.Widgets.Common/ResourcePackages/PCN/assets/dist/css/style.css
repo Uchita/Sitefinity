@@ -57,6 +57,10 @@ img {
     display: none;
 }
 
+.text-right{
+    float:right;
+}
+
 input[type="submit"], input[type="button"], input[type="text"] {
     appearance: none;
     -webkit-appearance: none;
@@ -5814,7 +5818,8 @@ li#memberStatusDashRegister, li#memberStatusDashLogin {
     height: 50px;
     position: relative;
     z-index: 1;
-    cursor: pointer
+    cursor: pointer;
+    font-size: 2.8rem;
 }
 
 .upload-section .uploadfield-wrap .lbl {

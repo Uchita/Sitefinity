@@ -7,13 +7,15 @@
 
     <div class="tbl-wrapper table-responsive">
 
-        <table class="table">
+        <table class="table datatable">
+            <thead>
             <tr>
                 <th>Job ID</th>
                 <th>Job Title</th>
                 <th class="date-col">Date Added</th>
             </tr>
-
+            </thead>
+            <tbody>
             @foreach (MemberAppliedJobItem item in Model)
             {
                 <tr>
@@ -22,7 +24,7 @@
                     <td>@String.Format("{0:dd MMM-yyyy}", item.DateAdded)</td>
                 </tr>
             }
-
+            </tbody>
         </table>
     </div>
 }

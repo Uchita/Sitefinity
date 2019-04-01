@@ -741,10 +741,26 @@
     4. Media(max-width:767px)
 ----------------------------------- */
 @media (max-width: 767px) {
+    .h1, h1{
+        font-size: 28px;
+    }
+    h2{
+        font-size: 24px;
+    }
+    h3 {
+        font-size: 18px;
+    }
+
+    h4{
+        font-size: 16px;
+    }
+
     .job-details-left .job-offer-apply {
         margin-bottom: 18px;
     }
-
+    .job-details-left .backtoresult {
+        font-size: 16px;
+    }
     .header .header_right {
         padding: 0 15px;
         width: 256px;
@@ -860,6 +876,19 @@
         .job_section p {
             margin-bottom: 20px;
         }
+    .job-details-left .job-offer-summary{
+        padding: 5px 0 20px;
+    }
+    .job-details-left .backtoresult .spt{
+        max-width: 190px;
+        float: none;
+        clear: both;
+        margin: 20px 0 10px;
+        display: block;
+    }
+    .bg-corner h3, .bg-corner .h3 {
+        font-size: 16px;
+    }
 
     .three_colmun_section {
         padding: 30px 0 40px 0;

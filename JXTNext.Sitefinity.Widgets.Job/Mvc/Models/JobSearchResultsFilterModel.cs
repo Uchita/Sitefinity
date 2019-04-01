@@ -1,6 +1,7 @@
 ﻿using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -72,20 +73,32 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
                         var filter = filterModel.Filters[i];
                         if (filter != null && filter.values != null && filter.values.Count > 0)
                         {
-                            Classification_CategorySearch cateSearch = new Classification_CategorySearch
+                            if (filter.rootId == "CompanyName")
                             {
-                                ClassificationRootName = filter.rootId,
-                                TargetClassifications = new List<Classification_CategorySearchTarget>()
-                            };
-
-                            foreach (var filterItem in filter.values)
-                            {
-                                var targetCategory = new Classification_CategorySearchTarget() { SubTargets = new List<Classification_CategorySearchTarget>() };
-                                ProcessFilterLevels(targetCategory, filterItem);
-                                cateSearch.TargetClassifications.Add(targetCategory);
+                                dynamic fieldSearch = new ExpandoObject();
+                                fieldSearch.Status = 1;
+                                if (int.TryParse(filter.values[0].ItemID, out int num))
+                                    fieldSearch.CompanyId = int.Parse(filter.values[0].ItemID);
+                                request.FieldSearches = fieldSearch;
                             }
+                            else
+                            {
+                                Classification_CategorySearch cateSearch = new Classification_CategorySearch
+                                {
+                                    ClassificationRootName = filter.rootId,
+                                    TargetClassifications = new List<Classification_CategorySearchTarget>()
+                                };
 
-                            classificationSearches.Add(cateSearch);
+                                foreach (var filterItem in filter.values)
+                                {
+                                    var targetCategory = new Classification_CategorySearchTarget() { SubTargets = new List<Classification_CategorySearchTarget>() };
+                                    ProcessFilterLevels(targetCategory, filterItem);
+                                    cateSearch.TargetClassifications.Add(targetCategory);
+                                }
+
+                                classificationSearches.Add(cateSearch);
+                            }
+                            
                         }
                     }
                 }

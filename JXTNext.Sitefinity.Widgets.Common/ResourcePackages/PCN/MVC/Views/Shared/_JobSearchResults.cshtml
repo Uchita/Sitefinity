@@ -87,7 +87,7 @@
 
                     <div class="row">
                         <div class="col-sm-8 col-xs-12">
-                            <h3><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="search-result-title">#:sanitizeHtml(Title)#</a></h3>
+                            <h3><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="search-result-title">#:Title#</a></h3>
                             @*<h3><a href="@ViewBag.JobDetailsPageUrl?JobId=#:JobID#" class="search-result-title">#=Title#</a></h3>*@
 
                             <div class="data-job">
@@ -610,11 +610,6 @@
             });
         }
     }
-    }
-
-    //function to remove the html asci character to proper text. For ex. &amp; => &
-    function sanitizeHtml(s) {
-        return (new DOMParser()).parseFromString(s, 'text/html').body.textContent;
     }
 
 </script>

@@ -497,6 +497,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             var existingUser = SitefinityHelper.GetUserByEmail(emailAddress);
             if (existingUser != null)
             {
+                
                 if (!AuthenticateUser(emailAddress))
                 {
                     Log.Write("LinkedIn: Unable to authenticate user using the email address.");
@@ -550,8 +551,30 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         /// <returns></returns>
         private bool AuthenticateUser(string emailAddress)
         {
-            var userManager = UserManager.GetManager();
+            // check user exist in the JXT Next database
+            Telerik.Sitefinity.Security.Model.User existingUser = SitefinityHelper.GetUserByEmail(emailAddress);
+            var memberResponse = _blConnector.GetMemberByEmail(emailAddress);
+            if (memberResponse.Member == null)
+            {
+                UserProfileManager userProfileManager = UserProfileManager.GetManager();
+                UserProfile profile = userProfileManager.GetUserProfile(existingUser.Id, typeof(SitefinityProfile).FullName);
+                var fName = Telerik.Sitefinity.Model.DataExtensions.GetValue(profile, "FirstName");
+                var lName = Telerik.Sitefinity.Model.DataExtensions.GetValue(profile, "LastName");
+                JXTNext_MemberRegister memberReg = new JXTNext_MemberRegister
+                {
+                    Email = emailAddress,
+                    FirstName = fName.ToString(),
+                    LastName = lName.ToString(),
+                    Password = existingUser.Password
+                };
 
+                if (_blConnector.MemberRegister(memberReg, out string errorMessage))
+                {
+                    Log.Write("User created JXT next DB" + existingUser.Email, ConfigurationPolicy.ErrorLog);
+                }
+            }
+            // end of the code for the user check in the JXT Next DB
+            var userManager = UserManager.GetManager();
             SecurityManager.AuthenticateUser(userManager.Provider.Name, emailAddress, false, out User user);
 
             return user != null;

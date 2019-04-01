@@ -28,16 +28,14 @@ using System.Dynamic;
 using System.Collections.Specialized;
 using System.Text.RegularExpressions;
 using Ninject;
-<<<<<<< HEAD
 using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.Multisite;
-=======
 using JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers;
 using Telerik.Sitefinity.Security;
 using Telerik.Sitefinity.Security.Model;
 using System.Web.Security;
 using JXTNext.SocialMedia.Services.LinkedIn;
->>>>>>> develop
+
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 {

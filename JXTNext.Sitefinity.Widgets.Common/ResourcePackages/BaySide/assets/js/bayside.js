@@ -12,14 +12,15 @@ $(document).ready(function () {
         autoplay: true,
         autoplayTimeout: 5000,
         dots: true,
+        loop: true,
         navText: [],
         responsive: {
             0: {
                 items: 1
             },
             768: {
-                items: 3,
-                loop: false
+                items: 3
+                //loop: false
             }
         }
     });

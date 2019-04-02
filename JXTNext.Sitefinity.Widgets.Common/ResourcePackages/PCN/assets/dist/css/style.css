@@ -5769,10 +5769,12 @@ select.slimtable-paging-select {
     text-align: center;
     font-size: 13px
 }
-
-    .basic-form .checkbox .checkbox-icon:before {
-        content: "";
-    }
+.input-validation-error + .checkbox-icon {
+    border-color: red!important;
+}
+.basic-form .checkbox .checkbox-icon:before {
+    content: "";
+}
 
 .basic-form .checkbox {
     padding-left: 0px;
@@ -5880,6 +5882,9 @@ select.slimtable-paging-select {
     margin: 10px 0 20px
 }
 
+input.input-validation-error {
+    border-color: red !important;
+}
 
 .upload-section .box {
     border: 1px solid #004F6E;
@@ -8024,7 +8029,7 @@ ul.nav.nav-sitemap li > ul {
     border-top: none;
 }
 
-.table-responsive {
+.table-responsive, .tbl-wrapper table {
     border: 1px solid #ddd;
 }
 
@@ -8327,6 +8332,13 @@ body.doc-ready .read_btn {
 .loading#listView::before {
     top: 100px;
 }
+
+/* Flex */
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 
 /*===== Job Loading:: End =====*/
 

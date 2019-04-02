@@ -50,7 +50,7 @@
                     <br />
                     @if (!string.IsNullOrWhiteSpace(@Model.Item.Fields.LinkedInProfileUrl))
                     {
-                        <a href="@Model.Item.Fields.LinkedInProfileUrl" rel="noopener" target="_blank" title="Linkedin"><i aria-hidden="true" class="fab fa-linkedin-in"><span class="hidden">icon</span></i> </a>
+                    <a href="@Model.Item.Fields.LinkedInProfileUrl" rel="noopener" target="_blank" title="Linkedin"><i aria-hidden="true" class="fab fa-linkedin-in"><span class="hidden">icon</span></i>@Model.Item.Fields.LinkedInProfileName</a>
                     }
                 </p>
 

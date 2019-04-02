@@ -7947,6 +7947,9 @@ pre {
 /*#endregion General */
 .header {
   border-bottom: 1px solid #fff; }
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .header {
+      overflow: hidden; } }
   .header .header {
     border: 0; }
 
@@ -7957,6 +7960,9 @@ pre {
   font-size: 1.6rem;
   font-family: 600;
   color: #fff; }
+  @media (max-width: 767px) {
+    .header-top {
+      margin: 0 -15px; } }
   .header-top a {
     color: #fff; }
   .header-top-left .fab, .header-top-left .far {
@@ -8017,7 +8023,7 @@ header {
   z-index: 998; }
   header .brand-logo {
     /*background: url('../images/winston-fox-logo-horizontal-colour-2.svg') no-repeat 0 0 / 100% auto;*/
-    background: url("../images/winston-fox-logo-horizontal-colour-2.svg") no-repeat center center 100% auto;
+    background: url("images/default-source/icons/winston-fox-logo-horizontal-colour-2.svg") no-repeat center center 100% auto;
     background-position: center center;
     width: 258px;
     max-width: 100%;
@@ -8246,7 +8252,6 @@ header {
         border-bottom: none; }
       header .mobile-nav.left-sidebar .nav.navbar-nav > li > a,
       header .mobile-nav.left-sidebar .nav.navbar-nav > .dropdown > a {
-        text-transform: uppercase;
         background: #2dc3ea;
         color: #fff;
         /*border-bottom: 1px solid $brightColor;*/
@@ -8309,7 +8314,8 @@ header {
         color: #fff; }
         header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu a {
           background: #2e2e2e;
-          color: #fff; }
+          color: #fff;
+          text-transform: none; }
           header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu a em {
             transform: rotate(90deg);
             margin-right: 10px; }
@@ -9532,11 +9538,15 @@ address.info-box {
 .transparent-data .select:before {
   color: #9d9c9c; }
 
+@media (max-width: 767px) {
+  .transparent-data .select:before {
+    color: white; } }
+
 .transparent-data select.form-control {
   color: #9d9c9c; }
   @media (max-width: 767px) {
     .transparent-data select.form-control {
-      color: white; } }
+      color: red; } }
   .transparent-data select.form-control option {
     /*background: $footer-subhead-text;
                 color: $brightColor;*/ }
@@ -9608,6 +9618,9 @@ address.info-box {
       transition: all 0.3s ease-in-out; }
       .top-level-bar .contact-social-info .header-top-social ul li a:hover {
         color: white; }
+    @media (max-width: 1024px) {
+      .top-level-bar .contact-social-info .header-top-social ul {
+        padding-left: 0; } }
   .top-level-bar .contact-personal-info a {
     color: white; }
 
@@ -10045,6 +10058,9 @@ ul.breadcrumb {
     @media (min-width: 1366px) {
       .jumbotron-container .jumbotron {
         height: 628px; } }
+    @media (max-width: 1024px) {
+      .jumbotron-container .jumbotron {
+        height: 60vh; } }
     .jumbotron-container .jumbotron:before {
       content: '';
       position: absolute;
@@ -10060,6 +10076,9 @@ ul.breadcrumb {
       z-index: 10;
       padding: 0 40px;
       width: 100%; }
+      @media (max-width: 767px) {
+        .jumbotron-container .jumbotron .jumbotron-content {
+          padding: 0; } }
     .jumbotron-container .jumbotron .h1, .jumbotron-container .jumbotron h1 {
       font-size: 40px;
       font-size: 4rem;
@@ -12776,7 +12795,8 @@ select.articles-order {
       float: left;
       border: 0;
       margin: 0;
-      padding: 0px 10px; }
+      padding: 0px 10px;
+      right: -15px; }
       header .main-nav .navbar-default .navbar-toggle .icon-bar {
         background: none; }
         header .main-nav .navbar-default .navbar-toggle .icon-bar::before {

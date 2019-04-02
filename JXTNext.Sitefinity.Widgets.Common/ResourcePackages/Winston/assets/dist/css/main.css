@@ -7947,6 +7947,9 @@ pre {
 /*#endregion General */
 .header {
   border-bottom: 1px solid #fff; }
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .header {
+      overflow: hidden; } }
   .header .header {
     border: 0; }
 
@@ -8020,7 +8023,7 @@ header {
   z-index: 998; }
   header .brand-logo {
     /*background: url('../images/winston-fox-logo-horizontal-colour-2.svg') no-repeat 0 0 / 100% auto;*/
-    background: url("../images/winston-fox-logo-horizontal-colour-2.svg") no-repeat center center 100% auto;
+    background: url("images/default-source/icons/winston-fox-logo-horizontal-colour-2.svg") no-repeat center center 100% auto;
     background-position: center center;
     width: 258px;
     max-width: 100%;
@@ -8311,7 +8314,8 @@ header {
         color: #fff; }
         header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu a {
           background: #2e2e2e;
-          color: #fff; }
+          color: #fff;
+          text-transform: none; }
           header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu a em {
             transform: rotate(90deg);
             margin-right: 10px; }
@@ -9536,13 +9540,13 @@ address.info-box {
 
 @media (max-width: 767px) {
   .transparent-data .select:before {
-    color: red; } }
+    color: white; } }
 
 .transparent-data select.form-control {
   color: #9d9c9c; }
   @media (max-width: 767px) {
     .transparent-data select.form-control {
-      color: white; } }
+      color: red; } }
   .transparent-data select.form-control option {
     /*background: $footer-subhead-text;
                 color: $brightColor;*/ }
@@ -9614,6 +9618,9 @@ address.info-box {
       transition: all 0.3s ease-in-out; }
       .top-level-bar .contact-social-info .header-top-social ul li a:hover {
         color: white; }
+    @media (max-width: 1024px) {
+      .top-level-bar .contact-social-info .header-top-social ul {
+        padding-left: 0; } }
   .top-level-bar .contact-personal-info a {
     color: white; }
 
@@ -9983,12 +9990,6 @@ ul.no-gutter {
 
 .news-detail-media img {
   margin-top: 20px; }
-
-* {
-  display: none; }
-
-h2 {
-  color: red !important; }
 
 /*#endregion Basic components */
 /*#region Breadcrumbs */

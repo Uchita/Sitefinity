@@ -182,6 +182,9 @@
     <Content Include="ResourcePackages\PCN\assets\dist\js\owl.carousel.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\PCN\assets\dist\js\slimtable.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\PCN\assets\dist\webfonts\fa-brands-400.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -19,16 +19,17 @@
 @if (Model != null && Model.Count > 0)
 {
 
-    <div class="tbl-wrapper table-responsive">
-        <table class="table">
-
+    <div class="tbl-wrapper">
+        <table class="table datatable">
+            <thead>
             <tr>
                 <th>Job ID</th>
                 <th>Job Title</th>
                 <th class="date-col">Date Added</th>
                 <th>Actions</th>
             </tr>
-
+            </thead>
+            <tbody>
             @foreach (MemberSavedJobDisplayItem item in Model)
             {
                 <tr>
@@ -40,7 +41,7 @@
                     </td>
                 </tr>
             }
-
+            </tbody>
         </table>
     </div>
 }

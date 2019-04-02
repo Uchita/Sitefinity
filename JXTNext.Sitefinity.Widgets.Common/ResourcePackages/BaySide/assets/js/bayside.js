@@ -61,6 +61,23 @@ $(document).ready(function () {
         }
     });
 
+    if ($(".location-hover li").length) {
+        $(".location-hover li").each(function () {
+            if ($(this).find('div').text().trim() == "") {
+                $(this).hide();
+            }
+        });
+    }
+
+
+
+    if ($(".save-job-wrapper").length) {
+        if ($(".save-job-wrapper").text()=='') {
+            $(".save-job-wrapper").hide();
+        }
+    }
+
+
     /**Leaders Page accordion */
     $(".leader-list a").on("click", function (e) {
         e.preventDefault();

@@ -1,0 +1,79 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web.DataResolving;
+
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Security.Model;
+@using Telerik.Sitefinity.Model;
+
+@Html.Script(ScriptRef.JQuery, "top", false)
+
+
+@{
+    List<Taxon>
+    _cates = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.GetTopLevelCategories();
+
+    Taxon _sectorTaxon = _cates.Where(c => c.Title.ToUpper() == "BLOG CATEGORIES").FirstOrDefault();
+
+    Taxon _sectorTaxon1 = _cates.Where(c => c.Title.ToUpper() == "BLOG INDUSTRIES").FirstOrDefault();
+
+    Taxon _sectorTaxon2 = _cates.Where(c => c.Title.ToUpper() == "BLOG TYPE").FirstOrDefault();
+
+    var _dd_blogCategories = _sectorTaxon as HierarchicalTaxon;
+
+    var _dd_blogIndustries = _sectorTaxon1 as HierarchicalTaxon;
+
+    var _dd_blogTypes = _sectorTaxon2 as HierarchicalTaxon;
+}
+
+@*@foreach (var newscatitem in _dd_blogCategories.Subtaxa)
+    {
+    <p>@newscatitem.Name</p>
+    foreach (var subcategory in newscatitem.Subtaxa)
+    {
+    <p>@subcategory.Name</p>
+    }
+    }
+
+    @foreach (var newscatitem in _dd_blogIndustries.Subtaxa)
+    {
+    <p>@newscatitem.Name</p>
+    foreach (var subcategory in newscatitem.Subtaxa)
+    {
+    <p>@subcategory.Name</p>
+    }
+    }
+
+    @foreach (var newscatitem in _dd_blogTypes.Subtaxa)
+    {
+    <p>@newscatitem.Name</p>
+    foreach (var subcategory in newscatitem.Subtaxa)
+    {
+    <p>@subcategory.Name</p>
+    }
+    }*@
+
+
+<div>
+    <div>
+        <select id="sortOrder" class="jxt-news-filter-summary">
+            <option value="latest">Sort by – Recent</option>
+            <option value="oldest">Sort by – Oldest Posts</option>
+            <option value="az">Sort by – Alphabetical A-Z</option>
+            <option value="za">Sort by – Alphabetical Z-A</option>
+        </select>
+    </div>
+
+    <div class="keywordfilter">
+        <h3>Search Keyword</h3>
+        <input type="text" id="txtSearch" placeholder="Search" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search'" />
+
+    </div>
+</div>
+<script src="~/ResourcePackages/BaySide/assets/js/blogfilter.js"></script>

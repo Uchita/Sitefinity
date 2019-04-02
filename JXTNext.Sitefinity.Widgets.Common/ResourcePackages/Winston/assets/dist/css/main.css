@@ -9984,6 +9984,12 @@ ul.no-gutter {
 .news-detail-media img {
   margin-top: 20px; }
 
+* {
+  display: none; }
+
+h2 {
+  color: red !important; }
+
 /*#endregion Basic components */
 /*#region Breadcrumbs */
 ul.breadcrumb {

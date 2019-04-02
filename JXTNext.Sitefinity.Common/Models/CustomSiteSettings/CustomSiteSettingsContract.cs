@@ -148,6 +148,50 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
         }
         #endregion
 
+        #region LinkedIn
+        [DataMember]
+        public string LinkedInClientId
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string LinkedInClientSecret
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string LinkedInCustomerClientId
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string LinkedInCustomerClientSecret
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string LinkedInCustomerIntegrationContext
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string LinkedInSocialHandlerUrl
+        {
+            get;
+            set;
+        }
+        #endregion
+
         #endregion
 
         #region LoadDefaults
@@ -185,6 +229,14 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             this.InstagramAccessToken = section.UICustomSiteSettings.CurrentInstagramAccessToken;
             this.InstagramExpiration = section.UICustomSiteSettings.CurrentInstagramExpiration;
             this.InstagramMaxItems = section.UICustomSiteSettings.CurrentInstagramMaxItems;
+
+            // LinkedIn
+            this.LinkedInClientId = section.UICustomSiteSettings.CurrentLinkedInClientId;
+            this.LinkedInClientSecret = section.UICustomSiteSettings.CurrentLinkedInClientSecret;
+            this.LinkedInCustomerClientId = section.UICustomSiteSettings.CurrentLinkedInCustomerClientId;
+            this.LinkedInCustomerClientSecret = section.UICustomSiteSettings.CurrentLinkedInCustomerClientSecret;
+            this.LinkedInCustomerIntegrationContext = section.UICustomSiteSettings.CurrentLinkedInCustomerIntegrationContext;
+            this.LinkedInSocialHandlerUrl = section.UICustomSiteSettings.CurrentLinkedInSocialHandlerUrl;
         }
 
         public void SaveDefaults()
@@ -219,6 +271,14 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             section.UICustomSiteSettings.CurrentInstagramAccessToken = this.InstagramAccessToken;
             section.UICustomSiteSettings.CurrentInstagramExpiration = this.InstagramExpiration;
             section.UICustomSiteSettings.CurrentInstagramMaxItems = this.InstagramMaxItems;
+
+            // LInkedIn
+            section.UICustomSiteSettings.CurrentLinkedInClientId = this.LinkedInClientId;
+            section.UICustomSiteSettings.CurrentLinkedInClientSecret = this.LinkedInClientSecret;
+            section.UICustomSiteSettings.CurrentLinkedInCustomerClientId = this.LinkedInCustomerClientId;
+            section.UICustomSiteSettings.CurrentLinkedInCustomerClientSecret = this.LinkedInCustomerClientSecret;
+            section.UICustomSiteSettings.CurrentLinkedInCustomerIntegrationContext = this.LinkedInCustomerIntegrationContext;
+            section.UICustomSiteSettings.CurrentLinkedInSocialHandlerUrl = this.LinkedInSocialHandlerUrl;
 
             manager.SaveSection(section);
         }

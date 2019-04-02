@@ -29,7 +29,6 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
             if (data.IsNullOrEmpty() && !indeedData.IsNullOrEmpty())
             {
                 Log.Write("ProcessData Indeed Intial Condtion pass : ", ConfigurationPolicy.ErrorLog);
-                Log.Write("ProcessData Indeed, indeedData : " + indeedData, ConfigurationPolicy.ErrorLog);
                 processedResponse = new SocialMediaProcessedResponse();
                 try
                 {
@@ -56,7 +55,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
                         {
                             string[] metaData = indeedAPIResponse.IndeedJobApplication.JXTNextJob.jobMeta.Split(new char[] { ';'});
                             
-                            if(metaData.Count() >= 1)
+                            if(metaData.Count() > 1)
                             {
                                 string email = metaData[1];
                                 if (!string.IsNullOrEmpty(email))
@@ -68,7 +67,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
                                     processedResponse.LoginUserEmail = email;
                                 }
                             }
-                            if(metaData.Count() >= 2)
+                            if(metaData.Count() > 2)
                             {
                                 string source = metaData[2];
                                 if (!string.IsNullOrEmpty(source))

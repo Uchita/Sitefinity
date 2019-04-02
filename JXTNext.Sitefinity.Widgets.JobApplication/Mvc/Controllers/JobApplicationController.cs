@@ -36,6 +36,7 @@ using Telerik.Sitefinity.Abstractions;
 using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.JXTNextResume;
 using System.Dynamic;
 using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models;
+using JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -286,7 +287,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
                 ViewBag.ResumeList = myResumes;
                 Log.Write($"Resume process is completed ", ConfigurationPolicy.ErrorLog);
-            }
+            }            
+
+            // linked-in data
+            ViewBag.CustomerClientId = LinkedInHelper.CustomerClientId;
+            ViewBag.CustomerIntegrationContext = LinkedInHelper.CustomerIntegrationContext;
+            ViewBag.LinkedInSignInUrl = LinkedInHelper.CreateSignInUrl(LinkedInHelper.ActionJobApply, jobApplicationViewModel.JobId.ToString());
+            ViewBag.LinkedInApplyUrl = LinkedInHelper.CreateApplyUrl();
+
             Log.Write($"Index method end ", ConfigurationPolicy.ErrorLog);
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
             return View(fullTemplateName, jobApplicationViewModel);
@@ -611,6 +619,25 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                             Log.Write($"ValidateUser user in not null", ConfigurationPolicy.ErrorLog);
                             isMemberUser = SitefinityHelper.IsUserInRole(user, "Member");
                             var memberResponse = _blConnector.GetMemberByEmail(user.Email);
+                            if(memberResponse.Member == null)
+                            {
+                                UserProfileManager userProfileManager = UserProfileManager.GetManager();
+                                UserProfile profile = userProfileManager.GetUserProfile(user.Id, typeof(SitefinityProfile).FullName);
+                                var fName = Telerik.Sitefinity.Model.DataExtensions.GetValue(profile, "FirstName");
+                                var lName = Telerik.Sitefinity.Model.DataExtensions.GetValue(profile, "LastName");
+                                JXTNext_MemberRegister memberReg = new JXTNext_MemberRegister
+                                {
+                                    Email = user.Email,
+                                    FirstName = fName.ToString(),
+                                    LastName = lName.ToString(),
+                                    Password = user.Password
+                                };
+
+                                if(_blConnector.MemberRegister(memberReg, out string errorMessage))
+                                {
+                                    memberResponse = _blConnector.GetMemberByEmail(user.Email);
+                                }
+                            }
                             firstName = memberResponse.Member?.FirstName;
                             if (memberResponse.Member?.ResumeFiles != null)
                             {

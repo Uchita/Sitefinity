@@ -944,7 +944,9 @@ blockquote{
         font-size: 1.6rem;
         font-family: $font-family-medium;
         color: $header-top-color;
-
+        @media(max-width:767px){
+            margin:0 -15px;
+        }
         a {
             color: $header-top-color;
         }
@@ -1402,7 +1404,7 @@ blockquote{
 
                 & > li > a,
                 & > .dropdown > a {
-                    text-transform: uppercase;
+                    
                     background: $global-highlight-color;
                     color: $brightColor;
                     /*border-bottom: 1px solid $brightColor;*/
@@ -2959,6 +2961,12 @@ blockquote{
         &:before {
             color: $forms-select-text;
         }
+
+        @media(max-width:767px) {
+            &:before {
+                color: red;
+            }
+        }
     }
 
     select {
@@ -3038,6 +3046,7 @@ blockquote{
         @media(max-width:767px) {
             line-height: 50px;
             height: 50px;
+            margin:0;
         }
 
         &:after {
@@ -3103,9 +3112,12 @@ blockquote{
         border-left: 1px solid white;
         position: relative;
 
+
+
         @media(max-width:767px) {
             padding-left: 0;
             padding-right: 0;
+            border:0;
         }
 
         &:before {
@@ -3677,4 +3689,11 @@ blockquote{
     @media(max-width:767px) {
         font-size: 1.4rem !important;
     }
+}
+
+.news-detail-media{
+    img{
+        margin-top:20px;
+    }
+
 }

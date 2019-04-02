@@ -25,16 +25,17 @@
 
 
     &.innerbanner-source {
-        .jumbotron-content{
-            display:none;
+        .jumbotron-content {
+            display: none;
         }
 
-            .jumbotron {
+        .jumbotron {
             height: 200px;
-            @media(max-width:767px){
-                height:50px;
-                min-height:inherit;
-                padding-top:0px;
+
+            @media(max-width:767px) {
+                height: 50px;
+                min-height: inherit;
+                padding-top: 0px;
             }
         }
 
@@ -68,6 +69,10 @@
             height: 628px;
         }
 
+        @media(max-width:1024px) {
+            height: 60vh;
+        }
+
 
         &:before {
             content: '';
@@ -86,6 +91,9 @@
             z-index: 10;
             padding: 0 40px;
             width: 100%;
+            @media(max-width:767px){
+                padding:0;
+            }
         }
 
         .h1, h1 {
@@ -93,7 +101,7 @@
             font-size: 4rem;
             color: inherit;
             margin-top: 5px;
-            line-height:normal;
+            line-height: normal;
         }
 
         .h2, h2 {

@@ -12,14 +12,15 @@ $(document).ready(function () {
         autoplay: true,
         autoplayTimeout: 5000,
         dots: true,
+        loop: true,
         navText: [],
         responsive: {
             0: {
                 items: 1
             },
             768: {
-                items: 3,
-                loop: false
+                items: 3
+                //loop: false
             }
         }
     });
@@ -59,6 +60,23 @@ $(document).ready(function () {
             }
         }
     });
+
+    if ($(".location-hover li").length) {
+        $(".location-hover li").each(function () {
+            if ($(this).find('div').text().trim() == "") {
+                $(this).hide();
+            }
+        });
+    }
+
+
+
+    if ($(".save-job-wrapper").length) {
+        if ($(".save-job-wrapper").text()=='') {
+            $(".save-job-wrapper").hide();
+        }
+    }
+
 
     /**Leaders Page accordion */
     $(".leader-list a").on("click", function (e) {

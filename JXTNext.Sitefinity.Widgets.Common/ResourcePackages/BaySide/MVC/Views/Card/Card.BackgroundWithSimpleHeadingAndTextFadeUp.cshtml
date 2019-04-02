@@ -9,7 +9,7 @@
             <div class="row align-items-center">
                 <div class="col-12 col-md-9">
                     <h2 class="fadeInUp wow" style="color: #0088CF;">@Html.HtmlSanitize(Model.Heading)</h2>
-                    <p class="fadeInUp wow"> @Html.HtmlSanitize(Model.Description)</p>
+                    <p class="fadeInUp wow" >@Html.HtmlSanitize(Model.Description)</p>
                 </div>
                 <div class="col-12 col-md-auto ml-md-auto">
                     @if (!string.IsNullOrEmpty(Model.ActionName))
@@ -28,7 +28,7 @@ else if (@Model.CssClass == "white-text")
             <div class="row align-items-center">
                 <div class="col-12 col-md-9">
                     <h2 class="fadeInUp wow" style="color: #ffffff;">@Html.HtmlSanitize(Model.Heading)</h2>
-                    <p class="fadeInUp wow">@Html.HtmlSanitize(Model.Description)</p>
+                    <p class="fadeInUp wow" >@Html.HtmlSanitize(Model.Description)</p>
                 </div>
                 <div class="col-12 col-md-auto ml-md-auto">
                     @if (!string.IsNullOrEmpty(Model.ActionName))

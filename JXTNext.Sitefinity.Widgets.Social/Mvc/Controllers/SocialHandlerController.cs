@@ -294,6 +294,11 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         public ActionResult LinkedInSignIn(LinkedInSignInRequest request)
         {
             LinkedInSignInViewModel viewModel;
+            string urlReferral = null;
+            if (TempData["source"] != null)
+            {
+                urlReferral = TempData["source"].ToString();
+            }
 
             if (string.IsNullOrEmpty(request.Error))
             {
@@ -306,6 +311,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                     {
                         if (int.TryParse(request.Data, out int jobId))
                         {
+                            TempData["Urlreferal"] = urlReferral;
                             return Redirect(GetJobApplicationUrl(jobId, "ShowLinkedIn=1"));
                         }
                     }
@@ -323,6 +329,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                     {
                         if (int.TryParse(request.Data, out int jobId))
                         {
+                            TempData["Urlreferal"] = urlReferral;
                             return Redirect(GetJobApplicationUrl(jobId));
                         }
                     }
@@ -386,6 +393,11 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             }
 
             result.JobId = jobId;
+            if(TempData["Urlreferal"] != null)
+            {
+                result.UrlReferral = TempData["Urlreferal"].ToString();
+            }
+            
 
             var viewModel = new SocialMediaJobViewModel
             {

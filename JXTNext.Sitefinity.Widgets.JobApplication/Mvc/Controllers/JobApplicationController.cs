@@ -379,8 +379,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                             /// Instantiate Registration email template
                             registrationEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(applyJobModel.FirstName, applyJobModel.Email),
-                                                                                                this.GetRegistrationHtmlEmailTitle(),
-                                                                                                this.GetRegistrationHtmlEmailContent(), null);
+                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.RegistrationEmailTemplateId),
+                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.RegistrationEmailTemplateId), null);
 
 
 
@@ -425,8 +425,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             #region Email Notification
             // Email Notification Settings
             // In the desinger form those are going to be provided by separator as semicolon(;)
-            string htmlEmailContent = this.GetHtmlEmailContent();
-            string htmlAdvertiserEmailContent = this.GetAdvertiserHtmlEmailContent();
             EmailNotificationSettings emailNotificationSettings = null;
 
 
@@ -450,13 +448,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 
                 emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(SitefinityHelper.GetUserFirstNameById(currentIdentity.UserId), ovverideEmail),
-                                                                                                this._emailTemplateTitle,
-                                                                                                htmlEmailContent,null);
+                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.EmailTemplateId),
+                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.EmailTemplateId), null);
 
                 advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(SitefinityHelper.GetUserFullNameById(currentIdentity.UserId), ovverideEmail),
                                                                                                 new EmailTarget(applyJobModel.ContactDetails, applyJobModel.ApplicationEmail),
-                                                                                                this.AdvertiserEmailTemplateEmailSubject,
-                                                                                                htmlAdvertiserEmailContent, emailAttachments);
+                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.AdvertiserEmailTemplateId),
+                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.AdvertiserEmailTemplateId), emailAttachments);
 
             }
             else
@@ -466,26 +464,26 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 {
                     emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(SitefinityHelper.GetUserFirstNameById(ClaimsManager.GetCurrentIdentity().UserId), ovverideEmail),
-                                                                                                this._emailTemplateTitle,
-                                                                                                htmlEmailContent, null);
+                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.EmailTemplateId),
+                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.EmailTemplateId), null);
 
                     advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(SitefinityHelper.GetUserFullNameById(ClaimsManager.GetCurrentIdentity().UserId), ovverideEmail),
                                                                                                 new EmailTarget(applyJobModel.ContactDetails, applyJobModel.ApplicationEmail),
-                                                                                                this.AdvertiserEmailTemplateEmailSubject,
-                                                                                                htmlAdvertiserEmailContent, emailAttachments);
+                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.AdvertiserEmailTemplateId),
+                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.AdvertiserEmailTemplateId), emailAttachments);
 
                 }
                 else
                 {
                     emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(string.Empty, ovverideEmail),
-                                                                                                this._emailTemplateTitle,
-                                                                                                htmlEmailContent, null);
+                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.EmailTemplateId),
+                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.EmailTemplateId), null);
 
                     advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, ovverideEmail),
                                                                                                 new EmailTarget(applyJobModel.ContactDetails, applyJobModel.ApplicationEmail),
-                                                                                                this.AdvertiserEmailTemplateEmailSubject,
-                                                                                                htmlAdvertiserEmailContent, emailAttachments);
+                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.AdvertiserEmailTemplateId),
+                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.AdvertiserEmailTemplateId), emailAttachments);
 
                 }
 
@@ -496,8 +494,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 foreach (var ccEmail in this.EmailTemplateCC.Split(';'))
                 {
-                    emailNotificationSettings.AddCC(String.Empty, ccEmail);
-                    advertiserEmailNotificationSettings.AddCC(String.Empty, ccEmail);
+                    emailNotificationSettings?.AddCC(String.Empty, ccEmail);
+                    advertiserEmailNotificationSettings?.AddCC(String.Empty, ccEmail);
                 }
             }
 
@@ -505,8 +503,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 foreach (var bccEmail in this.EmailTemplateBCC.Split(';'))
                 {
-                    emailNotificationSettings.AddBCC(String.Empty, bccEmail);
-                    advertiserEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
+                    emailNotificationSettings?.AddBCC(String.Empty, bccEmail);
+                    advertiserEmailNotificationSettings?.AddBCC(String.Empty, bccEmail);
                 }
             }
 
@@ -779,63 +777,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
         }
 
-        private string _emailTemplateTitle { get; set; }
-        private string GetHtmlEmailContent()
-        {
-            string htmlEmailContent = String.Empty;
-            if (!String.IsNullOrEmpty(this.EmailTemplateId))
-            {
-                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
-                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
-                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.EmailTemplateId.ToUpper()));
-                htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
-                this._emailTemplateTitle = emailTemplateItem.GetValue("Title").ToString();
-            }
-
-            return htmlEmailContent;
-        }
-
-        private string GetAdvertiserHtmlEmailContent()
-        {
-            string htmlEmailContent = String.Empty;
-            if (!String.IsNullOrEmpty(this.AdvertiserEmailTemplateId))
-            {
-                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
-                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
-                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.AdvertiserEmailTemplateId.ToUpper()));
-                htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
-            }
-
-            return htmlEmailContent;
-        }
-
-        private string GetRegistrationHtmlEmailContent()
-        {
-            string htmlEmailContent = String.Empty;
-            if (!String.IsNullOrEmpty(this.RegistrationEmailTemplateId))
-            {
-                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
-                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
-                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.RegistrationEmailTemplateId.ToUpper()));
-                htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
-            }
-
-            return htmlEmailContent;
-        }
-
-        private string GetRegistrationHtmlEmailTitle()
-        {
-            string htmlEmailContent = String.Empty;
-            if (!String.IsNullOrEmpty(this.RegistrationEmailTemplateId))
-            {
-                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
-                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
-                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.RegistrationEmailTemplateId.ToUpper()));
-                htmlEmailContent = emailTemplateItem.GetValue("Title").ToString();
-            }
-
-            return htmlEmailContent;
-        }
+        
         private void FetchFromAmazonS3(string providerName, string libraryName, string itemTitle)
         {
             LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
@@ -1286,8 +1228,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
         public string EmailTemplateProviderName
         {
-            get { return _emailTemplateProviderName; }
-            set { this._emailTemplateProviderName = value; }
+            get { return SitefinityHelper.GetCurrentSiteEmailTemplateProviderName(); }
         }
         public string EmailTemplateId { get; set; }
         public string EmailTemplateName { get; set; }
@@ -1296,12 +1237,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string EmailTemplateSenderName { get; set; }
         public string EmailTemplateSenderEmailAddress { get; set; }
         public string EmailTemplateEmailSubject { get; set; }
-        //Job Owner Email template
-        public string AdvertiserEmailTemplateProviderName
-        {
-            get { return _emailTemplateProviderName; }
-            set { this._emailTemplateProviderName = value; }
-        }
+        
         public string AdvertiserEmailTemplateId { get; set; }
         public string AdvertiserEmailTemplateName { get; set; }
         public string AdvertiserEmailTemplateCC { get; set; }
@@ -1310,12 +1246,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string AdvertiserEmailTemplateSenderEmailAddress { get; set; }
         public string AdvertiserEmailTemplateEmailSubject { get; set; }
 
-        //Member Registration Email template
-        public string RegistrationEmailTemplateProviderName
-        {
-            get { return _emailTemplateProviderName; }
-            set { this._emailTemplateProviderName = value; }
-        }
+        
         public string RegistrationEmailTemplateId { get; set; }
         public string RegistrationEmailTemplateName { get; set; }
         public string RegistrationEmailTemplateCC { get; set; }

@@ -28,11 +28,14 @@ using System.Dynamic;
 using System.Collections.Specialized;
 using System.Text.RegularExpressions;
 using Ninject;
+using Telerik.Sitefinity.Services;
+using Telerik.Sitefinity.Multisite;
 using JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers;
 using Telerik.Sitefinity.Security;
 using Telerik.Sitefinity.Security.Model;
 using System.Web.Security;
 using JXTNext.SocialMedia.Services.LinkedIn;
+
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 {
@@ -124,23 +127,24 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                         Log.Write("Social Handler code,sate and indeed data is null", ConfigurationPolicy.ErrorLog);
                     }
 
+
+                    var jobDetails = GetJobDetails(result.JobId.Value);
                     //var result = _socialHandlerLogics.ProcessSocialHandlerData(code, state, indeedJsonStringData);
+                    if (result != null && result.ResumeLinkNotExists)
+                    {
+                        if (!jobDetails.JobSEOUrl.IsNullOrEmpty())
+                        {
+                            return Redirect(string.Format("job-application/{0}/{1}?error=resume", jobDetails.JobSEOUrl, int.Parse(state)));
+                        }
+                        else
+                        {
+                            return Redirect(string.Format("job-application/{0}?error=resume", int.Parse(state)));
+                        }
+                    }
+
 
                     if (result != null && result.Success == true && result.JobId.HasValue)
                     {
-                        var jobDetails = GetJobDetails(result.JobId.Value);
-                        if (result.ResumeLinkNotExists)
-                        {
-                            if (!jobDetails.JobSEOUrl.IsNullOrEmpty())
-                            {
-                                return Redirect(string.Format("job-application/{0}/{1}?error=resume", jobDetails.JobSEOUrl, int.Parse(state)));
-                            }
-                            else
-                            {
-                                return Redirect(string.Format("job-application/{0}?error=resume", int.Parse(state)));
-                            }
-                        }
-
                         JobApplicationStatus status = JobApplicationStatus.Available;
                         if (_jobApplicationService != null)
                         {
@@ -254,9 +258,11 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 Log.Write("Social Handler : Exception Caught" + ex.Message, ConfigurationPolicy.ErrorLog);
             }
 
+
+            
             // To catch access denied error for seek
             int jobId;
-            if (this.Request.QueryString["error"].ToLower().Contains("denied") && state != null && int.TryParse(state, out jobId))
+            if (!string.IsNullOrEmpty(this.Request.QueryString["error"])  && this.Request.QueryString["error"].ToLower().Contains("denied") && state != null && int.TryParse(state, out jobId))
             {
                 var jobDetails = GetJobDetails(jobId);
                 if (!jobDetails.JobSEOUrl.IsNullOrEmpty())
@@ -288,6 +294,11 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         public ActionResult LinkedInSignIn(LinkedInSignInRequest request)
         {
             LinkedInSignInViewModel viewModel;
+            string urlReferral = null;
+            if (TempData["source"] != null)
+            {
+                urlReferral = TempData["source"].ToString();
+            }
 
             if (string.IsNullOrEmpty(request.Error))
             {
@@ -300,6 +311,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                     {
                         if (int.TryParse(request.Data, out int jobId))
                         {
+                            TempData["Urlreferal"] = urlReferral;
                             return Redirect(GetJobApplicationUrl(jobId, "ShowLinkedIn=1"));
                         }
                     }
@@ -317,6 +329,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                     {
                         if (int.TryParse(request.Data, out int jobId))
                         {
+                            TempData["Urlreferal"] = urlReferral;
                             return Redirect(GetJobApplicationUrl(jobId));
                         }
                     }
@@ -380,6 +393,11 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             }
 
             result.JobId = jobId;
+            if(TempData["Urlreferal"] != null)
+            {
+                result.UrlReferral = TempData["Urlreferal"].ToString();
+            }
+            
 
             var viewModel = new SocialMediaJobViewModel
             {
@@ -491,6 +509,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             var existingUser = SitefinityHelper.GetUserByEmail(emailAddress);
             if (existingUser != null)
             {
+                
                 if (!AuthenticateUser(emailAddress))
                 {
                     Log.Write("LinkedIn: Unable to authenticate user using the email address.");
@@ -544,8 +563,30 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         /// <returns></returns>
         private bool AuthenticateUser(string emailAddress)
         {
-            var userManager = UserManager.GetManager();
+            // check user exist in the JXT Next database
+            Telerik.Sitefinity.Security.Model.User existingUser = SitefinityHelper.GetUserByEmail(emailAddress);
+            var memberResponse = _blConnector.GetMemberByEmail(emailAddress);
+            if (memberResponse.Member == null)
+            {
+                UserProfileManager userProfileManager = UserProfileManager.GetManager();
+                UserProfile profile = userProfileManager.GetUserProfile(existingUser.Id, typeof(SitefinityProfile).FullName);
+                var fName = Telerik.Sitefinity.Model.DataExtensions.GetValue(profile, "FirstName");
+                var lName = Telerik.Sitefinity.Model.DataExtensions.GetValue(profile, "LastName");
+                JXTNext_MemberRegister memberReg = new JXTNext_MemberRegister
+                {
+                    Email = emailAddress,
+                    FirstName = fName.ToString(),
+                    LastName = lName.ToString(),
+                    Password = existingUser.Password
+                };
 
+                if (_blConnector.MemberRegister(memberReg, out string errorMessage))
+                {
+                    Log.Write("User created JXT next DB" + existingUser.Email, ConfigurationPolicy.ErrorLog);
+                }
+            }
+            // end of the code for the user check in the JXT Next DB
+            var userManager = UserManager.GetManager();
             SecurityManager.AuthenticateUser(userManager.Provider.Name, emailAddress, false, out User user);
 
             return user != null;
@@ -751,13 +792,13 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         private string GetEmailHtmlContent(string emailTemplateId)
         {
             //return _jobApplicationService.GetHtmlEmailContent("6AB317D4-D674-4636-8481-014BC6F861E1", this.EmailTemplateProviderName, this._itemType);
-            return _jobApplicationService.GetHtmlEmailContent(emailTemplateId, this.EmailTemplateProviderName, this._itemType);
+            return SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(emailTemplateId);
         }
 
         private string GetEmailSubject(string emailTemplateId)
         {
             //return _jobApplicationService.GetHtmlEmailContent("6AB317D4-D674-4636-8481-014BC6F861E1", this.EmailTemplateProviderName, this._itemType);
-            return _jobApplicationService.GetHtmlEmailSubject(emailTemplateId, this.EmailTemplateProviderName, this._itemType);
+            return SitefinityHelper.GetCurrentSiteEmailTemplateTitle(emailTemplateId);
         }
 
         
@@ -769,8 +810,10 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         }
         public string EmailTemplateProviderName
         {
-            get { return _emailTemplateProviderName; }
-            set { this._emailTemplateProviderName = value; }
+            get {
+                return SitefinityHelper.GetCurrentSiteEmailTemplateProviderName();
+            }
+            
         }
         public string EmailTemplateId { get; set; }
         public string EmailTemplateName { get; set; }

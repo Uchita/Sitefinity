@@ -521,7 +521,7 @@ blockquote{
             font-weight: 900;
             font-family: 'Font Awesome 5 Free';
             pointer-events: none;
-            color: #2e2e2e;
+            color: white;
             z-index: 2;
             font-size: 14px;
         }
@@ -1051,9 +1051,9 @@ header {
 
     .brand-logo {
         /*background: url('../images/winston-fox-logo-horizontal-colour-2.svg') no-repeat 0 0 / 100% auto;*/
-        background: url('images/default-source/icons/winston-fox-logo-horizontal-colour-2.svg') no-repeat center center 100% auto;
+        background: url('/images/default-source/icons/winston-fox-logo-horizontal-colour-2.svg') no-repeat center center 100% auto;
         background-position: center center;
-        width: 258px;
+        width: 290px;
         max-width: 100%;
         display: block;
         text-indent: -99em;
@@ -1814,7 +1814,7 @@ header {
         }
     }
 
-    .left-sidebar .container-fluid, .left-sidebar .navbar-collapse {
+    .left-sidebar .container-fluid, .categories-list, .left-sidebar .navbar-collapse {
         font-size: $sidebar-font-size-px;
         font-size: $sidebar-font-size;
         padding: 0;
@@ -1834,6 +1834,8 @@ header {
             text-align: left;
             margin-top: 0 !important;
             font-size: 30px;
+            
+            line-height:normal;
 
             &:hover, &:focus, &:active {
                 background: none;
@@ -1890,6 +1892,9 @@ header {
 
                     &.link-inline-block {
                         display: inline-block;
+                    }
+                    &:hover{
+                        color:red;
                     }
                 }
 
@@ -2956,15 +2961,16 @@ header {
     input[type='text'], select.form-control {
         background: transparent;
         border: 1px solid $brightColor;
+        color: white;
 
         &:hover, &:focus {
-            border-color: white;
+            border-color: $global-highlight-color;
         }
     }
 
     .select {
         &:before {
-            color: $forms-select-text;
+            /*color: $forms-select-text;*/
         }
 
         @media(max-width:767px) {
@@ -2972,14 +2978,15 @@ header {
                 color: white;
             }
         }
+        option{
+            color:#2e2e2e;
+        }
     }
 
     select {
         &.form-control {
-            color: $forms-select-text;
-
+            /*color: $forms-select-text;*/
             @media(max-width:767px) {
-                
             }
 
             option {
@@ -3012,7 +3019,7 @@ header {
 
 
 
-
+/*
 
     ::-webkit-input-placeholder {
         color: white;
@@ -3031,7 +3038,7 @@ header {
 
     :-ms-input-placeholder {
         color: white;
-    }
+    }*/
 
     .intro-block {
         margin-top: -60px;
@@ -3045,7 +3052,7 @@ header {
 
     .top-level-bar {
         height: 47px;
-        line-height: 47px;
+        line-height: 49px;
         position: relative;
 
         @media(max-width:767px) {
@@ -3275,19 +3282,20 @@ header {
 
 
     .transparent-data input[type="text"].form-control::-moz-placeholder {
-        color: #9d9c9c !important;
+        color: white !important;
     }
 
-    .transparent-data input[type="text"].form-control:-ms-input-placeholder {
-        color: #9d9c9c !important;
-    }
+.transparent-data input[type="text"].form-control:-ms-input-placeholder {
+    color: white !important;
+}
 
-    .transparent-data input[type="text"].form-control::-webkit-input-placeholder {
-        color: #9d9c9c !important;
-    }
+.transparent-data input[type="text"].form-control::-webkit-input-placeholder {
+    color: white !important;
+}
+       
 
 
-
+/*
     @media(max-width:767px) {
 
 
@@ -3303,7 +3311,7 @@ header {
             color: #fff !important;
         }
     }
-
+    */
 
 
     .flip-card {
@@ -3462,7 +3470,8 @@ header {
 
             h3 {
                 font-family: $global-font-family-heading;
-                margin-top: 10px;
+             
+                margin-top:0;
                 text-transform: uppercase;
                 margin-bottom: 20px;
             }
@@ -3704,5 +3713,31 @@ header {
         margin-top:20px;
     }
 
+}
+
+
+.jxt-news-filter-summary{
+
+}
+.categories-list{
+    position:relative;
+    ul{
+        
+     
+    }
+
+}
+.keywordfilter {
+    position: relative;
+    top: -20px;
+
+    .form-control {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    h3 {
+        font-family: $global-font-family-heading;
+    }
 }
 

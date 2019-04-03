@@ -12,31 +12,31 @@
 
         @foreach (var item in Model.Items)
         {
-			var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
-		
-        <li class="news-list-widget" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)item.Fields.Id)>
-            <h3>
-                <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a>
-            </h3>
+            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+
+            <li class="news-list-widget" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)item.Fields.Id)>
+                <h3>
+                    <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a>
+                </h3>
 
 
 
 
-            <div class="text-muted hide">
-                @item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")
-                @Html.Resource("By")
-                @DataResolver.Resolve(item.DataItem, "Author", null)
-                @Html.CommentsCount((string)navigateUrl, item.DataItem)
-            </div>
+                <div class="text-muted hide">
+                    @item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")
+                    @Html.Resource("By")
+                    @DataResolver.Resolve(item.DataItem, "Author", null)
+                    @Html.CommentsCount((string)navigateUrl, item.DataItem)
+                </div>
 
-            <div class="row">
-                <div class="col-sm-9"><p @Html.InlineEditingFieldAttributes("Summary", "ShortText")>@Html.HtmlSanitize((string)item.Fields.Summary)</p></div>
-                <div class="col-sm-3 hidden-xs"><img src="~/images/default-source/theme-images/thumbnail.jpg" class="img-responsive" alt="Alternate Text" /></div>
-            </div>
-            
+                <div class="row">
+                    <div class="col-sm-9"><p @Html.InlineEditingFieldAttributes("Summary", "ShortText")>@Html.HtmlSanitize((string)item.Fields.Summary)</p></div>
+                    <div class="col-sm-3 hidden-xs"><img src="~/images/default-source/theme-images/thumbnail.jpg" class="img-responsive" alt="Alternate Text" /></div>
+                </div>
 
-            <a class="btn btn-deafult" href="@navigateUrl">@Html.Resource("FullStory")</a>
-        </li>
+
+                <a class="btn btn-deafult" href="@navigateUrl">@Html.Resource("FullStory")</a>
+            </li>
         }
     </ul>
 

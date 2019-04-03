@@ -1,18 +1,19 @@
 ﻿@model Telerik.Sitefinity.Frontend.Taxonomies.Mvc.Models.TaxonomyViewModel
+<div class="categories-list">
+    <ul class="@Model.CssClass nav">
+        @foreach (var taxon in Model.Taxa)
+        {
+            <li>
+                <a href="@taxon.Url">@taxon.Title</a>
 
-<ul class="@Model.CssClass list-unstyled">
-    @foreach (var taxon in Model.Taxa)
-    {
-        <li>
-            <a href="@taxon.Url">@taxon.Title</a>
+                @if (Model.ShowItemCount)
+                {
 
-            @if (Model.ShowItemCount)
-            {
-                
-                <span class="text-muted">@Html.Raw(string.Format("({0})", taxon.Count))</span>
-                
-            }
-        </li>
+                    <span class="text-muted hide">@Html.Raw(string.Format("({0})", taxon.Count))</span>
 
-    }
-</ul>
+                }
+            </li>
+
+        }
+    </ul>
+</div>

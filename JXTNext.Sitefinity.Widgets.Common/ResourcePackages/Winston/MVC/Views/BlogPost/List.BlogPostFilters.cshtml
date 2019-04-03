@@ -62,7 +62,7 @@
 
 <div>
     <div>
-        <select id="sortOrder" class="jxt-news-filter-summary">
+        <select id="sortOrder" class="jxt-news-filter-summary hide">
             <option value="latest">Sort by – Recent</option>
             <option value="oldest">Sort by – Oldest Posts</option>
             <option value="az">Sort by – Alphabetical A-Z</option>
@@ -71,8 +71,10 @@
     </div>
 
     <div class="keywordfilter">
-        <h3>Search Keyword</h3>
-        <input type="text" id="txtSearch" placeholder="Search" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search'" />
+        <h4>Keywords</h4>
+        <input type="text" class="form-control" id="txtSearch" placeholder="Search" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search'" />
+        <a href="#" class="btn btn-dafult">Search</a>
+            
 
     </div>
 </div>

@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model dynamicagree to hudson
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
 @Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
@@ -20,7 +20,7 @@
         <form method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();">
             @{
                 int counter = 0;
-                var privacyErrMsg = "Please agree to Hudson\'s privacy policy";
+                var privacyErrMsg = "Please agree to Winston Fox\'s privacy policy";
             }
             <div class="field-wrapper basic-form no-marg-top job-alert-form">
                 <div class="alert alert-danger filter-madatory-message hidden">@Html.Resource("nofilterselectedmessage", "Labels")</div>
@@ -121,7 +121,7 @@
                         <div class="checkbox clearfix">
                             <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid='this.setCustomValidity("@privacyErrMsg")'>
                             <span class="checkbox-icon fas fa-check"></span>
-                            I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                            I agree to Winston Fox's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
                         </div>
                     </div>
                 </div>

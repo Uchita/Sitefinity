@@ -9544,9 +9544,6 @@ address.info-box {
 
 .transparent-data select.form-control {
   color: #9d9c9c; }
-  @media (max-width: 767px) {
-    .transparent-data select.form-control {
-      color: red; } }
   .transparent-data select.form-control option {
     /*background: $footer-subhead-text;
                 color: $brightColor;*/ }
@@ -13321,7 +13318,8 @@ select.articles-order {
     float: left;
     width: auto; }
   .page-wrapper footer .brand-logo {
-    height: 45px; }
+    height: 100px;
+    float: left; }
   .page-wrapper footer .footer-social .fab {
     margin: 0 3px; }
   .page-wrapper footer .postfooter-links a {

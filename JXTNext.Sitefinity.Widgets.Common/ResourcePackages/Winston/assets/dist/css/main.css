@@ -8025,7 +8025,7 @@ header {
     /*background: url('../images/winston-fox-logo-horizontal-colour-2.svg') no-repeat 0 0 / 100% auto;*/
     background: url("/images/default-source/icons/winston-fox-logo-horizontal-colour-2.svg") no-repeat center center 100% auto;
     background-position: center center;
-    width: 258px;
+    width: 290px;
     max-width: 100%;
     display: block;
     text-indent: -99em;
@@ -11040,7 +11040,7 @@ ul.breadcrumb {
     position: relative; }
   @media (max-width: 991px) {
     .featured-job-offer {
-      padding: 30px;
+      /*        padding: 30px;*/
       margin-bottom: 30px; } }
   @media (max-width: 767px) {
     .featured-job-offer {

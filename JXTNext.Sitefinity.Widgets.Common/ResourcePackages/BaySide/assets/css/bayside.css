@@ -8738,14 +8738,14 @@ select.hs-input {
 }
 
 .jn_search .dropdown-menu i {
-    position: absolute;
-    left: 0;
-    top: 6px;
-    color: #606263;
-    font-size: 16px;
-    font-weight: 400;
-    margin-top: 2px;
-    margin-left: 10px;
+    left: 30px;
+    top: 0px;
+    transform: none;
+    margin: 0px;
+    width: calc(100% - 30px);
+    display: block;
+    height: 30px;
+    text-align: right;
 }
 
 .top-menus > div {

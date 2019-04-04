@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -10025,6 +10025,9 @@ ul.no-gutter {
   .keywordfilter h3 {
     font-family: "Playfair Display", serif; }
 
+h2 {
+  color: reb !important; }
+
 /*#endregion Basic components */
 /*#region Breadcrumbs */
 ul.breadcrumb {
@@ -11041,7 +11044,7 @@ ul.breadcrumb {
   @media (max-width: 991px) {
     .featured-job-offer {
       padding: 0px;
-      margin-bottom: 30px; } }
+      margin-bottom: 31px; } }
   @media (max-width: 767px) {
     .featured-job-offer {
       margin: 0 auto 15px;

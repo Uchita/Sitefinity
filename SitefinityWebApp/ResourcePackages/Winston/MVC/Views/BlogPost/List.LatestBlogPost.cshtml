@@ -1,0 +1,127 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Frontend.Blogs.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Blogs.Mvc.Models.Blog;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+
+@using Telerik.Sitefinity.Web.DataResolving;
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Libraries;
+@* Used for getting category list *@
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Security.Model;
+@using Telerik.OpenAccess;
+@* For Dynamic content: Module builder [Office] *@
+@using Telerik.Sitefinity.DynamicModules;
+@using Telerik.Sitefinity.DynamicModules.Model;
+@using Telerik.Sitefinity.Utilities.TypeConverters;
+
+@Html.Script(ScriptRef.JQuery, "top", false)
+
+@{
+    Dictionary<Guid, string> catgeoryListDictionary = new Dictionary<Guid, string>();
+    var managerArticle1 = TaxonomyManager.GetManager();
+    var articleTaxonomy1 = managerArticle1.GetTaxonomies<HierarchicalTaxonomy>().Where(t => t.Name.ToLower() == "Categories").FirstOrDefault();
+    List<Taxon> topLovelTaxa1 = new List<Taxon>();
+    if (articleTaxonomy1 != null)
+    {
+        foreach (var taxon in articleTaxonomy1.Taxa)
+        {
+            if (taxon.Parent == null)
+            {
+                topLovelTaxa1.Add(taxon);
+            }
+        }
+        foreach (var taxon in topLovelTaxa1)
+        {
+
+            var hierarchicalTaxon1 = taxon as HierarchicalTaxon;
+            catgeoryListDictionary.Add(@taxon.Id, @taxon.Title);
+            foreach (var it in hierarchicalTaxon1.Subtaxa)
+            {
+                @ProcessCategories_Add(it, catgeoryListDictionary);
+            }
+        }
+    }
+}
+
+
+@helper ProcessCategories_Add(HierarchicalTaxon taxon1, Dictionary<Guid, string>
+    catgeoryListDictionary)
+{
+    /**/
+
+    if (taxon1 != null)
+    {
+        catgeoryListDictionary.Add(taxon1.Id, @taxon1.Title);
+        foreach (var subTaxon in taxon1.Subtaxa)
+        {
+            @ProcessCategories_Add(subTaxon, catgeoryListDictionary);
+        }
+    }
+}
+
+<section class="g-section latest-news bg-grey">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="pb-30">Latest News</h2>
+            </div>
+        </div>
+        <!-- .row/ -->
+        <div class="md-row">
+            @foreach (var item in Model.Items)
+            {
+                var imageurl = "";
+                foreach (var relatedItem in item.Fields.BlogImage)
+                {
+                    imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+                }
+
+
+
+                var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+                <div class="news-list col-12 col-sm-6 col-md-4">
+                    <div class="bg-image-wrap"><div class="bg-image" style="background-image: url('@imageurl');"></div></div>
+                    <div class="news-date"> @item.GetDateTime("PublicationDate", "MMM d, yyyy")</div>
+                    <p class="news-desc">@item.Fields.Title</p>
+                    @{
+                        var categoriesName = "";
+                    }
+                    @foreach (var c in item.Fields.Category)
+                    {
+
+                        if (catgeoryListDictionary.ContainsKey((Guid)c))
+                        {
+                            if (string.IsNullOrEmpty(categoriesName))
+                            {
+                                categoriesName = @catgeoryListDictionary[c];
+                            }
+                            else
+                            {
+                                categoriesName += ", " + @catgeoryListDictionary[c];
+                            }
+
+                        }
+                    }
+
+                    <div class="list-footer" style="display:none;">
+                        <p>@categoriesName</p>
+                    </div>
+                    <a href="@navigateUrl" class="btn btn-link">Read more</a>
+                </div>
+            }
+        </div>
+        <!-- .row/ -->
+    </div>
+</section>

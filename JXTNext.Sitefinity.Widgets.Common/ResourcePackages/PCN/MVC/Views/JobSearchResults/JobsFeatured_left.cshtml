@@ -9,7 +9,7 @@
             <div class="items">
                 <div class="text">
                     <h3>
-                        <a href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">@jobOffer.Title</a>
+                        <a href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">@jobOffer.Title</a>
                     </h3>
                     <div class="entry-meta">
                         <span class="author">@jobOffer.CustomData["CountryLocationArea[0].Filters[0].Value"]</span>

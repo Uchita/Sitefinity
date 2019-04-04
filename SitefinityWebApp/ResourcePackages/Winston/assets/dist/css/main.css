@@ -11040,7 +11040,7 @@ ul.breadcrumb {
     position: relative; }
   @media (max-width: 991px) {
     .featured-job-offer {
-      padding: 30px;
+      padding: 0px;
       margin-bottom: 30px; } }
   @media (max-width: 767px) {
     .featured-job-offer {

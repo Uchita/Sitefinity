@@ -744,7 +744,7 @@
     .h1, h1{
         font-size: 28px;
     }
-    h2{
+    h2, div#mc_embed_signup h2{
         font-size: 24px;
     }
     h3 {

@@ -22,15 +22,13 @@
                         <div class="sub">
                             @{
                                 var title = Html.HtmlSanitize((string)jobOffer.Title).ToString();
-                                string trimTitle = !String.IsNullOrWhiteSpace(title) && title.Length >= 14 ? title.Substring(0, 14) + "..." : title;
                             }
-                            <h4 class="sub_title"><a href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">@trimTitle</a></h4>
+                            <h4 class="sub_title"><a href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">@title</a></h4>
                             <div class="location">@jobOffer.CustomData["CountryLocationArea[0].Filters[0].Value"]</div>
                             @{
                                 var summary = Html.HtmlSanitize((string)jobOffer.ShortDescription).ToString();
-                                string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 150 ? summary.Substring(0, 150) + "..." : summary;
                             }
-                            <p>@trimSummary</p>
+                            <p>@summary</p>
                             <div class="action_link">
                                 <a href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">View Job</a>
                             </div>

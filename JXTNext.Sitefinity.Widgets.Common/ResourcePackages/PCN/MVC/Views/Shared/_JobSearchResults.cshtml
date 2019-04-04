@@ -64,7 +64,7 @@
 <div id="pager" class="k-pager-wrap k-widget k-floatwrap" data-role="]">
     <ul class="k-pager-numbers k-reset news_pagination"></ul>
 </div>
-<input id="loginVar" value="@isLoggedIn" type="text" hidden />
+<input id="loginVar" value="@ViewBag.IsMember" type="text" hidden />
 <div class="popup-overlay">
     <div class="container">
         <div class="popup-box">
@@ -549,9 +549,8 @@
             return false;
         }
 
-        bindJobsPages(currPageNumber);
-
         if (currPageNumber != PageNumber) {
+            bindJobsPages(currPageNumber);
             PageNumber = parseInt(currPageNumber);
             bindJobs(PageNumber);
             //changing the prev & next page number attribute

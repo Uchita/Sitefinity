@@ -74,48 +74,6 @@
                     </div>
                     counter++;
                 }
-                else if (item.Name == "Salary")
-                {
-                    <div class="row form-group">
-                        <div class="col-md-4 text-right">
-                            <label>@item.Name</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden" />
-                            <select class="SalaryRangeSelect form-control">
-                                <option value="-1" selected>Choose Salary</option>
-                                @foreach (var salaryItem in item.Filters)
-                                {
-                                    <option value="@salaryItem.ID">@salaryItem.Label</option>
-                                }
-                            </select>
-                            @foreach (var salaryItem in item.Filters)
-                            {
-                                var lower = 15000;
-                                var upper = 200000;
-                                if (salaryItem.Label == "Hourly Rate")
-                                {
-                                    lower = 18;
-                                    upper = 200;
-                                }
-                                <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
-
-                                    <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
-                                         data-cur_min="@lower" data-cur_max="@upper">
-
-                                        <div class="bar"></div>
-                                        <div class="leftGrip"></div>
-                                        <div class="rightGrip"></div>
-                                    </div>
-                                    <div class="leftLabel">$<span>@lower</span></div>
-                                    <div class="rightLabel">$<span>@upper</span></div>
-
-                                </div>
-
-                            }
-                        </div>
-                    </div>
-                }
             }
             <div class="row form-group">
                 <div class="col-md-4 text-right"></div>
@@ -163,10 +121,6 @@
             $('.filter-madatory-message').addClass('hidden');
         }
 
-        if (isSlarySelected) {
-            $('#salary-model-bind-hidden').val(JSON.stringify(salary));
-        }
-
         return true;
     };
 
@@ -190,20 +144,6 @@
         var model = @Html.Raw(json);
         var modelSalary = model.Salary;
 
-        if (modelSalary != null && modelSalary != 'undefined') {
-            salary = modelSalary;
-            isSlarySelected = true;
-            $('.SalaryRangeSelect').val(modelSalary.TargetValue);
-            $('#' + modelSalary.TargetValue).removeClass('visible-hidden');
-            $('.SalaryRangeSelect').addClass('changed');
-
-            var salarySliderEle = $('#' + modelSalary.TargetValue).parent().find('.nstSlider');
-            if (salarySliderEle != null) {
-                $(salarySliderEle).data("cur_min", modelSalary.LowerRange);
-                $(salarySliderEle).data("cur_max", modelSalary.UpperRange);
-            }
-        }
-
         $('select').on('change', function () {
             isSlarySelected = false;
             $('.salaryrangewrapper').each(function (i, obj) {
@@ -220,29 +160,6 @@
                 isSlarySelected = false;
             }
 
-        });
-
-        $('.nstSlider').each(function (i, obj) {
-            $(this).nstSlider({
-                "rounding": {
-                    "1": "600",
-                    "1000": "200000"
-                },
-                "crossable_handles": false,
-                "left_grip_selector": ".leftGrip",
-                "right_grip_selector": ".rightGrip",
-                "value_bar_selector": ".bar",
-                "user_mouseup_callback": function (leftValue, rightValue, isLeftGripMoved) {
-                    salary.LowerRange = leftValue;
-                    salary.UpperRange = rightValue;
-                    $(this).parent().find('.leftLabel span').text(leftValue);
-                    $(this).parent().find('.rightLabel span').text(rightValue);
-                },
-                "value_changed_callback": function (cause, leftValue, rightValue) {
-                    $(this).parent().find('.leftLabel span').text(leftValue);
-                    $(this).parent().find('.rightLabel span').text(rightValue);
-                }
-            });
         });
 
 

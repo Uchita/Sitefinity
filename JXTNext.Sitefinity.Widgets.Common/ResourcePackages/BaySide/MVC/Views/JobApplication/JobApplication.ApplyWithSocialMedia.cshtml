@@ -3,6 +3,10 @@
 
 @using JXTNext.Sitefinity.Common.Helpers
 
+@{
+    var hasLinkedIn = false;
+}
+
 @if (Model != null && Model.ApplyWithSocialMediaInfo != null)
 {
     var siteSettingsHelper = new SiteSettingsHelper();
@@ -14,14 +18,20 @@
                 {
                     switch (item.Title)
                     {
-                        @*case "LinkedIn":
-                            <li><a href="#" class="btn-linkedin" target="_blank" title="@item.Title"><img src="/ResourcePackages/BaySide/assets/images/linkedin.jpg" alt=""></a></li>
-                            break;*@
+                        case "LinkedIn":
+                            hasLinkedIn = true;
+
+                            <li>
+                                <a href="javascript:;" class="btn btn-linkedin" data-linkedin-toggle="#linkedin-widget-holder" title="@item.Title">@item.Title</a>
+                            </li>
+
+                            break;
 
                         case "Indeed":
                             @*<li><a href="#" target="_blank" title=@item.Title role="button">Apply With @item.Title</a></li>*@
                             var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
                             var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
+                            var indeedJobCompanyNameAndLoginUserEmail = "right-rail-apply-button;" + ViewBag.loginEmail;
                             <li id="indeed-btnwrapper">
                                 <span class="indeed-apply-widget"
                                       data-indeed-apply-apiToken=@indeedAPIToken
@@ -42,7 +52,7 @@
                                       data-indeed-apply-jobTitle="@Viewbag.JobTitle"
                                       data-indeed-apply-jobUrl=""
                                       data-indeed-apply-postUrl=@redirectUriSocial
-                                      data-indeed-apply-jobMeta="right-rail-apply-button"
+                                      data-indeed-apply-jobMeta="@indeedJobCompanyNameAndLoginUserEmail"
                                       data-indeed-apply-onapplied="OnIndeedCompleted">
                                 </span>*@
                     <script>
@@ -75,6 +85,52 @@
                 }
 
             </ul>
+
+            @if (hasLinkedIn)
+            {
+                <div id="linkedin-widget-holder" class="linkedin-widget-holder" data-apply-url="@ViewBag.LinkedInApplyUrl" style="display: none;">
+                    <hr>
+
+                    <div class="linkedin-alerts"></div>
+
+                    <div name="widget-holder">
+                        @if (ViewBag.IsUserLoggedIn)
+                        {
+                            <script type="text/javascript"
+                                    src="https://www.linkedin.com/mjobs/awli/awliWidget">
+                            </script>
+                            <script type="IN/AwliWidget"
+                                    data-company-job-code="@Model.JobId"
+                                    data-integration-context="@ViewBag.CustomerIntegrationContext"
+                                    data-mode="BUTTON_DATA"
+                                    data-callback-method="onLinkedInProfileData"
+                                    data-api-key="@ViewBag.CustomerClientId"
+                                    data-allow-sign-in="true">
+                            </script>
+                            <script>
+                                function onLinkedInProfileData(profileData) {
+                                    linkedInHandler.submitJobApplyData('#linkedin-widget-holder', @Model.JobId, profileData);
+                                }
+                            </script>
+                        }
+                        else
+                        {
+                            <p>
+                                <a href="@ViewBag.LinkedInSignInUrl" class="btn-linkedin-signin" title="Sign in with LinkedIn" data-widget-holder="#linkedin-widget-holder">
+                                    <img src="~/ResourcePackages/Hudson/assets/dist/images/sign-in-linkedin.svg" class="img-responsive" />
+                                </a>
+                            </p>
+
+                            <p class="small">
+                                By signing-in you agree to create an account with us if you don't have already.
+                                After sign-in you will be able to apply for the job.
+                            </p>
+                        }
+                    </div>
+
+                    <div class="linkedin-processing sf-loading" style="display: none;"></div>
+                </div>
+            }
         </div>
     </div>
 }

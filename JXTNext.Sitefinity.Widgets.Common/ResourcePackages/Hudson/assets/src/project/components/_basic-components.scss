@@ -1592,6 +1592,9 @@ main {
         .dropdown-menu{
             display: block;
         }
+        .dropdown-toggle::before{
+            content: '\f107';
+        }
     }
 }
 .left-sidebar .container-fluid, .left-sidebar .navbar-collapse {

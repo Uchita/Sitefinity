@@ -1,0 +1,108 @@
+﻿@using System.Web.Mvc;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.UI.MVC;
+@using Telerik.Sitefinity.Services;
+
+<!DOCTYPE html>
+<html @Html.RenderLangAttribute()>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8" />
+    <title></title>
+   
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/ResourcePackages/Hudson/assets/dist/images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/ResourcePackages/Hudson/assets/dist/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/ResourcePackages/Hudson/assets/dist/images/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/ResourcePackages/Hudson/assets/dist/images/icons/safari-pinned-tab.svg" color="#00a0a0">
+    <meta name="msapplication-TileColor" content="#00a0a0">
+    <meta name="theme-color" content="#ffffff">
+
+
+    @Html.Section("head")
+    @Html.StyleSheet(Url.Content("~/ResourcePackages/Hudson/assets/dist/css/fontawesome.min.css"), "head")
+    @Html.StyleSheet(Url.Content("~/ResourcePackages/Hudson/assets/dist/css/owl.min.css"), "head")
+    @Html.StyleSheet(Url.Content("~/ResourcePackages/Hudson/assets/dist/css/main.min.css"), "head")
+
+    @Html.Partial("~/ResourcePackages/Hudson/MVC/partial/TagManagerHead.cshtml")
+</head>
+
+<body>
+    @Html.Partial("~/ResourcePackages/Hudson/MVC/partial/TagManagerBody.cshtml")
+    @Html.Section("top")
+    <div class="page-wrapper">
+        <header id="header">
+            <nav class="navbar">
+                <div class="header-top hidden-xs">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3 header-top-left">
+                                @Html.SfPlaceHolder("HeaderTopLeft")
+                            </div>
+                            <div class="col-sm-9 header-top-right text-right">
+                                @Html.SfPlaceHolder("HeaderTopRight")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3">
+                                @Html.SfPlaceHolder("Logo")
+                            </div>
+                            <div class="col-sm-9 col-md-9">
+                                @Html.SfPlaceHolder("NavRight")
+                            </div>
+                        </div>
+                    </div>
+                    @Html.SfPlaceHolder("Header")
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="main-content">
+                @Html.SfPlaceHolder("Main")
+            </div>
+            <div class="prefooter-content">
+                @Html.SfPlaceHolder("Prefooter")
+            </div>
+        </main>
+        <footer id="footer">
+            <div class="page-section">
+                <div class="container">
+                    @Html.SfPlaceHolder("Footer")
+                </div>
+            </div>
+            <div class="footer-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.SfPlaceHolder("FooterBar")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        @Html.SfPlaceHolder("QuickLink")
+    </div>
+    @* Inline editing scripts and helpers. They should be available only when inline editing is possible. *@
+    @if (Html.ShouldRenderInlineEditing())
+    {
+    @Html.Script(ScriptRef.MicrosoftAjax, "top")
+    @Html.Script(ScriptRef.MicrosoftAjaxCore, "top")
+    @Html.Script(ScriptRef.JQuery, "top")
+
+    @Html.Script(Url.EmbeddedResource("Telerik.Sitefinity.Resources.Reference", "Telerik.Sitefinity.Resources.Scripts.jquery.ba-outside-events.min.js"), "top")
+    @Html.Script(ScriptRef.KendoAll, "top")
+    @Html.Script(ScriptRef.KendoTimezones, "top")
+    @Html.Script(Url.EmbeddedResource("Telerik.Sitefinity.Resources.Reference", "Telerik.Sitefinity.Resources.Scripts.RequireJS.require.min.js"), "top")
+    @Html.InlineEditingManager(false)
+    }
+
+    @Html.Section("bottom")
+    @Html.Script("/ResourcePackages/Hudson/assets/dist/js/project.min.js", "bottom")
+</body>
+</html>

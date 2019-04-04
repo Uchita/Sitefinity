@@ -8301,8 +8301,8 @@ select.hs-input {
     }
 
 .search-results h3 {
-    font-size: 24px;
-    margin-bottom: 2px;
+    /*font-size: 24px;
+    margin-bottom: 2px;*/
 }
 
 .search-results .search-list {
@@ -10324,3 +10324,8 @@ ul.nav.nav-stacked li a:before {
 
 
 /*===== Job Loading:: End =====*/
+
+#linkedin-widget-holder .btn-linkedin-signin img
+{
+    max-width: 195px;
+}

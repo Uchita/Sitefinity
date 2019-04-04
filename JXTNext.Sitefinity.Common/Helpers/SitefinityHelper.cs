@@ -66,7 +66,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 var dynamicModuleManager = DynamicModuleManager.GetManager(GetCurrentSiteEmailTemplateProviderName());
                 var emailTemplateType = TypeResolutionService.ResolveType(_itemType);
                 var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(templatedId.ToUpper()));
-                content = HttpUtility.HtmlDecode(emailTemplateItem.GetValue(_htmlEmailContentStr).ToString());
+                content = emailTemplateItem.GetValue(_htmlEmailContentStr).ToString();
             }
             return content;
         }
@@ -79,7 +79,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 var dynamicModuleManager = DynamicModuleManager.GetManager(GetCurrentSiteEmailTemplateProviderName());
                 var emailTemplateType = TypeResolutionService.ResolveType(_itemType);
                 var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(templatedId.ToUpper()));
-                title = HttpUtility.HtmlDecode(emailTemplateItem.GetValue(_titleStr).ToString());
+                title = HttpUtility.HtmlEncode(emailTemplateItem.GetValue(_titleStr).ToString());
             }
             return title;
         }

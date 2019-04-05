@@ -26,7 +26,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\SitefinityWebApp\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -163,12 +163,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\BaySide\assets\images\applied-icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Hudson\assets\dist\images\sign-in-linkedin.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\Hudson\assets\dist\images\sprite.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\BaySide\assets\images\applywithlinkedin.svg">
@@ -1503,12 +1497,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Lists\List.SimpleList.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <Content Include="ResourcePackages\Hudson\MVC\Views\Layouts\HudsonAlt.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\Lists\List.WhiteBoxes.cshtml">

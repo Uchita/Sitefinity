@@ -11,7 +11,7 @@
         <div class="job-list">
             <span class="job-date hidden">@jobOffer.DateCreated_Representation</span>
             <div class="job-title">
-                <h2><a href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">@jobOffer.Title</a></h2>
+                <h2><a href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">@jobOffer.Title</a></h2>
             </div>
             <div class="job-location">@jobOffer.CustomData["CountryLocationArea[0].Filters[0].Value"]</div>
             <p class="job-desc">
@@ -22,7 +22,7 @@
                 @trimSummary
             </p>
             <div class="action_link">
-                <a class="btn-link" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">VIEW JOB</a>
+                <a class="btn-link" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">VIEW JOB</a>
             </div>
 
         </div>

@@ -11,7 +11,7 @@
 
             @foreach (var result in Model.SearchResults)
             {
-                <li><a href="@ViewBag.JobDetailsPageUrl?jobId=@result.JobID">@result.Title</a></li>
+            <li><a href="@ViewBag.JobDetailsPageUrl/@result.ClassificationURL/@result.JobID">@result.Title</a></li>
             }
 
         </ul>

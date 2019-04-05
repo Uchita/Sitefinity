@@ -61,7 +61,7 @@
                               sf-identifier-field="Title" sf-master="true"
                               sf-selected-item-name="properties.AdvertiserEmailTemplateName.PropertyValue"
                               sf-selected-item-id="properties.AdvertiserEmailTemplateId.PropertyValue"
-                              sf-provider="properties.AdvertiserEmailTemplateProviderName.PropertyValue" />
+                              sf-provider="properties.EmailTemplateProviderName.PropertyValue" />
             <label>@Html.Resource("SelectRegistrationEmailTemplate")</label>
             <label>@Html.Resource("EmailSubject")</label>
             <input type="text" ng-model="properties.RegistrationEmailTemplateEmailSubject.PropertyValue" class="form-control" /><br /><br />
@@ -70,7 +70,7 @@
                               sf-identifier-field="Title" sf-master="true"
                               sf-selected-item-name="properties.RegistrationEmailTemplateName.PropertyValue"
                               sf-selected-item-id="properties.RegistrationEmailTemplateId.PropertyValue"
-                              sf-provider="properties.RegistrationEmailTemplateProviderName.PropertyValue" />
+                              sf-provider="properties.EmailTemplateProviderName.PropertyValue" />
         </uib-tab>
         <uib-tab heading="Apply With Social Media">
             <div class="list-group list-group-endless" kendo-sortable k-options="sortableOptions" k-on-change="sortItems(kendoEvent)" k-ignore="'input'">

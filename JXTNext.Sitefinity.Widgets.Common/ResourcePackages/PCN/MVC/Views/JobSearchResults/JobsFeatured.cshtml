@@ -19,7 +19,7 @@
             <span class="job-date">@jobOffer.DateCreated_Representation</span>
             <div class="row">
                 <div class="col-md-4">
-                    <h2><a target="_blank" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">@jobOffer.Title</a></h2>
+                    <h2><a target="_blank" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">@jobOffer.Title</a></h2>
                     <p>
                         <strong>Category</strong><span>@jobOffer.CustomData["Classifications[0].Filters[1].Value"]</span><br>
                         <strong>Location</strong><span class="rssLocation">@jobOffer.CustomData["CountryLocationArea[0].Filters[0].Value"]</span><br>

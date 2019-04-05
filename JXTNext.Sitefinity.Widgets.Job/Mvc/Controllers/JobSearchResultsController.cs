@@ -895,10 +895,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             string htmlEmailContent = String.Empty;
             if (!String.IsNullOrEmpty(this.JobAlertEmailTemplateId))
             {
-                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
-                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
-                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.JobAlertEmailTemplateId.ToUpper()));
-                htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
+                htmlEmailContent = SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.JobAlertEmailTemplateId);
 
             }
             return htmlEmailContent;
@@ -909,10 +906,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             string htmlEmailTitle = String.Empty;
             if (!String.IsNullOrEmpty(this.JobAlertEmailTemplateId))
             {
-                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
-                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
-                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.JobAlertEmailTemplateId.ToUpper()));
-                htmlEmailTitle = emailTemplateItem.GetValue("Title").ToString();
+                htmlEmailTitle = SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.JobAlertEmailTemplateId);
 
             }
             return htmlEmailTitle;
@@ -992,8 +986,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         public string JobAlertEmailTemplateProviderName
         {
-            get { return _emailTemplateProviderName; }
-            set { this._emailTemplateProviderName = value; }
+            get { return SitefinityHelper.GetCurrentSiteEmailTemplateProviderName(); }
         }
         public string JobAlertEmailTemplateId { get; set; }
         public string JobAlertEmailTemplateName { get; set; }

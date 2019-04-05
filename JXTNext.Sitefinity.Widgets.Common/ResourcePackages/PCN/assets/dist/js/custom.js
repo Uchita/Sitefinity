@@ -62,7 +62,7 @@ $(document).ready(function () {
         loop: true,
         margin: 35,
         autoplay: true,
-        autoplayTimeout: 2000,
+        autoplayTimeout: 5000,
         nav: false,
         responsive: {
             0: {
@@ -83,7 +83,8 @@ $(document).ready(function () {
         nav: false,
         dots: false,
         autoplay: true,
-        items: 1
+        items: 1,
+        autoplayTimeout: 5000,
     });
 
     /* article - slider */
@@ -91,7 +92,8 @@ $(document).ready(function () {
         loop: true,
         nav: false,
         autoplay: true,
-        items: 1
+        items: 1,
+        autoplayTimeout: 5000,
     });
 
     /* logo_slider */
@@ -100,7 +102,8 @@ $(document).ready(function () {
         nav: false,
         dots: true,
         autoplay: true,
-        items: 1
+        items: 1,
+        autoplayTimeout: 5000,
     });
 
     /* job-slider */
@@ -108,7 +111,7 @@ $(document).ready(function () {
         loop: true,
         margin: 30,
         autoplay: true,
-        autoplayTimeout: 2000,
+        autoplayTimeout: 5000,
         nav: false,
         dots: false,
         responsive: {
@@ -132,7 +135,7 @@ $(document).ready(function () {
         loop: false,
         margin: 30,
         autoplay: true,
-        autoplayTimeout: 2000,
+        autoplayTimeout: 5000,
         nav: false,
         dots: true,
         responsive: {

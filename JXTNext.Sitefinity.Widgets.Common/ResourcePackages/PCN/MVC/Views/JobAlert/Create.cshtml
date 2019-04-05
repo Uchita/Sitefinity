@@ -72,48 +72,7 @@
                     </div>
                     counter++;
                 }
-                else if (item.Name == "Salary")
-                {
-                    <div class="row form-group">
-                        <div class="col-md-4 text-right">
-                            <label>@item.Name</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden" />
-                            <select class="SalaryRangeSelect form-control">
-                                <option value="-1" selected>Choose Salary</option>
-                                @foreach (var salaryItem in item.Filters)
-                                {
-                                    <option value="@salaryItem.ID">@salaryItem.Label</option>
-                                }
-                            </select>
-                            @foreach (var salaryItem in item.Filters)
-                            {
-                                var lower = 15000;
-                                var upper = 200000;
-                                if (salaryItem.Label == "Hourly Rate")
-                                {
-                                    lower = 18;
-                                    upper = 200;
-                                }
-                                <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
-
-                                    <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
-                                         data-cur_min="@lower" data-cur_max="@upper">
-
-                                        <div class="bar"></div>
-                                        <div class="leftGrip"></div>
-                                        <div class="rightGrip"></div>
-                                    </div>
-                                    <div class="leftLabel">$<span>@lower</span></div>
-                                    <div class="rightLabel">$<span>@upper</span></div>
-
-                                </div>
-
-                            } @*end of for each*@
-                        </div>
-                    </div>
-                }
+                
             }
 
             <div class="row form-group">
@@ -158,12 +117,6 @@
             return false;
         } else {
             $('.filter-madatory-message').addClass('hidden');
-        }
-
-        if (isSlarySelected) {
-            salary.RootName = 'Salary';
-            $('#salary-model-bind-hidden').val(JSON.stringify(salary));
-            console.log($('#salary-model-bind-hidden').val());
         }
 
         return true;

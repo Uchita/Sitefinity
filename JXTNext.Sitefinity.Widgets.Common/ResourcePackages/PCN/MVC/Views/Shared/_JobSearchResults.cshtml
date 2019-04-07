@@ -169,7 +169,9 @@
     var islogged = $("#loginVar").val(); //used in kendo template
 
     $(document).ready(function () {
-        $(document).on('click', '.save-job', function (e) {
+        console.log('one');
+        $(document).off('click').on('click', '.save-job', function (e) {
+            console.log('two');
             e.preventDefault();
             var unSaveJob = false;
             var ajaxActionName = "/SaveJob";
@@ -190,7 +192,7 @@
                 data: parm,
                 dataType: 'Json',
                 success: function (response) {
-
+                    console.log(response);
                     if (response.Success == true) { // Job Saved
                         if (unSaveJob) {
                             self.removeClass("saved");

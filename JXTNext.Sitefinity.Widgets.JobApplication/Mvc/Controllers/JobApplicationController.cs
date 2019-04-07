@@ -37,6 +37,7 @@ using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.JXTNextResume;
 using System.Dynamic;
 using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models;
 using JXTNext.Sitefinity.Common.Models.JobApplication;
+using JXTNext.Sitefinity.Common.Extensions;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -378,7 +379,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                                     FromLastName = null,
                                     FromEmail = this.EmailTemplateSenderEmailAddress,
                                     ToFirstName = applyJobModel.FirstName,
-                                    ToLastName = null,
+                                    ToLastName = applyJobModel.LastName,
                                     ToEmail = applyJobModel.Email,
                                     Subject = SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.RegistrationEmailTemplateId),
                                     HtmlContent = SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.RegistrationEmailTemplateId),
@@ -486,9 +487,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     FromFirstName = loginUserFirstName,
                     FromLastName = null,
                     FromEmail = ovverideEmail,
-                    ToEmail = applyJobModel.ContactDetails,
-                    ToFirstName = applyJobModel.ApplicationEmail,
-                    ToLastName = null,
+                    ToEmail = applyJobModel.ApplicationEmail,
+                    ToFirstName = applyJobModel.ContactDetails.GetFirstName(),
+                    ToLastName = applyJobModel.ContactDetails.GetLastName(),
                     Subject = SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.AdvertiserEmailTemplateId),
                     HtmlContent = SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.AdvertiserEmailTemplateId),
                     Attachments = emailAttachments

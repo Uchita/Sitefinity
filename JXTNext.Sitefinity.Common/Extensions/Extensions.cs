@@ -28,7 +28,7 @@ namespace JXTNext.Sitefinity.Common.Extensions
         /// <returns>Returns first name as a string</returns>
         public static string GetFirstName(this string name)
         {
-            return name.Split(' ').First();
+            return name != null ? name.Split(' ').First() : null;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace JXTNext.Sitefinity.Common.Extensions
         /// <returns>Returns last name as a string</returns>
         public static string GetLastName(this string name)
         {
-            return name.Split(' ').Last();
+            return name != null ? name.Split(' ').Last() : null;
         }
     }
 }

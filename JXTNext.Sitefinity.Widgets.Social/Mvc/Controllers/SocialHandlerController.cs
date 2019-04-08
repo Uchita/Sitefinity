@@ -427,7 +427,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             // CC and BCC emails
             _addCCToEmailTemplate(ref advertiserEmailTemplate, this.AdvertiserEmailTemplateCC);
 
-            _addCCToEmailTemplate(ref advertiserEmailTemplate, this.AdvertiserEmailTemplateBCC);
+            _addBCCToEmailTemplate(ref advertiserEmailTemplate, this.AdvertiserEmailTemplateBCC);
 
             return advertiserEmailTemplate;
         }
@@ -438,7 +438,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             // CC and BCC emails
             _addCCToEmailTemplate(ref applicantEmailTemplate, this.EmailTemplateCC);
 
-            _addCCToEmailTemplate(ref applicantEmailTemplate, this.EmailTemplateBCC);
+            _addBCCToEmailTemplate(ref applicantEmailTemplate, this.EmailTemplateBCC);
 
             return applicantEmailTemplate;
         }
@@ -449,7 +449,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             // CC and BCC emails
             _addCCToEmailTemplate(ref registerEmailTemplate, this.RegistrationEmailTemplateCC);
 
-            _addCCToEmailTemplate(ref registerEmailTemplate, this.RegistrationEmailTemplateBCC);
+            _addBCCToEmailTemplate(ref registerEmailTemplate, this.RegistrationEmailTemplateBCC);
 
             return registerEmailTemplate;
         }

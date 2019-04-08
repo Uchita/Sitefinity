@@ -21,12 +21,12 @@
                     <div class="white_panel">
                         <div class="sub">
                             @{
-                                var title = Html.HtmlSanitize((string)jobOffer.Title).ToString();
+                                var title = ((string)jobOffer.Title).ToString();
                             }
                             <h4 class="sub_title"><a href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">@title</a></h4>
                             <div class="location">@jobOffer.CustomData["CountryLocationArea[0].Filters[0].Value"]</div>
                             @{
-                                var summary = Html.HtmlSanitize((string)jobOffer.ShortDescription).ToString();
+                                var summary = ((string)jobOffer.ShortDescription).ToString();
                             }
                             <p>@summary</p>
                             <div class="action_link">

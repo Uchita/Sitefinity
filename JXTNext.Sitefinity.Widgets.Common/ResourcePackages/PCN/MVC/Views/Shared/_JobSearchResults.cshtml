@@ -169,7 +169,7 @@
     var islogged = $("#loginVar").val(); //used in kendo template
 
     $(document).ready(function () {
-        $(document).on('click', '.save-job', function (e) {
+        $(document).off('click').on('click', '.save-job', function (e) {
             e.preventDefault();
             var unSaveJob = false;
             var ajaxActionName = "/SaveJob";
@@ -190,7 +190,6 @@
                 data: parm,
                 dataType: 'Json',
                 success: function (response) {
-
                     if (response.Success == true) { // Job Saved
                         if (unSaveJob) {
                             self.removeClass("saved");
@@ -537,7 +536,7 @@
                 $('.filter-outer-wrapper').removeClass('lockoverlay visible-hidden');
             },
             error: function (response) {
-                console.log(response);
+                
             }
         });
     };

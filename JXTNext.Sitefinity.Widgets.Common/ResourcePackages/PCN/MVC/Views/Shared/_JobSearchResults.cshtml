@@ -190,7 +190,6 @@
                 data: parm,
                 dataType: 'Json',
                 success: function (response) {
-                    console.log(response);
                     if (response.Success == true) { // Job Saved
                         if (unSaveJob) {
                             self.removeClass("saved");
@@ -537,7 +536,7 @@
                 $('.filter-outer-wrapper').removeClass('lockoverlay visible-hidden');
             },
             error: function (response) {
-                console.log(response);
+                
             }
         });
     };

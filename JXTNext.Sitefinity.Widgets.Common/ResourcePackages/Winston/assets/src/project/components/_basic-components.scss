@@ -2978,8 +2978,9 @@ header {
                 color: white;
             }
         }
-        option{
-            color:#2e2e2e;
+
+        option {
+            color: #2e2e2e;
         }
     }
 
@@ -3008,6 +3009,10 @@ header {
 
                 &:hover {
                     border-color: transparent;
+                }
+
+                @media(max-width:767px) {
+                    border-color: white;
                 }
             }
         }
@@ -3741,3 +3746,6 @@ header {
     }
 }
 
+h2{
+    color:red !important;
+}

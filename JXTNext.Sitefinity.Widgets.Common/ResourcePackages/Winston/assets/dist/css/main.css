@@ -9565,6 +9565,9 @@ address.info-box {
   border-color: white; }
   .transparent-data .btn-block button.btn:hover {
     border-color: transparent; }
+  @media (max-width: 767px) {
+    .transparent-data .btn-block button.btn {
+      border-color: white; } }
 
 /*
 
@@ -10024,6 +10027,9 @@ ul.no-gutter {
     margin-bottom: 10px; }
   .keywordfilter h3 {
     font-family: "Playfair Display", serif; }
+
+h2 {
+  color: red !important; }
 
 /*#endregion Basic components */
 /*#region Breadcrumbs */

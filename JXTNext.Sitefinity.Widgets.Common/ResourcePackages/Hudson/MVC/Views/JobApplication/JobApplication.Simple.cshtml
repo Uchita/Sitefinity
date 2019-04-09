@@ -525,10 +525,10 @@
                  alert('@Html.Resource("FileSizeAlertResume", "ErrorMessages")');
                  return false;
              } else if (uploadMethod == "coverletter" && fileSize > 524288) { //0.5mb
-                 alert('File size is too big! Max size accepted is only 0.5 Mb.');
+                 alert('@Html.Resource("FileSizeAlertCoverletter", "ErrorMessages")');
                  return false;
              } else if (uploadMethod == "document" && fileSize > 314573) { //0.3mb
-                 alert('File size is too big! Max size accepted is only 0.3 Mb.');
+                 alert('@Html.Resource("FileSizeAlertDocument", "ErrorMessages")');
                  return false;
              }
          }
@@ -1138,7 +1138,7 @@
                 gapi.auth2.authorize({
                     client_id: clientId,
                     scope: scope
-                }, handleAuthResultMulti);
+                }, handleAuthResult);
             });
         }
 
@@ -1218,6 +1218,7 @@
                 url = doc[google.picker.Document.URL];
                 name = doc[google.picker.Document.NAME]
                 mime = doc[google.picker.Document.MIME_TYPE];
+                size = doc.sizeBytes;
 
                 uploadResumeModel.UrlPath = url;
                 uploadResumeModel.FileName = name;
@@ -1227,59 +1228,52 @@
 
                 var stringyModel = JSON.stringify(uploadResumeModel);
 
-                var docs = data[google.picker.Response.DOCUMENTS];
-                var stringyModels = "[";
-                var Filenames = "";
-
-                for (var i = 0; i < docs.length; i++) {
-                    doc = docs[i];
-                    fileId = doc[google.picker.Document.ID];
-                    url = doc[google.picker.Document.URL];
-                    name = doc[google.picker.Document.NAME]
-                    mime = doc[google.picker.Document.MIME_TYPE];
-
-                    uploadResumeModel.UrlPath = url;
-                    uploadResumeModel.FileName = name;
-                    uploadResumeModel.Field = fileId;
-                    uploadResumeModel.MIMEType = mime;
-                    uploadResumeModel.AuthToken = oauthToken;
-
-                    if (stringyModels != "[") {
-                        stringyModels += ",";
-                        Filenames += "<br/>";
-                    }
-                    stringyModels += JSON.stringify(uploadResumeModel);
-                    Filenames += doc[google.picker.Document.NAME];
-                }
-                stringyModels += "]";
-
                 if (isGoogleResume) {
                     resumeSelectedType = 'GoogleDrive';
-                    $('#uploadResumeJson').val(stringyModel);
-                    $('#application-resume').val('');
-                    $("#resume-selected-type").val(resumeSelectedType);
-                    $('.resume-name').text(name);
-                    if (userLoggedInParamFromViewbag == 'True') {
-                        $("#MySavedResumes").val('0');
+                    if (checkUploadFileSize("resume", size) == false) {
+                        $('#uploadResumeJson').val('');
+                        $("#resume-selected-type").val('');
+                        $('.resume-name .filewrap').text('');
                     } else {
-                        $("#user-profile-resume-list").val('0');
+                        $('#uploadResumeJson').val(stringyModel);
+                        $('#application-resume').val('');
+                        $("#resume-selected-type").val(resumeSelectedType);
+                        $('.resume-name .filewrap').text(name);
+                        if (userLoggedInParamFromViewbag == 'True') {
+                            $("#MySavedResumes").val('0');
+                        } else {
+                            $("#user-profile-resume-list").val('0');
+                        }
                     }
-
                 }
                 else {
                     if (isGoogleCoverLetter) {
                         coverLetterSelectedType = 'GoogleDrive';
-                        $('#uploadCoverLetterJson').val(stringyModel);
-                        $('#application-coverletter').val('');
-                        $("#coverletter-selected-type").val(coverLetterSelectedType);
-                        $('.coverletter-name').text(name);
+                        if (checkUploadFileSize("coverletter", size) == false) {
+                            $('#uploadCoverLetterJson').val('');
+                            $("#coverletter-selected-type").val('');
+                            $('.coverletter-name .filewrap').text('');
+                        } else {
+                            $('#uploadCoverLetterJson').val(stringyModel);
+                            $('#application-coverletter').val('');
+                            $("#coverletter-selected-type").val(coverLetterSelectedType);
+                            $('.coverletter-name .filewrap').text(name);
+                        }
+                        
                     }
                     else {
                         documentsSelectedType = 'GoogleDrive';
-                        $('#uploadDocumentsJson').val(stringyModels);
-                        $('#application-documents').val('');
-                        $("#documents-selected-type").val(documentsSelectedType);
-                        $('.documents-name').html(Filenames);
+                        if (checkUploadFileSize("document", size) == false) {
+                            $('#uploadDocumentsJson').val('');
+                            $("#documents-selected-type").val('');
+                            $('.documents-name .filewrap').text('');
+                        } else {
+                            $('#uploadDocumentsJson').val(stringyModels);
+                            $('#application-documents').val('');
+                            $("#documents-selected-type").val(documentsSelectedType);
+                            $('.documents-name .filewrap').text(name);
+                        }
+                        
                     }
                 }
 

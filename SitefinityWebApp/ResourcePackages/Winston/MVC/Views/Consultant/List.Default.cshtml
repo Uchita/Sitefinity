@@ -65,7 +65,7 @@
 
             <div class="col-md-12">
                 <div class="consultant-thumb-image">
-                    <a class="" href="@item.Fields.URLField" title="@item.Fields.ConsultantName">
+                    <a class="" href="@navigateUrl" title="@item.Fields.ConsultantName">
                         <img src="@imageThumbUrl" alt="@item.Fields.ConsultantName" />
                         <div class="contact-image-rollover">
                             <div class="display-table">
@@ -119,7 +119,7 @@
                                 }
                             </div>
                         }*@
-                    <a class="btn btn-default hidden-xs" href="@item.Fields.URLField" title="Read More">READ MORE</a>
+                    <a class="btn btn-default hidden-xs" href="@navigateUrl" title="Read More">READ MORE</a>
                     @*<a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID" title="Read more"></a>*@
                 </div>
             </div>
@@ -127,6 +127,7 @@
     </div>
 </div>
 }
+
 
 
 

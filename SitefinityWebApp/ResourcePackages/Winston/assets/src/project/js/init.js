@@ -197,9 +197,13 @@ ThemeGlobal.MobileSubNavigationToggle = function(){
         $('.page-wrapper').toggleClass('menu-opened');
     });
 }
+$(window).load(function()
+    {
+    $('.date .form-control').datepicker();  
+    });
 
 $(document).ready(function () {
-
+    
     ThemeGlobal.QuickLinksToggle();
     ThemeGlobal.HeaderToggleFixed();
     ThemeGlobal.MobileSubNavigationToggle();
@@ -210,6 +214,8 @@ $(document).ready(function () {
         //requestAnimationFrame(ThemeGlobal.ParalaxInit);
     }, false);
 
+    
+
     $("[data-filter-trigger]").on("click", function () {
         if( $(this).parent().hasClass('filter-active') ){
             $(this).parent(".filter").removeClass("filter-active");
@@ -218,7 +224,7 @@ $(document).ready(function () {
         }
         $(".filter.filter-active").removeClass("filter-active");
         
-        ThemeGlobal.JobsFilterToggle($(this).data("filter-trigger"));
+        ThemeGlobal.JobsFilterToggle($(this).data("filter-trigger"));  
     });
 
     $('.owl-carousel-testimonials').owlCarousel({

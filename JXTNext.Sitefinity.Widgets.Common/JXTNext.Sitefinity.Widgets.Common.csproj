@@ -237,6 +237,9 @@
     <Content Include="ResourcePackages\Winston\assets\src\project\js\init.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Winston\assets\src\project\js\jquery-ui.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Winston\assets\src\project\js\jquery.simplePagination.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -2039,6 +2042,9 @@
     <None Include="ResourcePackages\JXTDemo\package.json" />
     <None Include="ResourcePackages\JXTDemo\razorgenerator.directives">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\Winston\assets\src\project\components\_jquery-ui.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\Winston\assets\src\sitefinity\sass\components\icons\feather-icons.json" />
     <None Include="ResourcePackages\Winston\assets\src\sitefinity\sass\components\icons\_icons.scss" />

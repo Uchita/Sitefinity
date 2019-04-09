@@ -1,0 +1,60 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Events.Mvc.Helpers
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.Modules.Pages
+@using Telerik.Sitefinity.Web.DataResolving
+
+@Html.Script(ScriptRef.JQuery, "top", false)
+
+@{
+    var model = Model.Items;
+    model = model.Where(x => x.Fields.EventEnd > DateTime.Now);
+    model = model.OrderBy(x => Convert.ToDateTime(x.Fields.EventStart));
+    model = model = model.OrderByDescending(x => Convert.ToDateTime(x.Fields.EventStart));
+}
+<div class="post-list">
+
+    @foreach (var item in model)
+    {
+        var imageurl = "";
+        foreach (var relatedItem in item.Fields.EventImage)
+        {
+            imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+        }
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+
+        <div class="items">
+
+            <div class="thumbnail-img overlay">
+                <a href="@navigateUrl"><img src="@imageurl" alt="image"></a>
+            </div>
+
+            <div class="text">
+                <h3>
+                    <a href="@navigateUrl">@item.Fields.Title</a>
+                </h3>
+                <div class="entry-meta">
+                    <span class="author hidden">Posted by <a href="#" title="Posts by Greythorn Australia" rel="author">@DataResolver.Resolve(item.DataItem, "Author", null)</a></span>
+                    <span class="sep hidden">-</span>
+                    @if (item.GetDateTime("EventStart", "MMM d, yyyy") == item.GetDateTime("EventEnd", "MMM d, yyyy"))
+                    {
+                        <span class="date">@item.GetDateTime("EventStart", "MMM d, yyyy")</span>
+                    }
+                    else
+                    {
+                        <span class="date">@item.GetDateTime("EventStart", "MMM d, yyyy") to @item.GetDateTime("EventEnd", "MMM d, yyyy")</span>
+                    }
+                </div>
+            </div>
+
+        </div>
+    }
+
+</div>
+@if (model.Count() == 0)
+{
+    <div class="alert alert-warning"><strong>No results found.</strong></div>
+}
+
+

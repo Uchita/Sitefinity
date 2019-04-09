@@ -1,0 +1,17 @@
+﻿@model JXTNext.Sitefinity.Widgets.Social.Mvc.Models.InstagramModel
+
+@if (Model.Media.Count() > 0)
+{
+    
+    <div class="owl-carousel owl-instagram owl-theme">
+    @foreach (var item in Model.Media)
+    {
+        <div class="instagram-item item">
+            <a href="@item.Link" class="instagram-image-holder" data-instagram-likes="&#x2764; @item.LikeCount">
+                <img src="@item.Standard" />
+            </a>
+        </div>
+    }
+    </div>
+   
+}

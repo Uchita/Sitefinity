@@ -345,25 +345,30 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             alertModel.Data = JsonConvert.SerializeObject(searchModel);
 
             // Code for sending email alerts
-            EmailNotificationSettings jobAlertEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.JobAlertEmailTemplateSenderName, this.JobAlertEmailTemplateSenderEmailAddress),
+            EmailNotificationSettings jobAlertEmailNotificationSettings = null;
+            if (JobAlertEmailTemplateId != null)
+            {
+                jobAlertEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.JobAlertEmailTemplateSenderName, this.JobAlertEmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(string.Empty, email),
                                                                                                 this.GetJobAlertHtmlEmailTitle(),
                                                                                                 this.GetJobAlertHtmlEmailContent(), null);
-            if (!this.JobAlertEmailTemplateCC.IsNullOrEmpty())
-            {
-                foreach (var ccEmail in this.JobAlertEmailTemplateCC.Split(';'))
+                if (!this.JobAlertEmailTemplateCC.IsNullOrEmpty())
                 {
-                    jobAlertEmailNotificationSettings.AddCC(String.Empty, ccEmail);
+                    foreach (var ccEmail in this.JobAlertEmailTemplateCC.Split(';'))
+                    {
+                        jobAlertEmailNotificationSettings.AddCC(String.Empty, ccEmail);
+                    }
                 }
-            }
 
-            if (!this.JobAlertEmailTemplateBCC.IsNullOrEmpty())
-            {
-                foreach (var bccEmail in this.JobAlertEmailTemplateBCC.Split(';'))
+                if (!this.JobAlertEmailTemplateBCC.IsNullOrEmpty())
                 {
-                    jobAlertEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
+                    foreach (var bccEmail in this.JobAlertEmailTemplateBCC.Split(';'))
+                    {
+                        jobAlertEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
+                    }
                 }
             }
+            
 
             alertModel.EmailNotifications = jobAlertEmailNotificationSettings;
 
@@ -890,10 +895,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             string htmlEmailContent = String.Empty;
             if (!String.IsNullOrEmpty(this.JobAlertEmailTemplateId))
             {
-                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
-                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
-                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.JobAlertEmailTemplateId.ToUpper()));
-                htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
+                htmlEmailContent = SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.JobAlertEmailTemplateId);
 
             }
             return htmlEmailContent;
@@ -904,10 +906,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             string htmlEmailTitle = String.Empty;
             if (!String.IsNullOrEmpty(this.JobAlertEmailTemplateId))
             {
-                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
-                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
-                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.JobAlertEmailTemplateId.ToUpper()));
-                htmlEmailTitle = emailTemplateItem.GetValue("Title").ToString();
+                htmlEmailTitle = SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.JobAlertEmailTemplateId);
 
             }
             return htmlEmailTitle;
@@ -987,8 +986,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         public string JobAlertEmailTemplateProviderName
         {
-            get { return _emailTemplateProviderName; }
-            set { this._emailTemplateProviderName = value; }
+            get { return SitefinityHelper.GetCurrentSiteEmailTemplateProviderName(); }
         }
         public string JobAlertEmailTemplateId { get; set; }
         public string JobAlertEmailTemplateName { get; set; }

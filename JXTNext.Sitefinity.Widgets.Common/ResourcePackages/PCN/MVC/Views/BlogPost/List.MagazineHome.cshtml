@@ -1,0 +1,144 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web.DataResolving;
+@Html.Script(ScriptRef.JQuery, "top", false)
+@using Newtonsoft.Json;
+@using Telerik.Sitefinity.Blogs.Model;
+@using Telerik.Sitefinity.Frontend.Search.Mvc.Models;
+@using Telerik.Sitefinity.Modules.Libraries;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Modules.Blogs;
+@using Telerik.Sitefinity.RelatedData;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.DynamicModules.Model;
+@{
+    BlogsManager blogsManager = BlogsManager.GetManager();
+    int counter = 0;
+    var imageurl = "";
+    var issue = "";
+    var volume = "";
+    var issuetext = "";
+    var volumetext = "";
+    var modelfirst = Model.Items.FirstOrDefault();
+    var issueTitile = "";
+    var issueSummary = "";
+    var issuepublicationdate = "";
+    var navigateUrlmail = "";
+    if (modelfirst.Fields.issue != null)
+    {
+        foreach (var taxonissue in modelfirst.GetFlatTaxons("issue"))
+        {
+            issue = @taxonissue.Title.ToString().ToLower().Replace(" ", "-");
+            issuetext = @taxonissue.Title.ToString();
+        }
+    }
+    if (modelfirst.Fields.volume != null)
+    {
+        foreach (var taxonvolume in modelfirst.GetFlatTaxons("volume"))
+        {
+            volume = @taxonvolume.Title.ToString().ToLower().Replace(" ", "-");
+            volumetext = @taxonvolume.Title.ToString();
+        }
+    }
+}
+
+@foreach (var item in Model.Items)
+{
+    var volume_issue = "";
+    var issue_issue = "";
+    if (@item.Fields.ItemDefaultUrl.Contains("issues"))
+    {
+        if (item.Fields.issue != null)
+        {
+            foreach (var taxonissue in item.GetFlatTaxons("issue"))
+            {
+                issue_issue = @taxonissue.Title.ToString().ToLower().Replace(" ", "-"); ;
+            }
+        }
+        if (item.Fields.volume != null)
+        {
+            foreach (var taxonvolume in item.GetFlatTaxons("volume"))
+            {
+                volume_issue = @taxonvolume.Title.ToString().ToLower().Replace(" ", "-"); ;
+            }
+        }
+        if (volume == volume_issue && issue == issue_issue)
+        {
+            foreach (var relatedItem in item.Fields.CoverImage)
+            {
+                imageurl = (string)relatedItem.Fields.MediaUrl;
+            }
+            issueTitile = item.Fields.Title;
+            issueSummary = item.Fields.Summary;
+        }
+        issuepublicationdate = item.GetDateTime("PublicationDate", "MMM, yyyy");
+        navigateUrlmail = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+    }
+}
+
+
+<div class="magazine-cover @Model.CssClass">
+    <div class="bg-corner">
+        <div class="bg-corner-inner">
+
+            <div class="magazine-cover-img">
+                <a title="@issueTitile" href="/magazine/issue?vol=@volume&issue=@issue"><img src="@imageurl" alt="@issueTitile" /></a>
+            </div>
+            <div class="magazine-cover-content">
+                <div class="magazine-vol-name">@volumetext - @issuetext</div>
+                <div class="magazine-vol-date">@issuepublicationdate</div>
+                <ul class="magazine-headlines">
+                    <li class="magazine-headline">
+                        <a title="" class="magazine-headline" href="/magazine/issue?vol=@volume&issue=@issue">@issueTitile</a>
+                        <div class="short-summary">@Html.HtmlSanitize((string)issueSummary)</div>
+                    </li>
+                    @foreach (var item in Model.Items)
+                    {
+                        if (@item.Fields.ItemDefaultUrl.Contains("magazine"))
+                        {
+                            var volume_article = "";
+                            var issue_article = "";
+                            if (item.Fields.issue != null)
+                            {
+                                foreach (var taxonissue in item.GetFlatTaxons("issue"))
+                                {
+                                    issue_article = @taxonissue.Title.ToString().ToLower().Replace(" ", "-"); ;
+                                }
+                            }
+
+                            if (item.Fields.volume != null)
+                            {
+                                foreach (var taxonvolume in item.GetFlatTaxons("volume"))
+                                {
+                                    volume_article = @taxonvolume.Title.ToString().ToLower().Replace(" ", "-"); ;
+                                }
+                            }
+                            if (volume == volume_article && issue == issue_article)
+                            {
+                                if (@counter < 5)
+                                {
+                                    var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+
+                                    <li class="magazine-sub-headline">
+                                        <a class="magazine-sub-headline" href="@navigateUrl">@item.Fields.Title</a>
+                                        <div class="short-summary">@Html.HtmlSanitize((string)item.Fields.Summary)</div>
+                                    </li>
+                                }
+                                counter++;
+                            }
+                        }
+                    }
+                </ul>
+                <a href="/magazine/issue?vol=@volume&issue=@issue" class="btn-link">View issue</a>
+            </div>
+
+
+        </div>
+    </div>
+</div>

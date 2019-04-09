@@ -53,7 +53,13 @@
                               sf-selected-item-id="properties.EmailTemplateId.PropertyValue"
                               sf-provider="properties.EmailTemplateProviderName.PropertyValue" />
 
-            <label>@Html.Resource("SelectAdvertiserEmailTemplate")</label>
+            <label>@Html.Resource("SelectAdvertiserEmailTemplate")</label><br /><br />
+            <label>@Html.Resource("AdvertiserEmailCC")</label>
+            <input type="text" ng-model="properties.AdvertiserEmailTemplateCC.PropertyValue" class="form-control" /><br /><br />
+
+            <label>@Html.Resource("AdvertiserEmailBCC")</label>
+            <input type="text" ng-model="properties.AdvertiserEmailTemplateBCC.PropertyValue" class="form-control" /><br /><br />
+
             <label>@Html.Resource("EmailSubject")</label>
             <input type="text" ng-model="properties.AdvertiserEmailTemplateEmailSubject.PropertyValue" class="form-control" /><br /><br />
 
@@ -61,8 +67,14 @@
                               sf-identifier-field="Title" sf-master="true"
                               sf-selected-item-name="properties.AdvertiserEmailTemplateName.PropertyValue"
                               sf-selected-item-id="properties.AdvertiserEmailTemplateId.PropertyValue"
-                              sf-provider="properties.AdvertiserEmailTemplateProviderName.PropertyValue" />
-            <label>@Html.Resource("SelectRegistrationEmailTemplate")</label>
+                              sf-provider="properties.EmailTemplateProviderName.PropertyValue" />
+            <label>@Html.Resource("SelectRegistrationEmailTemplate")</label><br /><br />
+            <label>@Html.Resource("RegistrationEmailCC")</label>
+            <input type="text" ng-model="properties.RegistrationEmailTemplateCC.PropertyValue" class="form-control" /><br /><br />
+
+            <label>@Html.Resource("RegistrationEmailBCC")</label>
+            <input type="text" ng-model="properties.RegistrationEmailTemplateBCC.PropertyValue" class="form-control" /><br /><br />
+
             <label>@Html.Resource("EmailSubject")</label>
             <input type="text" ng-model="properties.RegistrationEmailTemplateEmailSubject.PropertyValue" class="form-control" /><br /><br />
 
@@ -70,7 +82,7 @@
                               sf-identifier-field="Title" sf-master="true"
                               sf-selected-item-name="properties.RegistrationEmailTemplateName.PropertyValue"
                               sf-selected-item-id="properties.RegistrationEmailTemplateId.PropertyValue"
-                              sf-provider="properties.RegistrationEmailTemplateProviderName.PropertyValue" />
+                              sf-provider="properties.EmailTemplateProviderName.PropertyValue" />
         </uib-tab>
         <uib-tab heading="Apply With Social Media">
             <div class="list-group list-group-endless" kendo-sortable k-options="sortableOptions" k-on-change="sortItems(kendoEvent)" k-ignore="'input'">

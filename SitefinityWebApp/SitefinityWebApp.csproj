@@ -1003,6 +1003,7 @@
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="AzureWebRole.cs" />
     <Compile Include="BlobStorage\AmazonBlobStorageProvider.cs" />
+    <Compile Include="code\EmailSenderCustom.cs" />
     <Compile Include="code\FeatherActionInvokerCustom.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1465,6 +1466,10 @@
     <ProjectReference Include="..\JXTNext.Sitefinity.Connector\JXTNext.Sitefinity.Connector.csproj">
       <Project>{bf418b44-ebce-499f-bbd3-6ba98a24e144}</Project>
       <Name>JXTNext.Sitefinity.Connector</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Custom\JXTNext.Sitefinity.Custom.csproj">
+      <Project>{8ca26cdd-cc22-4e2e-ba08-7982171c9d1e}</Project>
+      <Name>JXTNext.Sitefinity.Custom</Name>
     </ProjectReference>
     <ProjectReference Include="..\JXTNext.Sitefinity.Identity\JXTNext.Sitefinity.Widgets.Authentication.csproj">
       <Project>{9a208d8f-aa97-4ce5-a42b-71bde987124c}</Project>

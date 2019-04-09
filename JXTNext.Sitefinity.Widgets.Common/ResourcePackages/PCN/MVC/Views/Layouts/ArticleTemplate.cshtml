@@ -1,0 +1,63 @@
+﻿@using System.Web.Mvc;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.UI.MVC;
+@using Telerik.Sitefinity.Services;
+
+<!DOCTYPE html>
+<html @Html.RenderLangAttribute()  prefix="og: http://ogp.me/ns#">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
+    <link rel="icon" href="/ResourcePackages/PCN/assets/dist/images/pcn-favicon.png" type="image/png" sizes="16x16">
+    <title></title>
+
+
+    @Html.Section("head")
+    @Html.StyleSheet(Url.Content("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"), "head")
+    @Html.StyleSheet(Url.Content("~/ResourcePackages/PCN/assets/dist/css/fontawesome-all.css"), "head")
+    @Html.StyleSheet(Url.Content("~/ResourcePackages/PCN/assets/dist/css/owl.carousel.css"), "head")
+    @Html.StyleSheet(Url.Content("~/ResourcePackages/PCN/assets/dist/css/style.css"), "head")
+    @Html.StyleSheet(Url.Content("~/ResourcePackages/PCN/assets/dist/css/responsive.css"), "head")
+
+</head>
+
+<body class="article-template">
+    @Html.Section("top")
+    <div class="cookie-banner-container hidden">
+        <a class="accept-link" href="javascript:void(0);">
+            By clicking on this you agree to the use of cookies
+            <em class="fas fa-check-square"></em>
+        </a>
+    </div>
+
+    <header class="header">
+        @Html.SfPlaceHolder("Header")
+    </header>
+    <main class="full_width">
+        <div class="big_container">
+            @Html.SfPlaceHolder("Main")
+        </div>
+    </main>
+    <footer class="full_width">
+        @Html.SfPlaceHolder("Footer")
+    </footer>
+
+    @Html.Section("bottom")
+
+
+    @if (!Telerik.Sitefinity.Services.SystemManager.IsDesignMode || Telerik.Sitefinity.Services.SystemManager.IsPreviewMode)
+    {
+        @Html.Script("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", "bottom")
+    }
+    @Html.Script("https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js", "bottom")
+    @Html.Script("/ResourcePackages/PCN/assets/dist/js/owl.carousel.min.js", "bottom")
+    @Html.Script("/ResourcePackages/PCN/assets/dist/js/sidebar-sticky.js", "bottom")
+    @Html.Script("/ResourcePackages/PCN/assets/dist/js/custom.js", "bottom")
+    @if (Telerik.Sitefinity.Services.SystemManager.IsDesignMode)
+    {
+        @Html.Script("/ResourcePackages/PCN/assets/dist/js/customadmin.js", "bottom")
+    }
+</body>
+</html>

@@ -1,0 +1,107 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web.DataResolving;
+@Html.Script(ScriptRef.JQuery, "top", false)
+@using Newtonsoft.Json;
+@using Telerik.Sitefinity.Blogs.Model;
+@using Telerik.Sitefinity.Frontend.Search.Mvc.Models;
+@using Telerik.Sitefinity.Modules.Libraries;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Modules.Blogs;
+@using Telerik.Sitefinity.RelatedData;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.DynamicModules.Model;
+@{
+    BlogsManager blogsManager = BlogsManager.GetManager();
+    int counter = 0;
+    var imageurl = "";
+    var issue = "";
+    var volume = "";
+    var volumematch = "";
+    var volumenew = "";
+    var issuenew = "";
+    var issuetext = "";
+    var volumetext = "";
+    var modelfirst = Model.Items.FirstOrDefault();
+    if (modelfirst.Fields.issue != null)
+    {
+        foreach (var taxonissue in modelfirst.GetFlatTaxons("issue"))
+        {
+            issue = taxonissue.Title.ToString().ToLower().Replace(" ", "-");
+            issuetext = taxonissue.Title.ToString();
+        }
+    }
+    if (modelfirst.Fields.volume != null)
+    {
+        foreach (var taxonvolume in modelfirst.GetFlatTaxons("volume"))
+        {
+            volume = taxonvolume.Title.ToString().ToLower().Replace(" ", "-");
+            volumetext = taxonvolume.Title.ToString();
+        }
+    }
+
+}
+
+<div class="@Model.CssClass">
+    @foreach (var item in Model.Items)
+    {
+
+        if (item.Fields.ItemDefaultUrl.Contains("issues"))
+        {
+
+            foreach (var relatedItem in item.Fields.BlogImage)
+            {
+                imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+            }
+            if (item.Fields.volume != null)
+            {
+                foreach (var taxonvolume in item.GetFlatTaxons("volume"))
+                {
+                    volumenew = taxonvolume.Title.ToString().ToLower().Replace(" ", "-"); ;
+                }
+            }
+            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+           
+
+                if (counter == 0)
+                {
+                    volumematch = volumenew;
+                }
+                if (volumenew == volumematch)
+                {
+                    if (item.Fields.issue != null)
+                    {
+                        foreach (var taxonissue in item.GetFlatTaxons("issue"))
+                        {
+                            issuenew = taxonissue.Title.ToString().ToLower().Replace(" ", "-"); ;
+                        }
+                    }
+                    <div class="magazine-issue">
+                        <div class="bg-corner border-corner">
+                            <div class="bg-corner-inner">
+                                <div class="magazine-cover-img" style="background-image: url('@imageurl')">
+                                    <div class="magazine-overlay">
+                                        <a class="magazine-title" @Html.InlineEditingFieldAttributes("Title", "ShortText") href="/magazine/issue?vol=@volume&issue=@issue">@item.Fields.Title</a>
+                                    </div>
+                                </div>
+                                <div class="magazine-cover-content">
+                                    <a href="/magazine/issue?vol=@volumenew&issue=@issuenew" class="magazine-vol-name" style="text-transform: capitalize;">@volumenew.ToLower().Replace("-", " ") - @issuenew.ToLower().Replace("-", " ")</a>
+                                    <div class="magazine-vol-date">@item.GetDateTime("PublicationDate", "MMM, yyyy")</div>
+                                    <div class="issue-desc">@Html.HtmlSanitize((string)item.Fields.Summary)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                counter++;
+            
+        }
+    }
+
+</div>

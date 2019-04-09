@@ -3738,10 +3738,6 @@ header {
 
 }
 
-
-.jxt-news-filter-summary{
-
-}
 .categories-list{
     position:relative;
     ul{
@@ -3754,7 +3750,7 @@ header {
     top: -20px;
 
     .form-control {
-        width: 100%;
+        width: 100%; 
         margin-bottom: 10px;
     }
 
@@ -3784,3 +3780,4 @@ header {
     border: 1px solid $global-headings-color;
     display:block;
 }
+

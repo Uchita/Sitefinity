@@ -9,7 +9,7 @@
 @Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/rangeSlider.css"))
 
 <div id="createalert-widget">
-    <h2><span class="alert-icon far fa-bell"></span>Edit job alert</h2>
+    <h2 class="dashboard-head-title"><span class="alert-icon far fa-bell"></span>Edit job alert</h2>
 
     <h3>Alert details</h3>
 
@@ -21,7 +21,7 @@
                 var privacyErrMsg = "Please agree to Winston Fox\'s privacy policy";
             }
 
-            <div class="field-wrapper basic-form no-marg-top">
+            <div class="field-wrapper basic-form no-marg-top job-alert-form">
                 <div class="alert alert-danger filter-madatory-message hidden">@Html.Resource("nofilterselectedmessage", "Labels")</div>
 
                 <div class="row form-group">

@@ -1,5 +1,13 @@
 /*#region Tablet*/
 @media (min-width:768px) {
+
+    header .main-nav .nav.navbar-nav{
+        margin-left:0;
+        width:calc(100% + 60px)
+    }
+    header .navbar.navbar-default .navbar-nav > li > a {
+        font-size: 12px !important;
+    }
     header {
 
         .brand-logo {
@@ -63,15 +71,15 @@
             &.navbar-default {
 
                 .navbar-nav > li > a {
-                    padding: 0 5px;
+                    padding: 0 10px;
                 }
 
                 .navbar-nav > li > a,
                 .navbar-nav > .active > a,
                 .navbar-nav > .active > a:focus,
                 .navbar-nav > .active > a:hover {
-                    font-size: 16px;
-                    font-size: 1.6rem;
+                    font-size: 14px;
+                    font-size: 1.4rem;
                 }
             }
         }
@@ -386,15 +394,19 @@
     }
 }
 @media (max-width: 1024px){
-    #pager{
-        ul{
+    .datatable tr td{
+        color:#2e2e2e;
+    }
+    #pager {
+        ul {
             position: static;
             transform: none;
             display: block;
             padding: 0;
             margin: 0;
-            li{
-                a{
+
+            li {
+                a {
                     padding: 0 1px;
                     text-align: center;
                 }
@@ -468,8 +480,8 @@
         .navbar.navbar-default .navbar-nav {
             /*width: 77%;*/
             > li {
-                padding-left: 3px;
-                padding-right: 3px;
+                padding-left: 0px;
+                padding-right: 0px;
             }
 
             > li + li > a:before {
@@ -1924,5 +1936,7 @@
 
 }
     }
+
+
 
 

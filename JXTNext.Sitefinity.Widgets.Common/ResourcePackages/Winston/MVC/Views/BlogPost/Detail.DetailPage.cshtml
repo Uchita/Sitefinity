@@ -26,9 +26,10 @@
                     </h3>
 
                     <div class="post-stamp">
-                        @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")
+                        @*@Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")*@
+                        @Model.Item.GetDateTime("PublicationDate", "d MMM yyyy")
                         @Html.Resource("By")
-                        @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)
+                        @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)  
                         @Html.CommentsCount(string.Empty, @Model.Item.DataItem)
                     </div>
 

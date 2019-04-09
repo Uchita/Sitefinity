@@ -7516,8 +7516,6 @@ blockquote {
       color: #fff;
       background: #f55;
       border-color: red; }
-      .page-wrapper .btn.btn-danger:hover, .page-wrapper .btn.btn-danger:focus {
-        background: red; }
   .page-wrapper .btn-block .btn {
     display: block;
     width: 100%; }
@@ -8183,6 +8181,12 @@ header {
       background: none; }
       header .navbar.navbar-default .navbar-nav > li:first-child a {
         padding-left: 30px !important; }
+        @media (max-width: 1024px) {
+          header .navbar.navbar-default .navbar-nav > li:first-child a {
+            padding-left: 20px !important; } }
+        @media (max-width: 768px) {
+          header .navbar.navbar-default .navbar-nav > li:first-child a {
+            padding-left: 0px !important; } }
       header .navbar.navbar-default .navbar-nav > li > a, header .navbar.navbar-default .navbar-nav > .active > a {
         font-size: 16px;
         font-size: 1.6rem;
@@ -8390,8 +8394,6 @@ main {
   position: relative;
   background: #fff;
   color: inherit; }
-  .page-section.transparent-bg {
-    background: red; }
   .page-section h2 {
     margin-top: 0;
     margin-bottom: 25px; }
@@ -8549,8 +8551,6 @@ main {
         font-size: 18px; }
         .left-sidebar .container-fluid .nav li a.link-inline-block, .categories-list .nav li a.link-inline-block, .left-sidebar .navbar-collapse .nav li a.link-inline-block {
           display: inline-block; }
-        .left-sidebar .container-fluid .nav li a:hover, .categories-list .nav li a:hover, .left-sidebar .navbar-collapse .nav li a:hover {
-          color: red; }
       .left-sidebar .container-fluid .nav li span, .categories-list .nav li span, .left-sidebar .navbar-collapse .nav li span {
         position: absolute;
         right: 0;
@@ -9621,7 +9621,7 @@ address.info-box {
     border-right: 1px solid #fff;
     font-weight: 600;
     color: white;
-    padding-left: 35px; }
+    padding-left: 30px; }
     @media (max-width: 1024px) {
       .top-level-bar .contact-tel-info {
         padding: 0; } }
@@ -10057,6 +10057,9 @@ ul.no-gutter {
   cursor: default;
   border: 1px solid #2e2e2e;
   display: block; }
+
+.profile-media img {
+  border: 1px solid #2e2e2e; }
 
 /*#endregion Basic components */
 /*#region Breadcrumbs */
@@ -12378,6 +12381,11 @@ select.articles-order {
 /*#region Media*/
 /*#region Tablet*/
 @media (min-width: 768px) {
+  header .main-nav .nav.navbar-nav {
+    margin-left: 0;
+    width: calc(100% + 60px); }
+  header .navbar.navbar-default .navbar-nav > li > a {
+    font-size: 12px !important; }
   header .brand-logo {
     height: 50px;
     position: relative !important;
@@ -12411,13 +12419,13 @@ select.articles-order {
 
 @media (min-width: 768px) and (max-width: 1199px) {
   header .navbar.navbar-default .navbar-nav > li > a {
-    padding: 0 5px; }
+    padding: 0 10px; }
   header .navbar.navbar-default .navbar-nav > li > a,
   header .navbar.navbar-default .navbar-nav > .active > a,
   header .navbar.navbar-default .navbar-nav > .active > a:focus,
   header .navbar.navbar-default .navbar-nav > .active > a:hover {
-    font-size: 16px;
-    font-size: 1.6rem; }
+    font-size: 14px;
+    font-size: 1.4rem; }
   .thumbnail.card-rollover-bg .card-description {
     padding: 15px; }
   .risk-measurement .risk-wrapper {
@@ -12569,6 +12577,8 @@ select.articles-order {
     bottom: 15px; } }
 
 @media (max-width: 1024px) {
+  .datatable tr td {
+    color: #2e2e2e; }
   #pager ul {
     position: static;
     transform: none;
@@ -12624,8 +12634,8 @@ select.articles-order {
   header .navbar.navbar-default .navbar-nav {
     /*width: 77%;*/ }
     header .navbar.navbar-default .navbar-nav > li {
-      padding-left: 3px;
-      padding-right: 3px; }
+      padding-left: 0px;
+      padding-right: 0px; }
     header .navbar.navbar-default .navbar-nav > li + li > a:before {
       left: -6px; }
   header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu {

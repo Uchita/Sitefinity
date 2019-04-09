@@ -321,7 +321,7 @@ blockquote{
             border-color: red;
 
             &:hover, &:focus {
-                background: red;
+                
             }
         }
     }
@@ -1289,6 +1289,14 @@ header {
             .navbar-nav > li {
                 &:first-child a {
                     padding-left: 30px !important;
+
+                    @media(max-width:1024px) {
+                        padding-left: 20px !important;
+                    }
+
+                    @media(max-width:768px) {
+                        padding-left:0px !important;
+                    }
                 }
             }
 
@@ -1474,7 +1482,6 @@ header {
                         font: 1.75rem/1.2 $font-family-regular;
                         /*border-bottom: 1px solid $brightColor;*/
                         letter-spacing: 0.05rem;
-                        
                     }
 
                     &:last-child > a {
@@ -1521,7 +1528,7 @@ header {
                 a {
                     background: $global-headings-color;
                     color: $brightColor;
-                    text-transform:none;
+                    text-transform: none;
 
                     em {
                         transform: rotate(90deg);
@@ -1643,7 +1650,7 @@ header {
         color: $page-section-bg-base-color;
 
         &.transparent-bg {
-            background: red;
+            
         }
 
         h2 {
@@ -1895,9 +1902,7 @@ header {
                     &.link-inline-block {
                         display: inline-block;
                     }
-                    &:hover{
-                        color:red;
-                    }
+                 
                 }
 
                 span {
@@ -3091,7 +3096,7 @@ header {
             border-right: 1px solid $brightColor;
             font-weight: $font-family-medium;
             color: white;
-            padding-left:35px;
+            padding-left:30px;
             @media(max-width:1024px){
                 padding:0;
             }
@@ -3740,10 +3745,6 @@ header {
 
 .categories-list{
     position:relative;
-    ul{
-        
-     
-    }
 }
 .keywordfilter {
     position: relative;
@@ -3780,4 +3781,9 @@ header {
     border: 1px solid $global-headings-color;
     display:block;
 }
+.profile-media{
+    img{
+        border:1px solid #2e2e2e;
+    }
 
+}

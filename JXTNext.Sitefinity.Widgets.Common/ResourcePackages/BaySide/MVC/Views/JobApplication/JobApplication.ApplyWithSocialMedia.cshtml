@@ -29,9 +29,9 @@
 
                         case "Indeed":
                             @*<li><a href="#" target="_blank" title=@item.Title role="button">Apply With @item.Title</a></li>*@
-                            var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
-                            var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
-                            var indeedJobCompanyNameAndLoginUserEmail = "right-rail-apply-button;" + ViewBag.loginEmail;
+                var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
+                var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
+                var indeedJobCompanyNameAndLoginUserEmail = "right-rail-apply-button;" + ViewBag.loginEmail + ";" + Model.UrlReferral;
                             <li id="indeed-btnwrapper">
                                 <span class="indeed-apply-widget"
                                       data-indeed-apply-apiToken=@indeedAPIToken

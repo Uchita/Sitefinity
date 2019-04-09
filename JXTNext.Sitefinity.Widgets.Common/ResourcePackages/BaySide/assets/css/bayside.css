@@ -4093,6 +4093,11 @@ button.bg-dark:focus {
         max-width: 33.33333%;
     }
 
+    #job-app-form .app-content .col-md-4 {
+        flex: unset;
+        max-width: unset;;
+    }
+
     .app-content .col-md-5,
     .app-footer .col-md-5,
     .app-header .col-md-5 {
@@ -5738,10 +5743,14 @@ p .btn-link {
 
 .owl-nav .owl-prev {
     left: 0;
+    background: url(../images/prev-icon.png) no-repeat center center;
+    background-size: 12px auto !important;
 }
 
 .owl-nav .owl-next {
     right: 0;
+    background-size: 12px auto !important;
+    background: url(../images/next-icon.png) no-repeat center center;
 }
 
 @media (max-width: 1099px) {
@@ -5753,14 +5762,12 @@ p .btn-link {
 @media (min-width: 1100px) {
     .owl-nav .owl-prev {
         left: -115px;
-        background: url(../images/prev-icon.png) no-repeat center center;
-        background-size: 12px auto !important;
+
     }
 
     .owl-nav .owl-next {
         right: -115px;
-        background: url(../images/next-icon.png) no-repeat center center;
-        background-size: 12px auto !important;
+   
     }
 
     .featured-carousel .owl-dots {
@@ -8724,6 +8731,17 @@ select.hs-input {
     .login-form.sign-in-with .form-group .text-right {
         padding-left: 0;
     }
+
+    .app-content .col-md-4 {
+        flex: 0 0 33.33333%;
+        max-width: 33.33333%;
+    }
+
+
+    .app-content .col-md-8 {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%;
+    }
 }
 /*Apply form position======::End*/
 
@@ -8870,9 +8888,15 @@ select.hs-input {
         max-width: 100% !important;
     }
 
-        .service-item .service-icon {
-            float: left;
-        }
+    .owl-nav .owl-prev,
+    .owl-nav .owl-next{
+        display:none;
+    }
+
+
+    .service-item .service-icon {
+        float: left;
+    }
 
         .service-item .service-desc {
             min-height: auto;

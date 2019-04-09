@@ -10053,6 +10053,11 @@ ul.no-gutter {
 .page-section.section-light .profile-detail-view {
   margin-bottom: 0; }
 
+.consultant-photo {
+  cursor: default;
+  border: 1px solid #2e2e2e;
+  display: block; }
+
 /*#endregion Basic components */
 /*#region Breadcrumbs */
 ul.breadcrumb {

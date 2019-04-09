@@ -240,13 +240,7 @@
                 width: this.boxWidth
             });
 
-            //this.$slider.css({
-            //    transform: 'translate3d(' + this.offsetLeft + 'px, ' + this.offsetTop + 'px, 0px)',
-            //    position: 'absolute',
-            //    height: this.imageHeight,
-            //    width: this.imageWidth,
-            //    maxWidth: 'none'
-            //});
+
             this.$slider.css({
                 transform: 'translate3d(' + this.offsetLeft + 'px, ' + this.offsetTop + 'px, 0px)',
                 position: 'absolute',
@@ -254,25 +248,7 @@
                 width: this.imageWidth,
                 maxWidth: 'none'
             });
-            var winScroll = $(window).scrollTop();
-            if (winScroll < 100) {
-                this.$slider.css({
-                    transform: 'translate3d(' + this.offsetLeft + 'px, 0px, 0px)',
-                    position: 'absolute',
-                    height: this.imageHeight,
-                    width: this.imageWidth,
-                    maxWidth: 'none'
-                });
 
-            } else {
-                this.$slider.css({
-                    transform: 'translate3d(' + this.offsetLeft + 'px, ' + this.offsetTop + 'px, 0px)',
-                    position: 'absolute',
-                    height: this.imageHeight,
-                    width: this.imageWidth,
-                    maxWidth: 'none'
-                });
-            }
         }
     });
 

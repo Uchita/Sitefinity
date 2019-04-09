@@ -36,24 +36,35 @@
                                 <span class="indeed-apply-widget"
                                       data-indeed-apply-apiToken=@indeedAPIToken
                                       data-indeed-apply-jobId=@Model.JobId
-                                      data-indeed-apply-jobLocation="Australia"
-                                      data-indeed-apply-jobCompanyName="JXT"
-                                      data-indeed-apply-jobTitle="Test Engineer"
+                                      data-indeed-apply-jobLocation='@ViewBag.JobLocation'
+                                      data-indeed-apply-jobCompanyName='@ViewBag.CompanyName'
+                                      data-indeed-apply-jobTitle='@ViewBag.JobTitle'
                                       data-indeed-apply-jobUrl=""
                                       data-indeed-apply-postUrl=@redirectUriSocial
                                       data-indeed-apply-jobMeta="@indeedJobCompanyNameAndLoginUserEmail"
                                       data-indeed-apply-onapplied="OnIndeedCompleted">
                                 </span>
-                                <script>
-                                    (function (d, s, id) {
-                                        var js, iajs = d.getElementsByTagName(s)[0];
-                                        if (d.getElementById(id)) { return; }
-                                        js = d.createElement(s); js.id = id; js.async = true;
-                                        js.src = "https://apply.indeed.com/indeedapply/static/scripts/app/bootstrap.js";
-                                        iajs.parentNode.insertBefore(js, iajs);
-                                    }(document, 'script', 'indeed-apply-js'));
-                                </script>
-                            </li>
+                                @*<span class="indeed-apply-widget"
+                                      data-indeed-apply-apiToken=@indeedAPIToken
+                                      data-indeed-apply-jobId=@Model.JobId
+                                      data-indeed-apply-jobLocation="Australia"
+                                      data-indeed-apply-jobCompanyName="JXT"
+                                      data-indeed-apply-jobTitle="@Viewbag.JobTitle"
+                                      data-indeed-apply-jobUrl=""
+                                      data-indeed-apply-postUrl=@redirectUriSocial
+                                      data-indeed-apply-jobMeta="@indeedJobCompanyNameAndLoginUserEmail"
+                                      data-indeed-apply-onapplied="OnIndeedCompleted">
+                                </span>*@
+                    <script>
+                        (function (d, s, id) {
+                            var js, iajs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) { return; }
+                            js = d.createElement(s); js.id = id; js.async = true;
+                            js.src = "https://apply.indeed.com/indeedapply/static/scripts/app/bootstrap.js";
+                            iajs.parentNode.insertBefore(js, iajs);
+                        }(document, 'script', 'indeed-apply-js'));
+                    </script>
+                </li>
                             break;
                         case "Seek":
 

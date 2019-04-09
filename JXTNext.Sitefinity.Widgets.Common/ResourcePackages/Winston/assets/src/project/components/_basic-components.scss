@@ -3748,7 +3748,6 @@ header {
         
      
     }
-
 }
 .keywordfilter {
     position: relative;
@@ -3779,4 +3778,9 @@ header {
     .profile-detail-view {
         margin-bottom:0;
     }
+}
+.consultant-photo {
+    cursor: default;
+    border: 1px solid $global-headings-color;
+    display:block;
 }

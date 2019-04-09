@@ -32,6 +32,15 @@
 <sitefinity:TextField ID="indeedClientAPIToken" runat="server" DataFieldName="IndeedClientAPIToken" Title="Please Enter Indeed Client API Token" CssClass="sfSettingsSection" DisplayMode="Write" />
 <sitefinity:TextField ID="indeedClientSecret" runat="server" DataFieldName="IndeedClientSecret" Title="Please Enter Indeed Client Secret" CssClass="sfSettingsSection" DisplayMode="Write" />
 
+<h3>LINKED-IN SETTINGS</h3><br />
+<sitefinity:TextField ID="linkedinClientId" runat="server" DataFieldName="LinkedInClientId" Title="Please Enter LinkedIn Client ID" CssClass="sfSettingsSection" DisplayMode="Write" />
+<sitefinity:TextField ID="linkedinClientSecret" runat="server" DataFieldName="LinkedInClientSecret" Title="Please Enter LinkedIn Client Secret" CssClass="sfSettingsSection" DisplayMode="Write" />
+<sitefinity:TextField ID="linkedinCustomerClientId" runat="server" DataFieldName="LinkedInCustomerClientId" Title="Please Enter LinkedIn Customer Client ID" CssClass="sfSettingsSection" DisplayMode="Write" />
+<sitefinity:TextField ID="linkedinCustomerClientSecret" runat="server" DataFieldName="LinkedInCustomerClientSecret" Title="Please Enter LinkedIn Customer Client Secret" CssClass="sfSettingsSection" DisplayMode="Write" />
+<sitefinity:TextField ID="linkedinCustomerIntegrationContext" runat="server" DataFieldName="LinkedInCustomerIntegrationContext" Title="Please Enter LinkedIn Customer Integration Context" CssClass="sfSettingsSection" DisplayMode="Write" />
+<sitefinity:TextField ID="linkedinSocialHandlerUrl" runat="server" DataFieldName="LinkedInSocialHandlerUrl" Title="Please Enter LinkedIn Social Handler URL" CssClass="sfSettingsSection" DisplayMode="Write" />
+<br />
+
 <h3>INSTAGRAM SETTINGS</h3><br />
 <sitefinity:TextField ID="instagramClientIdToken" runat="server" DataFieldName="InstagramClientIdToken" Title="Please Enter Instagram Client Id Token" CssClass="sfSettingsSection" DisplayMode="Write" />
 <sitefinity:TextField ID="instagramClientSecret" runat="server" DataFieldName="InstagramClientSecret" Title="Please Enter Instagram Client Secret" CssClass="sfSettingsSection" DisplayMode="Write" />

@@ -474,6 +474,20 @@
     });
 
 
+    //
+    function checkUploadFileSize(uploadMethod, fileSize) {
+        if (uploadMethod == "resume" && fileSize > 2097152) { //2mb
+            alert('@Html.Resource("FileSizeAlertResume", "ErrorMessages")');
+            return false;
+        } else if (uploadMethod == "coverletter" && fileSize > 524288) { //0.5mb
+            alert('@Html.Resource("FileSizeAlertCoverletter", "ErrorMessages")');
+            return false;
+        } else if (uploadMethod == "document" && fileSize > 314573) { //0.3mb
+            alert('@Html.Resource("FileSizeAlertDocument", "ErrorMessages")');
+            return false;
+        }
+    }
+
      $(document).ready(function () {
 
 
@@ -520,19 +534,6 @@
              $('#check-login').hide();
          }
 
-         function checkUploadFileSize(uploadMethod, fileSize) {
-             if (uploadMethod == "resume" && fileSize > 2097152) { //2mb
-                 alert('@Html.Resource("FileSizeAlertResume", "ErrorMessages")');
-                 return false;
-             } else if (uploadMethod == "coverletter" && fileSize > 524288) { //0.5mb
-                 alert('@Html.Resource("FileSizeAlertCoverletter", "ErrorMessages")');
-                 return false;
-             } else if (uploadMethod == "document" && fileSize > 314573) { //0.3mb
-                 alert('@Html.Resource("FileSizeAlertDocument", "ErrorMessages")');
-                 return false;
-             }
-         }
-         
          $('#application-resume').change(function () {
             resumeSelectedType = 'Local';
              $("#resume-selected-type").val(resumeSelectedType);
@@ -1210,6 +1211,7 @@
             var name = "";
             var fileId = "";
             var mime = "";
+            var size = 0;
 
 
             if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
@@ -1239,6 +1241,8 @@
                         $('#application-resume').val('');
                         $("#resume-selected-type").val(resumeSelectedType);
                         $('.resume-name .filewrap').text(name);
+                        $(".resume-name").append('<span class="removeBtn">remove</span>');
+                        $(".resume-name").parents('.box').addClass('hasFile');
                         if (userLoggedInParamFromViewbag == 'True') {
                             $("#MySavedResumes").val('0');
                         } else {
@@ -1258,6 +1262,8 @@
                             $('#application-coverletter').val('');
                             $("#coverletter-selected-type").val(coverLetterSelectedType);
                             $('.coverletter-name .filewrap').text(name);
+                            $(".coverletter-name").append('<span class="removeBtn">remove</span>');
+                            $(".coverletter-name").parents('.box').addClass('hasFile');
                         }
                         
                     }
@@ -1268,10 +1274,12 @@
                             $("#documents-selected-type").val('');
                             $('.documents-name .filewrap').text('');
                         } else {
-                            $('#uploadDocumentsJson').val(stringyModels);
+                            $('#uploadDocumentsJson').val(stringyModel);
                             $('#application-documents').val('');
                             $("#documents-selected-type").val(documentsSelectedType);
                             $('.documents-name .filewrap').text(name);
+                            $(".documents-name").append('<span class="removeBtn">remove</span>');
+                            $(".documents-name").parents('.box').addClass('hasFile');
                         }
                         
                     }

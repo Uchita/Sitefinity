@@ -523,7 +523,7 @@ blockquote{
             font-weight: 900;
             font-family: 'Font Awesome 5 Free';
             pointer-events: none;
-            color: white;
+            color: #2e2e2e;
             z-index: 2;
             font-size: 14px;
         }
@@ -2995,7 +2995,7 @@ header {
 
     .select {
         &:before {
-            /*color: $forms-select-text;*/
+            color:white;
         }
 
         @media(max-width:767px) {
@@ -3367,7 +3367,6 @@ header {
         height: 100%;
         text-align: center;
         transition: transform 0.6s;
-        
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
         transform-style: preserve-3d;
         -moz-transform-style: preserve-3d;
@@ -3416,8 +3415,9 @@ header {
 
     &:hover {
         .flip-card-inner {
+            -webkit-transform: rotateY(180deg);
+            -ms-transform: rotateY(180deg);
             transform: rotateY(180deg);
-            -ms-transform: rotateY(0deg);
         }
 
         .flip-card-front, .flip-card-back {
@@ -3430,8 +3430,10 @@ header {
     .flip-card-back {
         background-color: #2980b9;
         color: white;
-        transform: rotateY(180deg);
-        -ms-transform: rotateY(180deg);
+        
+        -webkit-transform: rotateY(180deg); 
+        -ms-transform: rotateY(180deg); 
+        transform: rotateY(180deg); 
         z-index: 1;
         position: absolute;
         width: 100%;
@@ -3813,4 +3815,13 @@ header {
         }
     }
 }
+    
+.sm-wrapper .select .salary-range {
+    height: 33px;
+    line-height: 1.1;
+    font-size: 1.4rem;
+}
 
+h2{
+    color:red !important;
+}

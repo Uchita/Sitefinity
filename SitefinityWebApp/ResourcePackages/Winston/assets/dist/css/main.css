@@ -7669,7 +7669,7 @@ blockquote {
       font-weight: 900;
       font-family: 'Font Awesome 5 Free';
       pointer-events: none;
-      color: white;
+      color: #2e2e2e;
       z-index: 2;
       font-size: 14px; }
     .page-wrapper .select select {
@@ -9553,7 +9553,7 @@ address.info-box {
     border-color: #2dc3ea; }
 
 .transparent-data .select:before {
-  /*color: $forms-select-text;*/ }
+  color: white; }
 
 @media (max-width: 767px) {
   .transparent-data .select:before {
@@ -9837,15 +9837,17 @@ address.info-box {
       font-size: 2.4rem;
       font-weight: 600; }
   .flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-    -ms-transform: rotateY(0deg); }
+    -webkit-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    transform: rotateY(180deg); }
   .flip-card:hover .flip-card-front:before, .flip-card:hover .flip-card-back:before {
     border: 1px solid #fff; }
   .flip-card .flip-card-back {
     background-color: #2980b9;
     color: white;
-    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
     -ms-transform: rotateY(180deg);
+    transform: rotateY(180deg);
     z-index: 1;
     position: absolute;
     width: 100%;
@@ -10075,6 +10077,14 @@ ul.no-gutter {
 .categories-list li a:hover {
   color: #2dc3ea !important; }
 
+.sm-wrapper .select .salary-range {
+  height: 33px;
+  line-height: 1.1;
+  font-size: 1.4rem; }
+
+h2 {
+  color: red !important; }
+
 /*#endregion Basic components */
 /*#region Breadcrumbs */
 ul.breadcrumb {
@@ -10153,7 +10163,7 @@ ul.breadcrumb {
       display: block;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.2);
       z-index: 9; }
     .jumbotron-container .jumbotron .jumbotron-content {
       position: relative;
@@ -12791,7 +12801,12 @@ select.articles-order {
   .page-wrapper .form-control,
   .left-sidebar .container-fluid,
   .left-sidebar .navbar-collapse {
-    font-size: 1.6rem; }
+    font-size: 1.6rem;
+    margin-bottom: 0; }
+    .page-wrapper .form-control ul.nav,
+    .left-sidebar .container-fluid ul.nav,
+    .left-sidebar .navbar-collapse ul.nav {
+      padding-left: 15px; }
   .article-sorting-wrapper {
     text-align: center;
     margin-bottom: 30px; }
@@ -12836,6 +12851,15 @@ select.articles-order {
         font-size: 21px;
         font-size: 2.1rem; } }
 
+@media (max-width: 768px) {
+  header .main-nav .nav.navbar-nav {
+    margin-left: 0;
+    width: calc(100% + 60px); }
+  header .navbar.navbar-default .navbar-nav > li > a {
+    font-size: 13px !important; }
+  header .brand-logo {
+    height: 95px; } }
+
 /*#region Phones*/
 @media (max-width: 767px) {
   .mb-xs-40 {
@@ -12863,7 +12887,7 @@ select.articles-order {
     display: block;
     margin: 5px auto;
     /*background-image: url('../images/logo-sm.png');*/
-    background-size: auto 100%;
+    background-size: auto;
     background-position: center; }
   header .navbar-fixed-top .brand-logo {
     height: 40px;
@@ -13187,8 +13211,7 @@ select.articles-order {
   .xs-marg-btm {
     margin-bottom: 30px; }
   .left-sidebar {
-    margin-bottom: 50px;
-    display: none; }
+    margin-bottom: 50px; }
     .left-sidebar.mobile-nav {
       display: block; }
   .page-section .right-bottom-img {
@@ -13534,15 +13557,6 @@ select.articles-order {
 @media (max-width: 767px) {
   .contact-consultant-info p {
     display: none; } }
-
-@media (max-width: 768px) {
-  header .main-nav .nav.navbar-nav {
-    margin-left: 0;
-    width: calc(100% + 60px); }
-  header .navbar.navbar-default .navbar-nav > li > a {
-    font-size: 13px !important; }
-  header .brand-logo {
-    height: 95px; } }
 
 /*#endregion Media*/
 /*#print media*/

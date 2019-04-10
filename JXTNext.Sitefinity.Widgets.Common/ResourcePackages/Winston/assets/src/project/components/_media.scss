@@ -761,6 +761,10 @@
     .left-sidebar .container-fluid, 
     .left-sidebar .navbar-collapse{
         font-size: 1.6rem;
+        margin-bottom:0;
+     ul.nav{
+         padding-left:15px;
+     }
     }
     .article-sorting-wrapper{
         text-align: center;
@@ -832,6 +836,20 @@
     }
 }
 
+@media(max-width:768px) {
+    header .main-nav .nav.navbar-nav {
+        margin-left: 0;
+        width: calc(100% + 60px)
+    }
+
+    header .navbar.navbar-default .navbar-nav > li > a {
+        font-size: 13px !important;
+    }
+
+    header .brand-logo {
+        height: 95px;
+    }
+}
 /*#region Phones*/
 @media (max-width: 767px) {
     .mb-xs-40{ margin-bottom: 40px; }
@@ -865,7 +883,7 @@
             display: block;
             margin: 5px auto;
             /*background-image: url('../images/logo-sm.png');*/
-            background-size: auto 100%;
+            background-size: auto;
             background-position: center;
         }
 
@@ -1377,7 +1395,7 @@
     }
     .left-sidebar{
         margin-bottom: 50px;
-        display: none;
+     
         &.mobile-nav{
             display: block;
         }
@@ -1940,17 +1958,3 @@
 
 
 
-
-@media(max-width:768px){
-    header .main-nav .nav.navbar-nav {
-        margin-left: 0;
-        width: calc(100% + 60px)
-    }
-
-    header .navbar.navbar-default .navbar-nav > li > a {
-        font-size: 13px !important;
-    }
-    header .brand-logo{
-        height:95px;
-    }
-}

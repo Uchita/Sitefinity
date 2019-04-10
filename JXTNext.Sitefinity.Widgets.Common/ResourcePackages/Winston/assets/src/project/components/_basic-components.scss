@@ -2519,8 +2519,8 @@ header {
 
                         &:before {
                             content: "|";
-                            maring: 0 10px;
-                            @Include transition();
+                            margin: 0 10px;
+                            @include transition();
                         }
                     }
 

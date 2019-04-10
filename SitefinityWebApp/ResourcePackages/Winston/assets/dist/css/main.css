@@ -8949,8 +8949,8 @@ select.slimtable-paging-select {
       position: relative; }
       .page-wrapper footer .postfooter-links a + a:before {
         content: "|";
-        maring: 0 10px;
-        @Include transition(); }
+        margin: 0 10px;
+        transition: all 0.3s ease-in-out; }
     .page-wrapper footer .postfooter-links a:hover, .page-wrapper footer .postfooter-links a:focus {
       color: #2dc3ea; }
 
@@ -12523,7 +12523,7 @@ select.articles-order {
     width: 50%; }
   .contact-consultant .contact-consultant-info {
     position: relative;
-    min-height: 210px;
+    height: 210px;
     padding: 10px 10px 40px 15px; }
     .contact-consultant .contact-consultant-info .btn {
       position: absolute;

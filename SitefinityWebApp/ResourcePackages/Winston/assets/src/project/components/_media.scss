@@ -1,4 +1,10 @@
 /*#region Tablet*/
+@media(min-width:1025px){
+    .contact-personal-info{
+
+
+    }
+}
 @media (min-width:768px) {
 
   
@@ -1943,5 +1949,8 @@
 
     header .navbar.navbar-default .navbar-nav > li > a {
         font-size: 13px !important;
+    }
+    header .brand-logo{
+        height:95px;
     }
 }

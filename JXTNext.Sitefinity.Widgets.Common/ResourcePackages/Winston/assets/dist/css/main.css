@@ -12381,11 +12381,6 @@ select.articles-order {
 /*#region Media*/
 /*#region Tablet*/
 @media (min-width: 768px) {
-  header .main-nav .nav.navbar-nav {
-    margin-left: 0;
-    width: calc(100% + 60px); }
-  header .navbar.navbar-default .navbar-nav > li > a {
-    font-size: 12px !important; }
   header .brand-logo {
     height: 50px;
     position: relative !important;
@@ -13525,6 +13520,13 @@ select.articles-order {
 @media (max-width: 767px) {
   .contact-consultant-info p {
     display: none; } }
+
+@media (max-width: 768px) {
+  header .main-nav .nav.navbar-nav {
+    margin-left: 0;
+    width: calc(100% + 60px); }
+  header .navbar.navbar-default .navbar-nav > li > a {
+    font-size: 13px !important; } }
 
 /*#endregion Media*/
 /*#print media*/

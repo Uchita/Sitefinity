@@ -8241,7 +8241,6 @@ header {
       header .mobile-nav.left-sidebar .nav.navbar-nav .open > .custom-expander::before {
         content: '\f104'; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .open > .dropdown-menu {
-        left: 0;
         top: 80px; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu {
         background: #2e2e2e;
@@ -9085,7 +9084,8 @@ address.info-box {
     right: 0;
     width: calc(100% - 50%);
     z-index: -1;
-    top: 0; }
+    top: 0;
+    line-height: 1.2; }
   .half-block-shade .custom-column {
     padding: 0 70px; }
     .half-block-shade .custom-column h2 {
@@ -9128,6 +9128,40 @@ address.info-box {
     padding: 50px 0;
     background: #666666; }
   .left-block-shade .no-padding {
+    padding: 0; }
+
+.left-block-grey {
+  position: relative;
+  z-index: 1;
+  /*.caption {
+        padding: 50px 0 50px 50px;
+    }*/ }
+  .left-block-grey .inside-left {
+    padding: 62px 0 62px 62px; }
+  .left-block-grey .left-sidebar .container-fluid .nav > li > a {
+    color: #fff; }
+  .left-block-grey .left-sidebar .container-fluid .nav > li > a:hover {
+    color: #7DC245; }
+  .left-block-grey.page-section {
+    padding: 0; }
+  .left-block-grey:after {
+    content: "";
+    background: #666666;
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    display: block;
+    width: calc(100% - 75%);
+    z-index: -1;
+    top: 0; }
+  .left-block-grey .row {
+    display: flex; }
+    .left-block-grey .row .row {
+      display: inherit; }
+  .left-block-grey .bg-col {
+    padding: 50px 0;
+    background: #666666; }
+  .left-block-grey .no-padding {
     padding: 0; }
 
 footer {
@@ -9223,7 +9257,7 @@ footer {
   font-size: 24px; }
 
 .consultant-banner {
-  min-height: 340px;
+  min-height: 75px;
   position: relative; }
   .consultant-banner:before {
     position: absolute;
@@ -9244,9 +9278,7 @@ footer {
     -o-transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
-    border: 2px solid #fff;
-    color: #fff;
-    padding: 14px 80px; }
+    color: #fff; }
 
 .consultant-cardsocial img.full-width {
   margin-bottom: 0;
@@ -12403,7 +12435,8 @@ select.articles-order {
     bottom: auto !important; }
   .testimonials-slider.testimonials-simple.with-side-image .owl-dots {
     bottom: 15px; }
-  .inside-left {
+  .inside-left,
+  .left-block-grey .inside-left {
     padding: 20px; } }
 
 @media (max-width: 1024px) {
@@ -12676,6 +12709,15 @@ select.articles-order {
     display: block;
     margin-bottom: 0; }
     .left-block-shade .left-sidebar .navbar {
+      margin-bottom: 0; }
+  .left-block-grey:after {
+    display: none; }
+  .left-block-grey .row {
+    display: block; }
+  .left-block-grey .left-sidebar {
+    display: block;
+    margin-bottom: 0; }
+    .left-block-grey .left-sidebar .navbar {
       margin-bottom: 0; }
   .inside-right {
     padding: 20px;

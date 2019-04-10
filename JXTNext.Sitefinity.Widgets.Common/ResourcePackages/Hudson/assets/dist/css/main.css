@@ -10086,7 +10086,7 @@ ul.breadcrumb {
     height: 35px; }
   .page-wrapper #indeed-btnwrapper .indeed-apply-button {
     background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50% !important;
-    width: 120px;
+    width: 170px;
     border-radius: 0 !important;
     height: 35px !important;
     padding: 0 !important; }
@@ -10101,7 +10101,7 @@ ul.breadcrumb {
       .page-wrapper .apply-with ul li .btn, .page-wrapper .sign-in-with ul li .btn {
         height: 35px;
         line-height: 1.2;
-        min-width: 120px;
+        min-width: 170px;
         padding: 6px 10px; }
     .page-wrapper .apply-with ul::after, .page-wrapper .sign-in-with ul::after {
       content: '';

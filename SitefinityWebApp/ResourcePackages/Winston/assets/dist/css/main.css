@@ -9645,6 +9645,8 @@ address.info-box {
       transform: rotate(90deg); }
   .top-level-bar .contact-social-info {
     border-right: 1px solid #fff; }
+    .top-level-bar .contact-social-info ul {
+      padding-left: 10px; }
     .top-level-bar .contact-social-info .header-top-social ul li a {
       color: #3ea9ed;
       transition: all 0.3s ease-in-out; }
@@ -12132,10 +12134,10 @@ select.articles-order {
   .contact-consultant .consultant-thumb-image {
     float: left; }
     .contact-consultant .consultant-thumb-image img {
-      width: 212px; }
+      height: 210px; }
       @media (max-width: 767px) {
         .contact-consultant .consultant-thumb-image img {
-          width: 100px; } }
+          height: 100px; } }
 
 .contact-consultant-name {
   font-size: 36px;

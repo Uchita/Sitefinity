@@ -246,10 +246,10 @@
         float: left;
 
         img {
-            width: 212px;
+            height: 210px;
 
             @media(max-width:767px) {
-                width:100px;
+                height:100px;
             }
         }
     }
@@ -411,3 +411,5 @@
         }
     }
 }
+
+

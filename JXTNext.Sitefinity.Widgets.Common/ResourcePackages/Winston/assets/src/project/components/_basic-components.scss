@@ -3129,6 +3129,9 @@ header {
 
         .contact-social-info {
             border-right: 1px solid $brightColor;
+            ul{
+                padding-left:10px;
+            }
 
             .header-top-social {
                 ul {
@@ -3810,3 +3813,4 @@ header {
         }
     }
 }
+

@@ -225,13 +225,14 @@
 
     .contact-consultant-info .btn {
         margin-top: 30px;
+
     }
 
     .contact-consultant-info {
         display: block;
         overflow: hidden;
 
-        @media(max-width:767px) {
+        @media(max-width:768px) {
             padding-left: 15px;
         }
 
@@ -413,3 +414,8 @@
 }
 
 
+@media(max-width:768px){
+    .contact-consultant-info .btn {
+        margin-top: 10px;
+    }
+}

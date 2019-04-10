@@ -21,7 +21,7 @@
    
     <div>
 
-        @if (ViewBag.IsMember)
+        @if (ViewBag.IsMember)//isLoggedIn
         {
             <input type="email" id="anonycreatejobalert" value="@ViewBag.Email" hidden />
             <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">CREATE JOB ALERT</a>

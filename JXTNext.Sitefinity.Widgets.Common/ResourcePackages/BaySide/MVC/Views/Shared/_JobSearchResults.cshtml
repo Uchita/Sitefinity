@@ -33,7 +33,7 @@
             <div class="col-12 col-lg-12 mb-2" style="display:none;">Receive new jobs for this search by email.</div>
         </div>
         <div class="row">
-            @if (isLoggedIn)
+            @if (ViewBag.IsMember)
             {
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
@@ -196,7 +196,7 @@
     }
 
     $(document).ready(function () {
-        $(document).on('click', '.save-job', function (e) {
+        $(document).off('click').on('click', '.save-job', function (e) {
             e.preventDefault();
             var unSaveJob = false;
             var ajaxActionName = "/SaveJob";

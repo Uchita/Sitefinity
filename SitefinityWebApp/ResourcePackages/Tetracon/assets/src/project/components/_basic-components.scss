@@ -1461,7 +1461,7 @@ header {
                 }
 
                 > .dropdown-menu {
-                    left: 0;
+                    // left: 0;
                     top: 80px;
                 }
             }
@@ -2789,6 +2789,8 @@ address.info-box {
         width: calc(100% - 50%);
         z-index: -1;
         top: 0;
+        line-height: 1.2;
+       
     }
 
     .custom-column {
@@ -2846,6 +2848,7 @@ address.info-box {
         width: calc(100% - 75%);
         z-index: -1;
         top: 0;
+       
     }
 
     .row {
@@ -2870,6 +2873,64 @@ address.info-box {
     }
 }
 
+
+.left-block-grey {
+    position: relative;
+    z-index: 1;
+
+    .inside-left{
+        padding: 62px 0 62px 62px;
+    }
+
+    .left-sidebar .container-fluid .nav>li>a{
+        color: #fff;
+    }
+
+    .left-sidebar .container-fluid .nav>li>a:hover{
+        color: #7DC245;
+    }
+
+    &.page-section {
+        padding: 0;
+    }
+
+   
+
+    &:after {
+        content: "";
+        background: $global-text;
+        position: absolute;
+        bottom: 0;
+        height: 100%;
+        display: block;
+        
+        width: calc(100% - 75%);
+        z-index: -1;
+        top: 0;
+       
+    }
+
+    .row {
+        display: flex;
+
+        .row {
+            display: inherit;
+        }
+    }
+
+  
+    /*.caption {
+        padding: 50px 0 50px 50px;
+    }*/
+    .bg-col {
+        padding: 50px 0;
+        background: $page-section-bg-dark;
+    }
+
+    .no-padding {
+        padding: 0;
+    }
+}
 
 
 
@@ -3024,7 +3085,7 @@ footer {
 }
 //Member-Profile
 .consultant-banner {
-    min-height: 340px;
+    min-height: 75px;
     position: relative;
 
     &:before {
@@ -3048,9 +3109,9 @@ footer {
         -o-transform: translate(-50%,-50%);
         left: 50%;
         top: 50%;
-        border: 2px solid $brightColor;
+        // border: 2px solid $brightColor;
         color: $brightColor;
-        padding: 14px 80px;
+        // padding: 14px 80px;
     }
 }
 

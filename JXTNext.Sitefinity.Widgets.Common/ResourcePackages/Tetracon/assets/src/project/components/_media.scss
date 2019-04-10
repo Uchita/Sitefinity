@@ -419,9 +419,12 @@
             }
         } 
     }
-    .inside-left {
+    .inside-left,
+    .left-block-grey .inside-left {
         padding: 20px;
     }
+
+
 }
 @media (max-width: 1024px){
     #pager{
@@ -882,6 +885,25 @@
         }
     }
     .left-block-shade {
+        &:after {
+            display: none;
+        }
+
+        .row {
+            display: block;
+        }
+
+        .left-sidebar {
+            display: block;
+            margin-bottom: 0;
+            .navbar {
+                margin-bottom:0;
+            }
+        }
+    }
+
+
+    .left-block-grey {
         &:after {
             display: none;
         }

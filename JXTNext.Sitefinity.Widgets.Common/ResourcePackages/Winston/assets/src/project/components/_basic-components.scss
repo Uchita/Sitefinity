@@ -936,7 +936,7 @@ blockquote{
     border-bottom: 1px solid $brightColor;
 
     @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-        overflow: hidden;
+        /*   overflow: hidden;*/
     }
 
     .header {
@@ -2253,27 +2253,27 @@ header {
         }
     }
     // Pagination
-    .pagination {
-        display: block;
-        text-align: center;
-        margin-top: 50px;
+.pagination {
+    display: block;
+    text-align: center;
+    margin-top: 50px;
 
-        li {
-            display: inline-block;
+    li {
+        display: inline-block;
 
-            a {
-                border-color: $highlighted-headings-color;
-                color: $highlighted-headings-color;
-                border-radius: 0 !important;
-            }
+        a {
+            border-color: $global-highlight-color;
+            color: $global-highlight-color;
+            border-radius: 0 !important;
+        }
 
-            &.active a, &.active a:hover, &.active a:focus, a:hover, a:focus {
-                background: $highlighted-headings-color;
-                color: $brightColor;
-                border-color: $highlighted-headings-color;
-            }
+        &.active a, &.active a:hover, &.active a:focus, a:hover, a:focus {
+            background: $global-highlight-color;
+            color: $brightColor;
+            border-color: $highlighted-headings-color;
         }
     }
+}
 
     .tbl-pagination, .slimtable-paging-div {
         font-size: 1.4rem;
@@ -2892,7 +2892,7 @@ header {
 
 
     .icon-img path {
-        fill: white;
+        fill: white !important;
     }
 
     .card-icon {
@@ -3111,7 +3111,7 @@ header {
             color: white;
             padding-left:30px;
             @media(max-width:1024px){
-                padding:0;
+                padding-left:15px;
             }
             i, em {
                 &.fas {
@@ -3443,22 +3443,27 @@ header {
     }
 }
 
-    .flip-card-front, .flip-card-back {
-        position: relative;
+/*.flip-card-front {
+    -webkit-backface-visibility: hidden;
+}*/
 
-        &:before {
-            content: "";
-            position: absolute;
-            width: calc(100% + -30px);
-            height: calc(100% + -30px);
-            top: 15px;
-            left: 15px;
-            border: 1px solid transparent;
-            z-index: 1;
-            bottom: 15px;
-            right: 15px;
-        }
+.flip-card-front, .flip-card-back {
+    position: relative;
+    -webkit-backface-visibility: hidden;
+
+    &:before {
+        content: "";
+        position: absolute;
+        width: calc(100% + -30px);
+        height: calc(100% + -30px);
+        top: 15px;
+        left: 15px;
+        border: 1px solid transparent;
+        z-index: 1;
+        bottom: 15px;
+        right: 15px;
     }
+}
 
 
     .right-widget-form {
@@ -3823,110 +3828,5 @@ header {
 }
 
 
-/*test*/
-
-.flip-card-new {
-    height: 180px;
-    text-align: center;
-    overflow: hidden;
-    cursor: pointer;
-    perspective: 1000px;
-    -webkit-perspective: 1000;
-
-    @media(max-width:767px) {
-        margin-bottom: 15px;
-    }
-
-    .flip-card-inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        transition: transform 0.6s;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        -webkit-transform-style: preserve-3d;
-    }
-
-
-    .brand_blk {
-        background-repeat: no-repeat;
-        position: relative;
-        background-size: cover;
-        height: 180px;
-
-        &:before {
-            content: "";
-            position: absolute;
-            background: rgba(0,0,0,.5);
-            width: 100%;
-            top: 0;
-            left: 0;
-            height: 100%;
-        }
-    }
-
-    .blk_card {
-        margin: 0 auto;
-        padding-top: 40px;
-        position: relative;
-        z-index: 1;
-
-        svg, img {
-            width: 54px;
-            height: 54px;
-        }
-
-        h4 {
-            color: white;
-            font-size: 2.4rem;
-            font-weight: $font-family-medium;
-        }
-    }
-
-
-
-    &:hover {
-        .flip-card-inner {
-            -webkit-transform: rotateY(180deg);
-        }
-
-        .flip-card-front, .flip-card-back {
-            &:before {
-                border: 1px solid #fff;
-            }
-        }
-    }
-
-    .flip-card-back {
-        background-color: #2980b9;
-        color: white;
-        z-index: 1;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        -webkit-transform: rotateY(180deg);
-    }
-}
-
-.flip-card-front, .flip-card-back {
-    -webkit-backface-visibility: hidden;
-position:relative;
-
-    &:before {
-        content: "";
-        position: absolute;
-        width: calc(100% + -30px);
-        height: calc(100% + -30px);
-        top: 15px;
-        left: 15px;
-        border: 1px solid transparent;
-        z-index: 1;
-        bottom: 15px;
-        right: 15px;
-    }
-}
- 
-    
-    /*test-x*/
    
+

@@ -122,4 +122,9 @@
     <comment>phrase : Register now</comment>
     <lastModified>2019-03-15T05:59:07</lastModified>
   </data>
+  <data name="Register">
+    <value>Register</value>
+    <comment></comment>
+    <lastModified>2019-04-11T15:46:32</lastModified>
+  </data>
 </root>

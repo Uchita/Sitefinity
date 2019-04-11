@@ -6,6 +6,7 @@ Disallow: /error-410
 Disallow: /error-500
 Disallow: /sitemap/sitemap-index.xml
 Disallow: /sitemap/sitemap.xml
+Disallow: /?Page=1&SortBy=Relevance
 
 # Yahoo!
 User-agent: Slurp

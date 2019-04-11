@@ -422,6 +422,8 @@
             left: 0;
             max-width:300px;
             width: 100%;
+            left:15px;
+            width:255px;
             text-align: center;
             background: $caption-overlay;
         }
@@ -485,12 +487,11 @@
     .consultant {
         display: inline-block;
         margin: 0 20px 30px;
+        margin: 0 0 30px;
         position: relative;
 
         .consultant-photo {
             position: relative;
-
-
             /*.link-overlay {
                 position: absolute;
                 top: 0;
@@ -519,8 +520,9 @@
                 color: $brightColor;
             }*/
         }
+
         .caption {
-            z-index:999;
+            z-index: 999;
         }
 
         @media (max-width: 767px) {

@@ -11943,6 +11943,8 @@ select.articles-order {
     left: 0;
     max-width: 300px;
     width: 100%;
+    left: 15px;
+    width: 255px;
     text-align: center;
     background: rgba(102, 102, 102, 0.7); }
   .consultant .consultant-name {
@@ -11987,6 +11989,7 @@ select.articles-order {
   .meet-team .consultant {
     display: inline-block;
     margin: 0 20px 30px;
+    margin: 0 0 30px;
     position: relative; }
     .meet-team .consultant .consultant-photo {
       position: relative;

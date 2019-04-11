@@ -511,34 +511,44 @@
     }
 }
 
+#login-register-container{
+    .col-md-3.text-right{
+        max-width: 150px;
+    }
+}
+#register{
+    margin-bottom: 50px;
+}
 
 //appilication apge
 
 .upload-section{
     .box{
-        border: 1px solid $global-highlight-color;
-        padding: 10px;
-        margin: 0;
+        margin: 0 0 30px;
+    }
+    label.col-md-3{
+        max-width: 150px;
     }
     .uploadfield-wrap{
-        padding: 15px 0 5px;
+        padding: 0 0 5px;
         position: relative;
         color: $global-highlight-color;
-        text-align: center;
-        width: 33%;
+        width: 85px;
         float: left;
         overflow: hidden;
+        text-align: center;
         &::before{
             content: "\f07c";
             color: #2e2e2e;
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            font-size: 3rem;
+            font: 900 3rem/1 'Font Awesome 5 Free';
             position: absolute;
-            top: 15px;
+            top: 0;
             z-index: 0;
             width: 100%;
             left: 0;
+        }
+        &.browse-upload{
+            width: 60px;
         }
         &.dropbox-upload::before{
             font-family: 'Font Awesome 5 Brands';
@@ -555,7 +565,7 @@
         }
         input[type="file"], button{
             opacity: 0;
-            height: 50px;
+            height: 42px;
             position: relative;
             z-index: 1;
             cursor: pointer;
@@ -578,13 +588,48 @@
         clear: both;
         word-break: break-word;
     }
+    .displayFileName{
+        font-size: 1.4rem;
+        font-weight: bold;
+        font-style: italic;
+        line-height: 1.4;
+        display: block;
+        .filewrap{
+            color: $global-highlight-color;
+            word-break: break-word;
+        }
+        .removeBtn {
+            background: none;
+            color: $btn-primary-bg;
+            margin-left: 20px;
+            cursor: pointer;
+            &:hover{
+                color: darken($btn-primary-bg, 10%);
+            }
+        }
+    }
     select{
         width: 100%;
+    }
+    .hasFile{
+        .uploadfield-wrap{
+            display: none;
+        }
+        .note{
+            display: none;
+        }
+    }
+    input.btn-primary{
+        width: auto;
+    }
+    .list-group{
+        padding-top: 0;
     }
 }
 .note{
     color: $forms-placeholder-color;
     font-size: 1.4rem;
+    font-style: italic;
     line-height: 1.3;
     padding: 5px 0;
 }
@@ -762,9 +807,35 @@
             background: rgba(255,255,255,0.1);
             z-index: 1;
         }
+        h1{
+            margin-bottom: 3.5rem;
+        }
     }
     .jobdetail-sidebar{
         @extend .job-offer-details;
     }
 
+}
+
+
+.separator {
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-size: 2rem;
+    position: relative;
+    &:before {
+        content: '';
+        height: 1px;
+        background: $forms-element-border;
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 0;
+    }
+    span {
+        background: white;
+        padding: 0 10px;
+        position: relative;
+    }
 }

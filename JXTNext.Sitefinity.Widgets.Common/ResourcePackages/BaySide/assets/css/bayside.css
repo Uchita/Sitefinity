@@ -10377,3 +10377,16 @@ select.hs-input {
     #linkedin-widget-holder .btn-linkedin-signin img {
         max-width: 195px;
     }
+
+
+    .ui-autocomple{
+        list-style: none;
+        margin: 0;
+        background: white;
+        font-size:0.8rem;
+        border-radius: 0 0 5px 5px;
+        box-shadow: 0 3px 5px rgba(0,0,0,0.15);
+    }
+.ui-autocomple li{
+    padding: 3px 0;
+}

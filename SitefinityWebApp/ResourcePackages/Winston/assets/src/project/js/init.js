@@ -203,6 +203,19 @@ $(window).load(function()
     });
 
 $(document).ready(function () {
+
+
+    //for first name display in login
+
+    $(document).ajaxComplete(function () {
+        $('.header-top-links[data-sf-role="sf-logged-in-view"]').each(function () {
+            var userName = $(this).find('a[data-sf-role="sf-logged-in-name"]').text();
+            userFirstName = userName.split(' ')[0];
+            $(this).find('a[data-sf-role="sf-logged-in-name"]').text(userFirstName);
+        });
+
+    });
+
     
     ThemeGlobal.QuickLinksToggle();
     ThemeGlobal.HeaderToggleFixed();

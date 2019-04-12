@@ -9623,7 +9623,7 @@ address.info-box {
     right: -100vw;
     height: 1px;
     background: white; }
-    @media (max-width: 767px) {
+    @media (max-width: 1280px) {
       .top-level-bar:after {
         display: none; } }
   .top-level-bar .contact-tel-info {
@@ -12855,7 +12855,7 @@ select.articles-order {
 @media (max-width: 768px) {
   header .main-nav .nav.navbar-nav {
     margin-left: 0;
-    width: calc(100% + 60px); }
+    width: calc(100% + 40px); }
   header .navbar.navbar-default .navbar-nav > li > a {
     font-size: 13px !important; }
   header .brand-logo {
@@ -13565,7 +13565,7 @@ select.articles-order {
 
 @media (min-width: 767px) {
   .header ul.nav li.active > a {
-    color: #2dc3ea; } }
+    color: #2dc3ea !important; } }
 
 /*#endregion Media*/
 /*#print media*/

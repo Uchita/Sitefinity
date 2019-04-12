@@ -892,7 +892,7 @@
 @media(max-width:768px) {
     header .main-nav .nav.navbar-nav {
         margin-left: 0;
-        width: calc(100% + 60px)
+        width: calc(100% + 40px)
     }
 
     header .navbar.navbar-default .navbar-nav > li > a {
@@ -2166,7 +2166,10 @@
 }
 
 @media(min-width:767px) {
-    .header ul.nav li.active>a {
-        color: $global-highlight-color;
+    .header ul.nav li.active > a {
+        
+        color: $global-highlight-color !important;
     }
 }
+
+

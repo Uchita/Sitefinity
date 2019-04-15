@@ -16,6 +16,16 @@
             true
         );
 
+       
+
+        $scope.$watch('CompanySelected',
+            function (newVal, oldVal) {
+                if ($scope.properties != undefined)
+                    $scope.properties.CompanySelected.PropertyValue = angular.toJson(newVal, true);
+            },
+            true
+        );
+
         $scope.rows = [];
 
         $scope.$watch('rows',
@@ -169,6 +179,7 @@
                 if ($scope.properties.PageSize.PropertyValue === null || $scope.properties.PageSize.PropertyValue === 'undefined' || $scope.properties.PageSize.PropertyValue === '')
                     $scope.properties.PageSize.PropertyValue = 5;
 
+                
                 //if ($scope.properties.SerializedJobTypes.PropertyValue != '' && $scope.properties.SerializedJobTypes.PropertyValue != 'undefined') {
                 //    $scope.jobTypes = $.parseJSON($scope.properties.SerializedJobTypes.PropertyValue);
                 //}
@@ -200,6 +211,12 @@
                 if ($scope.properties.SerializedFilterData.PropertyValue != '' && $scope.properties.SerializedFilterData.PropertyValue != 'undefined') {
                     $scope.filterDataList = $.parseJSON($scope.properties.SerializedFilterData.PropertyValue);
                 }
+
+                if ($scope.properties.CompanyDetails.PropertyValue != '' && $scope.properties.CompanyDetails.PropertyValue != 'undefined') {
+                    $scope.companies = $.parseJSON($scope.properties.CompanyDetails.PropertyValue);
+                    alert($scope.companies);
+                }
+
 
                 $scope.componentTypeList = ["TextBox", "DropDown Single", "DropDown Multi", "Map Search", "List"];
                 $scope.FilterTypes = [];

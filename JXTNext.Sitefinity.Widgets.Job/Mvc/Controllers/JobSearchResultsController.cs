@@ -31,6 +31,7 @@ using Telerik.Sitefinity.DynamicModules;
 using Telerik.Sitefinity.Utilities.TypeConverters;
 using Telerik.Sitefinity.Model;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common;
+using JXTNext.Sitefinity.Common.Models.Classifications;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -733,6 +734,25 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 filtersData.Data.Add(filterRoot);
             }
 
+            var companyList = SitefinityHelper.GetCurrentSiteCompanyDetails();
+            if(companyList != null)
+            {
+                JobFilterRoot filterRoot = new JobFilterRoot() { Filters = new List<JobFilter>() };
+                filterRoot.ID = Guid.NewGuid().ToString();
+                filterRoot.Name = CompanyString;
+
+                
+                foreach (var item in companyList)
+                {
+                    var jobFilter = new JobFilter() { Filters = new List<JobFilter>() };
+                    jobFilter.ID = item.Id.ToString();
+                    jobFilter.Label = item.Name;
+                    filterRoot.Filters.Add(jobFilter);
+                }
+
+                filtersData.Data.Add(filterRoot);
+            }
+
             return filtersData;
         }
 
@@ -976,7 +996,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string SearchConfig { get; set; }
         public string SerializedJobSearchParams { get; set; }
         public string KeywordsSelectedJobs { get; set; }
+        public string CompanyDetails { get { return JsonConvert.SerializeObject(SitefinityHelper.GetCurrentSiteCompanyDetails()); } }
         public bool UseConfigFilters { get; set; }
+        public bool UseCompanyFilters { get; set; }
+        public string CompanySelected { get; set; }
 
         public string ItemType
         {

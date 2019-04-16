@@ -152,7 +152,7 @@
                     @*<li class="mr-3"><i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
                         @*<li class="mr-3"><i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
                         <li class="mr-3"><i class="fa fa-clock-o"></i><div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>*@
-                    <li class="mr-3"> <img src="/ResourcePackages/BaySide/assets/images/location.png"> <div class="sub-level"> #:CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].SubLevel[0].Value"]#</div></li>
+                    <li class="mr-3"> <img src="/ResourcePackages/BaySide/assets/images/location.png"> <div class="sub-level">#:CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].Value"]# > #:CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].SubLevel[0].Value"]#</div></li>
                     <p class="hidden-salary" style="display:none;">#:CustomData["Salary.Filters[0].Value"]# </p>
                     <li class="mr-3"> <img class="dollar" src="/ResourcePackages/BaySide/assets/images/doller.png"> <div class="sub-level"> #:CustomData["Salary.Filters[0].Value"]#</div></li>
                     <li class="mr-3 clock-icon"><i class="fa fa-clock-o"></i> <div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>
@@ -628,7 +628,7 @@
                     $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/alitis-logo.svg");
                 else if (text == "austra health")
                     $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/austra-health-logo.svg");
-                else if (text == "bayside group")
+                else if (text == "bayside group automotive")
                     $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-group-automotive-logo.svg");
                 else if (text == "bayside personnel")
                     $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-personnel-logo.svg");

@@ -5557,15 +5557,41 @@ p .btn-link {
         background-position: top center !important;
         background-size: cover;
         background-repeat: no-repeat;
+        background-attachment: fixed;
     }
 
-    .video-wrap > .container > .row, .app-content .video-wrap > .container > .sm-row,
-    .app-footer .video-wrap > .container > .sm-row,
-    .app-header .video-wrap > .container > .sm-row, .app-content .video-wrap > .container > .md-row,
-    .app-footer .video-wrap > .container > .md-row,
-    .app-header .video-wrap > .container > .md-row {
-        height: 369px;
-    }
+#videoModal video {
+    outline: none;
+}
+
+.modal-open{
+    padding-right:0 !important;
+}
+
+#videoModal {
+    background: rgba(0, 0, 0, 0.5);
+    padding-right: 0 !important;
+}
+
+#videoModal .modal-body {
+    padding:0;
+}
+
+#videoModal .video-bg {
+    background:#000000;
+}
+
+.sf-Comments-form .media-left {
+    padding-right: 0px;
+}
+
+.video-wrap > .container > .row, .app-content .video-wrap > .container > .sm-row,
+.app-footer .video-wrap > .container > .sm-row,
+.app-header .video-wrap > .container > .sm-row, .app-content .video-wrap > .container > .md-row,
+.app-footer .video-wrap > .container > .md-row,
+.app-header .video-wrap > .container > .md-row {
+    height: 369px;
+}
 
     .video-wrap .play-btn {
         display: inline-block;

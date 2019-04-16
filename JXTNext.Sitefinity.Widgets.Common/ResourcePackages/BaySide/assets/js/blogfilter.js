@@ -25,10 +25,7 @@ var keyword;
 //    //refreshFilterSummary();
 //});
 
-$("#txtSearch").on('change', function (e) {
-    keyword = $("#txtSearch").val();
-    redirectHref();
-});
+
 
 
 function redirectHref() {

@@ -1003,6 +1003,7 @@
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="AzureWebRole.cs" />
     <Compile Include="BlobStorage\AmazonBlobStorageProvider.cs" />
+    <Compile Include="code\EmailSenderCustom.cs" />
     <Compile Include="code\FeatherActionInvokerCustom.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

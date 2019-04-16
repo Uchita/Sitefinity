@@ -14,7 +14,7 @@
 
             <div class="item">
                 <h3>
-                    <a href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">@jobOffer.Title</a>
+                    <a href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">@jobOffer.Title</a>
                 </h3>
                 <p>
                     @if (jobOffer.ShortDescription.Length > 180)
@@ -26,7 +26,7 @@
                         @Html.Raw(jobOffer.ShortDescription)
                     }
                 </p>
-                <a class="btn btn-link pl-0" href="@ViewBag.JobDetailsPageUrl?jobId=@jobOffer.JobID">View job</a>
+                <a class="btn btn-link pl-0" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">View job</a>
             </div>
         }
     }

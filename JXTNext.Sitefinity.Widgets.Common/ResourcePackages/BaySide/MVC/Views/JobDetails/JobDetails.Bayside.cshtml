@@ -226,7 +226,7 @@
                     dataType: 'Json',
                     success: function (response) {
                         if (response.IsUserLogged == true) {
-                            $('li.save-job-wrapper').html('<a href="#" class="save-job" data-jobid="@Model.JobDetails.JobID"><i class="fa fa-save"></i><span class="save-status-txt">Save</span></a>');
+                            $('li.save-job-wrapper').show().html('<a href="#" class="save-job" data-jobid="@Model.JobDetails.JobID"><i class="fa fa-save"></i><span class="save-status-txt">Save</span></a>');
                             if (response.IsJobSaved == true) {
                                 var selfJob = $('.save-job');
                                 $(selfJob).addClass("saved");

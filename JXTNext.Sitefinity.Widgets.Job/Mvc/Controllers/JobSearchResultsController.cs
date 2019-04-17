@@ -61,7 +61,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 this.templateName = value;
             }
         }
-
+        private static List<Company> companies = null;
         private readonly string CategoryString = "Categories";
         private readonly string RangeString = "Range";
         private readonly static string SalaryString = "Salary";
@@ -74,7 +74,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             _oConnectorsList = _oConnectors;
             _BLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
             _OptionsConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
-            
+            companies = GetCompanyList();
         }
 
         // GET: JobSearchResults
@@ -709,6 +709,25 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
+        private List<Company> GetCompanyList()
+        {
+            JXTNext_GetJobFiltersRequest request = new JXTNext_GetJobFiltersRequest();
+            IGetJobFiltersResponse filtersResponse = _OptionsConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(request);
+            List<Company> companyList = new List<Company>();
+            foreach (var item in filtersResponse.Filters.Data)
+            {
+                if(item.Name == CompanyString)
+                {
+                    foreach (var company in item.Filters)
+                    {
+                        companyList.Add(new Company() { Name = company.Label, Id = Int32.Parse(company.ID) });
+                    }
+                }
+            }
+            
+            return companyList;
+        }
+
         public static JobFiltersData GetFiltersData()
         {
             JobFiltersData filtersData = new JobFiltersData() { Data = new List<JobFilterRoot>() };
@@ -734,15 +753,16 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 filtersData.Data.Add(filterRoot);
             }
 
-            var companyList = SitefinityHelper.GetCurrentSiteCompanyDetails();
-            if(companyList != null)
+            
+            
+            if(companies != null)
             {
                 JobFilterRoot filterRoot = new JobFilterRoot() { Filters = new List<JobFilter>() };
                 filterRoot.ID = Guid.NewGuid().ToString();
                 filterRoot.Name = CompanyString;
 
                 
-                foreach (var item in companyList)
+                foreach (var item in companies)
                 {
                     var jobFilter = new JobFilter() { Filters = new List<JobFilter>() };
                     jobFilter.ID = item.Id.ToString();
@@ -996,7 +1016,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string SearchConfig { get; set; }
         public string SerializedJobSearchParams { get; set; }
         public string KeywordsSelectedJobs { get; set; }
-        public string CompanyDetails { get { return JsonConvert.SerializeObject(SitefinityHelper.GetCurrentSiteCompanyDetails()); } }
         public bool UseConfigFilters { get; set; }
         public bool UseCompanyFilters { get; set; }
         public string CompanySelected { get; set; }

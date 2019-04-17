@@ -212,11 +212,7 @@
                     $scope.filterDataList = $.parseJSON($scope.properties.SerializedFilterData.PropertyValue);
                 }
 
-                if ($scope.properties.CompanyDetails.PropertyValue != '' && $scope.properties.CompanyDetails.PropertyValue != 'undefined') {
-                    $scope.companies = $.parseJSON($scope.properties.CompanyDetails.PropertyValue);
-                    alert($scope.companies);
-                }
-
+               
 
                 $scope.componentTypeList = ["TextBox", "DropDown Single", "DropDown Multi", "Map Search", "List"];
                 $scope.FilterTypes = [];

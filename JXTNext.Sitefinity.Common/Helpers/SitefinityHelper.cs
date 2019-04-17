@@ -356,18 +356,6 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return email;
         }
 
-        public static IEnumerable<Company> GetCurrentSiteCompanyDetails()
-        {
-            List<Company> companies = new List<Company>();
-            companies.Add(new Company() { Name = "Alitis", Id = 11 });
-            companies.Add(new Company() { Name = "Austra Health", Id = 12 });
-            companies.Add(new Company() { Name = "Bayside Group Automotive", Id = 10 });
-            companies.Add(new Company() { Name = "Bayside Personnel", Id = 13 });
-            companies.Add(new Company() { Name = "Baytech", Id = 14 });
-            companies.Add(new Company() { Name = "Bridge Consulting", Id = 15 });
-            companies.Add(new Company() { Name = "Cozwine", Id = 16 });
-            companies.Add(new Company() { Name = "Techstaff", Id = 17 });
-            return companies;
-        }
+        
     }
 }

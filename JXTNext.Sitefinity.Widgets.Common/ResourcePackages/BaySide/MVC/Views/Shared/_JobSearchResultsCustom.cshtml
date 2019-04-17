@@ -37,33 +37,42 @@
             <div class="col-12 col-lg-12 mb-2" style="display:none">Receive new jobs for this search by email.</div>
         </div>
         <div class="row">
-            <div class="col-12 col-lg-6">
-                <div class="form-group">
-                    <input type="email" id="anonycreatejobalert" value="" placeholder="Receive new jobs for this search by email." class="jobalert-field form-control" />
+            @if (ViewBag.IsMember)
+            {
+                <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <input type="email" id="anonycreatejobalert" value="@ViewBag.Email" hidden />
 
-                    <div class="alert alert-danger jobalert-error-message hidden">Please enter your valid email address.</div>
+                        <div class="alert alert-danger jobalert-error-message hidden">Please enter your valid email address.</div>
+                    </div>
                 </div>
-
-            </div>
-            <div class="col-12">
-                <div class="alert alert-info jobalert-message hidden">Alert created. We’ll send new jobs to your email address.</div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="form-group text-right">
-                    <a id="anon-job-alert" class="btn btn-outline-primary btn-block" href="#" title="Create your job alert">Create Job Alert</a>
-
-
-
-                    @*@if (isLoggedIn)
-                        {
-                        <a class="btn btn-outline-primary btn-block jobalert-btn" href="/user-dashboard/Create" title="Create you job alert">Create Job Alert</a>
-                        }
-                        else
-                        {
-                        <a id="anon-job-alert" class="btn btn-block btn-outline-primary" href="#" title="Create you job alert">Create Job Alert</a>
-                        }*@
+                <div class="col-12">
+                    <div class="alert alert-info jobalert-message hidden">Alert created. We’ll send new jobs to your email address.</div>
                 </div>
-            </div>
+                <div class="col-12 col-lg-6">
+                    <div class="form-group text-right">
+                        <a id="anon-job-alert" class="btn btn-outline-primary btn-block" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <input type="email" id="anonycreatejobalert" value="" placeholder="Receive new jobs for this search by email." class="jobalert-field form-control" />
+
+                        <div class="alert alert-danger jobalert-error-message hidden">Please enter your valid email address.</div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="alert alert-info jobalert-message hidden">Alert created. We’ll send new jobs to your email address.</div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="form-group text-right">
+                        <a id="anon-job-alert" class="btn btn-outline-primary btn-block" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+                    </div>
+                </div>
+            }
         </div>
         <!-- .row/ -->
     </div>
@@ -141,12 +150,13 @@
                 <ul class="inline-list p-0 mb-0 location-hover">
                     <p class="hidden-salary" style="display:none;">#:CustomData["Salary.Filters[0].Value"]# </p>
                     @*<li class="mr-3"><i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
-                        @*<li class="mr-3"><i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
-                        <li class="mr-3"><i class="fa fa-clock-o"></i><div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>*@
-                    <li class="mr-3"> <img src="/ResourcePackages/BaySide/assets/images/location.png"> <div class="sub-level"> #:CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].SubLevel[0].Value"]#</div></li>
+
+        @*<li class="mr-3"><i class="fa fa-dollar"></i><div> #:CustomData["Salary.Filters[0].Value"]#</div></li>
+        <li class="mr-3"><i class="fa fa-clock-o"></i><div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>*@
+                 <li class="mr-3"> <img src="/ResourcePackages/BaySide/assets/images/location.png"> <div class="sub-level"> #:CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].SubLevel[0].Value"]#</div></li>
                     <p class="hidden-salary" style="display:none;">#:CustomData["Salary.Filters[0].Value"]# </p>
-                    <li class="mr-3"> <img class="dollar" src="/ResourcePackages/BaySide/assets/images/doller.png"> <div class="sub-level"> #:CustomData["Salary.Filters[0].Value"]#</div></li>
-                    <li class="mr-3 clock-icon"><i class="fa fa-clock-o"></i> <div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>
+                 <li class="mr-3"> <img class="dollar" src="/ResourcePackages/BaySide/assets/images/doller.png"> <div class="sub-level"> #:CustomData["Salary.Filters[0].Value"]#</div></li>
+                 <li class="mr-3 clock-icon"><img class="clock" src="/ResourcePackages/BaySide/assets/images/clock-icon.png"><div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>
                 </ul>
             </div>
             <div class="col-auto text-right">
@@ -619,7 +629,7 @@
                     $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/alitis-logo.svg");
                 else if (text == "austra health")
                     $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/austra-health-logo.svg");
-                else if (text == "bayside group")
+                else if (text == "bayside group automotive")
                     $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-group-automotive-logo.svg");
                 else if (text == "bayside personnel")
                     $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-personnel-logo.svg");

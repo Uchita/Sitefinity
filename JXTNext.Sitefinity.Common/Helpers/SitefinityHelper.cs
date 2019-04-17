@@ -21,11 +21,19 @@ using Telerik.Sitefinity.GenericContent.Model;
 using System.Threading;
 using System.Globalization;
 using JXTNext.Sitefinity.Common.Models.Classifications;
+using System.Web;
 
 namespace JXTNext.Sitefinity.Common.Helpers
 {
     public class SitefinityHelper
     {
+
+        private static readonly string _emailTemplateStr = "Standard Email Template";
+        private static string _itemType = "Telerik.Sitefinity.DynamicTypes.Model.StandardEmailTemplate.EmailTemplate";
+        private static string _htmlEmailContentStr = "htmlEmailContent";
+        private static string _titleStr = "Title";
+
+
         public static TimeZoneInfo GetSitefinityTimeZoneInfo()
         {
             var sitefinityTimeZoneInfo = Telerik.Sitefinity.Configuration.Config.Get<SystemConfig>().UITimeZoneSettings.CurrentTimeZoneInfo;
@@ -42,6 +50,39 @@ namespace JXTNext.Sitefinity.Common.Helpers
             var taxa = categoriesTaxonomy.Taxa.Where(t => t.Title == dataSource).FirstOrDefault() as HierarchicalTaxon;
             
             return taxa;
+        }
+
+        public static string GetCurrentSiteEmailTemplateProviderName()
+        {
+            MultisiteContext multisiteContext = SystemManager.CurrentContext as MultisiteContext;
+            var providerName = multisiteContext.CurrentSite.GetDefaultProvider(_emailTemplateStr);
+            return providerName.ProviderName;
+        }
+
+        public static string GetCurrentSiteEmailTemplateHtmlContent(string templatedId)
+        {
+            string content = string.Empty;
+            if (templatedId != null)
+            {
+                var dynamicModuleManager = DynamicModuleManager.GetManager(GetCurrentSiteEmailTemplateProviderName());
+                var emailTemplateType = TypeResolutionService.ResolveType(_itemType);
+                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(templatedId.ToUpper()));
+                content = emailTemplateItem.GetValue(_htmlEmailContentStr).ToString();
+            }
+            return content;
+        }
+
+        public static string GetCurrentSiteEmailTemplateTitle(string templatedId)
+        {
+            string title = string.Empty;
+            if (templatedId != null)
+            {
+                var dynamicModuleManager = DynamicModuleManager.GetManager(GetCurrentSiteEmailTemplateProviderName());
+                var emailTemplateType = TypeResolutionService.ResolveType(_itemType);
+                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(templatedId.ToUpper()));
+                title = HttpUtility.HtmlEncode(emailTemplateItem.GetValue(_titleStr).ToString());
+            }
+            return title;
         }
 
         public static List<DynamicContent> GetCurrentSiteItems(string dynamicType, string dataSource)

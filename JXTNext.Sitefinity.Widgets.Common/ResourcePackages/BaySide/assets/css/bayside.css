@@ -5557,15 +5557,41 @@ p .btn-link {
         background-position: top center !important;
         background-size: cover;
         background-repeat: no-repeat;
+        background-attachment: fixed;
     }
 
-    .video-wrap > .container > .row, .app-content .video-wrap > .container > .sm-row,
-    .app-footer .video-wrap > .container > .sm-row,
-    .app-header .video-wrap > .container > .sm-row, .app-content .video-wrap > .container > .md-row,
-    .app-footer .video-wrap > .container > .md-row,
-    .app-header .video-wrap > .container > .md-row {
-        height: 369px;
-    }
+#videoModal video {
+    outline: none;
+}
+
+.modal-open{
+    padding-right:0 !important;
+}
+
+#videoModal {
+    background: rgba(0, 0, 0, 0.5);
+    padding-right: 0 !important;
+}
+
+#videoModal .modal-body {
+    padding:0;
+}
+
+#videoModal .video-bg {
+    background:#000000;
+}
+
+.sf-Comments-form .media-left {
+    padding-right: 0px;
+}
+
+.video-wrap > .container > .row, .app-content .video-wrap > .container > .sm-row,
+.app-footer .video-wrap > .container > .sm-row,
+.app-header .video-wrap > .container > .sm-row, .app-content .video-wrap > .container > .md-row,
+.app-footer .video-wrap > .container > .md-row,
+.app-header .video-wrap > .container > .md-row {
+    height: 369px;
+}
 
     .video-wrap .play-btn {
         display: inline-block;
@@ -7672,6 +7698,22 @@ select.hs-input {
         color: #333132;
         text-decoration: none;
     }
+
+.save-job-wrapper .save-status-txt {
+    color: #333132;
+}
+
+.save-job i {
+    color: #0088CF;
+}
+
+
+
+.save-job-wrapper .save-job:hover .save-status-txt {
+    color: #0088CF;
+}
+
+
 
 .job-sidebar .inline-list .action-link:hover > span {
     color: #0088CF;
@@ -9943,8 +9985,8 @@ select.hs-input {
         }
 
 
-        .location-hover li.clock-icon:hover i,
-        .location-text li.clock-icon:hover i {
+        .location-hover li.clock-icon:hover img,
+        .location-text li.clock-icon:hover img {
             transform: rotate(360deg) !important;
             transition: all 500ms ease;
         }
@@ -9964,6 +10006,10 @@ select.hs-input {
         left: -14px;
         border-radius: 50%;
     }
+
+.search-results {
+    margin: 20px 0 0;
+}
 
     .bayside-listing {
         padding: 0;

@@ -14,16 +14,16 @@
             {
                 if (ViewBag.IsFilteredbyPermission)
                 {
-                    <h3>@Html.HtmlSanitize(Model.ResultText)</h3>
+                    <h2>@Html.HtmlSanitize(Model.ResultText)</h2>
                 }
                 else
                 {
-                    <h3>@Model.Results.TotalCount @Html.HtmlSanitize(Model.ResultText)</h3>
+                    <h2>@Model.Results.TotalCount @Html.HtmlSanitize(Model.ResultText)</h2>
                 }
             }
             else
             {
-                <h3>@Html.Resource("No") @Html.HtmlSanitize(Model.ResultText)</h3>
+                <h2>@Html.Resource("No") @Html.HtmlSanitize(Model.ResultText)</h2>
             }
         </div>
         <div class="col-md-4">

@@ -264,6 +264,9 @@
     <Content Include="ResourcePackages\BaySide\assets\images\brand_logo.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\BaySide\assets\images\clock-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\assets\images\clock.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

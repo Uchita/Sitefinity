@@ -86,7 +86,7 @@
                 {
                     location = (string)@Model.Locations[item];
                 }
-                <li class="mr-5"><img src="/ResourcePackages/BaySide/assets/images/location.png"><div>@Model.JobDetails.CustomData["CountryLocationArea[0].Filters[0].Value"] > @location</div></li>
+                <li class="mr-5"><img src="/ResourcePackages/BaySide/assets/images/location.png"><div>@Model.JobDetails.CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].Value"] > @location</div></li>
                 <li class="mr-5"> <img src="/ResourcePackages/BaySide/assets/images/doller.png"> <div>@Model.JobDetails.CustomData["Salary.Filters[0].Value"]</div></li>
                 <li class="mr-5 clock-icon"><i class="fa fa-clock-o"></i><div> @Model.JobDetails.CustomData["WorkType.Filters[0].Value"]</div></li>
             </ul>

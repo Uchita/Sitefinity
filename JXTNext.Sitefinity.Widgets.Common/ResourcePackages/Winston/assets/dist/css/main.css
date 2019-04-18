@@ -7981,7 +7981,10 @@ pre {
       font-size: 16px;
       font-size: 1.6rem; }
   .header-top-login {
-    display: inline-block; }
+    display: block;
+    /*@media(max-width:1024px){
+            display:block;
+        }*/ }
   .header-top-links a:hover, .header-top-links:focus {
     text-decoration: none;
     color: #2dc3ea; }
@@ -10086,6 +10089,12 @@ ul.no-gutter {
   line-height: 1.1;
   font-size: 1.4rem; }
 
+.keywords-head {
+  margin-top: -25px; }
+  @media (max-width: 767px) {
+    .keywords-head {
+      margin-top: -15px; } }
+
 /*#endregion Basic components */
 /*#region Breadcrumbs */
 ul.breadcrumb {
@@ -10164,7 +10173,7 @@ ul.breadcrumb {
       display: block;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.2);
+      /*background: $banner-overlay;*/
       z-index: 9; }
     .jumbotron-container .jumbotron .jumbotron-content {
       position: relative;

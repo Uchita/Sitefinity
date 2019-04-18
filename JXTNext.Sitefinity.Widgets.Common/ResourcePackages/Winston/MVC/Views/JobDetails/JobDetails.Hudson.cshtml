@@ -221,7 +221,7 @@
 
             <li><a href="javascript:window.print();"><em class="fas fa-print"></em>Print this job</a></li>
             <li>
-                <a href="@ViewBag.EmailJobPageUrl?JobId=@Model.JobDetails.JobID" title="Tell a friend">
+                <a href="/email-job?JobId=@Model.JobDetails.JobID" title="Tell a friend"><!--@ViewBag.EmailJobPageUrl-->
                     <em class="fas fa-envelope"></em>Email this job
                 </a>
             </li>

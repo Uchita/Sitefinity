@@ -992,7 +992,10 @@ blockquote{
     }
 
     &-login {
-        display: inline-block;
+        display: block;
+        /*@media(max-width:1024px){
+            display:block;
+        }*/
     }
 
     &-links {
@@ -3819,10 +3822,16 @@ header {
             }
         }
     }
-}
-    
+}  
 .sm-wrapper .select .salary-range {
     height: 33px;
     line-height: 1.1;
     font-size: 1.4rem;
+}
+
+.keywords-head{
+    margin-top:-25px;
+    @media(max-width:767px){
+        margin-top:-15px;
+    }
 }

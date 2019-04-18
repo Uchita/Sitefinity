@@ -43,6 +43,7 @@
                             </div>
                             <div class="col-md-8">
                                 <input id="userid" type="text" name="Email" class="form-control" required placeholder="Enter email address to begin" autocomplete="email" aria-describedby="email-verify-message" />
+                                <small class="welcome-message hidden">@Html.Resource("DashboardWelcomeWidgetTitle", "DashboardResources")</small>
                             </div>
                         </div>
 
@@ -393,6 +394,7 @@
     $("#documents-selected-type").val(documentsLetterSelectedType);
     $("#resume-selected-type").val(resumeSelectedType);
 
+    $('.welcome-message').addClass('hidden');
      // Password Strength
      var m_strUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
      var m_strLowerCase = "abcdefghijklmnopqrstuvwxyz";
@@ -419,6 +421,7 @@
         $('#password-guide').addClass('hidden');
         $('#password-reg').attr('placeholder', "Enter your password");
         $('.loginwith_socialmedia').show();
+        
         $('#ReTypePassword').prop('required', false);
         $('#sign-in-btn').removeClass('hidden');
     });
@@ -449,6 +452,7 @@
         $('.loginwith_socialmedia').hide();
         $('#ReTypePassword').prop('required', true);
         $('#sign-in-btn').addClass('hidden');
+        $('.welcome-message').addClass('hidden');
     });
 
     $("#selectresume").change(function () {
@@ -715,15 +719,45 @@
         $('#userid').keyup(function () {
             var emailId = $(this).val();
             var valid = validateEmail(emailId);
-            var parm = { email: emailId };
-            var urlPath = $(location).attr('pathname') + "/CheckUser";
 
             if (valid) {
                 $(this).css('color', '#000');
             } else {
                 $(this).css('color', 'red');
             }
-        });
+         });
+
+         $('#userid').keydown(function (e) {
+             if (e.which == 13) { //only if enter key pressed
+                 var emailId = $(this).val();
+                 var valid = validateEmail(emailId);
+                 var parm = { email: emailId };
+
+                 var urlPath = $(location).attr('pathname') + "/CheckUser";
+
+                 if (valid) {
+                     $.ajax({
+                         type: 'POST',
+                         cache: false,
+                         url: urlPath,
+                         data: parm,
+                         dataType: 'Json',
+                         success: function (response) {
+                             if (response == true) {
+                                 $('.welcome-message').removeClass('hidden');
+                                 $("#haveAccount").trigger('click');
+                             } else {
+                                 $('.welcome-message').addClass('hidden');
+                                 $("#regWith").trigger('click');
+                             }
+                         }
+                     });
+                 } else {
+                     $('.welcome-message').addClass('hidden');
+                 }
+             }
+
+         });
 
          $('#password-reg').keyup(function () {
              if (registerForm) {

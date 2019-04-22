@@ -1371,6 +1371,10 @@
       <Project>{9a208d8f-aa97-4ce5-a42b-71bde987124c}</Project>
       <Name>JXTNext.Sitefinity.Widgets.Authentication</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Media\JXTNext.Sitefinity.Media.csproj">
+      <Project>{a4fa9606-9670-4519-b2be-bc019b598a9b}</Project>
+      <Name>JXTNext.Sitefinity.Media</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JXTNext.Sitefinity.Services.Intefaces\JXTNext.Sitefinity.Services.Intefaces.csproj">
       <Project>{94381396-d85e-469c-b828-24cf03548df5}</Project>
       <Name>JXTNext.Sitefinity.Services.Intefaces</Name>
@@ -1386,6 +1390,10 @@
     <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.Content\JXTNext.Sitefinity.Widgets.Content.csproj">
       <Project>{84c57321-d20d-48a2-957d-4511a984f836}</Project>
       <Name>JXTNext.Sitefinity.Widgets.Content</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.Feather\JXTNext.Sitefinity.Widgets.Feather.csproj">
+      <Project>{a21a2688-21dc-45b8-8bdb-df6928ed5aea}</Project>
+      <Name>JXTNext.Sitefinity.Widgets.Feather</Name>
     </ProjectReference>
     <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.Identity\JXTNext.Sitefinity.Widgets.Identity.csproj">
       <Project>{d867dd9c-fde3-433f-a21e-8de0c3477325}</Project>

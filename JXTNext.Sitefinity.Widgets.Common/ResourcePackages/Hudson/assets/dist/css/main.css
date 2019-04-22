@@ -7545,18 +7545,18 @@ blockquote {
   .page-wrapper input::-moz-placeholder,
   .page-wrapper select::-moz-placeholder,
   .page-wrapper textarea::-moz-placeholder {
-    color: #b5b5b5;
+    color: #666;
     opacity: 1; }
   .page-wrapper .form-control::-webkit-input-placeholder,
   .page-wrapper input::-webkit-input-placeholder,
   .page-wrapper select::-webkit-input-placeholder,
   .page-wrapper textarea::-webkit-input-placeholder {
-    color: #b5b5b5; }
+    color: #666; }
   .page-wrapper .form-control:-ms-input-placeholder,
   .page-wrapper input:-ms-input-placeholder,
   .page-wrapper select:-ms-input-placeholder,
   .page-wrapper textarea:-ms-input-placeholder {
-    color: #b5b5b5 !important; }
+    color: #666 !important; }
   .page-wrapper input[type="number"]::-webkit-outer-spin-button,
   .page-wrapper input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -9800,8 +9800,15 @@ ul.breadcrumb {
   margin-top: 50px; }
   .page-wrapper .basic-form .form-control {
     color: #000; }
+  .page-wrapper .basic-form .input-medium {
+    width: 50%; }
+    @media screen and (max-width: 767px) {
+      .page-wrapper .basic-form .input-medium {
+        width: 100%;
+        max-width: 275px; } }
   .page-wrapper .basic-form select {
-    padding-left: 6px; }
+    padding-left: 6px;
+    font-size: 1.5rem; }
   .page-wrapper .basic-form textarea {
     height: 115px;
     resize: none; }
@@ -9844,21 +9851,21 @@ ul.breadcrumb {
   .page-wrapper .basic-form .radiobutton {
     position: relative; }
     .page-wrapper .basic-form .radiobutton .radiobutton-icon {
-      width: 25px;
-      height: 25px;
+      width: 20px;
+      height: 20px;
       border: 1px solid #01a3a4;
       display: inline-block;
       color: transparent;
       position: absolute;
-      top: 10px;
+      top: 0;
       left: 0;
       text-align: center;
       font-size: 13px;
       border-radius: 50%; }
       .page-wrapper .basic-form .radiobutton .radiobutton-icon::before {
-        font-size: 1.75rem;
-        line-height: 1.27;
-        padding-right: 1px; }
+        font-size: 1.27rem;
+        line-height: 1.55;
+        padding-right: 0; }
     .page-wrapper .basic-form .radiobutton input[type="radio"] {
       z-index: 2;
       position: relative;
@@ -9888,6 +9895,9 @@ ul.breadcrumb {
 #job-app-form .basic-form {
   margin-top: 0; }
 
+#job-app-form #sign-in-btn {
+  min-width: 300px; }
+
 #officeAddress {
   margin-left: 0;
   padding: 0; }
@@ -9898,10 +9908,26 @@ ul.breadcrumb {
   font-size: 3.6rem;
   margin-bottom: 2rem; }
 
+.form-group .list-group {
+  padding-top: 20px;
+  margin-bottom: 15px; }
+  .form-group .list-group.select {
+    padding-top: 0; }
+
 .list-group label {
   color: #000;
   text-transform: none;
   font-family: AkzidGroProReg, sans-serif; }
+
+.list-group .radiobutton {
+  display: block;
+  font-size: 1.4rem;
+  font-family: AkzidGroProMed, sans-serif;
+  color: #01a3a4;
+  margin-bottom: 5px;
+  line-height: 1.5;
+  padding-top: 0;
+  height: 20px; }
 
 #password-strength {
   position: relative;
@@ -9979,7 +10005,8 @@ ul.breadcrumb {
   .page-wrapper .login-form.apply-form .basic-form .login-border {
     padding-top: 0; }
   .page-wrapper .login-form .text-muted {
-    margin-top: 10px;
+    margin-top: 3px;
+    margin-bottom: 5px;
     display: block; }
   .page-wrapper .sf-registration-link {
     font-size: 1.4rem; }
@@ -9993,6 +10020,7 @@ ul.breadcrumb {
       margin-bottom: 0.8rem; }
     .page-wrapper .sf-profile img {
       max-width: 200px;
+      width: 100%;
       box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); }
     .page-wrapper .sf-profile label {
       padding-top: 0; }
@@ -10058,7 +10086,7 @@ ul.breadcrumb {
     height: 35px; }
   .page-wrapper #indeed-btnwrapper .indeed-apply-button {
     background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50% !important;
-    width: 120px;
+    width: 170px;
     border-radius: 0 !important;
     height: 35px !important;
     padding: 0 !important; }
@@ -10073,7 +10101,7 @@ ul.breadcrumb {
       .page-wrapper .apply-with ul li .btn, .page-wrapper .sign-in-with ul li .btn {
         height: 35px;
         line-height: 1.2;
-        min-width: 120px;
+        min-width: 170px;
         padding: 6px 10px; }
     .page-wrapper .apply-with ul::after, .page-wrapper .sign-in-with ul::after {
       content: '';
@@ -10136,6 +10164,9 @@ ul.breadcrumb {
 
 .col-wrap {
   margin-bottom: 5px; }
+
+#linkedin-widget-holder .btn-linkedin-signin img {
+  max-width: 195px; }
 
 /*#endregion Forms*/
 /*#region Customers */
@@ -10478,30 +10509,37 @@ ul.breadcrumb {
   margin-right: 4px;
   color: #219fa3; }
 
+#login-register-container .col-md-3.text-right {
+  max-width: 150px; }
+
+#register {
+  margin-bottom: 50px; }
+
 .upload-section .box {
-  border: 1px solid #01a3a4;
-  padding: 10px;
-  margin: 0; }
+  margin: 0 0 30px; }
+
+.upload-section label.col-md-3 {
+  max-width: 150px; }
 
 .upload-section .uploadfield-wrap {
-  padding: 15px 0 5px;
+  padding: 0 0 5px;
   position: relative;
   color: #01a3a4;
-  text-align: center;
-  width: 33%;
+  width: 85px;
   float: left;
-  overflow: hidden; }
+  overflow: hidden;
+  text-align: center; }
   .upload-section .uploadfield-wrap::before {
     content: "\f07c";
     color: #2e2e2e;
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    font-size: 3rem;
+    font: 900 3rem/1 'Font Awesome 5 Free';
     position: absolute;
-    top: 15px;
+    top: 0;
     z-index: 0;
     width: 100%;
     left: 0; }
+  .upload-section .uploadfield-wrap.browse-upload {
+    width: 60px; }
   .upload-section .uploadfield-wrap.dropbox-upload::before {
     font-family: 'Font Awesome 5 Brands';
     content: "\f16b"; }
@@ -10512,7 +10550,7 @@ ul.breadcrumb {
     color: #01a3a4; }
   .upload-section .uploadfield-wrap input[type="file"], .upload-section .uploadfield-wrap button {
     opacity: 0;
-    height: 50px;
+    height: 42px;
     position: relative;
     z-index: 1;
     cursor: pointer;
@@ -10530,12 +10568,42 @@ ul.breadcrumb {
   clear: both;
   word-break: break-word; }
 
+.upload-section .displayFileName {
+  font-size: 1.4rem;
+  font-weight: bold;
+  font-style: italic;
+  line-height: 1.4;
+  display: block; }
+  .upload-section .displayFileName .filewrap {
+    color: #01a3a4;
+    word-break: break-word; }
+  .upload-section .displayFileName .removeBtn {
+    background: none;
+    color: #ff9000;
+    margin-left: 20px;
+    cursor: pointer; }
+    .upload-section .displayFileName .removeBtn:hover {
+      color: #cc7300; }
+
 .upload-section select {
   width: 100%; }
 
+.upload-section .hasFile .uploadfield-wrap {
+  display: none; }
+
+.upload-section .hasFile .note {
+  display: none; }
+
+.upload-section input.btn-primary {
+  width: auto; }
+
+.upload-section .list-group {
+  padding-top: 0; }
+
 .note {
-  color: #b5b5b5;
+  color: #666;
   font-size: 1.4rem;
+  font-style: italic;
   line-height: 1.3;
   padding: 5px 0; }
 
@@ -10685,6 +10753,27 @@ ul.breadcrumb {
     top: 0;
     background: rgba(255, 255, 255, 0.1);
     z-index: 1; }
+  .job-mini.disabled-block .job-offer-details h1, .job-mini.disabled-block .jobdetail-sidebar h1 {
+    margin-bottom: 3.5rem; }
+
+.separator {
+  text-align: center;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  font-size: 2rem;
+  position: relative; }
+  .separator:before {
+    content: '';
+    height: 1px;
+    background: #01a3a4;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0; }
+  .separator span {
+    background: white;
+    padding: 0 10px;
+    position: relative; }
 
 /*#endregion Job offers */
 /*#region Articles/Insights */
@@ -11916,6 +12005,8 @@ select.articles-order {
     text-align: center !important; }
   .page-wrapper main {
     padding-top: 0 !important; }
+  main .page-section {
+    padding: 20px 0; }
   header .navbar {
     min-height: 10px; }
   header .navbar-fixed-top:before {
@@ -12160,6 +12251,12 @@ select.articles-order {
     clear: none; }
   .white-box-single > .col-sm-3:nth-child(2n+1), .white-box-list > .col-sm-3:nth-child(2n+1) {
     clear: left; }
+  .page-wrapper h1 {
+    font-size: 2.9rem;
+    margin-bottom: 2rem; }
+  .page-wrapper h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem; }
   .page-wrapper footer .page-section {
     padding: 15px 0; }
   .page-wrapper footer .footer-social {
@@ -12399,7 +12496,25 @@ select.articles-order {
     background-color: #C3C3C3;
     border: 0px solid #eee; }
   #videoModal .modal-dialog {
-    background: rgba(0, 0, 0, 0.5); } }
+    background: rgba(0, 0, 0, 0.5); }
+  .backtoresult {
+    margin-bottom: 15px; }
+  .job-mini.disabled-block .jobdetail-sidebar, .job-offer-details, .job-mini.disabled-block .jobdetail-sidebar {
+    margin-bottom: 20px; }
+  .page-wrapper .ext-provider-form, .page-wrapper .sign-in-with {
+    margin-bottom: 0.5rem; }
+  #login-register-container .col-md-3.text-right, .upload-section label.col-md-3 {
+    max-width: 100%; }
+  .form-group .list-group {
+    padding-top: 10px; }
+  .page-wrapper .basic-form .upload-section {
+    margin: 10px 0 0; }
+  .upload-section .box {
+    margin-bottom: 10px; }
+  #register {
+    margin-bottom: 0; }
+  .separator {
+    margin-bottom: 20px; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron {

@@ -202,7 +202,47 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return instagramMaxItems;
         }
 
+        public string GetCurrentSiteLinkedInClientId()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInClientId;
+        }
 
+        public string GetCurrentSiteLinkedInClientSecret()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInClientSecret;
+        }
+
+        public string GetCurrentSiteLinkedInCustomerClientId()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInCustomerClientId;
+        }
+
+        public string GetCurrentSiteLinkedInCustomerClientSecret()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInCustomerClientSecret;
+        }
+
+        public string GetCurrentSiteLinkedInCustomerIntegrationContext()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInCustomerIntegrationContext;
+        }
+
+        public string GetCurrentSiteLinkedInSocialHandlerUrl()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInSocialHandlerUrl;
+        }
 
         private const string _itemType = "JXTNext.Sitefinity.Common.Models.CustomSiteSettings.CustomSiteSettingsContract";
         private CustomSiteSettingsContract _siteSettingsContract = null;

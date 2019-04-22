@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JXTNext.Common.Web, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXT.JXTNext.Common.Web.1.4.0\lib\netstandard2.0\JXTNext.Common.Web.dll</HintPath>
+    <Reference Include="JXTNext.Common.Web, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXT.JXTNext.Common.Web.1.4.2\lib\netstandard2.0\JXTNext.Common.Web.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.FileHandler, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXT.JXTNext.FileHandler.1.0.4\lib\netstandard2.0\JXTNext.FileHandler.dll</HintPath>

@@ -30,8 +30,17 @@
         .form-control {
             color: $global-text-color;
         }
+        .input-medium{
+            width: 50%;
+
+            @media screen and (max-width: 767px) {
+                width: 100%;
+                max-width: 275px;
+            }
+        }
         select{
             padding-left: 6px;
+            font-size: 1.5rem;
         }
         textarea {
             height: 115px;
@@ -96,21 +105,21 @@
         .radiobutton{
             position: relative;
             .radiobutton-icon {
-                width: 25px;
-                height: 25px;
+                width: 20px;
+                height: 20px;
                 border: 1px solid $forms-element-border;
                 display: inline-block;
                 color: transparent;
                 position: absolute;
-                top: 10px;
+                top: 0;
                 left: 0;
                 text-align: center;
                 font-size: 13px;
                 border-radius: 50%;
                 &::before{
-                    font-size: 1.75rem;
-                    line-height: 1.27;
-                    padding-right: 1px;
+                    font-size: 1.27rem;
+                    line-height: 1.55;
+                    padding-right: 0;
                 }
             }
 
@@ -159,6 +168,9 @@
     .basic-form{
         margin-top: 0;
     }
+    #sign-in-btn{
+        min-width: 300px;
+    }
 }
 
 #officeAddress{
@@ -176,11 +188,31 @@
         margin-bottom: 2rem;
     }
 }
-
-.list-group label{
-    color: $global-text-color;
-    text-transform: none;
-    font-family: $font-family-regular;
+.form-group{
+    .list-group{
+        padding-top: 20px;
+        margin-bottom: 15px;
+        &.select{
+            padding-top: 0;
+        }
+    } 
+}
+.list-group {
+    label{
+        color: $global-text-color;
+        text-transform: none;
+        font-family: $font-family-regular;
+    }
+    .radiobutton{
+        display: block;
+        font-size: 1.4rem;
+        font-family: $font-family-medium;
+        color: $forms-element-border;
+        margin-bottom: 5px;
+        line-height: 1.5;
+        padding-top: 0;
+        height: 20px;
+    }
 }
 
 #password-strength {
@@ -305,7 +337,8 @@
         }
 
         .text-muted {
-            margin-top: 10px;
+            margin-top: 3px;
+            margin-bottom: 5px;
             display: block;
         }
     }
@@ -328,6 +361,7 @@
         }
         img{
             max-width: 200px;
+            width: 100%;
             box-shadow: 1px 1px 1px rgba(0,0,0,.2);
         }
         label{
@@ -433,7 +467,7 @@
     }
     #indeed-btnwrapper .indeed-apply-button{
         background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50%!important;
-        width: 120px;
+        width: 170px;
         border-radius: 0!important;
         height: 35px!important;
         padding: 0!important;
@@ -454,7 +488,7 @@
                 .btn {
                     height: 35px;
                     line-height: 1.2;
-                    min-width: 120px;
+                    min-width: 170px;
                     padding: 6px 10px;
                 }
             }
@@ -548,3 +582,12 @@
 .col-wrap{
     margin-bottom: 5px;
 }
+
+#linkedin-widget-holder{
+    .btn-linkedin-signin{
+        img{
+            max-width: 195px;
+        }
+    }
+}
+ 

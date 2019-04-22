@@ -1,0 +1,70 @@
+﻿@using Telerik.Sitefinity.Mvc;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+<form>
+    <div class="form-group">
+        <label for="heading-text">
+            @Html.Resource("Heading")
+        </label>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="properties.UsePageTitle.PropertyValue"> Use the page title
+            </label>
+        </div>
+        <input id="heading-text" type="text" class="form-control" ng-model="properties.Heading.PropertyValue" ng-show="!properties.UsePageTitle.PropertyValue" />
+    </div>
+
+    <div class="form-group">
+        <label for="description-text">@Html.Resource("Text")</label>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="properties.UsePageDescription.PropertyValue"> Use the page description
+            </label>
+        </div>
+        <textarea id="description-text" class="form-control" rows="3" ng-model="properties.Description.PropertyValue" ng-show="!properties.UsePageDescription.PropertyValue"></textarea>
+        @*<sf-html-field id="description-text" class="kendo-content-block" sf-model="properties.Description.PropertyValue"></sf-html-field>*@
+    </div>
+
+    @*<div class="form-group">
+        <label for="image-field" class="m-top-sm">@Html.Resource("Image")</label>
+        <sf-image-field class="sf-Media--info modal-settings modal-settings-space"
+                        sf-model="properties.ImageId.PropertyValue"
+                        sf-image="selectedImage"
+                        sf-provider="properties.ImageProviderName.PropertyValue"
+                        id="image-field"
+                        sf-media-settings="@SettingsHelpers.GetMediaSettings("Image")"></sf-image-field>
+    </div>*@
+
+    <expander expander-title='@Html.Resource("MoreOptions")'>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="properties.DisableHeading.PropertyValue"> Disable the title
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="properties.DisableDescription.PropertyValue"> Disable the description
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="templateName">@Html.Resource("Template")</label>
+            <div class="row">
+                <div class="col-xs-6">
+                    <select id="templateName" ng-model="properties.TemplateName.PropertyValue" class="form-control">
+                        @foreach (var viewName in Html.GetViewNames("PageBanner", @"(?<viewName>^PageBanner.*)$"))
+                        {
+                            <option value="@viewName"> @viewName.Replace(".", "").SplitCamelCase()</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <style-dropdown selected-class="properties.CssClass.PropertyValue" view-name="properties.TemplateName.PropertyValue"></style-dropdown>
+        <div class="form-group">
+            <label for="cssClass">
+                @Html.Resource("CssClasses")
+            </label>
+            <input id="cssClass" type="text" ng-model="properties.CssClass.PropertyValue" class="form-control" />
+        </div>
+    </expander>
+</form>

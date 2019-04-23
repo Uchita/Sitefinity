@@ -8196,9 +8196,6 @@ header {
         @media (max-width: 1024px) {
           header .navbar.navbar-default .navbar-nav > li:first-child a {
             padding-left: 20px !important; } }
-        @media (max-width: 768px) {
-          header .navbar.navbar-default .navbar-nav > li:first-child a {
-            padding-left: 0px !important; } }
       header .navbar.navbar-default .navbar-nav > li > a, header .navbar.navbar-default .navbar-nav > .active > a {
         font-size: 16px;
         font-size: 1.6rem;
@@ -11208,6 +11205,10 @@ ul.breadcrumb {
     min-width: 250px;
     display: inline-block;
     float: right; }
+    @media (max-width: 1024px) {
+      .page-wrapper .search-top .select {
+        float: left;
+        display: block; } }
     .page-wrapper .search-top .select select {
       display: block;
       width: 100%;
@@ -12672,7 +12673,7 @@ select.articles-order {
     header .navbar.navbar-default .navbar-nav > li + li > a:before {
       left: -6px; }
   header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu {
-    padding: 10px;
+    padding: 0px;
     width: 50%; }
     header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu:nth-child(4) {
       display: none; }
@@ -12812,8 +12813,10 @@ select.articles-order {
     .board-members-row > div {
       max-width: 500px;
       margin: 0 auto 40px; }
+  .left-sidebar .container-fluid {
+    font-size: 1.6rem;
+    margin-bottom: 0; }
   .page-wrapper .form-control,
-  .left-sidebar .container-fluid,
   .left-sidebar .navbar-collapse {
     font-size: 1.6rem;
     margin-bottom: 0; }
@@ -12864,7 +12867,8 @@ select.articles-order {
 @media (max-width: 768px) {
   header .main-nav .nav.navbar-nav {
     margin-left: 0;
-    width: calc(100% + 40px); }
+    width: calc(100% + 40px);
+    margin-left: -20px; }
   header .navbar.navbar-default .navbar-nav > li > a {
     font-size: 13px !important; }
   header .brand-logo {

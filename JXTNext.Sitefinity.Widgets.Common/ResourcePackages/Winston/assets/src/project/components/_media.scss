@@ -518,7 +518,7 @@
         .main-nav .navbar-nav > li.dropdown:hover {
 
             .dropdown-menu {
-                padding: 10px;
+                padding: 0px;
                 width: 50%;
 
                 &:nth-child(4) {
@@ -803,8 +803,14 @@
         }
     }
 
+
+    
+    .left-sidebar .container-fluid{
+        font-size: 1.6rem;
+        margin-bottom: 0;
+    }
+
     .page-wrapper .form-control,
-    .left-sidebar .container-fluid,
     .left-sidebar .navbar-collapse {
         font-size: 1.6rem;
         margin-bottom: 0;
@@ -892,7 +898,9 @@
 @media(max-width:768px) {
     header .main-nav .nav.navbar-nav {
         margin-left: 0;
-        width: calc(100% + 40px)
+        width: calc(100% + 40px);
+        margin-left:-20px;
+
     }
 
     header .navbar.navbar-default .navbar-nav > li > a {

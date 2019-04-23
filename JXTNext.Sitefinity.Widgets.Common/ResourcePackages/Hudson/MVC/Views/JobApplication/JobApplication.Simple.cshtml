@@ -43,6 +43,7 @@
                             </div>
                             <div class="col-md-8">
                                 <input id="userid" type="text" name="Email" class="form-control" required placeholder="Enter email address to begin" autocomplete="email" aria-describedby="email-verify-message" />
+                                <small class="welcome-message hidden">@Html.Resource("DashboardWelcomeWidgetTitle", "DashboardResources")</small>
                             </div>
                         </div>
 
@@ -393,63 +394,13 @@
     $("#documents-selected-type").val(documentsLetterSelectedType);
     $("#resume-selected-type").val(resumeSelectedType);
 
+    $('.welcome-message').addClass('hidden');
      // Password Strength
      var m_strUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
      var m_strLowerCase = "abcdefghijklmnopqrstuvwxyz";
      var m_strNumber = "0123456789";
      var m_strCharacters = "!@@#$%^&*?_~";
 
-    $("#haveAccount").change(function () {
-        $("#regWith").removeClass('checked');
-        $(this).addClass("checked");
-
-        //sing in process
-        $('#register').show();
-        $('#upload-files-container').hide();
-        $('#firstname-lastname').attr('hidden', 'true');
-        
-        $('#firstname-reg').prop('required', false);
-        $('#lastname-reg').prop('required', false);
-        $('#password-reg').removeAttr('pattern');
-        $('#password-reg').removeAttr('title');
-        $('#password-reg').prop('required', true);
-        $('#forgot-password').removeClass('hidden');
-        $('#rememberme-block').removeClass('hidden');
-        $('.reg-field').addClass('hidden');
-        $('#password-guide').addClass('hidden');
-        $('#password-reg').attr('placeholder', "Enter your password");
-        $('.loginwith_socialmedia').show();
-        $('#ReTypePassword').prop('required', false);
-        $('#sign-in-btn').removeClass('hidden');
-    });
-    $("#regWith").change(function () {
-        $("#haveAccount").removeClass('checked');
-        $(this).addClass("checked");
-
-        //showing registration form fields
-        $('#register').show();
-
-        $('#firstname-lastname').removeAttr('hidden');
-        $('#upload-files-container').show();
-        
-        $('#password-reg').prop('required', true);
-        $('#firstname-reg').prop('required', true);
-        $('#lastname-reg').prop('required', true);
-
-        $('#password-reg').prop('pattern', "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
-        $('#password-reg').prop('title', "Your password must contain at least one number, one uppercase and lowercase letter, and 8 or more characters.");
-
-        $('#password-guide').addClass('hidden');
-        
-        $('#strength-wrap').show();
-        $('#password-reg').attr('placeholder', "Choose your password").val('');
-        $('#forgot-password').addClass('hidden');
-        $('#rememberme-block').addClass('hidden');
-        $('.reg-field').removeClass('hidden');
-        $('.loginwith_socialmedia').hide();
-        $('#ReTypePassword').prop('required', true);
-        $('#sign-in-btn').addClass('hidden');
-    });
 
     $("#selectresume").change(function () {
         $("#uploadresumeblock").hide();
@@ -624,6 +575,81 @@
              }
          }
 
+         $("#haveAccount").change(function () {
+             $("#regWith").removeClass('checked');
+             $(this).addClass("checked");
+
+             //sing in process
+             $('#register').show();
+             $('#upload-files-container').hide();
+             $('#firstname-lastname').attr('hidden', 'true');
+
+             $('#firstname-reg').prop('required', false);
+             $('#lastname-reg').prop('required', false);
+             $('#password-reg').removeAttr('pattern');
+             $('#password-reg').removeAttr('title');
+             $('#password-reg').prop('required', true);
+             $('#forgot-password').removeClass('hidden');
+             $('#rememberme-block').removeClass('hidden');
+             $('.reg-field').addClass('hidden');
+             $('#password-guide').addClass('hidden');
+             $('#password-reg').attr('placeholder', "Enter your password");
+             $('.loginwith_socialmedia').show();
+
+             $('#ReTypePassword').prop('required', false);
+             $('#sign-in-btn').removeClass('hidden');
+         });
+         $("#regWith").change(function () {
+             var emailId = $('#userid').val();
+             var valid = validateEmail(emailId);
+             var parm = { email: emailId };
+
+             var urlPath = $(location).attr('pathname') + "/CheckUser";
+             if (valid) {
+                 $.ajax({
+                     type: 'POST',
+                     cache: false,
+                     url: urlPath,
+                     data: parm,
+                     dataType: 'Json',
+                     success: function (response) {
+                         if (response == true) {
+                             $('.welcome-message').removeClass('hidden');
+                             $("#haveAccount").trigger('click');
+                         } else {
+                             $("#haveAccount").removeClass('checked');
+                             $(this).addClass("checked");
+
+                             //showing registration form fields
+                             $('#register').show();
+
+                             $('#firstname-lastname').removeAttr('hidden');
+                             $('#upload-files-container').show();
+
+                             $('#password-reg').prop('required', true);
+                             $('#firstname-reg').prop('required', true);
+                             $('#lastname-reg').prop('required', true);
+
+                             $('#password-reg').prop('pattern', "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
+                             $('#password-reg').prop('title', "Your password must contain at least one number, one uppercase and lowercase letter, and 8 or more characters.");
+
+                             $('#password-guide').addClass('hidden');
+
+                             $('#strength-wrap').show();
+                             $('#password-reg').attr('placeholder', "Choose your password").val('');
+                             $('#forgot-password').addClass('hidden');
+                             $('#rememberme-block').addClass('hidden');
+                             $('.reg-field').removeClass('hidden');
+                             $('.loginwith_socialmedia').hide();
+                             $('#ReTypePassword').prop('required', true);
+                             $('#sign-in-btn').addClass('hidden');
+                             $('.welcome-message').addClass('hidden');
+                         }
+                     }
+                 }); //end of ajax
+             }
+         });
+
          //member sign in continue
          $('#sign-in-btn').click(function () {
              $('#password-reg').parent().find('.error-message.emptyPassword-message').addClass('hidden');
@@ -715,15 +741,47 @@
         $('#userid').keyup(function () {
             var emailId = $(this).val();
             var valid = validateEmail(emailId);
-            var parm = { email: emailId };
-            var urlPath = $(location).attr('pathname') + "/CheckUser";
 
             if (valid) {
                 $(this).css('color', '#000');
             } else {
                 $(this).css('color', 'red');
             }
-        });
+         });
+
+         $('#userid').keydown(function (e) {
+             if (e.which == 13) { //only if enter key pressed
+           
+                var emailId = $(this).val();
+                var valid = validateEmail(emailId);
+                var parm = { email: emailId };
+
+                var urlPath = $(location).attr('pathname') + "/CheckUser"
+
+                 if (valid) {
+                     $.ajax({
+                         type: 'POST',
+                         cache: false,
+                         url: urlPath,
+                         data: parm,
+                         dataType: 'Json',
+                         success: function (response) {
+                             if (response == false) {
+                                 $('.welcome-message').removeClass('hidden');
+                                 $("#haveAccount").trigger('click');
+                             } else {
+                                 $('.welcome-message').addClass('hidden');
+                                 $("#regWith").trigger('click');
+                             }
+                         }
+                     });
+
+                 } else {
+                     $('.welcome-message').addClass('hidden');
+                 }
+             }
+
+         });
 
          $('#password-reg').keyup(function () {
              if (registerForm) {

@@ -10092,6 +10092,9 @@ ul.breadcrumb {
     padding: 0 !important; }
     .page-wrapper #indeed-btnwrapper .indeed-apply-button span {
       display: none !important; }
+  .page-wrapper #linkedin-widget-holder a.btn-linkedin-signin {
+    max-width: 200px;
+    display: block; }
   .page-wrapper .apply-with ul, .page-wrapper .sign-in-with ul {
     padding-left: 0; }
     .page-wrapper .apply-with ul li, .page-wrapper .sign-in-with ul li {

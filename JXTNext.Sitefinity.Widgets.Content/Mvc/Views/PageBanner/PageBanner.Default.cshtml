@@ -1,0 +1,12 @@
+﻿@model JXTNext.Sitefinity.Widgets.Content.Mvc.Models.PageBanner.PageBannerViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using JXTNext.Sitefinity.Common.Helpers;
+@using JXTNext.Sitefinity.Common.Mvc.Helpers;
+
+<div class="@Model.CssClass" @SfHtmlHelper.BgImageStyle(Model.ImageUrl)>
+    @* Render the heading within the specified HTML element with css class if the heading has a value *@
+    @Html.DynamicTag("div", Model.Heading, SfHtmlHelper.CreateCssClass(Model.DefaultCssClass, "__hdg"))
+    @* Render the description within the specified HTML element with css class if the heading has a value *@
+    @Html.DynamicTag("div", Model.Description, SfHtmlHelper.CreateCssClass(Model.DefaultCssClass, "__desc"))
+</div>

@@ -30,11 +30,6 @@
 <div class="login-form sign-in-with">
     <form id="job-app-form" action="@Url.Action("ApplyJob","JobApplication")" method="post" enctype="multipart/form-data" autocomplete="off">
 
-        <div class="row">
-            <div class="col-xs-12 col-md-4 text-right"></div>
-            <div class="col-xs-12 col-md-8"><h2 id="appFormState">Enter your details</h2></div>
-        </div>
-
         <div class="basic-form">
             <!-- Login/Register form fields -->
             @if (!ViewBag.IsUserLoggedIn)
@@ -43,7 +38,7 @@
 
                     <div id="check-login" class="form-group">
                         <div class="row">
-                            <div class="col-md-4 text-right">
+                            <div class="col-md-3 text-right">
                                 <label class="form-label" for="userid">@Html.Resource("Email", "LoginFormResources")*</label>
                             </div>
                             <div class="col-md-8">
@@ -51,12 +46,31 @@
                                 <small class="welcome-message hidden">@Html.Resource("DashboardWelcomeWidgetTitle", "DashboardResources")</small>
                             </div>
                         </div>
+
+                        <div class="form-group row" id="applyMethodOption">
+                            <label class="form-label col-xs-12 col-md-3 text-right"></label>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="list-group">
+                                    <label for="regWith" class="radiobutton">
+                                        <input id="regWith" type="radio" name="regOption" />
+                                        <span class="radiobutton-icon fas fa-circle"></span>
+                                        <span class="text-right text-uppercase">Register with Hudson</span>
+                                    </label>
+                                    <label for="haveAccount" class="radiobutton">
+                                        <input id="haveAccount" type="radio" name="regOption" />
+                                        <span class="radiobutton-icon fas fa-circle"></span>
+                                        <span class="text-right text-uppercase">I have an account</span>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
 
                     <div id="register" hidden>
                         <div id="firstname-lastname">
                             <div class="row">
-                                <div class="col-md-4 text-right">
+                                <div class="col-md-3 text-right">
                                     <label class="form-label" for="firstname-reg">@Html.Resource("Name", "LoginFormResources")*</label>
                                 </div>
                                 <div class="col-md-4">
@@ -72,24 +86,25 @@
                             </div>
 
                             <div class="row form-group">
-                                <div class="col-md-4 text-right">
+                                <div class="col-md-3 text-right">
                                     <label class="form-label" for="PhoneNumber">
                                         Phone Number
                                     </label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="tel" id="PhoneNumber" name="PhoneNumber" pattern="^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})" class="form-control" placeholder="Phone number" aria-describedby="phone-message" />
-                                    <span class="text-muted"><em>@Html.Resource("phoneValidationMsg", "Labels")</em></span>
+                                    <input type="tel" id="PhoneNumber" name="PhoneNumber" pattern="@Html.Resource("regExpPhoneNumber", "Labels")" class="form-control input-medium" placeholder="Phone number" aria-describedby="phone-message" />
+                                    <span class="text-muted"><em>@Html.Resource("phoneValidationMsg", "Labels")
+                                         </em></span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-md-4 text-right">
+                            <div class="col-md-3 text-right">
                                 <label class="form-label" for="password-reg">@Html.Resource("Password", "Labels")*</label>
                             </div>
                             <div class="col-md-8">
-                                <input id="password-reg" type="password" name="Password" class="form-control" autocomplete="off" placeholder="Choose your password" aria-describedby="password-message" />
+                                <input id="password-reg" type="password" name="Password" class="form-control input-medium" autocomplete="off" placeholder="Choose your password" aria-describedby="password-message" />
                                 <span class="hidden alert alert-danger error-message wrongPassword-message">
                                     @Html.Resource("InvalidPassword", "ErrorMessages")
                                 </span>
@@ -100,7 +115,7 @@
                                     <em>@Html.Resource("passwordRequirementMsg", "Labels")</em>
                                 </span>
                                 <div id="forgot-password" class="form-group forgot-password hidden">
-                                    <br /><a href="/sign-in/ForgotPassword/">@Html.Resource("ForgottenPasword", "LoginFormResources")</a>
+                                    <a href="/sign-in/ForgotPassword/">@Html.Resource("ForgottenPasword", "LoginFormResources")</a>
                                 </div>
 
                                 <div class="form-group" id="rememberme-block">
@@ -111,27 +126,19 @@
                                     </div>
                                 </div>
 
-                                <input type="button" id="sign-in-btn" class="form-group hidden btn btn-primary btn-block" data-jobid="@Model.JobId" value="@Html.Resource("JobApplicationSignIn", "JobApplicationResources")" />
+                                <input type="button" id="sign-in-btn" class="form-group hidden btn btn-primary" data-jobid="@Model.JobId" value="@Html.Resource("JobApplicationSignIn", "JobApplicationResources")" />
                             </div>
                         </div>
 
-                        <!-- Password strenght -->
-                        @*<div class="row" id="strength-wrap" style="display:none;">
-                                <div class="col-md-4 text-right">
-                                    <label class="form-label" for="password-reg">Password strength</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <div id="password-strength"><span class="strengh-text"></span></div>
-                                </div>
-                            </div>*@
-                        <!-- Password strenght -->
-
                         <div class="row form-group reg-field hidden">
-                            <div class="col-md-4 text-right">
+                            <div class="col-md-3 text-right">
                                 <label class="form-label" for="ReTypePassword">@Html.Resource("ReTypePassword", "RegistrationResources")*</label>
                             </div>
                             <div class="col-md-8">
-                                <input id="ReTypePassword" type="password" name="ReTypePassword" class="form-control" placeholder="Retype your password" />
+                                <input id="ReTypePassword" type="password" name="ReTypePassword" class="form-control input-medium" placeholder="Retype your password" />
+                                <span id="password-guide-retype" class="text-muted">
+                                    <em>@Html.Resource("passwordRequirementMsg", "Labels")</em>
+                                </span>
                                 <div class='alert alert-danger error-message hidden'>@Html.Resource("ConfirmPasswordErrorMsg", "ErrorMessages")</div>
                             </div>
                         </div>
@@ -157,7 +164,7 @@
                         loginElemHide = "hidden";
 
                         <div class="form-group row">
-                            <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                            <label class="form-label col-xs-12 col-md-3 text-right"></label>
                             <div class="col-xs-12 col-md-8">
                                 <div class="list-group">
                                     <label for="selectresume" class="radiobutton">
@@ -177,7 +184,7 @@
 
 
                         <div class="form-group row">
-                            <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                            <label class="form-label col-xs-12 col-md-3 text-right"></label>
                             <div class="col-xs-12 col-md-8">
                                 <div class="list-group select">
                                     @Html.DropDownList("MySavedResumes", (IEnumerable<SelectListItem>)ViewBag.ResumeList, new { @onchange = "ProcessSavedResume(this.value)" })
@@ -188,7 +195,7 @@
                     }
 
                     <div class="form-group row" id="user-profile-resume" hidden>
-                        <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                        <label class="form-label col-xs-12 col-md-3 text-right"></label>
                         <div class="col-xs-12 col-md-8">
                             <div class="list-group">
                                 <label for="selectresume" class="radiobutton">
@@ -204,7 +211,7 @@
                             </div>
 
                         </div>
-                        <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                        <label class="form-label col-xs-12 col-md-3 text-right"></label>
                         <div class="col-xs-12 col-md-8">
                             <div class="list-group select">
                                 <select id="user-profile-resume-list"></select><!-- end box -->
@@ -216,13 +223,12 @@
 
                     <!-- Resume -->
                     <div class="form-group row" id="uploadresumeblock" @loginElemHide>
-                        <label class="form-label col-xs-12 col-md-4 text-right">upload your resume*</label>
+                        <label class="form-label col-xs-12 col-md-3 text-right">upload your resume*</label>
                         <div class="col-xs-12 col-md-8">
-                            <div class="box clearfix text-center">
-                                <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
-                                <div class="uploadfield-wrap">
-                                    <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
+                            <div class="box clearfix">
 
+                                <div class="uploadfield-wrap browse-upload">
+                                    <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
 
                                     <small class="lbl">Browse</small>
                                 </div>
@@ -234,7 +240,8 @@
                                     <button type="button" id="resume-google-drive-btn">Google Drive Resume</button>
                                     <small class="lbl">Google Drive</small>
                                 </div>
-                                <span class="note resume-name"></span>
+                                <small class="note">@Html.Resource("UploadFileFormat", "Labels") <span>@Html.Resource("UploadFileSizeResume", "Labels")</span></small>
+                                <span class="displayFileName resume-name"><span class="filewrap"></span></span>
                             </div><!-- end box -->
 
                         </div>
@@ -242,11 +249,11 @@
 
                     <!-- Coverletter -->
                     <div class="form-group row">
-                        <label class="form-label col-xs-12 col-md-4 text-right">upload Cover Letter</label>
+                        <label class="form-label col-xs-12 col-md-3 text-right">upload Cover Letter</label>
                         <div class="col-xs-12 col-md-8">
-                            <div class="box clearfix text-center">
-                                <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
-                                <div class="uploadfield-wrap">
+                            <div class="box clearfix">
+
+                                <div class="uploadfield-wrap browse-upload">
                                     <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
                                     <small class="lbl">Browse</small>
                                 </div>
@@ -258,19 +265,20 @@
                                     <button type="button" id="coverletter-google-drive-btn">Google Drive CoverLetter</button>
                                     <small class="lbl">Google Drive</small>
                                 </div>
-                                <span class="note coverletter-name"></span>
+                                <small class="note">@Html.Resource("UploadFileFormat", "Labels") <span>@Html.Resource("UploadFileSizeCoverletter", "Labels")</span></small>
+                                <span class="displayFileName coverletter-name"><span class="filewrap"></span></span>
                             </div><!-- end box -->
                         </div>
                     </div>
 
                     <!-- Documents -->
                     <div class="form-group row">
-                        <label class="form-label col-xs-12 col-md-4 text-right">upload documents</label>
+                        <label class="form-label col-xs-12 col-md-3 text-right">upload document</label>
                         <div class="col-xs-12 col-md-8">
-                            <div class="box clearfix text-center">
-                                <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
-                                <div class="uploadfield-wrap">
-                                    <input type="file" multiple id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
+                            <div class="box clearfix">
+                                
+                                <div class="uploadfield-wrap browse-upload">
+                                    <input type="file" id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
                                     <small class="lbl">Browse</small>
                                 </div>
                                 <div class="uploadfield-wrap dropbox-upload">
@@ -281,7 +289,8 @@
                                     <button type="button" id="documents-google-drive-btn">Google Drive Documents</button>
                                     <small class="lbl">Google Drive</small>
                                 </div>
-                                <span class="note documents-name"></span>
+                                <small class="note">@Html.Resource("UploadFileFormat", "Labels") <span>@Html.Resource("UploadFileSizeDocument", "Labels")</span></small>
+                                <span class="displayFileName documents-name"><span class="filewrap"></span></span>
                             </div><!-- end box -->
                         </div>
                     </div>
@@ -303,7 +312,7 @@
 
 
                     <div class="form-group button-wrapper row">
-                        <label class="col-xs-12 col-md-4"></label>
+                        <label class="col-xs-12 col-md-3"></label>
                         <div class="col-xs-12 col-md-8">
                             <div class="checkbox clearfix">
 
@@ -385,11 +394,13 @@
     $("#documents-selected-type").val(documentsLetterSelectedType);
     $("#resume-selected-type").val(resumeSelectedType);
 
+    $('.welcome-message').addClass('hidden');
      // Password Strength
      var m_strUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
      var m_strLowerCase = "abcdefghijklmnopqrstuvwxyz";
      var m_strNumber = "0123456789";
      var m_strCharacters = "!@@#$%^&*?_~";
+
 
     $("#selectresume").change(function () {
         $("#uploadresumeblock").hide();
@@ -413,6 +424,20 @@
 
     });
 
+
+    //
+    function checkUploadFileSize(uploadMethod, fileSize) {
+        if (uploadMethod == "resume" && fileSize > 2097152) { //2mb
+            alert('@Html.Resource("FileSizeAlertResume", "ErrorMessages")');
+            return false;
+        } else if (uploadMethod == "coverletter" && fileSize > 524288) { //0.5mb
+            alert('@Html.Resource("FileSizeAlertCoverletter", "ErrorMessages")');
+            return false;
+        } else if (uploadMethod == "document" && fileSize > 314573) { //0.3mb
+            alert('@Html.Resource("FileSizeAlertDocument", "ErrorMessages")');
+            return false;
+        }
+    }
 
      $(document).ready(function () {
 
@@ -449,7 +474,6 @@
              $('#apply').removeAttr('disabled');
              $('#userid').removeAttr('required');
              $('#upload-files-container').show();
-             $('#appFormState').text('Upload your files');
          }
 
          if (appStatus == 'Available' && isUserLoggedIn != 'True') {
@@ -463,36 +487,69 @@
 
          $('#application-resume').change(function () {
             resumeSelectedType = 'Local';
-            $("#resume-selected-type").val(resumeSelectedType);
-            var resumeBrowseName = document.getElementById("application-resume").files[0].name;
-             $(".resume-name").text(resumeBrowseName);
-
-             if (userLoggedInParamFromViewbag == 'True') {
-                 $("#MySavedResumes").val('0');
+             $("#resume-selected-type").val(resumeSelectedType);
+             var resumeFile = document.getElementById("application-resume");
+             var resumeBrowseName = resumeFile.files[0].name;
+             var resumeSize = resumeFile.files[0].size;
+             //checking file size
+             if (checkUploadFileSize("resume", resumeSize) == false) { //2mb
+                 $(".resume-name .filewrap").text('');
+                 resumeFile.value = "";
              } else {
-                 $("#user-profile-resume-list").val('0');
+                 $(".resume-name .filewrap").text(resumeBrowseName);
+                 if (userLoggedInParamFromViewbag == 'True') {
+                     $("#MySavedResumes").val('0');
+                 } else {
+                     $("#user-profile-resume-list").val('0');
+                 }
+                 $(".resume-message").addClass('hidden');
+                 //hiding the upload section icons
+                 $(".resume-name").append('<span class="removeBtn">remove</span>');
+                 $(this).parents('.box').addClass('hasFile');
              }
-            $(".resume-message").addClass('hidden');
+            
         });
 
         $('#application-coverletter').change(function () {
             coverLetterSelectedType = 'Local';
             $("#coverletter-selected-type").val(coverLetterSelectedType);
-            var coverletterBrowseName = document.getElementById("application-coverletter").files[0].name;
-            $(".coverletter-name").text(coverletterBrowseName);
+            var coverletterFile = document.getElementById("application-coverletter");
+            var coverletterBrowseName = coverletterFile.files[0].name;
+            var coverletterSize = coverletterFile.files[0].size;
+            
+            if (checkUploadFileSize("coverletter",coverletterSize) == false) { //0.5mb
+                $(".coverletter-name .filewrap").text('');
+                coverletterFile.value = "";
+                $(this).parent('.box').removeClass('hasFile');
+            } else {
+                $(".coverletter-name .filewrap").text(coverletterBrowseName);
+                $(".coverletter-name").append('<span class="removeBtn">remove</span>');
+                $(this).parents('.box').addClass('hasFile');
+            }
          });
 
          $('#application-documents').change(function () {
              documentsSelectedType = 'Local';
              $("#documents-selected-type").val(documentsSelectedType);
-             var files = document.getElementById("application-documents").files;
-             var documentsBrowseName = "";
-             for (var i = 0; i < files.length; i++) {
-                 if (documentsBrowseName != "")
-                     documentsBrowseName += "<br/>";
-                 documentsBrowseName += files[i].name;
+             var docFile = document.getElementById("application-documents");
+             var docFileName = docFile.files[0].name;
+             var docFileSize = docFile.files[0].size;
+             if (checkUploadFileSize("document",docFileSize) == false) { //0.3mb
+                 $(".documents-name .filewrap").text('');
+                 docFile.value = "";
+             } else {
+                 $(".documents-name .filewrap").text(docFileName);
+                 $(".documents-name").append('<span class="removeBtn">remove</span>');
+                 $(this).parents('.box').addClass('hasFile');
              }
-             $(".documents-name").html(documentsBrowseName);
+         });
+
+         $('#upload-files-container .box').on('click', '.removeBtn', function () {
+             var curFile = $(this).parents('.box');
+             curFile.removeClass('hasFile');
+             curFile.find('.displayFileName .filewrap').text('');
+             curFile.find('.displayFileName .removeBtn').remove();
+             curFile.find('input[type="file"]').val('');
          });
 
          //on enter key on password field triggering sign in button click
@@ -517,6 +574,81 @@
                  $('#user-profile-resume-list').html('<option val="0">SELECT YOUR RESUME</option>');
              }
          }
+
+         $("#haveAccount").change(function () {
+             $("#regWith").removeClass('checked');
+             $(this).addClass("checked");
+
+             //sing in process
+             $('#register').show();
+             $('#upload-files-container').hide();
+             $('#firstname-lastname').attr('hidden', 'true');
+
+             $('#firstname-reg').prop('required', false);
+             $('#lastname-reg').prop('required', false);
+             $('#password-reg').removeAttr('pattern');
+             $('#password-reg').removeAttr('title');
+             $('#password-reg').prop('required', true);
+             $('#forgot-password').removeClass('hidden');
+             $('#rememberme-block').removeClass('hidden');
+             $('.reg-field').addClass('hidden');
+             $('#password-guide').addClass('hidden');
+             $('#password-reg').attr('placeholder', "Enter your password");
+             $('.loginwith_socialmedia').show();
+
+             $('#ReTypePassword').prop('required', false);
+             $('#sign-in-btn').removeClass('hidden');
+         });
+         $("#regWith").change(function () {
+             var emailId = $('#userid').val();
+             var valid = validateEmail(emailId);
+             var parm = { email: emailId };
+
+             var urlPath = $(location).attr('pathname') + "/CheckUser";
+             if (valid) {
+                 $.ajax({
+                     type: 'POST',
+                     cache: false,
+                     url: urlPath,
+                     data: parm,
+                     dataType: 'Json',
+                     success: function (response) {
+                         if (response == true) {
+                             $('.welcome-message').removeClass('hidden');
+                             $("#haveAccount").trigger('click');
+                         } else {
+                             $("#haveAccount").removeClass('checked');
+                             $(this).addClass("checked");
+
+                             //showing registration form fields
+                             $('#register').show();
+
+                             $('#firstname-lastname').removeAttr('hidden');
+                             $('#upload-files-container').show();
+
+                             $('#password-reg').prop('required', true);
+                             $('#firstname-reg').prop('required', true);
+                             $('#lastname-reg').prop('required', true);
+
+                             $('#password-reg').prop('pattern', "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
+                             $('#password-reg').prop('title', "Your password must contain at least one number, one uppercase and lowercase letter, and 8 or more characters.");
+
+                             $('#password-guide').addClass('hidden');
+
+                             $('#strength-wrap').show();
+                             $('#password-reg').attr('placeholder', "Choose your password").val('');
+                             $('#forgot-password').addClass('hidden');
+                             $('#rememberme-block').addClass('hidden');
+                             $('.reg-field').removeClass('hidden');
+                             $('.loginwith_socialmedia').hide();
+                             $('#ReTypePassword').prop('required', true);
+                             $('#sign-in-btn').addClass('hidden');
+                             $('.welcome-message').addClass('hidden');
+                         }
+                     }
+                 }); //end of ajax
+             }
+         });
 
          //member sign in continue
          $('#sign-in-btn').click(function () {
@@ -548,6 +680,8 @@
                          $('.header-top-links[data-sf-role="sf-logged-in-view"]').show();
                          $('.header-top-links[data-sf-role="sf-logged-out-view"]').hide();
                          $('.header-top-links [data-sf-role="sf-logged-in-name"]').text(response.FirstName);
+                         $('#applyMethodOption').hide();
+
                          processProfileResumeJsonData(response.myResumes);
                          var isAppliedPathUrl = urlPath + "/IsJobApplied";
                              $.ajax({
@@ -557,21 +691,20 @@
                                  data: { jobId: jobId},
                                  dataType: 'Json',
                                  success: function (response) {
-                                     console.log(response);
+                                     
                                      if (response.IsJobApplied == true) {
                                          $('#login-register-container').hide();
-                                         $('#appFormState').hide();
                                          $('#already-applied-info').removeClass('hidden');
                                          $('.ext-provider-form, .loginwith_socialmedia').hide();
                                      }
                                      else {
                                          //Show upload files section
+                                         
                                          $('#register').hide();
                                          $('#userid').attr('disabled', true);
                                          $('#apply').removeAttr('disabled');
                                          $('#userid').removeAttr('required');
                                          $('#upload-files-container').show();
-                                         $('#appFormState').text('Upload your files');
                                          $("#upload-files-container").show();
                                          $('#user-profile-resume').removeAttr('hidden');
                                          $('#uploadresumeblock').hide();
@@ -608,86 +741,47 @@
         $('#userid').keyup(function () {
             var emailId = $(this).val();
             var valid = validateEmail(emailId);
-            var parm = { email: emailId };
-            var urlPath = $(location).attr('pathname') + "/CheckUser";
 
             if (valid) {
                 $(this).css('color', '#000');
-                $.ajax({
-                    type: 'POST',
-                    cache: false,
-                    url: urlPath,
-                    data: parm,
-                    dataType: 'Json',
-                    success: function (response) {
-                        //get the registration form
-                        if (response == false) {
-                            $('#register').show();
-
-                            $('#firstname-lastname').removeAttr('hidden');
-                            $('#upload-files-container').show();
-                            registerForm = true;
-                            $('#password-reg').prop('required', true);
-                            $('#firstname-reg').prop('required', true);
-                            $('#lastname-reg').prop('required', true);
-
-                            $('#password-reg').prop('pattern', "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
-                            $('#password-reg').prop('title', "Your password must contain at least one number, one uppercase and lowercase letter, and 8 or more characters.");
-                            $('#password-guide').removeClass('hidden');
-                            $('#strength-wrap').show();
-                            $('#password-reg').attr('placeholder', "Choose your password").val('');
-                            $('#forgot-password').addClass('hidden');
-                            $('#rememberme-block').addClass('hidden');
-                            $('.reg-field').removeClass('hidden');
-                            $('.loginwith_socialmedia').hide();
-                            $('.welcome-message').addClass('hidden');
-                            $('#ReTypePassword').prop('required', true);
-                            $('#sign-in-btn').addClass('hidden');
-                        }
-                        //this is to show the password field
-                        //only sign in form
-                        else {
-                            $('#register').show();
-                            $('#upload-files-container').hide();
-                            $('#firstname-lastname').attr('hidden', 'true');
-                            registerForm = false;
-                            $('#firstname-reg').prop('required', false);
-                            $('#lastname-reg').prop('required', false);
-                            $('#password-reg').removeAttr('pattern');
-                            $('#password-reg').removeAttr('title');
-                            $('#password-reg').prop('required', true);
-                            $('#forgot-password').removeClass('hidden');
-                            $('#rememberme-block').removeClass('hidden');
-                            $('.reg-field').addClass('hidden');
-                            $('#password-guide').addClass('hidden');
-                            $('#password-reg').attr('placeholder', "Enter your password");
-                            $('.loginwith_socialmedia').show();
-                            $('.welcome-message').removeClass('hidden');
-                            $('#ReTypePassword').prop('required', false);
-                            $('#sign-in-btn').removeClass('hidden');
-
-                        }
-
-                        $('#apply').removeAttr('disabled');
-                    },
-                    error: function (response) {
-                   }
-                });
             } else {
-                $('.welcome-message').addClass('hidden');
-                $('.loginwith_socialmedia').show();
-                $('#upload-files-container').hide();
-                $('#register').hide();
                 $(this).css('color', 'red');
-                $('#password-reg').prop('required', false);
-                $('#firstname-reg').prop('required', false);
-                $('#password-reg').removeAttr('pattern');
-                $('#password-reg').removeAttr('title');
-                $('#password-reg').parent().find('.error-message.emptyPassword-message').addClass('hidden');
-                $('#password-reg').parent().find('.error-message.wrongPassword-message').addClass('hidden');
-                $('#rememberme-block').addClass('hidden');
             }
-        });
+         });
+
+         $('#userid').keydown(function (e) {
+             if (e.which == 13) { //only if enter key pressed
+           
+                var emailId = $(this).val();
+                var valid = validateEmail(emailId);
+                var parm = { email: emailId };
+
+                var urlPath = $(location).attr('pathname') + "/CheckUser"
+
+                 if (valid) {
+                     $.ajax({
+                         type: 'POST',
+                         cache: false,
+                         url: urlPath,
+                         data: parm,
+                         dataType: 'Json',
+                         success: function (response) {
+                             if (response == false) {
+                                 $('.welcome-message').removeClass('hidden');
+                                 $("#haveAccount").trigger('click');
+                             } else {
+                                 $('.welcome-message').addClass('hidden');
+                                 $("#regWith").trigger('click');
+                             }
+                         }
+                     });
+
+                 } else {
+                     $('.welcome-message').addClass('hidden');
+                 }
+             }
+
+         });
 
          $('#password-reg').keyup(function () {
              if (registerForm) {
@@ -713,8 +807,6 @@
                  }
              }
          });
-
-
 
 
          $("#user-profile-resume-list").on("change", function () {
@@ -901,37 +993,58 @@
 
                 if (isDropboxResume) {
                     resumeSelectedType = 'Dropbox';
-                    $('#uploadResumeJson').val(stringyModel);
-                    $('#application-resume').val('');
-                    $("#resume-selected-type").val(resumeSelectedType);
-                    $('.resume-name').text(files[0].name);
-                    if (userLoggedInParamFromViewbag == 'True') {
-                        $("#MySavedResumes").val('0');
+                    if (checkUploadFileSize("resume", files[0].bytes) == false) {
+                        $('#uploadResumeJson').val('');
+                        $("#resume-selected-type").val('');
+                        $(".resume-name .filewrap").text('');
                     } else {
-                        $("#user-profile-resume-list").val('0');
+                        $('#application-resume').val('');
+                        $('#uploadResumeJson').val(stringyModel);
+                        $("#resume-selected-type").val(resumeSelectedType);
+                        $('.resume-name .filewrap').text(files[0].name);
+                        $(".resume-name").append('<span class="removeBtn">remove</span>');
+                        $(".resume-name").parents('.box').addClass('hasFile');
+
+                        if (userLoggedInParamFromViewbag == 'True') {
+                            $("#MySavedResumes").val('0');
+                        } else {
+                            $("#user-profile-resume-list").val('0');
+                        }
                     }
 
                 }
                 else {
                     if (isDropboxCoverLetter) {
                         coverLetterSelectedType = 'Dropbox';
-                        $('#uploadCoverLetterJson').val(stringyModel);
-                        $('#application-coverletter').val('');
-                        $("#coverletter-selected-type").val(coverLetterSelectedType);
-                        $('.coverletter-name').text(files[0].name);
+                        if (checkUploadFileSize("coverletter", files[0].bytes) == false) {
+                            $('#uploadCoverLetterJson').val('');
+                            $("#coverletter-selected-type").val('');
+                            $('.coverletter-name .filewrap').text('');
+                        } else {
+                            $('#uploadCoverLetterJson').val(stringyModel);
+                            $('#application-coverletter').val('');
+                            $("#coverletter-selected-type").val(coverLetterSelectedType);
+                            $('.coverletter-name .filewrap').text(files[0].name);
+                            $(".coverletter-name").append('<span class="removeBtn">remove</span>');
+                            $(".coverletter-name").parents('.box').addClass('hasFile');
+                        }
+                        
                     }
                     else {
                         documentsSelectedType = 'Dropbox';
-                        $('#uploadDocumentsJson').val(stringyModel);
-                        $('#application-documents').val('');
-                        $("#documents-selected-type").val(documentsSelectedType);
-                        var Filenames = "";
-                        for (var i = 0; i < files.length; i++) {
-                            if (Filenames != "")
-                                Filenames += "<br/>";
-                            Filenames += files[i].name;
+                        if (checkUploadFileSize("document", files[0].bytes) == false) {
+                            $('#uploadDocumentsJson').val('');
+                            $("#documents-selected-type").val('');
+                            $('.documents-name .filewrap').html('');
+                        } else {
+                            $('#uploadDocumentsJson').val(stringyModel);
+                            $('#application-documents').val('');
+                            $("#documents-selected-type").val(documentsSelectedType);
+                            $('.documents-name .filewrap').html(files[0].name);
+                            $(".documents-name").append('<span class="removeBtn">remove</span>');
+                            $(".documents-name").parents('.box').addClass('hasFile');
                         }
-                        $('.documents-name').html(Filenames);
+                        
                     }
                 }
 
@@ -968,29 +1081,24 @@
          dropboxDocumentsOptions = {
              // Required. Called when a user selects an item in the Chooser.
              success: function (files) {
-
-                var stringyModel = "[";
-
-                 for (var i = 0; i < files.length; i++) {
-                     uploadResumeModel.UrlPath = files[i].link;
-                     uploadResumeModel.FileName = files[i].name;
-                     if (stringyModel != "[")
-                         stringyModel += ",";
-                     stringyModel += JSON.stringify(uploadResumeModel);
-                 }
-                 stringyModel += "]";
-
+                 uploadDocumentsModel.UrlPath = files[0].link;
+                 uploadDocumentsModel.FileName = files[0].name;
+                 var stringyModel = JSON.stringify(uploadDocumentsModel);
+                
                 documentsSelectedType = 'Dropbox';
-                $('#uploadDocumentsJson').val(stringyModel);
-                $('#application-documents').val('');
-                $("#documents-selected-type").val(documentsSelectedType);
-                var Filenames = "";
-                for (var i = 0; i < files.length; i++) {
-                    if (Filenames != "")
-                        Filenames += "<br/>";
-                    Filenames += files[i].name;
-                }
-                $('.documents-name').html(Filenames);
+
+                 if (checkUploadFileSize("document", files[0].bytes) == false) {
+                     $('#uploadDocumentsJson').val('');
+                     $("#documents-selected-type").val('');
+                     $('.documents-name .filewrap').html('');
+                 } else {
+                     $('#uploadDocumentsJson').val(stringyModel);
+                     $('#application-documents').val('');
+                     $("#documents-selected-type").val(documentsSelectedType);
+                     $('.documents-name .filewrap').html(files[0].name);
+                     $(".documents-name").append('<span class="removeBtn">remove</span>');
+                     $(".documents-name").parents('.box').addClass('hasFile');
+                 }
 
 
                  $('#dburl').text(files[0].link);
@@ -1008,7 +1116,7 @@
 
              // Optional. A value of false (default) limits selection to a single file, while
              // true enables multiple file selection.
-             multiselect: true, // or true
+             multiselect: false, // or true
 
              // Optional. This is a list of file extensions. If specified, the user will
              // only be able to select files with these extensions. You may also specify
@@ -1089,7 +1197,7 @@
                 gapi.auth2.authorize({
                     client_id: clientId,
                     scope: scope
-                }, handleAuthResultMulti);
+                }, handleAuthResult);
             });
         }
 
@@ -1161,6 +1269,7 @@
             var name = "";
             var fileId = "";
             var mime = "";
+            var size = 0;
 
 
             if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
@@ -1169,6 +1278,7 @@
                 url = doc[google.picker.Document.URL];
                 name = doc[google.picker.Document.NAME]
                 mime = doc[google.picker.Document.MIME_TYPE];
+                size = doc.sizeBytes;
 
                 uploadResumeModel.UrlPath = url;
                 uploadResumeModel.FileName = name;
@@ -1178,59 +1288,58 @@
 
                 var stringyModel = JSON.stringify(uploadResumeModel);
 
-                var docs = data[google.picker.Response.DOCUMENTS];
-                var stringyModels = "[";
-                var Filenames = "";
-
-                for (var i = 0; i < docs.length; i++) {
-                    doc = docs[i];
-                    fileId = doc[google.picker.Document.ID];
-                    url = doc[google.picker.Document.URL];
-                    name = doc[google.picker.Document.NAME]
-                    mime = doc[google.picker.Document.MIME_TYPE];
-
-                    uploadResumeModel.UrlPath = url;
-                    uploadResumeModel.FileName = name;
-                    uploadResumeModel.Field = fileId;
-                    uploadResumeModel.MIMEType = mime;
-                    uploadResumeModel.AuthToken = oauthToken;
-
-                    if (stringyModels != "[") {
-                        stringyModels += ",";
-                        Filenames += "<br/>";
-                    }
-                    stringyModels += JSON.stringify(uploadResumeModel);
-                    Filenames += doc[google.picker.Document.NAME];
-                }
-                stringyModels += "]";
-
                 if (isGoogleResume) {
                     resumeSelectedType = 'GoogleDrive';
-                    $('#uploadResumeJson').val(stringyModel);
-                    $('#application-resume').val('');
-                    $("#resume-selected-type").val(resumeSelectedType);
-                    $('.resume-name').text(name);
-                    if (userLoggedInParamFromViewbag == 'True') {
-                        $("#MySavedResumes").val('0');
+                    if (checkUploadFileSize("resume", size) == false) {
+                        $('#uploadResumeJson').val('');
+                        $("#resume-selected-type").val('');
+                        $('.resume-name .filewrap').text('');
                     } else {
-                        $("#user-profile-resume-list").val('0');
+                        $('#uploadResumeJson').val(stringyModel);
+                        $('#application-resume').val('');
+                        $("#resume-selected-type").val(resumeSelectedType);
+                        $('.resume-name .filewrap').text(name);
+                        $(".resume-name").append('<span class="removeBtn">remove</span>');
+                        $(".resume-name").parents('.box').addClass('hasFile');
+                        if (userLoggedInParamFromViewbag == 'True') {
+                            $("#MySavedResumes").val('0');
+                        } else {
+                            $("#user-profile-resume-list").val('0');
+                        }
                     }
-
                 }
                 else {
                     if (isGoogleCoverLetter) {
                         coverLetterSelectedType = 'GoogleDrive';
-                        $('#uploadCoverLetterJson').val(stringyModel);
-                        $('#application-coverletter').val('');
-                        $("#coverletter-selected-type").val(coverLetterSelectedType);
-                        $('.coverletter-name').text(name);
+                        if (checkUploadFileSize("coverletter", size) == false) {
+                            $('#uploadCoverLetterJson').val('');
+                            $("#coverletter-selected-type").val('');
+                            $('.coverletter-name .filewrap').text('');
+                        } else {
+                            $('#uploadCoverLetterJson').val(stringyModel);
+                            $('#application-coverletter').val('');
+                            $("#coverletter-selected-type").val(coverLetterSelectedType);
+                            $('.coverletter-name .filewrap').text(name);
+                            $(".coverletter-name").append('<span class="removeBtn">remove</span>');
+                            $(".coverletter-name").parents('.box').addClass('hasFile');
+                        }
+                        
                     }
                     else {
                         documentsSelectedType = 'GoogleDrive';
-                        $('#uploadDocumentsJson').val(stringyModels);
-                        $('#application-documents').val('');
-                        $("#documents-selected-type").val(documentsSelectedType);
-                        $('.documents-name').html(Filenames);
+                        if (checkUploadFileSize("document", size) == false) {
+                            $('#uploadDocumentsJson').val('');
+                            $("#documents-selected-type").val('');
+                            $('.documents-name .filewrap').text('');
+                        } else {
+                            $('#uploadDocumentsJson').val(stringyModel);
+                            $('#application-documents').val('');
+                            $("#documents-selected-type").val(documentsSelectedType);
+                            $('.documents-name .filewrap').text(name);
+                            $(".documents-name").append('<span class="removeBtn">remove</span>');
+                            $(".documents-name").parents('.box').addClass('hasFile');
+                        }
+                        
                     }
                 }
 

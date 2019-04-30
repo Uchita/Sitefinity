@@ -15,6 +15,7 @@ using Telerik.Sitefinity.GenericContent.Model;
 using Telerik.Sitefinity.Utilities.TypeConverters;
 using Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models;
 using SitefinityWebApp.Mvc.Models.CustomDynamicContent;
+using System.Threading;
 
 namespace SitefinityWebApp.Helpers
 {
@@ -31,11 +32,17 @@ namespace SitefinityWebApp.Helpers
 
         public static ItemViewModel GetFeaturedArticle()
         {
-            // TODO: Get only featured artcle.
-            var article = GetArticles()
-                .FilterByFlatTaxonName("Tags", "Featured", "Tags")
-                .OrderByDescending(a => a.GetValue<DateTime>("PublicationDate")).FirstOrDefault();
-            return article == null ? null : new ItemViewModel(article);
+            var cultureInfo = Thread.CurrentThread.CurrentUICulture;
+            if (cultureInfo.IsNeutralCulture)
+            {
+                // TODO: Get only featured artcle.
+                var article = GetArticles()
+                    .FilterByFlatTaxonName("Tags", "Featured", "Tags")
+                    .OrderByDescending(a => a.GetValue<DateTime>("PublicationDate")).FirstOrDefault();
+                return article == null ? null : new ItemViewModel(article);
+            }
+
+            return null;
         }
 
         public static string GetBestArticleUrl(IDataItem article)

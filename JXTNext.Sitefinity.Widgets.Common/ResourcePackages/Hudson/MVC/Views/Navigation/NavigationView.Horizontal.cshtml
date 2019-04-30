@@ -4,6 +4,7 @@
 @using Telerik.Sitefinity.Frontend.Navigation.Mvc.Models;
 @using Telerik.Sitefinity.Modules.Pages;
 @using SitefinityWebApp.Helpers;
+@using System.Globalization;
 
 @*For user login check*@
 @using JXTNext.Sitefinity.Common.Helpers;
@@ -56,7 +57,7 @@
                         @MobileRootLevelNode(node)
                     }
                     <li class="extra-mnu timesheet-mnu"><a href="/timesheets-and-payroll-process" title="Timesheets"><em class="far fa-calendar-alt"></em> Timesheets</a></li>
-                   
+
 
                     @* logged in out menu links *@
                     <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="display:none;"><a href="/user-dashboard" title="User Dashboard">@Html.Resource("LoggedAs", "LoginStatusExtendedResources") <span data-sf-role="sf-logged-in-name"></span></a></li>
@@ -69,9 +70,7 @@
                     <li class="dropdown extra-mnu site-switcher">
                         <a href="https://au.hudson.com/" title="Hudson Australia" class="curr-site-switcher">Hudson AU</a>
                         <span class="fas fa-angle-right custom-expander"></span>
-                        <ul class="dropdown-menu">
-                            
-                        </ul>
+                        <ul class="dropdown-menu"></ul>
                     </li>
 
                 </ul>
@@ -84,9 +83,10 @@
 @helper RenderRootLevelNode(NodeViewModel node)
 {
     var featuredArticle = ContentHelper.GetFeaturedArticle();
-    var lastInsight = ContentHelper.GetLastInsight();
+    @*Commenting this out because it is not being used and it costs performance*@
+    @*var lastInsight = ContentHelper.GetLastInsight();*@
 
-    if (node.ChildNodes.Count > 0)
+    if (node != null && node.ChildNodes.Count > 0)
     {
         <li class="dropdown @GetClass(node)">
             <a href="@node.Url" target="@node.LinkTarget" title="@node.Title">@node.Title<span class="decoration"></span></a>
@@ -278,7 +278,7 @@
         if ($('.header-top-links.form-negative select').length && $('.site-switcher').length) {
             var siteSwitcher = $('.header-top-links.form-negative select');
             var mobSiteSwitcherItem = $('.site-switcher');
-            //for the first 
+            //for the first
             mobSiteSwitcherItem.find('>a')
                 .attr('href', siteSwitcher.find('option').first().attr('value'))
                 .text(siteSwitcher.find('option').first().text());

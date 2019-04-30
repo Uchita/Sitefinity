@@ -2,22 +2,12 @@
 @using Telerik.Sitefinity.Services;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 @using JXTNext.Sitefinity.Common.Helpers
-@using System;
-@using System.Web;
+
 
 @{
     var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
     bool isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
     var defaultLogo = "/ResourcePackages/Hudson/assets/dist/images/defaultLogo.png";
-
-    var currencySymbol = "&yen;";
-
-    string DomainName = HttpContext.Current.Request.Url.Host;
-
-    if (DomainName.Contains(".cn"))
-    {
-        currencySymbol = "¥";
-    }
 }
 
 <div class="result-meta">
@@ -86,6 +76,7 @@
 
             <div class="row">
                 <div class="col-sm-8 col-xs-12">
+
                     <h3><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="search-result-title" title="#:Title#">#:Title#</a></h3>
                 </div>
                 <div class="col-sm-4 col-xs-12 text-right">
@@ -112,7 +103,7 @@
                         }
                         else{
                         #<span class="meta-salary">
-                            @currencySymbol#:CustomData["Salary.Filters[0].Min"]# - @currencySymbol#:CustomData["Salary.Filters[0].Max"]# <br />#
+                            $#:CustomData["Salary.Filters[0].Min"]# - $#:CustomData["Salary.Filters[0].Max"]# <br />#
                             }
                             #<span class="salary-label">#:CustomData["Salary.Filters[0].Value"]#</span>
                         </span><br />#

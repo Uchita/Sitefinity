@@ -23,7 +23,16 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 _siteSettingsContract = (CustomSiteSettingsContract)siteSetting.Item;
         }
 
-         public string GetCurrentSiteGoogleClientId()
+        public string GetCurrentSiteCultureIsEnabled()
+        {
+            string cultureIsEnabled = "";
+            if (this._siteSettingsContract != null)
+                cultureIsEnabled = this._siteSettingsContract.CultureIsEnabled;
+
+            return cultureIsEnabled;
+        }
+
+        public string GetCurrentSiteGoogleClientId()
         {
             string googleClentId = "";
             if (this._siteSettingsContract != null)
@@ -148,6 +157,8 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
             return indeedClientSecret;
         }
+
+        
 
         public string GetCurrentSiteInstagramClientIdToken()
         {

@@ -507,5 +507,21 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             }
         }
         #endregion
+
+        [ConfigurationProperty("cultureIsEnabled")]
+        [DescriptionResource(typeof(ConfigDescriptions), "CultureIsEnabled")]
+
+        [DataMember]
+        public virtual String CurrentCultureIsEnabled
+        {
+            get
+            {
+                return (String)this["cultureIsEnabled"];
+            }
+            set
+            {
+                this["cultureIsEnabled"] = value;
+            }
+        }
     }
 }

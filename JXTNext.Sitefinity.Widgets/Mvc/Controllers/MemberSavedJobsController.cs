@@ -52,6 +52,7 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
             {
                 IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = job.JobId };
                 IGetJobListingResponse jobListingResponse = _blConnector.GuestGetJob(jobListingRequest);
+                job.Culture = jobListingResponse.Job.Culture;
                 job.ClassificationURL = jobListingResponse.Job?.ClassificationURL;
             }
 

@@ -232,14 +232,22 @@
 
                                     <small class="lbl">Browse</small>
                                 </div>
-                                <div class="uploadfield-wrap dropbox-upload">
-                                    <button type="button" id="dropbox-resume-btn">Dropbox Resume</button>
-                                    <small class="lbl">Dropbox</small>
-                                </div>
-                                <div class="uploadfield-wrap google-drive-upload">
-                                    <button type="button" id="resume-google-drive-btn">Google Drive Resume</button>
-                                    <small class="lbl">Google Drive</small>
-                                </div>
+                                @if (Model.HideDropBox == true)
+                                {
+                                    <div class="uploadfield-wrap dropbox-upload">
+                                        <button type="button" id="dropbox-resume-btn">Dropbox Resume</button>
+                                        <small class="lbl">Dropbox</small>
+                                    </div>
+                                }
+
+                                @if (Model.HideGoogleDrive == true)
+                                {
+                                    <div class="uploadfield-wrap google-drive-upload">
+                                        <button type="button" id="resume-google-drive-btn">Google Drive Resume</button>
+                                        <small class="lbl">Google Drive</small>
+                                    </div>
+                                }
+
                                 <small class="note">@Html.Resource("UploadFileFormat", "Labels") <span>@Html.Resource("UploadFileSizeResume", "Labels")</span></small>
                                 <span class="displayFileName resume-name"><span class="filewrap"></span></span>
                             </div><!-- end box -->
@@ -257,14 +265,21 @@
                                     <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
                                     <small class="lbl">Browse</small>
                                 </div>
-                                <div class="uploadfield-wrap dropbox-upload">
-                                    <button type="button" id="dropbox-coverletter-btn">Dropbox Cover Letter</button>
-                                    <small class="lbl">Dropbox</small>
-                                </div>
-                                <div class="uploadfield-wrap google-drive-upload">
-                                    <button type="button" id="coverletter-google-drive-btn">Google Drive CoverLetter</button>
-                                    <small class="lbl">Google Drive</small>
-                                </div>
+                                @if (Model.HideDropBox == true)
+                                {
+                                    <div class="uploadfield-wrap dropbox-upload">
+                                        <button type="button" id="dropbox-coverletter-btn">Dropbox Cover Letter</button>
+                                        <small class="lbl">Dropbox</small>
+                                    </div>
+                                }
+                                @if (Model.HideGoogleDrive == true)
+                                {
+                                    <div class="uploadfield-wrap google-drive-upload">
+                                        <button type="button" id="coverletter-google-drive-btn">Google Drive CoverLetter</button>
+                                        <small class="lbl">Google Drive</small>
+                                    </div>
+                                }
+
                                 <small class="note">@Html.Resource("UploadFileFormat", "Labels") <span>@Html.Resource("UploadFileSizeCoverletter", "Labels")</span></small>
                                 <span class="displayFileName coverletter-name"><span class="filewrap"></span></span>
                             </div><!-- end box -->
@@ -276,19 +291,27 @@
                         <label class="form-label col-xs-12 col-md-3 text-right">upload document</label>
                         <div class="col-xs-12 col-md-8">
                             <div class="box clearfix">
-                                
+
                                 <div class="uploadfield-wrap browse-upload">
                                     <input type="file" id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
                                     <small class="lbl">Browse</small>
                                 </div>
-                                <div class="uploadfield-wrap dropbox-upload">
-                                    <button type="button" id="dropbox-documents-btn">Dropbox Documents</button>
-                                    <small class="lbl">Dropbox</small>
-                                </div>
-                                <div class="uploadfield-wrap google-drive-upload">
-                                    <button type="button" id="documents-google-drive-btn">Google Drive Documents</button>
-                                    <small class="lbl">Google Drive</small>
-                                </div>
+                                @if (Model.HideDropBox == true)
+                                {
+                                    <div class="uploadfield-wrap dropbox-upload">
+                                        <button type="button" id="dropbox-documents-btn">Dropbox Documents</button>
+                                        <small class="lbl">Dropbox</small>
+                                    </div>
+                                }
+
+                                @if (Model.HideGoogleDrive == true)
+                                {
+                                    <div class="uploadfield-wrap google-drive-upload">
+                                        <button type="button" id="documents-google-drive-btn">Google Drive Documents</button>
+                                        <small class="lbl">Google Drive</small>
+                                    </div>
+                                }
+
                                 <small class="note">@Html.Resource("UploadFileFormat", "Labels") <span>@Html.Resource("UploadFileSizeDocument", "Labels")</span></small>
                                 <span class="displayFileName documents-name"><span class="filewrap"></span></span>
                             </div><!-- end box -->

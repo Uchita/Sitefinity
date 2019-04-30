@@ -199,7 +199,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
 
                 // Take the first item in the list as SEO route for Job Details page
-                if (item.Classifications.Count > 0)
+                if(item.ClassificationURL != null)
+                {
+                    item.ClassificationsSEORouteName = item.ClassificationURL;
+                }
+                else if (item.Classifications.Count > 0)
                 {
                     List<string> seoString = new List<string>();
                     foreach (var key in item.Classifications[0].Keys)
@@ -527,7 +531,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
 
                 // Take the first item in the list as SEO route for Job Details page
-                if (item.Classifications.Count > 0)
+                if (item.ClassificationURL != null)
+                {
+                    item.ClassificationsSEORouteName = item.ClassificationURL;
+                }
+                else if (item.Classifications.Count > 0)
                 {
                     List<string> seoString = new List<string>();
                     foreach (var key in item.Classifications[0].Keys)

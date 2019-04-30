@@ -66,7 +66,7 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
 
         public ActionResult Index()
         {
-            var viewModel = GetViewModel();
+            var viewModel = Model.GetViewModel();
 
             return View(_templateName, viewModel);
         }
@@ -79,20 +79,7 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
 
         #endregion
 
-        #region Private methods
-
-        private ButtonViewModel GetViewModel()
-        {
-            var viewModel = new ButtonViewModel()
-            {
-                ButtonLabel = string.IsNullOrWhiteSpace(Model.ButtonLabel) ? "Untitled Button" : Model.ButtonLabel,
-                ActionUrl = Model.GetLinkedUrl(),
-                ButtonAlignment = Model.ButtonAlignment,
-                CssClass = Model.GetCssClasses()
-            };
-
-            return viewModel;
-        }
+        #region Private methods        
 
         #endregion
 

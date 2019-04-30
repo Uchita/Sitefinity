@@ -112,5 +112,18 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
 
             return string.Join(" ", cssClasses);
         }
+
+        public ButtonViewModel GetViewModel()
+        {
+            var viewModel = new ButtonViewModel()
+            {
+                ButtonLabel = string.IsNullOrWhiteSpace(ButtonLabel) ? "Untitled Button" : ButtonLabel,
+                ActionUrl = GetLinkedUrl(),
+                ButtonAlignment = ButtonAlignment,
+                CssClass = GetCssClasses()
+            };
+
+            return viewModel;
+        }
     }
 }

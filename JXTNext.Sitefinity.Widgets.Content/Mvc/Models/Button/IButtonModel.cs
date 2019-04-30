@@ -65,5 +65,11 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
         /// </summary>
         /// <returns></returns>
         string GetCssClasses();
+
+        /// <summary>
+        /// Gets the view model.
+        /// </summary>
+        /// <returns></returns>
+        ButtonViewModel GetViewModel();
     }
 }

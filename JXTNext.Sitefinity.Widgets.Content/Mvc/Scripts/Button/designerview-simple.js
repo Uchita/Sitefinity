@@ -14,9 +14,6 @@
                 }
 
                 $scope.properties = propertyService.toAssociativeArray(data.Items);
-
-                var isPageSelectMode = $scope.properties.IsPageSelectMode.PropertyValue;
-                $scope.properties.IsPageSelectMode.PropertyValue = isPageSelectMode.toLowerCase() === "true";
             },
             function (data) {
                 $scope.feedback.showError = true;

@@ -1,5 +1,6 @@
 ﻿using JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button;
 using JXTNext.Sitefinity.Widgets.Content.Mvc.StringResources;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web.Mvc;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers;
@@ -17,7 +18,7 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
     /// </summary>
     [Localization(typeof(ButtonResources))]
     [ControllerToolboxItem(Name = "Button_MVC", Title = "Button", SectionName = "JXTNext.Content", CssClass = ButtonController.WidgetIconCssClass)]
-    public class ButtonController : Controller, ICustomWidgetVisualizationExtended, IPersonalizable
+    public class ButtonController : Controller, IPersonalizable
     {
         #region Properties
 
@@ -33,41 +34,11 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
             get
             {
                 if (this.model == null)
+                {
                     this.model = ControllerModelFactory.GetModel<IButtonModel>(this.GetType());
+                }
 
                 return this.model;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the name of the template that widget will be displayed.
-        /// </summary>
-        /// <value></value>
-        public string TemplateName
-        {
-            get
-            {
-                return this.templateName;
-            }
-
-            set
-            {
-                this.templateName = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether widget is empty.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if widget has no image selected; otherwise, <c>false</c>.
-        /// </value>
-        [Browsable(false)]
-        public bool IsEmpty
-        {
-            get
-            {
-                return this.Model.IsEmpty();
             }
         }
 
@@ -80,15 +51,6 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
             }
         }
 
-        /// <inheritdoc />
-        public string EmptyLinkText
-        {
-            get
-            {
-                return Res.Get<ButtonResources>().CreateContent;
-            }
-        }
-
         /// <summary>
         /// Gets the is design mode.
         /// </summary>
@@ -98,18 +60,6 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
             get
             {
                 return SystemManager.IsDesignMode;
-            }
-        }
-
-        /// <summary>
-        /// Gets the image was not selected or has been deleted message.
-        /// </summary>
-        /// <value>The image was not selected or has been deleted message.</value>
-        protected virtual string ImageWasNotSelectedOrHasBeenDeletedMessage
-        {
-            get
-            {
-                return Res.Get<ButtonResources>().ImageWasNotSelectedOrHasBeenDeleted;
             }
         }
 
@@ -126,20 +76,32 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
         /// </returns>
         public ActionResult Index()
         {
-            if (this.IsEmpty)
-            {
-                return new EmptyResult();
-            }
+            var viewModel = GetViewModel();
 
-            var viewModel = this.Model.GetViewModel();
-
-            return View(this.TemplateName, viewModel);
+            return View(_templateName, viewModel);
         }
 
         /// <inheritDoc/>
         protected override void HandleUnknownAction(string actionName)
         {
-            this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
+            ActionInvoker.InvokeAction(ControllerContext, "Index");
+        }
+
+        #endregion
+
+        #region Private methods
+
+        private ButtonViewModel GetViewModel()
+        {
+            var viewModel = new ButtonViewModel()
+            {
+                ButtonLabel = string.IsNullOrWhiteSpace(Model.ButtonLabel) ? "Untitled Button" : Model.ButtonLabel,
+                ActionUrl = Model.GetLinkedUrl(),
+                ButtonAlignment = Model.ButtonAlignment,
+                CssClass = Model.GetCssClasses()
+            };
+
+            return viewModel;
         }
 
         #endregion
@@ -147,9 +109,10 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
         #region Private fields and constants
 
         internal const string WidgetIconCssClass = "sfButtonIcn sfMvcIcn";
+
         private IButtonModel model;
 
-        private string templateName = "Button";
+        private string _templateName = "Button";
 
         #endregion
     }

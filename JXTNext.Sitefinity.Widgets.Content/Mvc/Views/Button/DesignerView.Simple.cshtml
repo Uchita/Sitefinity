@@ -2,27 +2,6 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 
 <form>
-    <!--<div class="form-group">
-        <label for="heading-text">@Html.Resource("Heading")</label>
-        <input id="heading-text" type="text" class="form-control" ng-model="properties.Heading.PropertyValue" />
-    </div>-->
-    <!--<div class="form-group">
-        <label for="description-text">@Html.Resource("Text")</label>
-        <textarea id="description-text" class="form-control" rows="3" ng-model="properties.Description.PropertyValue"></textarea>
-        @*<sf-html-field id="description-text" class="kendo-content-block" sf-model="properties.Description.PropertyValue"></sf-html-field>*@
-    </div>-->
-    <!--<div class="form-group">
-        <label for="image-field" class="m-top-sm">@Html.Resource("Image")</label>
-        <sf-image-field class="sf-Media--info modal-settings modal-settings-space"
-                        sf-model="properties.ImageId.PropertyValue"
-                        sf-image="selectedImage"
-                        sf-provider="properties.ImageProviderName.PropertyValue"
-                        id="image-field"
-                        sf-media-settings="@SettingsHelpers.GetMediaSettings("Image")"></sf-image-field>
-    </div>-->
-    <!--<hr class="side-to-side">-->
-    <!--<h5>Primary action</h5>-->
-
     <div class="form-group">
         <label for="label-text">@Html.Resource("ButtonLabel")</label>
         <input id="label-text" type="text" ng-model="properties.ButtonLabel.PropertyValue" class="form-control" />
@@ -32,46 +11,82 @@
     <div class="form-group">
         <label>Link to...</label>
         <div class="radio m-top-none">
-            <label><input type="radio" ng-model="properties.IsPageSelectMode.PropertyValue" ng-value="true" />@Html.Resource("PageWithinLabel")</label>
+            <label><input type="radio" ng-model="properties.LinkTo.PropertyValue" value="page" />@Html.Resource("PageWithinLabel")</label>
             <sf-list-selector class="label-content"
                               sf-page-selector
                               sf-selected-item-id="properties.LinkedPageId.PropertyValue"
-                              ng-show="properties.IsPageSelectMode.PropertyValue"></sf-list-selector>
+                              ng-show="properties.LinkTo.PropertyValue==='page'"></sf-list-selector>
         </div>
 
         <div class="radio">
-            <label><input type="radio" ng-model="properties.IsPageSelectMode.PropertyValue" ng-value="false" />@Html.Resource("ExternalURL")</label>
+            <label><input type="radio" ng-model="properties.LinkTo.PropertyValue" value="url" />@Html.Resource("ExternalURLLabel")</label>
             <div class="label-content">
-                <input type="text" class="form-control" ng-show="!properties.IsPageSelectMode.PropertyValue" ng-model="properties.LinkedUrl.PropertyValue" />
-                <p class="text-muted" ng-show="!isPageSelectModeproperties.IsPageSelectMode.PropertyValue">@Html.Resource("Example")</p>
+                <input type="text" class="form-control" ng-show="properties.LinkTo.PropertyValue==='url'" ng-model="properties.LinkedUrl.PropertyValue" />
+                <p class="text-muted" ng-show="properties.LinkTo.PropertyValue==='url'">@Html.Resource("ExternalUrlExample")</p>
             </div>
         </div>
 
         <div class="radio">
-            <label><input type="radio" ng-model="properties.IsPageSelectMode.PropertyValue" ng-value="false" />@Html.Resource("AnchorLabel")</label>
+            <label><input type="radio" ng-model="properties.LinkTo.PropertyValue" value="anchor" />@Html.Resource("AnchorLabel")</label>
             <div class="label-content">
-                <input type="text" class="form-control" ng-show="!properties.IsPageSelectMode.PropertyValue" ng-model="properties.Anchor.PropertyValue" />
-                <p class="text-muted" ng-show="!isPageSelectModeproperties.IsPageSelectMode.PropertyValue">@Html.Resource("AnchorExample")</p>
+                <input type="text" class="form-control" ng-show="properties.LinkTo.PropertyValue==='anchor'" ng-model="properties.LinkedAnchor.PropertyValue" />
+                <p class="text-muted" ng-show="properties.LinkTo.PropertyValue==='anchor'">@Html.Resource("AnchorExample")</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="buttonColour">@Html.Resource("ButtonColour")</label>
+        <div class="row">
+            <div class="col-xs-6">
+                <select id="buttonColour" ng-model="properties.ButtonColour.PropertyValue" class="form-control">
+                    <option value="">Default</option>
+                    <option value="secondary">Secondary</option>
+                    <option value="success">Success</option>
+                    <option value="alert">Alert</option>
+                    <option value="warning">Warning</option>
+                    <option value="info">Info</option>
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                </select>
             </div>
         </div>
     </div>
 
     <expander expander-title='@Html.Resource("MoreOptions")'>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="properties.Expanded.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.Expanded.PropertyValue === 'True'" />
+                @Html.Resource("Expanded")
+            </label>            
+        </div>
+
         <div class="form-group">
-            <label for="templateName">@Html.Resource("Template")</label>
+            <label for="buttonAlignment">@Html.Resource("ButtonAlignment")</label>
             <div class="row">
                 <div class="col-xs-6">
-                    <select id="templateName" ng-model="properties.TemplateName.PropertyValue" class="form-control">
-                        @foreach (var viewName in Html.GetViewNames("Button", @"(?<viewName>^Button.*)$"))
-                        {
-                            <option value="@viewName"> @viewName.SplitCamelCase()</option>
-                        }
+                    <select id="buttonAlignment" ng-model="properties.ButtonAlignment.PropertyValue" class="form-control">
+                        <option value="">Default</option>
+                        <option value="left">Left</option>
+                        <option value="center">Center</option>
+                        <option value="right">Right</option>
                     </select>
                 </div>
             </div>
         </div>
 
-        <style-dropdown selected-class="properties.CssClass.PropertyValue" view-name="properties.TemplateName.PropertyValue"></style-dropdown>
+        <div class="form-group">
+            <label for="buttonStyle">@Html.Resource("ButtonStyle")</label>
+            <div class="row">
+                <div class="col-xs-6">
+                    <select id="buttonStyle" ng-model="properties.ButtonStyle.PropertyValue" class="form-control">
+                        <option value="">Solid</option>
+                        <option value="hollow">Hollow</option>
+                        <option value="clear">Clear</option>
+                    </select>
+                </div>
+            </div>
+        </div>
 
         <div class="form-group">
             <label for="cssClass">@Html.Resource("CssClasses")</label>

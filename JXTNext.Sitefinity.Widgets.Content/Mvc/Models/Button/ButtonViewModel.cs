@@ -5,41 +5,26 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
     /// <summary>
     /// The view model for the detail page of <see cref="ButtonController"/>
     /// </summary>
-    public class ButtonViewModel : ContentDetailsViewModel
-    {
+    public class ButtonViewModel
+    {       
         /// <summary>
-        /// Gets or sets the heading.
+        /// Gets or sets the button label.
         /// </summary>
-        public string Heading { get; set; }
+        public string ButtonLabel { get; set; }
 
         /// <summary>
-        /// Gets or sets the HTML.
+        /// Gets or sets the button alignment.
         /// </summary>
-        public string Description { get; set; }
+        public string ButtonAlignment { get; set; }
 
         /// <summary>
-        /// Gets or sets the action name.
+        /// Gets or sets the button css class.
         /// </summary>
-        public string ActionName { get; set; }
+        public string CssClass { get; set; }
 
         /// <summary>
         /// Gets or sets the action url.
         /// </summary>
-        public string ActionUrl { get; set; }
-
-        /// <summary>
-        /// Gets or sets the image title.
-        /// </summary>
-        public string ImageTitle { get; set; }
-
-        /// <summary>
-        /// Gets or sets the image alternative text.
-        /// </summary>
-        public string ImageAlternativeText { get; set; }
-
-        /// <summary>
-        /// Gets or sets the selected size image URL.
-        /// </summary>
-        public string SelectedSizeUrl { get; set; }
+        public string ActionUrl { get; set; }        
     }
 }

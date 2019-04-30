@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Telerik.Sitefinity.Configuration;
@@ -17,119 +18,38 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
     /// </summary>
     public class ButtonModel : IButtonModel
     {
+        public const string LinkToPage = "page";
+        public const string LinkToUrl = "url";
+        public const string LinkToAnchor = "anchor";
+
         public ButtonModel()
         {
-            this.IsPageSelectMode = true;
+            this.LinkTo = LinkToPage;
         }
 
-        /// <inheritdoc />
-        public Guid ImageId { get; set; }
+        public string ButtonLabel { get; set; }
 
-        /// <inheritdoc />
-        public string ImageProviderName { get; set; }
+        public string LinkTo { get; set; }
 
-        /// <inheritdoc />
-        public string CssClass { get; set; }
-
-        /// <inheritdoc />
-        [DynamicLinksContainer]
-        public string Description { get; set; }
-
-        /// <inheritdoc />
-        public bool IsPageSelectMode { get; set; }
-
-        /// <inheritdoc />
         public Guid LinkedPageId { get; set; }
 
-        /// <inheritdoc />
         public string LinkedUrl { get; set; }
 
-        /// <inheritdoc />
-        public string AnchorUrl { get; set; }
+        public string LinkedAnchor { get; set; }
 
-        /// <inheritdoc />
-        public string ActionName { get; set; }
+        public string CssClass { get; set; }
 
-        /// <inheritdoc />
-        public string Heading { get; set; }
+        public string ButtonStyle { get; set; }
 
-        /// <inheritdoc />
-        public virtual ButtonViewModel GetViewModel()
+        public string ButtonColour { get; set; }
+
+        public string ButtonAlignment { get; set; }
+
+        public bool Expanded { get; set; }        
+
+        public string GetLinkedUrl()
         {
-            var viewModel = new ButtonViewModel()
-            {
-                Heading = this.Heading,
-                Description = this.Description,
-                ActionName = this.ActionName,
-                ActionUrl = this.GetLinkedUrl(),
-                CssClass = this.CssClass
-            };
-
-            SfImage image;
-            if (this.ImageId != Guid.Empty)
-            {
-                image = this.GetImage();
-                if (image != null)
-                {
-                    viewModel.SelectedSizeUrl = this.GetSelectedSizeUrl(image);
-                    viewModel.ImageAlternativeText = image.AlternativeText;
-                    viewModel.ImageTitle = image.Title;
-                }
-            }
-
-            return viewModel;
-        }
-
-        /// <inheritdoc />
-        public bool IsEmpty()
-        {
-            return (this.ImageId == Guid.Empty &&
-                            this.LinkedPageId == Guid.Empty &&
-                            string.IsNullOrEmpty(this.Description) &&
-                            string.IsNullOrEmpty(this.Description) &&
-                            string.IsNullOrEmpty(this.CssClass) &&
-                            string.IsNullOrEmpty(this.ActionName) &&
-                            string.IsNullOrEmpty(this.Heading) &&
-                            string.IsNullOrEmpty(this.LinkedUrl) &&
-                            string.IsNullOrEmpty(this.ImageProviderName));
-        }
-
-        /// <summary>
-        /// Gets the image.
-        /// </summary>
-        /// <returns></returns>
-        protected virtual SfImage GetImage()
-        {
-            LibrariesManager librariesManager = LibrariesManager.GetManager(this.ImageProviderName);
-            return librariesManager.GetImages().Where(i => i.Id == this.ImageId).Where(PredefinedFilters.PublishedItemsFilter<Telerik.Sitefinity.Libraries.Model.Image>()).FirstOrDefault();
-        }
-
-        /// <summary>
-        /// Gets the selected size URL.
-        /// </summary>
-        /// <param name="image">The image.</param>
-        /// <returns></returns>
-        protected virtual string GetSelectedSizeUrl(SfImage image)
-        {
-            if (image.Id == Guid.Empty)
-                return string.Empty;
-
-            string imageUrl;
-
-            var urlAsAbsolute = Config.Get<SystemConfig>().SiteUrlSettings.GenerateAbsoluteUrls;
-            var originalImageUrl = image.ResolveMediaUrl(urlAsAbsolute);
-            imageUrl = originalImageUrl;
-
-            return imageUrl;
-        }
-
-        /// <summary>
-        /// Gets the linked page URL.
-        /// </summary>
-        /// <returns></returns>
-        protected virtual string GetLinkedUrl()
-        {
-            if (this.IsPageSelectMode)
+            if (this.LinkTo == LinkToPage)
             {
                 if (this.LinkedPageId == Guid.Empty)
                     return null;
@@ -151,12 +71,51 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
                     return UrlPath.ResolveUrl(relativeUrl, Config.Get<SystemConfig>().SiteUrlSettings.GenerateAbsoluteUrls);
                 }
             }
-            else if (!string.IsNullOrEmpty(this.LinkedUrl))
+            else if (this.LinkTo == LinkToUrl)
             {
-                return this.LinkedUrl;
+                if (!string.IsNullOrEmpty(this.LinkedUrl))
+                {
+                    return this.LinkedUrl;
+                }
+            }
+            else if (this.LinkTo == LinkToAnchor)
+            {
+                if (!string.IsNullOrEmpty(this.LinkedAnchor))
+                {
+                    return this.LinkedAnchor;
+                }
             }
 
             return null;
+        }
+
+        public string GetCssClasses()
+        {
+            var cssClasses = new List<string>();
+
+            cssClasses.Add("o-btn");
+
+            if (!string.IsNullOrWhiteSpace(ButtonStyle))
+            {
+                cssClasses.Add("o-btn-" + ButtonStyle);
+            }
+
+            if (!string.IsNullOrWhiteSpace(ButtonColour))
+            {
+                cssClasses.Add("o-btn-" + ButtonColour);
+            }
+
+            if (Expanded)
+            {
+                cssClasses.Add("o-btn-expanded");
+            }
+
+            if (!string.IsNullOrWhiteSpace(CssClass))
+            {
+                cssClasses.Add(CssClass);
+            }
+
+            return string.Join(" ", cssClasses);
         }
     }
 }

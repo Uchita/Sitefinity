@@ -272,7 +272,6 @@
     <EmbeddedResource Include="Mvc\Views\PageBanner\DesignerView.Simple.json" />
     <EmbeddedResource Include="Mvc\Views\Button\DesignerView.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\Button\Button.cshtml" />
-    <EmbeddedResource Include="Mvc\Views\Button\Button.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\Button\DesignerView.Simple.json" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />

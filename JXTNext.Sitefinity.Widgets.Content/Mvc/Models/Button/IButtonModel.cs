@@ -30,14 +30,40 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
         string LinkedAnchor { get; set; }
 
         /// <summary>
+        /// Gets or sets the button alignment.
+        /// </summary>
+        string ButtonAlignment { get; set; }
+
+        /// <summary>
         /// Gets or sets the css class.
         /// </summary>
         string CssClass { get; set; }
 
         /// <summary>
-        /// Gets the view model.
+        /// Gets or sets the button style.
+        /// </summary>
+        string ButtonStyle { get; set; }
+
+        /// <summary>
+        /// Gets or sets the button colour.
+        /// </summary>
+        string ButtonColour { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the button is expanded or not.
+        /// </summary>
+        bool Expanded { get; set; }
+
+        /// <summary>
+        /// Gets the linked page URL.
         /// </summary>
         /// <returns></returns>
-        ButtonViewModel GetViewModel();
+        string GetLinkedUrl();
+
+        /// <summary>
+        /// Gets the space separated list of css classes.
+        /// </summary>
+        /// <returns></returns>
+        string GetCssClasses();
     }
 }

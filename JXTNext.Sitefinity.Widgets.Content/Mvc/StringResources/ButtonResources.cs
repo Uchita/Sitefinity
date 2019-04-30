@@ -77,6 +77,70 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.StringResources
         }
 
         /// <summary>
+        /// phrase : Alignment
+        /// </summary>
+        /// <value>Alignment</value>
+        [ResourceEntry("ButtonAlignment",
+            Value = "Alignment",
+            Description = "phrase : Alignment",
+            LastModified = "2019/04/29")]
+        public string ButtonAlignment
+        {
+            get
+            {
+                return this["ButtonAlignment"];
+            }
+        }
+
+        /// <summary>
+        /// phrase : Expanded
+        /// </summary>
+        /// <value>Expanded</value>
+        [ResourceEntry("Expanded",
+            Value = "Expanded",
+            Description = "phrase : Expanded",
+            LastModified = "2019/04/29")]
+        public string Expanded
+        {
+            get
+            {
+                return this["Expanded"];
+            }
+        }
+
+        /// <summary>
+        /// phrase : Style
+        /// </summary>
+        /// <value>Style</value>
+        [ResourceEntry("ButtonStyle",
+            Value = "Style",
+            Description = "phrase : Style",
+            LastModified = "2019/04/29")]
+        public string ButtonStyle
+        {
+            get
+            {
+                return this["ButtonStyle"];
+            }
+        }
+
+        /// <summary>
+        /// phrase : Colour
+        /// </summary>
+        /// <value>Colour</value>
+        [ResourceEntry("ButtonColour",
+            Value = "Colour",
+            Description = "phrase : Colour",
+            LastModified = "2019/04/29")]
+        public string ButtonColour
+        {
+            get
+            {
+                return this["ButtonColour"];
+            }
+        }
+
+        /// <summary>
         /// phrase: Example: Learn more
         /// </summary>
         /// <value>Example: Learn more</value>
@@ -112,15 +176,15 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.StringResources
         /// phrase: External URL...
         /// </summary>
         /// <value>External URL...</value>
-        [ResourceEntry("ExternalURLLabel",
+        [ResourceEntry("ExternalUrlLabel",
             Value = "External URL...",
             Description = "phrase: External URL...",
             LastModified = "2015/10/06")]
-        public string ExternalURLLabel
+        public string ExternalUrlLabel
         {
             get
             {
-                return this["ExternalURLLabel"];
+                return this["ExternalUrlLabel"];
             }
         }
 

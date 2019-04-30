@@ -35,11 +35,6 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
         string ButtonAlignment { get; set; }
 
         /// <summary>
-        /// Gets or sets the css class.
-        /// </summary>
-        string CssClass { get; set; }
-
-        /// <summary>
         /// Gets or sets the button style.
         /// </summary>
         string ButtonStyle { get; set; }
@@ -55,13 +50,18 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
         bool Expanded { get; set; }
 
         /// <summary>
+        /// Gets or sets the custom css classes.
+        /// </summary>
+        string CssClass { get; set; }
+
+        /// <summary>
         /// Gets the linked page URL.
         /// </summary>
         /// <returns></returns>
         string GetLinkedUrl();
 
         /// <summary>
-        /// Gets the space separated list of css classes.
+        /// Gets the space separated list of css classes depending on various selections.
         /// </summary>
         /// <returns></returns>
         string GetCssClasses();

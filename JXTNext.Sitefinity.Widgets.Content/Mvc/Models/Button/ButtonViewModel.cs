@@ -1,12 +1,10 @@
-﻿using Telerik.Sitefinity.Frontend.Mvc.Models;
-
-namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
+﻿namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
 {
     /// <summary>
     /// The view model for the detail page of <see cref="ButtonController"/>
     /// </summary>
     public class ButtonViewModel
-    {       
+    {
         /// <summary>
         /// Gets or sets the button label.
         /// </summary>
@@ -25,6 +23,6 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
         /// <summary>
         /// Gets or sets the action url.
         /// </summary>
-        public string ActionUrl { get; set; }        
+        public string ActionUrl { get; set; }
     }
 }

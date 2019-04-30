@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using Telerik.Sitefinity.Configuration;
-using Telerik.Sitefinity.Modules;
-using Telerik.Sitefinity.Modules.GenericContent;
-using Telerik.Sitefinity.Modules.Libraries;
 using Telerik.Sitefinity.Modules.Pages;
 using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.Web;
-using SfImage = Telerik.Sitefinity.Libraries.Model.Image;
 
 namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
 {
@@ -37,15 +32,15 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
 
         public string LinkedAnchor { get; set; }
 
-        public string CssClass { get; set; }
-
         public string ButtonStyle { get; set; }
 
         public string ButtonColour { get; set; }
 
         public string ButtonAlignment { get; set; }
 
-        public bool Expanded { get; set; }        
+        public bool Expanded { get; set; }
+
+        public string CssClass { get; set; }
 
         public string GetLinkedUrl()
         {

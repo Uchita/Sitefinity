@@ -1,15 +1,12 @@
 ﻿using JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button;
 using JXTNext.Sitefinity.Widgets.Content.Mvc.StringResources;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web.Mvc;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
-using Telerik.Sitefinity.Localization;
 using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Personalization;
 using Telerik.Sitefinity.Services;
-using Telerik.Sitefinity.Web.UI;
 
 namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
 {
@@ -33,12 +30,12 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
         {
             get
             {
-                if (this.model == null)
+                if (this._model == null)
                 {
-                    this.model = ControllerModelFactory.GetModel<IButtonModel>(this.GetType());
+                    this._model = ControllerModelFactory.GetModel<IButtonModel>(this.GetType());
                 }
 
-                return this.model;
+                return this._model;
             }
         }
 
@@ -67,13 +64,6 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
 
         #region Actions
 
-        /// <summary>
-        /// Renders appropriate list view depending on the <see cref="ListTemplateName" />
-        /// </summary>
-        /// <param name="page">The page.</param>
-        /// <returns>
-        /// The <see cref="ActionResult" />.
-        /// </returns>
         public ActionResult Index()
         {
             var viewModel = GetViewModel();
@@ -110,7 +100,7 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
 
         internal const string WidgetIconCssClass = "sfButtonIcn sfMvcIcn";
 
-        private IButtonModel model;
+        private IButtonModel _model;
 
         private string _templateName = "Button";
 

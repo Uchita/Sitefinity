@@ -53,7 +53,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
             var culture = CultureInfo.GetCultureInfo(targetCulture.Name);
             if (culture != null)
             {
-                local.ClassificationURL = culture +"/" + local.ClassificationURL;
+                local.Culture = culture.Name;
             }
             return local as T;
         }
@@ -100,7 +100,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                 var culture = CultureInfo.GetCultureInfo(targetCulture.Name);
                 if (culture != null)
                 {
-                    local.ClassificationURL = culture + "/" + local.ClassificationURL;
+                    local.Culture = culture.Name;
                 }
                 jobFullDetails.Add(local);
             }

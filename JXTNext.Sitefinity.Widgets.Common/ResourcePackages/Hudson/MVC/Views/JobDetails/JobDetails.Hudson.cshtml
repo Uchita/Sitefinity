@@ -344,7 +344,7 @@
                 }
                 else {
                     if (response.IsJobExpired == false) {
-                        $('.job-apply-btn').html('<a id="job-application-lnk" class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID?source=@Model.UrlReferral">APPLY NOW</a>');
+                        $('.job-apply-btn').html('<a id="job-application-lnk" class="btn btn-primary btn-block" href="@Model.JobDetails.Culture@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID?source=@Model.UrlReferral">APPLY NOW</a>');
                     }
                 }
             },

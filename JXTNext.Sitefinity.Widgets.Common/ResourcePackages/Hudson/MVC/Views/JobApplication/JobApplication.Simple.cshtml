@@ -232,7 +232,7 @@
 
                                     <small class="lbl">Browse</small>
                                 </div>
-                                @if (Model.HideDropBox == true)
+                                @if (!Model.HideDropBox)
                                 {
                                     <div class="uploadfield-wrap dropbox-upload">
                                         <button type="button" id="dropbox-resume-btn">Dropbox Resume</button>
@@ -240,7 +240,7 @@
                                     </div>
                                 }
 
-                                @if (Model.HideGoogleDrive == true)
+                                @if (!Model.HideGoogleDrive)
                                 {
                                     <div class="uploadfield-wrap google-drive-upload">
                                         <button type="button" id="resume-google-drive-btn">Google Drive Resume</button>
@@ -265,14 +265,14 @@
                                     <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
                                     <small class="lbl">Browse</small>
                                 </div>
-                                @if (Model.HideDropBox == true)
+                                @if (!Model.HideDropBox)
                                 {
                                     <div class="uploadfield-wrap dropbox-upload">
                                         <button type="button" id="dropbox-coverletter-btn">Dropbox Cover Letter</button>
                                         <small class="lbl">Dropbox</small>
                                     </div>
                                 }
-                                @if (Model.HideGoogleDrive == true)
+                                @if (!Model.HideGoogleDrive)
                                 {
                                     <div class="uploadfield-wrap google-drive-upload">
                                         <button type="button" id="coverletter-google-drive-btn">Google Drive CoverLetter</button>
@@ -296,7 +296,7 @@
                                     <input type="file" id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
                                     <small class="lbl">Browse</small>
                                 </div>
-                                @if (Model.HideDropBox == true)
+                                @if (!Model.HideDropBox)
                                 {
                                     <div class="uploadfield-wrap dropbox-upload">
                                         <button type="button" id="dropbox-documents-btn">Dropbox Documents</button>
@@ -304,7 +304,7 @@
                                     </div>
                                 }
 
-                                @if (Model.HideGoogleDrive == true)
+                                @if (!Model.HideGoogleDrive)
                                 {
                                     <div class="uploadfield-wrap google-drive-upload">
                                         <button type="button" id="documents-google-drive-btn">Google Drive Documents</button>

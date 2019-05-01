@@ -306,6 +306,9 @@
     <Content Include="ResourcePackages\BaySide\assets\images\linkedin.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\BaySide\assets\images\linkkedinBtn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\assets\images\location.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -3089,6 +3089,11 @@ button.bg-dark:focus {
     float: right !important;
 }
 
+.job-detail img.float-right {
+    width: 111px;
+    height: 66px;
+}
+
 .float-none {
     float: none !important;
 }
@@ -7732,7 +7737,8 @@ select.hs-input {
             display: inline-block;
         }
 
-            .inline-list li i {
+            .inline-list li i,
+            .inline-list li em {
                 margin-right: 5px;
             }
 
@@ -9098,6 +9104,15 @@ select.hs-input {
         padding: 0 !important;
     }
 
+
+.page-wrapper #linkedIn-btnwrapper .btn-linkedin {
+    background: url(../images/linkkedinBtn.png) 50% 50% no-repeat #027BB6 !important;
+    width: 120px;
+    border-radius: 0 !important;
+    height: 35px !important;
+    padding: 0 !important;
+}
+
         .page-wrapper #indeed-btnwrapper .indeed-apply-button span {
             display: none !important;
         }
@@ -9771,6 +9786,11 @@ select.hs-input {
             margin: 0px;
         }
 
+
+        .ext-provider-form#applyApp {
+            padding: 0 10px;
+            margin-left: 33.33%;
+        }
         /*.md-row + .leader-content {
                 position: absolute;
                 opacity: 0;
@@ -9783,35 +9803,39 @@ select.hs-input {
                 visibility: visible;
             }*/
 
+
     }
 
-    @media(max-width: 767px) {
 
-        .leader-list + .leader-content {
-            position: relative;
-            opacity: 1;
-            visibility: visible;
-            margin: 0px;
-        }
 
-        /*.md-row + .leader-content {
+
+@media(max-width: 767px) {
+
+    .leader-list + .leader-content {
+        position: relative;
+        opacity: 1;
+        visibility: visible;
+        margin: 0px;
+    }
+
+    /*.md-row + .leader-content {
             position: absolute;
             opacity: 0;
             visibility: hidden;
         }*/
 
-        .app-content .leader-content .border-blue {
-            padding: 0.6rem 1.5rem;
-        }
-
-        .image-pos-left + .align-items-center .content-on-img {
-            padding-right: 15px;
-        }
-
-        .right-space-40 {
-            padding-right: 0px;
-        }
+    .app-content .leader-content .border-blue {
+        padding: 0.6rem 1.5rem;
     }
+
+    .image-pos-left + .align-items-center .content-on-img {
+        padding-right: 15px;
+    }
+
+    .right-space-40 {
+        padding-right: 0px;
+    }
+}
 
 
     .cta-btn-white-outline .btn {

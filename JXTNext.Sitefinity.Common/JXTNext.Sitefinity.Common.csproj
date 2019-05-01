@@ -222,6 +222,7 @@
     <Compile Include="Helpers\SitefinityEmailSender.cs" />
     <Compile Include="Helpers\GeneralHelper.cs" />
     <Compile Include="Helpers\SiteSettingsHelper.cs" />
+    <Compile Include="Models\Classifications\Company.cs" />
     <Compile Include="Models\Communications\EmailRequest.cs" />
     <Compile Include="Models\CustomSiteSettings\CustomSiteSettings.cs" />
     <Compile Include="Models\CustomSiteSettings\CustomSiteSettingsConfig.cs" />

@@ -20,6 +20,7 @@ using Telerik.Sitefinity.Utilities.TypeConverters;
 using Telerik.Sitefinity.GenericContent.Model;
 using System.Threading;
 using System.Globalization;
+using JXTNext.Sitefinity.Common.Models.Classifications;
 using System.Web;
 
 namespace JXTNext.Sitefinity.Common.Helpers
@@ -395,5 +396,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
             return email;
         }
+
+        
     }
 }

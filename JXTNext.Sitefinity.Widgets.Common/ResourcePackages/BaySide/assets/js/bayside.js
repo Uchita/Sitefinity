@@ -25,6 +25,19 @@ $(document).ready(function () {
         }
     });
 
+    $(window).resize(function () {
+        var viewportWidth = $(window).width();
+        if (viewportWidth <= 991 && $('.primary-nav-wrap .col-auto.ml-auto').length) {
+            $(".primary-nav-wrap .col-auto.ml-auto").addClass("collapse");
+        }
+        else if (viewportWidth > 991 && $('.primary-nav-wrap .col-auto.ml-auto').length) {
+            $('.primary-nav-wrap .col-auto.ml-auto').removeClass("collapse");
+
+        }
+    });
+
+ 
+
     $(function () {
         $('.left-sidebar').addClass('fadeInLeft wow');
     });

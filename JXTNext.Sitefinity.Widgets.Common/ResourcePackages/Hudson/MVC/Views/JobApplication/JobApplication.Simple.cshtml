@@ -276,7 +276,7 @@
                         <label class="form-label col-xs-12 col-md-3 text-right">upload document</label>
                         <div class="col-xs-12 col-md-8">
                             <div class="box clearfix">
-                                
+
                                 <div class="uploadfield-wrap browse-upload">
                                     <input type="file" id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
                                     <small class="lbl">Browse</small>
@@ -330,7 +330,9 @@
                     <div class="hidden alert alert-danger error-message resume-select-message">
                         @Html.Resource("SelectResumeErrorMsg", "ErrorMessages")
                     </div>
-
+                    <div class="hidden alert alert-danger error-message user-exist-message">
+                        @Html.Resource("UserWithThisUsernameExists", "SecurityResources")
+                    </div>
                 </div>
                 }
                 else
@@ -461,12 +463,34 @@
                  fileUploadFlag = true;
              }
 
-             if ( appStatus == 'Available' && ( fileUploadFlag || registerForm) ) {
-                 //if (registerForm) {
-                     self.submit();
-                 //}
+             var emailId = $('#userid').val();
+             var valid = validateEmail(emailId);
+             var parm = { email: emailId };
 
+             var urlPath = $(location).attr('pathname') + "/CheckUser";
+             if (valid) {
+                 $.ajax({
+                     type: 'POST',
+                     cache: false,
+                     url: urlPath,
+                     data: parm,
+                     dataType: 'Json',
+                     success: function (response) {
+                         if (response == true) {
+                             $('.user-exist-message').removeClass('hidden');
+                             return false;
+                         } else {
+                             //
+                             if (appStatus == 'Available' && (fileUploadFlag || registerForm)) {
+                                 //if (registerForm) {
+                                 self.submit();
+                                 //}
+                             }
+                         }
+                     }
+                 }); //end of ajax
              }
+
          });
 
          if (appStatus == 'Available' && isUserLoggedIn == 'True') {
@@ -604,6 +628,7 @@
 
              $('#ReTypePassword').prop('required', false);
              $('#sign-in-btn').removeClass('hidden');
+             $('.user-exist-message').addClass('hidden');
          });
          $("#regWith").change(function () {
 

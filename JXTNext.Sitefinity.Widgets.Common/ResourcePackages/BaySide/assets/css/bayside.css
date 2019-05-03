@@ -3537,6 +3537,11 @@ button.bg-dark:focus {
     max-width: 100%;
 }
 
+.blog-detail-col {
+    position: relative;
+    right: -15px;
+}
+
 .app-content .col-auto,
 .app-footer .col-auto,
 .app-header .col-auto {
@@ -5574,7 +5579,7 @@ p .btn-link {
 }
 
 #videoModal {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.8);
     padding-right: 0 !important;
 }
 
@@ -5651,6 +5656,14 @@ p .btn-link {
     .featured-carousel .item {
         padding-bottom: 39px;
     }
+
+#internalJobs1 > .item {
+    width: 308px;
+   
+    margin: 0 auto;
+}
+}
+
 
 #featuredInsights.featured-carousel .item {
     padding-bottom: 0px;
@@ -7182,6 +7195,11 @@ select.hs-input {
         margin-top: 0;
     }
 
+
+#internalJobs1.owl-carousel {
+    display: block;
+}
+
         .testimonial-content .user-name {
             font-size: 17px;
             font-weight: 500;
@@ -8368,17 +8386,15 @@ select.hs-input {
 
         .search-page-search .form-control {
             width: calc(100% - 120px);
-            border-color: #0088CF;
             float: left;
             display: block;
-            border-radius: 0;
-            -webkit-border-radius: 0;
-            -moz-border-radius: 0;
+            border-radius: 5px;
+
         }
 
             .search-page-search .form-control:hover,
             .search-page-search .form-control:focus {
-                border-color: #3465B0;
+                border-color: #66afe9;
             }
 
         .search-page-search .btn {

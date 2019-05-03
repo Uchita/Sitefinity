@@ -6,7 +6,9 @@ $(document).ready(function () {
     if (typeof WOW !== 'undefined') {
         new WOW().init();
     }
-    $("#featuredInsights,#internalJobs1").owlCarousel({
+    if ($("#featuredInsights,#internalJobs1").find('.item').length > 1) {
+
+     $("#featuredInsights,#internalJobs1").owlCarousel({
         margin: 18,
         nav: true,
         autoplay: true,
@@ -23,6 +25,13 @@ $(document).ready(function () {
                 //loop: false
             }
         }
+    });
+    }
+
+    $('.play-btn').click(function () {
+        //document.getElementById('is-video').play();
+        $('.video-bg>video')[0].play();
+        //$('.video-bg>video').get(0).play();
     });
 
     $(window).resize(function () {

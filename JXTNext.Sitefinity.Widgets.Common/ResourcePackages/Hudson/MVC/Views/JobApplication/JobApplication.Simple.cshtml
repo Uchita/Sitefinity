@@ -495,6 +495,7 @@
              if (checkUploadFileSize("resume", resumeSize) == false) { //2mb
                  $(".resume-name .filewrap").text('');
                  resumeFile.value = "";
+                 resumeSelectedType = "";
              } else {
                  $(".resume-name .filewrap").text(resumeBrowseName);
                  if (userLoggedInParamFromViewbag == 'True') {
@@ -506,6 +507,8 @@
                  //hiding the upload section icons
                  $(".resume-name").append('<span class="removeBtn">remove</span>');
                  $(this).parents('.box').addClass('hasFile');
+                 //hiding resume upload error message
+                 $(".resume-message, .resume-select-message").addClass('hidden');
              }
             
         });
@@ -520,6 +523,7 @@
             if (checkUploadFileSize("coverletter",coverletterSize) == false) { //0.5mb
                 $(".coverletter-name .filewrap").text('');
                 coverletterFile.value = "";
+                coverLetterSelectedType = "";
                 $(this).parent('.box').removeClass('hasFile');
             } else {
                 $(".coverletter-name .filewrap").text(coverletterBrowseName);
@@ -537,6 +541,7 @@
              if (checkUploadFileSize("document",docFileSize) == false) { //0.3mb
                  $(".documents-name .filewrap").text('');
                  docFile.value = "";
+                 documentsSelectedType = "";
              } else {
                  $(".documents-name .filewrap").text(docFileName);
                  $(".documents-name").append('<span class="removeBtn">remove</span>');
@@ -550,6 +555,7 @@
              curFile.find('.displayFileName .filewrap').text('');
              curFile.find('.displayFileName .removeBtn').remove();
              curFile.find('input[type="file"]').val('');
+             resumeSelectedType = "";
          });
 
          //on enter key on password field triggering sign in button click
@@ -600,6 +606,35 @@
              $('#sign-in-btn').removeClass('hidden');
          });
          $("#regWith").change(function () {
+
+             $("#haveAccount").removeClass('checked');
+             $(this).addClass("checked");
+             //showing registration form fields
+             $('#register').show();
+
+             $('#firstname-lastname').removeAttr('hidden');
+             $('#upload-files-container').show();
+
+             $('#password-reg').prop('required', true);
+             $('#firstname-reg').prop('required', true);
+             $('#lastname-reg').prop('required', true);
+
+             $('#password-reg').prop('pattern', "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
+             $('#password-reg').prop('title', "Your password must contain at least one number, one uppercase and lowercase letter, and 8 or more characters.");
+
+             $('#password-guide').addClass('hidden');
+
+             $('#strength-wrap').show();
+             $('#password-reg').attr('placeholder', "Choose your password").val('');
+             $('#forgot-password').addClass('hidden');
+             $('#rememberme-block').addClass('hidden');
+             $('.reg-field').removeClass('hidden');
+             $('.loginwith_socialmedia').hide();
+             $('#ReTypePassword').prop('required', true);
+             $('#sign-in-btn').addClass('hidden');
+             $('.welcome-message').addClass('hidden');
+           
+
              var emailId = $('#userid').val();
              var valid = validateEmail(emailId);
              var parm = { email: emailId };
@@ -617,33 +652,8 @@
                              $('.welcome-message').removeClass('hidden');
                              $("#haveAccount").trigger('click');
                          } else {
-                             $("#haveAccount").removeClass('checked');
-                             $(this).addClass("checked");
-
-                             //showing registration form fields
-                             $('#register').show();
-
-                             $('#firstname-lastname').removeAttr('hidden');
-                             $('#upload-files-container').show();
-
-                             $('#password-reg').prop('required', true);
-                             $('#firstname-reg').prop('required', true);
-                             $('#lastname-reg').prop('required', true);
-
-                             $('#password-reg').prop('pattern', "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
-                             $('#password-reg').prop('title', "Your password must contain at least one number, one uppercase and lowercase letter, and 8 or more characters.");
-
-                             $('#password-guide').addClass('hidden');
-
-                             $('#strength-wrap').show();
-                             $('#password-reg').attr('placeholder', "Choose your password").val('');
-                             $('#forgot-password').addClass('hidden');
-                             $('#rememberme-block').addClass('hidden');
-                             $('.reg-field').removeClass('hidden');
-                             $('.loginwith_socialmedia').hide();
-                             $('#ReTypePassword').prop('required', true);
-                             $('#sign-in-btn').addClass('hidden');
-                             $('.welcome-message').addClass('hidden');
+                             
+                             //
                          }
                      }
                  }); //end of ajax
@@ -997,6 +1007,7 @@
                         $('#uploadResumeJson').val('');
                         $("#resume-selected-type").val('');
                         $(".resume-name .filewrap").text('');
+                        resumeSelectedType = "";
                     } else {
                         $('#application-resume').val('');
                         $('#uploadResumeJson').val(stringyModel);
@@ -1010,6 +1021,8 @@
                         } else {
                             $("#user-profile-resume-list").val('0');
                         }
+                        //hiding resume upload error message
+                        $(".resume-message, .resume-select-message").addClass('hidden');
                     }
 
                 }
@@ -1294,6 +1307,7 @@
                         $('#uploadResumeJson').val('');
                         $("#resume-selected-type").val('');
                         $('.resume-name .filewrap').text('');
+                        resumeSelectedType = "";
                     } else {
                         $('#uploadResumeJson').val(stringyModel);
                         $('#application-resume').val('');
@@ -1306,6 +1320,8 @@
                         } else {
                             $("#user-profile-resume-list").val('0');
                         }
+                        //hiding resume upload error message
+                        $(".resume-message, .resume-select-message").addClass('hidden');
                     }
                 }
                 else {

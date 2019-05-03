@@ -776,7 +776,7 @@
                          data: parm,
                          dataType: 'Json',
                          success: function (response) {
-                             if (response == false) {
+                             if (response == true) {
                                  $('.welcome-message').removeClass('hidden');
                                  $("#haveAccount").trigger('click');
                              } else {

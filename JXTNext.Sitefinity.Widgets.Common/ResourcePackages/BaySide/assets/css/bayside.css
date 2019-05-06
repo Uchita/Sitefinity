@@ -5583,6 +5583,12 @@ p .btn-link {
     padding-right: 0 !important;
 }
 
+
+    #videoModal .modal-dialog {
+        position: relative;
+        top: 20%;
+    }
+
 #videoModal .modal-body {
     padding:0;
 }

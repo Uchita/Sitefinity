@@ -9630,6 +9630,40 @@ header .main-nav .navbar-nav > li.dropdown {
   border-bottom: 2px solid #fff;
   padding-bottom: 20px; }
 
+.meter {
+  white-space: nowrap;
+  padding: 8px 0;
+  position: relative;
+  background: #fff;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+  padding: 8px;
+  -webkit-box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+  -moz-box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); }
+
+.meter > span {
+  display: block;
+  height: 100%;
+  color: #fff;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: #6dab3c;
+  position: relative;
+  overflow: hidden; }
+
 /*#endregion Basic components */
 /*#region Breadcrumbs */
 ul.breadcrumb {
@@ -11831,7 +11865,7 @@ select.articles-order {
   .contact-consultant-contacts a {
     color: #fff; }
 
-.consultant-page h2, .consultant-page h3 {
+.consultant-page h2 {
   color: #fff; }
 
 .consultant-page h2 {
@@ -11852,6 +11886,9 @@ select.articles-order {
   left: 0;
   right: 0;
   margin: 0 auto; }
+
+.consultant-page h3 {
+  color: #666666; }
 
 .consultant-page img {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.32); }
@@ -11943,6 +11980,8 @@ select.articles-order {
     left: 0;
     max-width: 300px;
     width: 100%;
+    left: 15px;
+    width: 255px;
     text-align: center;
     background: rgba(102, 102, 102, 0.7); }
   .consultant .consultant-name {
@@ -11987,6 +12026,7 @@ select.articles-order {
   .meet-team .consultant {
     display: inline-block;
     margin: 0 20px 30px;
+    margin: 0 0 30px;
     position: relative; }
     .meet-team .consultant .consultant-photo {
       position: relative;
@@ -12088,6 +12128,39 @@ select.articles-order {
 
 .user-profile-dash .sf-profile input {
   border-color: #666666; }
+
+.consultant-bio {
+  padding: 10px 14px;
+  position: relative;
+  border: 2px solid #7DC245;
+  margin-top: 20px; }
+
+.consultant-bio:before {
+  position: absolute;
+  display: block;
+  background-image: url(../images/plus.jpg);
+  background-size: contain;
+  background-position: center;
+  top: -16px;
+  left: -15px;
+  width: 30px;
+  height: 33px;
+  content: ''; }
+
+.consultant-bio:after {
+  position: absolute;
+  display: block;
+  background-image: url(../images/down-arrow.jpg);
+  background-size: contain;
+  background-position: center;
+  bottom: -37px;
+  right: 15px;
+  width: 45px;
+  height: 40px;
+  content: ''; }
+
+.consultant-bio .page-wrapper p {
+  margin-bottom: 20px; }
 
 /*#endregion Consultans*/
 /*#region risk measurement*/

@@ -243,6 +243,35 @@ $(document).ready(function () {
         prevText: '<i class="fa fa-angle-left" aria-hidden="true"></i>'*/
         });
     }
+
+    if ($('#trigger-progress').length) {
+
+        var $meters = $(".meter > span");
+        var $section = $('#trigger-progress');
+        var $queue = $({});
+
+        function loadDaBars() {
+            $meters.each(function () {
+                var $el = $(this);
+                var origWidth = $el.width();
+                $el.width(0);
+                $queue.queue(function (next) {
+                    $el.animate({ width: origWidth }, 1000, next);
+                });
+            });
+        }
+
+        $(document).bind('scroll', function (ev) {
+            var scrollOffset = $(document).scrollTop();
+            var containerOffset = $section.offset().top - window.innerHeight;
+            if (scrollOffset > containerOffset) {
+                loadDaBars();
+                // unbind event not to load scrolsl again
+                $(document).unbind('scroll');
+            }
+        });
+
+    }
     
     $('.owl-consultants').owlCarousel({
         margin: 25,

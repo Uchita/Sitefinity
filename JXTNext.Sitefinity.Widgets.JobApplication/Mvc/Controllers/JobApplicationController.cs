@@ -505,7 +505,24 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     HtmlContent = SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.AdvertiserEmailTemplateId),
                     Attachments = emailAttachments
                 }) : null;
-                       
+
+
+            #endregion
+
+            #region 
+
+            //FileUploads
+            attachments.ForEach(c => ProcessFileUpload(ref c));
+
+            bool hasFailedUpload = attachments.Where(c => c.Status != "Completed").Any();
+
+            if (hasFailedUpload)
+            {
+                //prompt error message for contact
+                //jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Technical_Issue, "Unable to attach files to application");
+                TempData["PostBackMessage"] = "Unable to attach files to application.";
+                return Redirect(Request.UrlReferrer.PathAndQuery);
+            }
 
             #endregion
 
@@ -530,34 +547,17 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             if (response.Success && response.ApplicationID.HasValue)
             {
-                //FileUploads
-                attachments.ForEach(c => ProcessFileUpload(ref c));
-
-                bool hasFailedUpload = attachments.Where(c => c.Status != "Completed").Any();
-
-                if (hasFailedUpload)
+                isJobApplicationSuccess = true;
+                jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Applied_Successful, "Your application was successfully processed");
+                if (sourceResume != JobApplicationAttachmentSource.Saved)
                 {
-                    //prompt error message for contact
-                    //jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Technical_Issue, "Unable to attach files to application");
-                    TempData["PostBackMessage"] = "Unable to attach files to application.";
-                    return Redirect(Request.UrlReferrer.PathAndQuery);
-                }
-                else
-                {
-                    isJobApplicationSuccess = true;
-                    jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Applied_Successful, "Your application was successfully processed");
-                    if(sourceResume != JobApplicationAttachmentSource.Saved)
+                    bool profileUploadResult = AddUploadedResumeToProfileDashBoard(attachments.Where(x => x.AttachmentType == JobApplicationAttachmentType.Resume).FirstOrDefault(), ovverideEmail);
+                    if (!profileUploadResult)
                     {
-                        bool profileUploadResult = AddUploadedResumeToProfileDashBoard(attachments.Where(x => x.AttachmentType == JobApplicationAttachmentType.Resume).FirstOrDefault(), ovverideEmail);
-                        if (!profileUploadResult)
-                        {
-                            TempData["PostBackMessage"] = "Unable to attach resume to Profile";
-                            return Redirect(Request.UrlReferrer.PathAndQuery);
-                        }
+                        TempData["PostBackMessage"] = "Unable to attach resume to Profile";
+                        return Redirect(Request.UrlReferrer.PathAndQuery);
                     }
-                    
                 }
-
             }
             else
             {

@@ -4,9 +4,12 @@ using System.ComponentModel;
 using System.Web.Mvc;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
+using Telerik.Sitefinity.Localization;
+using Telerik.Sitefinity.Modules.Pages.Configuration;
 using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Personalization;
 using Telerik.Sitefinity.Services;
+using Telerik.Sitefinity.Web.UI;
 
 namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
 {
@@ -14,8 +17,8 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
     /// This class represents the controller of the Button widget.
     /// </summary>
     [Localization(typeof(ButtonResources))]
-    [ControllerToolboxItem(Name = "Button_MVC", Title = "Button", SectionName = "JXTNext.Content", CssClass = ButtonController.WidgetIconCssClass)]
-    public class ButtonController : Controller, IPersonalizable
+    [ControllerToolboxItem(Name = "Button_MVC", Title = "Button", SectionName = ToolboxesConfig.ContentToolboxSectionName, CssClass = ButtonController.WidgetIconCssClass)]
+    public class ButtonController : Controller, IPersonalizable, ICustomWidgetVisualizationExtended
     {
         #region Properties
 
@@ -39,6 +42,23 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets or sets the name of the template that widget will be displayed.
+        /// </summary>
+        /// <value></value>
+        public string TemplateName
+        {
+            get
+            {
+                return _templateName;
+            }
+
+            set
+            {
+                _templateName = value;
+            }
+        }
+
         /// <inheritdoc />
         public string WidgetCssClass
         {
@@ -57,6 +77,22 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
             get
             {
                 return SystemManager.IsDesignMode;
+            }
+        }
+
+        public bool IsEmpty
+        {
+            get
+            {
+                return this.Model.IsEmpty();
+            }
+        }
+
+        public string EmptyLinkText
+        {
+            get
+            {
+                return Res.Get<ButtonResources>().CreateButton;
             }
         }
 

@@ -7,7 +7,7 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
         /// <summary>
         /// Gets or sets the button label.
         /// </summary>
-        string ButtonLabel { get; set; }
+        string ButtonText { get; set; }
 
         /// <summary>
         /// Gets or sets the link destination.
@@ -45,6 +45,11 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
         string ButtonColour { get; set; }
 
         /// <summary>
+        /// Gets or sets the button target.
+        /// </summary>
+        string Target { get; set; }
+
+        /// <summary>
         /// Gets or sets whether the button is expanded or not.
         /// </summary>
         bool Expanded { get; set; }
@@ -65,6 +70,12 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
         /// </summary>
         /// <returns></returns>
         string GetCssClasses();
+
+        /// <summary>
+        /// Checks if the model is empty.
+        /// </summary>
+        /// <returns></returns>
+        bool IsEmpty();
 
         /// <summary>
         /// Gets the view model.

@@ -61,18 +61,34 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.StringResources
         #endregion
 
         /// <summary>
-        /// phrase : Label
+        /// phrase : Create Button
         /// </summary>
-        /// <value>Label</value>
-        [ResourceEntry("ButtonLabel",
-            Value = "Label",
-            Description = "phrase : Label",
-            LastModified = "2019/04/29")]
-        public string ButtonLabel
+        /// <value>Create Button</value>
+        [ResourceEntry("CreateButton",
+            Value = "Create Button",
+            Description = "phrase : Create Button",
+            LastModified = "2019/05/07")]
+        public string CreateButton
         {
             get
             {
-                return this["ButtonLabel"];
+                return this["CreateButton"];
+            }
+        }
+
+        /// <summary>
+        /// phrase : Label
+        /// </summary>
+        /// <value>Label</value>
+        [ResourceEntry("ButtonText",
+            Value = "Button Text",
+            Description = "phrase : Button Text",
+            LastModified = "2019/05/07")]
+        public string ButtonText
+        {
+            get
+            {
+                return this["ButtonText"];
             }
         }
 
@@ -297,6 +313,21 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.StringResources
             get
             {
                 return this["Style"];
+            }
+        }
+
+        /// phrase : Target
+        /// </summary>
+        /// <value>Target</value>
+        [ResourceEntry("Target",
+            Value = "Target",
+            Description = "phrase : Target",
+            LastModified = "2019/05/07")]
+        public string Target
+        {
+            get
+            {
+                return this["Target"];
             }
         }
     }

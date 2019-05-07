@@ -2,8 +2,8 @@
 
 <form>
     <div class="form-group">
-        <label for="label-text">@Html.Resource("ButtonLabel")</label>
-        <input id="label-text" type="text" ng-model="properties.ButtonLabel.PropertyValue" class="form-control" />
+        <label for="label-text">@Html.Resource("ButtonText")</label>
+        <input id="label-text" type="text" ng-model="properties.ButtonText.PropertyValue" class="form-control" />
         <p class="text-muted">@Html.Resource("LearnMore")</p>
     </div>
 
@@ -57,7 +57,21 @@
             <label>
                 <input type="checkbox" ng-model="properties.Expanded.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.Expanded.PropertyValue === 'True'" />
                 @Html.Resource("Expanded")
-            </label>            
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="target">@Html.Resource("Target")</label>
+            <div class="row">
+                <div class="col-xs-6">
+                    <select id="target" ng-model="properties.Target.PropertyValue" class="form-control">
+                        <option value="">None</option>
+                        <option value="_blank">New Window</option>
+                        <option value="_parent">Parent Frameset</option>
+                        <option value="_top">Full Body</option>
+                    </select>
+                </div>
+            </div>
         </div>
 
         <div class="form-group">
@@ -91,5 +105,20 @@
             <label for="cssClass">@Html.Resource("CssClasses")</label>
             <input id="cssClass" type="text" ng-model="properties.CssClass.PropertyValue" class="form-control" />
         </div>
+
+        <div class="form-group">
+            <label for="templateName">@Html.Resource("Template")</label>
+            <div class="row">
+                <div class="col-xs-6">
+                    <select id="templateName" ng-model="properties.TemplateName.PropertyValue" class="form-control">
+                        @foreach (var viewName in Html.GetViewNames("Button", @"(?<viewName>^Button.*)$"))
+                        {
+                            <option value="@viewName"> @viewName.SplitCamelCase()</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <style-dropdown selected-class="properties.CssClass.PropertyValue" view-name="properties.TemplateName.PropertyValue"></style-dropdown>
     </expander>
 </form>

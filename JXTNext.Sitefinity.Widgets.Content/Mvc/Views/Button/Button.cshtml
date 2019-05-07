@@ -6,13 +6,15 @@
 {
     <a href="@Model.ActionUrl"
        role="button"
-       class="@Model.CssClass">@Html.HtmlSanitize(Model.ButtonLabel)</a>
+       class="@Model.CssClass"
+       target="@Model.Target">@Html.HtmlSanitize(Model.ButtonText)</a>
 }
 else
 {
     <div class="u-text-@Model.ButtonAlignment">
         <a href="@Model.ActionUrl"
            role="button"
-           class="@Model.CssClass">@Html.HtmlSanitize(Model.ButtonLabel)</a>
+           class="@Model.CssClass"
+           target="@Model.Target">@Html.HtmlSanitize(Model.ButtonText)</a>
     </div>
 }

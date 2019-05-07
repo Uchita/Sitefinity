@@ -17,12 +17,7 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
         public const string LinkToUrl = "url";
         public const string LinkToAnchor = "anchor";
 
-        public ButtonModel()
-        {
-            this.LinkTo = LinkToPage;
-        }
-
-        public string ButtonLabel { get; set; }
+        public string ButtonText { get; set; }
 
         public string LinkTo { get; set; }
 
@@ -38,13 +33,17 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
 
         public string ButtonAlignment { get; set; }
 
+        public string Target { get; set; }
+
         public bool Expanded { get; set; }
 
         public string CssClass { get; set; }
 
         public string GetLinkedUrl()
         {
-            if (this.LinkTo == LinkToPage)
+            var linkTo = string.IsNullOrWhiteSpace(this.LinkTo) ? LinkToPage : this.LinkTo;
+
+            if (linkTo == LinkToPage)
             {
                 if (this.LinkedPageId == Guid.Empty)
                     return null;
@@ -66,14 +65,14 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
                     return UrlPath.ResolveUrl(relativeUrl, Config.Get<SystemConfig>().SiteUrlSettings.GenerateAbsoluteUrls);
                 }
             }
-            else if (this.LinkTo == LinkToUrl)
+            else if (linkTo == LinkToUrl)
             {
                 if (!string.IsNullOrEmpty(this.LinkedUrl))
                 {
                     return this.LinkedUrl;
                 }
             }
-            else if (this.LinkTo == LinkToAnchor)
+            else if (linkTo == LinkToAnchor)
             {
                 if (!string.IsNullOrEmpty(this.LinkedAnchor))
                 {
@@ -113,13 +112,25 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
             return string.Join(" ", cssClasses);
         }
 
+        public bool IsEmpty()
+        {
+            return string.IsNullOrWhiteSpace(ButtonText)
+                && string.IsNullOrWhiteSpace(LinkTo)
+                && string.IsNullOrWhiteSpace(ButtonStyle)
+                && string.IsNullOrWhiteSpace(ButtonColour)
+                && string.IsNullOrWhiteSpace(ButtonAlignment)
+                && string.IsNullOrWhiteSpace(CssClass)
+                && string.IsNullOrWhiteSpace(Target);
+        }
+
         public ButtonViewModel GetViewModel()
         {
             var viewModel = new ButtonViewModel()
             {
-                ButtonLabel = string.IsNullOrWhiteSpace(ButtonLabel) ? "Untitled Button" : ButtonLabel,
+                ButtonText = string.IsNullOrWhiteSpace(ButtonText) ? "Untitled Button" : ButtonText,
                 ActionUrl = GetLinkedUrl(),
                 ButtonAlignment = ButtonAlignment,
+                Target = Target,
                 CssClass = GetCssClasses()
             };
 

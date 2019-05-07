@@ -458,21 +458,21 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             
 
             Log.Write($"currentIdentity.IsAuthenticated value is {currentIdentity.IsAuthenticated}", ConfigurationPolicy.ErrorLog);
-            string loginUserFirstName = null;
+            string loginUserName = null;
             if (currentIdentity.IsAuthenticated)
             {
-                loginUserFirstName = SitefinityHelper.GetUserFirstNameById(currentIdentity.UserId);
+                loginUserName = SitefinityHelper.GetUserFullNameById(currentIdentity.UserId);
             }
             else
             {
                 var user = SitefinityHelper.GetUserByEmail(ovverideEmail);
                 if(user != null)
                 {
-                    loginUserFirstName = SitefinityHelper.GetUserFirstNameById(ClaimsManager.GetCurrentIdentity().UserId);
+                    loginUserName = SitefinityHelper.GetUserFullNameById(ClaimsManager.GetCurrentIdentity().UserId);
                 }
                 else
                 {
-                    loginUserFirstName = string.Empty;
+                    loginUserName = string.Empty;
                 }
 
             }
@@ -484,7 +484,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     FromFirstName = this.EmailTemplateSenderName,
                     FromLastName = null,
                     FromEmail = this.EmailTemplateSenderEmailAddress,
-                    ToFirstName = loginUserFirstName,
+                    ToFirstName = loginUserName,
                     ToLastName = null,
                     ToEmail = ovverideEmail,
                     Subject = SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.EmailTemplateId),
@@ -495,7 +495,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             EmailNotificationSettings advertiserEmailNotificationSettings = this.AdvertiserEmailTemplateId != null ? 
                 _createAdvertiserEmailTemplate(new JobApplicationEmailTemplateModel()
                 {
-                    FromFirstName = loginUserFirstName,
+                    FromFirstName = loginUserName,
                     FromLastName = null,
                     FromEmail = ovverideEmail,
                     ToEmail = applyJobModel.ApplicationEmail,

@@ -222,6 +222,7 @@
     <Compile Include="Helpers\SitefinityEmailSender.cs" />
     <Compile Include="Helpers\GeneralHelper.cs" />
     <Compile Include="Helpers\SiteSettingsHelper.cs" />
+    <Compile Include="Models\Classifications\Company.cs" />
     <Compile Include="Models\Communications\EmailRequest.cs" />
     <Compile Include="Models\CustomSiteSettings\CustomSiteSettings.cs" />
     <Compile Include="Models\CustomSiteSettings\CustomSiteSettingsConfig.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="Helpers\ConversionHelper.cs" />
     <Compile Include="Helpers\SitefinityHelper.cs" />
     <Compile Include="Models\IRequestSession.cs" />
+    <Compile Include="Models\JobApplication\JobApplicationEmailTemplateModel.cs" />
     <Compile Include="Models\Robots\RobotSettings.cs" />
     <Compile Include="Models\Robots\RobotSettingsConfig.cs" />
     <Compile Include="Models\Robots\RobotSettingsContract.cs" />

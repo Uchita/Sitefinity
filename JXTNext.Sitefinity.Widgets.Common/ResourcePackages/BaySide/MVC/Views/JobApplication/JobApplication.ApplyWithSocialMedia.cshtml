@@ -6,12 +6,12 @@
 @{
     var hasLinkedIn = false;
 }
-
-@if (Model != null && Model.ApplyWithSocialMediaInfo != null)
-{
-    var siteSettingsHelper = new SiteSettingsHelper();
-    <div class="ext-provider-form">
-        <h2>Apply with</h2>
+<aside class="job-sidebar col-12 col-sm-12 col-md-4 pl-lg-4 apply-with-btn">
+    @if (Model != null && Model.ApplyWithSocialMediaInfo != null)
+    {
+        var siteSettingsHelper = new SiteSettingsHelper();
+    <div class="ext-provider-form" id="applyApp">
+       <h3 class="mt-4 h3-heading">Apply with</h3>
         <div class="apply-with">
             <ul class="list-inline">
                 @foreach (var item in Model.ApplyWithSocialMediaInfo)
@@ -21,8 +21,8 @@
                         case "LinkedIn":
                             hasLinkedIn = true;
 
-                            <li>
-                                <a href="javascript:;" class="btn btn-linkedin" data-linkedin-toggle="#linkedin-widget-holder" title="@item.Title">@item.Title</a>
+                            <li id="linkedIn-btnwrapper">
+                                <a href="javascript:;" class="btn btn-linkedin" data-linkedin-toggle="#linkedin-widget-holder" title="@item.Title"></a>
                             </li>
 
                             break;
@@ -31,7 +31,7 @@
                             @*<li><a href="#" target="_blank" title=@item.Title role="button">Apply With @item.Title</a></li>*@
                             var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
                             var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
-                            var indeedJobCompanyNameAndLoginUserEmail = "right-rail-apply-button;" + ViewBag.loginEmail;
+                            var indeedJobCompanyNameAndLoginUserEmail = "right-rail-apply-button;" + ViewBag.loginEmail + ";" + Model.UrlReferral;
                             <li id="indeed-btnwrapper">
                                 <span class="indeed-apply-widget"
                                       data-indeed-apply-apiToken=@indeedAPIToken
@@ -55,16 +55,16 @@
                                       data-indeed-apply-jobMeta="@indeedJobCompanyNameAndLoginUserEmail"
                                       data-indeed-apply-onapplied="OnIndeedCompleted">
                                 </span>*@
-                    <script>
-                        (function (d, s, id) {
-                            var js, iajs = d.getElementsByTagName(s)[0];
-                            if (d.getElementById(id)) { return; }
-                            js = d.createElement(s); js.id = id; js.async = true;
-                            js.src = "https://apply.indeed.com/indeedapply/static/scripts/app/bootstrap.js";
-                            iajs.parentNode.insertBefore(js, iajs);
-                        }(document, 'script', 'indeed-apply-js'));
-                    </script>
-                </li>
+                                <script>
+                                    (function (d, s, id) {
+                                        var js, iajs = d.getElementsByTagName(s)[0];
+                                        if (d.getElementById(id)) { return; }
+                                        js = d.createElement(s); js.id = id; js.async = true;
+                                        js.src = "https://apply.indeed.com/indeedapply/static/scripts/app/bootstrap.js";
+                                        iajs.parentNode.insertBefore(js, iajs);
+                                    }(document, 'script', 'indeed-apply-js'));
+                                </script>
+                            </li>
                             break;
                         case "Seek":
 
@@ -117,7 +117,7 @@
                         {
                             <p>
                                 <a href="@ViewBag.LinkedInSignInUrl" class="btn-linkedin-signin" title="Sign in with LinkedIn" data-widget-holder="#linkedin-widget-holder">
-                                    <img src="~/ResourcePackages/Hudson/assets/dist/images/sign-in-linkedin.svg" class="img-responsive" />
+                                    @*<img src="~/ResourcePackages/Hudson/assets/dist/images/sign-in-linkedin.svg" class="img-responsive" />*@
                                 </a>
                             </p>
 
@@ -133,13 +133,14 @@
             }
         </div>
     </div>
-}
+    }
 
 
-<script type="text/javascript">
+    <script type="text/javascript">
     var successPageUrl = '@ViewBag.SuccessPageUrl';
 
     function OnIndeedCompleted() {
         location.href = successPageUrl;
     }
-</script>
+    </script>
+    </aside>

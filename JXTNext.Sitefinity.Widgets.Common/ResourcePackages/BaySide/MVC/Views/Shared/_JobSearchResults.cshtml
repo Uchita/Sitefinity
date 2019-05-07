@@ -33,33 +33,44 @@
             <div class="col-12 col-lg-12 mb-2" style="display:none;">Receive new jobs for this search by email.</div>
         </div>
         <div class="row">
-            <div class="col-12 col-lg-6">
-                <div class="form-group">
-                    <input type="email" id="anonycreatejobalert" value="" placeholder="Enter email to receive new jobs for this search" class="jobalert-field form-control" />
+            @if (ViewBag.IsMember)
+            {
+                <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <input type="email" id="anonycreatejobalert" value="@ViewBag.Email" hidden />
 
-                    <div class="alert alert-danger jobalert-error-message hidden">Please enter your valid email address.</div>
+                        <div class="alert alert-danger jobalert-error-message hidden">Please enter your valid email address.</div>
+                    </div>
                 </div>
-
-            </div>
-            <div class="col-12">
-                <div class="alert alert-info jobalert-message hidden">Alert created. We’ll send new jobs to your email address.</div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="form-group text-right">
-                    <a id="anon-job-alert" class="btn btn-outline-primary btn-block" href="#" title="Create your job alert">CREATE JOB ALERT</a>
-
-
-
-                    @*@if (isLoggedIn)
-                        {
-                        <a class="btn btn-outline-primary btn-block jobalert-btn" href="/user-dashboard/Create" title="Create you job alert">CREATE JOB ALERT</a>
-                        }
-                        else
-                        {
-                        <a id="anon-job-alert" class="btn btn-block btn-outline-primary" href="#" title="Create you job alert">CREATE JOB ALERT</a>
-                        }*@
+                <div class="col-12">
+                    <div class="alert alert-info jobalert-message hidden">Alert created. We’ll send new jobs to your email address.</div>
                 </div>
-            </div>
+                <div class="col-12 col-lg-6">
+                    <div class="form-group text-right">
+                        <a id="anon-job-alert" class="btn btn-outline-primary btn-block" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <input type="email" id="anonycreatejobalert" value="" placeholder="Receive new jobs for this search by email." class="jobalert-field form-control" />
+
+                        <div class="alert alert-danger jobalert-error-message hidden">Please enter your valid email address.</div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="alert alert-info jobalert-message hidden">Alert created. We’ll send new jobs to your email address.</div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="form-group text-right">
+                        <a id="anon-job-alert" class="btn btn-outline-primary btn-block" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+                    </div>
+                </div>
+            }
+
+
         </div>
         <!-- .row/ -->
     </div>
@@ -185,7 +196,7 @@
     }
 
     $(document).ready(function () {
-        $(document).on('click', '.save-job', function (e) {
+        $(document).off('click').on('click', '.save-job', function (e) {
             e.preventDefault();
             var unSaveJob = false;
             var ajaxActionName = "/SaveJob";

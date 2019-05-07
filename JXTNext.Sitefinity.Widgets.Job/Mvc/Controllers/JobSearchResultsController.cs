@@ -31,6 +31,7 @@ using Telerik.Sitefinity.DynamicModules;
 using Telerik.Sitefinity.Utilities.TypeConverters;
 using Telerik.Sitefinity.Model;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common;
+using JXTNext.Sitefinity.Common.Models.Classifications;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -60,7 +61,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 this.templateName = value;
             }
         }
-
+        private static List<Company> companies = null;
         private readonly string CategoryString = "Categories";
         private readonly string RangeString = "Range";
         private readonly static string SalaryString = "Salary";
@@ -73,7 +74,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             _oConnectorsList = _oConnectors;
             _BLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
             _OptionsConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
-            
+            companies = GetCompanyList();
         }
 
         // GET: JobSearchResults
@@ -345,25 +346,30 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             alertModel.Data = JsonConvert.SerializeObject(searchModel);
 
             // Code for sending email alerts
-            EmailNotificationSettings jobAlertEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.JobAlertEmailTemplateSenderName, this.JobAlertEmailTemplateSenderEmailAddress),
+            EmailNotificationSettings jobAlertEmailNotificationSettings = null;
+            if (JobAlertEmailTemplateId != null)
+            {
+                jobAlertEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.JobAlertEmailTemplateSenderName, this.JobAlertEmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(string.Empty, email),
                                                                                                 this.GetJobAlertHtmlEmailTitle(),
                                                                                                 this.GetJobAlertHtmlEmailContent(), null);
-            if (!this.JobAlertEmailTemplateCC.IsNullOrEmpty())
-            {
-                foreach (var ccEmail in this.JobAlertEmailTemplateCC.Split(';'))
+                if (!this.JobAlertEmailTemplateCC.IsNullOrEmpty())
                 {
-                    jobAlertEmailNotificationSettings.AddCC(String.Empty, ccEmail);
+                    foreach (var ccEmail in this.JobAlertEmailTemplateCC.Split(';'))
+                    {
+                        jobAlertEmailNotificationSettings.AddCC(String.Empty, ccEmail);
+                    }
                 }
-            }
 
-            if (!this.JobAlertEmailTemplateBCC.IsNullOrEmpty())
-            {
-                foreach (var bccEmail in this.JobAlertEmailTemplateBCC.Split(';'))
+                if (!this.JobAlertEmailTemplateBCC.IsNullOrEmpty())
                 {
-                    jobAlertEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
+                    foreach (var bccEmail in this.JobAlertEmailTemplateBCC.Split(';'))
+                    {
+                        jobAlertEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
+                    }
                 }
             }
+            
 
             alertModel.EmailNotifications = jobAlertEmailNotificationSettings;
 
@@ -708,6 +714,25 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
+        private List<Company> GetCompanyList()
+        {
+            JXTNext_GetJobFiltersRequest request = new JXTNext_GetJobFiltersRequest();
+            IGetJobFiltersResponse filtersResponse = _OptionsConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(request);
+            List<Company> companyList = new List<Company>();
+            foreach (var item in filtersResponse.Filters.Data)
+            {
+                if(item.Name == CompanyString)
+                {
+                    foreach (var company in item.Filters)
+                    {
+                        companyList.Add(new Company() { Name = company.Label, Id = Int32.Parse(company.ID) });
+                    }
+                }
+            }
+            
+            return companyList;
+        }
+
         public static JobFiltersData GetFiltersData()
         {
             JobFiltersData filtersData = new JobFiltersData() { Data = new List<JobFilterRoot>() };
@@ -728,6 +753,26 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         ProcessCategories(childTaxon, jobFilter);
                         filterRoot.Filters.Add(jobFilter);
                     }
+                }
+
+                filtersData.Data.Add(filterRoot);
+            }
+
+            
+            
+            if(companies != null)
+            {
+                JobFilterRoot filterRoot = new JobFilterRoot() { Filters = new List<JobFilter>() };
+                filterRoot.ID = Guid.NewGuid().ToString();
+                filterRoot.Name = CompanyString;
+
+                
+                foreach (var item in companies)
+                {
+                    var jobFilter = new JobFilter() { Filters = new List<JobFilter>() };
+                    jobFilter.ID = item.Id.ToString();
+                    jobFilter.Label = item.Name;
+                    filterRoot.Filters.Add(jobFilter);
                 }
 
                 filtersData.Data.Add(filterRoot);
@@ -890,10 +935,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             string htmlEmailContent = String.Empty;
             if (!String.IsNullOrEmpty(this.JobAlertEmailTemplateId))
             {
-                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
-                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
-                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.JobAlertEmailTemplateId.ToUpper()));
-                htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
+                htmlEmailContent = SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.JobAlertEmailTemplateId);
 
             }
             return htmlEmailContent;
@@ -904,10 +946,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             string htmlEmailTitle = String.Empty;
             if (!String.IsNullOrEmpty(this.JobAlertEmailTemplateId))
             {
-                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
-                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
-                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.JobAlertEmailTemplateId.ToUpper()));
-                htmlEmailTitle = emailTemplateItem.GetValue("Title").ToString();
+                htmlEmailTitle = SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.JobAlertEmailTemplateId);
 
             }
             return htmlEmailTitle;
@@ -977,6 +1016,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string SerializedJobSearchParams { get; set; }
         public string KeywordsSelectedJobs { get; set; }
         public bool UseConfigFilters { get; set; }
+        public bool UseCompanyFilters { get; set; }
+        public string CompanySelected { get; set; }
 
         public string ItemType
         {
@@ -987,8 +1028,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         public string JobAlertEmailTemplateProviderName
         {
-            get { return _emailTemplateProviderName; }
-            set { this._emailTemplateProviderName = value; }
+            get { return SitefinityHelper.GetCurrentSiteEmailTemplateProviderName(); }
         }
         public string JobAlertEmailTemplateId { get; set; }
         public string JobAlertEmailTemplateName { get; set; }

@@ -6471,15 +6471,25 @@ select.hs-input {
         .primary-nav-wrap > .row {
             position: static;
         }
-
-        .primary-nav-wrap .col-auto.ml-auto {
-            position: absolute;
-            width: 100%;
-            right: 0;
-            top: 50px;
-            background: white;
-            z-index: 11;
-        }
+    .top-menus{
+        overflow: hidden;
+    }
+    .header-search_form{
+        margin-top: 7px;
+    }
+    .primary-nav-wrap .col-auto.ml-auto {
+        position: absolute;
+        width: 100%;
+        right: 0;
+        top: 50px;
+        background: white;
+        z-index: 11;
+        display: none;
+        box-shadow: 0 6px 6px rgba(0,0,0,0.10);
+    }
+            .primary-nav-wrap .col-auto.ml-auto.in{
+                display: block;
+            }
 
             .primary-nav-wrap .col-auto.ml-auto .navbar {
                 position: static;
@@ -6709,6 +6719,12 @@ select.hs-input {
     min-height: 72px;
     text-transform: lowercase;
 }
+    .blog-list-item .list-desc a{
+        color: #000;
+    }
+    .blog-list-item .list-desc a:hover {
+        color: #0088CF;
+    }
 
     .blog-list-item .list-desc:first-letter {
         text-transform: uppercase;
@@ -8250,6 +8266,7 @@ select.hs-input {
             display: none;
         }
 
+
     .cta-bg {
         padding: 30px;
         min-height: 155px;
@@ -9769,7 +9786,7 @@ select.hs-input {
 
     .related-blog {
         margin: 42px 0 0 0;
-        width: calc(100% + 115px);
+        width: calc(100% + 127px);
         float: right;
         border-top: 1px solid #D8D8D8;
     }
@@ -9808,6 +9825,44 @@ select.hs-input {
             background: #0088CF url(../images/prev-iconH.png) no-repeat center center;
             background-size: 12px auto !important;
         }
+
+@media (max-width:767px) {
+    .vertical-social-share {
+        flex: none !important;
+        width: 100% !important
+    }
+
+        .vertical-social-share ul {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+            .vertical-social-share ul > li {
+                display: inline-block;
+                margin: 0 5%;
+            }
+
+    .blog-detail-col {
+        padding: 0;
+        right: 0;
+    }
+
+        .blog-detail-col .blog-detail-col {
+            padding: 0;
+        }
+
+    .blogimg {
+        margin-top: 10px;
+    }
+
+    .related-blog {
+        width: auto;
+    }
+
+        .related-blog .news-desc {
+            min-height: 40px;
+        }
+}
 
     @media(max-width: 348px) {
         .related-blog {
@@ -10437,7 +10492,7 @@ select.hs-input {
         }
 
         .blog-detail-col .related-blog {
-            margin: 42px 15px 0 15px;
+            margin: 42px 0;
         }
 
         .job-detail img.float-right {
@@ -10506,7 +10561,7 @@ select.hs-input {
     }
 
 
-<<<<<<< HEAD
+
     .ui-autocomple{
         list-style: none;
         margin: 0;
@@ -10518,7 +10573,7 @@ select.hs-input {
 .ui-autocomple li{
     padding: 3px 0;
 }
-=======
+
 @media only screen and (max-width: 600px){
     .top-menus .login-status{
         float:unset;
@@ -10531,4 +10586,4 @@ select.hs-input {
         width:100%;
     }
 }
->>>>>>> feature/jxt/bayside
+

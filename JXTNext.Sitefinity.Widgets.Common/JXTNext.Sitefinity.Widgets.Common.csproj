@@ -1751,6 +1751,9 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\SearchBox\SearchBox.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\SearchResults\SearchResults-Blog.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\SearchResults\SearchResults.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -224,6 +224,9 @@
   height: 100%;
   width: 100%; }
 
+/*$global-font-family: 'Open Sans', sans-serif;*/
+/*$font-family-light: 'Open Sans', sans-serif;
+$font-family-regular: 'Open Sans', sans-serif;*/
 /*was: #7cccbf*/
 .owl-theme .owl-dots .owl-dot span {
   margin: 5px 3px;
@@ -327,7 +330,7 @@
   .testimonials-slider .testimonial-title {
     font-size: 36px;
     font-size: 3.6rem;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Abel", sans-serif;
     margin: -45px auto 0 auto;
     line-height: 1;
     padding: 0 80px; }
@@ -350,7 +353,7 @@
   .testimonials-slider.bg-lighter .owl-stage-outer {
     background: transparent; }
   .testimonials-slider .testimonial.font-light {
-    font-family: "Open Sans", sans-serif; }
+    font-family: "Abel", sans-serif; }
   .testimonials-slider .testimonial-slider-img {
     background-color: #ccc;
     background-size: cover;

@@ -5,8 +5,8 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
 @import url("https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900");
+@import url("https://fonts.googleapis.com/css?family=Abel");
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -7203,8 +7203,13 @@ div.k-event {
 .sf-registration-link {
   clear: both; }
 
+/*$global-font-family: 'Open Sans', sans-serif;*/
+/*$font-family-light: 'Open Sans', sans-serif;
+$font-family-regular: 'Open Sans', sans-serif;*/
 /*was: #7cccbf*/
+/*@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');*/
 /*font-family: 'Open Sans', sans-serif;*/
+/*@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900');*/
 /*font-family: 'Playfair Display', serif;*/
 /*@font-face {
     font-family: 'AkzidGroProLig';
@@ -7324,7 +7329,7 @@ blockquote {
 .page-wrapper {
   font-size: 1.6rem;
   line-height: 1.6;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Abel", sans-serif;
   color: #000;
   /* Headings */
   /*Links*/
@@ -7467,7 +7472,7 @@ blockquote {
       border: none;
       margin-bottom: 5px;
       min-width: 220px;
-      font-family: "Open Sans", sans-serif;
+      font-family: "Abel", sans-serif;
       text-transform: none;
       color: #fff;
       overflow: hidden; }
@@ -7583,7 +7588,7 @@ blockquote {
   .page-wrapper .form-control {
     height: 45px;
     color: #000;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Abel", sans-serif;
     font-size: 1.4rem; }
   .page-wrapper .form-control,
   .page-wrapper input[type="text"],
@@ -7756,9 +7761,9 @@ blockquote {
     .page-wrapper .text-muted a {
       text-decoration: underline; }
   .page-wrapper .font-light {
-    font-family: "Open Sans", sans-serif; }
+    font-family: "Abel", sans-serif; }
   .page-wrapper .font-regular {
-    font-family: "Open Sans", sans-serif; }
+    font-family: "Abel", sans-serif; }
   .page-wrapper .font-medium {
     font-family: 600; }
   .page-wrapper .font-bold {
@@ -7835,7 +7840,7 @@ blockquote {
     padding-top: 10px; }
     .page-wrapper label.lbl {
       text-transform: none;
-      font-family: "Open Sans", sans-serif;
+      font-family: "Abel", sans-serif;
       color: #000; }
   .page-wrapper .btn-near-labels {
     margin-top: 27px; }
@@ -7944,7 +7949,7 @@ pre {
 
 /*#endregion General */
 .header {
-  border-bottom: 1px solid #fff; }
+  /*border-bottom: 1px solid $brightColor;*/ }
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
     .header {
       /*   overflow: hidden;*/ } }
@@ -8070,11 +8075,10 @@ header {
       float: none;
       margin: 0 auto;
       padding-left: 15px;
-      padding-right: 15px; }
+      padding-right: 0px; }
     header .main-nav .nav.navbar-nav {
       padding: 0;
-      width: 100%;
-      margin-left: -30px; }
+      float: right; }
     header .main-nav .navbar-nav > li.dropdown {
       position: static;
       float: left;
@@ -8106,13 +8110,14 @@ header {
         header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu.no-bdr, header .main-nav .navbar-nav > li.dropdown:focus .dropdown-menu.no-bdr {
           border: none !important; }
         header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu a, header .main-nav .navbar-nav > li.dropdown:focus .dropdown-menu a {
-          font-weight: 600;
           display: block;
           padding: 10px;
           background: #19366A;
           transition: all 0.3s ease-in-out;
           margin: 0 0 1px 0;
-          border: 1px solid #fff; }
+          border: 1px solid #fff;
+          text-transform: uppercase;
+          font-weight: normal; }
           header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu a::after, header .main-nav .navbar-nav > li.dropdown:focus .dropdown-menu a::after {
             display: none; }
           header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu a:hover, header .main-nav .navbar-nav > li.dropdown:focus .dropdown-menu a:hover {
@@ -8191,15 +8196,19 @@ header {
       border-radius: 0;
       min-height: 0;
       background: none; }
-      header .navbar.navbar-default .navbar-nav > li:first-child a {
-        padding-left: 30px !important; }
-        @media (max-width: 1024px) {
-          header .navbar.navbar-default .navbar-nav > li:first-child a {
-            padding-left: 20px !important; } }
+      header .navbar.navbar-default .navbar-nav > li {
+        margin-left: 40px; }
+        header .navbar.navbar-default .navbar-nav > li:first-child {
+          margin-left: 0; }
+        header .navbar.navbar-default .navbar-nav > li:first-child a {
+          /* padding-left: 30px !important;*/ }
+          @media (max-width: 1024px) {
+            header .navbar.navbar-default .navbar-nav > li:first-child a {
+              /*padding-left: 20px !important;*/ } }
       header .navbar.navbar-default .navbar-nav > li > a, header .navbar.navbar-default .navbar-nav > .active > a {
         font-size: 16px;
-        font-size: 1.6rem;
-        font-weight: 600;
+        font-size: 1.8rem;
+        text-transform: uppercase;
         background: none;
         color: #fff;
         transition: all 0.3s ease-in-out; }
@@ -8223,8 +8232,8 @@ header {
         position: relative;
         /*margin-bottom: 0;*/ }
         header .navbar.navbar-default .navbar-nav > li a {
-          padding-left: 0;
-          padding-right: 35px;
+          padding: 0;
+          /*padding-right: 35px;*/
           border-bottom-color: transparent; }
         header .navbar.navbar-default .navbar-nav > li:last-child {
           padding-right: 0; }
@@ -8306,7 +8315,7 @@ header {
           header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu li a {
             padding: 15px 30px 16px 0;
             color: #fff;
-            font: 1.75rem/1.2 "Open Sans", sans-serif;
+            font: 1.75rem/1.2 "Abel", sans-serif;
             /*border-bottom: 1px solid $brightColor;*/
             letter-spacing: 0.05rem; }
           header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu li:last-child > a {
@@ -8592,7 +8601,7 @@ main {
         list-style-type: none; }
         .left-sidebar .container-fluid .nav .dropdown-menu li a, .categories-list .nav .dropdown-menu li a, .left-sidebar .navbar-collapse .nav .dropdown-menu li a {
           padding: 10px 0 0 0;
-          font-family: "Open Sans", sans-serif;
+          font-family: "Abel", sans-serif;
           font-size: 1.8rem;
           white-space: normal; }
           .left-sidebar .container-fluid .nav .dropdown-menu li a:hover, .left-sidebar .container-fluid .nav .dropdown-menu li a:focus, .categories-list .nav .dropdown-menu li a:hover, .categories-list .nav .dropdown-menu li a:focus, .left-sidebar .navbar-collapse .nav .dropdown-menu li a:hover, .left-sidebar .navbar-collapse .nav .dropdown-menu li a:focus {
@@ -8942,7 +8951,7 @@ select.slimtable-paging-select {
   text-transform: capitalize;
   color: #969595; }
   .page-wrapper footer .postfooter-links a {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Abel", sans-serif;
     color: #969595;
     transition: all 0.3s ease-in-out; }
     .page-wrapper footer .postfooter-links a + a {
@@ -8959,7 +8968,7 @@ select.slimtable-paging-select {
   position: fixed;
   left: 0;
   top: 200px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Abel", sans-serif;
   color: #fff;
   z-index: 1055; }
   .page-wrapper .quick-links a {
@@ -9040,12 +9049,12 @@ select.slimtable-paging-select {
     margin-bottom: 0; }
 
 .gm-style-iw h3 {
-  font-family: "Open Sans", sans-serif; }
+  font-family: "Abel", sans-serif; }
 
 .info-box {
   border-left: 3px solid #2dc3ea;
   color: #000;
-  font: 1.4rem "Open Sans", sans-serif;
+  font: 1.4rem "Abel", sans-serif;
   padding: 5px 0 5px 10px; }
   .info-box .map-field {
     display: block;
@@ -9622,12 +9631,12 @@ address.info-box {
     width: 100vw;
     right: -100vw;
     height: 1px;
-    background: white; }
+    background: white;
+    display: none; }
     @media (max-width: 1280px) {
       .top-level-bar:after {
         display: none; } }
   .top-level-bar .contact-tel-info {
-    border-right: 1px solid #fff;
     font-weight: 600;
     color: white;
     padding-left: 30px; }
@@ -9659,7 +9668,6 @@ address.info-box {
     color: white; }
 
 .header-right-component {
-  border-left: 1px solid white;
   position: relative; }
   @media (max-width: 767px) {
     .header-right-component {
@@ -9671,8 +9679,12 @@ address.info-box {
     content: "";
     width: 100%;
     bottom: 47px;
-    border-bottom: 1px solid white;
-    left: 0; }
+    height: 1px;
+    right: 15px;
+    background: -moz-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(45, 195, 234, 0.64) 99%, rgba(45, 195, 234, 0.65) 100%);
+    background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(45, 195, 234, 0.64) 99%, rgba(45, 195, 234, 0.65) 100%);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(45, 195, 234, 0.64) 99%, rgba(45, 195, 234, 0.65) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#a62dc3ea', GradientType=1); }
   @media (max-width: 767px) {
     .header-right-component:before {
       display: none; } }
@@ -10027,7 +10039,8 @@ ul.no-gutter {
   padding: 0; }
 
 .header-top-links {
-  color: white; }
+  color: white;
+  text-transform: uppercase; }
 
 .view-jobs-btn {
   margin-top: 40px; }
@@ -10091,6 +10104,11 @@ ul.no-gutter {
   @media (max-width: 767px) {
     .keywords-head {
       margin-top: -15px; } }
+
+.remove-gutter {
+  float: right; }
+  .remove-gutter [class^="col-"], .remove-gutter [class*=" col-"] {
+    width: inherit; }
 
 /*#endregion Basic components */
 /*#region Breadcrumbs */
@@ -10445,7 +10463,7 @@ ul.breadcrumb {
   text-transform: none;
   font-size: 27px;
   font-size: 2.7rem;
-  font-family: "Open Sans", sans-serif; }
+  font-family: "Abel", sans-serif; }
 
 .card-basic-regular-sum.thumbnail {
   width: 100%;
@@ -10458,7 +10476,7 @@ ul.breadcrumb {
       max-width: 100%; }
 
 .card-basic-regular-sum p {
-  font-family: "Open Sans", sans-serif; }
+  font-family: "Abel", sans-serif; }
 
 .card-basic.same-height-box {
   position: relative; }
@@ -10706,7 +10724,7 @@ ul.breadcrumb {
 .list-group label {
   color: #000;
   text-transform: none;
-  font-family: "Open Sans", sans-serif; }
+  font-family: "Abel", sans-serif; }
 
 #password-strength {
   position: relative;
@@ -10813,9 +10831,9 @@ ul.breadcrumb {
       width: 100%;
       height: auto; }
     .page-wrapper .user-profile-dash h1 {
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Abel", sans-serif; }
     .page-wrapper .user-profile-dash h2 {
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Abel", sans-serif; }
   .page-wrapper .dash-tbl-wrap h2 {
     margin-bottom: 20px; }
   .page-wrapper .dash-tbl-wrap div.alert {
@@ -10848,7 +10866,7 @@ ul.breadcrumb {
     padding: 12px 20px 12px 10px;
     color: #000;
     text-transform: none;
-    font: 1.6rem "Open Sans", sans-serif;
+    font: 1.6rem "Abel", sans-serif;
     position: relative;
     text-overflow: ellipsis;
     overflow: hidden; }
@@ -11009,7 +11027,7 @@ ul.breadcrumb {
   .job-search a {
     position: relative;
     margin-left: 7px;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Abel", sans-serif;
     cursor: pointer;
     color: #fff; }
     .job-search a:hover {
@@ -11093,7 +11111,7 @@ ul.breadcrumb {
       /*font-family: $font-family-medium;*/ }
     .featured-job-offer .job-offer .text-muted {
       line-height: 1;
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Abel", sans-serif; }
     .featured-job-offer .job-offer h4 a {
       color: inherit; }
       .featured-job-offer .job-offer h4 a:hover {
@@ -11943,7 +11961,7 @@ select.articles-order {
       .press-release-filter li .dropdown-menu li a, .press-release-filter li.dropdown .dropdown-menu li a {
         display: block;
         text-transform: none;
-        font-family: "Open Sans", sans-serif;
+        font-family: "Abel", sans-serif;
         color: #2e2e2e; }
       .press-release-filter li .dropdown-menu li + li, .press-release-filter li.dropdown .dropdown-menu li + li {
         margin-left: 0;
@@ -11997,7 +12015,7 @@ select.articles-order {
 .consultant .caption {
   padding: 0 20px; }
   .consultant .caption .consultant-sum {
-    font-family: "Open Sans", sans-serif; }
+    font-family: "Abel", sans-serif; }
   .consultant .caption .consultant-name {
     margin-top: 15px;
     color: #2dc3ea; }
@@ -12063,7 +12081,7 @@ select.articles-order {
     .consultant-jobs .consultant-job .consultant-job-title {
       font-size: 24px;
       font-size: 2.4rem;
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Abel", sans-serif; }
     .consultant-jobs .consultant-job .text-muted {
       font-family: 600;
       font-size: 14px;
@@ -13056,7 +13074,7 @@ select.articles-order {
       font-weight: 700; }
       .search-top .select select option {
         text-transform: none;
-        font-family: "Open Sans", sans-serif; }
+        font-family: "Abel", sans-serif; }
   .sm-wrapper {
     margin-top: 20px;
     position: relative;

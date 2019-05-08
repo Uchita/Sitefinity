@@ -60,6 +60,11 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
         string CssClass { get; set; }
 
         /// <summary>
+        /// Gets or sets the prefix to use for button classes.
+        /// </summary>
+        string ButtonClassPrefix { get; set; }
+
+        /// <summary>
         /// Gets the linked page URL.
         /// </summary>
         /// <returns></returns>

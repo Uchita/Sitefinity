@@ -37,6 +37,8 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
 
         public bool Expanded { get; set; }
 
+        public string ButtonClassPrefix { get; set; }
+
         public string CssClass { get; set; }
 
         public string GetLinkedUrl()
@@ -87,21 +89,23 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
         {
             var cssClasses = new List<string>();
 
-            cssClasses.Add("o-btn");
+            var classPrefix = string.IsNullOrWhiteSpace(ButtonClassPrefix) ? "btn" : ButtonClassPrefix;
+
+            cssClasses.Add(classPrefix);
 
             if (!string.IsNullOrWhiteSpace(ButtonStyle))
             {
-                cssClasses.Add("o-btn-" + ButtonStyle);
+                cssClasses.Add(classPrefix + "-" + ButtonStyle);
             }
 
             if (!string.IsNullOrWhiteSpace(ButtonColour))
             {
-                cssClasses.Add("o-btn-" + ButtonColour);
+                cssClasses.Add(classPrefix + "-" + ButtonColour);
             }
 
             if (Expanded)
             {
-                cssClasses.Add("o-btn-expanded");
+                cssClasses.Add(classPrefix + "-expanded");
             }
 
             if (!string.IsNullOrWhiteSpace(CssClass))

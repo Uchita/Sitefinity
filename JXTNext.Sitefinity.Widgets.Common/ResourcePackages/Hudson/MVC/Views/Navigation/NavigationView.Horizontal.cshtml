@@ -24,6 +24,12 @@
 @Html.Script(ScriptRef.JQuery, "top")
 @Html.Script(Url.WidgetContent("Mvc/Scripts/Bootstrap/js/bootstrap.min.js"), "top", false)
 
+@{
+    var featuredArticle = ContentHelper.GetFeaturedArticleNavigation();
+    @*Commenting this out because it is not being used and it costs performance*@
+    @*var lastInsight = ContentHelper.GetLastInsight();*@
+}
+
 <div class="main-nav @Model.CssClass">
     @* @Html.Action("GetView", new { viewName = "Dropdown",  model= Model}) *@
     <nav class="navbar navbar-default">
@@ -85,9 +91,6 @@
 @*Here is specified the rendering for the root level*@
 @helper RenderRootLevelNode(NodeViewModel node)
 {
-    var featuredArticle = ContentHelper.GetFeaturedArticleNavigation();
-    @*Commenting this out because it is not being used and it costs performance*@
-    @*var lastInsight = ContentHelper.GetLastInsight();*@
 
     if (node != null && node.ChildNodes.Count > 0)
     {

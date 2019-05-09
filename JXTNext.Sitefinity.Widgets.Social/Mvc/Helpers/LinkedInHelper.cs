@@ -80,15 +80,15 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
         /// <summary>
         /// Create redirect url for signin.
         /// </summary>
-        /// <param name="action">Custom data.</param>
+        /// <param name="redirect">URL to redirect after signin.</param>
         /// <param name="data">Custom data.</param>
         /// <returns></returns>
-        public static string CreateSignInRedirectUrl(string action, string data)
+        public static string CreateSignInRedirectUrl(string redirect, string data)
         {
             return string.Format(
-                "{0}?liaction={1}&data={2}",
+                "{0}?redirect={1}&data={2}",
                 SocialHandlerUrl + "/linkedinsignin",
-                HttpUtility.UrlEncode(action),
+                HttpUtility.UrlEncode(redirect),
                 HttpUtility.UrlEncode(data)
             );
         }
@@ -96,12 +96,12 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
         /// <summary>
         /// Create a signin URL.
         /// </summary>
-        /// <param name="action">Custom data.</param>
+        /// <param name="redirect">URL to redirect after signin.</param>
         /// <param name="data">Custom data.</param>
         /// <returns></returns>
-        public static string CreateSignInUrl(string action, string data)
+        public static string CreateSignInUrl(string redirect, string data)
         {
-            var redirectUrl = CreateSignInRedirectUrl(action, data);
+            var redirectUrl = CreateSignInRedirectUrl(redirect, data);
 
             return string.Format(
                 "{0}?redirect_uri={1}&client_id={2}&scope={3}&state={4}&response_type=code",

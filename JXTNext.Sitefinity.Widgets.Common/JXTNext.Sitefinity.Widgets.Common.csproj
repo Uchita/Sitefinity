@@ -126,6 +126,9 @@
     <Content Include="ResourcePackages\BaySide\assets\dist\images\bayside_logo_white.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\BaySide\assets\dist\images\sign-in-linkedin.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\assets\dist\js\project.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

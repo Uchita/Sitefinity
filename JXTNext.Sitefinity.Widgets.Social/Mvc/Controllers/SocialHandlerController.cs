@@ -306,13 +306,28 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
                 if (viewModel.Error == null)
                 {
-                    // try to redirect to the job application page
-                    if (request.LiAction == LinkedInHelper.ActionJobApply)
+                    TempData["Urlreferal"] = urlReferral;
+
+                    // try to redirect to the last page
+                    if (!string.IsNullOrWhiteSpace(request.Redirect))
                     {
-                        if (int.TryParse(request.Data, out int jobId))
+                        if (request.Redirect == LinkedInHelper.ActionJobApply)
                         {
-                            TempData["Urlreferal"] = urlReferral;
-                            return Redirect(GetJobApplicationUrl(jobId, "ShowLinkedIn=1"));
+                            if (int.TryParse(request.Data, out int jobId))
+                            {
+                                return Redirect(GetJobApplicationUrl(jobId, "ShowLinkedIn=1"));
+                            }
+                        }
+                        else
+                        {
+                            var uriBuilder = new UriBuilder(request.Redirect);
+
+                            var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                            query["ShowLinkedIn"] = "1";
+
+                            uriBuilder.Query = query.ToString();
+
+                            return Redirect(uriBuilder.ToString());
                         }
                     }
 
@@ -324,13 +339,21 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             {
                 if (request.Error == "user_cancelled_login" || request.Error == "user_cancelled_authorize")
                 {
-                    // try to redirect to the job application page.
-                    if (request.LiAction == LinkedInHelper.ActionJobApply)
+                    // try to redirect to the last page.
+                    if (!string.IsNullOrWhiteSpace(request.Redirect))
                     {
-                        if (int.TryParse(request.Data, out int jobId))
+                        TempData["Urlreferal"] = urlReferral;
+
+                        if (request.Redirect == LinkedInHelper.ActionJobApply)
                         {
-                            TempData["Urlreferal"] = urlReferral;
-                            return Redirect(GetJobApplicationUrl(jobId));
+                            if (int.TryParse(request.Data, out int jobId))
+                            {
+                                return Redirect(GetJobApplicationUrl(jobId));
+                            }
+                        }
+                        else
+                        {
+                            return Redirect(request.Redirect);
                         }
                     }
                 }
@@ -343,7 +366,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
             // set the back url based on the action.
             // this will handle the unexpected errors.
-            if (request.LiAction == LinkedInHelper.ActionJobApply)
+            if (request.Redirect == LinkedInHelper.ActionJobApply)
             {
                 if (int.TryParse(request.Data, out int jobId))
                 {
@@ -461,7 +484,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 return viewModel;
             }
 
-            var redirectUrl = LinkedInHelper.CreateSignInRedirectUrl(request.LiAction, request.Data);
+            var redirectUrl = LinkedInHelper.CreateSignInRedirectUrl(request.Redirect, request.Data);
 
             try
             {

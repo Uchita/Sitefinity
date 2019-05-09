@@ -1,4 +1,4 @@
-﻿using JXTNext.Sitefinity.Custom;
+﻿using JXTNext.Sitefinity.Resources;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Web;
@@ -6,11 +6,11 @@ using System.Web;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JXTNext.Sitefinity.Custom")]
+[assembly: AssemblyTitle("JXTNext.Sitefinity.Resources")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JXTNext.Sitefinity.Custom")]
+[assembly: AssemblyProduct("JXTNext.Sitefinity.Resources")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -21,7 +21,7 @@ using System.Web;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8ca26cdd-cc22-4e2e-ba08-7982171c9d1e")]
+[assembly: Guid("5eadeafb-83fa-4d04-85d9-b1759493f94e")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -36,4 +36,4 @@ using System.Web;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: PreApplicationStartMethod(typeof(Start), "PreApplicationStart")]
+[assembly: PreApplicationStartMethod(typeof(Startup), "PreApplicationStart")]

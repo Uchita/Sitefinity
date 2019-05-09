@@ -42,6 +42,8 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.PageBanner
         public string CssClass { get; set; }
 
         public string DefaultCssClass { get; set; } = "o-page-banner";
+        public string HeadingHtmlElement { get; set; } = "div";
+        public string DescriptionHtmlElement { get; set; } = "div";
 
         public virtual PageBannerViewModel GetViewModel()
         {
@@ -50,7 +52,9 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.PageBanner
             var viewModel = new PageBannerViewModel()
             {
                 Heading = this.DisableHeading ? string.Empty : this.GetHeading(currentSiteNode),
+                HeadingHtmlElement = this.HeadingHtmlElement.IsNullOrWhitespace() ? "div" : this.HeadingHtmlElement,
                 Description = this.DisableDescription ? string.Empty : this.GetDescription(currentSiteNode),
+                DescriptionHtmlElement = this.DescriptionHtmlElement.IsNullOrWhitespace() ? "div" : this.DescriptionHtmlElement,
                 CssClass = String.Format("{0} {1}", this.DefaultCssClass, this.CssClass).Trim(),
                 DefaultCssClass = this.DefaultCssClass,
                 IsHomepage = this.DetermineHomepage(currentSiteNode)

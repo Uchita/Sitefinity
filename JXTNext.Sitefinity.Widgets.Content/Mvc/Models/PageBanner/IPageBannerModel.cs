@@ -40,6 +40,16 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.PageBanner
         bool DisableDescription { get; set; }
 
         /// <summary>
+        /// Gets or sets the heading's html element.
+        /// </summary>
+        string HeadingHtmlElement { get; set; }
+
+        /// <summary>
+        /// Gets or sets the heading's html element.
+        /// </summary>
+        string DescriptionHtmlElement { get; set; }
+
+        /// <summary>
         /// Gets the view model.
         /// </summary>
         /// <returns></returns>

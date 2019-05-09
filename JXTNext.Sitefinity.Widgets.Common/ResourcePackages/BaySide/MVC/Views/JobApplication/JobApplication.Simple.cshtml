@@ -30,10 +30,10 @@
 <div class="login-form sign-in-with">
     <form id="job-app-form" action="@Url.Action(" ApplyJob","JobApplication")" method="post" enctype="multipart/form-data" autocomplete="off">
 
-        @*<div class="row">
+        <div class="row">
             <div class="col-xs-12 col-md-4 text-right"></div>
             <div class="col-xs-12 col-md-8"><h2 id="appFormState">Enter your details</h2></div>
-        </div>*@
+        </div>
 
         <div class="basic-form">
             <!-- Login/Register form fields -->
@@ -117,13 +117,13 @@
 
                         <!-- Password strenght -->
                         @*<div class="row" id="strength-wrap" style="display:none;">
-                                <div class="col-md-4 text-right">
-                                    <label class="form-label" for="password-reg">Password strength</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <div id="password-strength"><span class="strengh-text"></span></div>
-                                </div>
-                            </div>*@
+                        <div class="col-md-4 text-right">
+                            <label class="form-label" for="password-reg">Password strength</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div id="password-strength"><span class="strengh-text"></span></div>
+                        </div>
+                    </div>*@
                         <!-- Password strenght -->
 
                         <div class="row form-group reg-field hidden">
@@ -157,8 +157,8 @@
                             loginElemHide = "hidden";
 
                             <div class="form-group row">
-                                <label class="form-label col-xs-12"></label>
-                                <div class="col-xs-12">
+                                <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                                <div class="col-xs-12 col-md-8">
                                     <div class="list-group">
                                         <label for="selectresume" class="radiobutton">
                                             <input id="selectresume" type="radio" name="resume" class="checked" value="resume" checked />
@@ -177,8 +177,8 @@
 
 
                             <div class="form-group row">
-                                <label class="form-label col-xs-12"></label>
-                                <div class="col-xs-12">
+                                <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                                <div class="col-xs-12 col-md-8">
                                     <div class="list-group select">
                                         @Html.DropDownList("MySavedResumes", (IEnumerable<SelectListItem>)ViewBag.ResumeList, new { @onchange = "ProcessSavedResume(this.value)" })
                                     </div><!-- end box -->
@@ -188,8 +188,8 @@
                         }
 
                         <div class="form-group row hidden" id="user-profile-resume" hidden>
-                            <label class="form-label col-xs-12"></label>
-                            <div class="col-xs-12">
+                            <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                            <div class="col-xs-12 col-md-8">
                                 <div class="list-group">
                                     <label for="selectresume" class="radiobutton">
                                         <input id="selectresume" type="radio" name="resume" checked />
@@ -204,8 +204,8 @@
                                 </div>
 
                             </div>
-                            <label class="form-label col-xs-12 "></label>
-                            <div class="col-xs-12">
+                            <label class="form-label col-xs-12 col-md-4 text-right"></label>
+                            <div class="col-xs-12 col-md-8">
                                 <div class="list-group select">
                                     <select id="user-profile-resume-list"></select><!-- end box -->
                                 </div>
@@ -216,8 +216,8 @@
 
                         <!-- Resume -->
                         <div class="form-group row" id="uploadresumeblock" @loginElemHide>
-                            <label class="form-label col-xs-12">Upload your resume*</label>
-                            <div class="col-xs-12">
+                            <label class="form-label col-xs-12 col-md-4 text-right">upload your resume*</label>
+                            <div class="col-xs-12 col-md-8">
                                 <div class="box clearfix text-center">
                                     @*<small class="note">MS Word, PDF, HTML and text formats accepted.</small>*@
                                     <div class="uploadfield-wrap">
@@ -242,8 +242,8 @@
 
                         <!-- Coverletter -->
                         <div class="form-group row">
-                            <label class="form-label col-xs-12">Upload cover letter</label>
-                            <div class="col-xs-12">
+                            <label class="form-label col-xs-12 col-md-4 text-right">upload Cover Letter</label>
+                            <div class="col-xs-12 col-md-8">
                                 <div class="box clearfix text-center">
                                     @*<small class="note">MS Word, PDF, HTML and text formats accepted.</small>*@
                                     <div class="uploadfield-wrap">
@@ -265,8 +265,8 @@
 
                         <!-- Documents -->
                         <div class="form-group row">
-                            <label class="form-label col-xs-12">Upload documents</label>
-                            <div class="col-xs-12">
+                            <label class="form-label col-xs-12 col-md-4 text-right">upload documents</label>
+                            <div class="col-xs-12 col-md-8">
                                 <div class="box clearfix text-center">
                                     @*<small class="note">MS Word, PDF, HTML and text formats accepted.</small>*@
                                     <div class="uploadfield-wrap">
@@ -303,8 +303,8 @@
 
 
                         <div class="form-group button-wrapper row">
-                            <label class="col-xs-12"></label>
-                            <div class="col-xs-12">
+                            <label class="col-xs-12 col-md-4"></label>
+                            <div class="col-xs-12 col-md-8">
                                 <label class="checkbox clearfix">
 
                                     <input name="privacypolicy" title="Please agree to Bayside Group privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Please agree to Bayside\'s privacy policy');" type="checkbox" value="agree">

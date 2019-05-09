@@ -8636,7 +8636,7 @@ select.hs-input {
 
     .upload-section .box {
         border: 1px solid #d8d8d8;
-        padding: 30px 10px;
+        padding: 15px 10px;
         margin: 0;
     }
 
@@ -10104,9 +10104,9 @@ select.hs-input {
 
     .login-form.sign-in-with #login-register-container label,
     .login-form.sign-in-with .upload-section label {
-        font-size: 24px;
-        font-weight: 300;
-        margin-bottom: 13px;
+        font-size: 14px;
+        font-weight: 400;
+        padding-top: 9px;
     }
     .login-form label.checkbox{
         font-size: 14px!important;
@@ -10364,51 +10364,6 @@ select.hs-input {
     }
 
 
-@media (min-width: 992px) {
-    .container.job-app-wrapper {
-        max-width: 600px;
-    }
-    #login-register-container,
-    .upload-section {
-        padding-right: 10px;
-    }
-}
-
-
-    #login-register-container .row {
-        display: block;
-    }
-
-    #login-register-container .col-md-4.text-right,
-    #upload-files-container .form-label {
-        text-align: left !important;
-        float: none;
-        width: auto;
-        max-width: 100%;
-        flex: none;
-        padding: 0 15px;
-    }
-
-    #login-register-container .form-group,
-    #upload-files-container .form-group{
-        overflow: hidden;
-        margin-bottom: 30px;
-        clear:both;
-    }
-
-    #login-register-container .col-md-8 {
-        max-width: 100%;
-    }
-
-    .ext-provider.app-page {
-        padding: 0 10px;
-    }
-
-    .ext-provider.app-page h2 {
-        margin-top: 0;
-        margin-bottom: 10px;
-        font-size: 24px;
-    }
 
     .job-offer-details.apply-page {
         margin-bottom: 40px;
@@ -10418,11 +10373,18 @@ select.hs-input {
         font-size: 34px;
         line-height: 1.3;
     }
-
+    .ext-provider.app-page{
+        padding-left: 30px;
+    }
+    .ext-provider.app-page .h3-heading{
+        font-size: 14px;
+        font-weight: 400;
+    }
     @media (max-width: 991px) {
         .ext-provider.app-page {
             border-top: 1px solid #eee;
-            padding: 20px 0 0;
+            margin-top: 30px;
+            padding: 15px 0 0 35%;
         }
 
         .ext-provider.app-page .apply-with ul:after {
@@ -10485,10 +10447,13 @@ select.hs-input {
         .job-offer-details.apply-page h1 {
             font-size: 28px;
         }
+        .ext-provider.app-page {
+            padding-left:0;
+        }
 
-        .ext-provider.app-page h2,
-        .login-form.sign-in-with #login-register-container label, .login-form.sign-in-with .upload-section label {
-            font-size: 16px;
+        .login-form.sign-in-with #login-register-container .text-right,
+        .login-form.sign-in-with .upload-section .text-right {
+            text-align: left!important;
         }
     }
 

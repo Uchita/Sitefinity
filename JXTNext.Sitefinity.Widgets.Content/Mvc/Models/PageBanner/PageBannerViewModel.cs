@@ -38,5 +38,15 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.PageBanner
         /// Gets or sets the widget's css class.
         /// </summary>
         public string DefaultCssClass { get; set; }
+
+        /// <summary>
+        /// Gets or sets the heading's html element.
+        /// </summary>
+        public string HeadingHtmlElement { get; set; }
+
+        /// <summary>
+        /// Gets or sets the description's html element.
+        /// </summary>
+        public string DescriptionHtmlElement { get; set; }
     }
 }

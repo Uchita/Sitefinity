@@ -122,6 +122,38 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.StringResources
         }
 
         /// <summary>
+        /// phrase : CSS classes
+        /// </summary>
+        /// <value>CSS classes</value>
+        [ResourceEntry("DescriptionHtmlElement",
+            Value = "Description HTML element",
+            Description = "phrase : Description HTML element",
+            LastModified = "2019/05/09")]
+        public string DescriptionHtmlElement
+        {
+            get
+            {
+                return this["DescriptionHtmlElement"];
+            }
+        }
+
+        /// <summary>
+        /// phrase : CSS classes
+        /// </summary>
+        /// <value>CSS classes</value>
+        [ResourceEntry("HeadingHtmlElement",
+            Value = "Heading HTML element",
+            Description = "phrase : Heading HTML element",
+            LastModified = "2019/05/09")]
+        public string HeadingHtmlElement
+        {
+            get
+            {
+                return this["HeadingHtmlElement"];
+            }
+        }
+
+        /// <summary>
         /// word: Style
         /// </summary>
         /// <value>Style</value>

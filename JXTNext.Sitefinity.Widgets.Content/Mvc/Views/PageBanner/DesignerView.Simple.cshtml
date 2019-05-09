@@ -8,20 +8,20 @@
         </label>
         <div class="checkbox">
             <label>
-                <input type="checkbox" ng-model="properties.UsePageTitle.PropertyValue"> Use the page title
+                <input type="checkbox" ng-model="properties.UsePageTitle.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.UsePageTitle.PropertyValue === 'True'"> Use the page title
             </label>
         </div>
-        <input id="heading-text" type="text" class="form-control" ng-model="properties.Heading.PropertyValue" ng-show="!properties.UsePageTitle.PropertyValue" />
+        <input id="heading-text" type="text" class="form-control" ng-model="properties.Heading.PropertyValue" ng-show="properties.UsePageTitle.PropertyValue==='False'" />
     </div>
 
     <div class="form-group">
         <label for="description-text">@Html.Resource("Text")</label>
         <div class="checkbox">
             <label>
-                <input type="checkbox" ng-model="properties.UsePageDescription.PropertyValue"> Use the page description
+                <input type="checkbox" ng-model="properties.UsePageDescription.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.UsePageDescription.PropertyValue === 'True'"> Use the page description
             </label>
         </div>
-        <textarea id="description-text" class="form-control" rows="3" ng-model="properties.Description.PropertyValue" ng-show="!properties.UsePageDescription.PropertyValue"></textarea>
+        <textarea id="description-text" class="form-control" rows="3" ng-model="properties.Description.PropertyValue" ng-show="properties.UsePageDescription.PropertyValue==='False'"></textarea>
         @*<sf-html-field id="description-text" class="kendo-content-block" sf-model="properties.Description.PropertyValue"></sf-html-field>*@
     </div>
 
@@ -36,14 +36,50 @@
     </div>*@
 
     <expander expander-title='@Html.Resource("MoreOptions")'>
+        <div class="form-group">
+            <label for="headingHtmlElement">@Html.Resource("HeadingHtmlElement")</label>
+            <div class="row">
+                <div class="col-xs-6">
+                    <select id="headingHtmlElement" ng-model="properties.HeadingHtmlElement.PropertyValue" class="form-control">
+                        <option value="div">Default (div)</option>
+                        <option value="h1">Heading 1</option>
+                        <option value="h2">Heading 2</option>
+                        <option value="h3">Heading 3</option>
+                        <option value="h4">Heading 4</option>
+                        <option value="h5">Heading 5</option>
+                        <option value="h6">Heading 6</option>
+                        <option value="p">Paragraph</option>
+                        <option value="span">Span</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="descriptionHtmlElement">@Html.Resource("DescriptionHtmlElement")</label>
+            <div class="row">
+                <div class="col-xs-6">
+                    <select id="descriptionHtmlElement" ng-model="properties.DescriptionHtmlElement.PropertyValue" class="form-control">
+                        <option value="div">Default (div)</option>
+                        <option value="h1">Heading 1</option>
+                        <option value="h2">Heading 2</option>
+                        <option value="h3">Heading 3</option>
+                        <option value="h4">Heading 4</option>
+                        <option value="h5">Heading 5</option>
+                        <option value="h6">Heading 6</option>
+                        <option value="p">Paragraph</option>
+                        <option value="span">Span</option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" ng-model="properties.DisableHeading.PropertyValue"> Disable the title
+                <input type="checkbox" ng-model="properties.DisableHeading.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.DisableHeading.PropertyValue === 'True'"> Disable the title
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" ng-model="properties.DisableDescription.PropertyValue"> Disable the description
+                <input type="checkbox" ng-model="properties.DisableDescription.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.DisableDescription.PropertyValue === 'True'"> Disable the description
             </label>
         </div>
         <div class="form-group">

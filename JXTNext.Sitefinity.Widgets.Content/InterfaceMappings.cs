@@ -1,4 +1,5 @@
-﻿using JXTNext.Sitefinity.Widgets.Content.Mvc.Models.PageBanner;
+﻿using JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button;
+using JXTNext.Sitefinity.Widgets.Content.Mvc.Models.PageBanner;
 using Ninject.Modules;
 
 namespace JXTNext.Sitefinity.Widgets.Content
@@ -14,6 +15,7 @@ namespace JXTNext.Sitefinity.Widgets.Content
         public override void Load()
         {
             Bind<IPageBannerModel>().To<PageBannerModel>();
+            Bind<IButtonModel>().To<ButtonModel>();
         }
     }
 }

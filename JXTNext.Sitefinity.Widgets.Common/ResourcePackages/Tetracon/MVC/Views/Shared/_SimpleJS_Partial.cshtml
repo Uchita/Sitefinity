@@ -31,31 +31,25 @@
                 </div>
                 foreach (var salaryItem in item.Filters)
                 {
-                    var lower = 15000;
-                    var upper = 300000;
-                    if (salaryItem.Label == "Daily")
+                    var lower = salaryItem.Filters[1].Value;
+                    var upper = salaryItem.Filters[0].Value;
+                    if (salaryItem.Label != "NA")
                     {
-                        lower = 200;
-                        upper = 3000;
-                    }
-                    else if (salaryItem.Label == "Hourly Rate")
-                    {
-                        lower = 18;
-                        upper = 200;
-                    }
-                    <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
 
-                        <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
-                             data-cur_min="@lower" data-cur_max="@upper">
+                        <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
 
-                            <div class="bar"></div>
-                            <div class="leftGrip"></div>
-                            <div class="rightGrip"></div>
+                            <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
+                                 data-cur_min="@lower" data-cur_max="@upper">
+
+                                <div class="bar"></div>
+                                <div class="leftGrip"></div>
+                                <div class="rightGrip"></div>
+                            </div>
+                            <div class="leftLabel">$<span>@lower</span></div>
+                            <div class="rightLabel">$<span>@upper</span></div>
+
                         </div>
-                        <div class="leftLabel">$<span>@lower</span></div>
-                        <div class="rightLabel">$<span>@upper</span></div>
-
-                    </div>
+                    }
                 }
             }
         }
@@ -149,11 +143,11 @@
                 }
             });
         });
-
         $(window).resize(function () {
-            $('.nstSlider').nstSlider('refresh');
+            $('.nstSlider').each(function (i, obj) {
+                $(this).nstSlider('refresh');
+            });
         });
-        
 
         $('#selectedkeywordsfilter').on('keydown', function (e) {
             if ($(this).val && e.which == 13) {

@@ -9266,7 +9266,8 @@ footer {
 
 .consultant-banner {
   min-height: 75px;
-  position: relative; }
+  position: relative;
+  margin-bottom: 30px; }
   .consultant-banner:before {
     position: absolute;
     display: block;
@@ -11866,20 +11867,17 @@ select.articles-order {
   line-height: 40px;
   /*font-family: $font-family-medium;*/ }
   .contact-consultant-contacts em {
-    color: #fff;
+    color: #7DC245;
     width: 16px;
     height: 16px;
     margin-right: 10px; }
-  .contact-consultant-contacts a {
-    color: #fff; }
 
 .consultant-page h2 {
-  color: #fff; }
+  color: #7DC245; }
 
 .consultant-page h2 {
   padding: 9px 20px 17px;
-  text-transform: capitalize;
-  color: #fff;
+  color: #7DC245;
   position: relative;
   margin-bottom: 25px; }
 
@@ -11912,20 +11910,14 @@ select.articles-order {
   color: #666; }
 
 .consultant-address-widget {
-  background: #262626;
   overflow: hidden;
   padding: 15px 15px 1px; }
 
 .job-dark-bg {
-  background: #222222;
-  padding: 33px 28px;
+  padding: 33px 0;
   margin-bottom: 5px; }
   .job-dark-bg h2 {
-    color: #fff;
     font-size: 27px; }
-  .job-dark-bg .team-joblist a,
-  .job-dark-bg .team-joblist p {
-    color: #fff; }
 
 .consultant-job {
   display: none; }

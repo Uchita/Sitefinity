@@ -259,27 +259,25 @@
     line-height: 40px;
     /*font-family: $font-family-medium;*/
     em {
-        color: #fff;
+        color: #7DC245;
         width: 16px;
         height: 16px;
         margin-right: 10px;
     }
 
-    a {
-        color: #fff;
-    }
+   
 }
 
 .consultant-page {
 
     h2 {
-        color: #fff;
+        color: #7DC245;
     }
 
     h2 {
         padding: 9px 20px 17px;
-        text-transform: capitalize;
-        color: #fff;
+       
+        color: #7DC245;
         position: relative;
         margin-bottom: 25px;
     }
@@ -297,9 +295,10 @@
         margin: 0 auto;
     }
 
-    h3{
-        color:#666666;
-        }
+    h3 {
+        color: #666666;
+    }
+
     img {
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.32);
     }
@@ -319,7 +318,7 @@
 }
 
 .consultant-address-widget {
-    background: #262626;
+  
     overflow: hidden;
     padding: 15px 15px 1px;
 }
@@ -327,20 +326,17 @@
 
 
 .job-dark-bg {
-    background: #222222;
-    padding: 33px 28px;
+    
+    padding: 33px 0;
     margin-bottom: 5px;
 
 
     h2 {
-        color: #fff;
+        
         font-size: 27px;
     }
 
-    .team-joblist a,
-    .team-joblist p {
-        color: #fff;
-    }
+
 }
 
 .consultant-job {

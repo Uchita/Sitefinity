@@ -98,7 +98,8 @@ blockquote {
     .h2, h2 {
         font-size: 30px;
         font-size: 3rem;
-        font-family: $global-font-family-heading;
+        /*font-family: $global-font-family-heading;*/
+        font-weight:bold;
     }
 
     .h3, h3 {
@@ -1156,8 +1157,8 @@ header {
                     margin: 0;
                     padding: 0;
                     border-radius: 0;
-                    width: auto;
-                    min-width: 220px;
+                    width: 135px;
+                    min-width: 135px;
                     line-height: normal;
                     background: none;
 
@@ -1170,21 +1171,21 @@ header {
                     }
 
                     a {
-                       
                         display: block;
                         padding: 10px;
-                        background: $header-dropdown-bg-color;
+                        background: rgba(0,0,0,0.5);
                         @include transition();
-                        margin: 0 0 1px 0;
-                        border: 1px solid $brightColor;
-                        text-transform:uppercase;
-                        font-weight:normal;
+                        margin: 1px;
+                        border: 0;
+                        text-transform: uppercase;
+                        font-weight: normal;
+
                         &::after {
                             display: none;
                         }
 
                         &:hover {
-                            background: rgba(45,195,234,.9);
+                            color: $global-links-color;
                         }
                     }
                 }
@@ -1306,10 +1307,12 @@ header {
             background: none;
 
             .navbar-nav > li {
-                margin-left:40px;
-                &:first-child{
-                    margin-left:0;
+                margin-left: 40px;
+
+                &:first-child {
+                    margin-left: 0;
                 }
+
                 &:first-child a {
                     /* padding-left: 30px !important;*/
                     @media(max-width:1024px) {
@@ -1323,8 +1326,8 @@ header {
 
             .navbar-nav > li > a, .navbar-nav > .active > a {
                 font-size: 16px;
-                font-size: 1.8rem;
-                text-transform:uppercase;
+                font-size: 1.6rem;
+                text-transform: uppercase;
                 background: none;
                 color: $navigation-link-color;
 
@@ -3031,7 +3034,8 @@ address.info-box {
     .btn-block {
         button {
             &.btn {
-                font-size: $sidebar-font-size-px;
+                font-size:16px;
+                font-weight:normal;
                 padding-top: 0;
                 padding-bottom: 0;
                 line-height: 42px;
@@ -3113,9 +3117,9 @@ address.info-box {
     }
 
     .contact-tel-info {
-        font-weight: $font-family-medium;
+     
         color: white;
-        padding-left: 30px;
+        padding-left: 0px;
 
         @media(max-width:1024px) {
             padding-left: 15px;
@@ -3136,10 +3140,10 @@ address.info-box {
     }
 
     .contact-social-info {
-        border-right: 1px solid $brightColor;
+        /*border-right: 1px solid $brightColor;*/
 
         ul {
-            padding-left: 10px;
+            padding-left: 0px;
         }
 
         .header-top-social {
@@ -3205,6 +3209,7 @@ address.info-box {
 .header-top-links {
     a {
         @include transition();
+        color:white;
     }
 }
 /*.open > .dropdown-menu {
@@ -3855,4 +3860,8 @@ ul {
         width: inherit;
       
     }
+}
+
+.profile-media img{
+    width:100%;
 }

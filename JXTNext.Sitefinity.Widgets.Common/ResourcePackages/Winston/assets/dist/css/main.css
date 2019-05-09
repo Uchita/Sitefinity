@@ -7360,7 +7360,8 @@ blockquote {
   .page-wrapper .h2, .page-wrapper h2 {
     font-size: 30px;
     font-size: 3rem;
-    font-family: "Playfair Display", serif; }
+    /*font-family: $global-font-family-heading;*/
+    font-weight: bold; }
   .page-wrapper .h3, .page-wrapper h3 {
     font-size: 24px;
     font-size: 2.4rem; }
@@ -8059,7 +8060,7 @@ header {
       display: block;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.6); }
+      background: rgba(0, 0, 0, 0.4); }
     header .navbar-fixed-top .brand-logo {
       /*width: 127px;
             height: 50px;
@@ -8101,8 +8102,8 @@ header {
         margin: 0;
         padding: 0;
         border-radius: 0;
-        width: auto;
-        min-width: 220px;
+        width: 135px;
+        min-width: 135px;
         line-height: normal;
         background: none; }
         header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu ul, header .main-nav .navbar-nav > li.dropdown:focus .dropdown-menu ul {
@@ -8112,16 +8113,16 @@ header {
         header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu a, header .main-nav .navbar-nav > li.dropdown:focus .dropdown-menu a {
           display: block;
           padding: 10px;
-          background: #19366A;
+          background: rgba(0, 0, 0, 0.5);
           transition: all 0.3s ease-in-out;
-          margin: 0 0 1px 0;
-          border: 1px solid #fff;
+          margin: 1px;
+          border: 0;
           text-transform: uppercase;
           font-weight: normal; }
           header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu a::after, header .main-nav .navbar-nav > li.dropdown:focus .dropdown-menu a::after {
             display: none; }
           header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu a:hover, header .main-nav .navbar-nav > li.dropdown:focus .dropdown-menu a:hover {
-            background: rgba(45, 195, 234, 0.9); }
+            color: #2dc3ea; }
       header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu + .dropdown-menu, header .main-nav .navbar-nav > li.dropdown:focus .dropdown-menu + .dropdown-menu {
         padding-left: 30px;
         border-left: 1px solid #d7d7d7; }
@@ -8207,7 +8208,7 @@ header {
               /*padding-left: 20px !important;*/ } }
       header .navbar.navbar-default .navbar-nav > li > a, header .navbar.navbar-default .navbar-nav > .active > a {
         font-size: 16px;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         text-transform: uppercase;
         background: none;
         color: #fff;
@@ -9578,7 +9579,8 @@ address.info-box {
                 color: $brightColor;*/ }
 
 .transparent-data .btn-block button.btn {
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: normal;
   padding-top: 0;
   padding-bottom: 0;
   line-height: 42px;
@@ -9637,27 +9639,26 @@ address.info-box {
       .top-level-bar:after {
         display: none; } }
   .top-level-bar .contact-tel-info {
-    font-weight: 600;
     color: white;
-    padding-left: 30px; }
+    padding-left: 0px; }
     @media (max-width: 1024px) {
       .top-level-bar .contact-tel-info {
         padding-left: 15px; } }
     .top-level-bar .contact-tel-info i.fas, .top-level-bar .contact-tel-info em.fas {
       margin-right: 10px;
       font-size: 16px;
-      color: #3ea9ed;
+      color: #2dc3ea;
       -webkit-transform: rotate(90deg);
       -moz-transform: rotate(90deg);
       -o-transform: rotate(90deg);
       -ms-transform: rotate(90deg);
       transform: rotate(90deg); }
   .top-level-bar .contact-social-info {
-    border-right: 1px solid #fff; }
+    /*border-right: 1px solid $brightColor;*/ }
     .top-level-bar .contact-social-info ul {
-      padding-left: 10px; }
+      padding-left: 0px; }
     .top-level-bar .contact-social-info .header-top-social ul li a {
-      color: #3ea9ed;
+      color: #2dc3ea;
       transition: all 0.3s ease-in-out; }
       .top-level-bar .contact-social-info .header-top-social ul li a:hover {
         color: white; }
@@ -9693,7 +9694,8 @@ address.info-box {
     color: pink !important;
 }*/
 .header-top-links a {
-  transition: all 0.3s ease-in-out; }
+  transition: all 0.3s ease-in-out;
+  color: white; }
 
 /*.open > .dropdown-menu {
     -webkit-transform: scale(1, 1);
@@ -10110,6 +10112,9 @@ ul.no-gutter {
   .remove-gutter [class^="col-"], .remove-gutter [class*=" col-"] {
     width: inherit; }
 
+.profile-media img {
+  width: 100%; }
+
 /*#endregion Basic components */
 /*#region Breadcrumbs */
 ul.breadcrumb {
@@ -10188,7 +10193,7 @@ ul.breadcrumb {
       display: block;
       width: 100%;
       height: 100%;
-      /*background: $banner-overlay;*/
+      background: rgba(0, 0, 0, 0.2);
       z-index: 9; }
     .jumbotron-container .jumbotron .jumbotron-content {
       position: relative;
@@ -12471,13 +12476,13 @@ select.articles-order {
 
 @media (min-width: 768px) and (max-width: 1199px) {
   header .navbar.navbar-default .navbar-nav > li > a {
-    padding: 0 10px; }
+    /*padding: 0 10px;*/ }
   header .navbar.navbar-default .navbar-nav > li > a,
   header .navbar.navbar-default .navbar-nav > .active > a,
   header .navbar.navbar-default .navbar-nav > .active > a:focus,
   header .navbar.navbar-default .navbar-nav > .active > a:hover {
-    font-size: 14px;
-    font-size: 1.4rem; }
+    /*font-size: 14px;
+                    font-size: 1.4rem;*/ }
   .thumbnail.card-rollover-bg .card-description {
     padding: 15px; }
   .risk-measurement .risk-wrapper {
@@ -12687,7 +12692,8 @@ select.articles-order {
     /*width: 77%;*/ }
     header .navbar.navbar-default .navbar-nav > li {
       padding-left: 0px;
-      padding-right: 0px; }
+      padding-right: 0px;
+      margin-left: 30px; }
     header .navbar.navbar-default .navbar-nav > li + li > a:before {
       left: -6px; }
   header .main-nav .navbar-nav > li.dropdown:hover .dropdown-menu {
@@ -12885,8 +12891,8 @@ select.articles-order {
 @media (max-width: 768px) {
   header .main-nav .nav.navbar-nav {
     margin-left: 0;
-    width: calc(100% + 40px);
-    margin-left: -20px; }
+    /*width: calc(100% + 40px);
+        margin-left:-20px;*/ }
   header .navbar.navbar-default .navbar-nav > li > a {
     font-size: 13px !important; }
   header .brand-logo {
@@ -12928,7 +12934,7 @@ select.articles-order {
     top: -30px; }
   header .main-nav {
     position: absolute;
-    top: -80px;
+    top: -30px;
     right: 10px;
     margin: 0;
     height: 0;

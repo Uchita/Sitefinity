@@ -65,8 +65,8 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.StringResources
         /// </summary>
         /// <value>Create Button</value>
         [ResourceEntry("CreateButton",
-            Value = "Create Button",
-            Description = "phrase : Create Button",
+            Value = "Set button text and link",
+            Description = "phrase : Set button text and link",
             LastModified = "2019/05/07")]
         public string CreateButton
         {
@@ -121,6 +121,22 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.StringResources
             get
             {
                 return this["Expanded"];
+            }
+        }
+
+        /// <summary>
+        /// word : Size
+        /// </summary>
+        /// <value>Expanded</value>
+        [ResourceEntry("Size",
+            Value = "Size",
+            Description = "word : Size",
+            LastModified = "2019/04/29")]
+        public string Size
+        {
+            get
+            {
+                return this["Size"];
             }
         }
 

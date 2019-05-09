@@ -102,6 +102,11 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
 
         public ActionResult Index()
         {
+            if (this.IsEmpty)
+            {
+                return new EmptyResult();
+            }
+
             var viewModel = Model.GetViewModel();
 
             return View(_templateName, viewModel);

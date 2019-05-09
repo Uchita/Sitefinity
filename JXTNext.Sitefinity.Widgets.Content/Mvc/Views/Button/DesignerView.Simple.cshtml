@@ -16,7 +16,6 @@
                               sf-selected-item-id="properties.LinkedPageId.PropertyValue"
                               ng-show="properties.LinkTo.PropertyValue==='page'"></sf-list-selector>
         </div>
-
         <div class="radio">
             <label><input type="radio" ng-model="properties.LinkTo.PropertyValue" value="url" />@Html.Resource("ExternalURLLabel")</label>
             <div class="label-content">
@@ -43,7 +42,7 @@
                     <option value="primary">Primary</option>
                     <option value="secondary">Secondary</option>
                     <option value="success">Success</option>
-                    <option value="alert">Alert</option>
+                    <option value="danger">Danger</option>
                     <option value="warning">Warning</option>
                     <option value="info">Info</option>
                     <option value="light">Light</option>
@@ -62,14 +61,27 @@
         </div>
 
         <div class="form-group">
+            <label for="buttonSize">@Html.Resource("Size")</label>
+            <div class="row">
+                <div class="col-xs-6">
+                    <select id="buttonSize" ng-model="properties.ButtonSize.PropertyValue" class="form-control">
+                        <option value="">Default</option>
+                        <option value="lg">Large</option>
+                        <option value="sm">Small</option>>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
             <label for="target">@Html.Resource("Target")</label>
             <div class="row">
                 <div class="col-xs-6">
                     <select id="target" ng-model="properties.Target.PropertyValue" class="form-control">
                         <option value="">None</option>
-                        <option value="_blank">New Window</option>
-                        <option value="_parent">Parent Frameset</option>
-                        <option value="_top">Full Body</option>
+                        <option value="_blank">New window</option>
+                        <option value="_parent">Parent frameset</option>
+                        <option value="_top">Full body</option>
                     </select>
                 </div>
             </div>
@@ -95,7 +107,7 @@
                 <div class="col-xs-6">
                     <select id="buttonStyle" ng-model="properties.ButtonStyle.PropertyValue" class="form-control">
                         <option value="">Solid</option>
-                        <option value="hollow">Hollow</option>
+                        <option value="outline">Outline</option>
                         <option value="clear">Clear</option>
                     </select>
                 </div>

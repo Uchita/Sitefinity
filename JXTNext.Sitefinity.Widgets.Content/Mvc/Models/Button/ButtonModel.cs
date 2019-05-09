@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Threading;
 using Telerik.Sitefinity.Configuration;
 using Telerik.Sitefinity.Modules.Pages;
 using Telerik.Sitefinity.Services;
@@ -41,6 +42,8 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
 
         public string CssClass { get; set; }
 
+        public string ButtonSize { get; set; }
+
         public string GetLinkedUrl()
         {
             var linkTo = string.IsNullOrWhiteSpace(this.LinkTo) ? LinkToPage : this.LinkTo;
@@ -50,19 +53,12 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
                 if (this.LinkedPageId == Guid.Empty)
                     return null;
 
-                var pageManager = PageManager.GetManager();
-                var node = pageManager.GetPageNode(this.LinkedPageId);
-                if (node != null)
+                var siteMap = SiteMapBase.GetCurrentProvider();
+                var siteMapNode = siteMap.FindSiteMapNodeFromKey(LinkedPageId.ToString()) as PageSiteNode;
+
+                if (siteMapNode != null)
                 {
-                    string relativeUrl;
-                    if (SystemManager.CurrentContext.AppSettings.Multilingual)
-                    {
-                        relativeUrl = node.GetFullUrl(CultureInfo.CurrentUICulture, false);
-                    }
-                    else
-                    {
-                        relativeUrl = node.GetFullUrl(null, false, true);
-                    }
+                    string relativeUrl = siteMapNode.GetUrl(CultureInfo.CurrentUICulture, true);
 
                     return UrlPath.ResolveUrl(relativeUrl, Config.Get<SystemConfig>().SiteUrlSettings.GenerateAbsoluteUrls);
                 }
@@ -103,9 +99,14 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
                 cssClasses.Add(classPrefix + "-" + ButtonColour);
             }
 
+            if (!string.IsNullOrWhiteSpace(ButtonSize))
+            {
+                cssClasses.Add(classPrefix + "-" + ButtonSize);
+            }
+
             if (Expanded)
             {
-                cssClasses.Add(classPrefix + "-expanded");
+                cssClasses.Add(classPrefix + "-block");
             }
 
             if (!string.IsNullOrWhiteSpace(CssClass))
@@ -119,19 +120,14 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
         public bool IsEmpty()
         {
             return string.IsNullOrWhiteSpace(ButtonText)
-                && string.IsNullOrWhiteSpace(LinkTo)
-                && string.IsNullOrWhiteSpace(ButtonStyle)
-                && string.IsNullOrWhiteSpace(ButtonColour)
-                && string.IsNullOrWhiteSpace(ButtonAlignment)
-                && string.IsNullOrWhiteSpace(CssClass)
-                && string.IsNullOrWhiteSpace(Target);
+                && GetLinkedUrl().IsNullOrWhitespace();
         }
 
         public ButtonViewModel GetViewModel()
         {
             var viewModel = new ButtonViewModel()
             {
-                ButtonText = string.IsNullOrWhiteSpace(ButtonText) ? "Untitled Button" : ButtonText,
+                ButtonText = ButtonText,
                 ActionUrl = GetLinkedUrl(),
                 ButtonAlignment = ButtonAlignment,
                 Target = Target,

@@ -35,6 +35,11 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models.Button
         string ButtonAlignment { get; set; }
 
         /// <summary>
+        /// Gets or sets the button size.
+        /// </summary>
+        string ButtonSize { get; set; }
+
+        /// <summary>
         /// Gets or sets the button style.
         /// </summary>
         string ButtonStyle { get; set; }

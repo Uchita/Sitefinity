@@ -4,15 +4,15 @@
 
 @if (string.IsNullOrWhiteSpace(Model.ButtonAlignment))
 {
-    <a href="@Model.ActionUrl"
+    <a href="@Html.UrlSanitize(Model.ActionUrl)"
        role="button"
        class="@Model.CssClass"
        target="@Model.Target">@Html.HtmlSanitize(Model.ButtonText)</a>
 }
 else
 {
-    <div class="u-text-@Model.ButtonAlignment">
-        <a href="@Model.ActionUrl"
+    <div class="text-@Model.ButtonAlignment">
+        <a href="@Html.UrlSanitize(Model.ActionUrl)"
            role="button"
            class="@Model.CssClass"
            target="@Model.Target">@Html.HtmlSanitize(Model.ButtonText)</a>

@@ -1,0 +1,146 @@
+﻿@model dynamic
+@using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
+
+@using JXTNext.Sitefinity.Common.Helpers
+
+@{
+    var hasLinkedIn = false;
+}
+<aside class="ext-provider app-page">
+    @if (Model != null && Model.ApplyWithSocialMediaInfo != null)
+    {
+        var siteSettingsHelper = new SiteSettingsHelper();
+    <div class="ext-provider-form" id="applyApp">
+       <h2 class="h2-heading">Apply with</h2>
+        <div class="apply-with">
+            <ul class="list-inline">
+                @foreach (var item in Model.ApplyWithSocialMediaInfo)
+                {
+                    switch (item.Title)
+                    {
+                        case "LinkedIn":
+                            hasLinkedIn = true;
+
+                            <li id="linkedIn-btnwrapper">
+                                <a href="javascript:;" class="btn btn-linkedin" data-linkedin-toggle="#linkedin-widget-holder" title="@item.Title"></a>
+                            </li>
+
+                            break;
+
+                        case "Indeed":
+                            @*<li><a href="#" target="_blank" title=@item.Title role="button">Apply With @item.Title</a></li>*@
+                            var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
+                            var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
+                            var indeedJobCompanyNameAndLoginUserEmail = "right-rail-apply-button;" + ViewBag.loginEmail + ";" + Model.UrlReferral;
+                            <li id="indeed-btnwrapper">
+                                <span class="indeed-apply-widget"
+                                      data-indeed-apply-apiToken=@indeedAPIToken
+                                      data-indeed-apply-jobId=@Model.JobId
+                                      data-indeed-apply-jobLocation='@ViewBag.JobLocation'
+                                      data-indeed-apply-jobCompanyName='@ViewBag.CompanyName'
+                                      data-indeed-apply-jobTitle='@ViewBag.JobTitle'
+                                      data-indeed-apply-jobUrl=""
+                                      data-indeed-apply-postUrl=@redirectUriSocial
+                                      data-indeed-apply-jobMeta="@indeedJobCompanyNameAndLoginUserEmail"
+                                      data-indeed-apply-onapplied="OnIndeedCompleted">
+                                </span>
+                                @*<span class="indeed-apply-widget"
+                                      data-indeed-apply-apiToken=@indeedAPIToken
+                                      data-indeed-apply-jobId=@Model.JobId
+                                      data-indeed-apply-jobLocation="Australia"
+                                      data-indeed-apply-jobCompanyName="JXT"
+                                      data-indeed-apply-jobTitle="@Viewbag.JobTitle"
+                                      data-indeed-apply-jobUrl=""
+                                      data-indeed-apply-postUrl=@redirectUriSocial
+                                      data-indeed-apply-jobMeta="@indeedJobCompanyNameAndLoginUserEmail"
+                                      data-indeed-apply-onapplied="OnIndeedCompleted">
+                                </span>*@
+                                <script>
+                                    (function (d, s, id) {
+                                        var js, iajs = d.getElementsByTagName(s)[0];
+                                        if (d.getElementById(id)) { return; }
+                                        js = d.createElement(s); js.id = id; js.async = true;
+                                        js.src = "https://apply.indeed.com/indeedapply/static/scripts/app/bootstrap.js";
+                                        iajs.parentNode.insertBefore(js, iajs);
+                                    }(document, 'script', 'indeed-apply-js'));
+                                </script>
+                            </li>
+                            break;
+                        case "Seek":
+
+                            var clientId = siteSettingsHelper.GetCurrentSiteSeekClientId();
+                            var advertiserId = siteSettingsHelper.GetCurrentSiteSeekClientAdvertiserId();
+                            var redirectUri = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
+                            var jobId = Model.JobId;
+
+                            string hrefLink = String.Format("https://www.seek.com.au/api/iam/oauth2/authorize?client_id={0}&redirect_uri={1}&state={2}&scope=r_profile_apply&response_type=code&advertiser_id={3}", clientId, redirectUri, jobId, advertiserId);
+
+                            <li> <a href=@hrefLink title=@item.Title role="button" class="btn btn-seek">@item.Title</a></li>
+                            break;
+
+
+                        default:
+                            break;
+                    }
+                }
+
+            </ul>
+
+            @if (hasLinkedIn)
+            {
+                <div id="linkedin-widget-holder" class="linkedin-widget-holder" data-apply-url="@ViewBag.LinkedInApplyUrl" style="display: none;">
+                    <hr>
+
+                    <div class="linkedin-alerts"></div>
+
+                    <div name="widget-holder">
+                        @if (ViewBag.IsUserLoggedIn)
+                        {
+                            <script type="text/javascript"
+                                    src="https://www.linkedin.com/mjobs/awli/awliWidget">
+                            </script>
+                            <script type="IN/AwliWidget"
+                                    data-company-job-code="@Model.JobId"
+                                    data-integration-context="@ViewBag.CustomerIntegrationContext"
+                                    data-mode="BUTTON_DATA"
+                                    data-callback-method="onLinkedInProfileData"
+                                    data-api-key="@ViewBag.CustomerClientId"
+                                    data-allow-sign-in="true">
+                            </script>
+                            <script>
+                                function onLinkedInProfileData(profileData) {
+                                    linkedInHandler.submitJobApplyData('#linkedin-widget-holder', @Model.JobId, profileData);
+                                }
+                            </script>
+                        }
+                        else
+                        {
+                            <p>
+                                <a href="@ViewBag.LinkedInSignInUrl" class="btn-linkedin-signin" title="Sign in with LinkedIn" data-widget-holder="#linkedin-widget-holder">
+                                    <img src="~/ResourcePackages/BaySide/assets/dist/images/sign-in-linkedin.svg" class="img-responsive" />
+                                </a>
+                            </p>
+
+                            <p class="small">
+                                By signing-in you agree to create an account with us if you don't have already.
+                                After sign-in you will be able to apply for the job.
+                            </p>
+                        }
+                    </div>
+
+                    <div class="linkedin-processing sf-loading" style="display: none;">Processing...</div>
+                </div>
+            }
+        </div>
+    </div>
+    }
+
+
+    <script type="text/javascript">
+    var successPageUrl = '@ViewBag.SuccessPageUrl';
+
+    function OnIndeedCompleted() {
+        location.href = successPageUrl;
+    }
+    </script>
+    </aside>

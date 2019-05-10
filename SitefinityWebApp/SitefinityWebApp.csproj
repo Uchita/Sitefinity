@@ -1448,6 +1448,10 @@
       <Project>{9a208d8f-aa97-4ce5-a42b-71bde987124c}</Project>
       <Name>JXTNext.Sitefinity.Widgets.Authentication</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Resources\JXTNext.Sitefinity.Resources.csproj">
+      <Project>{5eadeafb-83fa-4d04-85d9-b1759493f94e}</Project>
+      <Name>JXTNext.Sitefinity.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JXTNext.Sitefinity.Services.Intefaces\JXTNext.Sitefinity.Services.Intefaces.csproj">
       <Project>{94381396-d85e-469c-b828-24cf03548df5}</Project>
       <Name>JXTNext.Sitefinity.Services.Intefaces</Name>

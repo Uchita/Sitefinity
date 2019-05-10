@@ -133,6 +133,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 var jobFilterComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
 
+                if (Int32.TryParse(this.JobType, out int jobTypeIntValue))
+                {
+                    searchInputs.JobType = Int32.Parse(this.JobType);
+                }
                 if (jobFilterComponents != null)
                 {
                     searchInputs = new JobSearchResultsFilterModel() { Keywords = this.KeywordsSelectedJobs, Filters = new List<JobSearchFilterReceiver>() };
@@ -166,7 +170,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 this.PageSize = PageSizeDefaultValue;
 
             JXTNext_SearchJobsRequest searchRequest = JobSearchResultsFilterModel.ProcessInputToSearchRequest(searchInputs, this.PageSize, PageSizeDefaultValue);
-
+            
+            
             string sortingBy = this.Sorting;
             if (searchInputs != null && !searchInputs.SortBy.IsNullOrEmpty())
                 sortingBy = searchInputs.SortBy;
@@ -426,6 +431,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 var jobFilterComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
 
+                if (Int32.TryParse(this.JobType, out int jobTypeIntValue))
+                {
+                    searchInputs.JobType = Int32.Parse(this.JobType);
+                }
+
                 if (jobFilterComponents != null)
                 {
                     searchInputs = new JobSearchResultsFilterModel() { Keywords = this.KeywordsSelectedJobs, Filters = new List<JobSearchFilterReceiver>() };
@@ -459,7 +469,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 this.PageSize = PageSizeDefaultValue;
 
             JXTNext_SearchJobsRequest searchRequest = JobSearchResultsFilterModel.ProcessInputToSearchRequest(searchInputs, this.PageSize, PageSizeDefaultValue);
-
+           
 
             #region Filter Logic
 
@@ -982,6 +992,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         filterModel.Filters.Add(rootFilterItem);
                     }
                 }
+
+                if (Int32.TryParse(this.JobType, out int jobTypeIntValue) && this.UseConfigFilters)
+                {
+                    filterModel.JobType = Int32.Parse(this.JobType);
+                }
             }
 
             return filterModel;
@@ -1016,6 +1031,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string SerializedJobSearchParams { get; set; }
         public string KeywordsSelectedJobs { get; set; }
         public bool UseConfigFilters { get; set; }
+        public string JobType { get; set; } = "0";
         public bool UseCompanyFilters { get; set; }
         public string CompanySelected { get; set; }
 

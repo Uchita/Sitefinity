@@ -9620,7 +9620,8 @@ address.info-box {
 .top-level-bar {
   height: 47px;
   line-height: 49px;
-  position: relative; }
+  position: relative;
+  z-index: 99; }
   @media (max-width: 767px) {
     .top-level-bar {
       line-height: 50px;

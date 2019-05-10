@@ -3094,6 +3094,7 @@ address.info-box {
     height: 47px;
     line-height: 49px;
     position: relative;
+    z-index:99;
 
     @media(max-width:767px) {
         line-height: 50px;

@@ -11,7 +11,7 @@ $(document).ready(function () {
      $("#featuredInsights,#internalJobs1").owlCarousel({
         margin: 18,
         nav: true,
-        autoplay: true,
+        autoplay: false,
         autoplayTimeout: 5000,
         dots: true,
         loop: true,

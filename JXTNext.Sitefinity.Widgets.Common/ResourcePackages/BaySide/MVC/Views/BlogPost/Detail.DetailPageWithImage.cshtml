@@ -118,10 +118,11 @@
 
                 <div class="news-list col-12 col-sm-6 col-md-4">
                     <div class="bg-image-wrap">
-                        <a href="~/blogs/blog-details/@blog.ItemDefaultUrl" title="@blog.Title" class="bg-image" style="background-image: url('@imageField.ThumbnailUrl');"></a>
+                        <a href="~/blogs/blog-details/@blog.ItemDefaultUrl" title="@blog.Title" class="bg-image" style="background-image: url('@imageField.ItemDefaultUrl');"></a>
                     </div>
 
                     <div class="news-date">
+                    
                         <span class="rss-item-pubDate-date">@Convert.ToDateTime(Convert.ToString(blog.GetValue("PublicationDate"))).ToString("dd")</span>
                         <span class="rss-item-pubDate-month">@Convert.ToDateTime(Convert.ToString(blog.GetValue("PublicationDate"))).ToString("MMM")</span>,
                         <span class="rss-item-pubDate-full-year">@Convert.ToDateTime(Convert.ToString(blog.GetValue("PublicationDate"))).ToString("yyyy")</span>

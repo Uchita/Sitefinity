@@ -386,18 +386,40 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         {
             LinkedInSignInViewModel viewModel;
 
+            string urlReferral = null;
+            if (TempData["source"] != null)
+            {
+                urlReferral = TempData["source"].ToString();
+            }
+
             if (string.IsNullOrEmpty(request.Error))
             {
                 viewModel = HandleLinkedInSignIn(request);
 
                 if (viewModel.Error == null)
                 {
-                    // try to redirect to the job application page
-                    if (request.LiAction == LinkedInHelper.ActionJobApply)
+                    TempData["Urlreferal"] = urlReferral;
+
+                    // try to redirect to the last page
+                    if (!string.IsNullOrWhiteSpace(request.Redirect))
                     {
-                        if (int.TryParse(request.Data, out int jobId))
+                        if (request.Redirect == LinkedInHelper.ActionJobApply)
                         {
-                            return Redirect(GetJobApplicationUrl(jobId, "ShowLinkedIn=1"));
+                            if (int.TryParse(request.Data, out int jobId))
+                            {
+                                return Redirect(GetJobApplicationUrl(jobId, "ShowLinkedIn=1"));
+                            }
+                        }
+                        else
+                        {
+                            var uriBuilder = new UriBuilder(request.Redirect);
+
+                            var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                            query["ShowLinkedIn"] = "1";
+
+                            uriBuilder.Query = query.ToString();
+
+                            return Redirect(uriBuilder.ToString());
                         }
                     }
 
@@ -409,12 +431,21 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             {
                 if (request.Error == "user_cancelled_login" || request.Error == "user_cancelled_authorize")
                 {
-                    // try to redirect to the job application page.
-                    if (request.LiAction == LinkedInHelper.ActionJobApply)
+                    // try to redirect to the last page.
+                    if (!string.IsNullOrWhiteSpace(request.Redirect))
                     {
-                        if (int.TryParse(request.Data, out int jobId))
+                        TempData["Urlreferal"] = urlReferral;
+
+                        if (request.Redirect == LinkedInHelper.ActionJobApply)
                         {
-                            return Redirect(GetJobApplicationUrl(jobId));
+                            if (int.TryParse(request.Data, out int jobId))
+                            {
+                                return Redirect(GetJobApplicationUrl(jobId));
+                            }
+                        }
+                        else
+                        {
+                            return Redirect(request.Redirect);
                         }
                     }
                 }
@@ -427,7 +458,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 
             // set the back url based on the action.
             // this will handle the unexpected errors.
-            if (request.LiAction == LinkedInHelper.ActionJobApply)
+            if (request.Redirect == LinkedInHelper.ActionJobApply)
             {
                 if (int.TryParse(request.Data, out int jobId))
                 {
@@ -477,6 +508,10 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             }
 
             result.JobId = jobId;
+            if (TempData["Urlreferal"] != null)
+            {
+                result.UrlReferral = TempData["Urlreferal"].ToString();
+            }
 
             var viewModel = new SocialMediaJobViewModel
             {
@@ -540,7 +575,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 return viewModel;
             }
 
-            var redirectUrl = LinkedInHelper.CreateSignInRedirectUrl(request.LiAction, request.Data);
+            var redirectUrl = LinkedInHelper.CreateSignInRedirectUrl(request.Redirect, request.Data);
 
             try
             {
@@ -641,6 +676,30 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
         /// <returns></returns>
         private bool AuthenticateUser(string emailAddress)
         {
+            // check user exist in the JXT Next database
+            Telerik.Sitefinity.Security.Model.User existingUser = SitefinityHelper.GetUserByEmail(emailAddress);
+            var memberResponse = _blConnector.GetMemberByEmail(emailAddress);
+            if (memberResponse.Member == null)
+            {
+                UserProfileManager userProfileManager = UserProfileManager.GetManager();
+                UserProfile profile = userProfileManager.GetUserProfile(existingUser.Id, typeof(SitefinityProfile).FullName);
+                var fName = Telerik.Sitefinity.Model.DataExtensions.GetValue(profile, "FirstName");
+                var lName = Telerik.Sitefinity.Model.DataExtensions.GetValue(profile, "LastName");
+                JXTNext_MemberRegister memberReg = new JXTNext_MemberRegister
+                {
+                    Email = emailAddress,
+                    FirstName = fName.ToString(),
+                    LastName = lName.ToString(),
+                    Password = existingUser.Password
+                };
+
+                if (_blConnector.MemberRegister(memberReg, out string errorMessage))
+                {
+                    Log.Write("User created JXT next DB" + existingUser.Email, ConfigurationPolicy.ErrorLog);
+                }
+            }
+            // end of the code for the user check in the JXT Next DB
+
             var userManager = UserManager.GetManager();
 
             SecurityManager.AuthenticateUser(userManager.Provider.Name, emailAddress, false, out User user);

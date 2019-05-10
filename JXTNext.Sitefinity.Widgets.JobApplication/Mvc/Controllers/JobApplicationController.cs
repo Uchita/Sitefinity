@@ -294,7 +294,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             // linked-in data
             ViewBag.CustomerClientId = LinkedInHelper.CustomerClientId;
             ViewBag.CustomerIntegrationContext = LinkedInHelper.CustomerIntegrationContext;
-            ViewBag.LinkedInSignInUrl = LinkedInHelper.CreateSignInUrl(LinkedInHelper.ActionJobApply, jobApplicationViewModel.JobId.ToString());
+            ViewBag.LinkedInSignInUrl = LinkedInHelper.CreateSignInUrl(HttpContext.Request.Url.AbsoluteUri, jobApplicationViewModel.JobId.ToString());
             ViewBag.LinkedInApplyUrl = LinkedInHelper.CreateApplyUrl();
 
             Log.Write($"Index method end ", ConfigurationPolicy.ErrorLog);

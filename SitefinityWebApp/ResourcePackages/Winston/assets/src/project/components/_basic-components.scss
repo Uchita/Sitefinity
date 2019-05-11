@@ -61,7 +61,7 @@ blockquote {
 
     ul {
         padding-left: 20px;
-        list-style: square outside none;
+        list-style: disc;
 
         &.check-list {
             list-style: none;
@@ -435,7 +435,7 @@ blockquote {
     }
 
     .form-control {
-        height: 45px;
+        height: 40px;
         color: #000;
         font-family: $font-family-regular;
         font-size: 1.4rem;
@@ -1858,7 +1858,7 @@ main {
     }
 
     > a {
-        font-family: $global-font-family-heading;
+        
         color: $sidebar-link-color;
         display: block !important;
         border: none;
@@ -1919,7 +1919,7 @@ main {
             a {
                 line-height: normal;
                 padding: 10px 0;
-                font-family: $global-font-family-heading;
+                
                 font-size: 18px;
 
                 &.link-inline-block {
@@ -3094,6 +3094,7 @@ address.info-box {
     height: 47px;
     line-height: 49px;
     position: relative;
+    z-index:99;
 
     @media(max-width:767px) {
         line-height: 50px;
@@ -3490,6 +3491,7 @@ address.info-box {
             font-weight: $font-family-medium;
             text-transform: none;
             font-size: 1.4rem;
+            padding-top:0;
         }
 
         input {
@@ -3511,7 +3513,7 @@ address.info-box {
 
 
     h4 {
-        font-family: $global-font-family-heading;
+        
     }
 
     margin-bottom: 40px;
@@ -3537,7 +3539,7 @@ address.info-box {
         }
 
         h3 {
-            font-family: $global-font-family-heading;
+            
             margin-top: 0;
             text-transform: uppercase;
             margin-bottom: 20px;
@@ -3557,46 +3559,59 @@ address.info-box {
 
 h2 {
     &.loc-title-head {
-        font-family: $global-font-family-heading;
+        
         border-bottom: 2px solid $breadcrubms-link-separator;
         padding: 0 0 5px;
-        margin-top: 10px;
+        
         line-height: 48px;
+        font-weight:normal;
     }
 }
 
 .contactfrom {
-    background: $custom-for-bg;
-    padding: 20px;
+    
     margin-bottom: 30px;
 
     label {
         color: white;
-        display: none;
+        
     }
 
     .form-group {
-        margin-bottom: 20px;
+        margin-bottom: 5px;
     }
 
     textarea {
         &.form-control {
-            height: auto;
+            height: 190px !important;
+            margin-bottom:30px;
         }
     }
 
     .btn {
-        color: white;
+        
     }
 }
 
 .contact-text-indent {
     h4 {
-        margin-left: 30px;
+        margin-bottom: 20px;
 
-        &:first-child {
-            margin-bottom: 30px;
+        em {
+            float: left;
+            color: #2dc3ea;
+            margin-right: 15px;
+            font-size: 22px;
+            position: relative;
+            top: 3px;
         }
+
+        span {
+            display: block;
+            overflow: hidden;
+        }
+
+
 
         @media(max-width:1024) {
             margin-left: 0;
@@ -3613,7 +3628,7 @@ h2 {
     }
 
     h4 {
-        font-family: $global-font-family-heading;
+        
     }
 }
 
@@ -3864,4 +3879,10 @@ ul {
 
 .profile-media img{
     width:100%;
+}
+
+.innerbanner-source, .solid-banner-text {
+    [class^="col-"], [class*=" col-"] {
+        margin-left: 0;
+    }
 }

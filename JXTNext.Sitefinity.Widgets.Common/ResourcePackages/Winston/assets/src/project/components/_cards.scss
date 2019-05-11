@@ -6,31 +6,54 @@
 
     &.solid-banner-text {
         .jumbotron {
-            height: 350px;
+            height: 335px;
+            margin-bottom:60px;
 
             @media(max-width:767px) {
                 height: 300px;
             }
 
             h1 {
-                margin-bottom: 15px;
-                margin-top: 90px;
-
+                margin:0;
+                text-align:left;
+                font-family:inherit;
+                text-transform:uppercase;
                 @media(max-width:767px) {
                     margin-top: 60px;
                 }
+            }
+            p{
+                display:none;
             }
         }
     }
 
 
     &.innerbanner-source {
+        margin-bottom: 60px;
+
+        .jumbotron {
+            /*background-size:100% 100%;*/
+            background-position:center center;
+        }
+
         .jumbotron-content {
-            display: none;
+            h1 {
+                font-size: 4.8rem;
+                font-size: 48px;
+                font-family: inherit;
+                margin: 0;
+                text-align: left;
+                text-transform:uppercase;
+            }
+
+            p {
+                display: none;
+            }
         }
 
         .jumbotron {
-            height: 200px;
+            height: 335px;
 
             @media(max-width:767px) {
                 height: 50px;
@@ -91,14 +114,18 @@
             z-index: 10;
             padding: 0 40px;
             width: 100%;
-            @media(max-width:767px){
-                padding:0;
+            text-align: left;
+
+            @media(max-width:767px) {
+                padding: 0;
             }
         }
 
         .h1, h1 {
-            font-size: 40px;
-            font-size: 4rem;
+            text-align: center;
+            margin: 0;
+            font-size: 4.8rem;
+            font-size: 48px;
             color: inherit;
             margin-top: 5px;
             line-height: normal;

@@ -7341,7 +7341,7 @@ blockquote {
     font-weight: 600; }
   .page-wrapper ul {
     padding-left: 20px;
-    list-style: square outside none; }
+    list-style: disc; }
     .page-wrapper ul.check-list {
       list-style: none; }
       .page-wrapper ul.check-list li:before {
@@ -7587,7 +7587,7 @@ blockquote {
   .page-wrapper .form-group.label-hide label {
     visibility: hidden; }
   .page-wrapper .form-control {
-    height: 45px;
+    height: 40px;
     color: #000;
     font-family: "Abel", sans-serif;
     font-size: 1.4rem; }
@@ -8527,7 +8527,6 @@ main {
   .left-sidebar .container-fluid + .navbar-collapse, .categories-list + .navbar-collapse, .left-sidebar .navbar-collapse + .navbar-collapse {
     margin-top: 15px; }
   .left-sidebar .container-fluid > a, .categories-list > a, .left-sidebar .navbar-collapse > a {
-    font-family: "Playfair Display", serif;
     color: #2e2e2e;
     display: block !important;
     border: none;
@@ -8566,7 +8565,6 @@ main {
       .left-sidebar .container-fluid .nav li a, .categories-list .nav li a, .left-sidebar .navbar-collapse .nav li a {
         line-height: normal;
         padding: 10px 0;
-        font-family: "Playfair Display", serif;
         font-size: 18px; }
         .left-sidebar .container-fluid .nav li a.link-inline-block, .categories-list .nav li a.link-inline-block, .left-sidebar .navbar-collapse .nav li a.link-inline-block {
           display: inline-block; }
@@ -9620,7 +9618,8 @@ address.info-box {
 .top-level-bar {
   height: 47px;
   line-height: 49px;
-  position: relative; }
+  position: relative;
+  z-index: 99; }
   @media (max-width: 767px) {
     .top-level-bar {
       line-height: 50px;
@@ -9891,7 +9890,8 @@ address.info-box {
   color: #2e2e2e;
   font-weight: 600;
   text-transform: none;
-  font-size: 1.4rem; }
+  font-size: 1.4rem;
+  padding-top: 0; }
 
 .right-widget-form form input.form-control {
   border-color: #d3d3d3; }
@@ -9902,8 +9902,6 @@ address.info-box {
 
 .left-nav-data {
   margin-bottom: 40px; }
-  .left-nav-data h4 {
-    font-family: "Playfair Display", serif; }
   @media (max-width: 767px) {
     .left-nav-data {
       margin-bottom: 30px; } }
@@ -9915,7 +9913,6 @@ address.info-box {
   .left-nav-data .text-widget p {
     line-height: 2.4rem; }
   .left-nav-data .text-widget h3 {
-    font-family: "Playfair Display", serif;
     margin-top: 0;
     text-transform: uppercase;
     margin-bottom: 20px; }
@@ -9925,30 +9922,33 @@ address.info-box {
   color: #669ab2; }
 
 h2.loc-title-head {
-  font-family: "Playfair Display", serif;
   border-bottom: 2px solid #2e2e2e;
   padding: 0 0 5px;
-  margin-top: 10px;
-  line-height: 48px; }
+  line-height: 48px;
+  font-weight: normal; }
 
 .contactfrom {
-  background: #11223e;
-  padding: 20px;
   margin-bottom: 30px; }
   .contactfrom label {
-    color: white;
-    display: none; }
-  .contactfrom .form-group {
-    margin-bottom: 20px; }
-  .contactfrom textarea.form-control {
-    height: auto; }
-  .contactfrom .btn {
     color: white; }
+  .contactfrom .form-group {
+    margin-bottom: 5px; }
+  .contactfrom textarea.form-control {
+    height: 190px !important;
+    margin-bottom: 30px; }
 
 .contact-text-indent h4 {
-  margin-left: 30px; }
-  .contact-text-indent h4:first-child {
-    margin-bottom: 30px; }
+  margin-bottom: 20px; }
+  .contact-text-indent h4 em {
+    float: left;
+    color: #2dc3ea;
+    margin-right: 15px;
+    font-size: 22px;
+    position: relative;
+    top: 3px; }
+  .contact-text-indent h4 span {
+    display: block;
+    overflow: hidden; }
   @media (max-width: 1024) {
     .contact-text-indent h4 {
       margin-left: 0; } }
@@ -9960,8 +9960,6 @@ h2.loc-title-head {
   @media (max-width: 767px) {
     .float-none-v-center {
       display: block; } }
-  .float-none-v-center h4 {
-    font-family: "Playfair Display", serif; }
 
 .contact-consultant-name h4 {
   font-family: "Playfair Display", serif; }
@@ -10115,6 +10113,9 @@ ul.no-gutter {
 .profile-media img {
   width: 100%; }
 
+.innerbanner-source [class^="col-"], .innerbanner-source [class*=" col-"], .solid-banner-text [class^="col-"], .solid-banner-text [class*=" col-"] {
+  margin-left: 0; }
+
 /*#endregion Basic components */
 /*#region Breadcrumbs */
 ul.breadcrumb {
@@ -10141,32 +10142,49 @@ ul.breadcrumb {
   width: 100%;
   max-width: 100%; }
   .jumbotron-container.solid-banner-text .jumbotron {
-    height: 350px; }
+    height: 335px;
+    margin-bottom: 60px; }
     @media (max-width: 767px) {
       .jumbotron-container.solid-banner-text .jumbotron {
         height: 300px; } }
     .jumbotron-container.solid-banner-text .jumbotron h1 {
-      margin-bottom: 15px;
-      margin-top: 90px; }
+      margin: 0;
+      text-align: left;
+      font-family: inherit;
+      text-transform: uppercase; }
       @media (max-width: 767px) {
         .jumbotron-container.solid-banner-text .jumbotron h1 {
           margin-top: 60px; } }
-  .jumbotron-container.innerbanner-source .jumbotron-content {
-    display: none; }
-  .jumbotron-container.innerbanner-source .jumbotron {
-    height: 200px; }
-    @media (max-width: 767px) {
-      .jumbotron-container.innerbanner-source .jumbotron {
-        height: 50px;
-        min-height: inherit;
-        padding-top: 0px; } }
-  .jumbotron-container.innerbanner-source.micro-banner .jumbotron {
-    height: 97px;
-    padding: 0; }
-    @media (max-width: 767px) {
-      .jumbotron-container.innerbanner-source.micro-banner .jumbotron {
-        height: 50px;
-        min-height: inherit; } }
+    .jumbotron-container.solid-banner-text .jumbotron p {
+      display: none; }
+  .jumbotron-container.innerbanner-source {
+    margin-bottom: 60px; }
+    .jumbotron-container.innerbanner-source .jumbotron {
+      /*background-size:100% 100%;*/
+      background-position: center center; }
+    .jumbotron-container.innerbanner-source .jumbotron-content h1 {
+      font-size: 4.8rem;
+      font-size: 48px;
+      font-family: inherit;
+      margin: 0;
+      text-align: left;
+      text-transform: uppercase; }
+    .jumbotron-container.innerbanner-source .jumbotron-content p {
+      display: none; }
+    .jumbotron-container.innerbanner-source .jumbotron {
+      height: 335px; }
+      @media (max-width: 767px) {
+        .jumbotron-container.innerbanner-source .jumbotron {
+          height: 50px;
+          min-height: inherit;
+          padding-top: 0px; } }
+    .jumbotron-container.innerbanner-source.micro-banner .jumbotron {
+      height: 97px;
+      padding: 0; }
+      @media (max-width: 767px) {
+        .jumbotron-container.innerbanner-source.micro-banner .jumbotron {
+          height: 50px;
+          min-height: inherit; } }
   .jumbotron-container .jumbotron {
     position: relative;
     margin-bottom: 0;
@@ -10199,13 +10217,16 @@ ul.breadcrumb {
       position: relative;
       z-index: 10;
       padding: 0 40px;
-      width: 100%; }
+      width: 100%;
+      text-align: left; }
       @media (max-width: 767px) {
         .jumbotron-container .jumbotron .jumbotron-content {
           padding: 0; } }
     .jumbotron-container .jumbotron .h1, .jumbotron-container .jumbotron h1 {
-      font-size: 40px;
-      font-size: 4rem;
+      text-align: center;
+      margin: 0;
+      font-size: 4.8rem;
+      font-size: 48px;
       color: inherit;
       margin-top: 5px;
       line-height: normal; }

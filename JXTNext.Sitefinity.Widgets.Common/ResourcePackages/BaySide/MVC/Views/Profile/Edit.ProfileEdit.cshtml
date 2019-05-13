@@ -26,6 +26,9 @@
 
     @using (Html.BeginFormSitefinity("Index", "EditProfileForm", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
+        //changing the placeholder image avatar in case there is no profile photo uploaded
+        var placeholderAvatar = "/ResourcePackages/BaySide/assets/images/User-Icon.svg";
+        var AvatarCls = ""; //class added to align the image
 
         <div class="row media sf-profile">
             <div class="col-xs-3 col-md-2">
@@ -33,7 +36,15 @@
                 @Html.HiddenFor(u => u.DefaultAvatarUrl, new Dictionary<string, object>() { { "data-sf-role", "edit-profile-default-avatar-url" } })
                 <div class="media-object">
                     <div class="image-placeholder">
-                        <img data-sf-role="edit-profile-user-image" src="@Model.AvatarImageUrl" alt="@Model.UserName" width="230" />
+                        @if (!Model.AvatarImageUrl.Contains("DefaultPhoto.png"))
+                        {
+                            placeholderAvatar = Model.AvatarImageUrl;
+                        }
+                        else
+                        {
+                            AvatarCls = "noProfilePhoto";
+                        }
+                        <img data-sf-role="edit-profile-user-image" src="@placeholderAvatar" alt="@Model.UserName" width="230" class="@AvatarCls" />
                         @*<a class="sf-remove glyphicon glyphicon-remove-sign" href="javascript:void(0)" data-sf-role="edit-profile-delete-picture-button"></a>*@
                     </div>
 

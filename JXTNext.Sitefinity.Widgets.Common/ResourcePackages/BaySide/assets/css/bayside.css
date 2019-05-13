@@ -6709,18 +6709,12 @@ select.hs-input {
     }
 
     .news-list .news-desc {
-        text-transform: lowercase;
         min-height: 72px;
     }
 
-        .news-list .news-desc:first-letter {
-            text-transform: uppercase;
-        }
-
-
+    
 .blog-list-item .list-desc {
     min-height: 72px;
-    text-transform: lowercase;
 }
     .blog-list-item .list-desc a{
         color: #000;
@@ -6779,7 +6773,7 @@ select.hs-input {
         color: #FFFFFF;
         background-repeat: no-repeat;
         background-size: cover;
-        background-position: center;
+        background-position: center top;
         padding-bottom: 76px;
         padding-top: 77px;
         background-attachment: fixed;
@@ -9485,7 +9479,9 @@ select.hs-input {
         background: #3465B0;
         border-color: #3465B0;
     }
-
+    .alert{
+        font-size:13px;
+    }
     .alert.alert-info {
         border-color: #0088CF;
     }
@@ -9498,7 +9494,7 @@ select.hs-input {
     }
 
     .page-wrapper .text-muted {
-        font-size: 12px;
+        font-size: 13px;
         color: #aaa;
     }
 
@@ -10114,6 +10110,7 @@ select.hs-input {
 
     .location-hover li,
     .location-text li {
+        line-height:1.4;
         transition: all 500ms ease;
         transform: scale(1);
     }
@@ -10121,8 +10118,7 @@ select.hs-input {
         .location-hover li img,
         .location-text img {
             width: 12px;
-            margin-top: -3px;
-            margin-right: 2px;
+            margin-top: -4px;
         }
 
         .location-hover li:hover img,
@@ -10131,7 +10127,21 @@ select.hs-input {
             transition: all 500ms ease;
         }
 
-
+        .location-hover li.clock-icon span,
+        .location-text li.clock-icon span {
+            border-radius: 50%;
+            border: 2px solid #333;
+            height: 14px;
+            width: 14px;
+            display: inline-block;
+            line-height: 0.9;
+            margin-right: 5px;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            top: 2px;
+            box-sizing: border-box;
+        }
         .location-hover li.clock-icon:hover img,
         .location-text li.clock-icon:hover img {
             transform: rotate(360deg) !important;
@@ -10271,10 +10281,16 @@ select.hs-input {
     .toggle-content {
         display: none;
     }
-
+    .image-placeholder{
+        background-color: #d9edf7;
+    }
+    img.noProfilePhoto{
+        padding: 22%;
+    }
     .new-serch {
         font-size: 14px !important;
         font-weight: 400;
+        margin-top: 9px;
         margin-left: 6px;
         display: inline-block !important
     }

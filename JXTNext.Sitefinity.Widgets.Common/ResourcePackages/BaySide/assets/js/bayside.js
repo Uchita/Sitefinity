@@ -203,20 +203,20 @@ $(document).ready(function () {
 
     }(jQuery));
 
-    $(".find-talent").click(function () {
+    $("a.find-talent").click(function () {
         $('#talent-form').show();
-        $('#our-rtalent-image').hide();
+        $('#our-talent-image').hide();
         $('.find-talent-close-form').show();
-        $('.find-talent').hide();
+        $(this).hide();
         setTimeout(function () {
             $(window).trigger('resize.px.parallax');
         }, 500);
     });
-    $(".find-talent-close-form").click(function () {
+    $("a.find-talent-close-form").click(function () {
         $('#talent-form').hide();
         $('#our-rtalent-image').show();
-        $('.find-talent-close-form').hide();
-        $('.find-talent').show();
+        $(this).hide();
+        $('a.find-talent').show();
         setTimeout(function () {
             $(window).trigger('resize.px.parallax');
         }, 500);

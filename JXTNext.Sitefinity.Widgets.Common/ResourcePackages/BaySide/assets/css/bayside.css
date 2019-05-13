@@ -5073,7 +5073,18 @@ p {
         border-color: #3465B0;
         background-color: #3465B0;
     }
-
+.btn-primary-outline-hover:hover{
+    color: #0088CF;
+    border-color: #0088CF;
+    background: none;
+}
+.btn.form-group{
+    padding:0;
+    margin: 20px 0;
+}
+.sf-SubmitButton.btn{
+    min-width: 130px;
+}
 p .btn-link {
     font-weight: 300;
 }
@@ -5920,7 +5931,7 @@ p .btn-link {
 }
 
 .hbspt-form .hs_submit .hs-button {
-    font-size: 16px;
+    font: 14px 'Muli', sans-serif;
     color: #fff;
     border: 1px solid #0088CF !important;
     background: #0088CF;

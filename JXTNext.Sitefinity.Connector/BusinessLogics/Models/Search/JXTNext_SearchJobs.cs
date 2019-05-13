@@ -17,7 +17,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
         public List<KeywordSearch> KeywordsSearchCriteria { get; set; }
         public List<IClassificationSearch> ClassificationsSearchCriteria { get; set; }
         public ConsultantSearch ConsultantSearchCriteria { get; set; }
-
+        public int JobType { get; set; }
         public SearchSortBy SortBy { get; set; }
     }
 
@@ -62,6 +62,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
     public class StatusSearch
     {
         public int Status { get; set; }
+        public int Type { get; set; }
         public int CompanyId { get; set; }
     }
 

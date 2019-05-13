@@ -509,6 +509,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             {
                 dynamic fieldSearch = new ExpandoObject();
                 fieldSearch.Status = 1;
+                fieldSearch.Type = jobSearch.JobType;
                 jobSearch.FieldSearches = fieldSearch;
             }
 

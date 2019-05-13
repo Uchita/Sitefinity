@@ -1,0 +1,52 @@
+@media print {
+
+    #header,
+    #footer,
+    .jobdetail-top,
+    .job-detail-centre,
+    .jd-btm-description,
+    #jobdetail-left-bg > p {
+        display: none !important;
+    }
+
+    .banner {
+        display: none !important;
+    }
+
+    body.sticky-header {
+        padding-top: 0 !important;
+    }
+
+    .container {
+        width: 100% !important;
+    }
+
+    .page-title {
+        height: 60px !important;
+        padding-top: 10px !important;
+        display: none !important;
+    }
+
+    body,
+    #wrapper #job-ad-template,
+    #wrapper #job-ad-template #job-ad-title h1 {
+        color: #000;
+    }
+
+    .jobdetail-top .job-detailtop-title,
+    #wrapper #job-ad-template {
+        width: 100%;
+    }
+
+    #dynamic-container,
+    #content-container,
+    #job-dynamic-container {
+        padding-top: 0;
+    }
+    .container {
+        width: 100% !important;
+    }
+    a[href]:after {
+        display: none;
+    }
+}

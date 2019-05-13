@@ -1,0 +1,116 @@
+﻿@using JXTNext.Sitefinity.Widgets.Job.Mvc.Models
+@model JobDetailsViewModel
+@using System.Collections.Specialized;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using JXTNext.Sitefinity.Common.Helpers;
+
+@{
+TempData["JobTitleTemp"] = Model.JobDetails.Title;
+}
+
+@if (Model != null)
+{
+    List<string>
+    classificationsDisplay = new List<string>
+        ();
+    foreach (var item in @Model.Classifications.Keys)
+    {
+        string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewBag.JobResultsPageUrl, @Model.ClassificationsRootName, @item.ToString());
+
+        classificationsDisplay.Add(@"<a href="" " + hrefLink + @" "" title="" " + Model.Classifications[item] + @" "">" + Model.Classifications[item] + @"</a>");
+    }
+    <div class="job-detail-wrap">
+        <div class="backtoresult">
+            @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))<span class="spt">|</span><a href="@ViewBag.JobResultsPageUrl" id="back-to-results" role="button" title="Back to Results">Back To Results</a>
+        </div>
+        <div class="job-detail">
+            <div class="job-title">
+                <h2>@Model.JobDetails.Title</h2>
+            </div>
+
+            <div class="job-offer-contacts">
+                <div class="job-metas">
+                    <div class="job-meta">
+                        <div class="job-meta-label"><strong>Location:</strong></div>
+                        <div class="job-meta-value">
+                            @{
+                                List<string>
+                                    locationsDisplay = new List<string>
+                                        ();
+                                foreach (var item in @Model.Locations.Keys)
+                                {
+                                    locationsDisplay.Add(Model.Locations[item].ToString());
+                                }
+                            }
+                            <span>@Html.Raw(String.Join("<span>,</span>&nbsp;", locationsDisplay))</span>
+                        </div>
+                    </div>
+
+                    <div class="job-meta">
+                        <div class="job-meta-label"><strong>Work type:</strong></div>
+                        <div class="job-meta-value">@Model.JobDetails.CustomData["WorkType.Filters[0].Value"]</div>
+                    </div>
+
+                    <div class="job-meta">
+                        <div class="job-meta-label"><strong>Reference Number:</strong></div>
+                        <div id="job-refno" class="job-meta-value">
+                            @Model.JobDetails.ReferenceNo
+                        </div>
+                    </div>
+
+
+                    @{
+                        if (Model.JobDetails.CustomData["ContactDetails"] != "")
+                        {
+                            <div class="job-meta">
+                                <div class="job-meta-label"><strong>Contact Details:</strong></div>
+                                <div class="job-meta-value">@Model.JobDetails.CustomData["ContactDetails"]</div>
+                            </div>
+                        }
+                    }
+
+
+                    <div class="job-meta">
+                        <div class="job-meta-label"><strong>Profession:&nbsp; </strong></div>
+                        <div class="job-meta-value">@Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))</div>
+                    </div>
+
+                    <div class="job-meta">
+                        <div class="job-meta-label"><strong>Company:</strong></div>
+                        <div class="job-meta-value">@Model.JobDetails.CustomData["CompanyName"]</div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="job-offer-advantages">
+                <ul>
+
+                    @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"]))
+                    {
+                        <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"]</li>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"]))
+                    {
+                        <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"]</li>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"]))
+                    {
+                        <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"]</li>
+                    }
+                </ul>
+            </div>
+            <div class="job-offer-summary">
+                @{
+                    string cleanContent = GeneralHelper.RemoveInlineStyling((string)Model.JobDetails.Description);
+                }
+                @Html.HtmlSanitize((string)cleanContent)
+            </div>
+
+            @*<a id="job-application-lnk" class="btn btn-primary" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID?source=@Model.UrlReferral">APPLY NOW</a>*@
+            <a id="job-application-lnk" class="btn btn-primary" href="@ViewBag.JobApplicationPageUrl?jobid=@Model.JobDetails.JobID">APPLY NOW</a>
+
+        </div>
+    </div>
+}

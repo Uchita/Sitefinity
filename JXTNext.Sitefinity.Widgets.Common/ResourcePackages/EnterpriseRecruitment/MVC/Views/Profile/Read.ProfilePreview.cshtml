@@ -1,0 +1,37 @@
+﻿@model Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Profile.ProfilePreviewViewModel
+
+@using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Profile;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@if (Model != null)
+{
+    <div class="@Model.CssClass user-profile-dash">
+        <h2 class="dashboard-heading"><span class="fa fa-home"></span>Welcome back</h2>
+        <div class="sf-profile">
+            @if (Model.AvatarImageUrl.ToString().Contains("DefaultPhoto.png"))
+            {
+                <div class="profile-img-default">
+                    <span class="fa fa-user-circle-o"></span>
+                </div>
+            }
+            else
+            {
+                <div class="image-placeholder">
+                    <img src="@Model.AvatarImageUrl" alt="@Model.UserName" />
+                </div>
+            }
+
+
+            <div class="profile-text">
+                <h2>@Model.DisplayName</h2>
+                <p>@Model.Email</p>
+                @*<p>@Model.About</p>*@
+
+                @if (Model.CanEdit && ViewBag.Mode == ViewMode.Both)
+                {
+                    @Html.ActionLink(Html.Resource("EditProfileLink"), "EditProfile", null, null, new { @class = "btn btn-outline-primary" });
+                }
+            </div>
+            <hr />
+        </div>
+    </div>
+}

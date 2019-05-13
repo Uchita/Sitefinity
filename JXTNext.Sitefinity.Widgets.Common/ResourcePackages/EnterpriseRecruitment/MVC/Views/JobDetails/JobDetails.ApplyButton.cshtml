@@ -1,0 +1,25 @@
+﻿@model JXTNext.Sitefinity.Widgets.Job.Mvc.Models.JobDetailsViewModel
+
+
+<div class="jobapply-btn-wrap">
+    <a class="btn btn-primary" href="@ViewBag.JobApplicationPageUrl?jobid=@Model.JobDetails.JobID">APPLY NOW</a>
+</div>
+<div class="jobapply-social">
+    <hr />
+    <h3>Interested in this job?</h3>
+    <ul class="list-unstyled job-offer-actions sf-social-share">
+        <li>
+            <a href="javascript:void(0)" onclick="window.print(); return false" title="Print this job">
+                <span class="fa fa-print"></span>Print this job
+            </a>
+        </li>
+        <li>
+            @*<a href="@ViewBag.EmailJobPageUrl?JobId=@Model.JobDetails.JobID" title="Tell a friend">
+                    <span class="fa fa-envelope"></span>Email this job
+                </a>*@
+            <a href="/jobs/email-job?JobId=@Model.JobDetails.JobID" title="Tell a friend">
+                <span class="fa fa-envelope"></span>Email this job
+            </a>
+        </li>
+    </ul>
+</div>

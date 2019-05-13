@@ -1,0 +1,24 @@
+@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+<div class="banner @Model.CssClass">
+    <div class="hp-banner">
+        <div class="slider">
+            @if (!string.IsNullOrEmpty(Model.SelectedSizeUrl))
+            {
+                <div class="slide" style="background-image: url('@Model.SelectedSizeUrl');"></div>
+            }
+            else
+            {
+                <div id="slide-0" class="slide"></div>
+            }
+        </div>
+        <div class="banner-overlay">
+            <div>
+                <h1>@Html.HtmlSanitize(Model.Heading)</h1>
+                <div class="hp-banner-btn-group">
+                    @Html.HtmlSanitize(Model.Description)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,146 @@
+@import '_variables';
+@import '_fonts';
+@import '_editor';
+
+/*#region Basic components*/
+@import '_basic-components';
+@import '_hexagon-item';
+@import '_chevronShape';
+
+/*#endregion Basic components */
+
+/*#region GlobalStyle*/
+@import '_global-style';
+
+/*#endregion GlobalStyle*/
+
+/*#region Header */
+
+@import '_header';
+
+/*#endregion Header */
+
+/*#region Breadcrumbs */
+
+@import '_breadcrumbs';
+
+/*#endregion Breadcrumbs */
+
+/*#region Buttons */
+
+@import '_buttons';
+
+/*#endregion Buttons */
+
+/*#region Buttons */
+
+@import '_buttons';
+
+/*#endregion Buttons */
+
+/*#region Cards */
+
+@import '_cards';
+
+/*#endregion Cards */
+
+
+/*#region Forms*/
+
+@import '_forms';
+
+/*#endregion Forms*/
+
+
+/*#region Customers */
+
+@import '_customers';
+
+/*#endregion Customers */
+
+
+/*#region Job offers */
+
+@import "_jobs";
+
+/*#endregion Job offers */
+
+
+/*#region Articles/Insights */
+
+@import "_articles";
+
+/*#endregion Articles/Insights */
+
+
+/*#region Board members*/
+
+@import '_board-members';
+
+/*#endregion Board members*/
+
+
+/*#region Press release*/
+
+@import '_press-releases';
+
+/*#endregion Press release*/
+
+
+/*#region Consultans*/
+
+@import '_consultants';
+
+/*#endregion Consultans*/
+
+
+/*#region risk measurement*/
+
+@import '_risk-measurement';
+
+/*#endregion risk measurement*/
+
+/*#region News */
+
+@import '_news';
+
+/*#endregion News */
+
+
+/*#region list*/
+
+@import '_lists';
+
+/*#endregion list*/
+
+/*#region icons*/
+
+@import '_icons';
+
+/*#endregion icons*/
+
+/*#region Footer */
+
+@import '_footer';
+
+/*#endregion Footer */
+
+
+/*#region user-dashboard */
+
+@import '_user-dashboard';
+
+/*#endregion user-dashboard */
+
+/*#region Media*/
+
+@import '_media';
+
+/*#endregion Media*/
+
+
+/*#print media*/
+
+@import '_print';
+
+/*#end print media*/

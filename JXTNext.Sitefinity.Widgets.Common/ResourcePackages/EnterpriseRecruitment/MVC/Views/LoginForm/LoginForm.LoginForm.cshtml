@@ -1,0 +1,135 @@
+@model Telerik.Sitefinity.Frontend.Identity.Mvc.Models.LoginForm.LoginFormViewModel
+
+@using Telerik.Sitefinity.UI.MVC;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Services;
+
+@*Add scripts and stylesheets*@
+@Html.Script(ScriptRef.JQuery, "top")
+@Html.Script("//ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.js", "top")
+@Html.Script("//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js", "top")
+
+<div class="@Model.CssClass sf-m-xxs user-form">
+    @if (Telerik.Sitefinity.Security.SecurityManager.GetCurrentUserId() == Guid.Empty || SystemManager.IsInlineEditingMode || SystemManager.IsDesignMode)
+    {
+        using (Html.BeginFormSitefinity(@Request.Url.Query, null, null, FormMethod.Post, null, true))
+        {
+            <div>
+                @Html.ValidationSummary(true)
+
+                <div class="basic-form">
+                    <h2><i class="fa fa-lock"></i>@Html.Resource("LoginFormLogInLegendHeader")</h2>
+                    <div class="field-wrapper">
+
+                        @if (Request.Url.Query.Contains("err=true") || Model.LoginError)
+                        {
+                            <div class="alert alert-danger">
+                                @Html.Resource("IncorrectCredentialsMessage")
+                            </div>
+                        }
+                        <div class="login-wrap">
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label class="form-label">EMAIL ADDRESS*</label>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        @Html.TextBoxFor(u => u.UserName, new { @id = "userid", @class = "form-control", @placeholder = "Enter your email address" })
+                                        @if (Html.ValidationMessage("UserName") != null)
+                                        {
+                                            <div class="has-error">
+                                                <span class="help-block">@Html.ValidationMessage("UserName")</span>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label class="form-label">@Html.Resource("Password")*</label>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        @Html.PasswordFor(u => u.Password, new { @class = "form-control", @placeholder = "Enter your password" })
+                                        @if (Html.ValidationMessage("Password") != null)
+                                        {
+                                            <div class="has-error">
+                                                <span class="help-block">@Html.ValidationMessage("Password")</span>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    @if (Model.ShowRememberMe)
+                                    {
+                                        <div class="form-group">
+                                            <div class="custom-checkbox">
+                                                @Html.CheckBoxFor(u => u.RememberMe)
+                                                <label for="RememberMe">@Html.Resource("RememberMe")</label>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    <div class="btn-block">
+                                        <button type="submit" class="btn btn-primary btn-block">@Html.Resource("LoginFormLogInButton")</button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="registration-link">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    @if (Model.ShowRegistrationLink)
+                                    {
+                                        <div class="sf-registration-link">
+                                            <div>
+                                                @Html.Resource("NotRegisteredYet")
+                                                <a href="@Model.RegisterPageUrl" class="font-regular link-default">@Html.Resource("LoginFormRegisterNow")</a>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                @if (Model.ShowForgotPasswordLink)
+                                {
+                                    <div class="forgot-password">
+                                        @Html.ActionLink(Html.Resource("ForgottenPasword"), "ForgotPassword")
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        }
+    }
+
+    else
+    {
+        <h2>@Html.Resource("AlreadyLoggedIn")</h2>
+        <div class="width-limit">
+            <p>
+                There&rsquo;s lots to discover so enjoy your journey!
+            </p>
+            <p>
+                <a href="/job-seekers/search-results">Job Search</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/">Back to home</a>
+            </p>
+        </div>
+    }
+</div>
+
+@Html.Script(Url.WidgetContent("Mvc/Scripts/LoginForm/login-form.js"), "bottom")

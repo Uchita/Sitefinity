@@ -1,0 +1,122 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web.DataResolving;
+
+@* Used for getting category list *@
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+
+@{
+    Dictionary<Guid, string>
+    catgeoryListDictionary = new Dictionary<Guid, string>
+        ();
+    var managerArticle1 = TaxonomyManager.GetManager();
+    var articleTaxonomy1 = managerArticle1.GetTaxonomies<HierarchicalTaxonomy>
+        ().Where(t => t.Name.ToLower() == "Categories").FirstOrDefault();
+    List<Taxon>
+        topLovelTaxa1 = new List<Taxon>
+            ();
+    if (articleTaxonomy1 != null)
+    {
+        foreach (var taxon in articleTaxonomy1.Taxa)
+        {
+            if (taxon.Parent == null)
+            {
+                topLovelTaxa1.Add(taxon);
+            }
+        }
+        foreach (var taxon in topLovelTaxa1)
+        {
+            var hierarchicalTaxon1 = taxon as HierarchicalTaxon;
+            catgeoryListDictionary.Add(@taxon.Id, @taxon.Title);
+            foreach (var it in hierarchicalTaxon1.Subtaxa)
+            {
+                @ProcessCategories_Add(it, catgeoryListDictionary);
+            }
+        }
+    }
+}
+@helper ProcessCategories_Add(HierarchicalTaxon taxon1, Dictionary<Guid, string>
+                        catgeoryListDictionary)
+{
+    if (taxon1 != null)
+    {
+        catgeoryListDictionary.Add(taxon1.Id, @taxon1.Title);
+        foreach (var subTaxon in taxon1.Subtaxa)
+        {
+            @ProcessCategories_Add(subTaxon, catgeoryListDictionary);
+        }
+    }
+}
+
+<div class="@Model.CssClass">
+    <div class="news-slider">
+        @foreach (var item in Model.Items)
+        {
+            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+            var imageurl = "";
+            foreach (var relatedItem in item.Fields.NewsImage)
+            {
+                imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+            }
+            <div class="carousel-item" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)item.Fields.Id)>
+                <div class="news-feed-box">
+                    <div class="news-feed-image-box">
+                        @if (imageurl + "" != "")
+                        {
+                            <img src="@imageurl" alt="@item.Fields.Title" />
+                        }
+                        else
+                        {
+                            <img src="/ResourcePackages/ResourcefulPro/assets/dist/images/placeholder-350x350.jpg" alt="@item.Fields.Title" />
+                        }
+                    </div>
+                    <div class="news-feed-content-box">
+                        <div class="news-feed-heading-box">
+                            <h3 class="news-feed-title">
+                                <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a>
+                            </h3>
+                            <p>
+                                <span class="rss-item-pubDate">
+                                    <span class="rss-item-pubDate-date">@item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>&nbsp;
+                                </span>
+                                <span itemprop="author">@DataResolver.Resolve(item.DataItem, "Author", null)</span>
+                            </p>
+                        </div>
+                        <div class="news-feed-desc">
+                            <p>@Html.HtmlSanitize((string)item.Fields.Summary)</p>
+                        </div>
+                        <div class="news-feed-footer">
+                            @{
+                                var categoriesName = "";
+                            }
+                            @foreach (var c in item.Fields.Category)
+                            {
+
+                                if (catgeoryListDictionary.ContainsKey((Guid)c))
+                                {
+                                    if (string.IsNullOrEmpty(categoriesName))
+                                    {
+                                        categoriesName = @catgeoryListDictionary[c];
+                                    }
+                                    else
+                                    {
+                                        categoriesName += ", " + @catgeoryListDictionary[c];
+                                    }
+
+                                }
+                            }
+                            @if (categoriesName != "")
+                            {
+                                <span>Category <a href="javascript:void(0)">@categoriesName</a></span>
+                            }
+                            <a href="@navigateUrl" class="news-feed-btn" alt="@item.Fields.Title">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

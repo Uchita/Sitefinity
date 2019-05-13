@@ -1,0 +1,116 @@
+﻿@model Telerik.Sitefinity.Frontend.Search.Mvc.Models.ISearchBoxModel
+
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+@{
+    var searchTextBoxId = Guid.NewGuid();
+    var searchButtonId = Guid.NewGuid();
+}
+
+@(!String.IsNullOrEmpty(Model.CssClass) ?
+        Html.Raw(String.Format("<div class=\"{0} form-inline\">", HttpUtility.HtmlAttributeEncode(Model.CssClass))) :
+        Html.Raw("<div class=\"form-inline\">"))
+<div class="jxt-news-filter jxt-news-filter-keywords">
+    <h3 id="jxt-news-filter-keywords-heading">
+        <label for="@searchTextBoxId">Keywords</label>
+    </h3>
+    <div class="jxt-news-filter-options">
+        <div class="jxt-news-filter-input">
+            <input type="search" title="@Html.Resource(" SearchInput")" placeholder="@Model.BackgroundHint" id="@searchTextBoxId" class="form-control" value="@(ViewBag.SearchQuery)" />
+        </div>
+    </div>
+</div>
+<div class="jxt-news-search">
+    <div class="button">
+        <a id="@(searchButtonId)" role="button" class="btn btn-default" href="javascript:void(0)">
+            <i class="fa fa-search" tabindex="5"></i>
+            @Html.Resource("SearchLabel")
+        </a>
+    </div>
+</div>
+<div class="jxt-news-filter jxt-news-filter-sort-by">
+    <h3 id="jxt-news-filter-sort-by-heading">
+        Sort by
+    </h3>
+    <div class="jxt-news-filter-options">
+        <div class="jxt-news-filter-summary" role="list" aria-expanded="false" aria-controls="jxt-collapsible-0" data-default-summary=""></div>
+        <div id="jxt-collapsible-0" class="jxt-news-filter-dropdown" aria-hidden="true" role="list">
+            <ul class="jxt-news-filter-single" aria-describedby="jxt-news-filter-sort-by-heading">
+                <li><a id="SortRelevance" data-item="Relevance">Relevance</a></li>
+                <li><a id="SortNewest" data-item="Newest">Newest first</a></li>
+                <li><a id="SortOldest" data-item="Oldest">Oldest first</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<input type="hidden" data-sf-role="resultsUrl" value="@(Model.ResultsUrl)" />
+<input type="hidden" data-sf-role="indexCatalogue" value="@(Model.IndexCatalogue)" />
+<input type="hidden" data-sf-role="wordsMode" value="@(Model.WordsMode.ToString())" />
+<input type="hidden" data-sf-role="disableSuggestions" value='@(Model.DisableSuggestions ? ("true") : ("false"))' />
+<input type="hidden" data-sf-role="minSuggestionLength" value="@(Model.MinSuggestionLength)" />
+<input type="hidden" data-sf-role="suggestionFields" value="@(Model.SuggestionFields)" />
+<input type="hidden" data-sf-role="language" value="@(Model.Language)" />
+<input type="hidden" data-sf-role="suggestionsRoute" value="@(Model.SuggestionsRoute)" />
+<input type="hidden" data-sf-role="searchTextBoxId" value='@("#" + searchTextBoxId.ToString())' />
+<input type="hidden" data-sf-role="searchButtonId" value='@("#" + searchButtonId.ToString())' />
+</div>
+
+@* The inline editing functionality is loading jQuery too. *@
+
+@Html.Script(ScriptRef.JQuery, "top", true)
+@Html.Script(ScriptRef.JQueryUI, "top", true)
+
+@Html.Script(Url.WidgetContent("Mvc/Scripts/SearchBox/Search-box.js"), "bottom")
+<script>
+    !(function () {
+        // refreshes the summary div to show which filters have been added.
+        function refreshFilterSummary() {
+            $(".jxt-news-filter-summary").each(function () {
+                var myActiveOptions = $(this).next(".jxt-news-filter-dropdown").find("a.active");
+                switch (myActiveOptions.length) {
+                    case 0:
+                        $(this).text($(this).data('default-summary'));
+                        break;
+                    case 1:
+                        $(this).text(myActiveOptions.text());
+                        break;
+                    default:
+                        var myTotalOptions = "";
+                        myActiveOptions.each(function () {
+                            myTotalOptions += ", " + $(this).text()
+                        });
+                        $(this).text(myTotalOptions.substring(2));
+                        break;
+                }
+            });
+        }
+
+        var userSortDropdown = $(".userSortDropdown");
+        if (userSortDropdown.length > 0) {
+            var seletedSort = userSortDropdown.val();
+            $(".jxt-news-filter-single a[data-item=" + seletedSort + "]").addClass("active");
+            $(".jxt-news-filter-single a").on("click", function (e) {
+                e.preventDefault();
+                $(".jxt-news-filter-single a").removeClass("active");
+                $(this).addClass("active");
+                userSortDropdown.val($(this).data("item"));
+                userSortDropdown.trigger("change");
+            });
+
+            refreshFilterSummary();
+
+            $(".jxt-news-filter-summary").click(function () {
+                var ariaVal = $(this).next(".jxt-news-filter-dropdown").attr("aria-hidden");
+                ariaVal = "false" == ariaVal ? false : true;
+                $(this).attr("aria-expanded", ariaVal);
+                $(this).next(".jxt-news-filter-dropdown").attr("aria-hidden", !ariaVal);
+            });
+        } else {
+            $(".jxt-news-filter-sort-by").addClass("hidden");
+        }
+
+
+    }());
+</script>

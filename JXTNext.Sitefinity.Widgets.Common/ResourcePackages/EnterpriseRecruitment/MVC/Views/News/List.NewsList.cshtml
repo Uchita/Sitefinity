@@ -1,0 +1,218 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Frontend.Blogs.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Blogs.Mvc.Models.Blog;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+@using Telerik.Sitefinity.Web.DataResolving;
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Libraries;
+@* Used for getting category list *@
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Security.Model;
+@using Telerik.OpenAccess;
+@* For Dynamic content: Module builder [Office] *@
+@using Telerik.Sitefinity.DynamicModules;
+@using Telerik.Sitefinity.DynamicModules.Model;
+@using Telerik.Sitefinity.Utilities.TypeConverters;
+
+@{
+
+
+    //var sortby = Request.QueryString["sortby"];
+    //var reqkeywords = Request.QueryString["keyword"];
+
+    IEnumerable<ItemViewModel>
+    newsList = Model.Items;
+
+    /*if (reqkeywords != "undefined" && reqkeywords + "" != "")
+    {
+        newsList = newsList.Where(c => c.Fields.Title.ToString().ToLower().Contains(reqkeywords.ToString().ToLower()) || c.Fields.Summary.ToString().ToLower().Contains(reqkeywords.ToString().ToLower()));
+    }
+
+    if (sortby != "undefined" && sortby + "" != "")
+    {
+        switch (sortby)
+        {
+            case "latest":
+                newsList = newsList.OrderByDescending(o => o.Fields.PublicationDate);
+                break;
+
+            case "oldest":
+                newsList = newsList.OrderBy(o => o.Fields.PublicationDate);
+                break;
+
+            case "az":
+                newsList = newsList.OrderBy(o => o.Fields.Title);
+                break;
+
+            case "za":
+                newsList = newsList.OrderByDescending(o => o.Fields.Title);
+                break;
+        }
+    }*/
+
+
+
+
+    Dictionary<Guid, string>
+        catgeoryListDictionary = new Dictionary<Guid, string>
+            ();
+    var managerArticle1 = TaxonomyManager.GetManager();
+    var articleTaxonomy1 = managerArticle1.GetTaxonomies<HierarchicalTaxonomy>
+        ().Where(t => t.Name.ToLower() == "Categories").FirstOrDefault();
+    List<Taxon>
+        topLovelTaxa1 = new List<Taxon>
+            ();
+    if (articleTaxonomy1 != null)
+    {
+        foreach (var taxon in articleTaxonomy1.Taxa)
+        {
+            if (taxon.Parent == null)
+            {
+                topLovelTaxa1.Add(taxon);
+            }
+        }
+        foreach (var taxon in topLovelTaxa1)
+        {
+            var hierarchicalTaxon1 = taxon as HierarchicalTaxon;
+            catgeoryListDictionary.Add(@taxon.Id, @taxon.Title + "#" + @taxon.UrlName);
+            foreach (var it in hierarchicalTaxon1.Subtaxa)
+            {
+                @ProcessCategories_Add(it, catgeoryListDictionary);
+            }
+        }
+    }
+}
+@helper ProcessCategories_Add(HierarchicalTaxon taxon1, Dictionary<Guid, string>
+                            catgeoryListDictionary)
+{
+    if (taxon1 != null)
+    {
+        catgeoryListDictionary.Add(taxon1.Id, @taxon1.Title + "#" + @taxon1.UrlName);
+        foreach (var subTaxon in taxon1.Subtaxa)
+        {
+            @ProcessCategories_Add(subTaxon, catgeoryListDictionary);
+        }
+    }
+}
+
+
+<div class="jxt-news-container jxt-news-lists-container @Model.CssClass">
+    <p class="jxt-news-refine-summary">Showing <span>@newsList.Count()</span> results </p>
+    @foreach (var item in newsList)
+    {
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+        var imageurl = "";
+        foreach (var relatedItem in item.Fields.NewsImage)
+        {
+            imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+        }
+
+        <article class="jxt-news-item" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)item.Fields.Id)>
+            <h2 class="jxt-news-item-title" itemprop="name headline">
+                <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a>
+            </h2><div class="articles-pub-details">
+                <div class="articles-PubDate">
+                    <span class="rss-item-pubDate-date">@item.GetDateTime("PublicationDate", "d MMM yyyy")</span>
+                    @*<span class="rss-item-pubDate-month">Mar</span>
+                        <span class="rss-item-pubDate-full-year">2019</span>*@
+                </div>
+            </div>
+            @if (imageurl + "" != "")
+            {
+                <figure class="jxt-news-item-image">
+                    <img src="@imageurl" alt="@item.Fields.Title" />
+                </figure>
+            }
+            @if (item.Fields.Summary + "" != "")
+            {
+                <p class="jxt-news-item-excerpt" @Html.InlineEditingFieldAttributes("Summary", "ShortText")>
+                    @Html.HtmlSanitize((string)item.Fields.Summary)
+                </p>
+            }
+            else
+            {
+                <p class="jxt-news-item-excerpt" @Html.InlineEditingFieldAttributes("Summary", "ShortText")>
+                    &nbsp;
+                </p>
+            }
+            <footer class="jxt-news-item-meta-data">
+                @{
+                    var categoriesName = "";
+                }
+                @foreach (var c in item.Fields.Category)
+                {
+
+                    if (catgeoryListDictionary.ContainsKey((Guid)c))
+                    {
+                        if (string.IsNullOrEmpty(categoriesName))
+                        {
+                            categoriesName = "<a href=\"/pro-iq/-in-category/categories/news-category/" + @catgeoryListDictionary[c].Split('#')[1] + "\">" + @catgeoryListDictionary[c].Split('#')[0] + "</a>";
+                        }
+                        else
+                        {
+                            categoriesName += ", " + "<a href=\"/pro-iq/-in-category/categories/news-category/" + @catgeoryListDictionary[c].Split('#')[1] + "\">" + @catgeoryListDictionary[c].Split('#')[0] + "</a>";
+                        }
+
+                    }
+                }
+                @if (categoriesName != "")
+                {
+                    <dl class="jxt-news-item-category">
+                        <dt>
+                            Filed under
+                        </dt>
+                        <dd itemprop="keywords">@Html.HtmlSanitize((string)categoriesName)</dd>
+                    </dl>
+                }
+                <dl class="jxt-news-item-date-published">
+                    <dt>
+                        Date published
+                    </dt>
+                    <dd>
+                        <span itemprop="datePublished">
+                            @item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")
+                        </span>
+                    </dd>
+                </dl>
+                <dl class="jxt-news-item-date-modified">
+                    <dt>
+                        Date modified
+                    </dt>
+                    <dd>
+                        <span itemprop="dateModified">
+                            20/03/2019
+                        </span>
+                    </dd>
+                </dl>
+                <dl class="hidden">
+                    @Html.CommentsCount((string)navigateUrl, item.DataItem)
+                    @DataResolver.Resolve(item.DataItem, "Author", null)
+                </dl>
+            </footer>
+        </article>
+    }
+    <div class="jxt-news-pagination">
+        @if (Model.ShowPager)
+        {
+            @Html.Action("Index", "ContentPager", new { currentPage = Model.CurrentPage,
+            totalPagesCount = Model.TotalPagesCount.Value,
+            redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate })
+        }
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+        $(".jxt-news-pagination ul").removeClass("pagination");
+    });
+</script>

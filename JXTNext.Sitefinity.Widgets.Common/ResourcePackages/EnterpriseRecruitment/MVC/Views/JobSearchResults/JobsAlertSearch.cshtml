@@ -1,0 +1,20 @@
+﻿@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+
+<div class="create-jobalert-search">
+    @if (ViewBag.IsMember)
+    {
+        <input type="email" id="anonycreatejobalert" value="@ViewBag.Email" hidden />
+        <a id="anon-job-alert" class="btn btn-primary btn-block" href="javascript:void(0)" title="Create your job alert">CREATE JOB ALERT</a>
+        <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
+        <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
+    }
+    else
+    {
+        <div class="label-email_alert">Receive new jobs for this search by email.</div>
+        <input type="email" id="anonycreatejobalert" value="" placeholder="Enter email address" class="jobalert-field" />
+        <a id="anon-job-alert" class="btn btn-primary btn-block" href="javascript:void(0)" title="Create your job alert">CREATE JOB ALERT</a>
+        <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
+        <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
+    }
+</div>

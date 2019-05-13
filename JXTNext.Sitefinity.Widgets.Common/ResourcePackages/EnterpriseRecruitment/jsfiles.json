@@ -1,0 +1,5 @@
+{
+  "concatJsFiles": [
+    "assets/src/project/js/myjs.js"
+  ]
+}

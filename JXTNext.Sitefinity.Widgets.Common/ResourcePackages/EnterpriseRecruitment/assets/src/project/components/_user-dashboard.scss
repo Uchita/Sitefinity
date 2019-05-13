@@ -1,0 +1,545 @@
+﻿.user-profile-dash {
+  width: 100%;
+  float: left;
+  //border-bottom: 1px solid #4F758B;
+  padding: 0 0 45px 0;
+
+  .sf-profile {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .profile-text {
+    .btn {
+      background-color: #e2e2e2;
+      border-color: #e2e2e2;
+      color: #000;
+      margin: 0;
+      padding: 13px 25px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+  }
+
+  hr {
+    float: left;
+    border-color: #9e4624;
+    width: 100%;
+  }
+}
+
+.dashboard-wrap {
+  border: 1px solid #e6eaed;
+  background-color: #f9fafa;
+  padding-bottom: 30px;
+}
+
+.user-profile-dash {
+  h2 {
+    &.dashboard-heading {
+      color: #2e2e2e;
+      font-weight: normal;
+      font-size: 30px;
+      margin: 0 0 80px 0;
+      border: 1px solid #e6eaed;
+      background-color: #e2e2e2;
+      padding: 8px 30px;
+      line-height: 1;
+
+      .fa {
+        color: #9e4624;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .btn {
+    margin: 0;
+    padding: 13px 25px;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+}
+
+.user-profile-dash .sf-profile {
+  width: 100%;
+  float: left;
+}
+
+.user-profile-dash .image-placeholder {
+  width: 150px;
+  height: 150px;
+  float: left;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.user-profile-dash .image-placeholder img {
+  width: 100%;
+}
+
+.user-profile-dash .profile-text {
+  width: calc(100% - 185px);
+  float: right;
+}
+
+.user-profile-dash .profile-text h2 {
+  color: #000;
+  font-size: 24px;
+  font-weight: normal;
+  margin: 10px 0 6px 0;
+  text-transform: capitalize;
+  letter-spacing: 0.2px;
+}
+
+.user-profile-dash .profile-text p {
+  color: #2e2e2e;
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 30px;
+}
+
+.dasboard-job-sec {
+  padding-left: 30px;
+  padding-right: 30px;
+
+  h2 {
+    color: #2e2e2e;
+    font-size: 24px;
+    margin: 10px 0 20px 0;
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
+    font-family: "Metropolis-Light", sans-serif;
+  }
+}
+
+.dasboard-job-sec {
+  h2 {
+    span {
+      color: #9e4624;
+      display: inline-block;
+      margin-right: 5px;
+      font-size: 36px;
+    }
+  }
+}
+
+.dasboard-job-sec .tbl-wrapper {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.dasboard-job-sec .tbl-wrapper td,
+.dasboard-job-sec .tbl-wrapper th {
+  border: 1px solid #f5f5f5;
+  padding: 10px 12px;
+}
+
+.dasboard-job-sec .alert-info {
+  background-color: rgba(158, 70, 36, 0.2);
+  color: #7d7d7d;
+  border: none;
+  font-size: 16px;
+  padding: 15px 17px;
+}
+
+.dasboard-job-sec .alert {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+}
+
+.dasboard-job-sec .text-muted {
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 400;
+  padding: 10px 0;
+  color: #7d7d7d;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+}
+
+.dasboard-job-sec .btn {
+  border-radius: 0;
+  padding: 6px 12px;
+}
+
+.dasboard-job-sec .btn.btn-primary {
+  margin: 0;
+  padding: 13px 25px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.dasboard-job-sec {
+  .btn-dark {
+    background-color: #e2e2e2;
+    border-color: #e2e2e2;
+    color: #000;
+
+    &:hover {
+      background-color: #e2e2e2;
+      border-color: #e2e2e2;
+    }
+  }
+
+  .button-wrapper {
+    > .btn {
+      &.btn-primary {
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
+
+.dasboard-job-sec h3 {
+  font-size: 24px;
+  font-weight: 400;
+  color: #000;
+  margin: 0 0 25px 0;
+}
+
+.dasboard-job-sec .basic-form label {
+  font-size: 18px;
+  color: #2e2e2e;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin: 8px 0 0 0;
+}
+
+.dasboard-job-sec .basic-form .form-control {
+  border: 1px solid #2e2e2e;
+  font-size: 14px;
+  height: 44px;
+}
+
+.dasboard-job-sec .basic-form .salaryrangewrapper {
+  display: none;
+}
+
+.dasboard-job-sec .basic-form .checkbox {
+  position: relative;
+  font-weight: 400;
+  color: #2e2e2e;
+  text-transform: none;
+  font-size: 12px;
+  padding: 0 0 0 28px;
+}
+
+.dasboard-job-sec .basic-form .checkbox input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.dasboard-job-sec
+  .basic-form
+  .checkbox
+  input[type="checkbox"]:checked
+  + .checkbox-icon:before {
+  opacity: 1;
+}
+
+.dasboard-job-sec .basic-form .checkbox .checkbox-icon {
+  height: 21px;
+  width: 21px;
+  border: 1px solid #2e2e2e;
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  text-align: center;
+  line-height: 19px;
+  left: 0;
+}
+
+.dasboard-job-sec .basic-form .checkbox .checkbox-icon:before {
+  opacity: 0;
+  color: #2e2e2e;
+}
+
+.dasboard-job-sec .basic-form .dropdown .btn {
+  width: 100%;
+  text-align: left;
+  padding: 6px 20px 6px 12px;
+  height: 45px;
+  background: url(../images/select-arrow.png) no-repeat 97% center;
+  border-color: #2e2e2e;
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: normal;
+  text-transform: none;
+  color: #000 !important;
+}
+
+.dasboard-job-sec .basic-form .dropdown .btn span {
+  color: #000 !important;
+}
+
+.dasboard-job-sec .basic-form .dropdown .btn .caret {
+  display: none;
+}
+
+.dasboard-job-sec .basic-form .dropdown li > i {
+  width: 11px;
+  height: 11px;
+  //border: 1px solid #2a2a2a;
+  position: absolute;
+  margin: 0;
+  top: 9px;
+  left: 0;
+  border-radius: 3px;
+}
+
+.dasboard-job-sec .basic-form .dropdown li > i.fa-check-square-o:after {
+  width: 7px;
+  height: 11px;
+  content: "";
+  position: absolute;
+  top: -3px;
+  //border-right: 3px solid #2a2a2a;
+  //border-bottom: 3px solid #2a2a2a;
+  left: 3px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+
+.dasboard-job-sec .basic-form .dropdown .dropdown-menu {
+  width: 100%;
+}
+
+.dasboard-job-sec .basic-form .dropdown .dropdown-menu > li > i {
+  left: 20px;
+}
+
+.dasboard-job-sec .basic-form .dropdown .dropdown-menu > li a .arrow {
+  margin-left: -32px;
+}
+
+.dasboard-job-sec .basic-form .dropdown .dropdown-menu > li > a {
+  padding-left: 38px !important;
+}
+
+.dasboard-job-sec .basic-form .dropdown li {
+  background: none !important;
+  position: relative;
+}
+
+.dasboard-job-sec .basic-form .dropdown li a {
+  color: #2e2e2e !important;
+  font-size: 14px;
+  display: block !important;
+  padding: 4px 0 4px 18px !important;
+}
+
+.job-app-container {
+  width: 100%;
+  max-width: 970px;
+  padding-top: 245px !important;
+}
+
+.job-app-container > .row {
+  margin: 0 -30px;
+}
+
+.job-app-container .col-sm-6 {
+  padding: 0 30px;
+}
+
+.job-app-container .col-sm-6:after {
+  width: 1px;
+  height: 100%;
+  content: "";
+  background: #000;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.job-app-container .col-sm-6:last-child:after {
+  display: none;
+}
+
+.basic-form .welcome-message {
+  font-size: 14px;
+  color: #9e4624;
+  padding: 4px 10px;
+}
+
+.basic-form .welcome-message .fas.fa-user-check:before {
+  content: "\f4fc";
+}
+
+.job-app-container .ext-provider-form h2 {
+  display: none;
+}
+
+.profile-img-default {
+  float: left;
+  color: #e2e2e2;
+
+  .fa {
+    font-size: 158px;
+  }
+}
+
+div#errorMessage h4 {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 5px;
+}
+
+.job-alert-wrap {
+  h3 {
+    font-size: 18px;
+    text-transform: unset;
+    font-weight: 100;
+    letter-spacing: 0.5px;
+    font-family: "Metropolis-Light", sans-serif;
+    margin-bottom: 5px;
+  }
+
+  .custom-checkbox {
+    label {
+      font-size: 1em;
+      text-transform: unset;
+    }
+  }
+}
+
+.form-control-rounded {
+  a {
+    font-family: "Metropolis-Light", sans-serif;
+  }
+
+  input.form-control {
+    height: 42px !important;
+  }
+
+  textarea.form-control {
+    height: auto !important;
+  }
+
+  .form-control {
+    border-color: rgb(228, 231, 239) !important;
+    border-radius: 5px !important;
+    color: #7d7d7d !important;
+  }
+
+  label {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .dropdown {
+    .dropdown-menu {
+      width: 100%;
+    }
+
+    .btn {
+      position: relative;
+      border-radius: 5px !important;
+      border-color: rgb(228, 231, 239) !important;
+      background-color: #fff !important;
+      padding-top: 5px !important;
+      padding-bottom: 5px !important;
+      min-height: 42px !important;
+      height: auto !important;
+      word-break: break-word;
+      white-space: pre-wrap;
+      width: 100%;
+      text-align: left;
+
+      > span {
+        color: #7d7d7d !important;
+      }
+
+      .caret {
+        font-size: 20px;
+        display: block !important;
+        font-family: FontAwesome;
+        border: none;
+        position: absolute;
+        right: 20px;
+        top: 5px;
+
+        &:before {
+          content: "";
+        }
+      }
+    }
+
+    li {
+      > i {
+        top: 5px;
+      }
+    }
+
+    .arrow {
+      top: 12px;
+    }
+  }
+
+  .btn {
+    &.btn-primary {
+      margin-bottom: 15px;
+    }
+
+    &.btn-dark {
+      font-family: "Metropolis-Bold", sans-serif;
+      padding: 13px 25px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.custom-checkbox {
+  a {
+    text-decoration: underline;
+  }
+
+  label {
+    font-size: 1em;
+    text-transform: unset;
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: -2px;
+      display: block;
+      width: 9px;
+      height: 15px;
+      border: solid #2e2e2e;
+      border-width: 0 2px 1px 0;
+      transform: rotate(45deg);
+      opacity: 0;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -3px;
+      width: 22px;
+      height: 22px;
+      border: 1px solid rgb(46, 46, 46);
+      border-radius: 5px;
+    }
+  }
+
+  input {
+    width: 22px;
+    height: 22px;
+    opacity: 0;
+    position: absolute;
+
+    &:checked {
+      ~ label:after {
+        border-width: 0 2px 2px 0;
+        opacity: 1;
+      }
+    }
+  }
+}

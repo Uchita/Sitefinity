@@ -1,0 +1,40 @@
+@using JXTNext.Sitefinity.Widgets.User.Mvc.Models.MemberAppliedJob
+@model List<MemberAppliedJobItem>
+
+@using JXTNext.Sitefinity.Common.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+<div class="dasboard-job-sec">
+
+    <h2><span class="icon applied-icon fa fa-thumbs-o-up"></span>Applied jobs</h2>
+    @if (Model != null && Model.Count > 0)
+    {
+
+        <div class="tbl-wrapper">
+
+            <table class="table datatable">
+                <thead>
+                    <tr>
+                        <th width="100">Job ID</th>
+                        <th>Job Title</th>
+                        <th class="date-col">Date Added</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (MemberAppliedJobItem item in Model)
+                    {
+                        <tr>
+                            <td>@item.JobId</td>
+                            <td><a href="@ViewBag.JobDetailsPageUrl/@item.ClassificationURL/@item.JobId">@item.DisplayTitle</a></td>
+                            <td>@String.Format("{0:dd MMM yyyy}", item.DateAdded)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">@Html.Resource("NoAppliedJobMsg", "ErrorMessages")</div>
+    }
+</div>

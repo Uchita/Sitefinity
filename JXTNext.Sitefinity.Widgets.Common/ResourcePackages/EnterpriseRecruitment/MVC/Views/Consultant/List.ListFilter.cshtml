@@ -1,0 +1,209 @@
+@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@*Needed for custom thumbnail*@
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Modules.Libraries;
+
+@* Used for getting category list *@
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Security.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+@using Telerik.Sitefinity.Model;
+@using Telerik.OpenAccess;
+
+@* For Dynamic content: Module builder [Office] *@
+@using Telerik.Sitefinity.DynamicModules;
+@using Telerik.Sitefinity.DynamicModules.Model;
+@using Telerik.Sitefinity.Utilities.TypeConverters;
+
+
+<div class="@Model.CssClass">
+    <div id="r_meet-team-menu">
+        <ul>
+            <li class="active">
+                <a href="javascript:void(0)">All Team</a>
+            </li>
+            @{
+                var sectorTaxon = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.GetCurrentSiteTaxons("Consultant Categories");
+                var dd = sectorTaxon as HierarchicalTaxon;
+                foreach (var item in dd.Subtaxa)
+                {
+                    <li>
+                        <a href="javascript:void(0)" data-filter="@item.Name">@item.Title</a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+<div class="full-member-profile-wrapper">&nbsp;</div>
+<div class="row r_team-member-page">
+    @foreach (var item in Model.Items)
+    {
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+        var imageThumbUrl = "";
+
+        List<string>
+            filterValues = new List<string>
+                ();
+
+        if (item.Fields.Category != null)
+        {
+            foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+            {
+                filterValues.Add(taxon.Name);
+            }
+        }
+
+        var OfficeLocationName = "";
+        var OfficeLocationUrl = "";
+
+        if (item.Fields.Office != null)
+        {
+            if (item.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
+            {
+                OfficeLocationName = Html.HtmlSanitize((string)item.Fields.Office.Fields.Name).ToString();
+                OfficeLocationUrl = item.Fields.Office.Fields.UrlName.ToString();
+            }
+            else
+            {
+                List<string>
+                    OfficeLocationNameList = new List<string>
+                        ();
+                List<string>
+                    OfficeLocationUrlList = new List<string>
+                        ();
+
+                foreach (var office in item.Fields.Office)
+                {
+                    if (!OfficeLocationNameList.Contains((string)office.Fields.Name))
+                    {
+                        OfficeLocationNameList.Add((string)office.Fields.Name);
+                        OfficeLocationUrlList.Add(office.Fields.UrlName.ToString());
+                    }
+                }
+
+                OfficeLocationName = string.Join(", ", OfficeLocationNameList.ToArray());
+                OfficeLocationUrl = string.Join(",", OfficeLocationUrlList.ToArray());
+            }
+        }
+        <div class='consultant-list col-sm-4 col-xs-12 @(string.Join(" ",filterValues))' data-filtersector="@(string.Join(" ,",filterValues))" data-filterlocation="@OfficeLocationUrl">
+            @if (item.Fields.Pic != null)
+            {
+                imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(item.Fields.Pic.DataItem, "thumbcrop4");
+            }
+            else
+            {
+                imageThumbUrl = "/ResourcePackages/ResourcefulPro/assets/dist/images/placeholder-500x667.jpg";
+
+            }
+            <div class="r_team-member">
+                <a href="#profile_@item.Fields.OriginalContentId">
+                    <img alt="@item.Fields.ConsultantName" src="@imageThumbUrl">
+                </a>
+                <div class="r_team-member-social">
+                    @if (!string.IsNullOrWhiteSpace(item.Fields.LinkedInProfileUrl))
+                    {
+                        <a href="@item.Fields.LinkedInProfileUrl" target="_blank"><span>LinkedIn Profile</span><i class="fa fa-linkedin"></i></a>
+                    }
+                    @*<a href="{{TwitterURL}}" target="_blank"><span>Twitter Profile</span><i class="fa fa-twitter"></i></a>
+                        <a href="{{FacebookURL}}" target="_blank"><span>Facebook Profile</span><i class="fa fa-facebook"></i></a>*@
+                </div>
+                <h2>
+                    <a href="#profile_@item.Fields.OriginalContentId">@item.Fields.ConsultantName<small>@Html.HtmlSanitize((string)item.Fields.Position)</small></a>
+                </h2>
+                <div class="team-short-desc">
+                    @Html.HtmlSanitize((string)item.Fields.Bio)
+                </div>
+            </div>
+            <div class="r_team-member-profile hidden" id="profile_@item.Fields.OriginalContentId">
+                <div class="row">
+                    <div class="col-sm-4 col-xs-12 r_team-member-profile-side">
+                        <p class="r_team-member-profile-photo">
+
+                            <img alt="@item.Fields.ConsultantName" src="@imageThumbUrl">
+                        </p>
+                        <p class="r_team-member-profile-contact">
+                            @if (!string.IsNullOrWhiteSpace(item.Fields.Email))
+                            {
+                                <a href="mailto:@item.Fields.Email" title="Email at @item.Fields.Email">@item.Fields.Email</a><br>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(item.Fields.PhoneNumber))
+                            {
+                                var consultantPhone = item.Fields.PhoneNumber.ToString().Replace(" ", "");
+                                <a href="tel:@consultantPhone" title="Call at @item.Fields.PhoneNumber">@consultantPhone</a>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(item.Fields.MobilePhoneNumber))
+                            {
+                                var consultantMobile = item.Fields.MobilePhoneNumber.ToString().Replace(" ", "");
+                                <span class="and-mob"> and </span>
+                                <a href="tel:@consultantMobile" title="Call at @item.Fields.MobilePhoneNumber">@consultantMobile</a>
+                            }
+                        </p>
+                        @if (!string.IsNullOrWhiteSpace(item.Fields.LinkedInProfileUrl))
+                        {
+                            <p class="r_team-member-profile-linkedin">
+                                <a href="@item.Fields.LinkedInProfileUrl" target="_blank" title="Go to LinkedIN Profile"><span>LinkedIn Profile</span><i class="fa fa-linkedin"></i></a>
+                            </p>
+                        }
+                        <p class="r_team-member-profile-back"><a><i class="fa fa-chevron-left"></i>See All Team Members</a></p>
+                    </div>
+                    <div class="col-sm-8 col-xs-12 r_team-member-profile-description">
+                        @if (item.Fields.Office != null)
+                        {
+                            <div class="contact-consultant-position hidden">@Html.HtmlSanitize((string)item.Fields.Position), @OfficeLocationName</div>
+                        }
+                        <h2>@item.Fields.ConsultantName <small>@Html.HtmlSanitize((string)item.Fields.Position)</small></h2>
+                        @Html.HtmlSanitize((string)item.Fields.Bio)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    }
+</div>
+<div class="alert alert-info hidden"><small>There are no consultant matching with your search filter.</small></div>
+
+
+<script>
+    jQuery(document).ready(function ($) {
+        // Make detail popup content
+        $(".consultant-list").each(function () {
+            $(this).find('.r_team-member-profile.hidden').removeClass('hidden').appendTo($('.full-member-profile-wrapper'));
+        });
+        // Make all list active
+        $(".consultant-list").addClass("active");
+        // Filter
+        $("#r_meet-team-menu a").on("click", function () {
+            var filter = $(this).data("filter");
+            $(this).parent("li").addClass("active");
+            if (filter) {
+                var $consultantLists = $(".consultant-list");
+                var $filterdLists = $(".consultant-list." + filter + "");
+                $consultantLists.not($filterdLists).removeClass("active");
+                $filterdLists.addClass("active");
+                if ($("." + filter + "").length <= 0) {
+                    $(".alert").removeClass("hidden");
+                } else {
+                    $(".alert").addClass("hidden");
+                }
+            } else {
+                $(".consultant-list").addClass("active");
+                $(".alert").addClass("hidden");
+            }
+        });
+
+    });
+</script>
+
+
+

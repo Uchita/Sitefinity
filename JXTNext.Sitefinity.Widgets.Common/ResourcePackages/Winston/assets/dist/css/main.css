@@ -7387,7 +7387,7 @@ blockquote {
   .page-wrapper .btn {
     border: 1px solid;
     border-radius: 0;
-    padding: 10px 35px;
+    padding: 8px 35px;
     font-size: 1.6rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -8191,7 +8191,8 @@ header {
         padding-left: 30px; }
   header .navbar {
     margin-bottom: 0;
-    border: 0; }
+    border: 0;
+    min-height: 40px; }
     header .navbar.navbar-default {
       border: 0;
       border-radius: 0;
@@ -8243,7 +8244,7 @@ header {
       header .navbar.navbar-default .navbar-nav > li > a {
         padding-top: 0;
         padding-bottom: 0;
-        line-height: 48px; }
+        line-height: 40px; }
   header .mobile-nav.left-sidebar {
     margin: 0; }
     header .mobile-nav.left-sidebar .combine-mnu {
@@ -8535,7 +8536,9 @@ main {
     text-align: left;
     margin-top: 0 !important;
     font-size: 30px;
-    line-height: normal; }
+    line-height: normal;
+    position: relative;
+    top: -4px; }
     .left-sidebar .container-fluid > a:hover, .left-sidebar .container-fluid > a:focus, .left-sidebar .container-fluid > a:active, .categories-list > a:hover, .categories-list > a:focus, .categories-list > a:active, .left-sidebar .navbar-collapse > a:hover, .left-sidebar .navbar-collapse > a:focus, .left-sidebar .navbar-collapse > a:active {
       background: none;
       text-decoration: none;
@@ -9616,8 +9619,8 @@ address.info-box {
     margin-bottom: 30px; }
 
 .top-level-bar {
-  height: 47px;
-  line-height: 49px;
+  height: 38px;
+  line-height: 38px;
   position: relative;
   z-index: 99; }
   @media (max-width: 767px) {
@@ -9678,7 +9681,7 @@ address.info-box {
     position: absolute;
     content: "";
     width: 100%;
-    bottom: 47px;
+    bottom: 40px;
     height: 1px;
     right: 15px;
     background: -moz-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(45, 195, 234, 0.64) 99%, rgba(45, 195, 234, 0.65) 100%);
@@ -9925,7 +9928,9 @@ h2.loc-title-head {
   border-bottom: 2px solid #2e2e2e;
   padding: 0 0 5px;
   line-height: 48px;
-  font-weight: normal; }
+  font-weight: normal;
+  position: relative;
+  top: -4px; }
 
 .contactfrom {
   margin-bottom: 30px; }
@@ -9952,6 +9957,8 @@ h2.loc-title-head {
   @media (max-width: 1024) {
     .contact-text-indent h4 {
       margin-left: 0; } }
+  .contact-text-indent h4 a {
+    color: inherit; }
 
 /*latest*/
 .float-none-v-center {
@@ -9960,12 +9967,6 @@ h2.loc-title-head {
   @media (max-width: 767px) {
     .float-none-v-center {
       display: block; } }
-
-.contact-consultant-name h4 {
-  font-family: "Playfair Display", serif; }
-
-.contact-consultant-position h5 {
-  font-family: "Playfair Display", serif; }
 
 .contact-consultant-position p:empty {
   display: none; }
@@ -10101,7 +10102,7 @@ ul.no-gutter {
 
 .keywords-head {
   margin-top: -25px; }
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     .keywords-head {
       margin-top: -15px; } }
 
@@ -10115,6 +10116,24 @@ ul.no-gutter {
 
 .innerbanner-source [class^="col-"], .innerbanner-source [class*=" col-"], .solid-banner-text [class^="col-"], .solid-banner-text [class*=" col-"] {
   margin-left: 0; }
+
+.mt0 {
+  margin-top: 0; }
+
+.keywords-head-2 {
+  margin-top: 25px;
+  color: #2dc3ea; }
+
+.home-banner.jumbotron-container .jumbotron h1 {
+  font-size: 40px;
+  font-size: 4rem; }
+
+@media (max-width: 991px) {
+  .tab-label-field {
+    color: red !important; } }
+
+.page-section .container.top-space-remove {
+  margin-top: -60px; }
 
 /*#endregion Basic components */
 /*#region Breadcrumbs */
@@ -10583,7 +10602,7 @@ ul.breadcrumb {
 
 .jumbotron-container .jumbotron, .owl-carousel-jumbotron .jumbotron {
   background: top bottom no-repeat;
-  background-size: cover; }
+  /*background-size: cover;*/ }
 
 .process-card-holder .process-card {
   color: #2e2e2e;
@@ -11127,7 +11146,7 @@ ul.breadcrumb {
   .featured-job-offer h3 {
     margin-top: 0; }
   .featured-job-offer h4 {
-    font-family: "Playfair Display", serif; }
+    font-weight: bold; }
   .featured-job-offer .job-offer {
     /*p {
             font-family: $font-family-regular;
@@ -11911,7 +11930,6 @@ select.articles-order {
   .profile-detail-view .profile-media img {
     margin-bottom: 0; }
   .profile-detail-view .profile-media .consultant-sum {
-    font-family: "Playfair Display", serif;
     margin-bottom: 5px;
     margin-top: 10px; }
   .profile-detail-view .profile-media .email-stamp {
@@ -12040,8 +12058,6 @@ select.articles-order {
 
 .consultant .caption {
   padding: 0 20px; }
-  .consultant .caption .consultant-sum {
-    font-family: "Abel", sans-serif; }
   .consultant .caption .consultant-name {
     margin-top: 15px;
     color: #2dc3ea; }
@@ -12529,7 +12545,7 @@ select.articles-order {
 /*#region Small desktop*/
 @media (min-width: 992px) {
   header .brand-logo {
-    height: 95px; }
+    height: 78px; }
     header .brand-logo a {
       position: absolute;
       z-index: 10; }

@@ -50,7 +50,7 @@
                 <div class="basic-form">
                     <div class="login-border">
                         <div class="">
-                            <h2> <i class="fas fa-user-plus"></i>@Html.Resource("Registration")</h2>
+                            @*<h2> <i class="fas fa-user-plus"></i>@Html.Resource("Registration")</h2>*@
                             <p>@Html.Resource("RegistrationResourcesDescription")</p>
                         </div>
 
@@ -75,14 +75,14 @@
                         <div class="field-wrapper">
                             <div class="row">
                                 <div class="col-md-4 text-right">
-                                    <p class="form-label">@Html.Resource("Name", "LoginFormResources") *</p>
+                                    <p class="form-label tab-label-field">@Html.Resource("Name", "LoginFormResources") *</p>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 col-sm-6">
                                     <div class="form-group">
                                         @Html.TextBox("Profile[FirstName]", null, new { @class = "form-control", placeholder = "First name", required = "required" })
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 col-sm-6">
                                     <div class="form-group">
                                         @Html.TextBox("Profile[LastName]", null, new { @class = "form-control", placeholder = "Last name", required = "required" })
                                     </div>
@@ -91,7 +91,7 @@
 
                             <div class="row">
                                 <div class="col-md-4 text-right">
-                                    <p class="form-label">
+                                    <p class="form-label tab-label-field">
                                         @Html.Resource("Email", "LoginFormResources") *
                                     </p>
                                 </div>
@@ -110,7 +110,7 @@
 
                             <div class="row">
                                 <div class="col-md-4 text-right">
-                                    <p class="form-label">
+                                    <p class="form-label tab-label-field">
                                         @Html.Resource("Password","Labels")<span> *</span>
                                     </p>
                                 </div>
@@ -142,7 +142,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-4 text-right">
-                                        <p class="form-label">
+                                        <p class="form-label tab-label-field">
                                             @Html.Resource("ReTypePassword") *
                                         </p>
                                     </div>

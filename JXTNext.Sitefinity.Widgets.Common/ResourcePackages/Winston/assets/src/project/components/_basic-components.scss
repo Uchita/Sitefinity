@@ -99,7 +99,7 @@ blockquote {
         font-size: 30px;
         font-size: 3rem;
         /*font-family: $global-font-family-heading;*/
-        font-weight:bold;
+        font-weight: bold;
     }
 
     .h3, h3 {
@@ -141,11 +141,11 @@ blockquote {
     .btn {
         border: 1px solid;
         border-radius: 0;
-        padding: 10px 35px;
+        padding: 8px 35px;
         font-size: 1.6rem;
         font-weight: $font-family-bold;
         text-transform: uppercase;
-        background: $btn-secondary-bg;
+        background:transparent;
         color: $global-text-color;
         white-space: normal;
         overflow: hidden;
@@ -1299,6 +1299,7 @@ header {
     .navbar {
         margin-bottom: 0;
         border: 0;
+        min-height:40px;
 
         &.navbar-default {
             border: 0;
@@ -1393,7 +1394,7 @@ header {
                 & > li > a {
                     padding-top: 0;
                     padding-bottom: 0;
-                    line-height: 48px;
+                    line-height: 40px;
                 }
             }
         }
@@ -1858,7 +1859,6 @@ main {
     }
 
     > a {
-        
         color: $sidebar-link-color;
         display: block !important;
         border: none;
@@ -1868,6 +1868,7 @@ main {
         margin-top: 0 !important;
         font-size: 30px;
         line-height: normal;
+        position:relative;top:-4px;
 
         &:hover, &:focus, &:active {
             background: none;
@@ -1919,7 +1920,6 @@ main {
             a {
                 line-height: normal;
                 padding: 10px 0;
-                
                 font-size: 18px;
 
                 &.link-inline-block {
@@ -3034,8 +3034,8 @@ address.info-box {
     .btn-block {
         button {
             &.btn {
-                font-size:16px;
-                font-weight:normal;
+                font-size: 16px;
+                font-weight: normal;
                 padding-top: 0;
                 padding-bottom: 0;
                 line-height: 42px;
@@ -3091,10 +3091,10 @@ address.info-box {
 }
 
 .top-level-bar {
-    height: 47px;
-    line-height: 49px;
+    height: 38px;
+    line-height: 38px;
     position: relative;
-    z-index:99;
+    z-index: 99;
 
     @media(max-width:767px) {
         line-height: 50px;
@@ -3118,7 +3118,6 @@ address.info-box {
     }
 
     .contact-tel-info {
-     
         color: white;
         padding-left: 0px;
 
@@ -3142,7 +3141,6 @@ address.info-box {
 
     .contact-social-info {
         /*border-right: 1px solid $brightColor;*/
-
         ul {
             padding-left: 0px;
         }
@@ -3189,9 +3187,9 @@ address.info-box {
         position: absolute;
         content: "";
         width: 100%;
-        bottom: 47px;
+        bottom: 40px;
         height: 1px;
-      right:15px;
+        right: 15px;
         background: -moz-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(45, 195, 234, 0.64) 99%, rgba(45, 195, 234, 0.65) 100%);
         background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(45, 195, 234, 0.64) 99%, rgba(45, 195, 234, 0.65) 100%);
         background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(45, 195, 234, 0.64) 99%, rgba(45, 195, 234, 0.65) 100%);
@@ -3210,7 +3208,7 @@ address.info-box {
 .header-top-links {
     a {
         @include transition();
-        color:white;
+        color: white;
     }
 }
 /*.open > .dropdown-menu {
@@ -3491,7 +3489,7 @@ address.info-box {
             font-weight: $font-family-medium;
             text-transform: none;
             font-size: 1.4rem;
-            padding-top:0;
+            padding-top: 0;
         }
 
         input {
@@ -3513,7 +3511,6 @@ address.info-box {
 
 
     h4 {
-        
     }
 
     margin-bottom: 40px;
@@ -3539,7 +3536,6 @@ address.info-box {
         }
 
         h3 {
-            
             margin-top: 0;
             text-transform: uppercase;
             margin-bottom: 20px;
@@ -3559,22 +3555,20 @@ address.info-box {
 
 h2 {
     &.loc-title-head {
-        
         border-bottom: 2px solid $breadcrubms-link-separator;
         padding: 0 0 5px;
-        
         line-height: 48px;
-        font-weight:normal;
+        font-weight: normal;
+        position:relative;
+        top:-4px;
     }
 }
 
 .contactfrom {
-    
     margin-bottom: 30px;
 
     label {
         color: white;
-        
     }
 
     .form-group {
@@ -3584,12 +3578,11 @@ h2 {
     textarea {
         &.form-control {
             height: 190px !important;
-            margin-bottom:30px;
+            margin-bottom: 30px;
         }
     }
 
     .btn {
-        
     }
 }
 
@@ -3616,6 +3609,10 @@ h2 {
         @media(max-width:1024) {
             margin-left: 0;
         }
+
+        a {
+            color: inherit;
+        }
     }
 }
 /*latest*/
@@ -3628,19 +3625,16 @@ h2 {
     }
 
     h4 {
-        
     }
 }
 
 .contact-consultant-name {
     h4 {
-        font-family: $global-font-family-heading;
     }
 }
 
 .contact-consultant-position {
     h5 {
-        font-family: $global-font-family-heading;
     }
 
     p {
@@ -3763,7 +3757,7 @@ ul {
 
 .header-top-links {
     color: white;
-    text-transform:uppercase;
+    text-transform: uppercase;
 }
 
 .view-jobs-btn {
@@ -3862,7 +3856,7 @@ ul {
 .keywords-head {
     margin-top: -25px;
 
-    @media(max-width:767px) {
+    @media(max-width:768px) {
         margin-top: -15px;
     }
 }
@@ -3870,19 +3864,48 @@ ul {
 
 
 .remove-gutter {
-    float:right;
+    float: right;
+
     [class^="col-"], [class*=" col-"] {
         width: inherit;
-      
     }
 }
 
-.profile-media img{
-    width:100%;
+.profile-media img {
+    width: 100%;
 }
 
 .innerbanner-source, .solid-banner-text {
     [class^="col-"], [class*=" col-"] {
         margin-left: 0;
     }
+}
+
+.mt0 {
+    margin-top: 0;
+}
+
+.keywords-head-2 {
+    margin-top: 25px;
+    color: $global-links-color;
+}
+
+
+
+    .home-banner.jumbotron-container .jumbotron h1 {
+        font-size: 40px;
+        font-size: 4rem;
+    
+    }
+
+.tab-label-field {
+    @media(max-width:991px) {
+        color: red !important;
+    }
+}
+.page-section{
+    .container.top-space-remove{
+        margin-top:-60px;
+    }
+
 }

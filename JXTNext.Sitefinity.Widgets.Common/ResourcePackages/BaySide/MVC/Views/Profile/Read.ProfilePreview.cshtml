@@ -4,12 +4,22 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 @if (Model != null)
 {
+    //changing the placeholder image avatar in case there is no profile photo uploaded
+    var placeholderAvatar = "/ResourcePackages/BaySide/assets/images/User-Icon.svg";
+    var AvatarCls = ""; //class added to align the image
+
     <div class="@Model.CssClass user-profile-dash">
         <h1>Welcome back</h1>
         <div class="sf-profile row">
             <div class="col-xs-3 col-md-2">
                 <div class="image-placeholder">
-                    <img src="@Model.AvatarImageUrl" alt="@Model.UserName" />
+                    @if (!Model.AvatarImageUrl.Contains("DefaultPhoto.png"))
+                    {
+                        placeholderAvatar = Model.AvatarImageUrl;
+                    } else {
+                        AvatarCls = "noProfilePhoto";
+                    }
+                    <img src="@placeholderAvatar" alt="@Model.UserName" class="@AvatarCls" />
                 </div>
             </div>
 

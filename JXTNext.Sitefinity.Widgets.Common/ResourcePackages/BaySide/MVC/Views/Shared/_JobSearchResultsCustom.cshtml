@@ -13,11 +13,11 @@
 <div class="row">
     <div class="col-12">
         <div class="row">
+            <div class="col-12">
+                <h3><span class="count-num">@ViewBag.TotalCount</span> job(s) found</span></h3>
+            </div>
             <div class="col-12 col-md-6">
-                <h3>
-                    <span class="count-num">@ViewBag.TotalCount</span> job(s) found
-                    <span class="new-serch"><a class="btn-link" href="/jobs/advancedsearch"> New search</a></span>
-                </h3>
+                <span class="new-serch"><a class="btn-link" href="/job/advancedsearch" title="New advanced search"> New search</a></span>
             </div>
             <div class="col-12 col-lg-6">
                 <div class="form-group">
@@ -39,6 +39,14 @@
         <div class="row">
             @if (ViewBag.IsMember)
             {
+                <div class="col-12">
+                    <div class="alert alert-info jobalert-message hidden">Alert created. We’ll send new jobs to your email address.</div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="form-group text-right">
+                        <a id="anon-job-alert" class="btn btn-outline-primary btn-block" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+                    </div>
+                </div>
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
                         <input type="email" id="anonycreatejobalert" value="@ViewBag.Email" hidden />
@@ -46,30 +54,22 @@
                         <div class="alert alert-danger jobalert-error-message hidden">Please enter your valid email address.</div>
                     </div>
                 </div>
-                <div class="col-12">
-                    <div class="alert alert-info jobalert-message hidden">Alert created. We’ll send new jobs to your email address.</div>
-                </div>
-                <div class="col-12 col-lg-6">
-                    <div class="form-group text-right">
-                        <a id="anon-job-alert" class="btn btn-outline-primary btn-block" href="#" title="Create your job alert">CREATE JOB ALERT</a>
-                    </div>
-                </div>
             }
             else
             {
-                <div class="col-12 col-lg-6">
-                    <div class="form-group">
-                        <input type="email" id="anonycreatejobalert" value="" placeholder="Receive new jobs for this search by email." class="jobalert-field form-control" />
-
-                        <div class="alert alert-danger jobalert-error-message hidden">Please enter your valid email address.</div>
-                    </div>
-                </div>
                 <div class="col-12">
                     <div class="alert alert-info jobalert-message hidden">Alert created. We’ll send new jobs to your email address.</div>
                 </div>
                 <div class="col-12 col-lg-6">
                     <div class="form-group text-right">
                         <a id="anon-job-alert" class="btn btn-outline-primary btn-block" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <input type="email" id="anonycreatejobalert" value="" placeholder="Enter email address" class="jobalert-field form-control" />
+
+                        <div class="alert alert-danger jobalert-error-message hidden">Please enter your valid email address.</div>
                     </div>
                 </div>
             }
@@ -150,12 +150,12 @@
                 <ul class="inline-list p-0 mb-0 location-hover">
                     <p class="hidden-salary" style="display:none;">#:CustomData["Salary.Filters[0].Value"]# </p>
                     
-                    <li class="mr-3"><img src="/ResourcePackages/BaySide/assets/images/location.png"> <div class="sub-level">#:CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].Value"]# > #:CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].SubLevel[0].Value"]#</div></li>
+                    <li class="mr-3"><span><img src="/ResourcePackages/BaySide/assets/images/location.png"></span><div class="sub-level">#:CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].Value"]# > #:CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].SubLevel[0].Value"]#</div></li>
 
                     <p class="hidden-salary" style="display:none;">#:CustomData["Salary.Filters[0].Value"]# </p>
                  <li class="mr-3"> <img class="dollar" src="/ResourcePackages/BaySide/assets/images/doller.png"> <div class="sub-level"> #:CustomData["Salary.Filters[0].Value"]#</div></li>
 
-                 <li class="mr-3 clock-icon"> <img class="clock" src="/ResourcePackages/BaySide/assets/images/clock-icon.png"><div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>
+                 <li class="mr-3 clock-icon"> <span><img class="clock" src="/ResourcePackages/BaySide/assets/images/clock-icon.svg"></span><div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>
 
                 </ul>
             </div>

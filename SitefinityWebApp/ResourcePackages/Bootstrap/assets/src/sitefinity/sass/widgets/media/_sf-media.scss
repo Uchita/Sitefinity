@@ -60,16 +60,3 @@
 		}
 	}
 }
-
-//Rtl support
-
-@if $has-rtl-support {
-
-  @include rtl-cultures {
-
-    .media-left {
-        @extend .sf-pl-s; //10px;
-        @extend .sf-pr-xxs; //0
-    }
-  }
-}

@@ -54,15 +54,3 @@
 		}
 	}
 }
-
-@if $has-rtl-support {
-
-  @include rtl-cultures {
-
-    //Sitemap
-
-    .nav-pills>li {
-        float: right;
-    }
-  }
-}

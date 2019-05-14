@@ -37,16 +37,11 @@
                     <select id="SectorFilter" name="SectorFilter" required="required" class="form-control">
                         <option value="all">All Specialisations</option>
                         @{
-                            List
-                            <Taxon>
-                                cates = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.GetTopLevelCategories();
-
-                            Taxon sectorTaxon = cates.Where(c => c.Title.ToUpper() == "SECTORS").FirstOrDefault();
-
+                            var sectorTaxon = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.GetCurrentSiteTaxons("Sectors");
                             var dd = sectorTaxon as HierarchicalTaxon;
                             foreach (var item in dd.Subtaxa)
                             {
-                                <option value="@item.Name">@item.Title</option>
+                                <option value="@item.UrlName">@item.Title</option>
                             }
                         }
                     </select>
@@ -105,7 +100,7 @@
     {
         foreach (var taxon in item.GetHierarchicalTaxons("Category"))
         {
-            filterValues.Add(taxon.Name);
+            filterValues.Add(taxon.UrlName);
         }
     }
 

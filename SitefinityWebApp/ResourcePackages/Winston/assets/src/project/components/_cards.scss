@@ -7,23 +7,25 @@
     &.solid-banner-text {
         .jumbotron {
             height: 335px;
-            margin-bottom:60px;
+            margin-bottom: 60px;
 
             @media(max-width:767px) {
                 height: 300px;
             }
 
             h1 {
-                margin:0;
-                text-align:left;
-                font-family:inherit;
-                text-transform:uppercase;
+                margin: 0;
+                text-align: left;
+                font-family: inherit;
+                text-transform: uppercase;
+
                 @media(max-width:767px) {
                     margin-top: 60px;
                 }
             }
-            p{
-                display:none;
+
+            p {
+                display: none;
             }
         }
     }
@@ -31,10 +33,13 @@
 
     &.innerbanner-source {
         margin-bottom: 60px;
+        @media(max-width:767px){
+            margin-bottom:30px;
+        }
 
         .jumbotron {
             /*background-size:100% 100%;*/
-            background-position:center center;
+            background-position: center center;
         }
 
         .jumbotron-content {
@@ -44,7 +49,13 @@
                 font-family: inherit;
                 margin: 0;
                 text-align: left;
-                text-transform:uppercase;
+                text-transform: uppercase;
+
+                @media(max-width:767px) {
+                    font-size: 26px;
+                    font-size: 2.6rem;
+                    margin-top:60px;
+                }
             }
 
             p {
@@ -56,7 +67,7 @@
             height: 335px;
 
             @media(max-width:767px) {
-                height: 50px;
+                height: 160px;
                 min-height: inherit;
                 padding-top: 0px;
             }

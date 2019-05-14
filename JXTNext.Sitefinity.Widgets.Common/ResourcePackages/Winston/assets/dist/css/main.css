@@ -10127,13 +10127,21 @@ ul.no-gutter {
 .home-banner.jumbotron-container .jumbotron h1 {
   font-size: 40px;
   font-size: 4rem; }
+  @media (max-width: 991px) {
+    .home-banner.jumbotron-container .jumbotron h1 {
+      font-size: 30px;
+      font-size: 3rem; } }
 
 @media (max-width: 991px) {
   .tab-label-field {
-    color: red !important; } }
+    margin-bottom: 5px !important; } }
 
 .page-section .container.top-space-remove {
   margin-top: -60px; }
+
+@media (max-width: 1920px) {
+  .jumbotron-container .jumbotron {
+    background-size: cover; } }
 
 /*#endregion Basic components */
 /*#region Breadcrumbs */
@@ -10178,6 +10186,9 @@ ul.breadcrumb {
       display: none; }
   .jumbotron-container.innerbanner-source {
     margin-bottom: 60px; }
+    @media (max-width: 767px) {
+      .jumbotron-container.innerbanner-source {
+        margin-bottom: 30px; } }
     .jumbotron-container.innerbanner-source .jumbotron {
       /*background-size:100% 100%;*/
       background-position: center center; }
@@ -10188,13 +10199,18 @@ ul.breadcrumb {
       margin: 0;
       text-align: left;
       text-transform: uppercase; }
+      @media (max-width: 767px) {
+        .jumbotron-container.innerbanner-source .jumbotron-content h1 {
+          font-size: 26px;
+          font-size: 2.6rem;
+          margin-top: 60px; } }
     .jumbotron-container.innerbanner-source .jumbotron-content p {
       display: none; }
     .jumbotron-container.innerbanner-source .jumbotron {
       height: 335px; }
       @media (max-width: 767px) {
         .jumbotron-container.innerbanner-source .jumbotron {
-          height: 50px;
+          height: 160px;
           min-height: inherit;
           padding-top: 0px; } }
     .jumbotron-container.innerbanner-source.micro-banner .jumbotron {

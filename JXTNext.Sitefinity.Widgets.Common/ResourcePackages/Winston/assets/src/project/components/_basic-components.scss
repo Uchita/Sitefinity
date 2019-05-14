@@ -145,7 +145,7 @@ blockquote {
         font-size: 1.6rem;
         font-weight: $font-family-bold;
         text-transform: uppercase;
-        background:transparent;
+        background: transparent;
         color: $global-text-color;
         white-space: normal;
         overflow: hidden;
@@ -1299,7 +1299,7 @@ header {
     .navbar {
         margin-bottom: 0;
         border: 0;
-        min-height:40px;
+        min-height: 40px;
 
         &.navbar-default {
             border: 0;
@@ -1868,7 +1868,8 @@ main {
         margin-top: 0 !important;
         font-size: 30px;
         line-height: normal;
-        position:relative;top:-4px;
+        position: relative;
+        top: -4px;
 
         &:hover, &:focus, &:active {
             background: none;
@@ -3559,8 +3560,8 @@ h2 {
         padding: 0 0 5px;
         line-height: 48px;
         font-weight: normal;
-        position:relative;
-        top:-4px;
+        position: relative;
+        top: -4px;
     }
 }
 
@@ -3892,20 +3893,33 @@ ul {
 
 
 
-    .home-banner.jumbotron-container .jumbotron h1 {
-        font-size: 40px;
-        font-size: 4rem;
-    
+.home-banner.jumbotron-container .jumbotron h1 {
+    font-size: 40px;
+    font-size: 4rem;
+
+    @media(max-width:991px) {
+        font-size: 30px;
+        font-size: 3rem;
     }
+}
 
 .tab-label-field {
     @media(max-width:991px) {
-        color: red !important;
+        margin-bottom: 5px !important;
     }
 }
-.page-section{
-    .container.top-space-remove{
-        margin-top:-60px;
-    }
 
+.page-section {
+    .container.top-space-remove {
+        margin-top: -60px;
+    }
+}
+
+
+
+@media(max-width:1920px) {
+
+    .jumbotron-container .jumbotron {
+        background-size: cover;
+    }
 }

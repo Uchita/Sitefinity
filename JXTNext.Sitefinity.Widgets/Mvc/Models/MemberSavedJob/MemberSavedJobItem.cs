@@ -13,6 +13,7 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Models.MemberSavedJob
         public string DisplayTitle { get; set; }
         public DateTime DateAdded { get; set; }
         public string ClassificationURL { get; set; }
+        public string Culture { get; set; }
     }
 
     public enum MemberSavedJobStatus

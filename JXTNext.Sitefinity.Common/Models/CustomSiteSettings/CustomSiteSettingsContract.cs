@@ -9,6 +9,14 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
     public class CustomSiteSettingsContract : ISettingsDataContract
     {
         #region DataMembers
+        
+        [DataMember]
+        public string CultureIsEnabled
+        {
+            get;
+            set;
+        }
+
         [DataMember]
         public string GoogleAPIKey
         {
@@ -237,6 +245,8 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             this.LinkedInCustomerClientSecret = section.UICustomSiteSettings.CurrentLinkedInCustomerClientSecret;
             this.LinkedInCustomerIntegrationContext = section.UICustomSiteSettings.CurrentLinkedInCustomerIntegrationContext;
             this.LinkedInSocialHandlerUrl = section.UICustomSiteSettings.CurrentLinkedInSocialHandlerUrl;
+
+            this.CultureIsEnabled = section.UICustomSiteSettings.CurrentCultureIsEnabled;
         }
 
         public void SaveDefaults()

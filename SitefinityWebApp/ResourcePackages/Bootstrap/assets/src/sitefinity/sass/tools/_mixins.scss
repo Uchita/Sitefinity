@@ -56,4 +56,17 @@
 	}
 }
 
+//Right-to-left support
 
+@mixin rtl-cultures {
+
+  @each $culture in $rtl-cultures {
+      [lang^="#{$culture}"] {
+          @content
+      }
+  }
+
+    [lang*="-Arab"] {
+        @content
+    }
+}

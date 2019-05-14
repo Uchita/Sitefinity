@@ -90,6 +90,14 @@
 	text-align: right;
 }
 
+.sf-Gallery-prev--simple {
+    float: left;
+}
+
+.sf-Gallery-next--simple {
+    float: right;
+}
+
 .sf-Gallery-navigation {
 	@extend .sf-mt-xs; // 5px
 	@extend .sf-mb-xl; // 30px
@@ -129,4 +137,32 @@
 			text-overflow: ellipsis;
 		}
 	}
+
+    .sf-Gallery-thumb {
+          float: left;
+    }
+}
+//Rtl support
+
+@if $has-rtl-support {
+
+  @include rtl-cultures {
+
+    .sf-Gallery-thumb {
+        float: right;
+    }
+
+    .sf-Gallery-prev--simple {
+        float: right;
+    }
+
+    .sf-Gallery-next--simple {
+        float: left;
+    }
+
+    .mfp-counter {
+        right: auto;
+        left: 0;
+    }
+  }
 }

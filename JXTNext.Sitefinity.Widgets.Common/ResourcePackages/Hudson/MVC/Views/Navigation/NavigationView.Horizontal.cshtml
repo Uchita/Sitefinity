@@ -66,14 +66,11 @@
 
 
                     <!-- site selector -->
-                    <li class="dropdown extra-mnu">
-                        <a href="https://au.hudson.com/" title="Hudson Australia">Hudson AU</a>
+                    <li class="dropdown extra-mnu site-switcher">
+                        <a href="https://au.hudson.com/" title="Hudson Australia" class="curr-site-switcher">Hudson AU</a>
                         <span class="fas fa-angle-right custom-expander"></span>
                         <ul class="dropdown-menu">
-                            <li><a href="https://nz.hudson.com/" title="Hudson New Zealand" target="_blank">NZ</a></li>
-                            <li><a href="https://www.hudson.sg/" title="Hudson Singapore" target="_blank">SG</a></li>
-                            <li><a href="https://www.hudson.hk/" title="Hudson Hong kong" target="_blank">HK</a></li>
-                            <li><a href="https://www.hudson.cn/en-gb/" title="Hudson China" target="_blank">CN</a></li>
+                            
                         </ul>
                     </li>
 
@@ -274,6 +271,28 @@
         if ($(".header-top-social").length) {
             $('.mobile-nav li.extra-mnu.timesheet-mnu').after('<li class="extra-mnu social-mnu"></li>');
             $('.mobile-nav li.social-mnu').append($(".header-top-social").clone());
+        }
+
+        //get the site switch links
+        //need to redo this once this is switched to site selector widget
+        if ($('.header-top-links.form-negative select').length && $('.site-switcher').length) {
+            var siteSwitcher = $('.header-top-links.form-negative select');
+            var mobSiteSwitcherItem = $('.site-switcher');
+            //for the first 
+            mobSiteSwitcherItem.find('>a')
+                .attr('href', siteSwitcher.find('option').first().attr('value'))
+                .text(siteSwitcher.find('option').first().text());
+
+            //for rest of the sites dropdowns items
+            siteSwitcher.find('option').each(function (index, el) {
+                if (index === 0) {
+                    //making the first
+                    var curCls = 'active';
+                } else {
+                    var curCls = '';
+                }
+                mobSiteSwitcherItem.find('.dropdown-menu').append('<li class="' + curCls + '"><a href="' + $(el).attr('value') + '" title="" target="_blank">' + $(el).text() + '</a></li>');
+            });
         }
     });
 </script>

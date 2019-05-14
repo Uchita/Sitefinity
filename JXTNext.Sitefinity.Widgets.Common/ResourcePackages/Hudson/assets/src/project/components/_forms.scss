@@ -475,6 +475,12 @@
             display: none!important;
         }
     }
+    #linkedin-widget-holder {
+        a.btn-linkedin-signin{
+            max-width: 200px;
+            display: block;
+        }
+    }
   
     .apply-with, .sign-in-with {
         ul {

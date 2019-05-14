@@ -37,6 +37,8 @@ using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.JXTNextResume;
 using System.Dynamic;
 using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models;
 using JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers;
+using JXTNext.Sitefinity.Common.Models.JobApplication;
+using JXTNext.Sitefinity.Common.Extensions;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -295,6 +297,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ViewBag.LinkedInSignInUrl = LinkedInHelper.CreateSignInUrl(HttpContext.Request.Url.AbsoluteUri, jobApplicationViewModel.JobId.ToString());
             ViewBag.LinkedInApplyUrl = LinkedInHelper.CreateApplyUrl();
 
+            jobApplicationViewModel.HideDropBox = (this.HideDropBox == true);
+            jobApplicationViewModel.HideGoogleDrive = (this.HideGoogleDrive == true);
+
             Log.Write($"Index method end ", ConfigurationPolicy.ErrorLog);
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
             return View(fullTemplateName, jobApplicationViewModel);
@@ -377,12 +382,22 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         else
                         {
                             /// Instantiate Registration email template
-                            registrationEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
-                                                                                                new EmailTarget(applyJobModel.FirstName, applyJobModel.Email),
-                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.RegistrationEmailTemplateId),
-                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.RegistrationEmailTemplateId), null);
-
-
+                            if(this.RegistrationEmailTemplateId != null)
+                            {
+                                registrationEmailNotificationSettings = _createRegistrationEmailTemplate(new JobApplicationEmailTemplateModel()
+                                {
+                                    FromFirstName = this.EmailTemplateSenderName,
+                                    FromLastName = null,
+                                    FromEmail = this.EmailTemplateSenderEmailAddress,
+                                    ToFirstName = applyJobModel.FirstName,
+                                    ToLastName = applyJobModel.LastName,
+                                    ToEmail = applyJobModel.Email,
+                                    Subject = SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.RegistrationEmailTemplateId),
+                                    HtmlContent = SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.RegistrationEmailTemplateId),
+                                    Attachments = null
+                                });
+                            }
+                           
 
                             //instantiate the Sitefinity user manager
                             //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
@@ -425,8 +440,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             #region Email Notification
             // Email Notification Settings
             // In the desinger form those are going to be provided by separator as semicolon(;)
-            EmailNotificationSettings emailNotificationSettings = null;
-
+            
 
             List<dynamic> emailAttachments = new List<dynamic>();
             foreach (var item in attachments)
@@ -440,72 +454,74 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
 
-            EmailNotificationSettings advertiserEmailNotificationSettings = null;
+            
+            
 
             Log.Write($"currentIdentity.IsAuthenticated value is {currentIdentity.IsAuthenticated}", ConfigurationPolicy.ErrorLog);
+            string loginUserName = null;
             if (currentIdentity.IsAuthenticated)
             {
-                
-                emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
-                                                                                                new EmailTarget(SitefinityHelper.GetUserFirstNameById(currentIdentity.UserId), ovverideEmail),
-                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.EmailTemplateId),
-                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.EmailTemplateId), null);
-
-                advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(SitefinityHelper.GetUserFullNameById(currentIdentity.UserId), ovverideEmail),
-                                                                                                new EmailTarget(applyJobModel.ContactDetails, applyJobModel.ApplicationEmail),
-                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.AdvertiserEmailTemplateId),
-                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.AdvertiserEmailTemplateId), emailAttachments);
-
+                loginUserName = SitefinityHelper.GetUserFullNameById(currentIdentity.UserId);
             }
             else
             {
                 var user = SitefinityHelper.GetUserByEmail(ovverideEmail);
                 if(user != null)
                 {
-                    emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
-                                                                                                new EmailTarget(SitefinityHelper.GetUserFirstNameById(ClaimsManager.GetCurrentIdentity().UserId), ovverideEmail),
-                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.EmailTemplateId),
-                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.EmailTemplateId), null);
-
-                    advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(SitefinityHelper.GetUserFullNameById(ClaimsManager.GetCurrentIdentity().UserId), ovverideEmail),
-                                                                                                new EmailTarget(applyJobModel.ContactDetails, applyJobModel.ApplicationEmail),
-                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.AdvertiserEmailTemplateId),
-                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.AdvertiserEmailTemplateId), emailAttachments);
-
+                    loginUserName = SitefinityHelper.GetUserFullNameById(ClaimsManager.GetCurrentIdentity().UserId);
                 }
                 else
                 {
-                    emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
-                                                                                                new EmailTarget(string.Empty, ovverideEmail),
-                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.EmailTemplateId),
-                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.EmailTemplateId), null);
-
-                    advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, ovverideEmail),
-                                                                                                new EmailTarget(applyJobModel.ContactDetails, applyJobModel.ApplicationEmail),
-                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.AdvertiserEmailTemplateId),
-                                                                                                SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.AdvertiserEmailTemplateId), emailAttachments);
-
+                    loginUserName = string.Empty;
                 }
 
             }
-            
-            // CC and BCC emails
-            if (!this.EmailTemplateCC.IsNullOrEmpty())
-            {
-                foreach (var ccEmail in this.EmailTemplateCC.Split(';'))
-                {
-                    emailNotificationSettings?.AddCC(String.Empty, ccEmail);
-                    advertiserEmailNotificationSettings?.AddCC(String.Empty, ccEmail);
-                }
-            }
 
-            if (!this.EmailTemplateBCC.IsNullOrEmpty())
-            {
-                foreach (var bccEmail in this.EmailTemplateBCC.Split(';'))
+
+            EmailNotificationSettings emailNotificationSettings = this.EmailTemplateId != null ? 
+                _createApplicantEmailTemplate(new JobApplicationEmailTemplateModel()
                 {
-                    emailNotificationSettings?.AddBCC(String.Empty, bccEmail);
-                    advertiserEmailNotificationSettings?.AddBCC(String.Empty, bccEmail);
-                }
+                    FromFirstName = this.EmailTemplateSenderName,
+                    FromLastName = null,
+                    FromEmail = this.EmailTemplateSenderEmailAddress,
+                    ToFirstName = loginUserName,
+                    ToLastName = null,
+                    ToEmail = ovverideEmail,
+                    Subject = SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.EmailTemplateId),
+                    HtmlContent = SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.EmailTemplateId),
+                    Attachments = null
+                }) : null;
+
+            EmailNotificationSettings advertiserEmailNotificationSettings = this.AdvertiserEmailTemplateId != null ? 
+                _createAdvertiserEmailTemplate(new JobApplicationEmailTemplateModel()
+                {
+                    FromFirstName = loginUserName,
+                    FromLastName = null,
+                    FromEmail = ovverideEmail,
+                    ToEmail = applyJobModel.ApplicationEmail,
+                    ToFirstName = applyJobModel.ContactDetails.GetFirstName(),
+                    ToLastName = applyJobModel.ContactDetails.GetLastName(),
+                    Subject = SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.AdvertiserEmailTemplateId),
+                    HtmlContent = SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.AdvertiserEmailTemplateId),
+                    Attachments = emailAttachments
+                }) : null;
+
+
+            #endregion
+
+            #region 
+
+            //FileUploads
+            attachments.ForEach(c => ProcessFileUpload(ref c));
+
+            bool hasFailedUpload = attachments.Where(c => c.Status != "Completed").Any();
+
+            if (hasFailedUpload)
+            {
+                //prompt error message for contact
+                //jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Technical_Issue, "Unable to attach files to application");
+                TempData["PostBackMessage"] = "Unable to attach files to application.";
+                return Redirect(Request.UrlReferrer.PathAndQuery);
             }
 
             #endregion
@@ -531,34 +547,17 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             if (response.Success && response.ApplicationID.HasValue)
             {
-                //FileUploads
-                attachments.ForEach(c => ProcessFileUpload(ref c));
-
-                bool hasFailedUpload = attachments.Where(c => c.Status != "Completed").Any();
-
-                if (hasFailedUpload)
+                isJobApplicationSuccess = true;
+                jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Applied_Successful, "Your application was successfully processed");
+                if (sourceResume != JobApplicationAttachmentSource.Saved)
                 {
-                    //prompt error message for contact
-                    //jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Technical_Issue, "Unable to attach files to application");
-                    TempData["PostBackMessage"] = "Unable to attach files to application.";
-                    return Redirect(Request.UrlReferrer.PathAndQuery);
-                }
-                else
-                {
-                    isJobApplicationSuccess = true;
-                    jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Applied_Successful, "Your application was successfully processed");
-                    if(sourceResume != JobApplicationAttachmentSource.Saved)
+                    bool profileUploadResult = AddUploadedResumeToProfileDashBoard(attachments.Where(x => x.AttachmentType == JobApplicationAttachmentType.Resume).FirstOrDefault(), ovverideEmail);
+                    if (!profileUploadResult)
                     {
-                        bool profileUploadResult = AddUploadedResumeToProfileDashBoard(attachments.Where(x => x.AttachmentType == JobApplicationAttachmentType.Resume).FirstOrDefault(), ovverideEmail);
-                        if (!profileUploadResult)
-                        {
-                            TempData["PostBackMessage"] = "Unable to attach resume to Profile";
-                            return Redirect(Request.UrlReferrer.PathAndQuery);
-                        }
+                        TempData["PostBackMessage"] = "Unable to attach resume to Profile";
+                        return Redirect(Request.UrlReferrer.PathAndQuery);
                     }
-                    
                 }
-
             }
             else
             {
@@ -1221,6 +1220,73 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return true;
         }
 
+        private EmailNotificationSettings _createAdvertiserEmailTemplate(JobApplicationEmailTemplateModel emailTemplate)
+        {
+            EmailNotificationSettings advertiserEmailTemplate = _addEmailNotificationSettings(emailTemplate);
+
+            // CC and BCC emails
+            _addCCToEmailTemplate(ref advertiserEmailTemplate, this.AdvertiserEmailTemplateCC);
+
+            _addBCCToEmailTemplate(ref advertiserEmailTemplate, this.AdvertiserEmailTemplateBCC);
+
+            return advertiserEmailTemplate;
+        }
+
+        private EmailNotificationSettings _createApplicantEmailTemplate(JobApplicationEmailTemplateModel emailTemplate)
+        {
+            EmailNotificationSettings applicantEmailTemplate = _addEmailNotificationSettings(emailTemplate);
+            // CC and BCC emails
+            _addCCToEmailTemplate(ref applicantEmailTemplate, this.EmailTemplateCC);
+
+            _addBCCToEmailTemplate(ref applicantEmailTemplate, this.EmailTemplateBCC);
+
+            return applicantEmailTemplate;
+        }
+
+        private EmailNotificationSettings _createRegistrationEmailTemplate(JobApplicationEmailTemplateModel emailTemplate)
+        {
+            EmailNotificationSettings registerEmailTemplate = _addEmailNotificationSettings(emailTemplate);
+            // CC and BCC emails
+            _addCCToEmailTemplate(ref registerEmailTemplate, this.RegistrationEmailTemplateCC);
+
+            _addBCCToEmailTemplate(ref registerEmailTemplate, this.RegistrationEmailTemplateBCC);
+
+            return registerEmailTemplate;
+        }
+
+        private EmailNotificationSettings _addEmailNotificationSettings(JobApplicationEmailTemplateModel emailTemplate)
+        {
+            EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(emailTemplate.FromFullName, emailTemplate.FromEmail),
+                                                                                                                    new EmailTarget(emailTemplate.ToFullName, emailTemplate.ToEmail),
+                                                                                                                    emailTemplate.Subject,
+                                                                                                                    emailTemplate.HtmlContent, emailTemplate.Attachments);
+
+
+            return emailNotificationSettings;
+        }
+
+        private void _addCCToEmailTemplate(ref EmailNotificationSettings emailNotificationSettings, string emailTemplateCC)
+        {
+            if (!emailTemplateCC.IsNullOrEmpty())
+            {
+                foreach (var ccEmail in emailTemplateCC.Split(';'))
+                {
+                    emailNotificationSettings?.AddCC(String.Empty, ccEmail);
+                }
+            }
+        }
+
+        private void _addBCCToEmailTemplate(ref EmailNotificationSettings emailNotificationSettings, string emailTemplateBCC)
+        {
+            if (!emailTemplateBCC.IsNullOrEmpty())
+            {
+                foreach (var bccEmail in emailTemplateBCC.Split(';'))
+                {
+                    emailNotificationSettings?.AddBCC(String.Empty, bccEmail);
+                }
+            }
+        }
+
         public string ItemType
         {
             get { return this._itemType; }
@@ -1230,6 +1296,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             get { return SitefinityHelper.GetCurrentSiteEmailTemplateProviderName(); }
         }
+
+
+        public bool HideGoogleDrive { get; set; }
+        public bool HideDropBox { get; set; }
         public string EmailTemplateId { get; set; }
         public string EmailTemplateName { get; set; }
         public string EmailTemplateCC { get; set; }

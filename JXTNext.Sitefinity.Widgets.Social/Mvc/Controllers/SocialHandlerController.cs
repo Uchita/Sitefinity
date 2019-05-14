@@ -36,6 +36,8 @@ using Telerik.Sitefinity.Security.Model;
 using System.Web.Security;
 using JXTNext.SocialMedia.Services.LinkedIn;
 
+using JXTNext.Sitefinity.Common.Models.JobApplication;
+using JXTNext.Sitefinity.Common.Extensions;
 
 namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
 {
@@ -707,51 +709,57 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
                 emailAttachments.Add(emailAttachment);
             }
 
+            EmailNotificationSettings advertiserEmailNotificationSettings = (this.AdvertiserEmailTemplateId != null) ?
+                                    _createAdvertiserEmailTemplate(
+                                        new JobApplicationEmailTemplateModel()
+                                        {
+                                            FromFirstName = result.FirstName,
+                                            FromLastName = result.LastName,
+                                            FromEmail = overrideEmail,
+                                            ToFirstName = jobDetails.ContactDetails.GetFirstName(),
+                                            ToLastName = jobDetails.ContactDetails.GetLastName(),
+                                            ToEmail = jobDetails.ApplicationEmail,
+                                            Subject = SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.AdvertiserEmailTemplateId),
+                                            HtmlContent = SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.AdvertiserEmailTemplateId),
+                                            Attachments = emailAttachments
+                                        }) : null;
 
-            EmailNotificationSettings advertiserEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(result.FirstName + " " + result.LastName, overrideEmail),
-                                                                                                new EmailTarget(jobDetails.ContactDetails, jobDetails.ApplicationEmail),
-                                                                                                this.AdvertiserEmailTemplateEmailSubject,
-                                                                                                htmlAdvertiserEmailContent, emailAttachments);
 
 
+            EmailNotificationSettings emailNotificationSettings = (this.EmailTemplateId != null) ?
+                _createApplicantEmailTemplate(
+                    new JobApplicationEmailTemplateModel()
+                    {
+                        FromFirstName = this.EmailTemplateSenderName,
+                        FromLastName = null,
+                        FromEmail = this.EmailTemplateSenderEmailAddress,
+                        ToFirstName = SitefinityHelper.GetUserFirstNameById(SitefinityHelper.GetUserByEmail(overrideEmail).Id),
+                        ToLastName = null,
+                        ToEmail = overrideEmail,
+                        Subject = SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.EmailTemplateId),
+                        HtmlContent = SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.EmailTemplateId),
+                        Attachments = null
+                    }) : null;
 
 
-            EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
-                                                                                new EmailTarget(SitefinityHelper.GetUserFirstNameById(SitefinityHelper.GetUserByEmail(overrideEmail).Id), overrideEmail),
-                                                                                this.EmailTemplateEmailSubject,
-                                                                                htmlEmailContent, null);
+            EmailNotificationSettings registrationNotificationsSettings = (applicantInfo.IsNewUser && this.RegistrationEmailTemplateId != null) ?
+            _createRegistrationEmailTemplate(
+                new JobApplicationEmailTemplateModel()
+                {
+                    FromFirstName = this.EmailTemplateSenderName,
+                    FromLastName = null,
+                    FromEmail = this.EmailTemplateSenderEmailAddress,
+                    ToFirstName = applicantInfo.FirstName,
+                    ToLastName = null,
+                    ToEmail = applicantInfo.Email,
+                    Subject = SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.RegistrationEmailTemplateId),
+                    HtmlContent = SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.RegistrationEmailTemplateId),
+                    Attachments = null
+                }) : null;
 
-            EmailNotificationSettings registrationNotificationsSettings = null;
-            if (applicantInfo.IsNewUser && this.RegistrationEmailTemplateId != null)
-            {
-                registrationNotificationsSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
-                                                                            new EmailTarget(applicantInfo.FirstName, applicantInfo.Email),
-                                                                            this.GetEmailSubject(this.RegistrationEmailTemplateId),
-                                                                            this.GetEmailHtmlContent(this.RegistrationEmailTemplateId), null);
-            }
 
             Log.Write("emailNotificationSettings after: ", ConfigurationPolicy.ErrorLog);
-            // CC and BCC emails
-            if (!this.EmailTemplateCC.IsNullOrEmpty())
-            {
-                foreach (var ccEmail in this.EmailTemplateCC.Split(';'))
-                {
-                    emailNotificationSettings?.AddCC(String.Empty, ccEmail);
-                    advertiserEmailNotificationSettings?.AddCC(String.Empty, ccEmail);
-                    registrationNotificationsSettings?.AddCC(String.Empty, ccEmail);
-                }
-            }
-
-            if (!this.EmailTemplateBCC.IsNullOrEmpty())
-            {
-                foreach (var bccEmail in this.EmailTemplateBCC.Split(';'))
-                {
-                    emailNotificationSettings?.AddBCC(String.Empty, bccEmail);
-                    advertiserEmailNotificationSettings?.AddBCC(String.Empty, bccEmail);
-                    registrationNotificationsSettings?.AddBCC(String.Empty, bccEmail);
-                }
-            }
-
+            
             Log.Write("BL response before: ", ConfigurationPolicy.ErrorLog);
 
             //Create Application 
@@ -838,6 +846,76 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Controllers
             }
             
         }
+
+
+
+        private EmailNotificationSettings _createAdvertiserEmailTemplate(JobApplicationEmailTemplateModel emailTemplate)
+        {
+            EmailNotificationSettings advertiserEmailTemplate = _addEmailNotificationSettings(emailTemplate);
+
+            // CC and BCC emails
+            _addCCToEmailTemplate(ref advertiserEmailTemplate, this.AdvertiserEmailTemplateCC);
+
+            _addBCCToEmailTemplate(ref advertiserEmailTemplate, this.AdvertiserEmailTemplateBCC);
+
+            return advertiserEmailTemplate;
+        }
+
+        private EmailNotificationSettings _createApplicantEmailTemplate(JobApplicationEmailTemplateModel emailTemplate)
+        {
+            EmailNotificationSettings applicantEmailTemplate = _addEmailNotificationSettings(emailTemplate);
+            // CC and BCC emails
+            _addCCToEmailTemplate(ref applicantEmailTemplate, this.EmailTemplateCC);
+
+            _addBCCToEmailTemplate(ref applicantEmailTemplate, this.EmailTemplateBCC);
+
+            return applicantEmailTemplate;
+        }
+
+        private EmailNotificationSettings _createRegistrationEmailTemplate(JobApplicationEmailTemplateModel emailTemplate)
+        {
+            EmailNotificationSettings registerEmailTemplate = _addEmailNotificationSettings(emailTemplate);
+            // CC and BCC emails
+            _addCCToEmailTemplate(ref registerEmailTemplate, this.RegistrationEmailTemplateCC);
+
+            _addBCCToEmailTemplate(ref registerEmailTemplate, this.RegistrationEmailTemplateBCC);
+
+            return registerEmailTemplate;
+        }
+
+        private EmailNotificationSettings _addEmailNotificationSettings(JobApplicationEmailTemplateModel emailTemplate)
+        {
+            EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(emailTemplate.FromFullName, emailTemplate.FromEmail),
+                                                                                                                    new EmailTarget(emailTemplate.ToFullName, emailTemplate.ToEmail),
+                                                                                                                    emailTemplate.Subject,
+                                                                                                                    emailTemplate.HtmlContent, emailTemplate.Attachments);
+
+
+            return emailNotificationSettings;
+        }
+
+        private void _addCCToEmailTemplate(ref EmailNotificationSettings emailNotificationSettings, string emailTemplateCC)
+        {
+            if (!emailTemplateCC.IsNullOrEmpty())
+            {
+                foreach (var ccEmail in emailTemplateCC.Split(';'))
+                {
+                    emailNotificationSettings?.AddCC(String.Empty, ccEmail);
+                }
+            }
+        }
+
+        private void _addBCCToEmailTemplate(ref EmailNotificationSettings emailNotificationSettings, string emailTemplateBCC)
+        {
+            if (!emailTemplateBCC.IsNullOrEmpty())
+            {
+                foreach (var bccEmail in emailTemplateBCC.Split(';'))
+                {
+                    emailNotificationSettings?.AddBCC(String.Empty, bccEmail);
+                }
+            }
+        }
+
         public string EmailTemplateId { get; set; }
         public string EmailTemplateName { get; set; }
         public string EmailTemplateCC { get; set; }

@@ -224,7 +224,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         seoString.Add(SEOString);
                     }
 
-                    viewModel.ClassificationsSEORouteName = String.Join("/", seoString);
+                    viewModel.ClassificationsSEORouteName = jobListingResponse.Job.ClassificationURL;
 
                     ViewBag.CssClass = this.CssClass;
                     ViewBag.JobApplicationPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationPageId);

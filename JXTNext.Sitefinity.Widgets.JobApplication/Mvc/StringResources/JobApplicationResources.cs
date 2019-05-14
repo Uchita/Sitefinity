@@ -100,6 +100,62 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
         /// <summary>
         /// Gets phrase: This is the page where you have dropped search results widget
         /// </summary>
+        [ResourceEntry("AdvertiserEmailCC",
+            Value = "Enter Advertiser CC E-mail list separated by semicolon:",
+            Description = "phrase : Enter Advertiser CC E-mail list separated by semicolon")]
+        public string AdvertiserEmailCC
+        {
+            get
+            {
+                return this["AdvertiserEmailCC"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: Where to display search results?
+        /// </summary>
+        [ResourceEntry("AdvertiserEmailBCC",
+            Value = "Enter Advertiser BCC E-mail list separated by semicolon:",
+            Description = "phrase : Enter Advertiser BCC E-mail list separated by semicolon")]
+        public string AdvertiserEmailBCC
+        {
+            get
+            {
+                return this["AdvertiserEmailBCC"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: This is the page where you have dropped search results widget
+        /// </summary>
+        [ResourceEntry("RegistrationEmailCC",
+            Value = "Enter Registration CC E-mail list separated by semicolon:",
+            Description = "phrase : Enter Registration CC E-mail list separated by semicolon")]
+        public string RegistrationEmailCC
+        {
+            get
+            {
+                return this["RegistrationEmailCC"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: Where to display search results?
+        /// </summary>
+        [ResourceEntry("RegistrationEmailBCC",
+            Value = "Enter Registration BCC E-mail list separated by semicolon:",
+            Description = "phrase : Enter Registration BCC E-mail list separated by semicolon")]
+        public string RegistrationEmailBCC
+        {
+            get
+            {
+                return this["RegistrationEmailBCC"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: This is the page where you have dropped search results widget
+        /// </summary>
         [ResourceEntry("SenderName",
             Value = "Enter sender name:",
             Description = "phrase : Enter from sender name")]
@@ -179,6 +235,29 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
             }
         }
 
+
+        [ResourceEntry("HideGoogleDrive",
+            Value = "Hide Google Drive from Job Application",
+            Description = "phrase : Hide Google Drive from Job Application")]
+        public string HideGoogleDrive
+        {
+            get
+            {
+                return this["HideGoogleDrive"];
+            }
+        }
+
+
+        [ResourceEntry("HideDropBox",
+            Value = "Hide DropBox from Job Application",
+            Description = "phrase : Hide DropBox from Job Application")]
+        public string HideDropBox
+        {
+            get
+            {
+                return this["HideDropBox"];
+            }
+        }
         /// <summary>
         /// Gets phrase : CSS classes
         /// </summary>

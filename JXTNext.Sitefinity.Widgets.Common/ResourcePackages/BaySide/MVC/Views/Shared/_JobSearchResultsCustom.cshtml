@@ -54,17 +54,10 @@
                         <div class="alert alert-danger jobalert-error-message hidden">Please enter your valid email address.</div>
                     </div>
                 </div>
+
             }
             else
             {
-                <div class="col-12">
-                    <div class="alert alert-info jobalert-message hidden">Alert created. We’ll send new jobs to your email address.</div>
-                </div>
-                <div class="col-12 col-lg-6">
-                    <div class="form-group text-right">
-                        <a id="anon-job-alert" class="btn btn-outline-primary btn-block" href="#" title="Create your job alert">CREATE JOB ALERT</a>
-                    </div>
-                </div>
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
                         <input type="email" id="anonycreatejobalert" value="" placeholder="Enter email address" class="jobalert-field form-control" />
@@ -72,6 +65,16 @@
                         <div class="alert alert-danger jobalert-error-message hidden">Please enter your valid email address.</div>
                     </div>
                 </div>
+                <div class="col-12 col-lg-6">
+                    <div class="form-group text-right">
+                        <a id="anon-job-alert" class="btn btn-outline-primary btn-block" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="alert alert-info jobalert-message hidden">Alert created. We’ll send new jobs to your email address.</div>
+                </div>
+
+
             }
         </div>
         <!-- .row/ -->
@@ -350,8 +353,6 @@
             var email = $('#anonycreatejobalert').val();
 
 
-
-
             if (email.length < 1) {
                 $('.jobalert-error-message').removeClass('hidden').text('Please enter your email address.');
                 return false;
@@ -387,7 +388,7 @@
                         $('.jobalert-message').removeClass('hidden');
                     }
                     else {
-                        $('.jobalert-error-message').removeClass('hidden');
+                        $('.jobalert-error-message').removeClass('hidden').text(response.Errors[0]);
                     }
                 },
                 error: function (response) { // Error

@@ -183,6 +183,7 @@
     <Content Include="ResourcePackages\BaySide\assets\images\baysidegroup-favicon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\BaySide\assets\images\bayside_logo_white.png" />
     <Content Include="ResourcePackages\BaySide\assets\images\BG-Recruitment-Workforce-Management-Specialists.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -427,6 +428,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\BaySide\assets\js\parlx-bg.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\BaySide\assets\js\slimtable.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\BaySide\assets\js\wow.js">

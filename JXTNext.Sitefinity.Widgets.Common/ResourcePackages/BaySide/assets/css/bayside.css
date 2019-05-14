@@ -4859,6 +4859,14 @@ iframe{
     }
 }
 
+@media (max-width: 991px){
+    .app-content .col-sm-12, .app-footer .col-sm-12, .app-header .col-sm-12{
+        flex:auto;
+        max-width: 100%;
+    }
+
+}
+
 .app-content .sm-row,
 .app-footer .sm-row,
 .app-header .sm-row {
@@ -9525,11 +9533,12 @@ select.hs-input {
         border-color: #0088CF;
     }
 
+
     .page-wrapper .btn-tag {
         min-width: 30px;
         font-size: 11px;
         padding: 4px 17px;
-        margin: 0 3px;
+        margin: 0 3px 3px;
     }
 
     .page-wrapper .text-muted {
@@ -10697,6 +10706,91 @@ select.hs-input {
     .ui-autocomple li {
         padding: 3px 0;
     }
+
+/* slim table js: dashboard table  */
+.slimtable-paging-div {
+    font-size: 14px;
+    margin-top: -15px;
+    margin-bottom: 30px;
+}
+th.date-col{
+    width: 118px;
+}
+.slimtable-container-div {
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.slimtable-wrapper {
+    overflow: auto;
+    margin-bottom: 30px;
+}
+.slimtable-wrapper .table {
+    margin-bottom: 0;
+}
+
+.slimtable-paging-div {
+    overflow: hidden;
+}
+
+.slimtable-paging-btnsdiv {
+    float: left;
+    margin-bottom: 10px;
+}
+
+.slimtable-paging-seldiv {
+    float: right;
+}
+
+.slimtable-page-btn {
+    font-size: 14px;
+    line-height: 1.45;
+    display: inline-block;
+    padding: 0 8px;
+    border: 1px solid #0088CF;
+    border-radius: 4px;
+    margin-right: 3px;
+    cursor: pointer;
+}
+    .slimtable-page-btn:hover, .slimtable-page-btn.active {
+        background: #0088CF;
+        color: #fff;
+    }
+    .slimtable-page-btn.active {
+        cursor: default;
+    }
+
+select.slimtable-paging-select {
+    padding: 0;
+    margin-right: 5px;
+    border-radius: 4px;
+    outline: none !important;
+}
+
+.slimtable th {
+    position: relative !important;
+    vertical-align: middle!important;
+}
+
+.slimtable-sprites::after {
+    content: '\f07d';
+    font-family: 'Fontawesome';
+    font-size: 0.8rem;
+    line-height: 1.5;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    margin-top: -10px;
+}
+
+.slimtable-sprites.slimtable-sortdesc::after {
+    content: '\f175';
+}
+
+.slimtable-sprites.slimtable-sortasc::after {
+    content: '\f176';
+}
+
 
     @media only screen and (max-width: 600px) {
         .top-menus .login-status {

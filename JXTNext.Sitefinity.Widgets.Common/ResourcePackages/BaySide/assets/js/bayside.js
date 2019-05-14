@@ -288,6 +288,39 @@ $(document).ready(function () {
     $('a.resume-templates-btn1').attr('download', '');
     $('a.resume-templates-btn2').attr('download', '');
     $('a.resume-templates-btn3').attr('download', '');
+
+
+    //using dataTable plugin for pagination in table
+    if ($('table.datatable').length) {
+        $("table.datatable").each(function () {
+            var tbl = $(this);
+            var dateColIndex = tbl.find('th.date-col').index();
+            var actColIndex = tbl.find('th.act-col').index();
+            if (dateColIndex < 0) {
+                dateColIndex = 0;
+            }
+            tbl.slimtable({
+                itemsPerPage: 5,
+                ippList: [5, 10, 20],
+                sortList: [dateColIndex],
+                colSettings: [{
+                    sortDir: "desc",
+                    colNumber: dateColIndex
+                },
+                {
+                    enableSort: false,
+                    colNumber: actColIndex
+                }
+                ],
+            });
+
+            //if (tbl.parent().find('.slimtable-page-btn').length < 2) {
+            //    tbl.parent().find('.slimtable-paging-div').hide();
+            //}
+        });
+
+    }
+
 });
 
 function MakeActiveLinks(currentLinkPath) {

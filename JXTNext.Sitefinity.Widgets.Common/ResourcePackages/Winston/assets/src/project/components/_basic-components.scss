@@ -1019,7 +1019,7 @@ pre {
                 content: "";
                 width: 1px;
                 height: 16px;
-                top: 3px;
+                top: 10px;
                 background: #3ea9ed;
                 left: -2px;
             }
@@ -3207,6 +3207,7 @@ address.info-box {
     color: pink !important;
 }*/
 .header-top-links {
+
     a {
         @include transition();
         color: white;
@@ -3438,6 +3439,9 @@ address.info-box {
             transform: rotateY(180deg);
         }
 
+        .flip-card-front{
+            z-index:-1;
+            }
         .flip-card-front, .flip-card-back {
             &:before {
                 border: 1px solid #fff;
@@ -3578,7 +3582,7 @@ h2 {
 
     textarea {
         &.form-control {
-            height: 190px !important;
+            height: 187px !important;
             margin-bottom: 30px;
         }
     }
@@ -3917,9 +3921,21 @@ ul {
 
 
 
-@media(max-width:1920px) {
+@media(min-width:1920px) {
 
     .jumbotron-container .jumbotron {
         background-size: cover;
     }
 }
+
+
+.flip-card:hover .flip-card-front {
+    z-index: -1;
+}
+
+
+.header-top-links {
+    display: inline-flex
+}
+
+

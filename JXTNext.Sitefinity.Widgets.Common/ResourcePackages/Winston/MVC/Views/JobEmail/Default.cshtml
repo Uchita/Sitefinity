@@ -50,7 +50,8 @@
                         <label class="form-label">@Html.Raw(Model.Widget.NameLabel)<span class="required">*</span></label>
                     </div>
                     <div class="col-sm-8 controls">
-                        @Html.TextBox("Name", null, new { @class = "form-control" })
+                        @Html.TextBox("Name", null, new { @class = "form-control", @placeholder = "Enter your name" })
+                        
                         @if (Model.Widget.NameHelp != null)
                         {
                             <p class="help-block">@Html.Raw(Model.Widget.NameHelp)</p>
@@ -69,7 +70,7 @@
                         {
                             <p class="help-block">@Html.Raw(Model.Widget.EmailHelp)</p>
                         }
-                        @Html.ValidationMessage("Email", new { @class = "help-block help-block-error" })
+                        @Html.ValidationMessage("Email", new { @class = "help-block help-block-error", @placeholder = "Enter your email address" })
                     </div>
                 </div>
 

@@ -8003,7 +8003,7 @@ pre {
       content: "";
       width: 1px;
       height: 16px;
-      top: 3px;
+      top: 10px;
       background: #3ea9ed;
       left: -2px; }
   .header-top-links .sf-mr-m {
@@ -9856,6 +9856,8 @@ address.info-box {
     -webkit-transform: rotateY(180deg);
     -ms-transform: rotateY(180deg);
     transform: rotateY(180deg); }
+  .flip-card:hover .flip-card-front {
+    z-index: -1; }
   .flip-card:hover .flip-card-front:before, .flip-card:hover .flip-card-back:before {
     border: 1px solid #fff; }
   .flip-card .flip-card-back {
@@ -9939,7 +9941,7 @@ h2.loc-title-head {
   .contactfrom .form-group {
     margin-bottom: 5px; }
   .contactfrom textarea.form-control {
-    height: 190px !important;
+    height: 187px !important;
     margin-bottom: 30px; }
 
 .contact-text-indent h4 {
@@ -10139,9 +10141,15 @@ ul.no-gutter {
 .page-section .container.top-space-remove {
   margin-top: -60px; }
 
-@media (max-width: 1920px) {
+@media (min-width: 1920px) {
   .jumbotron-container .jumbotron {
     background-size: cover; } }
+
+.flip-card:hover .flip-card-front {
+  z-index: -1; }
+
+.header-top-links {
+  display: inline-flex; }
 
 /*#endregion Basic components */
 /*#region Breadcrumbs */
@@ -10680,7 +10688,7 @@ ul.breadcrumb {
 /*#endregion Form - Newsletter */
 /*#region Form - Contact us*/
 .page-wrapper .basic-form {
-  margin-top: 50px; }
+  /*margin-top: 50px;*/ }
   .page-wrapper .basic-form .form-control {
     color: #000; }
   .page-wrapper .basic-form select {
@@ -12572,7 +12580,7 @@ select.articles-order {
     padding-top: 11vh;
     height: 50vh; }
   .page-wrapper .login-form .basic-form {
-    margin-top: 20px; }
+    /*margin-top: 20px;*/ }
     .page-wrapper .login-form .basic-form .registration-link {
       margin-top: 15px; }
   .page-wrapper .reg-form .basic-form {
@@ -12700,6 +12708,8 @@ select.articles-order {
       text-align: center; } }
 
 @media (max-width: 991px) {
+  .nav-sitemap > li {
+    width: 100%; }
   main .page-section {
     padding: 30px 0; }
   .flex {

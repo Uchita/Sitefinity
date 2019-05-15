@@ -12,7 +12,7 @@
 @Html.Script("//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js", "top")
 
 
-<div class="@Model.CssClass row sf-m-xxs login-form reg-form">
+<div class="@Model.CssClass row sf-m-xxs login-form reg-form text-center">
     @if (Telerik.Sitefinity.Security.SecurityManager.GetCurrentUserId() == Guid.Empty || SystemManager.IsInlineEditingMode || SystemManager.IsDesignMode)
     {
 
@@ -37,6 +37,7 @@
         else if ((Request.QueryString["ShowSuccessfulRegistrationMsg"] == "true") ||
                  (ViewBag.ShowSuccessfulRegistrationMsg is bool && ViewBag.ShowSuccessfulRegistrationMsg))
         {
+           
             <h2>@Html.Resource("ThankYou")</h2>
             <p>@Html.Resource("DefaultSuccessfulRegistrationMessage")</p>
            
@@ -118,8 +119,9 @@
                                     @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Choose password", required = "required", pattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title = Html.Resource("passwordRequirementMsg", "Labels") })
 
                                     <span class="text-muted">
-                                        <em>@Html.Resource("passwordRequirementMsg", "Labels")</em><br />&nbsp;
+                                       @Html.Resource("passwordRequirementMsg", "Labels")<br />&nbsp;
                                     </span>
+
 
                                     @if (Html.ValidationMessageFor(m => m.Password) != null)
                                     {

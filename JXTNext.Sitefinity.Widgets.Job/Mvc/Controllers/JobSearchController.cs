@@ -41,6 +41,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string ResultsPageId { get; set; }
         public string PrefixIdText { get; set; }
 
+        public Guid AdvancedSearchPageId { get; set; }
+
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
         /// </summary>
@@ -77,7 +79,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             // this needs to me moved to a viewmodel rather than ViewData
             ViewData["CssClass"] = this.CssClass;
             ViewData["JobResultsPageUrl"] = SfPageHelper.GetPageUrlById(new Guid(ResultsPageId));
-            ViewData["AdvancedSearchPageUrl"] = SfPageHelper.GetPageUrlById(model.AdvancedSearchPageId);
+            ViewData["AdvancedSearchPageUrl"] = AdvancedSearchPageId != Guid.Empty ? SfPageHelper.GetPageUrlById(AdvancedSearchPageId) : "~/advancedsearch";
 
             var jobSearchComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
             if(jobSearchComponents != null)

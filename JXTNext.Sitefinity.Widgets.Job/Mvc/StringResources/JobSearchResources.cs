@@ -112,6 +112,20 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets phrase: More options
+        /// </summary>
+        [ResourceEntry("AdvancedSearch",
+            Value = "Advanced search",
+            Description = "word : Advanced search")]
+        public string AdvancedSearch
+        {
+            get
+            {
+                return this["AdvancedSearch"];
+            }
+        }
+
+        /// <summary>
         /// Gets phrase : Prefix text for id
         /// </summary>
         [ResourceEntry("PrefixIdText",

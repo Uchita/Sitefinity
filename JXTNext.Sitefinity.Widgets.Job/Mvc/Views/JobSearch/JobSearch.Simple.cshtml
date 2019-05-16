@@ -1,4 +1,6 @@
 ﻿@model List<JobSearchModel>
+@using System;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 @using JXTNext.Sitefinity.Widgets.Job.Mvc.Models
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 @Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
@@ -108,8 +110,7 @@
                     }
 
                     <div class="col-xs-4 pull-right text-right">
-                        <a href="/advancedsearch" title="Advanced search">@Html.Resource("AdvancedSearch", "Labels")</a>
-
+                        <a href="@ViewData["AdvancedSearchPageUrl"]" title="Advanced search">@Html.Resource("AdvancedSearch", "Labels")</a>
                     </div>
                     @*<div class="col-xs-2 pull-right text-right">
                             <a class="filter-job-close" data-filter-trigger="close"><em class="fas fa-times"></em></a>

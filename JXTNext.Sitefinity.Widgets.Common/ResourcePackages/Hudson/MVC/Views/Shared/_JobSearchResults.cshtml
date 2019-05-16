@@ -11,7 +11,7 @@
 }
 
 <div class="result-meta">
-    <p><span class="cur-search-count">Your search resulted in: <span class="count-num">@ViewBag.TotalCount</span> position(s)</span> | <a href="/advancedsearch" title="New job search">Search jobs</a></p>
+    <p><span class="cur-search-count">@Html.Resource("JxtJobResult", "JxtAuthoringResources")<span class="count-num">@ViewBag.TotalCount</span> @Html.Resource("JxtJobResultPosition", "JxtAuthoringResources")</span> | <a href="/advancedsearch" title="New job search">@Html.Resource("JxtJobResultSearchJobs", "JxtAuthoringResources")</a></p>
 </div>
 
 <div class="search-top clearfix">
@@ -24,15 +24,15 @@
         @if (ViewBag.IsMember)
         {
             <input type="email" id="anonycreatejobalert" value="@ViewBag.Email" hidden />
-            <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+            <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">@Html.Resource("JxtCreateJobAlert", "JxtAuthoringResources")</a>
             <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
             <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
         }
         else
         {
-            <div>Receive new jobs for this search by email.</div>
+            <div>@Html.Resource("JxtCreateJobAlertTitle", "JxtAuthoringResources")</div>
             <input type="email" id="anonycreatejobalert" value="" placeholder="Enter email address" class="jobalert-field" />
-            <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+            <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">@Html.Resource("JxtCreateJobAlert", "JxtAuthoringResources")</a>
             <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
             <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
         }
@@ -51,7 +51,7 @@
 </div>
 
 <div id="listView" class="search-results"></div>
-<div class="l-section hidden info-block"><p class="alert alert-warning">There are no jobs matching the search criteria.</p></div>
+<div class="l-section hidden info-block"><p class="alert alert-warning">@Html.Resource("JxtNoJobs", "JxtAuthoringResources")</p></div>
 <div id="pager" class="k-pager-wrap k-widget k-floatwrap" data-role="]">
     <ul class="k-pager-numbers k-reset"></ul>
 </div>
@@ -81,9 +81,9 @@
                 </div>
                 <div class="col-sm-4 col-xs-12 text-right">
                     # if ( islogged ){ #
-                    <span class="save-job" data-jobid="#:JobID#">Save job</span> |
+                    <span class="save-job" data-jobid="#:JobID#">@Html.Resource("JxtSaveJob", "JxtAuthoringResources")</span> |
                     # } #
-                    <a href='@ViewBag.EmailJobPageUrl?JobId=#:JobID#' title="Send email">Send email</a><br />
+                    <a href='@ViewBag.EmailJobPageUrl?JobId=#:JobID#' title="Send email">@Html.Resource("JxtEmailJob", "JxtAuthoringResources")</a><br />
                     <small>#:DateCreated_Representation#</small>
 
                 </div>
@@ -103,10 +103,10 @@
                         }
                         else{
                         #<span class="meta-salary">
-                        @Html.Resource("CurrencySymbol", "JxtAuthoringResources") #:CustomData["Salary.Filters[0].Min"]# - @Html.Resource("CurrencySymbol", "JxtAuthoringResources")#:CustomData["Salary.Filters[0].Max"]# <br />#
-                        }
-                        #<span class="salary-label">#:CustomData["Salary.Filters[0].Value"]#</span>
-                     </span><br />#
+                            @Html.Resource("CurrencySymbol", "JxtAuthoringResources")#:CustomData["Salary.Filters[0].Min"]# - @Html.Resource("CurrencySymbol", "JxtAuthoringResources")#:CustomData["Salary.Filters[0].Max"]# <br />#
+                            }
+                            #<span class="salary-label">#:CustomData["Salary.Filters[0].Value"]#</span>
+                        </span><br />#
                         }#
                         <span class="meta-worktype">#:CustomData["WorkType.Filters[0].Value"]#</span>
                 </div>

@@ -110,8 +110,7 @@
                     }
 
                     <div class="col-xs-4 pull-right text-right">
-                        <a href="/advancedsearch" title="Advanced search">@Html.Resource("AdvancedSearch")</a>
-
+                        <a href="@ViewData["AdvancedSearchPageUrl"]" title="Advanced search">@Html.Resource("AdvancedSearch", "Labels")</a>
                     </div>
                     @*<div class="col-xs-2 pull-right text-right">
                             <a class="filter-job-close" data-filter-trigger="close"><em class="fas fa-times"></em></a>

@@ -139,6 +139,62 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
             }
         }
 
+        /// <summary>
+        /// Gets phrase : Select the page containing advanced search
+        /// </summary>
+        [ResourceEntry("SelectAdvancedSearchPage",
+            Value = "Select the page containing advanced search",
+            Description = "phrase : Select the page containing advanced search")]
+        public string SelectAdvancedSearchPage
+        {
+            get
+            {
+                return this["SelectAdvancedSearchPage"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase : This is the page where you have dropped advanced search widget
+        /// </summary>
+        [ResourceEntry("AdvancedSearchPageDescription",
+            Value = "This is the page where you have dropped advanced search widget.",
+            Description = "phrase : This is the page where you have dropped advanced search widget.")]
+        public string AdvancedSearchPageDescription
+        {
+            get
+            {
+                return this["AdvancedSearchPageDescription"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase : Search settings
+        /// </summary>
+        [ResourceEntry("SearchSettings",
+            Value = "Search settings",
+            Description = "phrase : Search settings")]
+        public string SearchSettings
+        {
+            get
+            {
+                return this["SearchSettings"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase : Widget settings
+        /// </summary>
+        [ResourceEntry("WidgetSettings",
+            Value = "Widget settings",
+            Description = "phrase : Widget settings")]
+        public string WidgetSettings
+        {
+            get
+            {
+                return this["WidgetSettings"];
+            }
+        }
+
         #endregion
     }
 }

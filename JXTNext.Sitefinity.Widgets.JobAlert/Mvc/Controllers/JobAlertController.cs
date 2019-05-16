@@ -25,10 +25,12 @@ using JXTNext.Common.Communications.Helpers.Utility;
 using Telerik.Sitefinity.Web.Mail;
 using System.Net.Mail;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common;
+using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
     [EnhanceViewEngines]
+    [Localization(typeof(JobAlertResources))]
     [ControllerToolboxItem(Name = "JobAlert_MVC", Title = "Job Alert", SectionName = "JXTNext.JobAlert", CssClass = JobAlertController.WidgetIconCssClass)]
     public class JobAlertController : Controller
     {

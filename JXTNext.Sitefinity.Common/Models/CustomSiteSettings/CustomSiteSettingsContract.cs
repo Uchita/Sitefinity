@@ -73,6 +73,13 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             set;
         }
 
+        [DataMember]
+        public string JobCurrencySymbol
+        {
+            get;
+            set;
+        }
+
         #region Seek
         [DataMember]
         public string SeekClientId
@@ -247,6 +254,7 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             this.LinkedInSocialHandlerUrl = section.UICustomSiteSettings.CurrentLinkedInSocialHandlerUrl;
 
             this.CultureIsEnabled = section.UICustomSiteSettings.CurrentCultureIsEnabled;
+            this.JobCurrencySymbol = section.UICustomSiteSettings.JobCurrencySymbol.IsNullOrWhitespace() ? "$" : section.UICustomSiteSettings.JobCurrencySymbol;
         }
 
         public void SaveDefaults()
@@ -289,6 +297,9 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             section.UICustomSiteSettings.CurrentLinkedInCustomerClientSecret = this.LinkedInCustomerClientSecret;
             section.UICustomSiteSettings.CurrentLinkedInCustomerIntegrationContext = this.LinkedInCustomerIntegrationContext;
             section.UICustomSiteSettings.CurrentLinkedInSocialHandlerUrl = this.LinkedInSocialHandlerUrl;
+
+            section.UICustomSiteSettings.JobCurrencySymbol = this.JobCurrencySymbol;
+            section.UICustomSiteSettings.CurrentCultureIsEnabled = this.CultureIsEnabled;
 
             manager.SaveSection(section);
         }

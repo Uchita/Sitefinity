@@ -523,5 +523,24 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
                 this["cultureIsEnabled"] = value;
             }
         }
+
+        /// <summary>
+        /// Gets or sets the name of the time zone.
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("jobCurrencySymbol")]
+        [DescriptionResource(typeof(ConfigDescriptions), "JobCurrencySymbol")]
+        [DataMember]
+        public virtual String JobCurrencySymbol
+        {
+            get
+            {
+                return (String)this["jobCurrencySymbol"];
+            }
+            set
+            {
+                this["jobCurrencySymbol"] = value;
+            }
+        }
     }
 }

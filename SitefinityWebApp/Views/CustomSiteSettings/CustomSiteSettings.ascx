@@ -49,5 +49,6 @@
 <sitefinity:TextField ID="instagramMaxItems" runat="server" DataFieldName="InstagramMaxItems" Title="Please Enter Instagram Max Items" CssClass="sfSettingsSection" DisplayMode="Write" />
 <br />
 
-<h3>CULTURE SETTINGS</h3><br />
+<h3>Other settings</h3><br />
 <sitefinity:TextField ID="cultureIsEnabled" runat="server" DataFieldName="CultureIsEnabled" Title="Please Enter Culture Value" CssClass="sfSettingsSection" DisplayMode="Write" />
+<sitefinity:TextField ID="jobCurrencySymbol" runat="server" DataFieldName="JobCurrencySymbol" Title="The currency used in job views" CssClass="sfSettingsSection" DisplayMode="Write" />

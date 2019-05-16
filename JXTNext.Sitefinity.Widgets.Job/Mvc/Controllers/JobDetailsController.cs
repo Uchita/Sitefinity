@@ -1,26 +1,25 @@
-﻿using JXTNext.Sitefinity.Connector.BusinessLogics;
+﻿using JXTNext.Sitefinity.Common.Helpers;
+using JXTNext.Sitefinity.Connector.BusinessLogics;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using JXTNext.Sitefinity.Connector.Options;
+using JXTNext.Sitefinity.Widgets.Job.Mvc.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using Telerik.Sitefinity.Mvc;
-using JXTNext.Sitefinity.Common.Helpers;
-using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
-using JXTNext.Sitefinity.Widgets.Job.Mvc.Models;
-using System.ComponentModel;
 using System.Collections.Specialized;
-using Newtonsoft.Json.Linq;
+using System.ComponentModel;
+using System.Linq;
 using System.Text.RegularExpressions;
-using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
-using Telerik.Sitefinity.Frontend.Mvc.Infrastructure;
 using System.Web;
+using System.Web.Mvc;
 using Telerik.Sitefinity.Abstractions;
+using Telerik.Sitefinity.Frontend.Mvc.Infrastructure;
+using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
+using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Security.Claims;
-using Telerik.Sitefinity.Configuration;
-using JXTNext.Sitefinity.Common.Models.CustomSiteSettings;
+
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
     [EnhanceViewEngines]

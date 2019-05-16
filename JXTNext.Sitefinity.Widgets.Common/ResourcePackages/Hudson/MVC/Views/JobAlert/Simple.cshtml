@@ -1,5 +1,7 @@
 ﻿@model List<JobAlertViewModel>
 @using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert
+@using System;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 
 <div id="createalert-widget">
     <h2><span class="alert-icon far fa-bell"></span>@Html.Resource("JobAlerts")</h2>
@@ -9,26 +11,26 @@
 
         <table class="table table-bordered datatable">
             <thead>
-            <tr>
-                <th>@Html.Resource("Name")</th>
-                <th class="col-3btn-width act-col">@Html.Resource("Action")</th>
-            </tr>
+                <tr>
+                    <th>@Html.Resource("Name")</th>
+                    <th class="col-3btn-width act-col">@Html.Resource("Action")</th>
+                </tr>
             </thead>
             <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @item.Name
-                    </td>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
 
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
-                        @Html.ActionLink("Search", "ViewResults", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
-                        @Html.ActionLink("Delete", "Delete", "JobAlert", new { id = item.Id }, new { onclick = "return confirmAlertDelete();", @class = "btn btn-sm btn-tag btn-danger" })
-                    </td>
-                </tr>
-            }
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
+                            @Html.ActionLink("Search", "ViewResults", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
+                            @Html.ActionLink("Delete", "Delete", "JobAlert", new { id = item.Id }, new { onclick = "return confirmAlertDelete();", @class = "btn btn-sm btn-tag btn-danger" })
+                        </td>
+                    </tr>
+                }
             </tbody>
 
         </table>

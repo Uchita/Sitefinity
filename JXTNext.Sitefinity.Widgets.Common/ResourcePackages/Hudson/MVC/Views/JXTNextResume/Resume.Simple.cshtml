@@ -1,6 +1,7 @@
 ﻿@model JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.JXTNextResume.ProfileResumeViewModel
 
 @using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.JXTNextResume;
+@using System;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 @using Telerik.Sitefinity.Modules.Pages;
 @using Telerik.Sitefinity.UI.MVC;
@@ -9,9 +10,9 @@
 
 <div>
 
-    
+
     <h2><span class="save-icon"></span>@Html.Resource("AttachResumeLink")</h2>
-    
+
     <input id="myFile" data-sf-role="profile-resume-attachment-upload" type="file" value='@Html.Resource("UploadFileLink")' accept=".pdf,.doc,.docx,.txt,.xls,.xlsx,.rtf" name="profile-resume" />
     <h5 class="text-muted">@Html.Resource("AttachFileConditionsLink")</h5>
     <div class="input-group">
@@ -19,9 +20,9 @@
         <input id="uploadBtn" type="button" class="btn" value='@Html.Resource("SaveFileAttachmentLink")' disabled />
         <input id="mymodel" type="button" value="@Model.JsonData" hidden />
     </div>
-  
+
     <div id="errorMessage">
-        
+
     </div>
     <br />
     <div id="dvResumeResults">
@@ -34,11 +35,9 @@
                     <th class="col-2btn-width act-col">@Html.Resource("Action")</th>
                 </tr>
             </thead>
-            <tbody id="resumeTable">
-
-            </tbody>
+            <tbody id="resumeTable"></tbody>
         </table>
-        
+
     </div>
 
 </div>
@@ -59,15 +58,15 @@
             resumes = resumeList;
             var rows = '';
             $.each(resumes, function (i, item) {
-                
+
                 var date = item.UploadDateStr;
                 var dateItm = new Date(date);
                 const monthAbvrNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                 if (dateItm != undefined) {
-                    date = dateItm.getDate() + ' ' + monthAbvrNames[dateItm.getMonth()] + ' ' + dateItm.getFullYear();  
+                    date = dateItm.getDate() + ' ' + monthAbvrNames[dateItm.getMonth()] + ' ' + dateItm.getFullYear();
                 }
                 rows += '<tr> ' + '<td>' + item.FileFullName + '</td>' + '<td>' + date + '</td >' + '<td>' + '<a href="' + item.FileUrl + '" class="btn btn-tag" target="_blank">' + viewValue + '</a> <input id="' + item.Id + '" class="deleteresumecls btn btn-sm btn-tag btn-danger" type="button"  value="' + deleteResume + '"></td>' + '</tr>';
-                
+
             });
             $('#resumeTable').html(rows);
         }
@@ -103,7 +102,7 @@
         }
 
     var deleteResumeMethod = function (id) {
-        
+
             if (confirmDelete()) {
                 var urlPath = $(location).attr('pathname') + "/DeleteResume/" + id;
                 $.ajax({
@@ -122,7 +121,7 @@
                     }
                 });
             }
- 
+
 
         }
 
@@ -149,7 +148,7 @@
             $.each(resumes, function (key, value) {
                 data.append(key, value);
             });
-            
+
             var urlPath = $(location).attr('pathname') + "/UploadResume";
             $.ajax({
                 url: urlPath,

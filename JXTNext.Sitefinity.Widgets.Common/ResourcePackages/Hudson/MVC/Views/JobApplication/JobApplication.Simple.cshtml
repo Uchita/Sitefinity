@@ -344,7 +344,9 @@
 
                                     <input name="privacypolicy" title="Please agree to Hudson's privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Please agree to Hudson\'s privacy policy');" type="checkbox" value="agree">
                                     <span class="checkbox-icon fas fa-check"></span>
-                                    @Html.Resource("PrivacyPolicyLbl", "Labels")
+                                    <a href="/privacy-policy" target="_blank">
+                                        @Html.Resource("PrivacyPolicyLbl", "Labels")
+                                    </a>
                                 </div>
                                 <input id="apply" type="submit" value="Apply Now" class="btn btn-block btn-primary" disabled />
                             </div>

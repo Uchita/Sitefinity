@@ -15,8 +15,8 @@
 
     @if (Model != null)
     {
-        <h2><span class="alert-icon far fa-bell"></span>Create job alert</h2>
-        <h3>Alert details</h3>
+        <h2><span class="alert-icon far fa-bell"></span>@Html.Resource("CreateJobAlert")</h2>
+        <h3>@Html.Resource("AlertDetails")</h3>
         <form method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();">
             @{
                 int counter = 0;
@@ -26,7 +26,7 @@
                 <div class="alert alert-danger filter-madatory-message hidden">@Html.Resource("nofilterselectedmessage", "Labels")</div>
                 <div class="row form-group">
                     <div class="col-md-4 text-right">
-                        <label for="name">Job alert name*</label>
+                        <label for="name">@Html.Resource("AlertName")</label>
                     </div>
                     <div class="col-md-8">
                         <input type="text" name="Name" id="name" required class="form-control" />
@@ -34,7 +34,7 @@
                 </div>
                 <div class="row form-group">
                     <div class="col-md-4 text-right">
-                        <label for="keywords">Keywords</label>
+                        <label for="keywords">@Html.Resource("Keywords")</label>
                     </div>
                     <div class="col-md-8">
                         <input type="text" name="Keywords" id="keywords" class="form-control" value="@Model.Keywords" />
@@ -82,7 +82,7 @@
                             <div class="col-md-8">
                                 <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden" />
                                 <select class="SalaryRangeSelect form-control">
-                                    <option value="-1" selected>Choose Salary</option>
+                                    <option value="-1" selected>@Html.Resource("ChooseSalary")</option>
                                     @foreach (var salaryItem in item.Filters)
                                     {
                                         <option value="@salaryItem.ID">@salaryItem.Label</option>
@@ -121,15 +121,17 @@
                         <div class="checkbox clearfix">
                             <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid='this.setCustomValidity("@privacyErrMsg")'>
                             <span class="checkbox-icon fas fa-check"></span>
-                            I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                            <a href="/privacy-policy" target="_blank">
+                                @Html.Resource("PrivacyPolicyLbl", "Labels")
+                            </a>
                         </div>
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-4 text-right"></div>
                     <div class="col-md-8">
-                        <input id="create-job-alert-submit-btn" type="submit" value="SAVE" class="btn btn-primary" />
-                        <a href="/user-dashboard" class="btn">Cancel</a>
+                        <input id="create-job-alert-submit-btn" type="submit" value="@Html.Resource("Save")" class="btn btn-primary" />
+                        <a href="/user-dashboard" class="btn">@Html.Resource("Cancel")</a>
                     </div>
                 </div>
             </div>

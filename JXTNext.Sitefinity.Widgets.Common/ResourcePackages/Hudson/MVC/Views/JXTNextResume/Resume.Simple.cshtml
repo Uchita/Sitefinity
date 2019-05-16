@@ -29,9 +29,9 @@
         <table class="table table-bordered datatable">
             <thead>
                 <tr>
-                    <th>File Name</th>
-                    <th class="date-col">Upload Date</th>
-                    <th class="col-2btn-width act-col">Action</th>
+                    <th>@Html.Resource("FileName")</th>
+                    <th class="date-col">@Html.Resource("UploadDate")</th>
+                    <th class="col-2btn-width act-col">@Html.Resource("Action")</th>
                 </tr>
             </thead>
             <tbody id="resumeTable">
@@ -79,7 +79,7 @@
         });
 
         function confirmDelete() {
-            if (confirm("Are you sure you want to delete this resume?")) {
+            if (confirm('@Html.Resource("RemoveConfirm")')) {
                 return true;
             }
             else {

@@ -255,6 +255,18 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 : this._siteSettingsContract.LinkedInSocialHandlerUrl;
         }
 
+        public string GetJobCurrencySymbol()
+        {
+            var currencySymbol = "$";
+
+            if(this._siteSettingsContract != null && !this._siteSettingsContract.JobCurrencySymbol.IsNullOrEmpty())
+            {
+                currencySymbol = this._siteSettingsContract.JobCurrencySymbol;
+            }
+
+            return currencySymbol;
+        }
+
         private const string _itemType = "JXTNext.Sitefinity.Common.Models.CustomSiteSettings.CustomSiteSettingsContract";
         private CustomSiteSettingsContract _siteSettingsContract = null;
     }

@@ -21,7 +21,6 @@ using Telerik.Sitefinity.Abstractions;
 using Telerik.Sitefinity.Security.Claims;
 using Telerik.Sitefinity.Configuration;
 using JXTNext.Sitefinity.Common.Models.CustomSiteSettings;
-
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
     [EnhanceViewEngines]
@@ -216,9 +215,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     viewModel.Locations = locParentIdsOrdDict;
                     viewModel.ClassificationsRootName = "Classifications";
                     viewModel.LocationsRootName = "CountryLocationArea";
-
-                    var siteSettings = Config.Get<CustomSiteSettingsConfig>();
-                    viewModel.JobCurrencySymbol = siteSettings.UICustomSiteSettings.JobCurrencySymbol.IsNullOrWhitespace() ? "$" : siteSettings.UICustomSiteSettings.JobCurrencySymbol;
+                    var siteSettingsHelper = new SiteSettingsHelper();
+                    viewModel.JobCurrencySymbol = siteSettingsHelper.GetJobCurrencySymbol();
 
                     // Getting the SEO route name for classifications
                     List<string> seoString = new List<string>();

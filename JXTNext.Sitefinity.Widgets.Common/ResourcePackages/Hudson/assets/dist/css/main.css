@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -10583,7 +10583,7 @@ ul.breadcrumb {
   line-height: 1.4;
   display: block; }
   .upload-section .displayFileName .filewrap {
-    color: #01a3a4;
+    color: #666;
     word-break: break-word; }
   .upload-section .displayFileName .removeBtn {
     background: none;

@@ -14,6 +14,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
         public string DefaultValue { get; set; }
         public string PlaceholderText { get; set; }
         public List<JobSearchItem> Filters { get; set; }
+
+        public Guid AdvancedSearchPageId { get; set; }
     }
 
     public class JobSearchItem

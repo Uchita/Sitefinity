@@ -228,6 +228,11 @@ $(document).ready(function () {
         autoplayTimeout: 7000,
     });
 
+
+    $("img").each(function () {
+        if ($(this).attr('src') == '') { $(this).hide(); }
+    });
+
  
     if ($(".vertical-scroll").length) {
     $(".vertical-scroll").bxSlider({

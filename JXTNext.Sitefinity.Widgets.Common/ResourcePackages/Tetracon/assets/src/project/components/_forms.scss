@@ -28,9 +28,18 @@
         margin-top: 50px;
 
         .form-control {
-            color: $global-text;
-            height: 35px;
-            border: 1px solid $forms-element-border;
+            color: #7DC245;
+            height: 50px;
+            border: 1px solid #7DC245;
+            font-size: 18px;
+
+            &:hover {
+                outline: unset;
+            }
+
+            .select:before {
+                color: #7DC245;
+            }
         }
 
         select {
@@ -55,7 +64,7 @@
         }
 
         .checkbox {
-            font-size:14px;
+            font-size: 14px;
 
             .checkbox-icon {
                 width: 20px;

@@ -1,11 +1,8 @@
 ﻿@model List<JobSearchModel>
 @using JXTNext.Sitefinity.Widgets.Job.Mvc.Models
-
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
-
 @Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
 @Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.js"), "bottom")
-
 @functions {
     List<string> _itemsList = new List<string>();
     Dictionary<string, dynamic> _idNamesLevelsPair = new Dictionary<string, dynamic>();
@@ -30,68 +27,132 @@
 
 @if (Model != null)
 {
-    <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();">
-        @{
-            int counter = 0;
-        }
+    var textboxControl = Model.Where(m => m.ControlType == "TextBox").FirstOrDefault();
+    var singleDropdownControls = Model.Where(m => m.ControlType == "DropDown Single");
+    var listControls = Model.Where(m => m.ControlType == "List").Take(2).ToList();
 
-        @foreach (var item in Model)
-        {
-            switch (item.ControlType)
-            {
-                case "TextBox":
-                    <input type="text" class="form-control" placeholder="@item.PlaceholderText" name="Keywords" />
-                    break;
-
-                case "DropDown Single":
-                    _itemsList.Clear();
-                    _idNamesLevelsPair.Clear();
-                    GetValuesList(item.Filters);
-
-                    <select class="form-control" name="Filters[@counter].values">
-                        <option value="" disabled selected>@item.PlaceholderText</option>
-                        @foreach (dynamic itemName in _idNamesLevelsPair)
-                        {
-                            <option value="@itemName.Key">@itemName.Value.name</option>
-                        }
-                    </select>
-
-                    counter++;
-                    break;
-
-                case "DropDown Multi":
-
-                    <input type="hidden" name="Filters[@counter].searchTarget" value='@item.FilterType' />
-                    <input type="hidden" name="Filters[@counter].rootId" value='@item.ID' />
-                    <select id=@string.Format("selected-{0}",item.ID) name="Filters[@counter].values" style="display:none" multiple></select>
-                    <div class="dropdown dropdown-tree" id=@item.ID></div>
-
-                    counter++;
-                    break;
-
-                case "List":
-                    _itemsList.Clear();
-                    _idNamesLevelsPair.Clear();
-                    GetValuesList(item.Filters);
-                    foreach (dynamic itemName in _idNamesLevelsPair)
-                    {
-                        string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewData["JobResultsPageUrl"], item.ID, itemName.Key);
-                        <a href=@hrefLink>@itemName.Value.name</a>
+    <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();" class="@ViewData["CssClass"]">
+        <div class="job-search">
+            <div class="container">
+                <div class="row">
+                    @{
+                        int counter = 0;
+                        int controlCounter = 0;
                     }
 
-                    break;
+                    @if (textboxControl != null)
+                    {
+                        <div class="col-xs-6 col-sm-4 col-md-4">
+                            <div class="form-group">
+                                <label for="Keywords" class="hidden">Keywords</label>
+                                <input class="form-control" placeholder="@textboxControl.PlaceholderText" type="text" name="Keywords">
+                            </div>
+                        </div>
+                        controlCounter++;
+                    }
 
-                case "Map Search":
-                    break;
+                    @foreach (var dropdownControl in singleDropdownControls)
+                    {
+                        if (controlCounter % 3 == 0)
+                        {
+                            @:  <div class="row">
+                            }
 
-                default:
-                    break;
+                            _itemsList.Clear();
+                            _idNamesLevelsPair.Clear();
+                            GetValuesList(dropdownControl.Filters);
+                            <div class="col-xs-6 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <div class="select">
+                                        <label for="@dropdownControl.FilterType" class="hidden">@dropdownControl.FilterType</label>
+                                        <input type="hidden" name="Filters[@counter].rootId" value='@dropdownControl.FilterType' />
+                                        <select class="form-control" name="Filters[@counter].values" id="@dropdownControl.FilterType">
+                                            <option value="" selected>@dropdownControl.PlaceholderText</option>
+                                            @foreach (dynamic itemName in _idNamesLevelsPair)
+                                            {
+                                                <option value="@itemName.Key">@itemName.Value.name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
+
+                            if (controlCounter % 3 == 2 || controlCounter == singleDropdownControls.Count() - 1)
+                            {
+                            @: </div>
+                        }
+
+                        counter++;
+                        controlCounter++;
+                    }
+
+                    <div class="col-xs-12 col-sm-4 col-md-4"><div class="btn-block form-group"><button class="btn btn-primary" type="submit">@Html.Resource("SearchJobs", "Labels")</button></div></div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row-filters"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    @foreach (var list in listControls)
+                    {
+                        <div class="col-xs-5 col-sm-4 col-md-4">
+                            <div class="filter">
+                                <a data-filter-trigger="@list.ID">@list.PlaceholderText <em class="fas fa-angle-down"></em></a>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="col-xs-4 pull-right text-right">
+                        <a href="/advancedsearch" title="Advanced search">@Html.Resource("AdvancedSearch", "Labels")</a>
+
+                    </div>
+                    @*<div class="col-xs-2 pull-right text-right">
+                            <a class="filter-job-close" data-filter-trigger="close"><em class="fas fa-times"></em></a>
+                        </div>*@
+                </div>
+            </div>
+
+            @foreach (var list in listControls)
+            {
+                _itemsList.Clear();
+                _idNamesLevelsPair.Clear();
+                GetValuesList(list.Filters);
+                int itemCounter = 0;
+                <div class="container filter-job-classification" data-filter-target="@list.ID">
+                    @foreach (dynamic itemName in _idNamesLevelsPair)
+                    {
+                        if (itemCounter % 4 == 0)
+                        {
+                            @: <div class="row">
+                            }
+
+                            string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewData["JobResultsPageUrl"], list.FilterType, itemName.Key);
+                            <div class="col-sm-3 col-md-3">
+                                <a href=@hrefLink>@itemName.Value.name</a>
+                            </div>
+
+                            if (itemCounter % 4 == 3 || itemCounter == (_idNamesLevelsPair.Count - 1))
+                            {
+                            @: </div>
+                        }
+
+                        itemCounter++;
+                    }
+                </div>
             }
-        }
-        <input class="btn btn-primary" type="submit" value="Browse Jobs" />
+        </div>
     </form>
 }
+<style scoped>
+    .filter-job-classification a:hover {
+        color: teal;
+    }
+</style>
 
 <script type="text/javascript">
     var optionsArray = {};
@@ -116,8 +177,7 @@
         if (model != null && @Html.Raw(json) != "undefined") {
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
 
-
-            for (var item of filterData) {
+            $.each(filterData, function (index, item){
                 switch (item.ControlType) {
                     case 'TextBox':
                         break;
@@ -138,8 +198,18 @@
                     default:
                         break;
                 }
+            });
+        }
+
+
+        //workout temporary
+        //job search widget
+        if ($('.job-search').length && $('select#CountryLocationArea').length) {
+            if ($('select#CountryLocationArea option:contains(Sydney)').length && $('select#CountryLocationArea option:contains(Perth)').length) {
+                $('select#CountryLocationArea option:contains(Sydney)')
+                    .insertAfter($('select#CountryLocationArea option:contains(Perth)'));
             }
         }
+
    });
 </script>
-

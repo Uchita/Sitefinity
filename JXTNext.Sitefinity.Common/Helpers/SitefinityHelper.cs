@@ -115,6 +115,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return sitefinityAppTime;
         }
 
+        [Obsolete("This method has been deprecated. Use SfPageHelper.GetPageUrlById instead.")]
         public static string GetPageUrl(string pageId)
         {
             string pageUrl = String.Empty;
@@ -143,14 +144,13 @@ namespace JXTNext.Sitefinity.Common.Helpers
                             pageUrl = "/" + culture.Name + pageUrl;
                         }
                     }
-
-
                 }
             }
 
             return pageUrl;
         }
 
+        [Obsolete("This method has been deprecated. Use SfPageHelper.GetPageUrlById instead.")]
         public static string GetPageFullUrl(Guid pageId)
         {
             string pageFullUrl = String.Empty;

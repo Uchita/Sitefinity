@@ -14,11 +14,13 @@ using Newtonsoft.Json;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using Telerik.Sitefinity.Taxonomies.Model;
 using System;
+using JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
     [EnhanceViewEngines]
-    [ControllerToolboxItem(Name = "JobSearch_MVC", Title = "Search", SectionName = "JXTNext.Job", CssClass = JobSearchController.WidgetIconCssClass)]
+    [Localization(typeof(JobSearchResources))]
+    [ControllerToolboxItem(Name = "JobSearch_MVC", Title = "Search", SectionName = "Jobs", CssClass = JobSearchController.WidgetIconCssClass)]
     public class JobSearchController : Controller
     {
         IBusinessLogicsConnector _BLConnector;

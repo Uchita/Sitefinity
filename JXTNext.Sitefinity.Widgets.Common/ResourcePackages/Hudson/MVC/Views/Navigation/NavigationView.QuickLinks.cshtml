@@ -26,6 +26,7 @@ var cssClass = "far ";
 switch (node.Title.ToLower())
 {
     case "submit an inquiry":
+    case "提交问题":
         cssClass += "fa-paper-plane";
         break;
     case "job seekers":
@@ -33,9 +34,11 @@ switch (node.Title.ToLower())
     case "advanced search":
     case "job search":
     case "search jobs":
+    case "高级搜索":
         cssClass = "fas fa-search";
         break;
     case "submit your cv":
+    case "提交履历":
         cssClass += "fa-edit";
         break;
     case "job application":

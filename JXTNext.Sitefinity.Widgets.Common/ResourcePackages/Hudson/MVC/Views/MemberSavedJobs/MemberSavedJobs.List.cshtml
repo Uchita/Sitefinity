@@ -1,6 +1,8 @@
 ﻿@using JXTNext.Sitefinity.Widgets.User.Mvc.Models.MemberSavedJob
 @model List<MemberSavedJobDisplayItem>
 @using JXTNext.Sitefinity.Widgets.User.Mvc.Models
+@using System;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 
 
 @if (ViewBag.DeleteMessage != null)
@@ -15,7 +17,7 @@
     }
 }
 
-<h2><span class="save-icon"></span>Saved jobs</h2>
+<h2><span class="save-icon"></span>@Html.Resource("SavedJobs")</h2>
 @if (Model != null && Model.Count > 0)
 {
 
@@ -23,37 +25,37 @@
         <table class="table table-bordered datatable">
             <thead>
                 <tr>
-                    <th width="100">Job ID</th>
-                    <th>Job Title</th>
-                    <th class="date-col">Date Added</th>
-                    <th class="act-col">Actions</th>
+                    <th width="100">@Html.Resource("JobId")</th>
+                    <th>@Html.Resource("JobTitle")</th>
+                    <th class="date-col">@Html.Resource("DateAdded")</th>
+                    <th class="act-col">@Html.Resource("Actions")</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach (MemberSavedJobDisplayItem item in Model)
-            {
-                <tr>
-                    <td>@item.JobId</td>
-                    <td><a href="@ViewBag.JobDetailsPageUrl/@item.ClassificationURL/@item.JobId">@item.DisplayTitle</a></td>
-                    <td>@String.Format("{0:dd MMM yyyy}", item.DateAdded)</td>
-                    <td>
-                        @Html.ActionLink("Remove", "DeleteSavedJob", "MemberSavedJobs", new { savedJobId = item.Id }, new { onclick = "return confirmSaveJobDelete();", @class = "btn btn-sm btn-tag btn-danger" })
-                    </td>
-                </tr>
-            }
+                @foreach (MemberSavedJobDisplayItem item in Model)
+                {
+                    <tr>
+                        <td>@item.JobId</td>
+                        <td><a href="@ViewBag.JobDetailsPageUrl/@item.ClassificationURL/@item.JobId">@item.DisplayTitle</a></td>
+                        <td>@String.Format("{0:dd MMM yyyy}", item.DateAdded)</td>
+                        <td>
+                            @Html.ActionLink("Remove", "DeleteSavedJob", "MemberSavedJobs", new { savedJobId = item.Id }, new { onclick = "return confirmSaveJobDelete();", @class = "btn btn-sm btn-tag btn-danger" })
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
 }
 else
 {
-    <div class="alert alert-info">You currently don't have any saved jobs</div>
+    <div class="alert alert-info">@Html.Resource("NoSavedJobs")</div>
 }
 
 
 <script type="text/javascript">
     function confirmSaveJobDelete() {
-          if (confirm("Are you sure you want to remove this saved job?")) {
+          if (confirm("@Html.Resource("RemoveConfirm")")) {
             return true;
         }
         else {

@@ -1,0 +1,56 @@
+---
+title: Who We are
+description: Lorem ipsum.
+---
+<section class="c-section l-section--lead">
+    <div class="grid-container l-container--sml">
+        <div class="grid-x grid-margin-x align-center">
+            <div class="cell">
+                <p>THRONSBERG Human Capital GmbH is a Frankfurt based,<br>
+                    German, family-owned human resource specialist focusing on
+                    recruiting, talent development and HR related consulting for the financial industry.</p>
+                <p>We are an entrepreneurial player and truly understand our clients’ needs.
+                    Our strong expertise sits in the areas of private capital, corporate strategy and investment
+                    banking.</p>
+                <p>Our daily interaction with clients and candidates as well as our profound market knowledge allows us
+                    to drive<br>
+                    sophisticated recruiting processes effectively and efficiently.<br>
+                    The core of our activities is people / talent....</p>
+                <span class="o-higlight">We aspire to be the enabler for success in private equity.</span>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="c-section l-section--hdg">
+    <img src="{{root}}assets/img/bg-city-80.jpg" alt="City" class="js-bg-img" aria-hidden="true"
+        style="display:none;" />
+    <div class="grid-container l-container--sml">
+        <h2>Our Team</h2>
+    </div>
+</div>
+<div class="c-section l-section--min">
+    <div class="grid-container l-container--sml">
+        <div class="c-person-grid">
+            {{#repeat 2}}
+            <article class="c-person-grid__item">
+                <a href="{{root}}person-profile.html" class="c-person-grid__lnk">
+                    <div class="c-person-grid__img-wrp">
+                        <img src="https://via.placeholder.com/174x228" class="c-person-grid__img" />
+                    </div>
+                    <div class="c-person-grid__sum">
+                        <h3 class="c-person-grid__name">
+                            Constantin Theodor Trapp
+                        </h3>
+                        <h4 class="c-person-grid__position">Managing Partner</h4>
+                        <p class="c-person-grid__desc">Constantin is Founder & Managing
+                            Partner at THRONSBERG and your first
+                            point of contact for headhunting in the
+                            German private capital market.</p>
+                    </div>
+                </a>
+            </article>
+            {{/repeat}}
+        </div>
+    </div>
+</div>
+{{> unique}}

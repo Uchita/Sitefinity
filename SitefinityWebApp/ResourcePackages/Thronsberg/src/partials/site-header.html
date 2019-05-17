@@ -1,0 +1,57 @@
+<header class="c-site-header">
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x c-site-header__lead">
+            <div class="cell shrink c-site-header__logo-wrap">
+                <a href="/" class="c-site-header__logo">
+                    <img src="{{root}}assets/img/thronsberg-logo.svg" class="c-site-header__logo-img" title=""
+                        alt="" />
+                </a>
+            </div>
+            <div class="cell auto">
+                <nav class="o-primary-nav show-for-large">
+                    <ul class="dropdown menu align-justify" data-dropdown-menu>
+                        <li><a href="{{root}}who-we-are.html">Who we are</a>
+                            <ul class="menu">
+                                    <li><a href="{{root}}how-we-do.html">How we do</a></li>
+                                    <li><a href="#">Private Debt</a></li>
+                                    <li><a href="#">Family Office</a></li>
+                                    <!-- ... -->
+                                </ul>
+                        </li>
+                        <li>
+                            <a href="{{root}}our-clients.html">Our clients</a>
+                            <ul class="menu">
+                                <li><a href="#">Private Enquity</a></li>
+                                <li><a href="#">Private Debt</a></li>
+                                <li><a href="#">Family Office</a></li>
+                                <!-- ... -->
+                            </ul>
+                        </li>
+                        <li><a href="{{root}}our-candidates.html">Our candidates</a></li>
+                        <li><a href="#">Our opportunities</a></li>
+                        <li><a href="{{root}}contact.html">Contact</a></li>
+                        <li class="o-menu-item__login"><a href="#">Login</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="cell shrink hide-for-large align-self-middle">
+                <button class="o-menu-icon" type="button" data-toggle="offCanvasMenu"></button>
+            </div>
+        </div>
+        {{#ifpage 'index'}}
+        <div class="o-page-banner o-page-banner--home">
+            <div class="o-page-banner__hdg">
+                {{title}}
+            </div>
+            <div class="o-page-banner__desc">We aspire to be the enabler for success in private capital</div>
+        </div>
+        {{/ifpage}}
+        {{#unlesspage 'index'}}
+        <div class="o-page-banner">
+            <div class="o-page-banner__hdg">
+                {{title}}
+            </div>
+        </div>
+        {{/unlesspage}}
+    </div>
+</header>

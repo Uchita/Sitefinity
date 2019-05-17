@@ -1,0 +1,106 @@
+@include breakpoint(medium) {
+  .grid-container > {
+    .c-person-grid {
+      @include xy-gutters($negative: true);
+    }
+  }
+}
+
+.c-person-grid {
+  @include xy-grid();
+  @include flex-align(center);
+
+  @include breakpoint(medium) {
+    @include xy-grid-layout(2, ".c-person-grid__lnk");
+  }
+
+  // the item wrapper <article>
+  &__item {
+    text-align: center;
+    // 437 is the width in the artwork and 83 is the padding - work out the %
+    padding: rem-calc(24) (83/437 * 100%) rem-calc(31);
+
+    @include breakpoint(medium) {
+      margin-bottom: 0;
+    }
+  }
+
+  // the link around the whole item
+  &__lnk {
+    $grid-bg-color: #f2f2f2;
+    background-color: $grid-bg-color;
+    margin-bottom: $global-margin;
+
+    &:hover,
+    &:active {
+      background-color: scale-color($grid-bg-color, $lightness: -10%);
+    }
+  }
+
+  &__name {
+    font-size: rem-calc(18);
+    text-transform: none;
+    margin-bottom: rem-calc(10);
+  }
+
+  &__position {
+    font-size: rem-calc(14);
+    text-transform: none;
+  }
+
+  // Profile image
+  &__img-wrp {
+    width: auto;
+    margin: 0 auto rem-calc(10);
+  }
+
+  &__img {
+    max-height: rem-calc(228);
+  }
+}
+
+.c-person {
+  text-align: left;
+
+  &__profile-img-wrp {
+    margin-bottom: rem-calc(50);
+
+    @include breakpoint(medium) {
+      max-width: rem-calc(277);
+      margin-bottom: 0;
+    }
+  }
+
+  &__profil-img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  &__hdr {
+    margin-bottom: rem-calc(25);
+  }
+
+  &__name {
+    font-size: rem-calc(24);
+    text-transform: none;
+    text-align: left;
+    margin-bottom: rem-calc(13);
+  }
+
+  &__position {
+    font-size: rem-calc(16);
+    text-transform: none;
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  &__profile {
+  }
+
+  &__content {
+  }
+  .o-contact-info__lnk {
+    font-family: $header-font-family;
+  }
+}

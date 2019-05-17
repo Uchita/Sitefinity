@@ -1,0 +1,258 @@
+﻿@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+
+@using System.Linq;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Modules.Pages;
+@using HtmlAgilityPack;
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.RelatedData;
+@using Telerik.Sitefinity.DynamicModules.Model;
+@using JXTNext.Sitefinity.Media.Mvc.Helpers;
+@using System;
+@using System.Collections.Generic;
+@using System.Linq;
+@using Telerik.Sitefinity.DynamicModules.Model;
+@using System;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Text;
+@using System.Threading.Tasks;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.RelatedData;
+@{
+    var sanitizedContent = Html.HtmlSanitize((string)Model.Item.Fields.Content);
+
+    var htmlDoc = new HtmlDocument();
+    htmlDoc.LoadHtml(sanitizedContent.ToString());
+    // Remove any comments from the HTML
+    // htmlDoc.DocumentNode.SelectNodes("//comment()")?.ForEach(c => c.Remove());
+    // Remove HTML from the content
+    string textOnlyContent = htmlDoc.DocumentNode.InnerText;
+    // Remove any HTML entities
+    textOnlyContent = WebUtility.HtmlDecode(textOnlyContent);
+
+    Model.CssClass = string.Format("c-article--{0} {1}", Model.Item.Fields.UrlName, Model.CssClass).Trim();
+
+    var images = new List<Image>();
+    if (Model.Item.Fields.Images != null)
+    {
+        images = Model.Item.DataItem.GetRelatedItems<Image>("Images").ToList();
+    }
+    var featureImage = images.FirstOrDefault();
+    var author = String.Empty;
+
+    if (Model.Item.Fields.ArticleAuthor != null)
+    {
+        author = Model.Item.Fields.ArticleAuthor.Identifier;
+    }
+}
+@* schema.org for better SEO Needs to be improved to get canical url of article  *@
+<script type="application/ld+json">
+    { "@@context": "http://schema.org",
+    "@@type": "Article",
+    "mainEntityOfPage": {
+    "@@type": "WebPage",
+    "@@id": "@HyperLinkHelpers.GetDetailPageUrl(Model.Item, Guid.Empty, true)"
+    },
+    "headline": "@Model.Item.Fields.Title",
+    "alternativeHeadline": "@Model.Item.Fields.MetaTitle",
+    "image": "@ImageHelper.GetImageUrl(featureImage, "article")",
+    @*"author": "Patrick Coombe", // this must be implemented in order to be valid*@
+    @*"wordcount": "1120",*@
+    @*"publisher": "Book Publisher Inc", // this must be implemented in order to *@
+    "url": "@Model.Item.DefaultUrl",
+    "datePublished": "@Model.Item.GetDateTime("PublicationDate", "yyyy-MM-dd")",
+    "dateCreated": "@Model.Item.GetDateTime("PublicationDate", "yyyy-MM-dd")",
+    "dateModified": "@Model.Item.GetDateTime("LastModified", "yyyy-MM-dd")",
+    "description": "@Model.Item.Fields.Description",
+    "articleBody": "@textOnlyContent"
+    }
+</script>
+<div class="grid-x grid-margin-x c-article-detail">
+    <div class="cell medium-4 large-3 c-article-detail__aside">
+        <div class="c-article-detail__back">
+            @Html.ActionLink("Back to list", "", "DynamicContentController", null, new { @class = "c-article-detail__back-lnk" })
+        </div>
+        @*Start Category field*@
+        @if (Model.Item.Fields.Category != null)
+        {
+            var categories = Model.Item.GetHierarchicalTaxons("Category");
+            if (categories.Count > 0)
+            {
+                <div class="o-categories c-article__categories">
+                    <h3 class="o-categories__title show-for-sr">Categories</h3>
+                    <ul class="o-categories__list" @Html.InlineEditingFieldAttributes("Category", "HierarchicalTaxon")>
+                        @foreach (var taxon in categories)
+                        {
+                            var taxonUrl = HyperLinkHelpers.BuildTaxonQueryStringParams(taxon, "");
+                            <li class="o-categories__list-item">
+                                @* Need to sort out category links *@
+                                @*<a href="#" class="o-categories__item">@taxon.Title.ToString()</a>*@
+                                <span class="o-categories__item">@taxon.Title.ToString()</span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        }
+        @*End Category field*@
+        @{
+            if (Model.EnableSocialSharing)
+            {
+                <div class="o-social-share">
+                    <h3 class="o-social-share__hdg">Share</h3>
+                    @{
+                        var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
+                    }
+                    @Html.SocialShareOptions(item)
+                </div>
+            }
+        }
+    </div>
+    <div class="cell medium-auto">
+        <article class="c-article @Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
+            <header class="c-article__hdr">
+                @*@if (featureImage != null)
+                    {
+                        <div class="c-article__feat-img">
+                            @Html.ImgTag(featureImage, null, "art-detail").WithCssClass("c-article__feat-img")
+                        </div>
+                    }*@
+                <h1 class="c-article__title" @Html.InlineEditingFieldAttributes("Title", "ShortText")>
+                    @Model.Item.Fields.Title
+                </h1>
+                @*<ul class="o-item-info c-article__info">
+                        <li class="o-item-info__item">
+                            <span class="o-item-info__date-text u-show-for-sr">@Html.Resource("Published", "JxtAuthoringResources")</span>
+                            <time class="o-item-info__date" datetime="@Model.Item.GetDateTime("PublicationDate", "s")">@Model.Item.GetDateTime("PublicationDate", "MMMM d, yyyy")</time>
+                        </li>
+                        @if (!string.IsNullOrWhiteSpace(author))
+                        {
+                        <li class="o-item-info__item"><span class="o-item-info__auth-text">@Html.Resource("By", "JxtAuthoringResources")</span> <span class="o-item-info__auth">@author</span></li>
+                        }
+                        <li class="o-item-info__item o-item-info__comments-count">@Html.CommentsCount("", @Model.Item.DataItem)</li>
+                    </ul>*@
+            </header>
+
+            @*If in inline editing mode display descrption field so it can be edited. If description field is used within the detail view remove the if below. *@
+            @if (SystemManager.IsInlineEditingMode)
+            {
+                <div class="c-article__desc" @Html.InlineEditingFieldAttributes("Description", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Description)</div>
+            }
+            @*End Description field*@
+
+            @*Start Content field*@
+            <section class="c-article__body" @Html.InlineEditingFieldAttributes("Content", "LongText")>
+                <div class="c-article__content" @Html.InlineEditingFieldAttributes("Content", "LongText")>
+                    @Html.HtmlSanitize((string)Model.Item.Fields.Content)
+                </div>
+            </section>
+            @*End Content field*@
+
+            @*Start Images field*@
+            @if (images != null && images.Count > 1)
+            {
+                <div class="o-img-gallery c-article__img-gallery">
+                    <ul class="o-img-gallery__list">
+                        @foreach (var image in images)
+                        {
+                            <li class="o-img-gallery__list-item">
+                                <a href='@ImageHelper.GetImageUrl(image,"gal-lrg")' class="o-img-gallery__img-lnk">
+                                    @Html.ImgTag(image, null, "gal-sml").WithCssClass("o-img-gallery__img")
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+            @*End Images field*@
+
+            @*Start Tags field*@
+            @if (Model.Item.Fields.Tags != null)
+            {
+                var tags = Model.Item.GetFlatTaxons("Tags");
+                if (tags.Count > 0)
+                {
+                    <div class="o-tags c-article__tags">
+                        <h3 class="o-tags__title">Tags</h3>
+                        <ul class="o-tags__list" @Html.InlineEditingFieldAttributes("Tags", "FlatTaxon")>
+                            @foreach (var taxon in tags)
+                            {
+                                <li class="o-tags__list-item">
+                                    @* Need to sort out tag links *@
+                                    @*<a href="#" class="o-tags__item">@taxon.Title.ToString()</a>*@
+                                    <span class="o-tags__item">@taxon.Title.ToString()</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+            }
+            @*End Tags field*@
+            @*<section class="c-article__comments">
+                    @Html.CommentsList(@Model.Item.DataItem)
+                </section>*@
+        </article>
+    </div>
+</div>
+<hr>
+@{
+    var relatedItems = Model.Item.DataItem.GetItemsWithSameTaxons("Category", Model.ContentType.FullName, 0, 3);
+}
+@if (relatedItems != null)
+{
+    <section class="o-related o-related--articles">
+        <div class="grid-x grid-margin-x">
+            <div class="cell">
+                <h2 class="o-related__hdg">You might also like</h2>
+            </div>
+        </div>
+        <div class="c-article-grid grid-x grid-margin-x small-up-1 medium-up-2 large-up-3">
+            @foreach (var item in relatedItems)
+            {
+                var dynamicContent = (DynamicContent)item;
+
+                var clService = SystemManager.GetContentLocationService();
+                var location = clService.GetItemDefaultLocation(dynamicContent);
+                var itemImage = dynamicContent.GetRelatedItems<Image>("Images").FirstOrDefault();
+                <a href="@location.ItemAbsoluteUrl" class="cell c-article-grid__wrp">
+                    <article class="c-article-grid__item">
+                        @*Start feature image*@
+                        @if (itemImage != null)
+                        {
+                            <div class="c-article-grid__img-wrp">
+                                @Html.ImgTag(itemImage, null, "art-grid").WithCssClass("c-article-grid__img")
+                            </div>
+                        }
+                        @*End feature image*@
+                        <div class="c-article-grid__sum">
+                            @*
+                                @if (it != null)
+                                {
+                                    var categories = item.GetHierarchicalTaxons("Category");
+                                    if (categories.Count > 0)
+                                    {
+                                        <div class="o-categories c-article-grid__categories">
+                                            <ul class="o-categories__list">
+                                                @foreach (var taxon in categories)
+                                                {
+                                                    <li class="o-categories__list-item">
+                                                        <span class="o-categories__item">@taxon.Title.ToString()</span>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    }
+                                }*@
+                            <h3 class="c-article-grid__title">
+                                @dynamicContent.GetString("Title")
+                            </h3>
+                            <div class="c-article-grid__descr">@dynamicContent.GetString("Description")</div>
+                        </div>
+                    </article>
+                </a>
+            }
+        </div>
+    </section>
+}

@@ -1,0 +1,19 @@
+.button {
+  text-transform: uppercase;
+  vertical-align: bottom;
+
+  &.secondary
+  {
+    padding: 0.69em 2.51em;
+  }
+}
+
+
+p + .button {
+  margin-top: 1.25rem;
+}
+
+.l-button-center {
+  margin-left: auto;
+  margin-right: auto;
+}

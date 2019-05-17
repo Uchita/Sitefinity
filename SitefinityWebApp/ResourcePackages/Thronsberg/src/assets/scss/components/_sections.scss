@@ -1,0 +1,121 @@
+.l-section {
+  margin-top: rem-calc(46);
+  margin-bottom: rem-calc(34);
+}
+.l-section--values {
+  margin-bottom: rem-calc(72);
+}
+.l-section--lead {
+  margin-top: rem-calc(78);
+  margin-bottom: rem-calc(70);
+  text-align: center;
+
+  h1,
+  h2,
+  .h2 {
+    margin-bottom: rem-calc(31);
+  }
+
+  p {
+    margin-bottom: rem-calc(20);
+  }
+
+  .o-img-widget {
+    height: rem-calc(90);
+    width: auto;
+    margin: 0 auto;
+  }
+}
+
+.l-section--sub-lead {
+  padding-top: rem-calc(54);
+  padding-bottom: rem-calc(29);
+  text-align: center;
+  font-size: rem-calc(18);
+
+  h1,
+  h2,
+  .h2 {
+    margin-bottom: rem-calc(18);
+  }
+
+  .o-img-widget {
+    height: rem-calc(90);
+    width: auto;
+    margin: 0 auto;
+    max-width: rem-calc(133);
+  }
+}
+
+.l-section--lrg {
+  padding-top: rem-calc(68);
+  padding-bottom: rem-calc(52);
+  margin-bottom: rem-calc(78);
+}
+
+.l-section--min {
+  padding-top: rem-calc(16);
+  padding-bottom: rem-calc(16);
+}
+
+.l-section--mid
+{
+   margin-top: rem-calc(64);
+   margin-bottom: rem-calc(90);
+}
+
+.l-section--hdg {
+  $hdg-height: 330;
+  position: relative;
+
+  padding: 2rem 0;
+  @include flex;
+  @include flex-align(null, middle);
+  height: rem-calc($hdg-height * 0.75);
+
+  > * {
+    width: 100%;
+  }
+
+  @include headings-all {
+    margin-bottom: 0;
+  }
+
+  @include breakpoint(medium) {
+    height: rem-calc($hdg-height);
+  }
+  // @include breakpoint(large) {
+  //   height: rem-calc($hdg-height);
+  // }
+}
+
+.l-section--grey {
+  background-color: #f2f2f2;
+  padding-top: rem-calc(32);
+  padding-bottom: rem-calc(32);
+  font-size: rem-calc(18);
+
+  p,
+  ul {
+    margin-bottom: rem-calc(28);
+  }
+
+  .grid-container {
+    p:last-child, ul:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  + .l-section {
+    margin-top: rem-calc(50);
+    margin-bottom: rem-calc(30);
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+.l-section--testimony {
+  margin-top: rem-calc(50);
+  margin-bottom: rem-calc(50) !important;
+  padding-top: rem-calc(49) !important;
+  padding-bottom: rem-calc(25) !important;
+}

@@ -1,0 +1,21 @@
+@include headings-all {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+strong {
+  font-family: $avenir-medium;
+}
+
+.o-special-title {
+  font-family: $header-font-family;
+  text-transform: none;
+  font-size: rem-calc(28);
+  text-align: left;
+  margin-bottom: rem-calc(12);
+}
+
+.u-no-caps
+{
+   text-transform: none; 
+}

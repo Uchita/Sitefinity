@@ -1,0 +1,29 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+@using Telerik.Sitefinity.Frontend.Lists.Mvc.Models;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using JXTNext.Sitefinity.Media.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.RelatedData;
+<div class="@Model.CssClass">
+    @foreach (var item in Model.Items)
+    {
+        foreach (var listItem in ((ListViewModel)item).ListItemViewModel.Items)
+        {
+            var image = new Telerik.Sitefinity.Libraries.Model.Image();
+            var iconCssClass = string.Format("o-card__img o-card__img--{0}", listItem.Fields.Title);
+            <div class="cell" @Html.InlineEditingAttributes(Model.ProviderName, ((ListViewModel)item).ListItemViewModel.ContentType.FullName, (Guid)listItem.Fields.Id)>
+                <div class="card o-card--values">
+                    @Html.ImgTag((ItemViewModel)listItem.Fields.Image, (string)listItem.Fields.Title).WithCssClass(iconCssClass)
+                    <div class="card-section o-card__section">
+                        <hr>
+                        <h3 class="o-card__title" @Html.InlineEditingFieldAttributes("Title", "ShortText")>
+                            @listItem.Fields.Title
+                        </h3>
+                        <p class="o-card__body" @Html.InlineEditingFieldAttributes("Summary", "LongText")>@Html.HtmlSanitize((string)listItem.Fields.Summary)</p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

@@ -1,0 +1,7 @@
+.o-job-search-bar
+{
+    @include breakpoint(medium)
+    {
+        height: rem-calc(81);
+    }
+}

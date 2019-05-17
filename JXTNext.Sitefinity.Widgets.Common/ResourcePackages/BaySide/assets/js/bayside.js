@@ -214,7 +214,7 @@ $(document).ready(function () {
     });
     $("a.find-talent-close-form").click(function () {
         $('#talent-form').hide();
-        $('#our-rtalent-image').show();
+        $('#our-talent-image').show();
         $(this).hide();
         $('a.find-talent').show();
         setTimeout(function () {

@@ -41,17 +41,11 @@
 
     <p class="posted-date">
         @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy")
-        @Html.CommentsCount(string.Empty, @Model.Item.DataItem)
     </p>
 
     <h2 class="blog-title">@Model.Item.Fields.Title</h2>
 
-
-
-
-
     <div @Html.InlineEditingFieldAttributes("Summary", "LongText")><p>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</p></div>
-
 
 
     @{var imageurl = ""; }
@@ -78,7 +72,6 @@
 
     <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
 
-    @Html.CommentsList(@Model.Item.DataItem)
 </div>
 
 <div class="related-blog">

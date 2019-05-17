@@ -115,6 +115,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return sitefinityAppTime;
         }
 
+        [Obsolete("This method has been deprecated. Use SfPageHelper.GetPageUrlById instead.")]
         public static string GetPageUrl(string pageId)
         {
             string pageUrl = String.Empty;
@@ -130,12 +131,26 @@ namespace JXTNext.Sitefinity.Common.Helpers
                     // So removing the first character
                     if (pageNode != null)
                         pageUrl = pageNode.GetUrl().Substring(1);
+
+                    SiteSettingsHelper siteSettingsHelper = new SiteSettingsHelper();
+                    var cultureIsEnabled = siteSettingsHelper.GetCurrentSiteCultureIsEnabled();
+
+                    if (bool.TryParse(cultureIsEnabled, out bool output))
+                    {
+                        if (bool.Parse(cultureIsEnabled))
+                        {
+                            var targetCulture = Thread.CurrentThread.CurrentUICulture;
+                            var culture = CultureInfo.GetCultureInfo(targetCulture.Name);
+                            pageUrl = "/" + culture.Name + pageUrl;
+                        }
+                    }
                 }
             }
 
             return pageUrl;
         }
 
+        [Obsolete("This method has been deprecated. Use SfPageHelper.GetPageUrlById instead.")]
         public static string GetPageFullUrl(Guid pageId)
         {
             string pageFullUrl = String.Empty;
@@ -233,6 +248,19 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return firstName;
         }
 
+        public static string GetUserLastNameById(Guid userId)
+        {
+            var userManager = UserManager.GetManager();
+            User user = userManager.GetUser(userId);
+            UserProfileManager profileManager = UserProfileManager.GetManager();
+            SitefinityProfile profile = profileManager.GetUserProfile<SitefinityProfile>(user);
+            string lastName = "";
+            if (profile != null && profile.LastName != null)
+                lastName = profile.LastName;
+
+            return lastName;
+        }
+
         public static string GetUserFullNameById(Guid userId)
         {
             var userManager = UserManager.GetManager();
@@ -240,8 +268,12 @@ namespace JXTNext.Sitefinity.Common.Helpers
             UserProfileManager profileManager = UserProfileManager.GetManager();
             SitefinityProfile profile = profileManager.GetUserProfile<SitefinityProfile>(user);
             string fullName = "";
-            if (profile != null)
-                fullName = profile.FirstName + " "+ profile.LastName;
+
+            if (profile != null && profile.FirstName != null)
+                fullName = profile.FirstName;
+
+            if (profile != null && profile.LastName != null)
+                fullName += " "+ profile.LastName;
 
             return fullName;
         }

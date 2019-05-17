@@ -42,7 +42,8 @@
                                 <label class="form-label" for="userid">@Html.Resource("Email", "LoginFormResources")*</label>
                             </div>
                             <div class="col-md-8">
-                                <input id="userid" type="text" name="Email" class="form-control" required placeholder="Enter email address to begin" autocomplete="email" aria-describedby="email-verify-message" />
+                                <input id="userid" type="text" name="Email" class="form-control" required placeholder="@Html.Resource("JobApplicationTypeEmail", "JxtAuthoringResources")" autocomplete="email" aria-describedby="email-verify-message" />
+                                <small class="welcome-message hidden">@Html.Resource("DashboardWelcomeWidgetTitle", "DashboardResources")</small>
                             </div>
                         </div>
 
@@ -53,12 +54,12 @@
                                     <label for="regWith" class="radiobutton">
                                         <input id="regWith" type="radio" name="regOption" />
                                         <span class="radiobutton-icon fas fa-circle"></span>
-                                        <span class="text-right text-uppercase">Register with Hudson</span>
+                                        <span class="text-right text-uppercase">@Html.Resource("JobApplicationMethodRegister", "JxtAuthoringResources")</span>
                                     </label>
                                     <label for="haveAccount" class="radiobutton">
                                         <input id="haveAccount" type="radio" name="regOption" />
                                         <span class="radiobutton-icon fas fa-circle"></span>
-                                        <span class="text-right text-uppercase">I have an account</span>
+                                        <span class="text-right text-uppercase">@Html.Resource("JobApplicationMethodSignIn", "JxtAuthoringResources")</span>
                                     </label>
                                 </div>
 
@@ -74,12 +75,12 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <input id="firstname-reg" type="text" name="FirstName" class="form-control" placeholder="First name" aria-describedby="firstName-message" />
+                                        <input id="firstname-reg" type="text" name="FirstName" class="form-control" placeholder="@Html.Resource("FirstName", "JxtAuthoringResources")" aria-describedby="firstName-message" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <input type="text" id="lastname-reg" name="LastName" class="form-control" placeholder="Last name" aria-describedby="lastName-message" />
+                                        <input type="text" id="lastname-reg" name="LastName" class="form-control" placeholder="@Html.Resource("LastName", "JxtAuthoringResources")" aria-describedby="lastName-message" />
                                     </div>
                                 </div>
                             </div>
@@ -87,66 +88,69 @@
                             <div class="row form-group">
                                 <div class="col-md-3 text-right">
                                     <label class="form-label" for="PhoneNumber">
-                                        Phone Number
+                                        @Html.Resource("PhoneNumber", "JxtAuthoringResources")
                                     </label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="tel" id="PhoneNumber" name="PhoneNumber" pattern="@Html.Resource("regExpPhoneNumber", "Labels")" class="form-control input-medium" placeholder="Phone number" aria-describedby="phone-message" />
-                                    <span class="text-muted"><em>@Html.Resource("phoneValidationMsg", "Labels")
-                                         </em></span>
-                                </div>
+                                    <input type="tel" id="PhoneNumber" name="PhoneNumber" pattern="@Html.Resource("regExpPhoneNumber", "Labels")" class="form-control input-medium" placeholder="@Html.Resource("PhoneNumber", "JxtAuthoringResources")" aria-describedby="phone-message" />
+                                    <span class="text-muted">
+                                        <em>
+                                            @Html.Resource("phoneValidationMsg", "Labels")
+                                    </em>
+                                </span>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="row form-group">
-                            <div class="col-md-3 text-right">
-                                <label class="form-label" for="password-reg">@Html.Resource("Password", "Labels")*</label>
-                            </div>
-                            <div class="col-md-8">
-                                <input id="password-reg" type="password" name="Password" class="form-control input-medium" autocomplete="off" placeholder="Choose your password" aria-describedby="password-message" />
-                                <span class="hidden alert alert-danger error-message wrongPassword-message">
-                                    @Html.Resource("InvalidPassword", "ErrorMessages")
-                                </span>
-                                <span class="hidden alert alert-danger error-message emptyPassword-message">
-                                    @Html.Resource("PasswordCannotBeEmpty", "Labels")
-                                </span>
-                                <span id="password-guide" class="text-muted">
-                                    <em>@Html.Resource("passwordRequirementMsg", "Labels")</em>
-                                </span>
-                                <div id="forgot-password" class="form-group forgot-password hidden">
-                                    <a href="/sign-in/ForgotPassword/">@Html.Resource("ForgottenPasword", "LoginFormResources")</a>
-                                </div>
-
-                                <div class="form-group" id="rememberme-block">
-                                    <div class="checkbox clearfix">
-                                        <input checked="checked" id="RememberMe" name="RememberMe" type="checkbox" value="true">
-                                        <span class="checkbox-icon fas fa-check"></span>
-                                        @Html.Resource("RememberMe", "LoginFormResources")
-                                    </div>
-                                </div>
-
-                                <input type="button" id="sign-in-btn" class="form-group hidden btn btn-primary" data-jobid="@Model.JobId" value="@Html.Resource("JobApplicationSignIn", "JobApplicationResources")" />
-                            </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 text-right">
+                            <label class="form-label" for="password-reg">@Html.Resource("Password", "Labels")*</label>
                         </div>
+                        <div class="col-md-8">
+                            <input id="password-reg" type="password" name="Password" class="form-control input-medium" autocomplete="off" placeholder="Choose your password" aria-describedby="password-message" />
+                            <span class="hidden alert alert-danger error-message wrongPassword-message">
+                                @Html.Resource("InvalidPassword", "ErrorMessages")
+                            </span>
+                            <span class="hidden alert alert-danger error-message emptyPassword-message">
+                                @Html.Resource("PasswordCannotBeEmpty", "Labels")
+                            </span>
+                            <span id="password-guide" class="text-muted">
+                                <em>@Html.Resource("passwordRequirementMsg", "Labels")</em>
+                            </span>
+                            <div id="forgot-password" class="form-group forgot-password hidden">
+                                <a href="/sign-in/ForgotPassword/">@Html.Resource("ForgottenPasword", "LoginFormResources")</a>
+                            </div>
 
-                        <div class="row form-group reg-field hidden">
-                            <div class="col-md-3 text-right">
-                                <label class="form-label" for="ReTypePassword">@Html.Resource("ReTypePassword", "RegistrationResources")*</label>
+                            <div class="form-group" id="rememberme-block">
+                                <div class="checkbox clearfix">
+                                    <input checked="checked" id="RememberMe" name="RememberMe" type="checkbox" value="true">
+                                    <span class="checkbox-icon fas fa-check"></span>
+                                    @Html.Resource("RememberMe", "LoginFormResources")
+                                </div>
                             </div>
-                            <div class="col-md-8">
-                                <input id="ReTypePassword" type="password" name="ReTypePassword" class="form-control input-medium" placeholder="Retype your password" />
-                                <span id="password-guide-retype" class="text-muted">
-                                    <em>@Html.Resource("passwordRequirementMsg", "Labels")</em>
-                                </span>
-                                <div class='alert alert-danger error-message hidden'>@Html.Resource("ConfirmPasswordErrorMsg", "ErrorMessages")</div>
-                            </div>
+
+                            <input type="button" id="sign-in-btn" class="form-group hidden btn btn-primary" data-jobid="@Model.JobId" value="@Html.Resource("JobApplicationSignIn", "JobApplicationResources")" />
                         </div>
+                    </div>
 
+                    <div class="row form-group reg-field hidden">
+                        <div class="col-md-3 text-right">
+                            <label class="form-label" for="ReTypePassword">@Html.Resource("ReTypePassword", "RegistrationResources")*</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input id="ReTypePassword" type="password" name="ReTypePassword" class="form-control input-medium" placeholder="Retype your password" />
+                            <span id="password-guide-retype" class="text-muted">
+                                <em>@Html.Resource("passwordRequirementMsg", "Labels")</em>
+                            </span>
+                            <div class='alert alert-danger error-message hidden'>@Html.Resource("ConfirmPasswordErrorMsg", "ErrorMessages")</div>
+                        </div>
                     </div>
 
                 </div>
-                <div class="alert alert-info hidden" id="already-applied-info">@Html.Resource("JobAlreadyAppliedMsg", "Labels")</div>
-            }
+
+            </div>
+            <div class="alert alert-info hidden" id="already-applied-info">@Html.Resource("JobAlreadyAppliedMsg", "Labels")</div>
+        }
             <!-- Upload section -->
             <div class="upload-section">
 
@@ -155,182 +159,209 @@
 
                     var loginElemHide = "";
 
-                <div id="upload-files-container" hidden>
+                    <div id="upload-files-container" hidden>
 
 
-                    @if (ViewBag.IsUserLoggedIn)
-                    {
-                        loginElemHide = "hidden";
+                        @if (ViewBag.IsUserLoggedIn)
+                        {
+                            loginElemHide = "hidden";
 
-                        <div class="form-group row">
+                            <div class="form-group row">
+                                <label class="form-label col-xs-12 col-md-3 text-right"></label>
+                                <div class="col-xs-12 col-md-8">
+                                    <div class="list-group">
+                                        <label for="selectresume" class="radiobutton">
+                                            <input id="selectresume" type="radio" name="resume" class="checked" checked />
+                                            <span class="radiobutton-icon fas fa-circle"></span>
+                                            <span class="text-right">@Html.Resource("JobApplicationRadioStoredHudson", "JxtAuthoringResources")</span>
+                                        </label>
+                                        <label for="uploadresume" class="radiobutton">
+                                            <input id="uploadresume" type="radio" name="resume" />
+                                            <span class="radiobutton-icon fas fa-circle"></span>
+                                            <span class="text-right">@Html.Resource("JobApplicationRadioUploadResume", "JxtAuthoringResources")</span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label class="form-label col-xs-12 col-md-3 text-right"></label>
+                                <div class="col-xs-12 col-md-8">
+                                    <div class="list-group select">
+                                        @Html.DropDownList("MySavedResumes", (IEnumerable<SelectListItem>)ViewBag.ResumeList, new { @onchange = "ProcessSavedResume(this.value)" })
+                                    </div><!-- end box -->
+
+                                </div>
+                            </div>
+                        }
+
+                        <div class="form-group row" id="user-profile-resume" hidden>
                             <label class="form-label col-xs-12 col-md-3 text-right"></label>
                             <div class="col-xs-12 col-md-8">
                                 <div class="list-group">
                                     <label for="selectresume" class="radiobutton">
-                                        <input id="selectresume" type="radio" name="resume" class="checked" checked />
+                                        <input id="selectresume" type="radio" name="resume" checked />
                                         <span class="radiobutton-icon fas fa-circle"></span>
-                                        <span class="text-right">Select a resume stored on Hudson</span>
+                                        <span class="text-right">@Html.Resource("JobApplicationRadioStoredHudson", "JxtAuthoringResources")</span>
                                     </label>
                                     <label for="uploadresume" class="radiobutton">
                                         <input id="uploadresume" type="radio" name="resume" />
                                         <span class="radiobutton-icon fas fa-circle"></span>
-                                        <span class="text-right">Upload a resume</span>
+                                        <span class="text-right">@Html.Resource("JobApplicationRadioUploadResume", "JxtAuthoringResources")</span>
                                     </label>
                                 </div>
 
                             </div>
-                        </div>
-
-
-                        <div class="form-group row">
                             <label class="form-label col-xs-12 col-md-3 text-right"></label>
                             <div class="col-xs-12 col-md-8">
                                 <div class="list-group select">
-                                    @Html.DropDownList("MySavedResumes", (IEnumerable<SelectListItem>)ViewBag.ResumeList, new { @onchange = "ProcessSavedResume(this.value)" })
+                                    <select id="user-profile-resume-list"></select><!-- end box -->
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <!-- Resume -->
+                        <div class="form-group row" id="uploadresumeblock" @loginElemHide>
+                            <label class="form-label col-xs-12 col-md-3 text-right">@Html.Resource("JobApplicationUploadResume", "JxtAuthoringResources")</label>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="box clearfix">
+
+                                    <div class="uploadfield-wrap browse-upload">
+                                        <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
+
+                                        <small class="lbl">@Html.Resource("JobApplicationBrowse", "JxtAuthoringResources")</small>
+                                    </div>
+                                    @if (!Model.HideDropBox)
+                                    {
+                                        <div class="uploadfield-wrap dropbox-upload">
+                                            <button type="button" id="dropbox-resume-btn">Dropbox Resume</button>
+                                            <small class="lbl">@Html.Resource("JobApplicationDropbox", "JxtAuthoringResources")</small>
+                                        </div>
+                                    }
+
+                                    @if (!Model.HideGoogleDrive)
+                                    {
+                                        <div class="uploadfield-wrap google-drive-upload">
+                                            <button type="button" id="resume-google-drive-btn">Google Drive Resume</button>
+                                            <small class="lbl">@Html.Resource("JobApplicationGoogleDrive", "JxtAuthoringResources")</small>
+                                        </div>
+                                    }
+
+                                    <small class="note">@Html.Resource("UploadFileFormat", "Labels") <span>@Html.Resource("UploadFileSizeResume", "Labels")</span></small>
+                                    <span class="displayFileName resume-name"><span class="filewrap"></span></span>
                                 </div><!-- end box -->
 
                             </div>
                         </div>
-                    }
 
-                    <div class="form-group row" id="user-profile-resume" hidden>
-                        <label class="form-label col-xs-12 col-md-3 text-right"></label>
-                        <div class="col-xs-12 col-md-8">
-                            <div class="list-group">
-                                <label for="selectresume" class="radiobutton">
-                                    <input id="selectresume" type="radio" name="resume" checked />
-                                    <span class="radiobutton-icon fas fa-circle"></span>
-                                    <span class="text-right">Select a resume stored on Hudson</span>
-                                </label>
-                                <label for="uploadresume" class="radiobutton">
-                                    <input id="uploadresume" type="radio" name="resume" />
-                                    <span class="radiobutton-icon fas fa-circle"></span>
-                                    <span class="text-right">Upload a resume</span>
-                                </label>
+                        <!-- Coverletter -->
+                        <div class="form-group row">
+                            <label class="form-label col-xs-12 col-md-3 text-right">@Html.Resource("JobApplicationUploadCoverLetter", "JxtAuthoringResources")</label>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="box clearfix">
+
+                                    <div class="uploadfield-wrap browse-upload">
+                                        <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
+                                        <small class="lbl">@Html.Resource("JobApplicationBrowse", "JxtAuthoringResources")</small>
+                                    </div>
+                                    @if (!Model.HideDropBox)
+                                    {
+                                        <div class="uploadfield-wrap dropbox-upload">
+                                            <button type="button" id="dropbox-coverletter-btn">Dropbox Cover Letter</button>
+                                            <small class="lbl">@Html.Resource("JobApplicationDropbox", "JxtAuthoringResources")</small>
+                                        </div>
+                                    }
+                                    @if (!Model.HideGoogleDrive)
+                                    {
+                                        <div class="uploadfield-wrap google-drive-upload">
+                                            <button type="button" id="coverletter-google-drive-btn">Google Drive CoverLetter</button>
+                                            <small class="lbl">@Html.Resource("JobApplicationGoogleDrive", "JxtAuthoringResources")</small>
+                                        </div>
+                                    }
+
+                                    <small class="note">@Html.Resource("UploadFileFormat", "Labels") <span>@Html.Resource("UploadFileSizeCoverletter", "Labels")</span></small>
+                                    <span class="displayFileName coverletter-name"><span class="filewrap"></span></span>
+                                </div><!-- end box -->
                             </div>
-
                         </div>
-                        <label class="form-label col-xs-12 col-md-3 text-right"></label>
-                        <div class="col-xs-12 col-md-8">
-                            <div class="list-group select">
-                                <select id="user-profile-resume-list"></select><!-- end box -->
+
+                        <!-- Documents -->
+                        <div class="form-group row">
+                            <label class="form-label col-xs-12 col-md-3 text-right">@Html.Resource("JobApplicationUploadDocument", "JxtAuthoringResources")</label>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="box clearfix">
+
+                                    <div class="uploadfield-wrap browse-upload">
+                                        <input type="file" id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
+                                        <small class="lbl">Browse</small>
+                                    </div>
+                                    @if (!Model.HideDropBox)
+                                    {
+                                        <div class="uploadfield-wrap dropbox-upload">
+                                            <button type="button" id="dropbox-documents-btn">Dropbox Documents</button>
+                                            <small class="lbl">@Html.Resource("JobApplicationDropbox", "JxtAuthoringResources")</small>
+                                        </div>
+                                    }
+
+                                    @if (!Model.HideGoogleDrive)
+                                    {
+                                        <div class="uploadfield-wrap google-drive-upload">
+                                            <button type="button" id="documents-google-drive-btn">Google Drive Documents</button>
+                                            <small class="lbl">@Html.Resource("JobApplicationGoogleDrive", "JxtAuthoringResources")</small>
+                                        </div>
+                                    }
+
+                                    <small class="note">@Html.Resource("UploadFileFormat", "Labels") <span>@Html.Resource("UploadFileSizeDocument", "Labels")</span></small>
+                                    <span class="displayFileName documents-name"><span class="filewrap"></span></span>
+                                </div><!-- end box -->
                             </div>
-
                         </div>
-                    </div>
 
 
-                    <!-- Resume -->
-                    <div class="form-group row" id="uploadresumeblock" @loginElemHide>
-                        <label class="form-label col-xs-12 col-md-3 text-right">upload your resume*</label>
-                        <div class="col-xs-12 col-md-8">
-                            <div class="box clearfix">
+                        <input type="hidden" id="uploadResumeJson" name="UploadFilesResume" />
+                        <input type="hidden" id="uploadCoverLetterJson" name="UploadFilesCoverLetter" />
+                        <input type="hidden" id="uploadDocumentsJson" name="UploadFilesDocuments" />
+                        <input type="hidden" id="resume-selected-type" name="ResumeSelectedType" />
+                        <input type="hidden" id="coverletter-selected-type" name="CoverLetterSelectedType" />
+                        <input type="hidden" id="documents-selected-type" name="DocumentsSelectedType" />
+                        <input type="hidden" id="email-selected" name="Email" />
+                        <input type="hidden" id="jobid" name="JobId" value="@Model.JobId" />
+                        <input type="hidden" id="applicationemail" name="ApplicationEmail" value="@Model.ApplicationEmail" />
+                        <input type="hidden" id="contactdetails" name="ContactDetails" value="@Model.ContactDetails" />
+                        <input type="hidden" id="companyname" name="CompanyName" value="@ViewBag.CompanyName" />
+                        <input type="hidden" id="urlReferral" name="UrlReferral" value="@Model.UrlReferral" />
 
-                                <div class="uploadfield-wrap browse-upload">
-                                    <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
 
-                                    <small class="lbl">Browse</small>
+
+                        <div class="form-group button-wrapper row">
+                            <label class="col-xs-12 col-md-3"></label>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="checkbox clearfix">
+
+                                    <input name="privacypolicy" title="Please agree to Hudson's privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Please agree to Hudson\'s privacy policy');" type="checkbox" value="agree">
+                                    <span class="checkbox-icon fas fa-check"></span>
+                                    <a href="/privacy-policy" target="_blank">
+                                        @Html.Resource("PrivacyPolicyLbl", "Labels")
+                                    </a>
                                 </div>
-                                <div class="uploadfield-wrap dropbox-upload">
-                                    <button type="button" id="dropbox-resume-btn">Dropbox Resume</button>
-                                    <small class="lbl">Dropbox</small>
-                                </div>
-                                <div class="uploadfield-wrap google-drive-upload">
-                                    <button type="button" id="resume-google-drive-btn">Google Drive Resume</button>
-                                    <small class="lbl">Google Drive</small>
-                                </div>
-                                <small class="note">@Html.Resource("UploadFileFormat", "Labels") <span>@Html.Resource("UploadFileSizeResume", "Labels")</span></small>
-                                <span class="displayFileName resume-name"><span class="filewrap"></span></span>
-                            </div><!-- end box -->
-
-                        </div>
-                    </div>
-
-                    <!-- Coverletter -->
-                    <div class="form-group row">
-                        <label class="form-label col-xs-12 col-md-3 text-right">upload Cover Letter</label>
-                        <div class="col-xs-12 col-md-8">
-                            <div class="box clearfix">
-
-                                <div class="uploadfield-wrap browse-upload">
-                                    <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
-                                    <small class="lbl">Browse</small>
-                                </div>
-                                <div class="uploadfield-wrap dropbox-upload">
-                                    <button type="button" id="dropbox-coverletter-btn">Dropbox Cover Letter</button>
-                                    <small class="lbl">Dropbox</small>
-                                </div>
-                                <div class="uploadfield-wrap google-drive-upload">
-                                    <button type="button" id="coverletter-google-drive-btn">Google Drive CoverLetter</button>
-                                    <small class="lbl">Google Drive</small>
-                                </div>
-                                <small class="note">@Html.Resource("UploadFileFormat", "Labels") <span>@Html.Resource("UploadFileSizeCoverletter", "Labels")</span></small>
-                                <span class="displayFileName coverletter-name"><span class="filewrap"></span></span>
-                            </div><!-- end box -->
-                        </div>
-                    </div>
-
-                    <!-- Documents -->
-                    <div class="form-group row">
-                        <label class="form-label col-xs-12 col-md-3 text-right">upload document</label>
-                        <div class="col-xs-12 col-md-8">
-                            <div class="box clearfix">
-                                
-                                <div class="uploadfield-wrap browse-upload">
-                                    <input type="file" id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
-                                    <small class="lbl">Browse</small>
-                                </div>
-                                <div class="uploadfield-wrap dropbox-upload">
-                                    <button type="button" id="dropbox-documents-btn">Dropbox Documents</button>
-                                    <small class="lbl">Dropbox</small>
-                                </div>
-                                <div class="uploadfield-wrap google-drive-upload">
-                                    <button type="button" id="documents-google-drive-btn">Google Drive Documents</button>
-                                    <small class="lbl">Google Drive</small>
-                                </div>
-                                <small class="note">@Html.Resource("UploadFileFormat", "Labels") <span>@Html.Resource("UploadFileSizeDocument", "Labels")</span></small>
-                                <span class="displayFileName documents-name"><span class="filewrap"></span></span>
-                            </div><!-- end box -->
-                        </div>
-                    </div>
-
-
-                    <input type="hidden" id="uploadResumeJson" name="UploadFilesResume" />
-                    <input type="hidden" id="uploadCoverLetterJson" name="UploadFilesCoverLetter" />
-                    <input type="hidden" id="uploadDocumentsJson" name="UploadFilesDocuments" />
-                    <input type="hidden" id="resume-selected-type" name="ResumeSelectedType" />
-                    <input type="hidden" id="coverletter-selected-type" name="CoverLetterSelectedType" />
-                    <input type="hidden" id="documents-selected-type" name="DocumentsSelectedType" />
-                    <input type="hidden" id="email-selected" name="Email" />
-                    <input type="hidden" id="jobid" name="JobId" value="@Model.JobId" />
-                    <input type="hidden" id="applicationemail" name="ApplicationEmail" value="@Model.ApplicationEmail" />
-                    <input type="hidden" id="contactdetails" name="ContactDetails" value="@Model.ContactDetails" />
-                    <input type="hidden" id="companyname" name="CompanyName" value="@ViewBag.CompanyName" />
-                    <input type="hidden" id="urlReferral" name="UrlReferral" value="@Model.UrlReferral" />
-
-
-
-                    <div class="form-group button-wrapper row">
-                        <label class="col-xs-12 col-md-3"></label>
-                        <div class="col-xs-12 col-md-8">
-                            <div class="checkbox clearfix">
-
-                                <input name="privacypolicy" title="Please agree to Hudson's privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Please agree to Hudson\'s privacy policy');" type="checkbox" value="agree">
-                                <span class="checkbox-icon fas fa-check"></span>
-                                I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                                <input id="apply" type="submit" value="Apply Now" class="btn btn-block btn-primary" disabled />
                             </div>
-                            <input id="apply" type="submit" value="Apply Now" class="btn btn-block btn-primary" disabled />
+                        </div>
+
+                        <div class="hidden alert alert-danger error-message resume-message">
+                            @Html.Resource("UploadResumeErrorMsg", "ErrorMessages")
+                        </div>
+                        <div class="hidden alert alert-danger error-message resume-select-message">
+                            @Html.Resource("SelectResumeErrorMsg", "ErrorMessages")
+                        </div>
+                        <div class="hidden alert alert-danger error-message user-exist-message">
+                            @Html.Resource("UserWithThisUsernameExists", "SecurityResources")
                         </div>
                     </div>
-
-                    <div class="hidden alert alert-danger error-message resume-message">
-                        @Html.Resource("UploadResumeErrorMsg", "ErrorMessages")
-                    </div>
-                    <div class="hidden alert alert-danger error-message resume-select-message">
-                        @Html.Resource("SelectResumeErrorMsg", "ErrorMessages")
-                    </div>
-
-                </div>
                 }
                 else
                 {
@@ -393,63 +424,13 @@
     $("#documents-selected-type").val(documentsLetterSelectedType);
     $("#resume-selected-type").val(resumeSelectedType);
 
+    $('.welcome-message').addClass('hidden');
      // Password Strength
      var m_strUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
      var m_strLowerCase = "abcdefghijklmnopqrstuvwxyz";
      var m_strNumber = "0123456789";
      var m_strCharacters = "!@@#$%^&*?_~";
 
-    $("#haveAccount").change(function () {
-        $("#regWith").removeClass('checked');
-        $(this).addClass("checked");
-
-        //sing in process
-        $('#register').show();
-        $('#upload-files-container').hide();
-        $('#firstname-lastname').attr('hidden', 'true');
-        
-        $('#firstname-reg').prop('required', false);
-        $('#lastname-reg').prop('required', false);
-        $('#password-reg').removeAttr('pattern');
-        $('#password-reg').removeAttr('title');
-        $('#password-reg').prop('required', true);
-        $('#forgot-password').removeClass('hidden');
-        $('#rememberme-block').removeClass('hidden');
-        $('.reg-field').addClass('hidden');
-        $('#password-guide').addClass('hidden');
-        $('#password-reg').attr('placeholder', "Enter your password");
-        $('.loginwith_socialmedia').show();
-        $('#ReTypePassword').prop('required', false);
-        $('#sign-in-btn').removeClass('hidden');
-    });
-    $("#regWith").change(function () {
-        $("#haveAccount").removeClass('checked');
-        $(this).addClass("checked");
-
-        //showing registration form fields
-        $('#register').show();
-
-        $('#firstname-lastname').removeAttr('hidden');
-        $('#upload-files-container').show();
-        
-        $('#password-reg').prop('required', true);
-        $('#firstname-reg').prop('required', true);
-        $('#lastname-reg').prop('required', true);
-
-        $('#password-reg').prop('pattern', "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
-        $('#password-reg').prop('title', "Your password must contain at least one number, one uppercase and lowercase letter, and 8 or more characters.");
-
-        $('#password-guide').addClass('hidden');
-        
-        $('#strength-wrap').show();
-        $('#password-reg').attr('placeholder', "Choose your password").val('');
-        $('#forgot-password').addClass('hidden');
-        $('#rememberme-block').addClass('hidden');
-        $('.reg-field').removeClass('hidden');
-        $('.loginwith_socialmedia').hide();
-        $('#ReTypePassword').prop('required', true);
-        $('#sign-in-btn').addClass('hidden');
-    });
 
     $("#selectresume").change(function () {
         $("#uploadresumeblock").hide();
@@ -490,7 +471,7 @@
 
      $(document).ready(function () {
 
-
+         $('.sf-lang-selector').addClass('hidden');
          $('form').submit(function (e) {
              e.preventDefault();
              var self = this;
@@ -504,18 +485,46 @@
                  } else {
                      $(".resume-select-message").removeClass('hidden');
                  }
-                 
+
                  return false;
              } else {
                  fileUploadFlag = true;
              }
 
-             if ( appStatus == 'Available' && ( fileUploadFlag || registerForm) ) {
-                 //if (registerForm) {
-                     self.submit();
-                 //}
+             var emailId = $('#userid').val();
+             var valid = validateEmail(emailId);
+             var parm = { email: emailId };
 
+             var urlPath = $(location).attr('pathname') + "/CheckUser";
+             if (valid && !isUserLoggedIn) {
+                 $.ajax({
+                     type: 'POST',
+                     cache: false,
+                     url: urlPath,
+                     data: parm,
+                     dataType: 'Json',
+                     success: function (response) {
+                         if (response == true) {
+                             $('.user-exist-message').removeClass('hidden');
+                             return false;
+                         } else {
+                             //
+                             if (appStatus == 'Available' && (fileUploadFlag || registerForm)) {
+                                 //if (registerForm) {
+                                 self.submit();
+                                 //}
+                             }
+                         }
+                     }
+                 }); //end of ajax
+             } else {
+                 if (appStatus == 'Available' && (fileUploadFlag || registerForm)) {
+                     //if (registerForm) {
+                     self.submit();
+                     //}
+                 }
              }
+
          });
 
          if (appStatus == 'Available' && isUserLoggedIn == 'True') {
@@ -544,6 +553,7 @@
              if (checkUploadFileSize("resume", resumeSize) == false) { //2mb
                  $(".resume-name .filewrap").text('');
                  resumeFile.value = "";
+                 resumeSelectedType = "";
              } else {
                  $(".resume-name .filewrap").text(resumeBrowseName);
                  if (userLoggedInParamFromViewbag == 'True') {
@@ -555,8 +565,10 @@
                  //hiding the upload section icons
                  $(".resume-name").append('<span class="removeBtn">remove</span>');
                  $(this).parents('.box').addClass('hasFile');
+                 //hiding resume upload error message
+                 $(".resume-message, .resume-select-message").addClass('hidden');
              }
-            
+
         });
 
         $('#application-coverletter').change(function () {
@@ -565,10 +577,11 @@
             var coverletterFile = document.getElementById("application-coverletter");
             var coverletterBrowseName = coverletterFile.files[0].name;
             var coverletterSize = coverletterFile.files[0].size;
-            
+
             if (checkUploadFileSize("coverletter",coverletterSize) == false) { //0.5mb
                 $(".coverletter-name .filewrap").text('');
                 coverletterFile.value = "";
+                coverLetterSelectedType = "";
                 $(this).parent('.box').removeClass('hasFile');
             } else {
                 $(".coverletter-name .filewrap").text(coverletterBrowseName);
@@ -586,6 +599,7 @@
              if (checkUploadFileSize("document",docFileSize) == false) { //0.3mb
                  $(".documents-name .filewrap").text('');
                  docFile.value = "";
+                 documentsSelectedType = "";
              } else {
                  $(".documents-name .filewrap").text(docFileName);
                  $(".documents-name").append('<span class="removeBtn">remove</span>');
@@ -599,6 +613,7 @@
              curFile.find('.displayFileName .filewrap').text('');
              curFile.find('.displayFileName .removeBtn').remove();
              curFile.find('input[type="file"]').val('');
+             resumeSelectedType = "";
          });
 
          //on enter key on password field triggering sign in button click
@@ -624,6 +639,86 @@
              }
          }
 
+         $("#haveAccount").change(function () {
+             $("#regWith").removeClass('checked');
+             $(this).addClass("checked");
+
+             //sing in process
+             $('#register').show();
+             $('#upload-files-container').hide();
+             $('#firstname-lastname').attr('hidden', 'true');
+
+             $('#firstname-reg').prop('required', false);
+             $('#lastname-reg').prop('required', false);
+             $('#password-reg').removeAttr('pattern');
+             $('#password-reg').removeAttr('title');
+             $('#password-reg').prop('required', true);
+             $('#forgot-password').removeClass('hidden');
+             $('#rememberme-block').removeClass('hidden');
+             $('.reg-field').addClass('hidden');
+             $('#password-guide').addClass('hidden');
+             $('#password-reg').attr('placeholder', "Enter your password");
+             $('.loginwith_socialmedia').show();
+
+             $('#ReTypePassword').prop('required', false);
+             $('#sign-in-btn').removeClass('hidden');
+             $('.user-exist-message').addClass('hidden');
+         });
+         $("#regWith").change(function () {
+
+             $("#haveAccount").removeClass('checked');
+             $(this).addClass("checked");
+             //showing registration form fields
+             $('#register').show();
+
+             $('#firstname-lastname').removeAttr('hidden');
+             $('#upload-files-container').show();
+
+             $('#password-reg').prop('required', true);
+             $('#firstname-reg').prop('required', true);
+             $('#lastname-reg').prop('required', true);
+
+             $('#password-reg').prop('pattern', "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
+             $('#password-reg').prop('title', "Your password must contain at least one number, one uppercase and lowercase letter, and 8 or more characters.");
+
+             $('#password-guide').addClass('hidden');
+
+             $('#strength-wrap').show();
+             $('#password-reg').attr('placeholder', "Choose your password").val('');
+             $('#forgot-password').addClass('hidden');
+             $('#rememberme-block').addClass('hidden');
+             $('.reg-field').removeClass('hidden');
+             $('.loginwith_socialmedia').hide();
+             $('#ReTypePassword').prop('required', true);
+             $('#sign-in-btn').addClass('hidden');
+             $('.welcome-message').addClass('hidden');
+
+
+             var emailId = $('#userid').val();
+             var valid = validateEmail(emailId);
+             var parm = { email: emailId };
+
+             var urlPath = $(location).attr('pathname') + "/CheckUser";
+             if (valid) {
+                 $.ajax({
+                     type: 'POST',
+                     cache: false,
+                     url: urlPath,
+                     data: parm,
+                     dataType: 'Json',
+                     success: function (response) {
+                         if (response == true) {
+                             $('.welcome-message').removeClass('hidden');
+                             $("#haveAccount").trigger('click');
+                         } else {
+
+                             //
+                         }
+                     }
+                 }); //end of ajax
+             }
+         });
+
          //member sign in continue
          $('#sign-in-btn').click(function () {
              $('#password-reg').parent().find('.error-message.emptyPassword-message').addClass('hidden');
@@ -632,7 +727,7 @@
                  $('#password-reg').parent().find('.error-message.emptyPassword-message').removeClass('hidden');
                  return true;
              }
-             
+
 
              var jobId = $(this).data("jobid");
              var staySignedinFlag = $('#RememberMe').is(':checked') ? true : false;
@@ -665,7 +760,7 @@
                                  data: { jobId: jobId},
                                  dataType: 'Json',
                                  success: function (response) {
-                                     
+
                                      if (response.IsJobApplied == true) {
                                          $('#login-register-container').hide();
                                          $('#already-applied-info').removeClass('hidden');
@@ -673,7 +768,7 @@
                                      }
                                      else {
                                          //Show upload files section
-                                         
+
                                          $('#register').hide();
                                          $('#userid').attr('disabled', true);
                                          $('#apply').removeAttr('disabled');
@@ -715,15 +810,47 @@
         $('#userid').keyup(function () {
             var emailId = $(this).val();
             var valid = validateEmail(emailId);
-            var parm = { email: emailId };
-            var urlPath = $(location).attr('pathname') + "/CheckUser";
 
             if (valid) {
                 $(this).css('color', '#000');
             } else {
                 $(this).css('color', 'red');
             }
-        });
+         });
+
+         $('#userid').keydown(function (e) {
+             if (e.which == 13) { //only if enter key pressed
+
+                var emailId = $(this).val();
+                var valid = validateEmail(emailId);
+                var parm = { email: emailId };
+
+                var urlPath = $(location).attr('pathname') + "/CheckUser"
+
+                 if (valid) {
+                     $.ajax({
+                         type: 'POST',
+                         cache: false,
+                         url: urlPath,
+                         data: parm,
+                         dataType: 'Json',
+                         success: function (response) {
+                             if (response == true) {
+                                 $('.welcome-message').removeClass('hidden');
+                                 $("#haveAccount").trigger('click');
+                             } else {
+                                 $('.welcome-message').addClass('hidden');
+                                 $("#regWith").trigger('click');
+                             }
+                         }
+                     });
+
+                 } else {
+                     $('.welcome-message').addClass('hidden');
+                 }
+             }
+
+         });
 
          $('#password-reg').keyup(function () {
              if (registerForm) {
@@ -939,6 +1066,7 @@
                         $('#uploadResumeJson').val('');
                         $("#resume-selected-type").val('');
                         $(".resume-name .filewrap").text('');
+                        resumeSelectedType = "";
                     } else {
                         $('#application-resume').val('');
                         $('#uploadResumeJson').val(stringyModel);
@@ -952,6 +1080,8 @@
                         } else {
                             $("#user-profile-resume-list").val('0');
                         }
+                        //hiding resume upload error message
+                        $(".resume-message, .resume-select-message").addClass('hidden');
                     }
 
                 }
@@ -970,7 +1100,7 @@
                             $(".coverletter-name").append('<span class="removeBtn">remove</span>');
                             $(".coverletter-name").parents('.box').addClass('hasFile');
                         }
-                        
+
                     }
                     else {
                         documentsSelectedType = 'Dropbox';
@@ -986,7 +1116,7 @@
                             $(".documents-name").append('<span class="removeBtn">remove</span>');
                             $(".documents-name").parents('.box').addClass('hasFile');
                         }
-                        
+
                     }
                 }
 
@@ -1026,7 +1156,7 @@
                  uploadDocumentsModel.UrlPath = files[0].link;
                  uploadDocumentsModel.FileName = files[0].name;
                  var stringyModel = JSON.stringify(uploadDocumentsModel);
-                
+
                 documentsSelectedType = 'Dropbox';
 
                  if (checkUploadFileSize("document", files[0].bytes) == false) {
@@ -1236,6 +1366,7 @@
                         $('#uploadResumeJson').val('');
                         $("#resume-selected-type").val('');
                         $('.resume-name .filewrap').text('');
+                        resumeSelectedType = "";
                     } else {
                         $('#uploadResumeJson').val(stringyModel);
                         $('#application-resume').val('');
@@ -1248,6 +1379,8 @@
                         } else {
                             $("#user-profile-resume-list").val('0');
                         }
+                        //hiding resume upload error message
+                        $(".resume-message, .resume-select-message").addClass('hidden');
                     }
                 }
                 else {
@@ -1265,7 +1398,7 @@
                             $(".coverletter-name").append('<span class="removeBtn">remove</span>');
                             $(".coverletter-name").parents('.box').addClass('hasFile');
                         }
-                        
+
                     }
                     else {
                         documentsSelectedType = 'GoogleDrive';
@@ -1281,7 +1414,7 @@
                             $(".documents-name").append('<span class="removeBtn">remove</span>');
                             $(".documents-name").parents('.box').addClass('hasFile');
                         }
-                        
+
                     }
                 }
 

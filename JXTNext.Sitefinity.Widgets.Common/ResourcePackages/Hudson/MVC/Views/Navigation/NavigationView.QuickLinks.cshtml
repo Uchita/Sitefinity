@@ -1,11 +1,11 @@
 @model Telerik.Sitefinity.Frontend.Navigation.Mvc.Models.INavigationModel
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 @using Telerik.Sitefinity.Frontend.Navigation.Mvc.Models;
-@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web;
 
-<div class="quick-links quick-links-toggle active" data-quick-links-toggle="">QUICK LINKS<em class="fas fa-chevron-right"></em></div>
+<div class="quick-links quick-links-toggle active" data-quick-links-toggle="">@Html.Resource("QuickLinks", "Labels")<i class="fas fa-chevron-right"></i></div>
 <div class="quick-links quick-links-content" data-quick-links-content="">
-    <div class="quick-links-close" data-quick-links-close=""><em class="fas fa-times"></em></div>
+    <div class="quick-links-close" data-quick-links-close=""><i class="fas fa-times"></i></div>
     <ul class="list-unstyled">
         @foreach (var node in Model.Nodes)
         {
@@ -16,36 +16,7 @@
 
 @helper RenderRootLevelNode(NodeViewModel node)
 {
-    <li><a href="@node.Url"><em class="@GetClass(node)"></em>@node.Title</a></li>
-}
-
-@helper GetClass(NodeViewModel node)
-{
-var cssClass = "far ";
-
-switch (node.Title.ToLower())
-{
-    case "submit an inquiry":
-        cssClass += "fa-paper-plane";
-        break;
-    case "job seekers":
-    case "search":
-    case "advanced search":
-    case "job search":
-    case "search jobs":
-        cssClass = "fas fa-search";
-        break;
-    case "submit your cv":
-        cssClass += "fa-edit";
-        break;
-    case "job application":
-    case "job alert":
-        cssClass += "fa-bell";
-        break;
-    default:
-        cssClass = "fas fa-link";
-        break;
-}
-
-    @Html.Raw(cssClass);
+    var pageSiteNode = node.OriginalSiteMapNode as PageSiteNode;
+    var iconCssClass = pageSiteNode.GetCustomFieldValue("IconCssClass");
+    <li><a href="@node.Url"><i class="@iconCssClass"></i>@node.Title</a></li>
 }

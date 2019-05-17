@@ -13,5 +13,6 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Models.MemberAppliedJob
         public string DisplayTitle { get; set; }
         public DateTime DateAdded { get; set; }
         public string ClassificationURL { get; set; }
+        public string Culture { get; set; }
     }
 }

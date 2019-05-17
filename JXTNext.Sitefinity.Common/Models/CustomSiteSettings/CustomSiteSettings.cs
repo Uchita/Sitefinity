@@ -203,6 +203,22 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             }
         }
 
+        protected virtual TextField CultureIsEnabled
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("cultureIsEnabled", true);
+            }
+        }
+
+        protected virtual TextField JobCurrencySymbol
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("jobCurrencySymbol", true);
+            }
+        }
+
 
 
         #endregion

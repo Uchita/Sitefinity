@@ -47,3 +47,8 @@
 <sitefinity:TextField ID="instagramAccessToken" runat="server" DataFieldName="InstagramAccessToken" Title="Please Enter Instagram Access Token" CssClass="sfSettingsSection" DisplayMode="Write" />
 <sitefinity:TextField ID="instagramExpiration" runat="server" DataFieldName="InstagramExpiration" Title="Please Enter Instagram Expiration" CssClass="sfSettingsSection" DisplayMode="Write" />
 <sitefinity:TextField ID="instagramMaxItems" runat="server" DataFieldName="InstagramMaxItems" Title="Please Enter Instagram Max Items" CssClass="sfSettingsSection" DisplayMode="Write" />
+<br />
+
+<h3>Other settings</h3><br />
+<sitefinity:TextField ID="cultureIsEnabled" runat="server" DataFieldName="CultureIsEnabled" Title="Please Enter Culture Value" CssClass="sfSettingsSection" DisplayMode="Write" />
+<sitefinity:TextField ID="jobCurrencySymbol" runat="server" DataFieldName="JobCurrencySymbol" Title="The currency used in job views" CssClass="sfSettingsSection" DisplayMode="Write" />

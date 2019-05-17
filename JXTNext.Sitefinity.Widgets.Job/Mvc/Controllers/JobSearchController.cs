@@ -13,11 +13,14 @@ using JXTNext.Sitefinity.Common.Helpers;
 using Newtonsoft.Json;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using Telerik.Sitefinity.Taxonomies.Model;
+using System;
+using JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
     [EnhanceViewEngines]
-    [ControllerToolboxItem(Name = "JobSearch_MVC", Title = "Search", SectionName = "JXTNext.Job", CssClass = JobSearchController.WidgetIconCssClass)]
+    [Localization(typeof(JobSearchResources))]
+    [ControllerToolboxItem(Name = "JobSearch_MVC", Title = "Search", SectionName = "Jobs", CssClass = JobSearchController.WidgetIconCssClass)]
     public class JobSearchController : Controller
     {
         IBusinessLogicsConnector _BLConnector;
@@ -69,10 +72,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         // GET: JobSearch
         public ActionResult Index()
         {
-            
+
             // This is the CSS classes enter from More Options
+            // this needs to me moved to a viewmodel rather than ViewData
             ViewData["CssClass"] = this.CssClass;
-            ViewData["JobResultsPageUrl"] = SitefinityHelper.GetPageUrl(this.ResultsPageId);
+            ViewData["JobResultsPageUrl"] = SfPageHelper.GetPageUrlById(new Guid(ResultsPageId));
+            ViewData["AdvancedSearchPageUrl"] = SfPageHelper.GetPageUrlById(model.AdvancedSearchPageId);
 
             var jobSearchComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
             if(jobSearchComponents != null)

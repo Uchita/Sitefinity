@@ -33,10 +33,10 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-4 text-right">
-                                    <p class="form-label">Email*</p>
+                                    <p class="form-label">@Html.Resource("Email")*</p>
                                 </div>
                                 <div class="col-md-8">
-                                    @Html.TextBoxFor(u => u.UserName, new { @id = "userid", @class = "form-control", @placeholder = "Enter your email address" })
+                                    @Html.TextBoxFor(u => u.UserName, new { @id = "userid", @class = "form-control", @placeholder = Html.Resource("EmailCannotBeEmpty", "ErrorMessages") })
                                     @if (Html.ValidationMessage("UserName") != null)
                                     {
                                         <div class="has-error">
@@ -55,7 +55,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-8">
-                                    @Html.PasswordFor(u => u.Password, new { @class = "form-control", @placeholder = "Enter your password" })
+
+                                    @Html.PasswordFor(u => u.Password, new { @class = "form-control", @placeholder = Html.Resource("PasswordCannotBeEmpty", "Labels") })
                                     @if (Html.ValidationMessage("Password") != null)
                                     {
                                         <div class="has-error">
@@ -120,14 +121,10 @@
     else
     {
         <h2 class="color-highlight">@Html.Resource("AlreadyLoggedIn")</h2>
-        <p>
-            There&rsquo;s lots to discover so enjoy your journey!
-        </p>
-        <p>
-            <a href="/job-seekers/search-results">Job Search</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/">Back to home</a>
-        </p>
 
+
+        @Html.Raw(Html.Resource("AlreadyLoggedInMessage"))
     }
-</div>
+    </div>
 
 @Html.Script(Url.WidgetContent("Mvc/Scripts/LoginForm/login-form.js"), "bottom")

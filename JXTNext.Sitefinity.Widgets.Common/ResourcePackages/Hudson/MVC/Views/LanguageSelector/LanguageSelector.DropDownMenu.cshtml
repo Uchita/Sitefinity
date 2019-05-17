@@ -8,7 +8,9 @@
 
 <div class="@Model.CssClass sf-lang-selector">
     <label>
-        @Html.Resource("Language")
+        @Html.Resource("Language")</label>
+    <div class="header-top-links form-negative">
+        <div class="select">
         @if (SystemManager.IsDesignMode)
         {
             @:<select>
@@ -28,7 +30,7 @@
                 <option value="@language.Culture" @(language.Culture == Model.CurrentLanguage ? "selected=selected" : "")>@language.DisplayName</option>
             }
         </select>
-    </label>
+    </div></div>
 </div>
 
 @Html.Script(Url.WidgetContent("Mvc/Scripts/LanguageSelector/language-selector.js"), "bottom", false)

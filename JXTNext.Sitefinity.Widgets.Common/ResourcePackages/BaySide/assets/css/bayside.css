@@ -4966,6 +4966,16 @@ h4 {
     font-weight: 500;
 }
 
+h1 pre, h2 pre, h3 pre, h4 pre,
+pre.inheritParent{
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+    margin: 0;
+}
+
 .app-content li,
 p {
     font-size: 16px;
@@ -6185,6 +6195,7 @@ select.hs-input {
 /* ------App header__start------ */
 .app-header {
     padding-top: 15px;
+    background: white;
 }
 
     .app-header.inner-page {
@@ -6424,6 +6435,7 @@ select.hs-input {
 .navbar .navbar-nav .nav-link {
     color: #333132;
     font-size: 15px;
+    padding: 11px 0 20px;
 }
 
     .navbar .navbar-nav .nav-link:focus, .navbar .navbar-nav .nav-link.active, .navbar .navbar-nav li:hover > .nav-link, .top-menus .navbar-nav a:hover {

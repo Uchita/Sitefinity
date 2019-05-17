@@ -51,10 +51,11 @@ $(document).ready(function () {
         $('.left-sidebar').addClass('fadeInLeft wow');
     });
 
-    $(".toggle-btn").on("click", function (e) {
+    $(".toggle-btn, .read-less").on("click", function (e) {
         e.preventDefault();
         $($(this).attr("href")).slideToggle("slow");
     });
+
 
     $(".testimonial-carousel").owlCarousel({
         //margin: 20,

@@ -9,14 +9,14 @@
                     <h2 class="text-white wow fadeInUp">@Html.HtmlSanitize(Model.Heading)</h2>
                     if (!string.IsNullOrEmpty(Model.Description))
                     {
-                        <h2 class="text-white wow fadeInUp">@Html.HtmlSanitize(Model.Description)</h2>
+                        <h2 class="text-white wow fadeInUp"><pre>@Html.HtmlSanitize(Model.Description)</pre></h2>
                     }
                 }
                 else
                 {
                     if (!string.IsNullOrEmpty(Model.Description))
                     {
-                        <h2 class="text-white">@Html.HtmlSanitize(Model.Description)</h2>
+                        <h2 class="text-white"><pre>@Html.HtmlSanitize(Model.Description)</pre></h2>
                     }
                 }
 

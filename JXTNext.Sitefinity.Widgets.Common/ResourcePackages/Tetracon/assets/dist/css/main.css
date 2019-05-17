@@ -10245,9 +10245,14 @@ ul.breadcrumb {
 .page-wrapper .basic-form {
   margin-top: 50px; }
   .page-wrapper .basic-form .form-control {
-    color: #666666;
-    height: 35px;
-    border: 1px solid #666666; }
+    color: #7DC245;
+    height: 50px;
+    border: 1px solid #7DC245;
+    font-size: 18px; }
+    .page-wrapper .basic-form .form-control:hover {
+      outline: unset; }
+    .page-wrapper .basic-form .form-control .select:before {
+      color: #7DC245; }
   .page-wrapper .basic-form select {
     padding-left: 6px; }
   .page-wrapper .basic-form textarea {

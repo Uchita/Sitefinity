@@ -4,6 +4,10 @@
 
 @using JXTNext.Sitefinity.Common.Helpers
 
+@{
+    var hasLinkedIn = false;
+}
+
 @if (Model != null && Model.ApplyWithSocialMediaInfo != null)
 {
     var siteSettingsHelper = new SiteSettingsHelper();
@@ -16,7 +20,12 @@
                     switch (item.Title)
                     {
                         case "LinkedIn":
-                            <li><a href="#" class="btn btn-linkedin" target="_blank" title="@item.Title">@item.Title</a></li>
+
+                            hasLinkedIn = true;
+
+                            <li>
+                                <a href="javascript:;" class="btn btn-linkedin" data-linkedin-toggle="#linkedin-widget-holder" title="@item.Title">@item.Title</a>
+                            </li>
                             break;
 
                         case "Indeed":
@@ -66,6 +75,51 @@
                 }
 
             </ul>
+            @if (hasLinkedIn)
+            {
+                <div id="linkedin-widget-holder" class="linkedin-widget-holder clearfix" data-apply-url="@ViewBag.LinkedInApplyUrl" style="display: none;">
+                    <hr>
+
+                    <div class="linkedin-alerts"></div>
+
+                    <div name="widget-holder">
+                        @if (ViewBag.IsUserLoggedIn)
+                        {
+                            <script type="text/javascript"
+                                    src="https://www.linkedin.com/mjobs/awli/awliWidget">
+                            </script>
+                            <script type="IN/AwliWidget"
+                                    data-company-job-code="@Model.JobId"
+                                    data-integration-context="@ViewBag.CustomerIntegrationContext"
+                                    data-mode="BUTTON_DATA"
+                                    data-callback-method="onLinkedInProfileData"
+                                    data-api-key="@ViewBag.CustomerClientId"
+                                    data-allow-sign-in="true">
+                            </script>
+                            <script>
+                    function onLinkedInProfileData(profileData) {
+                        linkedInHandler.submitJobApplyData('#linkedin-widget-holder', @Model.JobId, profileData);
+                    }
+                            </script>
+                        }
+                        else
+                        {
+                            <p>
+                                <a href="@ViewBag.LinkedInSignInUrl" class="btn-linkedin-signin" title="Sign in with LinkedIn" data-widget-holder="#linkedin-widget-holder">
+                                    <img src="~/ResourcePackages/JXTDemo/assets/dist/images/sign-in-linkedin.svg" class="img-responsive" />
+                                </a>
+                            </p>
+
+                            <p class="small">
+                                By signing-in you agree to create an account with us if you don't have already.
+                                After sign-in you will be able to apply for the job.
+                            </p>
+                        }
+                    </div>
+
+                    <div class="linkedin-processing sf-loading" style="display: none;"></div>
+                </div>
+            }
         </div>
     </div>
 }
@@ -73,7 +127,7 @@
 
 <script type="text/javascript">
     var successPageUrl = '@ViewBag.SuccessPageUrl';
-    
+
     function OnIndeedCompleted() {
         location.href = successPageUrl;
     }

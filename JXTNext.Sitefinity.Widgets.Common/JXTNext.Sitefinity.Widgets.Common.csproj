@@ -286,6 +286,9 @@
     <Content Include="ResourcePackages\BaySide\assets\images\dark-transparent.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\BaySide\assets\images\dollar-icon.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\assets\images\doller.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -326,6 +329,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\BaySide\assets\images\linkkedinBtn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\BaySide\assets\images\location-icon.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\BaySide\assets\images\location.png">

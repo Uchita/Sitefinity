@@ -5152,7 +5152,7 @@ p .btn-link {
 
     .filter_sidebar .keywordfilter #selectedkeywordsfilter {
         width: 100%;
-        height: 45px;
+        height: 38px;
         border: 1px solid #D8D8D8;
         padding: 0 10px;
         border-radius: 5px;
@@ -5697,7 +5697,6 @@ p .btn-link {
     padding-bottom: 40px;
 }
 #internalJobs1 .owl-item .item {
-    position: relative;
     padding-bottom: 40px;
 }
 
@@ -8379,7 +8378,10 @@ select.hs-input {
         margin-top: 30px;
         display: none !important;
     }
-
+    .job-count h3{
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
     .jobs-list h2 {
         font-size: 20px;
         font-weight: 600;
@@ -9606,10 +9608,16 @@ select.hs-input {
         font-size: 12px;
     }
 
-    #dvResumeResults tbody tr td {
-        width: 33.33%;
+    .file-name-col{
         white-space: pre-wrap;
         word-break: break-all;
+        word-break: break-word;
+    }
+    .col-2btn-width{
+        width:165px;
+    }
+    .col-3btn-width {
+        width: 240px;
     }
 
     #dvResumeResults tbody tr td, #dvResumeResults thead tr th {
@@ -10208,36 +10216,40 @@ select.hs-input {
     .location-hover li,
     .location-text li {
         line-height: 1.4;
-        transition: all 500ms ease;
-        transform: scale(1);
     }
 
         .location-hover li img,
         .location-text img {
             width: 12px;
-            margin-top: -4px;
+            margin-top: -3px;
+            margin-right: 3px;
+            transition: all 1s ease;
         }
 
         .location-hover li:hover img,
         .location-text li:hover img {
-            transform: scale(1.3);
-            transition: all 500ms ease;
+            margin-top: -6px;
         }
 
         .location-hover li.clock-icon span,
         .location-text li.clock-icon span {
             border-radius: 50%;
-            border: 2px solid #333;
-            height: 14px;
-            width: 14px;
+            border: 1px solid #333;
+            height: 12px;
+            width: 12px;
             display: inline-block;
             line-height: 0.9;
             margin-right: 5px;
             padding: 0;
             overflow: hidden;
             position: relative;
-            top: 2px;
+            top: 1px;
             box-sizing: border-box;
+        }
+        .location-hover li.clock-icon img,
+        .location-text li.clock-icon img{
+            width: 10px;
+            margin-top: -3px;
         }
 
         .location-hover li.clock-icon:hover img,
@@ -10804,13 +10816,14 @@ select.hs-input {
 
     .slimtable-paging-seldiv {
         float: right;
+        font-size: 13px;
     }
 
     .slimtable-page-btn {
-        font-size: 14px;
-        line-height: 1.45;
+        font-size: 11px;
+        line-height: 1.35;
         display: inline-block;
-        padding: 0 8px;
+        padding: 3px 8px;
         border: 1px solid #0088CF;
         border-radius: 4px;
         margin-right: 3px;
@@ -10827,7 +10840,8 @@ select.hs-input {
         }
 
     select.slimtable-paging-select {
-        padding: 0;
+        font-size: 11px;
+        padding: 2px 0;
         margin-right: 5px;
         border-radius: 4px;
         outline: none !important;
@@ -10846,7 +10860,7 @@ select.hs-input {
         position: absolute;
         right: 5px;
         top: 50%;
-        margin-top: -10px;
+        margin-top: -9px;
     }
 
     .slimtable-sprites.slimtable-sortdesc::after {

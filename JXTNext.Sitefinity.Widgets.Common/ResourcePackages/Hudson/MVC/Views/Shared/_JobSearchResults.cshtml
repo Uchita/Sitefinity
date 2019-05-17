@@ -1,8 +1,10 @@
 ﻿@model dynamic
 @using Telerik.Sitefinity.Services;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
-@using JXTNext.Sitefinity.Common.Helpers
-
+@using JXTNext.Sitefinity.Common.Helpers;
+@{
+    var siteSettingsHelper = new SiteSettingsHelper();
+}
 
 @{
     var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
@@ -99,11 +101,11 @@
                     # if( CustomData["Salary.Filters[0].Min"] != 0 && CustomData["Salary.Filters[0].Max"] != 0 ){
                     if( CustomData["Salary.Filters[0].Min"] == CustomData["Salary.Filters[0].Max"] ){
                     #<span class="meta-salary">
-                        @Html.Resource("CurrencySymbol", "JxtAuthoringResources")#:CustomData["Salary.Filters[0].Max"]#<br />#
+                        @siteSettingsHelper.GetJobCurrencySymbol()#:CustomData["Salary.Filters[0].Max"]#<br />#
                         }
                         else{
                         #<span class="meta-salary">
-                            @Html.Resource("CurrencySymbol", "JxtAuthoringResources")#:CustomData["Salary.Filters[0].Min"]# - @Html.Resource("CurrencySymbol", "JxtAuthoringResources")#:CustomData["Salary.Filters[0].Max"]# <br />#
+                            @siteSettingsHelper.GetJobCurrencySymbol()#:CustomData["Salary.Filters[0].Min"]# - @siteSettingsHelper.GetJobCurrencySymbol()#:CustomData["Salary.Filters[0].Max"]# <br />#
                             }
                             #<span class="salary-label">#:CustomData["Salary.Filters[0].Value"]#</span>
                         </span><br />#

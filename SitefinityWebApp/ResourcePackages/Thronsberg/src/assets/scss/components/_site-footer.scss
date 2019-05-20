@@ -12,7 +12,7 @@
 
     &:hover, &:active
     {
-      color: scale-color($footer-font-colour, $lightness: -25%);
+      color: $anchor-color-hover;
     }
   }
 

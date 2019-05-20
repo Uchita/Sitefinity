@@ -3,6 +3,14 @@
   text-align: center;
 }
 
+a {
+  font-family: $avenir-medium;
+  &:active
+  {
+    color: $anchor-color-hover;
+  }
+}
+
 strong {
   font-family: $avenir-medium;
 }

@@ -5,6 +5,7 @@ $font-color: $body-font-color;
   a
   {
     color: $font-color;
+    font-family: $avenir-light;
 
     &:hover, &:active
     {
@@ -42,12 +43,14 @@ $font-color: $body-font-color;
     }
   }
 }
+
 .o-primary-nav {
   margin-top: rem-calc(12);
 
   a
   {
     color: $font-color;
+    font-family: $avenir-light;
 
     &:hover, &:active
     {

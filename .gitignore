@@ -209,8 +209,9 @@ project.lock.json
 # End of core ignore list, below put you custom 'per project' settings (patterns or path)
 #####
 SitefinityWebApp/JXTNext.Sitefinity.Widgets.Common.dll
-SitefinityWebApp/ResourcePackages*
-!SitefinityWebApp/ResourcePackages/Bootstrap/*
 SitefinityWebApp/App_Data_JXTNext/Sitefinity/
-SitefinityWebApp/App_Data/
 JXTNext.Sitefinity.Widgets.Common/JXTNext.Sitefinity.Widgets.Common.csproj
+SitefinityWebApp/App_Data/RadUploadTemp/
+SitefinityWebApp/ResourcePackages/Hudson/csslint.json
+SitefinityWebApp/ResourcePackages/Hudson/
+SitefinityWebApp/ResourcePackages/JXTDemo/

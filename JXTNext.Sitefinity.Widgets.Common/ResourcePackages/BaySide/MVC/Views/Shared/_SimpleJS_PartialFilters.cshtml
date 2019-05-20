@@ -72,6 +72,8 @@
         var isSlarySelected = false;
         var salary = { TargetValue: 'Salary', LowerRange: 15000, UpperRange: 300000 };
         var modelSalary = JSON.parse('@Html.Raw(Json.Encode(ViewBag.Salary))');
+        var tempKeyword = $("#selectedkeywordsfilter").val();
+        $("#selectedkeywordsfilter").val('').focus().val(tempKeyword);
 
         if (modelSalary != null && modelSalary != 'undefined') {
             $('.SalaryRangeSelect').val(modelSalary.TargetValue);
@@ -128,13 +130,16 @@
                     }
                 },
                 "value_changed_callback": function (cause, leftValue, rightValue) {
-                    $(this).parent().find('.leftLabel span').text(leftValue);
-                    $(this).parent().find('.rightLabel span').text(rightValue);
+                    if (!$(this).parent().hasClass('visible-hidden')) {
+                        $(this).parent().find('.leftLabel span').text(leftValue);
+                        $(this).parent().find('.rightLabel span').text(rightValue);
+                        if (cause != 'init') {
+                            isSalaryChanged = true;
+                        }
+                    }
                 }
             });
         });
-
-
 
         $('#selectedkeywordsfilter').on('keyup', function (e) {
             clearTimeout(typingTimer);
@@ -303,7 +308,14 @@
                 });
 
                 if (isSalaryExists && isSlarySelected) {
-                    filterModel.Salary = salary;
+                    //only if condition is true when other filters are selected/changed
+                    //in this case, salary is reset to defult & modelSalary will hold previous salary values
+                    if (modelSalary != null && modelSalary != undefined && isSalaryChanged == false && (modelSalary.LowerRange > salary.LowerRange || modelSalary.UpperRange < salary.UpperRange) && modelSalary.TargetValue == $('.SalaryRangeSelect').val()) {
+                        filterModel.Salary = modelSalary;
+                    }
+                    else {
+                        filterModel.Salary = salary;
+                    }
                 }
 
                 filterModel.Keywords = encodeURIComponent($("#selectedkeywordsfilter").val());
@@ -337,40 +349,40 @@
                     }
 
 
-                if (isSubCategory == true) {
-                    window.history.pushState(data, "", pushStateUrl);
-                    queryStringArr.length = 0;
-                    $.ajax({
-                        type: "POST",
-                        cache: false,
-                        url: urlPath,
-                        data: queryStringData,
-                        dataType: 'json',
-                        success: function (response) {
-                            $("#resultsPagePartialContent").empty().html(response.jobResults);
-                            $("#filtersPagePartialContent").empty().html(response.jobResultsFilter);
-                            processCustomFunction();
+                //if (isSubCategory == true) {
+                //    window.history.pushState(data, "", pushStateUrl);
+                //    queryStringArr.length = 0;
+                //    $.ajax({
+                //        type: "POST",
+                //        cache: false,
+                //        url: urlPath,
+                //        data: queryStringData,
+                //        dataType: 'json',
+                //        success: function (response) {
+                //            $("#resultsPagePartialContent").empty().html(response.jobResults);
+                //            $("#filtersPagePartialContent").empty().html(response.jobResultsFilter);
+                //            processCustomFunction();
 
-                            $('em.em-link').each(function (i, obj) {
-                                var href = $(this).attr('href');
-                                if (href != undefined && href != "") {
-                                    $(this).removeAttr('href');
-                                    var aHref = $(this).parent()
-                                    if (aHref != undefined && href != "")
-                                        $(aHref).attr('href', href);
-                                }
-                            });
-                        },
-                        error: function (response) {
-                            console.log(response);
-                        }
-                    });
-                }
-                else {
-                    window.location.href = '/jobs/advancedsearch/search-result' + "?" + queryStringData;
-                }
+                //            $('em.em-link').each(function (i, obj) {
+                //                var href = $(this).attr('href');
+                //                if (href != undefined && href != "") {
+                //                    $(this).removeAttr('href');
+                //                    var aHref = $(this).parent()
+                //                    if (aHref != undefined && href != "")
+                //                        $(aHref).attr('href', href);
+                //                }
+                //            });
+                //        },
+                //        error: function (response) {
+                //            console.log(response);
+                //        }
+                //    });
+                //}
+                //else {
+                //    window.location.href = '/job-seekers/search-results/job-application' + "?" + queryStringData;
+                //}
 
-                //window.location.href = '/jobs/advancedsearch/search-result' + "?" + queryStringData;
+                window.location.href = '/job-seekers/search-results/job-application' + "?" + queryStringData;
 
             }
         }

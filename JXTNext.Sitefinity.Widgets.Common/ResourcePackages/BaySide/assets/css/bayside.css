@@ -8,7 +8,6 @@
     --red: #ea232a;
     --dark: #414141;
 }
-
 /*@font-face {
         font-family: 'Proxima Nova';
         src: url("../fonts/web/proxima_nova_regular-webfont.eot") format("embedded-opentype"), url("../fonts/web/proxima_nova_regular-webfont.svg") format("svg"), url("../fonts/web/proxima_nova_regular-webfont.ttf") format("truetype"), url("../fonts/web/proxima_nova_regular-webfont.woff") format("woff");
@@ -5084,7 +5083,8 @@ p {
 
 .btn-outline-primary.active,
 .btn-outline-primary:focus,
-.btn-outline-primary:hover {
+.btn-outline-primary:hover,
+.btn-outline-primary:active {
     color: #fff;
     background-color: #0088CF;
 }

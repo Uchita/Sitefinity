@@ -1,0 +1,106 @@
+$font-color: $body-font-color;
+.o-mobile-nav {
+  margin-top: 1rem;
+
+  a
+  {
+    color: $font-color;
+    font-family: $avenir-light;
+
+    &:hover, &:active
+    {
+      color: scale-color($font-color, $lightness: -25%);
+    }
+  }
+
+  > .menu {
+    > li {
+      > a {
+        font-size: rem-calc(15);
+        text-transform: uppercase;
+        line-height: (18/15);
+      }
+    }
+  }
+  li
+  {
+    &.is-active
+    {
+      a
+      {
+        background-color: transparent;
+        color: $anchor-color-hover;
+      }
+    }
+  }
+  .nested {
+    font-size: rem-calc(14);
+    line-height: (18/14);
+    text-transform: capitalize;
+
+    li {
+      border-bottom: 1px $white solid;
+    }
+  }
+}
+
+.o-primary-nav {
+  margin-top: rem-calc(12);
+
+  a
+  {
+    color: $font-color;
+    font-family: $avenir-light;
+
+    &:hover, &:active
+    {
+      color: scale-color($font-color, $lightness: -25%);
+    }
+  }
+
+  > .menu {
+    > li {
+      > a {
+        font-size: rem-calc(15);
+        text-transform: uppercase;
+        line-height: (18/15);
+      }
+    }
+  }
+  .submenu {
+    li {
+      border-bottom: 1px $white solid;
+
+      &:first-child {
+        border-top: 1px solid $white;
+      }
+      a {
+        &:hover,
+        &:active {
+          background-color: #f2f2f2;
+        }
+      }
+    }
+
+    a {
+      font-size: rem-calc(14);
+      line-height: (18/14);
+      text-transform: capitalize;
+    }
+  }
+}
+.o-menu-item__login {
+  > a {
+    border: 1px solid $white;
+
+    &:hover,
+    &:active {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+  }
+}
+
+.o-menu-icon {
+  @include hamburger($color: $body-font-color, $color-hover: get-color(primary));
+  margin-right: 0.5rem;
+}

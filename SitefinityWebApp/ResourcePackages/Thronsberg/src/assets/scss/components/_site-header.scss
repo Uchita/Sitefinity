@@ -1,0 +1,110 @@
+
+.o-mobile-logo
+{
+  padding: rem-calc(12);
+  display: inline-block;
+
+  img
+  {
+    height: 2rem;
+  }
+}
+
+.c-home, .c-index
+{
+  .c-site-header
+  {
+    background-position: 50% 0;
+    background-size: 2564px auto;
+
+    // @include breakpoint(medium)
+    // {
+    //   background-size: 2564px auto;
+    // }
+  }
+}
+.c-site-header {
+  background: url("../img/prisms.svg") no-repeat  50% -52px;
+  background-size: 2096px auto;
+  margin-bottom: rem-calc(34);
+
+  // @include breakpoint(large)
+  // {
+  //   background-position: 50% -52px;
+  //   background-size: 2096px auto;
+  // }
+
+  &__logo-img {
+    height: rem-calc(37);
+    @include breakpoint(large) {
+      height: rem-calc(64);
+    }
+  }
+
+  &__lead {
+    padding-top: rem-calc(13);
+    padding-bottom: rem-calc(13);
+
+    @include breakpoint(large) {
+      padding-top: rem-calc(26);
+      padding-bottom: rem-calc(26);
+    }
+  }
+}
+
+.o-page-banner {
+  padding: rem-calc(10 0 36);
+  min-height: rem-calc(90);
+  @include flex;
+  @include flex-direction(column);
+  @include flex-align(center, middle);
+  text-align: center;
+
+  &__hdg {
+    text-transform: uppercase;
+    font-size: rem-calc(24);
+    line-height: (30/36);
+    font-family: $header-font-family;
+
+    @include breakpoint(medium)
+    {
+      font-size: rem-calc(36);
+    }
+  }
+}
+
+// Homepage adjustments
+.o-page-banner--home {
+  @extend .o-page-banner;
+  min-height: 60vh;
+
+  @include breakpoint(medium)
+  {
+    min-height: rem-calc(571);
+  }
+
+  .o-page-banner {
+    &__hdg {
+      font-size: rem-calc(30);
+      line-height: (70/60);
+      margin-bottom: rem-calc(27);
+      font-family: $body-font-family;
+      letter-spacing: 0.01em;
+
+      @include breakpoint(large) {
+        font-size: rem-calc(60);
+      }
+    }
+
+    &__desc {
+      font-size: rem-calc(22);
+      margin-bottom: rem-calc(33);
+      line-height: (43/36);
+      letter-spacing: 0.01em;
+
+      @include breakpoint(large) {
+        font-size: rem-calc(36);
+      }
+    }
+  }
+}

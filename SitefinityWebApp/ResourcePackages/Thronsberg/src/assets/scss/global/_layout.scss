@@ -1,0 +1,44 @@
+
+//Containers 
+.l-container--min
+{
+    @include xy-grid-container($width: rem-calc(900));
+}
+
+.l-container--sml
+{
+    @include xy-grid-container($width: rem-calc(917));
+}
+
+.l-container--med, .l-container--steps
+{
+    @include xy-grid-container($width: rem-calc(990));
+}
+
+// Misc
+.l-img-margins
+{
+    margin: rem-calc(56) auto;
+    display: block;
+}
+
+.l-std-margin
+{
+    margin-bottom: rem-calc(38);
+}
+
+.l-aside
+{
+    text-align: left;
+}
+
+.l-steps
+{
+    @include xy-grid();
+    //@include flex-align(center, top);
+    //@include xy-grid-layout(1, ".o-step", false, $gutters: rem-calc(8), $breakpoint: small);
+    @include breakpoint(medium)
+    {
+        @include xy-grid-layout(3, ".o-step", $gutters: rem-calc(8), $breakpoint: medium);
+    }
+}

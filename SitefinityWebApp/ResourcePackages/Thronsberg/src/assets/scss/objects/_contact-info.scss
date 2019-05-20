@@ -1,0 +1,46 @@
+.o-contact-info {
+  @include menu-base;
+  @include menu-simple(left, 0);
+  font-size: rem-calc(18);
+  list-style: none;
+  margin-left: 0;
+  text-align: left;
+  margin-bottom: $paragraph-margin-bottom;
+
+  @include breakpoint(medium)
+  {
+    @include menu-simple(left, rem-calc(40));
+  }
+
+  &__item {
+      margin-bottom: 0.5rem;
+
+      @include breakpoint(medium)
+      {
+          margin-bottom: 0;
+      }
+    }
+
+  &__label
+  {
+
+  }
+
+  &__txt
+  {
+
+  }
+
+  &__lnk {
+    img {
+      width: auto;
+      height: rem-calc(20);
+    }
+    &:hover,
+    &:active {
+      img {
+        opacity: 0.5;
+      }
+    }
+  }
+}

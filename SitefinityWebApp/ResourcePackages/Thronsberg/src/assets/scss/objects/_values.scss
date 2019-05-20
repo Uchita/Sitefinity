@@ -1,0 +1,118 @@
+.o-card--values {
+  border: 0;
+  margin-bottom: rem-calc(30);
+
+  hr {
+    border-bottom: 3px solid #6F0A1C;
+    margin: rem-calc(19) auto rem-calc(18);
+    max-width: rem-calc(124);
+  }
+  .o-card__section {
+    padding: 0 rem-calc(2) rem-calc(16);
+  }
+  .o-card__img {
+    max-height: rem-calc(103);
+    max-width: rem-calc(118);
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .o-card__title {
+    text-transform: none;
+    font-size: rem-calc(22);
+    margin-bottom: rem-calc(6);
+    font-family: $body-font-family;
+  }
+  .o-card__body {
+    text-align: center;
+    font-size: rem-calc(16);
+
+    @include breakpoint(medium only) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+.l-values {
+  margin-top: rem-calc(72);
+  @include flex-align(center);
+}
+
+.o-values-list {
+  margin-bottom: rem-calc(102);
+
+  &__item {
+    background-color: #f2f2f2;
+    padding-bottom: rem-calc(35);
+    padding-top: rem-calc(30);
+
+    &:nth-child(even) {
+      background-color: $white;
+    }
+  }
+  &__item-row
+  {
+    min-height: rem-calc(99);
+  }
+
+  &__img-cell
+  {
+    text-align: center;
+    margin-right: rem-calc(40) !important;
+    margin-bottom: 1rem;
+
+    @include breakpoint(medium)
+    {
+      margin-bottom: 0;
+    }
+  }
+
+  &__title-cell
+  {
+    @include xy-cell-base(auto);
+    margin-bottom: 1rem;
+
+    @include breakpoint(medium)
+    {
+      margin-bottom: 0;
+      @include xy-cell-base(shrink);
+      width: 142px !important;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    max-width: rem-calc(92);
+    max-height: rem-calc(103);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__title {
+    font-size: rem-calc(22);
+    text-transform: none;
+    margin-bottom: 0;
+    text-align: left;
+    text-align: center;
+
+    @include breakpoint(medium)
+    {
+      text-align: left;
+    }
+  }
+
+  &__txt {
+    font-size: rem-calc(18);
+    text-align: center;
+
+    @include breakpoint(medium) {
+      text-align: left;
+    }
+
+    *:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

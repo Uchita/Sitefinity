@@ -1,0 +1,86 @@
+.c-site-footer {
+  $footer-font-colour: $body-font-color;
+  background: url("../img/prisms.svg") no-repeat 50% 97%;
+  background-size: 2060px auto;
+  padding: rem-calc(41) 0 rem-calc(6);
+  margin-top: rem-calc(34);
+  color: $footer-font-colour;
+
+  a
+  {
+    color: $footer-font-colour;
+
+    &:hover, &:active
+    {
+      color: $anchor-color-hover;
+    }
+  }
+
+  &__logo
+  {
+    display: inline-block;
+  }
+
+  &__logo-img {
+    width: auto;
+    height: rem-calc(40);
+
+    @include breakpoint(medium) {
+      height: rem-calc(60);
+    }
+  }
+  &__tagline {
+    font-size: rem-calc(20);
+    text-transform: uppercase;
+
+    @include breakpoint(medium) {
+      font-size: rem-calc(28);
+    }
+    @include breakpoint(large) {
+      font-size: rem-calc(32);
+    }
+  }
+
+  &__legal {
+    margin-top: rem-calc(7);
+  }
+}
+
+.l-footer-cell:not(.l-footer-cell--email) {
+  @include vertically-center-text;
+}
+
+.l-footer-cell {
+  margin-bottom: 1rem;
+
+  @include breakpoint(medium) {
+    margin-bottom: rem-calc(38);
+  }
+}
+
+.o-legal-menu {
+  $side-margin: rem-calc(7);
+  @include menu-base;
+  @include menu-simple(left, $side-margin);
+  @include menu-align(center);
+  justify-content: center;
+  font-size: rem-calc(11);
+  line-height: (15/11);
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+
+  > li:not(:last-child):not(.o-legal-menu__copy) {
+
+    &:after {
+      content: "|";
+      display: inline;
+      margin-left: $side-margin;
+      position: relative;
+      top: rem-calc(-1);
+    }
+
+    > a {
+      line-height: (15/11);
+    }
+  }
+}

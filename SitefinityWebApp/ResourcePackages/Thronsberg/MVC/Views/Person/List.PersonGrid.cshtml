@@ -1,0 +1,61 @@
+﻿@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Modules.Libraries;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.RelatedData;
+@using Telerik.Sitefinity.Configuration;
+@using JXTNext.Sitefinity.Media.Mvc.Helpers;
+@{
+    var resolveAsAbsoluteUrl = Config.Get<SystemConfig>().SiteUrlSettings.GenerateAbsoluteUrls;
+}
+<div class="c-person-grid @Model.CssClass">
+    @foreach (var item in Model.Items)
+    {
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+        var profileImage = new Image();
+        // Get the feature image
+        if (item.Fields.Images != null)
+        {
+            profileImage = item.DataItem.GetRelatedItems<Image>
+                ("Images").FirstOrDefault();
+        }
+        <a href="@navigateUrl" class="c-person-grid__lnk">
+            <article class="c-person-grid__item">
+                @*Start feature image*@
+                @if (profileImage != null)
+                {
+                    <div class="c-person-grid__img-wrp">
+                        @Html.ImgTag(profileImage, (string)item.Fields.Name, "profile-gr").WithCssClass("c-person-grid__img")
+                    </div>
+                }
+                @*End feature image*@
+                <div class="c-person-grid__sum">
+                    <h3 class="c-person-grid__name")>
+                        @item.Fields.Name
+                    </h3>
+                    <h4 class="c-person-grid__position">
+                        @item.Fields.Position
+                    </h4>
+                    <div class="c-person-grid__desc">@item.Fields.Description</div>
+                </div>
+            </article>
+        </a>
+    }
+    @if (Model.ShowPager)
+    {
+        @Html.Action("Index", "ContentPager", new { currentPage = Model.CurrentPage,
+        totalPagesCount = Model.TotalPagesCount.Value,
+        redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate })
+    }
+</div>

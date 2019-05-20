@@ -1,0 +1,24 @@
+@model Telerik.Sitefinity.Frontend.Navigation.Mvc.Models.INavigationModel
+
+@using Telerik.Sitefinity.Web;
+@using Telerik.Sitefinity.Libraries.Model;
+@using JXTNext.Sitefinity.Media.Mvc.Helpers;
+
+<ul class="o-menu-square @Model.CssClass">
+    @foreach (var node in Model.Nodes)
+    {
+        var pageSiteNode = node.OriginalSiteMapNode as PageSiteNode;
+        var pageIcon = (Image)pageSiteNode.GetCustomFieldValue("PageIcon");
+        var iconClass = pageSiteNode.UrlName;
+        <li class="o-menu-square__item">
+            <a href="@node.Url" class="o-menu-square__lnk">
+                <div class="o-menu-square__img-wrp">
+                    @Html.ImgTag(pageIcon, node.Title).WithCssClass("o-menu-square__img o-icon--" + iconClass)
+                </div>
+                <div class="o-menu-square__txt">
+                    @node.Title
+                </div>
+            </a>
+        </li>
+    }
+</ul>

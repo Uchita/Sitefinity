@@ -1,0 +1,80 @@
+﻿@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.RelatedData;
+@using JXTNext.Sitefinity.Media.Mvc.Helpers;
+<div class="c-article-list @Model.CssClass">
+    @foreach (var item in Model.Items)
+    {
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+        var featureImage = new Image();
+        // Get the feature image
+        if (item.Fields.Images != null)
+        {
+            featureImage = item.DataItem.GetRelatedItems<Image>("Images").FirstOrDefault();
+        }
+        var author = String.Empty;
+        if (item.Fields.ArticleAuthor != null)
+        {
+            author = item.Fields.ArticleAuthor.Identifier;
+        }
+        <article class="c-article-list__item" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)item.Fields.Id)>
+            @*Start feature image*@
+            @if (featureImage != null)
+            {
+            <a href="@navigateUrl" class="c-article-list__img-wrp">
+                @Html.ImgTag(featureImage, null, "art-list").WithCssClass("c-article__feat-img")
+            </a>
+            }
+            @*End feature image*@
+            <div class="c-article-list__sum">
+                @*Start category list*@
+                @if (item.Fields.Category != null)
+                {
+                    var categories = item.GetHierarchicalTaxons("Category");
+                    if (categories.Count > 0)
+                    {
+                        <div class="o-categories c-article-list__categories">
+                            <ul class="o-categories__list">
+                                @foreach (var taxon in categories)
+                                {
+                                    <li class="o-categories__list-item">
+                                        @* Need to sort out category links *@
+                                        @*<a href="#" class="o-categories__item">@taxon.Title.ToString()</a>*@
+                                        <span class="o-categories__item">@taxon.Title.ToString()</span>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                }
+                @*End category list*@
+                <h3 class="c-article-list__title">
+                    <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">
+                        @item.Fields.Title
+                    </a>
+                </h3>
+                <ul class="o-item-info c-article-list__info">
+                    <li class="o-item-info__item">
+                        <span class="o-item-info__date-text u-show-for-sr">@Html.Resource("Published", "JxtAuthoringResources")</span>
+                        <time class="o-item-info__date" datetime="@item.GetDateTime("PublicationDate", "s")">@item.GetDateTime("PublicationDate", "MMMM d, yyyy")</time>
+                    </li>
+                    @if (!string.IsNullOrWhiteSpace(author))
+                    {
+                        <li class="o-item-info__item"><span class="o-item-info__auth-text">@Html.Resource("By", "JxtAuthoringResources")</span> <span class="o-item-info__auth">@author</span></li>
+                    }
+                    <li class="o-item-info__item o-item-info__comments-count">@Html.CommentsCount("", item.DataItem)</li>
+                </ul>
+                <div class="c-article-list__descr">@item.Fields.Description</div>
+            </div>
+        </article>
+    }
+    @if (Model.ShowPager)
+    {
+        @Html.Action("Index", "ContentPager", new { currentPage = Model.CurrentPage,
+                        totalPagesCount = Model.TotalPagesCount.Value,
+                        redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate })
+    }
+</div>

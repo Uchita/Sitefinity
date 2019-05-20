@@ -1,0 +1,18 @@
+.u-show-for-sr
+{
+    @extend .show-for-sr;
+}
+
+.u-no-labels
+{
+    label
+    {
+        @extend .show-for-sr;
+    }
+}
+
+.u-target
+{
+    position: absolute;
+    top: 0;
+}

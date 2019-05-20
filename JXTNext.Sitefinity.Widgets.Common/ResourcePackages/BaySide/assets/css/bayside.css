@@ -4866,6 +4866,12 @@ iframe{
     }
 
 }
+@media (max-width: 991px){
+    .app-content .col-xs-12 {
+        flex: auto;
+        max-width: 100%;
+    }
+}
 
 .app-content .sm-row,
 .app-footer .sm-row,
@@ -4966,6 +4972,16 @@ h4 {
     font-weight: 500;
 }
 
+h1 pre, h2 pre, h3 pre, h4 pre,
+pre.inheritParent{
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+    margin: 0;
+}
+
 .app-content li,
 p {
     font-size: 16px;
@@ -5026,7 +5042,8 @@ p {
 
     .btn-outline-white.active,
     .btn-outline-white:focus,
-    .btn-outline-white:hover {
+    .btn-outline-white:hover,
+    .btn-outline-white:active{
         color: #083a81;
         background-color: #fff;
         border-color: #fff;
@@ -5040,7 +5057,8 @@ p {
 
     .btn-bg-white.active,
     .btn-bg-white:focus,
-    .btn-bg-white:hover {
+    .btn-bg-white:hover,
+    .btn-bg-white:active {
         color: #fff;
         background-color: transparent;
         background-image: none;
@@ -5057,7 +5075,8 @@ p {
 
     .btn-outline-black.active,
     .btn-outline-black:focus,
-    .btn-outline-black:hover {
+    .btn-outline-black:hover,
+    .btn-outline-black:active {
         color: #fff;
         background-color: #333132;
         border-color: #333132;
@@ -5077,11 +5096,14 @@ p {
 }
 
     .btn-primary:focus,
-    .btn-primary:hover {
+    .btn-primary:hover,
+    .btn-primary:active{
         border-color: #3465B0;
         background-color: #3465B0;
     }
-.btn-primary-outline-hover .btn:hover{
+.btn-primary-outline-hover .btn:hover,
+.btn-primary-outline-hover .btn:focus,
+.btn-primary-outline-hover .btn:active {
     color: #0088CF;
     border-color: #0088CF;
     background: none;
@@ -5103,7 +5125,7 @@ p .btn-link {
     text-decoration: none;
 }
 
-    .btn-link:focus, .btn-link:hover {
+    .btn-link:focus, .btn-link:hover, .btn-link:active {
         color: #3465B0;
         text-decoration: none;
     }
@@ -5370,7 +5392,7 @@ p .btn-link {
         opacity: 0;
     }
 
-    .brand_blk:hover h4 {
+    a:hover .brand_blk h4 {
         transition: all 0.4s ease;
         -webkit-transition: all 0.4s ease;
         -moz-transition: all 0.4s ease;
@@ -5378,7 +5400,7 @@ p .btn-link {
         opacity: 0;
     }
 
-    .brand_blk:hover img {
+    a:hover .brand_blk img {
         transition: all 0.4s ease;
         -webkit-transition: all 0.4s ease;
         -moz-transition: all 0.4s ease;
@@ -5386,7 +5408,7 @@ p .btn-link {
         opacity: 1;
     }
 
-    .brand_blk:hover::before {
+    a:hover .brand_blk::before {
         opacity: 1;
         transition: all 0.4s ease;
         -webkit-transition: all 0.4s ease;
@@ -5596,6 +5618,15 @@ p .btn-link {
         background-repeat: no-repeat;
         background-attachment: fixed;
     }
+@media only screen and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+    .video-wrap .bgimg {
+        background-size: auto 100%;
+        background-attachment: scroll;
+        height: 100% !important;
+    }
+}
+
+
 
 #videoModal video {
     outline: none;
@@ -5603,6 +5634,9 @@ p .btn-link {
 
 .modal-open{
     padding-right:0 !important;
+}
+.modal-open .modal{
+    z-index: 10000!important;
 }
 
 #videoModal {
@@ -6185,6 +6219,7 @@ select.hs-input {
 /* ------App header__start------ */
 .app-header {
     padding-top: 15px;
+    background: white;
 }
 
     .app-header.inner-page {
@@ -6424,6 +6459,7 @@ select.hs-input {
 .navbar .navbar-nav .nav-link {
     color: #333132;
     font-size: 15px;
+    padding: 11px 0 20px;
 }
 
     .navbar .navbar-nav .nav-link:focus, .navbar .navbar-nav .nav-link.active, .navbar .navbar-nav li:hover > .nav-link, .top-menus .navbar-nav a:hover {
@@ -6867,9 +6903,17 @@ select.hs-input {
             height: 240px;
             min-height: 240px;
         }
+
     @media (max-width: 1024px) {
         .k-mobile .hero-banner {
             background-attachment: scroll;
+        }
+    }
+    @media only screen and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+        .hero-banner, .hero-banner-sm {
+            background-size: auto 100%;
+            background-attachment: scroll;
+            height: 100% !important;
         }
     }
     @media (max-width: 992px) {
@@ -7107,6 +7151,9 @@ select.hs-input {
         -moz-column-gap: 83px;
         column-gap: 83px;
     }
+    .content-two-colmun .btn{
+        margin-bottom: 30px;
+    }
 
     @media (max-width: 767px) {
         .content-two-colmun {
@@ -7193,6 +7240,7 @@ select.hs-input {
     @media (max-width: 991px) {
         .cta .align-items-center {
             height: auto;
+            min-height: 130px;
         }
     }
 

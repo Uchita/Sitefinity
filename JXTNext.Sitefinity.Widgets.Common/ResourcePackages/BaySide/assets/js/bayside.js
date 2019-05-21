@@ -24,7 +24,17 @@ $(document).ready(function () {
                 items: 3
                 //loop: false
             }
-        }
+         },
+         onInitialized: function () {
+             if ($(this)[0].settings.dots == true && $(this)[0].$element.find('.owl-dots .owl-dot').length < 2) {
+                 $(this)[0].$element.find('.owl-dots').hide();
+             }
+         },
+         onResize: function () {
+             if ($(this)[0].settings.dots == true && $(this)[0].$element.find('.owl-dots .owl-dot').length > 1) {
+                 $(this)[0].$element.find('.owl-dots').show();
+             }
+         }
     });
     }
 
@@ -54,6 +64,12 @@ $(document).ready(function () {
     $(".toggle-btn, .read-less").on("click", function (e) {
         e.preventDefault();
         $($(this).attr("href")).slideToggle("slow");
+    });
+
+    //to have hover/click state on tablet or touch device
+    $("a").bind("touchstart", function (e) {
+        $('a').removeClass('active');
+        $(this).addClass('active');
     });
 
 

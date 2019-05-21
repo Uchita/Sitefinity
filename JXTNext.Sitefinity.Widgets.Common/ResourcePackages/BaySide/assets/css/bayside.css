@@ -8865,7 +8865,7 @@ select.hs-input {
 
         .upload-section .uploadfield-wrap::before {
             content: "\f07c";
-            color: #2e2e2e;
+            color: #404040;
             font-family: 'FontAwesome';
             font-weight: 900;
             font-size: 3rem;
@@ -8883,7 +8883,7 @@ select.hs-input {
 
         .upload-section .uploadfield-wrap.google-drive-upload::before {
             content: '';
-            background: url('../images/google-drive-48.png') no-repeat;
+            background: url('../images/google-drive.svg') no-repeat;
             height: 46px;
             width: 48px;
             display: block;

@@ -301,6 +301,9 @@
     <Content Include="ResourcePackages\BaySide\assets\images\google-drive-48.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\BaySide\assets\images\google-drive.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\assets\images\Home-Page-Hero-Image.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

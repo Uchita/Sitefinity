@@ -5843,8 +5843,10 @@ p .btn-link {
 
 
 .fadeInUp.wow-big-ht {
-    -webkit-animation-duration: 1.2s;
-    animation-duration: 1.2s;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: ease;
+    animation-fill-mode: ease;
 }
 
 #listView img.float-right {
@@ -7290,7 +7292,7 @@ select.hs-input {
     @media (max-width: 991px) {
         .cta .align-items-center {
             height: auto;
-            min-height: 130px;
+            min-height: 150px;
         }
     }
 
@@ -7557,6 +7559,7 @@ select.hs-input {
             max-width: 495px;
             float: right;
             padding-right: 40px;
+            padding-left: 15px;
         }
     }
 

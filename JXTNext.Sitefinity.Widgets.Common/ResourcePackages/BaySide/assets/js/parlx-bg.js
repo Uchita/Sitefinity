@@ -19,9 +19,9 @@
     		height: "100vh"
   		});
 
-      const scrolled = $(window).scrollTop() - backImage.parent().offset().top;
+        const scrolled = backImage.parent().offset().top - $(window).scrollTop() - backImage.height();
 
-      backImage.css({"background-position": "center center", "transform": "translateY(" + speed * scrolled + "px)"});
+      backImage.css({"background-position": "center top", "transform": "translateY(" + speed * scrolled + "px)"});
     });
   }
 })(jQuery);

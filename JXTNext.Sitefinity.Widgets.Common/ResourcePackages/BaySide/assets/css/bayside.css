@@ -5636,7 +5636,6 @@ p .btn-link {
         top: 0px;
         left: 0px;
         z-index: -1;
-        background-position: top center !important;
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -5655,7 +5654,6 @@ p .btn-link {
         height: 100% !important;
     }
 }
-
 
 
 #videoModal video {
@@ -5843,6 +5841,11 @@ p .btn-link {
     animation-name: fadeInRight;
 }
 
+
+.fadeInUp.wow-big-ht {
+    -webkit-animation-duration: 1.2s;
+    animation-duration: 1.2s;
+}
 
 #listView img.float-right {
     width: 111px;

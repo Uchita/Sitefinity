@@ -10333,13 +10333,20 @@ select.hs-input {
             width: 12px;
             margin-top: -3px;
             margin-right: 3px;
-            transition: all 1s ease;
+            transition: all 300ms ease;
         }
 
         .location-hover li:hover img,
         .location-text li:hover img {
-            margin-top: -6px;
+            margin-top: -8px;
         }
+        .location-hover li:hover img.dollar,
+        .location-text li:hover img.dollar {
+            margin-top: -3px;
+            transform: scale(1.2);
+        }
+        
+
 
         .location-hover li.clock-icon span,
         .location-text li.clock-icon span {
@@ -10365,7 +10372,6 @@ select.hs-input {
         .location-hover li.clock-icon:hover img,
         .location-text li.clock-icon:hover img {
             transform: rotate(360deg) !important;
-            transition: all 500ms ease;
         }
 
 
@@ -10515,6 +10521,7 @@ select.hs-input {
         font-size: 14px !important;
         font-weight: 400;
         margin-top: 9px;
+        margin-bottom: 15px;
         display: inline-block !important
     }
 
@@ -10543,11 +10550,7 @@ select.hs-input {
                 right: -15px;
                 transition: all 500ms ease;
             }
-    @media (max-width:991px){
-        .new-serch {
-            margin-bottom: 15px;
-        }
-    }
+ 
 
     #resultsPagePartialContent .new-serch a:after {
         top: 10px;

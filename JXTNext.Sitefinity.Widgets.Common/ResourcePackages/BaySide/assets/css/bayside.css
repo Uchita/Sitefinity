@@ -5848,6 +5848,12 @@ p .btn-link {
     -webkit-animation-fill-mode: ease;
     animation-fill-mode: ease;
 }
+.fadeInUp.wow-big-ht-3s {
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+    -webkit-animation-fill-mode: ease;
+    animation-fill-mode: ease;
+}
 
 #listView img.float-right {
     width: 111px;

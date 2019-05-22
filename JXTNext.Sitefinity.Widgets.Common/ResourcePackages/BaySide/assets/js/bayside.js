@@ -99,16 +99,21 @@ $(document).ready(function () {
             }
         }
     });
-
-    if ($(".location-hover li").length) {
-        $(".location-hover li").each(function () {
-            if ($(this).find('div').text().trim() == "") {
-                $(this).hide();
-            }
-        });
+    function checkEmptyJobData() {
+        if ($(".location-hover li").length) {
+            $(".location-hover li").each(function () {
+                if ($(this).find('div').text().trim() == "") {
+                    $(this).hide();
+                }
+            });
+        }
     }
+    checkEmptyJobData(); // for job detail page
 
-
+    $(document).ajaxComplete(function () {
+        checkEmptyJobData(); // for job board page
+    });
+    
 
     if ($(".save-job-wrapper").length) {
         if ($(".save-job-wrapper").text()=='') {

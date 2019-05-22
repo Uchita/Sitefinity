@@ -5636,13 +5636,14 @@ p .btn-link {
         top: 0px;
         left: 0px;
         z-index: -1;
+        width: 100%;
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
     }
 @media only screen and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
     .video-wrap .bgimg {
-        background-size: auto 100%;
+        background-size: 100%;
         background-attachment: scroll;
         height: 100% !important;
     }

@@ -72,11 +72,15 @@ else
 <script>
 
     (function ($) {
-        $(window).on("load resize scroll", function () {
-            $('.bgimg').parlx(function () {
-                speed: 0.1
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false) {
+          
+            $(window).on("load resize scroll", function () {
+                $('.bgimg').parlx(function () {
+                    speed: 0.1
+                });
             });
-        });
+        }
+        
 
         autoPlayYouTubeModal();
 

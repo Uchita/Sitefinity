@@ -21,7 +21,7 @@
 
         const scrolled = backImage.parent().offset().top - $(window).scrollTop() - backImage.height();
 
-      backImage.css({"background-position": "center top", "transform": "translateY(" + speed * scrolled + "px)"});
+      backImage.css({"background-position": "center 30vh", "transform": "translateY(" + speed * scrolled + "px)"});
     });
   }
 })(jQuery);

@@ -1170,6 +1170,18 @@
     <Content Include="SampleTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
     </Content>
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release Dev.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release Staging.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Jxt.Sitefinity.Jobs\Jxt.Sitefinity.Jobs.csproj">

@@ -104,8 +104,8 @@
                                                 <div class="leftGrip"></div>
                                                 <div class="rightGrip"></div>
                                             </div>
-                                            <div class="leftLabel">$<span>@lower</span></div>
-                                            <div class="rightLabel">$<span>@upper</span></div>
+                                            <div class="leftLabel">@Html.Raw(siteSettingsHelper.GetJobCurrencySymbol())<span>@lower</span></div>
+                                            <div class="rightLabel">@Html.Raw(siteSettingsHelper.GetJobCurrencySymbol())<span>@upper</span></div>
 
                                         </div>
                                     }

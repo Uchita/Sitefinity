@@ -391,5 +391,156 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             }
         }
         #endregion
+
+        #region LinkedIn
+        /// <summary>
+        /// Gets or sets the LinkedIn client id
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("linkedInClientId")]
+        [DescriptionResource(typeof(ConfigDescriptions), "LinkedInClientId")]
+        [DataMember]
+        public virtual String CurrentLinkedInClientId
+        {
+            get
+            {
+                return (String)this["linkedInClientId"];
+            }
+            set
+            {
+                this["linkedInClientId"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the LinkedIn client secret.
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("linkedInClientSecret")]
+        [DescriptionResource(typeof(ConfigDescriptions), "LinkedInClientSecret")]
+        [DataMember]
+        public virtual String CurrentLinkedInClientSecret
+        {
+            get
+            {
+                return (String)this["linkedInClientSecret"];
+            }
+            set
+            {
+                this["linkedInClientSecret"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the LinkedIn customer client id.
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("linkedInCustomerClientId")]
+        [DescriptionResource(typeof(ConfigDescriptions), "LinkedInCustomerClientId")]
+        [DataMember]
+        public virtual String CurrentLinkedInCustomerClientId
+        {
+            get
+            {
+                return (String)this["linkedInCustomerClientId"];
+            }
+            set
+            {
+                this["linkedInCustomerClientId"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the LinkedIn customer client secret.
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("linkedInCustomerClientSecret")]
+        [DescriptionResource(typeof(ConfigDescriptions), "LinkedInCustomerClientSecret")]
+        [DataMember]
+        public virtual String CurrentLinkedInCustomerClientSecret
+        {
+            get
+            {
+                return (String)this["linkedInCustomerClientSecret"];
+            }
+            set
+            {
+                this["linkedInCustomerClientSecret"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the LinkedIn customer integration context.
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("linkedInCustomerIntegrationContext")]
+        [DescriptionResource(typeof(ConfigDescriptions), "LinkedInCustomerIntegrationContext")]
+        [DataMember]
+        public virtual String CurrentLinkedInCustomerIntegrationContext
+        {
+            get
+            {
+                return (String)this["linkedInCustomerIntegrationContext"];
+            }
+            set
+            {
+                this["linkedInCustomerIntegrationContext"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the LinkedIn social handler url.
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("linkedInSocialHandlerUrl")]
+        [DescriptionResource(typeof(ConfigDescriptions), "LinkedInSocialHandlerUrl")]
+        [DataMember]
+        public virtual String CurrentLinkedInSocialHandlerUrl
+        {
+            get
+            {
+                return (String)this["linkedInSocialHandlerUrl"];
+            }
+            set
+            {
+                this["linkedInSocialHandlerUrl"] = value;
+            }
+        }
+        #endregion
+
+        [ConfigurationProperty("cultureIsEnabled")]
+        [DescriptionResource(typeof(ConfigDescriptions), "CultureIsEnabled")]
+
+        [DataMember]
+        public virtual String CurrentCultureIsEnabled
+        {
+            get
+            {
+                return (String)this["cultureIsEnabled"];
+            }
+            set
+            {
+                this["cultureIsEnabled"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the name of the time zone.
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("jobCurrencySymbol")]
+        [DescriptionResource(typeof(ConfigDescriptions), "JobCurrencySymbol")]
+        [DataMember]
+        public virtual String JobCurrencySymbol
+        {
+            get
+            {
+                return (String)this["jobCurrencySymbol"];
+            }
+            set
+            {
+                this["jobCurrencySymbol"] = value;
+            }
+        }
     }
 }

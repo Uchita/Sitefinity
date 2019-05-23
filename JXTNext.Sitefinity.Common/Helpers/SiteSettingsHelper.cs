@@ -23,7 +23,16 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 _siteSettingsContract = (CustomSiteSettingsContract)siteSetting.Item;
         }
 
-         public string GetCurrentSiteGoogleClientId()
+        public string GetCurrentSiteCultureIsEnabled()
+        {
+            string cultureIsEnabled = "";
+            if (this._siteSettingsContract != null)
+                cultureIsEnabled = this._siteSettingsContract.CultureIsEnabled;
+
+            return cultureIsEnabled;
+        }
+
+        public string GetCurrentSiteGoogleClientId()
         {
             string googleClentId = "";
             if (this._siteSettingsContract != null)
@@ -149,6 +158,8 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return indeedClientSecret;
         }
 
+        
+
         public string GetCurrentSiteInstagramClientIdToken()
         {
             string instagramClientIdToken = String.Empty;
@@ -202,7 +213,59 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return instagramMaxItems;
         }
 
+        public string GetCurrentSiteLinkedInClientId()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInClientId;
+        }
 
+        public string GetCurrentSiteLinkedInClientSecret()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInClientSecret;
+        }
+
+        public string GetCurrentSiteLinkedInCustomerClientId()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInCustomerClientId;
+        }
+
+        public string GetCurrentSiteLinkedInCustomerClientSecret()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInCustomerClientSecret;
+        }
+
+        public string GetCurrentSiteLinkedInCustomerIntegrationContext()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInCustomerIntegrationContext;
+        }
+
+        public string GetCurrentSiteLinkedInSocialHandlerUrl()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInSocialHandlerUrl;
+        }
+
+        public string GetJobCurrencySymbol()
+        {
+            var currencySymbol = "$";
+
+            if(this._siteSettingsContract != null && !this._siteSettingsContract.JobCurrencySymbol.IsNullOrEmpty())
+            {
+                currencySymbol = this._siteSettingsContract.JobCurrencySymbol;
+            }
+
+            return currencySymbol;
+        }
 
         private const string _itemType = "JXTNext.Sitefinity.Common.Models.CustomSiteSettings.CustomSiteSettingsContract";
         private CustomSiteSettingsContract _siteSettingsContract = null;

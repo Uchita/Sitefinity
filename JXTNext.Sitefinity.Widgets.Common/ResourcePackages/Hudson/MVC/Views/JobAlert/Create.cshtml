@@ -1,5 +1,6 @@
 ﻿@model dynamic
-@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using System;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 
 @Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
 @Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.js"), "bottom")
@@ -15,8 +16,8 @@
 
     @if (Model != null)
     {
-        <h2><span class="alert-icon far fa-bell"></span>Create job alert</h2>
-        <h3>Alert details</h3>
+        <h2><span class="alert-icon far fa-bell"></span>@Html.Resource("CreateJobAlert")</h2>
+        <h3>@Html.Resource("AlertDetails")</h3>
         <form method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();">
             @{
                 int counter = 0;
@@ -26,7 +27,7 @@
                 <div class="alert alert-danger filter-madatory-message hidden">@Html.Resource("nofilterselectedmessage", "Labels")</div>
                 <div class="row form-group">
                     <div class="col-md-4 text-right">
-                        <label for="name">Job alert name*</label>
+                        <label for="name">@Html.Resource("AlertName")</label>
                     </div>
                     <div class="col-md-8">
                         <input type="text" name="Name" id="name" required class="form-control" />
@@ -34,7 +35,7 @@
                 </div>
                 <div class="row form-group">
                     <div class="col-md-4 text-right">
-                        <label for="keywords">Keywords</label>
+                        <label for="keywords">@Html.Resource("Keywords")</label>
                     </div>
                     <div class="col-md-8">
                         <input type="text" name="Keywords" id="keywords" class="form-control" value="@Model.Keywords" />
@@ -82,7 +83,7 @@
                             <div class="col-md-8">
                                 <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden" />
                                 <select class="SalaryRangeSelect form-control">
-                                    <option value="-1" selected>Choose Salary</option>
+                                    <option value="-1" selected>@Html.Resource("ChooseSalary")</option>
                                     @foreach (var salaryItem in item.Filters)
                                     {
                                         <option value="@salaryItem.ID">@salaryItem.Label</option>
@@ -94,19 +95,19 @@
                                     var upper = salaryItem.Filters[0].Value;
                                     if (salaryItem.Label != "NA")
                                     {
-                                    <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
+                                        <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
 
-                                        <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
-                                             data-cur_min="@lower" data-cur_max="@upper">
+                                            <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
+                                                 data-cur_min="@lower" data-cur_max="@upper">
 
-                                            <div class="bar"></div>
-                                            <div class="leftGrip"></div>
-                                            <div class="rightGrip"></div>
+                                                <div class="bar"></div>
+                                                <div class="leftGrip"></div>
+                                                <div class="rightGrip"></div>
+                                            </div>
+                                            <div class="leftLabel">$<span>@lower</span></div>
+                                            <div class="rightLabel">$<span>@upper</span></div>
+
                                         </div>
-                                        <div class="leftLabel">$<span>@lower</span></div>
-                                        <div class="rightLabel">$<span>@upper</span></div>
-
-                                    </div>
                                     }
 
                                 } @*end of for each*@
@@ -121,15 +122,17 @@
                         <div class="checkbox clearfix">
                             <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid='this.setCustomValidity("@privacyErrMsg")'>
                             <span class="checkbox-icon fas fa-check"></span>
-                            I agree to Tetracon's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                            <a href="/privacy-policy" target="_blank">
+                                @Html.Resource("PrivacyPolicyLbl", "Labels")
+                            </a>
                         </div>
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-4 text-right"></div>
                     <div class="col-md-8">
-                        <input id="create-job-alert-submit-btn" type="submit" value="SAVE" class="btn btn-primary" />
-                        <a href="/user-dashboard" class="btn btn-black">Cancel</a>
+                        <input id="create-job-alert-submit-btn" type="submit" value="@Html.Resource("Save")" class="btn btn-primary" />
+                        <a href="/user-dashboard" class="btn">@Html.Resource("Cancel")</a>
                     </div>
                 </div>
             </div>
@@ -178,7 +181,7 @@
                 modelSalary = value.Value;
             }
         });
-        
+
         if (modelSalary != null && modelSalary != 'undefined') {
             salary = modelSalary;
             isSlarySelected = true;
@@ -192,7 +195,7 @@
                 $(salarySliderEle).data("cur_max", modelSalary.UpperRange);
             }
         }
-   
+
 
         $('select').on('change', function () {
             isSlarySelected = false;
@@ -240,7 +243,7 @@
             });
         });
 
-        //especiallyy for mobile, sliders are not taking the full width / the correct values 
+        //especiallyy for mobile, sliders are not taking the full width / the correct values
         //also when changing orientation the width slider width remains same
         $(window).resize(function () {
             $('.nstSlider').each(function (i, obj) {
@@ -250,14 +253,14 @@
 
         var isUserMember = false;
         isUserMember = '@ViewBag.IsMemberUser';
-    
+
         if (isUserMember == false || isUserMember == 'False' ) {
              $('#create-job-alert-submit-btn').prop('disabled', true);
         }
-        
+
         var filterData = JSON.parse('@Html.Raw(Json.Encode(Model.Filters))');
         if (model != null && model != "undefined" && filterData != null && filterData != "undefined") {
-           
+
             $.each(filterData, function (index, item) {
                 var displayTitle = item.Name;
                 if (displayTitle == 'CountryLocationArea')

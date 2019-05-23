@@ -72,8 +72,7 @@
         var isSlarySelected = false;
         var salary = { TargetValue: 'Salary', LowerRange: 15000, UpperRange: 300000 };
         var modelSalary = JSON.parse('@Html.Raw(Json.Encode(ViewBag.Salary))');
-        var tempKeyword = $("#selectedkeywordsfilter").val();
-        $("#selectedkeywordsfilter").val('').focus().val(tempKeyword);
+
 
         if (modelSalary != null && modelSalary != 'undefined') {
             $('.SalaryRangeSelect').val(modelSalary.TargetValue);
@@ -249,17 +248,19 @@
                 $("#" + prefixIdText + item.Name).DropDownTree(optionsArray[prefixIdText + item.Name]);
             });
 
+            setTimeout(function () {
+                var array = $('#hdnClassifcationValues').val();
 
-            var array = $('#hdnClassifcationValues').val();
-
-            if (array != null && array != "") {
-                array = JSON.parse(array);
-                //console.table(array);
-                for (var i = 0; i < array.length; i++) {
-                    $('#' + array[i] + '> a').addClass('active');
-                    $('#' + array[i] + '> i').removeClass('fa-square-o').addClass('fa-check-square-o');
+                if (array != null && array != "") {
+                    array = JSON.parse(array);
+                    //console.table(array);
+                    for (var i = 0; i < array.length; i++) {
+                        $('#' + array[i] + '> a').addClass('active');
+                        $('#' + array[i] + '> i').removeClass('fa-square-o').addClass('fa-check-square-o');
+                    }
                 }
-            }
+            }, 1000);
+            
 
             //onpage load checking if any filter is selected
             function checkFilterCheck() {

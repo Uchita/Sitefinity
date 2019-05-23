@@ -111,7 +111,7 @@
                                 <div class="col-12 col-lg-4">
                                     @foreach (var childNode in parentNode.ChildNodes)
                                     {
-                                        if (childNode.Url == "/specialist-recruitment/our-industries")
+                                        if (childNode.Url == "/our-industries")
                                         {
                                             <a title="@ContentHelper.FindPageNodeType(childNode.Url)" target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">@childNode.Title</a>
                                             <ul>
@@ -154,7 +154,7 @@
                                     @foreach (var childnode in parentNode.ChildNodes)
                                     {
 
-                                        if (childnode.Url == "/job/advancedsearch")
+                                        if (childnode.Url == "/advancedsearch")
                                         {
                                             <a title="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">Job Search</a>
                                             <ul>

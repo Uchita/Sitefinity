@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
@@ -94,8 +95,11 @@
     <Reference Include="Autofac.Integration.WebApi, Version=3.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.WebApi2.3.4.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
-    <Reference Include="AWSSDK, Version=2.3.52.0, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
-      <HintPath>..\packages\AWSSDK.2.3.52.0\lib\net45\AWSSDK.dll</HintPath>
+    <Reference Include="AWSSDK.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.Core.3.3.101.4\lib\net45\AWSSDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK.S3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.S3.3.3.101.11\lib\net45\AWSSDK.S3.dll</HintPath>
     </Reference>
     <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.2.2.2\lib\net40-client\CsvHelper.dll</HintPath>
@@ -109,8 +113,8 @@
     <Reference Include="DirectShowLib-2005, Version=2.1.0.0, Culture=neutral, PublicKeyToken=67e7b740cdfc2d3f, processorArchitecture=MSIL">
       <HintPath>..\packages\DirectShowLib-2005.2.1.0.0\lib\DirectShowLib-2005.dll</HintPath>
     </Reference>
-    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\DocumentFormat.OpenXml.1.0\lib\DocumentFormat.OpenXml.dll</HintPath>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="Elasticsearch.Net, Version=5.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
       <HintPath>..\packages\Elasticsearch.Net.5.5.0\lib\net46\Elasticsearch.Net.dll</HintPath>
@@ -127,8 +131,8 @@
     <Reference Include="HtmlSanitizer, Version=3.0.0.0, Culture=neutral, PublicKeyToken=61c49a1a9e79cc28, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlSanitizer.3.4.156\lib\net45\HtmlSanitizer.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlToOpenXml, Version=1.6.0.0, Culture=neutral, PublicKeyToken=6ad79d83e2b60e63, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlToOpenXml.1.6.1\lib\net40\HtmlToOpenXml.dll</HintPath>
+    <Reference Include="HtmlToOpenXml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=6ad79d83e2b60e63, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlToOpenXml.dll.2.0.0\lib\net46\HtmlToOpenXml.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -141,6 +145,9 @@
     </Reference>
     <Reference Include="IdentityServer3.AccessTokenValidation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
       <HintPath>..\packages\Progress.Sitefinity.IdentityServer3.AccessTokenValidation.1.3.0\lib\net45\IdentityServer3.AccessTokenValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="JXT.JXTNext.Common.FileManager, Version=0.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXT.JXTNext.Common.FileManager.0.0.2\lib\netstandard2.0\JXT.JXTNext.Common.FileManager.dll</HintPath>
     </Reference>
     <Reference Include="LinqToTwitter, Version=2.1.9.0, Culture=neutral, PublicKeyToken=957107be965c25d9, processorArchitecture=MSIL">
       <HintPath>..\packages\linqtotwitterNET40.2.1.9.0\lib\net40\LinqToTwitter.dll</HintPath>
@@ -181,8 +188,8 @@
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Data.Edm, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -273,10 +280,6 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=2.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Sitefinity.Windows.Azure.2.0.0.4\lib\net40\Microsoft.WindowsAzure.Diagnostics.dll</HintPath>
     </Reference>
@@ -360,35 +363,15 @@
       <HintPath>JXTInternal_Dependencies\System.Activities.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.AppContext, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.AppContext.4.3.0\lib\net463\System.AppContext.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.3.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
-    <Reference Include="System.Diagnostics.TraceSource, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Diagnostics.TraceSource.4.3.0\lib\net46\System.Diagnostics.TraceSource.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Diagnostics.Tracing, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Diagnostics.Tracing.4.3.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Globalization.Calendars, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.20622.1351, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.2.206221351\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
@@ -398,68 +381,27 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
-    </Reference>
     <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Compression.ZipFile.4.3.0\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.IO.FileSystem, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.IO.Packaging, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Packaging.4.4.0\lib\net46\System.IO.Packaging.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Linq, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Linq.4.3.0\lib\net463\System.Linq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Linq.Expressions.4.3.0\lib\net463\System.Linq.Expressions.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.IO.Packaging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.0.0\lib\net46\System.IO.Packaging.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
-    <Reference Include="System.Net.Http, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Net.Http.4.3.3\lib\net46\System.Net.Http.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
-    <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Reflection, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Caching" />
-    <Reference Include="System.Runtime.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.Extensions.4.3.0\lib\net462\System.Runtime.Extensions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Runtime.InteropServices, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.InteropServices.4.3.0\lib\net463\System.Runtime.InteropServices.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Runtime.Serialization">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -497,10 +439,6 @@
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.RegularExpressions.4.3.0\lib\net463\System.Text.RegularExpressions.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Web" />
@@ -565,10 +503,6 @@
     <Reference Include="System.Xaml" />
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Telerik.DEC.Common.Encryption.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ca7c0b9c77ee15aa, processorArchitecture=MSIL">
       <HintPath>..\packages\Telerik.Sitefinity.Octopus.2016.1.824.1\lib\net40\Telerik.DEC.Common.Encryption.Contract.dll</HintPath>
     </Reference>
@@ -929,6 +863,23 @@
     <Content Include="AdminApp\assets\auth\oidc-client.min.js" />
     <Content Include="AdminApp\assets\auth\silent-renew.html" />
     <Content Include="AdminApp\assets\auth\silent-renew.js" />
+    <Content Include="AdminApp\assets\icons\apple-touch-icon-114x114.png" />
+    <Content Include="AdminApp\assets\icons\apple-touch-icon-120x120.png" />
+    <Content Include="AdminApp\assets\icons\apple-touch-icon-144x144.png" />
+    <Content Include="AdminApp\assets\icons\apple-touch-icon-152x152.png" />
+    <Content Include="AdminApp\assets\icons\apple-touch-icon-57x57.png" />
+    <Content Include="AdminApp\assets\icons\apple-touch-icon-60x60.png" />
+    <Content Include="AdminApp\assets\icons\apple-touch-icon-72x72.png" />
+    <Content Include="AdminApp\assets\icons\apple-touch-icon-76x76.png" />
+    <Content Include="AdminApp\assets\icons\favicon-128x128.png" />
+    <Content Include="AdminApp\assets\icons\favicon-16x16.png" />
+    <Content Include="AdminApp\assets\icons\favicon-196x196.png" />
+    <Content Include="AdminApp\assets\icons\favicon-32x32.png" />
+    <Content Include="AdminApp\assets\icons\favicon-96x96.png" />
+    <Content Include="AdminApp\assets\icons\mstile-144x144.png" />
+    <Content Include="AdminApp\assets\icons\mstile-150x150.png" />
+    <Content Include="AdminApp\assets\icons\mstile-310x310.png" />
+    <Content Include="AdminApp\assets\icons\mstile-70x70.png" />
     <Content Include="AdminApp\assets\js\kendo-editor\kendo.custom.min.js" />
     <Content Include="AdminApp\assets\js\monaco-editor\vs\base\worker\workerMain.js" />
     <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\bat.js" />
@@ -1004,6 +955,111 @@
     <Content Include="Mvc\Styles\rangeSlider.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Hudson\assets\dist\css\fontawesome.css" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\css\fontawesome.min.css" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\css\main.css" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\css\main.min.css" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\css\owl.css" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\css\owl.min.css" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProBol.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProLig.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProMed.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProReg.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\fa-brands-400.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\fa-regular-400.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\fa-solid-900.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\sf-icon-font.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\applied-jobs.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\clipmask.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\defaultLogo.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\hudson_logo_white.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\android-chrome-192x192.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\android-chrome-256x256.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\apple-touch-icon.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\browserconfig.xml" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\favicon-16x16.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\favicon-32x32.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\favicon.ico" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\mstile-150x150.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\safari-pinned-tab.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\indeed.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\indeedBtn.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\linkkedinBtn.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\logo-linkedin.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\logo-sm.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\owl\ajax-loader.gif" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\owl\owl-arrow-left.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\owl\owl-arrow-right.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\owl\owl.video.play.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\placeholder-image.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\saved-jobs.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\seek-white.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\seek.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\seekBtn.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\sprite.png" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\js\project.min.js" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProBol.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProLig.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProMed.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProReg.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\fa-brands-400.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\fa-regular-400.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\fa-solid-900.svg" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\images\indeed.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\images\indeedBtn.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\images\linkkedinBtn.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\images\logo-linkedin.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\images\owl\ajax-loader.gif" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\images\owl\owl-arrow-left.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\images\owl\owl-arrow-right.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\images\owl\owl.video.play.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\images\seek-white.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\images\seek.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\images\seekBtn.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\js\init.js" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\js\jquery.simplePagination.js" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\js\owl.carousel.min.js" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\js\slimtable.js" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite\blogger.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite\comment.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite\delicious.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite\digg.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite\email.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite\facebook.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite\feed.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite\google.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite\linkedin.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite\mailto.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite\myspace.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite\reddit.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite\remove.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite\stumble-upon.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite\tumblr.png" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\images\sprite\twitter.png" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\container.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\grid-12.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\grid-2+3+2+3+2.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\grid-3+3+3+3.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\grid-3+6+3.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\grid-3+9.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\grid-4+4+4.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\grid-4+8.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\grid-6+6.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\grid-8+4.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\grid-9+3.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\header.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\jobdetail-sidebar.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\page-section-dark.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\page-section-highlight-light.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\page-section-highlight.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\page-section-light.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\page-section-lighter.html" />
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\page-section.html" />
+    <Content Include="ResourcePackages\Hudson\gruntfile.js" />
+    <Content Include="ResourcePackages\Hudson\MVC\Scripts\Navigation\leftSidebar.js" />
+    <Content Include="ResourcePackages\Hudson\MVC\Scripts\Navigation\pills.js" />
     <Content Include="robots.txt" />
     <Content Include="Views\CustomSiteSettings\CustomSiteSettings.ascx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1021,6 +1077,46 @@
     <Content Include="Mvc\Styles\kendo.default.mobile.min.css" />
     <Content Include="Mvc\Views\readme.txt" />
     <Content Include="Mvc\Views\Shared\readme.txt" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\css\main.css" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\css\main.min.css" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.svg" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\sf-icon-font.svg" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\images\sprite.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\icons\file.svg" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\icons\no-image.svg" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\blogger.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\comment.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\delicious.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\digg.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\email.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\facebook.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\feed.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\google.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\linkedin.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\mailto.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\myspace.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\reddit.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\remove.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\stumble-upon.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\tumblr.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\twitter.png" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\components\icons\feather-icons.css" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\components\icons\sf-icon-font.html" />
+    <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\container.html" />
+    <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\grid-1+1+1+1+1+1+6.html" />
+    <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\grid-12.html" />
+    <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\grid-2+3+2+3+2.html" />
+    <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\grid-3+3+3+3.html" />
+    <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\grid-3+6+3.html" />
+    <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\grid-3+9.html" />
+    <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\grid-4+4+4.html" />
+    <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\grid-4+8.html" />
+    <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\grid-6+6.html" />
+    <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\grid-8+4.html" />
+    <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\grid-9+3.html" />
+    <Content Include="ResourcePackages\Bootstrap\gruntfile.js" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Scripts\Navigation\pills.js" />
     <Content Include="Sitefinity\Default.aspx" />
     <Content Include="Sitefinity\Services\Analytics\AnalyticsPermissionsService.svc" />
     <Content Include="Sitefinity\Services\Analytics\DashboardData.svc" />
@@ -1139,7 +1235,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Sitefinity\" />
-    <Folder Include="ResourcePackages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminApp\assets\js\kendo-editor\kendo.custom.min.js.map" />
@@ -1162,6 +1257,512 @@
     <Content Include="SampleTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
     </Content>
+    <Content Include="ResourcePackages\Bootstrap\README.md" />
+    <Content Include="ResourcePackages\Bootstrap\razorgenerator.directives" />
+    <Content Include="ResourcePackages\Bootstrap\package.json" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\VideoGallery\List.VideoGallery.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\VideoGallery\List.OverlayGallery.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\VideoGallery\Detail.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\UsersList\List.UsersList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\UsersList\Detail.UserDetails.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\UnsubscribeForm\UnsubscribeFormByLink.UnsubscribeMessage.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\UnsubscribeForm\UnsubscribeFormByEmailAddress.UnsubscribeForm.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\TextField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\TextField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\SubscribeForm\SubscribeForm.SubscribeForm.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\SubmitButton\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\StyleSheet\Index.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\SocialShare\SocialShareIconsWithText.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\SocialShare\SocialShare.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\SearchResults\SearchResults.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\SearchBox\SearchBox.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Reviews\ReviewsCount.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Reviews\Reviews.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Registration\Registration.RegistrationForm.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Profile\Read.ProfilePreview.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Profile\Edit.ProfileEdit.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ParagraphTextField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ParagraphTextField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\PageBreak\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\News\List.NewsList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\News\Detail.DetailPage.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\NavigationView.Vertical.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\NavigationView.Tabs.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\NavigationView.Sitemap.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\NavigationView.Pills.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\NavigationView.Horizontal.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Navigation\Dropdown.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\NavigationField\Read.ProgressBar.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\NavigationField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\MultipleChoiceField\Write.Default_Inline.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\MultipleChoiceField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\MultipleChoiceField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\LoginStatus\LoginStatus.LoginName.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\LoginStatus\LoginStatus.LoginButton.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\LoginForm\ResetPassword.ResetPassword.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\LoginForm\LoginForm.LoginForm.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\LoginForm\ForgotPassword.ForgottenPassword.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Lists\List.SimpleList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Lists\List.PagesList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Lists\List.ExpandedList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Lists\List.ExpandableList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Lists\List.AnchorList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Lists\Detail.DetailPage.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Layouts\default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\LanguageSelector\LanguageSelector.LanguageLinks.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\JavaScript\Index.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Image\Image.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ImageGallery\List.ThumbnailStrip.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ImageGallery\List.SimpleList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ImageGallery\List.OverlayGallery.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ImageGallery\List.ImageGallery.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ImageGallery\Detail.DetailPage.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\HierarchicalTaxonomy\HierarchicalTaxonomy.CategoriesList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\HiddenField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\HiddenField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Form\Index.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Form\Form.SubmitResultView.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\FlatTaxonomy\FlatTaxonomy.TagCloud.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\FlatTaxonomy\FlatTaxonomy.SimpleList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\FlatTaxonomy\FlatTaxonomy.CloudList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\FileField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Feed\Feed.FeedLink.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Event\List.EventsList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Event\Detail.EventDetails.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\EventScheduler\List.Calendar.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\EventScheduler\Detail.EventDetails.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\EmbedCode\Index.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\DropdownListField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\DropdownListField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Document\DocumentLink.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\DocumentsList\List.DocumentsTable.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\DocumentsList\List.DocumentsList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\DocumentsList\Detail.DocumentDetails.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ContentBlock\Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Comments\CommentsCount.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Comments\Comments.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\CheckboxesField\Write.Default_Inline.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\CheckboxesField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\CheckboxesField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\ChangePassword\ChangePassword.ChangePassword.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Card\Card.Simple.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Card\Card.Hero.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Card\Card.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Captcha\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Breadcrumb\Breadcrumb.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Blog\List.BlogList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\Blog\Detail.DetailPage.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\BlogPost\List.BlogPostList.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\BlogPost\Detail.DetailPage.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\MVC\Views\AccountActivation\AccountActivation.AccountActivation.cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\jsfiles.json" />
+    <Content Include="ResourcePackages\Bootstrap\csslint.json" />
+    <Content Include="ResourcePackages\Bootstrap\client-components\fields\html-field\sf-html-field.sf-cshtml" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\taxonomies\_sf-tags.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\socialShare\_sf-sprite.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\socialShare\_sf-social-share.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\socialShare\sf-sprite.mustache" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\siteSelector\_sf-site-selector.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\searchResults\_sf-search-results.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\searchBox\_sf-search-box.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\profile\_sf-profile.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\navigation\_stacked.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\navigation\_sitemap.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\navigation\_navbar.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\media\_sf-media.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\login\_sf-login.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\list\_sf-list.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\languageSelector\_sf-language-selector.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\gallery\_gallery.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\form\sf-form.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\formNavigation\sf-form-nav.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\fileField\sf-file-field.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\feed\_sf-feed.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\event\_sf-event.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\documentList\_sf-document-list.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\contentBlock\_sf-content-block.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\comments\_sf-ratings.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\comments\_sf-comments.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\widgets\code\_sf-code.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\utilities\_text.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\utilities\_spacing.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\tools\_mixins.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\tools\_bootstrap-mixins.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\sitefinity.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\settings\_variables.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\components\loading\_loading.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\components\icons\_sf-icon-font.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\components\icons\_icons.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\components\icons\feather-icons.json" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\bootstrap\_type.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\base\_rtl.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\sass\base\_pre.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\src\project\sass\main.scss" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\sf-icon-font.woff" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\sf-icon-font.ttf" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\sf-icon-font.eot" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.woff2" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.woff" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.ttf" />
+    <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProBol.eot" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProBol.ttf" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProBol.woff" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProBol.woff2" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProLig.eot" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProLig.ttf" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProLig.woff" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProLig.woff2" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProMed.eot" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProMed.ttf" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProMed.woff" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProMed.woff2" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProReg.eot" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProReg.ttf" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProReg.woff" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\AkzidGroProReg.woff2" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.ttf" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.woff" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.woff2" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\fa-brands-400.eot" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\fa-brands-400.ttf" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\fa-brands-400.woff" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\fa-brands-400.woff2" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\fa-regular-400.eot" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\fa-regular-400.ttf" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\fa-regular-400.woff" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\fa-regular-400.woff2" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\fa-solid-900.eot" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\fa-solid-900.ttf" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\fa-solid-900.woff" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\fa-solid-900.woff2" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\sf-icon-font.eot" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\sf-icon-font.ttf" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\fonts\sf-icon-font.woff" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\images\icons\site.webmanifest" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\FontAwesome\brands.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\FontAwesome\regular.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\FontAwesome\solid.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\FontAwesome\_animated.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\FontAwesome\_bordered-pulled.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\FontAwesome\_core.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\FontAwesome\_fixed-width.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\FontAwesome\_icons.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\FontAwesome\_larger.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\FontAwesome\_list.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\FontAwesome\_mixins.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\FontAwesome\_rotated-flipped.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\FontAwesome\_screen-reader.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\FontAwesome\_shims.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\FontAwesome\_stacked.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\FontAwesome\_variables.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\owl-custom.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\OwlCarousel\owl.carousel.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\OwlCarousel\owl.theme.default.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\OwlCarousel\owl.theme.green.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\OwlCarousel\_animate.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\OwlCarousel\_autoheight.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\OwlCarousel\_core.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\OwlCarousel\_lazyload.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\OwlCarousel\_theme.default.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\OwlCarousel\_theme.green.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\OwlCarousel\_theme.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\OwlCarousel\_video.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\project.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\_articles.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\_basic-components.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\_board-members.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\_breadcrumbs.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\_cards.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\_consultants.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\_customers.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\_editor.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\_fonts.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\_forms.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\_jobs.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\_lists.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\_media.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\_press-releases.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\_risk-measurement.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\components\_variables.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProBol.eot" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProBol.ttf" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProBol.woff" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProBol.woff2" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProLig.eot" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProLig.ttf" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProLig.woff" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProLig.woff2" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProMed.eot" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProMed.ttf" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProMed.woff" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProMed.woff2" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProReg.eot" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProReg.ttf" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProReg.woff" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\AkzidGroProReg.woff2" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\fa-brands-400.eot" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\fa-brands-400.ttf" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\fa-brands-400.woff" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\fa-brands-400.woff2" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\fa-regular-400.eot" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\fa-regular-400.ttf" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\fa-regular-400.woff" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\fa-regular-400.woff2" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\fa-solid-900.eot" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\fa-solid-900.ttf" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\fa-solid-900.woff" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\fonts\fa-solid-900.woff2" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\sass\fontawesome.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\sass\main.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\project\sass\owl.theme.default.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\base\_pre.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\components\loading\_loading.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\settings\_variables.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\sitefinity.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\tools\_bootstrap-mixins.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\tools\_mixins.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\utilities\_spacing.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\utilities\_text.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\code\_sf-code.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\comments\_sf-comments.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\comments\_sf-ratings.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\contentBlock\_sf-content-block.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\documentList\_sf-document-list.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\event\_sf-event.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\feed\_sf-feed.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\fileField\sf-file-field.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\formNavigation\sf-form-nav.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\gallery\_gallery.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\languageSelector\_sf-language-selector.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\list\_sf-list.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\login\_sf-login.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\media\_sf-media.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\navigation\_navbar.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\navigation\_sitemap.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\navigation\_stacked.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\profile\_sf-profile.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\searchBox\_sf-search-box.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\searchResults\_sf-search-results.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\siteSelector\_sf-site-selector.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\socialShare\sf-sprite.mustache" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\socialShare\_sf-social-share.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\socialShare\_sf-sprite.scss" />
+    <Content Include="ResourcePackages\Hudson\assets\src\sitefinity\sass\widgets\taxonomies\_sf-tags.scss" />
+    <Content Include="ResourcePackages\Hudson\client-components\fields\html-field\sf-html-field.sf-cshtml" />
+    <Content Include="ResourcePackages\Hudson\csslint.json" />
+    <Content Include="ResourcePackages\Hudson\jsfiles.json" />
+    <Content Include="ResourcePackages\Hudson\MVC\partial\TagManagerBody.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\partial\TagManagerHead.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\AccountActivation\AccountActivation.AccountActivation.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Article\Detail.ArticleHudson.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Article\List.ArticleFilters.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Article\List.ArticlesGrid.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Article\List.ArticlesGridRelated.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Article\List.ArticlesGridSpecific.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Article\List.FeaturedArticles.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Article\List.RelatedArticles.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Article\List.SingleFeaturedArticle.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\BlogPost\Detail.DetailPage.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\BlogPost\List.BlogPostList.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Blog\Detail.DetailPage.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Blog\List.BlogList.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\BoardMember\Detail.BoardDetail.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\BoardMember\List.BoardList.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\BoardMember\List.SingleMember.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Breadcrumb\Breadcrumb.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Captcha\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.BackgroundImage.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.BannerWithBasic.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.BgParallax.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.BgParallaxBlockquote.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.CallToAction.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.Empty.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.Hero.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.HeroSolid.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.Hexagon.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.PageBanner.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.PageBannerVideoPopup.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.Simple.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.TextRollover.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.VideoPopup.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\ChangePassword\ChangePassword.ChangePassword.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\CheckboxesField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\CheckboxesField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\CheckboxesField\Write.Default_Inl.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\CheckboxesField\Write.Default_Inlin.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\CheckboxesField\Write.Default_Inline.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Comments\Comments.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Comments\CommentsCount.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Consultant\ConsultantJobs.Simple.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Consultant\Detail.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Consultant\Detail.RelativeImage.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Consultant\Detail.RelativeTestimonial.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Consultant\Detail.SingleCard.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Consultant\List.CardsSlider.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Consultant\List.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Consultant\List.ListFilter.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Consultant\List.ListFilterMinimal.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Consultant\List.SingleCard.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\ContentBlock\Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\DocumentsList\Detail.DocumentDetails.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\DocumentsList\List.DocumentsList.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\DocumentsList\List.DocumentsTable.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Document\DocumentLink.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\DropdownListField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\DropdownListField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\EmbedCode\Index.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\EventScheduler\Detail.EventDetails.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\EventScheduler\List.Calendar.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Event\Detail.EventDetails.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Event\List.EventsList.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Feed\Feed.FeedLink.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\FileField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\FlatTaxonomy\FlatTaxonomy.CloudList.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\FlatTaxonomy\FlatTaxonomy.SimpleList.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\FlatTaxonomy\FlatTaxonomy.TagCloud.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Form\Index.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\HiddenField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\HierarchicalTaxonomy\HierarchicalTaxonomy.CategoriesList.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\ImageGallery\Detail.DetailPage.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\ImageGallery\List.ImageGallery.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\ImageGallery\List.OverlayGallery.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\ImageGallery\List.SimpleList.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\ImageGallery\List.ThumbnailStrip.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Image\Image.ClientLogo.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Image\Image.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Instagram\Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JavaScript\Index.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobAlert\Create.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobAlert\Edit.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobAlert\Simple.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobApplication\JobApplication.ApplyWithSocialMedia.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobApplication\JobApplication.Simple.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobDetails\JobDetails.AppPage.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobDetails\JobDetails.Hudson.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobEmail\Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobFilters\T_MultiSelect.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobFilters\T_MultiSelectCustom.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobSearchResults\JobsAll.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobSearchResults\JobsAllJobsCustom.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobSearchResults\JobsLatest.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobSearchResults\JobsLatest_TitleOnly.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobSearch\JobSearch.Simple.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobSearch\JobSearch.Vertical.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JXTNextResume\Resume.Simple.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\LanguageSelector\LanguageSelector.LanguageLinks.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Layouts\HudsonAlt.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Layouts\HudsonDefault.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Lists\Detail.DetailPage.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Lists\List.AnchorList.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Lists\List.ExpandableList.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Lists\List.ExpandedList.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Lists\List.PagesList.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Lists\List.SimpleList.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Lists\List.WhiteBoxes.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Lists\List.WhiteBoxSingle.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\LoginForm\ForgotPassword.ForgottenPassword.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\LoginForm\LoginForm.LoginForm.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\LoginForm\LoginForm.LoginFormApplywithSocialMedia.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\LoginForm\LoginForm.LoginFormJobApply.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\LoginForm\ResetPassword.ResetPassword.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\LoginStatusExtended\LoginStatusExtended.LoginName.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\LoginStatus\LoginStatus.LoginButton.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\LoginStatus\LoginStatus.LoginName.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Maps\Maps.Simple.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\MemberAppliedJobs\MemberAppliedJobs.List.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\MemberSavedJobs\MemberSavedJobs.List.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\MultiCard\Cards.ChevronShapList.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\MultiCard\Cards.Slider.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\MultipleChoiceField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\MultipleChoiceField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\MultipleChoiceField\Write.Default_Inline.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\NavigationField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\NavigationField\Read.ProgressBar.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Navigation\Dropdown.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Navigation\NavigationView.Horizontal.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Navigation\NavigationView.LeftMenu.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Navigation\NavigationView.LeftMenuOffices.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Navigation\NavigationView.Pills.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Navigation\NavigationView.QuickLinks.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Navigation\NavigationView.Sitemap.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Navigation\NavigationView.Tabs.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Navigation\NavigationView.Vertical.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\News\Detail.DetailPage.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\News\List.NewsList.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Office\Detail.HeroImage.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Office\Detail.MapAndGallery.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Office\Detail.Office.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Office\Detail.OfficeAddress.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Office\List.ContactUs.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Office\List.DetailHeroImage.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Office\List.DetailMapAndGallery.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Office\List.DetailOffice.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Office\List.DetailOfficeAddress.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Office\List.Empty.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\PageBreak\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\PageTitle\Simple.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\ParagraphTextField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\ParagraphTextField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\PressRelease\Detail.PressRelease.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\PressRelease\List.PressReleaseTable.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Profile\Edit.ProfileEdit.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Profile\Read.ProfilePreview.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Profile\Read.ProfilePreviewJobApplication.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\razorgenerator.directives" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Registration\Registration.RegistrationForm.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Registration\Registration.RegistrationViaSocialMedia.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Reviews\Reviews.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Reviews\ReviewsCount.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\SearchBox\SearchBox.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\SearchResults\SearchResults.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Shared\_JobSearchResults.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Shared\_JobSearchResultsCustom.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Shared\_SimpleJS_Partial.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Shared\_SimpleJS_PartialCustom.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\SiteSelector\SiteSelector.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\SocialLink\Simple.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\SocialLink\Simple.Header.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\SocialShare\SocialShare.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\SocialShare\SocialShareArticleDetails.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\SocialShare\SocialShareIconsWithText.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\SocialShare\SocialShareJobDetails.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\StyleSheet\Index.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\SubmitButton\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\SubscribeForm\SubscribeForm.SubscribeForm.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\Detail.TestimonialBackground.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\Detail.TestimonialCompact.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\Detail.TestimonialWithImage.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\Detail.TestimonialWithSideImage.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\Detail.TestimonialWithTitle.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\List.TestimonialBackground.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\List.TestimonialClean.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\List.TestimonialCompact.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\List.TestimonialCompactWithSideImage.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\List.TestimonialCompactWithTopImage.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\List.TestimonialNoBackground.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\List.TestimonialNoParalax.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Testimonial\List.TestimonialWithTitle.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\TextField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\TextField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\UnsubscribeForm\UnsubscribeFormByEmailAddress.UnsubscribeForm.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\UnsubscribeForm\UnsubscribeFormByLink.UnsubscribeMessage.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\UsersList\Detail.UserDetails.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\UsersList\List.UsersList.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\VideoGallery\Detail.Default.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\VideoGallery\List.OverlayGallery.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\VideoGallery\List.VideoGallery.cshtml" />
+    <Content Include="ResourcePackages\Hudson\razorgenerator.directives" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Jxt.Sitefinity.Jobs\Jxt.Sitefinity.Jobs.csproj">
@@ -1176,17 +1777,9 @@
       <Project>{bf418b44-ebce-499f-bbd3-6ba98a24e144}</Project>
       <Name>JXTNext.Sitefinity.Connector</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JXTNext.Sitefinity.Custom\JXTNext.Sitefinity.Custom.csproj">
-      <Project>{8ca26cdd-cc22-4e2e-ba08-7982171c9d1e}</Project>
-      <Name>JXTNext.Sitefinity.Custom</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JXTNext.Sitefinity.Identity\JXTNext.Sitefinity.Widgets.Authentication.csproj">
       <Project>{9a208d8f-aa97-4ce5-a42b-71bde987124c}</Project>
       <Name>JXTNext.Sitefinity.Widgets.Authentication</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JXTNext.Sitefinity.Media\JXTNext.Sitefinity.Media.csproj">
-      <Project>{a4fa9606-9670-4519-b2be-bc019b598a9b}</Project>
-      <Name>JXTNext.Sitefinity.Media</Name>
     </ProjectReference>
     <ProjectReference Include="..\JXTNext.Sitefinity.Services.Intefaces\JXTNext.Sitefinity.Services.Intefaces.csproj">
       <Project>{94381396-d85e-469c-b828-24cf03548df5}</Project>
@@ -1203,10 +1796,6 @@
     <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.Content\JXTNext.Sitefinity.Widgets.Content.csproj">
       <Project>{84c57321-d20d-48a2-957d-4511a984f836}</Project>
       <Name>JXTNext.Sitefinity.Widgets.Content</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.Feather\JXTNext.Sitefinity.Widgets.Feather.csproj">
-      <Project>{a21a2688-21dc-45b8-8bdb-df6928ed5aea}</Project>
-      <Name>JXTNext.Sitefinity.Widgets.Feather</Name>
     </ProjectReference>
     <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.Identity\JXTNext.Sitefinity.Widgets.Identity.csproj">
       <Project>{d867dd9c-fde3-433f-a21e-8de0c3477325}</Project>
@@ -1235,6 +1824,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\AWSSDK.S3.3.3.101.11\analyzers\dotnet\cs\AWSSDK.S3.CodeAnalysis.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="OpenAccessNuget.targets" />
@@ -1272,7 +1864,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\RazorGenerator.MsBuild.2.4.1\build\RazorGenerator.MsBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RazorGenerator.MsBuild.2.4.1\build\RazorGenerator.MsBuild.targets'))" />
     <Error Condition="!Exists('..\packages\Telerik.Sitefinity.Feather.11.0.6726\build\Telerik.Sitefinity.Feather.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Telerik.Sitefinity.Feather.11.0.6726\build\Telerik.Sitefinity.Feather.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <Import Project="..\packages\RazorGenerator.MsBuild.2.4.1\build\RazorGenerator.MsBuild.targets" Condition="Exists('..\packages\RazorGenerator.MsBuild.2.4.1\build\RazorGenerator.MsBuild.targets')" />
   <Import Project="..\packages\Telerik.Sitefinity.Feather.11.0.6726\build\Telerik.Sitefinity.Feather.targets" Condition="Exists('..\packages\Telerik.Sitefinity.Feather.11.0.6726\build\Telerik.Sitefinity.Feather.targets')" />

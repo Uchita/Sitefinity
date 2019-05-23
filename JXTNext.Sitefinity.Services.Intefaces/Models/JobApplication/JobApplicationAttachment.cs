@@ -1,5 +1,9 @@
-﻿using JXTNext.FileHandler.FileHandlerServices.Dropbox;
+﻿using JXTNext.Common.FileManager;
+using JXTNext.Common.FileManager.Models.S3;
+using JXTNext.FileHandler.FileHandlerServices.Dropbox;
 using JXTNext.FileHandler.Models.Dropbox;
+using JXTNext.Sitefinity.Common.Constants;
+using JXTNext.Sitefinity.Common.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -50,6 +54,8 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
 
     public class JobApplicationAttachmentUploadItem
     {
+        private static readonly SiteSettingsHelper _siteSettingsHelper = new SiteSettingsHelper();
+        
         public string Id { get; set; }
         public string Status { get; set; }
         public string Message { get; set; }
@@ -65,8 +71,18 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
 
             try
             {
-                uploadItem.FileUrl =  UploadToAmazonS3(Guid.Parse(uploadItem.Id), "private-amazon-s3-provider", libName, uploadItem.PathToAttachment, uploadItem.FileStream);
-                uploadItem.Status = "Completed";
+                var response = UploadToAmazonS3(Guid.Parse(uploadItem.Id), _siteSettingsHelper.GetAmazonS3ProviderName(), libName, uploadItem.PathToAttachment, uploadItem.FileStream);
+                if (response != null && response.Success)
+                {
+                    uploadItem.FileUrl = HttpVerbConstants.HTTPSString + AmazonS3Constants.BucketDomainName + "/"+response.BucketName+"/"+response.Key;
+                    uploadItem.Status = "Completed";
+                }
+                else 
+                {
+                    uploadItem.Status = "Failed";
+                    uploadItem.Message = response?.Errors.FirstOrDefault();
+                }
+                
             }
             catch (Exception ex)
             {
@@ -92,71 +108,68 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
             }
         }
 
-
         public static bool DeleteFromAmazonS3(string providerName, JobApplicationAttachmentType attachmentType, string itemTitle)
         {
-            var libName = FileUploadLibraryGet(attachmentType);
-            LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
-            var docLibs = librariesManager.GetDocumentLibraries();
-            bool result = false;
-            foreach (var lib in docLibs)
-            {
-                if (lib.Title.ToLower() == libName)
-                {
-                    var items = lib.Items();
-                    var document = lib.Items().Where(item => item.Title.Contains(itemTitle)).FirstOrDefault();
+            SiteSettingsHelper siteSettingsHelper = new SiteSettingsHelper();
+            //IAmazonS3 _s3Client = new AmazonS3Client(new BasicAWSCredentials(settingsHelper.GetAmazonS3AccessKeyId(), settingsHelper.GetAmazonS3SecretKey()), RegionEndpoint.GetBySystemName(settingsHelper.GetAmazonS3RegionEndpoint()));
+            S3FilemanagerService fileManagerService = new S3FilemanagerService(_siteSettingsHelper.GetAmazonS3RegionEndpoint(), _siteSettingsHelper.GetAmazonS3AccessKeyId(), _siteSettingsHelper.GetAmazonS3SecretKey());
+            var response = fileManagerService.DeleteObjectFromProvider<S3FileManagerResponse, S3FileManagerRequest>(
+                    new S3FileManagerRequest
+                    {
+                        FileName = itemTitle,
+                        Directory = _siteSettingsHelper.GetAmazonS3UrlName() + "/" + JobApplicationAttachmentSettings.PROFILE_RESUME_UPLOAD_LIBRARY,
+                        S3BucketName = _siteSettingsHelper.GetAmazonS3BucketName()
+                    });
+            return response != null ? response.Success : false;
+        }
+
+        //public static bool DeleteFromAmazonS3(string providerName, JobApplicationAttachmentType attachmentType, string itemTitle)
+        //{
+        //    var libName = FileUploadLibraryGet(attachmentType);
+        //    LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
+        //    var docLibs = librariesManager.GetDocumentLibraries();
+        //    bool result = false;
+        //    foreach (var lib in docLibs)
+        //    {
+        //        if (lib.Title.ToLower() == libName)
+        //        {
+        //            var items = lib.Items();
+        //            var document = lib.Items().Where(item => item.Title.Contains(itemTitle)).FirstOrDefault();
                    
 
 
-                    if (document != null)
-                    {
-                        result = true;
-                        //librariesManager.Delete(document.MediaFileLinks.FirstOrDefault());
-                        var dd = librariesManager.GetDocument(document.Id);
-                        if (dd != null)
-                        {
-                            librariesManager.DeleteDocument(dd);
-                            librariesManager.SaveChanges();
-                        }
-                        break;
-                    }
+        //            if (document != null)
+        //            {
+        //                result = true;
+        //                //librariesManager.Delete(document.MediaFileLinks.FirstOrDefault());
+        //                var dd = librariesManager.GetDocument(document.Id);
+        //                if (dd != null)
+        //                {
+        //                    librariesManager.DeleteDocument(dd);
+        //                    librariesManager.SaveChanges();
+        //                }
+        //                break;
+        //            }
 
-                }
-            }
-            return result;
-        }
+        //        }
+        //    }
+        //    return result;
+        //}
 
-        public static Stream GetFileStreamFromAmazonS3(string providerName, string srcLibName,int attachmentType,string fileTitle)
+        public static Stream GetFileStreamFromAmazonS3(string srcLibName,int attachmentType,string fileTitle)
         {
-            LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
-            var libManagerSecurityCheckStatus = librariesManager.Provider.SuppressSecurityChecks;
-            string documentFileName = string.Empty;
-            try
-            {
-                var docLibs = librariesManager.GetDocumentLibraries();
-                
-                foreach (var lib in docLibs)
-                {
-                    if (lib.Title.ToLower() == srcLibName)
+            SiteSettingsHelper siteSettingsHelper = new SiteSettingsHelper();
+            fileTitle = fileTitle.Split('_').First() + "_" + fileTitle;
+            //IAmazonS3 _s3Client = new AmazonS3Client(new BasicAWSCredentials(settingsHelper.GetAmazonS3AccessKeyId(), settingsHelper.GetAmazonS3SecretKey()), RegionEndpoint.GetBySystemName(settingsHelper.GetAmazonS3RegionEndpoint()));
+            S3FilemanagerService fileManagerService = new S3FilemanagerService(siteSettingsHelper.GetAmazonS3RegionEndpoint(), siteSettingsHelper.GetAmazonS3AccessKeyId(), siteSettingsHelper.GetAmazonS3SecretKey());
+            var response = fileManagerService.GetObjectFromProvider<S3FileManagerResponse, S3FileManagerRequest>(
+                    new S3FileManagerRequest
                     {
-                        var items = lib.Items();
-                        var srcdocument = lib.Items().Where(item => item.Title.Contains(fileTitle)).FirstOrDefault();
-
-                        if (srcdocument != null && srcdocument.Status != ContentLifecycleStatus.Deleted)
-                        {
-                            return librariesManager.Download(srcdocument.Id);
-                            //return new FileStream(srcdocument.FilePath,FileMode.Open);
-                        }
-
-                    }
-                }
-            }
-            finally
-            {
-                // Reset the suppress security checks
-                librariesManager.Provider.SuppressSecurityChecks = libManagerSecurityCheckStatus;
-            }
-            return null;
+                        FileName = fileTitle,
+                        Directory = siteSettingsHelper.GetAmazonS3UrlName() + "/" + JobApplicationAttachmentSettings.PROFILE_RESUME_UPLOAD_LIBRARY,
+                        S3BucketName = siteSettingsHelper.GetAmazonS3BucketName()
+                    });
+            return response.FileStream;
         }
 
         public static  string FetchFromAmazonS3(string providerName, JobApplicationAttachmentType attachmentType, string itemTitle)
@@ -194,63 +207,88 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
             return item.PathToAttachment;
         }
 
-        public static string UploadToAmazonS3(Guid masterDocumentId, string providerName, string libName, string fileName, Stream fileStream)
+        public static S3FileManagerResponse UploadToAmazonS3(Guid masterDocumentId, string providerName, string libName, string fileName, Stream fileStream)
         {
-            LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
-            var libManagerSecurityCheckStatus = librariesManager.Provider.SuppressSecurityChecks;
-            string url = null;
             try
             {
-                // Make sure that supress the security checks so that everyone can upload the files
-                librariesManager.Provider.SuppressSecurityChecks = true;
-                Document document = librariesManager.GetDocuments().Where(i => i.Id == masterDocumentId).FirstOrDefault();
-
-                if (document == null)
-                {
-                    //The document is created as master. The masterDocumentId is assigned to the master version.
-                    document = librariesManager.CreateDocument(masterDocumentId);
-
-                    //Set the parent document library.
-                    DocumentLibrary documentLibrary = librariesManager.GetDocumentLibraries().Where(d => d.Title == libName).SingleOrDefault();
-                    document.Parent = documentLibrary;
-
-                    //Set the properties of the document.
-                    string documentTitle = masterDocumentId.ToString() + "_" + fileName;
-                    document.Title = documentTitle;
-                    document.DateCreated = DateTime.UtcNow;
-                    document.PublicationDate = DateTime.UtcNow;
-                    document.LastModified = DateTime.UtcNow;
-                    document.UrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
-                    document.MediaFileUrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
-                    document.ApprovalWorkflowState = "Published";
-                   
-                    //Upload the document file.
-                    string fileExtension = "."+fileName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).Last();
-                    librariesManager.Upload(document, fileStream, fileExtension ?? string.Empty);
-
-                    //Recompiles and validates the url of the document.
-                    librariesManager.RecompileAndValidateUrls(document);
-
-                    //Save the changes.
-                    librariesManager.SaveChanges();
-                    url = document.Url;
-                    //Publish the DocumentLibraries item. The live version acquires new ID.
-                    var bag = new Dictionary<string, string>();
-                    bag.Add("ContentType", typeof(Document).FullName);
-
-                    // Run with elevatede privilages so that everybody can upload files
-                    SystemManager.RunWithElevatedPrivilege(d => WorkflowManager.MessageWorkflow(masterDocumentId, typeof(Document), null, "Publish", false, bag));
-                }
+                SiteSettingsHelper siteSettingsHelper = new SiteSettingsHelper();
+                //IAmazonS3 _s3Client = new AmazonS3Client(new BasicAWSCredentials(settingsHelper.GetAmazonS3AccessKeyId(), settingsHelper.GetAmazonS3SecretKey()), RegionEndpoint.GetBySystemName(settingsHelper.GetAmazonS3RegionEndpoint()));
+                S3FilemanagerService fileManagerService = new S3FilemanagerService(_siteSettingsHelper.GetAmazonS3RegionEndpoint(), _siteSettingsHelper.GetAmazonS3AccessKeyId(), _siteSettingsHelper.GetAmazonS3SecretKey());
+                var response = fileManagerService.PostObjectToProvider<S3FileManagerResponse, S3FileManagerRequest>(
+                        new S3FileManagerRequest
+                        {
+                            FileName = masterDocumentId.ToString() + "_" + fileName,
+                            Directory = _siteSettingsHelper.GetAmazonS3UrlName() + "/" + libName,
+                            FileStream = fileStream,
+                            S3BucketName = _siteSettingsHelper.GetAmazonS3BucketName()
+                        });
+                return response;
             }
-
-            finally
+            catch (Exception)
             {
-                // Reset the suppress security checks
-                librariesManager.Provider.SuppressSecurityChecks = libManagerSecurityCheckStatus;
+                throw;
             }
-
-            return url;
+            
         }
+
+
+        //public static string UploadToAmazonS3(Guid masterDocumentId, string providerName, string libName, string fileName, Stream fileStream)
+        //{
+        //    LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
+        //    var libManagerSecurityCheckStatus = librariesManager.Provider.SuppressSecurityChecks;
+        //    string url = null;
+        //    try
+        //    {
+        //        // Make sure that supress the security checks so that everyone can upload the files
+        //        librariesManager.Provider.SuppressSecurityChecks = true;
+        //        Document document = librariesManager.GetDocuments().Where(i => i.Id == masterDocumentId).FirstOrDefault();
+
+        //        if (document == null)
+        //        {
+        //            //The document is created as master. The masterDocumentId is assigned to the master version.
+        //            document = librariesManager.CreateDocument(masterDocumentId);
+
+        //            //Set the parent document library.
+        //            DocumentLibrary documentLibrary = librariesManager.GetDocumentLibraries().Where(d => d.Title == libName).SingleOrDefault();
+        //            document.Parent = documentLibrary;
+
+        //            //Set the properties of the document.
+        //            string documentTitle = masterDocumentId.ToString() + "_" + fileName;
+        //            document.Title = documentTitle;
+        //            document.DateCreated = DateTime.UtcNow;
+        //            document.PublicationDate = DateTime.UtcNow;
+        //            document.LastModified = DateTime.UtcNow;
+        //            document.UrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
+        //            document.MediaFileUrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
+        //            document.ApprovalWorkflowState = "Published";
+                   
+        //            //Upload the document file.
+        //            string fileExtension = "."+fileName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).Last();
+        //            librariesManager.Upload(document, fileStream, fileExtension ?? string.Empty);
+
+        //            //Recompiles and validates the url of the document.
+        //            librariesManager.RecompileAndValidateUrls(document);
+
+        //            //Save the changes.
+        //            librariesManager.SaveChanges();
+        //            url = document.Url;
+        //            //Publish the DocumentLibraries item. The live version acquires new ID.
+        //            var bag = new Dictionary<string, string>();
+        //            bag.Add("ContentType", typeof(Document).FullName);
+
+        //            // Run with elevatede privilages so that everybody can upload files
+        //            SystemManager.RunWithElevatedPrivilege(d => WorkflowManager.MessageWorkflow(masterDocumentId, typeof(Document), null, "Publish", false, bag));
+        //        }
+        //    }
+
+        //    finally
+        //    {
+        //        // Reset the suppress security checks
+        //        librariesManager.Provider.SuppressSecurityChecks = libManagerSecurityCheckStatus;
+        //    }
+
+        //    return url;
+        //}
     }
 
     public enum JobApplicationAttachmentType

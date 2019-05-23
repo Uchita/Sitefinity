@@ -4995,7 +4995,6 @@ pre.inheritParent{
     font: inherit;
     padding: 0;
     margin: 0;
-    white-space: normal;
     word-break: break-word;
 }
 
@@ -5664,18 +5663,20 @@ p .btn-link {
 .modal-open{
     padding-right:0 !important;
 }
-
+.modal-open .page-wrapper{
+    position: relative;
+    z-index:10000;
+}
 #videoModal {
     background: rgba(0, 0, 0, 0.8);
     padding-right: 0 !important;
     z-index: 11000;
 }
 
-
-    #videoModal .modal-dialog {
-        position: relative;
-        top: 20%;
-    }
+#videoModal .modal-dialog {
+    position: relative;
+    top: 20%;
+}
 
 #videoModal .modal-body {
     padding:0;
@@ -7286,6 +7287,14 @@ select.hs-input {
 
         .cta.bg-color-blue {
             background: #0088CF !important;
+        }
+        .cta h3.h2{
+            font-size: 32px;
+            font-weight:300;
+        }
+        .cta h3.h4 {
+            font-size: 17px;
+            line-height: 1.5;
         }
 
     .bg-color-darkblue {

@@ -421,6 +421,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
+    <Compile Include="SiteSettings\AddThis\AddThisConfig.cs" />
+    <Compile Include="SiteSettings\AddThis\AddThisSettings.cs" />
+    <Compile Include="SiteSettings\AddThis\AddThisSettingsContract.cs" />
+    <Compile Include="SiteSettings\AddThis\AddThisSettingsUISettings.cs" />
+    <Compile Include="SiteSettings\AddThis\IAddThisSettings.cs" />
     <Compile Include="Mvc\Configuration\InstagramConfig.cs" />
     <Compile Include="Mvc\Controllers\InstagramController.cs" />
     <Compile Include="Mvc\Controllers\OAuthController.cs" />
@@ -448,6 +453,7 @@
     <Compile Include="Mvc\StringResources\SocialLinkResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SocialModule.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -467,6 +473,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="SiteSettings\AddThis\Templates\AddThisSettings.ascx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mvc\Scripts\SocialHandler\designerview-simple.js" />
     <Content Include="Mvc\Scripts\SocialLink\designerview-simple.js" />
   </ItemGroup>

@@ -304,7 +304,24 @@
         var dataSource;
         var queryStringArr = [];
 
-        var sortBy = '@ViewBag.SortOrder';
+        //onpage load checking if any filter is selected
+        function checkFilterCheck() {
+            //checking keyword
+            if ($("#selectedkeywordsfilter").val() != "") {
+                return true;
+            }
+            //checking checkboxes selected
+            if ($('#filtersPagePartialContent .dropdown-tree >ul>li>a').hasClass('active')) {
+                return true;
+            }
+        }
+
+        if (checkFilterCheck()) {
+            var sortBy = "Relevance";
+        } else {
+            var sortBy = '@ViewBag.SortOrder';
+        }
+
         $("#sortOrder").val(sortBy);
         bindJobsPages(PageNumber);
         bindJobs(PageNumber);

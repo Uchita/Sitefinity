@@ -18,39 +18,7 @@
                 {
                     <div class="dropdown dropdown-tree navbar-collapse" id=@string.Format("{0}{1}", ViewBag.PrefixIdsText, item.Name)></div>
                 }
-                else if (item.Name == "Salary")
-                {
-                    <select class="SalaryRangeSelect">
-                        <option value="-1" selected>No Salary Preference</option>
-                        @foreach (var salaryItem in item.Filters)
-                        {
-                            <option value="@salaryItem.ID">@salaryItem.Label</option>
-                        }
-                    </select>
-                    foreach (var salaryItem in item.Filters)
-                    {
-                        var lower = 15000;
-                        var upper = 300000;
-                        if (salaryItem.Label == "Hourly Rate")
-                        {
-                            lower = 18;
-                            upper = 200;
-                        }
-                        <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
-
-                            <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
-                                 data-cur_min="@lower" data-cur_max="@upper">
-
-                                <div class="bar"></div>
-                                <div class="leftGrip"></div>
-                                <div class="rightGrip"></div>
-                            </div>
-                            <div class="leftLabel">$<span>@lower</span></div>
-                            <div class="rightLabel">$<span>@upper</span></div>
-
-                        </div>
-                    }
-                }
+                
             }
         </div>
     </div>
@@ -86,55 +54,6 @@
                 $(salarySliderEle).data("cur_max", modelSalary.UpperRange);
             }
         }
-
-
-        $('.SalaryRangeSelect').on('change', function () {
-            isSlarySelected = false;
-            $('.salaryrangewrapper').each(function (i, obj) {
-                $(this).addClass('visible-hidden');
-            });
-            if (this.value != -1) {
-                $(this).addClass('changed');
-                isSlarySelected = true;
-                $('#' + this.value).removeClass('visible-hidden');
-                salary.TargetValue = this.value;
-                salary.LowerRange = $("#" + $(this).val()).find('.leftLabel span').text();
-                salary.UpperRange = $("#" + $(this).val()).find('.rightLabel span').text();
-                eachClickFilter();
-            } else if ($(this).hasClass('changed') && this.value == -1) {
-                isSlarySelected = false;
-                eachClickFilter();
-            }
-
-        });
-
-        $('.nstSlider').each(function (i, obj) {
-            $(this).nstSlider({
-                "rounding": {
-                    "1": "600",
-                    "1000": "200000"
-                },
-                "crossable_handles": false,
-                "left_grip_selector": ".leftGrip",
-                "right_grip_selector": ".rightGrip",
-                "value_bar_selector": ".bar",
-                "user_mouseup_callback": function (leftValue, rightValue, isLeftGripMoved) {
-                    salary.LowerRange = leftValue;
-                    salary.UpperRange = rightValue;
-                    $(this).parent().find('.leftLabel span').text(leftValue);
-                    $(this).parent().find('.rightLabel span').text(rightValue);
-                    if (isSlarySelected) {
-                        eachClickFilter();
-                    }
-                },
-                "value_changed_callback": function (cause, leftValue, rightValue) {
-                    $(this).parent().find('.leftLabel span').text(leftValue);
-                    $(this).parent().find('.rightLabel span').text(rightValue);
-                }
-            });
-        });
-
-
 
         $('#selectedkeywordsfilter').on('keyup', function (e) {
             clearTimeout(typingTimer);

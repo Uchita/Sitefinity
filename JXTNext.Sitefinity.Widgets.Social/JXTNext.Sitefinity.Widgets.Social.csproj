@@ -421,12 +421,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
+    <Compile Include="Mvc\Models\AddThis\AddThisButtonModel.cs" />
+    <Compile Include="Mvc\StringResources\AddThisResources.cs" />
     <Compile Include="SiteSettings\AddThis\AddThisConfig.cs" />
     <Compile Include="SiteSettings\AddThis\AddThisSettings.cs" />
     <Compile Include="SiteSettings\AddThis\AddThisSettingsContract.cs" />
     <Compile Include="SiteSettings\AddThis\AddThisSettingsUISettings.cs" />
     <Compile Include="SiteSettings\AddThis\IAddThisSettings.cs" />
     <Compile Include="Mvc\Configuration\InstagramConfig.cs" />
+    <Compile Include="Mvc\Controllers\AddThisController.cs" />
     <Compile Include="Mvc\Controllers\InstagramController.cs" />
     <Compile Include="Mvc\Controllers\OAuthController.cs" />
     <Compile Include="Mvc\Controllers\SocialHandlerController.cs" />
@@ -438,8 +441,11 @@
     <Compile Include="Mvc\Logics\ProcessLinkedInData.cs" />
     <Compile Include="Mvc\Logics\ProcessSeekData.cs" />
     <Compile Include="Mvc\Logics\SocialHandlerLogics.cs" />
+    <Compile Include="Mvc\Models\AddThis\AddThisViewModel.cs" />
+    <Compile Include="Mvc\Models\AddThis\AddThisModel.cs" />
     <Compile Include="Mvc\Models\CreateJobApplicationResponse.cs" />
     <Compile Include="Mvc\Models\InstagramModel.cs" />
+    <Compile Include="Mvc\Models\AddThis\IAddThisModel.cs" />
     <Compile Include="Mvc\Models\JobDetailsModel.cs" />
     <Compile Include="Mvc\Models\LinkedInAccessTokenResponse.cs" />
     <Compile Include="Mvc\Models\LinkedInApplyResponse.cs" />
@@ -460,6 +466,9 @@
     <EmbeddedResource Include="Mvc\Views\SocialLink\DesignerView.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\SocialLink\Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\SocialHandler\SocialHandler.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\AddThis\AddThis.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\AddThis\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\AddThis\DesignerView.Simple.json" />
     <None Include="Mvc\Views\Instagram\Authorize.cshtml" />
     <None Include="Mvc\Views\Instagram\Default.cshtml" />
     <None Include="Mvc\Views\Instagram\DesignerView.Simple.cshtml" />
@@ -477,6 +486,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Mvc\Scripts\SocialHandler\designerview-simple.js" />
+    <EmbeddedResource Include="Mvc\Scripts\AddThis\designerview-simple.js" />
     <Content Include="Mvc\Scripts\SocialLink\designerview-simple.js" />
   </ItemGroup>
   <ItemGroup>

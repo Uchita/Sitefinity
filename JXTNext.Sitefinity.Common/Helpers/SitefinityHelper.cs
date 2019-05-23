@@ -20,6 +20,7 @@ using Telerik.Sitefinity.Utilities.TypeConverters;
 using Telerik.Sitefinity.GenericContent.Model;
 using System.Threading;
 using System.Globalization;
+using System.Web;
 
 namespace JXTNext.Sitefinity.Common.Helpers
 {
@@ -75,7 +76,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 var dynamicModuleManager = DynamicModuleManager.GetManager(GetCurrentSiteEmailTemplateProviderName());
                 var emailTemplateType = TypeResolutionService.ResolveType(_itemType);
                 var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(templatedId.ToUpper()));
-                title = emailTemplateItem.GetValue(_titleStr).ToString();
+                title = HttpUtility.HtmlEncode(emailTemplateItem.GetValue(_titleStr).ToString());
             }
             return title;
         }

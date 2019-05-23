@@ -9811,9 +9811,6 @@ ul.breadcrumb {
       .page-wrapper .basic-form .input-medium {
         width: 100%;
         max-width: 275px; } }
-  .page-wrapper .basic-form select {
-    padding-left: 6px;
-    font-size: 1.5rem; }
   .page-wrapper .basic-form textarea {
     height: 115px;
     resize: none; }
@@ -12169,7 +12166,7 @@ select.articles-order {
       text-indent: 0; }
   .search-top .select {
     position: absolute;
-    top: 30px;
+    top: 20px;
     left: 103px;
     min-width: 103px !important;
     width: 104px;

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
 {
@@ -19,6 +16,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
         public string ClassificationsSEORouteName { get; set; }
         public string UrlReferral { get; set; }
         public string ApplicationEmail { get; set; }
+        public string JobCurrencySymbol { get; set; }
 
         // CustomData is of Flat JSON, so we are getting the values as .Sublevel[0]
         // Process this until we find the key .Sublevel[0] as null

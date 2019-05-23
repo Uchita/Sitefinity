@@ -25,10 +25,12 @@ using JXTNext.Common.Communications.Helpers.Utility;
 using Telerik.Sitefinity.Web.Mail;
 using System.Net.Mail;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common;
+using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
     [EnhanceViewEngines]
+    [Localization(typeof(JobAlertResources))]
     [ControllerToolboxItem(Name = "JobAlert_MVC", Title = "Job Alert", SectionName = "JXTNext.JobAlert", CssClass = JobAlertController.WidgetIconCssClass)]
     public class JobAlertController : Controller
     {
@@ -115,41 +117,46 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return View("Create", dynamicFilterResponse);
         }
 
-        
+
 
         [HttpPost]
         public ActionResult Create(JobAlertViewModel model)
         {
             List<JobAlertEditFilterRootItem> filtersVMList = GetJobFilterData();
-            if(model.SalaryStringify != null)
+            if (model.SalaryStringify != null)
             {
                 model.Salary = JsonConvert.DeserializeObject<JobAlertSalaryFilterReceiver>(model.SalaryStringify);
             }
 
-            if(String.IsNullOrEmpty(model.Email))
+            if (String.IsNullOrEmpty(model.Email))
                 model.Email = SitefinityHelper.GetLoggedInUserEmail();
 
             model.Data = JobAlertUtility.ConvertJobAlertViewModelToSearchModel(model, filtersVMList);
             // Create Email Notification
-            EmailNotificationSettings jobAlertEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.JobAlertEmailTemplateSenderName, this.JobAlertEmailTemplateSenderEmailAddress),
+            EmailNotificationSettings jobAlertEmailNotificationSettings = null;
+            if (this.JobAlertEmailTemplateId != null)
+            {
+                jobAlertEmailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.JobAlertEmailTemplateSenderName, this.JobAlertEmailTemplateSenderEmailAddress),
                                                                                                 new EmailTarget(string.Empty, model.Email),
                                                                                                 SitefinityHelper.GetCurrentSiteEmailTemplateTitle(this.JobAlertEmailTemplateId),
                                                                                                 SitefinityHelper.GetCurrentSiteEmailTemplateHtmlContent(this.JobAlertEmailTemplateId), null);
-            if (!this.JobAlertEmailTemplateCC.IsNullOrEmpty())
-            {
-                foreach (var ccEmail in this.JobAlertEmailTemplateCC.Split(';'))
+                if (!this.JobAlertEmailTemplateCC.IsNullOrEmpty())
                 {
-                    jobAlertEmailNotificationSettings?.AddCC(String.Empty, ccEmail);
+                    foreach (var ccEmail in this.JobAlertEmailTemplateCC.Split(';'))
+                    {
+                        jobAlertEmailNotificationSettings?.AddCC(String.Empty, ccEmail);
+                    }
+                }
+
+                if (!this.JobAlertEmailTemplateBCC.IsNullOrEmpty())
+                {
+                    foreach (var bccEmail in this.JobAlertEmailTemplateBCC.Split(';'))
+                    {
+                        jobAlertEmailNotificationSettings?.AddBCC(String.Empty, bccEmail);
+                    }
                 }
             }
 
-            if (!this.JobAlertEmailTemplateBCC.IsNullOrEmpty())
-            {
-                foreach (var bccEmail in this.JobAlertEmailTemplateBCC.Split(';'))
-                {
-                    jobAlertEmailNotificationSettings?.AddBCC(String.Empty, bccEmail);
-                }
-            }
 
             model.EmailNotifications = jobAlertEmailNotificationSettings;
             var response = GetUpsertResponse(model);
@@ -163,7 +170,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             TempData["StatusCode"] = alertStatus;
             TempData["StatusMessage"] = stausMessage;
-            
+
             // Why action name is empty?
             // Here we need to call Index action, if we are providing action name as Index here
             // It is appending in the URL, but we dont want to show that in URL. So, sending it as empty
@@ -275,7 +282,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             TempData["StatusMessage"] = statusMessage;
             TempData["StatusCode"] = alertStatus;
-                       
+
             // Why action name is empty?
             // Here we need to call Index action, if we are providing action name as Index here
             // It is appending in the URL, but we dont want to show that in URL. So, sending it as empty
@@ -296,7 +303,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
         }
 
-        
+
 
         private List<JobAlertEditFilterRootItem> GetJobFilterData()
         {
@@ -361,14 +368,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 encodeKeywords = Uri.EscapeDataString(jobAlertDetails.Keywords).Replace("'", "%27");
 
             queryParamsStringList.Add("Keywords=" + encodeKeywords);
-                       
+
             if (jobAlertDetails.Filters != null)
             {
                 for (int i = 0; i < jobAlertDetails.Filters.Count; i++)
                 {
                     var item = jobAlertDetails.Filters[i];
                     queryParamsStringList.Add("Filters[" + i + "].rootId=" + item.RootId);
-                    if(item.Values != null)
+                    if (item.Values != null)
                     {
                         foreach (var filterId in item.Values)
                         {
@@ -378,14 +385,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
             }
 
-            if(jobAlertDetails.Salary != null && !jobAlertDetails.Salary.TargetValue.IsNullOrEmpty())
+            if (jobAlertDetails.Salary != null && !jobAlertDetails.Salary.TargetValue.IsNullOrEmpty())
             {
                 queryParamsStringList.Add("Salary.TargetValue=" + jobAlertDetails.Salary.TargetValue);
                 queryParamsStringList.Add("Salary.LowerRange=" + jobAlertDetails.Salary.LowerRange);
                 queryParamsStringList.Add("Salary.UpperRange=" + jobAlertDetails.Salary.UpperRange);
             }
 
-           return String.Join("&", queryParamsStringList);
+            return String.Join("&", queryParamsStringList);
         }
 
         static void MergeFilters(JobAlertEditFilterItem filterItem, List<string> values)
@@ -411,7 +418,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
-        
+
+
         private static void RemoveUnderScore(List<string> values)
         {
             if (values != null && values.Count > 0)
@@ -450,6 +458,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string ResultsPageId { get; set; }
         private string _emailTemplateProviderName = "OpenAccessProvider";
         private string _itemType = "Telerik.Sitefinity.DynamicTypes.Model.StandardEmailTemplate.EmailTemplate";
-        
+
     }
 }

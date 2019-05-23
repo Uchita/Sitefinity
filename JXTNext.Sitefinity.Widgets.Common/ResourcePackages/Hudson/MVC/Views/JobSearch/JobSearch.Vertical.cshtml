@@ -1,6 +1,6 @@
 ﻿@model List<JobSearchModel>
 @using JXTNext.Sitefinity.Widgets.Job.Mvc.Models
-
+@using JXTNext.Sitefinity.Common.Helpers;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
 @Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController",
@@ -10,6 +10,10 @@
 
 @Html.Script(Url.WidgetContent("/Mvc/Scripts/jquery.nstSlider.js"))
 @Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/rangeSlider.css"))
+
+@{ 
+    var siteSettingsHelper = new SiteSettingsHelper();
+}
 
 @functions {
     List<string> _itemsList = new List<string>();
@@ -135,8 +139,8 @@
 
                                                 <div class="rightGrip"></div>
                                             </div>
-                                            <div class="leftLabel">$<span>@lower</span></div>
-                                            <div class="rightLabel">$<span>@upper</span></div>
+                                            <div class="leftLabel">@siteSettingsHelper.GetJobCurrencySymbol()<span>@lower</span></div>
+                                            <div class="rightLabel">@siteSettingsHelper.GetJobCurrencySymbol()<span>@upper</span></div>
 
                                         </div>
 
@@ -186,7 +190,7 @@
         <div class="row form-group">
             <div class="col-md-4 text-right"></div>
             <div class="col-md-8 button-wrapper">
-                <input class="btn btn-primary" type="submit" value="Browse Jobs" />
+                <input class="btn btn-primary" type="submit" value="@Html.Resource("JxtBrowseJobs", "JxtAuthoringResources")" />
             </div>
         </div>
 

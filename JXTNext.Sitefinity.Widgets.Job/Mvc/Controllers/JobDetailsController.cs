@@ -229,9 +229,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     viewModel.ClassificationsSEORouteName = jobListingResponse.Job.ClassificationURL;
 
                     ViewBag.CssClass = this.CssClass;
-                    ViewBag.JobApplicationPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationPageId);
-                    ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.JobResultsPageId);
-                    ViewBag.EmailJobPageUrl = SitefinityHelper.GetPageUrl(this.EmailJobPageId);
+                    ViewBag.JobApplicationPageUrl = SfPageHelper.GetPageUrlById(new Guid(JobApplicationPageId));
+                    ViewBag.JobResultsPageUrl = SfPageHelper.GetPageUrlById(new Guid(JobResultsPageId));
+                    ViewBag.EmailJobPageUrl = SfPageHelper.GetPageUrlById(new Guid(EmailJobPageId));
                     ViewBag.GoogleForJobs = ReplaceToken(GoogleForJobsTemplate, JsonConvert.SerializeObject(new
                     {
                         CurrencySymbol = "$",

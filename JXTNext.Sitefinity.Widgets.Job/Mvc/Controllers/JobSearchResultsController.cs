@@ -662,10 +662,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             if (jobResultsList != null)
                 ViewBag.TotalCount = jobResultsList.Total;
 
-            ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.ResultsPageId);
-            ViewBag.CurrentPageUrl = SitefinityHelper.GetPageUrl(SiteMapBase.GetActualCurrentNode().Id.ToString());
-            ViewBag.JobDetailsPageUrl = SitefinityHelper.GetPageUrl(this.DetailsPageId);
-            ViewBag.EmailJobPageUrl = SitefinityHelper.GetPageUrl(this.EmailJobPageId);
+            ViewBag.JobResultsPageUrl = SfPageHelper.GetPageUrlById(new Guid(ResultsPageId));
+            ViewBag.CurrentPageUrl = SfPageHelper.GetPageUrlById(SiteMapBase.GetActualCurrentNode().Id);
+            ViewBag.JobDetailsPageUrl = SfPageHelper.GetPageUrlById(new Guid(DetailsPageId));
+            ViewBag.EmailJobPageUrl = SfPageHelper.GetPageUrlById(new Guid(EmailJobPageId));
             ViewBag.HidePushStateUrl = this.HidePushStateUrl;
             ViewBag.PageFullUrl = SitefinityHelper.GetPageFullUrl(SiteMapBase.GetActualCurrentNode().Id);
             ViewBag.IsMember = SitefinityHelper.IsUserLoggedIn("Member");

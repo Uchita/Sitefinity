@@ -8,7 +8,6 @@ namespace JXTNext.Sitefinity.Common.Constants
 {
     public static class AmazonS3Constants
     {
-        public const string BucketDomainName = "s3-ap-southeast-2.amazonaws.com";
         public const string DocumentContentType = "application/octet-stream";
     }
 }

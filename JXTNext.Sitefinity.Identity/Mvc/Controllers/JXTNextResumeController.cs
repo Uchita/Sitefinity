@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Telerik.Sitefinity.Abstractions;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using Telerik.Sitefinity.Mvc;
 
@@ -136,10 +137,10 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
                 }
                 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 VM.DownloadError = true;
-                //throw ex;
+                Log.Write($"Unable to download resume to the memeber profile. " + ex.Message, ConfigurationPolicy.ErrorLog);
             }
 
             
@@ -180,10 +181,10 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
 
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 VM.DeleteError = true;
-                //throw ex;
+                Log.Write($"Unable to delete resume to the memeber profile. " + ex.Message, ConfigurationPolicy.ErrorLog);
             }
 
             VM.ResumeList = this.resumeList;
@@ -256,10 +257,10 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 VM.UploadError = true;
-                //throw ex;
+                Log.Write($"Unable to upload resume to the memeber profile. " + ex.Message, ConfigurationPolicy.ErrorLog);
             }
             VM.ResumeList = this.resumeList;
             VM.JsonData = JsonConvert.SerializeObject(VM);

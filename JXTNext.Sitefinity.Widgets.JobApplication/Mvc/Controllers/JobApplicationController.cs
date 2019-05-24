@@ -529,12 +529,15 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             Log.Write($"Before upload", ConfigurationPolicy.ErrorLog);
             var resumeAttachment = attachments.Where(x => x.AttachmentType == JobApplicationAttachmentType.Resume).FirstOrDefault();
             JobApplicationAttachmentUploadItem resumeToProfile = new JobApplicationAttachmentUploadItem();
-            resumeToProfile.Id = resumeAttachment.Id;
+            string docExtension = resumeAttachment.FileName.Split('.').Last();
+            
+            resumeToProfile.Id = Guid.NewGuid().ToString();
+            string documentTitle = resumeToProfile.Id.ToString() + "_" + resumeAttachment.FileName;
             resumeToProfile.AttachmentType = resumeAttachment.AttachmentType;
             resumeToProfile.FileName = resumeAttachment.FileName;
             resumeToProfile.FileStream = new MemoryStream();
             resumeAttachment.FileStream.CopyTo(resumeToProfile.FileStream);
-            resumeToProfile.PathToAttachment = resumeAttachment.PathToAttachment;
+            resumeToProfile.PathToAttachment = resumeToProfile.Id+"_"+resumeAttachment.FileName;
             resumeToProfile.Status = "Ready";
 
 
@@ -833,7 +836,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                             FileName = masterDocumentId.ToString() + "_" + fileName,
                             Directory = _siteSettingsHelper.GetAmazonS3UrlName()+ "/" + libName,
                             FileStream = fileStream,
-                            S3BucketName = _siteSettingsHelper.GetAmazonS3BucketName()
+                            S3BucketName = _siteSettingsHelper.GetAmazonS3BucketName(),
+                            ContentType = AmazonS3Constants.DocumentContentType
                         });
                 
                 return response;
@@ -1099,6 +1103,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             if (googleFileResonse.FileSuccessStatus)
             {
                 Guid identifier = Guid.NewGuid();
+                string docExtension = googleFilesInfo.FileName.Split('.').Last();
                 string documentTitle = identifier.ToString() + "_" + googleFilesInfo.FileName;
                 item = new JobApplicationAttachmentUploadItem
                 {
@@ -1106,7 +1111,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     AttachmentType = attachmentType,
                     FileName = googleFilesInfo.FileName,
                     FileStream = googleFileResonse.FileStream,
-                    PathToAttachment = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-"),
+                    PathToAttachment = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-")+ "."+docExtension,
                     Status = "Ready"
                 };
             }
@@ -1129,6 +1134,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             if (dropboxFileResonse.FileSuccessStatus)
             {
                 Guid identifier = Guid.NewGuid();
+                string docExtension = dropboxFilesInfo.FileName.Split('.').Last();
                 string documentTitle = identifier.ToString() + "_" + dropboxFilesInfo.FileName;
                 item = new JobApplicationAttachmentUploadItem
                 {
@@ -1136,7 +1142,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     AttachmentType = attachmentType,
                     FileName = dropboxFilesInfo.FileName,
                     FileStream = dropboxFileResonse.FileStream,
-                    PathToAttachment = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-"),
+                    PathToAttachment = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-") + "." + docExtension,
                     Status = "Ready"
                 };
             }
@@ -1162,6 +1168,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             if (file != null )
             {
                 Guid identifier = Guid.NewGuid();
+                string docExtension = fileName.Split('.').Last();
                 string documentTitle = identifier.ToString() + "_" + fileName;
                 return new JobApplicationAttachmentUploadItem
                 {
@@ -1169,7 +1176,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     AttachmentType = attachmentType,
                     FileName = fileName,
                     FileStream = file,
-                    PathToAttachment = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-"),
+                    PathToAttachment = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-") + "." + docExtension,
                     Status = "Ready"
                 };
             }
@@ -1181,6 +1188,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             if (file != null && file.ContentLength > 0)
             {
                 Guid identifier = Guid.NewGuid();
+                string docExtension = file.FileName.Split('.').Last();
                 string documentTitle = identifier.ToString() + "_" + file.FileName;
                 
                 return new JobApplicationAttachmentUploadItem
@@ -1189,7 +1197,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     AttachmentType = attachmentType,
                     FileName = file.FileName,
                     FileStream = file.InputStream,
-                    PathToAttachment = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-"),
+                    PathToAttachment = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-") + "." + docExtension,
                     Status = "Ready"
                 };
             }
@@ -1205,7 +1213,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 var response = UploadToAmazonS3(Guid.Parse(uploadItem.Id), _siteSettingsHelper.GetAmazonS3ProviderName(), libName, uploadItem.PathToAttachment, uploadItem.FileStream);
                 if (response != null && response.Success)
                 {
-                    uploadItem.FileUrl = HttpVerbConstants.HTTPSString + AmazonS3Constants.BucketDomainName + "/" + response.BucketName + "/" + response.Key; ;
+                    uploadItem.FileUrl = null;
                     uploadItem.Status = "Completed";
                 }
                 else
@@ -1230,7 +1238,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 var response = UploadToAmazonS3(Guid.Parse(uploadItem.Id), _siteSettingsHelper.GetAmazonS3ProviderName(), libName, uploadItem.PathToAttachment, uploadItem.FileStream);
                 if (response != null && response.Success)
                 {
-                    uploadItem.FileUrl = HttpVerbConstants.HTTPSString + AmazonS3Constants.BucketDomainName + "/" + response.BucketName + "/" + response.Key; ;
+                    uploadItem.FileUrl = null;
                     uploadItem.Status = "Completed";
                 }
                 else
@@ -1277,13 +1285,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             try
             {
-                Guid resumeId = Guid.NewGuid();
-                resume.Id = resumeId.ToString();
+                
                 ProcessResumeFileUpload(ref resume);
 
                 ProfileResumeJsonModel resumeJson = new ProfileResumeJsonModel()
                 {
-                    Id = resumeId,
+                    Id = Guid.Parse(resume.Id),
                     UploadDate = DateTime.Now,
                     FileName = resume.FileName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).First(),
                     UploadPathToAttachment = resume.Id.ToString() + "_" + resume.FileName,

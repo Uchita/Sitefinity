@@ -74,7 +74,7 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
                 var response = UploadToAmazonS3(Guid.Parse(uploadItem.Id), _siteSettingsHelper.GetAmazonS3ProviderName(), libName, uploadItem.PathToAttachment, uploadItem.FileStream);
                 if (response != null && response.Success)
                 {
-                    uploadItem.FileUrl = HttpVerbConstants.HTTPSString + AmazonS3Constants.BucketDomainName + "/"+response.BucketName+"/"+response.Key;
+                    uploadItem.FileUrl = null;
                     uploadItem.Status = "Completed";
                 }
                 else 
@@ -220,7 +220,8 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
                             FileName = masterDocumentId.ToString() + "_" + fileName,
                             Directory = _siteSettingsHelper.GetAmazonS3UrlName() + "/" + libName,
                             FileStream = fileStream,
-                            S3BucketName = _siteSettingsHelper.GetAmazonS3BucketName()
+                            S3BucketName = _siteSettingsHelper.GetAmazonS3BucketName(),
+                            ContentType = AmazonS3Constants.DocumentContentType
                         });
                 return response;
             }

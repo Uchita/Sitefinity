@@ -1147,7 +1147,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Sitefinity\" />
-    <Folder Include="ResourcePackages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminApp\assets\js\kendo-editor\kendo.custom.min.js.map" />
@@ -1170,6 +1169,7 @@
     <Content Include="SampleTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
     </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.ArticleListBanner.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

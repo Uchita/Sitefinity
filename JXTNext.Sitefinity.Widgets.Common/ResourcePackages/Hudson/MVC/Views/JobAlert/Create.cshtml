@@ -1,6 +1,11 @@
 ﻿@model dynamic
 @using System;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using JXTNext.Sitefinity.Common.Helpers;
+@using System.Web;
+@{
+    var siteSettingsHelper = new SiteSettingsHelper();
+}
 
 @Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
 @Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.js"), "bottom")
@@ -104,8 +109,8 @@
                                                 <div class="leftGrip"></div>
                                                 <div class="rightGrip"></div>
                                             </div>
-                                            <div class="leftLabel">$<span>@lower</span></div>
-                                            <div class="rightLabel">$<span>@upper</span></div>
+                                            <div class="leftLabel">@Html.Raw(siteSettingsHelper.GetJobCurrencySymbol())<span>@lower</span></div>
+                                            <div class="rightLabel">@Html.Raw(siteSettingsHelper.GetJobCurrencySymbol())<span>@upper</span></div>
 
                                         </div>
                                     }

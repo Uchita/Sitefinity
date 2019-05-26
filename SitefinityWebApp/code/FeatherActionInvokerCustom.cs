@@ -7,6 +7,12 @@ using Telerik.Sitefinity.Services;
 
 namespace SitefinityWebApp.code
 {
+    /// <summary>
+    /// Handles error status codes. Replaces the FeatherActionInvoker and allows the developer 
+    /// to copy the Response.Status and Response.StatusCode from your controllers action to the page current HttpContext.
+    /// We can then use MVC controllers where you set a response status code, and this status code will propagate to the current HttpContext. 
+    /// see: https://www.progress.com/documentation/sitefinity-cms/change-the-response-status-of-the-custom-error-page-of-mvc-pages-mvc
+    /// </summary>
     public class FeatherActionInvokerCustom : FeatherActionInvoker
     {
 
@@ -32,6 +38,5 @@ namespace SitefinityWebApp.code
         {
             ObjectFactory.Container.RegisterType<IControllerActionInvoker, FeatherActionInvokerCustom>();
         }
-
     }
 }

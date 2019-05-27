@@ -25,11 +25,15 @@
                 );
             }
 
+            // following is done to allow AddThis render default icons
+            // default icon is not rendered if the <a> tag is not empty
+            if (label != "")
+            {
+                label += "<span class=\"sr-only\">" + Html.Resource(serviceButton.Name + "Title") + "</span>";
+            }
+
             <li>
-                <a href="javascript:;" class="addthis_button_@serviceButton.Service">
-                    @Html.Raw(label)
-                    <span class="sr-only">@Html.Resource(serviceButton.Name + "Title")</span>
-                </a>
+                <a href="javascript:;" class="addthis_button_@serviceButton.Service">@Html.Raw(label)</a>
             </li>
         }
     </ul>

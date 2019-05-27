@@ -392,6 +392,131 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
         }
         #endregion
 
+        #region Amazon S3 Bucket
+        /// <summary>
+        /// Gets or sets the Instagram API Token
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("amazonS3AccessKeyId")]
+        [DescriptionResource(typeof(ConfigDescriptions), "AmazonS3AccessKeyId")]
+
+        [DataMember]
+        public virtual String CurrentAmazonS3AccessKeyId
+        {
+            get
+            {
+                return (String)this["amazonS3AccessKeyId"];
+            }
+            set
+            {
+                this["amazonS3AccessKeyId"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Instagram Client Secret
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("amazonS3SecretKey")]
+        [DescriptionResource(typeof(ConfigDescriptions), "AmazonS3SecretKey")]
+
+        [DataMember]
+        public virtual String CurrentAmazonS3SecretKey
+        {
+            get
+            {
+                return (String)this["amazonS3SecretKey"];
+            }
+            set
+            {
+                this["amazonS3SecretKey"] = value;
+            }
+        }
+
+        [ConfigurationProperty("amazonS3BucketName")]
+        [DescriptionResource(typeof(ConfigDescriptions), "AmazonS3BucketName")]
+
+        [DataMember]
+        public virtual String CurrentAmazonS3BucketName
+        {
+            get
+            {
+                return (String)this["amazonS3BucketName"];
+            }
+            set
+            {
+                this["amazonS3BucketName"] = value;
+            }
+        }
+
+        [ConfigurationProperty("amazonS3RegionEndpoint")]
+        [DescriptionResource(typeof(ConfigDescriptions), "AmazonS3RegionEndpoint")]
+
+        [DataMember]
+        public virtual String CurrentAmazonS3RegionEndpoint
+        {
+            get
+            {
+                return (String)this["amazonS3RegionEndpoint"];
+            }
+            set
+            {
+                this["amazonS3RegionEndpoint"] = value;
+            }
+        }
+
+        [ConfigurationProperty("amazonS3ProviderName")]
+        [DescriptionResource(typeof(ConfigDescriptions), "AmazonS3ProviderName")]
+
+        [DataMember]
+        public virtual String CurrentAmazonS3ProviderName
+        {
+            get
+            {
+                return (String)this["amazonS3ProviderName"];
+            }
+            set
+            {
+                this["amazonS3ProviderName"] = value;
+            }
+        }
+
+
+        [ConfigurationProperty("amazonS3ApplicationName")]
+        [DescriptionResource(typeof(ConfigDescriptions), "AmazonS3ApplicationName")]
+
+        [DataMember]
+        public virtual String CurrentAmazonS3ApplicationName
+        {
+            get
+            {
+                return (String)this["amazonS3ApplicationName"];
+            }
+            set
+            {
+                this["amazonS3ApplicationName"] = value;
+            }
+        }
+
+        [ConfigurationProperty("amazonS3UrlName")]
+        [DescriptionResource(typeof(ConfigDescriptions), "AmazonS3UrlName")]
+
+        [DataMember]
+        public virtual String CurrentAmazonS3UrlName
+        {
+            get
+            {
+                return (String)this["amazonS3UrlName"];
+            }
+            set
+            {
+                this["amazonS3UrlName"] = value;
+            }
+        }
+
+
+        #endregion
+
         #region LinkedIn
         /// <summary>
         /// Gets or sets the LinkedIn client id

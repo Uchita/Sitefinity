@@ -80,6 +80,59 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             set;
         }
 
+        #region Amazon S3 Bucket
+        [DataMember]
+        public string AmazonS3AccessKeyId
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string AmazonS3SecretKey
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string AmazonS3BucketName
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string AmazonS3RegionEndpoint
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string AmazonS3ProviderName
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string AmazonS3ApplicationName
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string AmazonS3UrlName
+        {
+            get;
+            set;
+        }
+        #endregion
+
+
+
         #region Seek
         [DataMember]
         public string SeekClientId

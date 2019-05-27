@@ -120,7 +120,7 @@ namespace JXTNext.Sitefinity.Services.Services
 
         public bool DeleteFile(JobApplicationAttachmentUploadItem deletefile)
         {
-            return JobApplicationAttachmentUploadItem.DeleteFromAmazonS3("private-amazon-s3-provider", deletefile.AttachmentType, deletefile.Id);
+            return JobApplicationAttachmentUploadItem.DeleteFromAmazonS3("private-amazon-s3-provider", deletefile.AttachmentType, deletefile.PathToAttachment);
         }
 
 
@@ -135,7 +135,7 @@ namespace JXTNext.Sitefinity.Services.Services
 
         public Stream GetFileStreamFromAmazonS3(string srcLibName ,int attachmentType, string id)
         {
-            return JobApplicationAttachmentUploadItem.GetFileStreamFromAmazonS3(awsProvider, srcLibName, attachmentType, id);
+            return JobApplicationAttachmentUploadItem.GetFileStreamFromAmazonS3(srcLibName, attachmentType, id);
         }
 
         public bool UploadFiles(List<JobApplicationAttachmentUploadItem> attachments)

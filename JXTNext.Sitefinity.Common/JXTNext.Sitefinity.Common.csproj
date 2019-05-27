@@ -222,6 +222,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\AmazonS3Constants.cs" />
+    <Compile Include="Constants\HttpVerbConstants.cs" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Helpers\SfPageHelper.cs" />
     <Compile Include="Helpers\SfHtmlHelper.cs" />

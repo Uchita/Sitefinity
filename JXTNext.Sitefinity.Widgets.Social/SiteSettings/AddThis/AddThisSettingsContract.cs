@@ -60,7 +60,16 @@ namespace JXTNext.Sitefinity.Widgets.Social.SiteSettings.AddThis
             }
             else
             {
-                section = Config.Get<AddThisConfig>();
+                // if there is no settings done yet an exception is thrown
+                // create a new instance in that case
+                try
+                {
+                    section = Config.Get<AddThisConfig>();
+                }
+                catch
+                {
+                    section = new AddThisConfig();
+                }
             }
 
             var settings = section.UIAddThisSettings;

@@ -78,7 +78,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             // This is the CSS classes enter from More Options
             // this needs to me moved to a viewmodel rather than ViewData
             ViewData["CssClass"] = this.CssClass;
-            ViewData["JobResultsPageUrl"] = SfPageHelper.GetPageUrlById(new Guid(ResultsPageId));
+            ViewData["JobResultsPageUrl"] = SfPageHelper.GetPageUrlById(ResultsPageId.IsNullOrWhitespace() ? Guid.Empty : new Guid(ResultsPageId));
             ViewData["AdvancedSearchPageUrl"] = AdvancedSearchPageId != Guid.Empty ? SfPageHelper.GetPageUrlById(AdvancedSearchPageId) : "/advancedsearch";
 
             var jobSearchComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);

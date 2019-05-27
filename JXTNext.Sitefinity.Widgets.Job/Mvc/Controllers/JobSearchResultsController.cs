@@ -662,12 +662,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             if (jobResultsList != null)
                 ViewBag.TotalCount = jobResultsList.Total;
 
-            ViewBag.JobResultsPageUrl = SfPageHelper.GetPageUrlById(new Guid(ResultsPageId));
+            ViewBag.JobResultsPageUrl = SfPageHelper.GetPageUrlById(ResultsPageId.IsNullOrWhitespace() ? Guid.Empty : new Guid(ResultsPageId));
             ViewBag.CurrentPageUrl = SfPageHelper.GetPageUrlById(SiteMapBase.GetActualCurrentNode().Id);
-            ViewBag.JobDetailsPageUrl = SfPageHelper.GetPageUrlById(new Guid(DetailsPageId));
-            ViewBag.EmailJobPageUrl = SfPageHelper.GetPageUrlById(new Guid(EmailJobPageId));
+            ViewBag.JobDetailsPageUrl = SfPageHelper.GetPageUrlById(DetailsPageId.IsNullOrWhitespace() ? Guid.Empty : new Guid(DetailsPageId));
+            ViewBag.EmailJobPageUrl = SfPageHelper.GetPageUrlById(EmailJobPageId.IsNullOrWhitespace() ? Guid.Empty : new Guid(EmailJobPageId));
             ViewBag.HidePushStateUrl = this.HidePushStateUrl;
-            ViewBag.PageFullUrl = SitefinityHelper.GetPageFullUrl(SiteMapBase.GetActualCurrentNode().Id);
+            ViewBag.PageFullUrl = SfPageHelper.GetPageUrlById(SiteMapBase.GetActualCurrentNode().Id);
             ViewBag.IsMember = SitefinityHelper.IsUserLoggedIn("Member");
 
             var currentIdentity = ClaimsManager.GetCurrentIdentity();

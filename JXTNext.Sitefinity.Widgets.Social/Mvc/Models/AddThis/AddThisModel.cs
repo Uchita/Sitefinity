@@ -54,7 +54,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Models.AddThis
             {
                 Enabled = settings.FacebookEnabled,
                 Service = "facebook",
-                Label = "Facebook",
+                Name = "Facebook",
                 Icon = settings.FacebookIcon,
                 Image = settings.FacebookImage,
                 Position = settings.FacebookPosition
@@ -64,7 +64,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Models.AddThis
             {
                 Enabled = settings.TwitterEnabled,
                 Service = "twitter",
-                Label = "Twitter",
+                Name = "Twitter",
                 Icon = settings.TwitterIcon,
                 Image = settings.TwitterImage,
                 Position = settings.TwitterPosition
@@ -74,7 +74,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Models.AddThis
             {
                 Enabled = settings.LinkedInEnabled,
                 Service = "linkedin",
-                Label = "LinkedIn",
+                Name = "LinkedIn",
                 Icon = settings.LinkedInIcon,
                 Image = settings.LinkedInImage,
                 Position = settings.LinkedInPosition
@@ -84,7 +84,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Models.AddThis
             {
                 Enabled = settings.WeChatEnabled,
                 Service = "wechat",
-                Label = "WeChat",
+                Name = "WeChat",
                 Icon = settings.WeChatIcon,
                 Image = settings.WeChatImage,
                 Position = settings.WeChatPosition

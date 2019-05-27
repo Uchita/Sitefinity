@@ -10,7 +10,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.StringResources
     public class AddThisResources : Resource
     {
         #region Constructors
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="BlogListResources"/> class. 
         /// Initializes new instance of <see cref="BlogListResources"/> class with the default <see cref="ResourceDataProvider"/>.
@@ -27,11 +27,11 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.StringResources
             : base(dataProvider)
         {
         }
-        
+
         #endregion
 
         #region Meta resources
-        
+
         /// <summary>
         /// Title for the AddThis widget resources class.
         /// </summary>
@@ -79,7 +79,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.StringResources
                 return this["AddThisSettings"];
             }
         }
-        
+
         /// <summary>
         /// phrase : More options
         /// </summary>
@@ -141,6 +141,134 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.StringResources
             get
             {
                 return this["SetupServices"];
+            }
+        }
+
+        /// <summary>
+        /// phrase: Facebook
+        /// </summary>
+        /// <value>Facebook</value>
+        [ResourceEntry("FacebookLabel",
+            Value = "Facebook",
+            Description = "phrase: Facebook",
+            LastModified = "2019/05/27")]
+        public string FacebookLabel
+        {
+            get
+            {
+                return this["FacebookLabel"];
+            }
+        }
+
+        /// <summary>
+        /// phrase: Share on Facebook
+        /// </summary>
+        /// <value>Share on Facebook</value>
+        [ResourceEntry("FacebookTitle",
+            Value = "Share on Facebook",
+            Description = "phrase: Share on Facebook",
+            LastModified = "2019/05/27")]
+        public string FacebookTitle
+        {
+            get
+            {
+                return this["FacebookTitle"];
+            }
+        }
+
+        /// <summary>
+        /// phrase: Twitter
+        /// </summary>
+        /// <value>Twitter</value>
+        [ResourceEntry("TwitterLabel",
+            Value = "Twitter",
+            Description = "phrase: Twitter",
+            LastModified = "2019/05/27")]
+        public string TwitterLabel
+        {
+            get
+            {
+                return this["TwitterLabel"];
+            }
+        }
+
+        /// <summary>
+        /// phrase: Share on Twitter
+        /// </summary>
+        /// <value>Share on Twitter</value>
+        [ResourceEntry("TwitterTitle",
+            Value = "Share on Twitter",
+            Description = "phrase: Share on Twitter",
+            LastModified = "2019/05/27")]
+        public string TwitterTitle
+        {
+            get
+            {
+                return this["TwitterTitle"];
+            }
+        }
+
+        /// <summary>
+        /// phrase: LinkedIn
+        /// </summary>
+        /// <value>LinkedIn</value>
+        [ResourceEntry("LinkedInLabel",
+            Value = "LinkedIn",
+            Description = "phrase: LinkedIn",
+            LastModified = "2019/05/27")]
+        public string LinkedInLabel
+        {
+            get
+            {
+                return this["LinkedInLabel"];
+            }
+        }
+
+        /// <summary>
+        /// phrase: Share on LinkedIn
+        /// </summary>
+        /// <value>Share on LinkedIn</value>
+        [ResourceEntry("LinkedInTitle",
+            Value = "Share on LinkedIn",
+            Description = "phrase: Share on LinkedIn",
+            LastModified = "2019/05/27")]
+        public string LinkedInTitle
+        {
+            get
+            {
+                return this["LinkedInTitle"];
+            }
+        }
+
+        /// <summary>
+        /// phrase: WeChat
+        /// </summary>
+        /// <value>WeChat</value>
+        [ResourceEntry("WeChatLabel",
+            Value = "WeChat",
+            Description = "phrase: WeChat",
+            LastModified = "2019/05/27")]
+        public string WeChatLabel
+        {
+            get
+            {
+                return this["WeChatLabel"];
+            }
+        }
+
+        /// <summary>
+        /// phrase: Share on WeChat
+        /// </summary>
+        /// <value>Share on WeChat</value>
+        [ResourceEntry("WeChatTitle",
+            Value = "Share on WeChat",
+            Description = "phrase: Share on WeChat",
+            LastModified = "2019/05/27")]
+        public string WeChatTitle
+        {
+            get
+            {
+                return this["WeChatTitle"];
             }
         }
     }

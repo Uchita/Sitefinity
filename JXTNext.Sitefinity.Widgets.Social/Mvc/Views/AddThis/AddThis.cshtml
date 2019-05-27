@@ -13,14 +13,24 @@
 
             if (!string.IsNullOrEmpty(serviceButton.Icon))
             {
-                label = string.Format("<i class=\"{0}\"></i>", serviceButton.Icon);
+                label = string.Format("<i class=\"{0}\"></i>",
+                    Html.Encode(serviceButton.Icon
+                ));
             }
             else if (!string.IsNullOrEmpty(serviceButton.Image))
             {
-                label = string.Format("<img src=\"{0}\" alt=\"{1}\" />", serviceButton.Image, serviceButton.Label);
+                label = string.Format("<img src=\"{0}\" alt=\"{1}\" />",
+                    Html.Encode(serviceButton.Image),
+                    Html.Resource(serviceButton.Name + "Label"
+                ));
             }
 
-            <li><a href="javascript:;" class="addthis_button_@serviceButton.Service">@Html.Raw(label)</a></li>
+            <li>
+                <a href="javascript:;" class="addthis_button_@serviceButton.Service">
+                    @Html.Raw(label)
+                    <span class="sr-only">@Html.Resource(serviceButton.Name + "Title")</span>
+                </a>
+            </li>
         }
     </ul>
 </div>

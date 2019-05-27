@@ -1,0 +1,40 @@
+﻿@model JXTNext.Sitefinity.Widgets.Social.Mvc.Models.AddThis.AddThisViewModel
+
+@using System;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+@Html.Script("//s7.addthis.com/js/300/addthis_widget.js#pubid=" + Model.PublisherId, "bottom")
+
+<div class="addthis_toolbox">
+    <ul class="@Model.CssClass">
+        @foreach (var serviceButton in Model.ServiceButtons)
+        {
+            var label = "";
+
+            if (!string.IsNullOrEmpty(serviceButton.Icon))
+            {
+                label = string.Format("<i class=\"{0}\"></i>",
+                    Html.Encode(serviceButton.Icon)
+                );
+            }
+            else if (!string.IsNullOrEmpty(serviceButton.Image))
+            {
+                label = string.Format("<img src=\"{0}\" alt=\"{1}\" />",
+                    Html.Encode(serviceButton.Image),
+                    Html.Resource(serviceButton.Name + "Label")
+                );
+            }
+
+            // following is done to allow AddThis render default icons
+            // default icon is not rendered if the <a> tag is not empty
+            if (label != "")
+            {
+                label += "<span class=\"sr-only\">" + Html.Resource(serviceButton.Name + "Title") + "</span>";
+            }
+
+            <li>
+                <a href="javascript:;" class="addthis_button_@serviceButton.Service">@Html.Raw(label)</a>
+            </li>
+        }
+    </ul>
+</div>

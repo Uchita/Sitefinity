@@ -14,7 +14,7 @@
     <div class="col-12">
         <div class="row">
             <div class="col-12 job-count">
-                <h3><span class="count-num">@ViewBag.TotalCount</span> job(s) found</span></h3>
+                <h3><span class="count-num">@ViewBag.TotalCount</span> job(s) found</h3>
             </div>
             <div class="col-12 col-md-6">
                 <span class="new-serch"><a class="btn-link" href="/advancedsearch" title="New advanced search"> New search</a></span>
@@ -88,10 +88,10 @@
 <div class="popup-overlay">
     <div class="container">
         <div class="popup-box">
-            <p class="info">Please sign-in or register as a member to <span>create job alert</span>.</p>
+            <p class="info">Please login or register as a member to <span>create job alert</span>.</p>
             <div class="button-wrapper">
                 <a href="/register" class="btn btn-primary">Register</a>
-                <a href="/sign-in" class="btn btn-primary">Sign in</a>
+                <a href="/login" class="btn btn-primary">Login</a>
             </div>
             <a href="javascript:void(0)" class="fa fa-times"></a>
         </div>
@@ -161,7 +161,7 @@
         </div>
     </div>
 </script>
-<div class="row" id="pager" class="row k-pager-wrap k-widget k-floatwrap" data-role="]">
+<div id="pager" class="row k-pager-wrap k-widget k-floatwrap" data-role="]">
     @*<ul class="pagination k-pager-numbers k-reset"></ul>*@
     <div class="col-12">
         <ul class="pagination"></ul>
@@ -197,7 +197,7 @@
 
 
 
-<script type="text/javascript">
+<script>
 
     @{
         var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();

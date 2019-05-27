@@ -4,8 +4,8 @@ Disallow: /job-alert-afmelden
 Disallow: /error-404
 Disallow: /error-410
 Disallow: /error-500
-Disallow: /sitemap/sitemap-index.xml
-Disallow: /sitemap/sitemap.xml
+#Disallow: /sitemap/sitemap-index.xml
+#Disallow: /sitemap/sitemap.xml
 
 # Yahoo!
 User-agent: Slurp

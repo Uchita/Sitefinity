@@ -4999,6 +4999,10 @@ pre.inheritParent{
     word-break: break-word;
 }
 
+.pre-style h1, .pre-style h2, .pre-style h3, .pre-style h4 {
+    white-space: pre-wrap;
+}
+
 .app-content li,
 p {
     font-size: 16px;

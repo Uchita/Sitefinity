@@ -14,15 +14,15 @@
             if (!string.IsNullOrEmpty(serviceButton.Icon))
             {
                 label = string.Format("<i class=\"{0}\"></i>",
-                    Html.Encode(serviceButton.Icon
-                ));
+                    Html.Encode(serviceButton.Icon)
+                );
             }
             else if (!string.IsNullOrEmpty(serviceButton.Image))
             {
                 label = string.Format("<img src=\"{0}\" alt=\"{1}\" />",
                     Html.Encode(serviceButton.Image),
-                    Html.Resource(serviceButton.Name + "Label"
-                ));
+                    Html.Resource(serviceButton.Name + "Label")
+                );
             }
 
             <li>

@@ -18,6 +18,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
         public JobSearchSalaryFilterReceiver Salary { get; set; }
         public string SortBy { get; set; }
         private static readonly string CompanyFilterRootIdString = "CompanyName";
+        public int JobType { get; set; }
 
         public static bool HasFilters(JobSearchResultsFilterModel filterModel)
         {
@@ -45,6 +46,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
             JXTNext_SearchJobsRequest request = new JXTNext_SearchJobsRequest();
             if (filterModel != null)
             {
+                request.JobType  = filterModel.JobType;
                 if (!string.IsNullOrEmpty(filterModel.Keywords))
                     request.KeywordsSearchCriteria = new List<KeywordSearch> { new KeywordSearch { Keyword = filterModel.Keywords } };
 

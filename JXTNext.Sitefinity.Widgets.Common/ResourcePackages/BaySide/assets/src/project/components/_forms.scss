@@ -1,0 +1,433 @@
+/*#region Form - Newsletter */
+.form-newsletter {
+
+    .label-hide {
+
+        label,
+        strong {
+            display: none;
+        }
+    }
+
+    h1 {
+        margin: 0 0 30px;
+    }
+
+    p {
+        margin: 10px 0 0;
+        font-size: 14px;
+        font-size: 1.4rem;
+    }
+}
+/*#endregion Form - Newsletter */
+
+/*#region Form - Contact us*/
+.page-wrapper {
+    .basic-form {
+        margin-top: 50px;
+        font-family: $font-family-regular;
+
+        .form-control {
+            color: $global-text-color;
+        }
+
+        textarea {
+            height: 115px;
+            resize: none;
+        }
+
+        .form-label {
+            color: $forms-element-border;
+            text-transform: uppercase;
+            font-family: $font-family-medium;
+            text-align: right;
+            font-size: $forms-label-size;
+            font-size: $forms-label-size-px;
+        }
+
+        .checkbox {
+            
+
+            .checkbox-icon {
+                width: 20px;
+                height: 20px;
+                border: 1px solid $forms-element-border;
+                display: inline-block;
+                color: $forms-element-border;
+                position: absolute;
+                top: 0;
+                left: 0;
+                text-align: center;
+                font-size: 13px;
+
+                &:before {
+                    content: '';
+                }
+            }
+
+            input[type="checkbox"] {
+                z-index: 2;
+                position: relative;
+                opacity: 0;
+                height: 20px;
+                width: 20px;
+                margin: 0 10px 0 0;
+                float: left;
+
+                &:checked + .checkbox-icon:before {
+                    content: "\f00c";
+                    line-height: 19px;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                }
+                &:focus + span{
+                    outline: $highlighted-headings-color solid 1px;
+                }
+            }
+            
+        }
+        .sf-FileField{
+            margin-top: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+            .btn{
+                min-width: 150px;
+            }
+        }
+
+        .upload-section {
+            margin: 10px 0 20px 0;
+        }
+    }
+}
+
+.login-form{
+    h2{
+        font-size: 3.6rem;
+        margin-bottom: 2rem;
+    }
+}
+
+#password-strength {
+    position: relative;
+    height: 24px;
+    margin: 10px 0 0;
+    span {
+        position: absolute;
+        min-width: 100px;
+        font-size: 1.25rem;
+        padding: 2px 5px;
+        top: 0px;
+        color: #ccc;
+        font-weight: bold;
+        }
+}
+
+/*#endregion Form - Contact us*/
+
+/*#region Log in/Sign in/Apply*/
+.page-wrapper {
+    /*#region Forms*/
+    .login-form {
+        .forgot-password{
+            padding-left: 0px;
+            a {
+                font-size: 1.4rem;
+                // font-style: italic;
+                // color: #858585;
+
+                &:hover, &:focus {
+                    color: $global-highlight-color;
+                }
+            }
+        }
+        .checkbox {
+            a{
+                // color: #858585;
+                &:hover, &:focus {
+                    color: $global-highlight-color;
+                }
+            }
+        }
+        .btn-block{
+            margin-top: 10px;
+        }
+        
+        .basic-form {
+
+            .checkbox {
+                margin-left: 0;
+                margin-top: 0;
+
+                input[type=checkbox]:checked + input + .checkbox-icon:before {
+                    content: "\f00c";
+                    line-height: 19px;
+                }
+            }
+
+            .login-border {
+                margin-bottom: 10px;
+            }
+        }
+
+        .privacy-policy {
+            &, &:hover, &:focus {
+                color: #000;
+                text-decoration: underline;
+            }
+        }
+
+        .password-strength {
+            height: 25px;
+            border: 1px solid $global-highlight-color;
+            color: #fff;
+
+            div {
+                color: #fff;
+                font-size: 14px;
+                line-height: 24px;
+                padding: 0 5px;
+            }
+
+            .password-weak {
+                width: 33%;
+                background-color: $global-highlight-color;
+            }
+
+            .password-good {
+                width: 66%;
+                background-color: $global-highlight-color;
+            }
+
+            .password-strong {
+                width: 100%;
+                background-color: $global-highlight-color;
+            }
+        }
+
+        .apply-upload {
+            padding: 10px 12px;
+            border: 1px solid $global-highlight-color;
+            color: #c5c5c5;
+
+            a {
+                display: block;
+                float: left;
+                width: 33.3333333333%;
+                text-align: center;
+                padding: 10px;
+
+                em {
+                    display: block;
+                    color: #2a2a2a;
+                    font-size: 30px;
+                }
+            }
+        }
+
+        &.apply-form .basic-form .login-border {
+            padding-top: 0;
+        }
+
+        .text-muted {
+            margin-top: 10px;
+            display: block;
+        }
+    }
+    .sf-registration-link{
+        font-size: 1.4rem;   
+    }
+    /*#endregion Forms*/
+    /*#region Social*/
+    .login-form{
+        h1{
+            margin-bottom: 2rem;
+        }
+    }
+    .sf-profile{
+        h2{
+            font-size: 3.2rem;
+            margin-top: 2.35rem;
+        }
+        img{
+            max-width: 200px;
+            box-shadow: 1px 1px 1px rgba(0,0,0,.2);
+        }
+        label{
+            padding-top: 0;
+        }
+    }
+    .user-profile-dash{
+        border-bottom: 1px solid $global-text-color;
+        padding-bottom: 50px;
+        margin-bottom: 30px;
+        img{
+           width: 100%; 
+           height: auto;
+        }
+    }
+    .dash-tbl-wrap{
+        h2{
+            margin-bottom: 20px;
+        }
+    }
+    .sign-in-with, .ext-provider-form {
+        clear: both;
+        margin-bottom: 2rem;
+        h2{
+            font-size: 3.2rem;
+            margin-bottom: 0.5rem;
+        }
+        ul {
+            padding-top: 15px;
+            li {
+                a{
+                    &::before{
+                        font-family: 'Font Awesome 5 Brands';
+                        margin-right: 10px;
+                    }
+    
+                    &:hover, &:focus{
+                        opacity: 0.9;
+                    }
+                }
+
+                .btn {
+                    text-align: left;
+                    margin-bottom: 0;
+                    em {
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    .field-wrapper{
+        padding-top: 16px;
+    }
+    .dropdown-tree{
+        button.dropdown-toggle{
+            width: 100%;
+            text-align: left;
+            padding: 12px 10px;
+            color: $global-text-color;
+            text-transform: none;
+            font: 1.4rem/1 $font-family-regular;
+            position: relative;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            &:hover, &:focus{
+                background: none;
+                color: $global-text-color;
+            }
+            .caret{
+                position: absolute;
+                right: 10px;
+                top: 17px;
+            }
+        }
+    }
+
+    .apply-with {
+        
+        .btn {
+            &.btn-indeed {
+                background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50%;
+            }
+
+            &.btn-linkedin {
+                background: #007cb7 url(../images/linkkedinBtn.png) no-repeat 50% 50%;
+                text-indent: -9em;
+            }
+
+            &.btn-seek {
+                background: #e61977 url(../images/seekBtn.png) no-repeat 50% 50%;
+                text-indent: -9em;
+            }
+        }
+    }
+    #indeed-btnwrapper .indeed-apply-button{
+        background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50%!important;
+        width: 120px;
+        border-radius: 0!important;
+        height: 35px!important;
+        padding: 0!important;
+    }
+    #indeed-btnwrapper .indeed-apply-button span{
+        display: none!important;
+    }
+
+    .apply-with, .sign-in-with {
+        ul {
+            padding-left: 0;
+
+            li {
+                margin-bottom: 5px;
+                margin-right: 10px;
+                float: left;
+
+                .btn {
+                    height: 35px;
+                    min-width: 120px;
+                    padding: 6px 10px;
+                }
+            }
+        }
+
+        &.job-application-social {
+            ul {
+                margin-top: 20px;
+
+                &:before, &:after {
+                    display: table;
+                    content: " ";
+                }
+
+                &:after {
+                    clear: both;
+                }
+
+                li {
+                    float: left;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+    /*#endregion Social*/
+}
+
+#userid[readonly]{
+    background: none;
+}
+.welcome-message {
+    padding: 2px 0px;
+    display: block;
+    font-size: 1.4rem;
+    color: #ff9000;
+    &::before {
+        content: '\f4fc';
+        font: 700 1.2rem/1 'Font Awesome 5 Free';
+        margin-right: 6px;
+    }
+}
+
+/*#endregion Log in/Sign in/Apply*/
+
+.form-group .error-message {
+    padding: 5px;
+    margin-top: 2px;
+    display: block;
+    margin-bottom: 0;
+    border-radius: 0;
+    font-size: 85%;
+}
+//used for dynamic form for checkbox field
+.minWt100{
+    min-width: 100px;
+}

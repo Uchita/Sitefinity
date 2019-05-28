@@ -1,0 +1,31 @@
+﻿@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+
+
+<div class="testimonials-slider testimonials-simple @Model.CssClass" style="">
+    <div class="">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="owl-carousel owl-carousel-testimonials owl-theme">
+                    @foreach (var item in Model.Items)
+                    {
+                        <div class="item">
+                            <div class="quote"><span>&ldquo;</span></div>
+                            <div class="testimonial">@item.Fields.Quote</div>
+                            <div class="testimonial-author">@item.Fields.By</div>
+                            <div class="quote text-right"><span>&rdquo;</span></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

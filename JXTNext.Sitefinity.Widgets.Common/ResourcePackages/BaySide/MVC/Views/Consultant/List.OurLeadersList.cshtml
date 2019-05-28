@@ -1,0 +1,66 @@
+@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Modules.Libraries;
+
+
+<section class="g-section bg-grey">
+    <div class="container">
+
+        <div class="bayside-btns col-12 text-center">
+            <a href="" class="btn btn-outline-primary">All</a>
+            <a href="" class="btn btn-outline-primary">Category 1</a>
+            <a href="" class="btn btn-outline-primary">Category 2</a>
+            <a href="" class="btn btn-outline-primary">Category 3</a>
+        </div>
+
+        <div class="md-row">
+            @foreach (var item in Model.Items)
+            {
+                var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+
+                <div class="leader-list col-12 col-sm-6 col-lg-3">
+                    <div class="leader-image">
+
+                        @if (item.Fields.Pic != null)
+                        {
+                            <img src="@MediaContentExtensions.ResolveThumbnailUrl(item.Fields.Pic.DataItem, "thumb350")" alt="@item.Fields.Pic.Fields.Title">
+                        }
+                        <div class="leader_logo">
+                            <img src="http://192.168.0.174:3000/assets/images/brand/logo/1-Alitis.svg" alt="Health &amp; Social Care Recruitment">
+                        </div>
+
+                    </div>
+                    <div class="leaders-name">@Html.HtmlSanitize((string)item.Fields.ConsultantName)</div>
+                    <div class="leader-designation">@Html.HtmlSanitize((string)item.Fields.Position)</div>
+                    <a href="@navigateUrl" class="btn btn-link">Read more</a>
+                </div>
+                <!-- END: leaders-list -->
+            }
+        </div>
+        <!-- END: row -->
+
+    </div>
+
+    <div class="leaders-content col-12 col-sm-12">
+        <div class="border-blue">
+
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            </p>
+            <a href="" class="btn btn-link">Read less</a>
+
+        </div>
+    </div>
+
+</section>

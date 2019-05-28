@@ -1,0 +1,23 @@
+@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+<div class="squire-box @Model.CssClass" style="background-image:url('@Model.SelectedSizeUrl')">
+    <div class="squire-overlay"></div>
+    <h3>@Html.HtmlSanitize(Model.Heading)</h3>
+    <p>
+        @Html.HtmlSanitize(Model.Description)
+    </p>
+    @if (!string.IsNullOrEmpty(Model.ActionUrl))
+    {
+        if (string.IsNullOrEmpty(Model.ActionName))
+        {
+            <a target="_blank" href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-link pl-0 @Model.CssClass"></a>
+
+        }
+        else
+        {
+            <a target="_blank" href="@Html.UrlSanitize(Model.ActionUrl)" class="btn  btn-link pl-0 @Model.CssClass">@Model.ActionName</a>
+        }
+    }
+</div>
+

@@ -1,0 +1,43 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using SitefinityWebApp.Helpers;
+
+@using Telerik.Sitefinity.Modules.Blogs;
+@using Telerik.Sitefinity.DynamicModules.Model;
+@using Telerik.Sitefinity.GenericContent.Model;
+@using Telerik.Sitefinity.Model;
+@using Telerik.OpenAccess;
+@using Telerik.Sitefinity.Blogs.Model;
+
+@using Telerik.Sitefinity.RelatedData;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Modules.Libraries;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model
+
+
+
+
+    @{var imageurl = ""; }
+    @foreach (var relatedItem in Model.Item.Fields.BlogImage)
+    {
+        imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+    }
+
+
+
+
+
+<section class="hero-banner hero-banner-sm small-banner" data-parallax="scroll" data-image-src="@imageurl">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 text-center">
+                @*<h1 class="blog-title">@Model.Item.Fields.Title</h1>*@
+            </div>
+        </div>
+    </div>
+</section>
+

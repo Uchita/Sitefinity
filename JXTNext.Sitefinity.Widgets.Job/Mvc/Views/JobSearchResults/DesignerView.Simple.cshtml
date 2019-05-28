@@ -115,6 +115,38 @@
                     @Html.Resource("UseTheseFilters", "JobSearchResultsResources")
                 </label>
             </div>
+            @*<div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="properties.UseCompanyFilters.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.UseCompanyFilters.PropertyValue === 'True'" />
+                @Html.Resource("UseTheseFilters", "JobSearchResultsResources")
+            </label>
+        </div>*@
+
+            @*<div class="form-group">
+            <div class="row">
+                <a>Select the company Name</a>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <div class="dropdown">
+                    @*<select class="form-control-small"
+                            ng-model="properties.CompanySelected.PropertyValue">
+                        <option value="0">Text</option>
+                        <option value="2">Markdown</option>
+                        <option value="1">Binary</option>
+                    </select>
+                </div>
+                <div class="dropdown">
+                    <select class="form-control" ng-model="properties.CompanySelected.PropertyValue" ng-options="company for company in companies">
+                        <option value="">-- Choose Company --</option>
+                    </select>
+                </div>
+            </div>
+        </div>*@
+            <div>
+                <input type="text" placeholder="Please enter JobType" ng-model="properties.JobType.PropertyValue" />
+            </div>
             <div>
                 <input type="text" placeholder="Please enter keywords" ng-model="properties.KeywordsSelectedJobs.PropertyValue" />
             </div>

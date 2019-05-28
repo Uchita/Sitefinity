@@ -1,0 +1,63 @@
+﻿@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.RelatedData;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using System;
+
+@Html.Script(ScriptRef.JQuery, "top", false)
+
+<div class="@Model.CssClass">
+
+    <div class="row long-card-basic-list flex">
+
+        @foreach (var item in Model.Items)
+        {
+            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+
+            <div class="col-md-4">
+                <div class="thumbnail card-basic small-caption">
+
+                    @if (item.Fields.HeaderImage != null)
+                    {
+                        <a href="@navigateUrl" class="img-wrap"><img alt="" src="@item.Fields.HeaderImage.Fields.ThumbnailUrl" title="@item.Fields.HeaderImage.Fields.Title" /></a>
+                    }
+                    <div class="caption">
+                        <p class="color-light text-uppercase font-medium ">
+                            <small>
+                                @foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+                                {
+                                    @Html.HtmlSanitize(taxon.Title.ToString())
+                                    break;
+                                }
+                            </small>
+                        </p>
+
+                        @{
+                            string ss = (string)item.Fields.Summary;
+                            var summary = Html.HtmlSanitize(ss).ToString();
+                            string trimSummary =
+                        !String.IsNullOrWhiteSpace(summary) && summary.Length >= 150
+                        ? summary.Substring(0, 150)
+                        : summary;
+                        }
+
+
+
+                        <h4>@Html.HtmlSanitize((string)item.Fields.Title)</h4>
+                        <p>@trimSummary</p>
+                        <a class="btn btn-more" href="@navigateUrl"></a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>

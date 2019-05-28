@@ -1,0 +1,43 @@
+﻿@model dynamic
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+@if (Model != null)
+{
+
+    foreach (var item in Model)
+    {
+        //item is JobFilterRoot
+        <ul>
+            <li>
+                <a href="#">@item.Name</a>
+                @if (item.Filters != null)
+                {
+                    <ul>
+                        @foreach (var filters in item.Filters)
+                        {
+                            @PrintFilters(filters)
+                        }
+                    </ul>
+                }
+            </li>
+        </ul>
+    }
+
+    <button id="refine-results" class="btn btn-primary">REFINE RESULTS</button>
+}
+
+@helper PrintFilters(dynamic node)
+{
+    <li>
+        <a href="#">@node.Label</a>
+        @if (node.Filters != null)
+        {
+            <ul>
+                @foreach (var filters in node.Filters)
+                {
+                    @PrintFilters(filters)
+                }
+            </ul>
+        }
+    </li>
+}

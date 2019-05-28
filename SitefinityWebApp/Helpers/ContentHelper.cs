@@ -9,17 +9,98 @@ using Telerik.Sitefinity.Model;
 using Telerik.Sitefinity.Taxonomies;
 using Telerik.Sitefinity.Taxonomies.Model;
 using Telerik.OpenAccess;
-using Telerik.Sitefinity.ContentLocations;
 using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.GenericContent.Model;
 using Telerik.Sitefinity.Utilities.TypeConverters;
 using Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models;
 using SitefinityWebApp.Mvc.Models.CustomDynamicContent;
+using Telerik.Sitefinity.Modules.Pages;
+using Telerik.Sitefinity.Pages.Model;
+using Telerik.Sitefinity;
+using Telerik.Sitefinity.Fluent.Pages;
+using Telerik.Sitefinity.Abstractions;
 
 namespace SitefinityWebApp.Helpers
 {
     public static class ContentHelper
     {
+        public static string FindPageNodeType(string urlName)
+        {
+            PageManager pageManager = PageManager.GetManager();
+            //List<PageData> pages = pageManager.GetPageDataList().Where(pData => pData.Status == ContentLifecycleStatus.Live).ToList();
+            List<PageNode> pagesNodes = App.WorkWith().Pages().LocatedIn(PageLocation.Frontend).Get().ToList<PageNode>();
+            foreach (var node in pagesNodes)
+            {
+                if (node.UrlName.Value.Replace("~", "").Replace("/", "") == urlName.Replace("/", ""))
+                {
+                    if (node.NodeType == NodeType.InnerRedirect)
+                    {
+                        PageNode linkedPageNode = pageManager.GetPageNode(node.LinkedNodeId);
+                        return node.NodeType.ToString() + " | " + linkedPageNode.UrlName.Value;
+                    }
+
+                    else
+                    {
+                        return node.NodeType.ToString();
+                    }
+
+                }
+            }
+            return null;
+            //PageNode selectedNode = pageNodes.Where(node => node.UrlName.ToString().Replace("~", "").Replace("/", "") == urlName.Replace("/", "")).FirstOrDefault();
+
+            //if (selectedNode != null)
+            //    return selectedNode.NodeType.ToString();
+            //else
+            //    return null;
+        }
+
+        public static string FindPagebyUrlNativeAPI(string urlName, string parentNodeUrl)
+        {
+            var rootPageNodes = App.WorkWith().Pages().LocatedIn(PageLocation.Frontend).Where(p => p.Parent.Id == SiteInitializer.CurrentFrontendRootNodeId).Get().ToList();
+            string pageTitle = string.Empty;
+
+            if (parentNodeUrl == "/specialist-recruitment-group")
+            {
+                PageNode rootPageNode = rootPageNodes.Where(r => r.UrlName.Value == "specialist-recruitment-group").FirstOrDefault();
+
+                if (rootPageNode != null && rootPageNode.ShowInNavigation && rootPageNode.Nodes.Count > 0)
+                {
+                    PageNode node = rootPageNode.Nodes.Where(r => r.UrlName.Value == "~/specialist-recruitment").FirstOrDefault();
+                    if (node != null)
+                    {
+                        PageNode subNode = node.Nodes.Where(n => n.UrlName.Value.Replace("~", "").Replace("/", "") == urlName.Replace("/", "")).FirstOrDefault();
+                        if (subNode != null) pageTitle = subNode.GetPageData().HtmlTitle.Value.Replace("| Bayside Group", string.Empty);
+                    }
+                }
+            }
+
+            else if (parentNodeUrl == "/contact")
+            {
+                PageNode rootPageNode1 = rootPageNodes.Where(r => r.UrlName.Value == "contact").FirstOrDefault();
+
+                var pageManager = PageManager.GetManager();
+
+                if (rootPageNode1 != null && rootPageNode1.ShowInNavigation && rootPageNode1.Nodes.Count > 0)
+                {
+                    PageNode node1 = rootPageNode1.Nodes.Where(r => r.UrlName.Value == "our-brands").FirstOrDefault();
+                    if (node1 != null)
+                    {
+                        PageNode subNode1 = node1.Nodes.Where(n => n.UrlName.Value.Replace("contact", "").Replace("our-brands", "").Replace("~", "").Replace("/", "") == urlName.Replace("/", "").Replace("contact", "").Replace("our-brands", "").Replace("~", "").Replace("/", "")).FirstOrDefault();
+                        if (subNode1 != null)
+                        {
+                            PageNode linkedPageNode = pageManager.GetPageNode(subNode1.LinkedNodeId);
+                            if (linkedPageNode != null)
+                                pageTitle = linkedPageNode.GetPageData().HtmlTitle.Value.Replace("| Bayside Group", string.Empty);
+
+                        }
+                    }
+                }
+            }
+
+            return pageTitle;
+        }
+
         public static ItemViewModel GetLastInsight()
         {
             // Todo - filter insight articles only.
@@ -193,5 +274,7 @@ namespace SitefinityWebApp.Helpers
                 return message;
             }
         }
+
     }
 }
+

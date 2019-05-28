@@ -1,0 +1,34 @@
+﻿@model Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Profile.ProfilePreviewViewModel
+
+@using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Profile;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@if (Model != null)
+{
+    //changing the placeholder image avatar in case there is no profile photo uploaded
+    var placeholderAvatar = "/ResourcePackages/BaySide/assets/images/User-Icon.svg";
+    var AvatarCls = ""; //class added to align the image
+
+    <div class="@Model.CssClass">
+        <div class="sf-profile row">
+            <div class="col-xs-12 col-md-4">
+                <div class="image-placeholder">
+                    @if (!Model.AvatarImageUrl.Contains("DefaultPhoto.png"))
+                    {
+                        placeholderAvatar = Model.AvatarImageUrl;
+                    }
+                    else
+                    {
+                        AvatarCls = "noProfilePhoto";
+                    }
+                    <img src="@placeholderAvatar" alt="@Model.UserName" width="158" class="@AvatarCls" />
+                </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-8">
+                <h2>Welcome back @Model.DisplayName</h2>
+                <p>@Model.Email</p>
+            </div>
+        </div>
+    </div>
+}

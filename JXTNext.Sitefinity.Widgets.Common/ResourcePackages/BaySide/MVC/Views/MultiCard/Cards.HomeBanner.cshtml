@@ -1,0 +1,81 @@
+@model SitefinityWebApp.Mvc.Models.MultiCard.MultiCardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+
+
+
+@if (!Telerik.Sitefinity.Services.SystemManager.IsDesignMode || Telerik.Sitefinity.Services.SystemManager.IsPreviewMode)
+{
+    <section class="hero-banner" data-parallax="scroll" data-image-src="@Model.SelectedSizeUrl">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6 col-lg-7">
+                    <h1 class="animated fadeInUp">
+
+                        @if (!string.IsNullOrEmpty(Model.GroupHeader))
+                        {
+                            @Model.GroupHeader
+                        }
+                    </h1>
+                </div>
+                <div class="col-12 col-md-6 col-lg-5">
+                    @if (@Model.Cards.Count >= 2)
+                    {
+                        <div class="job-item animated fadeInUp delay-05s">
+                            <h2>@Html.HtmlSanitize(@Model.Cards[0].Heading)</h2>
+                            <p>@Html.HtmlSanitize(@Model.Cards[0].Description)</p>
+                            <a href="@Html.HtmlSanitize(@Model.Cards[0].ActionUrl)" class="btn btn-primary">@Html.HtmlSanitize(@Model.Cards[0].ActionName) </a>
+                        </div>
+                        <!-- .job-item/ -->
+                        <div class="job-item animated fadeInUp delay-1s">
+                            <h2>@Html.HtmlSanitize(@Model.Cards[1].Heading)</h2>
+                            <p>@Html.HtmlSanitize(@Model.Cards[1].Description)</p>
+                            <a href="@Html.HtmlSanitize(@Model.Cards[1].ActionUrl)" class="btn btn-primary">@Html.HtmlSanitize(@Model.Cards[1].ActionName) </a>
+                        </div>
+                        <!-- .job-item/ -->
+                    }
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <section class="hero-banner" style="background-image:url('@Model.SelectedSizeUrl')">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6 col-lg-7">
+                    <h1 class="animated fadeInUp">
+
+                        @if (!string.IsNullOrEmpty(Model.GroupHeader))
+                        {
+                            @Model.GroupHeader
+                        }
+                    </h1>
+                </div>
+                <div class="col-12 col-md-6 col-lg-5">
+                    @if (@Model.Cards.Count >= 2)
+                    {
+                        <div class="job-item animated fadeInUp delay-05s">
+                            <h2>@Html.HtmlSanitize(@Model.Cards[0].Heading)</h2>
+                            <p>@Html.HtmlSanitize(@Model.Cards[0].Description)</p>
+                            <a href="@Html.HtmlSanitize(@Model.Cards[0].ActionUrl)" class="btn btn-primary">@Html.HtmlSanitize(@Model.Cards[0].ActionName) </a>
+                        </div>
+                        <!-- .job-item/ -->
+                        <div class="job-item animated fadeInUp delay-1s">
+                            <h2>@Html.HtmlSanitize(@Model.Cards[1].Heading)</h2>
+                            <p>@Html.HtmlSanitize(@Model.Cards[1].Description)</p>
+                            <a href="@Html.HtmlSanitize(@Model.Cards[1].ActionUrl)" class="btn btn-primary">@Html.HtmlSanitize(@Model.Cards[1].ActionName) </a>
+                        </div>
+                        <!-- .job-item/ -->
+                    }
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+}
+

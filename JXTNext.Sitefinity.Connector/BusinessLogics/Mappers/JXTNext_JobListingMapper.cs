@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using JXTNext.Sitefinity.Common.Helpers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
 using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Web;
 
 namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
 {
@@ -29,7 +31,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
             JobDetailsFullModel local = new JobDetailsFullModel
             {
                 JobID = data["Id"],
-                Title = HttpUtility.HtmlDecode(data["Name"].ToString()),
+                Title = HttpUtility.HtmlEncode(data["Name"].ToString()),
+
                 CompanyId = data["CompanyId"],
                 UserId = data["UserId"],
                 AdvertiserUserId = data["AdvertiserUserId"],
@@ -40,13 +43,19 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                 AddressLatitude = data["AddressLatitude"],
                 AddressLongtitude = data["AddressLongtitude"],
                 IsDeleted = data["IsDeleted"],
-                ShortDescription = HttpUtility.HtmlDecode(data["ShortDescription"].ToString()),
-                Description = HttpUtility.HtmlDecode(data["FullDescription"].ToString()),
+                ShortDescription = HttpUtility.HtmlEncode(data["ShortDescription"].ToString()),
+                Description = HttpUtility.HtmlEncode(data["FullDescription"].ToString()),
                 ReferenceNo = data["RefNo"],
                 CustomData = (data["CustomData"] != null) ? FlattenJson(JObject.Parse((data["CustomData"]).Value)) : null,
                 ClassificationURL = ProcessClassificationSEOString((data["CustomData"] != null) ? FlattenJson(JObject.Parse((data["CustomData"]).Value)) : null, Convert.ToString(data["Name"]))
             };
 
+            var targetCulture = Thread.CurrentThread.CurrentUICulture;
+            var culture = CultureInfo.GetCultureInfo(targetCulture.Name);
+            if (culture != null)
+            {
+                local.Culture = culture.Name;
+            }
             return local as T;
         }
 
@@ -88,6 +97,12 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                     CustomData = (jobItem["CustomData"] != null) ? FlattenJson(new JObject(jobItem["CustomData"])) : null,
                     ClassificationURL = ProcessClassificationSEOString((jobItem["CustomData"] != null) ? FlattenJson(new JObject(jobItem["CustomData"])) : null, Convert.ToString(jobItem["Name"]))
                 };
+                var targetCulture = Thread.CurrentThread.CurrentUICulture;
+                var culture = CultureInfo.GetCultureInfo(targetCulture.Name);
+                if (culture != null)
+                {
+                    local.Culture = culture.Name;
+                }
                 jobFullDetails.Add(local);
             }
             return jobFullDetails as List<T>;

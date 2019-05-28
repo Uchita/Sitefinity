@@ -235,6 +235,29 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
             }
         }
 
+
+        [ResourceEntry("HideGoogleDrive",
+            Value = "Hide Google Drive from Job Application",
+            Description = "phrase : Hide Google Drive from Job Application")]
+        public string HideGoogleDrive
+        {
+            get
+            {
+                return this["HideGoogleDrive"];
+            }
+        }
+
+
+        [ResourceEntry("HideDropBox",
+            Value = "Hide DropBox from Job Application",
+            Description = "phrase : Hide DropBox from Job Application")]
+        public string HideDropBox
+        {
+            get
+            {
+                return this["HideDropBox"];
+            }
+        }
         /// <summary>
         /// Gets phrase : CSS classes
         /// </summary>

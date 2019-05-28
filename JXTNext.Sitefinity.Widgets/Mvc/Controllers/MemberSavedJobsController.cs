@@ -17,7 +17,6 @@ using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using JXTNext.Sitefinity.Widgets.User.Mvc.Logics;
 using JXTNext.Sitefinity.Widgets.User.Mvc.Models.MemberSavedJob;
 using JXTNext.Sitefinity.Widgets.User.Mvc.StringResources;
-using System.Web;
 
 namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
 {
@@ -53,7 +52,7 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
             {
                 IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = job.JobId };
                 IGetJobListingResponse jobListingResponse = _blConnector.GuestGetJob(jobListingRequest);
-                job.DisplayTitle = HttpUtility.HtmlDecode(job.DisplayTitle);
+                job.Culture = jobListingResponse.Job.Culture;
                 job.ClassificationURL = jobListingResponse.Job?.ClassificationURL;
             }
 

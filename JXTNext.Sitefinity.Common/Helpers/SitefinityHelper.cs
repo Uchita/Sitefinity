@@ -20,19 +20,16 @@ using Telerik.Sitefinity.Utilities.TypeConverters;
 using Telerik.Sitefinity.GenericContent.Model;
 using System.Threading;
 using System.Globalization;
-using JXTNext.Sitefinity.Common.Models.Classifications;
 using System.Web;
 
 namespace JXTNext.Sitefinity.Common.Helpers
 {
     public class SitefinityHelper
     {
-
         private static readonly string _emailTemplateStr = "Standard Email Template";
         private static string _itemType = "Telerik.Sitefinity.DynamicTypes.Model.StandardEmailTemplate.EmailTemplate";
         private static string _htmlEmailContentStr = "htmlEmailContent";
         private static string _titleStr = "Title";
-
 
         public static TimeZoneInfo GetSitefinityTimeZoneInfo()
         {
@@ -48,7 +45,6 @@ namespace JXTNext.Sitefinity.Common.Helpers
             var manager = TaxonomyManager.GetManager();
             var categoriesTaxonomy = manager.GetSiteTaxonomy<HierarchicalTaxonomy>(TaxonomyManager.CategoriesTaxonomyId, SystemManager.CurrentContext.CurrentSite.Id);
             var taxa = categoriesTaxonomy.Taxa.Where(t => t.Title == dataSource).FirstOrDefault() as HierarchicalTaxon;
-            
             return taxa;
         }
 
@@ -75,7 +71,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
         public static string GetCurrentSiteEmailTemplateTitle(string templatedId)
         {
             string title = string.Empty;
-            if (templatedId != null)
+            if(templatedId != null)
             {
                 var dynamicModuleManager = DynamicModuleManager.GetManager(GetCurrentSiteEmailTemplateProviderName());
                 var emailTemplateType = TypeResolutionService.ResolveType(_itemType);
@@ -120,6 +116,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return sitefinityAppTime;
         }
 
+        [Obsolete("This method has been deprecated. Use SfPageHelper.GetPageUrlById instead.")]
         public static string GetPageUrl(string pageId)
         {
             string pageUrl = String.Empty;
@@ -135,12 +132,26 @@ namespace JXTNext.Sitefinity.Common.Helpers
                     // So removing the first character
                     if (pageNode != null)
                         pageUrl = pageNode.GetUrl().Substring(1);
+
+                    SiteSettingsHelper siteSettingsHelper = new SiteSettingsHelper();
+                    var cultureIsEnabled = siteSettingsHelper.GetCurrentSiteCultureIsEnabled();
+
+                    if (bool.TryParse(cultureIsEnabled, out bool output))
+                    {
+                        if (bool.Parse(cultureIsEnabled))
+                        {
+                            var targetCulture = Thread.CurrentThread.CurrentUICulture;
+                            var culture = CultureInfo.GetCultureInfo(targetCulture.Name);
+                            pageUrl = "/" + culture.Name + pageUrl;
+                        }
+                    }
                 }
             }
 
             return pageUrl;
         }
 
+        [Obsolete("This method has been deprecated. Use SfPageHelper.GetPageUrlById instead.")]
         public static string GetPageFullUrl(Guid pageId)
         {
             string pageFullUrl = String.Empty;
@@ -238,6 +249,19 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return firstName;
         }
 
+        public static string GetUserLastNameById(Guid userId)
+        {
+            var userManager = UserManager.GetManager();
+            User user = userManager.GetUser(userId);
+            UserProfileManager profileManager = UserProfileManager.GetManager();
+            SitefinityProfile profile = profileManager.GetUserProfile<SitefinityProfile>(user);
+            string lastName = "";
+            if (profile != null && profile.LastName != null)
+                lastName = profile.LastName;
+
+            return lastName;
+        }
+
         public static string GetUserFullNameById(Guid userId)
         {
             var userManager = UserManager.GetManager();
@@ -245,8 +269,12 @@ namespace JXTNext.Sitefinity.Common.Helpers
             UserProfileManager profileManager = UserProfileManager.GetManager();
             SitefinityProfile profile = profileManager.GetUserProfile<SitefinityProfile>(user);
             string fullName = "";
-            if (profile != null)
-                fullName = profile.FirstName + " "+ profile.LastName;
+
+            if (profile != null && profile.FirstName != null)
+                fullName = profile.FirstName;
+
+            if (profile != null && profile.LastName != null)
+                fullName += " "+ profile.LastName;
 
             return fullName;
         }
@@ -396,7 +424,5 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
             return email;
         }
-
-        
     }
 }

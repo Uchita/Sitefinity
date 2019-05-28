@@ -31,7 +31,6 @@ using Telerik.Sitefinity.DynamicModules;
 using Telerik.Sitefinity.Utilities.TypeConverters;
 using Telerik.Sitefinity.Model;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common;
-using JXTNext.Sitefinity.Common.Models.Classifications;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -61,7 +60,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 this.templateName = value;
             }
         }
-        private static List<Company> companies = null;
+
         private readonly string CategoryString = "Categories";
         private readonly string RangeString = "Range";
         private readonly static string SalaryString = "Salary";
@@ -74,19 +73,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             _oConnectorsList = _oConnectors;
             _BLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
             _OptionsConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
-            companies = GetCompanyList();
+
         }
 
         // GET: JobSearchResults
         public ActionResult Index([ModelBinder(typeof(JobSearchResultsFilterBinder))] JobSearchResultsFilterModel filterModel, int? jobId)
         {
             dynamic dynamicJobResultsList = null;
-            if(filterModel != null && !string.IsNullOrEmpty(filterModel.Keywords))
+            if (filterModel != null && !string.IsNullOrEmpty(filterModel.Keywords))
             {
                 filterModel.Keywords = filterModel.Keywords.Trim();
                 //filterModel.Keywords = filterModel.Keywords.Trim(charsToTrim);
             }
-            
+
             if (jobId.HasValue)
             {
                 IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = jobId.Value };
@@ -115,7 +114,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return View(this.TemplateName, dynamicJobResultsList);
         }
 
-        
+
 
 
         [HttpPost]
@@ -133,10 +132,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 var jobFilterComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
 
-                if (Int32.TryParse(this.JobType, out int jobTypeIntValue))
-                {
-                    searchInputs.JobType = Int32.Parse(this.JobType);
-                }
                 if (jobFilterComponents != null)
                 {
                     searchInputs = new JobSearchResultsFilterModel() { Keywords = this.KeywordsSelectedJobs, Filters = new List<JobSearchFilterReceiver>() };
@@ -170,8 +165,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 this.PageSize = PageSizeDefaultValue;
 
             JXTNext_SearchJobsRequest searchRequest = JobSearchResultsFilterModel.ProcessInputToSearchRequest(searchInputs, this.PageSize, PageSizeDefaultValue);
-            
-            
+
             string sortingBy = this.Sorting;
             if (searchInputs != null && !searchInputs.SortBy.IsNullOrEmpty())
                 sortingBy = searchInputs.SortBy;
@@ -205,7 +199,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
 
                 // Take the first item in the list as SEO route for Job Details page
-                if (item.Classifications.Count > 0)
+                if(item.ClassificationURL != null)
+                {
+                    item.ClassificationsSEORouteName = item.ClassificationURL;
+                }
+                else if (item.Classifications.Count > 0)
                 {
                     List<string> seoString = new List<string>();
                     foreach (var key in item.Classifications[0].Keys)
@@ -229,7 +227,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             dynamic dynamicJobResultsList = null;
 
-            
+
             if (filterModel != null)
             {
                 if (!string.IsNullOrEmpty(filterModel.Keywords))
@@ -240,7 +238,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 dynamicJobResultsList = response as dynamic;
             }
 
-            PartialViewResult jobResultsPartialVR = PartialView("_JobSearchResultsCustom", dynamicJobResultsList);
+            PartialViewResult jobResultsPartialVR = PartialView("_JobSearchResults", dynamicJobResultsList);
             JobFiltersController jobFiltersController = new JobFiltersController(_bConnectorsList, _oConnectorsList);
             ActionResult filtersActionResult = jobFiltersController.Index(filterModel, SiteMapBase.GetActualCurrentNode().Title, (dynamicJobResultsList != null) ? dynamicJobResultsList.SearchResultsFilters : null);
 
@@ -264,7 +262,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 dynamicJobResultsList = response as dynamic;
             }
 
-            PartialViewResult jobResultsPartialVR = PartialView("_JobSearchResultsFilters", dynamicJobResultsList);
+            PartialViewResult jobResultsPartialVR = PartialView("_JobSearchResultsCustom", dynamicJobResultsList);
             JobFiltersController jobFiltersController = new JobFiltersController(_bConnectorsList, _oConnectorsList);
             ActionResult filtersActionResult = jobFiltersController.Index(filterModel, SiteMapBase.GetActualCurrentNode().Title, (dynamicJobResultsList != null) ? dynamicJobResultsList.SearchResultsFilters : null);
 
@@ -277,7 +275,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             string alertName = String.Empty;
             var jsonData = JsonConvert.SerializeObject(filterModel);
             dynamic searchModel = new ExpandoObject();
-            var jsonModel  = _mapToCronJobJsonModel(filterModel);
+            var jsonModel = _mapToCronJobJsonModel(filterModel);
             searchModel.search = jsonModel.search;
             // Creating the job alert model
             JobAlertViewModel alertModel = new JobAlertViewModel()
@@ -289,7 +287,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
 
 
-            if(filterModel != null)
+            if (filterModel != null)
             {
                 // Keywords
                 alertModel.Keywords = filterModel.Keywords;
@@ -311,10 +309,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                                 RootId = filter.rootId,
                                 Values = new List<string>()
                             };
-                            
+
                             foreach (var filterItem in filter.values)
                             {
-                                if(!flag && alertName.IsNullOrEmpty())
+                                if (!flag && alertName.IsNullOrEmpty())
                                 {
                                     flag = true;
                                     alertName = filter.values.Count.ToString() + " " + filter.rootId;
@@ -374,7 +372,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     }
                 }
             }
-            
+
 
             alertModel.EmailNotifications = jobAlertEmailNotificationSettings;
 
@@ -431,11 +429,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 var jobFilterComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
 
-                if (Int32.TryParse(this.JobType, out int jobTypeIntValue))
-                {
-                    searchInputs.JobType = Int32.Parse(this.JobType);
-                }
-
                 if (jobFilterComponents != null)
                 {
                     searchInputs = new JobSearchResultsFilterModel() { Keywords = this.KeywordsSelectedJobs, Filters = new List<JobSearchFilterReceiver>() };
@@ -469,7 +462,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 this.PageSize = PageSizeDefaultValue;
 
             JXTNext_SearchJobsRequest searchRequest = JobSearchResultsFilterModel.ProcessInputToSearchRequest(searchInputs, this.PageSize, PageSizeDefaultValue);
-           
+
 
             #region Filter Logic
 
@@ -538,7 +531,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
 
                 // Take the first item in the list as SEO route for Job Details page
-                if (item.Classifications.Count > 0)
+                if (item.ClassificationURL != null)
+                {
+                    item.ClassificationsSEORouteName = item.ClassificationURL;
+                }
+                else if (item.Classifications.Count > 0)
                 {
                     List<string> seoString = new List<string>();
                     foreach (var key in item.Classifications[0].Keys)
@@ -656,7 +653,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             ISearchJobsResponse response = _BLConnector.SearchJobs(request);
             JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
-            
+
 
             ViewBag.Request = JsonConvert.SerializeObject(filterModel);
             ViewBag.FilterModel = JsonConvert.SerializeObject(filterModel);
@@ -665,10 +662,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             if (jobResultsList != null)
                 ViewBag.TotalCount = jobResultsList.Total;
 
-            ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.ResultsPageId);
-            ViewBag.CurrentPageUrl = SitefinityHelper.GetPageUrl(SiteMapBase.GetActualCurrentNode().Id.ToString());
-            ViewBag.JobDetailsPageUrl = SitefinityHelper.GetPageUrl(this.DetailsPageId);
-            ViewBag.EmailJobPageUrl = SitefinityHelper.GetPageUrl(this.EmailJobPageId);
+            ViewBag.JobResultsPageUrl = SfPageHelper.GetPageUrlById(new Guid(ResultsPageId));
+            ViewBag.CurrentPageUrl = SfPageHelper.GetPageUrlById(SiteMapBase.GetActualCurrentNode().Id);
+            ViewBag.JobDetailsPageUrl = SfPageHelper.GetPageUrlById(new Guid(DetailsPageId));
+            ViewBag.EmailJobPageUrl = SfPageHelper.GetPageUrlById(new Guid(EmailJobPageId));
             ViewBag.HidePushStateUrl = this.HidePushStateUrl;
             ViewBag.PageFullUrl = SitefinityHelper.GetPageFullUrl(SiteMapBase.GetActualCurrentNode().Id);
             ViewBag.IsMember = SitefinityHelper.IsUserLoggedIn("Member");
@@ -686,7 +683,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return response;
         }
 
-        
+
         private JobFiltersData _jobFiltersData;
         private JobFiltersData JobFiltersData
         {
@@ -724,25 +721,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
-        private List<Company> GetCompanyList()
-        {
-            JXTNext_GetJobFiltersRequest request = new JXTNext_GetJobFiltersRequest();
-            IGetJobFiltersResponse filtersResponse = _OptionsConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(request);
-            List<Company> companyList = new List<Company>();
-            foreach (var item in filtersResponse.Filters.Data)
-            {
-                if(item.Name == CompanyString)
-                {
-                    foreach (var company in item.Filters)
-                    {
-                        companyList.Add(new Company() { Name = company.Label, Id = Int32.Parse(company.ID) });
-                    }
-                }
-            }
-            
-            return companyList;
-        }
-
         public static JobFiltersData GetFiltersData()
         {
             JobFiltersData filtersData = new JobFiltersData() { Data = new List<JobFilterRoot>() };
@@ -768,26 +746,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 filtersData.Data.Add(filterRoot);
             }
 
-            
-            
-            if(companies != null)
-            {
-                JobFilterRoot filterRoot = new JobFilterRoot() { Filters = new List<JobFilter>() };
-                filterRoot.ID = Guid.NewGuid().ToString();
-                filterRoot.Name = CompanyString;
-
-                
-                foreach (var item in companies)
-                {
-                    var jobFilter = new JobFilter() { Filters = new List<JobFilter>() };
-                    jobFilter.ID = item.Id.ToString();
-                    jobFilter.Label = item.Name;
-                    filterRoot.Filters.Add(jobFilter);
-                }
-
-                filtersData.Data.Add(filterRoot);
-            }
-
             return filtersData;
         }
 
@@ -806,13 +764,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     {
                         dynamic temp = new ExpandoObject();
                         var classification = MapJobSearchFilterToClassification(item);
-                        if(classification != null)
+                        if (classification != null)
                         {
                             obj.SubTargets.Add(classification);
                         }
                     }
 
-                    if(obj.SubTargets.Count == 0)
+                    if (obj.SubTargets.Count == 0)
                     {
                         ((IDictionary<String, Object>)obj).Remove("SubTargets");
                     }
@@ -859,7 +817,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 JobFilterRoot filterRoot = new JobFilterRoot() { Filters = new List<JobFilter>() };
                 filterRoot.ID = taxon.Id.ToString().ToUpper();
                 filterRoot.Name = taxon.Title;
-                if(classificationId == filterRoot.ID)
+                if (classificationId == filterRoot.ID)
                 {
                     return filterRoot.Name;
                 }
@@ -908,14 +866,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     if (filter != null && filter.rootId.ToLower() != CompanyString.ToLower())
                     {
                         var classificationData = _mapToClassificationData(filter);
-                        if(classificationData != null)
+                        if (classificationData != null)
                         {
                             json.ClassificationsSearchCriteria.Add(classificationData);
                         }
                     }
                 }
 
-                if(filterModel.Salary != null )
+                if (filterModel.Salary != null)
                 {
                     dynamic classification = new ExpandoObject();
                     classification.SearchType = RangeString;
@@ -935,7 +893,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 json.KeywordsSearchCriteria = null;
             }
-            
+
 
             return new { search = json };
         }
@@ -992,11 +950,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         filterModel.Filters.Add(rootFilterItem);
                     }
                 }
-
-                if (Int32.TryParse(this.JobType, out int jobTypeIntValue) && this.UseConfigFilters)
-                {
-                    filterModel.JobType = Int32.Parse(this.JobType);
-                }
             }
 
             return filterModel;
@@ -1031,9 +984,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string SerializedJobSearchParams { get; set; }
         public string KeywordsSelectedJobs { get; set; }
         public bool UseConfigFilters { get; set; }
-        public string JobType { get; set; } = "0";
-        public bool UseCompanyFilters { get; set; }
-        public string CompanySelected { get; set; }
 
         public string ItemType
         {

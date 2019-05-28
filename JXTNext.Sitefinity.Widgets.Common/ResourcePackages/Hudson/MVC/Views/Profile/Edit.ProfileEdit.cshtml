@@ -111,7 +111,7 @@
                     <label>
                         @Html.Resource("EditProfileEmail")
                     </label>
-                    @Html.TextBoxFor(u => u.Email, new { @class = "form-control" })
+                    <label class="form-control">@Model.Email</label>
 
                     @if (Html.ValidationMessageFor(u => u.Email) != null)
                     {

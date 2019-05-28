@@ -7,6 +7,7 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Models;
 @using Telerik.Sitefinity.Web.DataResolving;
 @using Telerik.Sitefinity.Model.ContentLinks;
+@using System.Threading;
 @*Needed for custom thumbnail*@
 @using Telerik.Sitefinity.Modules.Pages;
 @using Telerik.Sitefinity.Modules.Libraries;
@@ -23,6 +24,30 @@
 @using Telerik.Sitefinity.DynamicModules;
 @using Telerik.Sitefinity.DynamicModules.Model;
 @using Telerik.Sitefinity.Utilities.TypeConverters;
+@using Telerik.Sitefinity.RelatedData;
+@using Telerik.Sitefinity.GenericContent.Model;
+@using Telerik.Sitefinity.Multisite;
+
+@{
+    //This needs to be rolled into a class lib
+    var itemType = TypeResolutionService.ResolveType("Telerik.Sitefinity.DynamicTypes.Model.Offices.Office");
+
+    var multisiteContext = SystemManager.CurrentContext as MultisiteContext;
+    var providerName = multisiteContext.CurrentSite.GetProviders("Offices").Select(p => p.ProviderName).FirstOrDefault();
+
+    var transactionName = Guid.NewGuid();
+
+    var cultureInfo = Thread.CurrentThread.CurrentUICulture;
+
+    var dynamicModuleManager = DynamicModuleManager.GetManager(providerName, transactionName.ToString());
+
+    var offices = dynamicModuleManager.GetDataItems(itemType).Where(o => o.Status == ContentLifecycleStatus.Live && o.Visible);
+
+    if (!cultureInfo.IsNeutralCulture)
+    {
+        offices.Where(o => o.PublishedTranslations.Contains(cultureInfo.Name));
+    }
+}
 
 <div class="@Model.CssClass">
     <!-- Getting the filters -->
@@ -31,11 +56,11 @@
         <div class="col-xs-12 col-sm-4 col-md-4">
             <div class="form-group">
                 <label for="SectorFilter">
-                    AREA OF SPECIALISATION
+                    @Html.Resource("ConsultantFilterTitleSpecialisations", "Labels")
                 </label>
                 <div class="select">
                     <select id="SectorFilter" name="SectorFilter" required="required" class="form-control">
-                        <option value="all">All Specialisations</option>
+                        <option value="all">@Html.Resource("ConsultantFilterOptionAllSpecialisations", "Labels")</option>
                         @{
                             var sectorTaxon = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.GetCurrentSiteTaxons("Sectors");
                             var dd = sectorTaxon as HierarchicalTaxon;
@@ -53,19 +78,14 @@
         <div class="col-xs-12 col-sm-4 col-md-4">
             <div class="form-group">
                 <label for="LocationFilter">
-                    Location
+                    @Html.Resource("ConsultantFilterTitleLocation", "Labels")
                 </label>
                 <div class="select">
                     <select id="LocationFilter" name="LocationFilter" required="required" class="form-control">
-                        <option value="all">All Locations</option>
-                        @{
-                            var officeItems = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.GetCurrentSiteItems("Telerik.Sitefinity.DynamicTypes.Model.Offices.Office", "Offices");
-                            foreach (var office in officeItems)
-                            {
-                                var officeId = office.Id;
-
-                                <option value="@office.UrlName.ToString()">@office.GetValue("Name").ToString()</option>
-                            }
+                        <option value="all">@Html.Resource("ConsultantFilterOptionAllLocation", "Labels")</option>
+                        @foreach (var office in offices)
+                        {
+                            <option value="@office.UrlName.ToString()">@office.GetString("Name")</option>
                         }
                     </select>
                 </div>
@@ -74,7 +94,7 @@
 
         <div class="col-xs-12 col-sm-4 col-md-4">
             <div class="btn-near-labels form-group">
-                <button type="button" id="consultantSearch" class="sf-SubmitButton btn btn-primary">SEARCH</button>
+                <button type="button" id="consultantSearch" class="sf-SubmitButton btn btn-primary">@Html.Resource("ConsultantSearchButton", "Labels")</button>
             </div>
         </div>
 
@@ -104,65 +124,38 @@
         }
     }
 
-    var OfficeLocationName = "";
-    var OfficeLocationUrl = "";
+    var officeNames = new List<string>();
+    var officeUrls = new List<string>();
 
-    if (item.Fields.Office != null)
+    foreach (ItemViewModel officeItem in item.Fields.Office)
     {
-        if (item.Fields.Office.GetType().ToString() == "Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel")
-        {
-            OfficeLocationName = Html.HtmlSanitize((string)item.Fields.Office.Fields.Name).ToString();
-            OfficeLocationUrl = item.Fields.Office.Fields.UrlName.ToString();
-        }
-        else
-        {
-            List<string> OfficeLocationNameList = new List<string>();
-            List<string> OfficeLocationUrlList = new List<string>();
-
-            foreach (var office in item.Fields.Office)
-            {
-                if (!OfficeLocationNameList.Contains((string)office.Fields.Name))
-                {
-                    OfficeLocationNameList.Add((string)office.Fields.Name);
-                    OfficeLocationUrlList.Add(office.Fields.UrlName.ToString());
-                }
-            }
-
-            OfficeLocationName = string.Join(", ", OfficeLocationNameList.ToArray());
-            OfficeLocationUrl = string.Join(",", OfficeLocationUrlList.ToArray());
-        }
+        officeNames.Add(officeItem.Fields.Name);
+        officeUrls.Add(officeItem.Fields.UrlName);
     }
 
-    <div class="contact-consultant row hidden" data-filtersector="@(string.Join(",",filterValues))" data-filterlocation="@OfficeLocationUrl">
-
+    <div class="contact-consultant row hidden" data-filtersector="@(string.Join(",", filterValues))" data-filterlocation="@string.Join(",", officeUrls.Distinct())">
         <div class="col-md-6">
-            <a class="contact-consultant-image" href="@navigateUrl?location=@OfficeLocationName" title="@item.Fields.ConsultantName">
-                @if (item.Fields.Pic != null)
+            <a class="contact-consultant-image" href="@navigateUrl?location=@string.Join(",",officeNames.Distinct())" title="@item.Fields.ConsultantName">
+                @{
+                    var image = item.DataItem.GetRelatedItems<Telerik.Sitefinity.Libraries.Model.Image>("Pic").FirstOrDefault();
+                }
+                @if (image != null)
                 {
-                    imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(item.Fields.Pic.DataItem, "thumbcrop4");
+                    imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(image, "thumbcrop4", false, cultureInfo);
                 }
                 else
                 {
                     imageThumbUrl = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.jpg";
-
                 }
                 <img src="@imageThumbUrl" alt="@item.Fields.ConsultantName" />
-                <div class="contact-image-rollover"><div class="display-table"><div class="display-cell">View Profile</div></div></div>
+                <div class="contact-image-rollover"><div class="display-table"><div class="display-cell">@Html.Resource("ConsultantViewProfile", "Labels")</div></div></div>
             </a>
         </div>
 
         <div class="col-md-6">
             <div class="contact-consultant-info">
                 <div class="color-highlight contact-consultant-name">@Html.HtmlSanitize((string)item.Fields.ConsultantName)</div>
-                @if (item.Fields.Office != null)
-                {
-                    <div class="contact-consultant-position">@Html.HtmlSanitize((string)item.Fields.Position), @OfficeLocationName</div>
-                }
-                else
-                {
-                    <div class="contact-consultant-position">@Html.HtmlSanitize((string)item.Fields.Position)</div>
-                }
-
+                <div class="contact-consultant-position">@Html.HtmlSanitize(string.Format("{0}, {1}", (string)item.Fields.Position, string.Join(", ", officeNames.Distinct())).Trim(new char[] { ',', ' ' }))</div>
                 @if (!string.IsNullOrWhiteSpace(item.Fields.Email) || !string.IsNullOrWhiteSpace(item.Fields.PhoneNumber) || !string.IsNullOrWhiteSpace(item.Fields.LinkedInProfileUrl))
                 {
                     <div class="contact-consultant-contacts">
@@ -182,15 +175,14 @@
                         }
                     </div>
                 }
-
-                <a class="btn btn-primary" href="@navigateUrl?location=@OfficeLocationName title="Contact me">Contact me</a>
+                <a class="btn btn-primary" href="@navigateUrl?location=@string.Join(",",officeNames.Distinct())" title="Contact me">@Html.Resource("ContactMe", "Labels")</a>
             </div>
         </div>
 
     </div>
 }
 
-<div class="alert alert-info hidden"><small>There are no consultant matching with your search filter.</small></div>
+<div class="alert alert-info hidden"><small>@Html.Resource("NoConsultantMacth", "Labels")</small></div>
 
 
 <script>
@@ -277,6 +269,3 @@
 
     });
 </script>
-
-
-

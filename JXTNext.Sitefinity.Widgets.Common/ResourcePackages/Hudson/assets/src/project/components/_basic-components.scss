@@ -901,6 +901,12 @@ pre{
     }
 }
 
+.sf-lang-selector{
+    label{
+        display: none;
+    }
+}
+
 header {
     position: absolute;
     top: 0;
@@ -916,6 +922,9 @@ header {
         transition: all 0.2s ease;
         -moz-transition: all 0.2s ease;
         -webkit-transition: all 0.2s ease;
+    }
+    .brand-cn{
+        background-image: url('../images/hudson_logo_white-cn.png');
     }
     .navbar-fixed-top {
 

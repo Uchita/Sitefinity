@@ -9,6 +9,14 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
     public class CustomSiteSettingsContract : ISettingsDataContract
     {
         #region DataMembers
+        
+        [DataMember]
+        public string CultureIsEnabled
+        {
+            get;
+            set;
+        }
+
         [DataMember]
         public string GoogleAPIKey
         {
@@ -60,6 +68,13 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
 
         [DataMember]
         public string DropboxClientAPIKey
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string JobCurrencySymbol
         {
             get;
             set;
@@ -237,6 +252,9 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             this.LinkedInCustomerClientSecret = section.UICustomSiteSettings.CurrentLinkedInCustomerClientSecret;
             this.LinkedInCustomerIntegrationContext = section.UICustomSiteSettings.CurrentLinkedInCustomerIntegrationContext;
             this.LinkedInSocialHandlerUrl = section.UICustomSiteSettings.CurrentLinkedInSocialHandlerUrl;
+
+            this.CultureIsEnabled = section.UICustomSiteSettings.CurrentCultureIsEnabled;
+            this.JobCurrencySymbol = section.UICustomSiteSettings.JobCurrencySymbol.IsNullOrWhitespace() ? "$" : section.UICustomSiteSettings.JobCurrencySymbol;
         }
 
         public void SaveDefaults()
@@ -279,6 +297,9 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             section.UICustomSiteSettings.CurrentLinkedInCustomerClientSecret = this.LinkedInCustomerClientSecret;
             section.UICustomSiteSettings.CurrentLinkedInCustomerIntegrationContext = this.LinkedInCustomerIntegrationContext;
             section.UICustomSiteSettings.CurrentLinkedInSocialHandlerUrl = this.LinkedInSocialHandlerUrl;
+
+            section.UICustomSiteSettings.JobCurrencySymbol = this.JobCurrencySymbol;
+            section.UICustomSiteSettings.CurrentCultureIsEnabled = this.CultureIsEnabled;
 
             manager.SaveSection(section);
         }

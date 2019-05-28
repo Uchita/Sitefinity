@@ -1,38 +1,41 @@
 ﻿@model dynamic
 @using Telerik.Sitefinity.Services;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
-@using JXTNext.Sitefinity.Common.Helpers
+@using JXTNext.Sitefinity.Common.Helpers;
+@using System.Web;
+@{
+    var siteSettingsHelper = new SiteSettingsHelper();
+}
 
-
-@{ 
+@{
     var isMemberUser = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn("Member");
     bool isLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
     var defaultLogo = "/ResourcePackages/Hudson/assets/dist/images/defaultLogo.png";
 }
 
 <div class="result-meta">
-    <p><span class="cur-search-count">Your search resulted in: <span class="count-num">@ViewBag.TotalCount</span> position(s)</span> | <a href="/advancedsearch" title="New job search">Search jobs</a></p>
+    <p><span class="cur-search-count">@Html.Resource("JxtJobResult", "JxtAuthoringResources")<span class="count-num">@ViewBag.TotalCount</span> @Html.Resource("JxtJobResultPosition", "JxtAuthoringResources")</span> | <a href="/advancedsearch" title="New job search">@Html.Resource("JxtJobResultSearchJobs", "JxtAuthoringResources")</a></p>
 </div>
 
 <div class="search-top clearfix">
     @*<a class="btn btn-sm" href="">RSS FEED</a>
         <a class="btn btn-sm" href="">ADD FAVOURITE</a>
     *@
-   
+
     <div>
 
         @if (ViewBag.IsMember)
         {
             <input type="email" id="anonycreatejobalert" value="@ViewBag.Email" hidden />
-            <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+            <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">@Html.Resource("JxtCreateJobAlert", "JxtAuthoringResources")</a>
             <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
             <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
         }
         else
         {
-            <div>Receive new jobs for this search by email.</div>
+            <div>@Html.Resource("JxtCreateJobAlertTitle", "JxtAuthoringResources")</div>
             <input type="email" id="anonycreatejobalert" value="" placeholder="Enter email address" class="jobalert-field" />
-            <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">CREATE JOB ALERT</a>
+            <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">@Html.Resource("JxtCreateJobAlert", "JxtAuthoringResources")</a>
             <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
             <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
         }
@@ -48,105 +51,109 @@
             </select>
         </div>
     </div>
-    </div>
+</div>
 
-    <div id="listView" class="search-results"></div>
-    <div class="l-section hidden info-block"><p class="alert alert-warning">There are no jobs matching the search criteria.</p></div>
-    <div id="pager" class="k-pager-wrap k-widget k-floatwrap" data-role="]">
-        <ul class="k-pager-numbers k-reset"></ul>
-    </div>
-    <input id="loginVar" value="@ViewBag.IsMember" type="text" hidden/>
-    <div class="popup-overlay">
-        <div class="container">
-            <div class="popup-box">
-                <p class="info">Please sign-in or register as a member to <span>create job alert</span>.</p>
-                <div class="button-wrapper">
-                    <a href="/register" class="btn btn-primary" title="Register">Register</a>
-                    <a href="/sign-in" class="btn btn-primary" title="Sign in">Sign in</a>
-                </div>
-                <a href="javascript:void(0)" class="fa fa-times" title="close"></a>
+<div id="listView" class="search-results"></div>
+<div class="l-section hidden info-block"><p class="alert alert-warning">@Html.Resource("JxtNoJobs", "JxtAuthoringResources")</p></div>
+<div id="pager" class="k-pager-wrap k-widget k-floatwrap" data-role="]">
+    <ul class="k-pager-numbers k-reset"></ul>
+</div>
+<input id="loginVar" value="@ViewBag.IsMember" type="text" hidden />
+<div class="popup-overlay">
+    <div class="container">
+        <div class="popup-box">
+            <p class="info">Please sign-in or register as a member to <span>create job alert</span>.</p>
+            <div class="button-wrapper">
+                <a href="/register" class="btn btn-primary" title="Register">Register</a>
+                <a href="/sign-in" class="btn btn-primary" title="Sign in">Sign in</a>
             </div>
+            <a href="javascript:void(0)" class="fa fa-times" title="close"></a>
         </div>
     </div>
+</div>
 
-    <script type="text/x-kendo-template" id="template">
-        
-        <div class="job-holder search-result">
-            <div class="search-result-top">
+<script type="text/x-kendo-template" id="template">
 
-                <div class="row">
-                    <div class="col-sm-8 col-xs-12">
-                        <h3><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="search-result-title" title="#:Title#">#:Title#</a></h3>
-                    </div>
-                    <div class="col-sm-4 col-xs-12 text-right">
-                        # if ( islogged ){ #
-                        <span class="save-job" data-jobid="#:JobID#">Save job</span> |
-                        # } #
-                        <a href='@ViewBag.EmailJobPageUrl?JobId=#:JobID#' title="Send email">Send email</a><br />
-                        <small>#:DateCreated_Representation#</small>
+    <div class="job-holder search-result">
+        <div class="search-result-top">
 
-                    </div>
+            <div class="row">
+                <div class="col-sm-8 col-xs-12">
+
+                    <h3><a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="search-result-title" title="#:Title#">#:Title#</a></h3>
                 </div>
+                <div class="col-sm-4 col-xs-12 text-right">
+                    # if ( islogged ){ #
+                    <span class="save-job" data-jobid="#:JobID#">@Html.Resource("JxtSaveJob", "JxtAuthoringResources")</span> |
+                    # } #
+                    <a href='@ViewBag.EmailJobPageUrl?JobId=#:JobID#' title="Send email">@Html.Resource("JxtEmailJob", "JxtAuthoringResources")</a><br />
+                    <small>#:DateCreated_Representation#</small>
 
+                </div>
             </div>
 
-            <div class="search-result-description">
-                <div class="row">
-                    <div class="col-sm-4 sc-job-meta-group">
-                        <span class="meta-location">#:CustomData["CountryLocationArea[0].Filters[0].Value"]#</span><br />
+        </div>
 
-                        # if( CustomData["Salary.Filters[0].Min"] != 0 && CustomData["Salary.Filters[0].Max"] != 0 ){
-                            if( CustomData["Salary.Filters[0].Min"] == CustomData["Salary.Filters[0].Max"] ){
-                                #<span class="meta-salary">$#:CustomData["Salary.Filters[0].Max"]#<br />#
-                            }
-                            else{
-                                #<span class="meta-salary">$#:CustomData["Salary.Filters[0].Min"]# - $#:CustomData["Salary.Filters[0].Max"]# <br />#
-                            }
-                            #<span class="salary-label">#:CustomData["Salary.Filters[0].Value"]#</span></span><br />#
-                         }#
-                         <span class="meta-worktype">#:CustomData["WorkType.Filters[0].Value"]#</span>
-                    </div>
+        <div class="search-result-description">
+            <div class="row">
+                <div class="col-sm-4 sc-job-meta-group">
+                    <span class="meta-location">#:CustomData["CountryLocationArea[0].Filters[0].Value"]#</span><br />
 
-                    <div class="col-sm-5 col-md-6">
-                        # if(data.CustomData["Bulletpoints.BulletPoint1"] != "" || data.CustomData["Bulletpoints.BulletPoint2"] != "" || data.CustomData["Bulletpoints.BulletPoint3"] != ""){#
-                        <ul>
-                            <li>#:CustomData["Bulletpoints.BulletPoint1"]#</li>
-                            <li>#:CustomData["Bulletpoints.BulletPoint2"]#</li>
-                            <li>#:CustomData["Bulletpoints.BulletPoint3"]#</li>
-                        </ul>#
+                    # if( CustomData["Salary.Filters[0].Min"] != 0 && CustomData["Salary.Filters[0].Max"] != 0 ){
+                    if( CustomData["Salary.Filters[0].Min"] == CustomData["Salary.Filters[0].Max"] ){
+                    #<span class="meta-salary">
+                       @Html.Raw(siteSettingsHelper.GetJobCurrencySymbol())#:CustomData["Salary.Filters[0].Max"]#<br />#
                         }
-                        else{#
-                        <p>#:ShortDescription#</p>
-                        #}#
-
-                    </div>
-                    <div class="col-sm-2 pull-right">
-                        <img src="@defaultLogo" alt="Hudson" />
-                    </div>
+                        else{
+                        #<span class="meta-salary">
+                            @Html.Raw(siteSettingsHelper.GetJobCurrencySymbol())#:CustomData["Salary.Filters[0].Min"]# - @Html.Raw(siteSettingsHelper.GetJobCurrencySymbol())#:CustomData["Salary.Filters[0].Max"]# <br />#
+                            }
+                            #<span class="salary-label">#:CustomData["Salary.Filters[0].Value"]#</span>
+                        </span><br />#
+                        }#
+                        <span class="meta-worktype">#:CustomData["WorkType.Filters[0].Value"]#</span>
                 </div>
-                <div class="row jobCatHirarchy">
-                    <div class="col-xs-12">
-                        # $.each(Classifications, function(index, item){#
-                        <small class="jobCatItem">
 
-                            # for (var key in item) {#
-                            # if(key.length >= 32){#
-                            # var hrefLink = '';#
+                <div class="col-sm-5 col-md-6">
+                    # if(data.CustomData["Bulletpoints.BulletPoint1"] != "" || data.CustomData["Bulletpoints.BulletPoint2"] != "" || data.CustomData["Bulletpoints.BulletPoint3"] != ""){#
+                    <ul>
+                        <li>#:CustomData["Bulletpoints.BulletPoint1"]#</li>
+                        <li>#:CustomData["Bulletpoints.BulletPoint2"]#</li>
+                        <li>#:CustomData["Bulletpoints.BulletPoint3"]#</li>
+                    </ul>#
+                    }
+                    else{#
+                    <p>#:ShortDescription#</p>
+                    #}#
 
-                            # hrefLink = '@ViewBag.CurrentPageUrl' + '?Filters[0].rootId=' + ClassificationsRootName + '&Filters[0].values=' + key;#
-                            <a href=#:hrefLink# title="#:item[key]#">#:item[key]#</a>
-                            #}#
-                            #}#
-                        </small>
-                        #});#
-                    </div>
+                </div>
+                <div class="col-sm-2 pull-right">
+                    <img src="@defaultLogo" alt="Hudson" />
                 </div>
             </div>
+            <div class="row jobCatHirarchy">
+                <div class="col-xs-12">
+                    # $.each(Classifications, function(index, item){#
+                    <small class="jobCatItem">
 
+                        # for (var key in item) {#
+                        # if(key.length >= 32){#
+                        # var hrefLink = '';#
+
+                        # hrefLink = '@ViewBag.CurrentPageUrl' + '?Filters[0].rootId=' + ClassificationsRootName + '&Filters[0].values=' + key;#
+                        <a href=#:hrefLink# title="#:item[key]#">#:item[key]#</a>
+                        #}#
+                        #}#
+                    </small>
+                    #});#
+                </div>
+            </div>
         </div>
-    </script>
 
-    <script type="text/javascript">
+    </div>
+</script>
+
+<script type="text/javascript">
 
      @{
          var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
@@ -154,9 +161,9 @@
          var emailPattern = "^[a-zA-Z0-9_][a-zA-Z0-9!#$%&amp;'*+/=?_`{|}~-]*(?:.[a-zA-Z0-9!#$%&amp;';*+/=?_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?.)+(?:[a-zA-Z]{2,})$";
          var emptyMsg = "Please enter your email address.";
          var invalidMsg = "Please enter your valid email address.";
-         
+
       }
-        var islogged = $("#loginVar").val(); //used in kendo template     
+        var islogged = $("#loginVar").val(); //used in kendo template
         if (islogged === 'False') {
             islogged = '';
         }
@@ -230,7 +237,7 @@
         $('.popup-overlay .fa-times').click(function () {
             $('.popup-overlay').fadeOut('fast');
         });
-        
+
     });
 
     var model = @Html.Raw(json);
@@ -293,7 +300,7 @@
 
         $('#anon-job-alert').on("click",function () {
             var email = $('#anonycreatejobalert').val();
-            
+
             var pattern = new RegExp('@emailPattern');
             if (email.length < 1) {
                 $('.jobalert-error-message').removeClass('hidden').text('@emptyMsg');
@@ -303,7 +310,7 @@
                 $('.jobalert-error-message').removeClass('hidden').text('@invalidMsg');
                 return false;
             }
-            
+
             if (filterModel.Filters !== null && filterModel.Filters.length === 0) {
                 var filter = {};
                 filter.rootId = "CountryLocationArea";
@@ -315,7 +322,7 @@
 
             var alertData = { filterModel: filterModel, email: email };
             var urlPath = $(location).attr('pathname') + "/CreateAnonymousJobAlert";
-            
+
             $.ajax({
                 type: 'POST',
                 cache: false,
@@ -421,7 +428,7 @@
             var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), pageNumber: PageNumber, sortBy: sortBy };
             var urlPath = $(location).attr('pathname') + "/GetSearchResults";
             var searchPath = $(location).attr('search');
-            
+
             if (searchPath == null || searchPath == "") {
                 searchPath += ("?" + "Page=" + PageNumber);
             }
@@ -614,5 +621,4 @@
         }
     }
 
-    </script>
-   
+</script>

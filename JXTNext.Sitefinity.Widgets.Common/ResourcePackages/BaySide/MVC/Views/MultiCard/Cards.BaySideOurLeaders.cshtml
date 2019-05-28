@@ -1,18 +1,18 @@
 @model SitefinityWebApp.Mvc.Models.MultiCard.MultiCardViewModel
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 
-
-
 @foreach (var card in Model.Cards)
 {
-
     <div class="leader-image">
         <div class="leader-thumb bg-image">
-            <h1 class="default-logo"><img src="@Model.SelectedSizeUrl" alt=""></h1>
+            <div class="default-logo"><img src="@Model.SelectedSizeUrl" alt=""></div>
         </div>
-        <h1 class="leader_logo">
-            <img src="@card.SelectedSizeUrl" alt="">
-        </h1>
+        <div class="leader_logo">
+            @if (card.SelectedSizeUrl != "")
+            {
+                <img src="@card.SelectedSizeUrl" alt="">
+            }
+        </div>
 
     </div>
     <h3 class="leader-name">@Html.HtmlSanitize(card.Heading)</h3>

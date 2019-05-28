@@ -5659,6 +5659,33 @@ p .btn-link {
         height: 100% !important;
     }
 }
+@media only screen and (max-width:991px){
+    .video-wrap > .container > .row{
+        height: 300px;
+    }
+}
+@media only screen and (max-width:767px) {
+    .video-wrap > .container > .row {
+        height: 260px;
+    }
+}
+@media only screen and (max-width:500px) {
+    .video-wrap > .container > .row {
+        height: 220px;
+    }
+    .video-wrap .play-btn {
+        height: 70px;
+        width: 70px;
+    }
+    .video-wrap .play-btn > .fa {
+        font-size: 30px;
+        margin-top: 18px;
+    }
+    .video-wrap .video-title {
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+}
 
 
 #videoModal video {
@@ -10354,6 +10381,9 @@ select.hs-input {
     .location-text li {
         line-height: 1.4;
     }
+        .location-hover li > span{
+            float: left;
+        }
 
         .location-hover li img,
         .location-text img {
@@ -10389,7 +10419,7 @@ select.hs-input {
             padding: 0;
             overflow: hidden;
             position: relative;
-            top: 1px;
+            top: 3px;
             box-sizing: border-box;
         }
         .location-hover li.clock-icon img,
@@ -10526,7 +10556,7 @@ select.hs-input {
     }
 
         .location-hover li div {
-            float: right;
+            overflow: hidden;
         }
 
             .location-hover li div:first-letter {
@@ -10544,6 +10574,10 @@ select.hs-input {
 
     img.noProfilePhoto {
         padding: 22%;
+    }
+
+    @media only screen and (max-width: 600px) {
+        
     }
 
     .new-serch {
@@ -10579,7 +10613,7 @@ select.hs-input {
                 right: -15px;
                 transition: all 500ms ease;
             }
- 
+
 
     #resultsPagePartialContent .new-serch a:after {
         top: 10px;

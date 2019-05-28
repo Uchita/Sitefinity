@@ -5659,33 +5659,6 @@ p .btn-link {
         height: 100% !important;
     }
 }
-@media only screen and (max-width:991px){
-    .video-wrap > .container > .row{
-        height: 300px;
-    }
-}
-@media only screen and (max-width:767px) {
-    .video-wrap > .container > .row {
-        height: 260px;
-    }
-}
-@media only screen and (max-width:500px) {
-    .video-wrap > .container > .row {
-        height: 220px;
-    }
-    .video-wrap .play-btn {
-        height: 70px;
-        width: 70px;
-    }
-    .video-wrap .play-btn > .fa {
-        font-size: 30px;
-        margin-top: 18px;
-    }
-    .video-wrap .video-title {
-        margin-top: 15px;
-        margin-bottom: 10px;
-    }
-}
 
 
 #videoModal video {
@@ -5767,6 +5740,42 @@ p .btn-link {
     .video-wrap .play-btn:hover, .video-wrap .play-btn:focus, , .video-wrap .play-btn.active {
         background: #0088CF;
     }
+
+@media only screen and (max-width:991px) {
+    .video-wrap > .container > .row {
+        height: 300px;
+    }
+}
+
+@media only screen and (max-width:767px) {
+    .video-wrap > .container > .row {
+        height: 260px;
+    }
+}
+
+@media only screen and (max-width:500px) {
+    .video-wrap > .container > .row {
+        height: 200px;
+    }
+    .video-wrap .bgimg {
+        background-position: -18px top;
+    }
+    .video-wrap .play-btn {
+        height: 70px;
+        width: 70px;
+    }
+
+        .video-wrap .play-btn > .fa {
+            font-size: 30px;
+            margin-top: 18px;
+        }
+
+    .video-wrap .video-title {
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+}
+
 
 /*-------Video Wrap----End------*/
 /*-------Featured carousel----------*/

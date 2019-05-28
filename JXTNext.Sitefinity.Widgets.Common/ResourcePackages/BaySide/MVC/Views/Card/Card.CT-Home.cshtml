@@ -1,6 +1,8 @@
 ﻿@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
-<section class="cta" style="background-image: url('@Model.SelectedSizeUrl');">
+
+
+<section class="cta @Model.CssClass" style="background-image: url('@Model.SelectedSizeUrl');">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-12 text-center">
@@ -9,14 +11,14 @@
                     <h2 class="text-white wow fadeInUp">@Html.HtmlSanitize(Model.Heading)</h2>
                     if (!string.IsNullOrEmpty(Model.Description))
                     {
-                        <h2 class="text-white wow fadeInUp"><pre>@Html.HtmlSanitize(Model.Description)</pre></h2>
+                        <h2 class="text-white wow fadeInUp">@Html.HtmlSanitize(Model.Description)</h2>
                     }
                 }
                 else
                 {
                     if (!string.IsNullOrEmpty(Model.Description))
                     {
-                        <h2 class="text-white"><pre>@Html.HtmlSanitize(Model.Description)</pre></h2>
+                        <h2 class="text-white">@Html.HtmlSanitize(Model.Description)</h2>
                     }
                 }
 

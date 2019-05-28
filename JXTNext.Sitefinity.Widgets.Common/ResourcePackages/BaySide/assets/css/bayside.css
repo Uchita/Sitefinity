@@ -10576,8 +10576,15 @@ select.hs-input {
         padding: 22%;
     }
 
-    @media only screen and (max-width: 600px) {
-        
+    @media only screen and (max-width: 400px) {
+        .job-list > img.float-right{
+            float: none!important;
+        }
+        .job-list .col-auto {
+            flex: 100%;
+            text-align: left !important;
+            margin-top: 5px;
+        }
     }
 
     .new-serch {

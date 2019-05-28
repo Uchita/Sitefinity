@@ -14,6 +14,7 @@
 <div class="header-top-login @Model.CssClass">
     <span class="header-top-links" data-sf-role="sf-logged-in-view" style="display: none">
         <span>@Html.Resource("LoggedAs", "LoginStatusExtendedResources") </span>
+        &nbsp;
         <a href="@(Model.ProfilePageUrl ?? "#")" data-sf-role="sf-logged-in-name" class="sf-mr-m" title="View my profile"></a>
         <a href="/sitefinity/signout?sts_signout=true" title="@Html.Resource("Logout")">@Html.Resource("Logout")</a>
     </span>

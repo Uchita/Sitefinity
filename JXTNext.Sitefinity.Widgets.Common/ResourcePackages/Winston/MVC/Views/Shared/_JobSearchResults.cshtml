@@ -21,7 +21,7 @@
 
     <div>
 
-        @if (ViewBag.IsMember)//isLoggedIn
+       @if (ViewBag.IsMember)//isLoggedIn
         {
             <input type="email" id="anonycreatejobalert" value="@ViewBag.Email" hidden />
             <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">CREATE JOB ALERT</a>
@@ -38,11 +38,11 @@
                 <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
             </div>
         }
-        <div>&nbsp;</div>
+       
         <div class="select">
             <select id="sortOrder" class="default-select">
-                <option selected="selected" value="Relevance">@Html.Resource("SortByRelevance", "JobSearchResultsResources")</option>
-                <option value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
+                <option  value="Relevance">@Html.Resource("SortByRelevance", "JobSearchResultsResources")</option>
+                <option selected="selected" value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
                 <option value="Old">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
                 <option value="A-Z">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
                 <option value="Z-A">@Html.Resource("SortByAlphaZA", "JobSearchResultsResources")</option>
@@ -309,7 +309,7 @@
                 return false;
             }
             else if (!pattern.test(email)) {
-                $('.jobalert-error-message').removeClass('hidden').text('@invalidMsg');
+               $('.jobalert-error-message').removeClass('hidden').text('@invalidMsg');
                 return false;
             }
 
@@ -326,7 +326,7 @@
             var urlPath = $(location).attr('pathname') + "/CreateAnonymousJobAlert";
 
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 cache: false,
                 url: urlPath,
                 data: alertData,

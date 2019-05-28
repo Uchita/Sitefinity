@@ -33,20 +33,20 @@
 @*Common JXT build functions*@
 @using JXTNext.Sitefinity.Common.Helpers;
 @{
-                /**/
+    /**/
 
-                List<string> filterValues = new List<string>();
-                var articleIds = Model.Item.Fields.articles;
-                var authorName = "Hudson";
-                var authorUrl = "";
+    List<string> filterValues = new List<string>();
+    var articleIds = Model.Item.Fields.articles;
+    var authorName = "Hudson";
+    var authorUrl = "";
 
-                foreach (var taxonItem in articleIds)
-                {
-                    Guid articleID = new Guid(taxonItem.ToString());
-                    var taxonManager = TaxonomyManager.GetManager();
-                    var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
-                    filterValues.Add(taxon.Title);
-                }
+    foreach (var taxonItem in articleIds)
+    {
+        Guid articleID = new Guid(taxonItem.ToString());
+        var taxonManager = TaxonomyManager.GetManager();
+        var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
+        filterValues.Add(taxon.Title);
+    }
 }
 <div class="article-details">
     <div class="@Model.CssClass article-container" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
@@ -76,9 +76,17 @@
                 fixedHtml = LinkParser.ResolveLinks(fixedHtml, DynamicLinksParser.GetContentUrl, null, SystemManager.IsInlineEditingMode, false);
 
                 // TODO until we have a solution for implementing from Sitefinity support, replace AU huson
-                if (fixedHtml.Contains("//au.hudson.com/"))
+                var regexPattern = @"(?:https:\/\/)?(?:http:\/\/)?(?:www\.)?([a-zA-Z0-9\-]+\.)?hudson(?:\.[a-z\.]+[\/]?)";
+
+                string url = HttpContext.Current.Request.Url.AbsoluteUri;
+
+                if (url.ToLower().Contains("/en/") && !Regex.Replace(fixedHtml, regexPattern, "/", RegexOptions.IgnoreCase).Contains("/en/"))
                 {
-                    fixedHtml = Regex.Replace(fixedHtml, @"[a-z]+://au.hudson.com/", "/", RegexOptions.IgnoreCase);
+                    fixedHtml = Regex.Replace(fixedHtml, regexPattern, "/en/", RegexOptions.IgnoreCase);
+                }
+                else
+                {
+                    fixedHtml = Regex.Replace(fixedHtml, regexPattern, "/", RegexOptions.IgnoreCase);
                 }
             }
             <div class="article-description" @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize(fixedHtml)</div>

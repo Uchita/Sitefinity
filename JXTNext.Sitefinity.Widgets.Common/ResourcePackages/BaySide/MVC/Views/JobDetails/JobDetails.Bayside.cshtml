@@ -86,8 +86,8 @@
                 {
                     location = (string)@Model.Locations[item];
                 }
-                <li class="mr-5"><img src="~/ResourcePackages/BaySide/assets/images/location-icon.svg" alt="pin"><div>@Model.JobDetails.CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].Value"] > @location</div></li>
-                <li class="mr-5"> <img src="/ResourcePackages/BaySide/assets/images/dollar-icon.svg" alt="$" class="dollar"> <div>@Model.JobDetails.CustomData["Salary.Filters[0].Value"]</div></li>
+                <li class="mr-5"><span><img src="~/ResourcePackages/BaySide/assets/images/location-icon.svg" alt="pin"></span><div>@Model.JobDetails.CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].Value"] > @location</div></li>
+                <li class="mr-5"><span><img src="/ResourcePackages/BaySide/assets/images/dollar-icon.svg" alt="$" class="dollar"></span> <div>@Model.JobDetails.CustomData["Salary.Filters[0].Value"]</div></li>
                 <li class="mr-5 clock-icon"><span><img class="clock" src="/ResourcePackages/BaySide/assets/images/clock-icon.svg" alt="time"></span><div> @Model.JobDetails.CustomData["WorkType.Filters[0].Value"]</div></li>
             </ul>
 
@@ -95,9 +95,10 @@
 
             @{
                 string cleanContent = GeneralHelper.RemoveInlineStyling((string)Model.JobDetails.Description);
+                cleanContent = HttpUtility.HtmlDecode(cleanContent);
             }
             <p>
-                @Html.HtmlSanitize((string)cleanContent)
+                @Html.HtmlSanitize(cleanContent)
             </p>
 
             <div class="sm-text">
@@ -129,11 +130,11 @@
         <h3 class="mt-4 h3-heading">Interested in this job?</h3>
 
         <ul class="inline-list p-0 mb-4">
-            
-                @*<li class="mr-3"><a class="action-link save-job" data-jobid="@Model.JobDetails.JobID" href="#"><i class="fa fa-save"></i> <span>Save</span></a></li>*@
-            
+
+            @*<li class="mr-3"><a class="action-link save-job" data-jobid="@Model.JobDetails.JobID" href="#"><i class="fa fa-save"></i> <span>Save</span></a></li>*@
+
             <li class="mr-3"><a href="#" class="save-job action-link" data-jobid="@Model.JobDetails.JobID"><img class="savejob-icon" src="/ResourcePackages/BaySide/assets/images/save-icon.svg"><span class="save-status-txt">Save this job</span></a></li>
-            
+
             <li class="mr-3"><a class="action-link" href="javascript:window.print();"><i class="fa fa-print"></i> <span>Print</span></a></li>
             @*
                 <li><a href="javascript:window.print();"><em class="fas fa-print"></em>Print this job</a></li>*@
@@ -226,7 +227,7 @@
                     dataType: 'Json',
                     success: function (response) {
                         if (response.IsUserLogged == true) {
-                            
+
                             if (response.IsJobSaved == true) {
                                 var selfJob = $('.save-job');
                                 $(selfJob).addClass("saved");

@@ -19,6 +19,8 @@ using Telerik.Sitefinity.Pages.Model;
 using Telerik.Sitefinity;
 using Telerik.Sitefinity.Fluent.Pages;
 using Telerik.Sitefinity.Abstractions;
+using System.Threading;
+using Telerik.Sitefinity.Multisite;
 
 namespace SitefinityWebApp.Helpers
 {
@@ -47,12 +49,39 @@ namespace SitefinityWebApp.Helpers
                 }
             }
             return null;
-            //PageNode selectedNode = pageNodes.Where(node => node.UrlName.ToString().Replace("~", "").Replace("/", "") == urlName.Replace("/", "")).FirstOrDefault();
+        }
 
-            //if (selectedNode != null)
-            //    return selectedNode.NodeType.ToString();
-            //else
-            //    return null;
+        public static DynamicContent GetFeaturedArticleNavigation()
+        {
+            var taxonomyManager = TaxonomyManager.GetManager();
+            var tagsTaxonomy = taxonomyManager.GetTaxonomies<FlatTaxonomy>().FirstOrDefault(s => s.Name == "Tags");
+            var taxa = tagsTaxonomy.Taxa.Where(c => c.Title == "Featured").FirstOrDefault();
+
+            if (taxa != null)
+            {
+                var itemType = TypeResolutionService.ResolveType("Telerik.Sitefinity.DynamicTypes.Model.Articles.Article");
+
+                var multisiteContext = SystemManager.CurrentContext as MultisiteContext;
+                var providerName = multisiteContext.CurrentSite.GetProviders("Articles").Select(p => p.ProviderName).FirstOrDefault();
+
+                var transactionName = Guid.NewGuid();
+
+                var dynamicModuleManager = DynamicModuleManager.GetManager(providerName, transactionName.ToString());
+
+                var offices = dynamicModuleManager.GetDataItems(itemType).Where(o => o.Status == ContentLifecycleStatus.Live && o.Visible
+                    && o.GetValue<TrackedList<Guid>>("Tags").Contains(taxa.Id));
+
+                var cultureInfo = Thread.CurrentThread.CurrentUICulture;
+
+                if (!cultureInfo.IsNeutralCulture)
+                {
+                    offices.Where(o => o.PublishedTranslations.Contains(cultureInfo.Name));
+                }
+
+                return offices.OrderByDescending(a => a.GetValue<DateTime>("PublicationDate")).FirstOrDefault();
+            }
+
+            return null;
         }
 
         public static string FindPagebyUrlNativeAPI(string urlName, string parentNodeUrl)

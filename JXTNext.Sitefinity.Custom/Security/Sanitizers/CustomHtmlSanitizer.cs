@@ -7,6 +7,7 @@ namespace JXTNext.Sitefinity.Custom.Security.Sanitizers
         public CustomHtmlSanitizer()
         {
             base.AllowedSchemes.Add("tel");
+            base.AllowedSchemes.Add("controlslist");
         }
     }
 }

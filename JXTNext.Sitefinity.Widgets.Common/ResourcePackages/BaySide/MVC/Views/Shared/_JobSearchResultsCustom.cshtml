@@ -22,7 +22,7 @@
             <div class="col-12 col-lg-6">
                 <div class="form-group">
                     <select id="sortOrder" class="form-control">
-                        <option value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
+                        <option selected="selected" value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
                         <option value="Relevance">@Html.Resource("SortByRelevance", "JobSearchResultsResources")</option>
                         <option value="Old">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
                         <option value="A-Z">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
@@ -317,7 +317,7 @@
         }
 
         if (checkFilterCheck()) {
-            var sortBy = "Relevance";
+            var sortBy = "Recent";
         } else {
             var sortBy = '@ViewBag.SortOrder';
         }

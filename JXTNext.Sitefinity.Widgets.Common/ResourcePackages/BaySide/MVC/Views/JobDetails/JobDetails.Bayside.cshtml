@@ -95,9 +95,10 @@
 
             @{
                 string cleanContent = GeneralHelper.RemoveInlineStyling((string)Model.JobDetails.Description);
+                cleanContent = HttpUtility.HtmlDecode(cleanContent);
             }
             <p>
-                @Html.HtmlSanitize((string)cleanContent)
+                @Html.HtmlSanitize(cleanContent)
             </p>
 
             <div class="sm-text">

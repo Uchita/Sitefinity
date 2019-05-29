@@ -123,16 +123,13 @@ namespace JXTNext.Sitefinity.Services.Services
             return JobApplicationAttachmentUploadItem.DeleteFromAmazonS3("private-amazon-s3-provider", deletefile.AttachmentType, deletefile.PathToAttachment);
         }
 
-
-        public List<JobApplicationAttachmentUploadItem> GetFiles(List<JobApplicationAttachmentUploadItem> attachments)
+        public bool ValidateFileExistsInTheBlobStoreage(string srcLibName, int attachmentType, string id)
         {
-            foreach (var item in attachments)
-            {
-                item.FileUrl = JobApplicationAttachmentUploadItem.FetchFromAmazonS3("private-amazon-s3-provider", item.AttachmentType, item.Id);
-            }
-            return attachments;
+            return JobApplicationAttachmentUploadItem.ValidateFileExistsInTheBlobStorage(srcLibName, attachmentType, id);
         }
 
+
+        
         public Stream GetFileStreamFromAmazonS3(string srcLibName ,int attachmentType, string id)
         {
             return JobApplicationAttachmentUploadItem.GetFileStreamFromAmazonS3(srcLibName, attachmentType, id);

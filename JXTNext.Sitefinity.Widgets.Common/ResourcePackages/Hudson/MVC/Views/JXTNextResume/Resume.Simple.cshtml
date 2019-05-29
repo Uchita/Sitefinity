@@ -58,7 +58,6 @@
             resumes = resumeList;
             var rows = '';
             $.each(resumes, function (i, item) {
-
                 var date = item.UploadDateStr;
                 var dateItm = new Date(date);
                 const monthAbvrNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -67,6 +66,7 @@
                 }
                 rows += '<tr> ' + '<td>' + item.FileFullName + '</td>' + '<td>' + date + '</td >' + '<td>' + '<a id="' + item.UploadPathToAttachment + '" class="downloadresumecls btn btn-tag" target="_blank">' + viewValue + '</a> <input id="' + item.Id + '" class="deleteresumecls btn btn-sm btn-tag btn-danger" type="button"  value="' + deleteResume + '"></td>' + '</tr>';
 
+                
             });
             $('#resumeTable').html(rows);
     }

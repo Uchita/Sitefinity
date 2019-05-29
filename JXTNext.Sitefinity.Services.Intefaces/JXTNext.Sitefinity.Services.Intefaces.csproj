@@ -36,8 +36,8 @@
     <Reference Include="AWSSDK.S3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
       <HintPath>..\packages\AWSSDK.S3.3.3.101.11\lib\net45\AWSSDK.S3.dll</HintPath>
     </Reference>
-    <Reference Include="JXT.JXTNext.Common.FileManager, Version=0.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXT.JXTNext.Common.FileManager.0.0.2\lib\netstandard2.0\JXT.JXTNext.Common.FileManager.dll</HintPath>
+    <Reference Include="JXT.JXTNext.Common.FileManager, Version=0.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXT.JXTNext.Common.FileManager.0.0.3\lib\netstandard2.0\JXT.JXTNext.Common.FileManager.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Common.Web, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXT.JXTNext.Common.Web.1.4.2\lib\netstandard2.0\JXTNext.Common.Web.dll</HintPath>

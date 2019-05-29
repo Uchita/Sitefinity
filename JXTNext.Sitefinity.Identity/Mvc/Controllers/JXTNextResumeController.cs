@@ -60,32 +60,7 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
 
         }
 
-        //private List<JobApplicationAttachmentUploadItem> GetLoginUserResumeFilesByEmail(string email)
-        //{
-        //    try
-        //    {
-        //        List<JobApplicationAttachmentUploadItem> attachments = new List<JobApplicationAttachmentUploadItem>();
-        //        foreach (var resume in resumeList)
-        //        {
-        //            attachments.Add(new JobApplicationAttachmentUploadItem()
-        //            {
-        //                Id = resume.Id.ToString(),
-        //                FileName = resume.FileName,
-        //                AttachmentType = JobApplicationAttachmentType.ProfileResume
-        //            });
-        //        }
-
-        //        attachments = _jobApplicationService.GetFiles(attachments);
-
-        //        return attachments;
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        throw ex;
-        //    }
-        //}
-
+        
 
         public ActionResult Index()
         {

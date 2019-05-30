@@ -108,39 +108,37 @@
 
     var downloadResumeMethod = function (id) {
 
-        if (confirmDelete()) {
-            var urlPath = $(location).attr('pathname') + "/DownloadResume?fileName=" + id;
-            $.ajax({
-                url: urlPath,
-                type: 'POST',
-                cache: false,
-                dataType: 'json',
-                processData: false, // Don't process the files
-                contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-                success: function (response) {
+        var urlPath = $(location).attr('pathname') + "/DownloadResume?fileName=" + id;
+        $.ajax({
+            url: urlPath,
+            type: 'POST',
+            cache: false,
+            dataType: 'json',
+            processData: false, // Don't process the files
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function (response) {
 
-                    if (response[0].Value == true) {
-                        var bytes = new Uint8Array(response[2].Value); // pass your byte response to this constructor
-                        var blob = new Blob([bytes], { type: "application/octet-stream" });// change resultByte to bytes
-                        var link = document.createElement('a');
-                        link.href = window.URL.createObjectURL(blob);
-                        link.download = response[1].Value;
-                        link.click();
-                    }
-
-
-                    //var a = document.createElement('a');
-                    //var url = window.URL.createObjectURL(data.FileStream);
-                    //a.href = url;
-                    //a.download = data.FileName;
-                    //a.click();
-                    //window.URL.revokeObjectURL(url);
-                },
-                error: function (response) {
-                    processErrorMessage(response);
+                if (response[0].Value == true) {
+                    var bytes = new Uint8Array(response[2].Value); // pass your byte response to this constructor
+                    var blob = new Blob([bytes], { type: "application/octet-stream" });// change resultByte to bytes
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = response[1].Value;
+                    link.click();
                 }
-            });
-        }
+
+
+                //var a = document.createElement('a');
+                //var url = window.URL.createObjectURL(data.FileStream);
+                //a.href = url;
+                //a.download = data.FileName;
+                //a.click();
+                //window.URL.revokeObjectURL(url);
+            },
+            error: function (response) {
+                processErrorMessage(response);
+            }
+        });
 
 
     }

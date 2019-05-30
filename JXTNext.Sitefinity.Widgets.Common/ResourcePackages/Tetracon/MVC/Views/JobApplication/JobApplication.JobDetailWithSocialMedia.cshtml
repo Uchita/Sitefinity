@@ -24,8 +24,8 @@
 
                             hasLinkedIn = true;
 
-                            <li>
-                                <a href="javascript:;" class="btn btn-linkedin" data-linkedin-toggle="#linkedin-widget-holder" title="@item.Title">@item.Title</a>
+                            <li id="linkedIn-btnwrapper">
+                                <a href="javascript:;" class="btn btn-linkedin" data-linkedin-toggle="#linkedin-widget-holder" title="@item.Title"></a>
                             </li>
                             break;
 
@@ -78,7 +78,7 @@
             </ul>
             @if (hasLinkedIn)
             {
-                <div id="linkedin-widget-holder" class="linkedin-widget-holder clearfix" data-apply-url="@ViewBag.LinkedInApplyUrl" style="display: none;">
+                <div id="linkedin-widget-holder" class="linkedin-widget-holder" data-apply-url="@ViewBag.LinkedInApplyUrl" style="display: none;">
                     <hr>
 
                     <div class="linkedin-alerts"></div>
@@ -98,16 +98,16 @@
                                     data-allow-sign-in="true">
                             </script>
                             <script>
-                    function onLinkedInProfileData(profileData) {
-                        linkedInHandler.submitJobApplyData('#linkedin-widget-holder', @Model.JobId, profileData);
-                    }
+                                function onLinkedInProfileData(profileData) {
+                                    linkedInHandler.submitJobApplyData('#linkedin-widget-holder', @Model.JobId, profileData);
+                                }
                             </script>
                         }
                         else
                         {
                             <p>
                                 <a href="@ViewBag.LinkedInSignInUrl" class="btn-linkedin-signin" title="Sign in with LinkedIn" data-widget-holder="#linkedin-widget-holder">
-                                    <img src="~/ResourcePackages/Tetracon/assets/dist/images/sign-in-linkedin.svg" class="img-responsive" />
+                                    <img src="~/ResourcePackages/Tetracon/assets/dist/images/sign-in-linkedin.svg" class="img-responsive" style="max-width: 190px;" />
                                 </a>
                             </p>
 
@@ -118,7 +118,7 @@
                         }
                     </div>
 
-                    <div class="linkedin-processing sf-loading" style="display: none;"></div>
+                    <div class="linkedin-processing sf-loading" style="display: none;">Processing...</div>
                 </div>
             }
         </div>

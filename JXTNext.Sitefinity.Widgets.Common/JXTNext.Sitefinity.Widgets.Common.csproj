@@ -189,6 +189,7 @@
     <Content Include="ResourcePackages\Tetracon\assets\dist\images\seekBtn.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Tetracon\assets\dist\images\sign-in-linkedin.svg" />
     <Content Include="ResourcePackages\Tetracon\assets\dist\images\sprite.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

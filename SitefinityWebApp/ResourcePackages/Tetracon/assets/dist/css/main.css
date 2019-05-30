@@ -9140,7 +9140,15 @@ address.info-box {
     padding: 62px 0 62px 62px; }
   .left-block-grey .left-sidebar .container-fluid .nav > li > a {
     color: #fff; }
+  .left-block-grey .left-sidebar .container-fluid .nav > li.current > a {
+    color: #7DC245; }
   .left-block-grey .left-sidebar .container-fluid .nav > li > a:hover {
+    color: #7DC245; }
+  .left-block-grey .left-sidebar .container-fluid .nav .dropdown-menu li > a {
+    color: #fff; }
+  .left-block-grey .left-sidebar .container-fluid .nav .dropdown-menu li > a:hover {
+    color: #7DC245; }
+  .left-block-grey .left-sidebar .container-fluid .nav .dropdown-menu li.current > a {
     color: #7DC245; }
   .left-block-grey.page-section {
     padding: 0; }
@@ -9258,7 +9266,8 @@ footer {
 
 .consultant-banner {
   min-height: 75px;
-  position: relative; }
+  position: relative;
+  margin-bottom: 30px; }
   .consultant-banner:before {
     position: absolute;
     display: block;
@@ -10236,9 +10245,14 @@ ul.breadcrumb {
 .page-wrapper .basic-form {
   margin-top: 50px; }
   .page-wrapper .basic-form .form-control {
-    color: #666666;
-    height: 35px;
-    border: 1px solid #666666; }
+    color: #7DC245;
+    height: 50px;
+    border: 1px solid #7DC245;
+    font-size: 18px; }
+    .page-wrapper .basic-form .form-control:hover {
+      outline: unset; }
+    .page-wrapper .basic-form .form-control .select:before {
+      color: #7DC245; }
   .page-wrapper .basic-form select {
     padding-left: 6px; }
   .page-wrapper .basic-form textarea {
@@ -11858,20 +11872,17 @@ select.articles-order {
   line-height: 40px;
   /*font-family: $font-family-medium;*/ }
   .contact-consultant-contacts em {
-    color: #fff;
+    color: #7DC245;
     width: 16px;
     height: 16px;
     margin-right: 10px; }
-  .contact-consultant-contacts a {
-    color: #fff; }
 
 .consultant-page h2 {
-  color: #fff; }
+  color: #7DC245; }
 
 .consultant-page h2 {
   padding: 9px 20px 17px;
-  text-transform: capitalize;
-  color: #fff;
+  color: #7DC245;
   position: relative;
   margin-bottom: 25px; }
 
@@ -11904,20 +11915,14 @@ select.articles-order {
   color: #666; }
 
 .consultant-address-widget {
-  background: #262626;
   overflow: hidden;
   padding: 15px 15px 1px; }
 
 .job-dark-bg {
-  background: #222222;
-  padding: 33px 28px;
+  padding: 33px 0;
   margin-bottom: 5px; }
   .job-dark-bg h2 {
-    color: #fff;
     font-size: 27px; }
-  .job-dark-bg .team-joblist a,
-  .job-dark-bg .team-joblist p {
-    color: #fff; }
 
 .consultant-job {
   display: none; }

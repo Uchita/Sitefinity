@@ -524,4 +524,163 @@ $(window).resize(function () {
         ThemeGlobal.SameHeight();
         ThemeGlobal.MobileCarouselInit();
     }, 250);
-})
+});
+
+// Apply with LinkedIN Integration
+var linkedInHandler = linkedInHandler || {};
+(function ($) {
+    var storagePrefix = 'LinkedIn_';
+    var errorUnableToApply = 'Unable to apply for the job due to an error. Please try again.';
+
+    linkedInHandler.submitJobApplyData = function (widgetHolder, jobId, profileData) {
+        widgetHolder = $(widgetHolder);
+
+        if (widgetHolder.hasClass('applying')) {
+            return;
+        }
+
+        var data = {
+            jobId: jobId,
+            profileJson: JSON.stringify(profileData)
+        };
+
+        widgetHolder.addClass('applying');
+
+        var wait = widgetHolder.find('.linkedin-processing');
+        wait.show();
+
+        showLinkedInErrors(widgetHolder, null);
+        showLinkedInMessages(widgetHolder, null);
+
+        $.ajax({
+            method: "POST",
+            url: widgetHolder.data('apply-url'),
+            data: data,
+            dataType: 'json'
+        })
+            .done(function (response) {
+                try {
+                    if (response.Success) {
+                        if (response.RedirectUrl) {
+                            window.location.href = response.RedirectUrl;
+                        }
+                        else {
+                            showLinkedInMessages(widgetHolder, response.Messages);
+                        }
+
+                        return;
+                    }
+
+                    if (response.Errors && response.Errors.length > 0) {
+                        showLinkedInErrors(widgetHolder, response.Errors);
+                    }
+                    else {
+                        showLinkedInErrors(widgetHolder, [errorUnableToApply]);
+                    }
+                }
+                catch (err) {
+                    console.log(err);
+
+                    showLinkedInErrors(widgetHolder, [err.message]);
+                }
+            })
+            .fail(function (response) {
+                console.log(response);
+
+                showLinkedInErrors(widgetHolder, [errorUnableToApply]);
+            })
+            .always(function () {
+                wait.hide();
+
+                widgetHolder.removeClass('applying');
+            });
+    };
+
+    function showLinkedInErrors(widgetHolder, errors) {
+        var container = $(widgetHolder).find('.linkedin-alerts');
+
+        var errorEl = container.find('.alert-linkedin-errors');
+        if (errorEl.length == 0) {
+            errorEl = $('<div class="alert alert-danger alert-linkedin-errors"></div>');
+
+            container.append(errorEl);
+        }
+
+        if (errors === null) {
+            errorEl.hide();
+        }
+        else {
+            errorEl.html(errors.join('<br>'));
+            errorEl.show();
+        }
+    }
+
+    function showLinkedInMessages(widgetHolder, messages) {
+        var container = $(widgetHolder).find('.linkedin-alerts');
+
+        var messageEl = container.find('.alert-linkedin-messages');
+        if (messageEl.length == 0) {
+            messageEl = $('<div class="alert alert-success alert-linkedin-messages"></div>');
+
+            container.append(messageEl);
+        }
+
+        if (messages === null) {
+            messageEl.hide();
+        }
+        else {
+            messageEl.html(messages.join('<br>'));
+            messageEl.show();
+        }
+    }
+
+    function setShowHideWidgetHolderOnLoad(widgetHolderId, value) {
+        sessionStorage.setItem(storagePrefix + widgetHolderId, value);
+    }
+
+    function getShowHideWidgetHolderOnLoad(widgetHolderId) {
+        return sessionStorage.getItem(storagePrefix + widgetHolderId);
+    }
+
+    var linkedInTogglers = $('[data-linkedin-toggle]');
+
+    linkedInTogglers.on('click', function (event) {
+        event.preventDefault();
+
+        var linkedInWidgetHolder = $($(this).data('linkedin-toggle'));
+        if (linkedInWidgetHolder.length == 0) {
+            return;
+        }
+
+        if (linkedInWidgetHolder.is(':visible')) {
+            linkedInWidgetHolder.slideUp();
+
+            setShowHideWidgetHolderOnLoad(linkedInWidgetHolder.attr('id'), '0');
+        }
+        else {
+            linkedInWidgetHolder.slideDown();
+        }
+    });
+
+    linkedInTogglers.each(function () {
+        var toggler = $(this);
+
+        var linkedInWidgetHolder = $($(this).data('linkedin-toggle'));
+        if (linkedInWidgetHolder.length == 0) {
+            return;
+        }
+
+        if (getShowHideWidgetHolderOnLoad(linkedInWidgetHolder.attr('id')) === '1') {
+            linkedInWidgetHolder.show();
+        }
+    });
+
+    $('.btn-linkedin-signin').on('click', function () {
+        var linkedInWidgetHolder = $($(this).data('widget-holder'));
+        if (linkedInWidgetHolder.length == 0) {
+            return;
+        }
+
+        setShowHideWidgetHolderOnLoad(linkedInWidgetHolder.attr('id'), '1');
+    });
+})(jQuery);

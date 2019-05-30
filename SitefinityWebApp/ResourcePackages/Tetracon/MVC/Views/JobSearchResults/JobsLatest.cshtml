@@ -8,12 +8,12 @@
 }
 
 <div class="@ViewBag.CssClass">
-    @foreach (var jobOffer in Model.SearchResults)
-    {
-        if (jobOfferIndex % 3 == 0)
+    <div class="row same-height-wrapper flex">
+        @foreach (var jobOffer in Model.SearchResults)
         {
-            @: <div class="row same-height-wrapper">
-            }
+
+
+
 
             <div class="col-sm-4">
 
@@ -35,17 +35,15 @@
 
             </div>
 
-            if (jobOfferIndex % 3 == 2)
-            {
-            @: </div>
-        }
+       
+
 
         jobOfferIndex++;
     }
-
-    <div class="row row-see-more">
-        <div class="col-md-12">
-            <div class="text-center"><a class="btn btn-default" href="@ViewBag.JobResultsPageUrl">READ MORE</a></div>
+         </div>
+        <div class="row row-see-more">
+            <div class="col-md-12">
+                <div class="text-center"><a class="btn btn-default" href="@ViewBag.JobResultsPageUrl">READ MORE</a></div>
+            </div>
         </div>
     </div>
-</div>

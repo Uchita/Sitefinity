@@ -2878,23 +2878,42 @@ address.info-box {
     position: relative;
     z-index: 1;
 
-    .inside-left{
+    .inside-left {
         padding: 62px 0 62px 62px;
     }
 
-    .left-sidebar .container-fluid .nav>li>a{
+    .left-sidebar .container-fluid .nav > li > a {
         color: #fff;
     }
 
-    .left-sidebar .container-fluid .nav>li>a:hover{
+    .left-sidebar .container-fluid .nav > li.current > a {
         color: #7DC245;
     }
+
+    .left-sidebar .container-fluid .nav > li > a:hover {
+        color: #7DC245;
+    }
+
+    .left-sidebar .container-fluid .nav .dropdown-menu li > a {
+        color: #fff;
+    }
+
+    .left-sidebar .container-fluid .nav .dropdown-menu li > a:hover {
+        color: #7DC245;
+    }
+
+
+    .left-sidebar .container-fluid .nav .dropdown-menu li.current > a {
+        color: #7DC245;
+    }
+
+
 
     &.page-section {
         padding: 0;
     }
 
-   
+
 
     &:after {
         content: "";
@@ -2903,11 +2922,9 @@ address.info-box {
         bottom: 0;
         height: 100%;
         display: block;
-        
         width: calc(100% - 75%);
         z-index: -1;
         top: 0;
-       
     }
 
     .row {
@@ -2917,8 +2934,6 @@ address.info-box {
             display: inherit;
         }
     }
-
-  
     /*.caption {
         padding: 50px 0 50px 50px;
     }*/
@@ -3087,6 +3102,7 @@ footer {
 .consultant-banner {
     min-height: 75px;
     position: relative;
+    margin-bottom:30px;
 
     &:before {
         position: absolute;

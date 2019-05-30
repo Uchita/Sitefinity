@@ -378,7 +378,6 @@
                 data: alertData,
                 dataType: 'Json',
                 success: function (response) {
-                    console.log(response);
                     if (response.Success == true) {
                         $('#anonycreatejobalert, #anon-job-alert').hide();
                         //$(this).hide();
@@ -627,23 +626,23 @@
             var img = $(this).next();
             if (text != "" && text != undefined)
                 if (text == "alitis")
-                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/alitis-logo.png");
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/alitis-logo.svg");
                 else if (text == "austra health")
-                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/austra-health-logo.png");
-                else if (text == "bayside group")
-                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-group-automotive-logo.png");
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/austra-health-logo.svg");
+                else if (text == "bayside group automotive")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-group-automotive-logo.svg");
                 else if (text == "bayside personnel")
-                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-personnel-logo.png");
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-personnel-logo.svg");
                 else if (text == "baytech")
-                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/baytech-logo.png");
-                else if (text == "bridge consulting")
-                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bridge-consulting-logo.png");
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/baytech-logo.svg");
+                else if (text == "bridge consulting") 
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bridge-consulting-logo.svg");
                 else if (text == "cozWine")
-                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/cozwine-logo.png");
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/cozwine-logo.svg");
                 else if (text == "techstaff")
-                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/techstaff-logo.png");
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/techstaff-logo.svg");
                 else if (text == "payments &amp;amp; cards network")
-                    $(img).attr("src", "https://teampcn.jxtnext.net/ResourcePackages/PCN/assets/dist/images/logo.png");
+                    $(img).attr("src", "https://teampcn.com/ResourcePackages/PCN/assets/dist/images/logo.png");
         });
     }
         //function SelectLeftFilter(response) {

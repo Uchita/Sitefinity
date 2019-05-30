@@ -408,6 +408,9 @@
 }
 
 @media (max-width: 1024px) {
+    .reg-form input[type='email'] {
+        margin-bottom: 10px;
+    }
     .datatable tr td {
         color: #2e2e2e;
     }
@@ -431,6 +434,10 @@
 }
 
 @media (max-width: 991px) {
+
+    .reg-form input[type='email'] {
+        margin-bottom: 10px;
+    }
     .nav-sitemap > li {
         width: 100%;
     }
@@ -2183,5 +2190,7 @@
         color: $global-highlight-color !important;
     }
 }
+
+
 
 

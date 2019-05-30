@@ -1,4 +1,5 @@
 ﻿using JXTNext.Sitefinity.Widgets.Social.Mvc.Logics;
+using JXTNext.Sitefinity.Widgets.Social.Mvc.Models.AddThis;
 using Ninject.Modules;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ namespace JXTNext.Sitefinity.Widgets.Social
             Bind<SocialHandlerLogics>().To<SocialHandlerLogics>();
             Bind<IProcessSocialMediaData>().To<ProcessIndeedData>().Named("Indeed");
             Bind<IProcessSocialMediaData>().To<ProcessSeekData>().Named("Seek");
+
+            Bind<IAddThisModel>().To<AddThisModel>();
         }
     }
 }

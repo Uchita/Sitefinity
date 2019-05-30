@@ -391,5 +391,281 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             }
         }
         #endregion
+
+        #region Amazon S3 Bucket
+        /// <summary>
+        /// Gets or sets the Instagram API Token
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("amazonS3AccessKeyId")]
+        [DescriptionResource(typeof(ConfigDescriptions), "AmazonS3AccessKeyId")]
+
+        [DataMember]
+        public virtual String CurrentAmazonS3AccessKeyId
+        {
+            get
+            {
+                return (String)this["amazonS3AccessKeyId"];
+            }
+            set
+            {
+                this["amazonS3AccessKeyId"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Instagram Client Secret
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("amazonS3SecretKey")]
+        [DescriptionResource(typeof(ConfigDescriptions), "AmazonS3SecretKey")]
+
+        [DataMember]
+        public virtual String CurrentAmazonS3SecretKey
+        {
+            get
+            {
+                return (String)this["amazonS3SecretKey"];
+            }
+            set
+            {
+                this["amazonS3SecretKey"] = value;
+            }
+        }
+
+        [ConfigurationProperty("amazonS3BucketName")]
+        [DescriptionResource(typeof(ConfigDescriptions), "AmazonS3BucketName")]
+
+        [DataMember]
+        public virtual String CurrentAmazonS3BucketName
+        {
+            get
+            {
+                return (String)this["amazonS3BucketName"];
+            }
+            set
+            {
+                this["amazonS3BucketName"] = value;
+            }
+        }
+
+        [ConfigurationProperty("amazonS3RegionEndpoint")]
+        [DescriptionResource(typeof(ConfigDescriptions), "AmazonS3RegionEndpoint")]
+
+        [DataMember]
+        public virtual String CurrentAmazonS3RegionEndpoint
+        {
+            get
+            {
+                return (String)this["amazonS3RegionEndpoint"];
+            }
+            set
+            {
+                this["amazonS3RegionEndpoint"] = value;
+            }
+        }
+
+        [ConfigurationProperty("amazonS3ProviderName")]
+        [DescriptionResource(typeof(ConfigDescriptions), "AmazonS3ProviderName")]
+
+        [DataMember]
+        public virtual String CurrentAmazonS3ProviderName
+        {
+            get
+            {
+                return (String)this["amazonS3ProviderName"];
+            }
+            set
+            {
+                this["amazonS3ProviderName"] = value;
+            }
+        }
+
+
+        [ConfigurationProperty("amazonS3ApplicationName")]
+        [DescriptionResource(typeof(ConfigDescriptions), "AmazonS3ApplicationName")]
+
+        [DataMember]
+        public virtual String CurrentAmazonS3ApplicationName
+        {
+            get
+            {
+                return (String)this["amazonS3ApplicationName"];
+            }
+            set
+            {
+                this["amazonS3ApplicationName"] = value;
+            }
+        }
+
+        [ConfigurationProperty("amazonS3UrlName")]
+        [DescriptionResource(typeof(ConfigDescriptions), "AmazonS3UrlName")]
+
+        [DataMember]
+        public virtual String CurrentAmazonS3UrlName
+        {
+            get
+            {
+                return (String)this["amazonS3UrlName"];
+            }
+            set
+            {
+                this["amazonS3UrlName"] = value;
+            }
+        }
+
+
+        #endregion
+
+        #region LinkedIn
+        /// <summary>
+        /// Gets or sets the LinkedIn client id
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("linkedInClientId")]
+        [DescriptionResource(typeof(ConfigDescriptions), "LinkedInClientId")]
+        [DataMember]
+        public virtual String CurrentLinkedInClientId
+        {
+            get
+            {
+                return (String)this["linkedInClientId"];
+            }
+            set
+            {
+                this["linkedInClientId"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the LinkedIn client secret.
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("linkedInClientSecret")]
+        [DescriptionResource(typeof(ConfigDescriptions), "LinkedInClientSecret")]
+        [DataMember]
+        public virtual String CurrentLinkedInClientSecret
+        {
+            get
+            {
+                return (String)this["linkedInClientSecret"];
+            }
+            set
+            {
+                this["linkedInClientSecret"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the LinkedIn customer client id.
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("linkedInCustomerClientId")]
+        [DescriptionResource(typeof(ConfigDescriptions), "LinkedInCustomerClientId")]
+        [DataMember]
+        public virtual String CurrentLinkedInCustomerClientId
+        {
+            get
+            {
+                return (String)this["linkedInCustomerClientId"];
+            }
+            set
+            {
+                this["linkedInCustomerClientId"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the LinkedIn customer client secret.
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("linkedInCustomerClientSecret")]
+        [DescriptionResource(typeof(ConfigDescriptions), "LinkedInCustomerClientSecret")]
+        [DataMember]
+        public virtual String CurrentLinkedInCustomerClientSecret
+        {
+            get
+            {
+                return (String)this["linkedInCustomerClientSecret"];
+            }
+            set
+            {
+                this["linkedInCustomerClientSecret"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the LinkedIn customer integration context.
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("linkedInCustomerIntegrationContext")]
+        [DescriptionResource(typeof(ConfigDescriptions), "LinkedInCustomerIntegrationContext")]
+        [DataMember]
+        public virtual String CurrentLinkedInCustomerIntegrationContext
+        {
+            get
+            {
+                return (String)this["linkedInCustomerIntegrationContext"];
+            }
+            set
+            {
+                this["linkedInCustomerIntegrationContext"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the LinkedIn social handler url.
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("linkedInSocialHandlerUrl")]
+        [DescriptionResource(typeof(ConfigDescriptions), "LinkedInSocialHandlerUrl")]
+        [DataMember]
+        public virtual String CurrentLinkedInSocialHandlerUrl
+        {
+            get
+            {
+                return (String)this["linkedInSocialHandlerUrl"];
+            }
+            set
+            {
+                this["linkedInSocialHandlerUrl"] = value;
+            }
+        }
+        #endregion
+
+        [ConfigurationProperty("cultureIsEnabled")]
+        [DescriptionResource(typeof(ConfigDescriptions), "CultureIsEnabled")]
+
+        [DataMember]
+        public virtual String CurrentCultureIsEnabled
+        {
+            get
+            {
+                return (String)this["cultureIsEnabled"];
+            }
+            set
+            {
+                this["cultureIsEnabled"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the name of the time zone.
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("jobCurrencySymbol")]
+        [DescriptionResource(typeof(ConfigDescriptions), "JobCurrencySymbol")]
+        [DataMember]
+        public virtual String JobCurrencySymbol
+        {
+            get
+            {
+                return (String)this["jobCurrencySymbol"];
+            }
+            set
+            {
+                this["jobCurrencySymbol"] = value;
+            }
+        }
     }
 }

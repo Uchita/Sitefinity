@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using JXTNext.Sitefinity.Common.Helpers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
 using JXTNext.Sitefinity.Connector.Options.Models.Job;
@@ -28,7 +31,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
             JobDetailsFullModel local = new JobDetailsFullModel
             {
                 JobID = data["Id"],
-                Title = data["Name"],
+                Title = data["Name"].ToString(),
 
                 CompanyId = data["CompanyId"],
                 UserId = data["UserId"],
@@ -40,13 +43,19 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                 AddressLatitude = data["AddressLatitude"],
                 AddressLongtitude = data["AddressLongtitude"],
                 IsDeleted = data["IsDeleted"],
-                ShortDescription = data["ShortDescription"],
-                Description = data["FullDescription"],
+                ShortDescription = data["ShortDescription"].ToString(),
+                Description = data["FullDescription"].ToString(),
                 ReferenceNo = data["RefNo"],
                 CustomData = (data["CustomData"] != null) ? FlattenJson(JObject.Parse((data["CustomData"]).Value)) : null,
                 ClassificationURL = ProcessClassificationSEOString((data["CustomData"] != null) ? FlattenJson(JObject.Parse((data["CustomData"]).Value)) : null, Convert.ToString(data["Name"]))
             };
 
+            var targetCulture = Thread.CurrentThread.CurrentUICulture;
+            var culture = CultureInfo.GetCultureInfo(targetCulture.Name);
+            if (culture != null)
+            {
+                local.Culture = culture.Name;
+            }
             return local as T;
         }
 
@@ -79,15 +88,21 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                 JobDetailsFullModel local = new JobDetailsFullModel
                 {
                     JobID = jobItem["Id"],
-                    Title = jobItem["Name"],
+                    Title = jobItem["Name"].ToString(),
                     DateCreated = jobItem["DateCreated"],
                     ExpiryDate = jobItem["ExpiryDate"],
-                    ShortDescription = jobItem["ShortDescription"],
-                    Description = jobItem["FullDescription"],
+                    ShortDescription = jobItem["ShortDescription"].ToString(),
+                    Description = jobItem["FullDescription"].ToString(),
                     ReferenceNo = jobItem["RefNo"],
                     CustomData = (jobItem["CustomData"] != null) ? FlattenJson(new JObject(jobItem["CustomData"])) : null,
                     ClassificationURL = ProcessClassificationSEOString((jobItem["CustomData"] != null) ? FlattenJson(new JObject(jobItem["CustomData"])) : null, Convert.ToString(jobItem["Name"]))
                 };
+                var targetCulture = Thread.CurrentThread.CurrentUICulture;
+                var culture = CultureInfo.GetCultureInfo(targetCulture.Name);
+                if (culture != null)
+                {
+                    local.Culture = culture.Name;
+                }
                 jobFullDetails.Add(local);
             }
             return jobFullDetails as List<T>;

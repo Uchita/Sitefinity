@@ -23,7 +23,16 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 _siteSettingsContract = (CustomSiteSettingsContract)siteSetting.Item;
         }
 
-         public string GetCurrentSiteGoogleClientId()
+        public string GetCurrentSiteCultureIsEnabled()
+        {
+            string cultureIsEnabled = "";
+            if (this._siteSettingsContract != null)
+                cultureIsEnabled = this._siteSettingsContract.CultureIsEnabled;
+
+            return cultureIsEnabled;
+        }
+
+        public string GetCurrentSiteGoogleClientId()
         {
             string googleClentId = "";
             if (this._siteSettingsContract != null)
@@ -149,6 +158,8 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return indeedClientSecret;
         }
 
+        
+
         public string GetCurrentSiteInstagramClientIdToken()
         {
             string instagramClientIdToken = String.Empty;
@@ -201,6 +212,151 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
             return instagramMaxItems;
         }
+
+        public string GetCurrentSiteLinkedInClientId()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInClientId;
+        }
+
+        public string GetCurrentSiteLinkedInClientSecret()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInClientSecret;
+        }
+
+        public string GetCurrentSiteLinkedInCustomerClientId()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInCustomerClientId;
+        }
+
+        public string GetCurrentSiteLinkedInCustomerClientSecret()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInCustomerClientSecret;
+        }
+
+        public string GetCurrentSiteLinkedInCustomerIntegrationContext()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInCustomerIntegrationContext;
+        }
+
+        public string GetCurrentSiteLinkedInSocialHandlerUrl()
+        {
+            return this._siteSettingsContract == null
+                ? ""
+                : this._siteSettingsContract.LinkedInSocialHandlerUrl;
+        }
+
+        public string GetJobCurrencySymbol()
+        {
+            var currencySymbol = "$";
+
+            if(this._siteSettingsContract != null && !this._siteSettingsContract.JobCurrencySymbol.IsNullOrEmpty())
+            {
+                currencySymbol = this._siteSettingsContract.JobCurrencySymbol;
+            }
+
+            return currencySymbol;
+        }
+
+
+        #region Amazon S3 Bucket
+        public string GetAmazonS3AccessKeyId()
+        {
+            var amazonS3AccessKeyId = string.Empty;
+
+            if (this._siteSettingsContract != null && !this._siteSettingsContract.AmazonS3AccessKeyId.IsNullOrEmpty())
+            {
+                amazonS3AccessKeyId = this._siteSettingsContract.AmazonS3AccessKeyId;
+            }
+
+            return amazonS3AccessKeyId;
+        }
+
+        public string GetAmazonS3SecretKey()
+        {
+            var amazonS3SecretKey = string.Empty;
+
+            if (this._siteSettingsContract != null && !this._siteSettingsContract.AmazonS3SecretKey.IsNullOrEmpty())
+            {
+                amazonS3SecretKey = this._siteSettingsContract.AmazonS3SecretKey;
+            }
+
+            return amazonS3SecretKey;
+        }
+
+        public string GetAmazonS3BucketName()
+        {
+            var amazonS3BucketName = string.Empty;
+
+            if (this._siteSettingsContract != null && !this._siteSettingsContract.AmazonS3BucketName.IsNullOrEmpty())
+            {
+                amazonS3BucketName = this._siteSettingsContract.AmazonS3BucketName;
+            }
+
+            return amazonS3BucketName;
+        }
+
+        public string GetAmazonS3RegionEndpoint()
+        {
+            var amazonS3RegionEndpoint = string.Empty;
+
+            if (this._siteSettingsContract != null && !this._siteSettingsContract.AmazonS3RegionEndpoint.IsNullOrEmpty())
+            {
+                amazonS3RegionEndpoint = this._siteSettingsContract.AmazonS3RegionEndpoint;
+            }
+
+            return amazonS3RegionEndpoint;
+        }
+
+        public string GetAmazonS3ProviderName()
+        {
+            var amazonS3ProviderName = string.Empty;
+
+            if (this._siteSettingsContract != null && !this._siteSettingsContract.AmazonS3ProviderName.IsNullOrEmpty())
+            {
+                amazonS3ProviderName = this._siteSettingsContract.AmazonS3ProviderName;
+            }
+
+            return amazonS3ProviderName;
+        }
+
+
+        public string GetAmazonS3ApplicationName()
+        {
+            var amazonS3ApplicationName = string.Empty;
+
+            if (this._siteSettingsContract != null && !this._siteSettingsContract.AmazonS3ApplicationName.IsNullOrEmpty())
+            {
+                amazonS3ApplicationName = this._siteSettingsContract.AmazonS3ApplicationName;
+            }
+
+            return amazonS3ApplicationName;
+        }
+
+        public string GetAmazonS3UrlName()
+        {
+            var amazonS3UrlName = string.Empty;
+
+            if (this._siteSettingsContract != null && !this._siteSettingsContract.AmazonS3UrlName.IsNullOrEmpty())
+            {
+                amazonS3UrlName = this._siteSettingsContract.AmazonS3UrlName;
+            }
+
+            return amazonS3UrlName;
+        }
+
+
+        #endregion
+
 
 
 

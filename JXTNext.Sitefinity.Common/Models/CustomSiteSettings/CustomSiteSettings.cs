@@ -203,7 +203,82 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             }
         }
 
+        protected virtual TextField CultureIsEnabled
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("cultureIsEnabled", true);
+            }
+        }
 
+        protected virtual TextField JobCurrencySymbol
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("jobCurrencySymbol", true);
+            }
+        }
+
+
+
+        #endregion
+
+        #region Amazon S3 Bucket settings
+        protected virtual TextField AmazonS3AccessKeyId
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("amazonS3AccessKeyId", true);
+            }
+        }
+
+        protected virtual TextField AmazonS3SecretKey
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("amazonS3SecretKey", true);
+            }
+        }
+
+        protected virtual TextField AmazonS3BucketName
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("amazonS3BucketName", true);
+            }
+        }
+
+        protected virtual TextField AmazonS3RegionEndpoint
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("amazonS3RegionEndpoint", true);
+            }
+        }
+
+        protected virtual TextField AmazonS3ProviderName
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("amazonS3ProviderName", true);
+            }
+        }
+
+        protected virtual TextField AmazonS3ApplicationName
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("amazonS3ApplicationName", true);
+            }
+        }
+
+        protected virtual TextField AmazonS3UrlName
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("amazonS3UrlName", true);
+            }
+        }
 
         #endregion
 

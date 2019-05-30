@@ -52,6 +52,7 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
         public string FileName { get; set; }
         public string PathToAttachment { get; set; }
         public string FileUrl { get; set; }
+        public string ContentType { get; set; }
     }
 
     public enum JobApplicationAttachmentType

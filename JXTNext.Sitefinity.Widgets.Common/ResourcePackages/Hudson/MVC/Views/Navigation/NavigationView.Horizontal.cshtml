@@ -4,6 +4,7 @@
 @using Telerik.Sitefinity.Frontend.Navigation.Mvc.Models;
 @using Telerik.Sitefinity.Modules.Pages;
 @using SitefinityWebApp.Helpers;
+@using System.Globalization;
 
 @*For user login check*@
 @using JXTNext.Sitefinity.Common.Helpers;
@@ -11,6 +12,13 @@
 @using Telerik.Sitefinity.DynamicModules.Model;
 @using Telerik.Sitefinity.Security;
 @using Telerik.Sitefinity.Security.Claims;
+@using Telerik.Sitefinity.Services;
+@using System.Threading;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.RelatedData;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Modules.Libraries;
+@using Telerik.Sitefinity.Multisite;
 
 @*Add scripts and stylesheets*@
 @Html.Script(ScriptRef.JQuery, "top")
@@ -18,9 +26,7 @@
 
 <div class="main-nav @Model.CssClass">
     @* @Html.Action("GetView", new { viewName = "Dropdown",  model= Model}) *@
-
     <nav class="navbar navbar-default">
-
         <div class="">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mobile-nav">
@@ -56,25 +62,18 @@
                         @MobileRootLevelNode(node)
                     }
                     <li class="extra-mnu timesheet-mnu"><a href="/timesheets-and-payroll-process" title="Timesheets"><em class="far fa-calendar-alt"></em> Timesheets</a></li>
-                   
+
 
                     @* logged in out menu links *@
                     <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="display:none;"><a href="/user-dashboard" title="User Dashboard">@Html.Resource("LoggedAs", "LoginStatusExtendedResources") <span data-sf-role="sf-logged-in-name"></span></a></li>
                     <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="display:none;"><a href="/sitefinity/signout?sts_signout=true" title="Log out">Logout</a></li>
 
                     <li class="extra-mnu combine-mnu header-top-links" data-sf-role="sf-logged-out-view" style="display:none;"><a href="/register" title="Register">Register</a> | <a href="/sign-in" title="Sign in">Sign in</a></li>
-
-
                     <!-- site selector -->
-                    <li class="dropdown extra-mnu">
-                        <a href="https://au.hudson.com/" title="Hudson Australia">Hudson AU</a>
+                    <li class="dropdown extra-mnu site-switcher">
+                        <a href="https://au.hudson.com/" title="Hudson Australia" class="curr-site-switcher">Hudson AU</a>
                         <span class="fas fa-angle-right custom-expander"></span>
-                        <ul class="dropdown-menu">
-                            <li><a href="https://nz.hudson.com/" title="Hudson New Zealand" target="_blank">NZ</a></li>
-                            <li><a href="https://www.hudson.sg/" title="Hudson Singapore" target="_blank">SG</a></li>
-                            <li><a href="https://www.hudson.hk/" title="Hudson Hong kong" target="_blank">HK</a></li>
-                            <li><a href="https://www.hudson.cn/en-gb/" title="Hudson China" target="_blank">CN</a></li>
-                        </ul>
+                        <ul class="dropdown-menu"></ul>
                     </li>
 
                 </ul>
@@ -86,10 +85,11 @@
 @*Here is specified the rendering for the root level*@
 @helper RenderRootLevelNode(NodeViewModel node)
 {
-    var featuredArticle = ContentHelper.GetFeaturedArticle();
-    var lastInsight = ContentHelper.GetLastInsight();
+    var featuredArticle = ContentHelper.GetFeaturedArticleNavigation();
+    @*Commenting this out because it is not being used and it costs performance*@
+    @*var lastInsight = ContentHelper.GetLastInsight();*@
 
-    if (node.ChildNodes.Count > 0)
+    if (node != null && node.ChildNodes.Count > 0)
     {
         <li class="dropdown @GetClass(node)">
             <a href="@node.Url" target="@node.LinkTarget" title="@node.Title">@node.Title<span class="decoration"></span></a>
@@ -116,24 +116,35 @@
                     <div class="dropdown-menu">
                         @if (featuredArticle != null)
                         {
-                            var bestUrl = "";
-                            //var bestUrl = ContentHelper.GetBestArticleUrl(featuredArticle.DataItem);
-                            DynamicContent dynamicVar = featuredArticle.DataItem as DynamicContent;
-                            if (dynamicVar != null)
+                            var clService = SystemManager.GetContentLocationService();
+                            var cultureInfo = Thread.CurrentThread.CurrentUICulture;
+                            var location = clService.GetItemDefaultLocation(featuredArticle, cultureInfo);
+
+                            var defaultArticleUrl = string.Empty;
+
+                            if (location != null)
                             {
-                                bestUrl = "/insights/articles/detail" + dynamicVar.ItemDefaultUrl;
+                                var originalPath = new Uri(location.ItemAbsoluteUrl);
+                                defaultArticleUrl = originalPath.AbsolutePath;
+                                var image = featuredArticle.GetRelatedItems<Image>("HeaderImage").FirstOrDefault();
+                                var title = Html.HtmlSanitize(featuredArticle.GetString("Title", cultureInfo, false)).ToString();
+
+                                if (!title.IsNullOrWhitespace())
+                                {
+                                    <h4>Featured article</h4>
+                                    <a href="@defaultArticleUrl" title="@title">
+                                        <div>
+                                            <div class="dropdown-menu-featured-image">
+                                                @if (image != null)
+                                                {
+                                                    <img src="@image.ResolveThumbnailUrl("feat-nav", false, cultureInfo)" alt="@title" />
+                                                }
+                                            </div>
+                                            <h5>@title</h5>
+                                        </div>
+                                    </a>
+                                }
                             }
-
-                            <h4>Featured article</h4>
-                            <a href="@bestUrl" title="@featuredArticle.Fields.Title">
-                                <div>
-                                    <div class="dropdown-menu-featured-image">
-                                        <img src="@Html.Raw(featuredArticle.Fields.HeaderImage.Fields.MediaUrl)" alt="@featuredArticle.Fields.Title" />
-                                    </div>
-                                    <h5>@featuredArticle.Fields.Title</h5>
-
-                                </div>
-                            </a>
                         }
                     </div>
                     <div class="clearfix">
@@ -274,6 +285,28 @@
         if ($(".header-top-social").length) {
             $('.mobile-nav li.extra-mnu.timesheet-mnu').after('<li class="extra-mnu social-mnu"></li>');
             $('.mobile-nav li.social-mnu').append($(".header-top-social").clone());
+        }
+
+        //get the site switch links
+        //need to redo this once this is switched to site selector widget
+        if ($('.header-top-links.form-negative select').length && $('.site-switcher').length) {
+            var siteSwitcher = $('.header-top-links.form-negative select');
+            var mobSiteSwitcherItem = $('.site-switcher');
+            //for the first
+            mobSiteSwitcherItem.find('>a')
+                .attr('href', siteSwitcher.find('option').first().attr('value'))
+                .text(siteSwitcher.find('option').first().text());
+
+            //for rest of the sites dropdowns items
+            siteSwitcher.find('option').each(function (index, el) {
+                if (index === 0) {
+                    //making the first
+                    var curCls = 'active';
+                } else {
+                    var curCls = '';
+                }
+                mobSiteSwitcherItem.find('.dropdown-menu').append('<li class="' + curCls + '"><a href="' + $(el).attr('value') + '" title="" target="_blank">' + $(el).text() + '</a></li>');
+            });
         }
     });
 </script>

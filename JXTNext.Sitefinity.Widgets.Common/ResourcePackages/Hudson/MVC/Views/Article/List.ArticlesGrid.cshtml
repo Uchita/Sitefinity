@@ -56,7 +56,9 @@
             <ul class="list-unstyled clearfix">
                 @{
                     var managerArticle = TaxonomyManager.GetManager();
+
                     var articleTaxonomy = managerArticle.GetTaxonomies<HierarchicalTaxonomy>().Where(t => t.Name == "Articles").SingleOrDefault();
+
                     List<Taxon> topLovelTaxa = new List<Taxon>();
 
 
@@ -126,13 +128,13 @@
         {
             
     <div class="article-sorting-wrapper">
-                    
-    <span class="page-num-status">@SitefinityWebApp.Helpers.ContentHelper.GetItemsPagingInfo(Model)</span>
+
+        <span class="page-num-status">@SitefinityWebApp.Helpers.ContentHelper.GetItemsPagingInfo(Model)</span>
         <select class="articles-order">
-            <option value="date-asc">Sort by - Recent Posts</option>
-            <option value="date-desc">Sort by - Oldest Posts</option>
-            <option value="title-asc">Sort by - Alphabetical A-Z</option>
-            <option value="title-desc">Sort by - Alphabetical Z-A</option>
+            <option value="date-asc">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
+            <option value="date-desc">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
+            <option value="title-asc">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
+            <option value="title-desc">@Html.Resource("SortByAlphaZA", "JobSearchResultsResources")</option>
         </select>
     </div>
 
@@ -163,6 +165,7 @@
                                         {
                                             Guid articleID = new Guid(taxonItem.ToString());
                                             var taxonManager = TaxonomyManager.GetManager();
+                                            
                                             var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
                                             filterValues.Add(taxon.Title);
                                         }

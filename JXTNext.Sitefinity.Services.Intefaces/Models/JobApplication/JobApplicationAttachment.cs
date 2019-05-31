@@ -109,15 +109,15 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
             }
         }
 
-        public static bool DeleteFromAmazonS3(string providerName, JobApplicationAttachmentType attachmentType, string itemTitle)
+        public static bool DeleteFromAmazonS3(JobApplicationAttachmentType attachmentType, string fileTitle)
         {
             SiteSettingsHelper siteSettingsHelper = new SiteSettingsHelper();
-            
+            fileTitle = fileTitle.Split('_').First();
             S3FilemanagerService fileManagerService = new S3FilemanagerService(_siteSettingsHelper.GetAmazonS3RegionEndpoint(), _siteSettingsHelper.GetAmazonS3AccessKeyId(), _siteSettingsHelper.GetAmazonS3SecretKey());
             var response = fileManagerService.DeleteObjectFromProvider<S3FileManagerResponse, S3FileManagerRequest>(
                     new S3FileManagerRequest
                     {
-                        FileName = itemTitle,
+                        FileName = fileTitle,
                         Directory = _siteSettingsHelper.GetAmazonS3UrlName() + "/" + JobApplicationAttachmentSettings.PROFILE_RESUME_UPLOAD_LIBRARY,
                         S3BucketName = _siteSettingsHelper.GetAmazonS3BucketName()
                     });
@@ -127,7 +127,7 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
         public static bool ValidateFileExistsInTheBlobStorage(string srcLibName, int attachmentType, string fileTitle)
         {
             SiteSettingsHelper siteSettingsHelper = new SiteSettingsHelper();
-            fileTitle = fileTitle.Split('_').First() + "_" + fileTitle;
+            fileTitle = fileTitle.Split('_').First();
 
             S3FilemanagerService fileManagerService = new S3FilemanagerService(siteSettingsHelper.GetAmazonS3RegionEndpoint(), siteSettingsHelper.GetAmazonS3AccessKeyId(), siteSettingsHelper.GetAmazonS3SecretKey());
             var response = fileManagerService.ValidateFileExistsInTheBlobStorageRequest<S3FileManagerResponse, S3FileManagerRequest>(

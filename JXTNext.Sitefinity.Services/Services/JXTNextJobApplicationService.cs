@@ -120,7 +120,7 @@ namespace JXTNext.Sitefinity.Services.Services
 
         public bool DeleteFile(JobApplicationAttachmentUploadItem deletefile)
         {
-            return JobApplicationAttachmentUploadItem.DeleteFromAmazonS3("private-amazon-s3-provider", deletefile.AttachmentType, deletefile.PathToAttachment);
+            return JobApplicationAttachmentUploadItem.DeleteFromAmazonS3(deletefile.AttachmentType, deletefile.PathToAttachment);
         }
 
         public bool ValidateFileExistsInTheBlobStoreage(string srcLibName, int attachmentType, string id)

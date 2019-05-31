@@ -11282,8 +11282,13 @@ ul.breadcrumb {
         margin-bottom: 10px;
         width: 100%; } }
 
+.page-wrapper .alert-text-msg p {
+  position: absolute;
+  top: -15px; }
+
 .page-wrapper .search-top {
-  margin: 10px 0 30px 0; }
+  margin: 25px 0 30px 0;
+  position: relative; }
   .page-wrapper .search-top, .page-wrapper .search-top .btn {
     font-size: 14px;
     font-size: 1.4rem; }

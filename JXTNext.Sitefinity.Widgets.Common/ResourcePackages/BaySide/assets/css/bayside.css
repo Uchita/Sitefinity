@@ -5650,6 +5650,7 @@ p .btn-link {
         background-size: 100%;
         background-attachment: scroll;
         height: 100% !important;
+        background-image: url('../images/bayside-group-industry-video-image-static-device-768x300.jpg') !important;
     }
 }
 @media only screen and (max-device-width: 1024px){
@@ -5657,6 +5658,7 @@ p .btn-link {
         background-size: auto 100%;
         background-attachment: scroll;
         height: 100% !important;
+        background-image: url('../images/bayside-group-industry-video-image-static-device-768x300.jpg') !important;
     }
 }
 

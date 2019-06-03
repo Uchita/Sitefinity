@@ -5650,6 +5650,7 @@ p .btn-link {
         background-size: 100%;
         background-attachment: scroll;
         height: 100% !important;
+        background-image: url('../images/bayside-group-industry-video-image-static-device-768x300.jpg') !important;
     }
 }
 @media only screen and (max-device-width: 1024px){
@@ -5657,6 +5658,7 @@ p .btn-link {
         background-size: auto 100%;
         background-attachment: scroll;
         height: 100% !important;
+        background-image: url('../images/bayside-group-industry-video-image-static-device-768x300.jpg') !important;
     }
 }
 
@@ -8289,7 +8291,12 @@ select.hs-input {
         .blog-container .list-item .bg-image {
             margin-bottom: 0;
         }
-
+    
+        #pager{
+            background: none;
+            border: none;
+            padding: 0;
+        }
     .pagination > li {
         display: inline-block;
         margin-right: 5px;
@@ -8304,6 +8311,8 @@ select.hs-input {
             min-width: 35px;
             text-align: center;
             border-radius: 3px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
         }
 
             .pagination > li > span.active, .pagination > li > span:hover, .pagination > li > span:focus,

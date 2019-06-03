@@ -177,6 +177,9 @@
     <Content Include="ResourcePackages\BaySide\assets\images\applywithlinkedin.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\BaySide\assets\images\Bayside-Group-Industry-Video-image-static-device-768x300.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\assets\images\bayside-logo-black.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

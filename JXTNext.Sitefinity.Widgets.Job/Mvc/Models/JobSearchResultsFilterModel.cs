@@ -17,6 +17,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
         public int Page { get; set; }
         public JobSearchSalaryFilterReceiver Salary { get; set; }
         public string SortBy { get; set; }
+        private static readonly string CompanyFilterRootIdString = "CompanyName";
         public int JobType { get; set; }
 
         public static bool HasFilters(JobSearchResultsFilterModel filterModel)
@@ -75,13 +76,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
                         var filter = filterModel.Filters[i];
                         if (filter != null && filter.values != null && filter.values.Count > 0)
                         {
-                            if (filter.rootId == "CompanyName")
+                            if (filter.rootId == CompanyFilterRootIdString)
                             {
-                                dynamic fieldSearch = new ExpandoObject();
-                                fieldSearch.Status = 1;
-                                if (int.TryParse(filter.values[0].ItemID, out int num))
-                                    fieldSearch.CompanyId = int.Parse(filter.values[0].ItemID);
-                                request.FieldSearches = fieldSearch;
+                                List<int> companyIds = new List<int>();
+                                foreach (var company in filter.values)
+                                {
+                                    if(int.TryParse(company.ItemID, out int result))
+                                    companyIds.Add(int.Parse(company.ItemID));
+                                }
+
+                                List<FieldValue> fieldValues = new List<FieldValue>();
+                                fieldValues.Add(new FieldValue() { CompanyId = companyIds });
+                                request.FieldValues = fieldValues;
+
                             }
                             else
                             {

@@ -13,6 +13,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
         public int PageNumber { get; set; }
         public dynamic FieldSearches { get; set; }
         public RangeSearch FieldRanges { get; set; }
+        public List<FieldValue> FieldValues { get; set; }
         public ConsultantIdentitySearch ConsultantSearchIdentity { get; set; }
         public List<KeywordSearch> KeywordsSearchCriteria { get; set; }
         public List<IClassificationSearch> ClassificationsSearchCriteria { get; set; }
@@ -20,6 +21,12 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
         public int JobType { get; set; }
         public SearchSortBy SortBy { get; set; }
     }
+
+    public class FieldValue
+    {
+        public List<int> CompanyId { get; set; }
+    }
+
 
     public class JXTNext_SearchJobsResponse : ConnectorBaseResponse, ISearchJobsResponse
     {

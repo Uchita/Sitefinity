@@ -349,6 +349,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             alertModel.Data = JsonConvert.SerializeObject(searchModel);
 
             // Code for sending email alerts
+
+            
             EmailNotificationSettings jobAlertEmailNotificationSettings = null;
             if (JobAlertEmailTemplateId != null)
             {
@@ -371,10 +373,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         jobAlertEmailNotificationSettings.AddBCC(String.Empty, bccEmail);
                     }
                 }
+                alertModel.EmailNotifications = jobAlertEmailNotificationSettings;
             }
 
 
-            alertModel.EmailNotifications = jobAlertEmailNotificationSettings;
+            
 
 
             var response = _jobAlertService.MemberJobAlertUpsert(alertModel);

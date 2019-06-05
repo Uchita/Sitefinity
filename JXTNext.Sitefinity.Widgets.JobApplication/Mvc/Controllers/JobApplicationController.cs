@@ -540,12 +540,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             resumeToProfile.AttachmentType = resumeAttachment.AttachmentType;
             resumeToProfile.FileName = resumeAttachment.FileName;
             resumeToProfile.FileStream = new MemoryStream();
+            resumeAttachment.FileStream.Position = 0;
             resumeAttachment.FileStream.CopyTo(resumeToProfile.FileStream);
             resumeToProfile.PathToAttachment = resumeToProfile.Id+"_"+resumeAttachment.FileName;
             resumeToProfile.Status = "Ready";
 
 
-            attachments.ForEach(c => ProcessFileUpload(ref c));
+            attachments.ForEach(c => ProcessFileUpload(c));
             Log.Write($"After Upload", ConfigurationPolicy.ErrorLog);
             bool hasFailedUpload = attachments.Where(c => c.Status != "Completed").Any();
 
@@ -588,7 +589,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     bool profileUploadResult = AddUploadedResumeToProfileDashBoard(resumeToProfile, ovverideEmail);
                     if (!profileUploadResult)
                     {
-                        TempData["PostBackMessage"] = "Unable to attach resume to Profile";
+                        TempData["PostBackMessage"] = "Job Application is successfull, Unable to attach resume to Profile.";
                         return Redirect(Request.UrlReferrer.PathAndQuery);
                     }
                 }
@@ -817,8 +818,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             try
             {
-                
-                
+                Log.Write($"Region : " + _siteSettingsHelper.GetAmazonS3RegionEndpoint(), ConfigurationPolicy.ErrorLog);
                 S3FilemanagerService fileManagerService = new S3FilemanagerService(_siteSettingsHelper.GetAmazonS3RegionEndpoint(), _siteSettingsHelper.GetAmazonS3AccessKeyId(), _siteSettingsHelper.GetAmazonS3SecretKey());
                 var response = fileManagerService.PostObjectToProvider<S3FileManagerResponse, S3FileManagerRequest>(
                         new S3FileManagerRequest
@@ -832,9 +832,15 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 
                 return response;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                Log.Write($"Document upload error " + ex.Message, ConfigurationPolicy.ErrorLog);
+                if(ex.InnerException != null)
+                {
+                    Log.Write($"Document upload error, inner exception" + ex.InnerException.Message, ConfigurationPolicy.ErrorLog);
+                }
+
+                return null;
             }
             
         }
@@ -1128,7 +1134,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return null;
         }
 
-        private void ProcessResumeFileUpload(ref JobApplicationAttachmentUploadItem uploadItem)
+        private void ProcessResumeFileUpload(JobApplicationAttachmentUploadItem uploadItem)
         {
             var libName = JobApplicationAttachmentSettings.PROFILE_RESUME_UPLOAD_LIBRARY;
 
@@ -1153,7 +1159,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
-        private void ProcessFileUpload(ref JobApplicationAttachmentUploadItem uploadItem)
+        private void ProcessFileUpload(JobApplicationAttachmentUploadItem uploadItem)
         {
             var libName = FileUploadLibraryGet(uploadItem.AttachmentType);
 
@@ -1210,8 +1216,15 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             try
             {
                 
-                ProcessResumeFileUpload(ref resume);
+                ProcessResumeFileUpload(resume);
 
+                if(resume.Status == "Failed")
+                {
+                    Log.Write($"AddUploadedResumeToProfileDashBoard {resume.Message}", ConfigurationPolicy.ErrorLog);
+                    return false;
+                }
+
+                Log.Write($"AddUploadedResumeToProfileDashBoard status:  {resume.Message}", ConfigurationPolicy.ErrorLog);
                 ProfileResumeJsonModel resumeJson = new ProfileResumeJsonModel()
                 {
                     Id = Guid.Parse(resume.Id),
@@ -1231,10 +1244,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 resumeList.Add(resumeJson);
                 res.Member.ResumeFiles = JsonConvert.SerializeObject(resumeList);
                 _blConnector.UpdateMember(res.Member);
-            }
-            catch (Exception)
-            {
+                Log.Write($"Updated memeber with profile resume:  {resume.Message}", ConfigurationPolicy.ErrorLog);
 
+            }
+            catch (Exception ex)
+            {
+                Log.Write($"Exception while updating the profile dashboard:  {ex.Message}", ConfigurationPolicy.ErrorLog);
                 return false;
             }
 

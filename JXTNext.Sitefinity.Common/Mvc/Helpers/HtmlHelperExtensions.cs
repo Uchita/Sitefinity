@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
+using System.Web.Routing;
+using Telerik.Sitefinity.Model;
 
 namespace JXTNext.Sitefinity.Common.Mvc.Helpers
 {
@@ -21,6 +25,32 @@ namespace JXTNext.Sitefinity.Common.Mvc.Helpers
             }
 
             return innerHtml.IsNullOrWhitespace() ? null : new DynamicTag(headingElement.ToLower(), innerHtml, cssClass);
+        }
+
+        /// <summary>
+        /// AddThis share options. Redirect to the AddThis control if exist else render error message
+        /// </summary>
+        /// <param name="helper">The HTML helper.</param>
+        /// <param name="dataItem">The data item which we will be sharing</param>
+        public static MvcHtmlString AddThisShareButtons(this HtmlHelper helper, IHasTitle dataItem)
+        {
+            MvcHtmlString mvcHtmlString;
+
+            try
+            {
+                RouteValueDictionary routeValueDictionaries = new RouteValueDictionary()
+                {
+                    { "DataItem", dataItem }
+                };
+
+                mvcHtmlString = helper.Action("Index", "AddThis", routeValueDictionaries);
+            }
+            catch (HttpException httpException)
+            {
+                mvcHtmlString = new MvcHtmlString("The AddThis widget could not be found.");
+            }
+
+            return mvcHtmlString;
         }
     }
 }

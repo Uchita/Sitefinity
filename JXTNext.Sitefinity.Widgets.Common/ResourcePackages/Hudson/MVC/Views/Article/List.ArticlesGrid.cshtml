@@ -21,49 +21,20 @@
 @using Telerik.Sitefinity.Modules.Pages;
 @using Telerik.Sitefinity.Modules.Libraries;
 
-@*Recursive function to get the classification "Article" list as a Filter*@
-@helper ProcessCategories(HierarchicalTaxon taxon, string articlesUrl, string sortExpression)
-    {
-        if (taxon != null)
-        {
-            var title = taxon.Title;
-            var hierarchicalParentTaxon = taxon.Parent as HierarchicalTaxon;
-            var parentUrlName = "";
-            if (hierarchicalParentTaxon != null)
-            {
-                parentUrlName = hierarchicalParentTaxon.UrlName.ToString() + "/";
-            }
-
-            var categoryPageUrl = string.Format("{0}{1}{2}{3}", articlesUrl, parentUrlName, taxon.UrlName.ToString(), sortExpression);
-
-            <li><a href="@categoryPageUrl" data-filter="@taxon.Title" title="@taxon.Title">@taxon.Title</a></li>
-
-            if (taxon.Subtaxa != null && taxon.Subtaxa.Count > 0)
-            {
-                foreach (var subTaxon in taxon.Subtaxa)
-                {
-                    //Recursive call
-                    ProcessCategories(subTaxon, articlesUrl, sortExpression);
-                }
-            }
-        }
-}
 <div class="sx-fullwidth-card article-filter-page @Model.CssClass">
     @if (Model != null)
     {
         if (Model.Items.Count() > 0)
         {
-            
-    <div class="article-sorting-wrapper">
-
-        <span class="page-num-status">@SitefinityWebApp.Helpers.ContentHelper.GetItemsPagingInfo(Model)</span>
-        <select class="articles-order">
-            <option value="date-asc">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
-            <option value="date-desc">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
-            <option value="title-asc">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
-            <option value="title-desc">@Html.Resource("SortByAlphaZA", "JobSearchResultsResources")</option>
-        </select>
-    </div>
+            <div class="article-sorting-wrapper">
+                <span class="page-num-status">@SitefinityWebApp.Helpers.ContentHelper.GetItemsPagingInfo(Model)</span>
+                <select class="articles-order">
+                    <option value="date-asc">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
+                    <option value="date-desc">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
+                    <option value="title-asc">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
+                    <option value="title-desc">@Html.Resource("SortByAlphaZA", "JobSearchResultsResources")</option>
+                </select>
+            </div>
 
             <div class="row long-card-basic-list flex">
                 @foreach (var item in Model.Items)
@@ -92,7 +63,7 @@
                                         {
                                             Guid articleID = new Guid(taxonItem.ToString());
                                             var taxonManager = TaxonomyManager.GetManager();
-                                            
+
                                             var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
                                             filterValues.Add(taxon.Title);
                                         }
@@ -143,7 +114,7 @@
                     stripPath.pop();
                 }
                 curTaxonName = stripPath[stripPath.length - 1];
-                
+
                 if (stripPath.length > 2 && stripPath[stripPath.length - 2] == "career-advice") {
                     parentTaxon = stripPath[stripPath.length - 2];
                     $('.press-release-filter > ul > li > a[href$="' + parentTaxon + '"]').first().parent('li').addClass('filter-active');

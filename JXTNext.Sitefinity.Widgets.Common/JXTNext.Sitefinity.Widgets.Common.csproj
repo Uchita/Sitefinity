@@ -1625,6 +1625,8 @@
     <Content Include="ResourcePackages\Hudson\MVC\Views\Layouts\HudsonAlt.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="ResourcePackages\Hudson\MVC\Views\Card\Card.ArticleGridBanner.cshtml" />
+    <None Include="ResourcePackages\Hudson\MVC\Views\Navigation\NavigationView.SimpleDropdown.cshtml" />
     <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

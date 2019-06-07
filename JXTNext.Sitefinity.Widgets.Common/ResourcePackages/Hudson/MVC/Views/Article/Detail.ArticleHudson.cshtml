@@ -60,19 +60,21 @@
         @*Start HeaderImage field*@
         @if (Model.Item.Fields.HeaderImage != null)
         {
-            <img data-displaymode="Original" style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 50px; margin-top: 50px; width:100%;" src='@Model.Item.Fields.HeaderImage.Fields.MediaUrl' alt='@Model.Item.Fields.HeaderImage.Fields.AlternativeText' title='@Model.Item.Fields.HeaderImage.Fields.Title' />
+            string imageUrl = MediaContentExtensions.ResolveThumbnailUrl(Model.Item.Fields.HeaderImage.DataItem, "art-detail");
+            <img data-displaymode="Original" style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 50px; margin-top: 50px; width:100%;" src='@imageUrl' alt='@Model.Item.Fields.HeaderImage.Fields.AlternativeText' title='@Model.Item.Fields.HeaderImage.Fields.Title' />
         }
         <div>
             @{
                 if (Model.EnableSocialSharing)
                 {
                     var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
-                    @Html.AddThisShareButtons(item);
+                    @Html.SocialShareOptions(item);
                 }
             }
             @{
                 // TODO temporary solution to route article links to the correct pages
                 var fixedHtml = LinkParser.UnresolveLinks((string)Model.Item.Fields.Content);
+                fixedHtml = string.Replace("[Telerik.Sitefinity.DynamicTypes.Model.Articles.Article|OpenAccessProvider|", "[Telerik.Sitefinity.DynamicTypes.Model.Articles.Article|dynamicProvider3|");
                 fixedHtml = LinkParser.ResolveLinks(fixedHtml, DynamicLinksParser.GetContentUrl, null, SystemManager.IsInlineEditingMode, false);
 
                 // TODO until we have a solution for implementing from Sitefinity support, replace AU huson
@@ -95,7 +97,7 @@
                 if (Model.EnableSocialSharing)
                 {
                     var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
-                    @Html.AddThisShareButtons(item);
+                    @Html.SocialShareOptions(item);
                 }
             }
         </div>

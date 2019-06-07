@@ -76,7 +76,7 @@
                 fixedHtml = LinkParser.ResolveLinks(fixedHtml, DynamicLinksParser.GetContentUrl, null, SystemManager.IsInlineEditingMode, false);
 
                 // TODO until we have a solution for implementing from Sitefinity support, replace AU huson
-                var regexPattern = @"(?:https:\/\/)?(?:http:\/\/)?(?:www\.)?([a-zA-Z0-9\-]+\.)?hudson(?:\.[a-z\.]+[\/]?)";
+                var regexPattern = @"(?:https:\/\/)?(?:http:\/\/)?(?:www\.)?([a-zA-Z0-9\-]+\.)?hudson(?:\.[a-z\.-]+[\/]?)";
 
                 string url = HttpContext.Current.Request.Url.AbsoluteUri;
 

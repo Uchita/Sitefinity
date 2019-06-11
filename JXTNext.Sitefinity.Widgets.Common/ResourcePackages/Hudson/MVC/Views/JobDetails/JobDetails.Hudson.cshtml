@@ -47,7 +47,7 @@
             <div class="row job-offer-title">
 
                 <div class="col-md-12">
-                    <h1>@Model.JobDetails.Title</h1>
+                    <h1> @Html.Raw(Model.JobDetails.Title)</h1>
                 </div>
 
             </div><div class="row job-offer-summary">
@@ -328,7 +328,14 @@
     });
 
     $(document).ready(function () {
-        document.title ='@Model.JobDetails.Title'+ ' | ' + '@Model.JobDetails.CustomData["CompanyName"]';
+        var modelInformation = '@Model.JobDetails.Title'+ ' | ' + '@Model.JobDetails.CustomData["CompanyName"]';
+        var parser = new DOMParser;
+        var dom = parser.parseFromString(
+            '<!doctype html><body>' + modelInformation,
+            'text/html');
+        var pageTitle = dom.body.textContent;
+
+        document.title = pageTitle;
         var isLoggedIn = '@isUserLoggedIn';
         var jobId = @Model.JobDetails.JobID;
         $('.sf-lang-selector').addClass('hidden');

@@ -60,32 +60,7 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
 
         }
 
-        private List<JobApplicationAttachmentUploadItem> GetLoginUserResumeFilesByEmail(string email)
-        {
-            try
-            {
-                List<JobApplicationAttachmentUploadItem> attachments = new List<JobApplicationAttachmentUploadItem>();
-                foreach (var resume in resumeList)
-                {
-                    attachments.Add(new JobApplicationAttachmentUploadItem()
-                    {
-                        Id = resume.Id.ToString(),
-                        FileName = resume.FileName,
-                        AttachmentType = JobApplicationAttachmentType.ProfileResume
-                    });
-                }
-
-                attachments = _jobApplicationService.GetFiles(attachments);
-
-                return attachments;
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-
+        
 
         public ActionResult Index()
         {
@@ -96,7 +71,8 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
                 if (res.Member != null && res.Member.ResumeFiles != null)
                 {
                     this.resumeList = JsonConvert.DeserializeObject<List<ProfileResumeJsonModel>>(res.Member.ResumeFiles);
-                    List<JobApplicationAttachmentUploadItem> attachments = this.GetLoginUserResumeFilesByEmail(this.Email);
+                    //List<JobApplicationAttachmentUploadItem> attachments = this.GetLoginUserResumeFilesByEmail(this.Email);
+                    FilterResumeByAvailableStatus();
                 }
             }
             catch (Exception)
@@ -111,8 +87,14 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
             return View(fullTemplateName,VM);
         }
 
+        private void FilterResumeByAvailableStatus()
+        {
+            
+            this.resumeList = this.resumeList.Where(x => _jobApplicationService.ValidateFileExistsInTheBlobStoreage(JobApplicationAttachmentSettings.PROFILE_RESUME_UPLOAD_KEY, 1, x.Id.ToString().ToLower())).ToList();
+            
+        }
 
-        
+
         [HttpPost]
         public JsonResult DownloadResume(string fileName)
         {
@@ -160,6 +142,7 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
                 if (res.Member != null && res.Member.ResumeFiles != null)
                 {
                     this.resumeList = JsonConvert.DeserializeObject<List<ProfileResumeJsonModel>>(res.Member.ResumeFiles);
+                    FilterResumeByAvailableStatus();
                     var temp = resumeList.Where(x => x.Id == resumeId).FirstOrDefault();
                     if (temp != null)
                     {
@@ -206,7 +189,11 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
                 var res = _blConnector.GetMemberByEmail(Email);
 
                 if (res.Member != null && res.Member.ResumeFiles != null)
+                {
                     this.resumeList = JsonConvert.DeserializeObject<List<ProfileResumeJsonModel>>(res.Member.ResumeFiles);
+                    FilterResumeByAvailableStatus();
+                }
+                    
 
                 if (ModelState.IsValid)
                 {

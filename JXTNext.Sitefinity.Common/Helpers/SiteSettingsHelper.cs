@@ -299,7 +299,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
             if (this._siteSettingsContract != null && !this._siteSettingsContract.AmazonS3BucketName.IsNullOrEmpty())
             {
-                amazonS3BucketName = this._siteSettingsContract.AmazonS3BucketName;
+                amazonS3BucketName = this._siteSettingsContract.AmazonS3BucketName.ToLower();
             }
 
             return amazonS3BucketName;
@@ -311,7 +311,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
             if (this._siteSettingsContract != null && !this._siteSettingsContract.AmazonS3RegionEndpoint.IsNullOrEmpty())
             {
-                amazonS3RegionEndpoint = this._siteSettingsContract.AmazonS3RegionEndpoint;
+                amazonS3RegionEndpoint = this._siteSettingsContract.AmazonS3RegionEndpoint.ToLower();
             }
 
             return amazonS3RegionEndpoint;
@@ -323,7 +323,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
             if (this._siteSettingsContract != null && !this._siteSettingsContract.AmazonS3ProviderName.IsNullOrEmpty())
             {
-                amazonS3ProviderName = this._siteSettingsContract.AmazonS3ProviderName;
+                amazonS3ProviderName = this._siteSettingsContract.AmazonS3ProviderName.ToLower();
             }
 
             return amazonS3ProviderName;
@@ -336,7 +336,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
             if (this._siteSettingsContract != null && !this._siteSettingsContract.AmazonS3ApplicationName.IsNullOrEmpty())
             {
-                amazonS3ApplicationName = this._siteSettingsContract.AmazonS3ApplicationName;
+                amazonS3ApplicationName = this._siteSettingsContract.AmazonS3ApplicationName.ToLower();
             }
 
             return amazonS3ApplicationName;
@@ -348,7 +348,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
             if (this._siteSettingsContract != null && !this._siteSettingsContract.AmazonS3UrlName.IsNullOrEmpty())
             {
-                amazonS3UrlName = this._siteSettingsContract.AmazonS3UrlName;
+                amazonS3UrlName = this._siteSettingsContract.AmazonS3UrlName.ToLower();
             }
 
             return amazonS3UrlName;

@@ -229,9 +229,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     viewModel.ClassificationsSEORouteName = jobListingResponse.Job.ClassificationURL;
 
                     ViewBag.CssClass = this.CssClass;
-                    ViewBag.JobApplicationPageUrl = SfPageHelper.GetPageUrlById(new Guid(JobApplicationPageId));
-                    ViewBag.JobResultsPageUrl = SfPageHelper.GetPageUrlById(new Guid(JobResultsPageId));
-                    ViewBag.EmailJobPageUrl = SfPageHelper.GetPageUrlById(new Guid(EmailJobPageId));
+                    ViewBag.JobApplicationPageUrl = SfPageHelper.GetPageUrlById(JobApplicationPageId.IsNullOrWhitespace() ? Guid.Empty : new Guid(JobApplicationPageId));
+                    ViewBag.JobResultsPageUrl = SfPageHelper.GetPageUrlById(JobResultsPageId.IsNullOrWhitespace() ? Guid.Empty : new Guid(JobResultsPageId));
+                    ViewBag.EmailJobPageUrl = SfPageHelper.GetPageUrlById(EmailJobPageId.IsNullOrWhitespace() ? Guid.Empty : new Guid(EmailJobPageId));
                     ViewBag.GoogleForJobs = ReplaceToken(GoogleForJobsTemplate, JsonConvert.SerializeObject(new
                     {
                         CurrencySymbol = "$",
@@ -269,13 +269,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         }
                     }
                     #endregion
-                    var meta = new System.Web.UI.HtmlControls.HtmlMeta();
-                    meta.Attributes.Add("property", "og:title");
-                    meta.Content = jobListingResponse.Job.Title;
 
-                    // Get the current page handler in order to access the page header
-                    var pageHandler = this.HttpContext.CurrentHandler.GetPageHandler();
-                    pageHandler.Header.Controls.Add(meta);
+                    GetMetaData(jobListingResponse);
+
                     return View(fullTemplateName, viewModel);
                 }
                 else
@@ -294,7 +290,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
             return Content("No job has been selected");
-        }
+       }
 
         private MemberSavedJob _getMemberSavedJob(int jobId)
         {
@@ -475,6 +471,58 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             cookieDomain = HttpContext.Request.Url.Host.ToLower().Replace("www.", string.Empty);
             // If the referrer doesn't exists then its always the domain the user is in.
             return cookieDomain;
+        }
+
+        private void GetMetaData(IGetJobListingResponse jobListingResponse)
+        {
+            var meta = new System.Web.UI.HtmlControls.HtmlMeta();
+            var pageHandler = this.HttpContext.CurrentHandler.GetPageHandler();
+            meta.Attributes.Add("property", "og:title");
+            meta.Content = jobListingResponse.Job.Title + " | " + jobListingResponse.Job.CustomData["CompanyName"];
+            pageHandler.Header.Controls.Add(meta);
+
+            meta = new System.Web.UI.HtmlControls.HtmlMeta();
+            pageHandler = this.HttpContext.CurrentHandler.GetPageHandler();
+            meta.Attributes.Add("property", "og:description");
+            meta.Content = Regex.Replace(HttpUtility.HtmlDecode(jobListingResponse.Job.Description), "<.*?>", String.Empty); 
+            pageHandler.Header.Controls.Add(meta);
+
+            meta = new System.Web.UI.HtmlControls.HtmlMeta();
+            pageHandler = this.HttpContext.CurrentHandler.GetPageHandler();
+            meta.Attributes.Add("itemprop", "description");
+            meta.Content = Regex.Replace(HttpUtility.HtmlDecode(jobListingResponse.Job.Description), "<.*?>", String.Empty);
+            pageHandler.Header.Controls.Add(meta);
+
+            meta = new System.Web.UI.HtmlControls.HtmlMeta();
+            pageHandler = this.HttpContext.CurrentHandler.GetPageHandler();
+            meta.Attributes.Add("name", "twitter:description");
+            meta.Content = Regex.Replace(HttpUtility.HtmlDecode(jobListingResponse.Job.Description), "<.*?>", String.Empty);
+            pageHandler.Header.Controls.Add(meta);
+
+            meta = new System.Web.UI.HtmlControls.HtmlMeta();
+            pageHandler = this.HttpContext.CurrentHandler.GetPageHandler();
+            meta.Attributes.Add("property", "og:url");
+            meta.Content = HttpUtility.HtmlDecode(Request.Url.AbsoluteUri);
+            pageHandler.Header.Controls.Add(meta);
+
+            meta = new System.Web.UI.HtmlControls.HtmlMeta();
+            pageHandler = this.HttpContext.CurrentHandler.GetPageHandler();
+            meta.Attributes.Add("name", "twitter:title");
+            meta.Content = HttpUtility.HtmlDecode(jobListingResponse.Job.Title + " | " + jobListingResponse.Job.CustomData["CompanyName"]);
+            pageHandler.Header.Controls.Add(meta);
+
+            meta = new System.Web.UI.HtmlControls.HtmlMeta();
+            pageHandler = this.HttpContext.CurrentHandler.GetPageHandler();
+            meta.Attributes.Add("itemprop", "name");
+            meta.Content = HttpUtility.HtmlDecode(jobListingResponse.Job.Title + " | " + jobListingResponse.Job.CustomData["CompanyName"]);
+            pageHandler.Header.Controls.Add(meta);
+
+            meta = new System.Web.UI.HtmlControls.HtmlMeta();
+            pageHandler = this.HttpContext.CurrentHandler.GetPageHandler();
+            meta.Attributes.Add("name", "keywords");
+            meta.Content = HttpUtility.HtmlDecode(jobListingResponse.Job.CustomData["CompanyName"]);
+            pageHandler.Header.Controls.Add(meta);
+
         }
 
 

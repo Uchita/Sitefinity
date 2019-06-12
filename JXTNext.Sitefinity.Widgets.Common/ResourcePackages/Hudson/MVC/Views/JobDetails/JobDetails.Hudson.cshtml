@@ -47,7 +47,7 @@
             <div class="row job-offer-title">
 
                 <div class="col-md-12">
-                    <h1>@Model.JobDetails.Title</h1>
+                    <h1> @Html.Raw(Model.JobDetails.Title)</h1>
                 </div>
 
             </div><div class="row job-offer-summary">
@@ -230,7 +230,7 @@
 
     </div>
 }
-<script type="text/javascript">
+    <script type="text/javascript">
 
     function initMap() {
 
@@ -328,7 +328,7 @@
     });
 
     $(document).ready(function () {
-        document.title = '@Model.JobDetails.Title';
+        document.getElementsByTagName('title')[0].innerHTML = '@Model.JobDetails.Title'+ ' | ' + '@Model.JobDetails.CustomData["CompanyName"]';
         var isLoggedIn = '@isUserLoggedIn';
         var jobId = @Model.JobDetails.JobID;
         $('.sf-lang-selector').addClass('hidden');
@@ -492,5 +492,5 @@
         }
 
     });
-</script>
+    </script>
 

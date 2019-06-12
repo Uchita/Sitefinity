@@ -109,30 +109,46 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
             }
         }
 
-        public static bool DeleteFromAmazonS3(string providerName, JobApplicationAttachmentType attachmentType, string itemTitle)
+        public static bool DeleteFromAmazonS3(JobApplicationAttachmentType attachmentType, string fileTitle)
         {
             SiteSettingsHelper siteSettingsHelper = new SiteSettingsHelper();
-            
+            fileTitle = fileTitle.Split('_').First();
             S3FilemanagerService fileManagerService = new S3FilemanagerService(_siteSettingsHelper.GetAmazonS3RegionEndpoint(), _siteSettingsHelper.GetAmazonS3AccessKeyId(), _siteSettingsHelper.GetAmazonS3SecretKey());
             var response = fileManagerService.DeleteObjectFromProvider<S3FileManagerResponse, S3FileManagerRequest>(
                     new S3FileManagerRequest
                     {
-                        FileName = itemTitle,
+                        FileName = fileTitle,
                         Directory = _siteSettingsHelper.GetAmazonS3UrlName() + "/" + JobApplicationAttachmentSettings.PROFILE_RESUME_UPLOAD_LIBRARY,
                         S3BucketName = _siteSettingsHelper.GetAmazonS3BucketName()
                     });
             return response != null ? response.Success : false;
         }
 
-        
+        public static bool ValidateFileExistsInTheBlobStorage(string srcLibName, int attachmentType, string fileTitle)
+        {
+            SiteSettingsHelper siteSettingsHelper = new SiteSettingsHelper();
+            fileTitle = fileTitle.Split('_').First();
+
+            S3FilemanagerService fileManagerService = new S3FilemanagerService(siteSettingsHelper.GetAmazonS3RegionEndpoint(), siteSettingsHelper.GetAmazonS3AccessKeyId(), siteSettingsHelper.GetAmazonS3SecretKey());
+            var response = fileManagerService.ValidateFileExistsInTheBlobStorageRequest<S3FileManagerResponse, S3FileManagerRequest>(
+                    new S3FileManagerRequest
+                    {
+                        FileName = fileTitle,
+                        Directory = siteSettingsHelper.GetAmazonS3UrlName() + "/" + JobApplicationAttachmentSettings.PROFILE_RESUME_UPLOAD_LIBRARY,
+                        S3BucketName = siteSettingsHelper.GetAmazonS3BucketName()
+                    });
+            return response.Success;
+        }
+
+
 
         public static Stream GetFileStreamFromAmazonS3(string srcLibName,int attachmentType,string fileTitle)
         {
             SiteSettingsHelper siteSettingsHelper = new SiteSettingsHelper();
-            fileTitle = fileTitle.Split('_').First() + "_" + fileTitle;
+            fileTitle = fileTitle.Split('_').First();
             
             S3FilemanagerService fileManagerService = new S3FilemanagerService(siteSettingsHelper.GetAmazonS3RegionEndpoint(), siteSettingsHelper.GetAmazonS3AccessKeyId(), siteSettingsHelper.GetAmazonS3SecretKey());
-            var response = fileManagerService.GetObjectFromProvider<S3FileManagerResponse, S3FileManagerRequest>(
+            var response = fileManagerService.GetObjectFromProviderByGuid<S3FileManagerResponse, S3FileManagerRequest>(
                     new S3FileManagerRequest
                     {
                         FileName = fileTitle,
@@ -142,31 +158,7 @@ namespace JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
             return response.FileStream;
         }
 
-        public static  string FetchFromAmazonS3(string providerName, JobApplicationAttachmentType attachmentType, string itemTitle)
-        {
-            var libName = FileUploadLibraryGet(attachmentType);
-
-            LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
-            var docLibs = librariesManager.GetDocumentLibraries();
-
-            foreach (var lib in docLibs)
-            {
-                if (lib.Title.ToLower() == libName)
-                {
-                    var items = lib.Items();
-                    var document = lib.Items().Where(item => item.Title.Contains(itemTitle)).FirstOrDefault();
-                    
-                    if (document != null && document.Status != ContentLifecycleStatus.Deleted)
-                    {
-                        return document.Url;
-                        
-                    }
-                        
-                }
-            }
-
-            return null;
-        }
+        
 
         public static string GetAttachmentPath(List<JobApplicationAttachmentUploadItem> attachmentItems, JobApplicationAttachmentType attachmentType)
         {

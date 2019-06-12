@@ -38,20 +38,20 @@
         <div class="row">
             @if (ViewBag.IsMember)
             {
-                <div class="col-12 col-lg-6">
-                    <div class="form-group">
-                        <input type="email" id="anonycreatejobalert" value="@ViewBag.Email" hidden />
-
-                        <div class="alert alert-danger jobalert-error-message hidden">Please enter your valid email address.</div>
-                    </div>
+                <div class="col-12">
+                    <div class="alert alert-info jobalert-message hidden">Alert created. We’ll send new jobs to your email address.</div>
                 </div>
                 <div class="col-12 col-lg-6">
                     <div class="form-group text-right">
                         <a id="anon-job-alert" class="btn btn-outline-primary btn-block" href="#" title="Create your job alert">CREATE JOB ALERT</a>
                     </div>
                 </div>
-                <div class="col-12">
-                    <div class="alert alert-info jobalert-message hidden">Alert created. We’ll send new jobs to your email address.</div>
+                <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <input type="email" id="anonycreatejobalert" value="@ViewBag.Email" hidden />
+
+                        <div class="alert alert-danger jobalert-error-message hidden">Please enter your valid email address.</div>
+                    </div>
                 </div>
             }
             else
@@ -70,7 +70,7 @@
                 <div class="col-12">
                     <div class="alert alert-info jobalert-message hidden">Alert created. We’ll send new jobs to your email address.</div>
                 </div>
-                
+
             }
 
 
@@ -105,9 +105,15 @@
         <ul class="bayside-listing">
             # if(data.CustomData["Bulletpoints.BulletPoint1"] != "" || data.CustomData["Bulletpoints.BulletPoint2"] != "" || data.CustomData["Bulletpoints.BulletPoint3"] != ""){#
             <ul>
+                # if(data.CustomData["Bulletpoints.BulletPoint1"] != ""){#
                 <li>#:CustomData["Bulletpoints.BulletPoint1"]#</li>
+                #}#
+                # if(data.CustomData["Bulletpoints.BulletPoint2"] != ""){#
                 <li>#:CustomData["Bulletpoints.BulletPoint2"]#</li>
+                #}#
+                # if(data.CustomData["Bulletpoints.BulletPoint3"] != ""){#
                 <li>#:CustomData["Bulletpoints.BulletPoint3"]#</li>
+                #}#
             </ul>#
             }
             else{#
@@ -146,22 +152,22 @@
                 <ul class="inline-list p-0 mb-0 location-hover">
                     <p class="hidden-salary" style="display:none;">#:CustomData["Salary.Filters[0].Value"]# </p>
 
-                    <li class="mr-3"><span><img src="/ResourcePackages/BaySide/assets/images/location-icon.svg"></span><div class="sub-level">#:CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].Value"]# > #:CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].SubLevel[0].Value"]#</div></li>
+                    <li class="mr-3"><span><img src="/ResourcePackages/BaySide/assets/images/location-icon.svg" alt="pin"></span><div class="sub-level">#:CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].Value"]# > #:CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].SubLevel[0].Value"]#</div></li>
 
                     <p class="hidden-salary" style="display:none;">#:CustomData["Salary.Filters[0].Value"]# </p>
-                    <li class="mr-3"> <img class="dollar" src="/ResourcePackages/BaySide/assets/images/dollar-icon.svg"> <div class="sub-level"> #:CustomData["Salary.Filters[0].Value"]#</div></li>
+                    <li class="mr-3"><span><img class="dollar" src="/ResourcePackages/BaySide/assets/images/dollar-icon.svg" alt="$"></span> <div class="sub-level"> #:CustomData["Salary.Filters[0].Value"]#</div></li>
 
-                    <li class="mr-3 clock-icon"> <span><img class="clock" src="/ResourcePackages/BaySide/assets/images/clock-icon.svg"></span><div> #:CustomData["WorkType.Filters[0].Value"]#</div></li>
+                    <li class="mr-3 clock-icon"> <span><img class="clock" src="/ResourcePackages/BaySide/assets/images/clock-icon.svg" alt="time"></span><div class="sub-level"> #:CustomData["WorkType.Filters[0].Value"]#</div></li>
 
                 </ul>
             </div>
             <div class="col-auto text-right">
-                <a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="btn btn-outline-primary">View job</a>
+                <a href="@ViewBag.JobDetailsPageUrl/#:ClassificationsSEORouteName#/#:JobID#" class="btn btn-outline-primary" title="View job">View job</a>
             </div>
         </div>
     </div>
 </script>
-<div id="pager" class="row k-pager-wrap k-widget k-floatwrap" data-role="]">
+<div id="pager" class="row" data-role="]">
     @*<ul class="pagination k-pager-numbers k-reset"></ul>*@
     <div class="col-12">
         <ul class="pagination"></ul>
@@ -205,7 +211,7 @@
     }
 
     $(document).ready(function () {
-        $(document).off('click').on('click', '.save-job', function (e) {
+        $(document).on('click', '.save-job', function (e) {
             e.preventDefault();
             var unSaveJob = false;
             var ajaxActionName = "/SaveJob";
@@ -287,7 +293,24 @@
         var dataSource;
         var queryStringArr = [];
 
-        var sortBy = '@ViewBag.SortOrder';
+        //onpage load checking if any filter is selected
+        function checkFilterCheck() {
+            //checking keyword
+            if ($("#selectedkeywordsfilter").val() != "") {
+                return true;
+            }
+            //checking checkboxes selected
+            if ($('#filtersPagePartialContent .dropdown-tree >ul>li>a').hasClass('active')) {
+                return true;
+            }
+        }
+
+        if (checkFilterCheck()) {
+            var sortBy = "Relevance";
+        } else {
+            var sortBy = '@ViewBag.SortOrder';
+        }
+
         $("#sortOrder").val(sortBy);
         bindJobsPages(PageNumber);
         bindJobs(PageNumber);
@@ -335,18 +358,11 @@
         $('#anon-job-alert').click(function () {
             var email = $('#anonycreatejobalert').val();
 
-
-
-
             if (email.length < 1) {
                 $('.jobalert-error-message').removeClass('hidden').text('Please enter your email address.');
                 return false;
             }
-            //else if (!pattern.test(email)) {
-            //    $('.jobalert-error-message').removeClass('hidden').text('Please enter your valid email address.');
-            //    return false;
-            //}
-
+           
             if (filterModel.Filters !== null && filterModel.Filters.length === 0) {
                 var filter = {};
                 filter.rootId = "CountryLocationArea";
@@ -532,6 +548,11 @@
                         data: response.SearchResults,
                         total: response.Total,
                     });
+
+                    if ($('#sortOrder').val() == null) {
+                        $('#sortOrder').val('Recent');
+                    }
+
                     $(".count-num").html(response.Total);
 
                     var sorttext = getSortOrder();
@@ -546,6 +567,9 @@
                     });
 
                     processSavedJobs();
+
+                    processCustomFunction();
+
                 } else {
 
                     $(".info-block").removeClass('hidden');
@@ -579,6 +603,67 @@
             }
         });
     };
+
+    function processCustomFunction() {
+        $('p.hidden-salary').each(function (i, obj) {
+            var li = $(this).next();
+            if ($(li).find('div').html().trim().toLowerCase() == "")
+                $(li).find('img.dollar').attr("src", "");
+        });
+
+        $('p.company-hidden').each(function (i, obj) {
+            var text = $(this).html().trim().toLowerCase();
+            var img = $(this).next();
+            if (text != "" && text != undefined)
+                if (text == "alitis")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/alitis-logo.svg");
+                else if (text == "austra health")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/austra-health-logo.svg");
+                else if (text == "bayside group automotive")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-group-automotive-logo.svg");
+                else if (text == "bayside personnel")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bayside-personnel-logo.svg");
+                else if (text == "baytech")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/baytech-logo.svg");
+                else if (text == "bridge consulting")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/bridge-consulting-logo.svg");
+                else if (text == "cozwine")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/cozwine-logo.svg");
+                else if (text == "techstaff")
+                    $(img).attr("src", "/ResourcePackages/BaySide/assets/images/brand/logo/techstaff-logo.svg");
+                else if (text == "payments &amp;amp; cards network")
+                    $(img).attr("src", "https://teampcn.com/ResourcePackages/PCN/assets/dist/images/logo.png");
+        });
+
+    }
+
+    function SelectLeftFilter(response) {
+        var myArray = [];
+        if (response.SearchResults.length > 0) {
+
+            for (var i = 0; i < response.SearchResults.length; i++) {
+                var jobDetail = response.SearchResults[i];
+                if (jobDetail.Classifications.length > 0) {
+                    for (var j = 0; j < jobDetail.Classifications.length; j++) {
+                        var classification = jobDetail.Classifications[j];
+                        var result = Object.keys(classification).map(function (key) {
+                            return [String(key), classification[key]];
+                        });
+                        if (result.length > 0) {
+                            for (var k = 0; k < result.length; k++) {
+                                var classiifcationSingle = result[k];
+                                if (classiifcationSingle.length == 2) {
+                                    myArray.push({ id: classiifcationSingle[0], value: classiifcationSingle[0] });
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return myArray;
+    }
 
     function pageChange(pageObj) {
         var currPageNumber = $(pageObj).attr('data-page');

@@ -484,19 +484,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             meta = new System.Web.UI.HtmlControls.HtmlMeta();
             pageHandler = this.HttpContext.CurrentHandler.GetPageHandler();
             meta.Attributes.Add("property", "og:description");
-            meta.Content = HttpUtility.HtmlDecode(jobListingResponse.Job.Description);
+            meta.Content = Regex.Replace(HttpUtility.HtmlDecode(jobListingResponse.Job.Description), "<.*?>", String.Empty); 
             pageHandler.Header.Controls.Add(meta);
 
             meta = new System.Web.UI.HtmlControls.HtmlMeta();
             pageHandler = this.HttpContext.CurrentHandler.GetPageHandler();
             meta.Attributes.Add("itemprop", "description");
-            meta.Content = HttpUtility.HtmlDecode(jobListingResponse.Job.Description);
+            meta.Content = Regex.Replace(HttpUtility.HtmlDecode(jobListingResponse.Job.Description), "<.*?>", String.Empty);
             pageHandler.Header.Controls.Add(meta);
 
             meta = new System.Web.UI.HtmlControls.HtmlMeta();
             pageHandler = this.HttpContext.CurrentHandler.GetPageHandler();
             meta.Attributes.Add("name", "twitter:description");
-            meta.Content = HttpUtility.HtmlDecode(jobListingResponse.Job.Description);
+            meta.Content = Regex.Replace(HttpUtility.HtmlDecode(jobListingResponse.Job.Description), "<.*?>", String.Empty);
             pageHandler.Header.Controls.Add(meta);
 
             meta = new System.Web.UI.HtmlControls.HtmlMeta();

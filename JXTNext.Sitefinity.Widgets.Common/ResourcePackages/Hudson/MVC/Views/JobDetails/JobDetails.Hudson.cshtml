@@ -328,14 +328,7 @@
     });
 
     $(document).ready(function () {
-        var modelInformation = '@Model.JobDetails.Title'+ ' | ' + '@Model.JobDetails.CustomData["CompanyName"]';
-        var parser = new DOMParser;
-        var dom = parser.parseFromString(
-            '<!doctype html><body>' + modelInformation,
-            'text/html');
-        var pageTitle = dom.body.textContent;
-
-        document.title = pageTitle;
+        document.getElementsByTagName('title')[0].innerHTML = '@Model.JobDetails.Title'+ ' | ' + '@Model.JobDetails.CustomData["CompanyName"]';
         var isLoggedIn = '@isUserLoggedIn';
         var jobId = @Model.JobDetails.JobID;
         $('.sf-lang-selector').addClass('hidden');

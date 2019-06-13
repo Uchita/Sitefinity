@@ -47,7 +47,7 @@
             <div class="row job-offer-title">
 
                 <div class="col-md-12">
-                    <h1> @Html.Raw(Model.JobDetails.Title)</h1>
+                    <h1> @Html.HtmlSanitize((string)Model.JobDetails.Title)</h1>
                 </div>
 
             </div><div class="row job-offer-summary">

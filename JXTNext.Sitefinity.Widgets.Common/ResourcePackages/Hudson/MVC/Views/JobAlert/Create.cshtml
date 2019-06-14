@@ -5,6 +5,11 @@
 @using System.Web;
 @{
     var siteSettingsHelper = new SiteSettingsHelper();
+    var userDashboardPageUrl = "/user-dashboard";
+    if(ViewBag.UserDashboardPageUrl != null)
+    {
+        userDashboardPageUrl = ViewBag.UserDashboardPageUrl;
+    }
 }
 
 @Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
@@ -137,7 +142,7 @@
                     <div class="col-md-4 text-right"></div>
                     <div class="col-md-8">
                         <input id="create-job-alert-submit-btn" type="submit" value="@Html.Resource("Save")" class="btn btn-primary" />
-                        <a href="/user-dashboard" class="btn">@Html.Resource("Cancel")</a>
+                        <a href="@userDashboardPageUrl" class="btn">@Html.Resource("Cancel")</a>
                     </div>
                 </div>
             </div>

@@ -70,6 +70,34 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets phrase: More options
+        /// </summary>
+        [ResourceEntry("WidgetSettings",
+            Value = "Widget Settings",
+            Description = "phrase : Widget Settings")]
+        public string WidgetSettings
+        {
+            get
+            {
+                return this["WidgetSettings"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: Select user dashboard page
+        /// </summary>
+        [ResourceEntry("SelectUserDashboardPage",
+            Value = "Select user dashboard page",
+            Description = "phrase : Select user dashboard page")]
+        public string SelectUserDashboardPage
+        {
+            get
+            {
+                return this["SelectUserDashboardPage"];
+            }
+        }
+
+        /// <summary>
         /// Gets phrase : CSS classes
         /// </summary>
         [ResourceEntry("CssClasses",

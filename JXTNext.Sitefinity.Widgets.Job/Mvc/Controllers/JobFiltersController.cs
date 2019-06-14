@@ -16,10 +16,12 @@ using Telerik.Sitefinity.Taxonomies.Model;
 using JXTNext.Sitefinity.Common.Helpers;
 using JXTNext.Sitefinity.Widgets.Job.Mvc.Logics;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
+using JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
     [EnhanceViewEngines]
+    [Localization(typeof(JobFiltersResources))]
     [ControllerToolboxItem(Name = "JobFilters_MVC", Title = "Filters Listing", SectionName = "JXTNext.Job", CssClass = JobFiltersController.WidgetIconCssClass)]
     public class JobFiltersController : Controller
     {

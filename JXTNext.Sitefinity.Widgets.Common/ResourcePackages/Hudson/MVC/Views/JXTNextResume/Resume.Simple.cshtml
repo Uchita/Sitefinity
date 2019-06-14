@@ -93,13 +93,13 @@
         var processErrorMessage = function (error) {
             var errorMessage = '';
             if (error.UploadError == true) {
-                errorMessage = '<h4>Upload Error! Review the uploaded document.</h4>';
+                errorMessage = '<h4>@Html.Resource("ResumeUploadError")</h4>';
             }
             if (error.FetchError == true) {
-                errorMessage = '<h4>Error while fetching the resume files.</h4>'
+                errorMessage = '<h4>@Html.Resource("ResumeFetchError")</h4>'
             }
             if (error.DeleteError == true) {
-                errorMessage = '<h4>Delete Error! Try again.</h4>'
+                errorMessage = '<h4>@Html.Resource("ResumeDeleteError")</h4>'
             }
 
             $('#errorMessage').html(errorMessage);

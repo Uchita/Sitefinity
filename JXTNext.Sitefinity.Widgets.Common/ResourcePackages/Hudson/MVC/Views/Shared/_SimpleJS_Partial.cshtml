@@ -49,8 +49,8 @@
                                     <div class="leftGrip"></div>
                                     <div class="rightGrip"></div>
                                 </div>
-                                <div class="leftLabel">@siteSettingsHelper.GetJobCurrencySymbol()<span>@lower</span></div>
-                                <div class="rightLabel">@siteSettingsHelper.GetJobCurrencySymbol()<span>@upper</span></div>
+                                <div class="leftLabel">@Html.Raw(siteSettingsHelper.GetJobCurrencySymbol())<span>@lower</span></div>
+                                <div class="rightLabel">@Html.Raw(siteSettingsHelper.GetJobCurrencySymbol())<span>@upper</span></div>
 
                             </div>
                         }
@@ -232,11 +232,13 @@
 
                 var displayTitle = item.Name;
                 if (displayTitle == 'CountryLocationArea')
-                    displayTitle = 'Location';
+                    displayTitle = '@Html.Resource("Location")';
+                else if (displayTitle == 'Classfications')
+                    displayTitle = '@Html.Resource("Classifications")';
                 else if (displayTitle == 'WorkType')
-                    displayTitle = 'Work Type';
+                    displayTitle = '@Html.Resource("WorkType")';
                 else if (displayTitle == 'CompanyName')
-                    displayTitle = 'Company Name';
+                    displayTitle = '@Html.Resource("JobDetailCompany", "JxtAuthoringResources")';
 
                 optionsArray[prefixIdText + item.Name] = {
                     title: displayTitle,

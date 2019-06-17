@@ -133,12 +133,17 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         private List<JobFilterRoot> GetJobSearchResultsFilters(JobSearchResultsFilterModel filterModel)
         {
-            filterModel.Filters = null; // Clean up filters only for filters
+            JobSearchSalaryFilterReceiver tempSalary = filterModel.Salary; // Keep salary filters for the view
+
+            filterModel.Filters = null; // Clean up filters & salary for search filters
+            filterModel.Salary = null;
 
             JXTNext_SearchJobsRequest request = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModel, 0);
             request.SortBy = JobSearchResultsFilterModel.GetSortEnumFromString(filterModel.SortBy);
             ISearchJobsResponse response = _BLConnector.SearchJobs(request);
             JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
+
+            filterModel.Salary = tempSalary; // Put back salary
             if (jobResultsList != null)
                 return jobResultsList.SearchResultsFilters;
             else

@@ -63,15 +63,19 @@
                                     var displayTitle = item.Name;
                                     if (displayTitle == "CountryLocationArea")
                                     {
-                                        displayTitle = "Location";
+                                        displayTitle = Html.Resource("JobDetailLocation", "JxtAuthoringResources");
+                                    }
+                                    else if (displayTitle == "Classifications")
+                                    {
+                                        displayTitle = Html.Resource("Classifications", "Labels");
                                     }
                                     else if (displayTitle == "WorkType")
                                     {
-                                        displayTitle = "Work Type";
+                                        displayTitle = Html.Resource("JobDetailWorkType", "JxtAuthoringResources");
                                     }
                                     else if (displayTitle == "CompanyName")
                                     {
-                                        displayTitle = "Company Name";
+                                        displayTitle = Html.Resource("JobDetailCompany", "JxtAuthoringResources");
                                     }
                                 }
                                 <label>@displayTitle</label>
@@ -274,11 +278,13 @@
             $.each(filterData, function (index, item) {
                 var displayTitle = item.Name;
                 if (displayTitle == 'CountryLocationArea')
-                    displayTitle = 'Location';
+                    displayTitle = '@Html.Resource("JobDetailLocation", "JxtAuthoringResources")';
+                else if (displayTitle == 'Classfications')
+                    displayTitle = '@Html.Resource("Classifications", "Labels")';
                 else if (displayTitle == 'WorkType')
-                    displayTitle = 'Work Type';
+                    displayTitle = '@Html.Resource("JobDetailWorkType", "JxtAuthoringResources")';
                 else if (displayTitle == 'CompanyName')
-                    displayTitle = 'Company Name';
+                    displayTitle = '@Html.Resource("JobDetailCompany", "JxtAuthoringResources")';
 
                 optionsArray[item.Name] = {
                     title: displayTitle,

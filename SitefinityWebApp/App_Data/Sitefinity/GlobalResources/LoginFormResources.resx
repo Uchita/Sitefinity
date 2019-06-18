@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LoginFormLogInLegendHeader">
-    <value>Sign in</value>
+    <value>Sign in to your profile</value>
     <comment>phrase : Log in</comment>
-    <lastModified>2015-03-01T22:00:00</lastModified>
+    <lastModified>2019-02-19T17:46:36</lastModified>
   </data>
   <data name="NotRegisteredYet">
     <value>Don't have an account?</value>
@@ -135,7 +135,7 @@
   <data name="LoginFormLogInButton">
     <value>Sign in</value>
     <comment>phrase : Log in</comment>
-    <lastModified>2015-03-01T22:00:00</lastModified>
+    <lastModified>2019-02-19T18:00:39</lastModified>
   </data>
   <data name="RememberMe">
     <value>Stay signed in</value>
@@ -150,6 +150,16 @@
   <data name="Name">
     <value>Name</value>
     <comment>Name label field</comment>
-    <lastModified>2019-01-24T07:06:07</lastModified>
+    <lastModified>2019-01-29T05:35:09</lastModified>
+  </data>
+  <data name="AlreadyLoggedInMessage">
+    <value>&lt;p&gt;
+            There&amp;rsquo;s lots to discover so enjoy your journey!
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;a href="/job-seekers/search-results"&gt;Job Search&lt;/a&gt;&amp;nbsp;&amp;nbsp;|&amp;nbsp;&amp;nbsp;&lt;a href="/"&gt;Back to home&lt;/a&gt;
+        &lt;/p&gt;</value>
+    <comment>Message paragraph when already logged in</comment>
+    <lastModified>2019-04-30T08:26:56</lastModified>
   </data>
 </root>

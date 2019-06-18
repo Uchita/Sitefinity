@@ -187,8 +187,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Connector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Connector.1.0.1\lib\net471\JXTNext.Sitefinity.Connector.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\JXTNext.Sitefinity.Connector.1.0.2\lib\net471\JXTNext.Sitefinity.Connector.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Custom, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Custom.1.0.0\lib\net471\JXTNext.Sitefinity.Custom.dll</HintPath>
@@ -1138,6 +1137,7 @@
     <Content Include="assets\css\bootstrap-theme.min.css" />
     <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\css\mc-styles.css" />
+    <Content Include="AWSSDK.dll" />
     <Content Include="Content\Pages\login.html" />
     <Content Include="Mvc\Scripts\jquery.nstSlider.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

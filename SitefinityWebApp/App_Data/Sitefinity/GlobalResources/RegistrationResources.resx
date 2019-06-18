@@ -133,8 +133,18 @@
     <lastModified>2016-12-22T22:00:00</lastModified>
   </data>
   <data name="RegistrationResourcesDescription">
-    <value>Create an account to receive job alerts to track your applications!</value>
+    <value>Create a user profile to manage job alerts, store you CVs and keep a record of your applications.</value>
     <comment>Description for the Registration widget resources class.</comment>
-    <lastModified>2019-01-22T01:06:22</lastModified>
+    <lastModified>2019-02-01T01:08:45</lastModified>
+  </data>
+  <data name="HaveAccount">
+    <value>Already have an account?</value>
+    <comment>Already have an account text</comment>
+    <lastModified>2019-04-30T06:45:20</lastModified>
+  </data>
+  <data name="ChoosePassword">
+    <value>Choose password</value>
+    <comment>password field when registration</comment>
+    <lastModified>2019-04-30T07:29:26</lastModified>
   </data>
 </root>

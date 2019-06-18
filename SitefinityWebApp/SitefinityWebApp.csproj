@@ -163,8 +163,7 @@
       <HintPath>..\packages\JXT.JXTNext.Common.FileManager.0.0.2\lib\netstandard2.0\JXT.JXTNext.Common.FileManager.dll</HintPath>
     </Reference>
     <Reference Include="Jxt.Sitefinity.Jobs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Jxt.Sitefinity.Jobs.1.0.1\lib\net471\Jxt.Sitefinity.Jobs.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Jxt.Sitefinity.Jobs.1.0.2\lib\net471\Jxt.Sitefinity.Jobs.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Common.API, Version=1.7.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXT.JXTNext.Common.API.1.7.1\lib\netstandard1.1\JXTNext.Common.API.dll</HintPath>
@@ -210,8 +209,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.Authentication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Authentication.1.0.1\lib\net471\JXTNext.Sitefinity.Widgets.Authentication.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Authentication.1.0.2\lib\net471\JXTNext.Sitefinity.Widgets.Authentication.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.Content, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Content.1.0.1\lib\net471\JXTNext.Sitefinity.Widgets.Content.dll</HintPath>
@@ -230,11 +228,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.JobAlert, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.JobAlert.1.0.1\lib\net471\JXTNext.Sitefinity.Widgets.JobAlert.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.JobAlert.1.0.4\lib\net471\JXTNext.Sitefinity.Widgets.JobAlert.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.JobApplication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.JobApplication.1.0.2\lib\net471\JXTNext.Sitefinity.Widgets.JobApplication.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.JobApplication.1.0.3\lib\net471\JXTNext.Sitefinity.Widgets.JobApplication.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.Social, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Social.1.0.9\lib\net471\JXTNext.Sitefinity.Widgets.Social.dll</HintPath>
@@ -1155,6 +1152,39 @@
     <Content Include="Mvc\Controllers\readme.txt" />
     <Content Include="Mvc\Models\readme.txt" />
     <Content Include="Mvc\Scripts\kendo.all.min.js" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\CommentsWidgetResources.zh-CHS.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\DashboardResources.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\DashboardResources.zh-CHS.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\ErrorMessages.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\ErrorMessages.zh-CHS.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\ErrorMessages.zh-CN.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\JobApplicationResources.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\JobApplicationResources.zh-CHS.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\JobSearchResultsResources.zh-CHS.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\JxtAuthoringResources.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\JxtAuthoringResources.zh-CHS.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\JxtAuthoringResources.zh-CN.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\Labels.en.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\Labels.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\Labels.zh-CHS.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\Labels.zh-CN.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\LoginFormResources.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\LoginFormResources.zh-CHS.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\LoginFormResources.zh-CN.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\LoginStatusExtendedResources.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\LoginStatusExtendedResources.zh-CHS.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\LoginStatusExtendedResources.zh-CN.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\LoginStatusResources.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\LoginStatusResources.zh-CHS.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\LoginStatusResources.zh-CN.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\PageResources.zh-CHS.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\PageResources.zh-CN.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\PublicControlsResources.zh-CHS.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\PublicControlsResources.zh-CN.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\RegistrationResources.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\RegistrationResources.zh-CHS.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\RegistrationResources.zh-CN.resx" />
+    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\UserProfilesResources.zh-CHS.resx" />
     <EmbeddedResource Include="Mvc\Scripts\MultiCard\designerview-simple.js" />
     <Content Include="Mvc\Styles\fonts\glyphs\WebComponentsIcons.svg" />
     <Content Include="Mvc\Styles\kendo.common.min.css" />
@@ -1278,9 +1308,7 @@
     <Content Include="App_Data\RadSpell\en-US.tdf" />
     <Content Include="App_Data\RadSpell\fr-FR.tdf" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\Sitefinity\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="AdminApp\assets\js\kendo-editor\kendo.custom.min.js.map" />
     <None Include="App_Data\GeoLocation\GeoLiteCity.dat" />

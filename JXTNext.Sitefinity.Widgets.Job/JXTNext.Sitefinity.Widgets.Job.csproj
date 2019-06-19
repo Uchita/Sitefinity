@@ -333,6 +333,7 @@
     <Compile Include="Mvc\Models\JobAlertJsonModelData.cs" />
     <Compile Include="Mvc\Models\JobSearchModel.cs" />
     <Compile Include="Mvc\Models\JobSearchResultsFilterModel.cs" />
+    <Compile Include="Mvc\StringResources\JobFiltersResources.cs" />
     <Compile Include="Mvc\StringResources\JobDetailsResources.cs" />
     <Compile Include="Mvc\StringResources\JobSearchResources.cs" />
     <Compile Include="Mvc\StringResources\ConsultantResources.cs" />

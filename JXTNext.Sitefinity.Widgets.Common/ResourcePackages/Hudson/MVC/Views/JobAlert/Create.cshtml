@@ -5,6 +5,11 @@
 @using System.Web;
 @{
     var siteSettingsHelper = new SiteSettingsHelper();
+    var userDashboardPageUrl = "/user-dashboard";
+    if(ViewBag.UserDashboardPageUrl != null)
+    {
+        userDashboardPageUrl = ViewBag.UserDashboardPageUrl;
+    }
 }
 
 @Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
@@ -58,15 +63,19 @@
                                     var displayTitle = item.Name;
                                     if (displayTitle == "CountryLocationArea")
                                     {
-                                        displayTitle = "Location";
+                                        displayTitle = Html.Resource("JobDetailLocation", "JxtAuthoringResources");
+                                    }
+                                    else if (displayTitle == "Classifications")
+                                    {
+                                        displayTitle = Html.Resource("Classifications", "Labels");
                                     }
                                     else if (displayTitle == "WorkType")
                                     {
-                                        displayTitle = "Work Type";
+                                        displayTitle = Html.Resource("JobDetailWorkType", "JxtAuthoringResources");
                                     }
                                     else if (displayTitle == "CompanyName")
                                     {
-                                        displayTitle = "Company Name";
+                                        displayTitle = Html.Resource("JobDetailCompany", "JxtAuthoringResources");
                                     }
                                 }
                                 <label>@displayTitle</label>
@@ -137,7 +146,7 @@
                     <div class="col-md-4 text-right"></div>
                     <div class="col-md-8">
                         <input id="create-job-alert-submit-btn" type="submit" value="@Html.Resource("Save")" class="btn btn-primary" />
-                        <a href="/user-dashboard" class="btn">@Html.Resource("Cancel")</a>
+                        <a href="@userDashboardPageUrl" class="btn">@Html.Resource("Cancel")</a>
                     </div>
                 </div>
             </div>
@@ -269,11 +278,13 @@
             $.each(filterData, function (index, item) {
                 var displayTitle = item.Name;
                 if (displayTitle == 'CountryLocationArea')
-                    displayTitle = 'Location';
+                    displayTitle = '@Html.Resource("JobDetailLocation", "JxtAuthoringResources")';
+                else if (displayTitle == 'Classfications')
+                    displayTitle = '@Html.Resource("Classifications", "Labels")';
                 else if (displayTitle == 'WorkType')
-                    displayTitle = 'Work Type';
+                    displayTitle = '@Html.Resource("JobDetailWorkType", "JxtAuthoringResources")';
                 else if (displayTitle == 'CompanyName')
-                    displayTitle = 'Company Name';
+                    displayTitle = '@Html.Resource("JobDetailCompany", "JxtAuthoringResources")';
 
                 optionsArray[item.Name] = {
                     title: displayTitle,

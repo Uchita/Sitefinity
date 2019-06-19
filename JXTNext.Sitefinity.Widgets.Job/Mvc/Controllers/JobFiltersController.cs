@@ -16,10 +16,12 @@ using Telerik.Sitefinity.Taxonomies.Model;
 using JXTNext.Sitefinity.Common.Helpers;
 using JXTNext.Sitefinity.Widgets.Job.Mvc.Logics;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
+using JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
     [EnhanceViewEngines]
+    [Localization(typeof(JobFiltersResources))]
     [ControllerToolboxItem(Name = "JobFilters_MVC", Title = "Filters Listing", SectionName = "JXTNext.Job", CssClass = JobFiltersController.WidgetIconCssClass)]
     public class JobFiltersController : Controller
     {
@@ -66,30 +68,15 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             dynamic dynamicFilterResponse = null;
             JXTNext_GetJobFiltersRequest request = new JXTNext_GetJobFiltersRequest();
-            IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(request);
-
-            List<JobFilterRoot> filtersVMList = null;
-            if (filtersResponse != null && filtersResponse.Filters != null
-                && filtersResponse.Filters.Data != null)
-            {
-                filtersVMList = filtersResponse.Filters.Data;
-                dynamicFilterResponse = filtersResponse.Filters.Data as dynamic;
-            }
-
             var filtersSelected = filterModel.Filters;
-
+            List<JobFilterRoot> filtersVMList = GetJobSearchResultsFilters(filterModel);
+            
             if(filtersSelected != null && filtersSelected.Count > 0)
                 ProcessFilters(filtersSelected, filtersVMList);
      
             ViewBag.FilterModel = JsonConvert.SerializeObject(filterModel);
             ViewBag.Keywords = filterModel.Keywords;
             ViewBag.Salary = filterModel.Salary;
-                       
-            if (searchResultsFilters != null && searchResultsFilters.Count > 0)
-                JobFiltersLogics.ProcessFiltersCount(searchResultsFilters, filtersVMList);
-            else if (JobSearchResultsFilterModel.HasFilters(filterModel))
-                JobFiltersLogics.ProcessFiltersCount(GetJobSearchResultsFilters(filterModel), filtersVMList);
-            
 
             var serializedJobSearchParams = this.SerializedJobSearchParams;
             var prefixIdText = this.PrefixIdText;
@@ -148,10 +135,17 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         private List<JobFilterRoot> GetJobSearchResultsFilters(JobSearchResultsFilterModel filterModel)
         {
-            JXTNext_SearchJobsRequest request = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModel, 10);
+            JobSearchSalaryFilterReceiver tempSalary = filterModel.Salary; // Keep salary filters for the view
+
+            filterModel.Filters = null; // Clean up filters & salary for search filters
+            filterModel.Salary = null;
+
+            JXTNext_SearchJobsRequest request = JobSearchResultsFilterModel.ProcessInputToSearchRequest(filterModel, 0);
             request.SortBy = JobSearchResultsFilterModel.GetSortEnumFromString(filterModel.SortBy);
             ISearchJobsResponse response = _BLConnector.SearchJobs(request);
             JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
+
+            filterModel.Salary = tempSalary; // Put back salary
             if (jobResultsList != null)
                 return jobResultsList.SearchResultsFilters;
             else

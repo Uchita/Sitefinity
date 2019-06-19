@@ -1,7 +1,9 @@
-@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
-@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@model JXTNext.Sitefinity.Widgets.Feather.Mvc.Models.Card.JXTNextCardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using JXTNext.Sitefinity.Media.Mvc.Helpers;
+
 <div class="@Model.CssClass jumbotron-container">
-    <div class="jumbotron" style="background-image: url('@Model.SelectedSizeUrl');">
+    <div class="jumbotron" style="background-image: url('@ImageHelper.GetImageUrl(Model.CardImage,"banner2048")')">
         <div class="jumbotron-content">
             <h1>@Html.HtmlSanitize(Model.Heading)</h1>
             <p>@Html.HtmlSanitize(Model.Description)</p>

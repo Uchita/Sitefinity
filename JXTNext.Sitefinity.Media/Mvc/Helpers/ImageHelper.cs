@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Telerik.Sitefinity.Configuration;
 using Telerik.Sitefinity.Frontend.Mvc.Models;
@@ -19,15 +20,21 @@ namespace JXTNext.Sitefinity.Media.Mvc.Helpers
         /// <returns></returns>
         public static string GetImageUrl(Image image, string thumbnailName = null)
         {
-            var resolveAsAbsoluteUrl = Config.Get<SystemConfig>().SiteUrlSettings.GenerateAbsoluteUrls;
-            if (thumbnailName.IsNullOrWhitespace())
+            if (image != null)
             {
-                return image.ResolveMediaUrl(resolveAsAbsoluteUrl);
+
+                var resolveAsAbsoluteUrl = Config.Get<SystemConfig>().SiteUrlSettings.GenerateAbsoluteUrls;
+                CultureInfo culture = null;
+
+                if (SystemManager.CurrentContext.AppSettings.Multilingual && CultureInfo.CurrentUICulture != CultureInfo.InvariantCulture)
+                {
+                    culture = CultureInfo.CurrentUICulture;
+                }
+
+                return MediaContentExtensions.ResolveThumbnailUrl(image, thumbnailName, resolveAsAbsoluteUrl, culture);
             }
-            else
-            {
-                return image.ResolveThumbnailUrl(thumbnailName, resolveAsAbsoluteUrl);
-            }
+
+            return null;
         }
 
         /// <summary>

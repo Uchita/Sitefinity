@@ -183,7 +183,6 @@
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Common.1.0.1\lib\net471\JXTNext.Sitefinity.Common.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Connector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Connector.1.0.2\lib\net471\JXTNext.Sitefinity.Connector.dll</HintPath>
@@ -209,7 +208,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.Authentication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Authentication.1.0.2\lib\net471\JXTNext.Sitefinity.Widgets.Authentication.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Authentication.1.0.4\lib\net471\JXTNext.Sitefinity.Widgets.Authentication.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.Content, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Content.1.0.1\lib\net471\JXTNext.Sitefinity.Widgets.Content.dll</HintPath>
@@ -228,7 +227,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.JobAlert, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.JobAlert.1.0.4\lib\net471\JXTNext.Sitefinity.Widgets.JobAlert.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.JobAlert.1.0.5\lib\net471\JXTNext.Sitefinity.Widgets.JobAlert.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.JobApplication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Widgets.JobApplication.1.0.3\lib\net471\JXTNext.Sitefinity.Widgets.JobApplication.dll</HintPath>

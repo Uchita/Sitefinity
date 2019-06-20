@@ -58,7 +58,6 @@
             resumes = resumeList;
             var rows = '';
             $.each(resumes, function (i, item) {
-
                 var date = item.UploadDateStr;
                 var dateItm = new Date(date);
                 const monthAbvrNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -67,6 +66,7 @@
                 }
                 rows += '<tr> ' + '<td>' + item.FileFullName + '</td>' + '<td>' + date + '</td >' + '<td>' + '<a id="' + item.UploadPathToAttachment + '" class="downloadresumecls btn btn-tag" target="_blank">' + viewValue + '</a> <input id="' + item.Id + '" class="deleteresumecls btn btn-sm btn-tag btn-danger" type="button"  value="' + deleteResume + '"></td>' + '</tr>';
 
+                
             });
             $('#resumeTable').html(rows);
     }
@@ -93,13 +93,13 @@
         var processErrorMessage = function (error) {
             var errorMessage = '';
             if (error.UploadError == true) {
-                errorMessage = '<h4>Upload Error! Review the uploaded document.</h4>';
+                errorMessage = '<h4>@Html.Resource("ResumeUploadError")</h4>';
             }
             if (error.FetchError == true) {
-                errorMessage = '<h4>Error while fetching the resume files.</h4>'
+                errorMessage = '<h4>@Html.Resource("ResumeFetchError")</h4>'
             }
             if (error.DeleteError == true) {
-                errorMessage = '<h4>Delete Error! Try again.</h4>'
+                errorMessage = '<h4>@Html.Resource("ResumeDeleteError")</h4>'
             }
 
             $('#errorMessage').html(errorMessage);
@@ -108,39 +108,37 @@
 
     var downloadResumeMethod = function (id) {
 
-        if (confirmDelete()) {
-            var urlPath = $(location).attr('pathname') + "/DownloadResume?fileName=" + id;
-            $.ajax({
-                url: urlPath,
-                type: 'POST',
-                cache: false,
-                dataType: 'json',
-                processData: false, // Don't process the files
-                contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-                success: function (response) {
-                    
-                    if (response[0].Value == true) {
-                        var bytes = new Uint8Array(response[2].Value); // pass your byte response to this constructor
-                        var blob = new Blob([bytes], { type: "application/octet-stream" });// change resultByte to bytes
-                        var link = document.createElement('a');
-                        link.href = window.URL.createObjectURL(blob);
-                        link.download = response[1].Value;
-                        link.click();
-                    }
+        var urlPath = $(location).attr('pathname') + "/DownloadResume?fileName=" + id;
+        $.ajax({
+            url: urlPath,
+            type: 'POST',
+            cache: false,
+            dataType: 'json',
+            processData: false, // Don't process the files
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function (response) {
 
-
-                    //var a = document.createElement('a');
-                    //var url = window.URL.createObjectURL(data.FileStream);
-                    //a.href = url;
-                    //a.download = data.FileName;
-                    //a.click();
-                    //window.URL.revokeObjectURL(url);
-                },
-                error: function (response) {
-                    processErrorMessage(response);
+                if (response[0].Value == true) {
+                    var bytes = new Uint8Array(response[2].Value); // pass your byte response to this constructor
+                    var blob = new Blob([bytes], { type: "application/octet-stream" });// change resultByte to bytes
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = response[1].Value;
+                    link.click();
                 }
-            });
-        }
+
+
+                //var a = document.createElement('a');
+                //var url = window.URL.createObjectURL(data.FileStream);
+                //a.href = url;
+                //a.download = data.FileName;
+                //a.click();
+                //window.URL.revokeObjectURL(url);
+            },
+            error: function (response) {
+                processErrorMessage(response);
+            }
+        });
 
 
     }

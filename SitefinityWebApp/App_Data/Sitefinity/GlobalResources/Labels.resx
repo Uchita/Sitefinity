@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="JobFilterToggleBtn">
+    <value>Filter...</value>
+    <comment></comment>
+    <lastModified>2018-10-23T02:20:18</lastModified>
+  </data>
+  <data name="nofilterselectedmessage">
+    <value>Please enter at least one search criteria.</value>
+    <comment>alert message for create job alert when no filter is selected</comment>
+    <lastModified>2018-11-16T05:12:23</lastModified>
+  </data>
+  <data name="LostPasswordEmailBody">
+    <value>&lt;p&gt;&lt;img data-sf-ec-immutable="" src="https://au.hudson.com/assets/img/hudson_logo_2016.png" alt="logo" /&gt;&lt;/p&gt;
+&lt;br/&gt;&lt;br/&gt;
+
+Hi, 
+&lt;br/&gt;&lt;br/&gt;
+To reset your Hudson password for the account  &lt;%\s*UserName\s*%&gt;, please click this  &lt;a href="&lt;%\s*ConfirmationUrl\s*%&gt;" target="_blank"&gt;link&lt;/a&gt; and follow the instructions on the screen.
+&lt;br /&gt;&lt;br /&gt;
+The team at Hudson&lt;br /&gt;
+https://&lt;%\s*SiteName\s*%&gt;</value>
+    <comment>The body of the email sent to users for changing their passwords</comment>
+    <lastModified>2019-03-20T11:06:40</lastModified>
+  </data>
+  <data name="RegistrationSuccessEmail">
+    <value>&lt;p&gt;&lt;img data-sf-ec-immutable="" src="https://au.hudson.com/assets/img/hudson_logo_2016.png" alt="logo" /&gt;&lt;/p&gt;
+&lt;br/&gt;&lt;br/&gt;
+
+Hello, 
+&lt;br/&gt;&lt;br/&gt;
+Congratulations. You are now a registered job seeker with Hudson, which will make it easier for you to &lt;a href="https://%\s*SiteName\s*%&gt;/job-search"&gt;browse and apply for roles.&lt;/a&gt;
+&lt;br/&gt;&lt;br /&gt;
+Please retain these log-in details for your reference:
+&lt;br/&gt;
+Username: &lt;%\s*UserName\s*%&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+From the team at Hudson&lt;br /&gt;
+https://&lt;%\s*SiteName\s*%&gt;</value>
+    <comment>Phrase: Default Registration Success message for user registration.</comment>
+    <lastModified>2019-03-20T11:20:35</lastModified>
+  </data>
+  <data name="emailjobSenderHeading">
+    <value>Sender details</value>
+    <comment>Email job sender details heading</comment>
+    <lastModified>2019-01-08T03:07:09</lastModified>
+  </data>
+  <data name="emailjobSenderFriendHeading">
+    <value>Sender's friend details</value>
+    <comment>Email job sender's friend details</comment>
+    <lastModified>2019-01-08T03:09:33</lastModified>
+  </data>
+  <data name="JobAlreadyAppliedMsg">
+    <value>You have already applied for this job.</value>
+    <comment>This is the message show when you view job that has already been applied by the user.</comment>
+    <lastModified>2019-01-23T07:33:06</lastModified>
+  </data>
+  <data name="phoneValidationMsg">
+    <value>Please enter a valid phone number including the area code.</value>
+    <comment>Phone validation message
+</comment>
+    <lastModified>2019-04-23T23:30:06</lastModified>
+  </data>
+  <data name="passwordRequirementMsg">
+    <value>Password must contain 8 characters or more including 1 uppercase letter, 1 lowercase letter and 1 number</value>
+    <comment>Password strength requirements</comment>
+    <lastModified>2019-01-25T03:53:20</lastModified>
+  </data>
+  <data name="regExpPhoneNumber">
+    <value>^\+?([0-9]{1,3})\)?[-.* ]?([0-9]{3,4})[-.* ]?([0-9]{4,8})</value>
+    <comment>regular expression pattern for phone number
+</comment>
+    <lastModified>2019-04-23T23:35:44</lastModified>
+  </data>
+  <data name="UploadFileFormat">
+    <value>Select a MS Word, PDF, HTML or text format file.</value>
+    <comment>Upload file formats</comment>
+    <lastModified>2019-04-26T00:34:35</lastModified>
+  </data>
+  <data name="UploadFileSizeResume">
+    <value>Max file size is 2 Mb</value>
+    <comment>Upload file size for resume</comment>
+    <lastModified>2019-04-26T00:35:11</lastModified>
+  </data>
+  <data name="UploadFileSizeCoverletter">
+    <value>Max file size is 0.5 Mb</value>
+    <comment>Upload file size coverletter</comment>
+    <lastModified>2019-04-26T00:35:42</lastModified>
+  </data>
+  <data name="UploadFileSizeDocument">
+    <value>Max file size is 0.3 Mb</value>
+    <comment>Upload file size for document</comment>
+    <lastModified>2019-04-26T00:36:12</lastModified>
+  </data>
+  <data name="FileSizeAlertResume">
+    <value>File size is too big! Max size accepted is only 2 Mb.</value>
+    <comment>File limitation alert for resume</comment>
+    <lastModified>2019-04-26T00:37:06</lastModified>
+  </data>
+  <data name="FileSizeAlertCoverletter">
+    <value>File size is too big! Max size accepted is only 0.5 Mb.</value>
+    <comment>File limitation alert for coverletter</comment>
+    <lastModified>2019-04-26T00:37:42</lastModified>
+  </data>
+  <data name="FileSizeAlertDocument">
+    <value>File size is too big! Max size accepted is only 0.3 Mb.</value>
+    <comment>File limitation alert for resume</comment>
+    <lastModified>2019-04-26T00:38:16</lastModified>
+  </data>
+  <data name="JobApplyResumeUseExtProvider">
+    <value>Note: We'll automatically use any cover letter and resume you have saved with these sites.</value>
+    <comment>External provider note for resume</comment>
+    <lastModified>2019-04-26T00:39:35</lastModified>
+  </data>
+  <data name="RetypePasswordPlaceholder">
+    <value>Retype your password</value>
+    <comment>Retype your password placeholder text</comment>
+    <lastModified>2019-04-30T07:33:12</lastModified>
+  </data>
+  <data name="PrivacyPolicyLbl">
+    <value>I agree to Hudson's Privacy Policy</value>
+    <comment>Privacy policy message label</comment>
+    <lastModified>2019-05-14T06:04:37</lastModified>
+  </data>
+  <data name="QuickLinks">
+    <value>QUICK LINKS</value>
+    <comment></comment>
+    <lastModified>2019-05-06T01:21:09</lastModified>
+  </data>
+  <data name="PasswordCannotBeEmpty">
+    <value>Please enter your password</value>
+    <comment>phrase</comment>
+    <lastModified>2019-05-06T05:50:22</lastModified>
+  </data>
+  <data name="ApplyNowButton">
+    <value>APPLY NOW</value>
+    <comment>apply now button label</comment>
+    <lastModified>2019-05-06T06:29:10</lastModified>
+  </data>
+  <data name="PrintThisJob">
+    <value>Print this job</value>
+    <comment>Print this job's label in job detail page</comment>
+    <lastModified>2019-05-06T22:31:30</lastModified>
+  </data>
+  <data name="EmailThisJob">
+    <value>Email this job</value>
+    <comment>Email this job's label in job detail page</comment>
+    <lastModified>2019-05-06T22:32:59</lastModified>
+  </data>
+  <data name="SaveThisJob">
+    <value>Save this job</value>
+    <comment>Save this job's label in job detail page</comment>
+    <lastModified>2019-05-06T22:35:45</lastModified>
+  </data>
+  <data name="NoConsultantMacth">
+    <value>There are no consultant matching with your search filter.</value>
+    <comment>No consultant match message on filter</comment>
+    <lastModified>2019-05-07T05:11:59</lastModified>
+  </data>
+  <data name="ContactMe">
+    <value>Contact me</value>
+    <comment>Contact Me Button on consultant filter</comment>
+    <lastModified>2019-05-07T05:12:42</lastModified>
+  </data>
+  <data name="ConsultantViewProfile">
+    <value>View Profile</value>
+    <comment>View Profile Link on Consultant Profile</comment>
+    <lastModified>2019-05-07T05:13:15</lastModified>
+  </data>
+  <data name="ConsultantSearchButton">
+    <value>SEARCH</value>
+    <comment>Search Button on consultant filter</comment>
+    <lastModified>2019-05-07T05:13:48</lastModified>
+  </data>
+  <data name="ConsultantFilterOptionAllLocation">
+    <value>All Locations</value>
+    <comment>All Location option in Location's Dropdown</comment>
+    <lastModified>2019-05-07T05:14:56</lastModified>
+  </data>
+  <data name="ConsultantFilterTitleLocation">
+    <value>Location</value>
+    <comment>Location Title on Consultant Profile</comment>
+    <lastModified>2019-05-07T05:15:39</lastModified>
+  </data>
+  <data name="ConsultantFilterOptionAllSpecialisations">
+    <value>All Specialisations</value>
+    <comment>All Specialisations option in Specialisation's Dropdown</comment>
+    <lastModified>2019-05-07T05:16:34</lastModified>
+  </data>
+  <data name="ConsultantFilterTitleSpecialisations">
+    <value>AREA OF SPECIALISATION</value>
+    <comment>Specialisation's Title on Consultant Filter</comment>
+    <lastModified>2019-05-07T05:17:17</lastModified>
+  </data>
+  <data name="SearchJobs">
+    <value>Search Jobs</value>
+    <comment>Search Jobs Button's Label</comment>
+    <lastModified>2019-05-10T00:40:06</lastModified>
+  </data>
+  <data name="JobApplicationPrivacyPolicy">
+    <value>I agree to Hudson's &lt;a href="/privacy-policy" target="_blank"&gt;Privacy Policy&lt;/a&gt;</value>
+    <comment></comment>
+    <lastModified>2019-05-13T05:59:34</lastModified>
+  </data>
+</root>

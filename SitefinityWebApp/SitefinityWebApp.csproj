@@ -3,6 +3,7 @@
   <!--<Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />-->
   <!--<Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />-->
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
   <!--<Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />-->
   <!--<Import Project="..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" />-->
@@ -163,7 +164,7 @@
       <HintPath>..\packages\JXT.JXTNext.Common.FileManager.0.0.2\lib\netstandard2.0\JXT.JXTNext.Common.FileManager.dll</HintPath>
     </Reference>
     <Reference Include="Jxt.Sitefinity.Jobs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Jxt.Sitefinity.Jobs.1.0.2\lib\net471\Jxt.Sitefinity.Jobs.dll</HintPath>
+      <HintPath>..\packages\Jxt.Sitefinity.Jobs.50.0.0\lib\net471\Jxt.Sitefinity.Jobs.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Common.API, Version=1.7.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXT.JXTNext.Common.API.1.7.1\lib\netstandard1.1\JXTNext.Common.API.dll</HintPath>
@@ -182,61 +183,61 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Common.1.0.1\lib\net471\JXTNext.Sitefinity.Common.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Common.50.0.0\lib\net471\JXTNext.Sitefinity.Common.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Connector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Connector.1.0.2\lib\net471\JXTNext.Sitefinity.Connector.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Connector.50.0.0\lib\net471\JXTNext.Sitefinity.Connector.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Custom, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Custom.1.0.0\lib\net471\JXTNext.Sitefinity.Custom.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Custom.50.0.0\lib\net471\JXTNext.Sitefinity.Custom.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.FileHandler, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.FileHandler.1.0.0\lib\net471\JXTNext.Sitefinity.FileHandler.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.FileHandler.50.0.0\lib\net471\JXTNext.Sitefinity.FileHandler.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Media, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Media.1.0.1\lib\net471\JXTNext.Sitefinity.Media.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Media.50.0.0\lib\net471\JXTNext.Sitefinity.Media.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Services, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Services.1.0.1\lib\net471\JXTNext.Sitefinity.Services.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Services.50.0.0\lib\net471\JXTNext.Sitefinity.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Services.Intefaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Services.Intefaces.1.0.1\lib\net471\JXTNext.Sitefinity.Services.Intefaces.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Services.Intefaces.50.0.0\lib\net471\JXTNext.Sitefinity.Services.Intefaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.Authentication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Authentication.1.0.4\lib\net471\JXTNext.Sitefinity.Widgets.Authentication.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Authentication.50.0.0\lib\net471\JXTNext.Sitefinity.Widgets.Authentication.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.Content, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Content.1.0.1\lib\net471\JXTNext.Sitefinity.Widgets.Content.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Content.50.0.0\lib\net471\JXTNext.Sitefinity.Widgets.Content.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.Feather, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Feather.1.0.0\lib\net471\JXTNext.Sitefinity.Widgets.Feather.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Feather.50.0.0\lib\net471\JXTNext.Sitefinity.Widgets.Feather.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.Identity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Identity.1.0.0\lib\net471\JXTNext.Sitefinity.Widgets.Identity.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Identity.50.0.0\lib\net471\JXTNext.Sitefinity.Widgets.Identity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.Job, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Job.1.0.1\lib\net471\JXTNext.Sitefinity.Widgets.Job.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Job.50.0.0\lib\net471\JXTNext.Sitefinity.Widgets.Job.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.JobAlert, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.JobAlert.1.0.5\lib\net471\JXTNext.Sitefinity.Widgets.JobAlert.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.JobAlert.50.0.0\lib\net471\JXTNext.Sitefinity.Widgets.JobAlert.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.JobApplication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.JobApplication.1.0.3\lib\net471\JXTNext.Sitefinity.Widgets.JobApplication.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.JobApplication.50.0.0\lib\net471\JXTNext.Sitefinity.Widgets.JobApplication.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.Social, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Social.1.0.9\lib\net471\JXTNext.Sitefinity.Widgets.Social.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Social.50.0.0\lib\net471\JXTNext.Sitefinity.Widgets.Social.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.User, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.User.1.0.1\lib\net471\JXTNext.Sitefinity.Widgets.User.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.User.50.0.0\lib\net471\JXTNext.Sitefinity.Widgets.User.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JXTNext.SocialMedia, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
@@ -280,6 +281,9 @@
     </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <!-- <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"> -->
     <!-- <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath> -->
@@ -1403,6 +1407,7 @@
     <Error Condition="!Exists('..\packages\Telerik.Sitefinity.Feather.11.0.6726\build\Telerik.Sitefinity.Feather.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Telerik.Sitefinity.Feather.11.0.6726\build\Telerik.Sitefinity.Feather.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <!--<Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />-->
   </Target>
   <Import Project="..\packages\RazorGenerator.MsBuild.2.4.1\build\RazorGenerator.MsBuild.targets" Condition="Exists('..\packages\RazorGenerator.MsBuild.2.4.1\build\RazorGenerator.MsBuild.targets')" />

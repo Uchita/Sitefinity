@@ -1,3 +1,17 @@
+# Do Not Allow below files and folders
+JXTNext.Sitefinity.Widgets/
+JXTNext.Sitefinity.Widgets.*/
+Jxt.Sitefinity.Jobs/
+JXTNext.Sitefinity.Services/
+JXTNext.Sitefinity.Services.Intefaces/
+JXTNext.Sitefinity.Resources/
+JXTNext.Sitefinity.Media/
+JXTNext.Sitefinity.Identity/
+JXTNext.Sitefinity.FileHandler/
+JXTNext.Sitefinity.Custom/
+JXTNext.Sitefinity.Connector/
+JXTNext.Sitefinity.Common/
+
 # User-specific files
 *.suo
 *.user

@@ -143,7 +143,9 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
 
             try
             {
-                var webResponse = DoPostRequest(AccessTokenUrl, CreateQueryString(data), "application/x-www-form-urlencoded");
+                var url = AccessTokenUrl + "?" + CreateQueryString(data);
+
+                var webResponse = DoPostRequest(url, string.Empty, "application/x-www-form-urlencoded");
 
                 var jObject = JObject.Parse(webResponse);
 

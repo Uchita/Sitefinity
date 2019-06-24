@@ -25,9 +25,9 @@
                         </td>
 
                         <td>
-                            @Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
-                            @Html.ActionLink("Search", "ViewResults", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
-                            @Html.ActionLink("Delete", "Delete", "JobAlert", new { id = item.Id }, new { onclick = "return confirmAlertDelete();", @class = "btn btn-sm btn-tag btn-danger" })
+                            @Html.ActionLink(Html.Resource("Edit"), "Edit", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
+                            @Html.ActionLink(Html.Resource("Search"), "ViewResults", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
+                            @Html.ActionLink(Html.Resource("Delete"), "Delete", "JobAlert", new { id = item.Id }, new { onclick = "return confirmAlertDelete();", @class = "btn btn-sm btn-tag btn-danger" })
                         </td>
                     </tr>
                 }
@@ -56,7 +56,7 @@
         </div>
     }
     <div class="button-wrapper">
-        @Html.ActionLink("Create New Job Alert", "Create", "JobAlert", new { @class = "btn jobalert-btn" })
+        @Html.ActionLink(Html.Resource("CreateNew"), "Create", "JobAlert", new { @class = "btn jobalert-btn" })
         <a href="/advancedsearch" class="btn" title="New job search">@Html.Resource("NewSearch")</a>
     </div>
 

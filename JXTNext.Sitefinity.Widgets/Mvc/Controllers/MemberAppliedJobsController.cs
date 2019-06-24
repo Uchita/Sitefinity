@@ -56,7 +56,7 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
                 job.Culture = jobListingResponse.Job.Culture;
                 job.ClassificationURL = jobListingResponse.Job?.ClassificationURL;
             }
-            ViewBag.JobDetailsPageUrl = SitefinityHelper.GetPageUrl(this.JobDetailsPageId);
+            ViewBag.JobDetailsPageUrl = SfPageHelper.GetPageUrlById(JobDetailsPageId.IsNullOrWhitespace() ? Guid.Empty : new Guid(JobDetailsPageId));
 
             if (GetListSuccess)
             {

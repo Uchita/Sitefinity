@@ -70,6 +70,34 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets phrase: More options
+        /// </summary>
+        [ResourceEntry("WidgetSettings",
+            Value = "Widget Settings",
+            Description = "phrase : Widget Settings")]
+        public string WidgetSettings
+        {
+            get
+            {
+                return this["WidgetSettings"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: Select user dashboard page
+        /// </summary>
+        [ResourceEntry("SelectUserDashboardPage",
+            Value = "Select user dashboard page",
+            Description = "phrase : Select user dashboard page")]
+        public string SelectUserDashboardPage
+        {
+            get
+            {
+                return this["SelectUserDashboardPage"];
+            }
+        }
+
+        /// <summary>
         /// Gets phrase : CSS classes
         /// </summary>
         [ResourceEntry("CssClasses",
@@ -359,6 +387,65 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources
             }
         }
 
+        /// <summary>
+        /// Gets phrase: Edit button's label
+        /// </summary>
+        [ResourceEntry("Edit",
+            Value = "Edit",
+            Description = "word : Edit button's label",
+            LastModified = "2019/05/16")]
+        public string Edit
+        {
+            get
+            {
+                return this["Edit"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: Search button's label
+        /// </summary>
+        [ResourceEntry("Search",
+            Value = "Search",
+            Description = "word : Search button's label",
+            LastModified = "2019/05/16")]
+        public string Search
+        {
+            get
+            {
+                return this["Search"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: Delete button's label
+        /// </summary>
+        [ResourceEntry("Delete",
+            Value = "Delete",
+            Description = "word : Delete button's label",
+            LastModified = "2019/05/16")]
+        public string Delete
+        {
+            get
+            {
+                return this["Delete"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: Create button's label
+        /// </summary>
+        [ResourceEntry("CreateNew",
+            Value = "Create New Job Alert",
+            Description = "word : Create button's label",
+            LastModified = "2019/05/16")]
+        public string CreateNew
+        {
+            get
+            {
+                return this["CreateNew"];
+            }
+        }
         #endregion
     }
 }

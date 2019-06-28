@@ -9730,6 +9730,9 @@ address.info-box {
     .inner-search-panel .job-search {
       top: 0; } }
 
+.same-height-wrapper .col-sm-3:nth-child(4n+1) {
+  clear: both; }
+
 .signin-form-block h2 {
   color: #2e2e2e;
   font-family: inherit;
@@ -10628,8 +10631,9 @@ ul.breadcrumb {
         background-image: url("../images/owl/owl-arrow-right.png"); }
 
 .jumbotron-container .jumbotron, .owl-carousel-jumbotron .jumbotron {
-  background: top bottom no-repeat;
-  /*background-size: cover;*/ }
+  background-position: top bottom;
+  background-repeat: no-repeat;
+  background-size: cover; }
 
 .process-card-holder .process-card {
   color: #2e2e2e;

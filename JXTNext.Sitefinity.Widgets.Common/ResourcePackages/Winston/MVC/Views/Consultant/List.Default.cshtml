@@ -90,12 +90,12 @@
                         <h5>                    @Html.HtmlSanitize((string)item.Fields.Position)</h5>
                     </div>
                     <div>
-                        <p class="hidden-xs">
+                        <div class="hidden-xs">
                             @{ var summary = @Html.HtmlSanitize((string)item.Fields.Bio).ToString();
                                 string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 80 ? summary.Substring(0, 80) + "..." : summary;
                             }
                             @Html.HtmlSanitize(trimSummary)
-                        </p>
+                        </div>
                     </div>
 
                     @*@if (!string.IsNullOrWhiteSpace(@item.Fields.Email)

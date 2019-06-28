@@ -197,13 +197,12 @@ ThemeGlobal.MobileSubNavigationToggle = function(){
         $('.page-wrapper').toggleClass('menu-opened');
     });
 }
-$(window).load(function()
-    {
-    $('.date .form-control').datepicker();  
-    });
 
 $(document).ready(function () {
 
+    if ($('.date .form-control').length) {
+        $('.date .form-control').datepicker();
+    }
 
     //for first name display in login
 

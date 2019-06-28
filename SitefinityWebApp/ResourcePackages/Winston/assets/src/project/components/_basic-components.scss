@@ -3248,6 +3248,10 @@ address.info-box {
     }
 }
 
+.same-height-wrapper .col-sm-3:nth-child(4n+1){
+    clear: both;
+}
+
 
 .signin-form-block {
     h2 {
@@ -3319,6 +3323,7 @@ address.info-box {
 /*content: "\f234";*/
 .page-wrapper .login-form .basic-form .checkbox {
     font-size: 14px;
+    text-align:left;
 }
 
 

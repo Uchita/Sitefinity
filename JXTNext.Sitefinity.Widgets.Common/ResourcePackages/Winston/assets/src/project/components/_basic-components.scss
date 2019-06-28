@@ -3248,6 +3248,10 @@ address.info-box {
     }
 }
 
+.same-height-wrapper .col-sm-3:nth-child(4n+1){
+    clear: both;
+}
+
 
 .signin-form-block {
     h2 {

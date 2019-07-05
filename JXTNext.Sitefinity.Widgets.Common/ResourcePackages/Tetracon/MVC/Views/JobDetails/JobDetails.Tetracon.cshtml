@@ -42,7 +42,8 @@
             <div class="row job-offer-title">
 
                 <div class="col-md-12">
-                    <h2>@Model.JobDetails.Title</h2>
+                    <h2>@Html.Raw(Model.JobDetails.Title)</h2>
+                    <div>djhfksdjfhksj</div>
                 </div>
 
             </div><div class="row job-offer-summary">
@@ -147,15 +148,15 @@
 
                         @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"]))
                         {
-                            <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"]</li>
+                            <li>@Html.Raw(Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"])</li>
                         }
                         @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"]))
                         {
-                            <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"]</li>
+                            <li>@Html.Raw(Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"])</li>
                         }
                         @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"]))
                         {
-                            <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"]</li>
+                            <li>@Html.Raw(Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"])</li>
                         }
                     </ul>
                 </div>
@@ -325,7 +326,7 @@
     });
 
     $(document).ready(function () {
-        document.title = '@Model.JobDetails.Title';
+        document.getElementsByTagName('title')[0].innerHTML = '@Html.Raw(Model.JobDetails.Title)'+ ' | ' + '@Model.JobDetails.CustomData["CompanyName"]';
         var isLoggedIn = '@isUserLoggedIn';
         var jobId = @Model.JobDetails.JobID;
         

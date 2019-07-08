@@ -913,6 +913,9 @@
         /*width: calc(100% + 40px);
         margin-left:-20px;*/
     }
+    header .navbar{
+        position: static;
+    }
 
     header .navbar.navbar-default .navbar-nav > li > a {
         font-size: 13px !important;
@@ -1239,7 +1242,7 @@
     }
 
     div#filtersPagePartialContent {
-        padding-top: 50px;
+        padding-top: 38px;
 
         > div {
             padding-top: 0;
@@ -1247,19 +1250,31 @@
 
         .keywordfilter {
             display: none;
-            margin-top: 10px;
+            margin-top: 0;
         }
 
         .filter-outer-wrapper {
-            margin-bottom: 10px;
+            margin: 0px;
             display: block;
         }
 
         .sm-wrapper {
-            margin-top: 10px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .fake-hide-reverse{
+            margin-top: 20px;
             margin-bottom: 20px;
         }
     }
+    .page-wrapper .search-top{
+        position: static;
+        .select{
+            top: -38px;
+        }
+    }
+    
+
 
     .list-featured-articles {
         padding: 0 !important;

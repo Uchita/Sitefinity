@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿﻿@model dynamic
 @using Telerik.Sitefinity.Services;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 @using JXTNext.Sitefinity.Common.Helpers
@@ -41,7 +41,7 @@
        
         <div class="select">
             <select id="sortOrder" class="default-select">
-                <option  value="Relevance">@Html.Resource("SortByRelevance", "JobSearchResultsResources")</option>
+                <option value="Relevance">@Html.Resource("SortByRelevance", "JobSearchResultsResources")</option>
                 <option selected="selected" value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
                 <option value="Old">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
                 <option value="A-Z">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
@@ -102,11 +102,11 @@
                     # if( CustomData["Salary.Filters[0].Min"] != 0 && CustomData["Salary.Filters[0].Max"] != 0 ){
                     if( CustomData["Salary.Filters[0].Min"] == CustomData["Salary.Filters[0].Max"] ){
                     #<span class="meta-salary">
-                        $#:CustomData["Salary.Filters[0].Max"]#<br />#
+                        £#:CustomData["Salary.Filters[0].Max"]#<br />#
                         }
                         else{
                         #<span class="meta-salary">
-                            $#:CustomData["Salary.Filters[0].Min"]# - $#:CustomData["Salary.Filters[0].Max"]# <br />#
+                            £#:CustomData["Salary.Filters[0].Min"]# - $#:CustomData["Salary.Filters[0].Max"]# <br />#
                             }
                             #<span class="salary-label">#:CustomData["Salary.Filters[0].Value"]#</span>
                         </span><br />#
@@ -326,7 +326,7 @@
             var urlPath = $(location).attr('pathname') + "/CreateAnonymousJobAlert";
 
             $.ajax({
-                type: 'GET',
+                type: 'POST',
                 cache: false,
                 url: urlPath,
                 data: alertData,

@@ -700,8 +700,9 @@
 
 .jumbotron-container, .owl-carousel-jumbotron {
     .jumbotron {
-        background: top bottom no-repeat;
-        /*background-size: cover;*/
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 }
 

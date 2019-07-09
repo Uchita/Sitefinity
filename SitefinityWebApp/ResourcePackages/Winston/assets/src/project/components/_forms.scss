@@ -322,6 +322,9 @@
         .text-muted {
             margin-top: 10px;
             display: block;
+            @media(max-width:991px){
+                text-align:left;
+            }
         }
     }
 
@@ -595,3 +598,5 @@
 .col-wrap{
     margin-bottom: 5px;
 }
+
+

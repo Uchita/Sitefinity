@@ -1,5 +1,4 @@
-﻿using JXTNext.Sitefinity.Connector.BusinessLogics;
-using JXTNext.Sitefinity.Connector.Options;
+﻿using JXTNext.Sitefinity.Connector.Options;
 using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using JXTNext.Sitefinity.Common.Helpers;
 using Newtonsoft.Json;
@@ -9,21 +8,13 @@ using System.Linq;
 using System.Web.Mvc;
 using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
-using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Logics;
-using Telerik.Sitefinity.Security.Claims;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
-using System.Web;
 using System.Dynamic;
 using JXTNext.Sitefinity.Services.Intefaces;
 using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert;
 using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility;
 using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlertJson;
-using Telerik.Sitefinity.DynamicModules;
-using Telerik.Sitefinity.Utilities.TypeConverters;
-using Telerik.Sitefinity.Model;
 using JXTNext.Common.Communications.Helpers.Utility;
-using Telerik.Sitefinity.Web.Mail;
-using System.Net.Mail;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common;
 using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources;
 
@@ -113,6 +104,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             dynamicFilterResponse.Keywords = filterModel.Keywords;
             dynamicFilterResponse.Salary = filterModel.Salary;
 
+            // UserDashboardPageUrl should be property of the JobAlertCreateViewModel but using the ViewBag because forced to currently :(
+            // TODO: refactor the widget to properly use a ViewModel
+            var userDashboardPageUrl = SfPageHelper.GetPageUrlById(UserDashboardPageId);
+            ViewBag.UserDashboardPageUrl = string.IsNullOrWhiteSpace(userDashboardPageUrl) ? "/user-dashboard" : userDashboardPageUrl;
 
             return View("Create", dynamicFilterResponse);
         }
@@ -445,6 +440,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             get { return SitefinityHelper.GetCurrentSiteEmailTemplateProviderName(); }
         }
+
+        public Guid UserDashboardPageId { get; set; }
+
         public string JobAlertEmailTemplateId { get; set; }
         public string JobAlertEmailTemplateName { get; set; }
         public string JobAlertEmailTemplateCC { get; set; }

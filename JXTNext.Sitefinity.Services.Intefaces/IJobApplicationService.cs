@@ -13,9 +13,9 @@ namespace JXTNext.Sitefinity.Services.Intefaces
         string GetOverrideEmail(ref JobApplicationStatus status, ref ApplicantInfo applicantInfo, bool isSocialMedia = false);
         bool UploadFiles(List<JobApplicationAttachmentUploadItem> attachments);
         string GetHtmlEmailContent(string emailTemplateId, string emailTemplateProviderName, string itemType);
-        List<JobApplicationAttachmentUploadItem> GetFiles(List<JobApplicationAttachmentUploadItem> attachments);
         bool DeleteFile(JobApplicationAttachmentUploadItem deletefile);
         Stream GetFileStreamFromAmazonS3(string srcLibName, int attachmentType, string id);
         string GetHtmlEmailSubject(string emailTemplateId, string emailTemplateProviderName, string itemType);
+        bool ValidateFileExistsInTheBlobStoreage(string srcLibName, int attachmentType, string id);
     }
 }

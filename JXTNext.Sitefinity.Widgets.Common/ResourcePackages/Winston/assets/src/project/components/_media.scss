@@ -1648,6 +1648,11 @@
             }
         }
     }
+    .backtoresult {
+        &.detail-result {
+            margin-top: 20px;
+        }
+    }
 
     .pos-static {
         margin-top: 0;

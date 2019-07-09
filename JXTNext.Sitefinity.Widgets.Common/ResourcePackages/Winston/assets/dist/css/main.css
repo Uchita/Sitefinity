@@ -13390,6 +13390,8 @@ select.articles-order {
       .mobile-breadcrumb .breadcrumb li a:before {
         content: '<';
         margin-right: 5px; }
+  .backtoresult.detail-result {
+    margin-top: 20px; }
   .pos-static {
     margin-top: 0;
     margin-bottom: 1rem; }

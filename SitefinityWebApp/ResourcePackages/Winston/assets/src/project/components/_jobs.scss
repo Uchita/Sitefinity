@@ -39,6 +39,7 @@
     .form-control {
         /*font-style: italic;*/
         color: $global-text-color;
+        min-height: 44px;
     }
 
     .form-control::-moz-placeholder,

@@ -10699,7 +10699,9 @@ ul.breadcrumb {
   .page-wrapper .basic-form .form-control {
     color: #000; }
   .page-wrapper .basic-form select {
-    padding-left: 6px; }
+    padding-left: 10px; }
+  .page-wrapper .basic-form .select select {
+    font-size: 16px; }
   .page-wrapper .basic-form textarea {
     height: 115px;
     resize: none; }
@@ -11086,7 +11088,8 @@ ul.breadcrumb {
     padding-top: 10px; }
   .job-search .form-control {
     /*font-style: italic;*/
-    color: #000; }
+    color: #000;
+    min-height: 44px; }
   .job-search .form-control::-moz-placeholder,
   .job-search input::-moz-placeholder,
   .job-search select::-moz-placeholder,

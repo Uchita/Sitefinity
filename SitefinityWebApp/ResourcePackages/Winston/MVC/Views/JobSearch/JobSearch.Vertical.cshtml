@@ -68,13 +68,15 @@
                                 </label>
                             </div>
                             <div class="col-md-8">
-                                <select class="form-control" name="Filters[@counter].values" id="Filters[@counter].values">
-                                    <option value="" disabled selected>@item.PlaceholderText</option>
-                                    @foreach (dynamic itemName in _idNamesLevelsPair)
-                                    {
-                                        <option value="@itemName.Key">@itemName.Value.name</option>
-                                    }
-                                </select>
+                                <div class="select">
+                                    <select class="form-control" name="Filters[@counter].values" id="Filters[@counter].values">
+                                        <option value="" disabled selected>@item.PlaceholderText</option>
+                                        @foreach (dynamic itemName in _idNamesLevelsPair)
+                                        {
+                                            <option value="@itemName.Key">@itemName.Value.name</option>
+                                        }
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
@@ -83,8 +85,10 @@
 
                     case "DropDown Multi":
                         <div class="row form-group">
-
-                            @if (item.FilterType == "Salary")
+                            @{ 
+                                var itemFilterType = item.FilterType.ToLower();
+                            }
+                            @if (itemFilterType == "salary" || itemFilterType == "salary type")
                             {
                                 <div class="col-md-4 text-right">
                                     <label class="form-label" for="salaryFilter">@item.FilterType</label>

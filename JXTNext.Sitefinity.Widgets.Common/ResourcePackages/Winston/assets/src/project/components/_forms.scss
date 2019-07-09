@@ -30,11 +30,13 @@
         .form-control {
             color: $global-text-color;
         }
-
+        
         select {
-            padding-left: 6px;
+            padding-left: 10px;
         }
-
+        .select select{
+            font-size: 16px;
+        }
         textarea {
             height: 115px;
             resize: none;

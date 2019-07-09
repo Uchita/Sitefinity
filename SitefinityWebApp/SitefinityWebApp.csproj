@@ -157,6 +157,9 @@
     <Reference Include="JXT.JXTNext.Common.FileManager, Version=0.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXT.JXTNext.Common.FileManager.0.0.4\lib\netstandard2.0\JXT.JXTNext.Common.FileManager.dll</HintPath>
     </Reference>
+    <Reference Include="JXTNext.Sitefinity.Logging, Version=5.0.37.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Logging.5.0.37\lib\net471\JXTNext.Sitefinity.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="LinqToTwitter, Version=2.1.9.0, Culture=neutral, PublicKeyToken=957107be965c25d9, processorArchitecture=MSIL">
       <HintPath>..\packages\linqtotwitterNET40.2.1.9.0\lib\net40\LinqToTwitter.dll</HintPath>
     </Reference>
@@ -871,23 +874,6 @@
     <Content Include="AdminApp\assets\auth\oidc-client.min.js" />
     <Content Include="AdminApp\assets\auth\silent-renew.html" />
     <Content Include="AdminApp\assets\auth\silent-renew.js" />
-    <Content Include="AdminApp\assets\icons\apple-touch-icon-114x114.png" />
-    <Content Include="AdminApp\assets\icons\apple-touch-icon-120x120.png" />
-    <Content Include="AdminApp\assets\icons\apple-touch-icon-144x144.png" />
-    <Content Include="AdminApp\assets\icons\apple-touch-icon-152x152.png" />
-    <Content Include="AdminApp\assets\icons\apple-touch-icon-57x57.png" />
-    <Content Include="AdminApp\assets\icons\apple-touch-icon-60x60.png" />
-    <Content Include="AdminApp\assets\icons\apple-touch-icon-72x72.png" />
-    <Content Include="AdminApp\assets\icons\apple-touch-icon-76x76.png" />
-    <Content Include="AdminApp\assets\icons\favicon-128x128.png" />
-    <Content Include="AdminApp\assets\icons\favicon-16x16.png" />
-    <Content Include="AdminApp\assets\icons\favicon-196x196.png" />
-    <Content Include="AdminApp\assets\icons\favicon-32x32.png" />
-    <Content Include="AdminApp\assets\icons\favicon-96x96.png" />
-    <Content Include="AdminApp\assets\icons\mstile-144x144.png" />
-    <Content Include="AdminApp\assets\icons\mstile-150x150.png" />
-    <Content Include="AdminApp\assets\icons\mstile-310x310.png" />
-    <Content Include="AdminApp\assets\icons\mstile-70x70.png" />
     <Content Include="AdminApp\assets\js\kendo-editor\kendo.custom.min.js" />
     <Content Include="AdminApp\assets\js\monaco-editor\vs\base\worker\workerMain.js" />
     <Content Include="AdminApp\assets\js\monaco-editor\vs\basic-languages\src\bat.js" />
@@ -1097,7 +1083,9 @@
     <Content Include="App_Data\RadSpell\fr-FR.tdf" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AdminApp\assets\icons\" />
     <Folder Include="App_Data\Sitefinity\" />
+    <Folder Include="ResourcePackages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminApp\assets\js\kendo-editor\kendo.custom.min.js.map" />
@@ -1120,7 +1108,6 @@
     <Content Include="SampleTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
     </Content>
-    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.ArticleListBanner.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

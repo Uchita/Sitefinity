@@ -92,7 +92,7 @@
                     {
                         <div class="row form-group">
                             <div class="col-md-4 text-right">
-                                <label>@item.Name</label>
+                                <label>@Html.Resource("SalaryTitle")</label>
                             </div>
                             <div class="col-md-8">
                                 <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden" />
@@ -279,7 +279,7 @@
                 var displayTitle = item.Name;
                 if (displayTitle == 'CountryLocationArea')
                     displayTitle = '@Html.Resource("JobDetailLocation", "JxtAuthoringResources")';
-                else if (displayTitle == 'Classfications')
+                else if (displayTitle == 'Classifications')
                     displayTitle = '@Html.Resource("Classifications", "Labels")';
                 else if (displayTitle == 'WorkType')
                     displayTitle = '@Html.Resource("JobDetailWorkType", "JxtAuthoringResources")';

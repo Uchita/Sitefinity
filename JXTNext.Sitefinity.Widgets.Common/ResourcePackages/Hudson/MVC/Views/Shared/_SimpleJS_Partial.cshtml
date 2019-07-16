@@ -1,5 +1,6 @@
 ﻿@model dynamic
-@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Web;
 @using JXTNext.Sitefinity.Common.Helpers;
 @{
     var siteSettingsHelper = new SiteSettingsHelper();
@@ -28,7 +29,7 @@
                             <option value="-1" selected>@Html.Resource("JobFilterNoSalary", "JxtAuthoringResources")</option>
                             @foreach (var salaryItem in item.Filters)
                             {
-                                <option value="@salaryItem.ID">@salaryItem.Label</option>
+                                <option value="@salaryItem.ID" data-slug="@salaryItem.Slug">@salaryItem.Label</option>
                             }
 
                         </select>
@@ -61,15 +62,22 @@
     </div>
 }
 
-<script type="text/javascript">
+<script type="text/javascript">    
+    var currentPage = "@SitefinitySiteMap.GetCurrentNode().Url.ToString().Substring(1)";
+
     $(document).ready(function () {
 
          @{
                 var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
                 var json = serializer.Serialize(Model);
           }
+
+        JobSearchFilter.filterItemsDelimeter = '@JXTNext.Sitefinity.Common.Constants.JobConstants.FilterItemsDelimeter';
+        JobSearchFilter.filterHierarchyDelimeter = '@JXTNext.Sitefinity.Common.Constants.JobConstants.FilterHierarchyDelimeter';
+        JobSearchFilter.urlClassificationIdentifier = '@JXTNext.Sitefinity.Common.Constants.JobConstants.UrlClassificationIdentifier';
+        JobSearchFilter.urlCountryIdentifier = '@JXTNext.Sitefinity.Common.Constants.JobConstants.UrlCountryIdentifier';
+
         var optionsArray = {};
-        var queryStringArr = [];
         var prefixIdText = '';
         var typingTimer;
         var doneTypingInterval = 500;
@@ -182,43 +190,7 @@
                 //$('.sm-wrapper').fadeToggle('fast');
                 $('.sm-wrapper').toggleClass('fake-hide-reverse');
             });
-        }
-
-
-        function makeQueryString(obj, prefix, isArray) {
-
-            for (var p in obj) {
-                if (obj.hasOwnProperty(p)) {
-                    var k, v;
-                    if (isArray)
-                        k = prefix ? prefix + "%5B" + p + "%5D" : p, v = obj[p];
-                    else {
-                        if (prefix.match(".values$"))
-                            k = prefix ? prefix : p, v = obj[p];
-                        else
-                            k = prefix ? prefix + "." + p + "" : p, v = obj[p];
-                    }
-
-                    if (v !== null && typeof v === "object") {
-                        if (Array.isArray(v)) {
-                            if (k.match(".values$"))
-                                makeQueryString(v, k, false);
-                            else
-                                makeQueryString(v, k, true);
-                        } else {
-                            makeQueryString(v, k, false);
-                        }
-                    } else {
-                        if (v === null || v === "undefined")
-                            v = "";
-
-                        var query = k + "=" + v;
-                        queryStringArr.push(query);
-                    }
-                }
-            }
-            return queryStringArr.join("&");
-        };
+        }        
 
         var model = @Html.Raw(json);
         if (model != null && model != "undefined") {
@@ -277,11 +249,13 @@
                 if ($('.SalaryRangeSelect').val() != -1) {
                     return true;
                 }
-            }
+            }            
 
             function eachClickFilter() {
                 var filterModel = {};
                 filterModel.Filters = [];
+
+                var seoUrlParts = new JobSearchFilter.SeoUrlPartsModel();
 
                 //locking the filter till the result loads
                 $('.filter-outer-wrapper').addClass('lockoverlay');
@@ -289,6 +263,25 @@
                 $.each(optionsArray, function (id, item) {
                     var selectedIdsCount = $("#" + id).GetSelectedElementIds().length;
                     var trimmedId = id.slice(prefixIdText.length);
+
+                    if (trimmedId == 'Classifications') {
+                        JobSearchFilter.createClassificationSeoPart(seoUrlParts, filterModel, $("#" + id).GetSelectedElementSlugs());
+
+                        return;
+                    }
+
+                    if (trimmedId == 'CountryLocationArea') {
+                        JobSearchFilter.createLocationSeoPart(seoUrlParts, filterModel, $("#" + id).GetSelectedElementSlugs());
+
+                        return;
+                    }
+
+                    if (trimmedId == 'WorkType') {
+                        JobSearchFilter.createWorkTypeSeoPart(seoUrlParts, filterModel, $("#" + id).GetSelectedElementSlugs());
+
+                        return;
+                    }
+
                     if (filterModel.Filters.length > 0) {
                         let flag = false;
 
@@ -308,16 +301,26 @@
                     }
                 });
 
-                if (isSalaryExists && isSlarySelected){
-                    if (modelSalary != null && modelSalary != undefined && isSalaryChanged == false && (modelSalary.LowerRange > salary.LowerRange || modelSalary.UpperRange < salary.UpperRange) && modelSalary.TargetValue == $('.SalaryRangeSelect').val() ) {
-                        filterModel.Salary = modelSalary;
+                if (isSalaryExists && isSlarySelected) {
+                    var salarySlug = $('.SalaryRangeSelect').find(':selected').attr('data-slug');
+
+                    if (modelSalary != null && modelSalary != undefined && isSalaryChanged == false && (modelSalary.LowerRange > salary.LowerRange || modelSalary.UpperRange < salary.UpperRange) && modelSalary.TargetValue == $('.SalaryRangeSelect').val()) {
+                        filterModel.SalaryType = salarySlug;
+                        filterModel.SalaryMin = modelSalary.LowerRange;
+                        filterModel.SalaryMax = modelSalary.UpperRange;
                     }
                     else {
-                        filterModel.Salary = salary;
+                        filterModel.SalaryType = salarySlug;
+                        filterModel.SalaryMin = salary.LowerRange;
+                        filterModel.SalaryMax = salary.UpperRange;
                     }
                 }
 
-                filterModel.Keywords = encodeURIComponent($("#selectedkeywordsfilter").val());
+                var val = $.trim($("#selectedkeywordsfilter").val());
+                if (val != '') {
+                    filterModel.Keywords = encodeURIComponent(val);
+                }
+
                 filterModel.Page = "1"; //by default page to be 1 if new filter data changes
 
 
@@ -328,13 +331,18 @@
                 }
 
                 filterModel.SortBy = $("#sortOrder").val();// We need to persist the sort order selected in job search results
-
                 var data = { filterModel: filterModel }
-                var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
-                var queryStringData = makeQueryString(filterModel, "", false);
-                var pushStateUrl = $(location).attr('pathname') + "?" + queryStringData;
+                var urlPath = currentPage + "/GetFilterSearchResultsPartial";
+                var queryStringData = JobSearchFilter.makeQueryString(filterModel, "", false);
+
+                var pushStateUrl = currentPage;
+                if (JobSearchFilter.hasSeoUrlParts(seoUrlParts)) {
+                    pushStateUrl += '/' + JobSearchFilter.createSeoPushStateUrl(seoUrlParts, filterModel);
+                }
+                else {
+                    pushStateUrl += '?' + queryStringData;
+                }
                 window.history.pushState(data, "", pushStateUrl);
-                queryStringArr.length = 0;
                 $.ajax({
                     type: "POST",
                     cache: false,

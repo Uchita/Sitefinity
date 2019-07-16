@@ -2,6 +2,16 @@
 @using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert
 @using System;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using JXTNext.Sitefinity.Common.Helpers;
+@using System.Web;
+@{
+    var siteSettingsHelper = new SiteSettingsHelper();
+    var AdvancedSearchPageUrl = "/advancedsearch";
+    if (ViewBag.AdvancedSearchPageUrl != null)
+    {
+        AdvancedSearchPageUrl = ViewBag.AdvancedSearchPageUrl;
+    }
+}
 
 <div id="createalert-widget">
     <h2><span class="alert-icon far fa-bell"></span>@Html.Resource("JobAlerts")</h2>
@@ -9,7 +19,7 @@
     @if (Model != null && Model.Count > 0)
     {
 
-        <table class="table table-bordered datatable">
+        <table class="table table-bordered datatable" data-pageLimitLabel="@Html.Resource("pageLimitLabel","Labels")">
             <thead>
                 <tr>
                     <th>@Html.Resource("Name")</th>
@@ -57,7 +67,7 @@
     }
     <div class="button-wrapper">
         @Html.ActionLink(Html.Resource("CreateNew"), "Create", "JobAlert", new { @class = "btn jobalert-btn" })
-        <a href="/advancedsearch" class="btn" title="New job search">@Html.Resource("NewSearch")</a>
+        <a href="@AdvancedSearchPageUrl" class="btn" title="New job search">@Html.Resource("NewSearch")</a>
     </div>
 
     <div class="popup-overlay">

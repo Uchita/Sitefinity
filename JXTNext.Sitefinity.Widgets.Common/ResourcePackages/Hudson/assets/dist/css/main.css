@@ -1,4 +1,4 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -8141,8 +8141,6 @@ header {
       header .mobile-nav.left-sidebar .nav.navbar-nav > li {
         background: #01a3a4;
         padding: 0 20px; }
-      header .mobile-nav.left-sidebar .nav.navbar-nav > li:nth-last-child(4) > a {
-        border-bottom: none; }
       header .mobile-nav.left-sidebar .nav.navbar-nav > li > a,
       header .mobile-nav.left-sidebar .nav.navbar-nav > .dropdown > a {
         text-transform: uppercase;
@@ -8209,13 +8207,37 @@ header {
         header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu a {
           background: #2e2e2e;
           color: #fff; }
-        header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu.header-top-links span {
-          position: static;
-          line-height: 1; }
+        header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu.header-top-links {
+          padding-top: 10px;
+          font-family: AkzidGroProMed, sans-serif;
+          text-transform: uppercase; }
+          header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu.header-top-links span {
+            position: static;
+            line-height: 1;
+            width: auto;
+            height: auto;
+            text-align: left;
+            color: #fff; }
+          header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu.header-top-links > span {
+            border-bottom: 1px solid;
+            display: block;
+            padding-bottom: 13px;
+            padding-top: 3px; }
+          header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu.header-top-links a {
+            padding: 0; }
+            header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu.header-top-links a + a {
+              border: none;
+              margin-left: 0; }
+              header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu.header-top-links a + a:before {
+                content: '|';
+                margin-right: 5px;
+                font-family: AkzidGroProLig, sans-serif; }
         header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu li a {
           background: none; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .timesheet-mnu a {
         padding-bottom: 15px; }
+        header .mobile-nav.left-sidebar .nav.navbar-nav .timesheet-mnu a em {
+          margin-right: 5px; }
       header .mobile-nav.left-sidebar .nav.navbar-nav .combine-mnu {
         padding: 16px 20px; }
         header .mobile-nav.left-sidebar .nav.navbar-nav .combine-mnu a {
@@ -8778,6 +8800,11 @@ select.slimtable-paging-select {
       padding-left: 10px; }
     .page-wrapper footer .postfooter-links a:hover, .page-wrapper footer .postfooter-links a:focus {
       color: #01a3a4; }
+
+.page-wrapper footer .header-top-links a:last-child {
+  display: block;
+  margin-left: 0;
+  padding-left: 0; }
 
 .page-wrapper .quick-links {
   position: fixed;
@@ -9811,6 +9838,9 @@ ul.breadcrumb {
       .page-wrapper .basic-form .input-medium {
         width: 100%;
         max-width: 275px; } }
+  .page-wrapper .basic-form select {
+    padding-left: 6px;
+    font-size: 1.5rem; }
   .page-wrapper .basic-form textarea {
     height: 115px;
     resize: none; }
@@ -10396,6 +10426,17 @@ ul.breadcrumb {
         margin-bottom: 10px;
         width: 100%; } }
 
+.addthis_toolbox .social-with-label {
+  list-style: none;
+  padding-left: 0; }
+  .addthis_toolbox .social-with-label li a {
+    color: #2e2e2e; }
+  .addthis_toolbox .social-with-label li i {
+    width: 30px;
+    color: #01a3a4; }
+  .addthis_toolbox .social-with-label li .sr-only {
+    position: static; }
+
 .page-wrapper .search-top {
   margin: 10px 0 30px 0; }
   .page-wrapper .search-top, .page-wrapper .search-top .btn {
@@ -10580,7 +10621,7 @@ ul.breadcrumb {
   line-height: 1.4;
   display: block; }
   .upload-section .displayFileName .filewrap {
-    color: #666;
+    color: #01a3a4;
     word-break: break-word; }
   .upload-section .displayFileName .removeBtn {
     background: none;

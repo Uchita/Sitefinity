@@ -1,6 +1,16 @@
 ﻿@model dynamic
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
-@using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert
+@using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert;
+@using JXTNext.Sitefinity.Common.Helpers;
+@using System.Web;
+@{
+    var siteSettingsHelper = new SiteSettingsHelper();
+    var userDashboardPageUrl = "/user-dashboard";
+    if (ViewBag.UserDashboardPageUrl != null)
+    {
+        userDashboardPageUrl = ViewBag.UserDashboardPageUrl;
+    }
+}
 
 @Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
 @Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.js"), "bottom")
@@ -9,9 +19,9 @@
 @Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/rangeSlider.css"))
 
 <div id="createalert-widget">
-    <h2><span class="alert-icon far fa-bell"></span>Edit job alert</h2>
+    <h2><span class="alert-icon far fa-bell"></span>@Html.Resource("EditJobAlertTitle")</h2>
 
-    <h3>Alert details</h3>
+    <h3>@Html.Resource("EditAlert")</h3>
 
     @if (Model != null)
     {
@@ -26,7 +36,7 @@
 
                 <div class="row form-group">
                     <div class="col-md-4 text-right">
-                        <label for="name">Job alert name*</label>
+                        <label for="name">@Html.Resource("AlertName")</label>
                     </div>
                     <div class="col-md-8">
                         <input type="hidden" name="Id" value="@Model.Id" />
@@ -36,7 +46,7 @@
 
                 <div class="row form-group">
                     <div class="col-md-4 text-right">
-                        <label for="keywords">Keywords</label>
+                        <label for="keywords">@Html.Resource("Keywords")</label>
                     </div>
                     <div class="col-md-8">
                         <input type="text" name="Keywords" id="keywords" value="@Model.Keywords" class="form-control" />
@@ -54,15 +64,19 @@
                                     var displayTitle = item.Name;
                                     if (displayTitle == "CountryLocationArea")
                                     {
-                                        displayTitle = "Location";
+                                        displayTitle = Html.Resource("JobDetailLocation", "JxtAuthoringResources");
+                                    }
+                                    else if (displayTitle == "Classifications")
+                                    {
+                                        displayTitle = Html.Resource("Classifications", "Labels");
                                     }
                                     else if (displayTitle == "WorkType")
                                     {
-                                        displayTitle = "Work Type";
+                                        displayTitle = Html.Resource("JobDetailWorkType", "JxtAuthoringResources");
                                     }
                                     else if (displayTitle == "CompanyName")
                                     {
-                                        displayTitle = "Company Name";
+                                        displayTitle = Html.Resource("JobDetailCompany", "JxtAuthoringResources");
                                     }
                                 }
                                 <label>@displayTitle</label>
@@ -79,13 +93,13 @@
                     {
                         <div class="row form-group">
                             <div class="col-md-4 text-right">
-                                <label>@item.Name</label>
+                                <label>@Html.Resource("SalaryTitle")</label>
                             </div>
                             <div class="col-md-8">
                                 <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden" />
                                 <div class="select">
                                     <select class="SalaryRangeSelect form-control">
-                                        <option value="-1" selected>Choose Salary</option>
+                                        <option value="-1" selected>@Html.Resource("ChooseSalary")</option>
                                         @foreach (var salaryItem in item.Filters)
                                         {
                                             <option value="@salaryItem.ID">@salaryItem.Label</option>
@@ -98,19 +112,19 @@
                                     var upper = salaryItem.Filters[0].Value;
                                     if (salaryItem.Label != "NA")
                                     {
-                                    <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
+                                        <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
 
-                                        <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
-                                             data-cur_min="@lower" data-cur_max="@upper">
+                                            <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
+                                                 data-cur_min="@lower" data-cur_max="@upper">
 
-                                            <div class="bar"></div>
-                                            <div class="leftGrip"></div>
-                                            <div class="rightGrip"></div>
+                                                <div class="bar"></div>
+                                                <div class="leftGrip"></div>
+                                                <div class="rightGrip"></div>
+                                            </div>
+                                            <div class="leftLabel">$<span>@lower</span></div>
+                                            <div class="rightLabel">$<span>@upper</span></div>
+
                                         </div>
-                                        <div class="leftLabel">$<span>@lower</span></div>
-                                        <div class="rightLabel">$<span>@upper</span></div>
-
-                                    </div>
                                     }
                                 }
                             </div>
@@ -123,15 +137,17 @@
                         <div class="checkbox clearfix">
                             <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('')" oninvalid='this.setCustomValidity("@privacyErrMsg")'>
                             <span class="checkbox-icon fas fa-check"></span>
-                            I agree to Hudson's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                            <a href="/privacy-policy" target="_blank">
+                                @Html.Resource("PrivacyPolicyLbl", "Labels")
+                            </a>
                         </div>
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-4 text-right"></div>
                     <div class="col-md-8">
-                        <input type="submit" value="SAVE" class="btn-primary" />
-                        <a href="/user-dashboard" class="btn">Cancel</a>
+                        <input type="submit" value="@Html.Resource("Save")" class="btn-primary" />
+                        <a href="@userDashboardPageUrl" class="btn">@Html.Resource("Cancel")</a>
                     </div>
                 </div>
 
@@ -254,7 +270,7 @@
             });
         });
 
-        //especiallyy for mobile, sliders are not taking the full width / the correct values 
+        //especiallyy for mobile, sliders are not taking the full width / the correct values
         //also when changing orientation the width slider width remains same
         $(window).resize(function () {
             $('.nstSlider').each(function (i, obj) {
@@ -268,11 +284,13 @@
             $.each(filterData.Data, function (index, item) {
                 var displayTitle = item.Name;
                 if (displayTitle == 'CountryLocationArea')
-                    displayTitle = 'Location';
+                    displayTitle = '@Html.Resource("JobDetailLocation", "JxtAuthoringResources")';
+                else if (displayTitle == 'Classifications')
+                    displayTitle = '@Html.Resource("Classifications", "Labels")';
                 else if (displayTitle == 'WorkType')
-                    displayTitle = 'Work Type';
+                    displayTitle = '@Html.Resource("JobDetailWorkType", "JxtAuthoringResources")';
                 else if (displayTitle == 'CompanyName')
-                    displayTitle = 'Company Name';
+                    displayTitle = '@Html.Resource("JobDetailCompany", "JxtAuthoringResources")';
 
                 optionsArray[item.Name] = {
                     title: displayTitle,

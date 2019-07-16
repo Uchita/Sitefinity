@@ -27,7 +27,7 @@
             if (!string.IsNullOrEmpty(item.Label) && item.Show == true)
             {
                 _itemsList.Add(item.Label);
-                _idNamesLevelsPair.Add(item.ID, new { name = item.Label, level = item.Level });
+                _idNamesLevelsPair.Add(item.ID, new { name = item.Label, level = item.Level, slug = item.Slug });
             }
             if (item.Filters != null)
                 GetValuesList(item.Filters);
@@ -39,7 +39,7 @@
 
 @if (Model != null)
 {
-    <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();" class="jn_jobSearch jn_search hz-listing cs-layout">
+    <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit(this);" class="jn_jobSearch jn_search hz-listing cs-layout">
 
         <div class="field-wrapper basic-form no-marg-top">
             @{
@@ -76,7 +76,7 @@
                                     <option value="" disabled selected>@item.PlaceholderText</option>
                                     @foreach (dynamic itemName in _idNamesLevelsPair)
                                     {
-                                        <option value="@itemName.Key">@itemName.Value.name</option>
+                                        <option value="@itemName.Key" data-slug="@itemName.Value.slug">@itemName.Value.name</option>
                                     }
                                 </select>
                             </div>
@@ -94,16 +94,16 @@
                                     <label class="form-label" for="salaryFilter">@item.FilterType</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <div class="hidden" id="divSalary"></div>
                                     <div class="select">
-                                        <select class="SalaryRangeSelect form-control" id="salaryFilter">
+                                        <select class="SalaryRangeSelect form-control" id="salaryFilter" name="Salary.TargetValue">
                                             <option value="-1" selected>Choose Salary</option>
                                             @foreach (var salaryItem in item.Filters)
                                             {
-                                                <option value="@salaryItem.ID">@salaryItem.Label</option>
+                                                <option value="@salaryItem.ID" data-slug="@salaryItem.Slug">@salaryItem.Label</option>
                                             }
                                         </select>
                                     </div>
+                                    <div class="hidden" id="divSalary"></div>
                                     @foreach (var salaryItem in item.Filters)
                                     {
                                         var lower = 0;
@@ -202,15 +202,16 @@
     var optionsArray = {};
     var isSalaryExists = false;
     var isSalarySelected = false;
-    var salary = { RootName: 'Salary', TargetValue: '', LowerRange: 15000, UpperRange: 300000 };
+    var salary = { RootName: 'Salary', TargetValue: '', LowerRange: 15000, UpperRange: 300000 };    
 
-    function preventSubmit() {
-         $.each(optionsArray,function (id, item) {
-             $($("#" + id).GetSelectedElementIds()).each(function (index, value) {                 
-                $("#selected-" + id).append('<option value="' + value + '" selected="true">' + value + '</option>')
+    function preventSubmit(form) {
+        $.each(optionsArray, function (id, item) {
+             $("#selected-" + id).html('');
+             $($("#" + id).GetSelectedElementIdsAndSlugs()).each(function (index, value) {                 
+                $("#selected-" + id).append('<option value="' + value.id + '" data-slug="' + value.slug + '" selected="true">' + value.id + '</option>')
             });
         });                
-        return true;
+        return JobSearchFilter.submitSearchForm(form);
     };
 
     $(document).ready(function () {
@@ -218,6 +219,11 @@
                 var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
                 var json = serializer.Serialize(Model);
           }
+
+        JobSearchFilter.filterItemsDelimeter = '@JXTNext.Sitefinity.Common.Constants.JobConstants.FilterItemsDelimeter';
+        JobSearchFilter.filterHierarchyDelimeter = '@JXTNext.Sitefinity.Common.Constants.JobConstants.FilterHierarchyDelimeter';
+        JobSearchFilter.urlClassificationIdentifier = '@JXTNext.Sitefinity.Common.Constants.JobConstants.UrlClassificationIdentifier';
+        JobSearchFilter.urlCountryIdentifier = '@JXTNext.Sitefinity.Common.Constants.JobConstants.UrlCountryIdentifier';
 
         var model = @Html.Raw(json);
         if (model != null && @Html.Raw(json) != "undefined") {
@@ -332,9 +338,8 @@
 
         function salaryValues() {
             if (isSalarySelected) {
-                document.getElementById("divSalary").innerHTML = '<input type="hidden" name="Salary.RootName" id="SalaryRootName" /><input type="hidden" name="Salary.TargetValue" id="SalaryTargetValue" /><input type="hidden" name="Salary.LowerRange" id="SalaryLowerRange" /><input type="hidden" name="Salary.UpperRange" id="SalaryUpperRange" />';
+                document.getElementById("divSalary").innerHTML = '<input type="hidden" name="Salary.RootName" id="SalaryRootName" /><input type="hidden" name="Salary.LowerRange" id="SalaryLowerRange" /><input type="hidden" name="Salary.UpperRange" id="SalaryUpperRange" />';
                 document.getElementById("SalaryRootName").value = salary.RootName;
-                document.getElementById("SalaryTargetValue").value = salary.TargetValue;
                 document.getElementById("SalaryLowerRange").value = salary.LowerRange;
                 document.getElementById("SalaryUpperRange").value = salary.UpperRange;
             }

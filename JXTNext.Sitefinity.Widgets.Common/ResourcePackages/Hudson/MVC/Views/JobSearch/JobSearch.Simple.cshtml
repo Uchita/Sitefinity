@@ -17,7 +17,7 @@
             if (!string.IsNullOrEmpty(item.Label) && item.Show == true)
             {
                 _itemsList.Add(item.Label);
-                _idNamesLevelsPair.Add(item.ID, new { name = item.Label, level = item.Level });
+                _idNamesLevelsPair.Add(item.ID, new { name = item.Label, level = item.Level, slug = item.Slug });
             }
             if (item.Filters != null)
                 GetValuesList(item.Filters);
@@ -33,7 +33,7 @@
     var singleDropdownControls = Model.Where(m => m.ControlType == "DropDown Single");
     var listControls = Model.Where(m => m.ControlType == "List").Take(2).ToList();
 
-    <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();" class="@ViewData["CssClass"]">
+    <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit(this);" class="@ViewData["CssClass"]">
         <div class="job-search">
             <div class="container">
                 <div class="row">
@@ -72,7 +72,7 @@
                                             <option value="" selected>@dropdownControl.PlaceholderText</option>
                                             @foreach (dynamic itemName in _idNamesLevelsPair)
                                             {
-                                                <option value="@itemName.Key">@itemName.Value.name</option>
+                                                <option value="@itemName.Key" data-slug="@itemName.Value.slug">@itemName.Value.name</option>
                                             }
                                         </select>
                                     </div>
@@ -156,16 +156,16 @@
 </style>
 
 <script type="text/javascript">
-    var optionsArray = {};
+    var optionsArray = {};    
 
-    function preventSubmit() {
+    function preventSubmit(form) {
          $.each(optionsArray,function (id, item) {
             $($("#" + id).GetSelectedElementIds()).each(function (index, value) {
                 $("#selected-" + id).append('<option value="' + value + '" selected="true">' + value + '</option>')
             });
         });
 
-        return true;
+        return JobSearchFilter.submitSearchForm(form);
     };
 
     $(document).ready(function () {
@@ -173,6 +173,11 @@
                 var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
                 var json = serializer.Serialize(Model);
           }
+
+        JobSearchFilter.filterItemsDelimeter = '@JXTNext.Sitefinity.Common.Constants.JobConstants.FilterItemsDelimeter';
+        JobSearchFilter.filterHierarchyDelimeter = '@JXTNext.Sitefinity.Common.Constants.JobConstants.FilterHierarchyDelimeter';
+        JobSearchFilter.urlClassificationIdentifier = '@JXTNext.Sitefinity.Common.Constants.JobConstants.UrlClassificationIdentifier';
+        JobSearchFilter.urlCountryIdentifier = '@JXTNext.Sitefinity.Common.Constants.JobConstants.UrlCountryIdentifier';
 
         var model = @Html.Raw(json);
         if (model != null && @Html.Raw(json) != "undefined") {

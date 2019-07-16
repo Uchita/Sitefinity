@@ -332,7 +332,7 @@
                 filterModel.SortBy = $("#sortOrder").val();// We need to persist the sort order selected in job search results
                 
                 var data = { filterModel: filterModel }
-                var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial_WithLeftFilterSelected";
+                var urlPath = window.location.origin + "/GetFilterSearchResultsPartial_WithLeftFilterSelected";
                 var queryStringData = makeQueryString(filterModel, "", false);
                 var pushStateUrl = $(location).attr('pathname') + "?" + queryStringData;
 

@@ -96,61 +96,61 @@
                                     <span class="text-muted">
                                         <em>
                                             @Html.Resource("phoneValidationMsg", "Labels")
-                                    </em>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col-md-3 text-right">
-                            <label class="form-label" for="password-reg">@Html.Resource("Password", "Labels")*</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input id="password-reg" type="password" name="Password" class="form-control input-medium" autocomplete="off" placeholder="Choose your password" aria-describedby="password-message" />
-                            <span class="hidden alert alert-danger error-message wrongPassword-message">
-                                @Html.Resource("InvalidPassword", "ErrorMessages")
-                            </span>
-                            <span class="hidden alert alert-danger error-message emptyPassword-message">
-                                @Html.Resource("PasswordCannotBeEmpty", "Labels")
-                            </span>
-                            <span id="password-guide" class="text-muted">
-                                <em>@Html.Resource("passwordRequirementMsg", "Labels")</em>
-                            </span>
-                            <div id="forgot-password" class="form-group forgot-password hidden">
-                                <a href="/sign-in/ForgotPassword/">@Html.Resource("ForgottenPasword", "LoginFormResources")</a>
-                            </div>
-
-                            <div class="form-group" id="rememberme-block">
-                                <div class="checkbox clearfix">
-                                    <input checked="checked" id="RememberMe" name="RememberMe" type="checkbox" value="true">
-                                    <span class="checkbox-icon fas fa-check"></span>
-                                    @Html.Resource("RememberMe", "LoginFormResources")
+                                        </em>
+                                    </span>
                                 </div>
                             </div>
+                        </div>
 
-                            <input type="button" id="sign-in-btn" class="form-group hidden btn btn-primary" data-jobid="@Model.JobId" value="@Html.Resource("JobApplicationSignIn", "JobApplicationResources")" />
-                        </div>
-                    </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 text-right">
+                                <label class="form-label" for="password-reg">@Html.Resource("Password", "Labels")*</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input id="password-reg" type="password" name="Password" class="form-control input-medium" autocomplete="off" placeholder="@Html.Resource("Password", "Labels")" aria-describedby="password-message" />
+                                <span class="hidden alert alert-danger error-message wrongPassword-message">
+                                    @Html.Resource("InvalidPassword", "ErrorMessages")
+                                </span>
+                                <span class="hidden alert alert-danger error-message emptyPassword-message">
+                                    @Html.Resource("PasswordCannotBeEmpty", "Labels")
+                                </span>
+                                <span id="password-guide" class="text-muted">
+                                    <em>@Html.Resource("passwordRequirementMsg", "Labels")</em>
+                                </span>
+                                <div id="forgot-password" class="form-group forgot-password hidden">
+                                    <a href="/sign-in/ForgotPassword/">@Html.Resource("ForgottenPasword", "LoginFormResources")</a>
+                                </div>
 
-                    <div class="row form-group reg-field hidden">
-                        <div class="col-md-3 text-right">
-                            <label class="form-label" for="ReTypePassword">@Html.Resource("ReTypePassword", "RegistrationResources")*</label>
+                                <div class="form-group" id="rememberme-block">
+                                    <div class="checkbox clearfix">
+                                        <input checked="checked" id="RememberMe" name="RememberMe" type="checkbox" value="true">
+                                        <span class="checkbox-icon fas fa-check"></span>
+                                        @Html.Resource("RememberMe", "LoginFormResources")
+                                    </div>
+                                </div>
+
+                                <input type="button" id="sign-in-btn" class="form-group hidden btn btn-primary" data-jobid="@Model.JobId" value="@Html.Resource("JobApplicationSignIn", "JobApplicationResources")" />
+                            </div>
                         </div>
-                        <div class="col-md-8">
-                            <input id="ReTypePassword" type="password" name="ReTypePassword" class="form-control input-medium" placeholder="Retype your password" />
-                            <span id="password-guide-retype" class="text-muted">
-                                <em>@Html.Resource("passwordRequirementMsg", "Labels")</em>
-                            </span>
-                            <div class='alert alert-danger error-message hidden'>@Html.Resource("ConfirmPasswordErrorMsg", "ErrorMessages")</div>
+
+                        <div class="row form-group reg-field hidden">
+                            <div class="col-md-3 text-right">
+                                <label class="form-label" for="ReTypePassword">@Html.Resource("ReTypePassword", "RegistrationResources")*</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input id="ReTypePassword" type="password" name="ReTypePassword" class="form-control input-medium" placeholder="@Html.Resource("ReTypePassword", "RegistrationResources")" title="@Html.Resource("ReTypePasswordMsg", "ErrorMessages")" />
+                                <span id="password-guide-retype" class="text-muted">
+                                    <em>@Html.Resource("passwordRequirementMsg", "Labels")</em>
+                                </span>
+                                <div class='alert alert-danger error-message hidden'>@Html.Resource("ConfirmPasswordErrorMsg", "ErrorMessages")</div>
+                            </div>
                         </div>
+
                     </div>
 
                 </div>
-
-            </div>
-            <div class="alert alert-info hidden" id="already-applied-info">@Html.Resource("JobAlreadyAppliedMsg", "Labels")</div>
-        }
+                <div class="alert alert-info hidden" id="already-applied-info">@Html.Resource("JobAlreadyAppliedMsg", "Labels")</div>
+            }
             <!-- Upload section -->
             <div class="upload-section">
 
@@ -297,7 +297,7 @@
 
                                     <div class="uploadfield-wrap browse-upload">
                                         <input type="file" id="@Model.ApplicationAttachments[2].AttachementFileUploadKey" name="@Model.ApplicationAttachments[2].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.rtf,.html,.htm,.xhtml" />
-                                        <small class="lbl">Browse</small>
+                                        <small class="lbl">@Html.Resource("JobApplicationBrowse", "JxtAuthoringResources")</small>
                                     </div>
                                     @if (!Model.HideDropBox)
                                     {
@@ -342,13 +342,13 @@
                             <div class="col-xs-12 col-md-8">
                                 <div class="checkbox clearfix">
 
-                                    <input name="privacypolicy" title="Please agree to Hudson's privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Please agree to Hudson\'s privacy policy');" type="checkbox" value="agree">
+                                    <input name="privacypolicy" title="Please agree to Hudson's privacy policy" class="valid" id="privacypolicy" required="" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid="this.setCustomValidity('@Html.Resource("PolicyNameRequiredErrorMessage", "ErrorMessages")');" type="checkbox" value="agree">
                                     <span class="checkbox-icon fas fa-check"></span>
                                     <a href="/privacy-policy" target="_blank">
                                         @Html.Resource("PrivacyPolicyLbl", "Labels")
                                     </a>
                                 </div>
-                                <input id="apply" type="submit" value="Apply Now" class="btn btn-block btn-primary" disabled />
+                                <input id="apply" type="submit" value="@Html.Resource("ApplyNowButton","Labels")" class="btn btn-block btn-primary" disabled />
                             </div>
                         </div>
 
@@ -563,7 +563,7 @@
                  }
                  $(".resume-message").addClass('hidden');
                  //hiding the upload section icons
-                 $(".resume-name").append('<span class="removeBtn">remove</span>');
+                 $(".resume-name").append('<span class="removeBtn">' + removeStr +'</span>');
                  $(this).parents('.box').addClass('hasFile');
                  //hiding resume upload error message
                  $(".resume-message, .resume-select-message").addClass('hidden');
@@ -585,7 +585,7 @@
                 $(this).parent('.box').removeClass('hasFile');
             } else {
                 $(".coverletter-name .filewrap").text(coverletterBrowseName);
-                $(".coverletter-name").append('<span class="removeBtn">remove</span>');
+                $(".coverletter-name").append('<span class="removeBtn">' + removeStr +'</span>');
                 $(this).parents('.box').addClass('hasFile');
             }
          });
@@ -602,7 +602,7 @@
                  documentsSelectedType = "";
              } else {
                  $(".documents-name .filewrap").text(docFileName);
-                 $(".documents-name").append('<span class="removeBtn">remove</span>');
+                 $(".documents-name").append('<span class="removeBtn">' + removeStr +'</span>');
                  $(this).parents('.box').addClass('hasFile');
              }
          });
@@ -623,6 +623,9 @@
              }
          });
 
+         var selectResumeStr = '@Html.Resource("selectResume")';
+         var removeStr = '@Html.Resource("Remove","Labels")';
+
          function processProfileResumeJsonData(data) {
              resumes = data;
              var rows = '';
@@ -635,7 +638,7 @@
              if (rows.length) {
                  $('#user-profile-resume-list').html(rows);
              } else {
-                 $('#user-profile-resume-list').html('<option val="0">SELECT YOUR RESUME</option>');
+                 $('#user-profile-resume-list').html('<option val="0">' + selectResumeStr + '</option>');
              }
          }
 
@@ -657,7 +660,7 @@
              $('#rememberme-block').removeClass('hidden');
              $('.reg-field').addClass('hidden');
              $('#password-guide').addClass('hidden');
-             $('#password-reg').attr('placeholder', "Enter your password");
+             $('#password-reg').attr('placeholder', '@Html.Resource("passwordHaveAcc","RegistrationResources")');
              $('.loginwith_socialmedia').show();
 
              $('#ReTypePassword').prop('required', false);
@@ -679,12 +682,12 @@
              $('#lastname-reg').prop('required', true);
 
              $('#password-reg').prop('pattern', "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
-             $('#password-reg').prop('title', "Your password must contain at least one number, one uppercase and lowercase letter, and 8 or more characters.");
+             $('#password-reg').prop('title', '@Html.Resource("passwordRequirementMsg", "Labels")');
 
              $('#password-guide').addClass('hidden');
 
              $('#strength-wrap').show();
-             $('#password-reg').attr('placeholder', "Choose your password").val('');
+             $('#password-reg').attr('placeholder', '@Html.Resource("ChoosePassword","RegistrationResources")').val('');
              $('#forgot-password').addClass('hidden');
              $('#rememberme-block').addClass('hidden');
              $('.reg-field').removeClass('hidden');
@@ -1072,7 +1075,7 @@
                         $('#uploadResumeJson').val(stringyModel);
                         $("#resume-selected-type").val(resumeSelectedType);
                         $('.resume-name .filewrap').text(files[0].name);
-                        $(".resume-name").append('<span class="removeBtn">remove</span>');
+                        $(".resume-name").append('<span class="removeBtn">' + removeStr +'</span>');
                         $(".resume-name").parents('.box').addClass('hasFile');
 
                         if (userLoggedInParamFromViewbag == 'True') {
@@ -1097,7 +1100,7 @@
                             $('#application-coverletter').val('');
                             $("#coverletter-selected-type").val(coverLetterSelectedType);
                             $('.coverletter-name .filewrap').text(files[0].name);
-                            $(".coverletter-name").append('<span class="removeBtn">remove</span>');
+                            $(".coverletter-name").append('<span class="removeBtn">' + removeStr +'</span>');
                             $(".coverletter-name").parents('.box').addClass('hasFile');
                         }
 
@@ -1113,7 +1116,7 @@
                             $('#application-documents').val('');
                             $("#documents-selected-type").val(documentsSelectedType);
                             $('.documents-name .filewrap').html(files[0].name);
-                            $(".documents-name").append('<span class="removeBtn">remove</span>');
+                            $(".documents-name").append('<span class="removeBtn">' + removeStr +'</span>');
                             $(".documents-name").parents('.box').addClass('hasFile');
                         }
 
@@ -1168,7 +1171,7 @@
                      $('#application-documents').val('');
                      $("#documents-selected-type").val(documentsSelectedType);
                      $('.documents-name .filewrap').html(files[0].name);
-                     $(".documents-name").append('<span class="removeBtn">remove</span>');
+                     $(".documents-name").append('<span class="removeBtn">' + removeStr +'</span>');
                      $(".documents-name").parents('.box').addClass('hasFile');
                  }
 
@@ -1372,7 +1375,7 @@
                         $('#application-resume').val('');
                         $("#resume-selected-type").val(resumeSelectedType);
                         $('.resume-name .filewrap').text(name);
-                        $(".resume-name").append('<span class="removeBtn">remove</span>');
+                        $(".resume-name").append('<span class="removeBtn">' + removeStr +'</span>');
                         $(".resume-name").parents('.box').addClass('hasFile');
                         if (userLoggedInParamFromViewbag == 'True') {
                             $("#MySavedResumes").val('0');
@@ -1395,7 +1398,7 @@
                             $('#application-coverletter').val('');
                             $("#coverletter-selected-type").val(coverLetterSelectedType);
                             $('.coverletter-name .filewrap').text(name);
-                            $(".coverletter-name").append('<span class="removeBtn">remove</span>');
+                            $(".coverletter-name").append('<span class="removeBtn">' + removeStr +'</span>');
                             $(".coverletter-name").parents('.box').addClass('hasFile');
                         }
 
@@ -1411,7 +1414,7 @@
                             $('#application-documents').val('');
                             $("#documents-selected-type").val(documentsSelectedType);
                             $('.documents-name .filewrap').text(name);
-                            $(".documents-name").append('<span class="removeBtn">remove</span>');
+                            $(".documents-name").append('<span class="removeBtn">' + removeStr +'</span>');
                             $(".documents-name").parents('.box').addClass('hasFile');
                         }
 

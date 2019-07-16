@@ -1232,7 +1232,7 @@ header {
                 padding: 0 20px;
             }
             & > li:nth-last-child(4) > a{
-                border-bottom: none;
+                //border-bottom: none;
                 //border-top: 1px solid #d7d7d7;
             }
 
@@ -1345,9 +1345,34 @@ header {
                     color: $brightColor;
                 }
                 &.header-top-links{
+                    padding-top: 10px;
+                    font-family: $font-family-medium;
+                    text-transform: uppercase;
                     span{
                         position: static;
                         line-height: 1;
+                        width: auto;
+                        height: auto;
+                        text-align: left;
+                        color: $brightColor;
+                    }
+                    > span{
+                        border-bottom: 1px solid;
+                        display: block;
+                        padding-bottom: 13px;
+                        padding-top: 3px;
+                    }
+                    a{
+                        padding:0; 
+                        + a{
+                            border:none;
+                            margin-left: 0;
+                            &:before{
+                                content: '|';
+                                margin-right: 5px;
+                                font-family: $font-family-light;
+                            }
+                        }    
                     }
                 }
                 li a{
@@ -1356,6 +1381,9 @@ header {
             }
             .timesheet-mnu a{
                 padding-bottom: 15px;
+                em{
+                    margin-right: 5px;
+                }
             }
             .combine-mnu{
                 padding: 16px 20px;
@@ -2179,6 +2207,14 @@ select.slimtable-paging-select {
                 }
             }
         }
+
+        .header-top-links{
+            a:last-child{
+                display: block;
+                margin-left: 0;
+                padding-left: 0;
+            }
+        }  
     }
 
     .quick-links {

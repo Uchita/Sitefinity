@@ -178,7 +178,7 @@
             }
 
             var parm = { JobId: jobid };
-            var urlPath = $(location).attr('pathname') + ajaxActionName;
+            var urlPath = window.location.origin + ajaxActionName;
             var self = $(this);
             $.ajax({
                 type: 'POST',
@@ -255,7 +255,7 @@
 
         function processSavedJobs() {
             var parm = { };
-            var urlPath = $(location).attr('pathname') + "/GetAllSavedJobs";
+            var urlPath = window.location.origin + "/GetAllSavedJobs";
             var self = $(this);
             $.ajax({
                 type: 'POST',
@@ -316,7 +316,7 @@
 
 
             var alertData = { filterModel: filterModel, email: email };
-            var urlPath = $(location).attr('pathname') + "/CreateAnonymousJobAlert";
+            var urlPath = window.location.origin + "/CreateAnonymousJobAlert";
             
             $.ajax({
                 type: 'POST',
@@ -419,7 +419,7 @@
         function bindJobs(PageNumber) {
 
             var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), pageNumber: PageNumber, sortBy: sortBy };
-            var urlPath = $(location).attr('pathname') + "/GetSearchResults_WithLeftFiltersSelected";
+            var urlPath = window.location.origin + "/GetSearchResults_WithLeftFiltersSelected";
             var searchPath = $(location).attr('search');
             if (searchPath == null || searchPath == "") {
                 searchPath += ("?" + "Page=" + PageNumber);

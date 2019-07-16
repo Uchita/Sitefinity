@@ -2,9 +2,15 @@
 @using Telerik.Sitefinity.Services;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 @using JXTNext.Sitefinity.Common.Helpers;
+@using Telerik.Sitefinity.Web;
 @using System.Web;
 @{
     var siteSettingsHelper = new SiteSettingsHelper();
+    var AdvancedSearchPageUrl = "/advancedsearch";
+    if (ViewBag.AdvancedSearchPageUrl != null)
+    {
+        AdvancedSearchPageUrl = ViewBag.AdvancedSearchPageUrl;
+    }
 }
 
 @{
@@ -14,7 +20,7 @@
 }
 
 <div class="result-meta">
-    <p><span class="cur-search-count">@Html.Resource("JxtJobResult", "JxtAuthoringResources")<span class="count-num">@ViewBag.TotalCount</span> @Html.Resource("JxtJobResultPosition", "JxtAuthoringResources")</span> | <a href="/advancedsearch" title="New job search">@Html.Resource("JxtJobResultSearchJobs", "JxtAuthoringResources")</a></p>
+    <p><span class="cur-search-count">@Html.Resource("JxtJobResult", "JxtAuthoringResources")<span class="count-num">@ViewBag.TotalCount</span> @Html.Resource("JxtJobResultPosition", "JxtAuthoringResources")</span> | <a href="@ViewBag.AdvancedSearchPageUrl" title="New job search">@Html.Resource("JxtJobResultSearchJobs", "JxtAuthoringResources")</a></p>
 </div>
 
 <div class="search-top clearfix">
@@ -34,7 +40,7 @@
         else
         {
             <div>@Html.Resource("JxtCreateJobAlertTitle", "JxtAuthoringResources")</div>
-            <input type="email" id="anonycreatejobalert" value="" placeholder="Enter email address" class="jobalert-field" />
+            <input type="email" id="anonycreatejobalert" value="" placeholder="@Html.Resource("CreateJobAlertEmailPlaceholder","JxtAuthoringResources")" class="jobalert-field" />
             <a id="anon-job-alert" class="btn btn-sm ml-5" href="#" title="Create your job alert">@Html.Resource("JxtCreateJobAlert", "JxtAuthoringResources")</a>
             <div class="alert alert-info jobalert-message hidden">@Html.Resource("SuccessJobAlert", "ErrorMessages")</div>
             <div class="alert alert-danger jobalert-error-message hidden">@Html.Resource("ErrJobAlertMessage", "ErrorMessages")</div>
@@ -133,19 +139,12 @@
             </div>
             <div class="row jobCatHirarchy">
                 <div class="col-xs-12">
-                    # $.each(Classifications, function(index, item){#
                     <small class="jobCatItem">
-
-                        # for (var key in item) {#
-                        # if(key.length >= 32){#
-                        # var hrefLink = '';#
-
-                        # hrefLink = '@ViewBag.CurrentPageUrl' + '?Filters[0].rootId=' + ClassificationsRootName + '&Filters[0].values=' + key;#
-                        <a href=#:hrefLink# title="#:item[key]#">#:item[key]#</a>
-                        #}#
-                        #}#
+                        # $.each(ClassificationFilters.toJSON(), function(index, item){#
+                        # var hrefLink = '@ViewBag.CurrentPageUrl' + '?' + item;#
+                        <a href=#:hrefLink# title="#:index#">#:index#</a>
+                        #});#
                     </small>
-                    #});#
                 </div>
             </div>
         </div>
@@ -161,12 +160,15 @@
          var emailPattern = "^[a-zA-Z0-9_][a-zA-Z0-9!#$%&amp;'*+/=?_`{|}~-]*(?:.[a-zA-Z0-9!#$%&amp;';*+/=?_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?.)+(?:[a-zA-Z]{2,})$";
          var emptyMsg = @Html.Resource("EmailCannotBeEmpty", "ErrorMessages");
          var invalidMsg = @Html.Resource("ErrJobAlertMessage", "ErrorMessages");
-
       }
         var islogged = $("#loginVar").val(); //used in kendo template
         if (islogged === 'False') {
             islogged = '';
         }
+
+    var currentPage = "@SitefinitySiteMap.GetCurrentNode().Url.ToString().Substring(1)";
+    var saveJob = '@Html.Resource("JxtSaveJob", "JxtAuthoringResources")';
+    var jobSaved = '@Html.Resource("JxtJobSaved", "Labels")';
 
     $(document).ready(function () {
         $(document).off('click').on('click', '.save-job', function (e) {
@@ -181,7 +183,7 @@
             }
 
             var parm = { JobId: jobid };
-            var urlPath = $(location).attr('pathname') + ajaxActionName;
+            var urlPath = window.location.origin + ajaxActionName;
             var self = $(this);
             $.ajax({
                 type: 'POST',
@@ -194,11 +196,11 @@
                     if (response.Success == true) { // Job Saved
                         if (unSaveJob) {
                             self.removeClass("saved");
-                            self.text("Save job");
+                            self.text(saveJob);
                         }
                         else {
                             self.addClass("saved");
-                            self.text("Job saved");
+                            self.text(jobSaved);
                             self.attr('data-savedjobid', response.SavedJobId);
                         }
                     }
@@ -206,7 +208,7 @@
                         if ((response.Errors[0].indexOf("(401)") > -1) || (response.Errors[0].indexOf("(403)") > -1)) {
                             //alert("Please sign-in or register as a member to save a job.");
                             if ($('.popup-overlay').length) {
-                                $('.popup-overlay .info span').text('save a job');
+                                $('.popup-overlay .info span').text(saveJob);
                                 $('.popup-overlay').fadeIn('fast');
                             }
                         }
@@ -260,7 +262,7 @@
 
         function processSavedJobs() {
             var parm = { };
-            var urlPath = $(location).attr('pathname') + "/GetAllSavedJobs";
+            var urlPath = window.location.origin + "/GetAllSavedJobs";
             var self = $(this);
             $.ajax({
                 type: 'POST',
@@ -280,7 +282,7 @@
                                 if (saveJobInfo.JobId == jobid) {
 
                                     $(selfJob).addClass("saved");
-                                    $(selfJob).text("Job saved");
+                                    $(selfJob).text(jobSaved);
                                     $(selfJob).attr('data-savedjobid', saveJobInfo.SavedJobId);
                                 }
                             });
@@ -321,7 +323,7 @@
 
 
             var alertData = { filterModel: filterModel, email: email };
-            var urlPath = $(location).attr('pathname') + "/CreateAnonymousJobAlert";
+            var urlPath = window.location.origin + "/CreateAnonymousJobAlert";
 
             $.ajax({
                 type: 'POST',
@@ -426,7 +428,7 @@
         function bindJobs(PageNumber) {
 
             var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), pageNumber: PageNumber, sortBy: sortBy };
-            var urlPath = $(location).attr('pathname') + "/GetSearchResults";
+            var urlPath = window.location.origin + "/GetSearchResults";
             var searchPath = $(location).attr('search');
 
             if (searchPath == null || searchPath == "") {
@@ -452,7 +454,8 @@
 
             queryStringArr.length = 0;
             filterModel.Page = PageNumber;
-            filterModel.SortBy = sortBy;
+            filterModel.SortBy = sortBy;            
+
             var pushStateUrl = $(location).attr('pathname') + searchPath;
             var data = { filterModel: filterModel }
             window.history.pushState(data, "", pushStateUrl);

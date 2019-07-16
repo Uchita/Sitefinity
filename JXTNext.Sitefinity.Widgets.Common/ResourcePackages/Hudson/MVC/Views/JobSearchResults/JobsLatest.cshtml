@@ -5,6 +5,11 @@
 @{
     int jobOfferIndex = 0;
     var defaultLogo = "/ResourcePackages/Hudson/assets/dist/images/defaultLogo.png";
+    var AdvancedSearchPageUrl = "/advancedsearch";
+    if (ViewBag.AdvancedSearchPageUrl != null)
+    {
+        AdvancedSearchPageUrl = ViewBag.AdvancedSearchPageUrl;
+    }
 }
 
 <div class="@ViewBag.CssClass">
@@ -45,7 +50,7 @@
 
     <div class="row row-see-more">
         <div class="col-md-12">
-            <div class="text-center"><a class="btn btn-default" href="@ViewBag.JobResultsPageUrl">View all jobs</a></div>
+            <div class="text-center"><a class="btn btn-default" href="@ViewBag.AdvancedSearchPageUrl">@Html.Resource("ViewAllJobs")</a></div>
         </div>
     </div>
 </div>

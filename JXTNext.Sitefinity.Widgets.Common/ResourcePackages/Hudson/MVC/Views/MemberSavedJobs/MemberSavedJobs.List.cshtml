@@ -22,7 +22,7 @@
 {
 
     <div class="tbl-wrapper">
-        <table class="table table-bordered datatable">
+        <table class="table table-bordered datatable" data-pageLimitLabel="@Html.Resource("pageLimitLabel","Labels")">
             <thead>
                 <tr>
                     <th width="100">@Html.Resource("JobId")</th>
@@ -39,7 +39,7 @@
                         <td><a href="@ViewBag.JobDetailsPageUrl/@item.ClassificationURL/@item.JobId">@item.DisplayTitle</a></td>
                         <td>@String.Format("{0:dd MMM yyyy}", item.DateAdded)</td>
                         <td>
-                            @Html.ActionLink("Remove", "DeleteSavedJob", "MemberSavedJobs", new { savedJobId = item.Id }, new { onclick = "return confirmSaveJobDelete();", @class = "btn btn-sm btn-tag btn-danger" })
+                            @Html.ActionLink(Html.Resource("Remove"), "DeleteSavedJob", "MemberSavedJobs", new { savedJobId = item.Id }, new { onclick = "return confirmSaveJobDelete();", @class = "btn btn-sm btn-tag btn-danger" })
                         </td>
                     </tr>
                 }

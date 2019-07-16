@@ -1311,7 +1311,9 @@
     <Content Include="App_Data\RadSpell\en-US.tdf" />
     <Content Include="App_Data\RadSpell\fr-FR.tdf" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ResourcePackages\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="AdminApp\assets\js\kendo-editor\kendo.custom.min.js.map" />
     <None Include="App_Data\GeoLocation\GeoLiteCity.dat" />
@@ -1333,7 +1335,6 @@
     <Content Include="SampleTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
     </Content>
-    <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.ArticleListBanner.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

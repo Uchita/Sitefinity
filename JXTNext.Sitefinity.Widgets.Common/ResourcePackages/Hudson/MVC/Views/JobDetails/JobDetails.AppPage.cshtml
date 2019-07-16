@@ -1,16 +1,18 @@
 ﻿@using JXTNext.Sitefinity.Widgets.Job.Mvc.Models
 @model JobDetailsViewModel
 @using System.Collections.Specialized;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Web;
 
 
 @if (Model != null)
 {
-    
+
     <div class="backtoresult">
-        <a href="/job-seekers/search-results/" id="back-to-results" role="button" title="Back to Results"><span class="prev-btn"></span>Back To Results</a>
+        <a href="/job-seekers/search-results/" id="back-to-results" role="button" title="@Html.Resource("JxtBackToResults", "JxtAuthoringResources")"><span class="prev-btn"></span>@Html.Resource("JxtBackToResults", "JxtAuthoringResources")</a>
     </div>
     <div class="job-offer-details">
         <h1><span class="job-title">@Model.JobDetails.Title</span></h1>
     </div>
-  
+
 }

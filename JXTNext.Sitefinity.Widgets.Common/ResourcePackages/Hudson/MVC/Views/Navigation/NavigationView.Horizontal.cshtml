@@ -61,14 +61,14 @@
                     {
                         @MobileRootLevelNode(node)
                     }
-                    <li class="extra-mnu timesheet-mnu"><a href="/timesheets-and-payroll-process" title="Timesheets"><em class="far fa-calendar-alt"></em> Timesheets</a></li>
+
+                    <!-- timesheet menu placeholder, getting from desktop if any -->
+                    <li class="extra-mnu timesheet-mnu"></li>
 
 
-                    @* logged in out menu links *@
-                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="display:none;"><a href="/user-dashboard" title="User Dashboard">@Html.Resource("LoggedAs", "LoginStatusExtendedResources") <span data-sf-role="sf-logged-in-name"></span></a></li>
-                    <li class="extra-mnu header-top-links" data-sf-role="sf-logged-in-view" style="display:none;"><a href="/sitefinity/signout?sts_signout=true" title="Log out">Logout</a></li>
+                    @* logged in out menu links placeholder, getting from desktop widget via js *@
+                    <li class="extra-mnu header-top-links"></li>
 
-                    <li class="extra-mnu combine-mnu header-top-links" data-sf-role="sf-logged-out-view" style="display:none;"><a href="/register" title="Register">Register</a> | <a href="/sign-in" title="Sign in">Sign in</a></li>
                     <!-- site selector -->
                     <li class="dropdown extra-mnu site-switcher">
                         <a href="https://au.hudson.com/" title="Hudson Australia" class="curr-site-switcher">Hudson AU</a>
@@ -281,10 +281,22 @@
             }
         });
 
+        //get the timesheet menu link from desktop
+        if ( $('.timesheet-mnu').length && $('.header-top-left a').length )  {
+            $('.timesheet-mnu').append($('.header-top-left a').clone());
+        }
+
         //get the social links
         if ($(".header-top-social").length) {
             $('.mobile-nav li.extra-mnu.timesheet-mnu').after('<li class="extra-mnu social-mnu"></li>');
             $('.mobile-nav li.social-mnu').append($(".header-top-social").clone());
+        }
+
+        //get the login widget 
+        //check if header top (main login widget) is present && mobile navigation section has its placeholder
+        if ($('.header-top .header-top-login').length && $('.mobile-nav .header-top-links').length) {
+            var mnuItems = $('.header-top .header-top-login').clone();
+            $(mnuItems.html()).appendTo('.mobile-nav .header-top-links');
         }
 
         //get the site switch links

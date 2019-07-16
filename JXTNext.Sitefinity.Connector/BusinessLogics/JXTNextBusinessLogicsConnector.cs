@@ -509,9 +509,30 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             {
                 dynamic fieldSearch = new ExpandoObject();
                 fieldSearch.Status = 1;
-                fieldSearch.Type = jobSearch.JobType;
+                //fieldSearch.Type = jobSearch.JobType; Removed it. As Type should go with Field value
                 jobSearch.FieldSearches = fieldSearch;
             }
+
+
+            var lstType = new List<int>();
+
+            lstType.Add(0); // 0 & 1 combine normal jobs
+            lstType.Add(1);
+
+            var fieldValue = new FieldValue();
+
+            List<int?> lstCompanies = new List<int?>();
+
+            fieldValue.CompanyId = lstCompanies; //This is the old branch and that's the reason we are not getting companies list
+            fieldValue.Type = lstType;
+
+
+            List<FieldValue> listFieldValue = new List<FieldValue>();
+
+            listFieldValue.Add(fieldValue);
+
+            jobSearch.FieldValues = listFieldValue;
+
 
             jobSearch.FieldRanges = new RangeSearch() { ExpiryDate = new DateRange() { LowerRange = (long)DateTime.Now.ToUniversalTime().Subtract(UnixEpoch).TotalMilliseconds } };
             //An extra logic layer should be added to handle this model conversion

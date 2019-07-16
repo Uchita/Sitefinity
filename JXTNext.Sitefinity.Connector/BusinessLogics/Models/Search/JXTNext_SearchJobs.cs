@@ -24,9 +24,9 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
 
     public class FieldValue
     {
-        public List<int> CompanyId { get; set; }
+        public List<int> Type { get; set; }
+        public List<int?> CompanyId { get; set; }
     }
-
 
     public class JXTNext_SearchJobsResponse : ConnectorBaseResponse, ISearchJobsResponse
     {

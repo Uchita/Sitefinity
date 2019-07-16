@@ -78,7 +78,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
                         {
                             if (filter.rootId == CompanyFilterRootIdString)
                             {
-                                List<int> companyIds = new List<int>();
+                                List<int?> companyIds = new List<int?>();
                                 foreach (var company in filter.values)
                                 {
                                     if(int.TryParse(company.ItemID, out int result))

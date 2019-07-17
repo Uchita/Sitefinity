@@ -78,14 +78,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
                         {
                             if (filter.rootId == CompanyFilterRootIdString)
                             {
-                                List<int?> companyIds = new List<int?>();
+                                List<int> companyIds = new List<int>();
                                 foreach (var company in filter.values)
                                 {
                                     if(int.TryParse(company.ItemID, out int result))
                                     companyIds.Add(int.Parse(company.ItemID));
                                 }
 
-                                List<FieldValue> fieldValues = new List<FieldValue>();
+                                List<dynamic> fieldValues = new List<dynamic>();
                                 fieldValues.Add(new FieldValue() { CompanyId = companyIds });
                                 request.FieldValues = fieldValues;
 

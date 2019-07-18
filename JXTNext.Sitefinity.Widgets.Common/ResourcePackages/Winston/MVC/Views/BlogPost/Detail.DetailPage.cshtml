@@ -8,14 +8,22 @@
 
     <div class="news-list-widget">
 
+        @{
+            var imageurl = "/images/default-source/theme-images/client-philosophy.jpg";
+
+            foreach (var relatedItem in Model.Item.Fields.BlogImage)
+            {
+                if (!String.IsNullOrEmpty((string)relatedItem.Fields.ItemDefaultUrl))
+                {
+                    imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+                }
+            }
+        }
+
         <div class="news-detail-view">
-            <div class="news-detail-media">
-                <img src="/images/default-source/theme-images/client-philosophy.jpg" class="img-responsive" alt="Alternate Text" />
-            </div>
-
-
-
-
+            @*<div class="news-detail-media">
+                <img src="@imageurl" class="img-responsive" alt="@Model.Item.Fields.Title" />
+            </div>*@
 
 
 
@@ -29,7 +37,7 @@
                         @*@Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")*@
                         @Model.Item.GetDateTime("PublicationDate", "d MMM yyyy")
                         @Html.Resource("By")
-                        @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)  
+                        @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)
                         @Html.CommentsCount(string.Empty, @Model.Item.DataItem)
                     </div>
 
@@ -50,7 +58,7 @@
 
 
                 <div class="col-lg-12">
-                    <a href="/news" class="goback">< GO BACK</a>
+                    <a href="/news-and-updates" class="goback">< GO BACK</a>
                     <div class="clearfix">
 
                     </div>

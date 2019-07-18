@@ -12,6 +12,16 @@
 
         @foreach (var item in Model.Items)
         {
+
+            var imageurl = "/images/default-source/theme-images/thumbnail.jpg";
+            foreach (var relatedItem in item.Fields.BlogImage)
+            {
+                if (!String.IsNullOrEmpty((string)relatedItem.Fields.ItemDefaultUrl))
+                {
+                    imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+                }
+            }
+
             var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
 
             <li class="news-list-widget" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)item.Fields.Id)>
@@ -29,9 +39,11 @@
                     @Html.CommentsCount((string)navigateUrl, item.DataItem)
                 </div>
 
+
+
                 <div class="row">
                     <div class="col-sm-9"><p @Html.InlineEditingFieldAttributes("Summary", "ShortText")>@Html.HtmlSanitize((string)item.Fields.Summary)</p></div>
-                    <div class="col-sm-3 hidden-xs"><img src="~/images/default-source/theme-images/thumbnail.jpg" class="img-responsive" alt="Alternate Text" /></div>
+                    <div class="col-sm-3"><img src="@imageurl" class="img-responsive" alt="@item.Fields.Title" /></div>
                 </div>
 
 

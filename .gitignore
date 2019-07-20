@@ -11,6 +11,7 @@ JXTNext.Sitefinity.FileHandler/
 JXTNext.Sitefinity.Custom/
 JXTNext.Sitefinity.Connector/
 JXTNext.Sitefinity.Common/
+JXTNext.Sitefinity.Widgets.Common/ResourcePackages/
 
 # User-specific files
 *.suo

@@ -431,25 +431,32 @@
             var urlPath = window.location.origin + "/GetSearchResults";
             var searchPath = $(location).attr('search');
 
-            if (searchPath == null || searchPath == "") {
-                searchPath += ("?" + "Page=" + PageNumber);
-            }
-            else if (searchPath.indexOf("Page=") > -1) {
-                let pageIndex = searchPath.indexOf("Page=");
-                searchPath = searchPath.slice(0, pageIndex);
-                searchPath += ("Page=" + PageNumber);
-            }
-            else {
-                searchPath += ("&Page=" + PageNumber);
+            if (PageNumber > 1) {
+                if (searchPath == null || searchPath == "") {
+                    searchPath += ("?" + "Page=" + PageNumber);
+                }
+                else if (searchPath.indexOf("Page=") > -1) {
+                    let pageIndex = searchPath.indexOf("Page=");
+                    searchPath = searchPath.slice(0, pageIndex);
+                    searchPath += ("Page=" + PageNumber);
+                }
+                else {
+                    searchPath += ("&Page=" + PageNumber);
+                }
             }
 
-            if (searchPath.indexOf("SortBy=") > -1) {
-                let pageIndex = searchPath.indexOf("SortBy=");
-                searchPath = searchPath.slice(0, pageIndex);
-                searchPath += ("SortBy=" + sortBy);
-            }
-            else {
-                searchPath += ("&SortBy=" + sortBy);
+            if (sortBy != '' && sortBy != '@ViewBag.SortOrder') {
+                if (searchPath == null || searchPath == "") {
+                    searchPath += ("?" + "SortBy=" + sortBy);
+                }
+                else if (searchPath.indexOf("SortBy=") > -1) {
+                    let pageIndex = searchPath.indexOf("SortBy=");
+                    searchPath = searchPath.slice(0, pageIndex);
+                    searchPath += ("SortBy=" + sortBy);
+                }
+                else {
+                    searchPath += ("&SortBy=" + sortBy);
+                }
             }
 
             queryStringArr.length = 0;

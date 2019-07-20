@@ -771,7 +771,10 @@ var JobSearchFilter = {
             url += '/' + JobSearchFilter.createSeoPushStateUrl(seoUrlParts, filterModel);
         }
         else {
-            url += '?' + JobSearchFilter.makeQueryString(filterModel, '', false);
+            var queryString = JobSearchFilter.makeQueryString(filterModel, '', false);
+            if (queryString != '') {
+                url += '?' + queryString;
+            }
         }
 
         window.location.href = url;

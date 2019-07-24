@@ -1,5 +1,4 @@
-﻿using JXTNext.Sitefinity.Widgets.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -63,12 +62,10 @@ namespace SitefinityWebApp
 
         private List<string> GetResourcePackagesNameViewsRendering()
         {
+            var allDirs = System.IO.Directory.GetDirectories("ResourcePackages");
             List<string> viewPaths = new List<string>();
 
-            List<string> packages = new List<string>();
-            packages.AddRange(new ViewEngineRoutesConfig().ResoucePackages);
-
-            foreach (string p in packages)
+            foreach (string p in allDirs)
             {
                 viewPaths.Add("~/ResourcePackages/" + p + "/Mvc/Views/{1}/{0}.cshtml");
                 viewPaths.Add("~/ResourcePackages/" + p + "/Mvc/Views/Shared/{0}.cshtml");

@@ -1,0 +1,2 @@
+PR_TITLE_REGEX: /\[[A-Za-z][A-Za-z\d]+-\d+\]/ig
+COMMIT_MESSAGE_REGEX: /\[[A-Za-z][A-Za-z\d]+-\d+\]/ig

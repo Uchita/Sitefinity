@@ -97,16 +97,20 @@
         <div class="search-result-description">
             <div class="row">
                 <div class="col-sm-4 sc-job-meta-group">
-                    <span class="meta-location">#:CustomData["CountryLocationArea[0].Filters[0].Value"]#</span><br />
-
+                    <span class="meta-location">#:CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].Value"]#, #:CustomData["CountryLocationArea[0].Filters[0].Value"]#</span><br />
+                    # var locationArr = ["australia", "canada", "hong kong", "new zealand", "singapore", "united states"] #
+                    # var currencySal = "£" #
+                    # if( locationArr.indexOf(CustomData["CountryLocationArea[0].Filters[0].Value"].toLowerCase().trim()) >-1){ #
+                    # currencySal = "$" #
+                    # } #
                     # if( CustomData["Salary.Filters[0].Min"] != 0 && CustomData["Salary.Filters[0].Max"] != 0 ){
                     if( CustomData["Salary.Filters[0].Min"] == CustomData["Salary.Filters[0].Max"] ){
                     #<span class="meta-salary">
-                        £#:CustomData["Salary.Filters[0].Max"]#<br />#
+                        #=currencySal##:CustomData["Salary.Filters[0].Max"]#<br />#
                         }
                         else{
                         #<span class="meta-salary">
-                            £#:CustomData["Salary.Filters[0].Min"]# - £#:CustomData["Salary.Filters[0].Max"]# <br />#
+                            #=currencySal##:CustomData["Salary.Filters[0].Min"]# - #=currencySal##:CustomData["Salary.Filters[0].Max"]# <br />#
                             }
                             #<span class="salary-label">#:CustomData["Salary.Filters[0].Value"]#</span>
                         </span><br />#

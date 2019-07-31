@@ -73,8 +73,16 @@
                             </tr>
 
                             @{
+                                string[] locationArr = { "australia", "canada", "hong kong", "new zealand", "singapore", "united states" };
+                                string locationCountry = Model.JobDetails.CustomData["CountryLocationArea[0].Filters[0].Value"];
+                                var locationSubLevel = Model.JobDetails.CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].Value"];
                                 var minSal = int.Parse(Model.JobDetails.CustomData["Salary.Filters[0].Min"]);
                                 var maxSal = int.Parse(Model.JobDetails.CustomData["Salary.Filters[0].Max"]);
+                                var currencySal = "£";
+                                if (!String.IsNullOrEmpty(locationCountry) && locationArr.Contains(locationCountry.ToLower().Trim()))
+                                {
+                                    currencySal = "$";
+                                }
                             }
 
                             @if (minSal > 0 || maxSal > 0)
@@ -87,18 +95,18 @@
                                         @if (minSal == maxSal)
                                         {
 
-                                            <span class="max-sal">£@maxSal <span class="sal-type">@Model.JobDetails.CustomData["Salary.Filters[0].Value"]</span></span>
+                                            <span class="max-sal">@currencySal@maxSal <span class="sal-type">@Model.JobDetails.CustomData["Salary.Filters[0].Value"]</span></span>
                                         }
                                         else
                                         {
                                             if (minSal > 0)
                                             {
-                                                <span class="min-sal">£@minSal</span>
+                                                <span class="min-sal">@currencySal@minSal</span>
                                             }
                                             if (maxSal > 0)
                                             {
                                                 <span class="range-sep">to</span>
-                                                <span class="max-sal">£@maxSal</span>
+                                                <span class="max-sal">@currencySal@maxSal</span>
                                             }
                                             <span class="sal-type">@Model.JobDetails.CustomData["Salary.Filters[0].Value"]</span>
                                         }

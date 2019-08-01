@@ -142,6 +142,9 @@
     <Reference Include="IdentityServer3.AccessTokenValidation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
       <HintPath>..\packages\Progress.Sitefinity.IdentityServer3.AccessTokenValidation.1.3.0\lib\net45\IdentityServer3.AccessTokenValidation.dll</HintPath>
     </Reference>
+    <Reference Include="JXTNext.Sitefinity.Logging, Version=5.0.37.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Logging.5.0.37\lib\net471\JXTNext.Sitefinity.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="LinqToTwitter, Version=2.1.9.0, Culture=neutral, PublicKeyToken=957107be965c25d9, processorArchitecture=MSIL">
       <HintPath>..\packages\linqtotwitterNET40.2.1.9.0\lib\net40\LinqToTwitter.dll</HintPath>
     </Reference>

@@ -207,8 +207,8 @@
     <Reference Include="JXTNext.Sitefinity.Widgets.Feather, Version=5.0.95.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Feather.5.0.95\lib\net471\JXTNext.Sitefinity.Widgets.Feather.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Widgets.Identity, Version=5.0.95.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Identity.5.0.95\lib\net471\JXTNext.Sitefinity.Widgets.Identity.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Widgets.Identity, Version=6.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Identity.6.0.7\lib\net471\JXTNext.Sitefinity.Widgets.Identity.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.Job, Version=5.0.95.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Job.5.0.95\lib\net471\JXTNext.Sitefinity.Widgets.Job.dll</HintPath>

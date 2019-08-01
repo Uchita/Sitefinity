@@ -1,0 +1,175 @@
+@using Telerik.Sitefinity.Mvc;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+<uib-tabset class="nav-tabs-wrapper">
+
+    <uib-tab heading="@Html.Resource("General")">
+        <div class="form-group">
+            <label for="group-heading">@Html.Resource("GroupHeading")</label>
+            <input id="group-heading" type="text" ng-model="properties.GroupHeader.PropertyValue" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="background-color">@Html.Resource("BackgroundColor")</label>
+            <input id="background-color" type="text" ng-model="properties.BackgroundColor.PropertyValue" class="form-control" />
+            <input id="background-color-picker" type="color" ng-model="properties.BackgroundColor.PropertyValue" value="{{properties.BackgroundColor.PropertyValue}}" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="image-field" class="m-top-sm">@Html.Resource("BackgroundImage")</label>
+            <sf-image-field class="sf-Media--info modal-settings modal-settings-space"
+                            sf-model="properties.ImageId.PropertyValue"
+                            sf-image="selectedImage"
+                            sf-provider="properties.ImageProviderName.PropertyValue"
+                            id="image-field"
+                            sf-media-settings="@SettingsHelpers.GetMediaSettings("Image")"></sf-image-field>
+        </div>
+        <div class="form-group">
+            <h5>@Html.Resource("PrimaryAction")</h5>
+            <label for="label-text">@Html.Resource("Label")</label>
+            <input id="label-text" type="text" ng-model="properties.PrimaryActionName.PropertyValue" class="form-control" />
+            <p class="text-muted">@Html.Resource("ExampleLearnMore")</p>
+        </div>
+        <div class="form-group">
+            <label>@Html.Resource("LinkTo")</label>
+            <div class="radio m-top-none">
+                <label>
+                    <input type="radio" ng-model="properties.IsPageSelectMode.PropertyValue" ng-value="true" />
+                    @Html.Resource("PageWithinLabel")
+                </label>
+                <sf-list-selector class="label-content"
+                                  sf-page-selector
+                                  sf-selected-item-id="properties.LinkedPageId.PropertyValue"
+                                  ng-show="properties.IsPageSelectMode.PropertyValue"></sf-list-selector>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" ng-model="properties.IsPageSelectMode.PropertyValue" ng-value="false" />
+                    @Html.Resource("ExternalURL")
+                </label>
+                <div class="label-content">
+                    <input type="text" class="form-control" ng-show="!properties.IsPageSelectMode.PropertyValue" ng-model="properties.LinkedUrl.PropertyValue" />
+                    <p class="text-muted" ng-show="!properties.IsPageSelectMode.PropertyValue">@Html.Resource("ExampleUrl")</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="cardsTemplateName">@Html.Resource("Template")</label>
+            <div class="row">
+                <div class="col-xs-6">
+                    <select id="cardsTemplateName" ng-model="properties.TemplateName.PropertyValue" class="form-control">
+                        @foreach (var viewName in Html.GetViewNames("MultiCard", @"Cards\.(?<viewName>[\w\s]*)$"))
+                        {
+                            <option value="@viewName"> @viewName.SplitCamelCase()</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <expander expander-title='@Html.Resource("MoreOptions")'>
+
+            <style-dropdown selected-class="properties.CssClass.PropertyValue" view-name="properties.TemplateName.PropertyValue"></style-dropdown>
+            <div class="form-group">
+                <label for="cssClass">
+                    @Html.Resource("CssClasses")
+                </label>
+                <input id="cssClass" type="text" ng-model="properties.CssClass.PropertyValue" class="form-control" />
+            </div>
+        </expander>
+    </uib-tab>
+
+    <uib-tab heading="@Html.Resource("Cards")">
+
+        <div>
+            <div class="list-group list-group-endless" kendo-sortable k-options="sortableOptions" k-on-change="sortItems(kendoEvent)">
+                <div ng-repeat="card in cards track by $index" class="list-group-item list-group-item-draggable-2">
+                    <span ng-show="cards.length > 1" class="handler list-group-item-drag"></span>
+                    <div>
+                        <section class="row">
+                            <div class="col-md-11">
+                                <span class="form-control-highlight">@Html.Resource("Card") {{$index}} - {{card.Heading}}</span>
+                                @*<span ng-click="openCard(card)" class="form-control-highlight">@Html.Resource("Card") {{$index}} - {{card.Heading}}</span>*@
+                            </div>
+                            <div class="col-md-1 text-right">
+                                <button ng-click="removeItem($index)" type="button" class="close" aria-label="Close" tabindex="-1"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-primary pull-left" ng-click="addCard()">@Html.Resource("AddCard")</button>
+
+            <div ng-show="showAddCardPopup">
+                <div class="form-group">
+                    <label for="heading-text">
+                        @Html.Resource("Heading")
+                    </label>
+                    <input id="heading-text" type="text" class="form-control" ng-model="currentCard.Heading" />
+                </div>
+
+                <div class="form-group">
+                    <label for="description-text">@Html.Resource("Text")</label>
+                    <textarea id="description-text" class="form-control" rows="3" ng-model="currentCard.Description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="image-field" class="m-top-sm">@Html.Resource("Image")</label>
+                    <sf-image-field class="sf-Media--info modal-settings modal-settings-space"
+                                    sf-model="currentCard.ImageId"
+                                    sf-image="currentCardSelectedImage"
+                                    sf-provider="currentCard.ImageProviderName"
+                                    id="card-image-field"
+                                    sf-media-settings="@SettingsHelpers.GetMediaSettings("Image")"
+                                    ng-if="showAddCardPopup"></sf-image-field>
+                </div>
+
+                <hr class="side-to-side">
+
+                <h5>Primary action</h5>
+
+                <div class="form-group">
+                    <label for="label-text">
+                        Label
+                    </label>
+                    <input id="label-text" type="text" ng-model="currentCard.ActionName" class="form-control" />
+                    <p class="text-muted">@Html.Resource("LearnMore")</p>
+                </div>
+
+                <div class="form-group">
+
+                    <label>Link to...</label>
+                    <div class="radio m-top-none">
+                        <label>
+                            <input type="radio" ng-model="currentCard.IsPageSelectMode" ng-value="true" />
+                            @Html.Resource("PageWithinLabel")
+                        </label>
+                        <sf-list-selector class="label-content"
+                                          id="card-page-selector"
+                                          sf-page-selector
+                                          sf-selected-item-id="currentCard.LinkedPageId"
+                                          ng-if="showAddCardPopup"
+                                          ng-show="currentCard.IsPageSelectMode"></sf-list-selector>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" ng-model="currentCard.IsPageSelectMode" ng-value="false" />
+                            @Html.Resource("ExternalURL")
+                        </label>
+                        <div class="label-content">
+                            <input type="text" class="form-control" ng-show="!currentCard.IsPageSelectMode" ng-model="currentCard.LinkedUrl" />
+                            <p class="text-muted" ng-show="!currentCard.IsPageSelectMode">@Html.Resource("ExternalURL")</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-primary pull-left" ng-click="doneAdding()">@Html.Resource("DoneAdding")</button>
+                <button type="button" class="btn btn-primary pull-left" ng-click="cancelAdding()">@Html.Resource("Cancel")</button>
+            
+            </div>
+        </div>
+
+</uib-tab>
+
+</uib-tabset>
+

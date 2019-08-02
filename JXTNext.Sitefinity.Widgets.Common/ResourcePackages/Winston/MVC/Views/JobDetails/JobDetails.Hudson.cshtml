@@ -73,7 +73,7 @@
                             </tr>
 
                             @{
-                                string[] locationArr = { "australia", "canada", "hong kong", "new zealand", "singapore", "united states" };
+                                string[] locationArr = { "asia pacific", "united states" };
                                 string locationCountry = Model.JobDetails.CustomData["CountryLocationArea[0].Filters[0].Value"];
                                 var locationSubLevel = Model.JobDetails.CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].Value"];
                                 var minSal = int.Parse(Model.JobDetails.CustomData["Salary.Filters[0].Min"]);

@@ -21,7 +21,7 @@
                         <h4><a class="title-link" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">@jobOffer.Title</a></h4>
 
                         @{
-                            string[] locationArr = { "australia", "canada", "hong kong", "new zealand", "singapore", "united states" };
+                            string[] locationArr = { "asia pacific", "united states" };
                             string locationCountry = jobOffer.CustomData["CountryLocationArea[0].Filters[0].Value"];
                             var locationSubLevel = jobOffer.CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].Value"];
                             var salValue = jobOffer.CustomData["Salary.Filters[0].Value"];

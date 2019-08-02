@@ -62,7 +62,9 @@ namespace SitefinityWebApp
 
         private List<string> GetResourcePackagesNameViewsRendering()
         {
-            var root = System.Web.HttpContext.Current.Server.MapPath(@"~\ResourcePackages");
+
+            var root = System.Web.HttpContext.Current.Server.MapPath("~\\ResourcePackages");
+
             var allDirs = System.IO.Directory.GetDirectories(root);
             List<string> viewPaths = new List<string>();
 

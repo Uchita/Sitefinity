@@ -247,4 +247,79 @@
     <comment></comment>
     <lastModified>2019-05-10T00:03:45</lastModified>
   </data>
+  <data name="SaveThisJob">
+    <value>保存工作</value>
+    <comment></comment>
+    <lastModified>2019-07-10T23:40:51</lastModified>
+  </data>
+  <data name="JxtJobSaved">
+    <value>工作得救了</value>
+    <comment></comment>
+    <lastModified>2019-07-10T23:41:43</lastModified>
+  </data>
+  <data name="ViewAllJobs">
+    <value>查看所有工作</value>
+    <comment></comment>
+    <lastModified>2019-07-17T00:06:06</lastModified>
+  </data>
+  <data name="pageLimitLabel">
+    <value>项/页</value>
+    <comment></comment>
+    <lastModified>2019-07-17T00:30:01</lastModified>
+  </data>
+  <data name="Edit">
+    <value>编辑</value>
+    <comment></comment>
+    <lastModified>2019-07-17T00:33:09</lastModified>
+  </data>
+  <data name="SearchLabel">
+    <value>搜索</value>
+    <comment></comment>
+    <lastModified>2019-07-17T00:34:01</lastModified>
+  </data>
+  <data name="Classifications">
+    <value>分类</value>
+    <comment></comment>
+    <lastModified>2019-07-17T00:47:27</lastModified>
+  </data>
+  <data name="JxtNoJobConsultant">
+    <value>没有发布的职位</value>
+    <comment>No jobs found message for individual consultant</comment>
+    <lastModified>2019-07-17T02:12:01</lastModified>
+  </data>
+  <data name="Remove">
+    <value>去掉</value>
+    <comment></comment>
+    <lastModified>2019-07-17T04:18:07</lastModified>
+  </data>
+  <data name="JobApplicationPrivacyPolicy">
+    <value>我同意哈德森的意见 &lt;a href="/隐私政策" target="_blank"&gt;隐私政策&lt;/a&gt;</value>
+    <comment></comment>
+    <lastModified>2019-07-17T04:31:16</lastModified>
+  </data>
+  <data name="PrivacyPolicyLbl">
+    <value>我同意翰德的保密协议</value>
+    <comment></comment>
+    <lastModified>2019-07-17T04:31:44</lastModified>
+  </data>
+  <data name="dividerLabel">
+    <value>要么</value>
+    <comment>divider label</comment>
+    <lastModified>2019-07-18T23:41:24</lastModified>
+  </data>
+  <data name="JobFilterToggleBtn">
+    <value>过滤...</value>
+    <comment></comment>
+    <lastModified>2019-07-23T06:57:12</lastModified>
+  </data>
+  <data name="relatedArticles">
+    <value>相关文章</value>
+    <comment>Related articles title</comment>
+    <lastModified>2019-07-29T05:48:23</lastModified>
+  </data>
+  <data name="NoArticleMsg">
+    <value>此类别尚未发布任何文章！</value>
+    <comment>There are no articles posted for this category yet!</comment>
+    <lastModified>2019-07-29T07:20:05</lastModified>
+  </data>
 </root>

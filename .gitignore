@@ -13,6 +13,8 @@ JXTNext.Sitefinity.Connector/
 JXTNext.Sitefinity.Common/
 JXTNext.Sitefinity.Widgets.Common/ResourcePackages/
 
+[Oo]utput/
+
 # User-specific files
 *.suo
 *.user
@@ -229,3 +231,4 @@ SitefinityWebApp/App_Data_JXTNext/Sitefinity/
 SitefinityWebApp/App_Data/
 JXTNext.Sitefinity.Widgets.Common/JXTNext.Sitefinity.Widgets.Common.csproj
 !SitefinityWebApp/ResourcePackages/ReadMe.txt
+!roslyn/*

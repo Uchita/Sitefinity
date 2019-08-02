@@ -162,4 +162,19 @@
     <comment></comment>
     <lastModified>2019-05-09T22:23:08</lastModified>
   </data>
+  <data name="PolicyNameRequiredErrorMessage">
+    <value>我同意翰德的保密协议 </value>
+    <comment></comment>
+    <lastModified>2019-07-11T04:16:08</lastModified>
+  </data>
+  <data name="ReTypePasswordMsg">
+    <value>请重新输入确切的密码</value>
+    <comment></comment>
+    <lastModified>2019-07-11T04:54:18</lastModified>
+  </data>
+  <data name="JobAlreadyAppliedMsg">
+    <value>你已经申请了这份工作。</value>
+    <comment></comment>
+    <lastModified>2019-07-17T03:56:38</lastModified>
+  </data>
 </root>

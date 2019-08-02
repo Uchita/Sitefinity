@@ -147,4 +147,9 @@
     <comment>password field when registration</comment>
     <lastModified>2019-04-30T07:29:26</lastModified>
   </data>
+  <data name="passwordHaveAcc">
+    <value>Enter your password</value>
+    <comment>Enter your password placeholder</comment>
+    <lastModified>2019-07-17T01:17:12</lastModified>
+  </data>
 </root>

@@ -19,32 +19,60 @@
 
                     <div class="job-offer">
                         <h4><a class="title-link" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">@jobOffer.Title</a></h4>
-                        @{
 
+                        @{
+                            string[] locationArr = { "asia pacific", "united states" };
+                            string locationCountry = jobOffer.CustomData["CountryLocationArea[0].Filters[0].Value"];
                             var locationSubLevel = jobOffer.CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].Value"];
                             var salValue = jobOffer.CustomData["Salary.Filters[0].Value"];
                             var workType = jobOffer.CustomData["WorkType.Filters[0].Value"];
 
                             //salary
+                            var currencySal = "£";
                             var minSal = int.Parse(jobOffer.CustomData["Salary.Filters[0].Min"]);
                             var maxSal = int.Parse(jobOffer.CustomData["Salary.Filters[0].Max"]);
 
+                            //checking if country is with $ currency symbol
+                            if (!String.IsNullOrEmpty(locationCountry) && locationArr.Contains(locationCountry.ToLower().Trim()))
+                            {
+                                currencySal = "$";
+                            }
                             //converting to thousand (k) based
-                            if (minSal > 999)
+
+                            if (minSal > 0 && minSal > 999)
                             {
                                 minSal = minSal / 1000 + "k";
                             }
-                            if (maxSal > 999)
+                            else
+                            {
+                                minSal = "";
+                            }
+
+                            if (maxSal > 0 && maxSal > 999)
                             {
                                 maxSal = maxSal / 1000 + "k";
                             }
+                            else
+                            {
+                                maxSal = "";
+                            }
+
                         }
 
                         <div class="list-content job-proeperties-list">
                             <ul>
-                                <li>
-                                    <em class="fas fa-money-bill-alt"></em>£@minSal - £@maxSal @salValue
-                                </li>
+                                @if (minSal != maxSal)
+                                {
+                                    <li>
+                                        <em class="fas fa-money-bill-alt"></em>@currencySal@minSal - @currencySal@maxSal @salValue
+                                    </li>
+                                }
+                                else if (minSal == maxSal && maxSal != "")
+                                {
+                                    <li>
+                                        <em class="fas fa-money-bill-alt"></em>@currencySal@maxSal @salValue
+                                    </li>
+                                }
 
                                 <li>
                                     <em class="fas fa-map-marker-alt"></em>@locationSubLevel
@@ -59,8 +87,8 @@
                             string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 250 ? summary.Substring(0, 250) + "..." : summary;
                         }
                         @*<p class="job-offer-sum">
-                                @trimSummary
-                            </p>*@
+            @trimSummary
+        </p>*@
 
                     </div>
                     @*<a class="btn btn-more" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID"></a>*@

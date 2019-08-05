@@ -57,35 +57,14 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Sandbox|AnyCPU'">
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE;STANDARD;PRO;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\SitefinityWebApp.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release Staging|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE;STANDARD;PRO;</DefineConstants>
-    <DocumentationFile>bin\SitefinityWebApp.xml</DocumentationFile>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release Dev|AnyCPU'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Production|AnyCPU' ">
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE;STANDARD;PRO;</DefineConstants>
-    <DocumentationFile>bin\SitefinityWebApp.xml</DocumentationFile>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <!-- Dependency for the Telerik.Sitefinity.Audit.ElasticSearch module -->
@@ -1330,6 +1309,7 @@
     <Content Include="Views\Robots\RobotSettings.ascx" />
     <Content Include="web.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -1354,12 +1334,24 @@
     <Content Include="Mvc\Views\MultiCard\Cards.PlainText.cshtml" />
     <Content Include="Mvc\Views\MultiCard\DesignerView.Simple.cshtml" />
     <Content Include="Mvc\Views\CustomError\Index.cshtml" />
-    <Content Include="App_Data\Sitefinity\Configuration\CommentsModuleConfig.config" />
-    <Content Include="App_Data\Sitefinity\Configuration\DataConfig.config" />
-    <Content Include="App_Data\Sitefinity\Configuration\FeatherConfig.config" />
-    <Content Include="App_Data\Sitefinity\Configuration\LibrariesConfig.config" />
-    <Content Include="App_Data\Sitefinity\Configuration\SecurityConfig.config" />
-    <Content Include="App_Data\Sitefinity\Configuration\SystemConfig.config" />
+    <Content Include="App_Data\Sitefinity\Configuration\CommentsModuleConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\DataConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\FeatherConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\LibrariesConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\SecurityConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\SystemConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="App_Data\Sitefinity\Search\all\segments.gen" />
     <Content Include="App_Data\Sitefinity\Search\all\segments_ww" />
     <Content Include="App_Data\Sitefinity\Search\all\_ir.cfs" />
@@ -1377,6 +1369,57 @@
     <Content Include="App_Data\Sitefinity\Export\ReadMe.md" />
     <Content Include="App_Data\Sitefinity\Import\ReadMe.md" />
     <Content Include="App_Data\Sitefinity\Temp\Libraries\ReadMe.md" />
+    <Content Include="App_Data\Sitefinity\Configuration\AddThisConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\AnalyticsConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\AppearanceConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\AuthenticationConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\ContentViewConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\ContentViewConfig.contentViewControls.BackendPages.views.BackendPagesEdit.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\CustomSiteSettingsConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\DigitalExperienceCloudConnectorConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\FormsConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\LibrariesConfig.contentViewControls.DocumentsBackend.views.DocumentsBackendEdit.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\LibrariesConfig.contentViewControls.ImagesBackend.views.ImagesBackendList.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\NotificationsConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\PagesConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\ProjectConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\ResourcesConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\SocialShareConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Sitefinity\Configuration\WebServicesConfig.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -1386,15 +1429,19 @@
     </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="web.Release Dev.config">
+    <None Include="web.Production.config">
       <DependentUpon>web.config</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="web.Release Staging.config">
+    <None Include="web.Sandbox.config">
       <DependentUpon>web.config</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="web.Release.config">
+    <None Include="web.Staging.config">
       <DependentUpon>web.config</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -141,6 +141,9 @@
     <Reference Include="JXT.JXTNext.Common.FileManager, Version=0.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXT.JXTNext.Common.FileManager.0.0.2\lib\netstandard2.0\JXT.JXTNext.Common.FileManager.dll</HintPath>
     </Reference>
+    <Reference Include="JXT.Sitefinity.Amazon, Version=5.5.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXT.Sitefinity.Amazon.5.5.10\lib\net471\JXT.Sitefinity.Amazon.dll</HintPath>
+    </Reference>
     <Reference Include="Jxt.Sitefinity.Jobs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Jxt.Sitefinity.Jobs.50.0.0\lib\net471\Jxt.Sitefinity.Jobs.dll</HintPath>
     </Reference>

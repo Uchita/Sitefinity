@@ -165,8 +165,8 @@
     <Reference Include="JXTNext.Sitefinity.Common, Version=6.0.18.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Common.6.0.18\lib\net471\JXTNext.Sitefinity.Common.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Connector, Version=5.0.95.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Connector.5.0.95\lib\net471\JXTNext.Sitefinity.Connector.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Connector, Version=6.0.18.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Connector.6.0.18\lib\net471\JXTNext.Sitefinity.Connector.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Custom, Version=6.0.18.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Custom.6.0.18\lib\net471\JXTNext.Sitefinity.Custom.dll</HintPath>
@@ -1372,6 +1372,15 @@
     <Content Include="App_Data\Sitefinity\Export\ReadMe.md" />
     <Content Include="App_Data\Sitefinity\Import\ReadMe.md" />
     <Content Include="App_Data\Sitefinity\Temp\Libraries\ReadMe.md" />
+    <Content Include="env\LibrariesConfig.Production.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="env\LibrariesConfig.Sandbox.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="env\LibrariesConfig.Staging.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

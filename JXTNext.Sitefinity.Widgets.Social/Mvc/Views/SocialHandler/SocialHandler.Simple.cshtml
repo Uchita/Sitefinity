@@ -1,0 +1,25 @@
+﻿@using JXTNext.Sitefinity.Widgets.Social.Mvc.Models;
+@using JXTNext.Sitefinity.Services.Intefaces.Models.JobApplication
+@model SocialMediaJobViewModel
+
+@if (Model != null && Model.Status != JobApplicationStatus.Applied_Successful)
+{
+    if (Model.Status == JobApplicationStatus.Applied_Successful)
+    {
+        <div class="alert alert-success">@Model.Message</div>
+    }
+    else if(Model.Status != JobApplicationStatus.Available)
+    {
+        <div class="alert alert-danger">
+            @Model.Message
+
+            @if (Model.Status == JobApplicationStatus.NotAbleToCreateUser)
+            {
+                //@ViewBag.RegisterPageUrl
+                <a href="/register" title="@Model.Message"> here</a>
+            }
+        </div>
+    }
+}
+
+<a href="@ViewBag.JobSearchResultsUrl" id="back-to-results" role="button" title="Back to Results"><span class="prev-btn"></span>Back To Results</a>

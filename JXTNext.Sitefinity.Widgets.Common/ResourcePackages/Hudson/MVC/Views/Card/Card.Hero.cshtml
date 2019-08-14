@@ -1,0 +1,14 @@
+@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+<div class="@Model.CssClass jumbotron-container">
+    <div class="jumbotron" style="background-image: url('@Model.SelectedSizeUrl');">
+        <div class="jumbotron-content">
+            <h1>@Html.HtmlSanitize(Model.Heading)</h1>
+            <p>@Html.HtmlSanitize(Model.Description)</p>
+            @if (!string.IsNullOrEmpty(Model.ActionName))
+            {
+                <p><a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-lg" role="button">@Model.ActionName</a></p>
+            }
+        </div>
+    </div>
+</div>

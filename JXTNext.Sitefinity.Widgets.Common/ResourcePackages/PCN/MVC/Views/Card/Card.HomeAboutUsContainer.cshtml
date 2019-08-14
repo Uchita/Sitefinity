@@ -1,0 +1,28 @@
+@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+<div class="@Model.CssClass full_width about_section home_about" style="background-image: url(@Model.SelectedSizeUrl);">
+    <div class="container">
+
+        <h2 class="title">About us</h2>
+        @if (!string.IsNullOrEmpty(Model.Heading))
+        {
+            <h3 class="sub_title">@Html.HtmlSanitize(Model.Heading)</h3>
+        }
+
+        @if (Model.Description.ToString().Contains("<p>"))
+        {
+            @Html.HtmlSanitize(Model.Description)
+        }
+        else
+        {
+            <p>@Model.Description</p>
+        }
+
+
+        @if (!string.IsNullOrEmpty(Model.ActionName))
+        {
+            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="read_btn"><span>@Model.ActionName</span></a>
+        }
+    </div>
+</div>

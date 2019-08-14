@@ -1,0 +1,116 @@
+.contact-box {
+    padding: 20px;
+    -webkit-clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);
+    clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);
+    background: $global-highlight-color;
+    color: #fff;
+
+    a {
+        color: inherit;
+    }
+}
+
+.press-release-filter {
+    padding: 30px 0;
+
+    ul {
+        padding-left: 0;
+
+        li {
+            float: left;
+
+            & + li {
+                margin-left: 20px;
+                border-left: 1px solid $press-filters-separator-color;
+                padding-left: 20px;
+            }
+
+            a {
+                font-family: $font-family-medium;
+                text-transform: uppercase;
+                color: $press-filters-color;
+
+                &:hover {
+                    text-decoration: none;
+                    color: $press-filters-active-color;
+                }
+            }
+
+            &.filter-active {
+
+                a {
+                    color: $press-filters-active-color;
+                }
+            }
+        }
+    }
+
+    .dropdown {
+        a {
+            &:hover, &:focus {
+                text-decoration: none;
+            }
+        }
+
+        .dropdown-menu {
+            border-radius: 0;
+            z-index: 1;
+            border: 0;
+
+            li {
+                list-style: none;
+
+                a {
+                    text-transform: none;
+                    font-family: $font-family-light;
+                    color: $global-headings-color;
+                }
+
+                & + li {
+                    margin-left: 0;
+                    border-left: 0;
+                    padding-left: 0;
+                }
+            }
+        }
+
+        &.open > a {
+            color: $global-highlight-color;
+        }
+    }
+}
+
+.press-release-table {
+    width: 100%;
+
+    tr {
+
+        td {
+            padding: 5px 0;
+
+            &:first-child {
+                width: 15%;
+            }
+
+            & + td {
+                padding-left: 25px;
+            }
+        }
+
+        &:hover {
+            font-family: $font-family-medium;
+        }
+    }
+
+    .text-muted {
+        margin: 0;
+        font-size: 16px;
+        font-size: 1.6rem;
+        color: $press-filters-color;
+    }
+
+    a {
+        text-decoration: none;
+        color: $press-table-links-color;
+    }
+}

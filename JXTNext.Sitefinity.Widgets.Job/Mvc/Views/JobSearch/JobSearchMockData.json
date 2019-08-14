@@ -1,0 +1,187 @@
+﻿{
+  "JobSearchParams": [
+    {
+      "Label": "Professions",
+      "Filters": [
+        {
+          "Label": "Accountant",
+          "ID": "1",
+          "Filters": [
+            {
+              "Label": "Accountant-Insolvency",
+              "ID": "2"
+            },
+            {
+              "Label": "Accountants Clerk/Administration",
+              "ID": "3"
+            },
+            {
+              "Label": "Bookkeeper",
+              "ID": "4"
+            }
+          ]
+        },
+        {
+          "Label": "IT Department",
+          "ID": "56",
+          "Filters": [
+            {
+              "Label": "Programmer",
+              "ID": "5",
+              "Filters": [
+                {
+                  "Label": "Analyst Programmer",
+                  "ID": "6",
+                  "Filters": [
+                    {
+                      "Label": "C#.NET",
+                      "ID": "7"
+                    },
+                    {
+                      "Label": "JavaScript",
+                      "ID": "8"
+                    },
+                    {
+                      "Label": "ASP.NET WEB API",
+                      "ID": "9"
+                    }
+                  ]
+                },
+                {
+                  "Label": "Developer Programmer",
+                  "ID": "10"
+                }
+              ]
+            },
+            {
+              "Label": "Quality Assurance",
+              "ID": "11",
+              "Filters": [
+                {
+                  "Label": "Manual",
+                  "ID": "12"
+                },
+                {
+                  "Label": "Automation",
+                  "ID": "13",
+                  "Filters": [
+                    {
+                      "Label": "HP QTP",
+                      "ID": "14"
+                    },
+                    {
+                      "Label": "Coded UI",
+                      "ID": "15"
+                    },
+                    {
+                      "Label": "Selenium",
+                      "ID": "16"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Label": "Project Manager",
+              "ID": "17"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Label": "WorkTypes",
+      "Filters": [
+        {
+          "Label": "Full Time",
+          "ID": "18"
+        },
+        {
+          "Label": "Part Time",
+          "ID": "19"
+        },
+        {
+          "Label": "Contractual",
+          "ID": "20"
+        },
+        {
+          "Label": "Full Time Permanent",
+          "ID": "21"
+        }
+      ]
+    },
+    {
+      "Label": "Locations",
+      "Filters": [
+        {
+          "Label": "Australia",
+          "ID": "22",
+          "Filters": [
+            {
+              "Label": "Sydney",
+              "ID": "23",
+              "Filters": [
+                {
+                  "Label": "Town Hall",
+                  "ID": "24"
+                },
+                {
+                  "Label": "Central",
+                  "ID": "25"
+                }
+              ]
+            },
+            {
+              "Label": "Melbourne",
+              "ID": "26",
+              "Filters": [
+                {
+                  "Label": "Parramatta",
+                  "ID": "27"
+                },
+                {
+                  "Label": "Pendle Hill",
+                  "ID": "28"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Label": "India",
+          "ID": "29",
+          "Filters": [
+            {
+              "Label": "Hyderabad",
+              "ID": "30",
+              "Filters": [
+                {
+                  "Label": "Hi-Tech City",
+                  "ID": "31"
+                },
+                {
+                  "Label": "Kukatpally",
+                  "ID": "32"
+                }
+              ]
+            },
+            {
+              "Label": "Banglore",
+              "ID": "33",
+              "Filters": [
+                {
+                  "Label": "Majestick",
+                  "ID": "34"
+                },
+                {
+                  "Label": "Electronic City",
+                  "ID": "35"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

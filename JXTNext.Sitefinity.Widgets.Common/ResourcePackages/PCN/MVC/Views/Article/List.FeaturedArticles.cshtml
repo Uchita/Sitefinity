@@ -1,0 +1,53 @@
+﻿@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.RelatedData
+@using System;
+@using Newtonsoft.Json;
+@using Telerik.Sitefinity.DynamicModules;
+@using Telerik.Sitefinity.DynamicModules.Model;
+
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Security.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+@using Telerik.Sitefinity.Model;
+@using Telerik.OpenAccess;
+@using Telerik.Sitefinity.Web;
+
+@*Needed for custom thumbnail*@
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Modules.Libraries;
+
+
+<div class="article-slider owl-carousel">
+    @foreach (var item in Model.Items)
+    {
+        var imgsrc = "";
+        if (item.Fields.HeaderImage != null)
+        {
+            imgsrc = MediaContentExtensions.ResolveThumbnailUrl(item.Fields.HeaderImage.DataItem);
+        }
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+        var summary = (@Html.HtmlSanitize((string)item.Fields.Summary)).ToString();
+        if (@Html.HtmlSanitize((string)item.Fields.Summary).ToString().Length > 130)
+        {
+            summary = (@Html.HtmlSanitize((string)item.Fields.Summary)).ToString().Substring(0, 128);
+        }
+    <div class="white_panel">
+        <div class="sub">
+            <p class="blue_text"><a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a></p>
+            <p>@summary</p>
+            <div class="action_link">
+                <a href="@navigateUrl">Read Events</a>
+            </div>
+        </div>
+    </div>
+    }
+</div>

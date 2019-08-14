@@ -1,0 +1,73 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Events.Mvc.Helpers
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.Modules.Pages
+@using Telerik.Sitefinity.Web.DataResolving
+
+@Html.Script(ScriptRef.JQuery, "top", false)
+
+<div id="wt-slider" class="owl-carousel">
+    @foreach (var item in Model.Items)
+    {
+
+        var imageurl = "";
+        foreach (var relatedItem in item.Fields.EventImage)
+        {
+            imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+        }
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+        <div>
+            <a href="@navigateUrl" class="image" style="background-image: url(@imageurl);"></a>
+
+            <div class="post-info">
+                <div class="entry-meta">
+                    @if (item.Fields.Category != null)
+                    {
+                        foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+                        {
+                            var url = "/news/events1/-in-category/categories" + @taxon.FullUrl;
+                            <span class="entry-cats"><span class="main-color-bg cat5"><a href="@url">@taxon.Title.ToString()</a></span></span>
+                        }
+                    }
+                </div>
+
+                <div class="title">
+                    <h3>
+                        <a href="@navigateUrl">@item.Fields.Title</a>
+                    </h3>
+                </div>
+                @if (item.GetDateTime("EventStart", "MMM d, yyyy") == item.GetDateTime("EventEnd", "MMM d, yyyy"))
+                {
+                    <div class="post-excerpt">
+                        @item.GetDateTime("EventStart", "MMM d, yyyy") to @item.GetDateTime("EventEnd", "MMM d, yyyy")
+                    </div>
+                }
+                else
+                {
+                    <div class="post-excerpt">
+                        @item.GetDateTime("EventStart", "MMM d, yyyy")
+                    </div>
+                }
+
+                <div class="post-excerpt">
+                    @item.Fields.City
+                </div>
+
+                <div class="more">
+                    <a href="@navigateUrl">Read more</a>
+                    @if (item.Fields.TicketURL != null)
+                    {
+                        <a target="_blank" href="@item.Fields.TicketURL">Get Tickets</a>
+                    }
+                </div>
+
+            </div>
+
+        </div>
+    }
+</div>
+@if (Model.Items.Count() == 0)
+{
+    <div class="alert alert-warning"><strong>No results found.</strong></div>
+}

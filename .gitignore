@@ -1,20 +1,3 @@
-# Do Not Allow below files and folders
-JXTNext.Sitefinity.Widgets/
-JXTNext.Sitefinity.Widgets.*/
-Jxt.Sitefinity.Jobs/
-JXTNext.Sitefinity.Services/
-JXTNext.Sitefinity.Services.Intefaces/
-JXTNext.Sitefinity.Resources/
-JXTNext.Sitefinity.Media/
-JXTNext.Sitefinity.Identity/
-JXTNext.Sitefinity.FileHandler/
-JXTNext.Sitefinity.Custom/
-JXTNext.Sitefinity.Connector/
-JXTNext.Sitefinity.Common/
-JXTNext.Sitefinity.Widgets.Common/ResourcePackages/
-
-[Oo]utput/
-
 # User-specific files
 *.suo
 *.user
@@ -226,9 +209,10 @@ project.lock.json
 # End of core ignore list, below put you custom 'per project' settings (patterns or path)
 #####
 SitefinityWebApp/JXTNext.Sitefinity.Widgets.Common.dll
-SitefinityWebApp/ResourcePackages/*
+SitefinityWebApp/ResourcePackages/JXTDemo/
+SitefinityWebApp/ResourcePackages/Hudson/
 SitefinityWebApp/App_Data_JXTNext/Sitefinity/
 SitefinityWebApp/App_Data/
 JXTNext.Sitefinity.Widgets.Common/JXTNext.Sitefinity.Widgets.Common.csproj
-!SitefinityWebApp/ResourcePackages/ReadMe.txt
-!roslyn/*
+JXTNext.Sitefinity.Widgets.Common/ResourcePackages/Hudson/csslint_report/csslint.xml
+SitefinityWebApp/

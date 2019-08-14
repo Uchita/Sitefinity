@@ -1,0 +1,88 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Web.DataResolving;
+
+    <div class="col blog-detail-col">
+        @{var imageurl = ""; }
+        @foreach (var relatedItem in Model.Item.Fields.BlogImage)
+        {
+            imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+        }
+
+        <h2 class="blog-title">@Model.Item.Fields.Title</h2>
+
+        <p><img src="@imageurl" alt="@Model.Item.Fields.Title"></p>
+
+
+
+
+        <p class="posted-date">
+            @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy")
+            @Html.CommentsCount(string.Empty, @Model.Item.DataItem)
+        </p>
+
+
+        <div @Html.InlineEditingFieldAttributes("Summary", "LongText")><p>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</p></div>
+
+
+
+
+        @{
+            if (Model.EnableSocialSharing)
+            {
+                var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
+                @Html.SocialShareOptions(item);
+            }
+        }
+
+        <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
+
+        @Html.CommentsList(@Model.Item.DataItem)
+    </div>
+
+@*<div class="related-blog">
+
+    <h2>You might also like</h2>
+
+    <div class="md-row">
+        @foreach (var blog in Model.Item.Fields.RelatedBlogs)
+        {
+
+            var imageurl1 = "";
+            foreach (var relatedItem1 in blog.Fields.BlogImage)
+            {
+                imageurl1 = (string)relatedItem1.Fields.ItemDefaultUrl;
+            }
+
+            <div class="news-list col-12 col-sm-6 col-md-4">
+
+                <div class="bg-image-wrap">
+                    <div class="bg-image" style="background-image: url('@imageurl1');"></div>
+                </div>
+
+                <div class="news-date">
+                    <span class="rss-item-pubDate-date">@blog.GetDateTime("PublicationDate", "dd")</span>
+                    <span class="rss-item-pubDate-month">@blog.GetDateTime("PublicationDate", "MMM")</span>,
+                    <span class="rss-item-pubDate-full-year">@blog.GetDateTime("PublicationDate", "yyyy")</span>
+                </div>
+
+                <p class="news-desc">@blog.Fields.Title</p>
+
+                <a href="~/blogs/blog-details/@blog.Fields.ItemDefaultUrl" class="btn btn-link">Read more</a>
+
+            </div>
+
+
+        }
+
+    </div>
+</div>*@
+
+<style>
+
+    body .parallax-mirror .parallax-slider {
+        top: -28%;
+    }
+</style>

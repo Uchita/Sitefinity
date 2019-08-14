@@ -1,0 +1,249 @@
+@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Modules.Libraries;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using System.Threading;
+
+@* Used for getting category list *@
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Security.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+@using Telerik.Sitefinity.Model;
+@using Telerik.OpenAccess;
+
+@* For Dynamic content: Module builder [Office] *@
+@using Telerik.Sitefinity.DynamicModules;
+@using Telerik.Sitefinity.DynamicModules.Model;
+@using Telerik.Sitefinity.Utilities.TypeConverters;
+@using JXTNext.Sitefinity.Common.Helpers;
+@using Telerik.Sitefinity.RelatedData;
+@using Telerik.Sitefinity.GenericContent.Model;
+@using Telerik.Sitefinity.Multisite;
+
+@{
+    //This needs to be rolled into a class lib
+    var itemType = TypeResolutionService.ResolveType("Telerik.Sitefinity.DynamicTypes.Model.Offices.Office");
+
+    var multisiteContext = SystemManager.CurrentContext as MultisiteContext;
+    var providerName = multisiteContext.CurrentSite.GetProviders("Offices").Select(p => p.ProviderName).FirstOrDefault();
+
+    var transactionName = Guid.NewGuid();
+
+    var cultureInfo = Thread.CurrentThread.CurrentUICulture;
+
+    var dynamicModuleManager = DynamicModuleManager.GetManager(providerName, transactionName.ToString());
+
+    var offices = dynamicModuleManager.GetDataItems(itemType).Where(o => o.Status == ContentLifecycleStatus.Live && o.Visible);
+
+    if (!cultureInfo.IsNeutralCulture)
+    {
+        offices.Where(o => o.PublishedTranslations.Contains(cultureInfo.Name));
+    }
+}
+
+<div class="@Model.CssClass consultant-minimal">
+
+    <!-- Getting the filters -->
+    <div class="row filters-wrapper flex sm-flex flex-center">
+
+        <!-- Specialisation filter list -->
+        <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="form-group">
+                <label for="SectorFilter">
+                    @Html.Resource("ConsultantFilterTitleSpecialisations", "Labels")
+                </label>
+                <div class="select">
+                    <select id="SectorFilter" name="SectorFilter" required="required" class="form-control">
+                        <option value="all">@Html.Resource("ConsultantFilterOptionAllSpecialisations", "Labels")</option>
+                        @{
+
+                            var sectorTaxon = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.GetCurrentSiteTaxons("Sectors");
+
+                            var dd = sectorTaxon as HierarchicalTaxon;
+                            foreach (var item in dd.Subtaxa)
+                            {
+                                <option value="@item.UrlName">@item.Title</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Location filter list -->
+        <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="form-group">
+                <label for="LocationFilter">
+                    @Html.Resource("ConsultantFilterTitleLocation", "Labels")
+                </label>
+                <div class="select">
+                    <select id="LocationFilter" name="LocationFilter" required="required" class="form-control">
+                        <option value="all">@Html.Resource("ConsultantFilterOptionAllLocation", "Labels")</option>
+                        @foreach (var office in offices)
+                        {
+                            <option value="@office.UrlName.ToString()">@office.GetString("Name")</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-3 col-md-3">
+            <div class="btn-near-labels form-group">
+                <button type="button" id="consultantSearch" class="sf-SubmitButton btn btn-primary">@Html.Resource("ConsultantSearchButton", "Labels")</button>
+            </div>
+        </div>
+    </div>
+    <!-- End of Specialisation filter list -->
+
+    <div class="consultant flex sm-flex flex-justify-center">
+        @foreach (var item in Model.Items)
+        {
+            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+            var imageThumbUrl = "";
+
+            List<string>
+            filterValues = new List<string>
+                ();
+
+            if (item.Fields.Category != null)
+            {
+                foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+                {
+                    filterValues.Add(taxon.UrlName);
+                }
+            }
+
+            var officeNames = new List<string>();
+            var officeUrls = new List<string>();
+
+            foreach (ItemViewModel officeItem in item.Fields.Office)
+            {
+                officeNames.Add(officeItem.Fields.Name);
+                officeUrls.Add(officeItem.Fields.UrlName);
+            }
+
+            <div class="item hidden" data-filtersector="@(string.Join(",", filterValues))" data-filterlocation="@string.Join(",", officeUrls.Distinct())">
+                 @{
+                    var image = item.DataItem.GetRelatedItems<Telerik.Sitefinity.Libraries.Model.Image>("Pic").FirstOrDefault();
+                    }
+                    @if (image != null)
+                    {
+                        imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(image, "thumb350", false, cultureInfo);
+                    }
+                    else
+                    {
+                        imageThumbUrl = "/ResourcePackages/Hudson/assets/dist/images/placeholder-image.jpg";
+                    }
+
+                <a class="contact-consultant-image" href="@navigateUrl?location=@string.Join(",",officeNames.Distinct())" title="@item.Fields.ConsultantName">
+                    <div class="consultant-photo" style="background-image:url('@imageThumbUrl');"></div>
+                </a>
+                <div class="caption">
+                    <h3 class="consultant-name">@item.Fields.ConsultantName</h3>
+                    <p class="consultant-sum">
+                        @Html.HtmlSanitize(string.Format("{0}, {1}", (string)item.Fields.Position, string.Join(", ", officeNames.Distinct())).Trim(new char[] { ',', ' ' }))
+                    </p>
+                </div>
+                @if (item.Fields.Office != null)
+                {
+                <a class="consultant-btn" href="@navigateUrl?location=@string.Join(",",officeNames.Distinct())" title="@string.Join(",",officeNames.Distinct())">@string.Join(",", officeNames.Distinct())</a>
+                }
+            </div>
+        }
+    </div>
+    <div class="alert alert-info hidden"><small>@Html.Resource("NoConsultantMacth", "Labels")</small></div>
+
+</div>
+<script>
+    jQuery(document).ready(function ($) {
+        $('#consultantSearch').on('click', function () {
+
+            var sectorFilter = $('#SectorFilter').val().toLowerCase();
+            var locationFilter = $('#LocationFilter').val().toLowerCase();
+            var consultantItems = $('.consultant .item');
+
+            //except for all add hidden class to unmatched item
+            consultantItems.removeClass('hidden');
+
+            consultantItems.each(function () {
+                if (!checkFilter($(this).data('filtersector'), $(this).data('filterlocation'), sectorFilter, locationFilter)) {
+                    $(this).addClass('hidden');
+                }
+            });
+
+
+            //checking if there are matched items
+            if ($('.consultant .item:not(.hidden)').length == 0) {
+                $('.alert').removeClass('hidden');
+            } else {
+                $('.alert').addClass('hidden');
+            }
+
+        }); //end of click function
+
+        //function to check the filter match
+        function checkFilter(curSectorVal, curLocationVal, filterSectorVal, filterLocationVal) {
+            if (curSectorVal != "") {
+                //multiple sector need to be split for individual check
+                var curSectorVal = curSectorVal.split(',');
+                if (curSectorVal.length) {
+                    var flag = false;
+                    if (filterSectorVal != 'all') {
+                        for (i = 0; i < curSectorVal.length; i++) {
+                            if (curSectorVal[i].toLowerCase() == filterSectorVal) {
+                                flag = true;
+                                break; // if true just break the loop
+                            } else {
+                                flag = false;
+                            }
+                        }
+                    } else {
+                        flag = true;
+                    }
+
+                    //checking location to matched result
+                    var curLocationVal = curLocationVal.split(',');
+                    if (curLocationVal.length) {
+                        if (filterLocationVal != 'all' && flag == true) {
+                            //match the value of filter and
+                            //also check the result of sector that need to be true
+                            for (i = 0; i < curLocationVal.length; i++) {
+                                if (curLocationVal[i].toLowerCase() == filterLocationVal) {
+                                    flag = true;
+                                    break;
+                                } else {
+                                    flag = false;
+                                }
+                            }
+                        } //end of all check
+                    } else {
+                        flag = false;
+                    }
+
+                    //final check the flag from results of two filters
+                    if (flag === false) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+            } else {
+                return false;
+            }
+
+        }
+
+    });
+</script>
+
+
+

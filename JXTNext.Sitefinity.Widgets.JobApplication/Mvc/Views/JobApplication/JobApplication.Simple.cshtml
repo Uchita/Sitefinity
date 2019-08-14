@@ -1,0 +1,38 @@
+﻿@using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication;
+
+@model JobApplicationViewModel
+
+@if (ViewBag.ShowFilesUploadMessage != null)
+{
+    <div class="alert alert-success">@ViewBag.ShowFilesUploadMessage</div>
+}
+
+@using (Html.BeginForm("ApplyJob", "JobApplication", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="container">
+        <div class="section-header">
+            <h3>@Model.ApplicationTitle</h3>
+        </div>
+        <div class="row">
+
+            @if (Model.ApplicationStatus == JobApplicationStatus.Available)
+            {
+                foreach (JobApplicationAttachmentItem attachment in Model.ApplicationAttachments)
+                {
+                    <div class="form-group col-md-6">
+                        <label>@attachment.Title</label>
+                        <input type="file" name="@attachment.AttachementFileUploadKey" />
+                    </div>
+                }
+            }
+            else
+            {
+                <h4>@Model.ApplicationStatus.ToString()</h4>
+                <p>@Model.ApplicationMessage</p>
+            }
+        </div>
+        <div class="form-group button-wrapper">
+            <input type="submit" value="Apply" class="btn" />
+        </div>
+    </div>
+}  

@@ -1,0 +1,730 @@
+/*#region Form - Newsletter */
+.form-newsletter {
+
+    .label-hide {
+
+        label,
+        strong {
+            display: none;
+        }
+    }
+
+    h1 {
+        margin: 0 0 30px;
+    }
+
+    p {
+        margin: 10px auto 0;
+        font-size: 14px;
+        font-size: 1.4rem;
+        width: 85%;
+    }
+}
+/*#endregion Form - Newsletter */
+
+/*#region Form - Contact us*/
+.page-wrapper {
+    .basic-form {
+        margin-top: 50px;
+
+        .form-control {
+            color: #7DC245;
+            height: 50px;
+            border: 1px solid #7DC245;
+            font-size: 18px;
+
+            &:hover {
+                outline: unset;
+            }
+
+            .select:before {
+                color: #7DC245;
+            }
+        }
+
+        select {
+            padding-left: 6px;
+        }
+
+        textarea {
+            height: 115px;
+            resize: none;
+        }
+
+        .form-label {
+            color: $forms-element-border;
+            text-transform: uppercase;
+            font-family: $font-family-medium;
+            text-align: right;
+            font-size: $forms-label-size;
+            font-size: $forms-label-size-px;
+            padding-top: 5px;
+            line-height: 14px;
+            margin-bottom: 20px;
+        }
+
+        .checkbox {
+            font-size: 14px;
+
+            .checkbox-icon {
+                width: 20px;
+                height: 20px;
+                border: 1px solid $forms-element-border;
+                display: inline-block;
+                color: $forms-element-border;
+                position: absolute;
+                top: 2px;
+                left: 0;
+                text-align: center;
+                font-size: 13px;
+
+                &:before {
+                    content: '';
+                }
+            }
+
+            input[type="checkbox"] {
+                z-index: 2;
+                position: relative;
+                opacity: 0;
+                height: 20px;
+                width: 20px;
+                margin: 0 10px 0 0;
+                float: left;
+
+                &:checked + .checkbox-icon:before,
+                &:checked + input + .checkbox-icon:before {
+                    content: "\f00c";
+                    line-height: 19px;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                &:focus + span {
+                    outline: $highlighted-headings-color solid 1px;
+                }
+            }
+        }
+
+        .radiobutton {
+            position: relative;
+
+            .radiobutton-icon {
+                width: 25px;
+                height: 25px;
+                border: 1px solid $forms-element-border;
+                display: inline-block;
+                color: transparent;
+                position: absolute;
+                top: 10px;
+                left: 0;
+                text-align: center;
+                font-size: 13px;
+                border-radius: 50%;
+
+                &::before {
+                    font-size: 1.75rem;
+                    line-height: 1.27;
+                    padding-right: 1px;
+                }
+            }
+
+            input[type="radio"] {
+                z-index: 2;
+                position: relative;
+                opacity: 0;
+                height: 20px;
+                width: 20px;
+                margin: 0 10px 0 0;
+                float: left;
+
+
+                &:hover {
+                    cursor: pointer;
+
+                    & + .radiobutton-icon {
+                        color: #eee;
+                    }
+                }
+
+                &:checked + .radiobutton-icon, &:checked:hover + .radiobutton-icon,
+                &.checked + .radiobutton-icon, &.checked:hover + .radiobutton-icon {
+                    color: $global-highlight-color;
+                }
+            }
+        }
+
+        .sf-FileField {
+            margin-top: 8px;
+        }
+
+        .btn {
+            border-color: $global-highlight-color;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+
+            .btn {
+                min-width: 150px;
+            }
+        }
+
+        .upload-section {
+            margin: 10px 0 20px 0;
+        }
+    }
+}
+
+#job-app-form{
+    .basic-form{
+        margin-top: 0;
+    }
+}
+
+#officeAddress{
+    margin-left: 0;
+    padding: 0;
+    .basic-form{
+        margin-top: 0;
+    }
+}
+
+
+.login-form {
+    h2 {
+        font-size: 3.6rem;
+        margin-bottom: 5rem;
+        line-height: 45px;
+    }
+
+    p {
+        margin-bottom: 10px;
+        line-height: 22px;
+    }
+}
+
+.list-group label{
+    color: $global-text;
+    text-transform: none;
+    font-family: $font-family-regular;
+}
+
+#password-strength {
+    position: relative;
+    height: 24px;
+    margin: 10px 0 0;
+    span {
+        position: absolute;
+        min-width: 100px;
+        font-size: 1.25rem;
+        padding: 2px 5px;
+        top: 0px;
+        color: #ccc;
+        font-weight: bold;
+        }
+}
+
+/*#endregion Form - Contact us*/
+
+/*#region Log in/Sign in/Apply*/
+.page-wrapper {
+    /*#region Forms*/
+    .login-form {
+        .forgot-password {
+            padding-left: 0px;
+
+            a {
+                font-size: 1.4rem;
+                // font-style: italic;
+                color: #858585 !important;
+
+                &:hover, &:focus {
+                    color: $global-highlight-color;
+                }
+            }
+        }
+
+        .checkbox {
+            a {
+                // color: #858585;
+                &:hover, &:focus {
+                    color: $global-highlight-color;
+                }
+            }
+        }
+
+        .btn-block {
+            margin-top: 10px;
+        }
+
+        .basic-form {
+
+            .checkbox {
+                margin: 20px 0;
+                color: $global-text;
+                font-size: 12px;
+                font-size: 1.2rem;
+
+                input[type=checkbox]:checked + input + .checkbox-icon:before {
+                    content: "\f00c";
+                    line-height: 19px;
+                }
+
+                a {
+                    text-decoration: underline;
+                }
+            }
+
+            .login-border {
+                margin-bottom: 10px;
+            }
+
+            .registration-link {
+                color: $global-text;
+                font-size: 14px;
+                font-size: 1.4rem;
+
+                a {
+                    color: $global-text-color;
+                }
+            }
+        }
+
+        .privacy-policy {
+            &, &:hover, &:focus {
+                color: #000;
+                text-decoration: underline;
+            }
+        }
+
+        .password-strength {
+            height: 25px;
+            border: 1px solid $global-highlight-color;
+            color: #fff;
+
+            div {
+                color: #fff;
+                font-size: 14px;
+                line-height: 24px;
+                padding: 0 5px;
+            }
+
+            .password-weak {
+                width: 33%;
+                background-color: $global-highlight-color;
+            }
+
+            .password-good {
+                width: 66%;
+                background-color: $global-highlight-color;
+            }
+
+            .password-strong {
+                width: 100%;
+                background-color: $global-highlight-color;
+            }
+        }
+
+        .apply-upload {
+            padding: 10px 12px;
+            border: 1px solid $global-highlight-color;
+            color: #c5c5c5;
+
+            a {
+                display: block;
+                float: left;
+                width: 33.3333333333%;
+                text-align: center;
+                padding: 10px;
+
+                em {
+                    display: block;
+                    color: #2a2a2a;
+                    font-size: 30px;
+                }
+            }
+        }
+
+        &.apply-form .basic-form .login-border {
+            padding-top: 0;
+        }
+
+        .text-muted {
+            margin-top: 10px;
+            display: block;
+            line-height: 14px;
+            font-size: 12px;
+        }
+    }
+
+    .sf-registration-link {
+        font-size: 1.4rem;
+    }
+    /*#endregion Forms*/
+    /*#region Social*/
+    .login-form {
+        h1 {
+            margin-bottom: 2rem;
+        }
+    }
+
+    .sf-profile {
+        margin-bottom: 2rem;
+
+        h2 {
+            font-size: 3.0rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        /*p {
+            margin-bottom: 25px;
+        }*/
+        img {
+            max-width: 200px;
+            box-shadow: 1px 1px 1px rgba(0,0,0,.2);
+        }
+
+        label {
+            padding-top: 0;
+        }
+    }
+
+    .user-profile-dash {
+        border-bottom: 1px solid $global-text-color;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+        padding-top: 20px;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        h1 {
+            margin-bottom: 5rem;
+        }
+    }
+
+    .dash-tbl-wrap {
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        div.alert {
+            margin-bottom: 30px;
+        }
+
+        &.loading {
+            overflow: hidden;
+        }
+    }
+
+    .sign-in-with, .ext-provider-form {
+        clear: both;
+        margin-bottom: 2rem;
+        overflow: hidden;
+
+        ul {
+            padding-top: 0;
+
+            li {
+                vertical-align: top;
+
+                a {
+                    &::before {
+                        font-family: 'Font Awesome 5 Brands';
+                        margin-right: 10px;
+                    }
+
+                    &:hover, &:focus {
+                        opacity: 0.9;
+                    }
+                }
+
+                .btn {
+                    text-align: left;
+                    margin-bottom: 0;
+
+                    em {
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    .field-wrapper {
+        padding-top: 16px;
+    }
+
+    .dropdown-tree {
+        button.dropdown-toggle {
+            width: 100%;
+            text-align: left;
+            padding: 12px 20px 12px 10px;
+            color: $global-text-color;
+            text-transform: none;
+            font: $global-font-size/1 $font-family-regular;
+            position: relative;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+            &:hover, &:focus {
+                background: none;
+                color: $global-text-color;
+            }
+
+            .caret {
+                position: absolute;
+                right: 10px;
+                top: 17px;
+            }
+        }
+    }
+
+    .apply-with {
+
+        .btn {
+            &.btn-indeed {
+                background: #fd6001 url(../images/indeedBtn.png) no-repeat 50% 50%;
+            }
+
+            &.btn-linkedin {
+                background: #007cb7 url(../images/linkkedinBtn.png) no-repeat 50% 50%;
+                text-indent: -9em;
+            }
+
+            &.btn-seek {
+                background: #e61977 url(../images/seekBtn.png) no-repeat 50% 50%;
+                text-indent: -9em;
+            }
+        }
+    }
+
+    #indeed-btnwrapper .indeed-apply-button-container {
+        height: 35px;
+    }
+
+    #indeed-btnwrapper .indeed-apply-button {
+        background: url(../images/indeedBtn.png) 50% !important;
+        width: 120px;
+        border-radius: 0 !important;
+        height: 35px !important;
+        padding: 0 !important;
+
+        span {
+            display: none !important;
+        }
+    }
+
+
+    .job-desc-apply #indeed-btnwrapper .indeed-apply-button {
+        background: url(../images/indeed-apply.png) no-repeat !important;
+        width: 190px;
+
+
+        span {
+            display: none !important;
+        }
+    }
+
+
+    .job-desc-apply .btn.btn-linkedin {
+        /* background: #005b89; */
+        background: url(../images/linkedin-apply.png) no-repeat !important;
+        width: 190px;
+        min-width: unset;
+    }
+
+    .job-desc-apply .btn.btn-linkedin:before {
+        content: "";
+    }
+
+
+    .job-desc-apply .btn.btn-seek {
+        /* background: #005b89; */
+        background: url(../images/seek-apply.png) no-repeat !important;
+        width: 190px;
+        min-width: unset;
+    }
+
+    .job-desc-apply .btn.btn-seek:before {
+        content: "";
+    }
+
+    .apply-with, .sign-in-with {
+        ul {
+            padding-left: 0;
+
+            li {
+                margin-bottom: 10px;
+                margin-right: 10px;
+                /*float: left;*/
+                display: block;
+
+                .btn {
+                    height: 35px;
+                    line-height: 1.2;
+                    min-width: 120px;
+                    padding: 6px 10px;
+                }
+            }
+
+            &::after {
+                content: '';
+                display: table;
+                clear: both;
+            }
+        }
+
+        &.job-application-social {
+            ul {
+                margin-top: 20px;
+
+                &:before, &:after {
+                    display: table;
+                    content: " ";
+                }
+
+                &:after {
+                    clear: both;
+                }
+
+                li {
+                    float: left;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+    /*#endregion Social*/
+}
+
+#userid[readonly]{
+    background: none;
+}
+.welcome-message {
+    padding: 2px 0px;
+    display: block;
+    font-size: 1.4rem;
+    color: #ff9000;
+    &::before {
+        content: '\f4fc';
+        font: 700 1.2rem/1 'Font Awesome 5 Free';
+        margin-right: 6px;
+    }
+}
+
+/*#endregion Log in/Sign in/Apply*/
+
+.form-group .error-message {
+    padding: 5px;
+    margin-top: 2px;
+    display: block;
+    margin-bottom: 0;
+    border-radius: 0;
+    font-size: 85%;
+}
+//used for dynamic form for checkbox field
+.minWt100{
+    min-width: 100px;
+}
+.form-group-Job{
+    .form-control-static{
+        margin-top: 0;
+        padding-top: 5px;
+        display: block;
+    }
+}
+
+.col-action{
+    
+    @media (min-width:768px){
+        padding: 0!important;
+    }
+    .btn-remove{
+        min-width: 50px!important;
+        padding: 9px 0;
+        @media (max-width:767px){
+            margin-top: 5px;
+        }
+    }
+}
+.form-group-Friends{
+    h3{
+        margin-bottom: 25px;
+    }
+}
+
+.col-wrap{
+    margin-bottom: 5px;
+}
+.hidden-label {
+label{
+    display: none;
+}
+}
+.job-email-widget {
+    .checkbox {
+        line-height: 20px;
+        font-size: 14px;
+        font-size: 1.4rem;
+        color: $global-text;
+    }
+
+    .form-group-Job {
+        .form-control-static {
+            color: $global-text;
+        }
+    }
+}
+.registercv-form {
+    .checkbox {
+        line-height: 20px;
+        font-size: 14px;
+        font-size: 1.4rem;
+        color: $global-text;
+    }
+}
+
+.git-about, footer {
+    textarea.form-control {
+        height: 100px !important;
+    }
+}
+
+#createalert-widget {
+    h3 {
+        color: $global-text;
+    }
+
+    .basic-form {
+        label {
+            color: $global-text;
+        }
+
+        .form-control {
+            height: 44px;
+        }
+
+        .dropdown-tree {
+            button {
+                .dropdown-toggle {
+                    padding: 9px 20px 9px 10px;
+                    color: $global-text;
+                    font: 1.4rem SegoeUI,sans-serif;
+                    border-color: $global-text;
+                }
+            }
+        }
+
+        .btn {
+            &.btn-black {
+                border-color: $global-text;
+            }
+        }
+    }
+}

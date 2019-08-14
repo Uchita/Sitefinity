@@ -1,0 +1,80 @@
+﻿@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+<div ng-controller="SimpleCtrl">
+    <uib-tabset class="nav-tabs-wrapper">
+        <uib-tab heading="General">
+            <div class="form-group">
+                <label for="templateName">Template</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <select id="templateName" ng-model="properties.TemplateName.PropertyValue" class="form-control">
+                            @foreach (var viewName in Html.GetViewNames("JobFilters", @"(?<viewName>^T_.*)$"))
+                            {
+                                <option value="@viewName">@viewName.Replace("T_", "")</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="navCssClass">Prefix text for id</label>
+                <input type="text" id="navCssClass" ng-model="properties.PrefixIdText.PropertyValue" class="form-control" />
+            </div>
+        </uib-tab>
+
+        <uib-tab heading="Select Filters">
+            <script type="text/ng-template" id="categoryTree">
+                <a ng-click="clickEvent(category,$event)"><span class="glyphicon glyphicon-ok" ng-show="isSelected(category)"></span>{{ category.Label }}</a>
+                <ul ng-if="category.Filters">
+                    <li ng-repeat="category in category.Filters|filter:searchtext" ng-include="'categoryTree'">
+                    </li>
+                </ul>
+            </script>
+
+            <div>
+                <p><strong>Note:</strong> If no filter values selected means will treat it as whole filter</p>
+            </div> <br />
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="properties.DisplayCompanyName.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.HidePushStateUrl.PropertyValue === 'True'" />
+                    Display Company Name
+                </label>
+            </div><br />
+
+            <div class="form-group" data-ng-repeat="row in rows">
+                <div class="row">
+                    <div>
+                        <select class="form-control" ng-model="row.FilterType" ng-options="x for x in FilterTypes" ng-change="onFilterChange(row)" ng-disabled="row.ControlType == 'Map Search' || row.ControlType == 'TextBox'">
+                            <option value="" disabled selected ng-show="!row.FilterType">-- Select Filter Type --</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle form-control text-left" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-disabled="row.ControlType == 'Map Search' || row.ControlType == 'TextBox'">
+                                --- Select Values ---
+                                <span class="caret pull-right"></span>
+                            </button>
+                            <ul class="dropdown-menu" style="max-height: 200px;overflow-y: scroll;min-width:550px;">
+                                <input type="text" class="form-control" ng-model="searchtext" ng-click="filterClick()" />
+                                <li ng-repeat="category in row.Filters" ng-include="'categoryTree'" ng-click="clickValuesMulti(category, $event)"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-danger" id="row.ID" ng-click="removeRow(row.RowId)">
+                            @Html.Resource("JobParamDelete", "JobSearchResources")
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <br />
+            <div class="btn btn-primary" ng-click="addNewRow()">@Html.Resource("JobParamAdd", "JobSearchResources")</div>
+        </uib-tab>
+</div>
+
+

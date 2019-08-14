@@ -1,0 +1,65 @@
+﻿@using JXTNext.Sitefinity.Widgets.User.Mvc.Models.MemberSavedJob
+@model List<MemberSavedJobDisplayItem>
+@using JXTNext.Sitefinity.Widgets.User.Mvc.Models
+@using System;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+
+@if (ViewBag.DeleteMessage != null)
+{
+    if (ViewBag.Status == MemberSavedJobStatus.SUCCESS)
+    {
+        <div class="alert alert-success">@ViewBag.DeleteMessage</div>
+    }
+    else
+    {
+        <div class="alert alert-danger">@ViewBag.DeleteMessage</div>
+    }
+}
+
+<h2><span class="save-icon"></span>@Html.Resource("SavedJobs")</h2>
+@if (Model != null && Model.Count > 0)
+{
+
+    <div class="tbl-wrapper">
+        <table class="table table-bordered datatable">
+            <thead>
+                <tr>
+                    <th width="100">@Html.Resource("JobId")</th>
+                    <th>@Html.Resource("JobTitle")</th>
+                    <th class="date-col">@Html.Resource("DateAdded")</th>
+                    <th class="act-col">@Html.Resource("Actions")</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (MemberSavedJobDisplayItem item in Model)
+                {
+                    <tr>
+                        <td>@item.JobId</td>
+                        <td><a href="@ViewBag.JobDetailsPageUrl/@item.ClassificationURL/@item.JobId">@item.DisplayTitle</a></td>
+                        <td>@String.Format("{0:dd MMM yyyy}", item.DateAdded)</td>
+                        <td>
+                            @Html.ActionLink("Remove", "DeleteSavedJob", "MemberSavedJobs", new { savedJobId = item.Id }, new { onclick = "return confirmSaveJobDelete();", @class = "btn btn-sm btn-tag btn-danger" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="alert alert-info">@Html.Resource("NoSavedJobs")</div>
+}
+
+
+<script type="text/javascript">
+    function confirmSaveJobDelete() {
+          if (confirm('@Html.Resource("RemoveConfirm")')) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+</script>

@@ -1,0 +1,361 @@
+﻿@model dynamic
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+@if (Model != null)
+{
+<div class="filter-outer-wrapper left-sidebar visible-hidden">
+    <div class="form-group keywordfilter">
+        <label><strong>Keywords:</strong></label>
+        <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" placeholder="Search keywords" /></div>
+    </div>
+    <div class="filter-toggle"><span class="btn btn-primary">@Html.Resource("JobFilterToggleBtn")</span></div>
+    <div class="search-toggle visible-xs"><i class="fas fa-search"></i></div>
+    <div class="sm-wrapper">
+        @foreach (var item in Model)
+        {
+            if (item.Name != "Salary")
+            {
+                <div class="dropdown dropdown-tree navbar-collapse" id=@string.Format("{0}{1}", ViewBag.PrefixIdsText, item.Name)></div>
+            }
+            else if (item.Name == "Salary")
+            {
+                <div class="select">
+                    <select class="SalaryRangeSelect">
+                        <option value="-1" selected>No Salary Preference</option>
+                        @foreach (var salaryItem in item.Filters)
+                        {
+                            <option value="@salaryItem.ID">@salaryItem.Label</option>
+                        }
+
+                    </select>
+                </div>
+                foreach (var salaryItem in item.Filters)
+                {
+                    var lower = salaryItem.Filters[1].Value;
+                    var upper = salaryItem.Filters[0].Value;
+                    if (salaryItem.Label != "NA")
+                    {
+
+                        <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
+
+                            <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
+                                 data-cur_min="@lower" data-cur_max="@upper">
+
+                                <div class="bar"></div>
+                                <div class="leftGrip"></div>
+                                <div class="rightGrip"></div>
+                            </div>
+                            <div class="leftLabel">$<span>@lower</span></div>
+                            <div class="rightLabel">$<span>@upper</span></div>
+
+                        </div>
+                    }
+                }
+            }
+        }
+    </div>
+</div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+         @{
+                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                var json = serializer.Serialize(Model);
+          }
+        var optionsArray = {};
+        var queryStringArr = [];
+        var prefixIdText = '';
+        var typingTimer;
+        var doneTypingInterval = 500;
+        var isSalaryExists = false;
+        var isSalaryChanged = false;
+        var isSlarySelected = false;
+        var salary = { TargetValue: 'Salary', LowerRange: 15000, UpperRange: 300000 };
+        var modelSalary = JSON.parse('@Html.Raw(Json.Encode(ViewBag.Salary))');
+        var tempKeyword = $("#selectedkeywordsfilter").val();
+        $("#selectedkeywordsfilter").val('').focus().val(tempKeyword);
+
+        if (modelSalary != null && modelSalary != 'undefined') {
+            $('.SalaryRangeSelect').val(modelSalary.TargetValue);
+            $('#' + modelSalary.TargetValue).removeClass('visible-hidden');
+            $('.SalaryRangeSelect').addClass('changed');
+
+            var salarySliderEle = $('#' + modelSalary.TargetValue).parent().find('.nstSlider');
+            if (salarySliderEle != null) {
+                isSlarySelected = true;
+                salary.TargetValue = modelSalary.TargetValue;
+                $(salarySliderEle).data("cur_min", modelSalary.LowerRange);
+                $(salarySliderEle).data("cur_max", modelSalary.UpperRange);
+            }
+        }
+
+
+        $('.SalaryRangeSelect').on('change', function () {
+            isSlarySelected = false;
+            isSalaryChanged = true;
+            $('.salaryrangewrapper').each(function (i, obj) {
+                $(this).addClass('visible-hidden');
+            });
+            if (this.value != -1) {
+                $(this).addClass('changed');
+                isSlarySelected = true;
+                $('#' + this.value).removeClass('visible-hidden');
+                salary.TargetValue = this.value;
+                salary.LowerRange =  $("#" + $(this).val()).find('.leftLabel span').text();
+                salary.UpperRange = $("#" + $(this).val()).find('.rightLabel span').text();
+                eachClickFilter();
+            } else if ($(this).hasClass('changed') && this.value == -1) {
+                isSlarySelected = false;
+                eachClickFilter();
+            }
+
+        });
+
+        $('.nstSlider').each(function (i, obj) {
+            $(this).nstSlider({
+                "rounding": {
+                    "1": "600",
+                    "1000": "200000"
+                },
+                "crossable_handles": false,
+                "left_grip_selector": ".leftGrip",
+                "right_grip_selector": ".rightGrip",
+                "value_bar_selector": ".bar",
+                "user_mouseup_callback": function (leftValue, rightValue, isLeftGripMoved) {
+                    salary.LowerRange = leftValue;
+                    salary.UpperRange = rightValue;
+                    $(this).parent().find('.leftLabel span').text(leftValue);
+                    $(this).parent().find('.rightLabel span').text(rightValue);
+                    if (isSlarySelected) {
+                        eachClickFilter();
+                    }
+                },
+                "value_changed_callback": function (cause, leftValue, rightValue) {
+                    if (!$(this).parent().hasClass('visible-hidden')) {
+                        $(this).parent().find('.leftLabel span').text(leftValue);
+                        $(this).parent().find('.rightLabel span').text(rightValue);
+                        if (cause != 'init') {
+                            isSalaryChanged = true;
+                        }
+                    }
+                }
+            });
+        });
+        $(window).resize(function () {
+            $('.nstSlider').each(function (i, obj) {
+                $(this).nstSlider('refresh');
+            });
+        });
+
+        $('#selectedkeywordsfilter').on('keydown', function (e) {
+            if ($(this).val && e.which == 13) {
+                //getting the loader while the job search is working
+                $("#selectedkeywordsfilter").parent().addClass('loader');
+
+                eachClickFilter();
+            }
+        });
+
+        $("#selectedkeywordsfilter").on("search", function (input) {
+            if ($(this).val() == "") {
+                //getting the loader while the job search is working
+
+                $("#selectedkeywordsfilter").parent().addClass('loader');
+                if (checkEspecialChar($(this).val()) == false) {
+                    return false;
+                }
+                eachClickFilter();
+            }
+
+        });
+
+        //for mobile only = show hide the filter
+        if ($('.filter-toggle').length) {
+            $('.filter-toggle .btn').click(function () {
+                $(this).toggleClass('active');
+                //$('.sm-wrapper').fadeToggle('fast');
+                $('.sm-wrapper').toggleClass('fake-hide-reverse');
+            });
+        }
+
+
+        function makeQueryString(obj, prefix, isArray) {
+
+            for (var p in obj) {
+                if (obj.hasOwnProperty(p)) {
+                    var k, v;
+                    if (isArray)
+                        k = prefix ? prefix + "%5B" + p + "%5D" : p, v = obj[p];
+                    else {
+                        if (prefix.match(".values$"))
+                            k = prefix ? prefix : p, v = obj[p];
+                        else
+                            k = prefix ? prefix + "." + p + "" : p, v = obj[p];
+                    }
+
+                    if (v !== null && typeof v === "object") {
+                        if (Array.isArray(v)) {
+                            if (k.match(".values$"))
+                                makeQueryString(v, k, false);
+                            else
+                                makeQueryString(v, k, true);
+                        } else {
+                            makeQueryString(v, k, false);
+                        }
+                    } else {
+                        if (v === null || v === "undefined")
+                            v = "";
+
+                        var query = k + "=" + v;
+                        queryStringArr.push(query);
+                    }
+                }
+            }
+            return queryStringArr.join("&");
+        };
+
+        var model = @Html.Raw(json);
+        if (model != null && model != "undefined") {
+            var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
+            prefixIdText = @Html.Raw(Json.Encode(ViewBag.PrefixIdsText));
+
+            console.log(filterData);
+            console.log(prefixIdText);
+
+            $.each(filterData, function (index, item) {
+                if (item.Name == 'Salary') {
+                    isSalaryExists = true;
+                }
+
+                var displayTitle = item.Name;
+                if (displayTitle == 'CountryLocationArea')
+                    displayTitle = 'Location';
+                else if (displayTitle == 'WorkType')
+                    displayTitle = 'Work Type';
+                else if (displayTitle == 'CompanyName')
+                    displayTitle = 'Company Name';
+
+                optionsArray[prefixIdText + item.Name] = {
+                    title: displayTitle,
+                    data: item.Filters,
+                    maxHeight: 'none',
+                    closedArrow: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+                    openedArrow: '<i class="fa fa-angle-down" aria-hidden="true"></i>',
+                    multiSelect: true,
+                    enableSearch: false,
+                    selectChildren: true,
+                    expandChildren: false,
+                    expandElement: true,
+                    dropdownType: "collapse", //dropdown,collapse
+                    ariaLabelId: 'lbl-' + prefixIdText + item.Name,
+                    displayCount: true,
+                    prefixIdText: prefixIdText,
+                    setSelectedElementsTitle: false,
+                    checkHandler: function (target, checked) {
+                        eachClickFilter();
+                    }
+                };
+                $("#" + prefixIdText + item.Name).DropDownTree(optionsArray[prefixIdText + item.Name]);
+            });
+
+            //onpage load checking if any filter is selected
+            function checkFilterCheck() {
+                //checking keyword
+                if (tempKeyword != "") {
+                    return true;
+                }
+                //checking checkboxes selected
+                if ($('#filtersPagePartialContent .dropdown-tree >ul>li>a').hasClass('active')) {
+                    return true;
+                }
+                //checking salary selected
+                if ($('.SalaryRangeSelect').val() != -1) {
+                    return true;
+                }
+            }
+
+            if (checkFilterCheck()) {
+                $("#sortOrder").val("Relevance");
+            } else {
+                $("#sortOrder").val("Recent");
+            }
+
+            function eachClickFilter() {
+                var filterModel = {};
+                filterModel.Filters = [];
+                
+                //locking the filter till the result loads
+                $('.filter-outer-wrapper').addClass('lockoverlay');
+
+                $.each(optionsArray, function (id, item) {
+                    var selectedIdsCount = $("#" + id).GetSelectedElementIds().length;
+                    var trimmedId = id.slice(prefixIdText.length);
+                    if (filterModel.Filters.length > 0) {
+                        let flag = false;
+
+                        $.each(filterModel.Filters, function (index, filterModelItem) {
+                            if (filterModelItem.rootId == trimmedId) {
+                                filterModelItem.values = $("#" + id).GetSelectedElementIds();
+                                flag = true;
+                                return false;
+                            }
+                        });
+
+                        if (flag == false && selectedIdsCount > 0)
+                            filterModel.Filters.push({ rootId: trimmedId, values: $("#" + id).GetSelectedElementIds() });
+                    }
+                    else if (selectedIdsCount > 0){
+                        filterModel.Filters.push({ rootId: trimmedId, values: $("#" + id).GetSelectedElementIds() });
+                    }
+                });
+
+                if (isSalaryExists && isSlarySelected){
+                    if (modelSalary != null && modelSalary != undefined && isSalaryChanged == false && (modelSalary.LowerRange > salary.LowerRange || modelSalary.UpperRange < salary.UpperRange) && modelSalary.TargetValue == $('.SalaryRangeSelect').val() ) {
+                        filterModel.Salary = modelSalary;
+                    }
+                    else {
+                        filterModel.Salary = salary;
+                    }
+                }
+
+                filterModel.Keywords = encodeURIComponent($("#selectedkeywordsfilter").val());
+                if ($("#pager li a").length) {
+                    filterModel.Page = "1";
+                }
+                
+                filterModel.SortBy = $("#sortOrder").val();// We need to persist the sort order selected in job search results
+                
+                var data = { filterModel: filterModel }
+                var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
+                var queryStringData = makeQueryString(filterModel, "", false);
+                var pushStateUrl = $(location).attr('pathname') + "?" + queryStringData;
+                window.history.pushState(data, "", pushStateUrl);
+                queryStringArr.length = 0;
+                $.ajax({
+                    type: "POST",
+                    cache: false,
+                    url: urlPath,
+                    data: queryStringData,
+                    dataType: 'json',
+                    success: function (response) {
+                        $("#resultsPagePartialContent").empty().html(response.jobResults);
+                        $("#filtersPagePartialContent").empty().html(response.jobResultsFilter);
+                    },
+                    error: function (response) {
+                       console.log(response);
+                    }
+                });
+            }
+        }
+
+
+        //job filter widget only for Hudson
+        if ($('#filtersPagePartialContent').length) {
+            $('#filtersPagePartialContent #CountryLocationArea li li[data-title="SYDNEY"]')
+                .insertAfter($('#filtersPagePartialContent #CountryLocationArea li li[data-title="PERTH"]'));
+        }
+
+    });
+</script>

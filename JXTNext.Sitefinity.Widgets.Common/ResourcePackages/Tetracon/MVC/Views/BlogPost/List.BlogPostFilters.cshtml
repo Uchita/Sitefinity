@@ -1,0 +1,222 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web.DataResolving;
+
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Security.Model;
+@using Telerik.Sitefinity.Model;
+
+@Html.Script(ScriptRef.JQuery, "top", false)
+
+
+@{
+    List<Taxon>
+    _cates = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.GetTopLevelCategories();
+
+    Taxon _sectorTaxon = _cates.Where(c => c.Title.ToUpper() == "BLOG CATEGORIES").FirstOrDefault();
+
+    Taxon _sectorTaxon1 = _cates.Where(c => c.Title.ToUpper() == "BLOG INDUSTRIES").FirstOrDefault();
+
+    Taxon _sectorTaxon2 = _cates.Where(c => c.Title.ToUpper() == "BLOG TYPE").FirstOrDefault();
+
+    var _dd_blogCategories = _sectorTaxon as HierarchicalTaxon;
+
+    var _dd_blogIndustries = _sectorTaxon1 as HierarchicalTaxon;
+
+    var _dd_blogTypes = _sectorTaxon2 as HierarchicalTaxon;
+}
+
+@*@foreach (var newscatitem in _dd_blogCategories.Subtaxa)
+    {
+    <p>@newscatitem.Name</p>
+    foreach (var subcategory in newscatitem.Subtaxa)
+    {
+    <p>@subcategory.Name</p>
+    }
+    }
+
+    @foreach (var newscatitem in _dd_blogIndustries.Subtaxa)
+    {
+    <p>@newscatitem.Name</p>
+    foreach (var subcategory in newscatitem.Subtaxa)
+    {
+    <p>@subcategory.Name</p>
+    }
+    }
+
+    @foreach (var newscatitem in _dd_blogTypes.Subtaxa)
+    {
+    <p>@newscatitem.Name</p>
+    foreach (var subcategory in newscatitem.Subtaxa)
+    {
+    <p>@subcategory.Name</p>
+    }
+    }*@
+
+
+<div class="filter-outer-wrapper right-filter-sidebar">
+    @*<div>
+        <select id="sortOrder" class="jxt-news-filter-summary">
+            <option value="latest">Sort by – Recent</option>
+            <option value="oldest">Sort by – Oldest Posts</option>
+            <option value="az">Sort by – Alphabetical A-Z</option>
+            <option value="za">Sort by – Alphabetical Z-A</option>
+        </select>
+    </div>*@
+
+    <div class="keywordfilter">
+        @*<h3>Search Keyword</h3>*@
+        <input type="text" id="txtSearch" placeholder="Search by keywords..." class="form-control" />
+        <br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </div>
+
+    <div class="dropdown dropdown-tree navbar-collapse" id="BLOGCATEGORIES" data-prefixidtext="">
+        <h3>
+            <a href="#lbl-CATEGORIES" class="dropdown-toggle" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="lbl-CATEGORIES">
+                <span class="dropdowntree-name">Categories</span>
+            </a>
+        </h3>
+        <div class="left-sidebar">
+            <nav class="navbar " role="navigation">
+
+                @*<div class="container-fluid">
+            <a href="#" target="_self">Technology</a>
+            <ul class="nav navbar-nav">
+                <li class="current">
+                    <a href="#" target="_self">Field Engineering</a>
+                </li>
+                <li class="">
+                    <a href="#" target="_self">Sales</a>
+                </li>
+                <li class="">
+                    <a href="#" target="_self">Field Engineering Projects</a>
+                 </li>
+
+
+
+            </ul>
+        </div>*@
+                <ul style="max-height:none" class="collapse show in" id="lbl-CATEGORIES">
+                    @foreach (var newscatitem in _dd_blogCategories.Subtaxa)
+                    {
+                        <li data-title="@newscatitem.Name">
+                            <label for="@newscatitem.Id">
+                                <input class="parent-blog-category" id="@newscatitem.Id" name="@newscatitem.Name" type="checkbox" />
+                                <i></i>
+                                <span>
+                                    @newscatitem.Title
+                                </span>
+                            </label>
+                            @if (newscatitem.Subtaxa.Count > 0)
+                            {
+                                <span class="ul-dropdown-toggle"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                <ul>
+                                    @foreach (var subcategory in newscatitem.Subtaxa)
+                                    {
+
+                                        <li data-title="@subcategory.Name">
+                                            <input class="child-blog-category" id="@subcategory.Id" name="@subcategory.Name" type="checkbox" />
+                                            <span>@subcategory.Title</span>
+                                        </li>
+
+                                    }
+                                </ul>
+                            }
+                        </li>
+
+
+                    }
+                </ul>
+            </nav>
+            </div>
+            
+        </div>
+
+        @*<div class="dropdown dropdown-tree navbar-collapse" id="BLOGINDUSTRIES" data-prefixidtext="">
+            <h3>
+                <a href="#lbl-INDUSTRIES" class="dropdown-toggle" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="lbl-INDUSTRIES">
+                    <span class="dropdowntree-name">Industries</span>
+                </a>
+            </h3>
+            <ul style="max-height: none" class="collapse show in" id="lbl-INDUSTRIES">
+                @foreach (var newscatitem in _dd_blogIndustries.Subtaxa)
+                {
+                    <li data-title="@newscatitem.Name">
+                        <label for="@newscatitem.Id">
+                            <input class="parent-blog-industry" id="@newscatitem.Id" name="@newscatitem.Name" type="checkbox" />
+                            <i></i>
+                            <span>
+                                @newscatitem.Title
+                            </span>
+                        </label>
+                        @if (newscatitem.Subtaxa.Count > 0)
+                        {
+                            <span class="ul-dropdown-toggle"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                            <ul>
+                                @foreach (var subcategory in newscatitem.Subtaxa)
+                                {
+
+                                    <li data-title="@subcategory.Name">
+                                        <input class="child-blog-industry" name="@subcategory.Name" type="checkbox" />
+                                        <span>@subcategory.Title</span>
+                                    </li>
+
+                                }
+                            </ul>
+                        }
+                    </li>
+
+
+                }
+            </ul>
+        </div>*@
+
+        <div class="dropdown dropdown-tree navbar-collapse" id="BLOGTYPES" data-prefixidtext="">
+            <h3>
+                <a href="#lbl-TYPES" class="dropdown-toggle" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="lbl-TYPES">
+                    <span class="dropdowntree-name">TYPE</span>
+                </a>
+            </h3>
+            <ul style="max-height: none" class="collapse show in" id="lbl-TYPES">
+                @foreach (var newscatitem in _dd_blogTypes.Subtaxa)
+                {
+                <li data-title="@newscatitem.Name">
+                    <label for="@newscatitem.Id">
+                        <input type="checkbox" class="parent-blog-type" id="@newscatitem.Id" name="@newscatitem.Name" />
+                        <i></i>
+                        <span>
+                            @newscatitem.Title
+                        </span>
+                    </label>
+                    @if (newscatitem.Subtaxa.Count > 0)
+                    {
+                    <span class="ul-dropdown-toggle"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+
+                    <ul>
+                        @foreach (var subcategory in newscatitem.Subtaxa)
+                        {
+
+                        <li data-title="@subcategory.Name">
+                            <input class="child-blog-type" id="@subcategory.Id" name="@subcategory.Name" type="checkbox" />
+                            <span>@subcategory.Title</span>
+                        </li>
+
+                        }
+                    </ul>
+                    }
+                </li>
+
+
+                }
+            </ul>
+        </div>
+    </div>
+<script src="~/ResourcePackages/Tetracon/assets/dist/js/blogfilter.js"></script>

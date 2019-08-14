@@ -9,13 +9,12 @@ using Telerik.Sitefinity.Model;
 using Telerik.Sitefinity.Taxonomies;
 using Telerik.Sitefinity.Taxonomies.Model;
 using Telerik.OpenAccess;
+using Telerik.Sitefinity.ContentLocations;
 using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.GenericContent.Model;
 using Telerik.Sitefinity.Utilities.TypeConverters;
 using Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models;
 using SitefinityWebApp.Mvc.Models.CustomDynamicContent;
-using System.Threading;
-using Telerik.Sitefinity.Multisite;
 
 namespace SitefinityWebApp.Helpers
 {
@@ -30,52 +29,13 @@ namespace SitefinityWebApp.Helpers
             return article == null ? null : new ItemViewModel(article);
         }
 
-        public static DynamicContent GetFeaturedArticleNavigation()
-        {
-            var taxonomyManager = TaxonomyManager.GetManager();
-            var tagsTaxonomy = taxonomyManager.GetTaxonomies<FlatTaxonomy>().FirstOrDefault(s => s.Name == "Tags");
-            var taxa = tagsTaxonomy.Taxa.Where(c => c.Title == "Featured").FirstOrDefault();
-
-            if (taxa != null)
-            {
-                var itemType = TypeResolutionService.ResolveType("Telerik.Sitefinity.DynamicTypes.Model.Articles.Article");
-
-                var multisiteContext = SystemManager.CurrentContext as MultisiteContext;
-                var providerName = multisiteContext.CurrentSite.GetProviders("Articles").Select(p => p.ProviderName).FirstOrDefault();
-
-                var transactionName = Guid.NewGuid();
-
-                var dynamicModuleManager = DynamicModuleManager.GetManager(providerName, transactionName.ToString());
-
-                var offices = dynamicModuleManager.GetDataItems(itemType).Where(o => o.Status == ContentLifecycleStatus.Live && o.Visible
-                    && o.GetValue<TrackedList<Guid>>("Tags").Contains(taxa.Id));
-
-                var cultureInfo = Thread.CurrentThread.CurrentUICulture;
-
-                if (!cultureInfo.IsNeutralCulture)
-                {
-                    offices.Where(o => o.PublishedTranslations.Contains(cultureInfo.Name));
-                }
-
-                return offices.OrderByDescending(a => a.GetValue<DateTime>("PublicationDate")).FirstOrDefault();
-            }
-
-            return null;
-        }
-
         public static ItemViewModel GetFeaturedArticle()
         {
-            var cultureInfo = Thread.CurrentThread.CurrentUICulture;
-            if (cultureInfo.IsNeutralCulture)
-            {
-                // TODO: Get only featured artcle.
-                var article = GetArticles()
-                    .FilterByFlatTaxonName("Tags", "Featured", "Tags")
-                    .OrderByDescending(a => a.GetValue<DateTime>("PublicationDate")).FirstOrDefault();
-                return article == null ? null : new ItemViewModel(article);
-            }
-
-            return null;
+            // TODO: Get only featured artcle.
+            var article = GetArticles()
+                .FilterByFlatTaxonName("Tags", "Featured", "Tags")
+                .OrderByDescending(a => a.GetValue<DateTime>("PublicationDate")).FirstOrDefault();
+            return article == null ? null : new ItemViewModel(article);
         }
 
         public static string GetBestArticleUrl(IDataItem article)

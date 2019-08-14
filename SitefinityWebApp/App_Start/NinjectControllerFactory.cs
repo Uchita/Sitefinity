@@ -1,4 +1,5 @@
-﻿using JXTNext.Sitefinity.Common.Models;
+﻿using Jxt.Sitefinity.Jobs;
+using JXTNext.Sitefinity.Common.Models;
 using JXTNext.Sitefinity.Connector;
 using JXTNext.Sitefinity.Services.Services;
 using JXTNext.Sitefinity.Widgets.Authentication;
@@ -7,6 +8,9 @@ using JXTNext.Sitefinity.Widgets.Social;
 using Ninject;
 using SitefinityWebApp.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Telerik.Sitefinity.Frontend;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers;

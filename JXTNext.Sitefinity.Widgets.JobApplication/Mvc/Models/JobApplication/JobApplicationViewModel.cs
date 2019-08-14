@@ -20,9 +20,6 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
         public string ContactDetails { get; set; }
         public string UrlReferral { get; set; }
         public List<ApplyWithSocialMedia> ApplyWithSocialMediaInfo { get; set; }
-        public bool HideGoogleDrive { get; set; } = false;
-        public bool HideDropBox { get; set; } = false;
-
     }
 
     public class JobApplicationUploadFilesModel

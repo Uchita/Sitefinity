@@ -133,9 +133,9 @@
     <lastModified>2015-03-01T22:00:00</lastModified>
   </data>
   <data name="LoginFormLogInButton">
-    <value>Sign in</value>
+    <value>Login</value>
     <comment>phrase : Log in</comment>
-    <lastModified>2015-03-01T22:00:00</lastModified>
+    <lastModified>2018-12-20T12:51:33</lastModified>
   </data>
   <data name="RememberMe">
     <value>Stay signed in</value>
@@ -151,5 +151,10 @@
     <value>Name</value>
     <comment>Name label field</comment>
     <lastModified>2019-01-24T07:06:07</lastModified>
+  </data>
+  <data name="ForgotPasswordSendButton">
+    <value>Reset</value>
+    <comment>phrase : Send</comment>
+    <lastModified>2019-02-21T11:05:55</lastModified>
   </data>
 </root>

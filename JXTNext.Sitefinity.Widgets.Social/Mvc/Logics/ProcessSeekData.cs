@@ -57,8 +57,7 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
                     req.PostalCode = "2145";
 
                     SeekSocialMediaService seekSocialMediaService = new SeekSocialMediaService();
-                    if (Int32.TryParse(state, out int jobId))
-                        processedResponse.JobId = jobId;
+
                     // Seek API call
                     var seekAPIResponse = seekSocialMediaService.ProcessSocialMediaIntegration<SeekSocialMediaResponse, SeekSocialMediaRequest>(req);
 
@@ -71,6 +70,9 @@ namespace JXTNext.Sitefinity.Widgets.Social.Mvc.Logics
                         processedResponse.FirstName = seekAPIResponse.SeekApplication.applicantInfo.firstName;
                         processedResponse.LastName  = seekAPIResponse.SeekApplication.applicantInfo.lastName;
                         processedResponse.PhoneNumber = seekAPIResponse.SeekApplication.applicantInfo.phoneNumber;
+
+                        if (Int32.TryParse(state, out int jobId))
+                            processedResponse.JobId = jobId;
 
                         HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(seekAPIResponse.SeekApplication.resume.link);
                         webReq.ContentType = "application/json";

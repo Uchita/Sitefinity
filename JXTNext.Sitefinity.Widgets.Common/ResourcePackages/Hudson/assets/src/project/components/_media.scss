@@ -822,9 +822,7 @@
     .page-wrapper main{
         padding-top: 0!important;
     }
-    main .page-section{
-        padding: 20px 0;
-    }
+    
     header {
         .navbar{
             min-height: 10px;
@@ -1200,14 +1198,7 @@
     }
 
     .page-wrapper{
-       h1{
-           font-size: 2.9rem;
-           margin-bottom: 2rem;
-       }
-       h2{
-           font-size: 2.2rem;
-           margin-bottom: 1.5rem;
-       }
+       
         footer{
             .page-section{
                 padding: 15px 0;
@@ -1593,37 +1584,6 @@
     }
     #videoModal .modal-dialog{
         background: rgba(0,0,0,0.5);
-    }
-
-    //registration/job application page
-    .backtoresult{
-        margin-bottom: 15px;
-    }
-    .job-mini.disabled-block .jobdetail-sidebar, .job-offer-details{
-        margin-bottom: 20px;
-    }
-    .page-wrapper .ext-provider-form, .page-wrapper .sign-in-with{
-        margin-bottom: 0.5rem;
-    }
-    #login-register-container .col-md-3.text-right, .upload-section label.col-md-3{
-        max-width: 100%;
-    }
-    .form-group .list-group{
-        padding-top: 10px;
-    }
-    .page-wrapper .basic-form .upload-section{
-        margin: 10px 0 0;
-    }
-    .upload-section{
-        .box{
-            margin-bottom: 10px;
-        }
-    }
-    #register {
-        margin-bottom: 0;
-    }
-    .separator{
-        margin-bottom: 20px;
     }
 }
 

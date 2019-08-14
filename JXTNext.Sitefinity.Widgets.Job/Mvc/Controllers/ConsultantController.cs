@@ -217,9 +217,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             ViewBag.PageSize = (int)this.PageSize;
             ViewBag.CssClass = this.CssClass;
-            ViewBag.JobResultsPageUrl = SfPageHelper.GetPageUrlById(ResultsPageId.IsNullOrWhitespace() ? Guid.Empty : new Guid(ResultsPageId));
-            ViewBag.CurrentPageUrl = SfPageHelper.GetPageUrlById(SiteMapBase.GetActualCurrentNode().Id);
-            ViewBag.JobDetailsPageUrl = SfPageHelper.GetPageUrlById(DetailsPageId.IsNullOrWhitespace() ? Guid.Empty : new Guid(DetailsPageId));
+            ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.ResultsPageId);
+            ViewBag.CurrentPageUrl = SitefinityHelper.GetPageUrl(SiteMapBase.GetActualCurrentNode().Id.ToString());
+            ViewBag.JobDetailsPageUrl = SitefinityHelper.GetPageUrl(this.DetailsPageId);
 
             return this.View(this.templateNamePrefix + this.TemplateName, dynamicJobResultsList);
         }

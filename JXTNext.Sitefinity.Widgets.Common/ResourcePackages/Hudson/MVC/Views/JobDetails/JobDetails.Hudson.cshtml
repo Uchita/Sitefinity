@@ -8,11 +8,6 @@
 @using System.Web;
 
 @{
-    var siteSettingsHelper = new SiteSettingsHelper();
-}
-
-
-@{
     var isUserLoggedIn = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn();
     var defaultLogo = "/ResourcePackages/Hudson/assets/dist/images/defaultLogo.png";
     var isMemberUser = false;
@@ -41,22 +36,22 @@
 
     <div class="col-md-8">
         <div class="backtoresult">
-            @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))<span class="spt">|</span><a href="#" id="back-to-results" role="button" title="Back to Results"><span class="prev-btn"></span>@Html.Resource("JxtBackToResults", "JxtAuthoringResources")</a>
+            @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))<span class="spt">|</span><a href="#" id="back-to-results" role="button" title="Back to Results"><span class="prev-btn"></span>Back To Results</a>
         </div>
         <div class="job-offer-details">
             <div class="row job-offer-title">
-
+            
                 <div class="col-md-12">
                     <h1>@Model.JobDetails.Title</h1>
                 </div>
-
+                
             </div><div class="row job-offer-summary">
                 <div class="col-md-12">
                     <table>
                         <tbody>
                             <tr>
                                 <td width="160">
-                                    <strong>@Html.Resource("JobDetailLocation", "JxtAuthoringResources")</strong><strong>:</strong>
+                                    <strong>Location</strong><strong>:</strong>
                                 </td>
                                 <td>
                                     @{
@@ -72,7 +67,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <strong>@Html.Resource("JobDetailWorkType", "JxtAuthoringResources")</strong>
+                                    <strong>Work type:</strong>
                                 </td>
                                 <td>@Model.JobDetails.CustomData["WorkType.Filters[0].Value"]</td>
                             </tr>
@@ -86,26 +81,26 @@
                             {
                                 <tr>
                                     <td>
-                                        <strong>@Html.Resource("SalaryTitle", "JxtAuthoringResources")</strong>
+                                        <strong>Salary:</strong>
                                     </td>
                                     <td>
                                         @if (minSal == maxSal)
                                         {
 
-                                            <span class="max-sal">@Html.Raw(siteSettingsHelper.GetJobCurrencySymbol())@maxSal <span class="sal-type">@Model.JobDetails.CustomData["Salary.Filters[0].Value"]</span></span>
+                                        <span class="max-sal">$@maxSal <span class="sal-type">@Model.JobDetails.CustomData["Salary.Filters[0].Value"]</span></span>
                                         }
                                         else
                                         {
                                             if (minSal > 0)
                                             {
-                                                <span class="min-sal">@Html.Raw(siteSettingsHelper.GetJobCurrencySymbol())@minSal</span>
+                                                <span class="min-sal">$@minSal</span>
                                             }
                                             if (maxSal > 0)
                                             {
                                                 <span class="range-sep">to</span>
-                                                <span class="max-sal">@Html.Raw(siteSettingsHelper.GetJobCurrencySymbol())@maxSal</span>
+                                                <span class="max-sal">$@maxSal</span>
                                             }
-                                            <span class="sal-type">@Model.JobDetails.CustomData["Salary.Filters[0].Value"]</span>
+                                                <span class="sal-type">@Model.JobDetails.CustomData["Salary.Filters[0].Value"]</span>
                                         }
                                     </td>
                                 </tr>
@@ -144,34 +139,34 @@
             </div><div class="row job-offer-contacts">
                 <div class="col-md-12">
                     <div class="flex sm-flex job-metas">
-
-                        <div class="job-meta-label"><strong>@Html.Resource("JobDetailReference", "JxtAuthoringResources")</strong></div>
+                       
+                        <div class="job-meta-label"><strong>Reference Number:</strong></div>
                         <div id="job-refno" class="job-meta-value">
                             @Model.JobDetails.ReferenceNo
                         </div>
-
+                            
                         @{
                             if (Model.JobDetails.CustomData["ContactDetails"] != "")
                             {
-                                <div class="job-meta-label"><strong>@Html.Resource("JobDetailContact", "JxtAuthoringResources")</strong></div>
+                                <div class="job-meta-label"><strong>Contact Details:</strong></div>
                                 <div class="job-meta-value">@Model.JobDetails.CustomData["ContactDetails"]</div>
                             }
                         }
 
-
-                        <div class="job-meta-label"><strong>@Html.Resource("JobDetailProfession", "JxtAuthoringResources")</strong></div>
+                            
+                        <div class="job-meta-label"><strong>Profession:&nbsp; </strong></div>
                         <div class="job-meta-value">
                             @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))
                         </div>
-
-                        <div class="job-meta-label"><strong>@Html.Resource("JobDetailCompany", "JxtAuthoringResources")</strong></div>
+                            
+                        <div class="job-meta-label"><strong>Company:</strong></div>
                         <div class="job-meta-value">@Model.JobDetails.CustomData["CompanyName"]</div>
-                        @*<tr><td><strong>Date:</strong></td><td>18/09/2016&nbsp; -&nbsp; 5:34pm</td></tr>*@
-
+                            @*<tr><td><strong>Date:</strong></td><td>18/09/2016&nbsp; -&nbsp; 5:34pm</td></tr>*@
+                        
                     </div>
                 </div>
             </div>
-
+                  
             <div class="row job-offer-apply">
                 <div class="job-apply-btn col-md-12">
                 </div>
@@ -214,15 +209,15 @@
             var unencodedPageTitle = Model.JobDetails.Title;
             var pageTitle = HttpUtility.UrlEncode(unencodedPageTitle);
         }
-        <h4>@Html.Resource("JobDetailInterested", "JxtAuthoringResources")</h4>
+        <h4>Interested in this job?</h4>
         <ul class="list-unstyled job-offer-actions">
-
+            
             <li class="save-job-wrapper"><!-- save job link is generated by ajax on the base of login status --></li>
 
-            <li><a href="javascript:window.print();"><em class="fas fa-print"></em>@Html.Resource("PrintThisJob", "Labels")</a></li>
+            <li><a href="javascript:window.print();"><em class="fas fa-print"></em>Print this job</a></li>
             <li>
                 <a href="@ViewBag.EmailJobPageUrl?JobId=@Model.JobDetails.JobID" title="Tell a friend">
-                    <em class="fas fa-envelope"></em>@Html.Resource("EmailThisJob", "Labels")
+                    <em class="fas fa-envelope"></em>Email this job
                 </a>
             </li>
             @*<li><span class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="fas fa-save"></em>Save this job</span></li>*@
@@ -275,7 +270,7 @@
                         markers.push({ isLatLng: false, address: address, icon: iconPath, popupTitle: popupTitle, popupText: infoWindowContent });
                     }
                 });
-
+                
                 if (markers.length > 0) {
                     $(this).removeClass('hidden');
                     $(this).googleMap({
@@ -331,7 +326,6 @@
         document.title = '@Model.JobDetails.Title';
         var isLoggedIn = '@isUserLoggedIn';
         var jobId = @Model.JobDetails.JobID;
-        $('.sf-lang-selector').addClass('hidden');
 
         //ajax call for apply job button
         $.ajax({
@@ -350,7 +344,7 @@
                 }
                 else {
                     if (response.IsJobExpired == false) {
-                        $('.job-apply-btn').html('<a id="job-application-lnk" class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID?source=@Model.UrlReferral">@Html.Resource("ApplyNowButton", "Labels")</a>');
+                        $('.job-apply-btn').html('<a id="job-application-lnk" class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl/@Model.ClassificationsSEORouteName/@Model.JobDetails.JobID?source=@Model.UrlReferral">APPLY NOW</a>');
                     }
                 }
             },
@@ -367,7 +361,7 @@
             dataType: 'Json',
             success: function (response) {
                 if (response.IsUserLogged == true) {
-                    $('li.save-job-wrapper').html('<a href="#" class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="far fa-save"></em><span class="save-status-txt">@Html.Resource("SaveThisJob", "Labels")</span></a>');
+                    $('li.save-job-wrapper').html('<a href="#" class="save-job" data-jobid="@Model.JobDetails.JobID"><em class="far fa-save"></em><span class="save-status-txt">Save this job</span></a>');
                     if (response.IsJobSaved == true) {
                         var selfJob = $('.save-job');
                         $(selfJob).addClass("saved");
@@ -380,8 +374,8 @@
 
             }
         });
-
-
+      
+        
         //checking user logged in is member role
         $('#job-application-lnk').click(function (e) {
             if (isLoggedIn.toLocaleLowerCase() == "true") {

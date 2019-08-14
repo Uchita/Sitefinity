@@ -1,0 +1,23 @@
+@model SitefinityWebApp.Mvc.Models.MultiCard.MultiCardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+<section class="full_width three_colmun_section">
+    <div class="container">
+        <div class="row">
+            @foreach (var card in Model.Cards)
+            {
+                <div class="colmun col-xs-12 col-sm-4">
+                    <h3 class="title">@Html.HtmlSanitize(card.Heading)</h3>
+                    <div class="white_panel">
+                        <div class="sub">
+                            @Html.HtmlSanitize(card.Description)
+                            <div class="action_link">
+                                <a href="@Html.UrlSanitize(card.ActionUrl)">@card.ActionName</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

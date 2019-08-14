@@ -13,14 +13,11 @@ using JXTNext.Sitefinity.Common.Helpers;
 using Newtonsoft.Json;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using Telerik.Sitefinity.Taxonomies.Model;
-using System;
-using JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
     [EnhanceViewEngines]
-    [Localization(typeof(JobSearchResources))]
-    [ControllerToolboxItem(Name = "JobSearch_MVC", Title = "Search", SectionName = "Jobs", CssClass = JobSearchController.WidgetIconCssClass)]
+    [ControllerToolboxItem(Name = "JobSearch_MVC", Title = "Search", SectionName = "JXTNext.Job", CssClass = JobSearchController.WidgetIconCssClass)]
     public class JobSearchController : Controller
     {
         IBusinessLogicsConnector _BLConnector;
@@ -40,8 +37,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string CssClass { get; set; }
         public string ResultsPageId { get; set; }
         public string PrefixIdText { get; set; }
-
-        public Guid AdvancedSearchPageId { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
@@ -74,12 +69,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         // GET: JobSearch
         public ActionResult Index()
         {
-
+            
             // This is the CSS classes enter from More Options
-            // this needs to me moved to a viewmodel rather than ViewData
             ViewData["CssClass"] = this.CssClass;
-            ViewData["JobResultsPageUrl"] = SfPageHelper.GetPageUrlById(ResultsPageId.IsNullOrWhitespace() ? Guid.Empty : new Guid(ResultsPageId));
-            ViewData["AdvancedSearchPageUrl"] = AdvancedSearchPageId != Guid.Empty ? SfPageHelper.GetPageUrlById(AdvancedSearchPageId) : "/advancedsearch";
+            ViewData["JobResultsPageUrl"] = SitefinityHelper.GetPageUrl(this.ResultsPageId);
 
             var jobSearchComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
             if(jobSearchComponents != null)

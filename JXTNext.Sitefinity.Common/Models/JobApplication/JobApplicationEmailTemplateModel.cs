@@ -14,7 +14,7 @@ namespace JXTNext.Sitefinity.Common.Models.JobApplication
 
         public string ToLastName { get; set; }
 
-        public string FromFullName { get { return (this.FromLastName != null) ? this.FromFirstName + " " + this.FromLastName : this.FromFirstName; } }
+        public string FromFullName { get { return (this.FromLastName != null) ? this.FromFirstName + " " + this.FromLastName: this.FromFirstName; } }
 
         public string FromFirstName { get; set; }
 

@@ -8,14 +8,11 @@ using JXTNext.Sitefinity.Widgets.Authentication.Mvc.StringResources;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Telerik.Sitefinity.Abstractions;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using Telerik.Sitefinity.Mvc;
 
@@ -98,6 +95,8 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
                     this.resumeList = JsonConvert.DeserializeObject<List<ProfileResumeJsonModel>>(res.Member.ResumeFiles);
                     List<JobApplicationAttachmentUploadItem> attachments = this.GetLoginUserResumeFilesByEmail(this.Email);
                 }
+
+                
             }
             catch (Exception)
             {
@@ -113,40 +112,6 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
 
 
         
-        [HttpPost]
-        public JsonResult DownloadResume(string fileName)
-        {
-            
-            dynamic VM = new ExpandoObject();
-            VM.FileFound = false;
-            try
-            {
-                if (string.IsNullOrEmpty(Request.QueryString["fileName"]))
-                {
-                    VM.DownloadError = true;
-                    return new JsonResult { Data = VM };
-                }
-                VM.FileName = Request.QueryString["fileName"];
-                var fileStream = _jobApplicationService.GetFileStreamFromAmazonS3(JobApplicationAttachmentSettings.PROFILE_RESUME_UPLOAD_KEY, 1, Request.QueryString["fileName"]);
-                if(fileStream != null)
-                {
-                    byte[] output = new byte[fileStream.Length];
-                    int bytesRead = fileStream.Read(output, 0, output.Length);
-                    VM.FileStreamBytes = output;
-                    VM.FileFound = true;
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                VM.DownloadError = true;
-                Log.Write($"Unable to download resume to the memeber profile. " + ex.Message, ConfigurationPolicy.ErrorLog);
-            }
-
-            
-            var fullTemplateName = this.templateNamePrefix + this.TemplateName;
-            return new JsonResult { Data = VM };
-        }
 
         [HttpPost]
         public JsonResult DeleteResume(Guid resumeId)
@@ -166,7 +131,6 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
                         deleteResumeFileItem.Id = resumeId.ToString();
                         deleteResumeFileItem.AttachmentType = JobApplicationAttachmentType.ProfileResume;
                         deleteResumeFileItem.FileName = temp.FileName;
-                        deleteResumeFileItem.PathToAttachment = temp.UploadPathToAttachment;
                         if (_jobApplicationService.DeleteFile(deleteResumeFileItem))
                         {
 
@@ -181,10 +145,10 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 VM.DeleteError = true;
-                Log.Write($"Unable to delete resume to the memeber profile. " + ex.Message, ConfigurationPolicy.ErrorLog);
+                //throw ex;
             }
 
             VM.ResumeList = this.resumeList;
@@ -257,10 +221,10 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 VM.UploadError = true;
-                Log.Write($"Unable to upload resume to the memeber profile. " + ex.Message, ConfigurationPolicy.ErrorLog);
+                //throw ex;
             }
             VM.ResumeList = this.resumeList;
             VM.JsonData = JsonConvert.SerializeObject(VM);

@@ -1,0 +1,15 @@
+﻿@model dynamic
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+@Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
+@Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.js"), "bottom")
+
+@Html.Script(Url.WidgetContent("/Mvc/Scripts/jquery.nstSlider.js"))
+@Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/rangeSlider.css"))
+
+
+<div id="filtersPagePartialContent" class="filter_sidebar">
+    @Html.Partial("_SimpleJS_Partial", (object)Model)
+</div>
+
+

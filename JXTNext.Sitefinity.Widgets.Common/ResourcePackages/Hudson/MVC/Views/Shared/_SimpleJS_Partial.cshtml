@@ -1,64 +1,60 @@
 ﻿@model dynamic
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
-@using JXTNext.Sitefinity.Common.Helpers;
-@{
-    var siteSettingsHelper = new SiteSettingsHelper();
-}
 
 @if (Model != null)
 {
-    <div class="filter-outer-wrapper left-sidebar visible-hidden">
-        <div class="form-group keywordfilter">
-            <label for="selectedkeywordsfilter"><strong>@Html.Resource("JobFilterKeywords", "JxtAuthoringResources")</strong></label>
-            <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" placeholder="@Html.Resource("JobFilterKeywordsPlaceHolder", "JxtAuthoringResources")" /></div>
-        </div>
-        <div class="filter-toggle"><span class="btn btn-primary">@Html.Resource("JobFilterToggleBtn")</span></div>
-        <div class="search-toggle visible-xs"><i class="fas fa-search"></i></div>
-        <div class="sm-wrapper">
-            @foreach (var item in Model)
+<div class="filter-outer-wrapper left-sidebar visible-hidden">
+    <div class="form-group keywordfilter">
+        <label for="selectedkeywordsfilter"><strong>Keywords:</strong></label>
+        <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" placeholder="Search keywords" /></div>
+    </div>
+    <div class="filter-toggle"><span class="btn btn-primary">@Html.Resource("JobFilterToggleBtn")</span></div>
+    <div class="search-toggle visible-xs"><i class="fas fa-search"></i></div>
+    <div class="sm-wrapper">
+        @foreach (var item in Model)
+        {
+            if (item.Name != "Salary")
             {
-                if (item.Name != "Salary")
-                {
-                    <div class="dropdown dropdown-tree navbar-collapse" id=@string.Format("{0}{1}", ViewBag.PrefixIdsText, item.Name)></div>
-                }
-                else if (item.Name == "Salary")
-                {
-                    <div class="select">
-                        <select class="SalaryRangeSelect">
-                            <option value="-1" selected>@Html.Resource("JobFilterNoSalary", "JxtAuthoringResources")</option>
-                            @foreach (var salaryItem in item.Filters)
-                            {
-                                <option value="@salaryItem.ID">@salaryItem.Label</option>
-                            }
-
-                        </select>
-                    </div>
-                    foreach (var salaryItem in item.Filters)
-                    {
-                        var lower = salaryItem.Filters[1].Value;
-                        var upper = salaryItem.Filters[0].Value;
-                        if (salaryItem.Label != "NA")
+                <div class="dropdown dropdown-tree navbar-collapse" id=@string.Format("{0}{1}", ViewBag.PrefixIdsText, item.Name)></div>
+            }
+            else if (item.Name == "Salary")
+            {
+                <div class="select">
+                    <select class="SalaryRangeSelect">
+                        <option value="-1" selected>No Salary Preference</option>
+                        @foreach (var salaryItem in item.Filters)
                         {
-
-                            <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
-
-                                <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
-                                     data-cur_min="@lower" data-cur_max="@upper">
-
-                                    <div class="bar"></div>
-                                    <div class="leftGrip"></div>
-                                    <div class="rightGrip"></div>
-                                </div>
-                                <div class="leftLabel">@siteSettingsHelper.GetJobCurrencySymbol()<span>@lower</span></div>
-                                <div class="rightLabel">@siteSettingsHelper.GetJobCurrencySymbol()<span>@upper</span></div>
-
-                            </div>
+                            <option value="@salaryItem.ID">@salaryItem.Label</option>
                         }
+
+                    </select>
+                </div>
+                foreach (var salaryItem in item.Filters)
+                {
+                    var lower = salaryItem.Filters[1].Value;
+                    var upper = salaryItem.Filters[0].Value;
+                    if (salaryItem.Label != "NA")
+                    {
+
+                    <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
+
+                        <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
+                             data-cur_min="@lower" data-cur_max="@upper">
+
+                            <div class="bar"></div>
+                            <div class="leftGrip"></div>
+                            <div class="rightGrip"></div>
+                        </div>
+                        <div class="leftLabel">$<span>@lower</span></div>
+                        <div class="rightLabel">$<span>@upper</span></div>
+
+                    </div>
                     }
                 }
             }
-        </div>
+        }
     </div>
+</div>
 }
 
 <script type="text/javascript">
@@ -153,7 +149,7 @@
                 $(this).nstSlider('refresh');
             });
         });
-
+        
 
         $('#selectedkeywordsfilter').on('keydown', function (e) {
             if ($(this).val && e.which == 13) {
@@ -169,7 +165,7 @@
                 //getting the loader while the job search is working
 
                 $("#selectedkeywordsfilter").parent().addClass('loader');
-
+                
                 eachClickFilter();
             }
 
@@ -280,7 +276,7 @@
             function eachClickFilter() {
                 var filterModel = {};
                 filterModel.Filters = [];
-
+                
                 //locking the filter till the result loads
                 $('.filter-outer-wrapper').addClass('lockoverlay');
 
@@ -317,7 +313,7 @@
 
                 filterModel.Keywords = encodeURIComponent($("#selectedkeywordsfilter").val());
                 filterModel.Page = "1"; //by default page to be 1 if new filter data changes
-
+                
 
                 if (checkFilterCheck()) {
                     $("#sortOrder").val("Relevance");
@@ -326,7 +322,7 @@
                 }
 
                 filterModel.SortBy = $("#sortOrder").val();// We need to persist the sort order selected in job search results
-
+                
                 var data = { filterModel: filterModel }
                 var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
                 var queryStringData = makeQueryString(filterModel, "", false);

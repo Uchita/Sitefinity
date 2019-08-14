@@ -6,10 +6,9 @@
 
   <ItemGroup>
     <PackageReference Include="JXTNext.FileHandler" Version="1.0.0" />
-    <PackageReference Include="Telerik.DataAccess.Core" Version="2016.2.822.1" />
     <PackageReference Include="Telerik.Sitefinity.Core" Version="11.0.6726" />
     <PackageReference Include="Telerik.Sitefinity.Feather.Core" Version="11.0.6726" />
-    <PackageReference Include="Telerik.Sitefinity.OpenAccess" Version="11.0.6726" />
+    <PackageReference Include="Telerik.Sitefinity.OpenAccess" Version="2016.2.822.1" />
   </ItemGroup>
 
 </Project>

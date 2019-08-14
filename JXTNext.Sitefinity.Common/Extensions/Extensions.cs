@@ -20,6 +20,7 @@ namespace JXTNext.Sitefinity.Common.Extensions
             return httpContext.Request.Url.Host.ToLower().Replace("www.", string.Empty);
         }
 
+
         /// <summary>
         ///  Get the FirstName name from the Name
         /// </summary>

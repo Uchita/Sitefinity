@@ -1,0 +1,35 @@
+﻿@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+
+@{
+    int officesCounter = 0;
+    var model = Model.Items;
+    model = model.OrderByDescending(x => Convert.ToDateTime(x.Fields.LastModified));
+}
+
+<div class="@Model.CssClass">
+    @foreach (var item in model)
+    {
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+        var heroImageStyleRule = (item.Fields.HeroImage != null) ? $"background-image: url({item.Fields.HeroImage.Fields.MediaUrl})" : "background-color: rgba(0,112,119,.9)";
+
+        <div class="contact-item">
+            <h3>@item.Fields.Name</h3>
+            <p>
+                @Html.HtmlSanitize((string)item.Fields.OfficeBio)
+            </p>
+            <p>
+                <a href="javascript:void(0)" data-id="@officesCounter" class="read_btn"><span>View Map Below</span></a>
+            </p>
+        </div>
+        officesCounter++;
+    }
+</div>

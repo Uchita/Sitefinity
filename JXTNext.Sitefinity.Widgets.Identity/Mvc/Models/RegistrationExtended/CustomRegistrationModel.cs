@@ -3,7 +3,11 @@ using JXTNext.Sitefinity.Connector.BusinessLogics;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Mappers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using JXTNext.Sitefinity.Widgets.User.Mvc.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web.Security;
 using Telerik.Sitefinity.Data;
 using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Registration;
@@ -12,7 +16,7 @@ using Telerik.Sitefinity.Security.Model;
 
 namespace JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.RegistrationExtended
 {
-    public class CustomRegistrationModel : RegistrationModel
+    public class CustomRegistrationModel : Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Registration.RegistrationModel
     {
         public override MembershipCreateStatus RegisterUser(RegistrationViewModel viewModel)
         {

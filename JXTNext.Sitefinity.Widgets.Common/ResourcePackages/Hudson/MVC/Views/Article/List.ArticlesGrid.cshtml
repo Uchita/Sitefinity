@@ -21,20 +21,122 @@
 @using Telerik.Sitefinity.Modules.Pages;
 @using Telerik.Sitefinity.Modules.Libraries;
 
+@*Recursive function to get the classification "Article" list as a Filter*@
+@helper ProcessCategories(HierarchicalTaxon taxon, string articlesUrl, string sortExpression)
+    {
+        if (taxon != null)
+        {
+            var title = taxon.Title;
+            var hierarchicalParentTaxon = taxon.Parent as HierarchicalTaxon;
+            var parentUrlName = "";
+            if (hierarchicalParentTaxon != null)
+            {
+                parentUrlName = hierarchicalParentTaxon.UrlName.ToString() + "/";
+            }
+
+            var categoryPageUrl = string.Format("{0}{1}{2}{3}", articlesUrl, parentUrlName, taxon.UrlName.ToString(), sortExpression);
+
+            <li><a href="@categoryPageUrl" data-filter="@taxon.Title" title="@taxon.Title">@taxon.Title</a></li>
+
+            if (taxon.Subtaxa != null && taxon.Subtaxa.Count > 0)
+            {
+                foreach (var subTaxon in taxon.Subtaxa)
+                {
+                    //Recursive call
+                    ProcessCategories(subTaxon, articlesUrl, sortExpression);
+                }
+            }
+        }
+}
 <div class="sx-fullwidth-card article-filter-page @Model.CssClass">
+    <div class="articles-top">
+        <div class="button-toggler visible-xs text-center"><span class="btn btn-sm collapsed" data-toggle="collapse" data-target="#articleFilters">Filter Topic</span></div>
+      
+        <div class="press-release-filter" id="articleFilters">
+            <ul class="list-unstyled clearfix">
+                @{
+                    var managerArticle = TaxonomyManager.GetManager();
+
+                    var articleTaxonomy = managerArticle.GetTaxonomies<HierarchicalTaxonomy>().Where(t => t.Name == "Articles").SingleOrDefault();
+
+                    List<Taxon> topLovelTaxa = new List<Taxon>();
+
+
+                    var sortExpression = string.Empty;
+                    var sortParam = SitefinityWebApp.Helpers.ContentHelper.GetSortParameter();
+
+
+                    var baseArticlesUrl = "/insights/articles";
+                    var articlesUrl = baseArticlesUrl + "/";
+                    var allArticlesUrl = baseArticlesUrl;
+
+                    if (sortParam != null)
+                    {
+                        sortExpression = "?orderby=" + sortParam;
+                        allArticlesUrl += sortExpression;
+                    }
+
+                    if (articleTaxonomy != null)
+                    {
+                        foreach (var taxon in articleTaxonomy.Taxa)
+                        {
+                            if (taxon.Parent == null)
+                            {
+                                topLovelTaxa.Add(taxon);
+                            }
+                        }
+
+                        foreach (var taxon in topLovelTaxa)
+                        {
+
+                            var hierarchicalTaxon = taxon as HierarchicalTaxon;
+
+                            var dropCls = "";
+                            if (hierarchicalTaxon.Subtaxa != null && hierarchicalTaxon.Subtaxa.Count > 0)
+                            {
+                                dropCls = "dropdown";
+                            }
+
+                            var taxonPageUrl = string.Format("{0}{1}{2}", articlesUrl, taxon.UrlName.ToString(), sortExpression);
+
+                            <li class="@dropCls" data-itemid="@taxon.Id.ToString()">
+                                <a href="@taxonPageUrl" data-filter="@taxon.Title" title="@taxon.Title">@taxon.Title</a>
+                                @if (hierarchicalTaxon != null)
+                                {
+                                    if (hierarchicalTaxon.Subtaxa != null && hierarchicalTaxon.Subtaxa.Count > 0)
+                                    {
+                                        <ul class="dropdown-menu">
+                                            @foreach (var childTaxon in hierarchicalTaxon.Subtaxa)
+                                            {
+                                                @ProcessCategories(childTaxon, articlesUrl, sortExpression)
+                                            }
+                                        </ul>
+                                    }
+                                }
+                            </li>
+                        }
+                    }
+
+                    <li><a href="@allArticlesUrl" title="Show all">show all</a></li>
+                }
+            </ul>
+        </div>
+    </div>
     @if (Model != null)
     {
         if (Model.Items.Count() > 0)
         {
-            <div class="article-sorting-wrapper">
-                <span class="page-num-status">@SitefinityWebApp.Helpers.ContentHelper.GetItemsPagingInfo(Model)</span>
-                <select class="articles-order">
-                    <option value="date-asc">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
-                    <option value="date-desc">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
-                    <option value="title-asc">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
-                    <option value="title-desc">@Html.Resource("SortByAlphaZA", "JobSearchResultsResources")</option>
-                </select>
-            </div>
+            
+    <div class="article-sorting-wrapper">
+                    
+    <span class="page-num-status">@SitefinityWebApp.Helpers.ContentHelper.GetItemsPagingInfo(Model)</span>
+        <select class="articles-order">
+            <option value="date-asc">Sort by - Recent Posts</option>
+            <option value="date-desc">Sort by - Oldest Posts</option>
+            <option value="title-asc">Sort by - Alphabetical A-Z</option>
+            <option value="title-desc">Sort by - Alphabetical Z-A</option>
+        </select>
+    </div>
 
             <div class="row long-card-basic-list flex">
                 @foreach (var item in Model.Items)
@@ -63,7 +165,7 @@
                                         {
                                             Guid articleID = new Guid(taxonItem.ToString());
                                             var taxonManager = TaxonomyManager.GetManager();
-
+                                            
                                             var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
                                             filterValues.Add(taxon.Title);
                                         }
@@ -114,7 +216,7 @@
                     stripPath.pop();
                 }
                 curTaxonName = stripPath[stripPath.length - 1];
-
+                
                 if (stripPath.length > 2 && stripPath[stripPath.length - 2] == "career-advice") {
                     parentTaxon = stripPath[stripPath.length - 2];
                     $('.press-release-filter > ul > li > a[href$="' + parentTaxon + '"]').first().parent('li').addClass('filter-active');

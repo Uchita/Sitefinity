@@ -1,8 +1,6 @@
-using JXTNext.Sitefinity.Widgets.Social;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Web;
 using System.Web.UI;
 
 // General Information about an assembly is controlled through the following
@@ -45,5 +43,3 @@ using System.Web.UI;
 [assembly: Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes.ControllerContainer]
 
 [assembly: Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes.ResourcePackage]
-
-[assembly: PreApplicationStartMethod(typeof(Startup), "PreApplicationStart")]

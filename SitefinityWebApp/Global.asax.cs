@@ -2,8 +2,6 @@
 using JXTNext.Sitefinity.Common.Models.Robots;
 using JXTNext.Sitefinity.Widgets.Authentication.Mvc.StringResources;
 using JXTNext.Sitefinity.Widgets.Content.Mvc.StringResources;
-using JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.LoginForm;
-using JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.RegistrationExtended;
 using JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources;
 using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources;
 using JXTNext.Sitefinity.Widgets.Social.Mvc.Configuration;
@@ -17,7 +15,6 @@ using SitefinityWebApp.Mvc.Models.CustomDynamicContent;
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using Telerik.Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Telerik.Microsoft.Practices.Unity;
 using Telerik.Sitefinity.Abstractions;
 using Telerik.Sitefinity.Configuration;
@@ -25,13 +22,18 @@ using Telerik.Sitefinity.Configuration.Web.UI.Basic;
 using Telerik.Sitefinity.Data;
 using Telerik.Sitefinity.Frontend;
 using Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models;
-using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.LoginForm;
-using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Registration;
 using Telerik.Sitefinity.Localization;
+using Telerik.Sitefinity.Modules.Forms.Events;
 using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Security.Events;
 using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.Web.Events;
+using SitefinityWebApp.code;
+using Telerik.Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.LoginForm;
+using JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.LoginForm;
+using JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.RegistrationExtended;
+using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Registration;
 
 namespace SitefinityWebApp
 {
@@ -48,6 +50,7 @@ namespace SitefinityWebApp
             //Profile created event             
             _profileEventHandler = new JXTNext_ProfileEventHandler();
             SystemManager.ApplicationStart += new EventHandler<EventArgs>(ApplicationStartHandler);
+            
         }
 
         void Bootstrapper_Initialized(object sender, ExecutedEventArgs e)
@@ -71,9 +74,12 @@ namespace SitefinityWebApp
             if (e.CommandName == "Bootstrapped")
             {
                 GlobalFilters.Filters.Add(new SocialShareAttribute());
+                SystemManager.RegisterBasicSettings<GenericBasicSettingsView<CustomSiteSettings, CustomSiteSettingsContract>>("CustomSiteSettingsConfig", "Custom Site Settings", "", true);
+                SystemManager.RegisterBasicSettings<GenericBasicSettingsView<RobotSettings, RobotSettingsContract>>("RobotSettingsConfig", "Robot Settings", "", true);
                 FrontendModule.Current.DependencyResolver.Rebind<IDynamicContentModel>().To<CustomDynamicContentModel>();
                 Config.RegisterSection<InstagramConfig>();
                 EventHub.Subscribe<IUnauthorizedPageAccessEvent>(new Telerik.Sitefinity.Services.Events.SitefinityEventHandler<IUnauthorizedPageAccessEvent>(OnUnauthorizedAccess));
+                EventHub.Subscribe<IFormEntryCreatedEvent>(evt => FormsEventHandler(evt));
             }
         }
 
@@ -102,6 +108,30 @@ namespace SitefinityWebApp
             //    unauthorizedEvent.HttpContext.Response.Redirect("~/sitefinity");
         }
 
+        protected void Session_Start(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_AuthenticateRequest(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Session_End(object sender, EventArgs e)
+        {
+
+        }
 
         protected void Application_End(object sender, EventArgs e)
         {
@@ -130,6 +160,14 @@ namespace SitefinityWebApp
         {
             EventHub.Subscribe<ProfileCreated>(evt => _profileEventHandler.ProfileCreated(evt));
         }
+        public void FormsEventHandler(IFormEntryCreatedEvent eventInfo)
+        { if (eventInfo.FormId != null)
+            {
+                EmailSenderCustom OBJsender = new EmailSenderCustom();
+                OBJsender.SendEmail(eventInfo);
+            }
+        }
+
     }
 
 }

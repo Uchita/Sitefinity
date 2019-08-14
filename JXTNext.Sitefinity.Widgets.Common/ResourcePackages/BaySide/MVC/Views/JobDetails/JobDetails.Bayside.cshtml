@@ -56,21 +56,21 @@
 
             <img src="" class="float-right"
                  alt="">
-            <h2 class="mt-2">@Model.JobDetails.Title</h2>
+            <h2 class="mt-2">@Html.Raw(Model.JobDetails.Title)</h2>
 
 
             <ul class="border border-top-0 border-right-0 border-left-0 pb-4">
                 @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"]))
                 {
-                    <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"]</li>
+                    <li>@Html.Raw(Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"])</li>
                 }
                 @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"]))
                 {
-                    <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"]</li>
+                    <li>@Html.Raw(Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"])</li>
                 }
                 @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"]))
                 {
-                    <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"]</li>
+                    <li>@Html.Raw(Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"])</li>
                 }
             </ul>
 
@@ -188,7 +188,7 @@
 
 
                 //$('h1.fadeInUp, div.hero-title').html('Apply for Job @Model.JobDetails.Title');
-                document.title = '@Model.JobDetails.Title';
+                document.getElementsByTagName('title')[0].innerHTML = '@Html.Raw(Model.JobDetails.Title)'+ ' | ' + '@Model.JobDetails.CustomData["CompanyName"]';               
                 var isLoggedIn = '@isUserLoggedIn';
 
                 var jobId = @Model.JobDetails.JobID;

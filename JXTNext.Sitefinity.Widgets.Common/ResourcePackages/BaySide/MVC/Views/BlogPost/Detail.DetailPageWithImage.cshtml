@@ -71,7 +71,7 @@
     }
 
     <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
-
+    @Html.CommentsList(@Model.Item.DataItem)
 </div>
 
 <div class="related-blog">

@@ -22,7 +22,7 @@
                 if (parentNode.Url == "/specialist-recruitment-group")
                 {
                     <li class="nav-item dropdown mega-menu">
-                        <a title="@ContentHelper.FindPageNodeType(parentNode.Url)" target="@parentNode.LinkTarget" class="nav-link @GetClass(parentNode)" href="@parentNode.Url" aria-haspopup="true" aria-expanded="false">
+                        <a title="@parentNode.Title" data-type="@ContentHelper.FindPageNodeType(parentNode.Url)" target="@parentNode.LinkTarget" class="nav-link @GetClass(parentNode)" href="@parentNode.Url" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
                         <button class="menu-toggle dropdown-toggle" type="button" data-toggle="dropdown"></button>
@@ -46,7 +46,7 @@
                                     {
                                         <div class="col-12 col-lg-8">
 
-                                            <a title="@ContentHelper.FindPageNodeType(childNode.Url)" target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">@childNode.Title</a>
+                                            <a title="@childNode.Title" data-type="@ContentHelper.FindPageNodeType(childNode.Url)" target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">@childNode.Title</a>
 
                                             @if (childNode.ChildNodes.Count > 4)
                                             {
@@ -66,7 +66,7 @@
                                                         <ul>
                                                             @foreach (var node in listTopFive)
                                                             {
-                                                                <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                                <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                                 <li><i>@ContentHelper.FindPagebyUrlNativeAPI(node.Url, parentNode.Url)</i></li>
                                                             }
                                                         </ul>
@@ -75,7 +75,7 @@
                                                         <ul>
                                                             @foreach (var node in listRemainingNodes)
                                                             {
-                                                                <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                                <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                                 <li><i>@ContentHelper.FindPagebyUrlNativeAPI(node.Url, parentNode.Url)</i></li>
                                                             }
                                                         </ul>
@@ -92,7 +92,7 @@
 
                                                             @foreach (var node in listAllNodes)
                                                             {
-                                                                <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                                <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                                 <li><i>@ContentHelper.FindPagebyUrlNativeAPI(node.Url, parentNode.Url)</i></li>
                                                             }
                                                         </ul>
@@ -113,23 +113,23 @@
                                     {
                                         if (childNode.Url == "/our-industries")
                                         {
-                                            <a title="@ContentHelper.FindPageNodeType(childNode.Url)" target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">@childNode.Title</a>
+                                            <a title="@childNode.Title" data-type="@ContentHelper.FindPageNodeType(childNode.Url)" target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">@childNode.Title</a>
                                             <ul>
                                                 @foreach (var node in childNode.ChildNodes)
                                                 {
-                                                    <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) our-industries-active" href="@node.Url">@node.Title</a></li>
+                                                    <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) our-industries-active" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         }
 
                                         else if (childNode.Url == "/specialist-recruitment-group/learn-more")
                                         {
-                                            <a title="@ContentHelper.FindPageNodeType(childNode.Url)" target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode) contact-active" href="@childNode.Url">@childNode.Title</a>
+                                            <a title="@childNode.Title" data-type="@ContentHelper.FindPageNodeType(childNode.Url)" target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode) contact-active" href="@childNode.Url">@childNode.Title</a>
                                             <ul>
                                                 @foreach (var node in childNode.ChildNodes)
                                                 {
 
-                                                    <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) contact-active" href="@node.Url">@node.Title</a></li>
+                                                    <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) contact-active" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         }
@@ -143,7 +143,7 @@
                 else if (parentNode.Url == "/job")
                 {
                     <li class="nav-item dropdown mega-menu">
-                        <a title="@ContentHelper.FindPageNodeType(parentNode.Url)" target="@parentNode.LinkTarget" class="nav-link  @GetClass(parentNode)" href="@parentNode.Url" aria-haspopup="true" aria-expanded="false">
+                        <a title="@parentNode.Title" data-type="@ContentHelper.FindPageNodeType(parentNode.Url)" target="@parentNode.LinkTarget" class="nav-link  @GetClass(parentNode)" href="@parentNode.Url" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
                         <button class="menu-toggle dropdown-toggle" type="button" data-toggle="dropdown"></button>
@@ -156,29 +156,29 @@
 
                                         if (childnode.Url == "/advancedsearch")
                                         {
-                                            <a title="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">Job Search</a>
+                                            <a title="@childnode.Title" data-type="@ContentHelper.FindPageNodeType(childnode.Url)"  target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">Job Search</a>
                                             <ul>
-                                                <li><a title="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item @GetClass(childnode)" href="@childnode.Url">Find a job</a></li>
+                                                <li><a title="Find a job" data-type="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item @GetClass(childnode)" href="@childnode.Url">Find a job</a></li>
                                             </ul>
                                         }
                                         if (childnode.Url == "/job/job-application-tool")
                                         {
                                             @* @childnode.Url *@
-                                            <a title="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode) resume-template-active ultimate-interview-guide-active social-media-guide-active" href="#">@childnode.Title</a>
+                                            <a title="@childnode.Title" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode) resume-template-active ultimate-interview-guide-active social-media-guide-active" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var subchildnode in childnode.ChildNodes)
                                                 {
                                                     if (subchildnode.Url == "/job/job-application-tool/resume-template")
                                                     {
-                                                        <li><a title="@ContentHelper.FindPageNodeType(subchildnode.Url)" target="@subchildnode.LinkTarget" class="dropdown-item @GetClass(subchildnode) resume-template-active" href="@subchildnode.Url">@subchildnode.Title</a></li>
+                                                        <li><a title="@subchildnode.Title" data-type="@ContentHelper.FindPageNodeType(subchildnode.Url)" target="@subchildnode.LinkTarget" class="dropdown-item @GetClass(subchildnode) resume-template-active" href="@subchildnode.Url">@subchildnode.Title</a></li>
                                                     }
                                                     else if (subchildnode.Url == "/job/job-application-tool/ultimate-interview-guide")
                                                     {
-                                                        <li><a title="@ContentHelper.FindPageNodeType(subchildnode.Url)" target="@subchildnode.LinkTarget" class="dropdown-item @GetClass(subchildnode) ultimate-interview-guide-active" href="@subchildnode.Url">@subchildnode.Title</a></li>
+                                                        <li><a title="@subchildnode.Title" data-type="@ContentHelper.FindPageNodeType(subchildnode.Url)" target="@subchildnode.LinkTarget" class="dropdown-item @GetClass(subchildnode) ultimate-interview-guide-active" href="@subchildnode.Url">@subchildnode.Title</a></li>
                                                     }
                                                     else
                                                     {
-                                                        <li><a title="@ContentHelper.FindPageNodeType(subchildnode.Url)" target="@subchildnode.LinkTarget" class="dropdown-item @GetClass(subchildnode) social-media-guide-active" href="@subchildnode.Url">@subchildnode.Title</a></li>
+                                                        <li><a title="@subchildnode.Title" data-type="@ContentHelper.FindPageNodeType(subchildnode.Url)" target="@subchildnode.LinkTarget" class="dropdown-item @GetClass(subchildnode) social-media-guide-active" href="@subchildnode.Url">@subchildnode.Title</a></li>
                                                     }
                                                 }
                                             </ul>
@@ -205,7 +205,7 @@
                                         if (childNode1.Url == "/job/specialist-jobs-new")
                                         {
                                             @* @childNode1.Url *@
-                                            <a title="@ContentHelper.FindPageNodeType(childNode1.Url)" target="@childNode1.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode1)" href="#">@childNode1.Title</a>
+                                            <a title="@childNode1.Title" data-type="@ContentHelper.FindPageNodeType(childNode1.Url)" target="@childNode1.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode1)" href="@childNode1.Url">@childNode1.Title</a>
 
 
                                             if (childNode1.ChildNodes.Count > 10)
@@ -228,7 +228,7 @@
                                                         <ul>
                                                             @foreach (var node in listTopTen)
                                                             {
-                                                                <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                                <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                             }
                                                         </ul>
                                                     </div>
@@ -236,7 +236,7 @@
                                                         <ul>
                                                             @foreach (var node in listRemainingNodes1)
                                                             {
-                                                                <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                                <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                             }
                                                         </ul>
                                                         @foreach (var childNode11 in parentNode.ChildNodes)
@@ -244,11 +244,11 @@
                                                             if (childNode11.Url == "/job/learn-more")
                                                             {
                                                                 @* @childNode11.Url *@
-                                                                <a title="@ContentHelper.FindPageNodeType(childNode11.Url)" target="@childNode11.LinkTarget" href="@childNode11.Url" class="dropdown-item menu-heading @GetClass(childNode11) contact-active">@childNode11.Title</a>
+                                                                <a title="@childNode11.Title" data-type="@ContentHelper.FindPageNodeType(childNode11.Url)" target="@childNode11.LinkTarget" href="@childNode11.Url" class="dropdown-item menu-heading @GetClass(childNode11) contact-active">@childNode11.Title</a>
                                                                 <ul>
                                                                     @foreach (var subNode in childNode11.ChildNodes)
                                                                     {
-                                                                        <li><a title="@ContentHelper.FindPageNodeType(subNode.Url)" target="@subNode.LinkTarget" class="dropdown-item  @GetClass(subNode) contact-active" href="@subNode.Url">@subNode.Title</a></li>
+                                                                        <li><a title="@subNode.Title" data-type="@ContentHelper.FindPageNodeType(subNode.Url)" target="@subNode.LinkTarget" class="dropdown-item  @GetClass(subNode) contact-active" href="@subNode.Url">@subNode.Title</a></li>
                                                                     }
                                                                 </ul>
                                                             }
@@ -264,7 +264,7 @@
                                                         <ul>
                                                             @foreach (var node in listAllNodes1)
                                                             {
-                                                                <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="">@node.Title</a></li>
+                                                                <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="">@node.Title</a></li>
                                                             }
                                                         </ul>
                                                     </div>
@@ -285,7 +285,7 @@
                 else if (parentNode.Url == "/employer-services")
                 {
                     <li class="nav-item dropdown mega-menu">
-                        <a title="@ContentHelper.FindPageNodeType(parentNode.Url)" target="@parentNode.LinkTarget" class="nav-link @GetClass(parentNode)" href="@parentNode.Url" aria-haspopup="true" aria-expanded="false">
+                        <a title="@parentNode.Title" data-type="@ContentHelper.FindPageNodeType(parentNode.Url)" target="@parentNode.LinkTarget" class="nav-link @GetClass(parentNode)" href="@parentNode.Url" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
                         <button class="menu-toggle dropdown-toggle" type="button" data-toggle="dropdown"></button>
@@ -297,17 +297,17 @@
                                     if (childnode.Url == "/employer-services/partnering-with-employers")
                                     {
                                         <div class="col-12 col-lg-4">
-                                            <a title="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
+                                            <a title="@childnode.Title" data-type="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
                                                     if (node.Url == "/employer-services/partnering-with-employers/our-services")
                                                     {
-                                                        <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item our-services-active @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                        <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item our-services-active @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                     }
                                                     else
                                                     {
-                                                        <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                        <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                     }
                                                 }
                                             </ul>
@@ -316,11 +316,11 @@
                                     else if (childnode.Url == "/employer-services/what-we-do")
                                     {
                                         <div class="col-12 col-lg-4">
-                                            <a title="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode) our-services-active" href="@parentNode.Url">@childnode.Title</a>
+                                            <a title="@childnode.Title" data-type="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode) our-services-active" href="@parentNode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         </div>
@@ -328,11 +328,11 @@
                                     else if (childnode.Url == "/employer-services/learn-more")
                                     {
                                         <div class="col-12 col-lg-4">
-                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode) contact-active" href="@childnode.Url">@childnode.Title</a>
+                                            <a title="@childnode.Title" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode) contact-active" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) contact-active" href="@node.Url">@node.Title</a></li>
+                                                    <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) contact-active" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         </div>
@@ -347,7 +347,7 @@
                 else if (parentNode.Url == "/resources")
                 {
                     <li class="nav-item dropdown mega-menu ">
-                        <a title="@ContentHelper.FindPageNodeType(parentNode.Url)" target="@parentNode.LinkTarget" class="nav-link @GetClass(parentNode)" href="@parentNode.Url" aria-haspopup="true" aria-expanded="false">
+                        <a title="@parentNode.Title" data-type="@ContentHelper.FindPageNodeType(parentNode.Url)" target="@parentNode.LinkTarget" class="nav-link @GetClass(parentNode)" href="@parentNode.Url" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
                         <button class="menu-toggle dropdown-toggle" type="button" data-toggle="dropdown"></button>
@@ -360,22 +360,22 @@
                                     {
 
                                         <div class="col-12 col-lg-4">
-                                            <a title="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode) career-new-active career-resources-active careers-news-active" href="@childnode.Url">@childnode.Title</a>
+                                            <a title="@childnode.Title" data-type="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode) career-new-active career-resources-active careers-news-active" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
                                                     <li>
                                                         @if (node.Url == "/news-career")
                                                         {
-                                                            <a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) careers-news-active" href="/blogs/-in-category/categories/blog-categories/careers">@node.Title</a>
+                                                            <a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) careers-news-active" href="/blogs/-in-category/categories/blog-categories/careers">@node.Title</a>
                                                         }
                                                         else if (node.Url == "/resources/career-new/career-advice")
                                                         {
-                                                            <a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) career-resources-active" href="@childnode.Url">@node.Title</a>
+                                                            <a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) career-resources-active" href="@childnode.Url">@node.Title</a>
                                                         }
                                                         else
                                                         {
-                                                            <a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a>
+                                                            <a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a>
                                                         }
                                                     </li>
                                                 }
@@ -386,22 +386,22 @@
                                     {
 
                                         <div class="col-12 col-lg-4">
-                                            <a target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode) custom-active workplace-relations-news" href="@childnode.Url">@childnode.Title</a>
+                                            <a title="@childnode.Title" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode) custom-active workplace-relations-news" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
                                                     <li>
                                                         @if (node.Url == "/workplace-relations-news")
                                                         {
-                                                            <a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) workplace-relations-news" href="/blogs/-in-category/categories/blog-categories/workplace-relations">@node.Title</a>
+                                                            <a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) workplace-relations-news" href="/blogs/-in-category/categories/blog-categories/workplace-relations">@node.Title</a>
                                                         }
                                                         else if (node.Url == "/workplace-relations-advice")
                                                         {
-                                                            <a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) custom-active" href="@node.Url">@node.Title</a>
+                                                            <a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) custom-active" href="@node.Url">@node.Title</a>
                                                         }
                                                         else
                                                         {
-                                                            <a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a>
+                                                            <a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a>
                                                         }
                                                     </li>
                                                 }
@@ -412,7 +412,7 @@
                                     {
 
                                         <div class="col-12 col-lg-4">
-                                            <a title="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode) employer-resources-active employer-news-active" href="@childnode.Url">@childnode.Title</a>
+                                            <a title="@childnode.Title" data-type="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode) employer-resources-active employer-news-active" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
@@ -420,15 +420,15 @@
 
                                                         @if (node.Url == "/resources/employer-new/employer-advice")
                                                         {
-                                                            <a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) employer-resources-active" href="@node.Url">@node.Title</a>
+                                                            <a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) employer-resources-active" href="@node.Url">@node.Title</a>
                                                         }
                                                         else if (node.Url == "/employer-news")
                                                         {
-                                                            <a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) employer-news-active" href="/blogs/-in-category/categories/blog-categories/employers">@node.Title</a>
+                                                            <a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) employer-news-active" href="/blogs/-in-category/categories/blog-categories/employers">@node.Title</a>
                                                         }
                                                         else
                                                         {
-                                                            <a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a>
+                                                            <a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a>
                                                         }
                                                     </li>
                                                 }
@@ -438,11 +438,11 @@
                                             {
                                                 if (childNode11.Url == "/resources/learn-more")
                                                 {
-                                                    <a title="@ContentHelper.FindPageNodeType(childNode11.Url)" target="@childNode11.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode11) contact-active" href="@childNode11.Url">@childNode11.Title</a>
+                                                    <a title="@childNode11.Title" data-type="@ContentHelper.FindPageNodeType(childNode11.Url)" target="@childNode11.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode11) contact-active" href="@childNode11.Url">@childNode11.Title</a>
                                                     <ul>
                                                         @foreach (var subNode in childNode11.ChildNodes)
                                                         {
-                                                            <li><a title="@ContentHelper.FindPageNodeType(subNode.Url)" target="@subNode.LinkTarget" class="dropdown-item  @GetClass(subNode) contact-active" href="@subNode.Url">@subNode.Title</a></li>
+                                                            <li><a title="@subNode.Title" data-type="@ContentHelper.FindPageNodeType(subNode.Url)" target="@subNode.LinkTarget" class="dropdown-item  @GetClass(subNode) contact-active" href="@subNode.Url">@subNode.Title</a></li>
                                                         }
                                                     </ul>
                                                 }
@@ -457,7 +457,7 @@
                 else if (parentNode.Url == "/about")
                 {
                     <li class="nav-item dropdown mega-menu">
-                        <a title="@ContentHelper.FindPageNodeType(parentNode.Url)" target="@parentNode.LinkTarget" class="nav-link @GetClass(parentNode)" href="@parentNode.Url" aria-haspopup="true" aria-expanded="false">
+                        <a title="@parentNode.Title" data-type="@ContentHelper.FindPageNodeType(parentNode.Url)" target="@parentNode.LinkTarget" class="nav-link @GetClass(parentNode)" href="@parentNode.Url" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
                         <button class="menu-toggle dropdown-toggle" type="button" data-toggle="dropdown"></button>
@@ -470,11 +470,11 @@
                                     {
 
                                         <div class="col-12 col-lg-4">
-                                            <a title="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
+                                            <a title="@childnode.Title" data-type="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         </div>
@@ -483,11 +483,11 @@
                                     {
 
                                         <div class="col-12 col-lg-4">
-                                            <a title="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
+                                            <a title="@childnode.Title" data-type="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                    <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         </div>
@@ -495,11 +495,11 @@
                                     else if (childnode.Url == "/about/learn-more")
                                     {
                                         <div class="col-12 col-lg-4">
-                                            <a title="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode) contact-active" href="@childnode.Url">@childnode.Title</a>
+                                            <a title="@childnode.Title" data-type="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode) contact-active" href="@childnode.Url">@childnode.Title</a>
                                             <ul>
                                                 @foreach (var node in childnode.ChildNodes)
                                                 {
-                                                    <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) contact-active" href="@node.Url">@node.Title</a></li>
+                                                    <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) contact-active" href="@node.Url">@node.Title</a></li>
                                                 }
                                             </ul>
                                         </div>
@@ -520,7 +520,7 @@
                 else if (parentNode.Url == "/contact")
                 {
                     <li class="nav-item dropdown mega-menu">
-                        <a title="@ContentHelper.FindPageNodeType(parentNode.Url)" target="@parentNode.LinkTarget" class="nav-link @GetClass(parentNode)" href="@parentNode.Url" aria-haspopup="true" aria-expanded="false">
+                        <a title="@parentNode.Title" data-type="@ContentHelper.FindPageNodeType(parentNode.Url)" target="@parentNode.LinkTarget" class="nav-link @GetClass(parentNode)" href="@parentNode.Url" aria-haspopup="true" aria-expanded="false">
                             @parentNode.Title
                         </a>
                         <button class="menu-toggle dropdown-toggle" type="button" data-toggle="dropdown"></button>
@@ -531,25 +531,25 @@
                                     {
                                         if (childNode.Url == "/contact/actions")
                                         {
-                                            <a title="@ContentHelper.FindPageNodeType(childNode.Url)" target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode) contact-active find-talent-active find-a-job-active feedback-active" href="@childNode.Url">@childNode.Title</a>
+                                            <a title="@childNode.Title" data-type="@ContentHelper.FindPageNodeType(childNode.Url)" target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode) contact-active find-talent-active find-a-job-active feedback-active" href="@childNode.Url">@childNode.Title</a>
                                             <ul>
                                                 @foreach (var node in childNode.ChildNodes)
                                                 {
                                                     if (node.Url == "/contact/actions/call-us")
                                                     {
-                                                        <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) contact-active" href="@node.Url">@node.Title</a></li>
+                                                        <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) contact-active" href="@node.Url">@node.Title</a></li>
                                                     }
                                                     else if (node.Url == "/contact/actions/find-talent")
                                                     {
-                                                        <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) find-talent-active" href="@node.Url">@node.Title</a></li>
+                                                        <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) find-talent-active" href="@node.Url">@node.Title</a></li>
                                                     }
                                                     else if (node.Url == "/contact/actions/find-a-job")
                                                     {
-                                                        <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) find-a-job-active" href="@node.Url">@node.Title</a></li>
+                                                        <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) find-a-job-active" href="@node.Url">@node.Title</a></li>
                                                     }
                                                     else
                                                     {
-                                                        <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) feedback-active" href="@node.Url">@node.Title</a></li>
+                                                        <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node) feedback-active" href="@node.Url">@node.Title</a></li>
                                                     }
 
                                                 }
@@ -586,7 +586,7 @@
                                     {
                                         <div class="col-12 col-lg-8">
 
-                                            <a title="@ContentHelper.FindPageNodeType(childNode.Url)" target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">Visit the Brand Site</a>
+                                            <a title="Visit the Brand Site" data-type="@ContentHelper.FindPageNodeType(childNode.Url)" target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">Visit the Brand Site</a>
 
                                             @if (childNode.ChildNodes.Count > 4)
                                             {
@@ -606,7 +606,7 @@
                                                         <ul>
                                                             @foreach (var node in listTopFive)
                                                             {
-                                                                <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                                <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                                 <li><i>@ContentHelper.FindPagebyUrlNativeAPI(node.Url, parentNode.Url)</i></li>
                                                             }
                                                         </ul>
@@ -615,7 +615,7 @@
                                                         <ul>
                                                             @foreach (var node in listRemainingNodes)
                                                             {
-                                                                <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                                <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                                 <li><i>@ContentHelper.FindPagebyUrlNativeAPI(node.Url, parentNode.Url)</i></li>
                                                             }
                                                         </ul>
@@ -632,7 +632,7 @@
 
                                                             @foreach (var node in listAllNodes)
                                                             {
-                                                                <li><a title="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
+                                                                <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                                 <li><i>@ContentHelper.FindPagebyUrlNativeAPI(node.Url, parentNode.Url)</i></li>
                                                             }
                                                         </ul>

@@ -8,34 +8,34 @@ $(document).ready(function () {
     }
     if ($("#featuredInsights,#internalJobs1").find('.item').length > 1) {
 
-     $("#featuredInsights,#internalJobs1").owlCarousel({
-        margin: 18,
-        nav: true,
-        autoplay: false,
-        autoplayTimeout: 5000,
-        dots: true,
-        loop: true,
-        navText: [],
-        responsive: {
-            0: {
-                items: 1
+        $("#featuredInsights,#internalJobs1").owlCarousel({
+            margin: 18,
+            nav: true,
+            autoplay: false,
+            autoplayTimeout: 5000,
+            dots: true,
+            loop: true,
+            navText: [],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 3
+                    //loop: false
+                }
             },
-            768: {
-                items: 3
-                //loop: false
+            onInitialized: function () {
+                if ($(this)[0].settings.dots == true && $(this)[0].$element.find('.owl-dots .owl-dot').length < 2) {
+                    $(this)[0].$element.find('.owl-dots').hide();
+                }
+            },
+            onResize: function () {
+                if ($(this)[0].settings.dots == true && $(this)[0].$element.find('.owl-dots .owl-dot').length > 1) {
+                    $(this)[0].$element.find('.owl-dots').show();
+                }
             }
-         },
-         onInitialized: function () {
-             if ($(this)[0].settings.dots == true && $(this)[0].$element.find('.owl-dots .owl-dot').length < 2) {
-                 $(this)[0].$element.find('.owl-dots').hide();
-             }
-         },
-         onResize: function () {
-             if ($(this)[0].settings.dots == true && $(this)[0].$element.find('.owl-dots .owl-dot').length > 1) {
-                 $(this)[0].$element.find('.owl-dots').show();
-             }
-         }
-    });
+        });
     }
 
     $('.play-btn').click(function () {
@@ -55,7 +55,7 @@ $(document).ready(function () {
         }
     });
 
- 
+
 
     $(function () {
         $('.left-sidebar').addClass('fadeInLeft wow');
@@ -113,57 +113,46 @@ $(document).ready(function () {
     $(document).ajaxComplete(function () {
         checkEmptyJobData(); // for job board page
     });
-    
+
 
     if ($(".save-job-wrapper").length) {
-        if ($(".save-job-wrapper").text()=='') {
+        if ($(".save-job-wrapper").text() == '') {
             $(".save-job-wrapper").hide();
         }
     }
 
-
+    function resetLeaderItems() {
+        $(".leader-list a").removeClass("active");
+        $(".leader-list").removeClass("active");
+        $(".leader-content").hide().css('left', 0);
+    }
     /**Leaders Page accordion */
-    $(".leader-list a").on("click", function (e) {
+    $(".leader-list .item-inner a.btn-link").on("click", function (e) {
         e.preventDefault();
-        if ($(this).hasClass("active")) {
-            $(".leader-content").remove();
-            $(".leader-list a").removeClass("active");
+
+        var listItem = $(this).closest('.leader-list');
+        var curItemLeftPos = listItem.position().left;
+
+        if ($(this).hasClass('active')) {
+            resetLeaderItems();
         } else {
-            $(".leader-list a").removeClass("active");
+            resetLeaderItems();
             $(this).addClass("active");
-            var thisContent = $(this).attr("data-desc");
-            if (thisContent) {
+            $(this).closest('.leader-list').addClass("active");
+            var thisContent = $(this).closest('.leader-list').find('.leader-content');
+            if (thisContent.text().trim().length) {
+                //left position alignment fixing
+                thisContent.css('left', '-' + curItemLeftPos + 'px');
                 $(this).addClass("active");
-                $(".leader-content").remove();
-                var str = '<div class="md-row leader-content"><div class="col-12 col-sm-12 border-blue"><p>';
-                str += thisContent;
-                str += '</p><a href="javascript:void(0)" class="btn btn-link">Read less</a></div></div>';
-
-                var tabView = window.matchMedia('(min-width:577px) and (max-width: 991px)');
-                var desktopView = window.matchMedia('(min-width: 992px)');
-                var mobileView = window.matchMedia('(max-width: 576px)');
-
-                if (desktopView.matches) {
-                    $(this).closest(".md-row").after(str);
-                }
-                if (tabView.matches) {
-                    var activeListEq = $(this).closest('.leader-list').index();
-                    if (activeListEq == 0 || activeListEq == 1) {
-                        $(this).closest(".md-row").find(".leader-list:nth-child(2)").after(str);
-                    } else {
-                        $(this).closest(".md-row").find(".leader-list:nth-child(4)").after(str);
-                    }
-                }
-                if (mobileView.matches) {
-                    $(this).closest(".leader-list").after(str);
-                }
+                thisContent.show();
             }
         }
     });
 
     $(".g-section").on("click", ".leader-content a", function () {
-        $(".leader-content").remove();
-        $(".leader-list a").removeClass("active");
+        $(this).closest('.leader-content').hide().css('left', 0);
+        $(this).closest('.leader-list').removeClass("active");
+        $(this).closest('.leader-list').find("a").removeClass("active");
     });
 
     // Leaders Categories filter
@@ -172,11 +161,12 @@ $(document).ready(function () {
         var thisCat = $this.attr("data-cat");
         $this.addClass("active");
         $(".btn-leader-cat").not($this).removeClass("active");
+        resetLeaderItems();
         if (thisCat != "all") {
-            $(".leader-list-row").not($(thisCat)).slideUp().removeClass('show-list');
-            $(thisCat).slideDown().addClass('show-list');
+            $(".leader-list").not($(thisCat)).hide().removeClass('show-list');
+            $(thisCat).show().addClass('show-list');
         } else {
-            $(".leader-list-row").slideDown().removeClass('show-list');
+            $(".leader-list").show().removeClass('show-list');
         }
     });
 

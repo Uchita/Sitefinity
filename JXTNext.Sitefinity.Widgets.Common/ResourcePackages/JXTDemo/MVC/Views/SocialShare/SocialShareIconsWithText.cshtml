@@ -1,0 +1,117 @@
+﻿@model Telerik.Sitefinity.Frontend.SocialShare.Mvc.Models.SocialShareModel
+@using Telerik.Sitefinity.Frontend.SocialShare.SocialShareHelpers
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+@{
+    var shareUrl = SocialShareButtons.ShareUrl;
+    var pageTitle = SocialShareButtons.PageTitle;
+}
+
+<div class="@Model.CssClass">
+    <ul class="soc_share">
+        @foreach (var button in Model.SocialButtons)
+        {
+        switch (button.ButtonName)
+        {
+        case "Facebook":
+        <li>
+            <a class="button popup facebook" href="https://www.facebook.com/sharer/sharer.php?u=@shareUrl" title="Facebook">
+                <i class="fa fa-facebook" aria-hidden="true"></i> <span>Facebook</span>
+            </a>
+        </li>
+        break;
+        case "Twitter":
+        <li>
+            <a class="button popup twitter" href="http://twitter.com/share?url=@shareUrl" data-reveal-id="myModal" data-reveal-ajax="true">
+                <i class="fa fa-twitter" aria-hidden="true"></i> <span>Twitter</span>
+            </a>
+        </li>
+        break;
+        case "LinkedIn":
+        <li>
+            <a class="button popup linkedin" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=@shareUrl&amp;title=@pageTitle" title="LinkedIn">
+                <i class="fa fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span>
+            </a>
+        </li>
+        break;
+        case "GooglePlusOne":
+        <li>
+            <a class="button popup googleplus" href="https://plus.google.com/share?url=@shareUrl" title="Google+">
+                <i class="fa fa-google-plus" aria-hidden="true"></i> <span>Google+</span>
+            </a>
+        </li>
+        break;
+        case "Blogger":
+        <li>
+            <a class="button popup blogger" href="https://www.blogger.com/blogger.g?t&u=@shareUrl&n=@pageTitle" title="Blogger">
+                <i class="fa fa-rss" aria-hidden="true"></i> <span>Blogger</span>
+            </a>
+        </li>
+        break;
+        case "Delicious":
+        <li>
+            <a class="button popup delicious" href="https://delicious.com/save?v=5&noui&jump=close&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title)" title="Sahre on Delicious">
+                <i class="fa fa-delicious" aria-hidden="true"></i> <span>Delicious</span>
+            </a>
+        </li>
+        break;
+        case "Tumblr":
+        <li>
+            <a class="button popup tumblr" href="http://tumblr.com/share/link?url=@shareUrl&name=@pageTitle" title="Tumblr">
+                <i class="fa fa-tumblr" aria-hidden="true"></i> <span>Tumblr</span>
+            </a>
+        </li>
+        break;
+        case "GoogleBookmarks":
+        <li>
+            <a class="button popup google" href="https://www.google.com/bookmarks/mark?op=add&bkmk=@shareUrl&title=@pageTitle" title="GoogleBookmarks">
+                <i class="fa fa-bookmark" aria-hidden="true"></i> <span>Google Bookmarks</span>
+            </a>
+        </li>
+        break;
+        case "Digg":
+        <li>
+            <a class="button popup digg" href="http://digg.com/submit?url=@shareUrl&title=@pageTitle" title="Digg">
+                <i class="fa fa-digg" aria-hidden="true"></i> <span>Digg</span>
+            </a>
+        </li>
+        break;
+        case "MySpace":
+        <li>
+            <a class="button popup myspace" href="http://myspace.com/Modules/PostTo/Pages/?u=@shareUrl&t=@pageTitle" title="MySpace">
+                <i class="fa fa-users" aria-hidden="true"></i> <span>MySpace</span>
+            </a>
+        </li>
+        break;
+        case "StumbleUpon":
+        <li>
+            <a class="button popup stumbleupon" href="http://stumbleupon.com/submit?url=@shareUrl&title=@pageTitle" title="StumbleUpon">
+                <i class="fa fa-stumbleupon" aria-hidden="true"></i> <span>StumbleUpon</span>
+            </a>
+        </li>
+        break;
+        case "Reddit":
+        <li>
+            <a class="button popup reddit" href="http://www.reddit.com/submit?newwindow=1&url=@shareUrl&title=@pageTitle" title="Reddit">
+                <i class="fa fa-reddit-alien" aria-hidden="true"></i> <span>Reddit</span>
+            </a>
+        </li>
+        break;
+        case "MailTo":
+        <li>
+            <a class="button email" href="mailto:?body=@shareUrl&subject=@pageTitle" title="Send via email">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email</span>
+            </a>
+        </li>
+        break;
+        default:
+        break;
+        }
+        }
+        <li>
+            <a class="button print secondary" href="javascript:window.print()">
+                <i class="fa fa-print" aria-hidden="true"></i> <span>Print</span>
+            </a>
+        </li>
+    </ul>
+</div>

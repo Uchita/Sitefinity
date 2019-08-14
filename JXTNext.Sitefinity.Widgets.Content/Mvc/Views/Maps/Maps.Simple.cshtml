@@ -1,0 +1,126 @@
+﻿@model JXTNext.Sitefinity.Widgets.Content.Mvc.Models.MapsViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using JXTNext.Sitefinity.Common.Helpers
+@using System.Web;
+
+@{
+    var mapsAPIKey = new SiteSettingsHelper().GetCurrentSiteGoogleMapsAPIKey();
+    var srcMap = "https://maps.googleapis.com/maps/api/js?key=" + mapsAPIKey;
+    string domainName = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+    var srcPlugin = domainName + "/Frontend-Assembly/JXTNext.Sitefinity.Widgets.Content/Mvc/Scripts/Maps/jquery.googlemap.js";
+}
+
+@if (!mapsAPIKey.IsNullOrEmpty())
+{
+    @Html.Script(Url.Content(srcMap), "bottom")
+    @Html.Script(Url.Content(srcPlugin), "bottom")
+
+    if (Model != null && Model.MapsMarkers != null)
+    {
+        <div class="map-placeholder hidden" data-zoom="@Model.ZoomLevel" data-called=false style="width: 100%; height: 350px;">
+            @foreach (var marker in Model.MapsMarkers)
+            {
+                <span data-address="@marker.Address" data-icon="@marker.MarkerIconPath" data-popuptitle="@marker.PopupTitle" data-popuptext="@marker.PopupText" data-popupadditionalinfo="@marker.PopupAdditionalInfo"></span>
+            }
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-danger">Google Maps API key is not set. Please set at "Administration->Settings->Custom Site Settings"</div>
+}
+
+<script type="text/javascript">
+
+    // Initialize and add the map
+
+    function initMap() {
+
+        // Iterate throgh all the elemetns having class map-placeholder in the page
+        // And it will place the map inside it
+        $(".map-placeholder").each(function (index) {
+
+            if ($(this).children().length > 0) {
+                var markers = [];
+                var zoom = $(this).data('zoom');
+                var zoomLevel = 10;
+                if (zoom != 'undefined' && typeof zoom != 'undefined' && zoom != '')
+                    zoomLevel = Number(zoom);
+
+                $(this).children().each(function (index) {
+                    var addresslat = $(this).data('addresslat');
+                    var addresslng = $(this).data('addresslng');
+                    var address = $(this).data('address');
+                    var icon = $(this).data('icon');
+
+                    // Pop up information
+                    var popupTitle = '<h3>' + $(this).data('popuptitle') + '</h3>';
+                    var popupText = '<p class="info-text">' + $(this).data('popuptext') + '</p>';
+                    var popupAdditionalInfo = '';
+
+                    if ($(this).data('popupadditionalinfo') != "") {
+                        popupAdditionalInfo = '</span><span class="map-field"><span class="fa fa-phone"></span>'+$(this).data('popupadditionalinfo') + '</span>';
+                    }
+
+                    var infoWindowContent = '<div class="info-box"><span class="map-field"><span class="fas fa-map-marker-alt"></span>' + address + '</span>' + popupAdditionalInfo + popupText +'</div>';
+
+                    var iconPath = '';
+                    if (icon != 'undefined' && typeof icon != 'undefined' && icon != '')
+                        iconPath = icon;
+
+                    if (addresslat != 'undefined' && addresslng != 'undefined' && typeof addresslat != 'undefined' && typeof addresslng != 'undefined' && addresslat != '' && addresslng != '') {
+                        markers.push({ isLatLng: true, lat: Number(addresslat), lng: Number(addresslng), icon: iconPath, popupTitle: popupTitle, popupText: infoWindowContent});
+                    }
+                    else if (address != null && typeof address != 'undefined' && address != 'undefined' && address.length > 0) {
+                        markers.push({ isLatLng: false, address: address, icon: iconPath, popupTitle: popupTitle, popupText: infoWindowContent });
+                    }
+                });
+
+                if (markers.length > 0) {
+                    $(this).removeClass('hidden');
+                    $(this).googleMap({
+                        zoom: zoomLevel // Initial zoom level (optional)
+                    });
+
+                    for (var item of markers) {
+                        if (item.isLatLng) {
+                             $(this).addMarker({
+                                 coords: [item.lat, item.lng],
+                                 icon: item.icon
+                             });
+                        }
+                        else {
+                            $(this).addMarker({
+                                address: item.address,
+                                icon: item.icon,
+                                title: item.popupTitle,
+                                text: item.popupText
+                            });
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    $(window).on('load', function () {
+        var isLoaded = false;
+        $(".map-placeholder").each(function (index) {
+            var isCalled = $(this).data("called");
+            if (isCalled == false || typeof isCalled == 'undefined') {
+                $(this).data("called", true);
+            }
+            else {
+                isLoaded = true;
+                return false;
+            }
+        });
+
+        if (!isLoaded) {
+            initMap();
+        }
+    });
+
+</script>
+
+

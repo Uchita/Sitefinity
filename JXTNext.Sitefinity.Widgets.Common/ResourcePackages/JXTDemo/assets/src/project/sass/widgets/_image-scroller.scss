@@ -1,0 +1,108 @@
+//image scroller
+//used by Image gallery widget
+.jn_imageGallery{
+    padding: $vrt-gap+2 0;
+    &.has-bgImg{
+        background-image: url("../images/star-chain.jpg");
+        background-position: center top;
+    }
+}
+//gallery with horizontal scrolling
+//visible image item is more than 1
+.image-scroller{
+    .owl-item{
+        img{
+            display: inline-block;
+            width: auto;
+            margin: 0 2rem;
+            padding: 0 3rem;
+        }
+    }
+}
+
+//gallery as banner slider
+.jn_scroller-full{
+    @include listReset;
+    margin-bottom: 5rem;
+    // max-height: 410px;
+    overflow: hidden;
+    &.owl-carousel{
+        overflow: visible;
+    }
+    img{
+        width: 100%;
+    }
+    .owl-nav{
+        button{
+            top: auto;
+            bottom: 4rem;
+            &.owl-prev{
+                left: -45px;
+            }
+            &.owl-next{
+                right: -45px;
+            }
+        }
+    }
+    @media (min-width:1200px) and (max-width:1280px){
+        .owl-nav{
+            button{
+                &.owl-prev{ left: 0; }
+                &.owl-next{ right: 0;}
+            }
+        }
+    }
+    @media (min-width:992px) and (max-width:1065px){
+        .owl-nav{
+            button{
+                &.owl-prev{ left: 0; }
+                &.owl-next{ right: 0;}
+            }
+        }
+    }
+    @media (min-width:768px) and (max-width:825px){
+        .owl-nav{
+            button{
+                &.owl-prev{ left: 0; }
+                &.owl-next{ right: 0;}
+            }
+        }
+    }
+    @include bp-max(sm){
+        .owl-nav{
+            button{
+                top: auto;
+                bottom: -3rem;
+                &.owl-prev{ left: 10px; }
+                &.owl-next{ right: 10px;}
+            }
+        }
+    }
+}
+
+//gallery with no horizontal scrolling
+//if no scrolling using flex grid
+.image-wrapper{
+    [class*="col-"]{
+        min-height: 100px;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+}
+
+//image-grid-scroller
+//rows based grid layout image scroller
+.image-grid-scroller{
+    .two-rows{
+        max-width: 550px;
+    }
+    img{
+        display: block;
+        margin-bottom: 2rem;
+    }
+    @include bp-max(md){
+        .two-rows{
+            max-width: 350px;
+        }
+    }
+}

@@ -1,0 +1,21 @@
+@model Telerik.Sitefinity.Frontend.Navigation.Mvc.Models.INavigationModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Navigation.Mvc.Models;
+@using Telerik.Sitefinity.Modules.Pages;
+
+<div class="footer_top">
+    <div class="container">
+        <ul>
+            @foreach (var node in Model.Nodes)
+            {
+                <li>
+                    <a href="@node.Url" target="@node.LinkTarget">@node.Title</a>
+                </li>
+            }
+        </ul>
+
+    </div>
+</div>
+
+

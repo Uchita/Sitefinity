@@ -1,0 +1,47 @@
+﻿@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+
+@using System.Collections;
+@using System.Linq;
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Localization;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Pages.Model;
+
+
+<div class="page-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="board-member-sidebar">
+                    @if (Model.Item.Fields.Image != null)
+                    {
+                        <img src='@Model.Item.Fields.Image.Fields.MediaUrl' alt='@Model.Item.Fields.Image.Fields.AlternativeText' title='@Model.Item.Fields.Image.Fields.Title' />
+                    }
+                    <div>
+                        <div>
+                            <div class="board-member-social">
+                                <a href="#">Connect on <span class="linkedin-logo"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="board-member-details @Model.CssClass">
+                    <h1 class="highlighted-heading">@Model.Item.Fields.Name</h1>
+                    <h2>@Model.Item.Fields.Position</h2>
+                    <br />
+                    <div>
+                        @Html.HtmlSanitize((string)Model.Item.Fields.Bio)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

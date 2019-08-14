@@ -1,0 +1,40 @@
+﻿@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+
+@Html.Script(ScriptRef.JQuery, "top", false)
+
+<div class="full_width testimonial_section">
+    <div class="container">
+
+        <div class="testimonial_slider owl-carousel">
+
+            @foreach (var item in Model.Items)
+            {
+                <div class="items">
+                    <div class="quote"><span>&ldquo;</span></div>
+                    <div class="author-name">@item.Fields.By</div>
+                    <div class="desc">@item.Fields.Quote</div>
+
+                    <div class="clearfix"></div>
+                    @if (item.Fields.Image != null)
+                    {
+                        <div class="author-img">
+                            <img src="@item.Fields.Image.DataItem.MediaUrl" alt="@item.Fields.By" />
+                        </div>
+                    }
+                    @*<a href="#" class="read_btn"><span>Read More</span></a>*@
+
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

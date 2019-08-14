@@ -1,0 +1,400 @@
+﻿@model dynamic
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+<div class="result-meta">
+    <span class="cur-search-count"><span class="count-num">@ViewBag.TotalCount</span> new job(s) found</span>|<span class="total-search-count"><span class="count-num">@ViewBag.TotalCount</span> total jobs</span>|<a href="/advancedsearch" title="New job search">New Search</a>
+</div>
+<div class="layout-switch">
+    <span class="jn_ico icon-grid-view"></span>
+    <span class="jn_ico icon-list-view active"></span>
+</div>
+<div class="custom-select button-sort">
+    <select id="sortOrder" class="form-control">
+        <option selected="selected" value="Relevance">@Html.Resource("SortByRelevance", "JobSearchResultsResources")</option>
+        <option value="Recent">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
+        <option value="Old">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
+        <option value="AZ">@Html.Resource("SortByAlphaAZ", "JobSearchResultsResources")</option>
+        <option value="ZA">@Html.Resource("SortByAlphaZA", "JobSearchResultsResources")</option>
+        <option value="SalaryHighToLow">@Html.Resource("SortBySalHighToLow", "JobSearchResultsResources")</option>
+        <option value="SalaryLowToHigh">@Html.Resource("SortBySalLowToHigh", "JobSearchResultsResources")</option>
+    </select>
+</div>
+
+<div id="listView" class="job-result row"></div>
+<div class="l-section hidden info-block"><p class="alert alert-warning">There are no jobs matching the search criteria.</p></div>
+<div id="pager" class="k-pager-wrap k-widget k-floatwrap" data-role="]">
+    <ul class="k-pager-numbers k-reset"></ul>
+</div>
+
+<script type="text/x-kendo-template" id="template">
+    <div class="job-holder">
+        <div class="job-header">
+            <h3><a href="@ViewBag.JobDetailsPageUrl?jobId=#:JobID#">#:Title#</a></h3>
+        </div>
+        <div class="job-desc">#:ShortDescription#</div>
+        
+        <dl class="sc-job-meta-group clearfix">
+            <dt class="sc-job-meta-name meta-location hidden">Location</dt>
+            <dd class="sc-job-meta-value meta-location"><span class="jn_ico icon-pin">icon</span>#:CustomData["CountryLocationArea[0].Filters[0].Value"]#</dd>
+            <dt class="sc-job-meta-name meta-salary hidden">Salary</dt>
+            <dd class="sc-job-meta-value meta-salary"><span class="jn_ico icon-value">icon</span>#:CustomData["Salary.Filters[0].Value"]#</dd>
+            <dt class="sc-job-meta-name meta-worktype hidden">Worktype</dt>
+            <dd class="sc-job-meta-value meta-worktype"><span class="jn_ico icon-time">icon</span>#:CustomData["WorkType.Filters[0].Value"]#</dd>
+        </dl>
+
+        # for (var key in Classifications) {#
+        # if(key.length >= 32){#
+        # var hrefLink = '';#
+        # hrefLink = '@ViewBag.CurrentPageUrl' + '?Filters[0].rootId=' + ClassificationsRootName + '&Filters[0].values=' + key;#
+        <a href=#:hrefLink#>#:Classifications[key]#</a>
+        #}#
+        #}#
+
+
+        <a href="@ViewBag.JobDetailsPageUrl?jobId=#:JobID#" class="btn btn-sm" title="Read more">Read more</a>
+    </div>
+</script>
+
+<script type="text/javascript">
+
+     @{
+          var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+          var json = serializer.Serialize(Model);
+      }
+
+    var model = @Html.Raw(json);
+    var isDesignMode = @Html.Raw(Json.Encode(@SystemManager.IsDesignMode));
+    var jobContainer = $("#listView");
+
+    if (model != null && model != "undefined" && !isDesignMode) {
+        var pageSize = @ViewBag.PageSize;
+        var totalCount = @ViewBag.TotalCount;
+        var filterModel = JSON.parse('@Html.Raw(@ViewBag.FilterModel)');
+        var PageNumber = filterModel.Page;
+        var highestPage = Math.ceil(totalCount / pageSize);
+        var dataSource;
+        var queryStringArr = [];
+
+        $("#sortOrder").val('@ViewBag.SortOrder');
+        bindJobsPages(PageNumber);
+        bindJobs(PageNumber);
+
+        $("#sortOrder").change(function () {
+            bindJobs(PageNumber);
+        });
+
+        layoutSwitch();
+
+        function makeQueryString(obj, prefix, isArray) {
+
+            for (var p in obj) {
+                if (obj.hasOwnProperty(p)) {
+                    var k, v;
+                    if (isArray)
+                        k = prefix ? prefix + "%5B" + p + "%5D" : p, v = obj[p];
+                    else {
+                        if (prefix.match(".values$"))
+                            k = prefix ? prefix : p, v = obj[p];
+                        else
+                            k = prefix ? prefix + "." + p + "" : p, v = obj[p];
+                    }
+
+                    if (v !== null && typeof v === "object") {
+                        if (Array.isArray(v)) {
+                            if (k.match(".values$"))
+                                makeQueryString(v, k, false);
+                            else
+                                makeQueryString(v, k, true);
+                        } else {
+                            makeQueryString(v, k, false);
+                        }
+                    } else {
+                        if (v === null || v === "undefined")
+                            v = "";
+
+                        var query = k + "=" + v;
+                        queryStringArr.push(query);
+                    }
+                }
+            }
+            return queryStringArr.join("&");
+        };
+
+        function bindJobsPages(PageNumber)
+        {
+            if (highestPage > 1) {
+                var lis = '';
+                var pageJumpNext = false;
+                var pageJumpVal = 5;
+                var startPage = (parseInt(PageNumber) / pageJumpVal) > 1 ? pageJumpVal * (Math.ceil(parseInt(PageNumber) / pageJumpVal) - 1) + 1 : 1;
+
+                lis += '<li class="pagePrev pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" disabled data-page="0">Previous</a></li>';
+
+                //dot page jump previous
+                if (startPage > 1) {
+                    lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + (startPage - 1) + '">...</a></li>';
+                }
+
+                for (var i = startPage; i <= highestPage; i++) {
+                    if (i < (startPage + pageJumpVal) && highestPage >= parseInt(PageNumber)) {
+                        lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + i + '">' + i + '</a></li>';
+                        pageJumpNext = true;
+                    }
+                }
+
+                //dot page jump next
+                if (highestPage >= parseInt(PageNumber) + 1 && highestPage >= (startPage + pageJumpVal)) {
+                    lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + (startPage + pageJumpVal) + '">...</a></li>';
+                }
+
+                lis += '<li class="pageNext pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" data-page="2">Next</a></li>';
+                $('#pager ul').html(lis);
+            }
+        };
+
+        function bindJobs(PageNumber) {
+
+            var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), pageNumber: PageNumber };
+            var urlPath = $(location).attr('pathname') + "/GetSearchResults";
+            var searchPath = $(location).attr('search');
+            if (searchPath == null || searchPath == "") {
+                searchPath += ("?" + "&Page=" + PageNumber);
+            }
+            else if (searchPath.includes("&Page=")) {
+                let pageIndex = searchPath.indexOf("&Page=");
+                searchPath = searchPath.slice(0, pageIndex);
+                searchPath += ("&Page=" + PageNumber);
+            }
+            else {
+                searchPath += ("&Page=" + PageNumber);
+            }
+
+            queryStringArr.length = 0;
+            filterModel.Page = PageNumber;
+            var pushStateUrl = $(location).attr('pathname') + searchPath;
+            var data = { filterModel: filterModel }
+            window.history.pushState(data, "", pushStateUrl);
+
+            //pager status
+            $('#pager li:not(.pageController) a').removeClass('active');
+            $('#pager li:not(.pageController) a[data-page="' + (PageNumber == 0 ? 1 : PageNumber) + '"]').addClass('active');
+            //prev next status
+            if (PageNumber <= 1) {
+                $('#pager li.pagePrev a').attr('disabled', true);
+            } else {
+                $('#pager li.pagePrev a').removeAttr('disabled');
+                $('#pager li.pagePrev a').attr('data-page', parseInt(PageNumber) - 1);
+            }
+
+            if (parseInt(PageNumber) + 1 <= highestPage) {
+                $('#pager li.pageNext a').attr('data-page', parseInt(PageNumber) + 1);
+            }
+            if (parseInt(PageNumber) >= highestPage) {
+                $('#pager li.pageNext a').attr('disabled', true);
+            } else {
+                $('#pager li.pageNext a').removeAttr('disabled');
+            }
+
+            //adding loader
+            if (!jobContainer.hasClass('loading')) {
+                jobContainer.addClass('loading');
+            }
+
+            $.ajax({
+                type: 'POST',
+                cache: false,
+                url: urlPath,
+                data: parm,
+                dataType: 'Json',
+                success: function (response) {
+
+                    if (response.Total > 0) {
+                        dataSource = new kendo.data.DataSource({
+                            data: response.SearchResults,
+                            total: response.Total,
+                        });
+                        $(".count-num").html(response.Total);
+
+                        var sorttext = getSortOrder();
+                        var token = sorttext.split(':');
+
+                        dataSource.sort({ field: token[0], dir: token[1] });
+
+                        jobContainer.kendoListView({
+                            dataSource: dataSource,
+                            template: kendo.template($("#template").html()),
+
+                        });
+                    } else {
+
+                        $(".info-block").removeClass('hidden');
+                        $("#sortOrder").parent().hide();
+                    }
+
+                    //check the layout on the base of active
+                    //or Retrieve from local storage for checking too
+                    if ($('.layout-switch .jn_ico.active').hasClass('icon-grid-view')) {
+                        $('#resultsPagePartialContent').removeClass('list-view').addClass('grid-view');
+                        $('.job-holder').addClass('col-lg-6');
+                    }
+                    //in case of taking from local storage, when data is loaded on filter selection
+                    else if (typeof (Storage) !== "undefined" && localStorage.getItem("resultLayout") == 'grid') {
+                        $('#resultsPagePartialContent').removeClass('list-view').addClass('grid-view');
+                        $('.layout-switch .jn_ico').removeClass('active');
+                        $('.layout-switch .icon-grid-view').addClass('active');
+                        $('.job-holder').addClass('col-lg-6');
+                    }
+
+                    //removing the loader in the job result widget
+                    jobContainer.removeClass('loading');
+                    //removing the loader in the search keyword - job filter widget
+                    $("#selectedkeywordsfilter").parent().removeClass('loader');
+                    //removing the loading in the filter widget itself
+                    $('.filter-outer-wrapper').removeClass('lockoverlay');
+                },
+                error: function (response) {
+                    console.log('error response: '+response);
+                }
+            });
+        };
+
+        function pageChange(pageObj) {
+            var currPageNumber = $(pageObj).attr('data-page');
+            var disableFlag = $(pageObj).attr('disabled');
+            if (disableFlag == "disabled") {
+                return false;
+            }
+
+            bindJobsPages(currPageNumber);
+            
+            if (currPageNumber != PageNumber) {
+                PageNumber = parseInt(currPageNumber);
+                bindJobs(PageNumber);
+                //changing the prev & next page number attribute
+                $('.pagePrev a').attr('data-page', PageNumber - 1);
+                if (PageNumber + 1 <= highestPage ) {
+                    $('.pageNext a').attr('data-page', PageNumber + 1);
+                }
+            }
+
+        };
+
+        function getSortOrder() {
+            var sortValue = $("#sortOrder").val();
+            switch (sortValue) {
+                case 'Old':
+                    return 'DatePosted:desc';
+                    break;
+                case 'AZ':
+                    return 'Title:asc';
+                    break;
+                case 'ZA':
+                    return 'Title:desc';
+                    break;
+                case 'SalaryHighToLow':
+                    return 'SalaryLowerBand:desc';
+                    break;
+                case 'SalaryLowToHigh':
+                    return 'SalaryLowerBand:asc';
+                    break;
+                default:
+                    return 'DatePosted:asc';
+                    break;
+            }
+        };
+
+        function layoutSwitch() {
+            if ($('.layout-switch').length) {
+                $('.layout-switch span.jn_ico').click(function () {
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+
+                    if ($(this).hasClass('icon-grid-view')) {
+                        //browser local Store
+                        if (typeof (Storage) !== "undefined") {
+                            localStorage.setItem("resultLayout", "grid");
+                        }
+                        $('.list-view').removeClass('list-view').addClass('grid-view');
+                        $('.job-holder').addClass('col-lg-6');
+                    } else {
+                        if (typeof (Storage) !== "undefined") {
+                            localStorage.setItem("resultLayout", "list");
+                        }
+                        $('.grid-view').removeClass('grid-view').addClass('list-view');
+                        $('.job-holder').removeClass('col-lg-6');
+                    }
+                });
+            }
+        }
+    }
+
+</script>
+<style>
+
+    #listView {
+        border: none;
+    }
+
+        #listView, #listView * {
+            -webkit-box-sizing: inherit;
+            -moz-box-sizing: inherit;
+            box-sizing: inherit;
+        }
+
+    .product {
+        float: left;
+        position: relative;
+        width: 111px;
+        height: 170px;
+        margin: 0 5px;
+        padding: 0;
+    }
+
+        .product img {
+            width: 110px;
+            height: 110px;
+        }
+
+        .product h3 {
+            margin: 0;
+            padding: 3px 5px 0 0;
+            max-width: 96px;
+            overflow: hidden;
+            line-height: 1.1em;
+            font-size: .9em;
+            font-weight: normal;
+            text-transform: uppercase;
+            color: #999;
+        }
+
+        .product p {
+            visibility: hidden;
+        }
+
+        .product:hover p {
+            visibility: visible;
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            top: 0;
+            margin: 0;
+            padding: 0;
+            line-height: 110px;
+            vertical-align: middle;
+            text-align: center;
+            color: #fff;
+            background-color: rgba(0,0,0,0.75);
+            transition: background .2s linear, color .2s linear;
+            -moz-transition: background .2s linear, color .2s linear;
+            -webkit-transition: background .2s linear, color .2s linear;
+            -o-transition: background .2s linear, color .2s linear;
+        }
+
+    .k-listview:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+</style>

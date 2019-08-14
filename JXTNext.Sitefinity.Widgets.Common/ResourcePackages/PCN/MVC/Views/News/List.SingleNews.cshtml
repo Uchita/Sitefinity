@@ -1,0 +1,57 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+
+
+@{
+    var featuredNews = Model.Items.FirstOrDefault();
+}
+@if (featuredNews != null)
+{
+
+    var imageurl = "";
+    foreach (var relatedItem in featuredNews.Fields.NewsImage)
+    {
+        imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+    }
+    var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(featuredNews, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+    var summary = (@Html.HtmlSanitize((string)featuredNews.Fields.Summary)).ToString();
+    var title = (@Html.HtmlSanitize((string)featuredNews.Fields.Title)).ToString();
+    if (@Html.HtmlSanitize((string)featuredNews.Fields.Summary).ToString().Length > 130)
+    {
+        summary = (@Html.HtmlSanitize((string)featuredNews.Fields.Summary)).ToString().Substring(0, 128) + "...";
+    }
+    if (@Html.HtmlSanitize((string)featuredNews.Fields.Title).ToString().Length > 24)
+    {
+        title = (@Html.HtmlSanitize((string)featuredNews.Fields.Title)).ToString().Substring(0, 23) + "...";
+    }
+    <div class="white_panel">
+        <div class="sub">
+            <div class="image" style="background-image: url(@imageurl);"></div>
+            <h4 class="sub_title">
+                <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">
+                    @Html.HtmlSanitize((string)featuredNews.Fields.Title)
+                </a>
+            </h4>
+            <div class="entry-meta hidden">
+                @*<span class="author">By Author <a href="#" title='@DataResolver.Resolve(featuredNews.DataItem, "Author", null)' rel="author">@DataResolver.Resolve(featuredNews.DataItem, "Author", null)</a></span>
+                    <span class="sep">|</span>*@
+                <span class="date">@featuredNews.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
+            </div>
+            <p class="blue_text">
+                @Html.HtmlSanitize((string)featuredNews.Fields.Summary)
+            </p>
+            @*<p class="blue_text">@summary</p>*@
+            @*<div class="action_link">
+                    <a href="@navigateUrl">View News</a>
+                </div>*@
+        </div>
+    </div>
+}
+

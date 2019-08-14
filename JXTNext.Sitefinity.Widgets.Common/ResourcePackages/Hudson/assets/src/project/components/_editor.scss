@@ -1,0 +1,58 @@
+/*#region Editor resets */
+.sfPageEditor {
+    .modal-dialog .form-control{
+        margin-bottom: 1px;
+    }
+}
+.sf-backend-wrp{
+    .form-group{
+        clear: both;
+        padding-top: 10px;
+    }
+    .btn.pull-left{
+        margin-right: 3px;
+    }
+} 
+.sfPageContainer {
+    position: relative;
+
+    .page-wrapper {
+        padding-top: 0 !important;
+
+        main {
+            padding-top: 0 !important;
+        }
+    }
+
+    header {
+        position: static !important;
+
+        .quick-links {
+            position: static;
+        }
+
+        .quick-links-toggle {
+            position: static;
+            -webkit-transform: none;
+            transform: none;
+        }
+
+        .quick-links-content {
+            position: static;
+            width: auto;
+        }
+
+        .main-nav {
+            margin-top: 0;
+        }
+    }
+
+    .navbar.navbar-fixed-top {
+        position: static;
+    }
+
+    .job-search {
+        margin-top: 0;
+    }
+}
+/*#endregion Editor resets */

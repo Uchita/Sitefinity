@@ -1,0 +1,13 @@
+﻿@model JXTNext.Sitefinity.SalarySurvey.Mvc.Models.SubmitSalaryViewModel
+
+<div class="salary-survey-widget salary-survey-widget-submit-salary salary-survey-widget-submit-salary-thank-you">
+    @if (!string.IsNullOrEmpty(Model.Widget.Heading))
+    {
+        <h2 class="widget-heading">@Html.Raw(Model.Widget.Heading)</h2>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Widget.ThankYouMessage))
+    {
+        <div class="widget-intro clearfix">@Html.Raw(Model.Widget.ThankYouMessage)</div>
+    }
+</div>

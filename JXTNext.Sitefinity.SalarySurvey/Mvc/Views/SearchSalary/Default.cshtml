@@ -1,0 +1,434 @@
+﻿@model JXTNext.Sitefinity.SalarySurvey.Mvc.Models.SearchSalaryViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.Web;
+@using Telerik.Sitefinity.Modules.Pages
+
+@Html.Script(ScriptRef.JQuery, "bottom")
+@Html.Script(Url.WidgetContent("Mvc/Scripts/script.js"), "bottom")
+@Html.StyleSheet(Url.WidgetContent("Mvc/Styles/style.min.css"), "bottom")
+
+<script type="text/javascript">
+    var SalarySurvey_CurrentPage = "@SitefinitySiteMap.GetCurrentNode().Url.ToString().Substring(1)";
+</script>
+
+<div class="salary-survey-widget salary-survey-widget-search-salary"
+     data-empty-option-label="@Model.Widget.EmptyOptionLabel">
+    <div class="search-salary-form-container" style="@if (Model.ShowResult) {<text>display: none;</text>} ">
+        @if (!string.IsNullOrEmpty(Model.Widget.Heading))
+        {
+            <h2 class="widget-heading">@Html.Raw(Model.Widget.Heading)</h2>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Widget.Introduction))
+        {
+            <div class="widget-intro clearfix">@Html.Raw(Model.Widget.Introduction)</div>
+        }
+
+        <form action="@Model.Widget.ResultPage" method="get">
+            @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+
+            <div class="form-group form-group-JobTypeId">
+                <label>@Html.Raw(Model.Widget.JobTypeLabel)<span class="required">*</span></label>
+                <div class="controls">
+                    @Html.DropDownList("JobTypeId", Model.JobTypeList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.JobTypeHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.JobTypeHelp)</p>
+                    }
+                    @Html.ValidationMessage("JobTypeId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-CountryId">
+                <label>@Html.Raw(Model.Widget.CountryLabel)</label>
+                <div class="controls">
+                    @Html.DropDownList("CountryId", Model.CountryList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.CountryHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.CountryHelp)</p>
+                    }
+                    @Html.ValidationMessage("CountryId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-LocationId">
+                <label>@Html.Raw(Model.Widget.LocationLabel)</label>
+                <div class="controls">
+                    @Html.DropDownList("LocationId", Model.LocationList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.LocationHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.LocationHelp)</p>
+                    }
+                    @Html.ValidationMessage("LocationId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-IndustryId">
+                <label>@Html.Raw(Model.Widget.IndustryLabel)</label>
+                <div class="controls">
+                    @Html.DropDownList("IndustryId", Model.IndustryList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.IndustryHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.IndustryHelp)</p>
+                    }
+                    @Html.ValidationMessage("IndustryId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-ClassificationId">
+                <label>@Html.Raw(Model.Widget.ClassificationLabel)</label>
+                <div class="controls">
+                    @Html.DropDownList("ClassificationId", Model.ClassificationList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.ClassificationHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.ClassificationHelp)</p>
+                    }
+                    @Html.ValidationMessage("ClassificationId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-SubClassificationId">
+                <label>@Html.Raw(Model.Widget.SubClassificationLabel)<span class="loader element-loader" style="display: none;"></span></label>
+                <div class="controls">
+                    @Html.DropDownList("SubClassificationId", Model.SubClassificationList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.SubClassificationHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.SubClassificationHelp)</p>
+                    }
+                    @Html.ValidationMessage("SubClassificationId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-YearsOfExperienceId">
+                <label>@Html.Raw(Model.Widget.YearsOfExperienceLabel)</label>
+                <div class="controls">
+                    @Html.DropDownList("YearsOfExperienceId", Model.YearsOfExperienceList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.YearsOfExperienceHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.YearsOfExperienceHelp)</p>
+                    }
+                    @Html.ValidationMessage("YearsOfExperienceId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-submit">@Html.Raw(Model.Widget.SubmitButtonLabel)</button>
+
+                <span class="loader container-loader" style="display: none;"></span>
+            </div>
+
+            <input type="hidden" name="SalarySurveyAction" value="search" />
+        </form>
+    </div>
+
+    @if (Model.ShowResult)
+    {
+        <div class="search-salary-result-container">
+            <h2 class="result-heading">Your Search Results</h2>
+
+            <p class="result-total-records">Total Number of Matches: @Model.Records</p>
+
+            <h3 class="result-search-criteria">Your Search Criteria</h3>
+
+            <ul class="result-search-criteria">
+                @if (!string.IsNullOrEmpty(Model.JobType))
+                {
+                    <li class="job-type"><span class="name">Job Type:</span> <span class="value">@Model.JobType</span></li>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.Country))
+                {
+                    <li class="country"><span class="name">Country:</span> <span class="value">@Model.Country</span></li>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.Location))
+                {
+                    <li class="location"><span class="name">Location:</span> <span class="value">@Model.Location</span></li>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.Industry))
+                {
+                    <li class="industry"><span class="name">Industry:</span> <span class="value">@Model.Industry</span></li>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.Classification))
+                {
+                    <li class="classification"><span class="name">Classification:</span> <span class="value">@Model.Classification</span></li>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.SubClassification))
+                {
+                    <li class="sub-classification"><span class="name">Sub-Classification:</span> <span class="value">@Model.SubClassification</span></li>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.YearsOfExperience))
+                {
+                    <li class="experience"><span class="name">Years of Experience:</span> <span class="value">@Model.YearsOfExperience</span></li>
+                }
+            </ul>
+
+            <div class="result-actions result-actions-top">
+                <a href="@Model.EditSearchUrl" class="btn btn-primary">Edit Your Search</a>
+            </div>
+
+            <div class="result-sections">
+                <section class="result-median-salary">
+                    <h3 class="result-section-heading">Median @Model.SalaryLabel: @Model.CurrencySymbol@Model.Median.ToString("N2")</h3>
+
+                    <p>Excludes Superannuation</p>
+
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="name">Lower quartile:</td>
+                                <td class="value">@Model.CurrencySymbol@Model.MedianLower.ToString("N2")</td>
+                            </tr>
+
+                            <tr>
+                                <td class="name">Upper quartile:</td>
+                                <td class="value">@Model.CurrencySymbol@Model.MedianUpper.ToString("N2")</td>
+                            </tr>
+
+                            <tr>
+                                <td class="name">Percentage that receive bonus or commissions:</td>
+                                <td class="value">@Model.PeopleWithBonus.ToString("N2")%</td>
+                            </tr>
+
+                            <tr>
+                                <td class="name">Value of bonus or commission paid per year (median):</td>
+                                <td class="value">@Model.CurrencySymbol@Model.MedianBonus.ToString("N2")</td>
+                            </tr>
+
+                            <tr>
+                                <td class="name">Value of Superannuation paid per year (median):</td>
+                                <td class="value">@Model.CurrencySymbol@Model.MedianSuper.ToString("N2")</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section class="result-median-total-salary">
+                    <h3 class="result-section-heading">Median Total @Model.SalaryLabel: @Model.CurrencySymbol@Model.PackageMedian.ToString("N2")</h3>
+
+                    <p>Includes bonuses / Excludes Superannuation</p>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="name">Benefits received</th>
+                                <th class="value">Percentage that receive this benefit</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model.BenefitPercentages)
+                            {
+                                <tr>
+                                    <td class="name">@item.Value.Name</td>
+                                    <td class="value">@item.Value.Percentage.ToString("N2")%</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </section>
+
+                <section class="result-median-money-to-leave">
+                    <h3 class="result-section-heading">Median - how much more?: @Model.CurrencySymbol@Model.MedianMoneyToLeave.ToString("N2")</h3>
+
+                    <p>How much money would you move for if you had the chance?</p>
+                </section>
+
+                <section class="result-profiles">
+                    <h3 class="result-section-heading">Latest profiles that match your search criteria:</h3>
+
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        @{
+                            var idx = 1;
+
+                            foreach (var item in Model.LatestSalaries)
+                            {
+                                <div class="panel panel-default panel-salary-profile">
+                                    <div class="panel-heading" role="tab" id="salary-profile-heading-@idx">
+                                        <h4 class="panel-title">
+                                            <a role="button" class="collapse-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#salary-profile-@idx" aria-expanded="true" aria-controls="salary-profile-@idx">
+                                                <span class="profile-user-idx">
+                                                    <span class="user-avatar"></span>
+                                                    <span class="profile-idx">Profile @idx</span>
+                                                </span>
+                                                <span class="expand-icon"></span>
+                                                <span class="salary-summary">
+                                                    @if (item.ProfileTitle != null)
+                                                    {
+                                                        <span class="profile-title">@item.ProfileTitle</span>
+                                                    }
+
+                                                    <span class="profile-subtitle">@Model.CurrencySymbol@item.Remuneration, @item.Location</span>
+                                                    <span class="created-date">Date Entered: @item.CreatedDate.ToShortDateString()</span>
+                                                </span>
+                                            </a>
+                                        </h4>
+                                    </div>
+
+                                    <div id="salary-profile-@idx" class="panel-collapse collapse" role="tabpanel" aria-labelledby="salary-profile-heading-@idx">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="name">Country
+                                                    <td class="value">@item.Country</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="name">Location</td>
+                                                    <td class="value">@item.Location</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="name">Industry</td>
+                                                    <td class="value">@item.Industry</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="name">Classification</td>
+                                                    <td class="value">@item.Classification</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="name">Sub-Classification</td>
+                                                    <td class="value">@item.SubClassification</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="name">Job type</td>
+                                                    <td class="value">@item.JobType</td>
+                                                </tr>
+
+                                                @if (Model.AnnualSalary)
+                                                {
+                                                    <tr>
+                                                        <td class="name">Annual base salary</td>
+                                                        <td class="value">
+                                                            @if (item.AnnualSalary.HasValue)
+                                                            {
+                                                                <text>@Model.CurrencySymbol@item.Remuneration</text>
+                                                            }
+                                                        </td>
+                                                    </tr>
+
+                                                    <!--<tr>
+                                                            <td class="name">Superannuation</td>
+                                                            <td class="value">
+                                                            @if (item.SuperAmount.HasValue)
+                                                            {
+                                                                <text>@Model.CurrencySymbol</text><text>@item.SuperAmount.Value.ToString("N2")</text>
+                                                            }
+                                                            </td>
+                                                    </tr>-->
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <td class="name">Hourly rate</td>
+                                                        <td class="value">
+                                                            @if (item.HourlyRate.HasValue)
+                                                            {
+                                                                <text>@Model.CurrencySymbol@item.Remuneration</text>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                                <tr>
+                                                    <td class="name">Annual bonuses/commissions</td>
+                                                    <td class="value">
+
+                                                        @if (item.BonusAmount.HasValue)
+                                                        {
+                                                            <text>@Model.CurrencySymbol</text><text>@item.BonusAmount.Value.ToString("N2")</text>
+                                                        }
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="name">Professional qualification</td>
+                                                    <td class="value">
+                                                        @if (item.ProfessionalQualification)
+                                                        {
+                                                            <text>Yes</text>
+                                                        }
+                                                        else
+                                                        {
+                                                            <text>No</text>
+                                                        }
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="name">Years of experience</td>
+                                                    <td class="value">@item.YearsOfExperience</td>
+                                                </tr>
+
+                                                <!--<tr>
+                                                    <td class="name">Highest level of education</td>
+                                                    <td class="value">@item.Education</td>
+                                                </tr>-->
+
+                                                <tr>
+
+
+                                                    <td class="name">People managed/supervised</td>
+                                                    <td class="value">@item.PeopleManaged</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="name">Employer size</td>
+                                                    <td class="value">@item.EmployerSize</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="name">Benefits received</td>
+                                                    <td class="value">@String.Join(", ", item.Benefits.ToArray())</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="name">Salary expectations in next role</td>
+                                                    <td class="value">
+                                                        @if (item.MoneyToLeave.HasValue)
+                                                        {
+                                                            <text>@Model.CurrencySymbol</text><text>@item.MoneyToLeave.Value.ToString("N2")</text>
+                                                        }
+                                                    </td>
+                                                </tr>
+
+                                                <tr class="sep">
+                                                    <td colspan="2"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                idx++;
+                            }
+                        }
+                    </div>
+                </section>
+            </div>
+
+            <div class="result-actions result-actions-bottom">
+                <a href="@Model.EditSearchUrl" class="btn btn-primary">Edit Your Search</a>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            var salarySearchResult = {
+                annualSalary: @(Model.AnnualSalary ? "true" : "false"),
+                salaryLabel: "@Model.SalaryLabel.Replace("\"", "\\\"")",
+                medianMin: @Model.MedianMin,
+                medianLower: @Model.MedianLower,
+                median: @Model.Median,
+                medianUpper: @Model.MedianUpper,
+                medianMax: @Model.MedianMax,
+            };
+        </script>
+    }
+</div>

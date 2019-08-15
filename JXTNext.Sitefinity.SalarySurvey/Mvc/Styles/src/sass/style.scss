@@ -1,0 +1,176 @@
+﻿.salary-survey-widget
+{
+    .widget-intro
+    {
+        margin: 0 0 15px 0;
+    }
+
+    .required,
+    .help-block-error
+    {
+        color: red;
+    }
+
+    .validation-summary-errors
+    {
+        ul
+        {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li
+            {
+                margin-top: 5px;
+
+                &:first-child
+                {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+}
+
+.salary-survey-widget-search-salary
+{
+    .result-sections
+    {
+        section
+        {
+            table
+            {
+                td, th
+                {
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+
+                .value
+                {
+                    text-align: right;
+                }
+
+                tr
+                {
+                    &.sep
+                    {
+                        td
+                        {
+                            border: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.salary-calculator-result-container
+{
+    .gross-pay,
+    .paye,
+    .medicare,
+    .superannuation,
+    .net-pay
+    {
+        text-align: right;
+        width: 120px;
+    }
+
+    .extra-salary,
+    .extra-super
+    {
+        text-align: right;
+        width: 175px;
+    }
+
+    .salary-increase,
+    .super-increase,
+    .total-increase
+    {
+        text-align: right;
+        width: 175px;
+    }
+}
+
+.panel-salary-profile
+{
+    .profile-user-idx
+    {
+        position: absolute;
+        left: 0;
+        font-size: 36px;
+        top: 50%;
+        margin-top: -20px;
+        text-align: center;
+    }
+
+    .user-avatar
+    {
+        display: block;
+
+        &:after
+        {
+            font-family: 'Glyphicons Halflings';
+            content: "\e008";
+        }
+    }
+
+    .profile-idx
+    {
+        display: block;
+        font-weight: normal;
+        font-size: 16px;
+    }
+
+    .expand-icon
+    {
+        position: absolute;
+        right: 0;
+        font-size: 18px;
+        line-height: 18px;
+        top: 50%;
+        margin-top: -9px;
+
+        &:after
+        {
+            font-family: 'Glyphicons Halflings';
+            content: "\e260";
+        }
+    }
+
+    .salary-summary
+    {
+        display: block;
+        margin-left: 50px;
+    }
+
+    .profile-title, .profile-subtitle, .created-date
+    {
+        display: block;
+    }
+
+    .profile-title
+    {
+        font-size: 20px;
+        text-transform: capitalize;
+    }
+
+    .profile-subtitle, .created-date
+    {
+        font-weight: normal;
+        font-size: 16px;
+    }
+
+    .collapse-toggle
+    {
+        display: block;
+        position: relative;
+
+        &.collapsed .expand-icon:after
+        {
+            content: "\e259";
+        }
+    }
+}

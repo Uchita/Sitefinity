@@ -1,0 +1,209 @@
+﻿@* This view is still under development in terms of UI*@
+
+@model JXTNext.Sitefinity.SalarySurvey.Mvc.Models.AdminSalaryViewModel
+@using System
+@using System.Linq
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.Web;
+@using Telerik.Sitefinity.Modules.Pages
+
+@Html.StyleSheet("https://jxtco01-01-prod-php-public.s3.amazonaws.com/common/jquery-file-upload/css/jquery.fileupload-ui.css")
+@Html.StyleSheet(Url.WidgetContent("Mvc/Styles/admin.min.css"))
+
+@Html.Script("https://jxtco01-01-prod-php-public.s3.amazonaws.com/common/jxt/js/common.js", "bottom")
+@Html.Script("https://jxtco01-01-prod-php-public.s3.amazonaws.com/common/jquery/ui/jquery.ui.widget.min.js", "bottom")
+@Html.Script("https://jxtco01-01-prod-php-public.s3.amazonaws.com/common/jquery-file-upload/js/jquery.iframe-transport.js", "bottom")
+@Html.Script("https://jxtco01-01-prod-php-public.s3.amazonaws.com/common/jquery-file-upload/js/jquery.fileupload.js", "bottom")
+@Html.Script(Url.WidgetContent("Mvc/Scripts/admin.js"), "bottom")
+
+<script type="text/javascript">
+    var SalarySurvey_CurrentPage = "@SitefinitySiteMap.GetCurrentNode().Url.ToString().Substring(1)";
+</script>
+
+<div class="salary-survey-widget salary-survey-widget-import-salaries">
+    @if (!string.IsNullOrEmpty(Model.Widget.Heading))
+    {
+        <h1 class="sfBreadCrumb" id="sfToMainContent">@Html.Raw(Model.Widget.Heading)</h1>
+    }
+
+    <div class="sfMain sfClearfix">
+        <div class="sfContent">
+            <div class="sfWorkArea entry-details">
+                <p>Upload a CSV file containing following columns:</p>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Column*</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>JobTitle</td>
+                            <td>No</td>
+                            <td>Maximum allowed length is 255 characters.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Country</td>
+                            <td><span class="required">Yes</span></td>
+                            <td>Must match one of the defined countries.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Location</td>
+                            <td><span class="required">Yes</span></td>
+                            <td>Must match one of the defined locations of respective country.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Industry</td>
+                            <td><span class="required">Yes</span></td>
+                            <td>Must match one of the defined industries.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Classification</td>
+                            <td><span class="required">Yes</span></td>
+                            <td>Must match one of the defined classifications of respective industry.</td>
+                        </tr>
+
+                        <tr>
+                            <td>SubClassification</td>
+                            <td><span class="required">Yes</span></td>
+                            <td>Must match one of the defined sub-classifications of respective classification.</td>
+                        </tr>
+
+                        <tr>
+                            <td>JobType</td>
+                            <td><span class="required">Yes</span></td>
+                            <td>Must match one of the defined job types.</td>
+                        </tr>
+
+                        <tr>
+                            <td>HourlyRate</td>
+                            <td><span class="required">Yes</span></td>
+                            <td>Required if 'JobType' has hourly rate.</td>
+                        </tr>
+
+                        <tr>
+                            <td>AnnualSalary</td>
+                            <td><span class="required">Yes</span></td>
+                            <td>Required if 'JobType' has annual salary.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Bonus</td>
+                            <td>No</td>
+                            <td>Number</td>
+                        </tr>
+
+                        <tr>
+                            <td>Benefits</td>
+                            <td>No</td>
+                            <td>Comma (,) separated values. Benefits not matching the defined list will be treated as 'other'.</td>
+                        </tr>
+
+                        <tr>
+                            <td>EmployerSize</td>
+                            <td>No</td>
+                            <td>Must match one of the defined employer size.</td>
+                        </tr>
+
+                        <tr>
+                            <td>PeopleManaged</td>
+                            <td>No</td>
+                            <td>Must match one of the defined people managed.</td>
+                        </tr>
+
+                        <tr>
+                            <td>MoneyToLeave</td>
+                            <td>No</td>
+                            <td>Number</td>
+                        </tr>
+
+                        <tr>
+                            <td>Motivators</td>
+                            <td>No</td>
+                            <td>Comma (,) separated values. Motivators not matching the defined list will be treated as 'other'.</td>
+                        </tr>
+
+                        <tr>
+                            <td>BestEmployers</td>
+                            <td>No</td>
+                            <td>Comma (,) separated values. Maximum allowed length for a value is 255 characters.</td>
+                        </tr>
+
+                        <tr>
+                            <td>CareerMove</td>
+                            <td>No</td>
+                            <td>Must match one of the defined career moves.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Name</td>
+                            <td>No</td>
+                            <td>Maximum allowed length is 255 characters.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Email</td>
+                            <td>No</td>
+                            <td>Maximum allowed length is 255 characters and must be a valid email address.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Phone</td>
+                            <td>No</td>
+                            <td>Maximum allowed length is 255 characters.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Gender</td>
+                            <td>No</td>
+                            <td>Must match one of the defined genders.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Education</td>
+                            <td>No</td>
+                            <td>Must match one of the defined educations.</td>
+                        </tr>
+
+                        <tr>
+                            <td>YearsOfExperience</td>
+                            <td>No</td>
+                            <td>Must match one of the defined year of experiences.</td>
+                        </tr>
+
+                        <tr>
+                            <td>ProfessionalQualification</td>
+                            <td>No</td>
+                            <td>Boolean</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>* Column names are case-sensitive.</p>
+
+                <hr />
+
+                <div class="form-actions">
+                    <span class="sfLinkBtn sfSave fileinput-button">
+                        Upload and Import a CSV File
+                        <input type="file" name="file" />
+                    </span>
+                    <span class="wait" style="display: none;">
+                        <img src="https://jxtco01-01-prod-php-public.s3.amazonaws.com/common/jxt/images/loading.gif" alt="" /> Uploading...<span class="per">0%</span>
+                    </span>
+
+                    <!--<p><a href="/salarysurvey/files/sample-salary.csv" class="btn btn-primary">Download Sample CSV File</a></p>
+                    <p>You can upload a zip file (to reduce file size) of your CSV file.</p>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

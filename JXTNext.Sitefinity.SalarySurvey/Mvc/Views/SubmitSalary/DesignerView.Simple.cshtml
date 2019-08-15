@@ -1,0 +1,64 @@
+﻿<uib-tabset class="nav-tabs-wrapper">
+    <uib-tab heading="General">
+        <div class="form-group">
+            <label>Results Page URL</label>
+            <input ng-model="properties.ResultPage.PropertyValue" type="text" class="form-control" />
+            <div class="help-block">If set user will be shown the salaries matching submitted data.</div>
+        </div>
+
+        <div class="form-group">
+            <label>Thank You Page URL</label>
+            <input ng-model="properties.ThankYouPage.PropertyValue" type="text" class="form-control" />
+            <div class="help-block">Leave blank to use current page.</div>
+        </div>
+
+        <div class="form-group">
+            <label>Thank You Message</label>
+            <input ng-model="properties.ThankYouMessage.PropertyValue" type="text" class="form-control" />
+        </div>
+    </uib-tab>
+
+    <uib-tab heading="Sections">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Section</th>
+                    <th>Heading</th>
+                    <th>Introduction</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>General</td>
+                    <td><input ng-model="properties.Heading.PropertyValue" type="text" class="form-control" /></td>
+                    <td><textarea ng-model="properties.Introduction.PropertyValue" rows="3" class="form-control"></textarea></td>
+                </tr>
+
+                <tr>
+                    <td>Current Job</td>
+                    <td><input ng-model="properties.CurrentJobHeading.PropertyValue" type="text" class="form-control" /></td>
+                    <td><textarea ng-model="properties.CurrentJobIntroduction.PropertyValue" rows="3" class="form-control"></textarea></td>
+                </tr>
+
+                <tr>
+                    <td>Current Employer</td>
+                    <td><input ng-model="properties.CurrentEmployerHeading.PropertyValue" type="text" class="form-control" /></td>
+                    <td><textarea ng-model="properties.CurrentEmployerIntroduction.PropertyValue" rows="3" class="form-control"></textarea></td>
+                </tr>
+
+                <tr>
+                    <td>Next Career Move</td>
+                    <td><input ng-model="properties.NextCareerHeading.PropertyValue" type="text" class="form-control" /></td>
+                    <td><textarea ng-model="properties.NextCareerIntroduction.PropertyValue" rows="3" class="form-control"></textarea></td>
+                </tr>
+
+                <tr>
+                    <td>Optional</td>
+                    <td><input ng-model="properties.OptionalHeading.PropertyValue" type="text" class="form-control" /></td>
+                    <td><textarea ng-model="properties.OptionalIntroduction.PropertyValue" rows="3" class="form-control"></textarea></td>
+                </tr>
+            </tbody>
+        </table>
+    </uib-tab>
+</uib-tabset>

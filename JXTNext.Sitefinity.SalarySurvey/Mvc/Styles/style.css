@@ -1,0 +1,95 @@
+﻿.salary-survey-widget .widget-intro {
+  margin: 0 0 15px 0; }
+
+.salary-survey-widget .required,
+.salary-survey-widget .help-block-error {
+  color: red; }
+
+.salary-survey-widget .validation-summary-errors ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+  .salary-survey-widget .validation-summary-errors ul li {
+    margin-top: 5px; }
+    .salary-survey-widget .validation-summary-errors ul li:first-child {
+      margin-top: 0; }
+
+.salary-survey-widget-search-salary .result-sections section table td, .salary-survey-widget-search-salary .result-sections section table th {
+  padding-left: 0;
+  padding-right: 0; }
+
+.salary-survey-widget-search-salary .result-sections section table .value {
+  text-align: right; }
+
+.salary-survey-widget-search-salary .result-sections section table tr.sep td {
+  border: none; }
+
+.salary-calculator-result-container .gross-pay,
+.salary-calculator-result-container .paye,
+.salary-calculator-result-container .medicare,
+.salary-calculator-result-container .superannuation,
+.salary-calculator-result-container .net-pay {
+  text-align: right;
+  width: 120px; }
+
+.salary-calculator-result-container .extra-salary,
+.salary-calculator-result-container .extra-super {
+  text-align: right;
+  width: 175px; }
+
+.salary-calculator-result-container .salary-increase,
+.salary-calculator-result-container .super-increase,
+.salary-calculator-result-container .total-increase {
+  text-align: right;
+  width: 175px; }
+
+.panel-salary-profile .profile-user-idx {
+  position: absolute;
+  left: 0;
+  font-size: 36px;
+  top: 50%;
+  margin-top: -20px;
+  text-align: center; }
+
+.panel-salary-profile .user-avatar {
+  display: block; }
+  .panel-salary-profile .user-avatar:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e008"; }
+
+.panel-salary-profile .profile-idx {
+  display: block;
+  font-weight: normal;
+  font-size: 16px; }
+
+.panel-salary-profile .expand-icon {
+  position: absolute;
+  right: 0;
+  font-size: 18px;
+  line-height: 18px;
+  top: 50%;
+  margin-top: -9px; }
+  .panel-salary-profile .expand-icon:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e260"; }
+
+.panel-salary-profile .salary-summary {
+  display: block;
+  margin-left: 50px; }
+
+.panel-salary-profile .profile-title, .panel-salary-profile .profile-subtitle, .panel-salary-profile .created-date {
+  display: block; }
+
+.panel-salary-profile .profile-title {
+  font-size: 20px;
+  text-transform: capitalize; }
+
+.panel-salary-profile .profile-subtitle, .panel-salary-profile .created-date {
+  font-weight: normal;
+  font-size: 16px; }
+
+.panel-salary-profile .collapse-toggle {
+  display: block;
+  position: relative; }
+  .panel-salary-profile .collapse-toggle.collapsed .expand-icon:after {
+    content: "\e259"; }

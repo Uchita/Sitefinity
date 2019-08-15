@@ -21,6 +21,9 @@
 <sitefinity:TextField ID="dropboxClientAPIKey" runat="server" DataFieldName="DropboxClientAPIKey" Title="Please Enter Dropbox API Key" CssClass="sfSettingsSection" DisplayMode="Write" />
 <br />
 
+<h3>SOCIAL HANDLER SETTINGS</h3><br />
+<sitefinity:TextField ID="socialHandlerJobApplicationUrl" runat="server" DataFieldName="SocialHandlerJobApplicationUrl" Title="Please Enter Social Handler Job Application Base URL" CssClass="sfSettingsSection" DisplayMode="Write" />
+
 <h3>SEEK SETTINGS</h3><br />
 <sitefinity:TextField ID="seekClientId" runat="server" DataFieldName="SeekClientId" Title="Please Enter Seek Client ID" CssClass="sfSettingsSection" DisplayMode="Write" />
 <sitefinity:TextField ID="seekClientSecret" runat="server" DataFieldName="SeekClientSecret" Title="Please Enter Seek Client Secret" CssClass="sfSettingsSection" DisplayMode="Write" />
@@ -47,19 +50,3 @@
 <sitefinity:TextField ID="instagramAccessToken" runat="server" DataFieldName="InstagramAccessToken" Title="Please Enter Instagram Access Token" CssClass="sfSettingsSection" DisplayMode="Write" />
 <sitefinity:TextField ID="instagramExpiration" runat="server" DataFieldName="InstagramExpiration" Title="Please Enter Instagram Expiration" CssClass="sfSettingsSection" DisplayMode="Write" />
 <sitefinity:TextField ID="instagramMaxItems" runat="server" DataFieldName="InstagramMaxItems" Title="Please Enter Instagram Max Items" CssClass="sfSettingsSection" DisplayMode="Write" />
-<br />
-
-<h3>AMAZON S3 BUCKET SETTINGS</h3><br />
-<sitefinity:TextField ID="amazonS3AccessKeyId" runat="server" DataFieldName="AmazonS3AccessKeyId" Title="Please Enter Access Key Id" CssClass="sfSettingsSection" DisplayMode="Write" />
-<sitefinity:TextField ID="amazonS3SecretKey" runat="server" DataFieldName="AmazonS3SecretKey" Title="Please Enter Secret Key" CssClass="sfSettingsSection" DisplayMode="Write" />
-<sitefinity:TextField ID="amazonS3BucketName" runat="server" DataFieldName="AmazonS3BucketName" Title="Please Enter Bucket Name" CssClass="sfSettingsSection" DisplayMode="Write" />
-<sitefinity:TextField ID="amazonS3RegionEndpoint" runat="server" DataFieldName="AmazonS3RegionEndpoint" Title="Please Enter Region End Point" CssClass="sfSettingsSection" DisplayMode="Write" />
-<sitefinity:TextField ID="amazonS3ProviderName" runat="server" DataFieldName="AmazonS3ProviderName" Title="Please Enter Provider Name" CssClass="sfSettingsSection" DisplayMode="Write" />
-<sitefinity:TextField ID="amazonS3ApplicationName" runat="server" DataFieldName="AmazonS3ApplicationName" Title="Please Enter Application Name" CssClass="sfSettingsSection" DisplayMode="Write" />
-<sitefinity:TextField ID="amazonS3UrlName" runat="server" DataFieldName="AmazonS3UrlName" Title="Please Enter Url Name" CssClass="sfSettingsSection" DisplayMode="Write" />
-
-<br />
-
-<h3>Other settings</h3><br />
-<sitefinity:TextField ID="cultureIsEnabled" runat="server" DataFieldName="CultureIsEnabled" Title="Please Enter Culture Value" CssClass="sfSettingsSection" DisplayMode="Write" />
-<sitefinity:TextField ID="jobCurrencySymbol" runat="server" DataFieldName="JobCurrencySymbol" Title="The currency used in job views" CssClass="sfSettingsSection" DisplayMode="Write" />

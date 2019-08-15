@@ -1,0 +1,32 @@
+﻿<div class="form-group">
+    <label>Heading</label>
+    <input ng-model="properties.Heading.PropertyValue" type="text" class="form-control" />
+</div>
+
+<div class="form-group">
+    <label>Introduction</label>
+    <input ng-model="properties.Introduction.PropertyValue" type="text" class="form-control" />
+</div>
+
+<div class="form-group">
+    <label>Result Page URL</label>
+    <input ng-model="properties.ResultPage.PropertyValue" type="text" class="form-control" />
+</div>
+
+<div class="form-group">
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ng-model="properties.ShowOptions.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.ShowOptions.PropertyValue === 'True'" />
+            Show options on load
+        </label>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ng-model="properties.ShowMoreLess.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.ShowMoreLess.PropertyValue === 'True'" />
+            Show options toggler
+        </label>
+    </div>
+</div>

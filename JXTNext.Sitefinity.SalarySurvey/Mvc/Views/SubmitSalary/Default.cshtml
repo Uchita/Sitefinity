@@ -1,0 +1,500 @@
+﻿@model JXTNext.Sitefinity.SalarySurvey.Mvc.Models.SubmitSalaryViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.UI.MVC
+@using Telerik.Sitefinity.Web;
+@using Telerik.Sitefinity.Modules.Pages
+@using System.Web.Mvc
+@using System.Linq
+
+@Html.Script(ScriptRef.JQuery, "bottom")
+@Html.Script(Url.WidgetContent("Mvc/Scripts/script.js"), "bottom")
+@Html.StyleSheet(Url.WidgetContent("Mvc/Styles/style.min.css"), "bottom")
+
+<script type="text/javascript">
+    var SalarySurvey_CurrentPage = "@SitefinitySiteMap.GetCurrentNode().Url.ToString().Substring(1)";
+</script>
+
+<div class="salary-survey-widget salary-survey-widget-submit-salary"
+     data-empty-option-label="@Model.Widget.EmptyOptionLabel">
+    @if (!string.IsNullOrEmpty(Model.Widget.Heading))
+    {
+        <h2 class="widget-heading">@Html.Raw(Model.Widget.Heading)</h2>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Widget.Introduction))
+    {
+        <div class="widget-intro clearfix">@Html.Raw(Model.Widget.Introduction)</div>
+    }
+
+    @using (Html.BeginFormSitefinity("", "SubmitSalaryForm", FormMethod.Post, new { @class = "ajaxsss" }))
+    {
+        @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+
+        <section class="current-job-section">
+            @if (!string.IsNullOrEmpty(Model.Widget.CurrentJobHeading))
+            {
+                <h3 class="current-job-heading">@Html.Raw(Model.Widget.CurrentJobHeading)</h3>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.Widget.CurrentJobIntroduction))
+            {
+                <div class="current-job-intro clearfix">@Html.Raw(Model.Widget.CurrentJobIntroduction)</div>
+            }
+
+            <div class="form-group form-group-CountryId">
+                <label>@Html.Raw(Model.Widget.CountryLabel)<span class="required">*</span></label>
+                <div class="controls">
+                    @Html.DropDownList("CountryId", Model.CountryList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.CountryHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.CountryHelp)</p>
+                    }
+                    @Html.ValidationMessage("CountryId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-LocationId">
+                <label>@Html.Raw(Model.Widget.LocationLabel)<span class="required">*</span></label>
+                <div class="controls">
+                    @Html.DropDownList("LocationId", Model.LocationList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.LocationHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.LocationHelp)</p>
+                    }
+                    @Html.ValidationMessage("LocationId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-IndustryId">
+                <label>@Html.Raw(Model.Widget.IndustryLabel)<span class="required">*</span></label>
+                <div class="controls">
+                    @Html.DropDownList("IndustryId", Model.IndustryList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.IndustryHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.IndustryHelp)</p>
+                    }
+                    @Html.ValidationMessage("IndustryId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-ClassificationId">
+                <label>@Html.Raw(Model.Widget.ClassificationLabel)<span class="required">*</span></label>
+                <div class="controls">
+                    @Html.DropDownList("ClassificationId", Model.ClassificationList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.ClassificationHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.ClassificationHelp)</p>
+                    }
+                    @Html.ValidationMessage("ClassificationId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-SubClassificationId">
+                <label>@Html.Raw(Model.Widget.SubClassificationLabel)<span class="required">*</span><span class="loader element-loader" style="display: none;"></span></label>
+                <div class="controls">
+                    @Html.DropDownList("SubClassificationId", Model.SubClassificationList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.SubClassificationHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.SubClassificationHelp)</p>
+                    }
+                    @Html.ValidationMessage("SubClassificationId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-JobTypeId">
+                <label>@Html.Raw(Model.Widget.JobTypeLabel)<span class="required">*</span></label>
+                <div class="controls">
+                    @Html.DropDownList("JobTypeId", Model.JobTypesList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.JobTypeHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.JobTypeHelp)</p>
+                    }
+                    @Html.ValidationMessage("JobTypeId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group-Wages">
+                <div class="hourly-rate-section">
+                    <div class="form-group form-group-HourlyRate form-group-HourlyRateId">
+                        <label>@Html.Raw(Model.Widget.HourlyRateLabel)<span class="required">*</span></label>
+                        <div class="controls">
+                            @if (Model.HourlyRatesDropdown)
+                            {
+                                @Html.DropDownList("HourlyRateId", Model.HourlyRatesList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                            }
+                            else
+                            {
+                                @Html.TextBox("HourlyRate", null, new { @class = "form-control" })
+                            }
+                            @if (Model.Widget.HourlyRateHelp != null)
+                            {
+                                <p class="help-block">@Html.Raw(Model.Widget.HourlyRateHelp)</p>
+                            }
+                            @Html.ValidationMessage("HourlyRate", new { @class = "help-block help-block-error" })
+                            @Html.ValidationMessage("HourlyRateId", new { @class = "help-block help-block-error" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="annual-salary-section">
+                    <div class="form-group form-group-AnnualSalary form-group-AnnualSalaryId">
+                        <label>@Html.Raw(Model.Widget.AnnualSalaryLabel)<span class="required">*</span></label>
+                        <div class="controls">
+                            @if (Model.AnnualSalariesDropdown)
+                            {
+                                @Html.DropDownList("AnnualSalaryId", Model.AnnualSalariesList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                            }
+                            else
+                            {
+                                @Html.TextBox("AnnualSalary", null, new { @class = "form-control" })
+                            }
+                            @if (Model.Widget.AnnualSalaryHelp != null)
+                            {
+                                <p class="help-block">@Html.Raw(Model.Widget.AnnualSalaryHelp)</p>
+                            }
+                            @Html.ValidationMessage("AnnualSalary", new { @class = "help-block help-block-error" })
+                            @Html.ValidationMessage("AnnualSalaryId", new { @class = "help-block help-block-error" })
+                        </div>
+                    </div>
+                </div>
+
+                @Html.ValidationMessage("Wages", new { @class = "help-block help-block-error" })
+            </div>
+
+            <div class="form-group form-group-BonusAmount form-group-BonusAmountId">
+                <label>@Html.Raw(Model.Widget.BonusLabel)</label>
+                <div class="controls">
+                    @if (Model.BonusAmountsDropdown)
+                    {
+                        @Html.DropDownList("BonusAmountId", Model.BonusAmountsList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    }
+                    else
+                    {
+                        @Html.TextBox("BonusAmount", null, new { @class = "form-control" })
+                    }
+                    @if (Model.Widget.BonusHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.BonusHelp)</p>
+                    }
+                    @Html.ValidationMessage("BonusAmount", new { @class = "help-block help-block-error" })
+                    @Html.ValidationMessage("BonusAmountId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-BenefitId">
+                <div class="label-help-block">
+                    <label>@Html.Raw(Model.Widget.BenefitLabel)</label>
+                    @if (Model.Widget.BenefitHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.BenefitHelp)</p>
+                    }
+                </div>
+                <div class="controls">
+                    <div class="checkbox-list">
+                        @foreach (var item in Model.BenefitList)
+                        {
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="BenefitId[]" value="@item.Value" @if (Array.Exists(Model.Form.BenefitId, element => element.ToString() == item.Value)) { <text> checked</text> } /> @item.Text</label>
+                            </div>
+                        }
+                    </div>
+
+                    @Html.ValidationMessage("BenefitId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-BenefitOther">
+                <label>@Html.Raw(Model.Widget.BenefitOtherLabel)</label>
+                <div class="controls">
+                    @Html.TextBox("BenefitOther", null, new { @class = "form-control", placeholder = Model.Widget.BenefitOtherPlaceholder })
+                    @if (Model.Widget.BenefitOtherHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.BenefitOtherHelp)</p>
+                    }
+                    @Html.ValidationMessage("BenefitOther", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+        </section>
+
+        <section class="current-employer-section">
+            @if (!string.IsNullOrEmpty(Model.Widget.CurrentEmployerHeading))
+            {
+                <h3 class="current-employer-heading">@Html.Raw(Model.Widget.CurrentEmployerHeading)</h3>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.Widget.CurrentEmployerIntroduction))
+            {
+                <div class="current-employer-intro clearfix">@Html.Raw(Model.Widget.CurrentEmployerIntroduction)</div>
+            }
+
+            <div class="form-group form-group-ProfessionalQualification">
+                <label>@Html.Raw(Model.Widget.ProfessionalQualificationLabel)</label>
+                <div class="controls">
+                    <label class="radio-inline">@Html.RadioButton("ProfessionalQualification", "true") Yes</label>
+                    <label class="radio-inline">@Html.RadioButton("ProfessionalQualification", "false") No</label>
+                    @if (Model.Widget.ProfessionalQualificationHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.ProfessionalQualificationHelp)</p>
+                    }
+                    @Html.ValidationMessage("ProfessionalQualification", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-EducationId">
+                <label>@Html.Raw(Model.Widget.EducationLabel)</label>
+                <div class="controls">
+                    @Html.DropDownList("EducationId", Model.EducationList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.EducationHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.EducationHelp)</p>
+                    }
+                    @Html.ValidationMessage("EducationId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-YearsOfExperienceId">
+                <label>@Html.Raw(Model.Widget.YearsOfExperienceLabel)</label>
+                <div class="controls">
+                    @Html.DropDownList("YearsOfExperienceId", Model.YearsOfExperienceList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.YearsOfExperienceHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.YearsOfExperienceHelp)</p>
+                    }
+                    @Html.ValidationMessage("YearsOfExperienceId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-PeopleManagedId">
+                <label>@Html.Raw(Model.Widget.PeopleManagedLabel)</label>
+                <div class="controls">
+                    @Html.DropDownList("PeopleManagedId", Model.PeopleManagedList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.PeopleManagedHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.PeopleManagedHelp)</p>
+                    }
+                    @Html.ValidationMessage("PeopleManagedId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-GenderId">
+                <label>@Html.Raw(Model.Widget.GenderLabel)</label>
+                <div class="controls">
+                    @Html.DropDownList("GenderId", Model.GenderList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.GenderHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.GenderHelp)</p>
+                    }
+                    @Html.ValidationMessage("GenderId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-EmployerSizeId">
+                <label>@Html.Raw(Model.Widget.EmployerSizeLabel)</label>
+                <div class="controls">
+                    @Html.DropDownList("EmployerSizeId", Model.EmployerSizeList, Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.EmployerSizeHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.EmployerSizeHelp)</p>
+                    }
+                    @Html.ValidationMessage("EmployerSizeId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-MoneyToLeave">
+                <label>@Html.Raw(Model.Widget.MoneyToLeaveLabel)</label>
+                <div class="controls">
+                    @Html.Hidden("SelectedMoneyToLeave", Model.Form.MoneyToLeave)
+                    @Html.DropDownList("MoneyToLeave", new List<SelectListItem>(), Model.Widget.EmptyOptionLabel, new { @class = "form-control" })
+                    @if (Model.Widget.MoneyToLeaveHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.MoneyToLeaveHelp)</p>
+                    }
+                    @Html.ValidationMessage("MoneyToLeave", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+        </section>
+
+        <section class="next-career-section">
+            @if (!string.IsNullOrEmpty(Model.Widget.NextCareerHeading))
+            {
+                <h3 class="next-career-heading">@Html.Raw(Model.Widget.NextCareerHeading)</h3>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.Widget.NextCareerIntroduction))
+            {
+                <div class="next-career-intro clearfix">@Html.Raw(Model.Widget.NextCareerIntroduction)</div>
+            }
+
+            <div class="form-group-MotivatorOrder">
+                @foreach (var item in Model.MotivatorList)
+                {
+                    <div class="form-group">
+                        <label>@item.Text</label>
+                        <div class="controls">
+                            @Html.TextBox("MotivatorOrder[" + item.Value + "]", null, new { @class = "form-control", placeholder = Model.Widget.MotivatorPlaceHolder })
+                            @Html.ValidationMessage("MotivatorOrder[" + item.Value + "]", new { @class = "help-block help-block-error" })
+                        </div>
+                    </div>
+                }
+
+                <div class="form-group">
+                    <label>@Html.Raw(Model.Widget.MotivatorOtherLabel)</label>
+                    <div class="controls">
+                        @Html.TextBox("MotivatorOther", null, new { @class = "form-control", placeholder = Model.Widget.MotivatorOtherPlaceHolder })
+                    </div>
+                </div>
+
+                @Html.ValidationMessage("MotivatorOrder", new { @class = "help-block help-block-error" })
+                @Html.ValidationMessage("MotivatorOther", new { @class = "help-block help-block-error" })
+            </div>
+
+            <div class="form-group-BestEmployer">
+                <label>@Html.Raw(Model.Widget.BestEmployerLabel)</label>
+                <div class="controls">
+                    <ol>
+                        @for (var i = 0; i < Model.Widget.BestEmployerRows; i++)
+                        {
+                            <li>@Html.TextBox("BestEmployer[" + i + "]", null, new { @class = "form-control", placeholder = Model.Widget.BestEmployerPlaceholder })</li>
+                        }
+                    </ol>
+                    @if (Model.Widget.BestEmployerHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.BestEmployerHelp)</p>
+                    }
+                    @Html.ValidationMessage("BestEmployer", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group-CareerMoveId">
+                <label>@Html.Raw(Model.Widget.CareerMoveLabel)</label>
+                <div class="controls">
+                    <div class="checkbox-list">
+                        @foreach (var item in Model.CareerMoveList)
+                        {
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="CareerMoveId[]" value="@item.Value" @if (Array.Exists(Model.Form.CareerMoveId, element => element.ToString() == item.Value)) { <text> checked</text> } /> @item.Text</label>
+                            </div>
+                        }
+                    </div>
+                    @if (Model.Widget.CareerMoveHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.CareerMoveHelp)</p>
+                    }
+                    @Html.ValidationMessage("CareerMoveId", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+        </section>
+
+        <section class="optional-section">
+            @if (!string.IsNullOrEmpty(Model.Widget.OptionalHeading))
+            {
+                <h3 class="optional-heading">@Html.Raw(Model.Widget.OptionalHeading)</h3>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.Widget.OptionalIntroduction))
+            {
+                <div class="optional-intro clearfix">@Html.Raw(Model.Widget.OptionalIntroduction)</div>
+            }
+
+            <div class="form-group form-group-JobAlert">
+                @if (!string.IsNullOrEmpty(Model.Widget.JobAlertIntroduction))
+                {
+                    <div class="job-alert-introduction">@Html.Raw(Model.Widget.JobAlertIntroduction)</div>
+                }
+                <div class="controls">
+                    <div class="checkbox">
+                        <label>@Html.CheckBox("JobAlert") @Html.Raw(Model.Widget.JobAlertLabel)</label>
+                    </div>
+                    @if (Model.Widget.JobAlertHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.JobAlertHelp)</p>
+                    }
+                    @Html.ValidationMessage("JobAlert", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-SalaryAlert">
+                @if (!string.IsNullOrEmpty(Model.Widget.SalaryAlertIntroduction))
+                {
+                    <div class="salary-alert-introduction">@Html.Raw(Model.Widget.SalaryAlertIntroduction)</div>
+                }
+                <div class="controls">
+                    <div class="checkbox">
+                        <label>@Html.CheckBox("SalaryAlert") @Html.Raw(string.Format(Model.Widget.SalaryAlertLabel, Model.Widget.SalaryAlertCount))</label>
+                    </div>
+                    @if (Model.Widget.SalaryAlertHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.SalaryAlertHelp)</p>
+                    }
+                    @Html.ValidationMessage("SalaryAlert", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-Email">
+                <label>@Html.Raw(Model.Widget.EmailLabel)</label>
+                <div class="controls">
+                    @Html.TextBox("Email", null, new { @class = "form-control", placeholder = Model.Widget.EmailPlaceholder })
+                    @if (Model.Widget.EmailHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.EmailHelp)</p>
+                    }
+                    @Html.ValidationMessage("Email", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-ContactRequest">
+                <label>@Html.Raw(Model.Widget.ContactRequestLabel)</label>
+                <div class="controls">
+                    <label class="radio-inline">@Html.RadioButton("ContactRequest", "true") Yes</label>
+                    <label class="radio-inline">@Html.RadioButton("ContactRequest", "false") No</label>
+                    @if (Model.Widget.ContactRequestHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.ContactRequestHelp)</p>
+                    }
+                    @Html.ValidationMessage("ContactRequest", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-Name">
+                <label>@Html.Raw(Model.Widget.NameLabel)</label>
+                <div class="controls">
+                    @Html.TextBox("Name", null, new { @class = "form-control", placeholder = Model.Widget.NamePlaceholder })
+                    @if (Model.Widget.NameHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.NameHelp)</p>
+                    }
+                    @Html.ValidationMessage("Name", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-Phone">
+                <label>@Html.Raw(Model.Widget.PhoneLabel)</label>
+                <div class="controls">
+                    @Html.TextBox("Phone", null, new { @class = "form-control", placeholder = Model.Widget.PhonePlaceholder })
+                    @if (Model.Widget.PhoneHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.PhoneHelp)</p>
+                    }
+                    @Html.ValidationMessage("Phone", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+        </section>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-submit">@Html.Raw(Model.Widget.SubmitButtonLabel)</button>
+
+            <span class="loader container-loader" style="display: none;"></span>
+        </div>
+
+        <input type="hidden" name="SalarySurveyAction" value="submit" />
+
+        @Html.AntiForgeryToken()
+    }
+
+    <script type="text/javascript">
+        var annualSalaryJobTypes = ['@string.Join("','", Model.AnnualSalaryJobTypeList.Select(x => x.ToString()).ToArray())'];
+        var salarySurveyCurrencySymbol = '@Model.CurrencySymbol';
+        var salarySurveyMaxAnnualMoneyToLeave = @Model.MaxAnnualMoneyToLeave;
+        var salarySurveyMaxHourlyMoneyToLeave = @Model.MaxHourlyMoneyToLeave;
+    </script>
+</div>

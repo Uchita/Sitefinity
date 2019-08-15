@@ -1,0 +1,31 @@
+﻿@model JXTNext.Sitefinity.SalarySurvey.Mvc.Models.MedianSalaryGraphViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.Web;
+@using Telerik.Sitefinity.Modules.Pages
+
+@Html.Script(ScriptRef.JQuery, "bottom")
+@Html.Script(Url.WidgetContent("Mvc/Scripts/script.js"), "bottom")
+
+@Html.StyleSheet(Url.WidgetContent("Mvc/Styles/style.min.css"), "bottom")
+
+<script type="text/javascript">
+    var SalarySurvey_CurrentPage = "@SitefinitySiteMap.GetCurrentNode().Url.ToString().Substring(1)";
+</script>
+
+<div class="salary-survey-widget salary-survey-widget-median-salary-graph">
+    @if (!string.IsNullOrEmpty(Model.Widget.Heading))
+    {
+        <h2 class="widget-heading">@Html.Raw(Model.Widget.Heading)</h2>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Widget.Introduction))
+    {
+        <div class="widget-intro clearfix">@Html.Raw(Model.Widget.Introduction)</div>
+    }
+
+    <div class="median-salary-graph"
+         data-plot-lines-colour="@Model.Widget.PlotLinesColour"
+         data-series-bar-colour="@Model.Widget.SeriesBarColour"
+         data-series-spline-colour="@Model.Widget.SeriesSplineColour">
+    </div>
+</div>

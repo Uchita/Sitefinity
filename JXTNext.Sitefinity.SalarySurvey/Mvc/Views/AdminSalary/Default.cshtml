@@ -1,0 +1,98 @@
+﻿@* This view is still under development in terms of UI*@
+
+@model JXTNext.Sitefinity.SalarySurvey.Mvc.Models.AdminSalaryViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+@Html.StyleSheet(Url.WidgetContent("Mvc/Styles/admin.min.css"))
+
+<div class="salary-survey-widget salary-survey-widget-salaries">
+    @if (!string.IsNullOrEmpty(Model.Widget.Heading))
+    {
+        <h1 class="sfBreadCrumb" id="sfToMainContent">@Html.Raw(Model.Widget.Heading)</h1>
+    }
+
+    <div class="sfMain sfClearfix">
+        <div class="sfContent">
+            <div class="sfWorkArea">
+                @if (Model.Salaries == null)
+                {
+                    <p>No salaries found.</p>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Submitted</th>
+                                    <th>Country</th>
+                                    <th>Location</th>
+                                    <th>Industry</th>
+                                    <th>Classification</th>
+                                    <th>Sub-Classification</th>
+                                    <th>Job Type</th>
+                                    <th>Salary</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var salary in Model.Salaries)
+                                {
+                                    <tr>
+                                        <td><a href="@Model.CurrentPageUrl/Details?SalaryId=@salary.Id">@salary.CreatedDate</a></td>
+                                        <td>@salary.Country</td>
+                                        <td>@salary.Location</td>
+                                        <td>@salary.Industry</td>
+                                        <td>@salary.Classification</td>
+                                        <td>@salary.SubClassification</td>
+                                        <td>@salary.JobType</td>
+                                        <td>
+                                            @if (salary.AnnualSalary == null)
+                                            {
+                                                <text>@salary.HourlyRate</text>
+                                            }
+                                            else
+                                            {
+                                                <text>@salary.AnnualSalary</text>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <hr />
+
+                    <p>Displaying records @Model.StartRecord to @Model.EndRecord of @Model.TotalRecords</p>
+
+                    <br />
+
+                    <p>
+                        @if (Model.CurrentPage > 1)
+                        {
+                            var prevPage = Model.CurrentPage - 1;
+
+                            <a href="?Page=@prevPage" class="sfLinkBtn">Previous</a>
+                        }
+                        else
+                        {
+                            <span class="sfLinkBtn sfDisabledLinkBtn">Previous</span>
+                        }
+
+                        @if (Model.CurrentPage < Model.TotalPages)
+                        {
+                            var nextPage = Model.CurrentPage + 1;
+
+                            <a href="?Page=@nextPage" class="sfLinkBtn">Next</a>
+                        }
+                        else
+                        {
+                            <span class="sfLinkBtn sfDisabledLinkBtn">Next</span>
+                        }
+                    </p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

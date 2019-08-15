@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9A4A3548-BF4C-4D6B-B878-12F95333B08F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JXTNext.Sitefinity.SalarySurvey</RootNamespace>
+    <AssemblyName>JXTNext.Sitefinity.SalarySurvey</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.2.2.2\lib\net40-client\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine, Version=3.0.8.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitefinity.RazorEngine.3.0.8.0\lib\net40\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorGenerator.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorGenerator.Mvc.2.3.12\lib\net40\RazorGenerator.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.OpenAccess, Version=2016.2.822.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Sitefinity.OpenAccess.2016.2.822.1\lib\net40\Telerik.OpenAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Sitefinity, Version=11.0.6701.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Sitefinity.Core.11.0.6701\lib\net471\Telerik.Sitefinity.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Sitefinity.Frontend, Version=11.0.6701.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Sitefinity.Feather.Core.11.0.6701\lib\net471\Telerik.Sitefinity.Frontend.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Sitefinity.Frontend.Data, Version=11.0.6701.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Sitefinity.Feather.Core.11.0.6701\lib\net471\Telerik.Sitefinity.Frontend.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Sitefinity.Model, Version=11.0.6701.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Sitefinity.Core.11.0.6701\lib\net471\Telerik.Sitefinity.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Sitefinity.Mvc, Version=11.0.6701.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Sitefinity.Mvc.11.0.6701\lib\net471\Telerik.Sitefinity.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Sitefinity.Personalization, Version=11.0.6701.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Sitefinity.Core.11.0.6701\lib\net471\Telerik.Sitefinity.Personalization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Sitefinity.Resources">
+      <HintPath>..\packages\Telerik.Sitefinity.Core.11.0.6701\lib\net471\Telerik.Sitefinity.Resources.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Sitefinity.Search, Version=11.0.6701.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Sitefinity.Core.11.0.6701\lib\net471\Telerik.Sitefinity.Search.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Sitefinity.Services.Comments, Version=11.0.6701.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Sitefinity.Core.11.0.6701\lib\net471\Telerik.Sitefinity.Services.Comments.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Sitefinity.Services.Documents, Version=11.0.6701.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Sitefinity.Core.11.0.6701\lib\net471\Telerik.Sitefinity.Services.Documents.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Sitefinity.Services.Events, Version=11.0.6701.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Sitefinity.Core.11.0.6701\lib\net471\Telerik.Sitefinity.Services.Events.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Sitefinity.Services.Notifications, Version=11.0.6701.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Sitefinity.Core.11.0.6701\lib\net471\Telerik.Sitefinity.Services.Notifications.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Sitefinity.Services.Statistics, Version=11.0.6701.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Sitefinity.Core.11.0.6701\lib\net471\Telerik.Sitefinity.Services.Statistics.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Sitefinity.Utilities, Version=11.0.6701.0, Culture=neutral, PublicKeyToken=b28c218413bdf563, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Sitefinity.Core.11.0.6701\lib\net471\Telerik.Sitefinity.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0.3\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\SalarySurveyConfig.cs" />
+    <Compile Include="Admin\SalarySurveySettings.cs" />
+    <Compile Include="Admin\SalarySurveySettingsContract.cs" />
+    <Compile Include="Admin\SalarySurveySettingsUISettings.cs" />
+    <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
+    <Compile Include="Database\Models\Salary.cs" />
+    <Compile Include="Database\Models\SalaryCareerMove.cs" />
+    <Compile Include="Database\Models\SalaryBestEmployer.cs" />
+    <Compile Include="Database\Models\SalaryMotivatorOther.cs" />
+    <Compile Include="Database\Models\SalaryMotivator.cs" />
+    <Compile Include="Database\Models\SalaryBenefit.cs" />
+    <Compile Include="Database\Models\SalaryBenefitOther.cs" />
+    <Compile Include="Database\Models\SearchResult.cs" />
+    <Compile Include="Database\Models\Site.cs" />
+    <Compile Include="Database\SalarySurveyDbContext.cs" />
+    <Compile Include="Helpers\FormHelper.cs" />
+    <Compile Include="Helpers\GenericHelper.cs" />
+    <Compile Include="Helpers\ImportHelper.cs" />
+    <Compile Include="Helpers\SettingsHelper.cs" />
+    <Compile Include="Migrations\201901282329214_SiteTable.cs" />
+    <Compile Include="Migrations\201901282329214_SiteTable.Designer.cs">
+      <DependentUpon>201901282329214_SiteTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901282332439_SalaryTable.cs" />
+    <Compile Include="Migrations\201901282332439_SalaryTable.Designer.cs">
+      <DependentUpon>201901282332439_SalaryTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901282336351_SalaryBenefitTable.cs" />
+    <Compile Include="Migrations\201901282336351_SalaryBenefitTable.Designer.cs">
+      <DependentUpon>201901282336351_SalaryBenefitTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901282337451_SalaryBenefitOtherTable.cs" />
+    <Compile Include="Migrations\201901282337451_SalaryBenefitOtherTable.Designer.cs">
+      <DependentUpon>201901282337451_SalaryBenefitOtherTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901282338428_SalaryMotivatorTable.cs" />
+    <Compile Include="Migrations\201901282338428_SalaryMotivatorTable.Designer.cs">
+      <DependentUpon>201901282338428_SalaryMotivatorTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901282339198_SalaryMotivatorOtherTable.cs" />
+    <Compile Include="Migrations\201901282339198_SalaryMotivatorOtherTable.Designer.cs">
+      <DependentUpon>201901282339198_SalaryMotivatorOtherTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901282340106_SalaryBestEmployerTable.cs" />
+    <Compile Include="Migrations\201901282340106_SalaryBestEmployerTable.Designer.cs">
+      <DependentUpon>201901282340106_SalaryBestEmployerTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901282341046_SalaryCareerMoveTable.cs" />
+    <Compile Include="Migrations\201901282341046_SalaryCareerMoveTable.Designer.cs">
+      <DependentUpon>201901282341046_SalaryCareerMoveTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902180237415_SalaryIndexOnSalaryAlert.cs" />
+    <Compile Include="Migrations\201902180237415_SalaryIndexOnSalaryAlert.Designer.cs">
+      <DependentUpon>201902180237415_SalaryIndexOnSalaryAlert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902180256265_SalaryAlertSentDateAndLastSalaryIdColumn.cs" />
+    <Compile Include="Migrations\201902180256265_SalaryAlertSentDateAndLastSalaryIdColumn.Designer.cs">
+      <DependentUpon>201902180256265_SalaryAlertSentDateAndLastSalaryIdColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902190415540_SiteTableUrlColumnAdded.cs" />
+    <Compile Include="Migrations\201902190415540_SiteTableUrlColumnAdded.Designer.cs">
+      <DependentUpon>201902190415540_SiteTableUrlColumnAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Mvc\Controllers\AdminSalaryImportController.cs" />
+    <Compile Include="Mvc\Controllers\AdminSalaryController.cs" />
+    <Compile Include="Mvc\Controllers\AdminTaxonomyImportController.cs" />
+    <Compile Include="Mvc\Controllers\GrossNetCalculatorController.cs" />
+    <Compile Include="Mvc\Controllers\MedianSalaryGraphController.cs" />
+    <Compile Include="Mvc\Controllers\SalaryCountController.cs" />
+    <Compile Include="Mvc\Controllers\SalaryCalculatorController.cs" />
+    <Compile Include="Mvc\Controllers\SalaryCalculatorGraphController.cs" />
+    <Compile Include="Mvc\Controllers\SearchSalaryController.cs" />
+    <Compile Include="Mvc\Controllers\SubmitSalaryController.cs" />
+    <Compile Include="Mvc\Models\AdminImportTaxonomyFormModel.cs" />
+    <Compile Include="Mvc\Models\AdminSalaryDetailsModel.cs" />
+    <Compile Include="Mvc\Models\AdminSalaryViewModel.cs" />
+    <Compile Include="Mvc\Models\AdminSalaryWidgetModel.cs" />
+    <Compile Include="Mvc\Models\GenericAjaxResponseModel.cs" />
+    <Compile Include="Mvc\Models\GrossNetCalculatorFormModel.cs" />
+    <Compile Include="Mvc\Models\GrossNetCalculatorViewModel.cs" />
+    <Compile Include="Mvc\Models\GrossNetCalculatorWidgetModel.cs" />
+    <Compile Include="Mvc\Models\CountryCsvRowModel.cs" />
+    <Compile Include="Mvc\Models\IndustryCsvRowModel.cs" />
+    <Compile Include="Mvc\Models\MedianSalaryGraphViewModel.cs" />
+    <Compile Include="Mvc\Models\MedianSalaryGraphWidgetModel.cs" />
+    <Compile Include="Mvc\Models\SalaryCalculatorFormModel.cs" />
+    <Compile Include="Mvc\Models\SalaryCalculatorGraphViewModel.cs" />
+    <Compile Include="Mvc\Models\SalaryCalculatorGraphWidgetModel.cs" />
+    <Compile Include="Mvc\Models\SalaryCalculatorResultModel.cs" />
+    <Compile Include="Mvc\Models\SalaryCalculatorViewModel.cs" />
+    <Compile Include="Mvc\Models\SalaryCalculatorWidgetModel.cs" />
+    <Compile Include="Mvc\Models\SalaryCountViewModel.cs" />
+    <Compile Include="Mvc\Models\SalaryCsvRowModel.cs" />
+    <Compile Include="Mvc\Models\SearchResultBenefitModel.cs" />
+    <Compile Include="Mvc\Models\SearchResultProfileModel.cs" />
+    <Compile Include="Mvc\Models\SearchSalaryFormModel.cs" />
+    <Compile Include="Mvc\Models\SearchSalaryViewModel.cs" />
+    <Compile Include="Mvc\Models\SearchSalaryWidgetModel.cs" />
+    <Compile Include="Mvc\Models\SubmitSalaryFormModel.cs" />
+    <Compile Include="Mvc\Models\SubmitSalaryViewModel.cs" />
+    <Compile Include="Mvc\Models\SalaryCountWidgetModel.cs" />
+    <Compile Include="Mvc\Models\SubmitSalaryWidgetModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalarySurveyInstaller.cs" />
+    <Compile Include="SalarySurveyModule.cs" />
+    <Compile Include="SalarySurveyResources.cs" />
+    <Compile Include="Web\Services\Interfaces\ISalaryAlert.cs" />
+    <Compile Include="Web\Services\Models\GenericResponseModel.cs" />
+    <Compile Include="Web\Services\Models\SalaryAlertMetaDataResponseModel.cs" />
+    <Compile Include="Web\Services\SalaryAlert.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901282329214_SiteTable.resx">
+      <DependentUpon>201901282329214_SiteTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901282332439_SalaryTable.resx">
+      <DependentUpon>201901282332439_SalaryTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901282336351_SalaryBenefitTable.resx">
+      <DependentUpon>201901282336351_SalaryBenefitTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901282337451_SalaryBenefitOtherTable.resx">
+      <DependentUpon>201901282337451_SalaryBenefitOtherTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901282338428_SalaryMotivatorTable.resx">
+      <DependentUpon>201901282338428_SalaryMotivatorTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901282339198_SalaryMotivatorOtherTable.resx">
+      <DependentUpon>201901282339198_SalaryMotivatorOtherTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901282340106_SalaryBestEmployerTable.resx">
+      <DependentUpon>201901282340106_SalaryBestEmployerTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901282341046_SalaryCareerMoveTable.resx">
+      <DependentUpon>201901282341046_SalaryCareerMoveTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902180237415_SalaryIndexOnSalaryAlert.resx">
+      <DependentUpon>201902180237415_SalaryIndexOnSalaryAlert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902180256265_SalaryAlertSentDateAndLastSalaryIdColumn.resx">
+      <DependentUpon>201902180256265_SalaryAlertSentDateAndLastSalaryIdColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902190415540_SiteTableUrlColumnAdded.resx">
+      <DependentUpon>201902190415540_SiteTableUrlColumnAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mvc\Scripts\script.js" />
+    <EmbeddedResource Include="Mvc\Scripts\SearchSalary\designerview-simple.js" />
+    <EmbeddedResource Include="Mvc\Scripts\SubmitSalary\designerview-simple.js" />
+    <None Include="Mvc\Styles\style.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <EmbeddedResource Include="Mvc\Views\AdminSalary\Default.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\GrossNetCalculator\Default.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\MedianSalaryGraph\Default.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\SalaryCalculatorGraph\Default.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\SalaryCalculator\Default.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\SearchSalary\Default.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\SearchSalary\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\SearchSalary\DesignerView.Simple.json" />
+    <EmbeddedResource Include="Mvc\Views\SubmitSalary\Default.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\SubmitSalary\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\SubmitSalary\DesignerView.Simple.json" />
+    <EmbeddedResource Include="Mvc\Views\SubmitSalary\NotFound.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\SubmitSalary\ThankYou.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\GrossNetCalculator\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\GrossNetCalculator\DesignerView.Simple.json" />
+    <EmbeddedResource Include="Mvc\Views\SalaryCalculator\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\SalaryCalculator\DesignerView.Simple.json" />
+    <EmbeddedResource Include="Mvc\Views\MedianSalaryGraph\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\MedianSalaryGraph\DesignerView.Simple.json" />
+    <EmbeddedResource Include="Mvc\Views\SalaryCalculatorGraph\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\SalaryCalculatorGraph\DesignerView.Simple.json" />
+    <EmbeddedResource Include="Mvc\Views\SalaryCount\Default.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\SalaryCount\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\SalaryCount\DesignerView.Simple.json" />
+    <EmbeddedResource Include="Mvc\Views\AdminSalary\Details.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\AdminSalaryImport\Default.cshtml" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <None Include="Mvc\Styles\src\sass\style.scss" />
+    <EmbeddedResource Include="Mvc\Views\AdminTaxonomyImport\Default.cshtml" />
+    <None Include="packages.config" />
+    <None Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Connector\JXTNext.Sitefinity.Connector.csproj">
+      <Project>{bf418b44-ebce-499f-bbd3-6ba98a24e144}</Project>
+      <Name>JXTNext.Sitefinity.Connector</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Services.Intefaces\JXTNext.Sitefinity.Services.Intefaces.csproj">
+      <Project>{94381396-d85e-469c-b828-24cf03548df5}</Project>
+      <Name>JXTNext.Sitefinity.Services.Intefaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Mvc\Styles\admin.css" />
+    <EmbeddedResource Include="Mvc\Styles\admin.min.css">
+      <DependentUpon>admin.css</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Mvc\Styles\src\sass\admin.scss" />
+    <EmbeddedResource Include="Mvc\Styles\style.min.css">
+      <DependentUpon>style.css</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mvc\Scripts\admin.js" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

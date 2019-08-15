@@ -1,0 +1,124 @@
+﻿@* This view is still under development in terms of UI*@
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.Web;
+
+@Html.StyleSheet("https://jxtco01-01-prod-php-public.s3.amazonaws.com/common/jquery-file-upload/css/jquery.fileupload-ui.css")
+@Html.StyleSheet(Url.WidgetContent("Mvc/Styles/admin.min.css"))
+
+@Html.Script("https://jxtco01-01-prod-php-public.s3.amazonaws.com/common/jxt/js/common.js", "bottom")
+@Html.Script("https://jxtco01-01-prod-php-public.s3.amazonaws.com/common/jquery/ui/jquery.ui.widget.min.js", "bottom")
+@Html.Script("https://jxtco01-01-prod-php-public.s3.amazonaws.com/common/jquery-file-upload/js/jquery.iframe-transport.js", "bottom")
+@Html.Script("https://jxtco01-01-prod-php-public.s3.amazonaws.com/common/jquery-file-upload/js/jquery.fileupload.js", "bottom")
+@Html.Script(Url.WidgetContent("Mvc/Scripts/admin.js"), "bottom")
+
+<script type="text/javascript">
+    var SalarySurvey_CurrentPage = "@SitefinitySiteMap.GetCurrentNode().Url.ToString().Substring(1)";
+</script>
+
+<div class="salary-survey-widget salary-survey-widget-import-taxonomies">
+    @if (!string.IsNullOrEmpty(Model.Widget.Heading))
+    {
+        <h1 class="sfBreadCrumb" id="sfToMainContent">@Html.Raw(Model.Widget.Heading)</h1>
+    }
+
+    <div class="sfMain sfClearfix">
+        <div class="sfContent">
+            <div class="sfWorkArea">
+                <p>Upload a CSV file containing columns of repective taxonomy.</p>
+
+                <p>Column names are case-sensitive.</p>
+
+                <hr />
+
+                <div class="entry-details">
+                    <h2>Country and Location</h2>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Required</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Country</td>
+                                <td><span class="required">Yes</span></td>
+                                <td>Category to use as country must be set.</td>
+                            </tr>
+
+                            <tr>
+                                <td>Location</td>
+                                <td><span class="required">Yes</span></td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br />
+
+                    <div class="form-actions">
+                        <span class="sfLinkBtn sfSave fileinput-button" data-taxonomy="country">
+                            Upload and Import Country
+                            <input type="file" name="file" />
+                        </span>
+                        <span class="wait" style="display: none;">
+                            <img src="https://jxtco01-01-prod-php-public.s3.amazonaws.com/common/jxt/images/loading.gif" alt="" /> Uploading...<span class="per">0%</span>
+                        </span>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="entry-details">
+                    <h2>Industry, Classification and Sub-Classification</h2>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Required</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Industry</td>
+                                <td><span class="required">Yes</span></td>
+                                <td>Category to use as industry must be set.</td>
+                            </tr>
+
+                            <tr>
+                                <td>Classification</td>
+                                <td><span class="required">Yes</span></td>
+                                <td>&nbsp;</td>
+                            </tr>
+
+                            <tr>
+                                <td>SubClassification</td>
+                                <td><span class="required">Yes</span></td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br />
+
+                    <div class="form-actions">
+                        <span class="sfLinkBtn sfSave fileinput-button" data-taxonomy="industry">
+                            Upload and Import Industry
+                            <input type="file" name="file" />
+                        </span>
+                        <span class="wait" style="display: none;">
+                            <img src="https://jxtco01-01-prod-php-public.s3.amazonaws.com/common/jxt/images/loading.gif" alt="" /> Uploading...<span class="per">0%</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

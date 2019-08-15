@@ -1,0 +1,17 @@
+﻿@model JXTNext.Sitefinity.SalarySurvey.Mvc.Models.SalaryCountViewModel
+
+<div class="salary-survey-widget salary-survey-widget-salary-count">
+    <div class="panel panel-default">
+        <ul class="list-unstyled">
+            @if (Model.Widget.LastWeekSalariesEnabled)
+            {
+                <li>@Model.Widget.LastWeekSalariesLabel @Model.LastWeekSalaries</li>
+            }
+
+            @if (Model.Widget.TotalSalariesEnabled)
+            {
+                <li>@Model.Widget.TotalSalariesLabel @Model.TotalSalaries</li>
+            }
+        </ul>
+    </div>
+</div>

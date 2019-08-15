@@ -1,0 +1,139 @@
+﻿@model JXTNext.Sitefinity.SalarySurvey.Mvc.Models.SalaryCalculatorViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.Web;
+@using Telerik.Sitefinity.Modules.Pages
+
+@Html.Script(ScriptRef.JQuery, "bottom")
+@Html.Script(Url.WidgetContent("Mvc/Scripts/script.js"), "bottom")
+@Html.StyleSheet(Url.WidgetContent("Mvc/Styles/style.min.css"), "bottom")
+
+<script type="text/javascript">
+    var SalarySurvey_CurrentPage = "@SitefinitySiteMap.GetCurrentNode().Url.ToString().Substring(1)";
+</script>
+
+<div class="salary-survey-widget salary-survey-widget-salary-calculator">
+    <div class="salary-calculator-form-container">
+        @if (!string.IsNullOrEmpty(Model.Widget.Heading))
+        {
+            <h2 class="widget-heading">@Html.Raw(Model.Widget.Heading)</h2>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Widget.Introduction))
+        {
+            <div class="widget-intro clearfix">@Html.Raw(Model.Widget.Introduction)</div>
+        }
+
+        <form action="@Model.Widget.ResultPage" method="get">
+            @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+
+            <div class="form-group form-group-AnnualSalary">
+                <label>@Html.Raw(Model.Widget.AnnualSalaryLabel)<span class="required">*</span></label>
+                <div class="controls">
+                    @Html.TextBox("AnnualSalary", null, new { @class = "form-control" })
+                    @if (Model.Widget.AnnualSalaryHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.AnnualSalaryHelp)</p>
+                    }
+                    @Html.ValidationMessage("AnnualSalary", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-IncreasePerYear">
+                <label>@Html.Raw(Model.Widget.IncreasePerYearLabel)<span class="required">*</span></label>
+                <div class="controls">
+                    @Html.TextBox("IncreasePerYear", null, new { @class = "form-control" })
+                    @if (Model.Widget.IncreasePerYearHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.IncreasePerYearHelp)</p>
+                    }
+                    @Html.ValidationMessage("IncreasePerYear", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-Years">
+                <label>@Html.Raw(Model.Widget.YearsLabel)<span class="required">*</span></label>
+                <div class="controls">
+                    @Html.TextBox("Years", null, new { @class = "form-control" })
+                    @if (Model.Widget.YearsHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.YearsHelp)</p>
+                    }
+                    @Html.ValidationMessage("Years", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-SuperRate">
+                <label>@Html.Raw(Model.Widget.SuperannuationLabel)</label>
+                <div class="controls">
+                    @Html.TextBox("SuperRate", null, new { @class = "form-control" })
+                    @if (Model.Widget.SuperannuationHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.SuperannuationHelp)</p>
+                    }
+                    @Html.ValidationMessage("SuperRate", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-submit">@Html.Raw(Model.Widget.SubmitButtonLabel)</button>
+
+                <span class="loader container-loader" style="display: none;"></span>
+            </div>
+
+            <input type="hidden" name="SalarySurveyAction" value="calculate-salary" />
+        </form>
+    </div>
+
+    @if (Model.ShowResult)
+    {
+        <div class="salary-calculator-result-container">
+            <h2 class="result-heading">Result</h2>
+
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th class="name">Extra Salary</th>
+                        <td class="value extra-salary">@Model.CurrencySymbol@Model.ExtraSalary.ToString("N2")</td>
+                    </tr>
+
+                    <tr>
+                        <th class="name">Extra Super</th>
+                        <td class="value extra-super">@Model.CurrencySymbol@Model.ExtraSuper.ToString("N2")</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="years">Years</th>
+                        <th class="salary-increase">Cummulative Increase</th>
+                        <th class="super-increase">Increase in Super</th>
+                        <th class="total-increase">Total Increase</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model.Result)
+                    {
+                        <tr>
+                            <td class="years">@item.Year</td>
+                            <td class="salary-increase">@Model.CurrencySymbol@item.SalaryIncrease.ToString("N2")</td>
+                            <td class="super-increase">@Model.CurrencySymbol@item.SuperIncrease.ToString("N2")</td>
+                            <td class="total-increase">@Model.CurrencySymbol@item.TotalIncrease.ToString("N2")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <script type="text/javascript">
+            var salaryCalculatorResult = {
+                years: @Model.Form.Years,
+                s1: [@string.Join(",", Model.Result.Select(el => el.SalaryIncrease).ToArray())],
+                s2: [@string.Join(",", Model.Result.Select(el => el.SuperIncrease).ToArray())],
+                s3: [@string.Join(",", Model.Result.Select(el => el.TotalIncrease).ToArray())]
+            };
+        </script>
+    }
+</div>

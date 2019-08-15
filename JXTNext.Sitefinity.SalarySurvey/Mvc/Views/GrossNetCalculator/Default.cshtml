@@ -1,0 +1,221 @@
+﻿@model JXTNext.Sitefinity.SalarySurvey.Mvc.Models.GrossNetCalculatorViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.Web;
+@using Telerik.Sitefinity.Modules.Pages
+
+@Html.Script(ScriptRef.JQuery, "bottom")
+@Html.Script(Url.WidgetContent("Mvc/Scripts/script.js"), "bottom")
+@Html.StyleSheet(Url.WidgetContent("Mvc/Styles/style.min.css"), "bottom")
+
+<script type="text/javascript">
+    var SalarySurvey_CurrentPage = "@SitefinitySiteMap.GetCurrentNode().Url.ToString().Substring(1)";
+</script>
+
+<div class="salary-survey-widget salary-survey-widget-gross-net-calculator">
+    <div class="salary-calculator-form-container">
+        @if (!string.IsNullOrEmpty(Model.Widget.Heading))
+        {
+            <h2 class="widget-heading">@Html.Raw(Model.Widget.Heading)</h2>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Widget.Introduction))
+        {
+            <div class="widget-intro clearfix">@Html.Raw(Model.Widget.Introduction)</div>
+        }
+
+        <form action="@Model.Widget.ResultPage" method="get">
+            @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+
+            <div class="form-group form-group-Salary">
+                <label>@Html.Raw(Model.Widget.SalaryLabel)<span class="required">*</span></label>
+                <div class="controls">
+                    @Html.TextBox("Salary", null, new { @class = "form-control" })
+                    @if (Model.Widget.SalaryHelp != null)
+                    {
+                        <p class="help-block">@Html.Raw(Model.Widget.SalaryHelp)</p>
+                    }
+                    @Html.ValidationMessage("Salary", new { @class = "help-block help-block-error" })
+                </div>
+            </div>
+
+            <div class="calculator-options" style="@if (!Model.Widget.ShowOptions) { <text>display: none;</text> } ">
+                <div class="form-group form-group-MedicareRate">
+                    <label>@Html.Raw(Model.Widget.MedicareLabel)<span class="required">*</span></label>
+                    <div class="controls">
+                        @Html.TextBox("MedicareRate", Model.MedicareRate, new { @class = "form-control" })
+                        @if (Model.Widget.MedicareHelp != null)
+                        {
+                            <p class="help-block">@Html.Raw(Model.Widget.MedicareHelp)</p>
+                        }
+                        @Html.ValidationMessage("MedicareRate", new { @class = "help-block help-block-error" })
+                    </div>
+                </div>
+
+                <div class="form-group form-group-SuperRate">
+                    <label>@Html.Raw(Model.Widget.SuperannuationLabel)<span class="required">*</span></label>
+                    <div class="controls">
+                        @Html.TextBox("SuperRate", Model.SuperRate, new { @class = "form-control" })
+                        @if (Model.Widget.SuperannuationHelp != null)
+                        {
+                            <p class="help-block">@Html.Raw(Model.Widget.SuperannuationHelp)</p>
+                        }
+                        @Html.ValidationMessage("SuperRate", new { @class = "help-block help-block-error" })
+                    </div>
+                </div>
+
+                <div class="form-group form-group-WeeklyHours">
+                    <label>@Html.Raw(Model.Widget.WeeklyHoursLabel)<span class="required">*</span></label>
+                    <div class="controls">
+                        @Html.TextBox("WeeklyHours", Model.WeeklyHours, new { @class = "form-control" })
+                        @if (Model.Widget.WeeklyHoursHelp != null)
+                        {
+                            <p class="help-block">@Html.Raw(Model.Widget.WeeklyHoursHelp)</p>
+                        }
+                        @Html.ValidationMessage("WeeklyHours", new { @class = "help-block help-block-error" })
+                    </div>
+                </div>
+
+                <div class="form-group form-group-Paye form-group-TaxThresholds form-group-TaxRates">
+                    <label>@Html.Raw(Model.Widget.PayeLabel)<span class="required">*</span></label>
+                    <div class="controls">
+                        @if (Model.Widget.PayeHelp != null)
+                        {
+                            <p class="help-block">@Html.Raw(Model.Widget.PayeHelp)</p>
+                        }
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="name">@Html.Raw(Model.Widget.TaxThresholdLabel)</th>
+                                    <th class="value">@Html.Raw(Model.Widget.TaxRateLabel)</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @{
+                                    int idx = 0;
+                                    int count = Model.TaxBrackets.Count - 1;
+
+                                    foreach (var item in Model.TaxBrackets)
+                                    {
+                                        <tr>
+                                            <td class="name">
+                                                @if (idx == 0)
+                                                {
+                                                    @Html.TextBox("TaxThresholds[" + idx + "]", item.Key, new { @class = "form-control" })
+                                                }
+                                                else if (idx == count)
+                                                {
+                                                    <text>Everything else</text>
+                                                    @Html.Hidden("TaxThresholds[" + idx + "]", item.Key)
+                                                }
+                                                else
+                                                {
+                                                    @Html.TextBox("TaxThresholds[" + idx + "]", item.Key, new { @class = "form-control" })
+                                                }
+                                            </td>
+                                            <td class="value">
+                                                @Html.TextBox("TaxRates[" + idx + "]", item.Value, new { @class = "form-control" })
+                                            </td>
+                                        </tr>
+
+                                        idx++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+
+                        @Html.ValidationMessage("Paye", new { @class = "help-block help-block-error" })
+                        @Html.ValidationMessage("TaxThresholds", new { @class = "help-block help-block-error" })
+                        @Html.ValidationMessage("TaxRates", new { @class = "help-block help-block-error" })
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.Widget.ShowMoreLess)
+            {
+                <p>
+                    <a href="javascript:;" onclick="salarySurvey.showHideGrossNetOptions(this);">
+                        <span class="more" style="@if (Model.Widget.ShowOptions) { <text>display: none;</text> }">Show Options</span>
+                        <span class="less" style="@if (!Model.Widget.ShowOptions) { <text>display: none;</text> }">Hide Options</span>
+                    </a>
+                </p>
+            }
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-submit">@Html.Raw(Model.Widget.SubmitButtonLabel)</button>
+
+                <span class="loader container-loader" style="display: none;"></span>
+            </div>
+
+            <input type="hidden" name="SalarySurveyAction" value="calculate-gross-net" />
+        </form>
+    </div>
+
+    @if (Model.ShowResult)
+    {
+        <div class="salary-calculator-result-container">
+            <h2 class="result-heading">Income Breakdown</h2>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="timeframe">Timeframe</th>
+                        <th class="gross-pay">Gross Pay</th>
+                        <th class="paye">PAYE</th>
+                        <th class="medicare">Medicare</th>
+                        <th class="superannuation">Superannuation</th>
+                        <th class="net-pay">Net Pay</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class="timeframe">Hour</td>
+                        <td class="gross-pay">@Model.CurrencySymbol@Model.HourlyBeforeTax.ToString("N2")</td>
+                        <td class="paye">@Model.CurrencySymbol@Model.HourlyTax.ToString("N2")</td>
+                        <td class="medicare">@Model.CurrencySymbol@Model.HourlyMedicare.ToString("N2")</td>
+                        <td class="superannuation">@Model.CurrencySymbol@Model.HourlySuper.ToString("N2")</td>
+                        <td class="net-pay">@Model.CurrencySymbol@Model.HourlyAfterTax.ToString("N2")</td>
+                    </tr>
+
+                    <tr>
+                        <td class="timeframe">Week</td>
+                        <td class="gross-pay">@Model.CurrencySymbol@Model.WeeklyBeforeTax.ToString("N2")</td>
+                        <td class="paye">@Model.CurrencySymbol@Model.WeeklyTax.ToString("N2")</td>
+                        <td class="medicare">@Model.CurrencySymbol@Model.WeeklyMedicare.ToString("N2")</td>
+                        <td class="superannuation">@Model.CurrencySymbol@Model.WeeklySuper.ToString("N2")</td>
+                        <td class="net-pay">@Model.CurrencySymbol@Model.WeeklyAfterTax.ToString("N2")</td>
+                    </tr>
+
+                    <tr>
+                        <td class="timeframe">Fortnight</td>
+                        <td class="gross-pay">@Model.CurrencySymbol@Model.FortnightlyBeforeTax.ToString("N2")</td>
+                        <td class="paye">@Model.CurrencySymbol@Model.FortnightlyTax.ToString("N2")</td>
+                        <td class="medicare">@Model.CurrencySymbol@Model.FortnightlyMedicare.ToString("N2")</td>
+                        <td class="superannuation">@Model.CurrencySymbol@Model.FortnightlySuper.ToString("N2")</td>
+                        <td class="net-pay">@Model.CurrencySymbol@Model.FortnightlyAfterTax.ToString("N2")</td>
+                    </tr>
+
+                    <tr>
+                        <td class="timeframe">Month</td>
+                        <td class="gross-pay">@Model.CurrencySymbol@Model.MonthlyBeforeTax.ToString("N2")</td>
+                        <td class="paye">@Model.CurrencySymbol@Model.MonthlyTax.ToString("N2")</td>
+                        <td class="medicare">@Model.CurrencySymbol@Model.MonthlyMedicare.ToString("N2")</td>
+                        <td class="superannuation">@Model.CurrencySymbol@Model.MonthlySuper.ToString("N2")</td>
+                        <td class="net-pay">@Model.CurrencySymbol@Model.MonthlyAfterTax.ToString("N2")</td>
+                    </tr>
+
+                    <tr>
+                        <td class="timeframe">Year</td>
+                        <td class="gross-pay">@Model.CurrencySymbol@Model.YearlyBeforeTax.ToString("N2")</td>
+                        <td class="paye">@Model.CurrencySymbol@Model.YearlyTax.ToString("N2")</td>
+                        <td class="medicare">@Model.CurrencySymbol@Model.YearlyMedicare.ToString("N2")</td>
+                        <td class="superannuation">@Model.CurrencySymbol@Model.YearlySuper.ToString("N2")</td>
+                        <td class="net-pay">@Model.CurrencySymbol@Model.YearlyAfterTax.ToString("N2")</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

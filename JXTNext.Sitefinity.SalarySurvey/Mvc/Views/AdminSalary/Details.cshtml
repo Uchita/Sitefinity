@@ -1,0 +1,275 @@
+﻿@* This view is still under development in terms of UI*@
+
+@model JXTNext.Sitefinity.SalarySurvey.Mvc.Models.AdminSalaryViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+@Html.StyleSheet(Url.WidgetContent("Mvc/Styles/admin.min.css"))
+
+<div class="salary-survey-widget salary-survey-widget-salary">
+    @if (!string.IsNullOrEmpty(Model.Widget.Heading))
+    {
+        <h1 class="sfBreadCrumb" id="sfToMainContent">@Html.Raw(Model.Widget.Heading)</h1>
+    }
+
+    <div class="sfMain sfClearfix">
+        <div class="sfContent">
+            <div class="sfWorkArea">
+                <a href="@Model.CurrentPageUrl" class="sfLinkBtn">View All Salaries</a>
+
+                <br />
+                <br />
+
+                @if (Model.Salary == null)
+                {
+                    <p>Salary not found.</p>
+                }
+                else
+                {
+                    <table class="table">
+                        <tbody>
+                            <tr class="salary-id">
+                                <th>Id</th>
+                                <td>@Model.Salary.Id</td>
+                            </tr>
+
+                            <tr class="created-date">
+                                <th>Submitted</th>
+                                <td>@Model.Salary.CreatedDate</td>
+                            </tr>
+
+                            <tr class="sep">
+                                <th colspan="2">Current Job</th>
+                            </tr>
+
+                            <tr class="country">
+                                <th>Country</th>
+                                <td>@Model.Salary.Country</td>
+                            </tr>
+
+                            <tr class="location">
+                                <th>Location</th>
+                                <td>@Model.Salary.Location</td>
+                            </tr>
+
+                            <tr class="industry">
+                                <th>Industry</th>
+                                <td>@Model.Salary.Industry</td>
+                            </tr>
+
+                            <tr class="classification">
+                                <th>Classification</th>
+                                <td>@Model.Salary.Classification</td>
+                            </tr>
+
+                            <tr class="sub-classification">
+                                <th>Sub-Classification</th>
+                                <td>@Model.Salary.SubClassification</td>
+                            </tr>
+
+                            <tr class="job-type">
+                                <th>Job Type</th>
+                                <td>@Model.Salary.JobType</td>
+                            </tr>
+
+                            <tr class="salary">
+                                <th>Salary</th>
+                                <td>
+                                    @if (Model.Salary.AnnualSalary == null)
+                                    {
+                                        <text>@Model.Salary.HourlyRate</text>
+                                    }
+                                    else
+                                    {
+                                        <text>@Model.Salary.AnnualSalary</text>
+                                    }
+                                </td>
+                            </tr>
+
+                            <tr class="bonus">
+                                <th>Bonus</th>
+                                <td>@Model.Salary.BonusAmount</td>
+                            </tr>
+
+                            <tr class="benefits">
+                                <th>Benefits</th>
+                                <td>
+                                    <ul>
+                                        @foreach (var item in Model.Salary.Benefits)
+                                        {
+                                            <li>@item</li>
+                                        }
+                                    </ul>
+                                </td>
+                            </tr>
+
+                            <tr class="other-benefits">
+                                <th>Other Benefits</th>
+                                <td>
+                                    <ul>
+                                        @foreach (var item in Model.Salary.OtherBenefits)
+                                        {
+                                            <li>@item</li>
+                                        }
+                                    </ul>
+                                </td>
+                            </tr>
+
+                            <tr class="sep">
+                                <th colspan="2">You and Current Employer</th>
+                            </tr>
+
+                            <tr class="professional-qualification">
+                                <th>Professional Qualification</th>
+                                <td>
+                                    @if (Model.Salary.ProfessionalQualification)
+                                    {
+                                        <text>Yes</text>
+                                    }
+                                    else
+                                    {
+                                        <text>No</text>
+                                    }
+                                </td>
+                            </tr>
+
+                            <tr class="education">
+                                <th>Education</th>
+                                <td>@Model.Salary.Education</td>
+                            </tr>
+
+                            <tr class="years-of-experience">
+                                <th>Years of Experience</th>
+                                <td>@Model.Salary.YearsOfExperience</td>
+                            </tr>
+
+                            <tr class="people-managed">
+                                <th>People Managed</th>
+                                <td>@Model.Salary.PeopleManaged</td>
+                            </tr>
+
+                            <tr class="gender">
+                                <th>Gender</th>
+                                <td>@Model.Salary.Gender</td>
+                            </tr>
+
+                            <tr class="employer-size">
+                                <th>Employer Size</th>
+                                <td>@Model.Salary.EmployerSize</td>
+                            </tr>
+
+                            <tr class="money-to-leave">
+                                <th>Salary Expectations</th>
+                                <td>@Model.Salary.MoneyToLeave</td>
+                            </tr>
+
+                            <tr class="sep">
+                                <th colspan="2">Next Career Move</th>
+                            </tr>
+
+                            <tr class="motivators">
+                                <th>Top Motivators</th>
+                                <td>
+                                    <ol>
+                                        @foreach (var item in Model.Salary.Motivators)
+                                        {
+                                            <li>@item</li>
+                                        }
+                                    </ol>
+                                </td>
+                            </tr>
+
+                            <tr class="other-motivators">
+                                <th>Other Motivators</th>
+                                <td>
+                                    <ul>
+                                        @foreach (var item in Model.Salary.OtherMotivators)
+                                        {
+                                            <li>@item</li>
+                                        }
+                                    </ul>
+                                </td>
+                            </tr>
+
+                            <tr class="career-move">
+                                <th>Career Move</th>
+                                <td>
+                                    <ul>
+                                        @foreach (var item in Model.Salary.CareerMoves)
+                                        {
+                                            <li>@item</li>
+                                        }
+                                    </ul>
+                                </td>
+                            </tr>
+
+                            <tr class="sep">
+                                <th colspan="2">Optional</th>
+                            </tr>
+
+                            <tr class="job-alert">
+                                <th>Job Alert</th>
+                                <td>
+                                    @if (Model.Salary.JobAlert)
+                                    {
+                                        <text>Yes</text>
+                                    }
+                                    else
+                                    {
+                                        <text>No</text>
+                                    }
+                                </td>
+                            </tr>
+
+                            <tr class="salary-alert">
+                                <th>Salary Alert</th>
+                                <td>
+                                    @if (Model.Salary.SalaryAlert)
+                                    {
+                                        <text>Yes</text>
+                                    }
+                                    else
+                                    {
+                                        <text>No</text>
+                                    }
+                                </td>
+                            </tr>
+
+                            <tr class="contact-request">
+                                <th>Contact Request</th>
+                                <td>
+                                    @if (Model.Salary.ContactRequest)
+                                    {
+                                        <text>Yes</text>
+                                    }
+                                    else
+                                    {
+                                        <text>No</text>
+                                    }
+                                </td>
+                            </tr>
+
+                            <tr class="name">
+                                <th>Name</th>
+                                <td>@Model.Salary.Name</td>
+                            </tr>
+
+                            <tr class="email">
+                                <th>Email</th>
+                                <td>@Model.Salary.Email</td>
+                            </tr>
+
+                            <tr class="phone">
+                                <th>Phone</th>
+                                <td>@Model.Salary.Phone</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+
+                <br />
+
+                <a href="@Model.CurrentPageUrl" class="sfLinkBtn">View All Salaries</a>
+            </div>
+        </div>
+    </div>
+</div>

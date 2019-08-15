@@ -1,0 +1,27 @@
+﻿<div class="form-group">
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ng-model="properties.LastWeekSalariesEnabled.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.LastWeekSalariesEnabled.PropertyValue === 'True'" />
+            Show last week salaries
+        </label>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>Last Week Salaries Label</label>
+    <input ng-model="properties.LastWeekSalariesLabel.PropertyValue" type="text" class="form-control" />
+</div>
+
+<div class="form-group">
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ng-model="properties.TotalSalariesEnabled.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.TotalSalariesEnabled.PropertyValue === 'True'" />
+            Show total salaries
+        </label>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>Total Salaries Label</label>
+    <input ng-model="properties.TotalSalariesLabel.PropertyValue" type="text" class="form-control" />
+</div>

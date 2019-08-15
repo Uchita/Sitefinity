@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Mvc/Styles/style.css",
+    "inputFile": "Mvc/Styles/src/sass/style.scss"
+  },
+  {
+    "outputFile": "Mvc/Styles/admin.css",
+    "inputFile": "Mvc/Styles/src/sass/admin.scss"
+  }
+]

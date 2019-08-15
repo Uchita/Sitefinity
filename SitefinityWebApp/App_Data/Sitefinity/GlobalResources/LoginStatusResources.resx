@@ -125,11 +125,6 @@
   <data name="Login">
     <value>SIGN IN</value>
     <comment>phrase : Login</comment>
-    <lastModified>2019-02-19T17:58:44</lastModified>
-  </data>
-  <data name="LoggedAs">
-    <value>Logged in as</value>
-    <comment>phrase : Logged as</comment>
-    <lastModified>2018-11-19T05:56:01</lastModified>
+    <lastModified>2015-03-06T00:00:00</lastModified>
   </data>
 </root>

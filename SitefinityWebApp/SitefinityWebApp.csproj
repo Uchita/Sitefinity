@@ -157,7 +157,7 @@
       <HintPath>..\packages\JXTNext.Common.FileManager.5.0.14\lib\netstandard2.0\JXTNext.Common.FileManager.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Common.Web, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXT.JXTNext.Common.Web.1.4.2\lib\netstandard2.0\JXTNext.Common.Web.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Common.Web.5.5.10\lib\netstandard2.0\JXTNext.Common.Web.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.FileHandler, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXT.JXTNext.FileHandler.1.0.4\lib\netstandard2.0\JXTNext.FileHandler.dll</HintPath>

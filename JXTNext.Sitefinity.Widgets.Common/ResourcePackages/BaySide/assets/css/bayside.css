@@ -7000,6 +7000,13 @@ select.hs-input {
     .hero-banner-sm > .container > .row {
         height: 150px;
     }
+
+    body.blogs .hero-banner{
+        display:none;
+    }
+    body.blogs .blog-container {
+        margin-top: 20px;
+    }
 }
 
 .hero-banner h1, .hero-banner .hero-title {
@@ -7257,7 +7264,6 @@ select.hs-input {
     padding-top: 80px;
     padding-bottom: 76px;
 }
-
     .sm-col-layout h3 {
         color: #0088CF;
     }
@@ -7598,8 +7604,6 @@ select.hs-input {
     }
 }
 
-
-
 .full-section {
     position: relative;
 }
@@ -7624,7 +7628,6 @@ select.hs-input {
     position: static !important;
 }
 
-
     .img-absolute-wrap .img-absolute {
         position: absolute;
         right: 0px;
@@ -7640,6 +7643,7 @@ select.hs-input {
             .img-absolute-wrap .img-absolute.image-pos-left.bg-bottom-center {
                 background-position: center bottom;
             }
+
 
             .img-absolute-wrap .img-absolute.image-pos-left.image-pos-right {
                 background-position: center right;
@@ -8124,7 +8128,6 @@ img.savejob-icon {
     font-weight: 600;
     padding: 0;
 }
-
     .arrow-left:before {
         display: inline-block;
         width: auto;

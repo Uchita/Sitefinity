@@ -291,6 +291,9 @@ $(document).ready(function () {
         $("body").addClass('no-safari');
 
     }
+    if ($('h2.blog-title').length == 1) {
+        $("body").addClass('blog-single');
+    }
 
 
     MakeActiveLinks($(location).attr('pathname'));

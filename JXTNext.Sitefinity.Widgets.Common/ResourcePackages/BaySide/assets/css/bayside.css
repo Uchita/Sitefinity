@@ -7001,10 +7001,10 @@ select.hs-input {
         height: 150px;
     }
 
-    body.blogs .hero-banner{
-        display:none;
+    body.blog-single .hero-banner, body.blog-single .parallax-mirror {
+        display: none;
     }
-    body.blogs .blog-container {
+    body.blog-single .margin-container {
         margin-top: 20px;
     }
 }

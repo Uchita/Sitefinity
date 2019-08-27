@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using JXTNext.Telemetry;
 using Telerik.Microsoft.Practices.Unity;
 using Telerik.Sitefinity.Abstractions;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Routing;
@@ -18,25 +19,33 @@ namespace SitefinityWebApp.code
 
         protected override void RestoreHttpContext(string output, HttpContext initialContext)
         {
-            this.PopulateResponseStatus(System.Web.HttpContext.Current, initialContext);
+            using (new StatsDPerformanceMeasure("FeatherActionInvokerCustom.RestoreHttpContext"))
+            {
+                this.PopulateResponseStatus(System.Web.HttpContext.Current, initialContext);
 
-            base.RestoreHttpContext(output, initialContext);
+                base.RestoreHttpContext(output, initialContext);
+            }
         }
 
         private void PopulateResponseStatus(HttpContext httpContext, HttpContext initialContext)
         {
-
-            if (!SystemManager.IsDesignMode && httpContext.Response.StatusCode != 200)
+            using (new StatsDPerformanceMeasure("FeatherActionInvokerCustom.PopulateResponseStatus"))
             {
-                initialContext.Response.Status = httpContext.Response.Status;
-                initialContext.Response.StatusCode = httpContext.Response.StatusCode;
-                initialContext.Response.StatusDescription = httpContext.Response.StatusDescription;
+                if (!SystemManager.IsDesignMode && httpContext.Response.StatusCode != 200)
+                {
+                    initialContext.Response.Status = httpContext.Response.Status;
+                    initialContext.Response.StatusCode = httpContext.Response.StatusCode;
+                    initialContext.Response.StatusDescription = httpContext.Response.StatusDescription;
+                }
             }
         }
 
         internal static void Register()
         {
-            ObjectFactory.Container.RegisterType<IControllerActionInvoker, FeatherActionInvokerCustom>();
+            using (new StatsDPerformanceMeasure("FeatherActionInvokerCustom.Register"))
+            {
+                ObjectFactory.Container.RegisterType<IControllerActionInvoker, FeatherActionInvokerCustom>();
+            }
         }
     }
 }

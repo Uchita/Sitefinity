@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using JXTNext.Telemetry;
 using SitefinityWebApp.Libraries;
 using SitefinityWebApp.Pages;
 using SfImage = Telerik.Sitefinity.Libraries.Model.Image;
@@ -63,51 +64,63 @@ namespace SitefinityWebApp.Mvc.Models.MultiCard
 
         public virtual MultiCardViewModel GetViewModel() 
         {
-            var viewModel = new MultiCardViewModel()
+            using (new StatsDPerformanceMeasure("MultiCardModel.GetViewModel"))
             {
-                GroupHeader = this.GroupHeader,
-                BackgroundColor = this.BackgroundColor,
-                GroupActionName = this.PrimaryActionName,
-                GroupActionUrl = SfPagesHelper.GetLinkedUrl(this.LinkedPageId, this.LinkedUrl, this.IsPageSelectMode),
-                Cards = this.Cards.Select(c => c.ToViewModel()).ToList(),
-                CssClass = this.CssClass
-            };
-            
-            SfImage image;
-            if (this.ImageId != Guid.Empty)
-            {
-                image = SfImageHelper.GetImage(this.ImageId, this.ImageProviderName); ;
-                if (image != null)
+                var viewModel = new MultiCardViewModel()
                 {
-                    viewModel.SelectedSizeUrl = SfImageHelper.GetSelectedSizeUrl(image);
-                    viewModel.ImageAlternativeText = image.AlternativeText;
-                    viewModel.ImageTitle = image.Title;
+                    GroupHeader = this.GroupHeader,
+                    BackgroundColor = this.BackgroundColor,
+                    GroupActionName = this.PrimaryActionName,
+                    GroupActionUrl = SfPagesHelper.GetLinkedUrl(this.LinkedPageId, this.LinkedUrl, this.IsPageSelectMode),
+                    Cards = this.Cards.Select(c => c.ToViewModel()).ToList(),
+                    CssClass = this.CssClass
+                };
+            
+                SfImage image;
+                if (this.ImageId != Guid.Empty)
+                {
+                    image = SfImageHelper.GetImage(this.ImageId, this.ImageProviderName); ;
+                    if (image != null)
+                    {
+                        viewModel.SelectedSizeUrl = SfImageHelper.GetSelectedSizeUrl(image);
+                        viewModel.ImageAlternativeText = image.AlternativeText;
+                        viewModel.ImageTitle = image.Title;
+                    }
                 }
-            }
 
-            return viewModel;
+                return viewModel;
+            }
         }
 
         public bool IsEmpty()
         {
-            if (this.LinkedPageId == Guid.Empty && string.IsNullOrEmpty(this.LinkedUrl))
-                return true;
+            using (new StatsDPerformanceMeasure("MultiCardModel.IsEmpty"))
+            {
+                if (this.LinkedPageId == Guid.Empty && string.IsNullOrEmpty(this.LinkedUrl))
+                    return true;
 
-            return (
-                this.ImageId == Guid.Empty &&
-                string.IsNullOrEmpty(this.CssClass) &&
-                string.IsNullOrEmpty(this.PrimaryActionName) &&
-                string.IsNullOrEmpty(this.ImageProviderName));
+                return (
+                    this.ImageId == Guid.Empty &&
+                    string.IsNullOrEmpty(this.CssClass) &&
+                    string.IsNullOrEmpty(this.PrimaryActionName) &&
+                    string.IsNullOrEmpty(this.ImageProviderName));
+            }
         }
 
         protected virtual SfImage GetImage()
         {
-            return SfImageHelper.GetImage(this.ImageId, this.ImageProviderName);
+            using (new StatsDPerformanceMeasure("MultiCardModel.GetImage"))
+            {
+                return SfImageHelper.GetImage(this.ImageId, this.ImageProviderName);
+            }
         }
 
         protected virtual string GetSelectedSizeUrl(SfImage image)
         {
-            return SfImageHelper.GetSelectedSizeUrl(image);
+            using (new StatsDPerformanceMeasure("MultiCardModel.GetSelectedSizeUrl"))
+            {
+                return SfImageHelper.GetSelectedSizeUrl(image);
+            }
         }
 
         #region Private fields and constants

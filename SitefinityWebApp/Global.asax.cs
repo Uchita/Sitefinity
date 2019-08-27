@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Http;
 using System.Web.Mvc;
+using JustEat.StatsD;
 using JXTNext.Sitefinity.Widgets.Authentication.Mvc.StringResources;
 using JXTNext.Sitefinity.Widgets.Content.Mvc.StringResources;
 using JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.LoginForm;
@@ -11,6 +12,8 @@ using JXTNext.Sitefinity.Widgets.Social.Mvc.Configuration;
 using JXTNext.Sitefinity.Widgets.Social.Mvc.StringResources;
 using JXTNext.Sitefinity.Widgets.User.Mvc.Models;
 using JXTNext.Sitefinity.Widgets.User.Mvc.StringResources;
+using JXTNext.Telemetry;
+using Ninject;
 using SitefinityWebApp.App_Start;
 using SitefinityWebApp.code;
 using SitefinityWebApp.Mvc.Attributes;
@@ -121,11 +124,19 @@ namespace SitefinityWebApp
             FrontendModule.Current.DependencyResolver.Rebind<ILoginFormModel>().To<CustomLoginFormModel>();
             FrontendModule.Current.DependencyResolver.Rebind<IRegistrationModel>().To<CustomRegistrationModel>();
             FeatherActionInvokerCustom.Register();
+            RegisterStatsD(FrontendModule.Current.DependencyResolver);
         }
 
         private void ApplicationStartHandler(object sender, EventArgs e)
         {
             EventHub.Subscribe<ProfileCreated>(evt => _profileEventHandler.ProfileCreated(evt));
+        }
+        
+        private void RegisterStatsD(IKernel kernel)
+        {
+            var statsDConfiguration = StatsDConfigurator.Configure();
+            kernel.Bind<StatsDConfiguration>().ToConstant(statsDConfiguration);
+            kernel.Bind<IStatsDPublisher>().To<StatsDPublisher>().InSingletonScope();
         }
     }
 

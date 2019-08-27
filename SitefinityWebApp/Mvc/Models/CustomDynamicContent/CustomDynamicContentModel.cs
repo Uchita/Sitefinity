@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using JXTNext.Telemetry;
 using Telerik.Sitefinity.DynamicModules.Model;
 using Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models;
 using Telerik.Sitefinity.Frontend.Mvc.Models;
@@ -16,131 +17,150 @@ namespace SitefinityWebApp.Mvc.Models.CustomDynamicContent
     {
         protected override void PopulateListViewModel(int page, IQueryable<IDataItem> query, ContentListViewModel viewModel)
         {
-            base.PopulateListViewModel(page, query, viewModel);
+            using (new StatsDPerformanceMeasure("CustomDynamicContentModel.PopulateListViewModel"))
+            {
+                base.PopulateListViewModel(page, query, viewModel);
+            }
         }
 
         protected override IQueryable<IDataItem> GetItemsQuery()
         {
-            var query = base.GetItemsQuery().Cast<DynamicContent>();
-            switch (this.ContentType.FullName)
+            using (new StatsDPerformanceMeasure("CustomDynamicContentModel.GetItemsQuery"))
             {
-                case DynamicTypeConstants.Pressrelease.FullTypeName:
-                    query = FilterPressReleaseByDate(query);
-                    break;
+                var query = base.GetItemsQuery().Cast<DynamicContent>();
+                switch (this.ContentType.FullName)
+                {
+                    case DynamicTypeConstants.Pressrelease.FullTypeName:
+                        query = FilterPressReleaseByDate(query);
+                        break;
+                }
+                return query;
             }
-            return query;
         }
 
 
         protected override IEnumerable<IDataItem> FetchItems(IQueryable<IDataItem> query)
         {
-            return base.FetchItems(query);
+            using (new StatsDPerformanceMeasure("CustomDynamicContentModel.FetchItems"))
+            {
+                return base.FetchItems(query);
+            }
         }
 
         protected override IEnumerable<ItemViewModel> ApplyListSettings(int page, IQueryable<IDataItem> query, out int? totalPages)
         {
-            if (page < 1)
-                throw new ArgumentException("'page' argument has to be at least 1.", "page");
-
-            int? itemsToSkip = (page - 1) * this.ItemsPerPage;
-            itemsToSkip = this.DisplayMode == ListDisplayMode.Paging ? ((page - 1) * this.ItemsPerPage) : null;
-            int? totalCount = 0;
-            int? take = null;
-
-            if (this.DisplayMode == ListDisplayMode.Limit)
+            using (new StatsDPerformanceMeasure("CustomDynamicContentModel.ApplyListSettings"))
             {
-                take = this.LimitCount;
-            }
-            else if (this.DisplayMode == ListDisplayMode.Paging)
-            {
-                take = this.ItemsPerPage;
-            }
+                if (page < 1)
+                    throw new ArgumentException("'page' argument has to be at least 1.", "page");
 
-            IList<ItemViewModel> result = new List<ItemViewModel>();
+                int? itemsToSkip = (page - 1) * this.ItemsPerPage;
+                itemsToSkip = this.DisplayMode == ListDisplayMode.Paging ? ((page - 1) * this.ItemsPerPage) : null;
+                int? totalCount = 0;
+                int? take = null;
 
-            query = this.UpdateExpression(query, itemsToSkip, take, ref totalCount);
-
-            var queryResult = this.FetchItems(query);
-            queryResult.SetRelatedDataSourceContext();
-
-            foreach (var item in queryResult)
-            {
-                result.Add(this.CreateItemViewModelInstance(item));
-            }
-
-            if (this.ItemsPerPage.HasValue && this.ItemsPerPage.Value > 0)
-            {
-                totalPages = (totalCount.Value + this.ItemsPerPage.Value - 1) / this.ItemsPerPage.Value;
-                totalPages = this.DisplayMode == ListDisplayMode.Paging ? totalPages : null;
-            }
-            else
-            {
-                totalPages = 1;
-            }
-
-            if (this.ContentType.FullName == DynamicTypeConstants.Article.FullTypeName)
-            {
-                if (HttpContext.Current.Items.Contains(ArticlesTotalCountFlag))
+                if (this.DisplayMode == ListDisplayMode.Limit)
                 {
-                    HttpContext.Current.Items[ArticlesTotalCountFlag] = totalCount;
+                    take = this.LimitCount;
+                }
+                else if (this.DisplayMode == ListDisplayMode.Paging)
+                {
+                    take = this.ItemsPerPage;
+                }
+
+                IList<ItemViewModel> result = new List<ItemViewModel>();
+
+                query = this.UpdateExpression(query, itemsToSkip, take, ref totalCount);
+
+                var queryResult = this.FetchItems(query);
+                queryResult.SetRelatedDataSourceContext();
+
+                foreach (var item in queryResult)
+                {
+                    result.Add(this.CreateItemViewModelInstance(item));
+                }
+
+                if (this.ItemsPerPage.HasValue && this.ItemsPerPage.Value > 0)
+                {
+                    totalPages = (totalCount.Value + this.ItemsPerPage.Value - 1) / this.ItemsPerPage.Value;
+                    totalPages = this.DisplayMode == ListDisplayMode.Paging ? totalPages : null;
                 }
                 else
                 {
-                    HttpContext.Current.Items.Add(ArticlesTotalCountFlag, totalCount);
+                    totalPages = 1;
                 }
 
+                if (this.ContentType.FullName == DynamicTypeConstants.Article.FullTypeName)
+                {
+                    if (HttpContext.Current.Items.Contains(ArticlesTotalCountFlag))
+                    {
+                        HttpContext.Current.Items[ArticlesTotalCountFlag] = totalCount;
+                    }
+                    else
+                    {
+                        HttpContext.Current.Items.Add(ArticlesTotalCountFlag, totalCount);
+                    }
 
-                if (HttpContext.Current.Items.Contains(ArticlesItemsPerPageFlag))
-                {
-                    HttpContext.Current.Items[ArticlesItemsPerPageFlag] = this.ItemsPerPage;
+
+                    if (HttpContext.Current.Items.Contains(ArticlesItemsPerPageFlag))
+                    {
+                        HttpContext.Current.Items[ArticlesItemsPerPageFlag] = this.ItemsPerPage;
+                    }
+                    else
+                    {
+                        HttpContext.Current.Items.Add(ArticlesItemsPerPageFlag, this.ItemsPerPage);
+                    }
                 }
-                else
-                {
-                    HttpContext.Current.Items.Add(ArticlesItemsPerPageFlag, this.ItemsPerPage);
-                }
+                
+                return result;
             }
-            
-            return result;
         }
 
         protected override IQueryable<TItem> SetExpression<TItem>(IQueryable<TItem> query, string filterExpression, string sortExpr, int? itemsToSkip, int? itemsToTake, ref int? totalCount)
         {
-            if (this.ContentType.FullName == DynamicTypeConstants.Article.FullTypeName)
+            using (new StatsDPerformanceMeasure("CustomDynamicContentModel.SetExpression"))
             {
-                var dynamicSortExpr = ContentHelper.GetSortExpression();
+                if (this.ContentType.FullName == DynamicTypeConstants.Article.FullTypeName)
+                {
+                    var dynamicSortExpr = ContentHelper.GetSortExpression();
 
-                if (dynamicSortExpr != null)
-                    sortExpr = dynamicSortExpr;
+                    if (dynamicSortExpr != null)
+                        sortExpr = dynamicSortExpr;
+                }
+
+                return base.SetExpression(query, filterExpression, sortExpr, itemsToSkip, itemsToTake, ref totalCount);
             }
-
-            return base.SetExpression(query, filterExpression, sortExpr, itemsToSkip, itemsToTake, ref totalCount);
         }
 
         private static IQueryable<DynamicContent> FilterPressReleaseByDate(IQueryable<DynamicContent> query)
         {
-            string filter = HttpContext.Current.Request.QueryString["filter"];
-            if (!string.IsNullOrEmpty(filter))
+            using (new StatsDPerformanceMeasure("CustomDynamicContentModel.FilterPressReleaseByDate"))
             {
-                DateTime filterDate = DateTime.Now;
-                switch (filter.ToUpper())
+                string filter = HttpContext.Current.Request.QueryString["filter"];
+                if (!string.IsNullOrEmpty(filter))
                 {
-                    case "PAST_6_MONTHS":
-                        filterDate = filterDate.AddMonths(-6);
-                        break;
-                    case "PAST_YEAR":
-                        filterDate = filterDate.AddMonths(-12);
-                        break;
-                    case "PAST_2_YEARS":
-                        filterDate = filterDate.AddMonths(-24);
-                        break;
-                    default:
-                        filterDate = DateTime.MinValue;
-                        break;
+                    DateTime filterDate = DateTime.Now;
+                    switch (filter.ToUpper())
+                    {
+                        case "PAST_6_MONTHS":
+                            filterDate = filterDate.AddMonths(-6);
+                            break;
+                        case "PAST_YEAR":
+                            filterDate = filterDate.AddMonths(-12);
+                            break;
+                        case "PAST_2_YEARS":
+                            filterDate = filterDate.AddMonths(-24);
+                            break;
+                        default:
+                            filterDate = DateTime.MinValue;
+                            break;
+                    }
+                    if (filterDate > DateTime.MinValue)
+                        query = query.Where(item => item.GetValue<DateTime?>(DynamicTypeConstants.Pressrelease.Fields.IssueDate) > filterDate);
                 }
-                if (filterDate > DateTime.MinValue)
-                    query = query.Where(item => item.GetValue<DateTime?>(DynamicTypeConstants.Pressrelease.Fields.IssueDate) > filterDate);
+                
+                return query;
             }
-            return query;
         }
         
         public const string ArticlesTotalCountFlag = "articles-total-count";

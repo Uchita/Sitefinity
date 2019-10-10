@@ -201,8 +201,8 @@
     <Reference Include="JXTNext.Sitefinity.Widgets.Identity, Version=6.0.62.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Identity.6.0.62\lib\net471\JXTNext.Sitefinity.Widgets.Identity.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Widgets.Job, Version=6.0.63.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Job.6.0.63\lib\net471\JXTNext.Sitefinity.Widgets.Job.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Widgets.Job, Version=6.0.100.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Job.6.0.100\lib\net471\JXTNext.Sitefinity.Widgets.Job.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.JobAlert, Version=6.0.62.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Widgets.JobAlert.6.0.62\lib\net471\JXTNext.Sitefinity.Widgets.JobAlert.dll</HintPath>

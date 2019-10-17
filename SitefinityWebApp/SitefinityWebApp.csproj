@@ -157,7 +157,7 @@
       <HintPath>..\packages\JXTNext.Common.Communications.5.5.10\lib\netstandard2.0\JXTNext.Common.Communications.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Common.FileManager, Version=0.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Common.FileManager.5.5.10\lib\netstandard2.0\JXTNext.Common.FileManager.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Common.FileManager.5.5.17\lib\netstandard2.0\JXTNext.Common.FileManager.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Common.Web, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Common.Web.5.5.10\lib\netstandard2.0\JXTNext.Common.Web.dll</HintPath>

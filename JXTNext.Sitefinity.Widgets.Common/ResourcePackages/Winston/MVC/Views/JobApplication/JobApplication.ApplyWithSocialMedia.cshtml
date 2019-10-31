@@ -1,14 +1,20 @@
 ﻿@model dynamic
 @using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
-
+@using JXTNext.Sitefinity.Widgets.Social.Mvc.Helpers
 @using JXTNext.Sitefinity.Common.Helpers
+
+@{
+    var hasLinkedIn = false;
+}
 
 @if (Model != null && Model.ApplyWithSocialMediaInfo != null)
 {
     var siteSettingsHelper = new SiteSettingsHelper();
+
     <div class="ext-provider-form">
         <h3 class="apply-job-title">Apply with</h3>
+
         <div class="apply-with">
             <ul class="list-inline">
                 @foreach (var item in Model.ApplyWithSocialMediaInfo)
@@ -16,14 +22,19 @@
                     switch (item.Title)
                     {
                         case "LinkedIn":
-                            <li><a href="#" class="btn-linkedin" target="_blank" title="@item.Title">@item.Title</a></li>
+                            hasLinkedIn = true;
+
+                            <li>
+                                <a href="javascript:;" class="btn-linkedin" data-linkedin-toggle="#linkedin-widget-holder" title="@item.Title">@item.Title</a>
+                            </li>
+
                             break;
 
                         case "Indeed":
-                            @*<li><a href="#" target="_blank" title=@item.Title role="button">Apply With @item.Title</a></li>*@
-                var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
-                var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
-                var indeedJobCompanyNameAndLoginUserEmail = "right-rail-apply-button;" + ViewBag.loginEmail+";"+ Model.UrlReferral;
+                            var redirectUriSocial = siteSettingsHelper.GetCurrentSiteSeekRedirectUri();
+                            var indeedAPIToken = siteSettingsHelper.GetCurrentSiteIndeedClientAPIToken();
+                            var indeedJobCompanyNameAndLoginUserEmail = "right-rail-apply-button;" + ViewBag.loginEmail+";"+ Model.UrlReferral;
+                
                             <li id="indeed-btnwrapper">
                                 <span class="indeed-apply-widget"
                                       data-indeed-apply-apiToken=@indeedAPIToken
@@ -46,9 +57,10 @@
                                     }(document, 'script', 'indeed-apply-js'));
                                 </script>
                             </li>
-                            break;
-                        case "Seek":
 
+                            break;
+
+                        case "Seek":
                             var clientId = siteSettingsHelper.GetCurrentSiteSeekClientId();
                             var advertiserId = siteSettingsHelper.GetCurrentSiteSeekClientAdvertiserId();
                             var redirectUri = siteSettingsHelper.GetCurrentSiteSeekRedirectUri() /*+ "?source=" + @Model.UrlReferral*/;
@@ -58,23 +70,109 @@
                             string hrefLink = String.Format("https://www.seek.com.au/api/iam/oauth2/authorize?client_id={0}&redirect_uri={1}&state={2}&scope=r_profile_apply&response_type=code&advertiser_id={3}&source={4}", clientId, redirectUri, jobId, advertiserId, urlReferral);
 
                             <li> <a href=@hrefLink title=@item.Title role="button" class="btn btn-seek">@item.Title</a></li>
-                            break;
 
+                            break;
 
                         default:
                             break;
                     }
                 }
-
             </ul>
         </div>
     </div>
-}
 
+    if (hasLinkedIn)
+    {
+        <div id="linkedin-widget-holder" class="modal fade linkedin-widget-holder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-apply-url="@ViewBag.LinkedInApplyUrl" style="display: none;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel"><i class="fab fa-linkedin-in"></i> Apply with LinkedIn</h4>
+                    </div>
+
+                    <div class="modal-body text-center">
+                        <div class="linkedin-alerts"></div>
+
+                        <div name="widget-holder">
+                            @if (ViewBag.IsUserLoggedIn)
+                            {                                        
+                                <p>Please click the button below to apply.</p>
+
+                                <script type="text/javascript"
+                                        src="https://www.linkedin.com/mjobs/awli/awliWidget">
+                                </script>
+                                <script type="IN/AwliWidget"
+                                        data-company-job-code="@Model.JobId"
+                                        data-integration-context="@ViewBag.CustomerIntegrationContext"
+                                        data-mode="BUTTON_DATA"
+                                        data-callback-method="onLinkedInProfileData"
+                                        data-api-key="@ViewBag.CustomerClientId"
+                                        data-allow-sign-in="true">
+                                </script>
+                                <script>
+                                    function onLinkedInProfileData(profileData) {
+                                        linkedInHandler.submitJobApplyData('#linkedin-widget-holder', @Model.JobId, profileData);
+                                    }
+                                </script>
+                            }
+                            else
+                            {
+                                <p>To apply with LinkedIn you need to sign in first. After sign in you will be able to apply for the job.</p>
+
+                                <p>
+                                    <a href="@ViewBag.LinkedInSignInUrl" class="btn-linkedin-signin" title="Sign in with LinkedIn" data-widget-holder="#linkedin-widget-holder">
+                                        <img src="~/ResourcePackages/Winston/assets/dist/images/sign-in-linkedin.svg" class="img-responsive" />
+                                    </a>
+                                </p>
+
+                                <p class="small">By signing in you agree to create an account with us if you don't have already.</p>
+                            }
+                        </div>
+
+                        <div class="linkedin-processing sf-loading" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>                    
+        </div>
+
+        <!-- following needs to be moved to _forms.scss -->
+        <!-- the Grunt compilation is not working for some reason -->
+        <style type="text/css">
+            .linkedin-widget-holder .modal-header
+            {
+                background: #0077B5;
+            }
+
+            .linkedin-widget-holder .modal-header,
+            .linkedin-widget-holder .close,
+            .linkedin-widget-holder .modal-title
+            {
+                color: #fff;
+            }
+
+            .linkedin-widget-holder .close
+            {
+                opacity: 1;
+            }
+
+            .linkedin-widget-holder a.btn-linkedin-signin,
+            .linkedin-processing
+            {
+                margin: 0 auto;
+            }
+
+            .linkedin-widget-holder .btn-linkedin-signin img {
+                display: inline-block;
+                max-width: 195px;
+            }
+        </style>
+    }
+}
 
 <script type="text/javascript">
     var successPageUrl = '@ViewBag.SuccessPageUrl';
-    
+
     function OnIndeedCompleted() {
         location.href = successPageUrl;
     }

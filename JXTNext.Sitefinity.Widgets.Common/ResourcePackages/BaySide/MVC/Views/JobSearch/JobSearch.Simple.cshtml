@@ -33,87 +33,54 @@
 
     <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();">
         <div class="job-search">
-            <div class="container">
-                <div class="row">
-                    @{
-                        int counter = 0;
-                        int controlCounter = 0;
-                    }
+                
+            @{
+                int counter = 0;
+                int controlCounter = 0;
+            }
 
-                    @if (textboxControl != null)
-                    {
-                        <div class="col-xs-6 col-sm-4 col-md-4">
-                            <div class="form-group">
-                                <input class="form-control" placeholder="@textboxControl.PlaceholderText" type="text" name="Keywords">
-                            </div>
-                        </div>
-                        controlCounter++;
-                    }
+            @if (textboxControl != null)
+            {   
+                <div class="form-group">
+                    <input class="form-control" placeholder="@textboxControl.PlaceholderText" type="text" name="Keywords">
+                </div>
+                        
+            }
 
-                    @foreach (var dropdownControl in singleDropdownControls)
-                    {
-                        if (controlCounter % 3 == 0)
-                        {
-                            @:  <div class="row">
-                            }
+            @foreach (var dropdownControl in singleDropdownControls)
+            {   
 
-                            _itemsList.Clear();
-                            _idNamesLevelsPair.Clear();
-                            GetValuesList(dropdownControl.Filters);
-                            <div class="col-xs-6 col-sm-4 col-md-4">
-                                <div class="form-group">
-                                    <div class="select">
-                                        <input type="hidden" name="Filters[@counter].rootId" value='@dropdownControl.FilterType' />
-                                        <select class="form-control" name="Filters[@counter].values">
-                                            <option value="" disabled selected>@dropdownControl.PlaceholderText</option>
-                                            @foreach (dynamic itemName in _idNamesLevelsPair)
-                                            {
-                                                <option value="@itemName.Key">@itemName.Value.name</option>
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            if (controlCounter % 3 == 2 || controlCounter == singleDropdownControls.Count() - 1)
+                _itemsList.Clear();
+                _idNamesLevelsPair.Clear();
+                GetValuesList(dropdownControl.Filters);
+                            
+                <div class="form-group">
+                    <div class="select">
+                        <input type="hidden" name="Filters[@counter].rootId" value='@dropdownControl.FilterType' />
+                        <select class="form-control" name="Filters[@counter].values">
+                            <option value="" disabled selected>@dropdownControl.PlaceholderText</option>
+                            @foreach (dynamic itemName in _idNamesLevelsPair)
                             {
-                            @: </div>
-                        }
-
-                        counter++;
-                        controlCounter++;
-                    }
-
-                    <div class="col-xs-12 col-sm-4 col-md-4"><div class="btn-block form-group"><button class="btn btn-primary" type="submit">Search Jobs</button></div></div>
-
-
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row-filters"></div>
+                                <option value="@itemName.Key">@itemName.Value.name</option>
+                            }
+                        </select>
                     </div>
                 </div>
 
-                <div class="row">
-                    @foreach (var list in listControls)
-                    {
-                        <div class="col-xs-5 col-sm-4 col-md-4">
-                            <div class="filter">
-                                <a data-filter-trigger="@list.ID">@list.PlaceholderText <em class="fas fa-angle-down"></em></a>
-                            </div>
-                        </div>
-                    }
+            }
 
-                    <div class="col-xs-4 pull-right text-right">
-                        <a href="/advancedsearch" title="Advanced search">Advanced Search</a>
+            <div class="btn-block form-group"><button class="btn btn-primary" type="submit">Search Jobs</button></div>
 
-                    </div>
-                    @*<div class="col-xs-2 pull-right text-right">
-                            <a class="filter-job-close" data-filter-trigger="close"><em class="fas fa-times"></em></a>
-                        </div>*@
+                
+            <div class="row-filters"></div>
+                
+            @foreach (var list in listControls)
+            {
+                <div class="filter">
+                    <a data-filter-trigger="@list.ID">@list.PlaceholderText <em class="fas fa-angle-down"></em></a>
                 </div>
-            </div>
+            }
+       
 
             @foreach (var list in listControls)
             {
@@ -146,11 +113,6 @@
         </div>
     </form>
 }
-<style scoped>
-    .filter-job-classification a:hover {
-        color: teal;
-    }
-</style>
 
 <script type="text/javascript">
     var optionsArray = {};

@@ -5412,6 +5412,35 @@ a.active .brand_blk::before {
     -moz-transition: all 0.4s ease;
 }
 
+.brand_4col .row{
+    margin: 0;
+}
+.brand_4col .row [class*="col-"]{
+    padding: 0;
+}
+.brand_4col .brand_blk{
+    height: 25vw;
+}
+.overlay-only-onhover .brand_blk img{
+    display: none;
+}
+.overlay-only-onhover a:hover .brand_blk h4, .overlay-only-onhover a.active .brand_blk h4{
+    transform: translate(0%, -50%) scale(1);
+    opacity: 1;
+}
+
+
+
+@media (max-width:991px){
+    .brand_4col .brand_blk{
+        height: 30vw;
+    }   
+}
+
+
+
+
+
 /*-------brand_blk-----End-----*/
 .pos-relative {
     position: relative;
@@ -6283,7 +6312,8 @@ select.hs-input {
 
 .app-header .app-logo {
     margin-bottom: 20px;
-    height: 40px;
+    max-height: 85px;
+    max-width: 200px;
 }
 
 @media (max-width: 991px) {
@@ -7055,7 +7085,103 @@ select.hs-input {
     float: right;
 }
 
+/* Home page job search */
+.home-page .banner-wrapper{
+    height: calc(85vh - 120px);
+    min-height: 500px;
+}
+.home-page .banner-wrapper .hero-banner{
+    height: 100%;
+}
+
+.banner-wrapper{
+    position: relative;
+}
+
+.banner-wrapper .hero-banner .col-lg-7{
+    max-width: 100%;
+    flex-basis: 100%;
+}
+.banner-wrapper .hero-banner .col-lg-5{
+    display: none;
+}
+.banner-wrapper .hero-banner h1{
+    text-align: center;
+    margin-bottom: 0;
+}
+
+
+.job-wrapper{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 40px;
+    padding: 0 15px;
+}
+.job-wrapper>.container{
+    border-radius: 5px;
+    padding: 30px 20px 10px;
+
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#009f9b+0,0082e5+100 */
+    background: #009f9b; /* Old browsers */
+    background: -moz-linear-gradient(left,  #009f9b 0%, #0082e5 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  #009f9b 0%,#0082e5 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  #009f9b 0%,#0082e5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#009f9b', endColorstr='#0082e5',GradientType=1 ); /* IE6-9 */
+
+}
+.job-wrapper h3{
+    color: #fff;
+    font-size: 24px;
+    margin-top: 0;
+}
+.job-wrapper .job-search{
+    display: flex;
+    flex-wrap: wrap;
+}
+.job-wrapper .form-group{
+    width: 27%;
+    margin-right: 15px;
+    flex-grow: 1;
+}
+.job-wrapper .btn-block{
+    width: auto;
+    margin-right: 0;
+}
+.job-search .form-control{
+    border-radius: 0;
+    border: none;
+    color: #000;
+}
+.job-search .form-control::-webkit-input-placeholder{
+    color: #000;
+}
+.job-search .form-control::-moz-input-placeholder{
+    color: #000;
+}
+.job-search .form-control::-ms-input-placeholder{
+    color: #000;
+}
+.job-search .form-control::placeholder{
+    color: #000;
+}
+.job-wrapper .btn-block .btn{
+    background-color: #009f9b;
+    height: 45px;
+    border: none;
+    padding: 5px 25px;
+}
+
 @media (max-width: 991px) {
+    .job-wrapper .form-group:nth-child(3){
+        margin-right: 0;
+    }
+    .job-wrapper .btn-block{
+        width: 100%;
+        text-align: right;
+    }
+
+
     /*.job-item {
             margin-right: auto;
             width: calc(50% - 20px);
@@ -7069,6 +7195,12 @@ select.hs-input {
 }
 
 @media (max-width: 767px) {
+    .banner-wrapper .hero-banner > .container > .row{
+        min-height: 270px;
+    }
+    .banner-wrapper .hero-banner h1{
+        font-size: 38px;
+    }
     .job-item {
         width: 100%;
         max-width: 304px;
@@ -7080,6 +7212,11 @@ select.hs-input {
         .job-item:first-child {
             margin-left: 0px;
         }
+
+    .job-wrapper .form-group{
+        width: 100%;
+        margin-right: 0;
+    }   
 }
 
 .job-item:last-child {
@@ -7320,6 +7457,26 @@ select.hs-input {
         font-size: 17px;
         line-height: 1.5;
     }
+
+
+.cta-icon a{
+    background: none;
+    border: none;
+    color: #009f9b;
+}
+.cta-icon a:hover,.cta-icon a.active, .cta-icon a:focus, .cta-icon a:active:hover{
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: #026d69;
+}
+.cta-icon img{
+    height: 80px;
+}
+.cta-icon h3{
+    color: #009f9b;
+}
 
 .bg-color-darkblue {
     background: #102739 !important;

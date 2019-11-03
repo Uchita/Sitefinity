@@ -92,6 +92,7 @@
     <Content Include="ResourcePackages\Winston\assets\dist\images\seek-white.png" />
     <Content Include="ResourcePackages\Winston\assets\dist\images\seek.png" />
     <Content Include="ResourcePackages\Winston\assets\dist\images\seekBtn.png" />
+    <Content Include="ResourcePackages\Winston\assets\dist\images\sign-in-linkedin.svg" />
     <Content Include="ResourcePackages\Winston\assets\dist\images\sprite.png" />
     <Content Include="ResourcePackages\Winston\assets\dist\images\winston-fox-logo-horizontal-colour.svg" />
     <Content Include="ResourcePackages\Winston\assets\dist\js\instafeed.min.js" />

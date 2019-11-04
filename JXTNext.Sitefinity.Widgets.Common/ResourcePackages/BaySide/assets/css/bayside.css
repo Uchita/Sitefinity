@@ -5100,6 +5100,11 @@ p {
     background: none;
 }
 
+.btn-lg{
+    max-width: 135px;
+    width: 100%;
+}
+
 .btn.form-group {
     padding: 0;
     margin: 20px 0;
@@ -7088,7 +7093,7 @@ select.hs-input {
 /* Home page job search */
 .home-page .banner-wrapper{
     height: calc(85vh - 120px);
-    min-height: 500px;
+    min-height: 540px;
 }
 .home-page .banner-wrapper .hero-banner{
     height: 100%;
@@ -7115,7 +7120,7 @@ select.hs-input {
     position: absolute;
     width: 100%;
     left: 0;
-    bottom: 40px;
+    bottom: 50px;
     padding: 0 15px;
 }
 .job-wrapper>.container{
@@ -7129,6 +7134,7 @@ select.hs-input {
     background: linear-gradient(to right,  #009f9b 0%,#0082e5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#009f9b', endColorstr='#0082e5',GradientType=1 ); /* IE6-9 */
 
+    background: url('../images/JobSearch-TransparancyBg.png') no-repeat 0 0 / cover;
 }
 .job-wrapper h3{
     color: #fff;
@@ -7196,10 +7202,13 @@ select.hs-input {
 
 @media (max-width: 767px) {
     .banner-wrapper .hero-banner > .container > .row{
-        min-height: 270px;
+        min-height: 120px;
     }
     .banner-wrapper .hero-banner h1{
-        font-size: 38px;
+        font-size: 36px;
+    }
+    .job-wrapper{
+        bottom: 40px;
     }
     .job-item {
         width: 100%;
@@ -7218,6 +7227,7 @@ select.hs-input {
         margin-right: 0;
     }   
 }
+
 
 .job-item:last-child {
     margin-bottom: 0;
@@ -7476,6 +7486,10 @@ select.hs-input {
 }
 .cta-icon h3{
     color: #009f9b;
+}
+
+.col2-cta .row{
+    align-items: center;
 }
 
 .bg-color-darkblue {

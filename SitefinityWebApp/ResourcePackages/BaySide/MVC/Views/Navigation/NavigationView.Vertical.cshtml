@@ -1,0 +1,48 @@
+@model Telerik.Sitefinity.Frontend.Navigation.Mvc.Models.INavigationModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Navigation.Mvc.Models;
+@using Telerik.Sitefinity.Modules.Pages;
+
+
+@foreach (var node in Model.Nodes)
+{
+    @RenderSubLevelsRecursive(node);
+}
+
+
+@*Here is specified the rendering for the sub levels*@
+@helper RenderSubLevelsRecursive(NodeViewModel node)
+{
+  
+    <h4>@node.Title</h4>
+
+    if (node.ChildNodes.Count > 0)
+    {
+        <ul class="footer_menu">
+            @foreach (var childNode in node.ChildNodes)
+            {
+                <li class="@GetClass(childNode)"><a href="@childNode.LinkTarget">@childNode.Title</a></li>
+             
+            }
+        </ul>
+    }
+    else
+    {
+
+    }
+}
+
+
+@helper GetClass(NodeViewModel node)
+{
+    if (node.IsCurrentlyOpened)
+    {
+        @Html.Raw("active");
+    }
+    else if (node.HasChildOpen)
+    {
+        @Html.Raw("active");
+    }
+}
+

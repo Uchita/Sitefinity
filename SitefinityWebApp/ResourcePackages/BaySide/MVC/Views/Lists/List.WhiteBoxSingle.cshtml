@@ -1,0 +1,24 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+@using Telerik.Sitefinity.Frontend.Lists.Mvc.Models;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@{
+    var firstList = Model.Items.FirstOrDefault();
+}
+@if (firstList != null)
+{
+    <div class="white-box-single row @Model.CssClass">
+        <div class="col-md-12">
+            <div class="white-box section-ul">
+
+                <ul class="white-box-ul clearfix">
+                    @foreach (var listItem in ((ListViewModel)firstList).ListItemViewModel.Items)
+                {
+                        <li>
+                                @listItem.Fields.Title
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+}

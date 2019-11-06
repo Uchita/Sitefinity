@@ -1,0 +1,37 @@
+﻿@model dynamic
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+@*<section class="g-section">
+    <div class="container">
+*@
+<div id="internalJobs1" class="featured-carousel owl-carousel">
+
+    @if (Model != null && Model.SearchResults != null)
+    {
+        foreach (var jobOffer in Model.SearchResults)
+        {
+
+            <div class="item">
+                <h3>
+                    <a href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">@jobOffer.Title</a>
+                </h3>
+                <p>
+                    @if (jobOffer.ShortDescription.Length > 180)
+                    {
+                        @Html.Raw(jobOffer.ShortDescription.Substring(0, 180).Trim() + "...")
+                    }
+                    else
+                    {
+                        @Html.Raw(jobOffer.ShortDescription)
+                    }
+                </p>
+                <a class="btn btn-link pl-0" href="@ViewBag.JobDetailsPageUrl/@jobOffer.ClassificationURL/@jobOffer.JobID">View job</a>
+            </div>
+        }
+    }
+</div>
+
+@*
+        </div>
+    </section>*@

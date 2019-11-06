@@ -1,0 +1,45 @@
+@model SitefinityWebApp.Mvc.Models.MultiCard.MultiCardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+
+<section class="g-section featured-insights pb-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                @if (!string.IsNullOrEmpty(Model.GroupHeader))
+                {
+                    <h2 class="pb-30">@Model.GroupHeader</h2>
+                }
+
+            </div>
+        </div>
+    </div>
+    <div id="featuredInsights" class="featured-carousel owl-carousel">
+        @foreach (var card in Model.Cards)
+        {
+
+            <div class="item">
+                <img src="@card.SelectedSizeUrl" alt="@card.ImageAlternativeText">
+                <div class="carousel-content">
+                    <div class="carousel-title">@Html.HtmlSanitize(card.Heading)</div>
+                    <p>@Html.HtmlSanitize(card.Description)</p>
+                </div>
+                <div class="carousel-overlay"></div>
+                @{ 
+                    var s_target = "_self";
+                    var s_title = card.Heading;
+                }
+                @if (card.ActionName.Contains("Download"))
+                {
+                    s_target = "_blank";
+                    s_title = "Download";
+                }  
+                <a class="carousel-abs-content" href="@Html.HtmlSanitize(@card.ActionUrl)" target="@s_target" title="@s_title">
+                    <span>@Html.HtmlSanitize(@card.ActionName)</span>
+                </a>
+            </div>
+
+
+        }
+    </div>
+</section>

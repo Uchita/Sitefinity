@@ -1,0 +1,35 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Web.DataResolving;
+
+
+<div class="col blog-detail-col">
+
+    <h3 class="posted-by">By @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)</h3>
+    <p class="posted-date">
+        @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")
+        @*@Html.CommentsCount(string.Empty, @Model.Item.DataItem)*@
+    </p>
+    <h4 class="blog-title">@Model.Item.Fields.Title</h4>
+
+
+    <div @Html.InlineEditingFieldAttributes("Summary", "LongText")><p>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</p></div>
+    @{var imageurl = ""; }
+    @foreach (var relatedItem in Model.Item.Fields.NewsImage)
+    {
+        imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+    }
+
+    <div class="row">
+        <div class="col-12 mt-4 mb-4">
+            <div class="cta-bg" data-parallax="scroll" data-image-src="@imageurl">
+
+            </div>
+        </div>
+    </div>
+
+    <div @Html.InlineEditingFieldAttributes("Content", "LongText")><p>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</p></div>
+
+
+</div>

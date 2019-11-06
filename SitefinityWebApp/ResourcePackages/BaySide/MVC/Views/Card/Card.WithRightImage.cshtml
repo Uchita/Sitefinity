@@ -1,0 +1,18 @@
+@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+
+
+<section class="g-section bg-grey">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <h3>@Html.HtmlSanitize(Model.Heading)</h3>
+                <p>@Html.HtmlSanitize(Model.Description)</p>
+                <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-outline-primary mt-4">@Model.ActionName</a>
+            </div>
+            <div class="col-12 col-md-6 mt-5 mt-md-0 absolute-g-col" style="background-image:url('@Model.SelectedSizeUrl');">
+            </div>
+        </div>
+    </div>
+</section>

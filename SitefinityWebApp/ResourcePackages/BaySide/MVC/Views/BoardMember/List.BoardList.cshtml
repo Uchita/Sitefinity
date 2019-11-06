@@ -1,0 +1,73 @@
+﻿@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+
+@{
+    var countOfMembers = 0;
+}
+
+
+<div class="board-members md-row @Model.CssClass">
+
+    @foreach (var member in Model.Items)
+    {
+        List<string> filterValues = new List<string>();
+        @*Start Category field*@
+        if (member.Fields.Category != null)
+        {
+            foreach (var taxon in member.GetHierarchicalTaxons("Category"))
+            {
+                var catStr = "cat-";
+                var catTitle = taxon.Title.ToString().ToLower();
+                catTitle = catTitle.Replace(" ", "-");
+                catStr = String.Concat(catStr, catTitle);
+                filterValues.Add(catStr);
+            }
+        }
+        @*End Category field *@
+
+        @*Not used *@
+        //var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(member, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+
+        <div class="board-members-item fadeInUp wow col-12 col-sm-6 col-lg-3 leader-list @(string.Join(" ", filterValues))">
+            <div class="item-inner">
+                <div class="leader-image">
+                    <div class="leader-thumb bg-image">
+                        <div class="default-logo">
+                            @if (member.Fields.Image != null)
+                            {
+                                <img src='@member.Fields.Image.Fields.MediaUrl' alt='@member.Fields.Image.Fields.AlternativeText' title='@member.Fields.Image.Fields.Title' />
+                            }
+                        </div>
+                    </div>
+                    <div class="leader_logo">
+                        @if (member.Fields.CompanyLogo != null)
+                        {
+                            <img src='@member.Fields.CompanyLogo.Fields.MediaUrl' alt='@member.Fields.CompanyLogo.Fields.AlternativeText' title='@member.Fields.CompanyLogo.Fields.Title' />
+                        }
+                    </div>
+                </div>
+
+                <h3 class="leader-name">@member.Fields.Name</h3>
+                <div class="leader-designation">@member.Fields.Position</div>
+                @if (member.Fields.Bio != null && member.Fields.Bio.Length > 0)
+                {
+                    <a href="javascript:void(0)" title="@member.Fields.Name" class="btn btn-link">Read more</a>
+                }
+            </div>
+            <div class="leader-content">
+                <div class="border-blue">
+                    @Html.Raw(member.Fields.Bio)
+                    <a href="javascript:void(0)" class="btn btn-link">Read less</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

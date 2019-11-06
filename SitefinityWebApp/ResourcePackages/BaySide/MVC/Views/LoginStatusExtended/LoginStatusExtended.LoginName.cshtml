@@ -1,0 +1,64 @@
+﻿@model LoginStatusExtendedViewModel
+
+@using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.LoginStatusExtended
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using Telerik.Sitefinity.Modules.Pages;
+@Html.Script(ScriptRef.JQuery, "top", false)
+
+<div class="header-top-login @Model.CssClass">
+
+    <div class="@Model.CssClass">
+        <div data-sf-role="sf-logged-in-view" style="display: none">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.linkedin.com/company/bayside-group/" target="_blank"><span class="fa fa-linkedin"></span></a>
+                </li>
+                <li class="nav-item rb-1 blog-class-top">
+                    <a class="nav-link" href="/blogs">Blog</a>
+                </li>
+                <li class="rb-1 logged">
+                    <span>@Html.Resource("LoggedAs", "LoginStatusExtendedResources")</span>
+                    <a href="@(Model.ProfilePageUrl ?? " #")" data-sf-role="sf-logged-in-name"></a>
+                </li>
+                <li class="rb-1"> @Html.ActionLink(Html.Resource("Logout", "LoginStatusExtendedResources"), "SignOut")</li>
+            </ul>
+        </div>
+        <div data-sf-role="sf-logged-out-view" style="display: none">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.linkedin.com/company/bayside-group/" target="_blank"><span class="fa fa-linkedin"></span></a>
+                </li>
+                <li class="nav-item rb-1 blog-class-top">
+                    <a class="nav-link" href="/blogs">Blog</a>
+                </li>
+                <li class="rb-1 register-class"><a href="@(Model.RegistrationPageUrl ?? " #")">Register</a></li>
+                <li class="rb-1 login-class"><a href="@(Model.LoginPageUrl ?? " #")">Login</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <input type="hidden" data-sf-role="sf-status-json-endpoint-url" value="@Model.StatusServiceUrl" />
+    <input type="hidden" data-sf-role="sf-allow-windows-sts-login" value="@Model.AllowWindowsStsLogin.ToString()" />
+    <input type="hidden" data-sf-role="sf-logout-redirect-url" value="@Model.LogoutPageUrl" />
+    <input type="hidden" data-sf-role="sf-is-design-mode-value" value="@ViewBag.IsDesignMode.ToString()" />
+    @Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers.LoginStatusExtendedController", "JXTNext.Sitefinity.Widgets.Authentication.Mvc.Scripts.LoginStatusExtended.login-status.js"), "bottom")
+
+</div>
+<script>
+    $(document).ajaxComplete(function () {
+
+        $(".header-top-login .login-status>div").each(function () {
+            if ($(this).attr("data-sf-role") == "sf-logged-in-view") {
+                var userName = $('.header-top-login a[data-sf-role="sf-logged-in-name"]').text();
+                userFirstName = userName.split(' ')[0];
+                $('.header-top-login a[data-sf-role="sf-logged-in-name"]').text(userFirstName);
+            }
+        });
+
+        //if ($('.header-top-login').attr('data-sf-role') == 'sf-logged-in-view') {
+        //    var userName = $('.header-top-login a[data-sf-role="sf-logged-in-name"]').text();
+        //    userFirstName = userName.split(' ')[0];
+        //    $('.header-top-login a[data-sf-role="sf-logged-in-name"]').text(userFirstName);
+        //}
+    });
+</script>

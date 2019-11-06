@@ -1,0 +1,56 @@
+﻿@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+
+<h2 class="mt-30 lineheight-08">Recruitment Services</h2>
+<div class="address-panel panel-group" id="addressAccordion">
+    @foreach (var item in Model.Items)
+    {
+
+        if (Model.Items.First() == item)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#addressAccordion" href="#@item.Fields.Name.Trim().Replace(" ","")">
+                            @item.Fields.Name
+                            <span class="fa fa-angle-up"></span>
+                        </a>
+                    </h3>
+                </div>
+                <div id="@item.Fields.Name.Trim().Replace(" ","")" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        @Html.HtmlSanitize((string)item.Fields.OfficeBio)
+                    </div>
+                </div>
+            </div>
+        }
+
+        else
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <a data-toggle="collapse" class="collapsed" data-parent="#addressAccordion" href="#@item.Fields.Name.Trim().Replace(" ","")">
+                            @item.Fields.Name
+                            <span class="fa fa-angle-up"></span>
+                        </a>
+                    </h3>
+                </div>
+                <div id="@item.Fields.Name.Trim().Replace(" ","")" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        @Html.HtmlSanitize((string)item.Fields.OfficeBio)
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+

@@ -211,7 +211,8 @@ project.lock.json
 SitefinityWebApp/JXTNext.Sitefinity.Widgets.Common.dll
 SitefinityWebApp/ResourcePackages*
 !SitefinityWebApp/ResourcePackages/Bootstrap/*
+!SitefinityWebApp/ResourcePackages/BaySide/*
 SitefinityWebApp/App_Data_JXTNext/Sitefinity/
-SitefinityWebApp/App_Data/
+!SitefinityWebApp/App_Data/*
 JXTNext.Sitefinity.Widgets.Common/JXTNext.Sitefinity.Widgets.Common.csproj
 [Oo]utput/

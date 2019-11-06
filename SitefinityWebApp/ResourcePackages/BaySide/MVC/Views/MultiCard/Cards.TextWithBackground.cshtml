@@ -1,0 +1,40 @@
+@model SitefinityWebApp.Mvc.Models.MultiCard.MultiCardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+
+<section class="cta" style="background-color:@Model.BackgroundColor">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                @if (@Model.BackgroundColor == "#EFEFEF")
+                {
+                    <h3 class="text-white">
+                        @if (!string.IsNullOrEmpty(Model.GroupHeader))
+                        {
+                            @Model.GroupHeader
+                        }
+                    </h3>
+                }
+                else
+                {
+                    <h3 class="text-black-50">
+                        @if (!string.IsNullOrEmpty(Model.GroupHeader))
+                        {
+                            @Model.GroupHeader
+                        }
+                    </h3>
+                }
+
+                @if (@Model.Cards.Count == 1)
+                {
+                    <a href="@Html.HtmlSanitize(@Model.Cards[0].ActionUrl)" class="btn btn-primary">@Html.HtmlSanitize(@Model.Cards[0].ActionName)</a>
+                }
+                else if (@Model.Cards.Count == 2)
+                {
+                    <a href="@Html.HtmlSanitize(@Model.Cards[0].ActionUrl)" class="btn btn-primary mr-3">@Html.HtmlSanitize(@Model.Cards[0].ActionName)</a>
+                    <a href="@Html.HtmlSanitize(@Model.Cards[1].ActionUrl)" class="btn btn-primary">@Html.HtmlSanitize(@Model.Cards[1].ActionName)</a>
+                }
+            </div>
+        </div>
+    </div>
+</section>

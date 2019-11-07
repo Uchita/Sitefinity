@@ -147,4 +147,14 @@
     <comment>phrase : Forgotten Password</comment>
     <lastModified>2015-02-24T22:00:00</lastModified>
   </data>
+  <data name="Name">
+    <value>Name</value>
+    <comment></comment>
+    <lastModified>2019-03-11T10:40:44</lastModified>
+  </data>
+  <data name="EnterLoginEmailAddress">
+    <value>Enter your login email address and you will receive an email with a link to reset your password.</value>
+    <comment>phrase : Enter your login email address and you will receive email with a link to reset your password.</comment>
+    <lastModified>2019-03-13T03:48:01</lastModified>
+  </data>
 </root>

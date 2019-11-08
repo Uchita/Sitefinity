@@ -1,0 +1,42 @@
+@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+@{
+    var modelCssCls = Model.CssClass;
+    var anchorTarget = "";
+    if (!String.IsNullOrEmpty(modelCssCls) && modelCssCls.Contains("_blank"))
+    {
+        anchorTarget = "_blank";
+    }
+}
+
+<section class="cta cta-icon @Model.CssClass">
+    
+    @if (!string.IsNullOrEmpty(Model.ActionUrl))
+    {
+        <a href="@Html.UrlSanitize(Model.ActionUrl)" target="@anchorTarget" class="wow fadeInUp btn btn-primary" role="button">
+            <img src="@Model.SelectedSizeUrl" alt="@Model.Heading" />
+            @if (!string.IsNullOrEmpty(Model.Heading))
+            {
+            <h3 class="wow fadeInUp">@Html.HtmlSanitize(Model.Heading)</h3>
+            }
+            @if (!string.IsNullOrEmpty(Model.Description))
+            {
+            <div class="hidden"><p>@Html.HtmlSanitize(Model.Description)</p></div>
+            }
+        </a>
+    }else{
+        <div class="wow fadeInUp btn btn-primary">
+            <img src="@Model.SelectedSizeUrl" alt="@Model.Heading" />
+            @if (!string.IsNullOrEmpty(Model.Heading))
+            {
+            <h3 class="wow fadeInUp">@Html.HtmlSanitize(Model.Heading)</h3>
+            }
+            @if (!string.IsNullOrEmpty(Model.Description))
+            {
+            <div class="hidden"><p>@Html.HtmlSanitize(Model.Description)</p></div>
+            }
+        </div>    
+    }
+            
+</section>

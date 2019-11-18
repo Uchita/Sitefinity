@@ -3,6 +3,7 @@
 @using Telerik.Sitefinity.Modules.Pages;
 @using Telerik.Sitefinity.UI.MVC;
 @using Telerik.Sitefinity.Services;
+@using System.Text.RegularExpressions;
 
 <!DOCTYPE html>
 <html @Html.RenderLangAttribute()>
@@ -26,7 +27,12 @@
     @Html.StyleSheet(Url.Content("~/ResourcePackages/Bayside/assets/css/bayside.css"), "head")
     @Html.Script("/ResourcePackages/Bayside/assets/js/jquery-3.3.1.js", "head")
 
-
+    @*Getting the current multi site name and adding stylesheet for theme *@
+    @{
+        var currentSite = new Telerik.Sitefinity.Multisite.MultisiteContext().CurrentSite;
+        var stylesheet = Regex.Replace(currentSite.Name, @"[^\p{L}\-\!\$\(\)\=\@\d_\'\.]+|\.+$", "-") + ".css";
+    }
+    @Html.StyleSheet(Url.Content("~/ResourcePackages/Bayside/assets/css/" + stylesheet.ToLower()), "head")
 </head>
 
 <body class="doc-loading">

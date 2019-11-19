@@ -15,6 +15,10 @@ Crawl-delay: 20
 User-agent: msnbot/2.0b
 Crawl-Delay: 100
 
+#rogerbot
+User-agent: rogerbot
+Crawl-delay: 10
+
 # Google
 User-agent: Googlebot
 

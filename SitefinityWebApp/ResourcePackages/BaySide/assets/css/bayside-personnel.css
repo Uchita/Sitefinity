@@ -1,0 +1,72 @@
+﻿/*color only*/
+a,
+.cta-icon h3, .btn-link,
+.navbar .navbar-nav .nav-link:focus, .navbar .navbar-nav .nav-link.active, .navbar .navbar-nav li:hover > .nav-link,
+.top-menus .navbar-nav a:hover, .top-menus .navbar-nav a.active,
+.app-header .dropdown-menu .dropdown-item:hover, .app-header .dropdown-menu .dropdown-item.active, .app-header .dropdown-menu .dropdown-item:focus {
+    color: #009f9b;
+}
+    a:hover, a:focus,
+    .cta-icon a:hover, .cta-icon a.active, .cta-icon a:focus, .cta-icon a:active:hover,
+    .btn-link:hover {
+        color: #026d69;
+    }
+
+.btn-primary {
+    border-color: #009f9b;
+    background-color: #009f9b;
+}
+    .btn-primary.active, .btn-primary:focus, .btn-primary:hover, .btn-primary:active {
+        border-color: #026d69;
+        background-color: #026d69;
+    }
+
+    
+/* border */
+.owl-nav > div {
+    border-color: #009f9b;
+}
+
+.owl-nav .owl-prev {
+    background-image: url(../images/prev-icon-green.png);
+}
+.owl-nav .owl-next {
+    background-image: url(../images/next-icon-green.png);
+}
+
+.owl-nav .owl-next:hover, .owl-nav .owl-next:focus,
+.featured-carousel .carousel-overlay {
+    background-color: #009f9b;
+}
+
+
+.btn-outline-primary {
+    color: #009f9b;
+    border-color: #009f9b;
+}
+    .btn-outline-primary.active, .btn-outline-primary:focus, .btn-outline-primary:hover, .btn-outline-primary:active {
+        color: #fff;
+        background-color: #009f9b;
+    }
+
+/* background gradient */
+.squire-box .squire-overlay {
+    background-color: #009f9b;
+    background: -moz-linear-gradient(90deg, #009f9b 0%, #026d69 100%);
+    background: -webkit-linear-gradient(90deg, #009f9b 0%, #026d69 100%);
+    background: linear-gradient(90deg, rgba(0,159,155,1) 0%, rgba(2,109,105,1) 100%);
+}
+
+/* background rgba */
+.brand_blk::before,
+.squire-box-row .col-12:nth-of-type(3n+1) .squire-overlay {
+    background: rgba(0, 159, 155,0.7);
+}
+
+
+/*Important stuff*/
+.navbar.top-navbar .top-menus a:hover, .navbar.top-navbar .top-menus a:hover span, .navbar.top-navbar .top-menus a.active span {
+    color: #009f9b !important;
+}
+
+/*  */

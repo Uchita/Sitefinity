@@ -6325,7 +6325,6 @@ a.active .brand_blk::before {
     @media (max-width: 991px) {
         .app-header {
             padding-top: 15px;
-            padding-bottom: 15px;
         }
 
             .app-header.inner-page {
@@ -6344,6 +6343,7 @@ a.active .brand_blk::before {
         .app-header .app-logo {
             margin-bottom: 0;
             max-width: 200px;
+            max-height: 40px;
         }
     }
 
@@ -6823,7 +6823,10 @@ a.active .brand_blk::before {
                 .app-footer .footer_menu_inline li a {
                     color: #9B9B9B;
                 }
-
+        ul.social_links li {
+            display: inline-block;
+            margin-left: 20px;
+        }
         .app-footer .social_links li a {
             font-size: 18px;
             line-height: 1;
@@ -6838,6 +6841,15 @@ a.active .brand_blk::before {
             margin: 0;
             font-size: 12px;
             color: #9B9B9B;
+        }
+
+        .note {
+            font-size: 12px;
+        }
+
+        .app-footer .note {
+            margin-top: 10px;
+            color: #888;
         }
 
     /*-------Footer------End----*/
@@ -7511,6 +7523,8 @@ a.active .brand_blk::before {
         background: none;
         border: none;
         color: #009f9b;
+        display:block;
+        text-align:center;
     }
 
         .cta-icon a:hover, .cta-icon a.active, .cta-icon a:focus, .cta-icon a:active:hover {
@@ -7522,7 +7536,7 @@ a.active .brand_blk::before {
         }
 
     .cta-icon img {
-        height: 80px;
+        height: 65px;
     }
 
     .cta-icon h3 {
@@ -9423,6 +9437,9 @@ a.active .brand_blk::before {
 
         .app-header .top-menus > div .navbar-nav li {
             float: right;
+        }
+        .app-header .top-menus .top-bar-links .navbar-nav li {
+            float: left;
         }
 
     .app-header .top-menus .navbar-nav .nav-item:last-child .nav-link {

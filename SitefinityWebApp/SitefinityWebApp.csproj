@@ -1047,6 +1047,7 @@
     </Content>
     <Content Include="ResourcePackages\BaySide\assets\css\ajax-loader.gif" />
     <Content Include="ResourcePackages\BaySide\assets\css\animate.css" />
+    <Content Include="ResourcePackages\BaySide\assets\css\bayside-group.css" />
     <Content Include="ResourcePackages\BaySide\assets\css\bayside-personnel.css" />
     <Content Include="ResourcePackages\BaySide\assets\css\bayside.css" />
     <Content Include="ResourcePackages\BaySide\assets\css\bootstrap.css" />

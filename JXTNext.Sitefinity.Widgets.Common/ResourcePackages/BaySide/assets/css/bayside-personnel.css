@@ -1,4 +1,18 @@
-﻿/*color only*/
+﻿/* Brand logo */
+.app-header .app-logo {
+    margin-bottom: 0;
+    position: relative;
+    top: -7px;
+}
+
+@media (max-width: 991px){
+    .app-header .app-logo {
+        max-height: 55px;
+    }
+}
+
+
+/*color only*/
 a,
 .cta-icon h3, .btn-link,
 .navbar .navbar-nav .nav-link:focus, .navbar .navbar-nav .nav-link.active, .navbar .navbar-nav li:hover > .nav-link,
@@ -6,6 +20,7 @@ a,
 .app-header .dropdown-menu .dropdown-item:hover, .app-header .dropdown-menu .dropdown-item.active, .app-header .dropdown-menu .dropdown-item:focus {
     color: #009f9b;
 }
+
     a:hover, a:focus,
     .cta-icon a:hover, .cta-icon a.active, .cta-icon a:focus, .cta-icon a:active:hover,
     .btn-link:hover {
@@ -16,12 +31,13 @@ a,
     border-color: #009f9b;
     background-color: #009f9b;
 }
+
     .btn-primary.active, .btn-primary:focus, .btn-primary:hover, .btn-primary:active {
         border-color: #026d69;
         background-color: #026d69;
     }
 
-    
+
 /* border */
 .owl-nav > div {
     border-color: #009f9b;
@@ -30,20 +46,22 @@ a,
 .owl-nav .owl-prev {
     background-image: url(../images/prev-icon-green.png);
 }
+
 .owl-nav .owl-next {
     background-image: url(../images/next-icon-green.png);
 }
 
-.owl-nav .owl-next:hover, .owl-nav .owl-next:focus,
-.featured-carousel .carousel-overlay {
-    background-color: #009f9b;
-}
+    .owl-nav .owl-next:hover, .owl-nav .owl-next:focus,
+    .featured-carousel .carousel-overlay {
+        background-color: #009f9b;
+    }
 
 
 .btn-outline-primary {
     color: #009f9b;
     border-color: #009f9b;
 }
+
     .btn-outline-primary.active, .btn-outline-primary:focus, .btn-outline-primary:hover, .btn-outline-primary:active {
         color: #fff;
         background-color: #009f9b;
@@ -69,4 +87,34 @@ a,
     color: #009f9b !important;
 }
 
-/*  */
+/* custom select */
+.select {
+    position: relative;
+}
+
+    .select:before {
+        content: '\f107';
+        position: absolute;
+        top: 50%;
+        right: 0;
+        margin: -9px 11px 0 0;
+        font-weight: 400;
+        font-family: 'FontAwesome';
+        pointer-events: none;
+        color: #009f9b;
+        z-index: 2;
+        font-size: 21px;
+    }
+
+    .select select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        height: 44px;
+        background: #fff;
+    }

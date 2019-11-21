@@ -60,6 +60,9 @@
     <Content Include="ResourcePackages\BaySide\assets\css\animate.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\BaySide\assets\css\bayside-group.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\BaySide\assets\css\bayside-personnel.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -106,6 +106,7 @@ namespace SitefinityWebApp
         protected void Application_End(object sender, EventArgs e)
         {
             EventHub.Unsubscribe<ProfileCreated>(_profileEventHandler.ProfileCreated);
+            EventHub.Unsubscribe<ProfileUpdated>(_profileEventHandler.ProfileUpdated);
         }
 
         void Bootstrapper_Bootstrapped(object sender, EventArgs e)
@@ -129,6 +130,7 @@ namespace SitefinityWebApp
         private void ApplicationStartHandler(object sender, EventArgs e)
         {
             EventHub.Subscribe<ProfileCreated>(evt => _profileEventHandler.ProfileCreated(evt));
+            EventHub.Subscribe<ProfileUpdated>(evt => _profileEventHandler.ProfileUpdated(evt));
         }
     }
 

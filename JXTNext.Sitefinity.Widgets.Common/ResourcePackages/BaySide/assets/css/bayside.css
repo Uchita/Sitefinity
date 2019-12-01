@@ -5333,7 +5333,9 @@ p .btn-link {
 .bg-grey {
     background-color: #EAEAEA;
 }
-
+.bg-grey-2 {
+    background-color: rgba(0,0,0,0.3);
+}
 .bg-black {
     background-color: #000;
 }
@@ -11172,8 +11174,56 @@ a.active .brand_blk::before {
         font-style: normal;
     }
 
-    @media (min-width: 992px) {
-        .col-50-content.content-right {
+    /* forms via form builder */
+[data-sf-role="form-container"] .form-group{
+    margin-bottom: 10px;
+}
+    [data-sf-role="form-container"] .form-group > label,
+    [data-sf-role="checkboxes-field-container"] > strong,
+    .bayside-form .checkbox .checkbox-icon {
+        display: none;
+    }
+
+.sf-FileField {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: relative;
+    padding: 17px 10px;
+}
+
+.bayside-form .sf-FileField {
+    margin-bottom: 30px;
+}
+
+.sf-FileField > strong {
+    font-weight: normal;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.bayside-form [data-sf-role="checkboxes-field-container"] {
+    display: inline-block;
+}
+
+    .bayside-form [data-sf-role="checkboxes-field-container"] + div {
+        display: inline-block;
+    }
+
+.bayside-form .btn-primary {
+    margin-top: 15px;
+}
+.size-limit {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    font-size: 12px;
+    font-weight: 300;
+    color: #999;
+}
+
+
+@media (min-width: 992px) {
+    .col-50-content.content-right {
             float: left;
         }
 

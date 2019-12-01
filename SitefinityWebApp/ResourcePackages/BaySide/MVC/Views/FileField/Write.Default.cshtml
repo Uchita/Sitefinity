@@ -38,7 +38,9 @@
         {
             @:</script>
         }
-        
+        @if (Model.MaxFileSizeInMb > 0) {
+            <span class="size-limit">@Html.Resource("MaxFileSizeTitle", "ConfigDescriptions") @Model.MaxFileSizeInMb mb</span>
+        }
         @* File inputs will be generated here *@
     </div>
 

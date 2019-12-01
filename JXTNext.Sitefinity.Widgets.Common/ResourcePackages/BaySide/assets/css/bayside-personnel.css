@@ -5,7 +5,7 @@
     top: -7px;
 }
 
-@media (max-width: 991px){
+@media (max-width: 991px) {
     .app-header .app-logo {
         max-height: 55px;
     }
@@ -17,7 +17,9 @@ a,
 .cta-icon h3, .btn-link,
 .navbar .navbar-nav .nav-link:focus, .navbar .navbar-nav .nav-link.active, .navbar .navbar-nav li:hover > .nav-link,
 .top-menus .navbar-nav a:hover, .top-menus .navbar-nav a.active,
-.app-header .dropdown-menu .dropdown-item:hover, .app-header .dropdown-menu .dropdown-item.active, .app-header .dropdown-menu .dropdown-item:focus {
+.app-header .dropdown-menu .dropdown-item:hover, .app-header .dropdown-menu .dropdown-item.active, .app-header .dropdown-menu .dropdown-item:focus,
+.video-wrap .btn-link:hover,
+.video-wrap .btn-link.active {
     color: #009f9b;
 }
 
@@ -37,9 +39,17 @@ a,
         background-color: #026d69;
     }
 
+.video-wrap .play-btn:hover,
+.video-wrap .play-btn:focus,
+.video-wrap .play-btn.active {
+    background: #009f9b;
+}
+
+
 
 /* border */
-.owl-nav > div {
+.owl-nav > div,
+.form-control:focus {
     border-color: #009f9b;
 }
 

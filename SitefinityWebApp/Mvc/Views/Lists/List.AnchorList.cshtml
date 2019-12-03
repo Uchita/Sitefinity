@@ -1,0 +1,58 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Lists.Mvc.Models;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using System.Linq;
+
+    <div class="@Model.CssClass">
+
+        @foreach (var item in Model.Items)
+        {
+        if(item.Fields.Title != null) {
+        <h1 @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)item.Fields.Id) role="heading">
+            <a id="@item.Fields.Id-Top"
+               @Html.InlineEditingFieldAttributes("Title", "ShortText" )
+               href="#@item.Fields.Id" role="link">@item.Fields.Title</a>
+        </h1>
+        }
+
+        if(((ListViewModel)item).ListItemViewModel != null) {
+        <ul role="list">
+            @foreach (var listItem in ((ListViewModel)item).ListItemViewModel.Items)
+            {
+            <li @Html.InlineEditingAttributes(Model.ProviderName, ((ListViewModel)item).ListItemViewModel.ContentType.FullName, (Guid)listItem.Fields.Id) role="listitem">
+                <a @Html.InlineEditingFieldAttributes("Title", "ShortText" )
+                   href="#@listItem.Fields.Id">@listItem.Fields.Title</a>
+            </li>
+            }
+        </ul>
+        }
+        }
+
+        @foreach (var item in Model.Items)
+        {
+        if(item.Fields.Title != null) {
+        <h1 @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)item.Fields.Id)
+            @Html.InlineEditingFieldAttributes("Title", "ShortText" )
+            id="@item.Fields.Id" role="heading">
+            @item.Fields.Title
+        </h1>
+        }
+        if(((ListViewModel)item).ListItemViewModel != null) {
+        foreach (var listItem in ((ListViewModel)item).ListItemViewModel.Items)
+        {
+        <div @Html.InlineEditingAttributes(Model.ProviderName, ((ListViewModel)item).ListItemViewModel.ContentType.FullName, (Guid)listItem.Fields.Id) role="listitem">
+            <h3 @Html.InlineEditingFieldAttributes("Title", "ShortText" )
+                id="@listItem.Fields.Id" role="heading">
+                @listItem.Fields.Title
+            </h3>
+
+            <div @Html.InlineEditingFieldAttributes("Content", "LongText" )>@Html.HtmlSanitize((string)listItem.Fields.Content)</div>
+
+            <p><a href="#@item.Fields.Id-Top" role="link">@Html.Resource("BackToTop")</a></p>
+        </div>
+        }
+        }
+        }
+
+    </div>

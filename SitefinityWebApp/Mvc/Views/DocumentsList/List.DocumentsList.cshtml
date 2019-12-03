@@ -1,0 +1,45 @@
+@model Telerik.Sitefinity.Frontend.Media.Mvc.Models.DocumentsList.DocumentsListViewModel
+
+@using System;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Media.Mvc.Models.DocumentsList;
+
+<ul class="o-document-list @Model.CssClass" role="list">
+	@foreach (var item in Model.Items)
+	{
+	    <li class="o-document-list__item" role="listitem">
+            @* document file icon *@
+		    <div class="o-document-list__item-file" aria-hidden="true">
+				<svg class="o-document-list__item-icon o-document-list__item-icon--@(((DocumentItemViewModel)item).Extension)">
+					<use xlink:href="~/ResourcePackages/JXTNextMRP/assets/dist/sprites/solid.svg#file"></use>
+				</svg>
+                <span class="o-document-list__item-extension">@(((DocumentItemViewModel)item).Extension)</span>
+		    </div>
+
+            @* document info column *@
+            <div class="o-document-list__item-info" role="group">
+                @* link to document detail page *@
+                <div class="o-document-list__item-detail">
+                    <a href="@HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix)" title="@item.Fields.Title"><strong>@item.Fields.Title</strong></a>
+                    <span class="o-document-list__item-extension o-document-list__text--muted" aria-label="Document file extension">(@(((DocumentItemViewModel)item).Extension))</span>
+                </div>
+
+                @* File download link & file size *@
+                <div class="o-document-list__item-link">
+                    <a href="@item.Fields.MediaUrl" target="_blank">Download <span class="sr-only">@item.Fields.Title</span></a>
+                    <span class="o-document-list__item-extension o-document-list__text--muted" aria-label="Document file size">(@(Math.Ceiling((double)item.Fields.TotalSize / 1024) + " KB"))</span>
+                </div>
+            </div>
+	    </li>
+	}
+</ul>
+
+@if (Model.ShowPager)
+{
+	@Html.Action("Index", "ContentPager", new
+	{
+		currentPage = Model.CurrentPage,
+		totalPagesCount = Model.TotalPagesCount.Value,
+		redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
+	})
+}

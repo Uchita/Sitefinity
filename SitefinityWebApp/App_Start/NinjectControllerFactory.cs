@@ -3,7 +3,8 @@ using JXTNext.Sitefinity.Connector;
 using JXTNext.Sitefinity.Services.Services;
 using JXTNext.Sitefinity.Widgets.Authentication;
 using JXTNext.Sitefinity.Widgets.Job;
-//using JXTNext.Sitefinity.Widgets.Social;
+using JXTNext.Sitefinity.Widgets.Social;
+using JXTNext.Sitefinity.Widgets.User;
 using Ninject;
 using SitefinityWebApp.Models;
 using System;
@@ -26,10 +27,11 @@ namespace SitefinityWebApp.App_Start
                 new InterfaceMappings()
                 , new ConnectorModule()
                 , new Widgets_AuthenticationModule()
-                , new Widgets_JobModule()
                 , new Widgets_UserModule()
-                //, new SocialModule()
+                , new SocialModule()
                 , new ServiceInterfacesModule()
+                , new Widgets_JobModule()
+                , new JXTNext.Sitefinity.Modules.Setup.Bindings()
                 );
 
             BindInjectionModels();

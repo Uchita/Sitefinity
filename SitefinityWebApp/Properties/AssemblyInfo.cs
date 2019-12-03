@@ -8,7 +8,7 @@ using System.Resources;
 // associated with an assembly.
 [assembly: AssemblyCompany("Progress")]
 [assembly: AssemblyProduct("Progress Sitefinity CMS")]
-[assembly: AssemblyCopyright("Copyright © 2005-2017 Telerik AD. All rights reserved.")]
+[assembly: AssemblyCopyright("Copyright Â© 2005-2018 Telerik EAD. All rights reserved.")]
 [assembly: AssemblyTrademark("Sitefinity")]
 [assembly: AssemblyTitle("Sitefinity Web Application")]
 [assembly: AssemblyDescription("")]
@@ -33,9 +33,11 @@ using System.Resources;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("10.2.6602.0")]
-[assembly: AssemblyFileVersion("10.2.6602.0")]
+[assembly: AssemblyVersion("11.2.6929.0")]
+[assembly: AssemblyFileVersion("11.2.6929.0")]
 [assembly: NeutralResourcesLanguageAttribute("en")]
+
+
 
 
 

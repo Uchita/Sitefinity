@@ -1,0 +1,23 @@
+@model JXTNext.Sitefinity.Widgets.Feather.Mvc.Models.Card.JXTNextCardViewModel
+@using JXTNext.Sitefinity.Media.Mvc.Helpers;
+@using JXTNext.Sitefinity.Common.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+@{
+    var thumbnailName = Model.ThumbnailName.IsNullOrWhitespace() ? "crd-base" : Model.ThumbnailName;
+}
+<div class="o-card @Model.CssClass">
+    <a href="@Html.UrlSanitize(Model.ActionUrl)" class="o-card__overlaylink" role="link"></a>
+    @if (Model.CardImage != null)
+    {
+        @Html.ImgTag(Model.CardImage, Model.Heading, thumbnailName).WithCssClass("o-card__img")
+    }
+    <div class="o-card__body">
+        @Html.DynamicTag("h3", Model.Heading, "o-card__hdg")
+        @Html.DynamicTag("p", Model.Description, "o-card__desc")
+        @if (!string.IsNullOrEmpty(Model.ActionName))
+        {
+            <a role="button" class="btn btn-primary o-card__btn" href="@Html.UrlSanitize(Model.ActionUrl)">@Model.ActionName</a>
+        }
+    </div>
+</div>

@@ -4,6 +4,7 @@ namespace SitefinityWebApp.Mvc.Models.MultiCard
 {
     public class CardDetailsView
     {
+        public string Id { get; set; }
         public string Heading { get; set; }
 
         public string Description { get; set; }

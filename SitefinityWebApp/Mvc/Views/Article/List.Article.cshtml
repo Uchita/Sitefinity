@@ -1,0 +1,89 @@
+﻿@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.RelatedData;
+@using JXTNext.Sitefinity.Media.Mvc.Helpers;
+<div class="o-articleList o-articleList--list @Model.CssClass">
+    @foreach (var item in Model.Items)
+    {
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+        var featureImage = new Image();
+        // Get the feature image
+        if (item.Fields.Images != null)
+        {
+            featureImage = item.DataItem.GetRelatedItems<Image>("Images").FirstOrDefault();
+        }
+        var author = String.Empty;
+        if (item.Fields.ArticleAuthor != null)
+        {
+            author = item.Fields.ArticleAuthor.Identifier;
+        }
+
+        // use o-articleListItem--imageOnRight to display image on right side and ommit that class to show image on left side
+        <article class="o-articleListItem" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)item.Fields.Id)>
+            @*Start feature image*@
+            @if (featureImage != null)
+            {
+                <div class="o-articleListItem__col">
+                    <a href="@navigateUrl" class="o-articleListItem__featuredImage">
+                        @Html.ImgTag(featureImage, null, "art-list").WithCssClass("o-articleListItem__featuredImageImg")
+                    </a>
+                </div>
+            }
+            @*End feature image*@
+            <div class="o-articleListItem__col o-articleListItem__col--content">
+                <h3 class="o-articleListItem__title">
+                    <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">
+                        @item.Fields.Title
+                    </a>
+                </h3>
+                <div class="o-articleListItem__descr">@item.Fields.Description</div>
+                <div class="o-articleListItem__bottom">
+                    @*Start category list*@
+                    @if (item.Fields.Category != null)
+                    {
+                        var categories = item.GetHierarchicalTaxons("Category");
+                        if (categories.Count > 0)
+                        {
+
+                            <ul class="o-articleListItem__bottomCategoriesList">
+                                @foreach (var taxon in categories)
+                                {
+                                    <li class="o-articleListItem__categoriesListItem">
+                                        @* Need to sort out category links *@
+                                        @*<a href="#" class="o-categories__item">@taxon.Title.ToString()</a>*@
+                                        <span class="o-categories__item">@taxon.Title.ToString()</span>
+                                    </li>
+                                }
+                            </ul>
+
+                        }
+                    }
+                    @*End category list*@
+                    <ul class="o-articleListItem__bottomArticleInfo">
+                        <li class="o-articleListItem__bottomArticleInfoItem">
+                            <span class="o-item-info__date-text u-show-for-sr">@Html.Resource("Published", "JxtAuthoringResources")</span>
+                            <time class="o-item-info__date" datetime="@item.GetDateTime("PublicationDate", "s")">@item.GetDateTime("PublicationDate", "MMMM d, yyyy")</time>
+                        </li>
+                        @if (!string.IsNullOrWhiteSpace(author))
+                        {
+                            <li class="o-articleListItem__bottomArticleInfoItem"><span class="o-articleListItem__bottomArticleInfoItemTxt">@Html.Resource("By", "JxtAuthoringResources")</span> <span class="o-articleListItem__bottomArticleInfoItemTxt">@author</span></li>
+                        }
+                        <li class="o-articleListItem__bottomArticleInfoItem">@Html.CommentsCount("", item.DataItem)</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+    }
+    @if (Model.ShowPager)
+    {
+        @Html.Action("Index", "ContentPager", new
+        {
+            currentPage = Model.CurrentPage,
+                        totalPagesCount = Model.TotalPagesCount.Value,
+                        redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
+        })
+    }
+</div>

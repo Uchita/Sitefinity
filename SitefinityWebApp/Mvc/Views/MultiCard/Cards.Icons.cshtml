@@ -2,59 +2,44 @@
 
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 
-@Html.StyleSheet(Url.WidgetContent("assets/css/bootstrap.min.css"), "head",false)
+@Html.StyleSheet(Url.WidgetContent("assets/css/bootstrap.min.css"), "head", false)
 @Html.StyleSheet(Url.WidgetContent("assets/css/bootstrap-theme.min.css"), "head", false)
 @Html.StyleSheet(Url.WidgetContent("assets/css/mc-styles.css"), "head", false)
 
-<div class="mc-icons-wrapper multicard container-fluid @Model.CssClass" style="background-color: @Model.BackgroundColor!important">
+<div class="o-multicard o-multicard--icons container-fluid @Model.CssClass" style="background-color: @Model.BackgroundColor!important">
 
     @if (!string.IsNullOrEmpty(Model.GroupHeader))
     {
         <div class="row content-padding">
             <div class="col-md-12">
-                <h2 class="heading">@Model.GroupHeader</h2>
+                <h2 class="o-multicard__heading" role="heading">@Model.GroupHeader</h2>
             </div>
         </div>
     }
 
-    <div class="row content-padding">
+    <div class="o-multicard__cardListing" role="list">
         @for (int i = 0; i < Model.Cards.Count; i++)
         {
-            string itemClass = i == 0 ? "col-md-2 col-md-offset-1" : "col-md-2";
 
-        <div class="@itemClass">
+            <div class="o-multicard__cardListing-singleCard" role="listitem">
 
-            @if (!string.IsNullOrEmpty(@Model.Cards[i].SelectedSizeUrl))
-            {
-                if (i == (Model.Cards.Count - 1))
+                @if (!string.IsNullOrEmpty(@Model.Cards[i].SelectedSizeUrl))
                 {
-                    <div class="last-icon-height">
-                        <img class="icons" src="@Model.Cards[i].SelectedSizeUrl" title="@Model.Cards[i].ImageTitle" alt="@Model.Cards[i].ImageAlternativeText">
-                    </div>
-                }
-                else
-                {
-                    <div class="icon-border">
-                        <img class="icons" src="@Model.Cards[i].SelectedSizeUrl" title="@Model.Cards[i].ImageTitle" alt="@Model.Cards[i].ImageAlternativeText">
+                    <div class="o-multicard__cardListing-singleCardIconWrap">
+                        <img class="o-multicard__cardListing-singleCardIcon" src="@Model.Cards[i].SelectedSizeUrl" title="@Model.Cards[i].ImageTitle" alt="@Model.Cards[i].ImageAlternativeText" role="img">
                     </div>
                 }
 
-            }
+                <p class="o-multicard__cardListing-singleCardContent">@Model.Cards[i].ActionName</p>
 
-            <p class="content">@Model.Cards[i].ActionName</p>
-
-        </div>
+            </div>
         }
     </div>
 
     @if (!string.IsNullOrEmpty(Model.GroupActionName) && !string.IsNullOrEmpty(Model.GroupActionUrl))
     {
-        <div class="row content-padding">
-            <div class="col-md-4 col-md-offset-4">
-                <a class="btn btn-lg action-btn" href="@Html.UrlSanitize(Model.GroupActionUrl)" role="button">
-                    <span class="action-text">@Model.GroupActionName</span>
-                </a>
-            </div>
-        </div>
+        <a class="o-multicard__actionBtn btn btn-lg" href="@Html.UrlSanitize(Model.GroupActionUrl)" role="button">
+            @Model.GroupActionName
+        </a>
     }
 </div>

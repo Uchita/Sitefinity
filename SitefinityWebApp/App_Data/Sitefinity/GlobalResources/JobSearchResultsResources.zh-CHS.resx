@@ -137,24 +137,4 @@
     <comment></comment>
     <lastModified>2019-05-22T05:26:08</lastModified>
   </data>
-  <data name="SortByRelevance">
-    <value>排序依据 - 相关性</value>
-    <comment></comment>
-    <lastModified>2019-07-05T02:17:59</lastModified>
-  </data>
-  <data name="SortBySalHighToLow">
-    <value>排序方式 - 工资从高到低</value>
-    <comment></comment>
-    <lastModified>2019-07-05T02:18:10</lastModified>
-  </data>
-  <data name="SortBySalLowToHigh">
-    <value>排序方式 - 工资从低到高</value>
-    <comment></comment>
-    <lastModified>2019-07-05T02:18:23</lastModified>
-  </data>
-  <data name="ViewAllJobs">
-    <value>查看所有工作</value>
-    <comment></comment>
-    <lastModified>2019-07-17T00:01:37</lastModified>
-  </data>
 </root>

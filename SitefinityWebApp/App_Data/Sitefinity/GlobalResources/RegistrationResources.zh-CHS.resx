@@ -137,9 +137,4 @@
     <comment></comment>
     <lastModified>2019-05-09T22:32:30</lastModified>
   </data>
-  <data name="passwordHaveAcc">
-    <value>输入您的密码</value>
-    <comment>Enter your password placeholder</comment>
-    <lastModified>2019-07-17T01:17:12</lastModified>
-  </data>
 </root>

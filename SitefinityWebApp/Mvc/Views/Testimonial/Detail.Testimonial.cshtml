@@ -1,0 +1,100 @@
+﻿@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+
+@using System.Collections;
+@using System.Linq;
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Localization;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Pages.Model;
+
+<div class="o-singletestimonial @Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
+    <h3 class="o-singletestimonial__heading" @Html.InlineEditingFieldAttributes("Title", "ShortText") role="heading">
+        @Model.Item.Fields.Title
+    </h3>
+    <div class="o-singletestimonial__meta">
+        @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")
+        @Html.CommentsCount("", @Model.Item.DataItem)
+    </div>
+
+
+    @*Start Quote field*@
+    <blockquote class="o-singletestimonial__quote" @Html.InlineEditingFieldAttributes("Quote", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Quote)</blockquote>
+    @*End Quote field*@
+
+    @*Start Name field*@
+    <div class="o-singletestimonial__body">
+        <dl>
+            <dt> Name :</dt>
+            <dd @Html.InlineEditingFieldAttributes("Name", "ShortText")>@Model.Item.Fields.Name</dd>
+            @*End Name field*@
+
+            @*Start Role field*@
+            <dt> Role :</dt>
+            <dd @Html.InlineEditingFieldAttributes("Role", "ShortText")>@Model.Item.Fields.Role</dd>
+            @*End Role field*@
+
+            @*Start Company field*@
+            <dt> Company :</dt>
+            <dd @Html.InlineEditingFieldAttributes("Company", "ShortText")>@Model.Item.Fields.Company</dd>
+            @*End Company field*@
+
+            @if (Model.Item.Fields.QuoteDate != null)
+            {
+                @*Start QuoteDate field*@
+                <dt> Quoted date :</dt>
+
+                <dd @Html.InlineEditingFieldAttributes("QuoteDate", "DateTime")>
+                    @Model.Item.GetDateTime("QuoteDate", "MMM d, yyyy, HH:mm tt")
+                </dd>
+            }
+            @*End QuoteDate field*@
+
+
+            @if (Model.Item.Fields.testimonialtags != null)
+            {
+                @*Start testimonialtags field*@
+                <dt> Testimonial tags :</dt>
+
+                <dd @Html.InlineEditingFieldAttributes("testimonialtags", "FlatTaxon")>
+                    @foreach (var taxon in Model.Item.GetFlatTaxons("testimonialtags"))
+                    {
+                        <span>@taxon.Title.ToString()</span>
+                    }
+                </dd>
+            }
+        </dl>
+    </div>
+    @*End testimonialtags field*@
+
+    @*Start Image field*@
+    @if (Model.Item.Fields.Image != null)
+    {
+        <div class="o-singletestimonial__image">
+            <img src='@Model.Item.Fields.Image.Fields.MediaUrl' alt='@Model.Item.Fields.Image.Fields.AlternativeText' title='@Model.Item.Fields.Image.Fields.Title' role="img" />
+        </div>
+    }
+    @*End Image field*@
+
+
+    @{
+        if (Model.EnableSocialSharing)
+        {
+            <div class="o-singletestimonial__socialshare">
+                @{
+                    var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
+                    @Html.SocialShareOptions(item);
+                }
+            </div>
+        }
+    }
+
+    <div class="o-singletestimonial__comments">
+        @Html.CommentsList(@Model.Item.DataItem)
+    </div>
+</div>

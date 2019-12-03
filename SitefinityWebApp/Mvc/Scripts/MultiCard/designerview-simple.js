@@ -8,31 +8,73 @@
     simpleViewModule.controller('SimpleCtrl', ['$scope', 'propertyService', function ($scope, propertyService) {
         $scope.feedback.showLoadingIndicator = true;
         $scope.showAddCardPopup = false;
+        $scope.showEditCardPopup = false;
+
         $scope.currentCard = {};
         $scope.currentCardSelectedImage = null;
+        
 
         $scope.addCard = function () {
+            $scope.showEditCardPopup = false;
             if ($scope.showAddCardPopup)
                 return;
 
             $scope.initializeCardState();
 
             $scope.showAddCardPopup = true;
-        }
+
+        };
+        $scope.editCardDetail = function (index) {
+         
+            if ($scope.showAddCardPopup)
+                $scope.showAddCardPopup = false;
+
+            if (!$scope.showEditCardPopup)
+                $scope.showEditCardPopup = true;
+
+            $scope.editCardState(index);
+
+           
+
+
+
+        };
         
         $scope.doneAdding = function () {
+
             $scope.cards.push(objCopy($scope.currentCard));
-
             $scope.initializeCardState();
-
             $scope.showAddCardPopup = false;
-        }
+        };
+
+        $scope.doneEditing = function () {
+            
+        
+            var index = $scope.cards.indexOf($scope.editCard);
+            $scope.cards[index].Heading = $scope.editCard.Heading;
+            $scope.cards[index].Description = $scope.editCard.Description;
+            $scope.cards[index].LinkedPageId = $scope.editCard.LinkedPageId;
+            $scope.cards[index].LinkedUrl = $scope.editCard.LinkedUrl;
+
+                            $scope.currentCard.IsPageSelectMode = true;
+            $scope.cards[index].ActionName = $scope.editCard.ActionName;
+            $scope.cards[index].ImageId = $scope.editCard.ImageId;
+            $scope.cards[index].ImageProviderName = $scope.editCard.ImageProviderName;
+
+                            $scope.cards[index].currentCardSelectedImage = $scope.currentCardSelectedImage;
+                
+                $scope.showEditCardPopup = false;  
+        };
 
         $scope.cancelAdding = function () {
             $scope.initializeCardState();
 
             $scope.showAddCardPopup = false;
-        }
+        };
+        $scope.cancelEditing = function () {
+            $scope.initializeCardState();
+            $scope.showEditCardPopup = false;
+        };
 
         $scope.removeItem = function (index) {
             $scope.cards.splice(index, 1);
@@ -55,7 +97,13 @@
             $scope.currentCard.ImageProviderName = null;
 
             $scope.currentCardSelectedImage = null;
-        }
+        };
+
+        $scope.editCardState = function (index)
+        {
+            $scope.editCard = $scope.cards[index];
+            
+        };
 
         $scope.sortableOptions = {
             hint: function (element) {

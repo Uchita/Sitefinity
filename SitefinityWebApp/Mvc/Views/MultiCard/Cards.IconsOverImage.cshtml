@@ -6,33 +6,31 @@
 @Html.StyleSheet(Url.WidgetContent("assets/css/bootstrap-theme.min.css"), "head", false)
 @Html.StyleSheet(Url.WidgetContent("assets/css/mc-styles.css"), "head", false)
 
-<div class="multicard icons-over-image-wrapper @Model.CssClass" style="background-color: @Model.BackgroundColor!important">
+<div class="o-multicard o-multicard--iconOverImage @Model.CssClass" style="background-color: @Model.BackgroundColor!important">
 
     @if (!string.IsNullOrEmpty(@Model.SelectedSizeUrl))
     {
-        <img class="background-image img-responsive" src="@Model.SelectedSizeUrl" title="@Model.ImageTitle" alt="@Model.ImageAlternativeText">
+        <img class="background-image img-responsive" src="@Model.SelectedSizeUrl" title="@Model.ImageTitle" alt="@Model.ImageAlternativeText" role="img">
     }
 
     <div class="container-fluid">
-        <div class="row">
+        <div class="o-multicard__cardListing" role="list">
             @for (int i = 0; i < Model.Cards.Count; i++)
             {
-                <div class="col-md-4">
+                <div class="o-multicard__cardListing-singleCard" role="listitem">
                     @if (!string.IsNullOrEmpty(@Model.Cards[i].SelectedSizeUrl))
                     {
-                        <img class="icons" src="@Model.Cards[i].SelectedSizeUrl" title="@Model.Cards[i].ImageTitle" alt="@Model.Cards[i].ImageAlternativeText">
+                        <img class="o-multicard__cardListing-singleCardIcon" src="@Model.Cards[i].SelectedSizeUrl" title="@Model.Cards[i].ImageTitle" alt="@Model.Cards[i].ImageAlternativeText" role="img">
                     }
 
                     @if (!string.IsNullOrEmpty(@Model.Cards[i].ActionName))
                     {
-                        <p class="paragaph-text">@Model.Cards[i].ActionName</p>
+                        <p class="o-multicard__cardListing-singleCardLabel">@Model.Cards[i].ActionName</p>
                     }
-
-                    <hr>
 
                     @if (!string.IsNullOrEmpty(@Model.Cards[i].Description))
                     {
-                        <p class="content">@Model.Cards[i].Description</p>
+                        <p class="o-multicard__cardListing-singleCardContent">@Model.Cards[i].Description</p>
                     }
                 </div>
             }

@@ -343,6 +343,17 @@ namespace SitefinityWebApp.Mvc.StringResources
                 return this["AddCard"];
             }
         }
+        [ResourceEntry("EditCard",
+           Value = "Edit card",
+           Description = "phrase: Edit card",
+           LastModified = "2019/07/26")]
+        public string EditCard
+        {
+            get
+            {
+                return this["EditCard"];
+            }
+        }
 
         [ResourceEntry("DoneAdding",
             Value = "Done adding",
@@ -355,6 +366,19 @@ namespace SitefinityWebApp.Mvc.StringResources
                 return this["DoneAdding"];
             }
         }
+
+        [ResourceEntry("DoneEditing",
+            Value = "Done Editing",
+            Description = "phrase: Done Editing",
+            LastModified = "2019/07/29")]
+        public string DoneEditing
+        {
+            get
+            {
+                return this["DoneEditing"];
+            }
+        }
+
 
         [ResourceEntry("Cancel",
             Value = "Cancel",

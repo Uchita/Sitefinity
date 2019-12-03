@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LoginFormLogInLegendHeader">
-    <value>Sign in to your profile</value>
+    <value>Login with your provided credentials</value>
     <comment>phrase : Log in</comment>
-    <lastModified>2019-02-19T17:46:36</lastModified>
+    <lastModified>2019-06-14T06:48:09</lastModified>
   </data>
   <data name="NotRegisteredYet">
     <value>Don't have an account?</value>
@@ -161,5 +161,15 @@
         &lt;/p&gt;</value>
     <comment>Message paragraph when already logged in</comment>
     <lastModified>2019-04-30T08:26:56</lastModified>
+  </data>
+  <data name="Email">
+    <value>Email*</value>
+    <comment>phrase: Email</comment>
+    <lastModified>2019-06-14T06:49:06</lastModified>
+  </data>
+  <data name="Password">
+    <value>Password*</value>
+    <comment>phrase: Password</comment>
+    <lastModified>2019-06-14T06:49:39</lastModified>
   </data>
 </root>

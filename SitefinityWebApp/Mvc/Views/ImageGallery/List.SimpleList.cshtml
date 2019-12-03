@@ -1,0 +1,31 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Frontend.Media.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Frontend.Media.Mvc.Models.ImageGallery;
+<div class="o-imagegallery o-imagegallery--simple @Model.CssClass">
+    <ul class="o-imagegallery__imagelist" aria-label="@Html.Resource("ImageGallery")" role="list">
+        @foreach (var item in Model.Items)
+        {
+            var thumbnailViewModel = (ThumbnailViewModel)item;
+            <li class="o-imagegallery__imagelistitem" role="listitem">
+                <figure class="o-imagegallery__imagelistitemwrp" aria-label="@(string.IsNullOrEmpty(item.Fields.Description) ? item.Fields.Title : item.Fields.Description)">
+                    <img class="o-imagegallery__imagelistimg" src="@(thumbnailViewModel.ThumbnailUrl)" alt='@System.Text.RegularExpressions.Regex.Replace(item.Fields.AlternativeText, @"[^\w\d_-]", "")'
+                         @Html.GetWidthAttributeIfExists(thumbnailViewModel.Width)
+                         @Html.GetHeightAttributeIfExists(thumbnailViewModel.Height) />
+                </figure>
+            </li>
+        }
+    </ul>
+</div>
+@if (Model.ShowPager)
+{
+    @Html.Action("Index", "ContentPager", new
+       {
+           currentPage = Model.CurrentPage,
+           totalPagesCount = Model.TotalPagesCount.Value,
+           redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
+       })
+}

@@ -42,11 +42,12 @@
 <br />
 
 <h3>INSTAGRAM SETTINGS</h3><br />
-<sitefinity:TextField ID="instagramClientIdToken" runat="server" DataFieldName="InstagramClientIdToken" Title="Please Enter Instagram Client Id Token" CssClass="sfSettingsSection" DisplayMode="Write" />
+<p><a href="https://www.instagram.com/developer/clients/register/"><strong>Register a client</strong> <em>at www.instagram.com</em></a></p>
+<sitefinity:TextField ID="instagramClientIdToken" runat="server" DataFieldName="InstagramClientIdToken" Title="Please Enter Instagram Client Id" CssClass="sfSettingsSection" DisplayMode="Write" />
 <sitefinity:TextField ID="instagramClientSecret" runat="server" DataFieldName="InstagramClientSecret" Title="Please Enter Instagram Client Secret" CssClass="sfSettingsSection" DisplayMode="Write" />
 <sitefinity:TextField ID="instagramAccessToken" runat="server" DataFieldName="InstagramAccessToken" Title="Please Enter Instagram Access Token" CssClass="sfSettingsSection" DisplayMode="Write" />
 <sitefinity:TextField ID="instagramExpiration" runat="server" DataFieldName="InstagramExpiration" Title="Please Enter Instagram Expiration" CssClass="sfSettingsSection" DisplayMode="Write" />
-<sitefinity:TextField ID="instagramMaxItems" runat="server" DataFieldName="InstagramMaxItems" Title="Please Enter Instagram Max Items" CssClass="sfSettingsSection" DisplayMode="Write" />
+<sitefinity:TextField ID="instagramMaxItems" runat="server" DataFieldName="InstagramMaxItems" Title="Please Enter Instagram Max Items (no longer used)" CssClass="sfSettingsSection" DisplayMode="Write" />
 <br />
 
 <h3>AMAZON S3 BUCKET SETTINGS</h3><br />

@@ -7,7 +7,7 @@
     <!-- Critical CSS -->
     <style>
         
-        .sf-loader.-home {
+        .sf-app .sf-loader.-home {
     position: absolute;
     top: 0;
     left: 0;
@@ -16,13 +16,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #fff;
+    z-index: 100000;
 }
-.sf-loader.-home .loader__content {
+.sf-app .sf-loader.-home .sf-loader__content {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.sf-loader.-home .loader__rect {
+.sf-app .sf-loader.-home .sf-loader__rect {
     margin-right: 1px;
     width: 10px;
     height: 10px;
@@ -31,13 +33,13 @@
     opacity: 0;
     animation: indexLoader 1s infinite ease-in-out;
 }
-.sf-loader.-home .loader__rect.-first {
+.sf-app .sf-loader.-home .sf-loader__rect.-first {
     animation-delay: 2s;
 }
-.sf-loader.-home .loader__rect.-second {
+.sf-app .sf-loader.-home .sf-loader__rect.-second {
     animation-delay: 2.1s;
 }
-.sf-loader.-home .loader__rect.-third {
+.sf-app .sf-loader.-home .sf-loader__rect.-third {
     animation-delay: 2.1s;
 }
 @keyframes indexLoader {
@@ -54,11 +56,8 @@
 
         
     </style>
-    <!--Fonts-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+
     <!--Icons-->
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript" charset="utf-8" async="" src="https://platform.twitter.com/widgets.js"></script>
      
         <!-- Configured Head Tags  -->
@@ -81,16 +80,17 @@
 	<meta name="msapplication-square150x150logo" content="/adminapp/./assets/icons/mstile-150x150.png">
 	<meta name="msapplication-square310x310logo" content="/adminapp/./assets/icons/mstile-310x310.png">
     
+    
 </head>
     <!-- 3. Display the application -->
 <body>
-    <sf-app>
+    <sf-app class="sf-app">
         <!-- Loading Angular app content here (All inside sf-app will be replaced once Angular app is instantiated) ... -->
         <div class="sf-loader -home">
-            <div class="loader__content">
-                <span class="loader__rect -first"></span>
-                <span class="loader__rect -second"></span>
-                <span class="loader__rect -third"></span>
+            <div class="sf-loader__content">
+                <span class="sf-loader__rect -first"></span>
+                <span class="sf-loader__rect -second"></span>
+                <span class="sf-loader__rect -third"></span>
             </div>
         </div>
     </sf-app>
@@ -103,6 +103,6 @@
     
 
     <!--vendor + app bundles-->
-<script type="text/javascript" src="/adminapp/vendors.127845b1364fd7e4c170.bundle.js"></script><script type="text/javascript" src="/adminapp/app.53b94a0b529df820dd20.bundle.js"></script></body>
+<script type="text/javascript" src="/adminapp/vendors.9558ac54dad3aa557612.bundle.js"></script><script type="text/javascript" src="/adminapp/app.d31ab50cda7344a204fd.bundle.js"></script></body>
 
 </html>

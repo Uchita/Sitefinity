@@ -236,9 +236,9 @@ https://&lt;%\s*SiteName\s*%&gt;</value>
     <lastModified>2019-04-30T07:33:12</lastModified>
   </data>
   <data name="PrivacyPolicyLbl">
-    <value>I agree to Hudson's Privacy Policy</value>
+    <value>I agree to THRONSBERG's Privacy Policy</value>
     <comment>Privacy policy message label</comment>
-    <lastModified>2019-05-14T06:04:37</lastModified>
+    <lastModified>2019-06-21T00:32:29</lastModified>
   </data>
   <data name="QuickLinks">
     <value>QUICK LINKS</value>
@@ -266,9 +266,9 @@ https://&lt;%\s*SiteName\s*%&gt;</value>
     <lastModified>2019-05-06T22:32:59</lastModified>
   </data>
   <data name="SaveThisJob">
-    <value>Save this job</value>
+    <value>Save this opportunity</value>
     <comment>Save this job's label in job detail page</comment>
-    <lastModified>2019-05-06T22:35:45</lastModified>
+    <lastModified>2019-06-11T01:58:29</lastModified>
   </data>
   <data name="NoConsultantMacth">
     <value>There are no consultant matching with your search filter.</value>
@@ -316,63 +316,17 @@ https://&lt;%\s*SiteName\s*%&gt;</value>
     <lastModified>2019-05-10T00:40:06</lastModified>
   </data>
   <data name="JobApplicationPrivacyPolicy">
-    <value>I agree to Hudson's &lt;a href="/en/privacy-policy" target="_blank"&gt;Privacy Policy&lt;/a&gt;</value>
+    <value>I agree to Hudson's &lt;a href="/privacy-policy" target="_blank"&gt;Privacy Policy&lt;/a&gt;</value>
     <comment></comment>
-    <lastModified>2019-07-17T04:31:16</lastModified>
+    <lastModified>2019-05-13T05:59:34</lastModified>
   </data>
-  <data name="JxtJobSaved">
-    <value>Job saved</value>
+  <data name="LoginFormLogInLegendHeaderExtProvider">
+    <value>Login / Register via LinkedIn</value>
     <comment></comment>
-    <lastModified>2019-07-10T23:41:43</lastModified>
+    <lastModified>2019-06-12T05:59:33</lastModified>
   </data>
-  <data name="ViewAllJobs">
-    <value>View All Jobs</value>
-    <comment></comment>
-    <lastModified>2019-07-17T00:05:27</lastModified>
-  </data>
-  <data name="pageLimitLabel">
-    <value>Items/page</value>
-    <comment>item per page</comment>
-    <lastModified>2019-07-17T00:29:42</lastModified>
-  </data>
-  <data name="JxtNoJobConsultant">
-    <value>There are no jobs posted by</value>
-    <comment>No jobs found message for individual consultant</comment>
-    <lastModified>2019-07-17T02:12:01</lastModified>
-  </data>
-  <data name="applySocialHeaderTitle">
-    <value>Apply with</value>
-    <comment>apply with social provider widget header title</comment>
-    <lastModified>2019-07-18T23:39:03</lastModified>
-  </data>
-  <data name="dividerLabel">
-    <value>or</value>
-    <comment>divider label</comment>
-    <lastModified>2019-07-18T23:41:24</lastModified>
-  </data>
-  <data name="applyInfo">
-    <value>Please click the button below to apply.</value>
-    <comment>Linkedin apply module information to click through</comment>
-    <lastModified>2019-07-18T23:44:22</lastModified>
-  </data>
-  <data name="relatedArticles">
-    <value>Related articles</value>
-    <comment>Related articles title</comment>
-    <lastModified>2019-07-29T05:48:22</lastModified>
-  </data>
-  <data name="DefaultAuthor">
-    <value>Hudson</value>
-    <comment>Hudson name</comment>
-    <lastModified>2019-07-29T06:25:21</lastModified>
-  </data>
-  <data name="ViewMore">
-    <value>View more</value>
-    <comment>View more</comment>
-    <lastModified>2019-07-29T06:44:54</lastModified>
-  </data>
-  <data name="NoArticleMsg">
-    <value>There are no articles posted for this category yet!</value>
-    <comment>There are no articles posted for this category yet!</comment>
-    <lastModified>2019-07-29T07:20:05</lastModified>
+    <data name="JxtJobSaved" xml:space="preserve">
+    <value>Job Saved</value>
+    <comment>Job Saved</comment>
   </data>
 </root>

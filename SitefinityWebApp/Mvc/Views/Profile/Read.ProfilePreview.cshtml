@@ -1,0 +1,23 @@
+﻿@model Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Profile.ProfilePreviewViewModel
+
+@using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Profile;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using JXTNext.Sitefinity.Common.Mvc.Helpers;
+
+<div class="o-profile @Model.CssClass">
+    <div class="o-profile__img">
+        <img src="@Model.AvatarImageUrl" alt="@Model.UserName" />
+    </div>
+
+    <div class="o-profile__body">
+        @Html.DynamicTag("h3", Model.DisplayName, "o-profile__displayname")
+        @Html.DynamicTag("small", "(" + Model.Nickname + ")", "o-profile__nickname")
+        @Html.DynamicTag("p", Model.Email, "o-profile__email")
+        @Html.DynamicTag("p", Model.About, "o-profile__about")
+
+        @if (Model.CanEdit && ViewBag.Mode == ViewMode.Both)
+        {
+            @Html.ActionLink(Html.Resource("EditProfileLink"), "EditProfile");
+        }
+    </div>
+</div>

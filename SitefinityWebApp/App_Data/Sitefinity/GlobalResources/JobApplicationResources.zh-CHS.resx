@@ -122,9 +122,4 @@
     <comment></comment>
     <lastModified>2019-05-06T05:54:29</lastModified>
   </data>
-  <data name="selectResume">
-    <value>选择你的简历</value>
-    <comment>Select your resume label when logged in</comment>
-    <lastModified>2019-07-11T04:01:41</lastModified>
-  </data>
 </root>

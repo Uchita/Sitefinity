@@ -147,19 +147,4 @@
     <comment></comment>
     <lastModified>2019-05-08T13:42:04</lastModified>
   </data>
-  <data name="AlreadyLoggedInMessage">
-    <value>&lt;p&gt;
-            有很多可以发现，所以享受你的旅程！
-        &lt;/p&gt;
-        &lt;p&gt;
-            &lt;a href="/求职者/职位公告板"&gt;求职&lt;/a&gt;&amp;nbsp;&amp;nbsp;|&amp;nbsp;&amp;nbsp;&lt;a href="/"&gt;回到家&lt;/a&gt;
-        &lt;/p&gt;</value>
-    <comment></comment>
-    <lastModified>2019-07-09T01:13:53</lastModified>
-  </data>
-  <data name="AlreadyLoggedIn">
-    <value>您已经登录</value>
-    <comment></comment>
-    <lastModified>2019-07-09T01:14:17</lastModified>
-  </data>
 </root>

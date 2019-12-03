@@ -1,0 +1,88 @@
+@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.RelatedData;
+@using JXTNext.Sitefinity.Media.Mvc.Helpers;
+
+@*Add scripts and stylesheets*@
+@Html.Script(Url.WidgetContent("Mvc/Scripts/Person/person-carousel.js"), "bottom", true)
+
+<div class="c-person-list @Model.CssClass">
+    @if (Model.Items.Count() > 0)
+    {
+    <div class="c-person-slider">
+        @{
+        var currentCnt = 0;
+        foreach (var item in Model.Items)
+        {
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+        // Get the feature image
+        var profileImage = new Image();
+        if (item.Fields.Images != null)
+        {
+        profileImage = item.DataItem.GetRelatedItems<Image>
+            ("Images").FirstOrDefault();
+            }
+
+            <article class="c-person-item" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)item.Fields.Id)>
+                <div class="c-person-item__inner-wrp">
+                    <div class="c-person-item__img-wrp">
+                        @*Start feature image*@
+                        @if (profileImage != null)
+                        {
+                        @Html.ImgTag(profileImage, (string)item.Fields.Name, "pers-list").WithCssClass("c-person-item__img")
+                        }
+                        @*End feature image*@
+                    </div>
+                    <div class="social">
+                        <ul class="o-contact-info o-contact-info--profile-list">
+                            @if (item.Fields.Mobile != null && !string.IsNullOrWhiteSpace(item.Fields.Mobile))
+                            {
+                            <li class="o-contact-info__item o-contact-info__item--mobile">
+                                @*<span class="o-contact-info__lbl">@Html.Resource("Mobile", "JxtAuthoringResources"):</span>*@
+                                <a class="o-contact-info__lnk fas fa-phone-alt" target="_blank" href="@string.Format(" tel:{0}", item.Fields.Mobile)" @Html.InlineEditingFieldAttributes("Mobile", "ShortText" ) title="@item.Fields.Mobile"></a>
+                            </li>
+                            }
+                            @if (item.Fields.EmailAddress != null && !string.IsNullOrWhiteSpace(item.Fields.EmailAddress))
+                            {
+                            <li class="o-contact-info__item o-contact-info__item--email">
+                                @*<span class="o-contact-info__lbl">@Html.Resource("Email", "JxtAuthoringResources"):</span>*@
+                                <a class="o-contact-info__lnk fas fa-envelope" target="_blank" href="@string.Format(" mailto:{0}", item.Fields.EmailAddress)" @Html.InlineEditingFieldAttributes("EmailAddress", "ShortText" ) title="@item.Fields.EmailAddress"></a>
+                            </li>
+                            }
+                            @if (item.Fields.LinkedInProfileName != null && !string.IsNullOrWhiteSpace(item.Fields.LinkedInProfileName))
+                            {
+                            <li class="o-contact-info__item o-contact-info__item--linkedin">
+                                @*<span class="o-contact-info__lbl">@Html.Resource("LinkedIn", "JxtAuthoringResources"):</span>*@
+                                <a class="o-contact-info__lnk fab fa-linkedin-in" target="_blank" href="@string.Format(" https://www.linkedin.com/in/{0}/", item.Fields.LinkedInProfileName)" @Html.InlineEditingFieldAttributes("LinkedInProfileName", "ShortText") title="@item.Fields.LinkedInProfileName"></a>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="c-person-item__name">
+                    <a @Html.InlineEditingFieldAttributes("Name", "ShortText" ) href="@navigateUrl">
+                        @item.Fields.Name
+                    </a>
+                </h3>
+            </article>
+            }
+            }
+    </div>
+    }
+
+    @if (Model.ShowPager)
+    {
+    @Html.Action("Index", "ContentPager", new
+    {
+    currentPage = Model.CurrentPage,
+    totalPagesCount = Model.TotalPagesCount.Value,
+    redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
+    })
+    }
+</div>

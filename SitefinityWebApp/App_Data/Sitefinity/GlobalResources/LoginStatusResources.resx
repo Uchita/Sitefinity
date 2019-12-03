@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="RegisterNow">
-    <value>REGISTER</value>
+    <value>Register</value>
     <comment>phrase : Register now</comment>
     <lastModified>2015-03-06T00:00:00</lastModified>
   </data>
   <data name="Login">
-    <value>SIGN IN</value>
+    <value>Sign in</value>
     <comment>phrase : Login</comment>
     <lastModified>2019-02-19T17:58:44</lastModified>
   </data>

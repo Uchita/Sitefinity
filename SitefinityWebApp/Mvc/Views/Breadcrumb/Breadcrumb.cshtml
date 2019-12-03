@@ -1,0 +1,23 @@
+﻿@model Telerik.Sitefinity.Frontend.Navigation.Mvc.Models.Breadcrumb.BreadcrumbViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+<div class="o-breadcrumb @Model.CssClass">
+    <nav class="o-breadcrumb__nav" aria-label="@Html.Resource("BreadcrumbShowFullPath")" role="navigation">
+        <ol class="o-breadcrumb__navlist" role="list">
+            @for (int i = 0; i < Model.SiteMapNodes.Count; i++)
+            {
+                var node = Model.SiteMapNodes[i];
+
+                if (i == Model.SiteMapNodes.Count - 1 && Model.ShowCurrentPageInTheEnd)
+                {
+                    <li class="o-breadcrumb__navlistitem active" aria-current="page" role="listitem">@node.Title</li>
+                }
+                else
+                {
+                    <li class="o-breadcrumb__navlistitem" role="listitem"><a href="@node.Url" role="link">@node.Title </a></li>
+                }
+            }
+        </ol>
+    </nav>
+</div>

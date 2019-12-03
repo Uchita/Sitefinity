@@ -50,9 +50,6 @@ namespace SitefinityWebApp
 
                 List<string> locationFormats = new List<string>();
 
-                //paths for resource packages
-                locationFormats.AddRange(GetResourcePackagesNameViewsRendering());
-
                 //paths for external frontend assemblies
                 locationFormats.AddRange(GetAssemblyNamesForPartialViewsRendering());
 
@@ -60,22 +57,7 @@ namespace SitefinityWebApp
             }
         }
 
-        private List<string> GetResourcePackagesNameViewsRendering()
-        {
-
-            var root = System.Web.HttpContext.Current.Server.MapPath("~\\ResourcePackages");
-
-            var allDirs = System.IO.Directory.GetDirectories(root);
-            List<string> viewPaths = new List<string>();
-
-            foreach (string p in allDirs)
-            {
-                viewPaths.Add("~/ResourcePackages/" + p + "/Mvc/Views/{1}/{0}.cshtml");
-                viewPaths.Add("~/ResourcePackages/" + p + "/Mvc/Views/Shared/{0}.cshtml");
-            }
-
-            return viewPaths;
-        }
+        
 
         /// <summary>
         /// This is required for any Partial views rendering in external frontend assemblies

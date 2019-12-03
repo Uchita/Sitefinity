@@ -1,0 +1,42 @@
+@model JXTNext.Sitefinity.Widgets.Feather.Mvc.Models.Card.JXTNextCardViewModel
+@using JXTNext.Sitefinity.Media.Mvc.Helpers;
+@using JXTNext.Sitefinity.Common.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+<div class="o-card o-card--cta @Model.CssClass">
+    
+    @if (!string.IsNullOrEmpty(Model.ActionUrl))
+    {
+        <a class="o-card__wrap" href="@Html.UrlSanitize(Model.ActionUrl)" role="button" title="@Model.Heading">
+
+            @if (!string.IsNullOrEmpty(Model.SelectedSizeUrl)){
+                <div class="o-card__img"><img src="@Model.SelectedSizeUrl" alt="@Model.Heading" /></div>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.Heading)){
+                @Html.DynamicTag("h4", Model.Heading, "o-card__hdg")
+            }
+
+            @if (!string.IsNullOrEmpty(Model.Description)){
+                @Html.DynamicTag("p", Model.Description, "o-card__desc")
+            }
+        </a>
+    }
+    else{
+        <div class="o-card__wrap">
+
+            @if (!string.IsNullOrEmpty(Model.SelectedSizeUrl)){
+                <div class="o-card__img"><img src="@Model.SelectedSizeUrl" alt="@Model.Heading" /></div>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.Heading)){
+                @Html.DynamicTag("h4", Model.Heading, "o-card__hdg")
+            }
+
+            @if (!string.IsNullOrEmpty(Model.Description)){
+                @Html.DynamicTag("p", Model.Description, "o-card__desc")
+            }
+        </div>
+    }
+  
+</div>

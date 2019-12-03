@@ -1,5 +1,4 @@
 ﻿using System;
-using JXTNext.Telemetry;
 using SitefinityWebApp.Libraries;
 using SitefinityWebApp.Pages;
 using SfImage = Telerik.Sitefinity.Libraries.Model.Image;
@@ -8,6 +7,7 @@ namespace SitefinityWebApp.Mvc.Models.MultiCard
 {
     public class CardDetails
     {
+        public string Id { get; set; }
         public string Heading { get; set; }
 
         public string Description { get; set; }
@@ -26,30 +26,27 @@ namespace SitefinityWebApp.Mvc.Models.MultiCard
 
         public CardDetailsView ToViewModel()
         {
-            using (new StatsDPerformanceMeasure("CardDetails.ToViewModel"))
+            var cardDetailsView = new CardDetailsView
             {
-                var cardDetailsView = new CardDetailsView
-                {
-                    Heading = this.Heading,
-                    Description = this.Description,
-                    ActionName = this.ActionName,
-                    ActionUrl = "#"//SfPagesHelper.GetLinkedUrl(this.LinkedPageId, this.LinkedUrl, this.IsPageSelectMode)
-                };
+                Heading = this.Heading,
+                Description = this.Description,
+                ActionName = this.ActionName,
+                ActionUrl = "#"//SfPagesHelper.GetLinkedUrl(this.LinkedPageId, this.LinkedUrl, this.IsPageSelectMode)
+            };
 
-                SfImage image;
-                if (this.ImageId != Guid.Empty)
+            SfImage image;
+            if (this.ImageId != Guid.Empty)
+            {
+                image = SfImageHelper.GetImage(this.ImageId, this.ImageProviderName);
+                if (image != null)
                 {
-                    image = SfImageHelper.GetImage(this.ImageId, this.ImageProviderName); ;
-                    if (image != null)
-                    {
-                        cardDetailsView.SelectedSizeUrl = SfImageHelper.GetSelectedSizeUrl(image);
-                        cardDetailsView.ImageAlternativeText = image.AlternativeText;
-                        cardDetailsView.ImageTitle = image.Title;
-                    }
+                    cardDetailsView.SelectedSizeUrl = SfImageHelper.GetSelectedSizeUrl(image);
+                    cardDetailsView.ImageAlternativeText = image.AlternativeText;
+                    cardDetailsView.ImageTitle = image.Title;
                 }
-
-                return cardDetailsView;
             }
+
+            return cardDetailsView;
         }
     }
 }

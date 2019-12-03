@@ -12,7 +12,6 @@ using Telerik.Sitefinity.Personalization;
 using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.Web.UI;
 using System.Linq;
-using JXTNext.Telemetry;
 using Telerik.Sitefinity.Data.ContentLinks;
 using Telerik.Sitefinity.Modules.Libraries;
 
@@ -101,22 +100,16 @@ namespace SitefinityWebApp.Mvc.Controllers
             //    return new EmptyResult();
             //}
 
-            using (new StatsDPerformanceMeasure("MultiCardController.Index"))
-            {
-                var viewModel = this.Model.GetViewModel();
+            var viewModel = this.Model.GetViewModel();
 
-                var fullTemplateName = templatePrefix + this.TemplateName;
+            var fullTemplateName = templatePrefix + this.TemplateName;
 
-                return View(fullTemplateName, viewModel);
-            }
+            return View(fullTemplateName, viewModel);
         }
 
         protected override void HandleUnknownAction(string actionName)
         {
-            using (new StatsDPerformanceMeasure("MultiCardController.HandleUnknownAction"))
-            {
-                this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
-            }
+            this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
         }
 
         #endregion

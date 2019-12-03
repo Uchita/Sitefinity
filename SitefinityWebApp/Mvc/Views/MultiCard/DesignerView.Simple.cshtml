@@ -86,11 +86,14 @@
                     <span ng-show="cards.length > 1" class="handler list-group-item-drag"></span>
                     <div>
                         <section class="row">
-                            <div class="col-md-11">
+                            <div class="col-md-8">
                                 <span class="form-control-highlight">@Html.Resource("Card") {{$index}} - {{card.Heading}}</span>
                                 @*<span ng-click="openCard(card)" class="form-control-highlight">@Html.Resource("Card") {{$index}} - {{card.Heading}}</span>*@
                             </div>
-                            <div class="col-md-1 text-right">
+                            <div class="col-md-2 text-right">
+                                <button type="button" class="btn btn-primary pull-left" ng-click="editCardDetail($index)" tabindex="-1">@Html.Resource("EditCard")</button>
+                            </div>
+                            <div class="col-md-2 text-right">
                                 <button ng-click="removeItem($index)" type="button" class="close" aria-label="Close" tabindex="-1"><span aria-hidden="true">&times;</span></button>
                             </div>
                         </section>
@@ -100,7 +103,10 @@
 
             <button type="button" class="btn btn-primary pull-left" ng-click="addCard()">@Html.Resource("AddCard")</button>
 
+
             <div ng-show="showAddCardPopup">
+                <br/>
+                <br/>
                 <div class="form-group">
                     <label for="heading-text">
                         @Html.Resource("Heading")
@@ -165,7 +171,79 @@
 
                 <button type="button" class="btn btn-primary pull-left" ng-click="doneAdding()">@Html.Resource("DoneAdding")</button>
                 <button type="button" class="btn btn-primary pull-left" ng-click="cancelAdding()">@Html.Resource("Cancel")</button>
-            
+
+            </div>
+
+            <div ng-show="showEditCardPopup">
+                <br/>
+                <br/>
+                <div class="form-group">
+                    <label for="heading-text">
+                        @Html.Resource("Heading")
+                    </label>
+                    <input id="cardId-text" type="hidden" class="form-control" ng-model="editCard.Id"/>
+                    <input id="heading-text" type="text" class="form-control" ng-model="editCard.Heading"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="description-text">@Html.Resource("Text")</label>
+                    <textarea id="description-text" class="form-control" rows="3" ng-model="editCard.Description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="image-field" class="m-top-sm">@Html.Resource("Image")</label>
+                    <sf-image-field class="sf-Media--info modal-settings modal-settings-space"
+                                    sf-model="editCard.ImageId"
+                                    sf-image="currentCardSelectedImage"
+                                    sf-provider="editCard.ImageProviderName"
+                                    id="card-image-field"
+                                    sf-media-settings="@SettingsHelpers.GetMediaSettings("Image")"
+                                    ng-if="showEditCardPopup"></sf-image-field>
+                </div>
+
+                <hr class="side-to-side">
+
+                <h5>Primary action</h5>
+
+                <div class="form-group">
+                    <label for="label-text">
+                        Label
+                    </label>
+                    <input id="label-text" type="text" ng-model="editCard.ActionName" class="form-control"/>
+                    <p class="text-muted">@Html.Resource("LearnMore")</p>
+                </div>
+
+                <div class="form-group">
+
+                    <label>Link to...</label>
+                    <div class="radio m-top-none">
+                        <label>
+                            <input type="radio" ng-model="editCard.IsPageSelectMode" ng-value="true"/>
+                            @Html.Resource("PageWithinLabel")
+                        </label>
+                        <sf-list-selector class="label-content"
+                                          id="card-page-selector"
+                                          sf-page-selector
+                                          sf-selected-item-id="editCard.LinkedPageId"
+                                          ng-if="showAddCardPopup"
+                                          ng-show="editCard.IsPageSelectMode"></sf-list-selector>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" ng-model="editCard.IsPageSelectMode" ng-value="false"/>
+                            @Html.Resource("ExternalURL")
+                        </label>
+                        <div class="label-content">
+                            <input type="text" class="form-control" ng-show="!editCard.IsPageSelectMode" ng-model="editCard.LinkedUrl"/>
+                            <p class="text-muted" ng-show="!editCard.IsPageSelectMode">@Html.Resource("ExternalURL")</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-primary pull-left" ng-click="doneEditing()" tabindex="-1">@Html.Resource("DoneEditing")</button>
+                <button type="button" class="btn btn-primary pull-left" ng-click="cancelEditing()">@Html.Resource("Cancel")</button>
+                <br/>
+                <br/>
             </div>
         </div>
 

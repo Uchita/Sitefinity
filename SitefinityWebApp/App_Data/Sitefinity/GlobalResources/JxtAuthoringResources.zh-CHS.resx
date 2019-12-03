@@ -272,29 +272,4 @@
     <comment>Salary title on job board</comment>
     <lastModified>2019-05-21T06:41:57</lastModified>
   </data>
-  <data name="JxtEnterEmailPlaceholder">
-    <value>输入电邮地址</value>
-    <comment>Enter your email address place holder on job board</comment>
-    <lastModified>2019-06-24T00:52:42</lastModified>
-  </data>
-  <data name="CreateJobAlertEmailPlaceholder">
-    <value>输入电邮地址</value>
-    <comment>Anonymus create job alert email input's placeholder on job board</comment>
-    <lastModified>2019-07-05T02:22:42</lastModified>
-  </data>
-  <data name="LastName">
-    <value>姓</value>
-    <comment></comment>
-    <lastModified>2019-07-08T00:16:41</lastModified>
-  </data>
-  <data name="PhoneNumber">
-    <value>电话号码</value>
-    <comment></comment>
-    <lastModified>2019-07-08T00:17:15</lastModified>
-  </data>
-  <data name="ViewAllJobs">
-    <value>查看所有工作</value>
-    <comment></comment>
-    <lastModified>2019-07-17T00:08:37</lastModified>
-  </data>
 </root>

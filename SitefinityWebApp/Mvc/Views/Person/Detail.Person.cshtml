@@ -1,0 +1,122 @@
+﻿@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+
+@using System.Linq;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.RelatedData;
+@using Telerik.Sitefinity.Configuration;
+@using Telerik.Sitefinity.DynamicModules.Model;
+@using JXTNext.Sitefinity.Media.Mvc.Helpers;
+@{
+    var resolveAsAbsoluteUrl = Config.Get<SystemConfig>().SiteUrlSettings.GenerateAbsoluteUrls;
+
+    Model.CssClass = string.Format("c-person--{0} {1}", Model.Item.Fields.UrlName, Model.CssClass).Trim();
+    var address = string.Empty;
+
+    var images = new List<Image>();
+    if (Model.Item.Fields.Images != null)
+    {
+        images = Model.Item.DataItem.GetRelatedItems<Image>("Images").ToList();
+    }
+    var profileImage = images.FirstOrDefault();
+    var locationItems = Model.Item.DataItem.GetRelatedItems<DynamicContent>("Locations");
+}
+<article class="c-person @Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
+    <header class="c-person__hdr">
+        @*Start primary image - remember to create a thumbnail profile*@
+        @if (profileImage != null)
+        {
+            <div class="c-person__img-wrp">
+                @Html.ImgTag(profileImage, (string)Model.Item.Fields.Name, "pers-det").WithCssClass("c-person__img")
+            </div>
+        }
+        @*End Images field*@
+        <div class="c-person__info">
+            <h1 class="c-person__name" @Html.InlineEditingFieldAttributes("Name", "ShortText")>
+                @Model.Item.Fields.Name
+            </h1>
+            <div classclass="c-person__position" @Html.InlineEditingFieldAttributes("Position", "ShortText")>
+                Model.Item.Fields.Position
+            </div>
+        </div>
+        <ul class="o-contact-info o-contact-info--person">
+            @if (address != null && !string.IsNullOrWhiteSpace(address))
+            {
+                <li class="o-contact-info__item o-contact-info__item--addr">
+                    <span class="o-contact-info__lbl">@Html.Resource("Address", "JxtAuthoringResources"):</span>
+                    <span class="o-contact-info__val">@* Need to formulate a way of constructing the address *@</span>
+                </li>
+            }
+            @if (Model.Item.Fields.DirectPhone != null && !string.IsNullOrWhiteSpace(Model.Item.Fields.DirectPhone))
+            {
+                <li class="o-contact-info__item o-contact-info__item--phone">
+                    <span class="o-contact-info__lbl">@Html.Resource("Phone", "JxtAuthoringResources"):</span>
+                    <a class="o-contact-info__lnk" target="_blank" href="@string.Format("tel:{0}", Model.Item.Fields.DirectPhone).Replace(" ","")" @Html.InlineEditingFieldAttributes("DirectPhone", "ShortText")>@Model.Item.Fields.DirectPhone</a>
+                </li>
+            }
+            @if (Model.Item.Fields.Mobile != null && !string.IsNullOrWhiteSpace(Model.Item.Fields.Mobile))
+            {
+                <li class="o-contact-info__item o-contact-info__item--mobile">
+                    <span class="o-contact-info__lbl">@Html.Resource("Mobile", "JxtAuthoringResources"):</span>
+                    <a class="o-contact-info__lnk" target="_blank" href="@string.Format("tel:{0}", Model.Item.Fields.Mobile).Replace(" ","")" @Html.InlineEditingFieldAttributes("Mobile", "ShortText")>@Model.Item.Fields.Mobile</a>
+                </li>
+            }
+            @if (Model.Item.Fields.EmailAddress != null && !string.IsNullOrWhiteSpace(Model.Item.Fields.EmailAddress))
+            {
+                <li class="o-contact-info__item o-contact-info__item--email">
+                    <span class="o-contact-info__lbl">@Html.Resource("Email", "JxtAuthoringResources"):</span>
+                    <a class="o-contact-info__lnk" target="_blank" href="@string.Format("mailto:{0}", Model.Item.Fields.EmailAddress)" @Html.InlineEditingFieldAttributes("EmailAddress", "ShortText")>@Model.Item.Fields.EmailAddress</a>
+                </li>
+            }
+        </ul>
+        <ul class="o-social-info o-social-info--person">
+            @if (Model.Item.Fields.LinkedInProfileName != null && !string.IsNullOrWhiteSpace(Model.Item.Fields.LinkedInProfileName))
+            {
+                <li class="o-social-info__item o-social-info__item--linkedin">
+                    <span class="o-social-info__lbl">@Html.Resource("LinkedIn", "JxtAuthoringResources"):</span>
+                    <a class="o-social-info__lnk o-social-info__lnk--linkedin" target="_blank" href="@string.Format("https://www.linkedin.com/in/{0}/", Model.Item.Fields.LinkedInProfileName)" @Html.InlineEditingFieldAttributes("LinkedInProfileName", "ShortText")>@Model.Item.Fields.LinkedInProfileName</a>
+                </li>
+            }
+            @if (Model.Item.Fields.TwitterUsername != null && !string.IsNullOrWhiteSpace(Model.Item.Fields.TwitterUsername))
+            {
+                <li class="o-social-info__item o-social-info__item--twitter">
+                    <span class="o-social-info__lbl">@Html.Resource("Twitter", "JxtAuthoringResources"):</span>
+                    <a class="o-social-info__lnk" target="_blank" href="@string.Format("https://twitter.com/{0}", Model.Item.Fields.TwitterUsername)" @Html.InlineEditingFieldAttributes("TwitterUsername", "ShortText")>@Model.Item.Fields.TwitterUsername</a>
+                </li>
+            }
+        </ul>
+        @Html.CommentsCount("", @Model.Item.DataItem)
+    </header>
+    @*If in inline editing mode display descrption field so it can be edited. If description field is used within the detail view remove the if below. *@
+    @if (SystemManager.IsInlineEditingMode)
+    {
+        <div class="c-person__desc" @Html.InlineEditingFieldAttributes("Description", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Description)</div>
+    }
+    <section class="c-person__profile">
+        <h2 class="c-person__profile-hdg">@Html.Resource("About", "JxtAuthoringResources") @Model.Item.Fields.Name</h2>
+        <div class="c-person__content" @Html.InlineEditingFieldAttributes("Content", "LongText")>
+            @Html.HtmlSanitize((string)Model.Item.Fields.Content)
+        </div>
+    </section>
+    @if (images != null && images.Count > 1)
+    {
+        <div class="o-img-gallery o-img-gallery--person">
+            <ul class="o-img-gallery__list">
+                @* Skip the first one as it used at the top of the detail view *@
+                @foreach (var image in images.ToList().Skip(1))
+                {
+                    <li class="o-img-gallery__item">
+                        <a href='@ImageHelper.GetImageUrl(image,"gal-lrg")' class="o-img-gallery__img-lnk">
+                            @Html.ImgTag(image, null, "gal-sml").WithCssClass("o-img-gallery__img")
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+    <section class="c-person__comments">
+        @Html.CommentsList(@Model.Item.DataItem)
+    </section>
+</article>

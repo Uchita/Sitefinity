@@ -6,55 +6,40 @@
 @Html.StyleSheet(Url.WidgetContent("assets/css/bootstrap-theme.min.css"), "head", false)
 @Html.StyleSheet(Url.WidgetContent("assets/css/mc-styles.css"), "head", false)
 
-<div class="@Model.CssClass">
+<div class="o-multicard o-multicard--plainText @Model.CssClass">
 
     @if (!string.IsNullOrEmpty(Model.GroupHeader))
     {
-        <h2>@Model.GroupHeader</h2>
+        <h2 class="o-multicard__heading" role="heading">@Model.GroupHeader</h2>
     }
+    <div class="o-multicard__cardListing" role="list">
+        @foreach (var card in Model.Cards)
+        {
+            <div class="o-multicard__cardListing-singleCard jumbotron container-fluid" style="background-color: @Model.BackgroundColor!important" role="listitem">
 
-    @foreach (var card in Model.Cards)
-    {
-        <div class="multicard mc-plain-text-wrapper jumbotron container-fluid content-padding" style="background-color: @Model.BackgroundColor!important">
+                @if (!string.IsNullOrEmpty(card.Heading))
+                {
+                    <h3 class="o-multicard__heading" role="heading">@Html.HtmlSanitize(card.Heading)</h3>
+                }
 
-            @if (!string.IsNullOrEmpty(card.Heading))
-            {
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3 class="heading">@Html.HtmlSanitize(card.Heading)</h3>
-                    </div>
-                </div>
-            }
+                @if (!string.IsNullOrEmpty(card.Description))
+                {
+                    <p class="o-multicard__content">
+                        @Html.HtmlSanitize(card.Description)
+                    </p>
+                }
 
-            @if (!string.IsNullOrEmpty(card.Description))
-            {
-                <div class="row content-padding">
-                    <div class="col-md-8 col-md-offset-2">
-                        <p class="content">
-                            @Html.HtmlSanitize(card.Description)
-                        </p>
-                    </div>
-                </div>
-            }
-
-            @if (!string.IsNullOrEmpty(card.ActionName))
-            {
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-4">
-                        <a class="btn btn-lg action-btn" href="@Html.UrlSanitize(card.ActionUrl)" role="button">
-                            <span class="action-text">@card.ActionName</span>
-                        </a>
-                    </div>
-                </div>
-            }
-        </div>
-    }
+                @if (!string.IsNullOrEmpty(card.ActionName))
+                {
+                    <a class="o-multicard__actionBtn btn btn-lg" href="@Html.UrlSanitize(card.ActionUrl)" role="button">@card.ActionName</a>
+                }
+            </div>
+        }
+    </div>
 
     @if (!string.IsNullOrEmpty(Model.GroupActionName) && !string.IsNullOrEmpty(Model.GroupActionUrl))
     {
-        <a href="@Html.UrlSanitize(Model.GroupActionUrl)">
-            <span>@Model.GroupActionName</span>
-        </a>
+        <a class="o-multicard__actionBtn btn btn-lg" href="@Html.UrlSanitize(Model.GroupActionUrl)">@Model.GroupActionName</a>
     }
 
 </div>

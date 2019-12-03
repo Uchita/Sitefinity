@@ -231,4 +231,6 @@ SitefinityWebApp/App_Data_JXTNext/Sitefinity/
 SitefinityWebApp/App_Data/
 JXTNext.Sitefinity.Widgets.Common/JXTNext.Sitefinity.Widgets.Common.csproj
 !SitefinityWebApp/ResourcePackages/ReadMe.txt
+!SitefinityWebApp/ResourcePackages/Bootstrap
+!SitefinityWebApp/ResourcePackages/Bootstrap4
 !roslyn/*

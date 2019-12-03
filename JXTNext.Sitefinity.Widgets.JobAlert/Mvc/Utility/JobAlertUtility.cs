@@ -1,21 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert;
-using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlertJson;
-using Newtonsoft.Json;
-
-namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
+﻿namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
 {
+    using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert;
+    using Newtonsoft.Json;
+    using System;
+    using System.Collections.Generic;
+    using System.Dynamic;
+    using System.Linq;
+
+    /// <summary>
+    /// Defines the <see cref="JobAlertUtility" />
+    /// </summary>
     public static class JobAlertUtility
     {
+        /// <summary>
+        /// Defines the CategoryString
+        /// </summary>
         private readonly static string CategoryString = "Categories";
+
+        /// <summary>
+        /// Defines the SalaryString
+        /// </summary>
         private readonly static string SalaryString = "Salary";
+
+        /// <summary>
+        /// Defines the CompanyString
+        /// </summary>
         private readonly static string CompanyString = "CompanyName";
+
+        /// <summary>
+        /// Defines the RangeString
+        /// </summary>
         private readonly static string RangeString = "Range";
+
+        /// <summary>
+        /// The _mapToClassificationData
+        /// </summary>
+        /// <param name="filter">The filter<see cref="JobAlertEditFilterRootItem"/></param>
+        /// <param name="model">The model<see cref="JobAlertViewModel"/></param>
+        /// <returns>The <see cref="dynamic"/></returns>
         private static dynamic _mapToClassificationData(JobAlertEditFilterRootItem filter, JobAlertViewModel model)
         {
             if (filter.Name != null && filter.Name.ToLower() != SalaryString.ToLower())
@@ -33,19 +55,18 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
                     classification.TargetClassifications = subTargets;
                     return classification;
                 }
-                
-
-                
             }
-
             return null;
-
         }
 
-
+        /// <summary>
+        /// The _mapToSearchModel
+        /// </summary>
+        /// <param name="filtersVMList">The filtersVMList<see cref="List{JobAlertEditFilterRootItem}"/></param>
+        /// <param name="model">The model<see cref="JobAlertViewModel"/></param>
+        /// <returns>The <see cref="dynamic"/></returns>
         private static dynamic _mapToSearchModel(List<JobAlertEditFilterRootItem> filtersVMList, JobAlertViewModel model)
         {
-
             dynamic json = new ExpandoObject();
             json.FieldRanges = null;
             json.FieldSearches = null;
@@ -64,18 +85,16 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
                         companyFieldSearch.Add(company);
                     }
                 }
-                if(companyFieldSearch.Count > 0)
+                if (companyFieldSearch.Count > 0)
                 {
                     json.FieldSearches = companyFieldSearch;
                 }
-                
             }
-            
-            
+
             foreach (var filter in filtersVMList)
             {
-                var classificationData = _mapToClassificationData(filter,model);
-                if(classificationData != null && filter.Name.ToLower() != CompanyString.ToLower())
+                var classificationData = _mapToClassificationData(filter, model);
+                if (classificationData != null && filter.Name.ToLower() != CompanyString.ToLower())
                 {
                     json.ClassificationsSearchCriteria.Add(classificationData);
                 }
@@ -100,20 +119,21 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
             {
                 json.KeywordsSearchCriteria = null;
             }
-            
-
             return json;
         }
 
-
-        static dynamic MapJobAlertFilterToClassification(JobAlertEditFilterItem filterItem)
+        /// <summary>
+        /// The MapJobAlertFilterToClassification
+        /// </summary>
+        /// <param name="filterItem">The filterItem<see cref="JobAlertEditFilterItem"/></param>
+        /// <returns>The <see cref="dynamic"/></returns>
+        internal static dynamic MapJobAlertFilterToClassification(JobAlertEditFilterItem filterItem)
         {
-            
             if (filterItem != null && filterItem.Selected)
             {
                 dynamic obj = new ExpandoObject();
                 obj.TargetValue = filterItem.ID;
-                
+
 
                 if (filterItem.Filters != null && filterItem.Filters.Count > 0)
                 {
@@ -122,13 +142,12 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
                     {
                         dynamic temp = new ExpandoObject();
                         var subTargets = MapJobAlertFilterToClassification(item);
-                        if(subTargets != null)
+                        if (subTargets != null)
                         {
                             obj.SubTargets.Add(subTargets);
                         }
                     }
                 }
-
                 return obj;
             }
             else
@@ -137,7 +156,12 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
             }
         }
 
-        static void MergeFilters(JobAlertEditFilterItem filterItem, List<string> values)
+        /// <summary>
+        /// The MergeFilters
+        /// </summary>
+        /// <param name="filterItem">The filterItem<see cref="JobAlertEditFilterItem"/></param>
+        /// <param name="values">The values<see cref="List{string}"/></param>
+        internal static void MergeFilters(JobAlertEditFilterItem filterItem, List<string> values)
         {
             if (filterItem != null)
             {
@@ -164,15 +188,20 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
             }
         }
 
-
+        /// <summary>
+        /// The ConvertJobAlertViewModelToSearchModel
+        /// </summary>
+        /// <param name="model">The model<see cref="JobAlertViewModel"/></param>
+        /// <param name="filtersVMList">The filtersVMList<see cref="List{JobAlertEditFilterRootItem}"/></param>
+        /// <returns>The <see cref="string"/></returns>
         public static string ConvertJobAlertViewModelToSearchModel(JobAlertViewModel model, List<JobAlertEditFilterRootItem> filtersVMList)
         {
             JobAlertEditFilterRootItem dest = new JobAlertEditFilterRootItem();
-            if(model.SalaryStringify != null)
+            if (model.SalaryStringify != null)
             {
                 model.Salary = JsonConvert.DeserializeObject<JobAlertSalaryFilterReceiver>(model.SalaryStringify);
             }
-           
+
             var alertViewModel = JsonConvert.SerializeObject(model);
 
 
@@ -204,7 +233,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
 
             dynamic searchModel = new ExpandoObject();
             searchModel.search = _mapToSearchModel(filtersVMList, model);
-            if(alertViewModel != null)
+            if (alertViewModel != null)
             {
                 searchModel.jobAlertViewModelData = JsonConvert.DeserializeObject<JobAlertViewModel>(alertViewModel);
             }
@@ -212,9 +241,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Utility
             {
                 searchModel.jobAlertViewModelData = null;
             }
-            
             return JsonConvert.SerializeObject(searchModel);
-
         }
     }
 }

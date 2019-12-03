@@ -8,20 +8,20 @@
 @Html.Script(Url.WidgetContent("/Mvc/Scripts/jquery.nstSlider.js"))
 @Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/rangeSlider.css"))
 
-<h2><span class="alert-icon"></span>Edit job alert</h2>
+<h2><span class="alert-icon far fa-bell"></span>Edit job alert</h2>
 
 <h3>Alert details</h3>
 
 @if (Model != null)
 {
-    <form method="post" class="jn_search" action="@Url.Action("Edit","JobAlert")" onsubmit="return preventSubmit();">
+    <form method="post" action="@Url.Action("Edit","JobAlert")" onsubmit="return preventSubmit();">
         @{
             int counter = 0;
-            var privacyErrMsg = "Please agree to Bayside\'s privacy policy";
+            var privacyErrMsg = "Please agree to Ensure\'s privacy policy";
         }
 
         <div class="field-wrapper basic-form no-marg-top">
-            <div class="alert alert-warning filter-madatory-message hidden">Please enter filter value for at least one.</div>
+            <div class="alert alert-warning filter-madatory-message hidden">@Html.Resource("nofilterselectedmessage", "Labels")</div>
 
             <div class="row form-group">
                 <div class="col-md-4 text-right">
@@ -121,17 +121,17 @@
                 <div class="col-md-4 text-right"></div>
                 <div class="col-md-8">
                     <div class="checkbox clearfix">
-                        <input id="privacypolicy" class="privacy-policy" name="privacypolicy" type="checkbox" value="agree" checked required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('')" oninvalid='this.setCustomValidity("@privacyErrMsg")'>
-                        @*<span class="checkbox-icon fas fa-check"></span>*@
-                        I agree to Bayside's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                        <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('')" oninvalid='this.setCustomValidity("@privacyErrMsg")'>
+                        <span class="checkbox-icon fas fa-check"></span>
+                        I agree to Ensure's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
                     </div>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-md-4 text-right"></div>
                 <div class="col-md-8">
-                    <input type="submit" value="SAVE" class="btn btn-primary mr-3" />
-                    <a href="/user-dashboard" class="btn btn-outline-primary">Cancel</a>
+                    <input type="submit" value="SAVE" class="btn-primary" />
+                    <a href="/user-dashboard" class="btn">Cancel</a>
                 </div>
             </div>
 
@@ -182,10 +182,10 @@
 
 
     $(document).ready(function () {
-        @{
-            var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-            var json = serializer.Serialize(Model);
-        }
+          @{
+                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                var json = serializer.Serialize(Model);
+          }
 
         var model = @Html.Raw(json);
         var modelSalary = model.Salary;

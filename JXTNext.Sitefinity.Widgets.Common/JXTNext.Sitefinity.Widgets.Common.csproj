@@ -1455,6 +1455,9 @@
     <None Include="ResourcePackages\BaySide\MVC\Views\JobAlert\Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\BaySide\MVC\Views\JobAlert\ThankYou.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\BaySide\MVC\Views\JobApplication\JobApplication.ApplyWithSocialMediaApplyPage.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

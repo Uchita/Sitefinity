@@ -1860,6 +1860,7 @@
     <Content Include="ResourcePackages\BaySide\razorgenerator.directives" />
     <Content Include="ResourcePackages\BaySide\README.md" />
     <Content Include="ResourcePackages\BaySide\MVC\Views\Card\Card.CTA-icon.cshtml" />
+    <Content Include="ResourcePackages\BaySide\MVC\Views\JobAlert\ThankYou.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

@@ -1,19 +1,16 @@
 ﻿@model List<JobAlertViewModel>
 @using JXTNext.Sitefinity.Services.Intefaces.Models.JobAlert
 
-<h2><span class="alert-icon"></span>Job alerts</h2>
+<h1 class="job-alerts"><span class="alert-icon far fa-bell"></span>Job alerts</h1>
 
 @if (Model != null && Model.Count > 0)
 {
 
-    <table class="table table-bordered datatable">
-        <thead>
+    <table class="table table-bordered">
         <tr>
             <th>Name</th>
-            <th class="col-3btn-width act-col">Action</th>
+            <th>Action</th>
         </tr>
-        </thead>
-        <tbody>
 
         @foreach (var item in Model)
         {
@@ -23,13 +20,13 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, new { @class = "btn btn-outline-primary btn-sm btn-tag" })
-                    @Html.ActionLink("Search", "ViewResults", "JobAlert", new { id = item.Id }, new { @class = "btn btn-primary btn-sm btn-tag" })
+                    @Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
+                    @Html.ActionLink("Search", "ViewResults", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
                     @Html.ActionLink("Delete", "Delete", "JobAlert", new { id = item.Id }, new { onclick = "return confirmAlertDelete();", @class = "btn btn-sm btn-tag btn-danger" })
                 </td>
             </tr>
         }
-        </tbody>
+
     </table>
 }
 
@@ -50,9 +47,9 @@ else
         <div class="alert alert-danger">@ViewBag.StatusMessage</div>
     }
 }
-<div class="button-wrapper">
-    @Html.ActionLink("Create New Job Alert", "Create", "JobAlert", new { @class = "btn btn-primary mr-3" })
-    <a href="/advancedsearch" class="btn btn-outline-primary" title="New job search">New search</a>
+<div class="button-wrapper btn-block">
+    @Html.ActionLink("Create New Job Alert", "Create", "JobAlert", new { @class = "btn btn-primary jobalert-btn" })
+    <a href="/job-seekers/job-search" class="btn btn-primary" title="New job search">New search</a>
 </div>
 
 <div class="popup-overlay">
@@ -60,8 +57,8 @@ else
         <div class="popup-box">
             <p class="info">Please sign-in or register as a member to <span>create job alert</span>.</p>
             <div class="button-wrapper">
-                <a href="/register" class="btn btn-primary">Register</a>
-                <a href="/login" class="btn btn-primary">Sign in</a>
+                <a href="/job-seekers/register-with-us" class="btn btn-primary">Register</a>
+                <a href="/sign-in" class="btn btn-primary">Sign in</a>
             </div>
             <a href="javascript:void(0)" class="fa fa-times"></a>
         </div>
@@ -91,7 +88,6 @@ else
 
         //checking user logged in is member role
         $('.jobalert-btn').click(function (e) {
-
             if (memberStatus.toLocaleLowerCase() != "true") {
                 e.preventDefault();
                 //alert('Please login as Member to create job alert.');

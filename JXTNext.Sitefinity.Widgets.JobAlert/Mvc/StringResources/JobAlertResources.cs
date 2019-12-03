@@ -1,33 +1,32 @@
-﻿using Telerik.Sitefinity.Localization;
-using Telerik.Sitefinity.Localization.Data;
-
-namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources
+﻿namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources
 {
+    using Telerik.Sitefinity.Localization;
+    using Telerik.Sitefinity.Localization.Data;
+
+    /// <summary>
+    /// Defines the <see cref="JobAlertResources" />
+    /// </summary>
     [ObjectInfo(typeof(JobAlertResources), ResourceClassId = "JobAlertResources", Title = "JobAlertResourcesTitle", Description = "JobAlertResourcesDescription")]
     public class JobAlertResources : Resource
     {
-        #region Constructions
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="JobAlertResources" /> class.
+        /// Initializes a new instance of the <see cref="JobAlertResources"/> class.
         /// </summary>
         public JobAlertResources()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="JobAlertResources" /> class.
+        /// Initializes a new instance of the <see cref="JobAlertResources"/> class.
         /// </summary>
         /// <param name="dataProvider">The data provider.</param>
         public JobAlertResources(ResourceDataProvider dataProvider)
             : base(dataProvider)
         {
         }
-        #endregion
-
-        #region Properties
 
         /// <summary>
+        /// Gets the DisplayJobSearchResults
         /// Gets phrase: Where to display search results?
         /// </summary>
         [ResourceEntry("DisplayJobSearchResults",
@@ -42,6 +41,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets the DropJobSearchResults
         /// Gets phrase: This is the page where you have dropped search results widget
         /// </summary>
         [ResourceEntry("DropJobSearchResults",
@@ -56,6 +56,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets the MoreOptions
         /// Gets phrase: More options
         /// </summary>
         [ResourceEntry("MoreOptions",
@@ -70,6 +71,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets the CssClasses
         /// Gets phrase : CSS classes
         /// </summary>
         [ResourceEntry("CssClasses",
@@ -84,6 +86,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets the EmailCC
         /// Gets phrase: This is the page where you have dropped search results widget
         /// </summary>
         [ResourceEntry("EmailCC",
@@ -98,6 +101,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets the EmailBCC
         /// Gets phrase: Where to display search results?
         /// </summary>
         [ResourceEntry("EmailBCC",
@@ -112,6 +116,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets the SenderName
         /// Gets phrase: This is the page where you have dropped search results widget
         /// </summary>
         [ResourceEntry("SenderName",
@@ -126,6 +131,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets the SenderEmailAddress
         /// Gets phrase: This is the page where you have dropped search results widget
         /// </summary>
         [ResourceEntry("SenderEmailAddress",
@@ -140,6 +146,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets the SelectEmailTemplate
         /// Gets phrase: This is the page where you have dropped search results widget
         /// </summary>
         [ResourceEntry("SelectEmailTemplate",
@@ -154,6 +161,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets the EmailSubject
         /// Gets phrase: This is the page where you have dropped search results widget
         /// </summary>
         [ResourceEntry("EmailSubject",
@@ -166,199 +174,5 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources
                 return this["EmailSubject"];
             }
         }
-
-        /// <summary>
-        /// Gets phrase: Job Alerts title
-        /// </summary>
-        [ResourceEntry("JobAlerts",
-            Value = "Job alerts",
-            Description = "word : Job Alerts title")]
-        public string JobAlerts
-        {
-            get
-            {
-                return this["JobAlerts"];
-            }
-        }
-
-        /// <summary>
-        /// Gets phrase: Action title
-        /// </summary>
-        [ResourceEntry("Action",
-            Value = "Action",
-            Description = "word : Action title")]
-        public string Action
-        {
-            get
-            {
-                return this["Action"];
-            }
-        }
-
-        /// <summary>
-        /// Gets phrase: Name title
-        /// </summary>
-        [ResourceEntry("Name",
-            Value = "Name",
-            Description = "word : Name title")]
-        public string Name
-        {
-            get
-            {
-                return this["Name"];
-            }
-        }
-
-        /// <summary>
-        /// Gets phrase: New search button's label
-        /// </summary>
-        [ResourceEntry("NewSearch",
-            Value = "New search",
-            Description = "word : New search button's label",
-            LastModified = "2019/05/16")]
-        public string NewSearch
-        {
-            get
-            {
-                return this["NewSearch"];
-            }
-        }
-
-        /// <summary>
-        /// Gets phrase: No job alerts message
-        /// </summary>
-        [ResourceEntry("NoJobAlerts",
-            Value = "You currently don't have any job alerts.",
-            Description = "word : No job alerts message",
-            LastModified = "2019/05/16")]
-        public string NoJobAlerts
-        {
-            get
-            {
-                return this["NoJobAlerts"];
-            }
-        }
-
-        /// <summary>
-        /// Gets phrase: Remove confirmation message
-        /// </summary>
-        [ResourceEntry("RemoveConfirm",
-            Value = "Are you sure you want to delete this Job Alert?",
-            Description = "word : Remove confirmation message",
-            LastModified = "2019/05/16")]
-        public string RemoveConfirm
-        {
-            get
-            {
-                return this["RemoveConfirm"];
-            }
-        }
-
-        /// <summary>
-        /// Gets phrase: Create a job alert button's label
-        /// </summary>
-        [ResourceEntry("CreateJobAlert",
-            Value = "Create job alert",
-            Description = "word : Create a job alert button's label",
-            LastModified = "2019/05/16")]
-        public string CreateJobAlert
-        {
-            get
-            {
-                return this["CreateJobAlert"];
-            }
-        }
-
-        /// <summary>
-        /// Gets phrase: Alert Details' label
-        /// </summary>
-        [ResourceEntry("AlertDetails",
-            Value = "Alert details",
-            Description = "word : Alert Details' label",
-            LastModified = "2019/05/16")]
-        public string AlertDetails
-        {
-            get
-            {
-                return this["AlertDetails"];
-            }
-        }
-
-        /// <summary>
-        /// Gets phrase: Alert Name's label
-        /// </summary>
-        [ResourceEntry("AlertName",
-            Value = "Job alert name*",
-            Description = "word : Alert Name's label",
-            LastModified = "2019/05/16")]
-        public string AlertName
-        {
-            get
-            {
-                return this["AlertName"];
-            }
-        }
-
-        /// <summary>
-        /// Gets phrase: Keywords's label
-        /// </summary>
-        [ResourceEntry("Keywords",
-            Value = "Keywords",
-            Description = "word : Keywords's label",
-            LastModified = "2019/05/16")]
-        public string Keywords
-        {
-            get
-            {
-                return this["Keywords"];
-            }
-        }
-
-        /// <summary>
-        /// Gets phrase: Choose Salary's label
-        /// </summary>
-        [ResourceEntry("ChooseSalary",
-            Value = "Choose Salary",
-            Description = "word : Choose Salary's label",
-            LastModified = "2019/05/16")]
-        public string ChooseSalary
-        {
-            get
-            {
-                return this["ChooseSalary"];
-            }
-        }
-
-        /// <summary>
-        /// Gets phrase: Cancel button's label
-        /// </summary>
-        [ResourceEntry("Cancel",
-            Value = "Cancel",
-            Description = "word : Cancel button's label",
-            LastModified = "2019/05/16")]
-        public string Cancel
-        {
-            get
-            {
-                return this["Cancel"];
-            }
-        }
-
-        /// <summary>
-        /// Gets phrase: Save button's label
-        /// </summary>
-        [ResourceEntry("Save",
-            Value = "SAVE",
-            Description = "word : Save button's label",
-            LastModified = "2019/05/16")]
-        public string Save
-        {
-            get
-            {
-                return this["Save"];
-            }
-        }
-
-        #endregion
     }
 }

@@ -4,38 +4,154 @@
 @Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
 @Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.js"), "bottom")
 
-@if (Model != null)
-{
-    <h3>Create job Alert</h3> <br />
-    <h4>Alert Details</h4> <br />
-    <form method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();">
-        @{
-            int counter = 0;
-        }
+@Html.Script(Url.WidgetContent("/Mvc/Scripts/jquery.nstSlider.js"))
+@Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/rangeSlider.css"))
 
-        <label>Name<span style="color:red">*</span></label><br />
-        <input type="text" name="Name" required /><br />
-        <input type="checkbox" name="EmailAlerts" value="true" /> <label>Send Email Alerts</label> <br />
+<div id="createalert-widget">
 
-        <label>Keywords</label><br />
-        <input type="text" name="Keywords" /> <br /><br />
+    @if (Model != null)
+    {
+        <form method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();">
+            @{
+                int counter = 0;
+                var privacyErrMsg = "Please agree to ensure\'s privacy policy";
+            }
+            <div class="field-wrapper basic-form no-marg-top">
+                <div class="alert alert-danger filter-madatory-message hidden">@Html.Resource("nofilterselectedmessage", "Labels")</div>
+                <div class="form-group">
+                    <div class="left-col">
+                        <label for="name">Email*</label>
+                    </div>
+                    <div class="right-col">
+                        <input type="text" name="Email" id="Email" required class="form-control" />
+                        <div class="alert alert-danger hidden email-validation-error">Invalid email address!</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="left-col">
+                        <label for="name">Name*</label>
+                    </div>
+                    <div class="right-col">
+                        <input type="text" name="Name" id="name" required class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="left-col">
+                        <label for="keywords">Keywords</label>
+                    </div>
+                    <div class="right-col">
+                        <input type="text" name="Keywords" id="keywords" class="form-control" value="@Model.Keywords" />
+                    </div>
+                </div>
 
-        @foreach (var item in Model)
-        {
-            <input type="hidden" name="Filters[@counter].RootId" value='@item.Name' />
-            <select id=@string.Format("selected-{0}",item.Name) name="Filters[@counter].Values" style="display:none" multiple></select>
-            <div class="dropdown dropdown-tree" id=@item.Name></div> <br />
-            counter++;
-        }
 
-        <input type="submit" value="SAVE" class="btn btn-primary" />
+                @foreach (var item in Model.Filters)
+                {
+                    if (item.Name != "Salary_Type" && item.Name != "CompanyName")
+                    {
+                        <div class="form-group">
+                            <div class="left-col">
+                                @{
+                                    var displayTitle = item.Name;
+                                    if (displayTitle == "CountryLocationArea")
+                                    {
+                                        displayTitle = "Location";
+                                    }
+                                    else if (displayTitle == "WorkType")
+                                    {
+                                        displayTitle = "Work Type";
+                                    }
+                                    else if (displayTitle == "CompanyName")
+                                    {
+                                        displayTitle = "Company Name";
+                                    }
+                                }
+                                <label>@displayTitle</label>
+                            </div>
+                            <div class="right-col">
+                                <input type="hidden" name="Filters[@counter].RootId" value='@item.Name' />
+                                <select id=@string.Format("selected-{0}", item.Name) name="Filters[@counter].Values" style="display:none" multiple class="form-control"></select>
+                                <div class="dropdown dropdown-tree full-btn" id=@item.Name></div>
+                            </div>
+                        </div>
+                        counter++;
+                    }
+                    else if (item.Name == "Salary_Type")
+                    {
+                        <div class="form-group">
+                            <div class="left-col">
+                                <label>Salary</label>
+                            </div>
+                            <div class="right-col">
+                                <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden" />
+                                <select class="SalaryRangeSelect form-control">
+                                    <option value="-1" selected>Choose Salary</option>
+                                    @foreach (var salaryItem in item.Filters)
+                                    {
+                                        <option value="@salaryItem.ID">@salaryItem.Label</option>
+                                    }
+                                </select>
+                                @foreach (var salaryItem in item.Filters)
+                                {
+                                    var lower = 15000;
+                                    var upper = 300000;
+                                    if (salaryItem.Label == "Hourly Rate")
+                                    {
+                                        lower = 18;
+                                        upper = 200;
+                                    }
+                                    <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
 
-    </form>
-}
+                                        <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
+                                             data-cur_min="@lower" data-cur_max="@upper">
 
+                                            <div class="bar"></div>
+                                            <div class="leftGrip"></div>
+                                            <div class="rightGrip"></div>
+                                        </div>
+                                        <div class="leftLabel">$<span>@lower</span></div>
+                                        <div class="rightLabel">$<span>@upper</span></div>
 
+                                    </div>
+
+                                } @*end of for each*@
+                            </div>
+                        </div>
+                    }
+                }
+
+                <div class="form-group">
+                    <div class="left-col"></div>
+                    <div class="right-col">
+                        <div class="checkbox clearfix">
+                            <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('');" oninvalid='this.setCustomValidity("@privacyErrMsg")'>
+                            <span class="checkbox-icon fas fa-check"></span>
+                            I agree to Ensure's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="left-col"></div>
+                    <div class="right-col">
+                        <input id="create-job-alert-submit-btn" type="submit" value="SAVE" class="btn btn-primary" />
+                        <a href="/home" class="btn">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    }
+
+</div>
 <script type="text/javascript">
     var optionsArray = {};
+    var isSalaryExists = false;
+    var isSlarySelected = false;
+    var salary = { RootName: 'Salary', TargetValue: '', LowerRange: 15000, UpperRange: 300000 };
+
+    function validateEmail(elementValue) {
+        var emailPattern = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        return emailPattern.test(elementValue);
+    };
 
     function preventSubmit() {
         $.each(optionsArray, function (id, item) {
@@ -44,39 +160,135 @@
             });
         });
 
+        if (validateEmail($('#Email').val()) == false) {
+            $('.email-validation-error').removeClass('hidden');
+            return false;
+        }
+
+        if ($('#keywords').val() == "" && $('#selected-Classifications').val() == null && $('#selected-CountryLocationArea').val() == null && $('#selected-WorkType').val() == null) {
+            $('.filter-madatory-message').removeClass('hidden');
+            return false;
+        } else {
+            $('.filter-madatory-message').addClass('hidden');
+        }
+
+        if (isSlarySelected) {
+            salary.RootName = 'Salary';
+            $('#salary-model-bind-hidden').val(JSON.stringify(salary));
+            console.log($('#salary-model-bind-hidden').val());
+        }
+
         return true;
     }
 
     $(document).ready(function () {
-          @{
-                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-                var json = serializer.Serialize(Model);
-          }
+        @{
+            var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            var json = serializer.Serialize(Model);
+
+        }
 
         var model = @Html.Raw(json);
-        if (model != null && model != "undefined") {
-            var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
+        var modelSalary = null;
+        $.each(model, function (index, value) {
+            if (value.Key == 'Salary_Type') {
+                modelSalary = value.Value;
+            }
+        });
 
-            for (var item of filterData) {
+        if (modelSalary != null && modelSalary != 'undefined') {
+            salary = modelSalary;
+            isSlarySelected = true;
+            $('.SalaryRangeSelect').val(modelSalary.TargetValue);
+            $('#' + modelSalary.TargetValue).removeClass('visible-hidden');
+            $('.SalaryRangeSelect').addClass('changed');
+
+            var salarySliderEle = $('#' + modelSalary.TargetValue).parent().find('.nstSlider');
+            if (salarySliderEle != null) {
+                $(salarySliderEle).data("cur_min", modelSalary.LowerRange);
+                $(salarySliderEle).data("cur_max", modelSalary.UpperRange);
+            }
+        }
+
+
+        $('select').on('change', function () {
+            isSlarySelected = false;
+            $('.salaryrangewrapper').each(function (i, obj) {
+                $(this).addClass('visible-hidden');
+            });
+            if (this.value != -1) {
+                $(this).addClass('changed');
+                isSlarySelected = true;
+                $('#' + this.value).removeClass('visible-hidden');
+                salary.TargetValue = this.value;
+                salary.LowerRange = $("#" + $(this).val()).find('.leftLabel span').text();
+                salary.UpperRange = $("#" + $(this).val()).find('.rightLabel span').text();
+            } else if ($(this).hasClass('changed') && this.value == -1) {
+                isSlarySelected = false;
+            }
+
+        });
+
+        $('.nstSlider').each(function (i, obj) {
+            $(this).nstSlider({
+                "rounding": {
+                    "1": "600",
+                    "1000": "200000"
+                },
+                "crossable_handles": false,
+                "left_grip_selector": ".leftGrip",
+                "right_grip_selector": ".rightGrip",
+                "value_bar_selector": ".bar",
+                "user_mouseup_callback": function (leftValue, rightValue, isLeftGripMoved) {
+                    salary.LowerRange = leftValue;
+                    salary.UpperRange = rightValue;
+                    $(this).parent().find('.leftLabel span').text(leftValue);
+                    $(this).parent().find('.rightLabel span').text(rightValue);
+                },
+                "value_changed_callback": function (cause, leftValue, rightValue) {
+                    $(this).parent().find('.leftLabel span').text(leftValue);
+                    $(this).parent().find('.rightLabel span').text(rightValue);
+                }
+            });
+        });
+
+        var isUserMember = false;
+        isUserMember = '@ViewBag.IsMemberUser';
+
+        //if (isUserMember == false || isUserMember == 'False') {
+        //    $('#create-job-alert-submit-btn').prop('disabled', true);
+        //}
+
+        var filterData = JSON.parse('@Html.Raw(Json.Encode(Model.Filters))');
+        if (model != null && model != "undefined" && filterData != null && filterData != "undefined") {
+
+            $.each(filterData, function (index, item) {
+                var displayTitle = item.Name;
+                if (displayTitle == 'CountryLocationArea')
+                    displayTitle = 'Location';
+                else if (displayTitle == 'WorkType')
+                    displayTitle = 'Work Type';
+                else if (displayTitle == 'CompanyName')
+                    displayTitle = 'Company Name';
+
                 optionsArray[item.Name] = {
-                    title: item.Name,
+                    title: displayTitle,
                     data: item.Filters,
                     maxHeight: 500,
                     closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
                     openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
                     multiSelect: true,
-                    selectChildren: true,
-                    expandChildren: true,
+                    selectChildren: false,
+                    //expandChildren: true,
                     enableSearch: false,
-                    prefixIdText: ''
+                    prefixIdText: '',
+                    checkHandler: function (target, checked) {
+                        $(target[0]).find('ul').toggle();
+                    }
                 };
                 $("#" + item.Name).DropDownTree(optionsArray[item.Name]);
-            }
+            });
         }
-
-
 
     });
 </script>
-
-

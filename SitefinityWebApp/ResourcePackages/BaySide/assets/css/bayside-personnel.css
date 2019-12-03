@@ -58,6 +58,12 @@ a,
         -ms-filter: brightness(0.4) saturate(0);
     }
 
+.video-wrap .play-btn:hover,
+.video-wrap .play-btn:focus,
+.video-wrap .play-btn.active {
+    background: #009f9b;
+}
+
 
 
 /* border */

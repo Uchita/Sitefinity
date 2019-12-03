@@ -1660,27 +1660,12 @@
     <Content Include="env\LibrariesConfig.UsProduction.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="env\webconfigs\web.Production.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="env\webconfigs\web.Sandbox.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="env\webconfigs\web.Staging.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="env\webconfigs\web.USProduction.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Mvc\Views\Card\Card.CTA.cshtml" />
     <Content Include="Mvc\Views\Person\List.PersonCarousel.cshtml" />
     <Content Include="Mvc\Views\MultiCard\Cards.Carousel.cshtml" />
     <Content Include="env\LibrariesConfig.UKProduction.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="env\webconfigs\web.UKProduction.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <Content Include="Mvc\Views\PageTitle\Simple.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>

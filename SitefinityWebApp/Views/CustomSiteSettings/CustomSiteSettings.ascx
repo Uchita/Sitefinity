@@ -58,8 +58,77 @@
 <sitefinity:TextField ID="amazonS3ApplicationName" runat="server" DataFieldName="AmazonS3ApplicationName" Title="Please Enter Application Name" CssClass="sfSettingsSection" DisplayMode="Write" />
 <sitefinity:TextField ID="amazonS3UrlName" runat="server" DataFieldName="AmazonS3UrlName" Title="Please Enter Url Name" CssClass="sfSettingsSection" DisplayMode="Write" />
 
+<h3>SALARY TYPE FILTER</h3><br />
+<table class="jxtnext-table">
+    <thead>
+        <tr>
+            <th>Salary Type</th>
+            <th>Maximum Value</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>Hourly</td>
+            <td><sitefinity:TextField ID="salaryTypeHourlyRangeMax" DataFieldName="SalaryTypeHourlyRangeMax" DisplayMode="Write" runat="server" /></td>
+        </tr>
+
+        <tr>
+            <td>Daily</td>
+            <td><sitefinity:TextField ID="salaryTypeDailyRangeMax" DataFieldName="SalaryTypeDailyRangeMax" DisplayMode="Write" runat="server" /></td>
+        </tr>
+
+        <tr>
+            <td>Weekly</td>
+            <td><sitefinity:TextField ID="salaryTypeWeeklyRangeMax" DataFieldName="SalaryTypeWeeklyRangeMax" DisplayMode="Write" runat="server" /></td>
+        </tr>
+
+        <tr>
+            <td>Fortnightly</td>
+            <td><sitefinity:TextField ID="salaryTypeFortnightlyRangeMax" DataFieldName="SalaryTypeFortnightlyRangeMax" DisplayMode="Write" runat="server" /></td>
+        </tr>
+
+        <tr>
+            <td>Monthly</td>
+            <td><sitefinity:TextField ID="salaryTypeMonthlyRangeMax" DataFieldName="SalaryTypeMonthlyRangeMax" DisplayMode="Write" runat="server" /></td>
+        </tr>
+
+        <tr>
+            <td>Annual</td>
+            <td><sitefinity:TextField ID="salaryTypeAnnualRangeMax" DataFieldName="SalaryTypeAnnualRangeMax" DisplayMode="Write" runat="server" /></td>
+        </tr>
+    </tbody>
+</table>
 <br />
 
 <h3>Other settings</h3><br />
 <sitefinity:TextField ID="cultureIsEnabled" runat="server" DataFieldName="CultureIsEnabled" Title="Please Enter Culture Value" CssClass="sfSettingsSection" DisplayMode="Write" />
 <sitefinity:TextField ID="jobCurrencySymbol" runat="server" DataFieldName="JobCurrencySymbol" Title="The currency used in job views" CssClass="sfSettingsSection" DisplayMode="Write" />
+
+<style type="text/css">
+    .jxtnext-table
+    {
+        border-collapse: collapse;
+        padding: 0;
+        margin: 0;
+        width: 410px;
+    }
+
+    .jxtnext-table th, 
+    .jxtnext-table td
+    {
+        border: 1px solid #ccc;
+        padding: 5px;
+    }
+
+    .jxtnext-table th
+    {
+        font-weight: bold;
+    }
+
+    .jxtnext-table input[type="text"]
+    {
+        width: 100%;
+        box-sizing:border-box;
+    }    
+</style>

@@ -172,22 +172,14 @@ $(document).ready(function () {
 
     //file upload custom function
     //difficult to implement for multiple file uploads
-    // if( $('.sf-FileField').length ){
-    //     $('body').on('change','input.sf-FileField-input', function(){
-    //         var cusFile = this;
-    //         var parentElem = $(this).parents('.sf-FileField');
-    //         var cusFileName = cusFile.files[0].name;
-    //         //for multi upload type
-    //         if( parentElem.find('a[data-sf-role="add-input"]').length ){
-    //             var tempName = '';
-    //             parentElem.find('.sf-FileField-input').each( function(){
-    //                 tempName += $(this)[0].files[0].name + '<br>';
-    //             });
-    //             cusFileName = tempName;
-    //         }
-    //         parentElem.find('.text-muted').html(cusFileName);
-    //     });
-    // }
+     if( $('.sf-FileField').length ){
+         $('body').on('change','input.sf-FileField-input', function(){
+             var cusFile = this;
+             var parentElem = $(this).parents('.sf-FileField');
+             var cusFileName = cusFile.files[0].name;
+             parentElem.find('.text-muted').html(cusFileName);
+         });
+     }
 
     //$(".app-header .dropdown-toggle").on("click", function () {
     //    window.location.href = $(this).attr("href");

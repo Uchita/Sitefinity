@@ -6330,6 +6330,7 @@ select.hs-input {
 
 /*=========IDS  End=====*/
 
+
 /* ------App header__start------ */
 .app-header {
     padding-top: 15px;
@@ -9329,7 +9330,6 @@ img.savejob-icon {
         border-radius: 0px;
     }
 
-
 .popup-overlay {
     position: fixed;
     width: 100%;
@@ -10012,8 +10012,6 @@ img.savejob-icon {
                     left: 4px;
                     opacity: 0;
                 }
-
-
 
 
 .right-filter-sidebar .dropdown-tree .parent-blog-category, .right-filter-sidebar .dropdown-tree .child-blog-category {
@@ -10909,6 +10907,7 @@ ul.nav.nav-stacked li a:before {
     .location-hover li div {
         overflow: hidden;
     }
+}
 
         .location-hover li div:first-letter {
             text-transform: uppercase;
@@ -11178,8 +11177,6 @@ img.noProfilePhoto {
 .blog-detail-col p b i {
     font-weight: 500;
 }
-
-
 
 .ohs-policy-content h4 + ul {
     padding: 0;
@@ -11493,6 +11490,33 @@ select.slimtable-paging-select {
         white-space: nowrap;
         height: 40px;
         background: #fff;
+    }
+
+/* custom file upload */
+.sf-FileField {
+    position: relative;
+}
+
+    .sf-FileField .text-muted {
+        position: absolute;
+        width: 100%;
+        height: 40px;
+        text-align: center;
+        font-weight: bold;
+        color: #3465b0 !important;
+        left: 0;
+        top: 33px;
+        padding: 15px;
+        z-index: 1;
+    }
+
+    .sf-FileField input.sf-FileField-input {
+        opacity: 0;
+        margin: 0 auto;
+        height: 40px;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
     }
 
 

@@ -22,6 +22,9 @@ a,
 .video-wrap .btn-link.active {
     color: #009f9c;
 }
+.sf-FileField .text-muted {
+    color: #009f9c !important;
+}
 
     a:hover, a:focus,
     .btn-link:hover {

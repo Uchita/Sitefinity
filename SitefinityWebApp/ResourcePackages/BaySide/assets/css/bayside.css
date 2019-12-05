@@ -9005,19 +9005,23 @@ img.savejob-icon {
 
 /*Job filter sidebar*/
 
-.filter-outer-wrapper .dropdown-tree > ul {
+.filter-outer-wrapper .dropdown-tree > ul,
+.form-group .dropdown-tree > ul{
     white-space: nowrap;
 }
 
-.filter-outer-wrapper .dropdown-tree li {
+.filter-outer-wrapper .dropdown-tree li,
+.form-group .dropdown-tree li {
     position: relative;
 }
 
-.filter-outer-wrapper .dropdown-tree a {
+.filter-outer-wrapper .dropdown-tree a,
+.form-group .dropdown-tree a {
     white-space: pre-wrap;
 }
 
-.filter-outer-wrapper .dropdown-tree .arrow {
+.filter-outer-wrapper .dropdown-tree .arrow,
+.form-group .dropdown-tree .arrow {
     position: absolute;
     display: inline-block;
     margin-right: 0;
@@ -9028,7 +9032,8 @@ img.savejob-icon {
     top: 0;
 }
 
-.filter-outer-wrapper .dropdown-tree li > i {
+.filter-outer-wrapper .dropdown-tree li > i,
+.form-group .dropdown-tree li > i {
     margin-left: 0;
     position: absolute;
     left: 0;
@@ -9038,6 +9043,36 @@ img.savejob-icon {
 .filter-outer-wrapper .dropdown-tree li .count {
     display: none;
 }
+.form-group .dropdown-tree > ul ul{
+    padding-left: 20px;
+}
+.form-group .dropdown-tree button,
+.form-group .dropdown-tree li >.btn{
+    text-align: left;
+    position: relative;
+    padding: 10px;
+    height: 45px;
+}
+.form-group .dropdown-tree button .caret,
+.form-group .dropdown-tree li >.btn .caret{
+    position: absolute;
+    right: 10px;
+    top: 20px;
+}
+.form-group .dropdown-tree a {
+    display: block!important;
+    padding: 3px 20px 3px 30px;
+}
+.form-group .dropdown-tree li > i{
+    left: 10px;
+    top: 11px;
+}
+.form-group .dropdown-tree .arrow{
+    top: 45%;
+    right: 5px;
+}
+
+
 /*Job filter sidebar::End*/
 .app-content .content-two-colmun li {
     font-size: 1em;
@@ -9709,6 +9744,14 @@ img.savejob-icon {
     .bayside-form .form-group .checkbox {
         padding: 0 0 0 22px;
         font-weight: 400;
+    }
+    .form-group .checkbox input[type="radio"], 
+    .form-group .checkbox input[type="checkbox"]{
+        position: relative;
+        margin-left: 0;
+    }
+    .form-group .checkbox .checkbox-icon{
+        display: none;
     }
 
 .fw-400 {

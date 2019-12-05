@@ -81,19 +81,6 @@
     }
     @*End Image field*@
 
-
-    @{
-        if (Model.EnableSocialSharing)
-        {
-            <div class="o-singletestimonial__socialshare">
-                @{
-                    var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
-                    @Html.SocialShareOptions(item);
-                }
-            </div>
-        }
-    }
-
     <div class="o-singletestimonial__comments">
         @Html.CommentsList(@Model.Item.DataItem)
     </div>

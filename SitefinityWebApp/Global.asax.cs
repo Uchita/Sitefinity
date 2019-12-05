@@ -50,7 +50,6 @@ namespace SitefinityWebApp
             ////Profile created event             
             _profileEventHandler = new JXTNext_ProfileEventHandler();
             _siteMapService = new JXTNextSiteMapService();
-            SystemManager.ApplicationStart += new EventHandler<EventArgs>(ApplicationStartHandler);
         }
 
         void Bootstrapper_Initialized(object sender, ExecutedEventArgs e)
@@ -133,10 +132,6 @@ namespace SitefinityWebApp
             HandleHttpStatusCodeAttribute.Register();
             RegisterStatsD(FrontendModule.Current.DependencyResolver);
             EventHub.Subscribe<IPagePreRenderCompleteEvent>(this.OnPagePreRenderCompleteEventHandler);
-        }
-
-        private void ApplicationStartHandler(object sender, EventArgs e)
-        {
             EventHub.Subscribe<ProfileCreated>(evt => _profileEventHandler.ProfileCreated(evt));
         }
 

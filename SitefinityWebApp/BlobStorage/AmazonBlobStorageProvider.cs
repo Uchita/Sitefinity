@@ -1,16 +1,17 @@
-﻿using System;
-using System.Linq;
-using Amazon.S3.Transfer;
-using Telerik.Sitefinity.Modules.Libraries.BlobStorage;
-using Telerik.Sitefinity.BlobStorage;
+﻿extern alias awslegacy;
+using Amazon;
 using Amazon.S3;
 using Amazon.S3.Model;
-using System.Configuration;
-using System.Collections.Specialized;
-using System.IO;
-using Amazon;
-using System.Reflection;
+using Amazon.S3.Transfer;
 using JXTNext.Telemetry;
+using System;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.IO;
+using System.Reflection;
+using Telerik.Sitefinity.Abstractions;
+using Telerik.Sitefinity.BlobStorage;
+using Telerik.Sitefinity.Modules.Libraries.BlobStorage;
 
 namespace Telerik.Sitefinity.Amazon.BlobStorage
 {
@@ -31,20 +32,20 @@ namespace Telerik.Sitefinity.Amazon.BlobStorage
             {
                 this.accessKeyId = config[AccessKeyIdKey].Trim();
                 if (String.IsNullOrEmpty(this.accessKeyId))
-                    throw new ConfigurationException("'{0}' is required.".Arrange(AccessKeyIdKey));
+                    throw new ConfigurationErrorsException("'{0}' is required.".Arrange(AccessKeyIdKey));
 
                 this.secretKey = config[SecretKeyKey].Trim();
                 if (String.IsNullOrEmpty(this.secretKey))
-                    throw new ConfigurationException("'{0}' is required.".Arrange(SecretKeyKey));
+                    throw new ConfigurationErrorsException("'{0}' is required.".Arrange(SecretKeyKey));
 
                 this.bucketName = config[BucketNameKey].Trim();
                 if (String.IsNullOrEmpty(this.bucketName))
-                    throw new ConfigurationException("'{0}' is required.".Arrange(BucketNameKey));
+                    throw new ConfigurationErrorsException("'{0}' is required.".Arrange(BucketNameKey));
 
                 string regionEndpointString = config[RegionEndpointKey].Trim();
                 var endpointField = typeof(RegionEndpoint).GetField(regionEndpointString, BindingFlags.Static | BindingFlags.Public);
                 if ((string.IsNullOrWhiteSpace(regionEndpointString)) || (endpointField == null))
-                    throw new ConfigurationException("'{0}' is required.".Arrange(RegionEndpointKey));
+                    throw new ConfigurationErrorsException("'{0}' is required.".Arrange(RegionEndpointKey));
 
                 var regionEndpoint = (RegionEndpoint)endpointField.GetValue(null);
                 this.transferUtility = new TransferUtility(accessKeyId, secretKey, regionEndpoint);
@@ -235,7 +236,8 @@ namespace Telerik.Sitefinity.Amazon.BlobStorage
                     return true;
                 }
                 catch (AmazonS3Exception err)
-                { 
+                {
+                    Log.Write(err, ConfigurationPolicy.ErrorLog);
                 }
                 return false;
             }

@@ -250,8 +250,8 @@
     <Reference Include="JXTNext.Sitefinity.Widgets.JobApplication, Version=6.0.171.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Widgets.JobApplication.6.0.171\lib\net472\JXTNext.Sitefinity.Widgets.JobApplication.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Widgets.Social, Version=6.0.166.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Social.6.0.166\lib\net471\JXTNext.Sitefinity.Widgets.Social.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Widgets.Social, Version=6.0.171.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Social.6.0.171\lib\net472\JXTNext.Sitefinity.Widgets.Social.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.Testimonials, Version=6.0.171.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Testimonials.6.0.171\lib\net472\JXTNext.Sitefinity.Widgets.Testimonials.dll</HintPath>

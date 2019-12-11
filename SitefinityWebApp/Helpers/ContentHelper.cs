@@ -217,6 +217,30 @@ namespace SitefinityWebApp.Helpers
                     HttpContext.Current.Items.Remove(CustomDynamicContentModel.ArticlesTotalCountFlag);
                 }
 
+                if (HttpContext.Current.Items.Contains(CustomDynamicContentModel.BlogsItemsPerPageFlag))
+                {
+                    itemsPerPage = Convert.ToInt32(HttpContext.Current.Items[CustomDynamicContentModel.BlogsItemsPerPageFlag]);
+                    HttpContext.Current.Items.Remove(CustomDynamicContentModel.BlogsItemsPerPageFlag);
+                }
+
+                if (HttpContext.Current.Items.Contains(CustomDynamicContentModel.BlogsTotalCountFlag))
+                {
+                    totalItems = Convert.ToInt32(HttpContext.Current.Items[CustomDynamicContentModel.BlogsTotalCountFlag]);
+                    HttpContext.Current.Items.Remove(CustomDynamicContentModel.BlogsTotalCountFlag);
+                }
+
+                if (HttpContext.Current.Items.Contains(CustomDynamicContentModel.PostsItemsPerPageFlag))
+                {
+                    itemsPerPage = Convert.ToInt32(HttpContext.Current.Items[CustomDynamicContentModel.PostsItemsPerPageFlag]);
+                    HttpContext.Current.Items.Remove(CustomDynamicContentModel.PostsItemsPerPageFlag);
+                }
+
+                if (HttpContext.Current.Items.Contains(CustomDynamicContentModel.PostsTotalCountFlag))
+                {
+                    totalItems = Convert.ToInt32(HttpContext.Current.Items[CustomDynamicContentModel.PostsTotalCountFlag]);
+                    HttpContext.Current.Items.Remove(CustomDynamicContentModel.PostsTotalCountFlag);
+                }
+
                 if (model.CurrentPage > 1)
                 {
                     firstItemOnPageOrdinal = ((model.CurrentPage - 1) * itemsPerPage) + 1;

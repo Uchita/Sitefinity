@@ -188,3 +188,18 @@
         }
     </div>
 }
+
+
+<script type="text/javascript">
+    $(function () {
+        $('.o-registration__btn').attr('disabled', 'disabled');
+        $('input[name="Agreement"]').on('change', function (e) {
+            if (this.checked) {
+                $('.o-registration__btn').removeAttr('disabled', 'disabled');
+            }
+            else {
+                $('.o-registration__btn').attr('disabled', 'disabled');
+            }
+        })
+    });
+</script>

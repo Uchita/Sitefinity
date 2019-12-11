@@ -74,29 +74,32 @@
     @Html.CommentsList(@Model.Item.DataItem)
 </div>
 
-<div class="related-blog">
 
-    <h2>You might also like</h2>
-    @{
-        BlogsManager blogsManager = BlogsManager.GetManager();
-        var allItems = blogsManager.GetBlogPosts().Where(n => n.Status == ContentLifecycleStatus.Live && n.Visible == true).ToList();
-        List<BlogPost> relatedItems = new List<BlogPost>();
-        foreach (var item in allItems)
+
+@{
+    BlogsManager blogsManager = BlogsManager.GetManager();
+    var allItems = blogsManager.GetBlogPosts().Where(n => n.Status == ContentLifecycleStatus.Live && n.Visible == true).ToList();
+    List<BlogPost> relatedItems = new List<BlogPost>();
+    foreach (var item in allItems)
+    {
+        var articleTaxonIds = item.GetValue<TrackedList<Guid>>("Category");
+        if (articleTaxonIds.Any(x => CategoryIds.Contains(x)))
         {
-            var articleTaxonIds = item.GetValue<TrackedList<Guid>>("Category");
-            if (articleTaxonIds.Any(x => CategoryIds.Contains(x)))
-            {
 
-                // Skip the current loaded item in the details page
-                if (item.Id != Model.Item.Fields.Id)
-                {
-                    relatedItems.Add(item);
-                }
+            // Skip the current loaded item in the details page
+            if (item.Id != Model.Item.Fields.Id)
+            {
+                relatedItems.Add(item);
             }
         }
-
-
     }
+}
+
+@if (relatedItems.Count() > 0)
+{
+<div class="related-blog">
+    <h2>You might also like</h2>
+
     <div class="md-row">
         @{
             var relatedItemCounter = 0;
@@ -115,7 +118,7 @@
                     </div>
 
                     <div class="news-date">
-                    
+
                         <span class="rss-item-pubDate-date">@Convert.ToDateTime(Convert.ToString(blog.GetValue("PublicationDate"))).ToString("dd")</span>
                         <span class="rss-item-pubDate-month">@Convert.ToDateTime(Convert.ToString(blog.GetValue("PublicationDate"))).ToString("MMM")</span>,
                         <span class="rss-item-pubDate-full-year">@Convert.ToDateTime(Convert.ToString(blog.GetValue("PublicationDate"))).ToString("yyyy")</span>
@@ -134,23 +137,26 @@
         }
 
     </div>
+
 </div>
+}
+    
 
-<style>
+    <style>
 
-    body .parallax-mirror .parallax-slider {
-        top: -28%;
-    }
-</style>
+        body .parallax-mirror .parallax-slider {
+            top: -28%;
+        }
+    </style>
 
-<script>
+    <script>
 
-    $(document).ready(function () {
-        //if ($('.cta-bg.blogimg img').attr('src') != "") {
-        //    $(".hero-banner").attr("data-image-src", $('.cta-bg.blogimg img').attr('src'));
-        //}
-        //$('h1.fadeInUp').html('');
-        //$('.br-1').removeClass("br-1");
-        $(".hero-banner").addClass('small-banner');
-    });
-</script>
+        $(document).ready(function () {
+            //if ($('.cta-bg.blogimg img').attr('src') != "") {
+            //    $(".hero-banner").attr("data-image-src", $('.cta-bg.blogimg img').attr('src'));
+            //}
+            //$('h1.fadeInUp').html('');
+            //$('.br-1').removeClass("br-1");
+            $(".hero-banner").addClass('small-banner');
+        });
+    </script>

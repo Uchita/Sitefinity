@@ -6670,7 +6670,8 @@ select.hs-input {
     font-size: 14px;
 }
 
-    .navbar.top-navbar .top-menus span.fa-linkedin {
+    .navbar.top-navbar .top-menus span.fa-linkedin,
+    .navbar.top-navbar .top-menus span.fa-facebook {
         position: relative;
         top: -1px;
     }

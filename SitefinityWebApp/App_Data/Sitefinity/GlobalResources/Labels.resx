@@ -133,9 +133,9 @@
 
 Hi, 
 &lt;br/&gt;&lt;br/&gt;
-To reset your Hudson password for the account  &lt;%\s*UserName\s*%&gt;, please click this  &lt;a href="&lt;%\s*ConfirmationUrl\s*%&gt;" target="_blank"&gt;link&lt;/a&gt; and follow the instructions on the screen.
+To reset your #{ClientName} password for the account  &lt;%\s*UserName\s*%&gt;, please click this  &lt;a href="&lt;%\s*ConfirmationUrl\s*%&gt;" target="_blank"&gt;link&lt;/a&gt; and follow the instructions on the screen.
 &lt;br /&gt;&lt;br /&gt;
-The team at Hudson&lt;br /&gt;
+The team at #{ClientName}&lt;br /&gt;
 https://&lt;%\s*SiteName\s*%&gt;</value>
     <comment>The body of the email sent to users for changing their passwords</comment>
     <lastModified>2019-03-20T11:06:40</lastModified>
@@ -146,14 +146,14 @@ https://&lt;%\s*SiteName\s*%&gt;</value>
 
 Hello, 
 &lt;br/&gt;&lt;br/&gt;
-Congratulations. You are now a registered job seeker with Hudson, which will make it easier for you to &lt;a href="https://%\s*SiteName\s*%&gt;/job-search"&gt;browse and apply for roles.&lt;/a&gt;
+Congratulations. You are now a registered job seeker with #{ClientName}, which will make it easier for you to &lt;a href="https://%\s*SiteName\s*%&gt;/job-search"&gt;browse and apply for roles.&lt;/a&gt;
 &lt;br/&gt;&lt;br /&gt;
 Please retain these log-in details for your reference:
 &lt;br/&gt;
 Username: &lt;%\s*UserName\s*%&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-From the team at Hudson&lt;br /&gt;
+From the team at #{ClientName}&lt;br /&gt;
 https://&lt;%\s*SiteName\s*%&gt;</value>
     <comment>Phrase: Default Registration Success message for user registration.</comment>
     <lastModified>2019-03-20T11:20:35</lastModified>
@@ -236,7 +236,7 @@ https://&lt;%\s*SiteName\s*%&gt;</value>
     <lastModified>2019-04-30T07:33:12</lastModified>
   </data>
   <data name="PrivacyPolicyLbl">
-    <value>I agree to THRONSBERG's Privacy Policy</value>
+    <value>I agree to #{ClientName}'s Privacy Policy</value>
     <comment>Privacy policy message label</comment>
     <lastModified>2019-06-21T00:32:29</lastModified>
   </data>
@@ -316,7 +316,7 @@ https://&lt;%\s*SiteName\s*%&gt;</value>
     <lastModified>2019-05-10T00:40:06</lastModified>
   </data>
   <data name="JobApplicationPrivacyPolicy">
-    <value>I agree to Hudson's &lt;a href="/privacy-policy" target="_blank"&gt;Privacy Policy&lt;/a&gt;</value>
+    <value>I agree to #{ClientName}'s &lt;a href="/privacy-policy" target="_blank"&gt;Privacy Policy&lt;/a&gt;</value>
     <comment></comment>
     <lastModified>2019-05-13T05:59:34</lastModified>
   </data>

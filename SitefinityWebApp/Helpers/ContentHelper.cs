@@ -16,6 +16,7 @@ using Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models;
 using SitefinityWebApp.Mvc.Models.CustomDynamicContent;
 using System.Threading;
 using Telerik.Sitefinity.Multisite;
+using Telerik.Sitefinity.Localization;
 
 namespace SitefinityWebApp.Helpers
 {
@@ -193,13 +194,16 @@ namespace SitefinityWebApp.Helpers
             {
                 return string.Empty;
             }
-            else if (itemsCount == 1)
+
+            var res = Res.Get<Labels>();
+
+            if (itemsCount == 1)
             {
-                return "Displaying item 1 of 1";
+                return res.Get("Displaying item 1 of 1");
             }
             else
             {
-                string messageTemplate = "Displaying items {0} to {1} out of {2}";
+                string messageTemplate = res.Get("Displaying items {0} to {1} out of {2}");
                 int firstItemOnPageOrdinal = 1;
                 int lastItemOnPageOrdinal = itemsCount;
                 int totalItems = itemsCount;

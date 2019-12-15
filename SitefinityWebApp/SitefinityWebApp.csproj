@@ -1534,9 +1534,6 @@
     <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\JxtAuthoringResources.zh-CN.resx" />
     <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\JXTNextResumeResources.zh-CHS.resx" />
     <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\Labels.en.resx" />
-    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\Labels.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\Labels.zh-CHS.resx" />
     <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\Labels.zh-CN.resx" />
     <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\ListsResources.zh-CHS.resx" />

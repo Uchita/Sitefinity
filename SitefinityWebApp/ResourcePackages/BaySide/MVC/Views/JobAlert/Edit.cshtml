@@ -14,10 +14,11 @@
 
 @if (Model != null)
 {
-    <form method="post" action="@Url.Action("Edit","JobAlert")" onsubmit="return preventSubmit();">
+    <form method="post" action="@Url.Action("Edit","JobAlert")" onsubmit="return preventSubmit();" class="bayside-form">
         @{
             int counter = 0;
-            var privacyErrMsg = "Please agree to Bayside\'s privacy policy";
+            var currentSite = new Telerik.Sitefinity.Multisite.MultisiteContext().CurrentSite;
+            var privacyErrMsg = "Please agree to " + currentSite.Name + "\'s privacy policy";
         }
 
         <div class="field-wrapper basic-form no-marg-top">
@@ -123,14 +124,14 @@
                     <div class="checkbox clearfix">
                         <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="@privacyErrMsg" onclick="this.setCustomValidity('');" oninput="this.setCustomValidity('')" oninvalid='this.setCustomValidity("@privacyErrMsg")'>
                         <span class="checkbox-icon fas fa-check"></span>
-                        I agree to Ensure's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                        I agree to @currentSite.Name's <a href="/privacy-policy" target="_blank">Privacy Policy</a>
                     </div>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-md-4 text-right"></div>
                 <div class="col-md-8">
-                    <input type="submit" value="SAVE" class="btn-primary" />
+                    <input type="submit" value="Save" class="btn btn-outline-primary" />
                     <a href="/user-dashboard" class="btn">Cancel</a>
                 </div>
             </div>

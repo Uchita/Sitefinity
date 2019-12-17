@@ -156,11 +156,29 @@
 
                                         if (childnode.Url == "/advancedsearch")
                                         {
-                                            <a title="@childnode.Title" data-type="@ContentHelper.FindPageNodeType(childnode.Url)"  target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">Job Search</a>
+                                            <a title="@childnode.Title" data-type="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">Job Search</a>
                                             <ul>
                                                 <li><a title="Find a job" data-type="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item @GetClass(childnode)" href="@childnode.Url">Find a job</a></li>
+                                                @foreach (var subchildnode in childnode.ChildNodes)
+                                                {
+                                                    <li><a title="@subchildnode.Title" data-type="@ContentHelper.FindPageNodeType(subchildnode.Url)" target="@subchildnode.LinkTarget" class="dropdown-item @GetClass(subchildnode)" href="@subchildnode.Url">@subchildnode.Title</a></li>
+                                                }
+
                                             </ul>
                                         }
+
+                                        if (childnode.Url == "/relocating")
+                                        {
+                                            <a title="@childnode.Title" data-type="@ContentHelper.FindPageNodeType(childnode.Url)" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode)" href="@childnode.Url">@childnode.Title</a>
+                                            <ul>
+                                                @foreach (var subchildnode in childnode.ChildNodes)
+                                                {
+                                                    <li><a title="@subchildnode.Title" data-type="@ContentHelper.FindPageNodeType(subchildnode.Url)" target="@subchildnode.LinkTarget" class="dropdown-item @GetClass(subchildnode)" href="@subchildnode.Url">@subchildnode.Title</a></li>
+                                                }
+
+                                            </ul>
+                                        }
+
                                         if (childnode.Url == "/job/job-application-tool")
                                         {
                                             @* @childnode.Url *@
@@ -264,7 +282,7 @@
                                                         <ul>
                                                             @foreach (var node in listAllNodes1)
                                                             {
-                                                                <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="">@node.Title</a></li>
+                                                                <li><a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a></li>
                                                             }
                                                         </ul>
                                                     </div>
@@ -377,6 +395,21 @@
                                                         {
                                                             <a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a>
                                                         }
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    }
+                                    else if (childnode.Url == "/workforce-resources")
+                                    {
+
+                                        <div class="col-12 col-lg-4">
+                                            <a title="@childnode.Title" target="@childnode.LinkTarget" class="dropdown-item menu-heading @GetClass(childnode) custom-active workplace-relations-news" href="@childnode.Url">@childnode.Title</a>
+                                            <ul>
+                                                @foreach (var node in childnode.ChildNodes)
+                                                {
+                                                    <li>
+                                                        <a title="@node.Title" data-type="@ContentHelper.FindPageNodeType(node.Url)" target="@node.LinkTarget" class="dropdown-item @GetClass(node)" href="@node.Url">@node.Title</a>
                                                     </li>
                                                 }
                                             </ul>
@@ -586,7 +619,7 @@
                                     {
                                         <div class="col-12 col-lg-8">
 
-                                            <a title="Visit the Brand Site" data-type="@ContentHelper.FindPageNodeType(childNode.Url)" target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">Visit the Brand Site</a>
+                                            <a title="@childNode.Title" data-type="@ContentHelper.FindPageNodeType(childNode.Url)" target="@childNode.LinkTarget" class="dropdown-item menu-heading @GetClass(childNode)" href="@childNode.Url">@childNode.Title</a>
 
                                             @if (childNode.ChildNodes.Count > 4)
                                             {

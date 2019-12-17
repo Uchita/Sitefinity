@@ -190,11 +190,11 @@ var globalTreeIdCounter=0;
             $(this).addClass("fa-square-o");
             $(this).removeClass("fa-check-square-o");
             $(this).parent("li").find("a").removeClass("active");
-            if(options.selectChildren){
+            //if (options.selectChildren) {
                 $(this).parents("li").first().find(".select-box").addClass("fa-square-o");
                 $(this).parents("li").first().find(".select-box").removeClass("fa-check-square-o");
                 $(this).parents("li").first().find("a").removeClass("active");
-            }
+            //}
         }
 
         if (options.setSelectedElementsTitle)

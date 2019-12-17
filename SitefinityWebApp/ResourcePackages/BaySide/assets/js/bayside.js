@@ -181,7 +181,6 @@ $(document).ready(function () {
          });
      }
 
-
     //$(".app-header .dropdown-toggle").on("click", function () {
     //    window.location.href = $(this).attr("href");
     //});

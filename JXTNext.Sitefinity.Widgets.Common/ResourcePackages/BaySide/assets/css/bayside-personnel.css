@@ -18,6 +18,7 @@ a,
 .navbar .navbar-nav .nav-link:focus, .navbar .navbar-nav .nav-link.active, .navbar .navbar-nav li:hover > .nav-link,
 .top-menus .navbar-nav a:hover, .top-menus .navbar-nav a.active,
 .app-header .dropdown-menu .dropdown-item:hover, .app-header .dropdown-menu .dropdown-item.active, .app-header .dropdown-menu .dropdown-item:focus,
+.app-header .main-menu .navbar-nav .nav-item:hover .menu-toggle,
 .video-wrap .btn-link:hover,
 .video-wrap .btn-link.active,
 .address-panel .panel-title {
@@ -72,7 +73,9 @@ a,
 
 /* border */
 .owl-nav > div,
-.form-control:focus {
+.form-control:focus,
+.form-group .dropdown-tree button:focus,
+.dropdown-tree.open > .dropdown-toggle.btn-default {
     border-color: #009f9c;
 }
 
@@ -90,14 +93,17 @@ a,
     }
 
 
-.btn-outline-primary {
+.btn-outline-primary,
+.outline-btn-wrapper .btn {
     color: #009f9c;
     border-color: #009f9c;
 }
 
-    .btn-outline-primary.active, .btn-outline-primary:focus, .btn-outline-primary:hover, .btn-outline-primary:active {
+    .btn-outline-primary.active, .btn-outline-primary:focus, .btn-outline-primary:hover, .btn-outline-primary:active,
+    .outline-btn-wrapper .btn:hover, .outline-btn-wrapper .btn:focus {
         color: #fff;
         background-color: #009f9c;
+        border-color: #009f9c;
     }
 
 /* background gradient */
@@ -118,9 +124,9 @@ a,
 /* vertical gradient */
 .section-graphics.bg-gredient {
     background-color: #009f9c;
-    background: -moz-linear-gradient(top, #009f9c 0%, #3465b0 100%);
-    background: -webkit-linear-gradient(180deg, #009f9c 0%, #3465b0 100%);
-    background: linear-gradient(180deg, #009f9c 0%, #3465b0 100%);
+    background: -moz-linear-gradient(left, #009f9c 0%, #3465b0 100%);
+    background: -webkit-linear-gradient(90deg, #009f9c 0%, #3465b0 100%);
+    background: linear-gradient(90deg, #009f9c 0%, #3465b0 100%);
 }
 
 /* background rgba */
@@ -132,9 +138,4 @@ a,
 /*Important stuff*/
 .navbar.top-navbar .top-menus a:hover, .navbar.top-navbar .top-menus a:hover span, .navbar.top-navbar .top-menus a.active span {
     color: #009f9c !important;
-}
-
-/* custom select */
-.select:before {
-    color: #009f9c;
 }

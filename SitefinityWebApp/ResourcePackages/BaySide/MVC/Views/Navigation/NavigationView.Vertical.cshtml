@@ -5,32 +5,35 @@
 @using Telerik.Sitefinity.Modules.Pages;
 
 
-@foreach (var node in Model.Nodes)
-{
-    @RenderSubLevelsRecursive(node);
-}
+
+@*@Html.Action("GetView", new { viewName = "Dropdown", model = Model })*@
+
+<ul class="@Model.CssClass">
+    @foreach (var node in Model.Nodes)
+    {
+        @RenderSubLevelsRecursive(node);
+    }
+</ul>
 
 
 @*Here is specified the rendering for the sub levels*@
 @helper RenderSubLevelsRecursive(NodeViewModel node)
-{
+{    
   
-    <h4>@node.Title</h4>
+    <li class="@GetClass(node)">
+        <a href="@node.Url" target="@node.LinkTarget">@node.Title</a>
 
-    if (node.ChildNodes.Count > 0)
-    {
-        <ul class="footer_menu">
-            @foreach (var childNode in node.ChildNodes)
-            {
-                <li class="@GetClass(childNode)"><a href="@childNode.LinkTarget">@childNode.Title</a></li>
-             
-            }
-        </ul>
-    }
-    else
-    {
-
-    }
+        @if (node.ChildNodes.Count > 0)
+        {
+            <ul>
+                @foreach (var childNode in node.ChildNodes)
+                {
+                    @RenderSubLevelsRecursive(childNode)
+                }
+            </ul>
+        }
+    </li>
+    
 }
 
 

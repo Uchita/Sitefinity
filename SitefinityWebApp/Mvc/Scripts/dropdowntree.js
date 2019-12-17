@@ -261,11 +261,15 @@
 
         if (options.data.length > 0) {
             options.data.forEach(option => {
-                option.Slug = option.Slug.trim().replace(/[^\w]/gi, '-').replace(/-+/g, '-').toLowerCase();
-                if (option.Filters.length > 0) {
-                    option.Filters.forEach(filter => {
-                        filter.Slug = filter.Slug.trim().replace(/[^\w\/]/gi, '-').replace(/-+/g, '-').replace(/-+$/g, '').toLowerCase();
-                    })
+                if (option.Slug) {
+                    option.Slug = option.Slug.trim().replace(/[^\w]/gi, '-').replace(/-+/g, '-').toLowerCase();
+                    if (option.Filters.length > 0) {
+                        option.Filters.forEach(filter => {
+                            if (filter.Slug) {
+                                filter.Slug = filter.Slug.trim().replace(/[^\w\/]/gi, '-').replace(/-+/g, '-').replace(/-+$/g, '').toLowerCase();
+                            }
+                        })
+                    }
                 }
             });
         }

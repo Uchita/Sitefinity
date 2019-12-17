@@ -1285,6 +1285,7 @@
     <Content Include="Mvc\Scripts\LanguageSelector\script.js" />
     <Content Include="Mvc\Scripts\Lists\listexpandablelist.js" />
     <Content Include="Mvc\Scripts\Location\addressfield.js" />
+    <EmbeddedResource Include="Mvc\Scripts\LoginStatus\login-status.js" />
     <Content Include="Mvc\Scripts\Maps\jquery.googlemap.js" />
     <Content Include="Mvc\Scripts\MultiCard\multicard-carousel.js" />
     <Content Include="Mvc\Scripts\Person\person-carousel.js" />

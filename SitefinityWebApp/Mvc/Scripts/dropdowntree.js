@@ -274,6 +274,11 @@
             });
         }
 
+        //if (options) {
+        //    options.element = $('#filtersPagePartialContent ' + $(options.element).selector);
+        //    console.log(options.element);
+        //}
+
         RenderData(options.data, $(options.element).find("ul").first());
 
 
@@ -381,6 +386,18 @@
 
         if (options.setSelectedElementsTitle)
             SetSelectedElementsTitle();
+
+        if ($('form[name="JobSearchResults"]').length > 0) {
+            $('form[name="JobSearchResults"] select').each(function (index, element) {
+                console.log($('form[name="JobSearchResults"] select[name="' + element.name + '"] > option'));
+                $('form[name="JobSearchResults"] select[name="' + element.name + '"] > option').each(function (index, option) {
+                    if ($(option).data('slug')) {
+                        $(option).attr('data-slug', $(option).attr('data-slug').replace(/[^\w]/gi, '-').replace(/-+/g, '-').toLowerCase());
+                        $(option).data('slug', $(option).data('slug').replace(/[^\w]/gi, '-').replace(/-+/g, '-').toLowerCase());
+                    }
+                })
+            });
+        }
 
     };
 })(jQuery);
@@ -777,4 +794,4 @@ $.urlParam = function (name) {
     else {
         return decodeURI(results[1]) || 0;
     }
-};
+}

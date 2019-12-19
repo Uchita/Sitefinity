@@ -6676,6 +6676,8 @@ select.hs-input {
     .navbar.top-navbar .top-menus span.fa-linkedin,
     .navbar.top-navbar .top-menus span.fa-facebook {
         position: relative;
+    }
+    .navbar.top-navbar .top-menus span.fa-facebook {
         top: -1px;
     }
 

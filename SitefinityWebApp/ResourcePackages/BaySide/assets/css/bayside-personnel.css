@@ -87,6 +87,7 @@ a,
     background-image: url(../images/next-icon-green.png);
 }
 
+    .owl-nav .owl-prev:hover, .owl-nav .owl-prev:focus,
     .owl-nav .owl-next:hover, .owl-nav .owl-next:focus,
     .featured-carousel .carousel-overlay {
         background-color: #009f9c;

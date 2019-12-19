@@ -19,6 +19,7 @@ a,
 .top-menus .navbar-nav a:hover, .top-menus .navbar-nav a.active,
 .app-header .dropdown-menu .dropdown-item:hover, .app-header .dropdown-menu .dropdown-item.active, .app-header .dropdown-menu .dropdown-item:focus,
 .app-header .main-menu .navbar-nav .nav-item:hover .menu-toggle,
+.app-header .main-menu .navbar-nav .nav-item > .nav-link.active + .menu-toggle,
 .video-wrap .btn-link:hover,
 .video-wrap .btn-link.active,
 .address-panel .panel-title {
@@ -87,6 +88,7 @@ a,
     background-image: url(../images/next-icon-green.png);
 }
 
+    .owl-nav .owl-prev:hover, .owl-nav .owl-prev:focus,
     .owl-nav .owl-next:hover, .owl-nav .owl-next:focus,
     .featured-carousel .carousel-overlay {
         background-color: #009f9c;

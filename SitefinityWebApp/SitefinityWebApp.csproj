@@ -1544,9 +1544,6 @@
     <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\ContentResources.zh-CHS.resx" />
     <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\DashboardResources.resx" />
     <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\DashboardResources.zh-CHS.resx" />
-    <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\ErrorMessages.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\ErrorMessages.zh-CHS.resx" />
     <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\ErrorMessages.zh-CN.resx" />
     <EmbeddedResource Include="App_Data\Sitefinity\GlobalResources\FormsResources.zh-CHS.resx" />

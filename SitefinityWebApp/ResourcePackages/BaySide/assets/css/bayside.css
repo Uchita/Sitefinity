@@ -6677,8 +6677,11 @@ select.hs-input {
     .navbar.top-navbar .top-menus span.fa-facebook {
         position: relative;
     }
+    .navbar.top-navbar .top-menus span.fa-linkedin {
+        top: -0.05em;
+    }
     .navbar.top-navbar .top-menus span.fa-facebook {
-        top: -1px;
+        top: -0.07em;
     }
 
 .navbar.top-navbar .top-menus a:hover, .navbar.top-navbar .top-menus a:hover span,
@@ -9051,6 +9054,7 @@ img.savejob-icon {
     display: none;
 }
 
+
 .form-group .dropdown-tree > ul ul {
     padding-left: 20px;
 }
@@ -9094,6 +9098,8 @@ img.savejob-icon {
     top: 45%;
     right: 5px;
 }
+
+
 
 /*Job filter sidebar::End*/
 .app-content .content-two-colmun li {
@@ -9767,7 +9773,6 @@ img.savejob-icon {
         padding: 0 0 0 22px;
         font-weight: 400;
     }
-
 .form-group .checkbox input[type="radio"],
 .form-group .checkbox input[type="checkbox"] {
     position: relative;
@@ -9784,10 +9789,26 @@ img.savejob-icon {
 #createalert-widget .checkbox input{
     margin-right: 3px;
 }
+#createalert-widget .bayside-form {
+    padding: 0;
+}
+
+#createalert-widget .bayside-form .basic-form {
+    padding-right: 0;
+}
+
+.bayside-form .sf-FileField {
+    margin-bottom: 10px;
+}
+
+.bayside-form .form-group .btn-primary {
+    margin-top: 0px;
+}
 
 .button-group{
     margin-top: 30px;
 }
+
 
 .fw-400 {
     font-weight: 400;
@@ -10707,7 +10728,7 @@ img.savejob-icon {
     }*/
 
 .video-wrap .btn-link:hover {
-    color: #fff;
+    color: #fff!important;
 }
 
 .ForgotPassword .basic-form p {
@@ -11584,7 +11605,7 @@ select.slimtable-paging-select {
     .form-group .select:before{
         color: #000;
     }
-
+   
 
 /* custom file upload */
 .sf-FileField {

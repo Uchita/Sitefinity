@@ -297,4 +297,14 @@
     <comment></comment>
     <lastModified>2019-07-17T00:08:37</lastModified>
   </data>
+  <data name="LoginAsMemberSaveJob">
+    <value>请以会员身份登录以保存工作。</value>
+    <comment>Login as Member message to save a job.</comment>
+    <lastModified>2019-11-28T06:48:01</lastModified>
+  </data>
+  <data name="LoginAsMemberApplyJob">
+    <value>请以会员身份登录以申请此职位。</value>
+    <comment>Message for login as member in order to apply for job</comment>
+    <lastModified>2019-12-04T03:43:32</lastModified>
+  </data>
 </root>

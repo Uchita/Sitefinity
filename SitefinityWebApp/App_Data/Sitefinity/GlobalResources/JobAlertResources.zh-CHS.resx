@@ -227,4 +227,24 @@
     <comment></comment>
     <lastModified>2019-07-17T00:48:24</lastModified>
   </data>
+  <data name="SuccessCreateJobAlert">
+    <value>作业警报已成功创建。</value>
+    <comment></comment>
+    <lastModified>2019-11-15T00:01:33</lastModified>
+  </data>
+  <data name="SuccessUpdateJobAlert">
+    <value>作业警报已成功更新。</value>
+    <comment></comment>
+    <lastModified>2019-11-15T00:02:14</lastModified>
+  </data>
+  <data name="SuccessDeleteJobAlert">
+    <value>作业警报已成功删除。</value>
+    <comment></comment>
+    <lastModified>2019-11-15T00:02:40</lastModified>
+  </data>
+  <data name="LoginAsMemberJobAlert">
+    <value>请以会员身份登录以创建职位提醒。</value>
+    <comment></comment>
+    <lastModified>2019-11-15T00:04:52</lastModified>
+  </data>
 </root>

@@ -132,4 +132,9 @@
     <comment>Alert details</comment>
     <lastModified>2019-07-08T02:11:40</lastModified>
   </data>
+  <data name="LoginAsMemberJobAlert">
+    <value>Please login as Member to create job alert.</value>
+    <comment>Login as Member to create job alert.</comment>
+    <lastModified>2019-11-14T05:25:02</lastModified>
+  </data>
 </root>

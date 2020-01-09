@@ -208,9 +208,9 @@
     <lastModified>2019-05-13T23:20:23</lastModified>
   </data>
   <data name="JobDetailWorkType">
-    <value>Work type:</value>
+    <value>Work type</value>
     <comment>Work type label on job detail page</comment>
-    <lastModified>2019-05-13T23:21:20</lastModified>
+    <lastModified>2019-12-12T04:24:04</lastModified>
   </data>
   <data name="JobDetailLocation">
     <value>Location</value>
@@ -297,14 +297,29 @@
     <comment>Enter your email address place holder on job board</comment>
     <lastModified>2019-06-24T00:52:41</lastModified>
   </data>
-  <data name="CreateJobAlertEmailPlaceholder">
-    <value>Enter email address</value>
-    <comment>Anonymus create job alert email input's placeholder on job board</comment>
-    <lastModified>2019-07-05T02:22:42</lastModified>
-  </data>
   <data name="ViewAllJobs">
     <value>View all jobs</value>
     <comment></comment>
     <lastModified>2019-07-17T00:08:37</lastModified>
+  </data>
+  <data name="CreateJobAlertEmailPlaceholder">
+    <value>Enter email address</value>
+    <comment>Anonymus create job alert email input's </comment>
+    <lastModified>2019-09-09T03:14:43</lastModified>
+  </data>
+  <data name="SelectResume">
+    <value>Select Your Resume</value>
+    <comment></comment>
+    <lastModified>2019-10-15T04:26:30</lastModified>
+  </data>
+  <data name="LoginAsMemberSaveJob">
+    <value>Please login as Member to save a job.</value>
+    <comment>Login as Member message to save a job.</comment>
+    <lastModified>2019-11-28T06:48:01</lastModified>
+  </data>
+  <data name="LoginAsMemberApplyJob">
+    <value>Please login as Member to apply for this job.</value>
+    <comment>Message for login as member in order to apply for job</comment>
+    <lastModified>2019-12-04T03:43:32</lastModified>
   </data>
 </root>

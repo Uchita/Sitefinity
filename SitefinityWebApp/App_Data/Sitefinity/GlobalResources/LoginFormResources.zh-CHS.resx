@@ -162,4 +162,9 @@
     <comment></comment>
     <lastModified>2019-07-09T01:14:17</lastModified>
   </data>
+  <data name="IncorrectCredentialsMessage">
+    <value>凭证不正确</value>
+    <comment></comment>
+    <lastModified>2019-12-19T12:17:02</lastModified>
+  </data>
 </root>

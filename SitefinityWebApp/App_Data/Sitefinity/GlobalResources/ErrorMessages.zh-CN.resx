@@ -147,4 +147,14 @@
     <comment></comment>
     <lastModified>2019-05-09T22:22:21</lastModified>
   </data>
+  <data name="SuccessJobAlert">
+    <value>警报已创建。我们会将新工作发送到您的电子邮件地址。</value>
+    <comment></comment>
+    <lastModified>2019-11-13T22:41:37</lastModified>
+  </data>
+  <data name="ErrJobAlertMessage">
+    <value>请输入您的有效电子邮件地址。</value>
+    <comment></comment>
+    <lastModified>2019-11-13T22:42:48</lastModified>
+  </data>
 </root>

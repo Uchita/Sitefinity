@@ -127,11 +127,6 @@
     <comment></comment>
     <lastModified>2019-04-30T06:15:40</lastModified>
   </data>
-  <data name="PrivacyPolicyLbl">
-    <value>我同意翰德的保密协议</value>
-    <comment>Privacy policy message label</comment>
-    <lastModified>2019-04-30T07:39:15</lastModified>
-  </data>
   <data name="QuickLinks">
     <value>快速链接</value>
     <comment></comment>
@@ -216,5 +211,35 @@
     <value>高级搜索</value>
     <comment></comment>
     <lastModified>2019-05-10T00:03:44</lastModified>
+  </data>
+  <data name="Register">
+    <value>寄存器</value>
+    <comment></comment>
+    <lastModified>2019-11-28T05:09:22</lastModified>
+  </data>
+  <data name="Close">
+    <value>关</value>
+    <comment></comment>
+    <lastModified>2019-11-28T06:35:34</lastModified>
+  </data>
+  <data name="applySocialHeaderTitle">
+    <value>申请</value>
+    <comment></comment>
+    <lastModified>2019-12-04T06:13:32</lastModified>
+  </data>
+  <data name="JobApplyResumeUseExtProvider">
+    <value>注意：我们会自动使用所有求职信，并恢复您在这些网站上保存的简历。</value>
+    <comment></comment>
+    <lastModified>2019-12-04T06:14:22</lastModified>
+  </data>
+  <data name="Displaying item 1 of 1">
+    <value>显示第1项，共1项</value>
+    <comment></comment>
+    <lastModified>2019-12-12T06:08:45</lastModified>
+  </data>
+  <data name="Displaying items {0} to {1} out of {2}">
+    <value>显示{2}中的项目{0}至{1}</value>
+    <comment></comment>
+    <lastModified>2019-12-12T06:09:10</lastModified>
   </data>
 </root>

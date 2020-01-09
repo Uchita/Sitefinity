@@ -236,9 +236,9 @@ https://&lt;%\s*SiteName\s*%&gt;</value>
     <lastModified>2019-04-30T07:33:12</lastModified>
   </data>
   <data name="PrivacyPolicyLbl">
-    <value>I agree to Hudson's Privacy Policy</value>
+    <value>I agree to the collection, use and disclosure of my personal information in accordance with Hudson’s &lt;a href="/privacy-policy" title="Privacy Policy" target="_blank"&gt;Privacy Policy&lt;/a&gt;.</value>
     <comment>Privacy policy message label</comment>
-    <lastModified>2019-05-14T06:04:37</lastModified>
+    <lastModified>2019-08-09T05:28:04</lastModified>
   </data>
   <data name="QuickLinks">
     <value>QUICK LINKS</value>
@@ -374,5 +374,50 @@ https://&lt;%\s*SiteName\s*%&gt;</value>
     <value>There are no articles posted for this category yet!</value>
     <comment>There are no articles posted for this category yet!</comment>
     <lastModified>2019-07-29T07:20:05</lastModified>
+  </data>
+  <data name="Last2Years">
+    <value>Past 2 years</value>
+    <comment>phrase: Last 2 years</comment>
+    <lastModified>2019-11-14T06:03:24</lastModified>
+  </data>
+  <data name="Last1Year">
+    <value>Past year</value>
+    <comment>phrase: Last 1 year</comment>
+    <lastModified>2019-11-14T06:04:32</lastModified>
+  </data>
+  <data name="Last6Months">
+    <value>Past 6 months</value>
+    <comment>Last 6 months</comment>
+    <lastModified>2019-11-14T06:24:15</lastModified>
+  </data>
+  <data name="GoogleApiKeySettingMsg">
+    <value>Google Maps API key is not set. Please set at "Administration-&gt;Settings-&gt;Custom Site Settings"</value>
+    <comment>google map api key set up message</comment>
+    <lastModified>2019-12-04T03:44:44</lastModified>
+  </data>
+  <data name="SiteName">
+    <value>Hudson</value>
+    <comment>Site name</comment>
+    <lastModified>2019-12-04T05:48:57</lastModified>
+  </data>
+  <data name="ConnectOn">
+    <value>Connect on</value>
+    <comment>Connect on</comment>
+    <lastModified>2019-12-04T05:57:22</lastModified>
+  </data>
+  <data name="GotoLinkedinProfile">
+    <value>Go to LinkedIn Profile</value>
+    <comment>Go to LinkedIN Profile</comment>
+    <lastModified>2019-12-04T06:00:12</lastModified>
+  </data>
+  <data name="Displaying item 1 of 1">
+    <value>Displaying item 1 of 1</value>
+    <comment></comment>
+    <lastModified>2019-12-12T06:03:03</lastModified>
+  </data>
+  <data name="Displaying items {0} to {1} out of {2}">
+    <value>Displaying items {0} to {1} out of {2}</value>
+    <comment></comment>
+    <lastModified>2019-12-12T06:05:06</lastModified>
   </data>
 </root>

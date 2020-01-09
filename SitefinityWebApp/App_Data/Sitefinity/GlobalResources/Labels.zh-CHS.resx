@@ -298,9 +298,9 @@
     <lastModified>2019-07-17T04:31:16</lastModified>
   </data>
   <data name="PrivacyPolicyLbl">
-    <value>我同意翰德的保密协议</value>
+    <value>&lt;a href="/privacy-policy" title="我同意翰德的保密协议" target="_blank"&gt;我同意翰德的保密协议&lt;/a&gt;</value>
     <comment></comment>
-    <lastModified>2019-07-17T04:31:44</lastModified>
+    <lastModified>2019-08-09T05:28:05</lastModified>
   </data>
   <data name="dividerLabel">
     <value>要么</value>
@@ -321,5 +321,60 @@
     <value>此类别尚未发布任何文章！</value>
     <comment>There are no articles posted for this category yet!</comment>
     <lastModified>2019-07-29T07:20:05</lastModified>
+  </data>
+  <data name="nofilterselectedmessage">
+    <value>请输入至少一个搜索条件。</value>
+    <comment></comment>
+    <lastModified>2019-11-14T04:59:08</lastModified>
+  </data>
+  <data name="ShowAll">
+    <value>显示所有</value>
+    <comment></comment>
+    <lastModified>2019-11-14T05:45:48</lastModified>
+  </data>
+  <data name="Last2Years">
+    <value>最近2年</value>
+    <comment></comment>
+    <lastModified>2019-11-14T06:03:25</lastModified>
+  </data>
+  <data name="Last1Year">
+    <value>过去一年</value>
+    <comment></comment>
+    <lastModified>2019-11-14T06:04:33</lastModified>
+  </data>
+  <data name="Last6Months">
+    <value>过去六个月</value>
+    <comment>Last 6 months</comment>
+    <lastModified>2019-11-14T06:24:15</lastModified>
+  </data>
+  <data name="Paging_Next">
+    <value>下一页</value>
+    <comment></comment>
+    <lastModified>2019-11-15T02:40:17</lastModified>
+  </data>
+  <data name="Paging_Prev">
+    <value>上一页</value>
+    <comment></comment>
+    <lastModified>2019-11-15T02:40:49</lastModified>
+  </data>
+  <data name="Register">
+    <value>寄存器</value>
+    <comment></comment>
+    <lastModified>2019-11-28T05:09:24</lastModified>
+  </data>
+  <data name="Close">
+    <value>关</value>
+    <comment></comment>
+    <lastModified>2019-11-28T06:35:34</lastModified>
+  </data>
+  <data name="Displaying item 1 of 1">
+    <value>显示第1项，共1项</value>
+    <comment></comment>
+    <lastModified>2019-12-12T06:08:45</lastModified>
+  </data>
+  <data name="Displaying items {0} to {1} out of {2}">
+    <value>显示{2}中的项目{0}至{1}</value>
+    <comment></comment>
+    <lastModified>2019-12-12T06:09:10</lastModified>
   </data>
 </root>

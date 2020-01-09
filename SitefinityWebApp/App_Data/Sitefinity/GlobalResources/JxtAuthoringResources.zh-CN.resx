@@ -117,4 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="LoginAsMemberSaveJob">
+    <value>请以会员身份登录以保存工作。</value>
+    <comment>Login as Member message to save a job.</comment>
+    <lastModified>2019-11-28T06:48:01</lastModified>
+  </data>
 </root>

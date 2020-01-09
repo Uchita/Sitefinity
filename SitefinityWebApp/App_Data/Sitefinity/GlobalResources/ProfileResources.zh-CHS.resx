@@ -192,4 +192,19 @@
     <comment></comment>
     <lastModified>2019-07-17T01:52:43</lastModified>
   </data>
+  <data name="EditProfileNickname">
+    <value>昵称</value>
+    <comment></comment>
+    <lastModified>2019-11-25T00:50:18</lastModified>
+  </data>
+  <data name="EditProfileAbout">
+    <value>关于</value>
+    <comment></comment>
+    <lastModified>2019-11-25T00:50:57</lastModified>
+  </data>
+  <data name="ChangesAreSaved">
+    <value>您的更改已保存</value>
+    <comment></comment>
+    <lastModified>2019-11-25T01:10:07</lastModified>
+  </data>
 </root>

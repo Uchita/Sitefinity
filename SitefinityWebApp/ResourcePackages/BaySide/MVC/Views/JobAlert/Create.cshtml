@@ -55,9 +55,13 @@
                             <div class="left-col">
                                 @{
                                     var displayTitle = item.Name;
+                                    if (displayTitle == "Classifications")
+                                    {
+                                        displayTitle = "Select Classification";
+                                    }
                                     if (displayTitle == "CountryLocationArea")
                                     {
-                                        displayTitle = "Location";
+                                        displayTitle = "Select Location";
                                     }
                                     else if (displayTitle == "WorkType")
                                     {

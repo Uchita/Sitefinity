@@ -176,5 +176,18 @@ a:hover, a:focus,
     }
 
 section.cta h2 {
-    color: #009f9c;
+    color: #009f9c !important;
+}
+
+.pagination > li > a {
+    border-color: #009f9c;
+    color: #009f9c !important;
+}
+
+    .pagination > li > span.active, .pagination > li > span:hover, .pagination > li > span:focus, .pagination > li > a.active, .pagination > li > a:hover, .pagination > li > a:focus {
+        border-color: #009f9c;
+    }
+
+.cta-icon img {
+    height: 50px;
 }

@@ -272,12 +272,14 @@
 
             $.each(filterData, function (index, item) {
                 var displayTitle = item.Name;
-                if (displayTitle == 'CountryLocationArea')
-                    displayTitle = 'Location';
+                if (displayTitle == "Classifications")
+                    displayTitle = "Select Classification";
+                else if (displayTitle == 'CountryLocationArea')
+                    displayTitle = 'Select Location';
                 else if (displayTitle == 'WorkType')
-                    displayTitle = 'Work Type';
+                    displayTitle = 'Select Work Type';
                 else if (displayTitle == 'CompanyName')
-                    displayTitle = 'Company Name';
+                    displayTitle = 'Select Company Name';
 
                 optionsArray[item.Name] = {
                     title: displayTitle,

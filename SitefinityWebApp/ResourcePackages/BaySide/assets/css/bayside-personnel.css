@@ -186,8 +186,44 @@ section.cta h2 {
 
     .pagination > li > span.active, .pagination > li > span:hover, .pagination > li > span:focus, .pagination > li > a.active, .pagination > li > a:hover, .pagination > li > a:focus {
         border-color: #009f9c;
+        background-color: #009f9c;
     }
 
-.cta-icon img {
-    height: 50px;
+        .cta-icon img {
+            height: 50px;
+        }
+
+.background-bayside-grey {
+    background-color: #3c4044;
+    padding-top: 40px;
+}
+
+.latest-news-section {
+    padding: 50px 0;
+}
+
+    .latest-news-section h2 {
+        color: white;
+    }
+
+    .latest-news-section .margin-bottom-30 {
+        margin-bottom: 40px;
+    }
+
+.latest-news-section__content .g-section.bg-grey {
+    background-color: transparent;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.latest-news-section__content .g-section h2 {
+    display: none;
+}
+
+.latest-news-section .list-item .list-desc, .latest-news-section .list-item .news-desc, .latest-news-section .news-list .list-desc, .latest-news-section .news-list .news-desc {
+    color: white;
+}
+
+.featured-carousel .item:hover .carousel-abs-content span {
+    transition: none;
 }

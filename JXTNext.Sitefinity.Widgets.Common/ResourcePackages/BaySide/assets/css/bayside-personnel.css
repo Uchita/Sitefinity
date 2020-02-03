@@ -209,7 +209,7 @@ a:focus,
     background-color: #009f9c !important;
 }
 
-section.cta h2 {
+section.cta h2:not(.text-white) {
     color: #009f9c !important;
 }
 

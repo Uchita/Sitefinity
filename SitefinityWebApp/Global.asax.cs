@@ -2,6 +2,7 @@
 using JXTNext.Sitefinity.Common.Attributes;
 using JXTNext.Sitefinity.Services.Services;
 using JXTNext.Sitefinity.Widgets.Authentication.Mvc.StringResources;
+using JXTNext.Sitefinity.Widgets.Candidate;
 using JXTNext.Sitefinity.Widgets.Content.Mvc.StringResources;
 using JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.LoginForm;
 using JXTNext.Sitefinity.Widgets.Identity.Mvc.Models.RegistrationExtended;
@@ -72,6 +73,7 @@ namespace SitefinityWebApp
 
             if (e.CommandName == "Bootstrapped")
             {
+                AutoMapperConfiguration.Configure();
                 //GlobalFilters.Filters.Add(new SocialShareAttribute()); Remove because social share is no longer supported.
                 FrontendModule.Current.DependencyResolver.Rebind<IDynamicContentModel>().To<CustomDynamicContentModel>();
                 EventHub.Subscribe<IUnauthorizedPageAccessEvent>(new Telerik.Sitefinity.Services.Events.SitefinityEventHandler<IUnauthorizedPageAccessEvent>(OnUnauthorizedAccess));

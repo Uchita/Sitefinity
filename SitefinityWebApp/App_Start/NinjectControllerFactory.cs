@@ -32,6 +32,7 @@ namespace SitefinityWebApp.App_Start
                 , new ServiceInterfacesModule()
                 , new Widgets_JobModule()
                 , new JXTNext.Sitefinity.Modules.Setup.Bindings()
+                , new JXTNext.Infrastructure.InterfaceMappings()
                 );
 
             BindInjectionModels();

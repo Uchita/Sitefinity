@@ -1,4 +1,4 @@
-(function ($) {
+(function($) {
     var globalTreeIdCounter = 0;
 
     var dropDownOptions = {
@@ -15,9 +15,9 @@
         multiSelect: false,
         selectChildren: false,
         addChildren: false,
-        clickHandler: function (target) { },
-        expandHandler: function (target, expanded) { },
-        checkHandler: function (target, checked) { },
+        clickHandler: function(target) {},
+        expandHandler: function(target, expanded) {},
+        checkHandler: function(target, checked) {},
         expandElement: false,
         expandChildren: false,
         enableSearch: true,
@@ -32,7 +32,7 @@
     };
 
     //data inits from options
-    $.fn.DropDownTree = function (options) {
+    $.fn.DropDownTree = function(options) {
         //helpers
         $(this).attr("data-prefixidtext", options.prefixIdText);
 
@@ -66,8 +66,7 @@
                         } else if (options.addChildren) {
                             $("#" + options.prefixIdText + data[i].ID).find("a").first().prepend('<span class="arrow">' + options.closedArrow + '</span>');
                         }
-                    }
-                    else {
+                    } else {
                         element.find("ul").append('<li id=' + options.prefixIdText + data[i].ID + dataAttrs + '>' + (options.multiSelect ? options.checkboxIcon : '') + '<a href="' + ((typeof data[i].href !== "undefined" && data[i].href !== null) ? data[i].href : '#') + (options.clickTextSelect ? '"class=drop-down-item' : '"') + '>' + data[i].Label + '</a></li>');
                         if (data[i].Filters !== null && typeof data[i].Filters !== "undefined") {
                             $("#" + options.prefixIdText + data[i].ID).append("<ul style='display:none'></ul>");
@@ -97,13 +96,13 @@
 
         //handlers binders
         //element click handler
-        $(options.element).on("click", "li", function (e) {
+        $(options.element).on("click", "li", function(e) {
             tree.init.prototype.clickedElement = $(this);
             options.clickHandler(tree.clickedElement, e);
             e.stopPropagation();
         });
 
-        $(options.element).on("click", "li a", function (e) {
+        $(options.element).on("click", "li a", function(e) {
             if ($(this).attr('href').indexOf('#') === 0) {
                 e.preventDefault();
             }
@@ -112,19 +111,18 @@
             }
         });
 
-        $(options.element).on("keyup", "input", function (o) {
+        $(options.element).on("keyup", "input", function(o) {
             var text = $(this).val().toUpperCase();
             $(options.element).find("li").css("display", "block");
-            $($(options.element).find("li")).each(function (i, el) {
+            $($(options.element).find("li")).each(function(i, el) {
                 if (text !== '' && $(el).attr("data-title").startsWith(text)) {
                     $(el).addClass("filtered");
-                }
-                else if (text !== '') {
+                } else if (text !== '') {
                     $(el).removeClass("filtered");
                     $(el).css("display", "none");
                 }
             });
-            $($(options.element).find("li").filter(".filtered")).each(function (i, t) {
+            $($(options.element).find("li").filter(".filtered")).each(function(i, t) {
                 $(t).parents("li").css("display", "block");
             });
 
@@ -167,7 +165,7 @@
         };
 
         //arrow click handler close/open
-        $(options.element).on("click", ".arrow", function (e) {
+        $(options.element).on("click", ".arrow", function(e) {
             e.stopPropagation();
             e.preventDefault();
             $(this).empty();
@@ -186,7 +184,7 @@
 
 
         //select box click handler
-        $(options.element).on("click", ".select-box", function (e) {
+        $(options.element).on("click", ".select-box", function(e) {
             e.stopPropagation();
             var checked;
             if ($(this).hasClass(options.checkboxIconClass)) {
@@ -223,7 +221,7 @@
             options.checkHandler($(this).parents("li").first(), e, checked);
         });
 
-        $(options.element).on("click", ".drop-down-item", function (e) {
+        $(options.element).on("click", ".drop-down-item", function(e) {
             $(this).parent("li").children("i").first().trigger("click");
         });
 
@@ -259,20 +257,6 @@
             $(options.element).find("ul").first().append('<input type="text" class="form-control" placeholder="Type here to filter..." />');
         }
 
-        if (options.data.length > 0) {
-            options.data.forEach(option => {
-                if (option.Slug) {
-                    option.Slug = option.Slug.trim().replace(/[^\w]/gi, '-').replace(/-+/g, '-').toLowerCase();
-                    if (option.Filters.length > 0) {
-                        option.Filters.forEach(filter => {
-                            if (filter.Slug) {
-                                filter.Slug = filter.Slug.trim().replace(/[^\w\/]/gi, '-').replace(/-+/g, '-').replace(/-+$/g, '').toLowerCase();
-                            }
-                        })
-                    }
-                }
-            });
-        }
 
         //if (options) {
         //    options.element = $('#filtersPagePartialContent ' + $(options.element).selector);
@@ -283,39 +267,39 @@
 
 
         //protos inits
-        $(options.element).init.prototype.GetParents = function () {
+        $(options.element).init.prototype.GetParents = function() {
             var jqueryClickedElement = $(options.element).clickedElement;
             return $(jqueryClickedElement).parents("li");
         };
 
 
-        $(options.element).init.prototype.SetTitle = function (title) {
+        $(options.element).init.prototype.SetTitle = function(title) {
             $(this).find(".dropdowntree-name").text(title);
         };
 
-        $(options.element).init.prototype.GetSelected = function (title) {
+        $(options.element).init.prototype.GetSelected = function(title) {
             var selectedElements = [];
-            $(this).find(".fa-check-square").each(function () {
+            $(this).find(".fa-check-square").each(function() {
                 selectedElements.push($(this).parents("li").first());
             });
             return selectedElements;
         };
 
-        $(options.element).init.prototype.GetSelectedElementIds = function (title) {
+        $(options.element).init.prototype.GetSelectedElementIds = function(title) {
             var selectedElementIds = [];
             var prefixIdText = $(this).attr("data-prefixidtext");
 
-            $.each($(this).GetSelected(), function (i, element) {
+            $.each($(this).GetSelected(), function(i, element) {
                 var trimmedId = $(element).attr("id").slice(prefixIdText.length);
                 selectedElementIds.push(trimmedId);
             });
             return selectedElementIds;
         };
 
-        $(options.element).init.prototype.GetSelectedElementSlugs = function () {
+        $(options.element).init.prototype.GetSelectedElementSlugs = function() {
             var selectedElementSlugs = [];
 
-            $.each($(this).GetSelected(), function (i, element) {
+            $.each($(this).GetSelected(), function(i, element) {
                 var trimmed = $.trim($(element).attr("data-slug"));
                 if (trimmed !== '') {
                     selectedElementSlugs.push(trimmed);
@@ -324,11 +308,11 @@
             return selectedElementSlugs;
         };
 
-        $(options.element).init.prototype.GetSelectedElementIdsAndSlugs = function (title) {
+        $(options.element).init.prototype.GetSelectedElementIdsAndSlugs = function(title) {
             var selectedElements = [];
             var prefixIdText = $(this).attr("data-prefixidtext");
 
-            $.each($(this).GetSelected(), function (i, element) {
+            $.each($(this).GetSelected(), function(i, element) {
                 element = $(element);
 
                 var trimmedId = element.attr("id").slice(prefixIdText.length);
@@ -340,15 +324,15 @@
             return selectedElements;
         };
 
-        $(options.element).init.prototype.GetSelectedElementsText = function (title) {
+        $(options.element).init.prototype.GetSelectedElementsText = function(title) {
             var selectedElementText = [];
-            $.each($(this).GetSelected(), function (i, element) {
+            $.each($(this).GetSelected(), function(i, element) {
                 selectedElementText.push($(element).children('a').text());
             });
             return selectedElementText;
         };
 
-        $(options.element).init.prototype.AddChildren = function (element, arrOfElements) {
+        $(options.element).init.prototype.AddChildren = function(element, arrOfElements) {
             if (options.addChildren && $(element).find("ul").length === 0)
                 $(element).append("<ul></ul>");
             element = $(element).find("ul").first();
@@ -362,8 +346,7 @@
             var titleText = options.title;
             if (selectedElementText.length > 3) {
                 titleText = selectedElementText.length + " selected";
-            }
-            else if (selectedElementText.length > 0) {
+            } else if (selectedElementText.length > 0) {
                 if (selectedElementText.length <= 2) {
                     titleText = selectedElementText.join(' - ');
                 } else {
@@ -386,19 +369,6 @@
 
         if (options.setSelectedElementsTitle)
             SetSelectedElementsTitle();
-
-        if ($('form[name="JobSearchResults"]').length > 0) {
-            $('form[name="JobSearchResults"] select').each(function (index, element) {
-                console.log($('form[name="JobSearchResults"] select[name="' + element.name + '"] > option'));
-                $('form[name="JobSearchResults"] select[name="' + element.name + '"] > option').each(function (index, option) {
-                    if ($(option).data('slug')) {
-                        $(option).attr('data-slug', $(option).attr('data-slug').replace(/[^\w]/gi, '-').replace(/-+/g, '-').toLowerCase());
-                        $(option).data('slug', $(option).data('slug').replace(/[^\w]/gi, '-').replace(/-+/g, '-').toLowerCase());
-                    }
-                })
-            });
-        }
-
     };
 })(jQuery);
 
@@ -416,7 +386,7 @@
  * @see JXTNext.Sitefinity.Common.Constants.JobConstants
  */
 var JobSearchFilter = {
-    SeoUrlPartsModel: function () {
+    SeoUrlPartsModel: function() {
         this.Classification = null;
         this.SubClassification = null;
         this.Country = null;
@@ -429,7 +399,7 @@ var JobSearchFilter = {
     urlClassificationIdentifier: 'jobs-in-',
     urlCountryIdentifier: 'in-',
 
-    submitSearchForm: function (form) {
+    submitSearchForm: function(form) {
         var formData = {};
         var filterNames = {};
 
@@ -437,7 +407,7 @@ var JobSearchFilter = {
 
         form = $(form);
 
-        form.find(':input').each(function () {
+        form.find(':input').each(function() {
             el = $(this);
 
             name = el.attr('name');
@@ -456,16 +426,14 @@ var JobSearchFilter = {
                 if (match[2] === 'rootId') {
                     filterNames[match[1]] = val;
                     formData[val] = [];
-                }
-                else {
+                } else {
                     filterName = filterNames[match[1]];
                     if (filterName) {
-                        if (typeof (val) === 'object') {
+                        if (typeof(val) === 'object') {
                             for (var v in val) {
                                 formData[filterName].push($('select[name="' + name + '"]').find('option[value="' + val[v] + '"]').data('slug'));
                             }
-                        }
-                        else {
+                        } else {
                             formData[filterName].push($('select[name="' + name + '"]').find('option[value="' + val + '"]').data('slug'));
                         }
                     }
@@ -491,35 +459,28 @@ var JobSearchFilter = {
 
             if (nameFData === 'Classifications') {
                 JobSearchFilter.createClassificationSeoPart(seoUrlParts, filterModel, val);
-            }
-            else if (nameFData === 'CountryLocationArea') {
+            } else if (nameFData === 'CountryLocationArea') {
                 JobSearchFilter.createLocationSeoPart(seoUrlParts, filterModel, val);
-            }
-            else if (nameFData === 'WorkType') {
+            } else if (nameFData === 'WorkType') {
                 JobSearchFilter.createWorkTypeSeoPart(seoUrlParts, filterModel, val);
-            }
-            else if (nameFData === 'CompanyName') {
+            } else if (nameFData === 'CompanyName') {
                 JobSearchFilter.createCompanyNameSeoPart(seoUrlParts, filterModel, val);
-            }
-            else if (nameFData === 'Salary.TargetValue') {
+            } else if (nameFData === 'Salary.TargetValue') {
                 val = $('select[name="' + name + '"]').find('option[value="' + val + '"]').data('slug');
 
                 if (val) {
                     filterModel.SalaryType = val;
                 }
-            }
-            else if (nameFData === 'Salary.LowerRange') {
+            } else if (nameFData === 'Salary.LowerRange') {
                 if (filterModel.SalaryType) {
                     filterModel.SalaryMin = val;
                 }
-            }
-            else if (nameFData === 'Salary.UpperRange') {
+            } else if (nameFData === 'Salary.UpperRange') {
                 if (filterModel.SalaryType) {
                     filterModel.SalaryMax = val;
                 }
-            }
-            else {
-                filterModel[nameFData] = val;
+            } else {
+                filterModel[nameFData] = encodeURIComponent(val);
             }
         }
 
@@ -527,8 +488,7 @@ var JobSearchFilter = {
 
         if (JobSearchFilter.hasSeoUrlParts(seoUrlParts)) {
             url += '/' + JobSearchFilter.createSeoPushStateUrl(seoUrlParts, filterModel);
-        }
-        else {
+        } else {
             var queryString = JobSearchFilter.makeQueryString(filterModel, '', false);
             if (queryString !== '') {
                 url += '?' + queryString;
@@ -540,7 +500,7 @@ var JobSearchFilter = {
         return false;
     },
 
-    createClassificationSeoPart: function (seoUrlPartsModel, filterModel, selectedItems) {
+    createClassificationSeoPart: function(seoUrlPartsModel, filterModel, selectedItems) {
         if (selectedItems.length === 0) {
             return;
         }
@@ -570,8 +530,7 @@ var JobSearchFilter = {
         if (classifications.length > 0) {
             if (classifications.length === 1) {
                 seoUrlPartsModel.Classification = classifications[0];
-            }
-            else {
+            } else {
                 hasMultipleClassifications = true;
             }
 
@@ -587,7 +546,7 @@ var JobSearchFilter = {
         }
     },
 
-    createLocationSeoPart: function (seoUrlPartsModel, filterModel, selectedItems) {
+    createLocationSeoPart: function(seoUrlPartsModel, filterModel, selectedItems) {
         if (selectedItems.length === 0) {
             return;
         }
@@ -621,8 +580,7 @@ var JobSearchFilter = {
         if (countries.length > 0) {
             if (countries.length === 1) {
                 seoUrlPartsModel.Country = countries[0];
-            }
-            else {
+            } else {
                 hasMultipleCountries = true;
             }
 
@@ -632,8 +590,7 @@ var JobSearchFilter = {
         if (locations.length > 0) {
             if (locations.length === 1 && !hasMultipleCountries) {
                 seoUrlPartsModel.Location = locations[0];
-            }
-            else {
+            } else {
                 hasMultipleLocations = true;
             }
 
@@ -649,7 +606,7 @@ var JobSearchFilter = {
         }
     },
 
-    createWorkTypeSeoPart: function (seoUrlPartsModel, filterModel, selectedItems) {
+    createWorkTypeSeoPart: function(seoUrlPartsModel, filterModel, selectedItems) {
         if (selectedItems.length === 0) {
             return;
         }
@@ -657,7 +614,7 @@ var JobSearchFilter = {
         filterModel.WorkType = selectedItems.join(JobSearchFilter.filterItemsDelimeter);
     },
 
-    createCompanyNameSeoPart: function (seoUrlPartsModel, filterModel, selectedItems) {
+    createCompanyNameSeoPart: function(seoUrlPartsModel, filterModel, selectedItems) {
         if (selectedItems.length === 0) {
             return;
         }
@@ -665,7 +622,7 @@ var JobSearchFilter = {
         filterModel.CompanyName = selectedItems.join(JobSearchFilter.filterItemsDelimeter);
     },
 
-    createSeoPushStateUrl: function (seoUrlParts, filterModel) {
+    createSeoPushStateUrl: function(seoUrlParts, filterModel) {
         // work on a copy
         filterModel = filterModel ? $.extend({}, filterModel) : null;
 
@@ -682,8 +639,7 @@ var JobSearchFilter = {
                 delete filterModel['Classification'];
                 delete filterModel['SubClassification'];
             }
-        }
-        else if (seoUrlParts.Classification) {
+        } else if (seoUrlParts.Classification) {
             urlParts.push(classificationIdentifier + seoUrlParts.Classification);
 
             if (filterModel) {
@@ -700,16 +656,14 @@ var JobSearchFilter = {
                 delete filterModel['Location'];
                 delete filterModel['Area'];
             }
-        }
-        else if (seoUrlParts.Location) {
+        } else if (seoUrlParts.Location) {
             urlParts.push(locationIdentifier + seoUrlParts.Location);
 
             if (filterModel) {
                 delete filterModel['Location'];
                 delete filterModel['Country'];
             }
-        }
-        else if (seoUrlParts.Country) {
+        } else if (seoUrlParts.Country) {
             urlParts.push(locationIdentifier + seoUrlParts.Country);
 
             if (filterModel) {
@@ -729,7 +683,7 @@ var JobSearchFilter = {
         return result;
     },
 
-    hasSeoUrlParts: function (seoUrlParts) {
+    hasSeoUrlParts: function(seoUrlParts) {
         for (var i in seoUrlParts) {
             if (seoUrlParts[i]) {
                 return true;
@@ -739,7 +693,7 @@ var JobSearchFilter = {
         return false;
     },
 
-    makeQueryString: function (obj, prefix, isArray, queryStringArr) {
+    makeQueryString: function(obj, prefix, isArray, queryStringArr) {
         if (!queryStringArr) {
             queryStringArr = [];
         }
@@ -780,18 +734,17 @@ var JobSearchFilter = {
     }
 };
 
-if (typeof (JobSearchFilterOptions) !== "undefined") {
+if (typeof(JobSearchFilterOptions) !== "undefined") {
     JobSearchFilter = Object.assign(JobSearchFilter, JobSearchFilterOptions);
 }
 
 //code snipit to replace the "URLSearchParams"
 //how it works was: https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
-$.urlParam = function (name) {
+$.urlParam = function(name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     if (results === null) {
         return null;
-    }
-    else {
+    } else {
         return decodeURI(results[1]) || 0;
     }
 }

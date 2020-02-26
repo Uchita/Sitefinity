@@ -1675,6 +1675,7 @@
     <Content Include="App_Data\Sitefinity\Search\blog-search\_0.cfs" />
     <Content Include="Mvc\Views\LoginForm\LoginForm.ExternalSsoForced.cshtml" />
     <Content Include="Mvc\Views\PageTitle\Simple.cshtml" />
+    <Content Include="Mvc\Views\LoginForm\LoginForm.ExternalSsoForced.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="web.Debug.config">

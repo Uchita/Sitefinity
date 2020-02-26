@@ -75,7 +75,7 @@ namespace SitefinityWebApp
             {
                 AutoMapperConfiguration.Configure();
                 //GlobalFilters.Filters.Add(new SocialShareAttribute()); Remove because social share is no longer supported.
-                FrontendModule.Current.DependencyResolver.Rebind<IDynamicContentModel>().To<CustomDynamicContentModel>();
+                //FrontendModule.Current.DependencyResolver.Rebind<IDynamicContentModel>().To<CustomDynamicContentModel>(); Removed because this is now implemented in JXTNext.Sitefinity.Widgets.Feather.Mvc.Models
                 EventHub.Subscribe<IUnauthorizedPageAccessEvent>(new Telerik.Sitefinity.Services.Events.SitefinityEventHandler<IUnauthorizedPageAccessEvent>(OnUnauthorizedAccess));
                 EventHub.Subscribe<ISitemapGeneratorBeforeWriting>(new Telerik.Sitefinity.Services.Events.SitefinityEventHandler<ISitemapGeneratorBeforeWriting>(SeoSiteMapAppender));
             }

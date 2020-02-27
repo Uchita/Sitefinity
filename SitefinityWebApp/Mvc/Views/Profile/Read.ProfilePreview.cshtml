@@ -15,9 +15,6 @@
         @Html.DynamicTag("p", Model.Email, "o-profile__email")
         @Html.DynamicTag("p", Model.About, "o-profile__about")
 
-        @if (Model.CanEdit && ViewBag.Mode == ViewMode.Both)
-        {
-            @Html.ActionLink(Html.Resource("EditProfileLink"), "EditProfile");
-        }
+        @Html.ActionLink(Html.Resource("EditProfileLink"), "EditProfile");
     </div>
 </div>

@@ -256,6 +256,9 @@
     <Reference Include="JXTNext.Sitefinity.Widgets.Identity, Version=6.0.245.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Identity.6.0.245\lib\net472\JXTNext.Sitefinity.Widgets.Identity.dll</HintPath>
     </Reference>
+    <Reference Include="JXTNext.Sitefinity.Widgets.Integrations, Version=6.0.245.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Integrations.6.0.245\lib\net472\JXTNext.Sitefinity.Widgets.Integrations.dll</HintPath>
+    </Reference>
     <Reference Include="JXTNext.Sitefinity.Widgets.Job, Version=6.0.245.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Job.6.0.245\lib\net472\JXTNext.Sitefinity.Widgets.Job.dll</HintPath>
     </Reference>

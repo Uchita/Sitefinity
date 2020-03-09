@@ -1,0 +1,92 @@
+﻿@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@* Used for getting category list *@
+@using Telerik.Sitefinity.Taxonomies.Model;
+@*Add scripts and stylesheets*@
+@Html.Script(Url.WidgetContent("Mvc/Scripts/Consultant/js-filter.js"), "bottom")
+
+<div class="@Model.CssClass">
+    
+    <div class="partner_section">
+        <div class="consultant-lists grid-view">
+            <div class="row no-list-warning">
+                <div class="col-12">
+                    <div class="alert alert-warning">No list available in this filter.</div>
+                </div>
+            </div>
+            <div id="partnersLists" class="row">
+
+                @foreach (var item in Model.Items)
+                {
+                    var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+                    List<string>
+            filterValues = new List<string>
+                ();
+
+                    if (item.Fields.partnercategories != null)
+                    {
+                        foreach (var taxon in item.GetFlatTaxons("partnercategories"))
+                        {
+                            filterValues.Add(taxon.Name);
+                        }
+                    }
+
+                    <div class="col-6 col-md-4 col-lg-3 partner-list @(string.Join(" ",filterValues))" data-filtersector="@(string.Join(", ",filterValues))">
+                        <a class="theme-list" href="@navigateUrl" title="@item.Fields.Title">
+                            @foreach (var relatedItem in item.Fields.thumbImage)
+                            {
+                                <div class="partner-img">
+                                    <img src="@relatedItem.Fields.MediaUrl" alt="@relatedItem.Fields.Title" />
+                                </div>
+                            }
+                            <div class="text">
+                                <h4>@item.Fields.Title</h4>
+                            </div>
+                        </a>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+
+    @if (Model.ShowPager)
+    {
+        @Html.Action("Index", "ContentPager", new { currentPage = Model.CurrentPage,
+                        totalPagesCount = Model.TotalPagesCount.Value,
+                        redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate })
+    }
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#partnersLists").akFilter({
+            selctor: {
+                targets: '.partner-list',
+                filter: '.filter-btn'
+            },
+            controls: {
+                enable: true,
+                animation: { enable: true }
+            },
+            load: { filter: 'all' },
+            filters: {
+                logic: '',
+                type: 'click',
+                bntLogic: 'toggle'
+            },
+            callbacks: {
+                filterStart: function () {
+                    $(".no-list-warning").hide();
+                },
+                filterEnd: false,
+                filterFail: function () {
+                    $(".no-list-warning").show();
+                }
+            },
+            animation: { animationIn: 'zoomIn' }
+        });
+    });
+</script>

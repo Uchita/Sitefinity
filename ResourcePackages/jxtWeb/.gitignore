@@ -1,0 +1,6 @@
+node_modules
+sass-doc
+.sass-cache
+
+# Ignore dist for root repository
+assets/dist

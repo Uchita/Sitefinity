@@ -1,0 +1,23 @@
+//spacing :: top padding
+.pt-6{ padding-top: 5rem!important;}
+.pt-7{ padding-top: 6rem!important;}
+.pt-8{ padding-top: 7rem!important;}
+
+
+//spacing :: bottom padding
+.pb-6{ padding-bottom: 5rem!important;}
+.pb-7{ padding-bottom: 6rem!important;}
+.pb-8{ padding-bottom: 7rem!important;}
+
+
+//spacing vertical :: top and bottom
+.pv-4{ padding-top: 3rem!important; padding-bottom: 3rem!important; }
+.pv-5{ padding-top: 4rem!important; padding-bottom: 4rem!important; }
+.pv-6{ padding-top: 5rem!important; padding-bottom: 5rem!important; }
+
+.spaced-grid{ padding: 0 33px;}
+
+
+@media (max-width:1023px){
+    .spaced-grid{ padding: 0 15px; }
+}

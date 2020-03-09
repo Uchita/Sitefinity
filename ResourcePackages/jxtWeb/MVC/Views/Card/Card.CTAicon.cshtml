@@ -1,0 +1,58 @@
+@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+
+@if (!string.IsNullOrEmpty(Model.ActionUrl))
+{
+    <a href="@Html.UrlSanitize(Model.ActionUrl)" title="@Model.Heading" class="card-cta_icon @Model.CssClass">
+        @if (!string.IsNullOrEmpty(Model.SelectedSizeUrl))
+        {
+            <div class="icon-image">
+                <img src="@Model.SelectedSizeUrl" title="@Model.ImageTitle" alt="@Model.ImageAlternativeText" />
+            </div>
+        }
+        <div class="text">
+            @if (!string.IsNullOrEmpty(Model.Heading))
+            {
+                <h3>@Html.HtmlSanitize(Model.Heading)</h3>
+            }
+            @if (!string.IsNullOrEmpty(Model.Description))
+            {
+                <p>@Html.HtmlSanitize(Model.Description)</p>
+            }
+            @if (!string.IsNullOrEmpty(Model.ActionName))
+            {
+                <span class="btn btn-primary">@Model.ActionName</span>
+            }
+        </div>
+    </a>
+
+}
+else
+{
+    <div class="card-cta_icon @Model.CssClass">
+        @if (!string.IsNullOrEmpty(Model.SelectedSizeUrl))
+        {
+            <div class="icon-image">
+                <div class="img-innerwrap">
+                    <img src="@Model.SelectedSizeUrl" title="@Model.ImageTitle" alt="@Model.ImageAlternativeText" />
+                </div>
+            </div>
+        }
+        <div class="text">
+            @if (!string.IsNullOrEmpty(Model.Heading))
+            {
+                <h3>@Html.HtmlSanitize(Model.Heading)</h3>
+            }
+            @if (!string.IsNullOrEmpty(Model.Description))
+            {
+                <p>@Html.HtmlSanitize(Model.Description)</p>
+            }
+            @if (!string.IsNullOrEmpty(Model.ActionName))
+            {
+                <a href="@Html.UrlSanitize(Model.ActionUrl)" title="@Model.Heading" class="btn btn-primary">@Model.ActionName</a>
+            }
+        </div>
+    </div>
+}

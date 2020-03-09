@@ -1,0 +1,65 @@
+.btn, .btn-primary {
+    font-size: 14px;
+    color: $color-bright;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-shadow: none;
+    padding: 9px 25px;
+    border-radius: 3px;
+    border-color: $color-p1b; 
+    background: $color-p1b;
+    &.has-shadow{
+        box-shadow: 0 2px 1px rgba(0,0,0,0.4);
+    }
+    &:hover {
+        color: $color-p1b;
+        border-color: $color-p2a; 
+        background: $color-p2a;
+    }
+
+    &.border-btn {
+        border-color: #2c3e50; 
+        background: $color-bright;
+        color: #2c3e50;
+        &:hover {
+            border-color: $color-p1b; 
+            background: $color-p1b;
+            color: $color-p2a; 
+        }
+    }
+
+    &.green-btn {
+        border-color: $color-p2a; 
+        background: $color-p2a;
+        color: $color-p1b;
+        &:hover {
+            border-color: $color-p1b; 
+            background: $color-p1b;
+            color: $color-p2a; 
+        }
+    }
+
+    &.gray-btn {
+        border-color: #a1b1bc; 
+        background: #a1b1bc;
+        color: $color-bright;
+        &:hover {
+            border-color: $color-p1b; 
+            background: $color-p1b;
+            color: $color-p2a; 
+        }
+     }
+     
+ }
+
+.light-blue-btn .btn {
+    border-color: #3be4c3;
+    background: #3be4c3;
+
+    &:hover {
+        border-color: $color-p1b;
+        background: $color-p1b;
+        color: $color-bright;
+        box-shadow: 0px -3px 0px $color-p1b !important;
+    }
+}

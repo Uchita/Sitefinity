@@ -1,0 +1,39 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@*Needed for custom thumbnail*@
+@using Telerik.Sitefinity.Modules.Libraries;
+
+<div class="@Model.CssClass">
+    <div id="quote-carousel" class="owl-carousel">
+        @foreach (var item in Model.Items)
+        {
+            var imageThumbUrl = "";
+            if (!string.IsNullOrEmpty(item.Fields.Quote))
+            {
+                <div class="item">
+                    <p>@item.Fields.Quote</p>
+                    <div class="testimonials-sec">
+                        @if (item.Fields.Image != null)
+                        {
+                            imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(item.Fields.Image.DataItem, "thumbcrop4");
+                        }
+                        <div class="img" style="background-image: url('@imageThumbUrl')"></div>
+                        <div class="text">
+                            @if (!string.IsNullOrEmpty(item.Fields.By))
+                            {
+                                <h6>@item.Fields.By</h6>
+                            }
+                            @if (!string.IsNullOrEmpty(item.Fields.AuthorInfo))
+                            {
+                                <span>@Html.Raw(item.Fields.AuthorInfo)</span>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        }
+
+    </div>
+</div>

@@ -1,0 +1,50 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+@using Telerik.Sitefinity.Frontend.Lists.Mvc.Models;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+<div class="@Model.CssClass">
+
+    @foreach (var item in Model.Items)
+    {
+    <div class="row">
+        @foreach (var listItem in ((ListViewModel)item).ListItemViewModel.Items)
+        {
+            var imageurl = "";
+            foreach (var relatedItem in listItem.Fields.clientbgImage)
+            {
+                imageurl = (string)relatedItem.Fields.MediaUrl;
+            }
+
+            var clientImageUrl = "";
+            foreach (var relatedItem in listItem.Fields.ClientImage)
+            {
+                clientImageUrl = (string)relatedItem.Fields.MediaUrl;
+            }
+
+            if (!String.IsNullOrEmpty(listItem.Fields.ClientUrl))
+            {
+                <a href="@listItem.Fields.ClientUrl" title="@listItem.Fields.clientText" class="col-12 col-md-6 work" style="background-image: url('@imageurl')">
+                    <div class="sub">
+                        <div class="under">
+                            <img src="@clientImageUrl" alt="image">
+                        </div>
+                    </div>
+                    <span class="btn">@listItem.Fields.clientText</span>
+                </a>
+            }
+            else
+            {
+                <div class="col-12 col-md-6 work" style="background-image: url('@imageurl')">
+                    <div class="sub">
+                        <div class="under">
+                            <img src="@clientImageUrl" alt="image">
+                        </div>
+                    </div>
+                    <span class="btn">@listItem.Fields.clientText</span>
+                </div>
+            }
+        }
+    </div>
+    }
+</div>
+

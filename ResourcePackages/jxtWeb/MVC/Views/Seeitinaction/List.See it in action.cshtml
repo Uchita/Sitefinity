@@ -1,0 +1,75 @@
+﻿@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+
+<div class="product-section">
+    <div class="producttab @Model.CssClass">
+
+        @foreach (var item in Model.Items)
+        {
+            //var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+            var siteUrl = item.Fields.SiteUrl;
+            <div class="row product-border">
+                <div class="col-lg-8 col-md-6 col-sm-12 leftproductimg">
+                    @*Start Screenshot field*@
+                    @if (item.Fields.Screenshot != null)
+                    {
+                        <div class="product-img">
+                            <img src='@item.Fields.Screenshot.Fields.MediaUrl' alt='@item.Fields.Screenshot.Fields.AlternativeText' title='@item.Fields.Screenshot.Fields.Title' />
+                            @if (!String.IsNullOrEmpty(siteUrl))
+                            {
+                                <div class="product-overlay">
+                                    <a href="@siteUrl" title="@item.Fields.Title" class="ext-link">
+                                        <i class="fas fa-link"></i>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    }
+                    @*End Screenshot field*@
+
+
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 rightproducttext">
+                    <div class="product-text-div">
+                        <h5>@item.Fields.Title</h5>
+                        @if (!String.IsNullOrEmpty(siteUrl))
+                        {
+                            <a class="url-link" @Html.InlineEditingFieldAttributes("SiteUrl", "ShortText") href="@siteUrl">
+                                @siteUrl
+                            </a>
+                        }
+
+                        @*Start Info field*@
+                        <div class="sf-Long-text" @Html.InlineEditingFieldAttributes("Info", "LongText")>@Html.HtmlSanitize((string)item.Fields.Info)</div>
+                        @*End Info field*@
+
+                        @if (!String.IsNullOrEmpty(siteUrl))
+                        {
+                            <a href="@siteUrl" class="website-action-link">See website in action</a>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (Model.ShowPager)
+    {
+        @Html.Action("Index", "ContentPager", new
+        {
+            currentPage = Model.CurrentPage,
+                        totalPagesCount = Model.TotalPagesCount.Value,
+                        redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
+        })
+    }
+</div>

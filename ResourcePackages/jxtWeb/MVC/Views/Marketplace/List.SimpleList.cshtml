@@ -1,0 +1,21 @@
+﻿@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+<div class="row @Model.CssClass">
+    @foreach (var item in Model.Items)
+    {
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+        <div class="col-md-6 col-lg-4 col-12">
+            <a href="@navigateUrl" class="unit">
+                <div class="title">@item.Fields.Title</div>
+                <div class="logo">
+                    @foreach (var relatedItem in item.Fields.Image)
+                    {
+                     <img src="@relatedItem.Fields.MediaUrl" alt="@relatedItem.Fields.Title" />
+                    }
+                </div>
+                <div class="description">@item.Fields.ShortDescription</div>
+            </a>
+        </div>
+    }
+</div>

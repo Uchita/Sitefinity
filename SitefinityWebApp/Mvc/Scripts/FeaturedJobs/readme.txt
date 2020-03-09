@@ -1,1 +1,0 @@
-﻿The scripts folder for featured jobs.

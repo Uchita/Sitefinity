@@ -1,0 +1,19 @@
+﻿@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+<div class="row @Model.CssClass">
+    @foreach (var item in Model.Items)
+    {
+        <div class="col-lg-3 col-md-6 col-xs-12 theme-padding">
+            <div class="theme-list">
+                @foreach (var relatedItem in item.Fields.themeImage)
+                {
+                    <img src="@relatedItem.Fields.MediaUrl" alt="@relatedItem.Fields.Title" />
+                }
+                <div class="theme-heading">
+                    <a target="_blank" href="@item.Fields.themeUrl">@item.Fields.Title</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

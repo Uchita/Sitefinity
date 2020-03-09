@@ -1,0 +1,66 @@
+{
+  "name": "jxt-website",
+  "version": "1.0.0",
+  "description": "JxtWebsite html template",
+  "main": "index.html",
+  "scripts": {
+    "start": "gulp",
+    "serve": "gulp serve",
+    "watch": "gulp watch",
+    "build": "gulp build",
+    "sitefinity": "gulp sitefinity",
+    "doc": "gulp sassdoc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amresh-ids/jxt.git"
+  },
+  "config": {
+    "dist": "assets/dist",
+    "src": "assets/src",
+    "styleDist": "assets/dist/css",
+    "styleSrc": "assets/src/project/sass",
+    "imageDist": "assets/dist/images",
+    "imageSrc": "assets/src/project/images/*",
+    "sassdocDir": "./sass-doc",
+    "jsDist": "assets/dist/js",
+    "jsSrc": [
+      "./node_modules/jquery/dist/jquery.js",
+      "./node_modules/owl.carousel.scss/owl.carousel.js",
+      "assets/src/project/js/*.js"
+    ],
+    "fontDist": "assets/dist/fonts",
+    "fontSrc": [
+      "./node_modules/bootstrap-sass/assets/fonts/**/*",
+      "./node_modules/@fortawesome/fontawesome-free/webfonts/*"
+    ]
+  },
+  "keywords": [
+    "HTML5",
+    "SCSS",
+    "CSS3"
+  ],
+  "author": "AK",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amresh-ids/jxt/issues"
+  },
+  "homepage": "https://github.com/amresh-ids/jxt#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-merge-media-queries": "^0.2.1",
+    "gulp-minify": "^3.1.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "sassdoc": "^2.7.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.9.0",
+    "animate-scss": "^3.2.1",
+    "bootstrap-scss": "^4.3.1",
+    "jquery": "^3.4.1",
+    "owl.carousel.scss": "^1.0.1"
+  }
+}

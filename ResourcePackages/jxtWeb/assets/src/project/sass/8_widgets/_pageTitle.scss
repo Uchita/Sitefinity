@@ -1,0 +1,17 @@
+/* Page title for the inner pages */
+.page-title-wrapper{
+    background: #1ddad8 url('../images/title-bg.jpg') no-repeat center top;
+    h1{
+        font-size: 30px;
+        line-height: 1;
+        padding: 14px 0;
+        margin: 0;
+        color: #fff;
+        text-transform: uppercase;
+    }
+}
+.pg__home{
+    .page-title-wrapper{
+        display: none;
+    }
+}

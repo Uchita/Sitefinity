@@ -1,0 +1,26 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+@using Telerik.Sitefinity.Frontend.Lists.Mvc.Models;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+<div class="@Model.CssClass">
+
+    @foreach (var item in Model.Items)
+    {
+      <div class="testimonials oel-theme">
+          @foreach (var listItem in ((ListViewModel)item).ListItemViewModel.Items)
+          {
+          var imageurl = "";
+          foreach (var relatedItem in listItem.Fields.authorImage)
+          {
+          imageurl = (string)relatedItem.Fields.MediaUrl;
+          }
+          <div class="item">
+              <p>@listItem.Fields.Content</p>
+              <h3 class="name">@listItem.Fields.authorName</h3>
+              <div class="compony-name">@listItem.Fields.authorCompany</div>
+          </div>
+          }
+      </div>
+    }
+
+</div>

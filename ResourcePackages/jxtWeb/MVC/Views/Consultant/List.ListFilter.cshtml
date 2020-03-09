@@ -1,0 +1,98 @@
+@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@*Needed for custom thumbnail*@
+@using Telerik.Sitefinity.Modules.Libraries;
+@* Used for getting category list *@
+@using Telerik.Sitefinity.Taxonomies.Model;
+@*Add scripts and stylesheets*@
+@Html.Script(Url.WidgetContent("Mvc/Scripts/Consultant/js-filter.js"), "bottom")
+
+<div class="meet-team-section @Model.CssClass">
+    <div class="row">
+        <div class="col-12">
+            <h2>Meet the team</h2>
+            <ul class="nav tabs-menu">
+                <li><a class="filter-btn active" data-filter="all" href="javascript:void(0)">All</a></li>
+                @{
+                    var sectorTaxon = SitefinityWebApp.Mvc.Helpers.SitefinityHelper.GetCurrentSiteTaxons("Consultant Categories");
+                    var dd = sectorTaxon as HierarchicalTaxon;
+                    foreach (var item in dd.Subtaxa)
+                    {
+                        <li><a class="filter-btn" href="javascript:void(0)" data-filter=".@item.UrlName">@item.Title</a></li>
+                    }
+                }
+            </ul>
+            <div class="alert alert-warning no-list-warning">No list available in this filter.</div>
+        </div>
+    </div>
+    <div id="consultantLists" class="row consultant-lists">
+
+        @foreach (var item in Model.Items)
+        {
+            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+            var imageThumbUrl = "";
+
+            List<string>
+                filterValues = new List<string>
+                    ();
+
+            if (item.Fields.Category != null)
+            {
+                foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+                {
+                    filterValues.Add(taxon.Name);
+                }
+            }
+
+            if (item.Fields.Pic != null)
+            {
+                imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(item.Fields.Pic.DataItem, "thumbcrop4");
+            }
+
+            <article class="col-12 col-lg-6 consultant-list @(string.Join(" ",filterValues))" data-filtersector="@(string.Join(" ,",filterValues))">
+                <a class="image" href="@navigateUrl" style="background-image: url(@imageThumbUrl);"></a>
+                <div class="text">
+                    <h4><a href="@navigateUrl">@item.Fields.ConsultantName</a></h4>
+                    <div class="designation">@Html.HtmlSanitize((string)item.Fields.Position)</div>
+                    <p>@Html.HtmlSanitize((string)item.Fields.Bio)</p>
+                    <div class="social">
+                        @if (!string.IsNullOrWhiteSpace(item.Fields.LinkedInProfileUrl))
+                        {
+                            <a href="@item.Fields.LinkedInProfileUrl" target="_blank"><span>LinkedIn Profile</span><i class="fab fa-linkedin-in"></i></a>
+                        }
+                    </div>
+                </div>
+            </article>
+        }
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#consultantLists").akFilter({
+            selctor: {
+                targets: '.consultant-list',
+                filter: '.filter-btn'
+            },
+            controls: {
+                enable: true,
+                animation: {enable: true}
+            },
+            load: {filter: 'all'},
+            filters: {
+                logic: '',
+                type: 'click',
+                bntLogic: 'toggle'
+            },
+            callbacks: {
+                filterStart: function () {
+                    $(".no-list-warning").hide();
+                },
+                filterEnd: false,
+                filterFail: function () {
+                    $(".no-list-warning").show();
+                }
+            },
+            animation: { animationIn: 'zoomIn' }
+        });
+    });
+</script>

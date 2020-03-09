@@ -1,0 +1,78 @@
+﻿@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+<div class="@Model.CssClass">
+    <h3>@Model.Item.Fields.Title</h3>
+
+
+    <ul class="list-inline address-details">
+        @*Start Website field*@
+        @if (!String.IsNullOrEmpty(Model.Item.Fields.Website))
+        {
+            <li><a href="@Model.Item.Fields.Website" target="_blank" title="Website"><span class="icons icon-browse"></span>@Model.Item.Fields.Website</a></li>
+        }
+        @*End Website field*@
+
+        @*Start Phone field*@
+        @if (!String.IsNullOrEmpty(Model.Item.Fields.Phone))
+        {
+            <li><a href="@Model.Item.Fields.Phone" target="_blank" title="Phone Number"><span class="icons icon-phone"></span>@Model.Item.Fields.Phone</a></li>
+        }
+        @*End Phone field*@
+
+        @*Start Contact2 field*@
+        @if (!String.IsNullOrEmpty(Model.Item.Fields.Contact2))
+        {
+            <li><a href="@Model.Item.Fields.Contact2" target="_blank" title="Contact Number 2"><span class="icons icon-call"></span>@Model.Item.Fields.Contact2</a></li>
+        }
+        @*End Contact2 field*@
+
+        @*Start Email field*@
+        @if (!String.IsNullOrEmpty(Model.Item.Fields.Email))
+        {
+            <li><a href="@Model.Item.Fields.Email" target="_blank" title="Email address"><span class="icons icon-email"></span>@Model.Item.Fields.Email</a></li>
+        }
+        @*End Email field*@
+
+    </ul>
+
+
+    <div class="social-link">
+        <div class="social-icon">
+            @*Start Linkedin field*@
+            @if (!String.IsNullOrEmpty(Model.Item.Fields.Linkedin))
+            {
+                <a href="@Model.Item.Fields.Linkedin"><i class="fab fa-linkedin-in"></i></a>
+            }
+            @*End Linkedin field*@
+
+            @*Start Facebook field*@
+            @if (!String.IsNullOrEmpty(Model.Item.Fields.Facebook))
+            {
+                <a href="@Model.Item.Fields.Facebook"><i class="fab fa-facebook-f"></i></a>
+            }
+            @*End Facebook field*@
+
+            @*Start Twitter field*@
+            @if (!String.IsNullOrEmpty(Model.Item.Fields.Twitter))
+            {
+                <a href="@Model.Item.Fields.Twitter"><i class="fab fa-twitter"></i></a>
+            }
+            @*End Twitter field*@
+
+            @*Start Instagram field*@
+            @if (!String.IsNullOrEmpty(Model.Item.Fields.Instagram))
+            {
+                <a href="@Model.Item.Fields.Instagram"><i class="fab fa-instagram"></i></a>
+            }
+            @*End Instagram field*@
+
+            @*Start Youtube field*@
+            @if (!String.IsNullOrEmpty(Model.Item.Fields.Youtube))
+            {
+                <a href="@Model.Item.Fields.Youtube"><i class="fab fa-youtube"></i></a>
+            }
+            @*End Youtube field*@
+        </div>
+    </div>
+</div>

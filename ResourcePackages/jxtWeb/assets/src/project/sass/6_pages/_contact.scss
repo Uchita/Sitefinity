@@ -1,0 +1,82 @@
+.contact-cta-area {
+    padding: 40px 10px;
+    border: 1px solid $border-color-grey;
+    margin-bottom: 30px;
+    position: relative;
+      -webkit-box-shadow:inset 0px 0px 2px 3px rgba(245, 253, 255, 1);
+    -moz-box-shadow:inset 0px 0px 2px 3px rgba(245, 253, 255, 1);
+    box-shadow:inset 0px 0px 2px 3px rgba(245, 253, 255, 1);
+    .link
+    {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+
+    .icon-area
+    {
+           display: inline-block;
+          vertical-align: middle;
+          width: 91px;
+          text-align: center;
+          img
+          {
+            display: inline-block;
+            
+             @include media-breakpoint-down(lg){
+                height: 40px;
+                width: auto;
+                max-width: 100%;
+              }
+          }
+
+           @include media-breakpoint-down(lg){
+                    width: 70px;
+              }
+    }
+    .content-area
+    {
+       display: inline-block;
+          vertical-align: middle;
+          padding-left: 12px;
+          width: calc(100% - 95px);
+          
+           @include media-breakpoint-down(lg){
+            padding-left: 10px;
+            width: calc(100% - 75px);
+          }
+
+      h3
+      {
+            font-size: 23px;
+          color: $color-p1c;
+          font-family: $global-font-family-lato;
+          font-weight: 700;
+              line-height: 1.4;
+             margin-bottom: 0px;
+             margin-top: 0px;
+
+
+              @include media-breakpoint-down(lg){
+                  font-size: 18px;
+              }
+
+      }
+      p
+      {
+         margin-top: 20px;
+         font-size: 16px;
+         margin-bottom: 0px;
+      }
+    }
+
+    &:hover
+    {
+      -webkit-box-shadow: 0px 0px 25px 2px rgba(161, 177, 188, 0.5);
+    -moz-box-shadow: 0px 0px 25px 2px rgba(161, 177, 188, 0.5);
+    box-shadow: 0px 0px 25px 2px rgba(161, 177, 188, 0.5);
+     border-color: $color-p2a;
+    }
+}

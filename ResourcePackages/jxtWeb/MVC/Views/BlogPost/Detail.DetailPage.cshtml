@@ -1,0 +1,293 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Web.DataResolving;
+
+@*For Get related posts*@
+@using Telerik.Sitefinity.Modules.Blogs;
+@using Telerik.Sitefinity.GenericContent.Model;
+@using Telerik.Sitefinity.Model;
+@using Telerik.OpenAccess;
+@using Telerik.Sitefinity.Blogs.Model;
+
+@using Telerik.Sitefinity.RelatedData;
+@using Telerik.Sitefinity.Libraries.Model;
+
+@*For Taxonomies*@
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+
+@{
+    Dictionary<Guid, string>
+        catgeoryListDictionary = new Dictionary<Guid, string>
+            ();
+    var managerArticle1 = TaxonomyManager.GetManager();
+    var articleTaxonomy1 = managerArticle1.GetTaxonomies<HierarchicalTaxonomy>
+        ().Where(t => t.Name.ToLower() == "Categories").FirstOrDefault();
+    List<Taxon>
+        topLovelTaxa1 = new List<Taxon>
+            ();
+    if (articleTaxonomy1 != null)
+    {
+        foreach (var taxon in articleTaxonomy1.Taxa)
+        {
+            if (taxon.Parent == null)
+            {
+                topLovelTaxa1.Add(taxon);
+            }
+        }
+        foreach (var taxon in topLovelTaxa1)
+        {
+            var hierarchicalTaxon1 = taxon as HierarchicalTaxon;
+            catgeoryListDictionary.Add(@taxon.Id, @taxon.Title + "#" + @taxon.UrlName);
+            foreach (var it in hierarchicalTaxon1.Subtaxa)
+            {
+                ProcessCategories_Add(it, catgeoryListDictionary);
+            }
+        }
+    }
+}
+
+@helper ProcessCategories_Add(HierarchicalTaxon taxon1, Dictionary<Guid, string>
+                            catgeoryListDictionary)
+{
+    if (taxon1 != null)
+    {
+        catgeoryListDictionary.Add(taxon1.Id, @taxon1.Title + "#" + @taxon1.UrlName);
+        foreach (var subTaxon in taxon1.Subtaxa)
+        {
+            ProcessCategories_Add(subTaxon, catgeoryListDictionary);
+        }
+    }
+}
+
+
+@{
+    var imageurl = "";
+    foreach (var relatedItem in Model.Item.Fields.Image)
+    {
+        imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+    }
+}
+
+@{
+    var CategoryIds = Model.Item.Fields.Category;
+}
+<div class="article-detail @Model.CssClass">
+    <h2>@Model.Item.Fields.Title</h2>
+    <div class="author-catName">
+        <a href="javascript:void(0)" class="r-border">@Html.Resource("By") @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)</a>
+        @{
+            var categoriesName = "";
+        }
+        @foreach (var c in Model.Item.Fields.Category)
+        {
+
+            if (catgeoryListDictionary.ContainsKey((Guid)c))
+            {
+                if (string.IsNullOrEmpty(categoriesName))
+                {
+                    categoriesName = "<a href=\"/blogs/-in-category/categories/blog-categories/" + @catgeoryListDictionary[c].Split('#')[1] + "\">" + @catgeoryListDictionary[c].Split('#')[0] + "</a>";
+                }
+                else
+                {
+                    categoriesName += ", " + "<a href=\"/blogs/-in-category/categories/blog-categories/" + @catgeoryListDictionary[c].Split('#')[1] + "\">" + @catgeoryListDictionary[c].Split('#')[0] + "</a>";
+                }
+
+            }
+        }
+        @if (categoriesName != "")
+        {
+            @Html.HtmlSanitize((string)categoriesName)
+        }
+    </div>
+    <div class="date-share">
+        <span class="r-border">@Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy")</span>
+        <span>Share This Post</span>
+        <a href="javascript:void(0)" class="fab fa-facebook-f"></a>
+        <a href="javascript:void(0)" class="fab fa-twitter"></a>
+        <a href="javascript:void(0)" class="fab fa-linkedin-in"></a>
+    </div>
+    <div class="clearfix"></div>
+    <img src="@imageurl" alt="@Model.Item.Fields.Title" class="art-img">
+    <p><strong>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</strong></p>
+    @Html.HtmlSanitize((string)Model.Item.Fields.Content)
+
+    <div class="row post-comments d-none">
+        <div class="col-12">
+            @Html.CommentsCount(string.Empty, @Model.Item.DataItem)
+        </div>
+        <div class="col-12">
+            @Html.CommentsList(@Model.Item.DataItem)
+        </div>
+    </div>
+</div>
+@{
+    var tags = "";
+}
+@foreach (var c in Model.Item.Fields.Tags)
+{
+    tags += c + ",";
+}
+<div class="tags-post d-none" data-tagIds="@tags"></div>
+<div class="share-post">
+    <a href="javascript:void(0)" class="fab fa-facebook-f"></a>
+    <a href="javascript:void(0)" class="fab fa-twitter"></a>
+    <a href="javascript:void(0)" class="fab fa-pinterest-p"></a>
+    <a href="javascript:void(0)" class="fab fa-google-plus-g"></a>
+    <a href="javascript:void(0)" class="fab fa-tumblr"></a>
+    <a href="javascript:void(0)" class="fab fa-stumbleupon"></a>
+    <a href="javascript:void(0)" class="fab fa-wordpress-simple"></a>
+    <a href="javascript:void(0)" class="fab fa-instagram"></a>
+    <a href="javascript:void(0)" class="fab fa-dribbble"></a>
+    <a href="javascript:void(0)" class="fab fa-vimeo-v"></a>
+    <a href="javascript:void(0)" class="fab fa-linkedin-in"></a>
+</div>
+
+@{
+    BlogsManager blogsManager = BlogsManager.GetManager();
+    var allItems = blogsManager.GetBlogPosts().Where(n => n.Status == ContentLifecycleStatus.Live && n.Visible == true).ToList();
+    List<BlogPost>
+        relatedItems = new List<BlogPost>
+            ();
+    foreach (var item in allItems)
+    {
+        var articleTaxonIds = item.GetValue<TrackedList<Guid>>("Category");
+        if (articleTaxonIds.Any(x => CategoryIds.Contains(x)))
+        {
+
+            // Skip the current loaded item in the details page
+            if (item.Id != Model.Item.Fields.Id)
+            {
+                relatedItems.Add(item);
+            }
+        }
+    }
+
+}
+<div class="related-post">
+    @if(relatedItems.Count() > 0)
+    {
+        <h3>Related Posts</h3>
+    }
+
+    <div id="post-slider" class="owl-carousel">
+        @foreach (var blog in relatedItems)
+        {
+            var blogcontent = Html.HtmlSanitize((string)blog.Summary).ToString();
+            var catsName = "";
+
+            if (blogcontent.Length > 180)
+            {
+                blogcontent = blogcontent.Substring(0, 170) + "...";
+            }
+
+            Image imageField = blog.GetRelatedItems<Image>("Image").FirstOrDefault();
+            var cats = (Telerik.OpenAccess.TrackedList<System.Guid>
+                )blog.GetValue("Category");
+
+            foreach (var c in cats)
+            {
+
+                if (catgeoryListDictionary.ContainsKey((Guid)c))
+                {
+                    if (string.IsNullOrEmpty(categoriesName))
+                    {
+                        catsName = "<a class=\"cat\" href=\"/blogs/-in-category/categories/blog-categories/" + @catgeoryListDictionary[c].Split('#')[1] + "\">" + @catgeoryListDictionary[c].Split('#')[0] + "</a>";
+                    }
+                    else
+                    {
+                        catsName += "<a class=\"cat\" href=\"/blogs/-in-category/categories/blog-categories/" + @catgeoryListDictionary[c].Split('#')[1] + "\">" + @catgeoryListDictionary[c].Split('#')[0] + "<i class=\"comma-sign\">,</i></a>";
+                    }
+
+                }
+            }
+
+            <div class="article-item">
+                <div class="image" style="background-image: url('@imageField.MediaUrl')"></div>
+                <div class="short-info">
+                    <h3><a href="~/blogs/blog-detail/@blog.ItemDefaultUrl">@blog.Title</a></h3>
+                    <div class="author-catName">
+                        <a href="javascript:void(0)" class="r-border">By John Doe</a>
+                        @if (catsName != "")
+                        {
+                            @Html.HtmlSanitize((string)catsName)
+                        }
+                    </div>
+                    <p>@Html.HtmlSanitize(blogcontent)</p>
+                    <a href="~/blogs/blog-detail/@blog.ItemDefaultUrl" class="btn">Read more</a>
+                    <div class="date-share">
+
+                        <span class="r-border">@blog.PublicationDate</span>
+                        <a href="javascript:void(0)" class="fab fa-facebook-f"></a>
+                        <a href="javascript:void(0)" class="fab fa-twitter"></a>
+                        <a href="javascript:void(0)" class="fab fa-linkedin-in"></a>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        // Get tags and generate html
+        $(".tags-post").each(function () {
+            var $tagElm = $(this);
+            var ids = $tagElm.attr("data-tagIds").split(",");
+            ids.splice(ids.length - 1); // Removed last blank value
+
+            // Call get tags
+            getTags(ids, function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $tagElm.append('<a href="/blogs/-in-tags/tags/' + data[i].UrlName + '">' + data[i].Title + '</a>');
+                    if (i == data.length - 1) {
+                        $tagElm.removeClass("d-none");
+                    }
+                }
+            });
+
+        });
+
+        // #region Get tags
+        /**
+         * Get tags by id
+         * param ids { string[]} Pass ids in array is tring type
+         * param callback callback function excute when all ids data get successfully
+         */
+        function getTags(ids, callback) {
+            var data = [];
+            var totalIds = ids.length;
+            for (var i = 0; i < totalIds; i++) {
+                (function (i) {
+                    $.ajax({
+                        url: '/api/taxons/flat-taxa?key=' + ids[i],
+                        type: 'get',
+                        success: function (res) {
+                            data.push({
+                                Id: res.Id,
+                                Title: res.Title,
+                                UrlName: res.UrlName,
+                                TaxonomyId: res.TaxonomyId
+                            });
+                            if (i == totalIds - 1) {
+                                callback(data);
+                            }
+                        },
+                        error: function (err) {
+                            console.error(err);
+                        }
+                    });
+                }(i));
+            }
+        }
+        // #endregion
+
+    });
+</script>

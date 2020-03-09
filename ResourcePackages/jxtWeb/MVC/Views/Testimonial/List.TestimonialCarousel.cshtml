@@ -1,0 +1,51 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@{
+    int index = 1;
+    var itemsLength = Model.Items.Count();
+}
+<div class="testimonials-list p-top-space @Model.CssClass">
+    <h2>Testimonials</h2>
+    <div id="testimonialsSlider" class="testimonials-carousel owl-carousel nav-active">
+        <div class="item">
+            <div class="row">
+                @foreach (var item in Model.Items)
+                {
+
+                    <div class="col-12 col-lg-6 mb-4">
+                        <div class="testimonial-list">
+                            <div class="chat-icon">
+                                <div class="chat-icon-bg"></div>
+                                <svg width="55" height="55" viewBox="0 0 64 64">
+                                    <g class="chat-stroke" stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" fill="none">
+                                        <polyline data-color="color-2" fill="none" stroke-miterlimit="10" points=" 50,18 62,18 62,48 54,48 54,58 40,48 28,48 " />
+                                        <polygon class="chat-stroke" fill="none" stroke-miterlimit="10" points="50,4 2,4 2,38 12,38 12,52 28,38 50,38 " />
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="testimonial-content">
+                                <h3 class="name">@item.Fields.By</h3>
+                                <div class="compony-name">GRMsearch</div>
+                                <p>@item.Fields.Quote</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    if (index % 4 == 0)
+                    {
+                    @:</div></div>
+                    if (index < itemsLength)
+                    {
+                        @:<div class="item">
+                            @:<div class="row">
+                            }
+                        }
+
+                        index++;
+                    }
+            </div>
+        </div>
+    </div>
+
+</div>

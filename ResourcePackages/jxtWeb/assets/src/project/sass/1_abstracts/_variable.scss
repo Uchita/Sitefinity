@@ -1,0 +1,58 @@
+/// Helper mixin to size elements in a single line.
+/// This mixin is essentially a short hand to define
+/// both `width` and `height` simultaneously.
+///
+/// @group Button
+///
+/// @param {Length} $width - Element's width
+/// @param {Length} $height [$width] - Element's height
+/// @output `width` and `height`
+///
+/// @example scss - Sizing `.foo`
+///   .foo {
+///     @include size(100%, 3em);
+///   }
+@mixin size($width, $height: $width) {
+    width : $width;
+    height: $height;
+}
+// General(fonts, sizes in em/rem, etc.) - fill in later?
+$global-font-size: 1.4rem;
+$global-font-size-px: 14px;
+$global-line-height: 1.71;
+$global-marg-btm: 25px;
+
+$global-font-family-lato: 'Lato', sans-serif;
+$global-font-family-Monts: 'Montserrat', sans-serif;
+
+//color
+//mostly bg colors
+$color-bright: #fff;
+$color-dark: #000;
+$color-p1: #192b3b; //blue p1 primary color 
+$color-p1a: #2f2933; //used in headings
+$color-p1b: #11232e; //p1 primary color
+$color-p1c: #2c3e50; //used as bg
+
+$color-p2: #05edb7; //green
+$color-p2a: #76e8b5;
+
+$color-p3: #04bfbf; //blue
+
+$green-bg:#eafff5;
+$gray-bg:#f9fbfb;
+
+//g : grey
+$color-grey:#ecf0f1;
+$color-g1: #a1b1bc; //used for button
+$color-g2: #ebebeb; //used for border / line
+$color-g3: #f9fafb; //used for bg
+$color-g4:#dbe6ea;
+$color-g5:#dee5e8;
+$color-g6:#cad5dd;
+$green-color:#1abc9c;
+$blue-color:#21c2f8;
+$grey-bg:#fafafa;
+$light-green-color:#3be4c3;
+$dark-green-color:#3dc7ac;
+$border-color-grey:#dfe3e4;

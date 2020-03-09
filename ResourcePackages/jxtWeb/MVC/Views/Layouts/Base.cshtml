@@ -1,0 +1,71 @@
+﻿@using System.Web.Mvc;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.UI.MVC;
+@using Telerik.Sitefinity.Services;
+
+<!DOCTYPE html>
+<html @Html.RenderLangAttribute()>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title></title>
+
+    @Html.Section("head")
+    @Html.StyleSheet(Url.Content("https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap"), "head")
+    @Html.StyleSheet(Url.Content("https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"), "head")
+    @Html.StyleSheet(Url.Content("~/ResourcePackages/jxtWeb/assets/dist/css/main.css"), "head")
+    @if (!Html.ShouldRenderInlineEditing())
+    {
+        @Html.Script("/ResourcePackages/jxtWeb/assets/dist/js/jquery.min.js", "head")
+    }
+
+</head>
+
+<body>
+    @Html.Section("top")
+    <div id="wrapper" class="clearfix">
+        <header id="header">
+            @Html.SfPlaceHolder("Header")
+        </header>
+        <main id="main-content">
+            @Html.SfPlaceHolder("Main")
+        </main>
+        <footer id="footer">
+            @Html.SfPlaceHolder("Footer")
+        </footer>
+    </div>
+
+    @* Inline editing scripts and helpers. They should be available only when inline editing is possible. *@
+    @if (Html.ShouldRenderInlineEditing())
+    {
+        @Html.Script(ScriptRef.MicrosoftAjax, "top", true)
+        @Html.Script(ScriptRef.MicrosoftAjaxCore, "top", true)
+        @Html.Script(ScriptRef.JQuery, "top", true)
+
+        @Html.Script(Url.EmbeddedResource("Telerik.Sitefinity.Resources.Reference", "Telerik.Sitefinity.Resources.Scripts.jquery.ba-outside-events.min.js"), "top", true)
+        @Html.Script(ScriptRef.KendoAll, "top", true)
+        @Html.Script(ScriptRef.KendoTimezones, "top", true)
+        @Html.Script(Url.EmbeddedResource("Telerik.Sitefinity.Resources.Reference", "Telerik.Sitefinity.Resources.Scripts.RequireJS.require.min.js"), "top", true)
+        @Html.InlineEditingManager(false)
+    }
+
+    @Html.Section("bottom")
+    @if (!Html.ShouldRenderInlineEditing())
+    {
+        @Html.Script("/ResourcePackages/jxtWeb/assets/dist/js/popper.min.js", "bottom")
+        @Html.Script("/ResourcePackages/jxtWeb/assets/dist/js/bootstrap.min.js", "bottom")
+    }
+
+    @if (!Telerik.Sitefinity.Services.SystemManager.IsDesignMode || Telerik.Sitefinity.Services.SystemManager.IsPreviewMode)
+    {
+        @Html.Script("/ResourcePackages/jxtWeb/assets/dist/js/wow.js", "bottom")
+    }
+
+    @Html.Script("/ResourcePackages/jxtWeb/assets/dist/js/owl.carousel.js", "bottom")
+    @Html.Script("/ResourcePackages/jxtWeb/assets/dist/js/custom.js", "bottom")
+
+    @Html.Section("end")
+</body>
+</html>

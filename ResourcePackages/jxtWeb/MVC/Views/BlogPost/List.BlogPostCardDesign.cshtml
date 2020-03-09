@@ -1,0 +1,122 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web.DataResolving;
+
+@*For Taxonomies*@
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+
+@{
+
+    Dictionary<Guid, string>
+        catgeoryListDictionary = new Dictionary<Guid, string>
+            ();
+    var managerArticle1 = TaxonomyManager.GetManager();
+    var articleTaxonomy1 = managerArticle1.GetTaxonomies<HierarchicalTaxonomy>
+        ().Where(t => t.Name.ToLower() == "Categories").FirstOrDefault();
+    List<Taxon>
+        topLovelTaxa1 = new List<Taxon>
+            ();
+    if (articleTaxonomy1 != null)
+    {
+        foreach (var taxon in articleTaxonomy1.Taxa)
+        {
+            if (taxon.Parent == null)
+            {
+                topLovelTaxa1.Add(taxon);
+            }
+        }
+        foreach (var taxon in topLovelTaxa1)
+        {
+            var hierarchicalTaxon1 = taxon as HierarchicalTaxon;
+            catgeoryListDictionary.Add(@taxon.Id, @taxon.Title + "#" + @taxon.UrlName);
+            foreach (var it in hierarchicalTaxon1.Subtaxa)
+            {
+                ProcessCategories_Add(it, catgeoryListDictionary);
+            }
+        }
+    }
+}
+
+@helper ProcessCategories_Add(HierarchicalTaxon taxon1, Dictionary<Guid, string>
+                            catgeoryListDictionary)
+{
+
+    if (taxon1 != null)
+    {
+        catgeoryListDictionary.Add(taxon1.Id, @taxon1.Title + "#" + @taxon1.UrlName);
+        foreach (var subTaxon in taxon1.Subtaxa)
+        {
+            ProcessCategories_Add(subTaxon, catgeoryListDictionary);
+        }
+    }
+}
+
+<div class="@Model.CssClass">
+    <div class="row">
+
+        @foreach (var item in Model.Items)
+        {
+            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+
+            var imageurl = "";
+            foreach (var relatedItem in item.Fields.Image)
+            {
+                imageurl = (string)relatedItem.Fields.ItemDefaultUrl;
+            }
+
+            <div class="col-xs-12 col-sm-4 blog-item">
+                <div class="sub">
+                    <a href="@navigateUrl" class="image" style="background-image: url('@imageurl')"></a>
+                    <div class="text">
+                        @{
+                            var categoriesName = "";
+                        }
+                        @foreach (var c in item.Fields.Category)
+                        {
+
+                            if (catgeoryListDictionary.ContainsKey((Guid)c))
+                            {
+                                if (string.IsNullOrEmpty(categoriesName))
+                                {
+                                    categoriesName = "<a class=\"cat\" href=\"/blogs/-in-category/categories/blog-categories/" + @catgeoryListDictionary[c].Split('#')[1] + "\">" + @catgeoryListDictionary[c].Split('#')[0] + "</a>";
+                                }
+                                else
+                                {
+                                    categoriesName += ", " + "<a class=\"cat\" href=\"/blogs/-in-category/categories/blog-categories/" + @catgeoryListDictionary[c].Split('#')[1] + "\">" + @catgeoryListDictionary[c].Split('#')[0] + "</a>";
+                                }
+
+                            }
+                        }
+                        @if (categoriesName != "")
+                        {
+                            @Html.HtmlSanitize((string)categoriesName)
+                        }
+                        <h3 class="title">
+                            <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href = "@navigateUrl" > @item.Fields.Title </a>
+                        </h3>
+                        <div class="date"> @item.GetDateTime("PublicationDate", "d MMM yyyy") / @DataResolver.Resolve(item.DataItem, "Author", null)
+                    </div>
+
+                    <p class="desc" @Html.InlineEditingFieldAttributes("Summary", "ShortText")>@Html.HtmlSanitize((string) item.Fields.Summary)</p>
+
+                </div>
+            </div>
+        </div>
+                        }
+    </div>
+
+    @if (Model.ShowPager)
+            {
+    @Html.Action("Index", "ContentPager", new
+    {
+    currentPage = Model.CurrentPage,
+    totalPagesCount = Model.TotalPagesCount.Value,
+    redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
+    })
+            }
+    </div>

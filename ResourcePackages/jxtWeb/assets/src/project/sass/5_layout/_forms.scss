@@ -1,0 +1,275 @@
+@mixin Montserrat-font {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    border-radius: 3px;
+}
+
+/* request-demo */
+.request-demo {
+    width: 100%;
+    float: left;
+    background: #97ffd0;
+    padding: 15px 0;
+
+    .request-heading {
+        padding-right: 0;
+        max-width: 22%;
+
+        h3 {
+            margin: 7px 0;
+            font-size: 30px;
+            font-family: $global-font-family-lato;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+    }
+
+    .form-div {
+        .request-form {
+            form {
+                .row {
+                    .col-lg-4 {
+                        &:nth-child(1),
+                        &:nth-child(2) {
+                            max-width: 41%;
+                            flex: 33%;
+                        }
+
+                        &:last-child {
+                            max-width: 18%;
+                            flex: 18%;
+                        } 
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+    
+
+    .btn {
+        font-size: 16px;
+        font-weight: 700;
+        padding: 0;
+        @include Montserrat-font;
+        height: 40px;
+        width: 100%;
+
+        &:hover {
+            background: #a1b1bc;
+            border-color: #a1b1bc;
+            color: #fff;
+        }
+    }
+
+    .form-control {
+        width: 100%;
+        height: 40px;
+        border: none;
+        background: #454e65;
+        font-size: 14px;
+        color: #daf0ff;
+        padding: 0 20px;
+        font-size: 14px;
+
+        &::-webkit-input-placeholder {
+            color: #daf0ff;
+        }
+
+        &::-moz-placeholder {
+            color: #daf0ff;
+        }
+
+        &:-ms-input-placeholder {
+            color: #daf0ff;
+        }
+
+        &:-moz-placeholder {
+            color: #daf0ff;
+        }
+    }
+
+    .form-group {
+        margin: 5px 0;
+    }
+}
+
+/* newsletter-section */
+.newsletter-section { 
+    padding: 70px 0 88px 0;
+    width: 100%;
+    float: left;
+    text-align: center;
+    background: $color-p2 url('../images/blue-green-gradient.jpg') repeat-y center top;    
+
+    h2 {
+        font-size: 24px;
+        color: $color-p1b;
+        text-transform: uppercase;
+        font-weight: 700;
+        @include Montserrat-font;
+        letter-spacing: 4.5px;
+    }
+
+    p {
+        font-size: 14px;
+        color: $color-p1b;
+        margin-bottom: 43px;
+    }
+    label{
+        display: none;
+    }
+    .form-group {
+        margin: 4px;
+        min-width: 375px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .form-control {
+        width: 100%;
+        height: 40px;
+        border: none;
+        background: #454e65;
+        font-size: 14px;
+        color: #daf0ff;
+        padding: 0 20px;
+
+        &::-webkit-input-placeholder { 
+            color: #daf0ff;
+        }
+        &::-moz-placeholder { 
+            color: #daf0ff;
+        }
+        &:-ms-input-placeholder { 
+            color: #daf0ff;
+        }
+        &:-moz-placeholder { 
+            color: #daf0ff;
+        }
+    }
+
+    .btn { 
+        font-size: 16px;
+        font-weight: 700;
+        @include Montserrat-font;
+        height: 40px;
+        width: 100%;
+        margin-left: 0;
+        
+        &:hover {
+            background: #a1b1bc;
+            border-color: #a1b1bc;
+            color: #fff;
+        }
+    }
+
+    &.white-email {
+        background: none;
+    }
+    
+}
+/* talk To sale form */
+
+.talksale-form {
+    padding: 0 30px 25px;
+
+    label {
+        color: #2C3E50;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 40px;
+        text-transform: capitalize;
+        margin-bottom: 0;
+    }
+
+    input {
+        border: 1px solid #dde4e9;
+        height: 50px;
+        font-size: 14px;
+
+        &:focus {
+            border: 1px solid #3be4c3;
+            box-shadow: none;
+            outline: none;
+        }
+    }
+
+    .btn {
+        width: 100%;
+        color: #fff;
+        box-shadow: 0px -3px 0px #3dc7ac !important;
+        margin-top: 25px;
+        font-size: 18px;
+        font-weight: 900;
+        padding: 11px 25px;
+    }
+}
+
+/* sent-message-section */
+.sent-message-section {
+    width: 100%;
+    float: left;
+    padding: 100px 0;
+
+    h2 {
+        font-size: 24px;
+        color: #2c3e50;
+        font-weight: 700;
+        margin-bottom: 40px;
+    }
+
+    label {
+        font-size: 14px;
+        color: #2c3e50;
+        text-transform: uppercase;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 3px;
+    }
+
+    .form-control {
+        height: 50px;
+        box-shadow: none !important;
+        border-color: #d6dde2;
+        border-radius: 4px;
+        font-size: 14px;
+
+        &:focus {
+            border-color: #21c2f8;
+        }
+    }
+
+    textarea.form-control {
+        height: 180px;
+    }
+
+    .btn {
+        min-width: 230px;
+        border-width: 2px;
+        border-radius: 5px;
+        margin-top: 15px;
+        letter-spacing: 2px;
+        border-color: #2c3e50;
+        background: #fff;
+        color: #2c3e50;
+
+        &:hover {
+            border-color: $color-p1b;
+            background: $color-p1b;
+            color: #76e8b5;
+        }
+    }
+}
+.request-form label{
+    display:none;
+}

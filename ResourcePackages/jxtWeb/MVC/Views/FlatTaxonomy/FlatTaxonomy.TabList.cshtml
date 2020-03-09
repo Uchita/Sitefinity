@@ -1,0 +1,30 @@
+@model Telerik.Sitefinity.Frontend.Taxonomies.Mvc.Models.TaxonomyViewModel
+
+@*used for pageManager*@
+@using Telerik.Sitefinity.GenericContent.Model;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Pages.Model;
+@*used for siteMapBase*@
+@using Telerik.Sitefinity.Web;
+
+@{
+    var manager = PageManager.GetManager();
+    var node = SiteMapBase.GetActualCurrentNode();
+    var url = node.Url.Substring(1);
+}
+
+<ul class="@Model.CssClass sf-Tags list-unstyled taxa-links">
+    <li><a href="@url">All</a></li>
+    @foreach (var taxa in Model.Taxa)
+    {
+        <li>
+            <a href="@taxa.Url">@taxa.Title</a>
+            <span class="text-muted">
+                @if (Model.ShowItemCount)
+                {
+                    @:(@taxa.Count)
+                }
+            </span>
+        </li>
+    }
+</ul>

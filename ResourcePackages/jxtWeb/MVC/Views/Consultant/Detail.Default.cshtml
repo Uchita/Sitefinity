@@ -1,0 +1,55 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+
+@using System.Collections;
+@using System.Linq;
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Localization;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Pages.Model;
+@using Telerik.Sitefinity.Modules.Libraries;
+
+@{
+    List<string>
+    filterValues = new List<string>
+        ();
+    var imageThumbUrl = "";
+
+    if (Model.Item.Fields.Category != null)
+    {
+        foreach (var taxon in Model.Item.GetHierarchicalTaxons("Category"))
+        {
+            filterValues.Add(taxon.Name);
+        }
+    }
+}
+
+<div class="row consultant-single">
+    <div class="col-12 col-md-4">
+        @if (Model.Item.Fields.Pic != null)
+        {
+            imageThumbUrl = MediaContentExtensions.ResolveThumbnailUrl(Model.Item.Fields.Pic.DataItem, "thumb350");
+        }
+        <div class="image" style="background-image: url(@imageThumbUrl);"></div>
+    </div>
+    <div class="col-12 col-md-8">
+        <div class="text">
+            <h4>@Html.HtmlSanitize((string)Model.Item.Fields.ConsultantName)</h4>
+            <div class="designation">@Html.HtmlSanitize((string)Model.Item.Fields.Position)</div>
+            <div class="tdesc">
+                @Html.HtmlSanitize((string)Model.Item.Fields.Bio)
+            </div>
+            <div class="socail">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-linkedin-in"></a>
+            </div>
+        </div>
+    </div>
+</div>
+

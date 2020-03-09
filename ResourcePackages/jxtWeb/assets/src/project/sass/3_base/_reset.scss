@@ -1,0 +1,82 @@
+// Reset browser styles
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+body, html {
+    font-family: $global-font-family-lato;
+    font-size: $global-font-size-px;
+    line-height: $global-line-height;
+    color: $color-p1;
+}
+
+a {
+    text-decoration: none;
+    color: #04bfbf;
+}
+
+a:hover, a:active, a:focus {
+    color: #192b3b;
+    text-decoration: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+button {
+    outline: none !important;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    font-family: $global-font-family-Monts;
+    color: $color-p1c;
+    line-height: 1.1;
+    margin-bottom: $global-marg-btm;
+}
+h1 {
+    margin-top: 20px;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 36px;
+    margin-top: 10px;
+}
+
+h3 {
+    font-size: 30px;
+    margin-top: 0px;
+}
+
+h4 {
+    font-size: 26px;
+    margin-top: 10px;
+}
+
+h5 {
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+h6 {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+p, ul, ol {
+    margin-bottom: $global-marg-btm;
+}
+
+img { 
+    display: block;
+    max-width: 100%;
+}

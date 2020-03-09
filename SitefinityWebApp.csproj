@@ -1360,6 +1360,8 @@
     <None Include="App_Data\GeoLocation\GeoLite2-City.mmdb" />
     <Content Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />
+	 <Content Include="App_Data\Sitefinity\Sitefinity.lic" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="SampleTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
     </Content>

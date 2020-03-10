@@ -16,6 +16,7 @@ using Ninject;
 using SitefinityWebApp.App_Start;
 using SitefinityWebApp.code;
 using System;
+using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.UI.HtmlControls;

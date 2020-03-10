@@ -98,8 +98,10 @@ namespace SitefinityWebApp
 
         void OnUnauthorizedAccess(IUnauthorizedPageAccessEvent unauthorizedEvent)
         {
-            var url = unauthorizedEvent.Page.Url.TrimStart('~');
-            unauthorizedEvent.HttpContext.Response.Redirect("~/sign-in");
+            if (HttpContext.Current.Request.Url.Host.ToString().ToUpper().Contains("BGSTAFFING"))
+                unauthorizedEvent.HttpContext.Response.Redirect("~/next-system/login-external-provider/AzureB2cLogin");
+            else
+                unauthorizedEvent.HttpContext.Response.Redirect("~/jobseeker-sign-in");
         }
 
         protected void Application_End(object sender, EventArgs e)

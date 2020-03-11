@@ -98,9 +98,9 @@ namespace SitefinityWebApp
         }
 
         void OnUnauthorizedAccess(IUnauthorizedPageAccessEvent unauthorizedEvent)
-        {
+        {         
             if (HttpContext.Current.Request.Url.Host.ToString().ToUpper().Contains("BGSTAFFING"))
-                unauthorizedEvent.HttpContext.Response.Redirect("~/next-system/login-external-provider/AzureB2cLogin");
+                unauthorizedEvent.HttpContext.Response.Redirect("~/next-system/external-auth/b2c-login");
             else
                 unauthorizedEvent.HttpContext.Response.Redirect("~/jobseeker-sign-in");
         }

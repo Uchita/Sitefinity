@@ -1152,6 +1152,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminApp\app.7ec177242a10f4ac1b82.bundle.js" />
+    <Content Include="AdminApp\app.9565ddc934c0a79047ec.bundle.js" />
+    <Content Include="AdminApp\app.df3513ced2e58a917458.bundle.js" />
     <Content Include="AdminApp\assets\auth\oidc-client.min.js" />
     <Content Include="AdminApp\assets\auth\silent-renew.html" />
     <Content Include="AdminApp\assets\auth\silent-renew.js" />
@@ -1238,9 +1240,12 @@
     <Content Include="AdminApp\assets\js\monaco-editor\vs\loader.js" />
     <Content Include="AdminApp\DecExtensions\dec-iris.extensions.bundle.js" />
     <Content Include="AdminApp\elements.5724df568eb521949edf.bundle.js" />
+    <Content Include="AdminApp\elements.fa063e6b7dcb09dbb7aa.bundle.js" />
     <Content Include="AdminApp\favicon.ico" />
     <Content Include="AdminApp\index.html" />
+    <Content Include="AdminApp\vendors.517ede93ea2701007c59.bundle.js" />
     <Content Include="AdminApp\vendors.5550ae7c391e706a8774.bundle.js" />
+    <Content Include="AdminApp\vendors.5e14967ac3649e3b5085.bundle.js" />
     <Content Include="App_Data\appStatusReport.html" />
     <Content Include="App_Data\GeoLocation\citieslist.txt" />
     <Content Include="App_Data\RadCaptcha\0.wav" />

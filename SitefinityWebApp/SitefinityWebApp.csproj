@@ -1238,7 +1238,6 @@
     <Content Include="AdminApp\assets\js\monaco-editor\vs\language\typescript\src\mode.js" />
     <Content Include="AdminApp\assets\js\monaco-editor\vs\language\typescript\src\worker.js" />
     <Content Include="AdminApp\assets\js\monaco-editor\vs\loader.js" />
-    <Content Include="AdminApp\DecExtensions\dec-iris.extensions.bundle.js" />
     <Content Include="AdminApp\elements.5724df568eb521949edf.bundle.js" />
     <Content Include="AdminApp\elements.fa063e6b7dcb09dbb7aa.bundle.js" />
     <Content Include="AdminApp\favicon.ico" />

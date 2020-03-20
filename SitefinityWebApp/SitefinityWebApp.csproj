@@ -1679,9 +1679,9 @@
     <Content Include="App_Data\Sitefinity\Search\blog-search\_0.cfs" />
     <Content Include="Mvc\Views\LoginForm\LoginForm.ExternalSsoForced.cshtml" />
     <Content Include="Mvc\Views\LoginForm\LoginForm.ExternalSsoForced.cshtml" />
+    <Content Include="Mvc\Views\PageTitle\Simple.cshtml" />
     <Content Include="AdminApp\config.json" />
     <Content Include="AdminApp\assets\js\kendo-editor\kendo.custom.min.js.map" />
-    <Content Include="Mvc\Views\PageTitle\Simple.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="web.Debug.config">

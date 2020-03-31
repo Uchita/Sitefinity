@@ -64,3 +64,8 @@
 <h3>Other settings</h3><br />
 <sitefinity:TextField ID="cultureIsEnabled" runat="server" DataFieldName="CultureIsEnabled" Title="Please Enter Culture Value" CssClass="sfSettingsSection" DisplayMode="Write" />
 <sitefinity:TextField ID="jobCurrencySymbol" runat="server" DataFieldName="JobCurrencySymbol" Title="The currency used in job views" CssClass="sfSettingsSection" DisplayMode="Write" />
+<sitefinity:ChoiceField ID="jobSearchLowerCaseId" DataFieldName="JobSearchLowerCaseId" DisplayMode="Write" RenderChoicesAs="SingleCheckBox" DataItemType="bool" runat="server" Title="Use lower case IDs in job search">
+    <Choices>
+        <sitefinity:ChoiceItem Value="true" />
+    </Choices>
+</sitefinity:ChoiceField>

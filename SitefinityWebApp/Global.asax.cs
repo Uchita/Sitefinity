@@ -62,7 +62,7 @@ namespace SitefinityWebApp
             Res.RegisterResource<JobDetailsResources>();
             Res.RegisterResource<LoginStatusExtendedResources>();
             Res.RegisterResource<UsersListExtendedResources>();
-            Res.RegisterResource<MapsResources>();
+            Res.RegisterResource<MapsResourcesResources>();
             Res.RegisterResource<JobApplicationResources>();
             Res.RegisterResource<MemberSavedJobsResources>();
             Res.RegisterResource<MemberAppliedJobsResources>();

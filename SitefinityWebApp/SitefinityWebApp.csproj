@@ -193,95 +193,95 @@
     <Reference Include="JXTNext.Common.Web, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Common.Web.5.5.21\lib\netstandard2.0\JXTNext.Common.Web.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Core, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Core.6.0.279\lib\net472\JXTNext.Core.dll</HintPath>
+    <Reference Include="JXTNext.Core, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Core.6.0.281\lib\net472\JXTNext.Core.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Data, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Data.6.0.279\lib\net472\JXTNext.Data.dll</HintPath>
+    <Reference Include="JXTNext.Data, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Data.6.0.281\lib\net472\JXTNext.Data.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.FileHandler, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.FileHandler.5.5.21\lib\netstandard2.0\JXTNext.FileHandler.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Infrastructure, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Infrastructure.6.0.279\lib\net472\JXTNext.Infrastructure.dll</HintPath>
+    <Reference Include="JXTNext.Infrastructure, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Infrastructure.6.0.281\lib\net472\JXTNext.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.6.0.279\lib\net472\JXTNext.Sitefinity.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.6.0.281\lib\net472\JXTNext.Sitefinity.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Common, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Common.6.0.279\lib\net472\JXTNext.Sitefinity.Common.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Common, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Common.6.0.281\lib\net472\JXTNext.Sitefinity.Common.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Connector, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Connector.6.0.279\lib\net472\JXTNext.Sitefinity.Connector.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Connector, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Connector.6.0.281\lib\net472\JXTNext.Sitefinity.Connector.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Custom, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Custom.6.0.279\lib\net472\JXTNext.Sitefinity.Custom.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Custom, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Custom.6.0.281\lib\net472\JXTNext.Sitefinity.Custom.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.DynamicTypes, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.DynamicTypes.6.0.279\lib\net472\JXTNext.Sitefinity.DynamicTypes.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.DynamicTypes, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.DynamicTypes.6.0.281\lib\net472\JXTNext.Sitefinity.DynamicTypes.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Sitefinity.FileHandler, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.FileHandler.6.0.279\lib\net472\JXTNext.Sitefinity.FileHandler.dll</HintPath>
+      <HintPath>..\packages\JXTNext.Sitefinity.FileHandler.6.0.281\lib\net472\JXTNext.Sitefinity.FileHandler.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Logging, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Logging.6.0.279\lib\net472\JXTNext.Sitefinity.Logging.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Logging, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Logging.6.0.281\lib\net472\JXTNext.Sitefinity.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Media, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Media.6.0.279\lib\net472\JXTNext.Sitefinity.Media.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Media, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Media.6.0.281\lib\net472\JXTNext.Sitefinity.Media.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Modules.Setup, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Modules.Setup.6.0.279\lib\net472\JXTNext.Sitefinity.Modules.Setup.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Modules.Setup, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Modules.Setup.6.0.281\lib\net472\JXTNext.Sitefinity.Modules.Setup.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.SalarySurvey, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.SalarySurvey.6.0.279\lib\net472\JXTNext.Sitefinity.SalarySurvey.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.SalarySurvey, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.SalarySurvey.6.0.281\lib\net472\JXTNext.Sitefinity.SalarySurvey.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Services, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Services.6.0.279\lib\net472\JXTNext.Sitefinity.Services.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Services, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Services.6.0.281\lib\net472\JXTNext.Sitefinity.Services.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Services.Intefaces, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Services.Intefaces.6.0.279\lib\net472\JXTNext.Sitefinity.Services.Intefaces.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Services.Intefaces, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Services.Intefaces.6.0.281\lib\net472\JXTNext.Sitefinity.Services.Intefaces.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Widgets.Authentication, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Authentication.6.0.279\lib\net472\JXTNext.Sitefinity.Widgets.Authentication.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Widgets.Authentication, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Authentication.6.0.281\lib\net472\JXTNext.Sitefinity.Widgets.Authentication.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Widgets.Candidate, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Candidate.6.0.279\lib\net472\JXTNext.Sitefinity.Widgets.Candidate.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Widgets.Candidate, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Candidate.6.0.281\lib\net472\JXTNext.Sitefinity.Widgets.Candidate.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Widgets.Content, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Content.6.0.279\lib\net472\JXTNext.Sitefinity.Widgets.Content.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Widgets.Content, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Content.6.0.281\lib\net472\JXTNext.Sitefinity.Widgets.Content.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Widgets.Feather, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Feather.6.0.279\lib\net472\JXTNext.Sitefinity.Widgets.Feather.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Widgets.Feather, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Feather.6.0.281\lib\net472\JXTNext.Sitefinity.Widgets.Feather.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Widgets.Identity, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Identity.6.0.279\lib\net472\JXTNext.Sitefinity.Widgets.Identity.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Widgets.Identity, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Identity.6.0.281\lib\net472\JXTNext.Sitefinity.Widgets.Identity.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Widgets.Integrations, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Integrations.6.0.279\lib\net472\JXTNext.Sitefinity.Widgets.Integrations.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Widgets.Integrations, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Integrations.6.0.281\lib\net472\JXTNext.Sitefinity.Widgets.Integrations.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Widgets.Job, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Job.6.0.279\lib\net472\JXTNext.Sitefinity.Widgets.Job.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Widgets.Job, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Job.6.0.281\lib\net472\JXTNext.Sitefinity.Widgets.Job.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Widgets.JobAlert, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.JobAlert.6.0.279\lib\net472\JXTNext.Sitefinity.Widgets.JobAlert.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Widgets.JobAlert, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.JobAlert.6.0.281\lib\net472\JXTNext.Sitefinity.Widgets.JobAlert.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Widgets.JobApplication, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.JobApplication.6.0.279\lib\net472\JXTNext.Sitefinity.Widgets.JobApplication.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Widgets.JobApplication, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.JobApplication.6.0.281\lib\net472\JXTNext.Sitefinity.Widgets.JobApplication.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Widgets.Social, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Social.6.0.279\lib\net472\JXTNext.Sitefinity.Widgets.Social.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Widgets.Social, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Social.6.0.281\lib\net472\JXTNext.Sitefinity.Widgets.Social.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Widgets.Testimonials, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Testimonials.6.0.279\lib\net472\JXTNext.Sitefinity.Widgets.Testimonials.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Widgets.Testimonials, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.Testimonials.6.0.281\lib\net472\JXTNext.Sitefinity.Widgets.Testimonials.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Sitefinity.Widgets.User, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.User.6.0.279\lib\net472\JXTNext.Sitefinity.Widgets.User.dll</HintPath>
+    <Reference Include="JXTNext.Sitefinity.Widgets.User, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.Widgets.User.6.0.281\lib\net472\JXTNext.Sitefinity.Widgets.User.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.SocialMedia, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.SocialMedia.5.5.21\lib\netstandard2.0\JXTNext.SocialMedia.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Telemetry, Version=6.0.279.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Telemetry.6.0.279\lib\net472\JXTNext.Telemetry.dll</HintPath>
+    <Reference Include="JXTNext.Telemetry, Version=6.0.281.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Telemetry.6.0.281\lib\net472\JXTNext.Telemetry.dll</HintPath>
     </Reference>
     <Reference Include="LinqToTwitter, Version=2.1.9.0, Culture=neutral, PublicKeyToken=957107be965c25d9, processorArchitecture=MSIL">
       <HintPath>..\packages\linqtotwitterNET40.2.1.9.0\lib\net40\LinqToTwitter.dll</HintPath>

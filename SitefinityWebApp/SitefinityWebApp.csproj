@@ -227,6 +227,9 @@
     <Reference Include="JXTNext.Sitefinity.Logging, Version=6.0.290.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Logging.6.0.290\lib\net472\JXTNext.Sitefinity.Logging.dll</HintPath>
     </Reference>
+    <Reference Include="JXTNext.Sitefinity.MailchimpConnector, Version=6.0.291.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXTNext.Sitefinity.MailchimpConnector.6.0.291\lib\net472\JXTNext.Sitefinity.MailchimpConnector.dll</HintPath>
+    </Reference>
     <Reference Include="JXTNext.Sitefinity.Media, Version=6.0.290.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXTNext.Sitefinity.Media.6.0.290\lib\net472\JXTNext.Sitefinity.Media.dll</HintPath>
     </Reference>

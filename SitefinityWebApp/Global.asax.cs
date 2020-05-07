@@ -15,8 +15,8 @@ using JXTNext.Telemetry;
 using Ninject;
 using SitefinityWebApp.App_Start;
 using SitefinityWebApp.code;
-using SitefinityWebApp.Mvc.Models.CustomDynamicContent;
 using System;
+using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.UI.HtmlControls;
@@ -24,7 +24,6 @@ using Telerik.Microsoft.Practices.Unity;
 using Telerik.Sitefinity.Abstractions;
 using Telerik.Sitefinity.Data;
 using Telerik.Sitefinity.Frontend;
-using Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models;
 using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.LoginForm;
 using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Registration;
 using Telerik.Sitefinity.Localization;
@@ -63,7 +62,7 @@ namespace SitefinityWebApp
             Res.RegisterResource<JobDetailsResources>();
             Res.RegisterResource<LoginStatusExtendedResources>();
             Res.RegisterResource<UsersListExtendedResources>();
-            Res.RegisterResource<MapsResources>();
+            Res.RegisterResource<MapsResourcesResources>();
             Res.RegisterResource<JobApplicationResources>();
             Res.RegisterResource<MemberSavedJobsResources>();
             Res.RegisterResource<MemberAppliedJobsResources>();
@@ -74,8 +73,6 @@ namespace SitefinityWebApp
             if (e.CommandName == "Bootstrapped")
             {
                 AutoMapperConfiguration.Configure();
-                //GlobalFilters.Filters.Add(new SocialShareAttribute()); Remove because social share is no longer supported.
-                FrontendModule.Current.DependencyResolver.Rebind<IDynamicContentModel>().To<CustomDynamicContentModel>();
                 EventHub.Subscribe<IUnauthorizedPageAccessEvent>(new Telerik.Sitefinity.Services.Events.SitefinityEventHandler<IUnauthorizedPageAccessEvent>(OnUnauthorizedAccess));
                 EventHub.Subscribe<ISitemapGeneratorBeforeWriting>(new Telerik.Sitefinity.Services.Events.SitefinityEventHandler<ISitemapGeneratorBeforeWriting>(SeoSiteMapAppender));
             }
@@ -101,17 +98,12 @@ namespace SitefinityWebApp
         }
 
         void OnUnauthorizedAccess(IUnauthorizedPageAccessEvent unauthorizedEvent)
-        {
-            var url = unauthorizedEvent.Page.Url.TrimStart('~');
-            //for this specific page redirect to CustomerLoginPage
-            //if (unauthorizedEvent.Page.Title.Contains("user-dashboard"))
-            unauthorizedEvent.HttpContext.Response.Redirect("~/sign-in");
-            //for all other pages redirect to the Sitefinity login page
-            //if you do not use the else clause you will be redirected to the Sitefinity login page in all other cases different that the above one
-            //else
-            //    unauthorizedEvent.HttpContext.Response.Redirect("~/sitefinity");
+        {         
+            if (HttpContext.Current.Request.Url.Host.ToString().ToUpper().Contains("BGSTAFFING"))
+                unauthorizedEvent.HttpContext.Response.Redirect("~/next-system/external-auth/b2c-login");
+            else
+                unauthorizedEvent.HttpContext.Response.Redirect("~/jobseeker-sign-in");
         }
-
 
         protected void Application_End(object sender, EventArgs e)
         {
@@ -141,7 +133,7 @@ namespace SitefinityWebApp
         {
             _siteMapService.SEOAppendSiteMap(evt);
         }
-        
+
         private void RegisterStatsD(IKernel kernel)
         {
             var statsDConfiguration = StatsDConfigurator.Configure();
@@ -149,5 +141,4 @@ namespace SitefinityWebApp
             kernel.Bind<IStatsDPublisher>().To<StatsDPublisher>().InSingletonScope();
         }
     }
-
 }

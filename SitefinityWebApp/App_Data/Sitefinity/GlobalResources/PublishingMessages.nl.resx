@@ -117,52 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SortByRecent">
-    <value>Sorteer op - Nieuwste</value>
+  <data name="Pop3Password">
+    <value>Wachtwoord</value>
     <comment></comment>
-    <lastModified>2020-04-07T06:20:59</lastModified>
+    <lastModified>2020-04-07T06:42:49</lastModified>
   </data>
-  <data name="SortByRelevance">
-    <value>Sorteer op - Relevantie</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:21:18</lastModified>
-  </data>
-  <data name="SortByOldest">
-    <value>Sorteer op - Oudste</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:21:43</lastModified>
-  </data>
-  <data name="SortByAlphaAZ">
-    <value>Sorteer op - Alfabetisch A-Z</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:25:05</lastModified>
-  </data>
-  <data name="SortByAlphaZA">
-    <value>Sorteer op - Alfabetisch Z-A</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:25:22</lastModified>
-  </data>
-  <data name="SortBySalHighToLow">
-    <value>Sorteer op - Salaris hoog-laag</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:25:50</lastModified>
-  </data>
-  <data name="SortBySalLowToHigh">
-    <value>Sorteer op - Salaris laag-hoog</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:26:31</lastModified>
-  </data>
-  <data name="JxtCreateJobAlert">
-    <value>Maak een job alert</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:26:31</lastModified>
-  </data>
-  <data name="CreateJobAlertEmailPlaceholder">
-    <value>E-mailadres</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:26:31</lastModified>
-  </data>
-
-  
-  
 </root>

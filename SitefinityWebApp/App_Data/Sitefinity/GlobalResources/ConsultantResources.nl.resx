@@ -152,17 +152,4 @@
     <comment></comment>
     <lastModified>2020-04-07T06:26:31</lastModified>
   </data>
-  <data name="JxtCreateJobAlert">
-    <value>Maak een job alert</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:26:31</lastModified>
-  </data>
-  <data name="CreateJobAlertEmailPlaceholder">
-    <value>E-mailadres</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:26:31</lastModified>
-  </data>
-
-  
-  
 </root>

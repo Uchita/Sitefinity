@@ -117,52 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SortByRecent">
-    <value>Sorteer op - Nieuwste</value>
+  <data name="Register">
+    <value>Registreer</value>
     <comment></comment>
-    <lastModified>2020-04-07T06:20:59</lastModified>
+    <lastModified>2020-04-07T06:08:41</lastModified>
   </data>
-  <data name="SortByRelevance">
-    <value>Sorteer op - Relevantie</value>
+  <data name="ConfirmNewPasswordText">
+    <value>Bevestig wachtwoord</value>
     <comment></comment>
-    <lastModified>2020-04-07T06:21:18</lastModified>
+    <lastModified>2020-04-07T06:29:24</lastModified>
   </data>
-  <data name="SortByOldest">
-    <value>Sorteer op - Oudste</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:21:43</lastModified>
-  </data>
-  <data name="SortByAlphaAZ">
-    <value>Sorteer op - Alfabetisch A-Z</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:25:05</lastModified>
-  </data>
-  <data name="SortByAlphaZA">
-    <value>Sorteer op - Alfabetisch Z-A</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:25:22</lastModified>
-  </data>
-  <data name="SortBySalHighToLow">
-    <value>Sorteer op - Salaris hoog-laag</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:25:50</lastModified>
-  </data>
-  <data name="SortBySalLowToHigh">
-    <value>Sorteer op - Salaris laag-hoog</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:26:31</lastModified>
-  </data>
-  <data name="JxtCreateJobAlert">
-    <value>Maak een job alert</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:26:31</lastModified>
-  </data>
-  <data name="CreateJobAlertEmailPlaceholder">
+  <data name="EmailAddress">
     <value>E-mailadres</value>
     <comment></comment>
-    <lastModified>2020-04-07T06:26:31</lastModified>
+    <lastModified>2020-04-07T06:38:26</lastModified>
   </data>
-
-  
-  
+  <data name="Password">
+    <value>Wachtwoord</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:41:25</lastModified>
+  </data>
+  <data name="MandatoryFields">
+    <value>Verlplicht veld</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:41:28</lastModified>
+  </data>
+  <data name="PasswordLower">
+    <value>Wachtwoord</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:41:41</lastModified>
+  </data>
+  <data name="ForgotYourPassword">
+    <value>Wachtwoord vergeten?</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:50:50</lastModified>
+  </data>
+  <data name="SearchWidgetTypeLabel">
+    <value>Zoeken</value>
+    <comment></comment>
+    <lastModified>2020-04-07T07:00:21</lastModified>
+  </data>
+  <data name="TwitterWidgetSearch">
+    <value>Zoeken</value>
+    <comment></comment>
+    <lastModified>2020-04-07T07:00:35</lastModified>
+  </data>
+  <data name="Search">
+    <value>Zoeken...</value>
+    <comment></comment>
+    <lastModified>2020-04-07T07:02:00</lastModified>
+  </data>
+  <data name="SearchModule">
+    <value>Zoeken...</value>
+    <comment></comment>
+    <lastModified>2020-04-07T07:02:10</lastModified>
+  </data>
+  <data name="Add">
+    <value>Toevoegen</value>
+    <comment></comment>
+    <lastModified>2020-04-07T07:03:38</lastModified>
+  </data>
 </root>

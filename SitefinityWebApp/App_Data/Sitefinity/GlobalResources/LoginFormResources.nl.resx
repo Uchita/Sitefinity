@@ -117,52 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SortByRecent">
-    <value>Sorteer op - Nieuwste</value>
+  <data name="Password">
+    <value>Wachtwoord</value>
     <comment></comment>
-    <lastModified>2020-04-07T06:20:59</lastModified>
+    <lastModified>2020-04-07T06:42:04</lastModified>
   </data>
-  <data name="SortByRelevance">
-    <value>Sorteer op - Relevantie</value>
+  <data name="ForgotPasswordSendButton">
+    <value>Verstuur</value>
     <comment></comment>
-    <lastModified>2020-04-07T06:21:18</lastModified>
+    <lastModified>2020-04-07T06:42:46</lastModified>
   </data>
-  <data name="SortByOldest">
-    <value>Sorteer op - Oudste</value>
+  <data name="LoginFormLogInButton">
+    <value>Inloggen</value>
     <comment></comment>
-    <lastModified>2020-04-07T06:21:43</lastModified>
+    <lastModified>2020-04-07T06:45:09</lastModified>
   </data>
-  <data name="SortByAlphaAZ">
-    <value>Sorteer op - Alfabetisch A-Z</value>
+  <data name="NotRegisteredYet">
+    <value>Nog geen account?</value>
     <comment></comment>
-    <lastModified>2020-04-07T06:25:05</lastModified>
+    <lastModified>2020-04-07T06:46:51</lastModified>
   </data>
-  <data name="SortByAlphaZA">
-    <value>Sorteer op - Alfabetisch Z-A</value>
+  <data name="LoginFormRegisterNow">
+    <value>Registreer</value>
     <comment></comment>
-    <lastModified>2020-04-07T06:25:22</lastModified>
+    <lastModified>2020-04-07T06:47:53</lastModified>
   </data>
-  <data name="SortBySalHighToLow">
-    <value>Sorteer op - Salaris hoog-laag</value>
+  <data name="ForgotPasswordTemplate">
+    <value>Wachtwoord vergeten?</value>
     <comment></comment>
-    <lastModified>2020-04-07T06:25:50</lastModified>
+    <lastModified>2020-04-07T06:50:59</lastModified>
   </data>
-  <data name="SortBySalLowToHigh">
-    <value>Sorteer op - Salaris laag-hoog</value>
+  <data name="ForgotPasswordHeader">
+    <value>Wachtwoord vergeten?</value>
     <comment></comment>
-    <lastModified>2020-04-07T06:26:31</lastModified>
+    <lastModified>2020-04-07T06:51:05</lastModified>
   </data>
-  <data name="JxtCreateJobAlert">
-    <value>Maak een job alert</value>
+  <data name="EnterLoginEmailAddress">
+    <value>Vul je e-mailadres in en je ontvangt een e-mail met een link waarmee je je wachtwoord kunt resetten/herstellen</value>
     <comment></comment>
-    <lastModified>2020-04-07T06:26:31</lastModified>
+    <lastModified>2020-04-07T06:52:00</lastModified>
   </data>
-  <data name="CreateJobAlertEmailPlaceholder">
-    <value>E-mailadres</value>
+  <data name="RememberMe">
+    <value>Blijf ingelogd</value>
     <comment></comment>
-    <lastModified>2020-04-07T06:26:31</lastModified>
+    <lastModified>2020-04-07T07:05:02</lastModified>
   </data>
-
-  
-  
 </root>

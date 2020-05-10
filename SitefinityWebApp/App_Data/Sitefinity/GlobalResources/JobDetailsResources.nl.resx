@@ -127,4 +127,14 @@
     <comment></comment>
     <lastModified>2020-04-07T06:37:17</lastModified>
   </data>
+  <data name="JxtSaveJob">
+    <value>Bewaar vacature</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:37:17</lastModified>
+  </data>
+  <data name="JxtJobSaved">
+    <value>Vacature opgeslagen</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:37:17</lastModified>
+  </data>
 </root>

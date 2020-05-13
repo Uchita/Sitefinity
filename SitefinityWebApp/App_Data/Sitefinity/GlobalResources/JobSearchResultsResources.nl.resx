@@ -163,6 +163,14 @@
     <lastModified>2020-04-07T06:26:31</lastModified>
   </data>
 
-  
-  
+  <data name="JxtJobResult">
+    <value>Zoekresultaat:</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:26:31</lastModified>
+  </data>
+  <data name="JxtJobResultPosition">
+    <value>vacature(s)</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:26:31</lastModified>
+  </data>
 </root>

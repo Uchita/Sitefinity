@@ -132,4 +132,35 @@
     <comment></comment>
     <lastModified>2020-03-11T13:02:14</lastModified>
   </data>
+
+  <data name="JobFilterKeywords">
+    <value>Zoeken</value>
+    <comment></comment>
+    <lastModified>2020-03-11T13:02:14</lastModified>
+  </data>
+  <data name="JobFilterKeywordsPlaceHolder">
+    <value>Zoekwoorden</value>
+    <comment></comment>
+    <lastModified>2020-03-11T13:02:14</lastModified>
+  </data>
+  <data name="JobFilterNoSalary">
+    <value>Kies je ervaringsniveau</value>
+    <comment></comment>
+    <lastModified>2020-03-11T13:02:14</lastModified>
+  </data>
+  <data name="JxtSaveJob">
+    <value>Bewaar vacature</value>
+    <comment></comment>
+    <lastModified>2020-03-11T13:02:14</lastModified>
+  </data>
+  <data name="JxtEmailJob">
+    <value>Stuur e-mail</value>
+    <comment></comment>
+    <lastModified>2020-03-11T13:02:14</lastModified>
+  </data>
+  <data name="ReadMore">
+    <value>Lees meer</value>
+    <comment></comment>
+    <lastModified>2020-03-11T13:02:14</lastModified>
+  </data>
 </root>

@@ -173,4 +173,19 @@
     <comment></comment>
     <lastModified>2020-04-07T06:26:31</lastModified>
   </data>
+  <data name="JxtJobResultSearchJobs">
+    <value>Zoek vacatures</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:26:31</lastModified>
+  </data>
+  <data name="ReadMore">
+    <value>Lees meer</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:26:31</lastModified>
+  </data>
+  <data name="JxtEmailJob">
+    <value>Stuur e-mail</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:26:31</lastModified>
+  </data>
 </root>

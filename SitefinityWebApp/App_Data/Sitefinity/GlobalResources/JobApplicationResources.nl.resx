@@ -122,6 +122,31 @@
     <comment></comment>
     <lastModified>2020-03-11T12:41:35</lastModified>
   </data>
+  <data name="ApplyNowBtn">
+    <value>Solliciteer nu</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:45:28</lastModified>
+  </data>
+  <data name="ApplyWithLinkedIn">
+    <value>Solliciteer met LinkedIn</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:45:28</lastModified>
+  </data>
+  <data name="ApplyWithSocialTitle">
+    <value>Solliciteer met social media</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:45:28</lastModified>
+  </data>
+  <data name="ApplyPageTitle">
+    <value>Solliciteren</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:45:28</lastModified>
+  </data>
+  <data name="ApplyWithSocialQuickApplyTitle">
+    <value>Snel solliciteren</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:45:28</lastModified>
+  </data>
   <data name="passwordRequirementMsg">
     <value>Wachwoord bevat minimaal 8 karakters, 1 kleine letter, 1 hoofdletter, 1 getal en 1 speciaal karakter</value>
     <comment></comment>
@@ -157,7 +182,6 @@
     <comment></comment>
     <lastModified>2020-04-07T06:45:28</lastModified>
   </data>
-
   <data name="PhoneNumber">
     <value>Telephoonnummer</value>
     <comment></comment>
@@ -208,56 +232,9 @@
     <comment></comment>
     <lastModified>2020-04-07T06:45:28</lastModified>
   </data>
-  <data name="UploadFileSizeCoverletter">
-    <value>Maximaal bestandsformaat 0.5 MB.</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:45:28</lastModified>
-  </data>
-  <data name="ApplyNowBtn">
-    <value>Solliciteer nu</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:45:28</lastModified>
-  </data>
-  <data name="ApplyWithLinkedIn">
-    <value>Solliciteer met LinkedIn</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:45:28</lastModified>
-  </data>
-  <data name="ApplyWithSocialTitle">
-    <value>Solliciteer met social media</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:45:28</lastModified>
-  </data>
-  <data name="ApplyWithSocialQuickApplyTitle">
-    <value>Snel solliciteren</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:45:28</lastModified>
-  </data>
-
-  <data name="ApplyPageTitle">
-    <value>Solliciteren</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:45:28</lastModified>
-  </data>
   <data name="EnterYourDetails">
     <value>Vul je gegevens in</value>
     <comment></comment>
     <lastModified>2020-04-07T06:45:28</lastModified>
   </data>
-  <data name="ApplyWithSocialQuickApplyTitle">
-    <value>Snel solliciteren</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:45:28</lastModified>
-  </data>
-  <data name="ApplyWithSocialQuickApplyTitle">
-    <value>Snel solliciteren</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:45:28</lastModified>
-  </data>
-  <data name="ApplyWithSocialQuickApplyTitle">
-    <value>Snel solliciteren</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:45:28</lastModified>
-  </data>
-  
 </root>

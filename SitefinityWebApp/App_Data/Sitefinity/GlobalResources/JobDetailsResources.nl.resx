@@ -137,7 +137,6 @@
     <comment></comment>
     <lastModified>2020-04-07T06:37:17</lastModified>
   </data>
-
   <data name="JxtNewSearch">
     <value>Opnieuw zoeken</value>
     <comment></comment>
@@ -148,40 +147,20 @@
     <comment></comment>
     <lastModified>2020-04-07T06:37:17</lastModified>
   </data>
-  <data name="JxtJobSaved">
-    <value>Vacature opgeslagen</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:37:17</lastModified>
-  </data>
-  <data name="JxtJobSaved">
-    <value>Vacature opgeslagen</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:37:17</lastModified>
-  </data>
-  <data name="JxtJobSaved">
-    <value>Vacature opgeslagen</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:37:17</lastModified>
-  </data><data name="JxtJobSaved">
-    <value>Vacature opgeslagen</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:37:17</lastModified>
-  </data>
-  <data name="JxtJobSaved">
-    <value>Vacature opgeslagen</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:37:17</lastModified>
-  </data>
-  <data name="JxtJobSaved">
-    <value>Vacature opgeslagen</value>
-    <comment></comment>
-    <lastModified>2020-04-07T06:37:17</lastModified>
-  </data>
   <data name="JobDetailInterested">
     <value>Geïnteresseerd in deze vacature?</value>
     <comment></comment>
     <lastModified>2020-04-07T06:37:17</lastModified>
   </data>
-
-  
+  <data name="EmailThisJob">
+    <value>Stuur e-mail</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:37:17</lastModified>
+  </data>
+  <data name="SaveThisJob">
+    <value>Bewaar vacature</value>
+    <comment></comment>
+    <lastModified>2020-04-07T06:37:17</lastModified>
+  </data>
 </root>
+
